@@ -117,7 +117,7 @@ close();
       }
 
       /*
-       * Create a __new, unique, anonymous file of the given size, and
+       * Create a ___new, unique, anonymous file of the given size, and
        * return the file descriptor for it. The file descriptor is set
        * CLOEXEC. The file is immediately suitable for mmap()'ing
        * the given size at offset zero.
@@ -755,8 +755,8 @@ char * malloc_get_current_dir_name()
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   //   unichar * pwszFile1;
 //      // unichar * pwszFile2;
-//   ::wide_character * pwszPath1 = __new ::wide_character[iBufSize];
-//   ::wide_character * pwszPath2 = __new ::wide_character[iBufSize];
+//   ::wide_character * pwszPath1 = ___new ::wide_character[iBufSize];
+//   ::wide_character * pwszPath2 = ___new ::wide_character[iBufSize];
 //   i32 iCmp = -1;
 //   //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //      // {

@@ -181,7 +181,7 @@ namespace colorertake5
       if (!checkLine(lno))
          return;
 
-      LineRegion *lnew = __new LineRegion();
+      LineRegion *lnew = ___new LineRegion();
       lnew->start = sx;
       lnew->end = ex;
       lnew->region = region;
@@ -205,7 +205,7 @@ namespace colorertake5
    {
       __UNREFERENCED_PARAMETER(line);
       __UNREFERENCED_PARAMETER(ex);
-      LineRegion * lr = __new LineRegion();
+      LineRegion * lr = ___new LineRegion();
       lr->region = region;
       lr->scheme = scheme;
       lr->start = sx;
@@ -232,7 +232,7 @@ namespace colorertake5
       // we must skip transparent regions
       if (lr->region != nullptr)
       {
-         LineRegion *lr_add = __new LineRegion(*lr);
+         LineRegion *lr_add = ___new LineRegion(*lr);
          flowBackground->end = lr_add->start;
          flowBackground = lr_add;
          addLineRegion(lno, lr_add);

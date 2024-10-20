@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class apex_apex apex;
 
-   ap(apex_main_data) pmaindata = __new apex_main_data(refstra);
+   ap(apex_main_data) pmaindata = ___new apex_main_data(refstra);
 
 #ifdef MAIN_STRING
 

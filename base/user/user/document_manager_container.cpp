@@ -52,7 +52,7 @@ namespace user
 
       //estatus =
 
-      print_line("base::user::document_manager_container Going to create __new document manager");
+      print_line("base::user::document_manager_container Going to create ___new document manager");
 
       if (!m_pdocmanager)
       {

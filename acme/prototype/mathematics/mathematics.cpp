@@ -658,7 +658,7 @@ namespace mathematics
    //   if (!g_pmathematics)
    //   {
 
-   //      g_pmathematics = __new class mathematics ();
+   //      g_pmathematics = ___new class mathematics ();
 
    //      //task_untrack___allocate(g_pmathematics);
 

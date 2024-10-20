@@ -550,7 +550,7 @@ public:
    ::pointer < T > create_clone(const ::pointer < T > & psource)
    {
 
-      return this->create_clone(psource.m_p REFERENCING_DEBUGGING_COMMA_P_NOTE(psource.m_p, __FUNCTION_FILE_LINE__));
+      return this->create_clone(psource.m_p REFERENCING_DEBUGGING_COMMA_P_FUNCTION_NOTE(psource.m_p, __FUNCTION__, __FILE_LINE__));
 
    }
 

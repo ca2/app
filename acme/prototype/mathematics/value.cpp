@@ -94,7 +94,7 @@ namespace mathematics
                strNumber = str;
                if(dynamic_cast < binary_operation * > (pimpl) != nullptr)
                {
-                  dynamic_cast < binary_operation * > (pimpl)->m_pvalue2 = __new number();
+                  dynamic_cast < binary_operation * > (pimpl)->m_pvalue2 = ___new number();
                   dynamic_cast < binary_operation * > (pimpl)->m_pvalue2->set_value_string(strNumber);
                   dynamic_cast < binary_operation * > (pimpl)->m_pvalue2->m_pbinop = dynamic_cast < binary_operation * > (pimpl);
                   pimpl = dynamic_cast < binary_operation * > (pimpl)->m_pvalue2;
@@ -116,28 +116,28 @@ namespace mathematics
             else if(*psz == '+')
             {
                ASSERT(dynamic_cast < number * > (pimpl) != nullptr);
-               pbinopNew = __new binary_operation();
+               pbinopNew = ___new binary_operation();
                pbinopNew->m_etype = binary_operation::type_addition;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '-')
             {
                ASSERT(dynamic_cast < number * > (pimpl) != nullptr);
-               pbinopNew = __new binary_operation();
+               pbinopNew = ___new binary_operation();
                pbinopNew->m_etype = binary_operation::type_subtraction;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '*')
             {
                ASSERT(dynamic_cast < number * > (pimpl) != nullptr);
-               pbinopNew = __new binary_operation();
+               pbinopNew = ___new binary_operation();
                pbinopNew->m_etype = binary_operation::type_multiplication;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }
             else if(*psz == '/')
             {
                ASSERT(dynamic_cast < number * > (pimpl) != nullptr);
-               pbinopNew = __new binary_operation();
+               pbinopNew = ___new binary_operation();
                pbinopNew->m_etype = binary_operation::type_division;
                pbinopNew->m_pvalue1 = dynamic_cast < number * > (pimpl);
             }

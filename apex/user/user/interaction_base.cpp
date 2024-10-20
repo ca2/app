@@ -1075,7 +1075,7 @@ namespace user
    }
 
 
-   // pmessage object should be allocated with __new in
+   // pmessage object should be allocated with ___new in
    // base or derived object and will be delete after
    // handling
    void interaction_base::post_message(::message::message * pmessage)

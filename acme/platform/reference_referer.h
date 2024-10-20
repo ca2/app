@@ -32,13 +32,15 @@ public:
    void *               m_p;
    ::i64                m_iSerial;
    ::c::string          m_cstringType;
+   ::c::string          m_cstringFunctionName;
    ::c::string          m_cstringDebug;
 
    static ::i64 new_serial() { return new_reference_referer_serial(); }
-   reference_referer(const char * pszType = nullptr, const char * pszDebug = nullptr) :
+   reference_referer(const char * pszType = nullptr, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
       m_psubparticle(nullptr),
       m_p(nullptr),
       m_cstringType(pszType),
+      m_cstringFunctionName(pszFunctionName),
       m_cstringDebug(pszDebug),
       m_iSerial(new_serial())
    {
@@ -46,6 +48,7 @@ public:
    reference_referer(const reference_referer & referer) :
       m_psubparticle(referer.m_psubparticle),
       m_cstringType(referer.m_cstringType),
+      m_cstringFunctionName(referer.m_cstringFunctionName),
       m_cstringDebug(referer.m_cstringDebug),
       m_p(referer.m_p),
       m_iSerial(referer.m_iSerial)
@@ -54,6 +57,7 @@ public:
    reference_referer(reference_referer && referer) :
       m_psubparticle(referer.m_psubparticle),
       m_cstringType(::transfer(referer.m_cstringType)),
+      m_cstringFunctionName(::transfer(referer.m_cstringFunctionName)),
       m_cstringDebug(::transfer(referer.m_cstringDebug)),
       m_p(referer.m_p),
       m_iSerial(referer.m_iSerial)
@@ -63,18 +67,20 @@ public:
       referer.m_iSerial = -1;
    }
    template < primitive_subparticle A_SUBPARTICLE >
-   reference_referer(A_SUBPARTICLE * pparticle, const char * pszDebug = nullptr) :
+   reference_referer(A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
       m_psubparticle(pparticle),
       m_cstringType(typeid(*pparticle).name()),
+      m_cstringFunctionName(pszFunctionName),
       m_cstringDebug(pszDebug),
       m_p(nullptr),
       m_iSerial(new_serial())
    {
    }
    template < non_primitive_subparticle NON_SUBPARTICLE >
-   reference_referer(NON_SUBPARTICLE * p, const char * pszDebug = nullptr) :
+   reference_referer(NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
       m_psubparticle(nullptr),
       m_cstringType(typeid(*p).name()),
+      m_cstringFunctionName(pszFunctionName),
       m_cstringDebug(pszDebug),
       m_p(p),
       m_iSerial(new_serial())
@@ -88,6 +94,7 @@ public:
    {
       m_p = nullptr;
       m_cstringType.destroy();
+      m_cstringFunctionName.destroy();
       m_cstringDebug.destroy();
       m_psubparticle = nullptr;
       m_iSerial = -1;
@@ -96,10 +103,11 @@ public:
    {
       return m_iSerial == referer.m_iSerial;
    }
-   void reset(const char * pszType = nullptr, const char * pszDebug = nullptr)
+   void reset(const char * pszType = nullptr, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr)
    {
       destroy();
       m_cstringType = pszType;
+      m_cstringFunctionName = pszFunctionName;
       m_cstringDebug = pszDebug;
    }
    reference_referer & operator=(const reference_referer & referer)
@@ -109,6 +117,7 @@ public:
          destroy();
          m_psubparticle = referer.m_psubparticle;
          m_cstringType = referer.m_cstringType;
+         m_cstringFunctionName = referer.m_cstringFunctionName;
          m_cstringDebug = referer.m_cstringDebug;
          m_p = referer.m_p;
          m_iSerial = referer.m_iSerial;
@@ -122,6 +131,7 @@ public:
          destroy();
          m_psubparticle = referer.m_psubparticle;
          m_cstringType = ::transfer(referer.m_cstringType);
+         m_cstringFunctionName = ::transfer(referer.m_cstringFunctionName);
          m_cstringDebug = ::transfer(referer.m_cstringDebug);
          m_p = referer.m_p;
          m_iSerial = referer.m_iSerial;

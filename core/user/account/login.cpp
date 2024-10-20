@@ -41,7 +41,7 @@ namespace account
 //         if(hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = __new ::image::icon ();
+//            m_picon95 = ___new ::image::icon ();
 //
 //            m_picon95->attach_os_data(hicon95);
 //

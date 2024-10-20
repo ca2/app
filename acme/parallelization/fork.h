@@ -199,7 +199,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //::pointer<task>fork(::particle * pparticle, PRED pred)
 //{
 //
-//   ptask = __new predicate_task < PRED > (pparticle, pred);
+//   ptask = ___new predicate_task < PRED > (pparticle, pred);
 //
 //   ptask->begin();
 //

@@ -58,7 +58,7 @@ namespace netserver
    ::netserver::socket_handler * socket_thread_base::new_socket_handler()
    {
 
-      return __new netserver::socket_handler ();
+      return ___new netserver::socket_handler ();
 
    }
 

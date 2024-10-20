@@ -180,7 +180,7 @@ bool __os_term_thread()
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
 //
-//      HANDLE* ph = __new HANDLE[nCount + 1];
+//      HANDLE* ph = ___new HANDLE[nCount + 1];
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //

@@ -8,7 +8,7 @@
 //int __implement()
 //{
 //
-//   auto papp = __new app_app::application ();
+//   auto papp = ___new app_app::application ();
 //
 //   int iExitCode = papp->__implement();
 //

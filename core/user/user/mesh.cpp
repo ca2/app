@@ -59,8 +59,8 @@ namespace user
       m_sizeMaximumImage.cy() = 16;
       m_dItemHeight = 0.;
       m_plist = nullptr;
-      m_piaFilterIcon = __new index_biunique();
-      m_piaFilterMesh = __new index_array();
+      m_piaFilterIcon = ___new index_biunique();
+      m_piaFilterMesh = ___new index_array();
 
       m_econtroltype = ::user::e_control_type_mesh;
 
@@ -3773,7 +3773,7 @@ namespace user
    //   }
    //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pimagelist = __new ::image::image_list (this);
+   //      pcolumn->m_pimagelist = ___new ::image::image_list (this);
    //   }
    //   //      ::image::image_list_pointer pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
@@ -6538,7 +6538,7 @@ namespace user
    //void mesh::on_create_draw_item()
    //{
 
-   //   //m_pdrawmeshitem            = __new draw_mesh_item(this);
+   //   //m_pdrawmeshitem            = ___new draw_mesh_item(this);
 
 
    //}

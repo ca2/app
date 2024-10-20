@@ -60,7 +60,7 @@ namespace tc4
          return false;
 
       ::user::single_document_template* pDocTemplate;
-      pDocTemplate = __new ::user::single_document_template(
+      pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
       ::type < ::tc4::document >(),
@@ -68,7 +68,7 @@ namespace tc4
       ::type < ::tc4::pane_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
-      pDocTemplate = __new ::user::single_document_template(
+      pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
       ::type < ::tc4::document >(),
@@ -76,7 +76,7 @@ namespace tc4
       ::type < ::tc4::main_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
-      pDocTemplate = __new ::user::single_document_template(
+      pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
       ::type < ::tc4::document >(),
@@ -178,7 +178,7 @@ extern "C"
 ::acme::library * get_new_library(::particle * pparticle)
 {
 
-   return __new ::apex::single_application_library < ::tc4::application >  (pparticle, "app-core");
+   return ___new ::apex::single_application_library < ::tc4::application >  (pparticle, "app-core");
 
 }
 

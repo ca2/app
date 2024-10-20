@@ -11,7 +11,7 @@
 void application_main()
 {
 
-   auto papplication = __new launch::application ();
+   auto papplication = ___new launch::application ();
 
    auto iExitCode = papplication->application_main();
 

@@ -30,7 +30,7 @@ namespace parallelization
    //CLASS_DECL_ACME void init_multitasking()
    //{
 
-   //   //s_pcs2 = __new critical_section();
+   //   //s_pcs2 = ___new critical_section();
 
    //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 
@@ -716,7 +716,7 @@ CLASS_DECL_ACME ::task * get_task()
    //      if(::is_set(psystem))
    //      {
 
-   //         t_ptask = { transfer_t{}, __new ::task() };
+   //         t_ptask = { transfer_t{}, ___new ::task() };
 
    //         t_ptask->initialize(pplatform->system());
 

@@ -18,7 +18,7 @@ namespace text
       void create_rtl_map()
       {
 
-         g_pmapRTL = __new string_to_string();
+         g_pmapRTL = ___new string_to_string();
 
       }
 

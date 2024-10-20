@@ -843,7 +843,7 @@ pair_map < PAIR >::new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue)
    //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_pnodeFree = __new node();
+   //   this->m_pnodeFree = ___new node();
 
    //}
 

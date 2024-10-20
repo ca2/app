@@ -31,7 +31,7 @@ namespace nanoui
       m_ppopup->set_layout(__allocate GroupLayout());
 
       // initialize callback to do nothing; this is for users to hook into
-      // receiving a __new color value
+      // receiving a ___new color value
       m_callback = [](const ::color::color&) {};
       m_final_callback = [](const ::color::color&) {};
 

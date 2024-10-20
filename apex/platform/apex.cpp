@@ -339,7 +339,7 @@ void on_term_thread();
 //////
 //////#ifndef WINDOWS
 //////
-//////      g_pcsDemangle = __new critical_section();
+//////      g_pcsDemangle = ___new critical_section();
 //////
 //////#endif
 ////
@@ -347,14 +347,14 @@ void on_term_thread();
 ////
 //////#ifdef BSD_STYLE_SOCKETS
 //////
-//////      ::sockets::base_socket::s_pmutex = __new ::pointer < ::mutex > ();
+//////      ::sockets::base_socket::s_pmutex = ___new ::pointer < ::mutex > ();
 //////
 //////#endif
 ////
 ////
 //////#ifdef __APPLE__
 //////
-//////      g_pmutexCvt = __new ::pointer < ::mutex > ();
+//////      g_pmutexCvt = ___new ::pointer < ::mutex > ();
 //////
 //////#endif
 ////
@@ -366,15 +366,15 @@ void on_term_thread();
 ////
 //////      g_paAura = aaa_memory_new array < matter * >;
 //////
-//////      g_pmutexUiDestroyed = __new ::pointer < ::mutex > ();
+//////      g_pmutexUiDestroyed = ___new ::pointer < ::mutex > ();
 //////
-//////      g_pmutexMessageDispatch = __new ::pointer < ::mutex > ();
+//////      g_pmutexMessageDispatch = ___new ::pointer < ::mutex > ();
 //////
-//////      g_pmutexCred = __new ::pointer < ::mutex > ();
+//////      g_pmutexCred = ___new ::pointer < ::mutex > ();
 //////
 //////#if defined(LINUX) || defined(__APPLE__)
 //////
-//////      g_pmutexTz = __new ::pointer < ::mutex > ();
+//////      g_pmutexTz = ___new ::pointer < ::mutex > ();
 //////
 //////#endif // defined(LINUX) || defined(__APPLE__)
 ////
@@ -403,17 +403,17 @@ void on_term_thread();
 ////
 ////      //::channel::s_pmutexChannel = __allocate mutex();
 ////
-////      //g_papexstrpool = __new apex_str_pool();
+////      //g_papexstrpool = ___new apex_str_pool();
 ////
 ////      //::user::init_windowing();
 ////
-////      //g_pcsRefDbg = __new critical_section();
+////      //g_pcsRefDbg = ___new critical_section();
 ////
 ////      //g_bApex = true;
 ////
-////      //::thread::g_pmutex = __new mutex();
+////      //::thread::g_pmutex = ___new mutex();
 ////
-////      //::thread::g_pthreadmap = __new ::thread_map ();
+////      //::thread::g_pthreadmap = ___new ::thread_map ();
 ////
 //////      factory()->add_factory_item < ::apex::system, ::acme::system >();
 //////      factory()->add_factory_item < ::apex::context, ::acme::context >();
@@ -423,9 +423,9 @@ void on_term_thread();
 //////      g_iObjTypCtrInit = 1;
 //////#endif
 //////
-//////      g_pcsFont = __new critical_section();
+//////      g_pcsFont = ___new critical_section();
 //////
-//////      g_pmapFontFaceName = __new string_to_string();
+//////      g_pmapFontFaceName = ___new string_to_string();
 ////
 ////      //g_pmutexThreadDeferredCreation = aaa_memory_new ::pointer < ::mutex >;
 ////
@@ -730,7 +730,7 @@ void on_term_thread();
 //   //::apex::system * apex_create_system(app_core * pappcore)
 //   //{
 //
-//   //   auto psystem = __new ::apex::system ();
+//   //   auto psystem = ___new ::apex::system ();
 //
 //   //   psystem->initialize(nullptr);
 //
@@ -797,7 +797,7 @@ void on_term_thread();
 //CLASS_DECL_APEX void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = __new ::pointer < ::mutex > ();
+//   s_pmutexDraw2d = ___new ::pointer < ::mutex > ();
 //
 //}
 
@@ -882,11 +882,11 @@ void on_term_thread();
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = __new oswindow_dataptra();
+//         //         oswindow_data::s_pdataptra = ___new oswindow_dataptra();
 //         //
 //         //         oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
 //         //
-//         //         osdisplay_data::s_pdataptra = __new osdisplay_dataptra();
+//         //         osdisplay_data::s_pdataptra = ___new osdisplay_dataptra();
 //         //
 //         //         osdisplay_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
 //
@@ -1013,11 +1013,11 @@ void on_term_thread();
 ////         //#ifdef ANDROID
 ////         //
 ////         //
-////         //         g_plconv = __new lconv();
+////         //         g_plconv = ___new lconv();
 ////         //
 ////         //         g_plconv->decimal_point = strdup(".");
 ////         //
-////         //         //oswindow_data::s_pdataptra = __new oswindow_dataptra();
+////         //         //oswindow_data::s_pdataptra = ___new oswindow_dataptra();
 ////         //
 ////         //         //oswindow_data::s_pmutex = aaa_memory_new ::pointer < ::mutex >;
 ////         //
@@ -1025,7 +1025,7 @@ void on_term_thread();
 ////
 ////         //#if defined(__APPLE__)
 ////         //
-////         //         g_poswindowdataptra = __new oswindow_dataptra();
+////         //         g_poswindowdataptra = ___new oswindow_dataptra();
 ////         //
 ////         //         g_poswindowdataptra->defer_create_synchronization();
 ////         //

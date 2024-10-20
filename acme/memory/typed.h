@@ -27,7 +27,7 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE & t
    while (c > 0)
    {
 
-      __new(p)TYPE(t);
+      new(p)TYPE(t);
 
       p++;
 
@@ -45,7 +45,7 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE * p
    while (c > 0)
    {
 
-      __new(p)TYPE(*psource);
+      new(p)TYPE(*psource);
 
       p++;
 

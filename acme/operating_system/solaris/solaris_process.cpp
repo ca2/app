@@ -170,7 +170,7 @@ bool os_initialize()
    if(!initialize_primitive_trace())
       return false;
 
-   t_posthread = __new os_thread(nullptr, nullptr);
+   t_posthread = ___new os_thread(nullptr, nullptr);
 
    t_posthread->m_bRun = true;
 

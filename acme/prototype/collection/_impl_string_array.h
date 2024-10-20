@@ -478,7 +478,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::colle
    {
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count)this->size();
-      this->set_size((::collection::count)(this->size() + nCount));  // grow it to __new size_i32
+      this->set_size((::collection::count)(this->size() + nCount));  // grow it to ___new size_i32
       // shift old data up to fill gap
       memory_transfer(&get_data()[nIndex + nCount], &get_data()[nIndex], (nOldSize - nIndex) * sizeof(Type));
 
@@ -492,7 +492,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::colle
 
    }
 
-   // insert __new value in the gap
+   // insert ___new value in the gap
    ASSERT(nIndex + nCount <= this->size());
 }
 
@@ -549,7 +549,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type& strElement, ::collection::count nCount)
 {
 
-   // make room for __new elements
+   // make room for ___new elements
    insert_empty(nIndex, nCount);
 
 

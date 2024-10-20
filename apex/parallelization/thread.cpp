@@ -4754,7 +4754,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
    if (m_puserinteractionbaseaThread == nullptr)
    {
 
-      m_puserinteractionbaseaThread = __new ::user::interaction_base_array  ();
+      m_puserinteractionbaseaThread = ___new ::user::interaction_base_array  ();
 
    }
 

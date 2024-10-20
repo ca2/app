@@ -539,7 +539,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      // it fits
 //      if (nNewSize > m_nSize)
 //      {
-//         // initialize the __new elements
+//         // initialize the ___new elements
 ////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////
@@ -583,7 +583,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      TYPE* pNewData = (TYPE*) __allocate< ::u8[(size_t)nNewMax * sizeof >(TYPE)];
 //
 //
-//      // copy __new data from old
+//      // copy ___new data from old
 //      ::safe_memory_copy(pNewData, (size_t)nNewMax * sizeof(TYPE),
 //         m_begin, (size_t)m_nSize * sizeof(TYPE));
 //
@@ -620,7 +620,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      if (m_nSize != 0)
 //      {
 //         pNewData = (TYPE*) __allocate< ::u8[m_nSize * sizeof >(TYPE)];
-//         // copy __new data from old
+//         // copy ___new data from old
 //         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_begin, m_nSize * sizeof(TYPE));
 //      }
@@ -1260,7 +1260,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      // it fits
 ////      if (nNewSize > m_nSize)
 ////      {
-////         // initialize the __new elements
+////         // initialize the ___new elements
 //////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 //////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 //////
@@ -1304,7 +1304,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      TYPE* pNewData = (TYPE*) __allocate< ::u8[(size_t)nNewMax * sizeof >(TYPE)];
 ////
 ////
-////      // copy __new data from old
+////      // copy ___new data from old
 ////      ::safe_memory_copy(pNewData, (size_t)nNewMax * sizeof(TYPE),
 ////         m_begin, (size_t)m_nSize * sizeof(TYPE));
 ////
@@ -1341,7 +1341,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      if (m_nSize != 0)
 ////      {
 ////         pNewData = (TYPE*) __allocate< ::u8[m_nSize * sizeof >(TYPE)];
-////         // copy __new data from old
+////         // copy ___new data from old
 ////         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 ////            m_begin, m_nSize * sizeof(TYPE));
 ////      }

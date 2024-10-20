@@ -6,7 +6,7 @@
 int __implement()
 {
 
-   auto papp = __new app_message_box::application ();
+   auto papp = ___new app_message_box::application ();
 
    int iExitCode = papp->__implement();
 

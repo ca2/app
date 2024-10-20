@@ -1658,7 +1658,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       else if (etypeSource == e_type_payload_array)
       {
 
-         //m_ppayloada = __new ::payload_array(*payload.m_ppayloada);
+         //m_ppayloada = ___new ::payload_array(*payload.m_ppayloada);
 
          m_ppayloada = payload.m_ppayloada;
 
@@ -1794,7 +1794,7 @@ class ::payload & payload::operator = (const ::i32_array & ia)
       if (::is_null(m_pia))
       {
 
-         m_pia = __new i32_array(ia);
+         m_pia = ___new i32_array(ia);
 
       }
       else
@@ -1839,7 +1839,7 @@ class ::payload & payload::operator = (const class memory & memory)
       if (::is_null(m_pmemory))
       {
 
-         m_pmemory = __new ::memory(memory);
+         m_pmemory = ___new ::memory(memory);
 
       }
       else
@@ -1903,7 +1903,7 @@ class ::payload & payload::operator = (const string_array & stra)
 //
 //   set_type(e_type_string_array, false);
 //
-//   m_pstra = __new ::string_array(stra);
+//   m_pstra = ___new ::string_array(stra);
 //
 //   return *this;
 
@@ -1959,7 +1959,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
 
    //set_type(e_type_payload_array, false);
 
-   //m_ppayloada = __new ::payload_array(payloada);
+   //m_ppayloada = ___new ::payload_array(payloada);
 
    //return *this;
 
@@ -2011,7 +2011,7 @@ class ::payload & payload::operator = (const property_set & propertyset)
 
    //set_type(e_type_property_set, false);
 
-   //m_ppropertyset = __new ::property_set(propertyset);
+   //m_ppropertyset = ___new ::property_set(propertyset);
 
    return *this;
 
@@ -2132,7 +2132,7 @@ class ::payload & payload::operator = (class time * ptime)
 
       set_type(e_type_memory, false);
 
-      m_pmemory = __new ::memory (block);
+      m_pmemory = ___new ::memory (block);
 
    }
 
@@ -4428,13 +4428,13 @@ class ::memory & payload::memory_reference()
 
       set_type(e_type_memory, false);
 
-      m_pmemory = __new ::memory ();
+      m_pmemory = ___new ::memory ();
 
    }
    else if(::is_null(m_pmemory))
    {
 
-      m_pmemory = __new ::memory ();
+      m_pmemory = ___new ::memory ();
 
    }
 
@@ -4564,7 +4564,7 @@ string_array payload::as_string_array() const
    else if (::is_null(m_pstra))
    {
 
-      //m_pstra = __new string_array();
+      //m_pstra = ___new string_array();
 
       return {};
 
@@ -4799,7 +4799,7 @@ i64_array payload::as_i64_array() const
    else if (::is_null(m_pi64a))
    {
 
-      //m_pi64a = __new i64_array();
+      //m_pi64a = ___new i64_array();
       return {};
 
    }
@@ -4827,7 +4827,7 @@ i64_array payload::as_i64_array() const
    else*/ if(m_etype != e_type_i64_array)
    {
 
-      auto pia64  = __new i64_array();
+      auto pia64  = ___new i64_array();
 
       try
       {
@@ -4855,7 +4855,7 @@ i64_array payload::as_i64_array() const
    else if(::is_null(m_pi64a))
    {
 
-      m_pi64a = __new i64_array();
+      m_pi64a = ___new i64_array();
 
    }
 
@@ -5132,7 +5132,7 @@ payload_array payload::as_payload_array() const
    else if (::is_null(m_ppayloada))
    {
 
-      //m_ppayloada = __new payload_array();
+      //m_ppayloada = ___new payload_array();
 
       return {};
 
@@ -5250,7 +5250,7 @@ property_set payload::as_property_set() const
    }
    else if (::is_null(m_ppropertyset))
    {
-      //m_ppropertyset = __new property_set();
+      //m_ppropertyset = ___new property_set();
 
       return {};
 

@@ -52,7 +52,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(CUBE)
 
 
-#include "acme/asset/__new.cpp"
+#include "acme/asset/___new.cpp"
 
 
 #endif

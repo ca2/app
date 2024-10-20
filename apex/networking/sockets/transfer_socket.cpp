@@ -471,7 +471,7 @@ namespace sockets
    //   tcp_socket(handler),
    //   transfer_socket(handler)
    //{
-   //   m_pReadBuf = __new char[nSizeRecv];
+   //   m_pReadBuf = ___new char[nSizeRecv];
    //   m_nReadBuf = 0;
    //}
 
@@ -548,7 +548,7 @@ namespace sockets
    //::pointer<transfer_socket>create_default_transfer_socket()
    //{
 
-   //   return __new transfer_socket(handler);
+   //   return ___new transfer_socket(handler);
 
    //}
 

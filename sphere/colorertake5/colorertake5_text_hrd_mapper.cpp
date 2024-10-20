@@ -61,7 +61,7 @@ namespace colorertake5
             sval = (curel)->attr("eback");
             if (sval.has_char()) eback = (sval);
 
-            RegionDefine *rdef = __new TextRegion(stext, etext, sback, eback);
+            RegionDefine *rdef = ___new TextRegion(stext, etext, sback, eback);
             regionDefines.set_at(name, rdef);
          };
       };
@@ -110,7 +110,7 @@ namespace colorertake5
          delete rdef;
       };
 
-      RegionDefine *new_region = __new TextRegion(stext, etext, sback, eback);
+      RegionDefine *new_region = ___new TextRegion(stext, etext, sback, eback);
       regionDefines.set_at(name, new_region);
 
       // Searches and replaces old region references

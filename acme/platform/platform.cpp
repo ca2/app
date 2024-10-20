@@ -319,7 +319,7 @@ namespace platform
    //   if (!m_pmemorycounter)
    //   {
 
-   //      m_pmemorycounter = __new ::memory_counter();
+   //      m_pmemorycounter = ___new ::memory_counter();
 
    //   }
 
@@ -773,7 +773,7 @@ g_bWindowingOutputDebugString = true;
 
       m_pfactory->InitHashTable(16189);
 
-      //::acme::acme::g_pstaticstatic->m_pfactorya = __new factory_array();
+      //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
 
 

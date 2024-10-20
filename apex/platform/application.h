@@ -614,15 +614,15 @@ namespace apex
       void ___property_set_test_001();
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this __new additional instance creation
+      /// bHandled true if some action was done in response to this ___new additional instance creation
       virtual void on_exclusive_instance_conflict(::request * prequest, bool & bHandled, enum_exclusive_instance eexclusive, string strId);
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this __new additional instance creation
+      /// bHandled true if some action was done in response to this ___new additional instance creation
       virtual void on_exclusive_instance_local_conflict(::request * prequest, bool & bHandled);
 
       /// return true if this instance might continue execution
-/// bHandled true if some action was done in response to this __new additional instance creation
+/// bHandled true if some action was done in response to this ___new additional instance creation
       virtual void on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, string strId);
 
 

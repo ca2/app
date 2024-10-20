@@ -181,7 +181,7 @@ namespace sockets
    long EventHandler::AddEvent(IEventOwner *from,long sec,long usec)
    {
 
-      Event * peventNew = __new Event(from, sec, usec);
+      Event * peventNew = ___new Event(from, sec, usec);
 
       auto p = m_eventplist.begin();
 

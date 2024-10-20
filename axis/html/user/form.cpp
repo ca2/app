@@ -28,7 +28,7 @@ html_form::html_form()
    //m_flagNonClient.erase(e_non_client_background);
    m_flagNonClient.erase(e_non_client_focus_rect);
 
-   //m_phtmlform = __new html::form ();
+   //m_phtmlform = ___new html::form ();
 
 
 

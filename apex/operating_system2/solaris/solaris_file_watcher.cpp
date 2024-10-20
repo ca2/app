@@ -88,7 +88,7 @@ namespace file_watcher
 //			return -1;
       }
 
-      watch_struct* pWatch = __new watch_struct();
+      watch_struct* pWatch = ___new watch_struct();
       pWatch->m_plistener = pwatcher;
       pWatch->m_atom = wd;
       pWatch->m_strDirName = directory;

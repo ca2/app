@@ -6,7 +6,7 @@
 #define IDR_LEVEL1                      108
 #define IDR_MAIN                        128  
 
-// Next default values for __new objects
+// Next default values for ___new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

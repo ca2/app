@@ -1247,7 +1247,7 @@ namespace acme
 
          for (int i = 0; i < srca.get_size(); i++)
          {
-            dsta.add(__new TSRC (srca(i)));
+            dsta.add(___new TSRC (srca(i)));
             ca++;
          }
 

@@ -64,7 +64,7 @@ namespace simpledb
 
    table * database::create_table(const ::string & pszName)
    {
-      return __new table(this, pszName);
+      return ___new table(this, pszName);
    }
 
    ::simpledb::dataset * database::create_dataset()

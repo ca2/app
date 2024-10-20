@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class aura_aura aura;
 
-   ap(aura_main_data) pmaindata = __new aura_main_data(refstra);
+   ap(aura_main_data) pmaindata = ___new aura_main_data(refstra);
 
 #ifdef MAIN_STRING
 

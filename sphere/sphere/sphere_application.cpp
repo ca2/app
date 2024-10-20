@@ -108,7 +108,7 @@ namespace sphere
       if (m_pparserfactory == nullptr)
       {
 
-         m_pparserfactory = __new colorertake5::ParserFactory (this);
+         m_pparserfactory = ___new colorertake5::ParserFactory (this);
 
       }
 
@@ -120,7 +120,7 @@ namespace sphere
    ::pointer<::aura::application>application::get_context_system()
    {
 
-      return __new application(this);
+      return ___new application(this);
 
    }
 
@@ -596,7 +596,7 @@ namespace sphere
       add_factory_item < ::userstack::pane_impact >();
       add_factory_item < ::userstack::frame >();
 
-      m_ptemplate_pane = __new ::user::single_document_template(
+      m_ptemplate_pane = ___new ::user::single_document_template(
       this,
       "bergedge/frame",
       ::type < ::userstack::document >(),

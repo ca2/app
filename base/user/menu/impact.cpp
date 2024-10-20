@@ -207,7 +207,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->failed("Failed to create __new xml document for menu impact");
+      //   pcreate->failed("Failed to create ___new xml document for menu impact");
 
       //   return;
 

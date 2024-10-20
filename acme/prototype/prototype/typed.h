@@ -21,7 +21,7 @@ inline auto& __typed_defer_new(TYPE& t) { return t; }
 template<class POINTER_TYPE>
 inline auto& __typed_defer_new(POINTER_TYPE*& p)
 {
-   if (!p) { p = __new POINTER_TYPE(); }
+   if (!p) { p = ___new POINTER_TYPE(); }
    return *p;
 }
 
@@ -29,7 +29,7 @@ inline auto& __typed_defer_new(POINTER_TYPE*& p)
 template<class POINTER_POINTER_TYPE>
 inline auto& __typed_defer_new(POINTER_POINTER_TYPE** p)
 {
-   if (!*p) { *p = __new POINTER_POINTER_TYPE(); }
+   if (!*p) { *p = ___new POINTER_POINTER_TYPE(); }
    return **p;
 }
 

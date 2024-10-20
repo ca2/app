@@ -7,7 +7,7 @@ namespace colorertake5
    text_parser_impl::text_parser_impl()
    {
       CLR_TRACE("text_parser_impl", "constructor");
-      cache = __new parse_cache();
+      cache = ___new parse_cache();
       clearCache();
       lineSource = nullptr;
       regionHandler = nullptr;
@@ -75,7 +75,7 @@ namespace colorertake5
          return from;
 
 
-      vtlist = __new VTList();
+      vtlist = ___new VTList();
 
       lineSource->startJob(from);
       regionHandler->startParsing(from);
@@ -424,7 +424,7 @@ namespace colorertake5
                ResP = parent;
                if (forward)
                {
-                  forward->next = __new parse_cache();
+                  forward->next = ___new parse_cache();
                   OldCacheF = forward->next;
                   OldCacheP = parent?parent:forward->parent;
                   parent = forward->next;
@@ -432,7 +432,7 @@ namespace colorertake5
                }
                else
                {
-                  forward = __new parse_cache();
+                  forward = ___new parse_cache();
                   parent->children = forward;
                   OldCacheF = forward;
                   OldCacheP = parent;

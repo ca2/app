@@ -147,7 +147,7 @@ namespace draw2d_opengl
 
    //   __construct_new(pfont);
 
-   //   pfont->m_pcollection = __new Gdiplus::PrivateFontCollection();
+   //   pfont->m_pcollection = ___new Gdiplus::PrivateFontCollection();
 
    //   auto pmemory = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 

@@ -1033,7 +1033,7 @@ namespace write_text
 
             }
 
-            // Make room for __new fonts
+            // Make room for ___new fonts
 
             for (::collection::index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {

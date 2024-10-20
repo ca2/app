@@ -95,7 +95,7 @@
 
          string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apexacmesystem()->::url::encode(pszMessage);
 
-         ::winrt::Windows::Foundation::Uri ^uri = ref __new ::winrt::Windows::Foundation::Uri (anotherappURI);
+         ::winrt::Windows::Foundation::Uri ^uri = ref ___new ::winrt::Windows::Foundation::Uri (anotherappURI);
 
          ::apexacmesystem()->main_user_sync(__routine([uri, timeTimeout]()
             {
@@ -130,7 +130,7 @@
 
          string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message) + "," + ::apexacmesystem()->::url::encode(::apexacmesystem()->base64().encode({ pdata, len }));
 
-         ::winrt::Windows::Foundation::Uri ^uri = ref __new ::winrt::Windows::Foundation::Uri (anotherappURI);
+         ::winrt::Windows::Foundation::Uri ^uri = ref ___new ::winrt::Windows::Foundation::Uri (anotherappURI);
 
          ::wait(Launcher::LaunchUriAsync(uri), timeTimeout);
 

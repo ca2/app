@@ -101,7 +101,7 @@ template < typename ...Args >
 pointer < T >::pointer(allocate_t, Args &&... args)
 {
 
-   auto p = __new T (::std::forward<Args>(args)...);
+   auto p = ___new T (::std::forward<Args>(args)...);
 
 //#if REFERENCING_DEBUGGING
 //

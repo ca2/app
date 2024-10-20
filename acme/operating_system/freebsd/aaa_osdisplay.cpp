@@ -95,7 +95,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    }
 
-   osdisplay_data * pdisplaydata     = __new osdisplay_data();
+   osdisplay_data * pdisplaydata     = ___new osdisplay_data();
 
    pdisplaydata->m_pdisplay          = pdisplay;
    pdisplaydata->m_atomLongType      = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);

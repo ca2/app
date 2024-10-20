@@ -105,7 +105,7 @@ namespace acme
    void acme::initialize_message_queue()
    {
 
-      //g_pmutexMq = __new mutex();
+      //g_pmutexMq = ___new mutex();
 
       m_ptaskmessagequeue = __allocate ::task_message_queue();
 

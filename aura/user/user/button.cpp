@@ -1203,13 +1203,13 @@ namespace user
       if(estyle == e_style_image || estyle == e_style_image_and_text)
       {
 
-         m_pbitmap = __new bitmap();
+         m_pbitmap = ___new bitmap();
 
       }
       else if(estyle == e_style_list)
       {
 
-         m_plist = __new list();
+         m_plist = ___new list();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;

@@ -10,7 +10,7 @@
 void application_main()
 {
 
-   auto papplication = __new app_message_box::application();
+   auto papplication = ___new app_message_box::application();
 
    papplication->application_main();
 

@@ -78,7 +78,7 @@ namespace nanoui
        * Whether or not this Widget is currently enabled.  Various different kinds
        * of derived types use this to determine whether or not user input will be
        * accepted.  For example, when ``m_enabled == false``, the state of a
-       * CheckBox cannot be changed, or a TextBox will not allow __new input.
+       * CheckBox cannot be changed, or a TextBox will not allow ___new input.
        */
       bool                 m_bEnabled;
       /// bool m_focused;
@@ -138,7 +138,7 @@ namespace nanoui
 
 
 
-   /// Construct a __new pwidget with the given parent pwidget
+   /// Construct a ___new pwidget with the given parent pwidget
       Widget(Widget* parent);
 
       /// Return the parent pwidget

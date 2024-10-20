@@ -258,7 +258,7 @@ strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::s
       if (pcoll == nullptr)
       {
          // instantiate now
-         if ((pcoll = __new CElemAttrArray()) == nullptr)
+         if ((pcoll = ___new CElemAttrArray()) == nullptr)
             // out of memory?
          {
             //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of memory.\n");

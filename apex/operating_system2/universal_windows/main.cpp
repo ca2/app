@@ -144,7 +144,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //      _set_purecall_handler(_ca2_purecall);
 //
-//      ::apex::system * psystem = __new ::apex::system ();
+//      ::apex::system * psystem = ___new ::apex::system ();
 //
 //
 //      //sleep(30 * 1000);
@@ -154,7 +154,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //      int nReturnCode = 0;
 //
-//      ::universal_windows::main_init_data * pinitmaindata  = __new ::universal_windows::main_init_data ();
+//      ::universal_windows::main_init_data * pinitmaindata  = ___new ::universal_windows::main_init_data ();
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;

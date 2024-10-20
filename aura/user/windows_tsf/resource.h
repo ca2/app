@@ -19,7 +19,7 @@
 #define IDM_SAVE                        40012
 #define IDM_LOAD                        40013
 
-// Next default values for __new objects
+// Next default values for ___new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

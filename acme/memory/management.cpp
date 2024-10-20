@@ -177,7 +177,7 @@ namespace heap
       //if (!m_pcounterParticle)
       //{
 
-      //   m_pcounterParticle = __new ::heap::counter < ::particle * >();
+      //   m_pcounterParticle = ___new ::heap::counter < ::particle * >();
 
       //}
 

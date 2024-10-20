@@ -38,7 +38,7 @@ namespace hotplugin
 //      try
 //      {
 
-//         g_paxissystem = __new ::axis::system (nullptr, );
+//         g_paxissystem = ___new ::axis::system (nullptr, );
 
 //         if(acmefile()->exists(         auto psystem = system();
 

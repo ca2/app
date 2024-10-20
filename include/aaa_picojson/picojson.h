@@ -223,9 +223,9 @@ inline value::value(int type, bool) : type_(type), u_() {
 #ifdef PICOJSON_USE_INT64
     INIT(int64_, 0);
 #endif
-    INIT(string_, __new std::string ());
-    INIT(array_, __new array());
-    INIT(object_, __new object());
+    INIT(string_, ___new std::string ());
+    INIT(array_, ___new array());
+    INIT(object_, ___new object());
 #undef INIT
   default:
     break;
@@ -258,15 +258,15 @@ inline value::value(double n) : type_(number_type), u_() {
 }
 
 inline value::value(const std::string &s) : type_(string_type), u_() {
-  u_.string_ = __new std::string (s);
+  u_.string_ = ___new std::string (s);
 }
 
 inline value::value(const array &a) : type_(array_type), u_() {
-  u_.array_ = __new array(a);
+  u_.array_ = ___new array(a);
 }
 
 inline value::value(const object &o) : type_(object_type), u_() {
-  u_.object_ = __new object(o);
+  u_.object_ = ___new object(o);
 }
 
 #if PICOJSON_USE_RVALUE_REFERENCE
@@ -284,11 +284,11 @@ inline value::value(object &&o) : type_(object_type), u_() {
 #endif
 
 inline value::value(const char *s) : type_(string_type), u_() {
-  u_.string_ = __new std::string (s);
+  u_.string_ = ___new std::string (s);
 }
 
 inline value::value(const char *s, size_t len) : type_(string_type), u_() {
-  u_.string_ = __new std::string (s, len);
+  u_.string_ = ___new std::string (s, len);
 }
 
 inline void value::clear() {
@@ -316,9 +316,9 @@ inline value::value(const value &x) : type_(x.type_), u_() {
   case p##type:                                                                                                                    \
     u_.p = v;                                                                                                                      \
     break
-    INIT(string_, __new std::string (*x.u_.string_));
-    INIT(array_, __new array(*x.u_.array_));
-    INIT(object_, __new object(*x.u_.object_));
+    INIT(string_, ___new std::string (*x.u_.string_));
+    INIT(array_, ___new array(*x.u_.array_));
+    INIT(object_, ___new object(*x.u_.object_));
 #undef INIT
   default:
     u_ = x.u_;
@@ -399,9 +399,9 @@ GET(double, u_.number_)
     setter                                                                                                                         \
   }
 SET(bool, boolean, u_.boolean_ = _val;)
-SET(std::string, string, u_.string_ = __new std::string (_val);)
-SET(array, array, u_.array_ = __new array(_val);)
-SET(object, object, u_.object_ = __new object(_val);)
+SET(std::string, string, u_.string_ = ___new std::string (_val);)
+SET(array, array, u_.array_ = ___new array(_val);)
+SET(object, object, u_.object_ = ___new object(_val);)
 SET(double, number, u_.number_ = _val;)
 #ifdef PICOJSON_USE_INT64
 SET(int64_t, int64, u_.int64_ = _val;)

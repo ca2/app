@@ -451,7 +451,7 @@ namespace ftp
    /// Rename a file on the FTP server.
    /// @remarks Can be used for moving the file to another directory.
    /// @lparam[in] strOldName Name of the file to rename.
-   /// @lparam[in] strNewName The __new name for the file.
+   /// @lparam[in] strNewName The ___new name for the file.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Rename(const string& strOldName, const string& strNewName)
    {
@@ -814,13 +814,13 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = __new ::sockets::write_socket ();
+            apSckDataConnection = ___new ::sockets::write_socket ();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = __new ::sockets::read_socket ();
+            apSckDataConnection = ___new ::sockets::read_socket ();
 
          }
          else
@@ -848,7 +848,7 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = __new ::sockets::listen_socket ();
+            apSckDataConnection = ___new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::write_socket >();
 
@@ -856,7 +856,7 @@ namespace ftp
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = __new ::sockets::listen_socket ();
+            apSckDataConnection = ___new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::read_socket >();
 
@@ -2000,7 +2000,7 @@ auto tickStart = ::time::now();
 
    /// Executes the FTP command ALLO (ALLOCATE)
    /// This command may be required by some servers to reserve sufficient storage
-   /// to accommodate the __new file to be transferred.
+   /// to accommodate the ___new file to be transferred.
    /// @lparam[in] iReserveBytes The argument shall be a decimal integer representing
    ///                          the number of bytes (using the logical ::u8 size_i32) of
    ///                          storage to be reserved for the file. For files sent

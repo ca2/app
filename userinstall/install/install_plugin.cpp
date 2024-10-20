@@ -1669,7 +1669,7 @@ restart:
 
 ::hotplugin::plugin * new_hotplugin(::particle * pparticle)
 {
-   return __new ::install::plugin (pparticle);
+   return ___new ::install::plugin (pparticle);
 }
 
 #endif

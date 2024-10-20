@@ -7,7 +7,7 @@
 void application_main()
 {
 
-   auto papplication = __new app_just_apex_message_box::application();
+   auto papplication = ___new app_just_apex_message_box::application();
 
    papplication->application_main();
 

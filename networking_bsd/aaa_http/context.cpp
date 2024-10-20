@@ -590,7 +590,7 @@ namespace http
    //{
 
    //   throw ::exception(todo, "scripting");
-   //   //m_pjs = __new tinyjs();
+   //   //m_pjs = ___new tinyjs();
 
    //}
 
@@ -599,7 +599,7 @@ namespace http
    {
 
       throw ::exception(todo, "scripting");
-      //m_pjs = __new tinyjs();
+      //m_pjs = ___new tinyjs();
 
    }
 

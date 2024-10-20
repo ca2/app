@@ -289,7 +289,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          }
 
-         pwritable->write(buf(0, uRead));
+         pwritable->write(buf.data(), uRead);
 
          //uiSize += uRead;
 

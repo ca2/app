@@ -34,7 +34,7 @@ namespace nanoui
 ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, false) {
    //render_pass()->set_clear_color(0, Color(0.3f, 0.3f, 0.32f, 1.f));
 
-   //m_image_shader = __new Shader(
+   //m_image_shader = ___new Shader(
    //   render_pass(),
    //   /* An identifying name */
    //   "a_simple_shader",

@@ -1170,7 +1170,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   information() << "Couldn't construct __new draw2d.";
+      //   information() << "Couldn't construct ___new draw2d.";
 
       //   return false;
 
@@ -2929,7 +2929,7 @@ namespace aura
 //      return true;
 //#endif
 //
-//      /*      m_spfilehandler(__new ::aura::filehandler::handler (this));*/
+//      /*      m_spfilehandler(___new ::aura::filehandler::handler (this));*/
 //
 ////      m_mapAppLibrary.erase_all();
 ////
@@ -4011,17 +4011,17 @@ namespace aura
 //#if defined(UNIVERSAL_WINDOWS)
 //
 //
-//         string * pstrNew = __new string(strUrl);
+//         string * pstrNew = ___new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //            ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
-//                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new ::winrt::Windows::Foundation::Uri (*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
 //
 //                  delete pstrNew;
 //
-//                  LauncherOptions ^ options = ref __new LauncherOptions();
+//                  LauncherOptions ^ options = ref ___new LauncherOptions();
 //
 //                  options->TreatAsUntrusted = false;
 //
@@ -4414,7 +4414,7 @@ namespace aura
 //      if (strUrl.has_char())
 //      {
 //
-//         strParam += " -__new-tab \"" + strUrl + "\"";
+//         strParam += " -___new-tab \"" + strUrl + "\"";
 //
 //      }
 //
@@ -5217,7 +5217,7 @@ namespace aura
   //
   //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
-  //      //      m_possystemwindow = __new os_system_window();
+  //      //      m_possystemwindow = ___new os_system_window();
   //      //
   //      //#endif
   //
@@ -5238,7 +5238,7 @@ namespace aura
   //            //m_strInstallToken             = "core_system";
   //
   //      m_phistory = nullptr;
-  //      m_ppatch = __new aura::patch ();
+  //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
   //      estatus = __construct(m_puserset, __allocate ::account::user_set(this));
@@ -6345,7 +6345,7 @@ namespace aura
 //
 //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //
-//      m_possystemwindow = __new os_system_window();
+//      m_possystemwindow = ___new os_system_window();
 //
 //#endif
 //

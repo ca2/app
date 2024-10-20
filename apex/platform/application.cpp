@@ -280,7 +280,7 @@ namespace apex
 
       //m_timeGcomBackgroundUpdate = 30_s;
 
-      //m_pappimpl = __new application_impl();
+      //m_pappimpl = ___new application_impl();
 
 
    }
@@ -3839,7 +3839,7 @@ namespace apex
       if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
-         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this __new instance.";
+         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this ___new instance.";
 
          try
          {
@@ -3864,7 +3864,7 @@ namespace apex
          if (bGlobalIdExclusiveFail)
          {
 
-            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this __new instance.";
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this ___new instance.";
 
             try
             {
@@ -3888,7 +3888,7 @@ namespace apex
       if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
-         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this __new instance.";
+         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
 
          on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
 
@@ -3908,7 +3908,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this __new instance.";
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -8912,7 +8912,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = __new ::u8[*pBytes];
+   *ppData = ___new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8940,7 +8940,7 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = __new ::u8[*pBytes];
+   *ppData = ___new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -9060,7 +9060,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = __new char[nBytes*2+1];
+   char * psz = ___new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)

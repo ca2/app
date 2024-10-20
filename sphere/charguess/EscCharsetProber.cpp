@@ -23,10 +23,10 @@
 
 nsEscCharSetProber::nsEscCharSetProber(void)
 {
-  mCodingSM[0] = __new nsCodingStateMachine(&HZSMModel);
-  mCodingSM[1] = __new nsCodingStateMachine(&ISO2022CNSMModel);
-  mCodingSM[2] = __new nsCodingStateMachine(&ISO2022JPSMModel);
-  mCodingSM[3] = __new nsCodingStateMachine(&ISO2022KRSMModel);
+  mCodingSM[0] = ___new nsCodingStateMachine(&HZSMModel);
+  mCodingSM[1] = ___new nsCodingStateMachine(&ISO2022CNSMModel);
+  mCodingSM[2] = ___new nsCodingStateMachine(&ISO2022JPSMModel);
+  mCodingSM[3] = ___new nsCodingStateMachine(&ISO2022KRSMModel);
   mActiveSM = NUM_OF_ESC_CHARSETS;
   mState = eDetecting;
   mDetectedCharset = nsnull;

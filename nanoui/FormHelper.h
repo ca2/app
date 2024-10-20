@@ -102,12 +102,12 @@ NAMESPACE_END(detail)
  *
  *    // [ ... initialize NanoGUI, construct pscreen ... ]
  *
- *    FormHelper* h = __new FormHelper(pscreen);
+ *    FormHelper* h = ___new FormHelper(pscreen);
  *
- *    // Add a __new windows pwidget
+ *    // Add a ___new windows pwidget
  *    h->add_window(sequence2_i32(10,10),"Menu");
  *
- *    // Start a __new group
+ *    // Start a ___new group
  *    h->add_group("Group 1");
  *
  *    // Expose an integer variable by reference
@@ -119,7 +119,7 @@ NAMESPACE_END(detail)
  *      [&]() { return *a_float; },
  *      "float variable");
  *
- *    // add a __new button
+ *    // add a ___new button
  *    h->add_button("Button", [&]() { std::cout << "Button pressed" << std::endl; });
  *
  * \endrst
@@ -130,7 +130,7 @@ NAMESPACE_END(detail)
       FormHelper(Screen * pscreen) : m_pscreen(pscreen) { }
 
       
-      /// Add a __new top-level window
+      /// Add a ___new top-level window
       Window * add_window(const sequence2_i32 & pos,
          const ::scoped_string & title = "Untitled")
       {
@@ -146,7 +146,7 @@ NAMESPACE_END(detail)
       }
       
 
-      /// Add a __new group that may contain several sub-widgets
+      /// Add a ___new group that may contain several sub-widgets
       Label * add_group(const ::scoped_string & caption)
       {
          Label * plabel = __allocate Label(m_pwindow, caption, m_group_font_name, m_group_font_size);
@@ -158,7 +158,7 @@ NAMESPACE_END(detail)
          return plabel;
       }
 
-      /// Add a __new data pwidget controlled using custom getter/setter functions
+      /// Add a ___new data pwidget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label,
                       const ::function<void(const Type &)> & setter,
@@ -187,7 +187,7 @@ NAMESPACE_END(detail)
          return pwidget;
       }
 
-      /// Add a __new data pwidget that exposes a raw variable in memory
+      /// Add a ___new data pwidget that exposes a raw variable in memory
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label, Type & value, bool editable = true)
       {
@@ -301,7 +301,7 @@ NAMESPACE_END(detail)
       int m_label_font_size = 16;
       /// The font size for non-group / non-label widgets.
       int m_widget_font_size = 16;
-      /// The spacing used **before** __new groups.
+      /// The spacing used **before** ___new groups.
       int m_pre_group_spacing = 15;
       /// The spacing used **after** each group.
       int m_post_group_spacing = 5;
@@ -317,7 +317,7 @@ NAMESPACE_BEGIN(detail)
  */
    template <> class FormWidget<bool, std::true_type> : public CheckBox {
    public:
-      /// Creates a __new FormWidget with underlying type CheckBox.
+      /// Creates a ___new FormWidget with underlying type CheckBox.
       FormWidget(Widget * p) : CheckBox(p, "") { set_fixed_width(20); }
 
       /// Pass-through function for \::pointer nanoui::CheckBox::set_checked.
@@ -340,7 +340,7 @@ template <typename T> class FormWidget<T, typename std::is_enum<T>::type> :
    public ComboBox
 {
 public:
-   /// Creates a __new FormWidget with underlying type ComboBox.
+   /// Creates a ___new FormWidget with underlying type ComboBox.
    FormWidget(Widget * p) : ComboBox(p) { }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::selected_index.
@@ -374,7 +374,7 @@ public:
  */
 template <typename T> class FormWidget<T, typename std::is_integral<T>::type> : public IntBox<T> {
 public:
-   /// Creates a __new FormWidget with underlying type IntBox.
+   /// Creates a ___new FormWidget with underlying type IntBox.
    FormWidget(Widget * p) : IntBox<T>(p) { this->set_alignment(TextBox::e_alignment_right); }
 };
 
@@ -386,7 +386,7 @@ public:
  */
 template <typename T> class FormWidget<T, typename std::is_floating_point<T>::type> : public FloatBox<T> {
 public:
-   /// Creates a __new FormWidget with underlying type FloatBox.
+   /// Creates a ___new FormWidget with underlying type FloatBox.
    FormWidget(Widget * p) : FloatBox<T>(p) { this->set_alignment(TextBox::e_alignment_right); }
 };
 
@@ -395,7 +395,7 @@ public:
  */
 template <> class FormWidget<::string, std::true_type> : public TextBox {
 public:
-   /// Creates a __new FormWidget with underlying type TextBox.
+   /// Creates a ___new FormWidget with underlying type TextBox.
    FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::e_alignment_left); }
 
    /// Pass-through function for \::pointer nanoui::TextBox::set_callback.
@@ -409,7 +409,7 @@ public:
  */
 template <> class FormWidget<::color::color, std::true_type> : public ColorPicker {
 public:
-   /// Creates a __new FormWidget with underlying type ColorPicker.
+   /// Creates a ___new FormWidget with underlying type ColorPicker.
    FormWidget(Widget * p) : ColorPicker(p) { }
 
    /// Pass-through function for \::pointer nanoui::ColorPicker::set_color.

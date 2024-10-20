@@ -479,7 +479,7 @@ public:
 
    //   auto pOld = m_p;
 
-   //   m_p = __new TYPE(*pparticle);
+   //   m_p = ___new TYPE(*pparticle);
 
    //   m_psubparticle = m_p;
 
@@ -1329,7 +1329,7 @@ template < typename RUNNABLE >
 concept primitive_runnable = requires(RUNNABLE r) {
    
    { r() } ->::std::convertible_to<void>;
-   { r.get_run_timeout() } ->::std::convertible_to<::time>;
+   { r.get_run_timeout() } ->::std::convertible_to<class ::time>;
 };
 
 

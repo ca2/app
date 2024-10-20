@@ -95,7 +95,7 @@ const char * net_wm_state_text(e_net_wm_state estate)
 oswindow_data::oswindow_data()
 {
 
-   //m_plongmap  = __new iptr_to_iptr();
+   //m_plongmap  = ___new iptr_to_iptr();
 
    m_iXic = 0;
 
@@ -314,7 +314,7 @@ oswindow_data * oswindow_get_message_only_window(::windowing::window * pinteract
 
    }
 
-   ::oswindow_data * pdata = __new oswindow_data();
+   ::oswindow_data * pdata = ___new oswindow_data();
 
    pdata->m_bMessageOnlyWindow      = true;
    pdata->m_window                  = None;
@@ -363,7 +363,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 
    }
 
-   ::oswindow_data * pdata = __new ::oswindow_data ();
+   ::oswindow_data * pdata = ___new ::oswindow_data ();
 
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);

@@ -21,7 +21,7 @@ void trace_category_static_init(::acme::system * psystem)
 
 #endif
 
-   trace_category::s_ptracecategorya = __new pointer_array < trace_category > ();
+   trace_category::s_ptracecategorya = ___new pointer_array < trace_category > ();
 
    const ::ansi_character * psza[] =
    {

@@ -676,7 +676,7 @@ namespace xml
 //         // XML Attr Name
 //         _SetString({ pszStart, pszEnd }, &strName);
 //
-//         // add __new attr
+//         // add ___new attr
 //         auto & property = m_set.get(strName);
 //
 //         rangeXml.consume_spaces(0);

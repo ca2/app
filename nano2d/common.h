@@ -236,7 +236,7 @@ class Window;
  *     place on the application's main thread, which is fundamentally
  *     incompatible with this type of approach. Thus, NanoGUI relies on a
  *     rather crazy workaround on Mac OS (kudos to Dmitriy Morozov):
- *     ``mainloop()`` launches a __new thread as before but then uses
+ *     ``mainloop()`` launches a ___new thread as before but then uses
  *     libcoro to swap the thread execution environment (stack, registers, ..)
  *     with the main thread. This means that the main application thread is
  *     hijacked and processes events in the main loop to satisfy the

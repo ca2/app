@@ -50,7 +50,7 @@ namespace prompt
       {
 
          ::user::single_document_template* pDocTemplate;
-         pDocTemplate = __new ::user::single_document_template(
+         pDocTemplate = ___new ::user::single_document_template(
          this,
          "system/form",
          ::type < prompt::document >(),

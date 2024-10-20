@@ -168,7 +168,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
    m_sem = -1;
 
-   m_pcond = __new pthread_cond_t();
+   m_pcond = ___new pthread_cond_t();
 
    pthread_cond_init((pthread_cond_t *) m_pcond, nullptr);
 
@@ -182,7 +182,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       i32 rc;
-      m_pmutex = __new pthread_mutex_t();
+      m_pmutex = ___new pthread_mutex_t();
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
          throw ::exception(error_failed, "RC_OBJECT_NOT_CREATED");
@@ -209,7 +209,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
       //auto smt  = sizeof(mt);
       //printf_line("MUTEXMT SIZE!!!! %llu", smt);
-      //m_pmutex = __new pthread_mutex_t();
+      //m_pmutex = ___new pthread_mutex_t();
       m_pmutex = ::malloc(sizeof(pthread_mutex_t));
 
       //auto s  = sizeof(pthread_mutex_t);

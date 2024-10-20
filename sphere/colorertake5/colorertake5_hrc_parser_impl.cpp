@@ -266,7 +266,7 @@ namespace colorertake5
          return;
       }
 
-      file_type_impl *type = __new file_type_impl(this);
+      file_type_impl *type = ___new file_type_impl(this);
 
       type->name           = typeName;
 
@@ -309,7 +309,7 @@ namespace colorertake5
                continue;
             }
             string match = content->get_value();
-            cregexp *matchRE = __new cregexp(match);
+            cregexp *matchRE = ___new cregexp(match);
             matchRE->setPositionMoves(true);
             if (!matchRE->isOk())
             {
@@ -326,7 +326,7 @@ namespace colorertake5
             {
                prior = atof((content)->attr("weight"));
             }
-            FileTypeChooser *ftc = __new FileTypeChooser(ctype, prior, matchRE);
+            FileTypeChooser *ftc = ___new FileTypeChooser(ctype, prior, matchRE);
             type->chooserVector.add(ftc);
          }
          if (content->get_name() == "parameters")
@@ -508,7 +508,7 @@ namespace colorertake5
          return;
       }
 
-      scheme_impl *scheme = __new scheme_impl(qSchemeName);
+      scheme_impl *scheme = ___new scheme_impl(qSchemeName);
       scheme->fileType = parseType;
 
       schemeHash.set_at(scheme->schemeName, scheme);
@@ -534,7 +534,7 @@ namespace colorertake5
 
          if (next == nullptr)
          {
-            next = __new SchemeNode();
+            next = ___new SchemeNode();
          }
 
          if (tmpel->get_name() == "inherit")
@@ -592,7 +592,7 @@ namespace colorertake5
                      }
                      continue;
                   };
-                  next->virtualEntryVector.add(__new VirtualEntry(schemeName, substName));
+                  next->virtualEntryVector.add(___new VirtualEntry(schemeName, substName));
                };
             };
             scheme->nodes.add(next.detach());
@@ -618,7 +618,7 @@ namespace colorertake5
             string entMatchParam = useEntities(matchParam);
             next->lowPriority = tmpel->attr("priority") == "low";
             next->type = SNT_RE;
-            next->start = __new cregexp(entMatchParam);
+            next->start = ___new cregexp(entMatchParam);
             next->start->setPositionMoves(false);
             if (!next->start || !next->start->isOk())
                if (errorHandler != nullptr) errorHandler->error(string("fault compiling regexp '")+entMatchParam+"' in scheme '"+scheme->schemeName+"'");
@@ -698,7 +698,7 @@ namespace colorertake5
             next->lowContentPriority = tmpel->attr("content-priority") == "low";
             next->innerRegion = tmpel->attr("inner-region") == "yes";
             next->type = SNT_SCHEME;
-            next->start = __new cregexp(startParam);
+            next->start = ___new cregexp(startParam);
             next->start->setPositionMoves(false);
             if (!next->start->isOk())
             {
@@ -707,7 +707,7 @@ namespace colorertake5
                   errorHandler->error(string("fault compiling regexp '")+startParam+"' in scheme '"+scheme->schemeName+"'");
                }
             }
-            next->end = __new cregexp();
+            next->end = ___new cregexp();
             next->end->setPositionMoves(true);
             next->end->setBackRE(next->start);
             next->end->setRE(endParam);
@@ -750,7 +750,7 @@ namespace colorertake5
                //delete entWordDiv;
             };
 
-            next->kwList = __new KeywordList();
+            next->kwList = ___new KeywordList();
             for(::pointer<::xml::node>eywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
             {
                if (keywrd_count->get_name() == "u16" ||
@@ -760,7 +760,7 @@ namespace colorertake5
                }
             }
 
-            next->kwList->kwList = __new KeywordInfo[next->kwList->num];
+            next->kwList->kwList = ___new KeywordInfo[next->kwList->num];
             next->kwList->num = 0;
             KeywordInfo *pIDs = next->kwList->kwList;
             next->kwList->matchCase = isCase;

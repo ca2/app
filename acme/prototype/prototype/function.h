@@ -164,7 +164,7 @@ public:
    template < typename T2 >
    inline function_common(transfer_t, T2 * p) :m_pbase(place_t{}, p) {}
    template < typename T2 >
-   inline function_common(place_t, T2 * p) : m_pbase(place_t, p) {}
+   inline function_common(place_t, T2 * p) : m_pbase(place_t{}, p) {}
    template < typename T2 >
    function_common(pointer < T2 > && p) : m_pbase(::transfer(p)) { }
    function_common(enum_as_lparam, iptr iptr) : m_pbase((::subparticle *)iptr) { }
@@ -435,7 +435,7 @@ public:
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    template < typename T2 >
-   function(place_t, T2 * p) : base_function(place_t, p) {}
+   function(place_t, T2 * p) : base_function(place_t{}, p) {}
    template < typename T2 >
    function(pointer < T2 > && p) : base_function(::transfer(p)) { }
    function(enum_as_lparam, iptr iptr) : base_function(e_as_lparam, iptr) { }
@@ -635,7 +635,7 @@ public:
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    template < typename T2 >
-   function(place_t, T2 * p) : base_function(place_t, p) {}
+   function(place_t, T2 * p) : base_function(place_t{}, p) {}
    template < typename T2 >
    function(pointer < T2 > && p) : base_function(::transfer(p)) { }
    function(enum_as_lparam, iptr iptr) : base_function(e_as_lparam, iptr) { }
@@ -852,7 +852,7 @@ public:
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    template < typename T2 >
-   function(place_t, T2 * p) : base_function(place_t, p) {}
+   function(place_t, T2 * p) : base_function(place_t{}, p) {}
    template < typename T2 >
    function(pointer < T2 > && p) : base_function(::transfer(p)) { }
    function(enum_as_lparam, iptr iptr) : base_function(e_as_lparam, iptr) { }
@@ -1080,7 +1080,7 @@ public:
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    template < typename T2 >
-   function(place_t, T2 * p) : base_function(place_t, p) {}
+   function(place_t, T2 * p) : base_function(place_t{}, p) {}
    template < typename T2 >
    function(pointer < T2 > && p) : base_function(::transfer(p)) { }
    function(enum_as_lparam, iptr iptr) : base_function(e_as_lparam, iptr) { }

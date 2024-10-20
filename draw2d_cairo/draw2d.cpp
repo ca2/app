@@ -1233,7 +1233,7 @@ return g_pdraw2dcairo;
 //      if (!estatus)
 //      {
 //
-//         informationf("Couldn't construct __new draw2d.");
+//         informationf("Couldn't construct ___new draw2d.");
 //
 //         return false;
 //

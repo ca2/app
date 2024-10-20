@@ -2540,7 +2540,7 @@ void TransformSkewX(float* t, float a)
 	//	//// if next fontImage already have a texture
 	//	//if (fontImages[fontImageIdx + 1] != 0)
 	//	//	context::ImageSize)(ctx, fontImages[fontImageIdx + 1], &iw, &ih);
-	//	//else { // calculate the __new font image size and create it.
+	//	//else { // calculate the ___new font image size and create it.
 	//	//	context::ImageSize)(ctx, fontImages[fontImageIdx], &iw, &ih);
 	//	//	if (iw > ih)
 	//	//		ih *= 2;
@@ -2892,7 +2892,7 @@ void TransformSkewX(float* t, float a)
          if (type == NANO2D_NEWLINE)
          {
             
-            // Always handle __new lines.
+            // Always handle ___new lines.
             auto prow = __create_new <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
             auto end = rowEnd != NULL ? rowEnd : range.m_begin;
@@ -2985,11 +2985,11 @@ void TransformSkewX(float* t, float a)
                   
                }
 
-               // Break to __new line when a character is beyond break width.
+               // Break to ___new line when a character is beyond break width.
                if ((type == NANO2D_CHAR || type == NANO2D_CJK_CHAR) && nextWidth > breakRowWidth)
                {
                   
-                  // The run length is too long, need to break to __new line.
+                  // The run length is too long, need to break to ___new line.
                   if (breakEnd == rowStart)
                   {
                      
@@ -3022,7 +3022,7 @@ void TransformSkewX(float* t, float a)
                   else
                   {
                      
-                     // Break the line from the end of the last word, and start __new line from the beginning of the __new.
+                     // Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
                      auto prow = __create_new <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
@@ -3062,7 +3062,7 @@ void TransformSkewX(float* t, float a)
          
       }
 
-      // Break the line from the end of the last word, and start __new line from the beginning of the __new.
+      // Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
       if (rowStart != NULL)
       {
          
@@ -3160,7 +3160,7 @@ void TransformSkewX(float* t, float a)
 		//	}
 
 		//	if (type == NVG_NEWLINE) {
-		//		// Always handle __new lines.
+		//		// Always handle ___new lines.
 		//		prow->start = rowStart != NULL ? rowStart : iter.str;
 		//		prow->end = rowEnd != NULL ? rowEnd : iter.str;
 		//		prow->width = rowWidth * invscale;
@@ -3222,9 +3222,9 @@ void TransformSkewX(float* t, float a)
 		//				wordMinX = q.x0;
 		//			}
 
-		//			// Break to __new line when a character is beyond break width.
+		//			// Break to ___new line when a character is beyond break width.
 		//			if ((type == NVG_CHAR || type == NVG_CJK_CHAR) && nextWidth > breakRowWidth) {
-		//				// The run length is too long, need to break to __new line.
+		//				// The run length is too long, need to break to ___new line.
 		//				if (breakEnd == rowStart) {
 		//					// The current word is longer than the row length, just break it from here.
 		//					prow->start = rowStart;
@@ -3247,7 +3247,7 @@ void TransformSkewX(float* t, float a)
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {
-		//					// Break the line from the end of the last word, and start __new line from the beginning of the __new.
+		//					// Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
 		//					prow->start = rowStart;
 		//					prow->end = breakEnd;
 		//					prow->width = breakWidth * invscale;
@@ -3277,7 +3277,7 @@ void TransformSkewX(float* t, float a)
 		//	typePrevious = type;
 		//}
 
-		//// Break the line from the end of the last word, and start __new line from the beginning of the __new.
+		//// Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
 		//if (rowStart != NULL) {
 		//	prow->start = rowStart;
 		//	prow->end = rowEnd;

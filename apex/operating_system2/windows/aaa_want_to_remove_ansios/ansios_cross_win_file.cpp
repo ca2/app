@@ -39,7 +39,7 @@
 //    if(pfile == nullptr)
 //        return INVALID_HANDLE_VALUE;
 //
-//    HANDLE handle = __new win_handle();
+//    HANDLE handle = ___new win_handle();
 //
 //    handle->m_etype = win_handle::type_file;
 //    handle->m_file.m_pfile = pfile;

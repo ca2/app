@@ -229,7 +229,7 @@ namespace netserver
    ////            if (straRange.get_count() == 2)
    ////            {
    ////               
-   ////               rangea.add(__new ::i32_array ());
+   ////               rangea.add(___new ::i32_array ());
    ////               
    ////               rangea.last_ptr()->add(atoi(straRange[0]));
    ////               

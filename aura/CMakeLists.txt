@@ -404,11 +404,11 @@ list(APPEND library_source
         user/user/interaction_array.cpp
         user/user/interaction_array.h
         #user/user/window_util.h
-        user/user/interaction_child.cpp
-        user/user/interaction_child.h
+        #user/user/interaction_child.cpp
+        #user/user/interaction_child.h
         #use/user//interaction_draw2d.h
-        user/user/interaction_impl.cpp
-        user/user/interaction_impl.h
+        #user/user/interaction_impl.cpp
+        #user/user/interaction_impl.h
         user/user/interaction_layout.cpp
         user/user/interaction_layout.h
         user/user/interaction_graphics_thread.cpp
@@ -445,8 +445,8 @@ list(APPEND library_source
         user/user/plain_text_data.h
         user/user/plain_text_tree.cpp
         user/user/plain_text_tree.h
-        user/user/primitive_impl.cpp
-        user/user/primitive_impl.h
+        #user/user/primitive_impl.cpp
+        #user/user/primitive_impl.h
         user/user/progress.cpp
         user/user/progress.h
         user/user/range.cpp

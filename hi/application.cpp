@@ -204,7 +204,7 @@ string checking_string_move_002()
 
    string str;
 
-   auto p = __new char[123];
+   auto p = ___new char[123];
 
    ansi_cpy(p, "checking_string_move_002");
 

@@ -33,14 +33,14 @@ osdisplay_data * x11_main_display()
 osdisplay_data::osdisplay_data()
 {
 
-   m_pcsOsDisplayData      = __new critical_section();
+   m_pcsOsDisplayData      = ___new critical_section();
    m_pdisplay              = nullptr;
    m_atomLongType          = None;
    m_atomLongStyle         = None;
    m_atomNetWmState        = None;
    m_atomLongStyleEx       = 0;
    m_countReference        = 1;
-//   m_pmutexInput           = __new ::pointer < ::mutex > ();
+//   m_pmutexInput           = ___new ::pointer < ::mutex > ();
 
 }
 
@@ -95,7 +95,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    }
 
-   osdisplay_data * pdisplaydata     = __new osdisplay_data();
+   osdisplay_data * pdisplaydata     = ___new osdisplay_data();
 
    pdisplaydata->m_pdisplay          = pdisplay;
    pdisplaydata->m_atomLongType      = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);

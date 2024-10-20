@@ -298,7 +298,7 @@ namespace user
 
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 
-      // create __new from resource
+      // create ___new from resource
       if (!pframe->LoadFrame(m_atom,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles

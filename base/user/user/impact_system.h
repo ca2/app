@@ -68,10 +68,10 @@ namespace user
       //::u32                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //::u32                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-      ::type_atom          m_typeatomDocument;         // class for creating __new documents
-      ::type_atom          m_typeatomFrame;       // class for creating __new frames
-      ::type_atom          m_typeatomImpact;        // class for creating __new impacts
-      ::type_atom          m_typeatomData;        // class for creating __new data
+      ::type_atom          m_typeatomDocument;         // class for creating ___new documents
+      ::type_atom          m_typeatomFrame;       // class for creating ___new frames
+      ::type_atom          m_typeatomImpact;        // class for creating ___new impacts
+      ::type_atom          m_typeatomData;        // class for creating ___new data
       //::type       m_pOleFrameClass;    // class for creating in-place frame
       //::type       m_pOleImpactClass;     // class for creating in-place ::user::impact
 
@@ -117,7 +117,7 @@ namespace user
       virtual void on_request(::request * prequest) override = 0;
       virtual void on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest);
       // open named file
-      // if pszPathName == nullptr => create __new file with this type
+      // if pszPathName == nullptr => create ___new file with this type
 
       virtual void set_default_title(::user::document * pdocument) = 0;
 

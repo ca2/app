@@ -406,7 +406,7 @@ if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
 printf("This is a openSUSE Tumbleweed System...\n");
 printf("Gonna tweak a bit the version :-)...\n");
 m_pszVersion[4] = '\0';
-printf("There it is __new version : %s\n", m_pszVersion);
+printf("There it is ___new version : %s\n", m_pszVersion);
 
 }
 
@@ -928,7 +928,7 @@ if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
 printf("This is a openSUSE Tumbleweed System...\n");
 printf("Gonna tweak a bit the version :-)...\n");
 m_pszVersion[4] = '\0';
-printf("There it is __new version : %s\n", m_pszVersion);
+printf("There it is ___new version : %s\n", m_pszVersion);
 
 }
 

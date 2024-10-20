@@ -461,7 +461,7 @@ namespace universal_windows
    memsize native_buffer::read(void *  pdata,memsize nCount)
    {
 
-      ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref __new ::winrt::Windows::Storage::Streams::Buffer (nCount);
+      ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref ___new ::winrt::Windows::Storage::Streams::Buffer (nCount);
 
       ::winrt::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 

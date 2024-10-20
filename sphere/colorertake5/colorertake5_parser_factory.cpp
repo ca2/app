@@ -55,7 +55,7 @@ namespace colorertake5
             }
             if (fileErrorHandler == nullptr)
             {
-               fileErrorHandler = __new DefaultErrorHandler();
+               fileErrorHandler = ___new DefaultErrorHandler();
             }
             ::pointer<::xml::node>oc = elem->first_child();
             while(loc != nullptr)
@@ -173,7 +173,7 @@ namespace colorertake5
    {
       if(hrcParser != nullptr)
          return hrcParser;
-      hrcParser = __new HRCParserImpl(this);
+      hrcParser = ___new HRCParserImpl(this);
       hrcParser->setErrorHandler(fileErrorHandler);
       for(i32 idx = 0; idx < hrcLocations.get_size(); idx++)
       {
@@ -246,7 +246,7 @@ namespace colorertake5
    text_parser *ParserFactory::createTextParser()
    {
 
-      return __new text_parser_impl();
+      return ___new text_parser_impl();
 
    }
 
@@ -290,7 +290,7 @@ namespace colorertake5
       if (hrdLocV == nullptr)
          throw ::exception(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
-      StyledHRDMapper *mapper = __new StyledHRDMapper(this);
+      StyledHRDMapper *mapper = ___new StyledHRDMapper(this);
 
       ::file::path strDir = this->catalogPath.folder();
 
@@ -343,7 +343,7 @@ namespace colorertake5
       if (hrdLocV == nullptr)
          throw ::exception(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
-      TextHRDMapper *mapper = __new TextHRDMapper(this);
+      TextHRDMapper *mapper = ___new TextHRDMapper(this);
       for(i32 idx = 0; idx < hrdLocV->get_size(); idx++)
       {
          if (hrdLocV->element_at(idx).has_char())

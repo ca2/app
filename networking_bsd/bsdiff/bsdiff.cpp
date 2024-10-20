@@ -162,25 +162,25 @@ static void qsufsort(off_t *I,off_t *V,u_char *old,off_t oldsize)
    for(i=0; i<oldsize+1; i++) I[V[i]]=i;
 }
 
-static off_t matchlen(u_char *old,off_t oldsize,u_char *__new,off_t newsize)
+static off_t matchlen(u_char *old,off_t oldsize,u_char *___new,off_t newsize)
 {
    off_t i;
 
    for(i=0; (i<oldsize)&&(i<newsize); i++)
-      if(old[i]!=__new[i]) break;
+      if(old[i]!=___new[i]) break;
 
    return i;
 }
 
 static off_t search(off_t *I,u_char *old,off_t oldsize,
-                    u_char *__new,off_t newsize,off_t st,off_t en,off_t *pos)
+                    u_char *___new,off_t newsize,off_t st,off_t en,off_t *pos)
 {
    off_t x,y;
 
    if(en-st<2)
    {
-      x=matchlen(old+I[st],oldsize-I[st],__new,newsize);
-      y=matchlen(old+I[en],oldsize-I[en],__new,newsize);
+      x=matchlen(old+I[st],oldsize-I[st],___new,newsize);
+      y=matchlen(old+I[en],oldsize-I[en],___new,newsize);
 
       if(x>y)
       {
@@ -197,11 +197,11 @@ static off_t search(off_t *I,u_char *old,off_t oldsize,
    x=st+(en-st)/2;
    if(__memcmp(old+I[x],__allocate< ,minimum >(oldsize-I[x],newsize))<0)
    {
-      return search(I,old,oldsize,__new,newsize,x,en,pos);
+      return search(I,old,oldsize,___new,newsize,x,en,pos);
    }
    else
    {
-      return search(I,old,oldsize,__new,newsize,st,x,pos);
+      return search(I,old,oldsize,___new,newsize,st,x,pos);
    };
 }
 
@@ -226,7 +226,7 @@ static void offtout(off_t x,u_char *buf)
 int main(int argc,char *argv[])
 {
    int fd;
-   u_char *old,*__new;
+   u_char *old,*___new;
    off_t oldsize,newsize;
    off_t *I,*V;
    off_t scan,pos,len;
@@ -267,7 +267,7 @@ int main(int argc,char *argv[])
          ((newsize=lseek(fd,0,SEEK_END))==-1) ||
          ((__allocate< =malloc >(newsize+1))==nullptr) ||
          (lseek(fd,0,SEEK_SET)!=0) ||
-         (read(fd,__new,newsize)!=newsize) ||
+         (read(fd,___new,newsize)!=newsize) ||
          (close(fd)==-1)) err(1,"%s",argv[2]);
 
    if(((db=malloc(newsize+1))==nullptr) ||
@@ -283,7 +283,7 @@ int main(int argc,char *argv[])
    	0	8	 "BSDIFF40"
    	8	8	length of bzip2ed ctrl block
    	16	8	length of bzip2ed diff block
-   	24	8	length of __new file */
+   	24	8	length of ___new file */
    /* File is
    	0	32	Header
    	32	??	Bzip2ed ctrl block
@@ -307,19 +307,19 @@ int main(int argc,char *argv[])
 
       for(scsc=scan+=len; scan<newsize; scan++)
       {
-         len=search(I,old,oldsize,__new+scan,newsize-scan,
+         len=search(I,old,oldsize,___new+scan,newsize-scan,
                     0,oldsize,&pos);
 
          for(; scsc<scan+len; scsc++)
             if((scsc+lastoffset<oldsize) &&
-                  (old[scsc+lastoffset] == __new[scsc]))
+                  (old[scsc+lastoffset] == ___new[scsc]))
                oldscore++;
 
          if(((len==oldscore) && (len!=0)) ||
                (len>oldscore+8)) break;
 
          if((scan+lastoffset<oldsize) &&
-               (old[scan+lastoffset] == __new[scan]))
+               (old[scan+lastoffset] == ___new[scan]))
             oldscore--;
       };
 
@@ -328,7 +328,7 @@ int main(int argc,char *argv[])
          s=0; Sf=0; lenf=0;
          for(i=0; (lastscan+i<scan)&&(lastpos+i<oldsize);)
          {
-            if(old[lastpos+i]==__new[lastscan+i]) s++;
+            if(old[lastpos+i]==___new[lastscan+i]) s++;
             i++;
             if(s*2-i>Sf*2-lenf) { Sf=s; lenf=i; };
          };
@@ -339,7 +339,7 @@ int main(int argc,char *argv[])
             s=0; Sb=0;
             for(i=1; (scan>=lastscan+i)&&(pos>=i); i++)
             {
-               if(old[pos-i]==__new[scan-i]) s++;
+               if(old[pos-i]==___new[scan-i]) s++;
                if(s*2-i>Sb*2-lenb) { Sb=s; lenb=i; };
             };
          };
@@ -350,9 +350,9 @@ int main(int argc,char *argv[])
             s=0; Ss=0; lens=0;
             for(i=0; i<overlap; i++)
             {
-               if(__new[lastscan+lenf-overlap+i]==
+               if(___new[lastscan+lenf-overlap+i]==
                      old[lastpos+lenf-overlap+i]) s++;
-               if(__new[scan-lenb+i]==
+               if(___new[scan-lenb+i]==
                      old[pos-lenb+i]) s--;
                if(s>Ss) { Ss=s; lens=i+1; };
             };
@@ -362,9 +362,9 @@ int main(int argc,char *argv[])
          };
 
          for(i=0; i<lenf; i++)
-            db[dblen+i]=__new[lastscan+i]-old[lastpos+i];
+            db[dblen+i]=___new[lastscan+i]-old[lastpos+i];
          for(i=0; i<(scan-lenb)-(lastscan+lenf); i++)
-            eb[eblen+i]=__new[lastscan+lenf+i];
+            eb[eblen+i]=___new[lastscan+lenf+i];
 
          dblen+=lenf;
          eblen+=(scan-lenb)-(lastscan+lenf);
@@ -436,7 +436,7 @@ int main(int argc,char *argv[])
    free(eb);
    free(I);
    free(old);
-   free(__new);
+   free(___new);
 
    return 0;
 }

@@ -470,7 +470,7 @@ void memory_base::append_file(::file::file * pfileIn,memsize uiBufferSize)
 
       set_size(position + uiBufferSize);
 
-      auto amountRead = pfileIn->read((*this)(position, uiBufferSize));
+      auto amountRead = pfileIn->read(this->data() + position, uiBufferSize);
 
       if (amountRead <= 0)
       {
@@ -627,7 +627,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //
 //   }
 //
-//   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref __new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ();
+//   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref ___new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ();
 //
 //   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 //
@@ -1825,7 +1825,7 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 
    }
 
-   return ref __new Array < uchar, 1U ((uchar *)&data >()[pos], size);
+   return ref ___new Array < uchar, 1U ((uchar *)&data >()[pos], size);
 
 }
 
@@ -1843,7 +1843,7 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 ::winrt::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
 {
 
-   ::winrt::Windows::Storage::Streams::DataWriter ^ writer = ref __new ::winrt::Windows::Storage::Streams::DataWriter ();
+   ::winrt::Windows::Storage::Streams::DataWriter ^ writer = ref ___new ::winrt::Windows::Storage::Streams::DataWriter ();
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 
@@ -1909,7 +1909,7 @@ void memory_base::set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ib
 
    ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
 
-   Array<uchar, 1U>^ a = ref __new Array<uchar, 1U> (ibuf->Length);
+   Array<uchar, 1U>^ a = ref ___new Array<uchar, 1U> (ibuf->Length);
 
    r->ReadBytes(a);
 

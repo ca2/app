@@ -180,7 +180,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = __new plain_edit_internal();
+      //m_pcontrolstyle = ___new plain_edit_internal();
 
       m_ppropertysetsel = nullptr;
 

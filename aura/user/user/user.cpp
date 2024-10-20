@@ -1096,7 +1096,7 @@ namespace aura
    //session_docs * create_session_docs()
    //{
 
-   //   return __new session_docs();
+   //   return ___new session_docs();
 
    //}
 

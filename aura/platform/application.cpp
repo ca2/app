@@ -7158,7 +7158,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = __new ::u8[*pBytes];
+   *ppData = ___new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7186,7 +7186,7 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = __new ::u8[*pBytes];
+   *ppData = ___new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -7306,7 +7306,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = __new char[nBytes*2+1];
+   char * psz = ___new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)

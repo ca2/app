@@ -6,8 +6,8 @@
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 
-osdisplay_dataptra * osdisplay_data::s_pdataptra = __new osdisplay_dataptra();
-::pointer< ::mutex > osdisplay_data::s_pmutex = __new ::pointer < ::mutex > (nullptr);
+osdisplay_dataptra * osdisplay_data::s_pdataptra = ___new osdisplay_dataptra();
+::pointer< ::mutex > osdisplay_data::s_pmutex = ___new ::pointer < ::mutex > (nullptr);
 
 osdisplay_data::osdisplay_data()
 {
@@ -49,7 +49,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
    if(::is_set(pFind))
       return osdisplay_data::s_pdataptra->element_at(iFind);
 
-   osdisplay_data * pdata     = __new osdisplay_data();
+   osdisplay_data * pdata     = ___new osdisplay_data();
 
    pdata->m_pdisplay          = pdisplay;
    pdata->m_atomLongType      = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);

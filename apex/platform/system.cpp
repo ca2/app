@@ -2615,7 +2615,7 @@ pacmedirectory->create("/ca2core");
    //      return true;
    //#endif
    //
-   //      /*      m_spfilehandler(__new ::apex::filehandler::handler (this));*/
+   //      /*      m_spfilehandler(___new ::apex::filehandler::handler (this));*/
    //
    ////      m_mapAppLibrary.erase_all();
    ////
@@ -3558,17 +3558,17 @@ pmessagebox->sync();
 #if defined(UNIVERSAL_WINDOWS)
 
 
-         string * pstrNew = __new string(strUrl);
+         string * pstrNew = ___new string(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
             ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
-                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new ::winrt::Windows::Foundation::Uri (*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
 
                   delete pstrNew;
 
-                  LauncherOptions ^ options = ref __new LauncherOptions();
+                  LauncherOptions ^ options = ref ___new LauncherOptions();
 
                   options->TreatAsUntrusted = false;
 
@@ -3963,7 +3963,7 @@ pmessagebox->sync();
       if (strUrl.has_char())
       {
 
-         strParam += " -__new-tab \"" + strUrl + "\"";
+         strParam += " -___new-tab \"" + strUrl + "\"";
 
       }
 

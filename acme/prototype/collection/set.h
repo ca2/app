@@ -827,7 +827,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
    //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_pnodeFree = __new node();
+   //   this->m_pnodeFree = ___new node();
 
    //}
 

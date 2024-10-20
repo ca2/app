@@ -460,7 +460,7 @@ namespace programming
       //#ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = __new char[dwSize + 1];
+      //      char * lpsz = ___new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }
@@ -534,7 +534,7 @@ namespace programming
       //   #ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = __new char[dwSize + 1];
+      //      char * lpsz = ___new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }

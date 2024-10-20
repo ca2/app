@@ -59,19 +59,19 @@ namespace sphere
 
          if(case_insensitive_equals(pszAppId, "calculator"))
          {
-            return __new ::calculator::application ();
+            return ___new ::calculator::application ();
          }
          else if(case_insensitive_equals(pszAppId, "command"))
          {
-            return __new ::command::application ();
+            return ___new ::command::application ();
          }
          else if(case_insensitive_equals(pszAppId, "userstack"))
          {
-            return __new ::userstack::application ();
+            return ___new ::userstack::application ();
          }
          else if(case_insensitive_equals(pszAppId, "default_file_handler"))
          {
-            return __new ::filehandler::application ();
+            return ___new ::filehandler::application ();
          }
 
          return ::apex::single_application_library < application >::get_new_app(pszAppId);
@@ -88,6 +88,6 @@ extern "C"
 ::acme::library * get_new_library(::particle * pparticle)
 {
 
-   return __new ::sphere::library (pparticle);
+   return ___new ::sphere::library (pparticle);
 
 }

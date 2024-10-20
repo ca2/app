@@ -7669,7 +7669,7 @@ namespace user
    //void list::on_create_draw_item()
    //{
 
-   //   m_pdrawlistitem = __new draw_list_item(this);
+   //   m_pdrawlistitem = ___new draw_list_item(this);
 
    //   m_pdrawlistitem->initialize(this);
 

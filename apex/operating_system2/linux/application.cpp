@@ -92,7 +92,7 @@
 //
 //            if(dwResSize > 0)
 //            {
-//               LPVOID pdata = __new ::u8[dwResSize];
+//               LPVOID pdata = ___new ::u8[dwResSize];
 //
 //               if(GetFileVersionInfo(
 //                  pszModuleFilePath,

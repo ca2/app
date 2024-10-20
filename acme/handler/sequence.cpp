@@ -22,7 +22,7 @@
 //   if (!g_pcriticalsectionSequence)
 //   {
 //
-//      g_pcriticalsectionSequence = __new critical_section();
+//      g_pcriticalsectionSequence = ___new critical_section();
 //
 //   }
 //

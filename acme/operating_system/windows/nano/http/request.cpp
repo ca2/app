@@ -170,7 +170,7 @@ namespace windows
 
                memory.set_size(dwSize);
                // Allocate space for the buffer.        
-               //pszOutBuffer = __new byte[dwSize + 1];
+               //pszOutBuffer = ___new byte[dwSize + 1];
                //if (!pszOutBuffer)
                //{
                  // printf("Out of memory\n");

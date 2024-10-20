@@ -27,10 +27,10 @@
 
 //       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref __allocate< ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring >(pszTitle));
 
-// //UICommand^ continueCommand = ref __new UICommand(
+// //UICommand^ continueCommand = ref ___new UICommand(
 //       //      "Try again",
-//       //    ref __new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref __new ::winrt::Windows::UI::Popups::UICommand(
+//       //    ref ___new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref ___new ::winrt::Windows::UI::Popups::UICommand(
 //             "OK");
 
 //       // Add the commands to the dialog
@@ -116,9 +116,9 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 bool os_initialize()
 {
 
-   ::os_thread::s_pmutex = __new ::pointer < ::mutex > ();
+   ::os_thread::s_pmutex = ___new ::pointer < ::mutex > ();
 
-   ::os_thread::s_pptra = __new simple_array < os_thread * >  ();
+   ::os_thread::s_pptra = ___new simple_array < os_thread * >  ();
 
    //sleep(15 * 1000);
 
@@ -203,11 +203,11 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //      }
 //      */
 //
-//   //t_phtask = __new htask();
+//   //t_phtask = ___new htask();
 //
 //   //t_phtask->m_bRun = true;
 //
-//   //currentThread = __new htask();
+//   //currentThread = ___new htask();
 //
 //
 //   return true;

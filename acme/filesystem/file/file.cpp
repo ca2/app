@@ -1210,7 +1210,7 @@ namespace file
                
             }
             
-            write(buf(0,  uRead));
+            write(buf.data(), uRead);
             
             //uiSize += uRead;
             

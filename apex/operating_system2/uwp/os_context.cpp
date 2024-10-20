@@ -452,7 +452,7 @@ namespace universal_windows
 
                Platform::String^ strUri = strUrl;
 
-               ::winrt::Windows::Foundation::Uri^ uri = ref __new ::winrt::Windows::Foundation::Uri (strUri);
+               ::winrt::Windows::Foundation::Uri^ uri = ref ___new ::winrt::Windows::Foundation::Uri (strUri);
 
                ::wait(Launcher::LaunchUriAsync(uri));
 

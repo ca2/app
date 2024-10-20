@@ -337,7 +337,7 @@ public:
 //
 //
 //   memory_stream() : binary_stream(__initialize_new ::memory_file())) {}
-//   memory_stream(::memory_base & memory) : binary_stream(::as(__new ::memory_file(memory))) {}
+//   memory_stream(::memory_base & memory) : binary_stream(::as(___new ::memory_file(memory))) {}
 //
 //   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
 //   const ::memory_file * operator ->() const { return m_p.cast < ::memory_file >().m_p; }

@@ -151,7 +151,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       //  Regular DLL's resource chain, and serious problems will
       //  result.
 
-      __new CDynLinkLibrary(VmscdadecDLL);
+      ___new CDynLinkLibrary(VmscdadecDLL);
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {

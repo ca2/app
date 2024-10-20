@@ -176,7 +176,7 @@
 //
 //      //html_none = "none";
 //      //html_unknown = "unknown";
-//      //html_new = "__new";
+//      //html_new = "___new";
 //      //html_initial = "initial";
 //      //html_html = "html";
 //      //html_head = "head";

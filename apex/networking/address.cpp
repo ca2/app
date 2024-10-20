@@ -38,7 +38,7 @@ namespace networking
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      m_posdata = __new os_data();
+//      m_posdata = ___new os_data();
 //
 //#endif
       
@@ -62,7 +62,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = __new os_data();
+////      m_posdata = ___new os_data();
 ////
 ////#endif
 //      sync_os_service();
@@ -78,7 +78,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = __new os_data();
+////      m_posdata = ___new os_data();
 ////
 ////#endif
 //
@@ -267,7 +267,7 @@ namespace networking
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
-////      m_posdata = __new os_data();
+////      m_posdata = ___new os_data();
 ////
 ////#endif
 //
@@ -566,7 +566,7 @@ namespace networking
 ////
 ////#elif defined(WINRT_SOCKETS)
 ////
-////      m_hostname = ref __new ::winrt::Windows::Networking::HostName (strAddress);
+////      m_hostname = ref ___new ::winrt::Windows::Networking::HostName (strAddress);
 ////
 ////
 ////#endif

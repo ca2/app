@@ -181,7 +181,7 @@ virtual void initialize_factory() override                              \
 CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle * pparticle) \
 { \
 \
-   return __new library(pparticle); \
+   return ___new library(pparticle); \
  \
 } \
  \

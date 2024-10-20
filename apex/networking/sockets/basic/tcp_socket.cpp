@@ -337,7 +337,7 @@ namespace sockets
 //
 //      }
 
-//      // if not, create __new connection
+//      // if not, create ___new connection
 //      socket_id s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
 //      if(s == INVALID_SOCKET)
 //      {

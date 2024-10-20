@@ -1007,7 +1007,7 @@ namespace user
    //   {
 
 
-   //      m_pinteractiondraw2d = __new interaction_draw2d();
+   //      m_pinteractiondraw2d = ___new interaction_draw2d();
 
    //   }
 
@@ -29807,7 +29807,7 @@ namespace user
 
          //throw ::exception(todo);
 
-   //            m_data.m_pcombobox = __new Ex1FormInterfaceComboBox();
+   //            m_data.m_pcombobox = ___new Ex1FormInterfaceComboBox();
 
       }
       break;

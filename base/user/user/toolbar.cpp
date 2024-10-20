@@ -347,7 +347,7 @@ namespace user
    ////      m_hInstImageWell = nullptr;
    //      //    m_hRsrcImageWell = nullptr;
    //
-   //      // tell common control toolbar about the __new bitmap
+   //      // tell common control toolbar about the ___new bitmap
    //      return AddReplaceBitmap(hbmImageWell);
    //   }
    //
@@ -414,7 +414,7 @@ namespace user
       //      if (pIDArray != nullptr)
       //
       //      {
-      //         // add __new buttons to the common control
+      //         // add ___new buttons to the common control
       //         index iImage = 0;
       //         for (::collection::index i = 0; i < nIDCount; i++)
       //         {
@@ -999,7 +999,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = __new TBBUTTON[nCount];
+      //            pData = ___new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }
@@ -1313,17 +1313,17 @@ namespace user
 //      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
 //         nString = (iptr)p;
 //
-//      // add __new string if not already in map
+//      // add ___new string if not already in map
 //      if (nString == -1)
 //      {
 //         // initialize map if necessary
 //         if (m_pStringMap == nullptr)
-//            m_pStringMap = __new string_to_ptr();
+//            m_pStringMap = ___new string_to_ptr();
 //
 //         string str;
 //         str = pszText;
 //
-//         // add __new string to toolbar list
+//         // add ___new string to toolbar list
 //         string strTemp(str);
 //         throw ::interface_only();
 //         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
@@ -1796,7 +1796,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = __new TBBUTTON[nCount];
+      //            pData = ___new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }

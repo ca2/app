@@ -35,7 +35,7 @@ bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT
 
    });
 
-   functionReturn.m_timeTimeout = timeWait;
+   functionReturn.set_timeout(timeWait);
 
    return phandler->__get_posted_payload_synchronously(functionPost, functionReturn, payload);
 

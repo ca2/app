@@ -216,11 +216,11 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 
       const int wh = (wj)*(cy);
 
-      timage = __new vector4[wh];
+      timage = ___new vector4[wh];
       // temporary output space for first pass.
-      tsurface = __new vector4[wh];
+      tsurface = ___new vector4[wh];
 
-      m_stack = __new vector4[div2];
+      m_stack = ___new vector4[div2];
 
 
 
@@ -239,8 +239,8 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      vxmin = __new int[cx + 100 + div2];
-      vymin = __new int[cy + 100 + div2];
+      vxmin = ___new int[cx + 100 + div2];
+      vymin = ___new int[cy + 100 + div2];
 
       const int r1 = radius + 1;
       
@@ -1076,7 +1076,7 @@ auto tick2 = ::time::now();
       const int div = (radius * 2) + 1;
 
       // temporary output space for first pass.
-      //vector4* tsurface = __new vector4[wh];
+      //vector4* tsurface = ___new vector4[wh];
 
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
@@ -1182,7 +1182,7 @@ auto tick2 = ::time::now();
             outsum -= sir;
 
             // now this (same) stack entry is the "right" side
-            // add __new pixel to the stack, and update accumulators
+            // add ___new pixel to the stack, and update accumulators
             sir = p;
             insum += sir;
             sum += insum;

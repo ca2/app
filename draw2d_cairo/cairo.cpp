@@ -22,17 +22,17 @@
 //
 //   ::platform::get()->__raw_construct(g_pmutexFc);
 //
-//   g_pmapFontPath = __new string_to_string();
+//   g_pmapFontPath = ___new string_to_string();
 //
 //#endif
 //
-//   g_pmapFontFace = __new string_map < i32_map < FT_Face> >  ();
+//   g_pmapFontFace = ___new string_map < i32_map < FT_Face> >  ();
 //
-//   g_pmapCairoFontFace = __new string_map < cairo_font_face_t * >  ();
+//   g_pmapCairoFontFace = ___new string_map < cairo_font_face_t * >  ();
 //
-//   g_pmapFontError = __new string_to_int();
+//   g_pmapFontError = ___new string_to_int();
 //
-//   g_pmapFontError2 = __new string_to_int();
+//   g_pmapFontError2 = ___new string_to_int();
 //
 //}
 //

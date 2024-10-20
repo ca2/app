@@ -131,11 +131,11 @@ namespace colorertake5
          delete lrSupport;
          if (regionCompact)
          {
-            lrSupport = __new LineRegionsCompactSupport();
+            lrSupport = ___new LineRegionsCompactSupport();
          }
          else
          {
-            lrSupport = __new LineRegionsSupport();
+            lrSupport = ___new LineRegionsSupport();
          }
          lrSupport->resize(lrSize);
          lrSupport->clear();

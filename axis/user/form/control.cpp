@@ -88,7 +88,7 @@ namespace user
    //         /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_());
    //         if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
    //         {
-   //         pstatic = __new CTransparentStatic();
+   //         pstatic = ___new CTransparentStatic();
    //         VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_()));
    //         }
    //         pinteraction->m_unionwndptr.m_pstatic = pstatic;*/

@@ -252,7 +252,7 @@ namespace file
       try
       {
 
-         uRead = m_pfile->read(m_storage(0, uiCopy));
+         uRead = m_pfile->read(m_storage.data(), uiCopy);
 
       }
       catch(...)
@@ -351,7 +351,7 @@ namespace file
 
          m_pfile->set_position((filesize) m_uiWriteLPos);
 
-         m_pfile->write(m_storage(m_uiWriteLPos - m_uiBufLPos, (memsize)(m_uiWriteUPos - m_uiWriteLPos + 1)));
+         m_pfile->write(m_storage.data() + (m_uiWriteLPos - m_uiBufLPos), (memsize)(m_uiWriteUPos - m_uiWriteLPos + 1));
 
          m_bDirty = false;
 

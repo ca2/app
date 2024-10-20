@@ -1140,7 +1140,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   informationf("Failed to create __new User Presence");
+      //   informationf("Failed to create ___new User Presence");
 
       //   return false;
 
@@ -1605,7 +1605,7 @@ namespace apex
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = __new nature::database (this);
+      //m_pdatabase = ___new nature::database (this);
 
       //if(m_pdatabase == nullptr)
       //{

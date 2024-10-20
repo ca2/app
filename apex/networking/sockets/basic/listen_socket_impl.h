@@ -13,7 +13,7 @@ namespace sockets
 {
 
 
-   /** Binds incoming port number to __new socket class X.
+   /** Binds incoming port number to ___new socket class X.
 \ingroup basic */
    class CLASS_DECL_APEX listen_socket_impl :
       virtual public socket

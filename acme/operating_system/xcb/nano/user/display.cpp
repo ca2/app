@@ -616,7 +616,7 @@ namespace xcb
 
                m_pX11Display = node()->x11_get_display();
 
-               information() << "xcb nano display::init_task got __new x11_display : " << (::iptr) m_pX11Display ;
+               information() << "xcb nano display::init_task got ___new x11_display : " << (::iptr) m_pX11Display ;
 
             }
 

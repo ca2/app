@@ -2372,7 +2372,7 @@ namespace aura
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = __new nature::database (this);
+      //m_pdatabase = ___new nature::database (this);
 
       //if(m_pdatabase == nullptr)
       //{

@@ -183,7 +183,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    // Window size_i32 is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
-   // Allocate a __new line contributions strucutre
+   // Allocate a ___new line contributions strucutre
    LineContribType *res = AllocContributions (uLineSize, iWindowSize);
 
    for (::u32 u = 0; u < uLineSize; u++)
@@ -408,7 +408,7 @@ VertScale (::image32_t*pSrc,
 //{
    // Scale source image horizontally into temporary image
 //   m_bCanceled = false;
-//   ::color::color *pTemp = __new ::color::color[uNewWidth * uOrigHeight];
+//   ::color::color *pTemp = ___new ::color::color[uNewWidth * uOrigHeight];
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
 //               uOrigHeight,
@@ -421,7 +421,7 @@ VertScale (::image32_t*pSrc,
 //      return nullptr;
 //   }
    // Scale temporary image vertically into result image
-//   ::color::color *pRes = __new ::color::color[uNewWidth * uNewHeight];
+//   ::color::color *pRes = ___new ::color::color[uNewWidth * uNewHeight];
 //   VertScale ( pTemp,
 //               uNewWidth,
 //               uOrigHeight,

@@ -85,7 +85,7 @@ namespace crypto
       virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
       virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
 
-      // get a __new salt - 8 hexadecimal characters long
+      // get a ___new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
       // on dechex( mt_rand() )
       // but we future proof it anyway with substr()

@@ -818,7 +818,7 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
    while (dwReadTotal < iReadAtMostByteCount)
    {
 
-      auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
+      auto dwRead = file.read(memory.data() + dwReadTotal, (iReadAtMostByteCount - dwReadTotal));
 
       if (dwRead <= 0)
       {

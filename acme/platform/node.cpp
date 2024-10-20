@@ -1094,7 +1094,7 @@ namespace acme
    // ::os_theme_colors * node::_new_os_theme_colors()
    // {
    //
-   //    return __new os_theme_colors();
+   //    return ___new os_theme_colors();
    //
    // }
    //

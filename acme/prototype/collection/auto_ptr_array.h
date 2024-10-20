@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/_referencing_debugging.h"
+
+
 template < typename POINTER_TYPE >
 class auto_ptr_array :
    public pointer_array_process < comparable_array < POINTER_TYPE * >, POINTER_TYPE >
@@ -32,7 +35,7 @@ public:
       for(; i < c; i++)
       {
          
-         this->element_at(i) = __new POINTER_TYPE;
+         this->element_at(i) = ___new POINTER_TYPE;
          
       }
       
@@ -82,7 +85,7 @@ namespace acme
       for (int i = 0; i < srca.get_size(); i++)
       {
          
-         dsta[i] = __new TDST(*srca[i]);
+         dsta[i] = ___new TDST(*srca[i]);
 
       }
 

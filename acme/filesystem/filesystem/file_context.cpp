@@ -1338,7 +1338,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
       while ((uRead = pfileSrc->read(mem)) > 0)
       {
 
-         pfile->write(mem(0, uRead));
+         pfile->write(mem.data(), uRead);
 
       }
 
@@ -2921,7 +2921,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
    while ((iRead = (memsize) pfile->read(mem)) > 0)
    {
 
-      phasher->update(mem(0, iRead));
+      phasher->update({mem.data(), iRead});
 
    }
 

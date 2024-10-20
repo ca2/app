@@ -88,7 +88,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    else
    {
 
-      m_psem = __new sem_t();
+      m_psem = ___new sem_t();
 
       sem_init(m_psem, 0, lInitialCount);
 

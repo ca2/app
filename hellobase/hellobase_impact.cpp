@@ -41,7 +41,7 @@ namespace hellobase
       m_prender                  = nullptr;
 
 
-      m_prender = __new render(this);
+      m_prender = ___new render(this);
 
       m_prender->m_pimpact = this;
 

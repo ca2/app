@@ -155,7 +155,7 @@ extern "C"
 ::acme::library * app_hellobase_get_new_library(::particle * pparticle)
 {
 
-   return __new ::apex::single_application_library < ::hellobase::application >  (pparticle, "app/hellobase");
+   return ___new ::apex::single_application_library < ::hellobase::application >  (pparticle, "app/hellobase");
 
 }
 

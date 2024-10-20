@@ -52,7 +52,7 @@ namespace universal_windows
    {
       UNUSED_ALWAYS(dwUnused);
       close();
-      m_pNextInfo = __new WIN32_FIND_DATAW();
+      m_pNextInfo = ___new WIN32_FIND_DATAW();
       m_bGotLast = false;
 
       if (pstrName == nullptr)
@@ -240,7 +240,7 @@ namespace universal_windows
       if (m_hContext == nullptr)
          return false;
       if (m_pFoundInfo == nullptr)
-         m_pFoundInfo = __new WIN32_FIND_DATAW();
+         m_pFoundInfo = ___new WIN32_FIND_DATAW();
 
       ASSERT_VALID(this);
 

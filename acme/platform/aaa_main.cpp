@@ -1913,7 +1913,7 @@ locale_t get_c_locale()
 //CLASS_DECL_ACME void release_on_end(::particle * pparticle)
 //{
 //
-//   auto ppointer = __new global_::particle_pointer();
+//   auto ppointer = ___new global_::particle_pointer();
 //
 //   *ppointer = pparticle;
 //

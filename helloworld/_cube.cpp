@@ -3,7 +3,7 @@
 ::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return __new ::helloworld::application ();
+   return ___new ::helloworld::application ();
 
 }
 

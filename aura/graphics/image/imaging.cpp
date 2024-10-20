@@ -407,7 +407,7 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 ::draw2d::graphics * pgraphics,
 ::image::image_list_pointer pilParam)
 {
-::image::image_list_pointer pil = __new ::image::image_list ();
+::image::image_list_pointer pil = ___new ::image::image_list ();
 
 pil->create(pilParam);
 

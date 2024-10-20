@@ -133,11 +133,11 @@ namespace sockets
       bool PoolEnabled() override;
 
       // Socks4
-      ///** set socks4 server ip that all __new tcp sockets should use. */
+      ///** set socks4 server ip that all ___new tcp sockets should use. */
       //void SetSocks4Host(in_addr addr) override;
-      ///** set socks4 server hostname that all __new tcp sockets should use. */
+      ///** set socks4 server hostname that all ___new tcp sockets should use. */
       //void SetSocks4Host(const string & ) override;
-      ///** set socks4 server port number that all __new tcp sockets should use. */
+      ///** set socks4 server port number that all ___new tcp sockets should use. */
       //void SetSocks4Port(::networking::port_t) override;
       ///** set optional socks4 userid. */
       //void SetSocks4Userid(const string & ) override;

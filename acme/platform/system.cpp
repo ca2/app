@@ -525,7 +525,7 @@ namespace acme
 
       //__construct(m_pnano);
 
-      //m_psystemimpl = __new system_impl();
+      //m_psystemimpl = ___new system_impl();
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -560,7 +560,7 @@ namespace acme
 
       branch_synchronously();
 
-      // To pair freebsd.h/main platform_create_system __new system
+      // To pair freebsd.h/main platform_create_system ___new system
       // This should be safe here in this node_gtk::node
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
@@ -3326,7 +3326,7 @@ namespace acme
                if (!papp)
                {
 
-                  informationf("\n\n::apex::session::get_new_application\n...but this __new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  informationf("\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -4151,7 +4151,7 @@ namespace acme
 //CLASS_DECL_ACME::acme::system * acme_system_init()
 //{
 //
-//   g_psystem = __new ::acme::system ();
+//   g_psystem = ___new ::acme::system ();
 //
 //   return g_psystem;
 //

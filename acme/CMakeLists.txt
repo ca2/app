@@ -320,9 +320,9 @@ list(APPEND library_source
         nano/compress/_.h
         nano/compress/compress.cpp
         nano/compress/compress.h
-        nano/dynamic_library/_.h
-        nano/dynamic_library/dynamic_library.cpp
-        nano/dynamic_library/dynamic_library.h
+        #nano/dynamic_library/_.h
+        #nano/dynamic_library/dynamic_library.cpp
+        #nano/dynamic_library/dynamic_library.h
 	nano/graphics/brush.cpp
 	nano/graphics/brush.h
 	nano/graphics/device.cpp
@@ -344,10 +344,11 @@ list(APPEND library_source
         nano/http/http.h
 	_static_factory.h
 	windowing/_.h
-	user/user/interaction_base.cpp
-	user/user/interaction_base.h
-	nano/user/console.cpp
-	nano/user/console.h
+		user/micro/
+	user/user/element.cpp
+	user/user/element.h
+	#nano/user/console.cpp
+	#nano/user/console.h
 
 	nano/idn/_.h
         nano/idn/idn.cpp
@@ -360,30 +361,30 @@ list(APPEND library_source
         nano/speech/_.h
         nano/speech/speech.cpp
         nano/speech/speech.h
-        nano/user/_user.cpp
-        nano/user/_.h
-        nano/user/button.cpp
-        nano/user/button.h
-        nano/user/child.cpp
-        nano/user/child.h
-        nano/user/details_window.cpp
-        nano/user/details_window.h
-        nano/user/display.cpp
-        nano/user/display.h
-        nano/user/message_box.cpp
-        nano/user/message_box.h
-        nano/user/user.cpp
-        nano/user/user.h
-        nano/user/popup_button.cpp
-        nano/user/popup_button.h
-        nano/user/still.cpp
-        nano/user/still.h
-        nano/user/interchange.cpp
-        nano/user/interchange.h
-        #nano/user/window_implementation.cpp
-        #nano/user/window_implementation.h
-        #nano/user/window_interface.cpp
-        #nano/user/window_interface.h
+#        nano/user/_user.cpp
+#        nano/user/_.h
+#        nano/user/button.cpp
+#        nano/user/button.h
+#        nano/user/child.cpp
+#        nano/user/child.h
+#        nano/user/details_window.cpp
+#        nano/user/details_window.h
+#        nano/user/display.cpp
+#        nano/user/display.h
+#        nano/user/message_box.cpp
+#        nano/user/message_box.h
+#        nano/user/user.cpp
+#        nano/user/user.h
+#        nano/user/popup_button.cpp
+#        nano/user/popup_button.h
+#        nano/user/still.cpp
+#        nano/user/still.h
+#        nano/user/interchange.cpp
+#        nano/user/interchange.h
+#        #nano/user/window_implementation.cpp
+#        #nano/user/window_implementation.h
+#        #nano/user/window_interface.cpp
+#        #nano/user/window_interface.h
         nano/nano.cpp
         nano/nano.h
         nano/_.h
@@ -857,7 +858,7 @@ list(APPEND library_source
         #prototype/prototype/papaya.h
         prototype/prototype/particle.cpp
         prototype/prototype/particle.h
-        prototype/prototype/particle_flags.h
+        #prototype/prototype/particle_flags.h
         prototype/prototype/payload.cpp
         prototype/prototype/payload.h
         prototype/prototype/payload2.h
@@ -890,6 +891,8 @@ list(APPEND library_source
         #prototype/prototype/str.h
         prototype/prototype/subparticle.cpp
         prototype/prototype/subparticle.h
+		prototype/prototype/subparticle_flags.cpp
+		prototype/prototype/subparticle_flags.h
         #prototype/prototype/top_level_domain_list.cpp
         #prototype/prototype/tracer.cpp
         #prototype/prototype/tracer.h
@@ -1175,8 +1178,8 @@ list(APPEND library_source
         user/user/control.h
         user/user/controller.cpp
         user/user/controller.h
-        user/user/conversation.cpp
-        user/user/conversation.h
+        #user/user/conversation.cpp
+        #user/user/conversation.h
         user/user/drag.cpp
         user/user/drag.h
         user/user/drag_client.cpp
@@ -1205,11 +1208,11 @@ list(APPEND library_source
         user/user/tool_item.cpp
         user/user/tool_item.h
         user/_.h
-        windowing/window_base.h
-        windowing/window_base.cpp
-        windowing_system/_.h
-        windowing_system/windowing_system.cpp
-        windowing_system/windowing_system.h
+        windowing/window.h
+        windowing/window.cpp
+        #windowing_system/_.h
+        #windowing_system/windowing_system.cpp
+        #windowing_system/windowing_system.h
         #update.h
 )
 
@@ -1704,8 +1707,8 @@ list(APPEND library_source
         #platform/common.h
         platform/const.h
         platform/constraint.h
-        platform/conversation_message.cpp
-        platform/conversation_message.h
+        #platform/conversation_message.cpp
+        #platform/conversation_message.h
         platform/debug.h
         platform/definition.h
         platform/display.h
@@ -1737,8 +1740,8 @@ list(APPEND library_source
         platform/printf.h
         platform/profiler.h
         platform/release_time.h
-        platform/sequence.cpp
-        platform/sequencer.h
+        #platform/sequence.cpp
+        #platform/sequencer.h
         platform/serial.h
         platform/simple_log.cpp
         platform/simple_log.h
@@ -2870,7 +2873,7 @@ elseif (${LINUX} OR ${__BSD__})
         message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
     endif ()
 
-    add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
+    #add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE

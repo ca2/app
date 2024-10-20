@@ -76,7 +76,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new begin_clip_shape();
+      return ___new begin_clip_shape();
 
    }
 
@@ -96,7 +96,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new intersect_clip_shape();
+      return ___new intersect_clip_shape();
 
    }
 
@@ -114,7 +114,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new begin_figure_shape();
+      return ___new begin_figure_shape();
 
    }
 
@@ -132,7 +132,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new close_figure_shape();
+      return ___new close_figure_shape();
 
    }
 
@@ -150,7 +150,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new end_figure_shape();
+      return ___new end_figure_shape();
 
    }
 
@@ -205,7 +205,7 @@ public:
    ::particle * clone() const override
    {
 
-      return __new _shape(m_shape);
+      return ___new _shape(m_shape);
 
    }
 

@@ -1203,7 +1203,7 @@ HBITMAP hbmImageWell;
 hbmImageWell = imaging::LoadSysColorBitmap(pgraphics, hInstImageWell, hRsrcImageWell);
 
 
-// tell common control toolbar about the __new bitmap
+// tell common control toolbar about the ___new bitmap
 //   if (!AddReplaceBitmap(hbmImageWell))
 //      return false;
 
@@ -1213,7 +1213,7 @@ m_hRsrcImageWell = hRsrcImageWell;
 
 _001DiscardImageList();
 
-m_pimagelist = __new image_list();
+m_pimagelist = ___new image_list();
 m_bInternalImageList = true;
 
 m_pimagelist->create(
@@ -1713,7 +1713,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHue == nullptr)
    {
 
-      m_pimagelistHue = __new ::image::image_list ();
+      m_pimagelistHue = ___new ::image::image_list ();
 
    }
 
@@ -1732,7 +1732,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistBlend == nullptr)
    {
 
-      m_pimagelistBlend = __new ::image::image_list ();
+      m_pimagelistBlend = ___new ::image::image_list ();
 
    }
 
@@ -1746,7 +1746,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHueLight == nullptr)
    {
 
-      m_pimagelistHueLight = __new ::image::image_list ();
+      m_pimagelistHueLight = ___new ::image::image_list ();
 
    }
 

@@ -9,8 +9,8 @@
 
 
 #define __FILE_LINE__  __FILE__ "(" MAKE_STRING(__LINE__) ")"
-#define __FUNCTION_LINE__  __FUNCTION__ " (" MAKE_STRING(__LINE__) ")"
-#define __FUNCTION_FILE_LINE__  __FUNCTION__ "\n" __FILE__ "(" MAKE_STRING(__LINE__) ")"
+#define __FUNCTION_LINE__  __FUNCTION__, " (" MAKE_STRING(__LINE__) ")"
+#define __FUNCTION_FILE_LINE__  __FUNCTION__, __FILE__ "(" MAKE_STRING(__LINE__) ")"
 
 class subparticle;
 
@@ -24,16 +24,16 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
-#define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create
-#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
-#define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
-#define __create_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new
-#define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
-#define __raw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
-#define __construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
-#define __defer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
-#define __create_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
-#define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
+#define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
+#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__construct
+#define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__id_create
+#define __create_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
+#define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__id_construct
+#define __raw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__raw_construct
+#define __construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__construct_new
+#define __defer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__defer_construct
+#define __create_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new_clone
+#define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__defer_construct_new
 
 
 //#define __raw_construct_new(C) __construct_site(C, { refdbg_this(), __FUNCTION_FILE_LINE__ })
@@ -41,7 +41,7 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 //#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &prefererNew)->
 #define __new__prefix(pprefererGet) __new_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
-//#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
+//#define ___new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
 
@@ -108,9 +108,9 @@ CLASS_DECL_ACME void check_refdbg();
 #define REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE REFERENCING_DEBUGGING_THIS_NOTE( __FUNCTION_FILE_LINE__ )
 #define REFERENCING_DEBUGGING_COMMA_THIS_NOTE(note) , REFERENCING_DEBUGGING_THIS_NOTE(note)
 #define REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE , REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE
-#define REFERENCING_DEBUGGING_P_NOTE(p, note) {p, note}
-#define REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(p) REFERENCING_DEBUGGING_P_NOTE(p, __FUNCTION_FILE_LINE__ )
-#define REFERENCING_DEBUGGING_COMMA_P_NOTE(p, note) , REFERENCING_DEBUGGING_P_NOTE(p, note)
+#define REFERENCING_DEBUGGING_P_FUNCTION_NOTE(p, function, note) {p, function, note}
+#define REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(p) REFERENCING_DEBUGGING_P_FUNCTION_NOTE(p, __FUNCTION_FILE_LINE__ )
+#define REFERENCING_DEBUGGING_COMMA_P_FUNCTION_NOTE(p, function, note) , REFERENCING_DEBUGGING_P_FUNCTION_NOTE(p, function, note)
 #define REFERENCING_DEBUGGING_COMMA_P_FUNCTION_FILE_LINE(p) REFERENCING_DEBUGGING_COMMA_P_NOTE(p, __FUNCTION_FILE_LINE__ )
 #define tracking_assign(target, ...) reference_count_debug_assign(target, __VA_ARGS__ )
 #define tracking_note_assign(target, source, ... ) reference_count_debug_assign(target, source,  __VA_ARGS__ )
@@ -118,9 +118,9 @@ CLASS_DECL_ACME void check_refdbg();
 #define tracking_check_pending_releases(x) x->check_pending_releases()
 
 
-CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
-CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
-CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
+CLASS_DECL_ACME ::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME ::subparticle* refdbg_get_track_allocation();
+CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 
 #else
@@ -221,10 +221,13 @@ CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
 #endif
 
 
+class __new_site;
+class __delete_site;
+class __raw_new_site;
+class __new_refdbg_continuation_site;
 
 
-
-#define __new __new_site(__refdbg_function_file_line__) << new
+#define ___new __new_site ( __refdbg_function_file_line__ ) << new
 #define __delete delete __delete_site(__refdbg_referer__) <<
 
 

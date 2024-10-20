@@ -672,7 +672,7 @@ namespace user
       if (!m_bHelpMode)
       return;
 
-      // only post __new WM_EXITHELPMODE message if one doesn't already exist
+      // only post ___new WM_EXITHELPMODE message if one doesn't already exist
       //  in the queue.
       MESSAGE msg;
       if (!::PeekMessage(&msg, get_handle(), WM_EXITHELPMODE, WM_EXITHELPMODE,
@@ -1795,7 +1795,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization floating windows to the __new state
+      //// synchronization floating windows to the ___new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -2314,7 +2314,7 @@ namespace user
 
    //   }
 
-   //   m_nIDLastMessage = (::u32)wParam;    // __new ID(or 0)
+   //   m_nIDLastMessage = (::u32)wParam;    // ___new ID(or 0)
 
    //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 

@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-::user::enum_desktop calculate_edesktop()
-{
+// ::user::enum_desktop calculate_edesktop()
+// {
 
-   return ::user::e_desktop_windows;
+//    return ::user::e_desktop_windows;
 
-}
+// }
 
 
 

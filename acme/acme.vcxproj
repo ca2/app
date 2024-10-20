@@ -1748,6 +1748,7 @@
     <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
+    <ClCompile Include="operating_system\windows\calculate_edesktop.cpp" />
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
@@ -1788,7 +1789,6 @@
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />
@@ -2305,7 +2305,6 @@
     <ClCompile Include="user\micro\still.cpp" />
     <ClCompile Include="user\micro\theme.cpp" />
     <ClCompile Include="user\micro\user.cpp" />
-    <ClCompile Include="user\micro\_user.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\check_property.cpp" />
     <ClCompile Include="user\user\container.cpp" />

@@ -5366,9 +5366,6 @@
     <ClCompile Include="nano\nano.cpp">
       <Filter>Source Files\nano</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="nano\archive\archive.cpp">
       <Filter>Source Files\nano\archive</Filter>
     </ClCompile>
@@ -5510,9 +5507,6 @@
     <ClCompile Include="user\user\interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\micro\_user.cpp">
-      <Filter>Source Files\user\micro</Filter>
-    </ClCompile>
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <Filter>Source Files\user\micro</Filter>
     </ClCompile>
@@ -5602,6 +5596,9 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\subparticle_flags.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\calculate_edesktop.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

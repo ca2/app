@@ -711,7 +711,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 //
-//   psequencer->do_synchronously();
+//   pmessagebox->sync();
 //
 //   return psequencer;
 //

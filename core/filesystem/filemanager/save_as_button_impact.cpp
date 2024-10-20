@@ -151,7 +151,7 @@ namespace filemanager
 
                      };
 
-               //psequencer->do_asynchronously();
+               //pmessagebox->async();
 
             }
             else

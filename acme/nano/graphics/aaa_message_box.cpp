@@ -555,7 +555,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    
    return psequencer;
    
-   //auto atomResult = psequencer->do_synchronously();
+   //auto atomResult = pmessagebox->sync();
    
 //   auto pmanualresetevent = __allocate manual_reset_event();
 //
@@ -621,7 +621,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
                                                               emessagebox,
                                                               scopedstrDetails, picon);
 
-      return psequencer->do_synchronously();
+      return pmessagebox->sync();
 
    }
 
@@ -655,7 +655,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
    auto psequencer = pnode->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
    
-   auto atomResult = psequencer->do_synchronously();
+   auto atomResult = pmessagebox->sync();
    
 //   auto pmanualresetevent = __allocate manual_reset_event();
 //

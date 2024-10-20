@@ -634,7 +634,7 @@ namespace micro
 //   
 //   return psequencer;
 //   
-//   //auto atomResult = psequencer->do_synchronously();
+//   //auto atomResult = pmessagebox->sync();
 //   
 ////   auto pmanualresetevent = __allocate manual_reset_event();
 ////
@@ -736,7 +736,7 @@ namespace micro
 //
 //   auto psequencer = pnode->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 //   
-//   auto atomResult = psequencer->do_synchronously();
+//   auto atomResult = pmessagebox->sync();
 //   
 ////   auto pmanualresetevent = __allocate manual_reset_event();
 ////

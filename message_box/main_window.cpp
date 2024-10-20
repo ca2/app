@@ -92,7 +92,7 @@ namespace app_message_box
 
          };
 
-      //psequencer->do_asynchronously();
+      //pmessagebox->async();
 
    }
 
@@ -182,7 +182,7 @@ namespace app_message_box
 
          };
 
-      //psequencer->do_asynchronously();
+      //pmessagebox->async();
 
    }
 

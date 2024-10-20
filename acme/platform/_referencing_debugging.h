@@ -25,15 +25,15 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
 #define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
-#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__construct
-#define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__id_create
+#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+#define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
 #define __create_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
-#define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__id_construct
-#define __raw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__raw_construct
-#define __construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__construct_new
-#define __defer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__defer_construct
-#define __create_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new_clone
-#define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__defer_construct_new
+#define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
+#define __raw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
+#define __construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
+#define __defer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
+#define __create_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
+#define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 
 //#define __raw_construct_new(C) __construct_site(C, { refdbg_this(), __FUNCTION_FILE_LINE__ })

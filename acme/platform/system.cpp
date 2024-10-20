@@ -3204,7 +3204,7 @@ namespace acme
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
    //
-   //   psequencer->do_synchronously();
+   //   pmessagebox->sync();
    //
    //   return psequencer;
    //

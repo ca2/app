@@ -30,7 +30,7 @@ public:
    }
 
 
-   status(const TYPE&& t const ::e_status & estatus = ::success) :
+   status(const TYPE&& t, const ::e_status & estatus = ::success) :
       TYPE(::transfer(t)),
       m_estatus(estatus)
    {

@@ -2049,9 +2049,9 @@ namespace user
 //
 //      }
 
-      //auto psequencer = message_box("Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+      //auto pmessagebox = message_box("Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-      //psequencer->do_asynchronously();
+      //pmessagebox->async();
 
       return nullptr;
 

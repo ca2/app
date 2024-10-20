@@ -128,11 +128,13 @@ class sequence;
 ////
 //////#endif // __cplusplus_winrt
 
+
 using particle_pointer = ::pointer <  ::particle  >;
 
 
 enum enum_dispatch
 {
+
    e_dispatch_none,
    e_dispatch_send,
    e_dispatch_post,
@@ -140,7 +142,9 @@ enum enum_dispatch
    e_dispatch_main_post,
    e_dispatch_user_send,
    e_dispatch_user_post,
+
 };
+
 
 class CLASS_DECL_ACME sequence_continuation
 {
@@ -150,7 +154,7 @@ public:
    ::pointer < sequence >                       m_psequence;
    ::particle_pointer                           m_pparticleTarget;
    enum_dispatch                                m_edispatch;
-
+   
 
    sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch);
    sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch, const ::procedure & procedure);

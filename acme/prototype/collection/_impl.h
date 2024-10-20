@@ -86,9 +86,24 @@ inline sequence_continuation particle::send()
 {
    return { this, e_dispatch_send };
 }
-inline sequence_continuation particle::sync()
+
+
+inline sequence_continuation particle::sync(const class ::time & timeTimeout)
 {
-   return { this, e_dispatch_send, this };
+   
+   ::procedure procedure;
+
+   procedure.m_pbase = this;
+   
+   if (!timeTimeout.is_null())
+   {
+
+      procedure.set_timeout(timeTimeout);
+
+   }
+
+   return { this, e_dispatch_send, procedure};
+
 }
 
 

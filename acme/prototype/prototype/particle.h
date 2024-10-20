@@ -643,7 +643,7 @@ public:
 
    virtual void _send(const ::procedure & procedure);
    inline sequence_continuation send(const ::procedure & procedure);
-   inline sequence_continuation sync();
+   inline sequence_continuation sync(const class ::time & timeout = {});
    inline sequence_continuation send();
 
    virtual void _post(const ::procedure & procedure);

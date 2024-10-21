@@ -38,6 +38,8 @@ public:
    inline interlocked_i64& operator+=(::i64 l);
    inline interlocked_i64& operator-=(::i64 l);
 
+
+   inline ::i64 as_integer() const { return m_i64;}
    
 };
 
@@ -74,6 +76,9 @@ public:
 
    inline interlocked_i32& operator+=(::i32 l);
    inline interlocked_i32& operator-=(::i32 l);
+
+
+   inline ::i32 as_integer() const { return m_i32;}
 
 
 };

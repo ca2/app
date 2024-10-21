@@ -988,20 +988,20 @@ namespace acme
       //}
 
 
-      ::size_i32 window::get_main_screen_size()
-      {
-
-         auto pdisplay = get_display();
-
-         if (::is_null(pdisplay))
-         {
-
-            return { 800, 600 };
-         }
-
-         return pdisplay->get_main_screen_size();
-
-      }
+      // ::size_i32 window::get_main_screen_size()
+      // {
+      //
+      //    auto pdisplay = get_display();
+      //
+      //    if (::is_null(pdisplay))
+      //    {
+      //
+      //       return { 800, 600 };
+      //    }
+      //
+      //    return pdisplay->get_main_screen_size();
+      //
+      // }
 
 
       // ::payload window::do_synchronously(const class time & timeWait)

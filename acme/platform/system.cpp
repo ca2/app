@@ -564,7 +564,7 @@ namespace acme
       // This should be safe here in this node_gtk::node
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
-      release();
+      //release();
 
    }
 
@@ -595,7 +595,11 @@ namespace acme
       else
       {
 
+         __check_refdbg
+
          task_osinit();
+
+         __check_refdbg
 
          __task_init();
 
@@ -1184,7 +1188,7 @@ namespace acme
 
                };
 
-            m_pacmewindowing->set_finish();
+            m_pacmewindowing->windowing_post_quit();
 
             ::acme::get()->m_pmanualreseteventMainLoopEnd->wait(2.5_min);
 
@@ -1362,7 +1366,11 @@ namespace acme
    void system::init_task()
    {
 
+      __check_refdbg
+
       task::init_task();
+
+      __check_refdbg
 
       call_init_system();
 
@@ -1495,7 +1503,11 @@ namespace acme
    void system::init_system()
    {
 
+      __check_refdbg
+
       set_current_handles();
+
+      __check_refdbg
 
       //::acme::application * pappStartup = ::acme::application::g_p;
 
@@ -3511,7 +3523,14 @@ namespace acme
 
       }
 
-      ::platform::get()->m_psystem.release();
+      auto pplatform = ::platform::get();
+
+      if(pplatform)
+      {
+
+         pplatform->m_psystem.release();
+
+      }
 
    }
 

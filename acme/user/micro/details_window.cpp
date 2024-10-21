@@ -5,9 +5,9 @@
 #include "details_window.h"
 #include "button.h"
 #include "acme/windowing/window.h"
-//#include "acme/windowing/window_base.h"
-//#include "acme/prototype/geometry2d/_geometry2d.h"
-//#include "acme/operating_system.h"
+#include "acme/platform/system.h"
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace micro
@@ -40,7 +40,7 @@ namespace micro
       //int wScreen = 1280;
       //int hScreen = 768;
 
-      auto sizeScreen = acme_windowing_window()->get_main_screen_size();
+      auto sizeScreen = system()->acme_windowing()->acme_display()->get_main_screen_size();
 
       //operating_system_get_main_screen_size(wScreen, hScreen);
 

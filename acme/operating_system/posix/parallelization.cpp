@@ -71,3 +71,23 @@ void CLASS_DECL_ACME __term_thread()
 
 
 
+
+
+CLASS_DECL_ACME class ::time default_run_timeout()
+{
+
+   class ::time timeDefaultTimeout;
+
+#ifdef DEBUG
+
+   timeDefaultTimeout = 5_min;
+
+#else
+
+   timeDefaultTimeout = 15_s;
+
+#endif
+
+   return timeDefaultTimeout;
+
+}

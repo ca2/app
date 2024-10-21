@@ -15,7 +15,7 @@ namespace user
 {
 class icon;
 class message_box :
-   virtual public ::micro::interchange
+   virtual public ::micro::elemental
 {
 public:
 

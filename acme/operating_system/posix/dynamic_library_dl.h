@@ -3,63 +3,47 @@
 #pragma once
 
 
-#include "acme/nano/dynamic_library/dynamic_library.h"
+#include "acme/operating_system/dynamic_library.h"
 
 
 namespace dl
 {
 
 
-
-         class CLASS_DECL_ACME dynamic_library
-
-                 :
-                         virtual public ::operating_system::dynamic_library
-         {
-         public:
+   class CLASS_DECL_ACME dynamic_library :
+      virtual public ::operating_system::dynamic_library
+   {
+   public:
 
 
-            inline static const char * represented_component_name()
-            {
-
-               return "nano_dynamic_library";
-
-            }
+      dynamic_library();
+      ~dynamic_library() override;
 
 
-            dynamic_library();
-
-            ~
-
-            dynamic_library()
-
-            override;
+      ::file::path module_path(::library_t* plibrary) override;
 
 
-            ::file::path module_path(::library_t * plibrary) override;
+      ::library_t* module_by_name(const ::scoped_string& scopedstrName) override;
 
 
-            ::library_t * module_by_name(const ::scoped_string & scopedstrName) override;
+      ::library_t* module_by_path(const ::file::path& path) override;
 
 
-            ::library_t * module_by_path(const ::file::path & path) override;
+      //library_t *touch(const ::file::path &path, string &strMessage) override;
 
 
-            //library_t *touch(const ::file::path &path, string &strMessage) override;
+      library_t* open(const ::file::path& path, string& strMessage) override;
 
 
-            library_t * open(const ::file::path & path, string & strMessage) override;
+      library_t* open_on_context(const ::file::path& path, string& strMessage) override;
 
-            library_t * open_on_context(const ::file::path & path, string & strMessage) override;
 
-            bool close(library_t * plibrary) override;
+      bool close(library_t* plibrary) override;
 
-            void * raw_get(library_t * plibrary, const ::scoped_string & scopedstrEntryName) override;
 
-         };
+      void* raw_get(library_t* plibrary, const ::scoped_string& scopedstrEntryName) override;
+
+   };
 
 
 } // namespace dl
-
-
-

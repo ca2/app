@@ -616,7 +616,7 @@ namespace user
 
                         }
 
-                        auto pmessage = puserinteraction->get_message(msg.m_atom, msg.wParam, msg.lParam);
+                        auto pmessage = puserframe->get_message(msg.m_atom, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {

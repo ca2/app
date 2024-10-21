@@ -264,6 +264,8 @@ list(APPEND library_source
         handler/topic.h
         handler/request.cpp
         handler/request.h
+		handler/sequence.cpp
+		handler/sequence.h
         handler/source.cpp
         handler/source.h
         #include/_.cpp
@@ -421,6 +423,8 @@ list(APPEND library_source
         operating_system/console_client.cpp
         operating_system/console_client.h
         operating_system/debug.cpp
+		operating_system/dynamic_library.cpp
+		operating_system/dynamic_library.h
         operating_system/file.cpp
         #operating_system/http.cpp
         operating_system/main_window.cpp
@@ -533,7 +537,8 @@ list(APPEND library_source
         #platform/main.h
         platform/math.cpp
         platform/message.h
-        #platform/message_box.cpp
+        platform/message_box.cpp
+		platform/message_box.h
         #platform/muldiv64.cpp
         #   platform/nano_http.cpp
         #   platform/nano_http.h
@@ -556,6 +561,14 @@ list(APPEND library_source
         platform/platform.h
         platform/shell.cpp
         platform/shell.h
+		platform/reference_item.cpp
+		platform/reference_item.h
+		platform/reference_item_array.cpp
+		platform/reference_item_array.h
+		platform/reference_referer.cpp
+		platform/reference_referer.h
+		platform/referencing_debugging.cpp
+		platform/referencing_debugging.h
         platform/system.cpp
         platform/system_factory.cpp
         platform/system_factory.h
@@ -593,6 +606,8 @@ list(APPEND library_source
         prototype/collection/map_test_51778915.cpp
         #prototype/collection/numeric_array.cpp
         #prototype/collection/point_array.cpp
+		prototype/collection/procedure_array.cpp
+		prototype/collection/procedure_array.h
         prototype/collection/property_set.h
         #prototype/collection/rectangle_array.cpp
         prototype/collection/sort.cpp
@@ -864,6 +879,8 @@ list(APPEND library_source
         prototype/prototype/payload2.h
         prototype/prototype/pointer.h
         prototype/prototype/pointer2.h
+		prototype/prototype/post_procedure_continuation.cpp
+		prototype/prototype/post_procedure_continuation.h
         prototype/prototype/prototype.cpp
         prototype/prototype/prototype.h
         prototype/prototype/property.cpp
@@ -1127,7 +1144,30 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
-        #   user/nano/_nano.cpp
+		user/micro/_.h
+		user/micro/button.cpp
+		user/micro/button.h
+		user/micro/console.cpp
+		user/micro/console.h
+		user/micro/details_window.cpp
+		user/micro/details_window.h
+		user/micro/dialog.cpp
+		user/micro/dialog.h
+		user/micro/elemental.cpp
+		user/micro/elemental.h
+		user/micro/main_window.cpp
+		user/micro/main_window.h
+		user/micro/message_box.cpp
+		user/micro/message_box.h
+		user/micro/popup_button.cpp
+		user/micro/popup_button.h
+		user/micro/still.cpp
+		user/micro/still.h
+		user/micro/theme.cpp
+		user/micro/theme.h
+		user/micro/user.cpp
+		user/micro/user.h
+		#   user/nano/_nano.cpp
         #   user/nano/_.h
         #   user/nano/brush.cpp
         #   user/nano/brush.h
@@ -1187,9 +1227,13 @@ list(APPEND library_source
         user/user/element.cpp
         user/user/element.h
         user/user/e_window_flag.h
+		user/user/interaction.cpp
+		user/user/interaction.h
         user/user/item.h
         user/user/key_state.cpp
         user/user/key_state.h
+		user/user/message_box.cpp
+		user/user/message_box.h
         user/user/mouse.cpp
         user/user/mouse.h
         user/user/os_colors.cpp
@@ -1208,8 +1252,14 @@ list(APPEND library_source
         user/user/tool_item.cpp
         user/user/tool_item.h
         user/_.h
+		windowing/_.h
+		windowing/_windowing.cpp
+		windowing/display.cpp
+		windowing/display.h
         windowing/window.h
         windowing/window.cpp
+		windowing/windowing.cpp
+		windowing/windowing.h
         #windowing_system/_.h
         #windowing_system/windowing_system.cpp
         #windowing_system/windowing_system.h
@@ -2733,6 +2783,16 @@ if(${__BSD__})
 
 endif()
 
+if (${LINUX})
+
+	list(APPEND library_source
+			operating_system/posix/dynamic_library_dl.cpp
+			operating_system/posix/dynamic_library_dl.h
+	)
+
+endif ()
+
+
 if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
     list(APPEND library_source
@@ -2916,6 +2976,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
+# defining C Macro _acme_project
 target_compile_definitions(${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 

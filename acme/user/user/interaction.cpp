@@ -44,6 +44,7 @@
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace acme
@@ -265,10 +266,10 @@ namespace acme
          }*/
 
 
-         /*bool interaction::is_window_zoomed()
+         bool interaction::is_window_zoomed()
          {
 
-            if (!acme_windowing_window())
+            if (!m_pacmewindowingwindow)
             {
 
                return false;
@@ -286,7 +287,7 @@ namespace acme
 
             return true;
 
-         }*/
+         }
 
 
          //void interaction::window_minimize()
@@ -1160,7 +1161,7 @@ namespace acme
          ::shift_i32 interaction::client_to_absolute()
          {
 
-            if (::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
+            if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
             {
 
                return {};
@@ -1285,7 +1286,7 @@ namespace acme
 
                auto pdrag = drag(pitem);
 
-               if (defer_perform_entire_reposition_process(pdrag->m_pmouse))
+               if (acme_windowing_window()->defer_perform_entire_reposition_process(pdrag->m_pmouse))
                {
 
                   return false;
@@ -1665,6 +1666,24 @@ namespace acme
 
          //}
 
+
+      void interaction::create_window_object()
+      {
+
+         on_create_window_object();
+
+         if(m_pacmewindowingwindow)
+         {
+
+            m_pacmewindowingwindow->m_pacmeuserinteraction = this;
+
+         }
+
+      }
+
+
+
+
          ::acme::windowing::window * interaction::acme_windowing_window()
          {
 
@@ -1681,7 +1700,7 @@ namespace acme
                if (!m_bChild)
                {
 
-                  on_create_window_object();
+                  create_window_object();
 
                }
 
@@ -1695,7 +1714,7 @@ namespace acme
          void interaction::on_create_window_object()
          {
 
-            __construct(m_pacmewindowingwindow);
+            __construct(m_pacmewindowingwindow, system()->m_pfactoryAcmeWindowing);
 
          }
          

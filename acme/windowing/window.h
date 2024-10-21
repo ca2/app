@@ -288,7 +288,7 @@ namespace acme
          //void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         virtual ::size_i32 get_main_screen_size();
+         //virtual ::size_i32 get_main_screen_size();
 
 
          void _on_window_simple_action(const char * pszActionName) override;

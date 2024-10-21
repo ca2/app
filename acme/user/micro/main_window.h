@@ -66,6 +66,10 @@ namespace micro
          ~main_window();
 
 
+
+         void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
+
+
          virtual void create_window();
 
 

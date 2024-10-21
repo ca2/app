@@ -1924,13 +1924,13 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto psystem = system()->m_papexsystem;
+      //auto psystem = system()->m_papexsystem;
 
-      auto pnode = psystem->node();
+      //auto pnode = psystem->node();
 
-      auto edesktop = pnode->get_edesktop();
+      auto edesktop = ::windowing::get_edesktop();
 
-      if (edesktop == ::user::e_desktop_unity)
+      if (edesktop == ::windowing::e_desktop_unity)
       {
 
          display(e_display_none);
@@ -4426,7 +4426,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 #ifdef LINUX
 
 
-   m_pprimitiveimpl->show_task(bVisible && m_bShowTask);
+   windowing_window()->show_task(bVisible && m_bShowTask);
 
 #else
 

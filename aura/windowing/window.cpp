@@ -685,6 +685,12 @@ namespace windowing
    void window::create_window()
    {
 
+      if(!m_puserinteraction)
+      {
+
+m_puserinteraction = m_pacmeuserinteraction;
+
+      }
 
       //if (::is_window(get_handle()))
       //{
@@ -803,7 +809,7 @@ namespace windowing
    void window::create_graphics_thread()
    {
 
-      __construct(m_pgraphicsthread);
+      //__construct(m_pgraphicsthread);
 
       m_pgraphicsthread->branch_synchronously();
 
@@ -4890,7 +4896,7 @@ namespace windowing
    void window::track_mouse_hover()
    {
 
-      track_mouse_hover();
+      //track_mouse_hover();
 
    }
 

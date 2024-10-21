@@ -108,7 +108,12 @@ namespace acme
    void context::initialize(::particle * pparticle)
    {
 
+      __check_refdbg
+
       ::task::initialize(pparticle);
+
+      __check_refdbg
+
 
       if(!m_pacmesystem)
       {
@@ -138,9 +143,15 @@ namespace acme
 
       }
 
+      __check_refdbg
+
       m_pcontext = this;
 
+      __check_refdbg
+
       m_ptexttranslator = __allocate ::text::translator ();
+
+      __check_refdbg
 
       m_ptexttranslator->m_pcontext = this;
 

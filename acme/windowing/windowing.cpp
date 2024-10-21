@@ -13,6 +13,8 @@
 //#include "user.h"
 #include "window.h"
 #include "windowing.h"
+//#include "windowing_gtk4/windowing.h"
+
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
@@ -29,6 +31,9 @@ namespace acme
    {
       windowing::windowing()
       {
+
+         m_ewindowing =::windowing::e_windowing_none;
+
       }
 
 
@@ -228,8 +233,6 @@ namespace acme
       }
 
 
-
-
       ::acme::windowing::display * windowing::acme_display()
       {
 
@@ -264,7 +267,7 @@ namespace acme
       }
 
 
-      ::e_status windowing::defer_initialize_windowing_system()
+      ::e_status windowing::defer_initialize_windowing()
       {
 
          return ::success;
@@ -272,7 +275,7 @@ namespace acme
       }
 
 
-      ::e_status windowing::initialize_windowing_system()
+      ::e_status windowing::initialize_windowing()
       {
 
          return ::success;
@@ -287,12 +290,12 @@ namespace acme
       }
 
 
-      void * windowing::get_display()
-      {
-
-         return nullptr;
-
-      }
+//      void * windowing::get_display()
+//      {
+//
+//         return nullptr;
+//
+//      }
 
 
       void windowing::_main_send(const ::procedure & procedure)
@@ -325,12 +328,12 @@ namespace acme
       }
 
 
-      void * windowing::fetch_windowing_system_display()
-      {
-
-         return nullptr;
-
-      }
+//      void * windowing::fetch_windowing_sydisplay()
+//      {
+//
+//         return nullptr;
+//
+//      }
 
 
       //void windowing::process_messages()
@@ -364,7 +367,7 @@ namespace acme
       //}
 
 
-      void windowing::windowing_system_application_main_loop()
+      void windowing::windowing_application_main_loop()
       {
 
 
@@ -372,7 +375,7 @@ namespace acme
       }
 
 
-      void windowing::windowing_system_post_quit()
+      void windowing::windowing_post_quit()
       {
 
 
@@ -497,6 +500,30 @@ namespace acme
       {
 
          return {};
+
+      }
+
+
+
+      ::windowing::enum_windowing windowing::calculate_ewindowing()
+      {
+
+         return ::windowing::e_windowing_none;
+
+      }
+
+
+      ::windowing::enum_windowing windowing::get_ewindowing()
+      {
+
+         if(m_ewindowing == ::windowing::e_windowing_none)
+         {
+
+            m_ewindowing = calculate_ewindowing();
+
+         }
+
+         return m_ewindowing;
 
       }
 

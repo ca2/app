@@ -3,20 +3,20 @@ project(app_just_aqua_message_box CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    application.cpp
-    application.h
-    framework.cpp
-    framework.h)
+        _.cpp
+        _.h
+        application.cpp
+        application.h
+        framework.cpp
+        framework.h)
 
 
 list(APPEND library_references
-    acme
-    apex
-    aqua
-    )
-
+        acme
+        app_just_message_box
+        apex
+        aqua
+)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -50,17 +50,14 @@ if (MSVC)
     add_dependencies(${PROJECT_NAME} draw2d_gdiplus)
 
 
-elseif(${LINUX})
+elseif (${LINUX})
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-
-endif()
-
-
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -70,7 +67,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

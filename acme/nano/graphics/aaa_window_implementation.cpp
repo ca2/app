@@ -382,7 +382,7 @@
 //
 //          pnanowindowimplementation->create();
 //
-//          pnanowindowimplementation->m_pinterface->::micro::interchange::show_window();
+//          pnanowindowimplementation->m_pinterface->::micro::elemental::show_window();
 //
 //          //if (!is_main_thread())
 //          //{

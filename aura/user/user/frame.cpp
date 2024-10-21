@@ -270,6 +270,19 @@ namespace user
    }
 
 
+   void frame::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
+   {
+
+::user::box::on_before_create_window(pacmewindowingwindow);
+
+      pacmewindowingwindow->m_bMaximizeBox = true;
+      pacmewindowingwindow->m_bMinimizeBox = true;
+      pacmewindowingwindow->m_bResizeable = true;
+
+
+   }
+
+
    void frame::destroy()
    {
 

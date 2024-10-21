@@ -23,7 +23,7 @@ void operating_system_initialize_x11_nano_user(::factory::factory * pfactory)
 
    operating_system_initialize_cairo_nano(pfactory);
 
-   pfactory->add_factory_item<::x11::micro::interchange, ::micro::window_implementation>();
+   pfactory->add_factory_item<::x11::micro::elemental, ::micro::window_implementation>();
 
    pfactory->add_factory_item<::x11::micro::user, ::micro::user>();
 

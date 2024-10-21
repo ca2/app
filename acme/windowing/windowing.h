@@ -36,8 +36,9 @@ namespace acme
       public:
 
 
-         ::pointer_array < ::acme::windowing::window >     m_windowa;
-         ::pointer<::acme::windowing::display>             m_pacmedisplay;
+         ::pointer_array < ::acme::windowing::window >      m_windowa;
+         ::pointer<::acme::windowing::display>              m_pacmedisplay;
+         ::windowing::enum_windowing                        m_ewindowing;
          // ::pointer_array<::acme::windowing::window> m_windowbasea;
          //::pointer < ::micro::theme >            m_pnanousertheme;
 
@@ -98,7 +99,6 @@ namespace acme
 
          void destroy() override;
 
-
          virtual ::acme::windowing::display * acme_display();
 
 
@@ -108,13 +108,13 @@ namespace acme
 
          virtual void _do_tasks();
 
-         virtual ::e_status defer_initialize_windowing_system();
+         virtual ::e_status defer_initialize_windowing();
 
-         virtual ::e_status initialize_windowing_system();
+         virtual ::e_status initialize_windowing();
 
          virtual void finalize_windowing();
 
-         virtual void * get_display();
+         //virtual void * get_display();
 
          //void main_send(const ::procedure & procedure) override;
 
@@ -124,13 +124,13 @@ namespace acme
 
          virtual void display_error_trap_pop_ignored(int i);
 
-         virtual void * fetch_windowing_system_display();
+         //virtual void * fetch_windowing_display();
 
          //virtual void process_messages();
 
-         virtual void windowing_system_application_main_loop();
+         virtual void windowing_application_main_loop();
 
-         virtual void windowing_system_post_quit();
+         virtual void windowing_post_quit();
 
          virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
@@ -150,6 +150,11 @@ namespace acme
 
 
          virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
+
+
+         virtual ::windowing::enum_windowing calculate_ewindowing();
+         virtual ::windowing::enum_windowing get_ewindowing();
+
 
       };
 

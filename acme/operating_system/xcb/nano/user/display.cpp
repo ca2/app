@@ -444,7 +444,7 @@ namespace xcb
          }
 
 
-         void display::add_window(::xcb::micro::interchange * pwindow)
+         void display::add_window(::xcb::micro::elemental * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());

@@ -579,6 +579,8 @@ void task::destroy()
 void task::__task_init()
 {
 
+   __check_refdbg
+
    on_task_init();
 
    if (m_peventInitialization)
@@ -602,6 +604,8 @@ void task::__task_term()
 
 void task::on_task_init()
 {
+
+   __check_refdbg
 
    init_task();
 
@@ -665,9 +669,15 @@ void task::_os_task(::procedure & procedureTaskEnded)
    try
    {
 
+      __check_refdbg
+
       os_task_init_term ostaskinitterm;
 
+      __check_refdbg
+
       ::set_task(this);
+
+      __check_refdbg
 
 //      ptask->_os_task();
 

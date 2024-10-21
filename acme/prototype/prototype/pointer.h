@@ -1329,7 +1329,11 @@ template < typename RUNNABLE >
 concept primitive_runnable = requires(RUNNABLE r) {
    
    { r() } ->::std::convertible_to<void>;
+#if defined(__GNUG__) && !defined(__clang__)
+   { r.get_run_timeout() } ->::std::convertible_to<class ::time>;
+#else
    { r.get_run_timeout() } ->::std::convertible_to<::time>;
+#endif
 };
 
 

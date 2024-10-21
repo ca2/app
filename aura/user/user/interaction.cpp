@@ -1112,6 +1112,7 @@ namespace user
    }
 
 
+
    ::windowing::window * interaction::_window()
    {
 
@@ -2021,12 +2022,14 @@ namespace user
 
       }
 
-      auto pwindow = pinteraction->m_pacmewindowingwindow;
+      auto pacmewindowingwindow = pinteraction->m_pacmewindowingwindow;
 
-      if (::is_set(pwindow))
+      if (::is_set(pacmewindowingwindow))
       {
 
-         window()->set_need_redraw(rectanglea, function);
+         auto pwindow = window();
+
+         pwindow->set_need_redraw(rectanglea, function);
 
       }
 
@@ -9710,15 +9713,6 @@ namespace user
 
             try
             {
-
-               if (!pthis->is_window())
-               {
-
-                  pLresult->m_t = -2;
-
-                  return;
-
-               }
 
                pLresult->m_t = pthis->message_handler(a, wparam, lparam);
 
@@ -21491,16 +21485,7 @@ namespace user
    void interaction::on_create_window_object()
    {
 
-      ::user::interaction_base::on_create_window_object();
-
-      ::pointer < ::windowing::window > pwindow = m_pacmewindowingwindow;
-
-      if (pwindow)
-      {
-
-         pwindow->m_puserinteraction = this;
-
-      }
+      __construct(m_pacmewindowingwindow);
 
    }
 

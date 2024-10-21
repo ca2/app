@@ -102,8 +102,8 @@ namespace windowing
    CLASS_DECL_ACME::enum_display_type get_display_type();
 
 
-   CLASS_DECL_ACME::windowing::enum_windowing calculate_ewindowing();
-   CLASS_DECL_ACME::windowing::enum_windowing get_ewindowing();
+   //CLASS_DECL_ACME::windowing::enum_windowing calculate_ewindowing();
+   //CLASS_DECL_ACME::windowing::enum_windowing get_ewindowing();
 
 
    CLASS_DECL_ACME::windowing::enum_desktop calculate_edesktop();

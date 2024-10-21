@@ -34,7 +34,7 @@
 //          ::pointer < ::operating_system::a_system_menu >       m_psystemmenu;
 //
 //
-//          ::pointer < ::micro::interchange >         m_pinterface;
+//          ::pointer < ::micro::elemental >         m_pinterface;
 //
 //          ::pointer < ::acme::windowing::display >         m_pnanouserdisplay;
 //

@@ -14,7 +14,7 @@ void operating_system_initialize_xcb_nano_user(::factory::factory * pfactory)
 
    operating_system_initialize_cairo_nano(pfactory);
 
-   pfactory->add_factory_item<::xcb::micro::interchange, ::micro::window_implementation>();
+   pfactory->add_factory_item<::xcb::micro::elemental, ::micro::window_implementation>();
 
    pfactory->add_factory_item<::micro::user>();
 

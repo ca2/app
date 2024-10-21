@@ -9,6 +9,7 @@
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
+#include "acme/windowing/windowing.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
@@ -471,7 +472,7 @@ namespace experience
 
          }
 
-         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return m_pframewindow->layout().is_zoomed(user::e_layout_lading);
@@ -526,7 +527,7 @@ namespace experience
       } else if (ebutton == e_button_dock)
       {
 
-         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return false;

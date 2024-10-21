@@ -716,11 +716,11 @@ namespace sockets
                   {
                      uRead = mem.size();
                   }
-                  uRead = preader->read(mem(0,uRead));
+                  uRead = preader->read(mem.data(), uRead);
                   //uTotal += uRead;
                   if (uRead == 0)
                      break;
-                  pfile->write(mem(0, uRead));
+                  pfile->write(mem.data(), uRead);
                   iPos += uRead;
                   if (iPos >= preader->size())
                      break;
@@ -791,7 +791,7 @@ namespace sockets
 
                   }
                   
-                  uRead = preader->read(mem(0, uRead));
+                  uRead = preader->read(mem.data(), uRead);
                   
                   //uTotal += uRead;
 
@@ -802,7 +802,7 @@ namespace sockets
 
                   }
                   
-                  response().file()->write(mem(0, uRead));
+                  response().file()->write(mem.data(), uRead);
                   
                   iPos += uRead;
 

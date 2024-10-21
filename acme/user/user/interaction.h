@@ -93,6 +93,8 @@ namespace acme
 
          void _create_window() override;
 
+         virtual void create_window_object();
+
          virtual void on_create_window_object();
 
          void destroy_window() override;
@@ -401,7 +403,7 @@ namespace acme
                //virtual void on_position_window();
                //virtual void on_size_window();
 
-               //bool is_window_zoomed() override;
+               bool is_window_zoomed() override;
                //void window_minimize() override;
                //void window_maximize() override; // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
                //void window_full_screen() override; // m_pwindow->m_puserinteraction->display(::e_display_full_screen);

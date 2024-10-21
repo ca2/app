@@ -13,7 +13,7 @@ namespace user
 {
 
 class popup_button :
-   virtual public ::micro::interchange
+   virtual public ::micro::elemental
 {
 public:
 

@@ -57,7 +57,7 @@ namespace user
 
       virtual ::task_pool  * taskpool() override;
 
-
+void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
       void destroy() override;
 
 

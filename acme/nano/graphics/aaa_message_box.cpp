@@ -325,7 +325,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 void message_box::on_create_window()
 {
 
-   ::micro::interchange::on_create_window();
+   ::micro::elemental::on_create_window();
 
    int x = 25;
 
@@ -457,7 +457,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    auto pbutton = __create_new < popup_button >();
 
-   pbutton->m_functionClose = [this](::micro::interchange * pinterchange)
+   pbutton->m_functionClose = [this](::micro::elemental * pinterchange)
    {
 
       auto result = pinterchange->m_payloadResult.as_atom();
@@ -768,7 +768,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
          pmessagebox->m_strDetails,
          pmessagebox->m_picon);
 
-      pnanomessagebox->m_functionClose = [ pmessagebox ](::micro::interchange * pinterchange)
+      pnanomessagebox->m_functionClose = [ pmessagebox ](::micro::elemental * pinterchange)
       {
       
          auto result = pinterchange->m_payloadResult;

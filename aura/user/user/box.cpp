@@ -145,7 +145,7 @@ namespace user
          m_windowdisplayandlayout.m_rectangleSnapped = m_windowdisplayandlayout.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && (::windowing::get_ewindowing() != ::windowing::e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && (system()->acme_windowing()->get_ewindowing() != ::windowing::e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();

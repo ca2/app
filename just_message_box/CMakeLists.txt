@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(app_just_acme_message_box CXX)
+project(app_just_message_box CXX)
 
 
 list(APPEND library_source
@@ -71,9 +71,9 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _APP_JUST_MESSAGE_BOX_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_projects)
 
 
-add_subdirectory(__implement)
+#add_subdirectory(__implement)
 
 

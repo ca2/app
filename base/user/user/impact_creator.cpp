@@ -52,7 +52,11 @@ namespace user
    bool impact_creator::impact_creator_create_impact(::user::impact_data * pimpactdata)
    {
 
+      __check_refdbg
+
       on_create_impact(pimpactdata);
+
+      __check_refdbg
 
       if(pimpactdata->m_bOk)
       {

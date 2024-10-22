@@ -1428,7 +1428,19 @@ namespace user
 
       add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
-      defer_create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
+
+      if(!is_window())
+      {
+
+         window()->m_pacmeuserinteractionOwner = m_pcombo;
+
+         window()->m_rectanglePointingTo = m_pcombo->window_rectangle();
+
+         create_window();
+
+      }
+
+
       //if (!)
       //{
 

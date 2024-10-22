@@ -5,8 +5,7 @@
 #include "acme/platform/message.h"
 
 
-class CLASS_DECL_ACME action_context :
-   virtual public particle
+class CLASS_DECL_ACME action_context
 {
 public:
 
@@ -45,6 +44,7 @@ public:
       {
          m_esource = action_context.m_esource;
          m_pparticlea = action_context.m_pparticlea;
+         m_pmessage = action_context.m_pmessage;
       }
       return *this;
    }

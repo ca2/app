@@ -81,7 +81,7 @@ namespace windowing
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
-      ::particle_pointer                  m_pparticleChildrenSynchronization;
+      ::particle_pointer                        m_pparticleChildrenSynchronization;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
@@ -223,6 +223,8 @@ namespace windowing
 
       virtual void window_set_keyboard_focus();
       virtual void window_kill_keyboard_focus();
+
+         virtual void on_set_focus_to_child();
       
       virtual void window_on_activate();
       virtual void window_on_deactivate();

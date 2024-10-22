@@ -755,6 +755,7 @@ namespace user
 //      virtual bool add_control(arguments arguments);
       virtual void create_window();
       virtual void _create_window();
+      void create_window_object() override;
       void on_create_window_object() override;
 
 
@@ -768,6 +769,10 @@ namespace user
 
 
       virtual ::particle * mutex_draw();
+
+
+      rectangle_i32 get_rectangle() override;
+
 
 
       //virtual bool AddControlBar(::user::control_bar* pcontrolbar);

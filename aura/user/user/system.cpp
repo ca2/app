@@ -184,6 +184,8 @@ namespace user
 
       ::pointer<::user::interaction>pinteraction;
 
+      __check_refdbg
+
       //::e_status estatus = ::success;
 
       if (m_puserprimitiveNew != nullptr)
@@ -204,6 +206,8 @@ namespace user
 
          }
 
+         __check_refdbg
+
          if (pparticle.is_null() || ::is_null(pparticle->get_app()))
          {
 
@@ -217,8 +221,13 @@ namespace user
 
          string strType = typeid(*pcontextJustForInspection).name();
 
+
+         __check_refdbg
+
          //estatus =
          pparticle->__id_construct(pinteraction, m_typeatomNewImpact);
+
+         __check_refdbg
 
       }
 
@@ -247,12 +256,16 @@ namespace user
          //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
          //if (!pinteraction->create_child(puserinteractionParent))
 
+         __check_refdbg
+
          pinteraction->create_child(puserinteractionParent);
          //{
 
          //   return nullptr;
 
          //}
+
+         __check_refdbg
 
          pinteraction->on_topic(id_initial_update);
 
@@ -284,11 +297,15 @@ namespace user
 
                //}
 
+         __check_refdbg
+
          pinteraction->display(e_display_normal);
 
          pinteraction->set_need_layout();
 
          pinteraction->set_need_redraw();
+
+         __check_refdbg
 
       }
 

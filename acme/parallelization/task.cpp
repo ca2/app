@@ -1448,11 +1448,46 @@ bool task::has_message() const
       
    }
 
-   pthread_create(
+   int iError = pthread_create(
       (pthread_t *) &m_htask,
       &taskAttr,
       &task::s_os_task,
       this);
+
+
+   if(iError != 0)
+   {
+
+      if(iError == EAGAIN)
+      {
+         // EAGAIN Insufficient resources to create another thread.
+         //
+         // EAGAIN A system-imposed limit on the number of threads was
+         //        encountered.  There are a number of limits that may
+         //        trigger this error: the RLIMIT_NPROC soft resource limit
+         //        (set via setrlimit(2)), which limits the number of
+         //        processes and threads for a real user ID, was reached; the
+         //        kernel's system-wide limit on the number of processes and
+         //        threads, /proc/sys/kernel/threads-max, was reached (see
+         //        proc(5)); or the maximum number of PIDs,
+         //        /proc/sys/kernel/pid_max, was reached (see proc(5)).
+
+         throw ::exception(error_resource);
+      }
+      else if(iError == EINVAL)
+      {
+         //EINVAL Invalid settings in attr.
+         throw ::exception(error_bad_argument);
+
+      }
+      else if(iError == EPERM)
+      {
+         //EPERM  No permission to set the scheduling policy and parameters
+         //     specified in attr.
+         throw ::exception(error_failed);
+      }
+
+   }
 
 #endif
 

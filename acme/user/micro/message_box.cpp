@@ -544,10 +544,12 @@ namespace micro
 
       auto ppopupbutton = __create_new<popup_button>();
 
-      auto pwindowParent = this->acme_windowing_window();
+      //auto pwindowParent = this->acme_windowing_window();
 
-      ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
-                                            pwindowParent);
+      ppopupbutton->initialize_popup_button(
+         "Dump to File...",
+         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         this);
 
       ppopupbutton->main_async()
          << [this, ppopupbutton]()

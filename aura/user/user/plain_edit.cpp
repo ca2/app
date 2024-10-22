@@ -484,6 +484,8 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      __check_refdbg
+
       auto pparent = get_parent();
 
       ::string strTypeParent;
@@ -546,7 +548,11 @@ namespace user
 
       auto timeStart = ::time::now();
 
+      __check_refdbg
+
       auto pstyle = get_style(pgraphics);
+
+      __check_refdbg
 
       status < ::color::color > crBk;
       status < ::color::color > crBkSel;
@@ -559,13 +565,21 @@ namespace user
 
       //rectangleBackground.offset(get_context_offset());
 
+      __check_refdbg
+
       auto crEditBackground = get_color(pstyle, e_element_background);
 
+      __check_refdbg
+
       pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
+
+      __check_refdbg
 
       bool bComposing = ::is_set(m_pitemComposing);
 
       bool bStrongSelection = bComposing || has_keyboard_focus();
+
+      __check_refdbg
 
       strsize iComposeBeg = -1;
 
@@ -574,28 +588,58 @@ namespace user
       if (bComposing)
       {
 
+         __check_refdbg
+
          iComposeBeg = (strsize)m_pitemComposing->m_position;
+
+         __check_refdbg
 
          iComposeEnd = (strsize)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
+         __check_refdbg
+
       }
 
+      __check_refdbg
+
       color32 = get_color(pstyle, e_element_text);
+
+      __check_refdbg
+
       crBk = get_color(pstyle, e_element_background);
+
+      __check_refdbg
+
       crSel = get_color(pstyle, e_element_text, e_state_selected);
+
+      __check_refdbg
+
+
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
+      __check_refdbg
+
       status < ::color::color > colorComposeBk;
+
+      __check_refdbg
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
       colorComposeBk.m_u8Opacity = 127;
 
+      __check_refdbg
+
       pstyle->get(m_pcontrolstyle, pgraphics, this);
+
+      __check_refdbg
 
       bool bCaretOn = is_caret_on();
 
+      __check_refdbg
+
       bool bFocus = has_keyboard_focus();
+
+      __check_refdbg
 
       if (m_ptree == nullptr)
       {
@@ -8768,7 +8812,11 @@ namespace user
 
       ::strsize iSelEnd = 0;
 
+      __check_refdbg
+
       get_text_selection(iSelBeg, iSelEnd);
+
+      __check_refdbg
 
 //      ::strsize iTextLength = get_text_length();
 //
@@ -8778,16 +8826,28 @@ namespace user
 
       {
 
+         __check_refdbg
+
          _synchronous_lock synchronouslock(this->synchronization());
+
+         __check_refdbg
 
          if (m_bParseDataPacks)
          {
 
+            __check_refdbg
+
             m_base64map.erase_all();
+
+            __check_refdbg
 
             auto psystem = system()->m_paurasystem;
 
+            __check_refdbg
+
             psystem->_001AddPacks(m_base64map, str);
+
+            __check_refdbg
 
          }
 
@@ -8801,24 +8861,38 @@ namespace user
          if (m_ptree->m_peditfile->get_length() > 0)
          {
 
+            __check_refdbg
+
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
+            __check_refdbg
+
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
+
+            __check_refdbg
 
          }
 
          if (str.has_char())
          {
 
+            __check_refdbg
+
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
+            __check_refdbg
+
             m_ptree->m_peditfile->Insert(str, str.length());
+
+            __check_refdbg
 
          }
 
       }
 
       m_bSetTextSelectionUpdatePending = true;
+
+      __check_refdbg
 
       queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
       {
@@ -8827,9 +8901,15 @@ namespace user
 
       });
 
+      __check_refdbg
+
       set_need_redraw();
 
+      __check_refdbg
+
       post_redraw();
+
+      __check_refdbg
 
    }
 

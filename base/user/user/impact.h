@@ -248,11 +248,17 @@ namespace user
    {
       
       auto & factoryitem = factory()->get_factory_item<IMPACT>();
+
+      __check_refdbg
       
       if (!factoryitem)
       {
 
+         __check_refdbg
+
          factoryitem = __allocate ::factory::factory_item< IMPACT, IMPACT > ();
+
+         __check_refdbg
 
       }
 

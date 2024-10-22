@@ -566,11 +566,19 @@ namespace user
    void tab_impact::_on_change_cur_sel()
    {
 
+      __check_refdbg
+
       ::collection::index iTab = get_current_tab_index();
+
+      __check_refdbg
 
       atom atom = index_id(iTab);
 
+      __check_refdbg
+
       ::atom idSplit;
+
+      __check_refdbg
 
       auto ptabdata = get_data();
 
@@ -578,7 +586,11 @@ namespace user
 
       //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
+      __check_refdbg
+
       ::user::impact_data * pimpactdata = get_impact_data(atom, true);
+
+      __check_refdbg
       
       if (pimpactdata == nullptr)
       {
@@ -587,46 +599,80 @@ namespace user
 
       }
 
+      __check_refdbg
+
       if (atom != CONTEXT_OPTIONS_IMPACT)
       {
 
+         __check_refdbg
+
          m_poptionsimpacthandlerContext = pimpactdata->m_pplaceholder->typed_descendant < ::user::options_impact_handler >();
 
+         __check_refdbg
+
       }
+
+      __check_refdbg
 
       if(iTab >= 0)
       {
 
+         __check_refdbg
+
          auto& tabpanecompositea = ptabdata->m_tabpanea;
 
+         __check_refdbg
+
          auto & ptabpanecomposite = tabpanecompositea[iTab];
+
+         __check_refdbg
 
          if(ptabpanecomposite->m_pimpactdata != pimpactdata)
          {
 
+            __check_refdbg
+
             ptabpanecomposite->m_pimpactdata = pimpactdata;
+
+            __check_refdbg
 
             if (pimpactdata->m_pplaceholder != nullptr)
             {
 
+               __check_refdbg
+
                get_data()->m_tabpanea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
+
+               __check_refdbg
 
             }
             else if (pimpactdata->m_puserinteraction != nullptr)
             {
 
+               __check_refdbg
+
                if (pane_holder(iTab) == nullptr)
                {
 
+                  __check_refdbg
+
                   get_data()->m_tabpanea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleHosting);
+
+                  __check_refdbg
 
                }
                else
                {
 
+                  __check_refdbg
+
                   get_data()->m_tabpanea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
+                  __check_refdbg
+
                   get_data()->m_tabpanea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+
+                  __check_refdbg
 
                }
 
@@ -634,23 +680,39 @@ namespace user
             else
             {
 
+               __check_refdbg
+
                get_data()->m_tabpanea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleHosting);
+
+               __check_refdbg
 
             }
 
             {
 
+               __check_refdbg
+
                _synchronous_lock synchronouslock(this->synchronization());
+
+               __check_refdbg
 
                if (pimpactdata->m_strTitle.has_char())
                {
 
+                  __check_refdbg
+
                   ::collection::index iTab = get_current_tab_index();
+
+                  __check_refdbg
 
                   if (iTab >= 0 && get_data()->m_tabpanea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
+                     __check_refdbg
+
                      get_data()->m_tabpanea[iTab]->set_title(pimpactdata->m_strTitle);
+
+                     __check_refdbg
 
                   }
 
@@ -662,27 +724,49 @@ namespace user
 
       }
 
+      __check_refdbg
+
       if (pimpactdata->m_pplaceholder)
       {
 
+         __check_refdbg
+
          ::string strPlaceHolderId;
+
+         __check_refdbg
 
          strPlaceHolderId = "place_holder : " + pimpactdata->m_atom.as_string();
 
+         __check_refdbg
+
          pimpactdata->m_pplaceholder->m_atom = strPlaceHolderId;
+
+         __check_refdbg
 
       }
 
+      __check_refdbg
+
       idSplit = pimpactdata->m_atomSplit;
+
+      __check_refdbg
 
       if(pimpactdata != m_pimpactdata)
       {
 
+         __check_refdbg
+
          m_pimpactdataOld = m_pimpactdata;
+
+         __check_refdbg
 
          m_pimpactdata = pimpactdata;
 
+         __check_refdbg
+
       }
+
+      __check_refdbg
 
       if (m_pimpactdata == nullptr || m_pimpactdata->m_pplaceholder == nullptr)
       {
@@ -691,30 +775,52 @@ namespace user
 
       }
 
+      __check_refdbg
+
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
+
+         __check_refdbg
          
          ::pointer<::user::interaction>pinteraction;
+
+         __check_refdbg
          
          pinteraction = m_pimpactdata->m_pplaceholder->first_child();
 
+         __check_refdbg
+
          if(pinteraction)
          {
+
+            __check_refdbg
             
             ::pointer<::user::frame_window>pframewindow = pinteraction;
 
+            __check_refdbg
+
             if(pframewindow && pframewindow->first_child())
             {
+
+               __check_refdbg
                
                pinteraction = pframewindow->first_child();
+
+               __check_refdbg
                
             }
+
+            __check_refdbg
             
             m_pimpactdata->m_puserinteraction = pinteraction;
+
+            __check_refdbg
 
             auto p1 = m_pimpactdata->m_puserinteraction.m_p;
 
             string strType =  typeid(*p1).name();
+
+            __check_refdbg
 
             informationf("the type is " + strType);
             

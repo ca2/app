@@ -270,7 +270,11 @@ namespace user
    impact_data * impact_host::create_impact_by_id(const ::atom & atom)
    {
 
+      __check_refdbg
+
       impact_data * pimpactdata = allocate_impact_data(atom);
+
+      __check_refdbg
 
       try
       {
@@ -278,8 +282,11 @@ namespace user
          if (impact_creator_create_impact(pimpactdata))
          {
 
+            __check_refdbg
 
             on_after_host_impact(pimpactdata);
+
+            __check_refdbg
 
          }
 
@@ -327,9 +334,13 @@ namespace user
       if (::user::impact_creator::impact_creator_create_impact(pimpactdata))
       {
 
+         __check_refdbg
+
          return true;
 
       }
+
+      __check_refdbg
 
       for (auto & pimpactkit : m_impactkita)
       {
@@ -340,8 +351,12 @@ namespace user
             if (pitem->m_pimpactcreator)
             {
 
+               __check_refdbg
+
                if (pitem->m_pimpactcreator->impact_creator_create_impact(pimpactdata))
                {
+
+                  __check_refdbg
 
                   return true;
 
@@ -357,8 +372,12 @@ namespace user
 
       ::pointer < ::user::impact_creator > pimpactcreator = papp;
 
+      __check_refdbg
+
       if (pimpactcreator->impact_creator_create_impact(pimpactdata))
       {
+
+         __check_refdbg
 
          return true;
 
@@ -572,7 +591,11 @@ namespace user
    ::user::impact_data * impact_host::get_impact_data(const atom& atom,bool bCallOnCreateImpact)
    {
 
+      __check_refdbg
+
       auto & pimpactdata = m_impactdatamap[atom];
+
+      __check_refdbg
 
       if (pimpactdata != nullptr)
       {
@@ -581,16 +604,26 @@ namespace user
 
       }
 
+      __check_refdbg
+
       if (!bCallOnCreateImpact)
       {
 
+         __check_refdbg
+
          pimpactdata = allocate_impact_data(atom);
+
+         __check_refdbg
 
          return pimpactdata;
 
       }
 
+      __check_refdbg
+
       pimpactdata = create_impact_by_id(atom);
+
+      __check_refdbg
 
       if (pimpactdata == nullptr)
       {
@@ -608,7 +641,11 @@ namespace user
          
          pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
 
+         __check_refdbg
+
          pimpactdata->m_pplaceholder->set_need_layout();
+
+         __check_refdbg
 
       }
 

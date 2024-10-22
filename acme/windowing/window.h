@@ -45,6 +45,7 @@ namespace acme
          bool                                      m_bNcActive;
 
          rectangle_i32                             m_rectangle;
+         ::rectangle_i32                           m_rectanglePointingTo;
 
          bool                                      m_bMinimizeBox;
          bool                                      m_bMaximizeBox;
@@ -73,14 +74,15 @@ namespace acme
 
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
-         ::pointer<::acme::user::interaction >              m_pacmeuserinteraction;
+         ::pointer<::acme::user::interaction>               m_pacmeuserinteraction;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
+         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
+
 
          ::pointer < ::acme::windowing::display >           m_pdisplay;
 
-         ::pointer < ::acme::windowing::window >            m_pacmewindowingwindowOwner;
 
 
 

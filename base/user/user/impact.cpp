@@ -904,23 +904,39 @@ namespace user
       ::pointer<::request>prequest;
 
       ::pointer < ::user::system > pusersystem = m_pusersystem;
+
+      __check_refdbg
       
       if(!pusersystem)
       {
-         
+
+         __check_refdbg
+
          pusersystem = __create_new < ::user::system >();
+
+         __check_refdbg
          
       }
+
+      __check_refdbg
+
       if (pusersystem->m_prequest)
       {
 
          prequest= pusersystem->m_prequest;
+
       }
       else
       {
+
+         __check_refdbg
+
          __construct_new(pusersystem->m_prequest);
 
+         __check_refdbg
+
          prequest = pusersystem->m_prequest;
+
          prequest->m_pmatterUserPayload = pusersystem;
 
       }
@@ -935,6 +951,8 @@ namespace user
       pusersystem->m_typeatomNewImpact = typeatom;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
+
+      __check_refdbg
 
       if (pdocument == nullptr)
       {
@@ -965,7 +983,11 @@ namespace user
 
       }
 
+      __check_refdbg
+
       auto pinteraction = pusersystem->create_impact(puserinteractionParent, idCreate);
+
+      __check_refdbg
 
       return pinteraction;
 

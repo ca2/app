@@ -5536,6 +5536,15 @@ namespace user
    }
 
 
+   rectangle_i32 interaction::get_rectangle()
+   {
+
+      return this->window_rectangle(e_layout_sketch);
+
+   }
+
+
+
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -6615,11 +6624,19 @@ namespace user
    void interaction::queue_graphics_call(const ::function<void(::draw2d::graphics_pointer &)> & function)
    {
 
+      __check_refdbg
+
       _synchronous_lock synchronouslock(this->synchronization());
+
+      __check_refdbg
 
       __defer_construct_new(m_pgraphicscalla);
 
+      __check_refdbg
+
       m_pgraphicscalla->add(__allocate::draw2d::graphics_call(function));
+
+      __check_refdbg
 
    }
 
@@ -10552,10 +10569,12 @@ namespace user
 
 
 
-
+      __check_refdbg
 
       if (!_create_child(puserinteractionParent))
       {
+
+         __check_refdbg
 
          m_bUserElementOk = false;
 
@@ -10604,6 +10623,8 @@ namespace user
       //}
 
       //return estatus;
+
+      __check_refdbg
 
    }
 
@@ -10660,14 +10681,24 @@ namespace user
 
       //}
 
+      __check_refdbg
+
       on_set_parent(puserinteractionParent);
 
+      __check_refdbg
+
       on_after_set_parent();
+
+      __check_refdbg
 
       if (m_puserinteractionOwner)
       {
 
+         __check_refdbg
+
          on_set_owner(m_puserinteractionOwner);
+
+         __check_refdbg
 
          //::user::interaction_base * puiRet = set_owner(m_puserinteractionOwner);
 
@@ -10680,7 +10711,11 @@ namespace user
 
       }
 
+      __check_refdbg
+
       install_message_routing(this);
+
+      __check_refdbg
 
       if (m_ewindowflag & e_window_flag_load_window_rect_on_impl
           && (!is_top_level()
@@ -10774,7 +10809,11 @@ namespace user
 
          //            m_puserinteraction->send_create_message();
 
+         __check_refdbg
+
          message_call(e_message_create);
+
+         __check_refdbg
 
       }
 
@@ -15833,6 +15872,8 @@ namespace user
    bool interaction::has_keyboard_focus()
    {
 
+      __check_refdbg
+
       if (!is_window())
       {
 
@@ -15840,7 +15881,11 @@ namespace user
 
       }
 
+      __check_refdbg
+
       auto pwindowThis = window();
+
+      __check_refdbg
 
       if (::is_null(pwindowThis))
       {
@@ -15865,15 +15910,25 @@ namespace user
       if (!pwindowThis->has_keyboard_focus())
       {
 
+         __check_refdbg
+
          if (pwindowThis->m_puserinteraction->m_puserinteractionOwner)
          {
 
+            __check_refdbg
+
             auto pwindowOwner = pwindowThis->m_puserinteraction->m_puserinteractionOwner->window();
+
+            __check_refdbg
 
             if (::is_null(pwindowOwner))
             {
 
+               __check_refdbg
+
                information() << "has_keyboard_focus No Owner Window";
+
+               __check_refdbg
 
                return false;
 
@@ -15893,6 +15948,8 @@ namespace user
             if (pwindowOwner->has_keyboard_focus())
             {
 
+               __check_refdbg
+
                //::string strType;
 
                //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
@@ -15907,6 +15964,8 @@ namespace user
 
                if (pwindowOwner->m_puserinteractionKeyboardFocus == this)
                {
+
+                  __check_refdbg
 
                   return true;
 
@@ -15933,13 +15992,18 @@ namespace user
       //   return false;
 
       //}
+      __check_refdbg
 
       if (pwindowThis->m_puserinteractionKeyboardFocus != this)
       {
 
+         __check_refdbg
+
          return false;
 
       }
+
+      __check_refdbg
 
       return true;
 
@@ -21480,6 +21544,29 @@ namespace user
       }
 
    }
+
+
+   void interaction::create_window_object()
+   {
+
+      ::user::interaction_base::create_window_object();
+
+      if(m_pacmewindowingwindow)
+      {
+
+         auto pwindow = window();
+
+         if(pwindow)
+         {
+
+            pwindow->m_puserinteraction = this;
+
+         }
+
+      }
+
+   }
+
 
 
    void interaction::on_create_window_object()

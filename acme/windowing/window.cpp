@@ -155,10 +155,11 @@ namespace acme
          m_pacmeuserinteractionFocus.release();
          m_pacmeuserinteractionHover.release();
          m_pacmeuserinteractionCapture.release();
+         m_pacmeuserinteractionOwner.release();
 
          m_pdisplay.release();
 
-         m_pacmewindowingwindowOwner.release();
+
 
 
          //if (m_functionClose)
@@ -1353,10 +1354,18 @@ namespace acme
 
       }
 
+
       ::acme::windowing::window * window::owner_window()
       {
 
-         return m_pacmewindowingwindowOwner;
+         if(!m_pacmeuserinteractionOwner)
+         {
+
+            return nullptr;
+
+         }
+
+         return m_pacmeuserinteractionOwner->acme_windowing_window();
 
       }
 

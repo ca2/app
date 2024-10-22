@@ -2885,8 +2885,12 @@ m_puserinteraction = m_pacmeuserinteraction;
 
 
    void window::on_text(const ::ansi_character * pansisz, strsize length)
+
    {
 
+      ::string strTextToInsert(pansisz, length);
+
+      m_puserinteractionKeyboardFocus->insert_text(strTextToInsert, true, ::e_source_user);
 
    }
 
@@ -10693,6 +10697,8 @@ m_puserinteraction = m_pacmeuserinteraction;
 
             }
 
+            on_set_focus_to_child();
+
          }
          //         else if(m_puserinteractionKeyboardFocus)
          //         {
@@ -16295,6 +16301,10 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
+   void window::on_set_focus_to_child()
+   {
+
+   }
    //void window::set_opacity(double dOpacity)
    //{
 

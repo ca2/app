@@ -784,8 +784,12 @@ m_puserinteraction = m_pacmeuserinteraction;
       //this->windowing() = pwindowing;
 
       //pwindow->this->windowing() = pwindowing;
+      main_send([this]()
+      {
 
-      _create_window();
+         _create_window();
+
+      });
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -830,14 +834,12 @@ m_puserinteraction = m_pacmeuserinteraction;
    void window::on_finished_window_creation()
    {
 
-
-
       auto puserinteraction = m_puserinteraction;
 
       puserinteraction->send_message(e_message_pos_create, 0, 0);
 
-
    }
+
 
    void window::set_context_org(draw2d::graphics_pointer & pgraphics)
    {
@@ -2442,6 +2444,12 @@ m_puserinteraction = m_pacmeuserinteraction;
       if (bMove)
       {
 
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         {
+
+bMove = false;
+
+         }
          //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
 
       }

@@ -2936,10 +2936,10 @@ elseif (${LINUX} OR ${__BSD__})
     #add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-            ${this_system_libraries} ${global_library_references}
-            -lstatic_nano_dynamic_library_dl
-    )
+    #target_link_libraries(${PROJECT_NAME} PRIVATE
+     #       ${this_system_libraries} ${global_library_references}
+      #      -lstatic_nano_dynamic_library_dl
+    #)
     target_link_libraries(static_${PROJECT_NAME} PRIVATE
             ${static_this_system_libraries}
     )

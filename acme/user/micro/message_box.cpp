@@ -546,6 +546,15 @@ namespace micro
 
       //auto pwindowParent = this->acme_windowing_window();
 
+      ::rectangle_i32 rectanglePointTo;
+
+      rectanglePointTo.left() = pmouse->m_pointAbsolute.x();
+      rectanglePointTo.top() = pmouse->m_pointAbsolute.y();
+      rectanglePointTo.right() = rectanglePointTo.left() + 200;
+      rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
+
+      ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
+
       ppopupbutton->initialize_popup_button(
          "Dump to File...",
          pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),

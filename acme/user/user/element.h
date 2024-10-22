@@ -181,13 +181,23 @@ namespace user
 
 
       virtual bool is_window_visible();
+      virtual bool is_window_active();
       virtual bool is_window_stored_iconic(); // m_pwindow->m_puserinteraction->const_layout().window().display() == e_display_iconic
       virtual bool is_window_zoomed();
+      virtual bool is_window_full_screen();
       virtual void window_minimize();
       virtual void window_maximize(); // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
       virtual void window_full_screen(); // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
       virtual void window_restore(); // m_pwindow->m_puserinteraction->display(::e_display_normal);
       virtual void window_close();
+
+
+      virtual void on_window_deiconified();
+      virtual void on_window_activated();
+      virtual void on_window_iconified();
+      virtual void on_window_deactivated();
+
+      virtual ::e_display defer_window_get_best_display_deduction();
 
 
       virtual void _on_window_simple_action(const char * pszActionName);

@@ -280,6 +280,11 @@ namespace acme
 
          //virtual void message_loop();
 
+         void on_window_deiconified() override;
+         void on_window_activated() override;
+         void on_window_iconified() override;
+         void on_window_deactivated() override;
+
          virtual void set_active_window();
 
          virtual bool is_active_window();

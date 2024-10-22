@@ -3072,6 +3072,76 @@ namespace user
    }
 
 
+   void element::on_window_deiconified()
+   {
+
+
+   }
+
+
+   void element::on_window_activated()
+   {
+
+
+   }
+
+
+   void element::on_window_iconified()
+   {
+
+
+   }
+
+
+   void element::on_window_deactivated()
+   {
+
+
+   }
+
+
+   ::e_display element::defer_window_get_best_display_deduction()
+   {
+
+      if(is_window_visible())
+      {
+
+         if(is_window_full_screen())
+         {
+
+            return e_display_full_screen;
+
+         }
+         else if(is_window_zoomed())
+         {
+
+            return e_display_zoomed;
+
+         }
+         else if(is_window_active())
+         {
+
+            return e_display_normal;
+
+         }
+         else
+         {
+
+            return e_display_iconic;
+
+         }
+
+      }
+      else
+      {
+
+         return e_display_hide;
+
+      }
+
+   }
+
+
    void element::_on_window_simple_action(const char * pszActionName)
    {
 
@@ -3372,7 +3442,23 @@ namespace user
    }
 
 
+   bool element::is_window_active()
+   {
+
+      return true;
+
+   }
+
+
    bool element::is_window_zoomed()
+   {
+
+      return false;
+
+   }
+
+
+   bool element::is_window_full_screen()
    {
 
       return false;

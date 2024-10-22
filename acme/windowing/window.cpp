@@ -381,6 +381,34 @@ namespace acme
       }
 
 
+      void window::on_window_deiconified()
+      {
+
+
+      }
+
+
+      void window::on_window_activated()
+      {
+
+
+      }
+
+
+      void window::on_window_iconified()
+      {
+
+
+      }
+
+
+      void window::on_window_deactivated()
+      {
+
+
+      }
+
+
       bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
       {
 

@@ -16,8 +16,6 @@
 #include "acme/prototype/geometry2d/_collection.h"
 
 
-
-
 namespace windowing
 {
 
@@ -632,6 +630,12 @@ namespace windowing
       void window_restore() override;
       void window_minimize() override;
       void window_maximize() override;
+
+      // void on_window_deiconified() override;
+      // void on_window_activated() override;
+      // void on_window_iconified() override;
+      // void on_window_deactivated() override;
+
 
       void destroy() override;
 

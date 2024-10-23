@@ -360,6 +360,8 @@ namespace allocator
 
    CLASS_DECL_ACME ::reference_referer * defer_add_referer(const ::reference_referer & referer);
    CLASS_DECL_ACME ::reference_referer * add_referer(const ::reference_referer & referer);
+   CLASS_DECL_ACME void set_referer(::reference_referer * preferer);
+   CLASS_DECL_ACME void _set_referer(::reference_referer * preferer);
    CLASS_DECL_ACME ::reference_referer * defer_get_referer(::subparticle * p, const ::reference_referer & referer);
    CLASS_DECL_ACME ::reference_referer * get_referer();
    CLASS_DECL_ACME ::reference_referer * pop_referer();

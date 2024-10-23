@@ -4,6 +4,8 @@
 #pragma once
 
 
+#include <acme/include/_forward_declaration.h>
+
 #include "acme/platform/platform.h"
 
 
@@ -161,9 +163,19 @@ inline pointer < T > ::pointer(const pointer & t)
    }
    else
    {
+
 #if REFERENCING_DEBUGGING
 
       ::reference_referer * prefererNew = nullptr;
+
+      auto prefererOnStack = ::allocator::get_referer();
+
+      if(prefererOnStack)
+      {
+
+         ::allocator::_set_referer(nullptr);
+
+      }
 
       if (pNew->is_referencing_debugging_enabled())
       {
@@ -177,10 +189,20 @@ inline pointer < T > ::pointer(const pointer & t)
       m_psubparticle = pNew;
 
       m_p = t.m_p;
+
 #if REFERENCING_DEBUGGING
 
+      if(prefererOnStack != nullptr)
+      {
+
+         ::allocator::set_referer(prefererOnStack);
+
+      }
+
       m_preferer = prefererNew;
+
 #endif
+
    }
 
 }

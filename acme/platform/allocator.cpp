@@ -54,6 +54,14 @@ namespace allocator
    }
 
 
+   void _set_referer(::reference_referer * preferer)
+   {
+
+      t_preferencerefererTopic = preferer;
+
+   }
+
+
    ::reference_referer * new_referer(const ::reference_referer & referer)
    {
 

@@ -223,10 +223,13 @@ namespace acme
 
       }
 
+
       void windowing::destroy()
       {
 
-         //windowing_system_post_quit();
+         m_pacmedisplay.defer_destroy();
+
+         m_windowa.clear();
 
          ::acme::department::destroy();
 

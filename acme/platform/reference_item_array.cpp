@@ -217,6 +217,12 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
       output_debug_string("iSerial == 148");
 
    }
+   else if (pitem->m_iStep == 80)
+   {
+
+      output_debug_string("iSerial == 80");
+
+   }
 
 
    //auto iSerial = pitem->m_preferer->m_iSerial;

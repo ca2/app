@@ -181,12 +181,7 @@ namespace windowing
 
          }
 
-         if (::is_set(puserthread))
-         {
-
-            puserthread->m_puserinteractionUserThread.release();
-
-         }
+         puserthread->m_puserinteractionUserThread.release();
 
          if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
          {

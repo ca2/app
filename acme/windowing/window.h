@@ -21,7 +21,9 @@
 //#include "acme/prototype/geometry2d/rectangle.h"
 //#include "acme/user/user/item.h"
 
+
 #include "acme/user/user/element.h"
+
 
 namespace acme
 {
@@ -42,24 +44,31 @@ namespace acme
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
-         bool                                      m_bNcActive;
+         union
+         {
+            struct
+            {
+               bool                                      m_bNcActive : 1;
+               bool                                      m_bWindowVisible : 1;
+               bool                                      m_bMinimizeBox : 1;
+               bool                                      m_bMaximizeBox : 1;
+               bool                                      m_bResizeable : 1;
+               bool                                      m_bCapture : 1;
+               bool                                      m_bStartCentered : 1;
+               bool                                      m_bArbitraryPositioning : 1;
+               bool                                      m_bTopMost : 1;
+            };
+            ::u64 m_uAcmeWindowingWindowFlags;
+         };
 
          rectangle_i32                             m_rectangle;
          ::rectangle_i32                           m_rectanglePointingTo;
 
-         bool                                      m_bMinimizeBox;
-         bool                                      m_bMaximizeBox;
-         bool                                      m_bResizeable;
          //bool                                      m_bTopMost;
          // bool                                      m_bStartCentered;
          //bool                                      m_bArbitraryPositioning;
 
 
-         bool                                      m_bCapture;
-         bool                                      m_bStartCentered;
-         bool                                      m_bArbitraryPositioning;
-
-         bool                                      m_bTopMost;
 
 
          //pointer_array < ::micro::button >             m_nanobuttona;
@@ -280,10 +289,14 @@ namespace acme
 
          //virtual void message_loop();
 
+
          void on_window_deiconified() override;
          void on_window_activated() override;
          void on_window_iconified() override;
          void on_window_deactivated() override;
+         void on_window_shown() override;
+         void on_window_hidden() override;
+
 
          virtual void set_active_window();
 

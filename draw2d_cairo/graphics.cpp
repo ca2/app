@@ -71,7 +71,7 @@ double g_dPi = atan(1.0) * 4.0;
 
 #include <pango/pangocairo.h>
 
-::pointer< ::mutex > g_pmutexFc = nullptr;
+//::pointer< ::mutex > g_pmutexFc = nullptr;
 
 FcBool g_fcResult;
 

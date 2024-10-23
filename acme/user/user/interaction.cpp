@@ -1475,12 +1475,7 @@ namespace acme
 
             m_pacmeuserinteractionaChildren.release();
 
-            if (m_pacmewindowingwindow)
-            {
-
-               m_pacmewindowingwindow.release();
-
-            }
+            m_pacmewindowingwindow.release();
 
          }
 

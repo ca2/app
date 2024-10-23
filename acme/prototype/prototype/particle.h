@@ -1125,7 +1125,8 @@ inline bool is_ok(const ::particle * pparticleConst)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+inline i64 release(T *& p);
+//inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
@@ -1137,7 +1138,8 @@ template < typename TYPE, typename T >
 void assign(::pointer<TYPE> & ptr, T * p);
 
 template < typename TYPE >
-::i64 release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+::i64 release(::pointer<TYPE> & ptr);
+//::i64 release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 //template < typename TYPE >
 //::i64 release(TYPE *& p);

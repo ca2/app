@@ -112,7 +112,25 @@ namespace windowing
 
       m_pcursormanager.defer_destroy();
 
-      ::acme::department::destroy();
+      m_pkeyboard.defer_destroy();
+
+      m_pwindowMouseCapture.release();
+
+      m_puser.release();
+
+      m_displaymap.clear();
+
+      m_pcursor.release();
+
+      m_pcursorCursor.release();
+
+      m_pmutexDisplay.release();
+
+      m_pmutexMonitor.release();
+
+      m_pmutexWindow.release();
+
+      ::acme::windowing::windowing::destroy();
 
    }
 
@@ -135,16 +153,28 @@ namespace windowing
    ::pointer<cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
+      __check_refdbg
+
       _synchronous_lock synchronouslock(this->synchronization());
+
+      __check_refdbg
 
       if (m_pcursormanager.is_null())
       {
 
+         __check_refdbg
+
          __construct_new(m_pcursormanager);
+
+         __check_refdbg
 
          m_pcursormanager->m_pwindowing = this;
 
+         __check_refdbg
+
       }
+
+      __check_refdbg
 
       return m_pcursormanager->get_cursor(ecursor);
 

@@ -19,24 +19,17 @@ namespace windowing
    public:
 
 
-      void * m_pDisplay;
-      void * m_pDisplay2;
-#if defined(LINUX) || defined(__BSD__)
-      void * _m_pX11Display;
-#endif
-
-      pointer_array < monitor >      m_monitora;
+      pointer_array < monitor >        m_monitora;
 
 
-      //::pointer<windowing>         m_pwindowing;
-      bool                          m_bSystemSynchronizedScreen;
+      bool                             m_bSystemSynchronizedScreen;
 
-      ::collection::index                         m_iMainMonitor;
-      ::collection::index                         m_iMainWorkspace;
-      double                        m_dpi;
+      ::collection::index              m_iMainMonitor;
+      ::collection::index              m_iMainWorkspace;
+      double                           m_dpi;
 
-      ::rectangle_i32_array         m_rectangleaWorkAreas;
-      ::string                      m_strDarkModeAnnotation;
+      ::rectangle_i32_array            m_rectangleaWorkAreas;
+      ::string                         m_strDarkModeAnnotation;
 
 
 
@@ -59,6 +52,8 @@ namespace windowing
 
       //void open_display() override;
       virtual void close_display();
+
+      void destroy() override;
 
       virtual bool set_main_monitor(::collection::index iMonitor);
       //virtual ::collection::count get_monitor_count() //;

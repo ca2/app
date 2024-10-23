@@ -1375,7 +1375,7 @@ namespace user
       virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
-      virtual void on_show_window() override;
+      //virtual void on_show_window() override;
       virtual void _on_show_window();
       
       virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);

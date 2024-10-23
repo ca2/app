@@ -47,6 +47,14 @@ namespace acme
       }
 
 
+      void display::destroy()
+      {
+
+         ::object::destroy();
+
+      }
+
+
       void display::kick_idle()
       {
 

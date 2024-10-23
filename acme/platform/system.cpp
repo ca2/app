@@ -1190,7 +1190,7 @@ namespace acme
 
             m_pacmewindowing->windowing_post_quit();
 
-            ::acme::get()->m_pmanualreseteventMainLoopEnd->wait(2.5_min);
+            ::acme::get()->m_pmanualreseteventMainLoopEnd->_wait(2.5_min);
 
             delete ::acme::get()->m_pmanualreseteventMainLoopEnd;
 

@@ -2373,12 +2373,12 @@ namespace user
    }
 
 
-   void interaction_base::on_show_window()
-   {
-
-      throw ::interface_only();
-
-   }
+   // void interaction_base::on_show_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
 
 
    //void interaction_base::window_show_change_visibility()

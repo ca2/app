@@ -11917,7 +11917,6 @@ namespace user
 
       }
 
-
       auto type = ::type(this);
 
       if (type.name().contains("main_frame"))
@@ -15163,14 +15162,14 @@ namespace user
    }
 
 
-   void interaction::on_show_window()
-   {
-
-      layout_tooltip();
-
-      //      user_interaction_update_visibility_cache(_is_window_visible());
-
-   }
+   // void interaction::on_show_window()
+   // {
+   //
+   //    layout_tooltip();
+   //
+   //    //      user_interaction_update_visibility_cache(_is_window_visible());
+   //
+   // }
 
 
    bool interaction::is_this_visible(enum_layout elayout)

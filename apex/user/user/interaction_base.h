@@ -202,7 +202,7 @@ namespace user
 
       //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
-      void on_show_window() override;
+      //void on_show_window() override;
 
       //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();

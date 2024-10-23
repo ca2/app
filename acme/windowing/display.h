@@ -17,22 +17,21 @@ namespace acme
          virtual public ::object
       {
       public:
-         //::array < ::procedure >      m_procedureaPost;
-         ::point_i32 m_pointCursor2;
-
-         enum_display_type m_edisplaytype;
 
 
-         //inline static display * g_p = nullptr;
+         ::point_i32             m_pointCursor2;
+
+         enum_display_type       m_edisplaytype;
 
 
          display();
-
-
          ~display() override;
 
 
          virtual void open_display();
+
+
+         void destroy() override;
 
 
          virtual enum_display_type get_display_type();
@@ -48,9 +47,6 @@ namespace acme
 
 
          virtual void display_send(const ::procedure& procedure);
-
-
-         //virtual bool display_posted_routine_step();
 
 
          virtual ::size_i32 get_main_screen_size();

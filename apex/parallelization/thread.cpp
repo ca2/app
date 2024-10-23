@@ -4434,29 +4434,31 @@ bool thread::process_message()
 
       ::pointer<::message::message>pmessage;
 
-      ::apex::application * papexapplication = nullptr;
+      // ::apex::application * papexapplication = nullptr;
+      //
+      // auto papp = get_app();
+      //
+      // if(papp && papp->m_papexapplication)
+      // {
+      //
+      //    papexapplication = papp->m_papexapplication;
+      //
+      // }
+      //
+      // if (papexapplication)
+      // {
+      //
+      //    pmessage = papexapplication->get_message(&message);
+      //
+      // }
+      // else if (session() && node()->m_papexnode)
+      // {
+      //
+      //    pmessage = node()->m_papexnode->get_message(&message);
+      //
+      // }
 
-      auto papp = get_app();
-
-      if(papp && papp->m_papexapplication)
-      {
-
-         papexapplication = papp->m_papexapplication;
-
-      }
-
-      if (papexapplication)
-      {
-
-         pmessage = papexapplication->get_message(&message);
-
-      }
-      else if (session() && node()->m_papexnode)
-      {
-
-         pmessage = node()->m_papexnode->get_message(&message);
-
-      }
+      pmessage = get_message(&message);
 
       if (pmessage)
       {

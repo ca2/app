@@ -26,9 +26,6 @@ namespace windowing
 
 
       ::sandbox_windowing::windowing *          m_psandboxwindowing;
-      //void *                                    m_pWindowing4;
-
-      //::point_i32                               m_pointCursor;
 
       display_map                               m_displaymap;
 
@@ -83,7 +80,6 @@ namespace windowing
       virtual void terminate_windowing();
 
       virtual void defer_term_ui();
-
 
       virtual void finalize_windowing();
 

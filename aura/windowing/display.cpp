@@ -23,14 +23,6 @@ namespace windowing
    display::display()
    {
 
-      m_pDisplay = nullptr;
-
-      m_pDisplay2 = nullptr;
-
-#ifdef LINUX
-      _m_pX11Display = nullptr;
-#endif
-
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;
       m_iMainWorkspace = 0;
@@ -124,8 +116,6 @@ namespace windowing
 
       m_monitora.clear();
 
-      //system()->windowing().release();
-
    }
 
 
@@ -154,18 +144,18 @@ namespace windowing
    }
 
 
-   //void display::open_display()
-   //{
-
-   //   //return ::success;
-
-   //}
-
-
    void display::close_display()
    {
 
-      //return ::success;
+   }
+
+
+   void display::destroy()
+   {
+
+      finalize_display();
+
+      ::acme::windowing::display::destroy();
 
    }
 

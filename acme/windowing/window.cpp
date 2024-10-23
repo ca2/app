@@ -72,6 +72,8 @@ namespace acme
 
          m_bCapture = false;
 
+         m_uAcmeWindowingWindowFlags = 0;
+
       }
 
 
@@ -403,6 +405,20 @@ namespace acme
 
 
       void window::on_window_deactivated()
+      {
+
+
+      }
+
+
+      void window::on_window_shown()
+      {
+
+
+      }
+
+
+      void window::on_window_hidden()
       {
 
 

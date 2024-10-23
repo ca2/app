@@ -39,8 +39,6 @@ namespace acme
          ::pointer_array < ::acme::windowing::window >      m_windowa;
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
-         // ::pointer_array<::acme::windowing::window> m_windowbasea;
-         //::pointer < ::micro::theme >            m_pnanousertheme;
 
 
          windowing();

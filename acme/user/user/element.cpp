@@ -2293,12 +2293,12 @@ namespace user
    }
 
 
-   void element::on_show_window()
-   {
-
-      throw ::interface_only();
-
-   }
+   // void element::on_show_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
 
 
    //void element::window_show_change_visibility()
@@ -3094,6 +3094,20 @@ namespace user
 
 
    void element::on_window_deactivated()
+   {
+
+
+   }
+
+
+   void element::on_window_shown()
+   {
+
+
+   }
+
+
+   void element::on_window_hidden()
    {
 
 

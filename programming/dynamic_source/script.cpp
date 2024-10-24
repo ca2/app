@@ -5,7 +5,7 @@
 #include "script_manager.h"
 #include "script_compiler.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
@@ -376,7 +376,7 @@ namespace dynamic_source
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
-         acmefile()->copy(strStagePath, m_strScriptPath, true);
+         file_system()->copy(strStagePath, m_strScriptPath, true);
 
          m_plibrary->open(strStagePath);
 

@@ -82,7 +82,7 @@ void acme_auto_debug_teste()
 
 //   teste_acme_cmp();
 
-//   if(!acmefile()->exists("/ca2/debug_test"))
+//   if(!file_system()->exists("/ca2/debug_test"))
 //   {
 //
 //      return;

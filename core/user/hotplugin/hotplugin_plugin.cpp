@@ -799,7 +799,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
          uptr size = m_sizeBitmapData.cx() * m_sizeBitmapData.cy() * sizeof(color32_t);
 
-         ::file::path pathName = dir()->appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
+         ::file::path pathName = directory()->appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
          if(!m_memorymapBitmap.open(pathName,true,true,bCreate, size))
          {

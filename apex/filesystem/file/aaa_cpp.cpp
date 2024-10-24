@@ -20,7 +20,7 @@ namespace file
 
 pacmedirectory->localconfig() / "system_short_name.txt";
 
-      return acmefile()->as_string(pathSystemShortName).trimmed();
+      return file_system()->as_string(pathSystemShortName).trimmed();
 
 #endif
 

@@ -2,8 +2,8 @@
 #include "request.h"
 #include "acme/user/user/element.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/application.h"
 #include "acme/prototype/data/data.h"
 
@@ -629,10 +629,10 @@ void request::_001ParseCommandLine(const ::string& strCommandLine)
    if (!has_property("build") || payload("build").is_empty())
    {
 
-      if (acmefile()->exists(acmedirectory()->system() / "config\\plugin\\build.txt"))
+      if (file_system()->exists(directory_system()->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = acmefile()->as_string(acmedirectory()->system() / "config\\plugin\\build.txt");
+         string str = file_system()->as_string(directory_system()->system() / "config\\plugin\\build.txt");
 
          payload("build") = str;
 

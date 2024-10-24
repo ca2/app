@@ -6,7 +6,7 @@
 //
 //   ::file::path path = ::dir::module() / "po" / (strLang + ".po");
 //
-//   return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
+//   return file_system()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //}
 //

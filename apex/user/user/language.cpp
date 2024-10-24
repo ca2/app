@@ -129,7 +129,7 @@ namespace user
 //
 //      ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
 //
-//      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
+//      return file_system()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //#else
 //
@@ -137,9 +137,9 @@ namespace user
 //
 //      auto pcontext = m_papplication;
 //
-//      ::file::path path = pcontext->dir()->module() / "po" / (strLang + ".po");
+//      ::file::path path = pcontext->directory()->module() / "po" / (strLang + ".po");
 //
-//      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
+//      return file_system()->as_string(path, bOnlyHeader ? 4096 : -1);
 //
 //#endif
 

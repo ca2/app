@@ -22,7 +22,7 @@ namespace aura
 
       ::file::path path = get_last_run_application_path(m_strApp);
 
-      if(acmefile()->exists(path))
+      if(file_system()->exists(path))
       {
 
          return ::transfer(path);
@@ -41,7 +41,7 @@ namespace aura
 
 #endif
 
-      ::file::path pathCandidate = pcontext->dir()->ca2module() / strExe;
+      ::file::path pathCandidate = pcontext->directory()->ca2module() / strExe;
 
       if (file()->exists(pathCandidate))
       {

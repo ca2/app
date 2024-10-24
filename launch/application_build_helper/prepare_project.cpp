@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "application_build_helper.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/string/str.h"
@@ -19,7 +19,7 @@ namespace application_build_helper
 
       auto pathBaseDeployIgnore = m_pathGroup / ".deployignore";
 
-      auto straIgnoreRoot = acmefile()->lines(pathBaseDeployIgnore);
+      auto straIgnoreRoot = file_system()->lines(pathBaseDeployIgnore);
 
       if (straIgnoreRoot.case_insensitive_contains(m_strRoot))
       {
@@ -30,7 +30,7 @@ namespace application_build_helper
 
       auto pathRootDeployIgnore = m_pathGroup / m_strRoot / ".deployignore";
 
-      auto straIgnoreItem = acmefile()->lines(pathRootDeployIgnore);
+      auto straIgnoreItem = file_system()->lines(pathRootDeployIgnore);
 
       if (straIgnoreItem.case_insensitive_contains(m_strItem))
       {
@@ -122,7 +122,7 @@ namespace application_build_helper
 
             ::file::path pathResourceTemplate = m_pathOperatingSystem / ("operating_system-" PLATFORM_STRING) / "deployment/resource1.h";
 
-            acmefile()->copy(pathResource, pathResourceTemplate, false);
+            file_system()->copy(pathResource, pathResourceTemplate, false);
 
          }
 
@@ -133,7 +133,7 @@ namespace application_build_helper
          if (!file_exists(pathApplicationBuildHelperInput))
          {
 
-            acmefile()->ensure_exists(pathApplicationBuildHelperInput);
+            file_system()->ensure_exists(pathApplicationBuildHelperInput);
 
          }
 
@@ -142,7 +142,7 @@ namespace application_build_helper
          if (!file_exists(pathApplicationBuildHelperOutput))
          {
 
-            acmefile()->ensure_exists(pathApplicationBuildHelperOutput);
+            file_system()->ensure_exists(pathApplicationBuildHelperOutput);
 
          }
 
@@ -159,7 +159,7 @@ namespace application_build_helper
 
          ::file::path pathDeploymentRcTemplate = m_pathOperatingSystem / ("operating_system-" PLATFORM_STRING) / "deployment/deployment_rc.txt";
 
-         string strDeploymentRcTemplate = acmefile()->as_string(pathDeploymentRcTemplate);
+         string strDeploymentRcTemplate = file_system()->as_string(pathDeploymentRcTemplate);
 
          string strDeploymentRc = ::str::find_replace("%ROOTNAME%", m_strRoot, strDeploymentRcTemplate);
 
@@ -167,7 +167,7 @@ namespace application_build_helper
 
          ::file::path pathDeploymentRc = m_pathFolder / "deployment.rc";
 
-         acmefile()->put_contents(pathDeploymentRc, strDeploymentRc);
+         file_system()->put_contents(pathDeploymentRc, strDeploymentRc);
 
       }
 

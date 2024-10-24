@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/system.h"
 #include <dlfcn.h>
 
@@ -61,7 +61,7 @@ namespace platform
 
       ::file::path path;
 
-      path = acmedirectory()->module() / strPath;
+      path = directory_system()->module() / strPath;
 
       void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

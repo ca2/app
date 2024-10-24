@@ -84,10 +84,10 @@ namespace apex
       //inline ::os_context * os_context() { return m_poscontext; };
 
 
-      //::dir_context * dir() override;
-      //::dir_system * dirsystem() override;
+      //::directory_context * dir() override;
+      //::directory_system * directory_system() override;
       //::file_context * file() override;
-      //::file_system * filesystem() override;
+      //::file_system * file_system() override;
 
 
       ::handle::ini ini_from_path(::file::path& path);

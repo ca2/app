@@ -105,7 +105,7 @@ namespace dir
 //
 //   #if defined(ANDROID)
 //
-//      return acmepath()->app_module().folder();
+//      return path_system()->app_module().folder();
 //
 //   #elif defined(UNIVERSAL_WINDOWS)
 //
@@ -731,7 +731,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       }
 
-      if (acmefile()->exists(path))
+      if (file_system()->exists(path))
       {
 
          if (!file_delete(path))
@@ -1434,7 +1434,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
          strCandidate = ::file::path(stra[i]) / pszTopic;
 
-         if(acmefile()->exists(strCandidate))
+         if(file_system()->exists(strCandidate))
          {
             return strCandidate;
          }

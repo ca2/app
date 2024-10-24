@@ -8,11 +8,11 @@
 #include "acme/constant/id.h"
 #include "acme/platform/application.h"
 #include "acme/filesystem/file/item.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/micro/user.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
@@ -103,12 +103,12 @@ namespace filemanager
       else
       {
 
-         bool bSave = !dir()->is(strPath);
+         bool bSave = !directory()->is(strPath);
 
          if (bSave)
          {
 
-            if (filemanager_data()->fs_data()->acmefile()->exists(strPath))
+            if (filemanager_data()->fs_data()->file_system()->exists(strPath))
             {
 
                //auto pfuture = __process([this, strPath](const ::payload & payload)

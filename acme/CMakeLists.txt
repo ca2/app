@@ -195,16 +195,10 @@ list(APPEND library_source
    filesystem/filesystem/_2.h
    filesystem/filesystem/_impl.h
    filesystem/filesystem/_impl2.h
-   filesystem/filesystem/acme_directory.cpp
-   filesystem/filesystem/acme_directory.h
-   filesystem/filesystem/acme_file.cpp
-   filesystem/filesystem/acme_file.h
-   filesystem/filesystem/acme_path.cpp
-   filesystem/filesystem/acme_path.h
-   filesystem/filesystem/dir_context.cpp
-   filesystem/filesystem/dir_context.h
-   filesystem/filesystem/dir_system.cpp
-   filesystem/filesystem/dir_system.h
+   filesystem/filesystem/directory_context.cpp
+   filesystem/filesystem/directory_context.h
+   filesystem/filesystem/directory_system.cpp
+   filesystem/filesystem/directory_system.h
    filesystem/filesystem/dir_system_heap.h
    filesystem/filesystem/file_context.cpp
    filesystem/filesystem/file_context.h
@@ -227,6 +221,8 @@ list(APPEND library_source
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
+   filesystem/filesystem/path_system.cpp
+   filesystem/filesystem/path_system.h
    filesystem/watcher/action.cpp
    filesystem/watcher/action.h
    filesystem/watcher/listener.h

@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 16:38
 #include "framework.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/icon.h"
 
@@ -63,7 +63,7 @@ namespace windowing
    void icon::load_matter(const ::string & strMatter)
    {
 
-      string strPath = dir()->matter(strMatter);
+      string strPath = directory()->matter(strMatter);
 
       load_file(strPath);
 

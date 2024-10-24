@@ -5,19 +5,19 @@
 class string_to_string_lookup;
 
 
-class CLASS_DECL_ACME acme_path :
+class CLASS_DECL_ACME path_system :
    virtual public particle
 {
 public:
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_path *    m_pplatformpath;
-   ::acme_directory *                                          m_pacmedirectory;
-   ::acme_file *                                               m_pacmefile;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::path_system *    m_pplatformpath;
+   ::directory_system *                                          m_pacmedirectory;
+   ::file_system *                                               m_pacmefile;
 
 
-   acme_path();
-   ~acme_path() override;
+   path_system();
+   ~path_system() override;
    
    
    virtual ::string icloud_container_identifier(const char * psz_iCloudContainerIdentifier);

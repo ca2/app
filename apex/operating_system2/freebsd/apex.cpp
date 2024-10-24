@@ -75,7 +75,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 // int get_proc_stat_core_count()
 // {
 
-//    string str = acmefile()->as_string("/proc/stat");
+//    string str = file_system()->as_string("/proc/stat");
 
 //    string_array stra;
 

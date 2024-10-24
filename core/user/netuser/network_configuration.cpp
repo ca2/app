@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/topic.h"
 #include "aqua/xml/document.h"
@@ -89,14 +89,14 @@ namespace usernet
 
       //auto pcontext = get_context();
 
-      if(!m_pdocument->on_open_document(dir()->matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdocument->on_open_document(directory()->matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
 
       xml::document doc;
 
-      doc.load(file()->as_string(dir()->appdata() / "proxy.xml"));
+      doc.load(file()->as_string(directory()->appdata() / "proxy.xml"));
          
       string strProxy(doc.root()->attribute("server").as_string());
 
@@ -135,7 +135,7 @@ namespace usernet
             if(strServer.length() == 0)
             {
 
-               file()->erase(dir()->appdata()/ "proxy.xml");
+               file()->erase(directory()->appdata()/ "proxy.xml");
 
             }
             else
@@ -155,7 +155,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               file()->put_text(dir()->appdata()/"proxy.xml", doc.get_xml());
+               file()->put_text(directory()->appdata()/"proxy.xml", doc.get_xml());
 
             }
 

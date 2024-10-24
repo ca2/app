@@ -93,11 +93,11 @@ virtual ::particle * matter_mutex();
 
       virtual ::xml::xml * xml();
 
-      virtual ::acme_file * acmefile() const;
+      virtual ::file_system * file_system() const;
 
-      virtual ::acme_directory * acmedirectory() const;
+      virtual ::directory_system * directory_system() const;
 
-      virtual ::acme_path * acmepath() const;
+      virtual ::path_system * path_system() const;
 
       virtual ::platform::system_factory * system_factory();
 

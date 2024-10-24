@@ -51,9 +51,9 @@ void __node_aura_factory(::factory::factory * pfactory)
 {
 
 //   add_factory_item < ::ios::file              , ::file::file             >();
-//   add_factory_item < ::ios::dir_context       , ::dir_context            >();
+//   add_factory_item < ::ios::directory_context       , ::directory_context            >();
 //   add_factory_item < ::ios::file_context      , ::file_context           >();
-//   add_factory_item < ::ios::dir_system        , ::dir_system             >();
+//   add_factory_item < ::ios::directory_system        , ::directory_system             >();
 //   add_factory_item < ::ios::file_system       , ::file_system            >();
 //   add_factory_item < ::ios::os_context        , ::os_context             >();
 //   add_factory_item < ::ios::shell             , ::user::shell            >();

@@ -1,8 +1,8 @@
 // Create on 2021-03-21 00:11 <3ThomasBS_
 #include "framework.h"
-#include "acme_path.h"
-#include "acme_directory.h"
-#include "acme_file.h"
+#include "path_system.h"
+#include "directory_system.h"
+#include "file_system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/filesystem/filesystem/link.h"
@@ -16,19 +16,19 @@
 #include <unistd.h>
 #endif
 
-acme_path::acme_path()
+path_system::path_system()
 {
 
 }
 
 
-acme_path::~acme_path()
+path_system::~path_system()
 {
 
 }
 
 
-::string acme_path::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
+::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
@@ -45,7 +45,7 @@ acme_path::~acme_path()
 }
 
 
-//::string acme_path::icloud_container_id_from_app_id(const char * pszAppId)
+//::string path_system::icloud_container_id_from_app_id(const char * pszAppId)
 //{
 //   
 //   ::string strAppId(pszAppId);
@@ -69,27 +69,27 @@ acme_path::~acme_path()
 //}
 
 
-::file::path acme_path::defer_get_icloud_container_path(const ::file::path & path, const char * pszAppId)
+::file::path path_system::defer_get_icloud_container_path(const ::file::path & path, const char * pszAppId)
 {
    
-   if(acmedirectory()->is_icloud_container(path, pszAppId))
+   if(directory_system()->is_icloud_container(path, pszAppId))
    {
       
       return path;
       
    }
    
-   return acmedirectory()->icloud_container2(pszAppId) / path;
+   return directory_system()->icloud_container2(pszAppId) / path;
    
 }
 
 
-void acme_path::defer_get_icloud_container_path_name(::string & strName, ::string & str_iCloudContainerIdentifier, const ::file::path & path)
+void path_system::defer_get_icloud_container_path_name(::string & strName, ::string & str_iCloudContainerIdentifier, const ::file::path & path)
 {
    
    str_iCloudContainerIdentifier = icloud_container_identifier(str_iCloudContainerIdentifier);
    
-   if(!acmedirectory()->is_icloud_container(path, str_iCloudContainerIdentifier))
+   if(!directory_system()->is_icloud_container(path, str_iCloudContainerIdentifier))
    {
       
       strName = path;
@@ -100,7 +100,7 @@ void acme_path::defer_get_icloud_container_path_name(::string & strName, ::strin
    
    strName = path;
    
-   strName.begins_eat(acmedirectory()->icloud_container2(str_iCloudContainerIdentifier));
+   strName.begins_eat(directory_system()->icloud_container2(str_iCloudContainerIdentifier));
 
    strName.trim_left("/");
    
@@ -108,7 +108,7 @@ void acme_path::defer_get_icloud_container_path_name(::string & strName, ::strin
 
 
 
-string acme_path::from(string str)
+string path_system::from(string str)
 {
 
    string strFsSafe;
@@ -136,7 +136,7 @@ string acme_path::from(string str)
 }
 
 
-//bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & path2)
+//bool path_system::final_is_same(const ::file::path & path1, const ::file::path & path2)
 //{
 //
 //   throw ::interface_only();
@@ -147,7 +147,7 @@ string acme_path::from(string str)
 //
 
 
-void acme_path::safe_real_path(::file::path & path)
+void path_system::safe_real_path(::file::path & path)
 {
 
    try
@@ -165,7 +165,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-::file::path acme_path::get_uniform_resource_locator(const ::file::path& path)
+::file::path path_system::get_uniform_resource_locator(const ::file::path& path)
 {
 
    auto str = http()->text(path.as_url());
@@ -175,7 +175,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-::file::path acme_path::safe_get_real_path(const ::file::path & path)
+::file::path path_system::safe_get_real_path(const ::file::path & path)
 {
 
    ::file::path pathFull = _safe_real_path(path);
@@ -192,7 +192,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-::file::path acme_path::_safe_real_path(const ::file::path & path)
+::file::path path_system::_safe_real_path(const ::file::path & path)
 {
 
    try
@@ -211,7 +211,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-::file::path acme_path::real_path(const ::file::path & path)
+::file::path path_system::real_path(const ::file::path & path)
 {
 
    ::file::path pathFull = _real_path(path);
@@ -228,7 +228,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-::file::path acme_path::_real_path(const ::file::path & path)
+::file::path path_system::_real_path(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -238,7 +238,7 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
-bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix)
+bool path_system::case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix)
 {
 
    ::file::path path(scopedstrPrefix);
@@ -293,11 +293,11 @@ bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scop
 
       string strFull;
 
-      strFull = acmepath()->real_path(str);
+      strFull = path_system()->real_path(str);
 
       string strFullPath;
 
-      strFullPath = acmepath()->real_path(strPath);
+      strFullPath = path_system()->real_path(strPath);
 
       if (strFull.case_insensitive_begins_eat(strFullPath))
       {
@@ -315,7 +315,7 @@ bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scop
 }
 
 
-bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path & path2)
+bool path_system::real_path_is_same(const ::file::path & path1, const ::file::path & path2)
 {
 
    ::file::path pathFull1 = real_path(path1);
@@ -327,7 +327,7 @@ bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path
 }
 
 
-::file::enum_type acme_path::get_type(const ::file::path & path)
+::file::enum_type path_system::get_type(const ::file::path & path)
 {
 
    return ::get_file_system_item_type(path);
@@ -335,7 +335,7 @@ bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path
 }
 
 
-::file::enum_type acme_path::safe_get_type(const ::file::path & path)
+::file::enum_type path_system::safe_get_type(const ::file::path & path)
 {
 
    return ::safe_get_file_system_item_type(path);
@@ -343,7 +343,7 @@ bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path
 }
 
 
-void acme_path::create_symbolic_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrSource)
+void path_system::create_symbolic_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrSource)
 {
    
    throw ::interface_only();
@@ -353,7 +353,7 @@ void acme_path::create_symbolic_link(const ::scoped_string & scopedstrLink, cons
 }
 
 
-bool acme_path::is_symbolic_link(const ::scoped_string & scopedstrLink)
+bool path_system::is_symbolic_link(const ::scoped_string & scopedstrLink)
 {
    
    throw ::interface_only();
@@ -365,7 +365,7 @@ bool acme_path::is_symbolic_link(const ::scoped_string & scopedstrLink)
 }
 
 
-::file::path acme_path::symbolic_link_destination(const ::scoped_string & scopedstrLink)
+::file::path path_system::symbolic_link_destination(const ::scoped_string & scopedstrLink)
 {
    
    throw ::interface_only();
@@ -375,7 +375,7 @@ bool acme_path::is_symbolic_link(const ::scoped_string & scopedstrLink)
 }
 
 
-bool acme_path::has_custom_icon(const ::file::path & path)
+bool path_system::has_custom_icon(const ::file::path & path)
 {
    
    throw ::interface_only();
@@ -386,7 +386,7 @@ bool acme_path::has_custom_icon(const ::file::path & path)
 
 
 
-::file::path acme_path::defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolderParam)
+::file::path path_system::defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolderParam)
 {
 
    auto pathFolder = pathFolderParam;
@@ -421,7 +421,7 @@ bool acme_path::has_custom_icon(const ::file::path & path)
 }
 
 
-bool acme_path::defer_process_protocol_path(::file::path & path)
+bool path_system::defer_process_protocol_path(::file::path & path)
 {
    
    return node()->defer_process_protocol_path(path);
@@ -430,7 +430,7 @@ bool acme_path::defer_process_protocol_path(::file::path & path)
 
 
 
-::file::path acme_path::get_absolute_path(const ::scoped_string& scopedstr)
+::file::path path_system::get_absolute_path(const ::scoped_string& scopedstr)
 {
 
    throw interface_only();
@@ -440,7 +440,7 @@ bool acme_path::defer_process_protocol_path(::file::path & path)
 }
 
 
-bool acme_path::is_absolute_path(const ::scoped_string & scopedstr)
+bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 {
 
    ::string str(scopedstr);
@@ -483,13 +483,13 @@ bool acme_path::is_absolute_path(const ::scoped_string & scopedstr)
 }
 
 
-::pointer < ::file::link > acme_path::resolve_link(const ::file::path &path, ::file::e_link elink)
+::pointer < ::file::link > path_system::resolve_link(const ::file::path &path, ::file::e_link elink)
 {
    
    if(path.case_insensitive_ends(".desktop"))
    {
 
-      auto stra = acmefile()->lines(path);
+      auto stra = file_system()->lines(path);
 
       stra.case_insensitive_filter_begins("exec=");
 
@@ -668,7 +668,7 @@ bool acme_path::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-void acme_path::rename(const ::file::path& pathNewName, const ::file::path& pathOldName)
+void path_system::rename(const ::file::path& pathNewName, const ::file::path& pathOldName)
 {
 
    throw interface_only();
@@ -676,7 +676,7 @@ void acme_path::rename(const ::file::path& pathNewName, const ::file::path& path
 }
 
 
-::file::path acme_path::get_sequence_path(const ::file::path& path, ::collection::index iSequence, int iZeroPaddingWidth)
+::file::path path_system::get_sequence_path(const ::file::path& path, ::collection::index iSequence, int iZeroPaddingWidth)
 {
 
    if (iSequence <= 0)
@@ -738,7 +738,7 @@ void acme_path::rename(const ::file::path& pathNewName, const ::file::path& path
 }
 
 
-void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth)
+void path_system::defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth)
 {
 
    auto etype = get_type(path);
@@ -773,7 +773,7 @@ void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::pa
 }
 
 
-::file::e_type acme_path::executable_type(const ::file::path & path)
+::file::e_type path_system::executable_type(const ::file::path & path)
 {
 
    return ::file::e_type_unknown;
@@ -781,7 +781,7 @@ void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::pa
 }
 
 
-void acme_path::determine_executable(::file::path & path)
+void path_system::determine_executable(::file::path & path)
 {
 
    path.m_etype = path.m_etype & (::file::e_type_executable | ::file::e_type_non_executable);
@@ -792,7 +792,7 @@ void acme_path::determine_executable(::file::path & path)
 
 // If the given path looks like it's relative to the working directory, then prepend that working
 // directory. This operates on unescaped paths only (so a ~ means a literal ~).
-::file::path acme_path::defer_apply_working_directory(const ::file::path &path, const ::file::path &working_directory)
+::file::path path_system::defer_apply_working_directory(const ::file::path &path, const ::file::path &working_directory)
 {
 
    if (path.is_empty() || working_directory.is_empty())
@@ -833,7 +833,7 @@ void acme_path::determine_executable(::file::path & path)
 }
 
 
-::file::path acme_path::_path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment)
+::file::path path_system::_path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment)
 {
 
 //   ::file::path pathResult;
@@ -901,7 +901,7 @@ void acme_path::determine_executable(::file::path & path)
          // Keep the first *interesting* error and path around.
          // ENOENT isn't interesting because not having a file is the normal case.
          // Ignore if the parent directory is already inaccessible.
-         if (acmedirectory()->is_accessible(pathProposed.folder()))
+         if (directory_system()->is_accessible(pathProposed.folder()))
          {
 
             pathBest = pathProposed;
@@ -917,7 +917,7 @@ void acme_path::determine_executable(::file::path & path)
 }
 
 
-::string acme_path::get_default_path()
+::string path_system::get_default_path()
 {
 
    return {};
@@ -925,7 +925,7 @@ void acme_path::determine_executable(::file::path & path)
 }
 
 
-bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath)
+bool path_system::get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath)
 {
 
    if(rangePath.is_empty())
@@ -963,7 +963,7 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
 }
 
 
-::file::path acme_path::path_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
+::file::path path_system::path_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
 {
 
    auto path = path_try_get_path(scopedstrCommand, plookupEnvironment);
@@ -980,7 +980,7 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
 }
 
 
-::file::path acme_path::path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
+::file::path path_system::path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
 {
 
    ::scoped_string scopedstrPath;
@@ -999,7 +999,7 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
 }
 
 
-::file::path acme_path::windows_posix_path(const ::file::path & path)
+::file::path path_system::windows_posix_path(const ::file::path & path)
 {
 
    if (path.size() > 3)
@@ -1031,7 +1031,7 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
 }
 
 
-void acme_path::symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource)
+void path_system::symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
 
    throw ::interface_only();

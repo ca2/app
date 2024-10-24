@@ -15,7 +15,7 @@
 //
 //
 //         add_factory_item < ::android::file_system      , ::file_system              >(),1);
-//         add_factory_item < ::android::dir_system       , ::dir_system         >(),1);
+//         add_factory_item < ::android::directory_system       , ::directory_system         >(),1);
 //         add_factory_item < stdio_file            >(::type < ::file::text_file >();
 //         add_factory_item < file                  >(::type < ::file::binary_file >();
 //         add_factory_item < file, ::file::file >();
@@ -46,9 +46,9 @@ void __node_apex_factory(::factory::factory * pfactory)
 
 
    //add_factory_item < ::android::file_system         , ::file_system               > ();
-   //add_factory_item < ::android::dir_system          , ::dir_system                > ();
+   //add_factory_item < ::android::directory_system          , ::directory_system                > ();
    //add_factory_item < ::android::file_context        , ::file_context              > ();
-   //add_factory_item < ::android::dir_context         , ::dir_context               > ();
+   //add_factory_item < ::android::directory_context         , ::directory_context               > ();
    ////add_factory_item < ::android::file                , ::file::file                > ();
    //add_factory_item < ::android::os_context          , ::os_context                > ();
    ////add_factory_item < ::posix::pipe                  , ::operating_system::pipe             > ();

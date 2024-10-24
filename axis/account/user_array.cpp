@@ -2,7 +2,7 @@
 #include "user_array.h"
 #include "user.h"
 #include "department.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/constant/timer.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -120,7 +120,7 @@ namespace account
       try
       {
 
-         file()->erase(acmedirectory()->appdata()/"license_auth/00001.data");
+         file()->erase(directory_system()->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -131,7 +131,7 @@ namespace account
       try
       {
 
-         file()->erase(acmedirectory()->appdata()/"license_auth/00002.data");
+         file()->erase(directory_system()->appdata()/"license_auth/00002.data");
 
       }
       catch(...)

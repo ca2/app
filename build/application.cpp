@@ -8,7 +8,7 @@
 #include "pane_impact.h"
 #include "acme/handler/request.h"
 #include "apex/database/stream.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/session.h"
 #include "base/user/user/single_document_template.h"
@@ -178,7 +178,7 @@ namespace app_build
             if (!file()->exists(path))
             {
 
-               path = dir()->document2() / "default.hellomultiverse";
+               path = directory()->document2() / "default.hellomultiverse";
 
             }
 

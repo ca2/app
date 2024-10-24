@@ -177,11 +177,11 @@ public:
    void delete_this() override;
 
 
-   ::acme_file * acmefile() const;
-   ::acme_path * acmepath() const;
-   ::acme_directory * acmedirectory() const;
-   ::apex::context* apexcontext() const;
-   ::aura::context* auracontext() const;
+   //::file_system * file_system() const;
+   //::path_system * path_system() const;
+   //::directory_system * directory_system() const;
+   //::apex::context* apexcontext() const;
+   //::aura::context* auracontext() const;
    ::datetime::datetime * datetime() const;
    ::internet::internet * internet() const;
    ::url::url_context* url() const;
@@ -190,15 +190,15 @@ public:
    //::os_context * os_context() const;
 
 
-   ::apex::application * apexapplication()  const;
+   //::apex::application * apexapplication()  const;
 
 
-   ::dir_context * dir() const;
-   ::dir_system * dirsystem() const;
+   ::directory_context * directory() const;
+   ::directory_system * directory_system() const;
    ::file_context * file() const;
-   ::file_system * filesystem() const;
+   ::file_system * file_system() const;
 
-   virtual ::file::watcher * file_watcher();
+   virtual ::file::watcher * file_watcher() const;
 
 
    ::platform::http * http() const;

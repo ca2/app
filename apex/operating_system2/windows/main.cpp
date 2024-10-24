@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/platform/node.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -120,9 +120,9 @@ CLASS_DECL_APEX i32 ca2_main();
 // // //          strLinkTitle.replace_with("_", "\\");
 // // //          strLinkTitle.replace_with("_", "-");
 
-// // //          pathLnk = acmedirectory()->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+// // //          pathLnk = directory_system()->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-// // //          acmedirectory()->create(pathLnk.folder());
+// // //          directory_system()->create(pathLnk.folder());
 
 // // //          system()->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 

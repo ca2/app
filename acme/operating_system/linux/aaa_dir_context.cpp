@@ -32,7 +32,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = acmefile()->as_string(path);
+   string strDirs = file_system()->as_string(path);
 
    string_array stra;
 
@@ -66,21 +66,21 @@ namespace linux
 {
 
 
-   dir_context::dir_context()
+   directory_context::directory_context()
    {
 
 
    }
 
 
-   dir_context::~dir_context()
+   directory_context::~directory_context()
    {
 
 
    }
 
 
-   void dir_context::initialize(::particle * pparticle)
+   void directory_context::initialize(::particle * pparticle)
    {
 
       auto estatus = ::matter::initialize(pparticle);
@@ -101,10 +101,10 @@ namespace linux
    }
 
 
-   void dir_context::init_system()
+   void directory_context::init_system()
    {
 
-      if(!::dir_context::init_system())
+      if(!::directory_context::init_system())
       {
 
          return false;
@@ -189,10 +189,10 @@ namespace linux
    }
 
 
-   void dir_context::init_context()
+   void directory_context::init_context()
    {
 
-      auto estatus = ::dir_context::init_context();
+      auto estatus = ::directory_context::init_context();
 
       if(!estatus)
       {
@@ -206,7 +206,7 @@ namespace linux
    }
 
 
-   ::file::listing & dir_context::root_ones(::file::listing & listing)
+   ::file::listing & directory_context::root_ones(::file::listing & listing)
    {
 
       listing.add("/");
@@ -218,10 +218,10 @@ namespace linux
    }
 
 
-   ::file::listing & dir_context::ls(::file::listing & listing)
+   ::file::listing & directory_context::ls(::file::listing & listing)
    {
 
-      if(::dir_context::ls(listing).succeeded())
+      if(::directory_context::ls(listing).succeeded())
       {
 
          return listing;
@@ -324,7 +324,7 @@ namespace linux
             else
             {
 
-               bIsDir = ::dir_context::is(strPath);
+               bIsDir = ::directory_context::is(strPath);
 
             }
 
@@ -360,7 +360,7 @@ namespace linux
    }
 
 
-   bool dir_context::is(const ::file::path & path)
+   bool directory_context::is(const ::file::path & path)
    {
 
       if(         auto psystem = system();
@@ -381,7 +381,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::name_is(const ::file::path & str)
+   bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
       strsize iLast = str.length() - 1;
@@ -425,14 +425,14 @@ pacmedirectory->is(path))
 
       wstrPath = utf8_to_unicode(str, iLast + 1);
 
-      bool bIsDir = ::dir_context::is(unicode_to_utf8(wstrPath));
+      bool bIsDir = ::directory_context::is(unicode_to_utf8(wstrPath));
 
       return bIsDir;
 
    }
 
 
-   ::file::path dir_context::time()
+   ::file::path directory_context::time()
    {
 
       return m_pdirsystem->m_pathTimeFolder;
@@ -440,7 +440,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::element_commonappdata(const ::string & strElement)
+   ::file::path directory_context::element_commonappdata(const ::string & strElement)
    {
 
       return ::file::path(strElement) / "commonappdata";
@@ -448,7 +448,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::stage()
+   ::file::path directory_context::stage()
    {
 
       return install() / "stage";
@@ -456,7 +456,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::stageapp()
+   ::file::path directory_context::stageapp()
    {
 
       return stage() / "basis";
@@ -464,7 +464,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::netseed()
+   ::file::path directory_context::netseed()
    {
 
       return m_pdirsystem->m_pathNetSeedFolder;
@@ -472,7 +472,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::time_square()
+   ::file::path directory_context::time_square()
    {
 
       return time() / "time";
@@ -480,7 +480,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::time_log(const string & pszId)
+   ::file::path directory_context::time_log(const string & pszId)
    {
 
       ::file::path strLogBaseDir;
@@ -492,7 +492,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::mk(const ::file::path & path)
+   bool directory_context::mk(const ::file::path & path)
    {
 
       if(is(pcsz))
@@ -603,7 +603,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::rm(const ::file::path & psz, bool bRecursive)
+   bool directory_context::rm(const ::file::path & psz, bool bRecursive)
    {
 
       if(bRecursive)
@@ -638,7 +638,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::trash_that_is_not_trash(const ::file::path & psz)
+   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
       if(psz[1] == ':')
@@ -669,15 +669,15 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::appdata()
+   ::file::path directory_context::appdata()
    {
 
-      return ::dir_context::appdata();
+      return ::directory_context::appdata();
 
    }
 
 
-   ::file::path dir_context::commonappdata()
+   ::file::path directory_context::commonappdata()
    {
 
       ::file::path path;
@@ -693,7 +693,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userquicklaunch(::particle * pparticle)
+   ::file::path directory_context::userquicklaunch(::particle * pparticle)
    {
 
       ::file::path path;
@@ -705,7 +705,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::userprograms(::particle * pparticle)
+   ::file::path directory_context::userprograms(::particle * pparticle)
    {
 
       ::file::path path;
@@ -717,7 +717,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::commonprograms()
+   ::file::path directory_context::commonprograms()
    {
 
       ::file::path path;
@@ -729,7 +729,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::is_inside_time(const ::file::path & pszPath)
+   bool directory_context::is_inside_time(const ::file::path & pszPath)
    {
 
       return is_inside(time(), pszPath);
@@ -737,7 +737,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
+   bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
       return case_insensitive_string_begins(pszDir, pszPath);
@@ -745,7 +745,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::has_subdir(const ::file::path & pszDir)
+   bool directory_context::has_subdir(const ::file::path & pszDir)
    {
 
       ::file::listing listing(get_context());
@@ -757,7 +757,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::music()
+   ::file::path directory_context::music()
    {
 
       ::file::path path = xdg_get_dir("XDG_MUSIC_DIR");
@@ -778,7 +778,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::video()
+   ::file::path directory_context::video()
    {
 
       ::file::path path = xdg_get_dir("XDG_VIDEOS_DIR");
@@ -799,7 +799,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::image::image()
+   ::file::path directory_context::image::image()
    {
 
       ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");
@@ -820,7 +820,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::document()
+   ::file::path directory_context::document()
    {
 
       ::file::path path = xdg_get_dir("XDG_DOCUMENTS_DIR");
@@ -841,7 +841,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::download()
+   ::file::path directory_context::download()
    {
 
       ::file::path path = xdg_get_dir("XDG_DOWNLOAD_DIR");

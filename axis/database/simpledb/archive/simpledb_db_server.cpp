@@ -125,23 +125,23 @@ pacmedirectory->system() / "database.sqlite";
    if (papp->is_system())
    {
 
-      str = dir()->appdata() / "system.sqlite";
+      str = directory()->appdata() / "system.sqlite";
 
    }
    else if (papp->is_session())
    {
 
-      str = dir()->appdata() / "session.sqlite";
+      str = directory()->appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = dir()->appdata() / "app.sqlite";
+      str = directory()->appdata() / "app.sqlite";
 
    }
 
-   if(!dir()->create(str.folder()))
+   if(!directory()->create(str.folder()))
    {
 
       return false;

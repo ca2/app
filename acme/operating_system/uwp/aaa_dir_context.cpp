@@ -7,22 +7,22 @@ namespace universal_windows
 {
 
 
-   dir_context::dir_context()
+   directory_context::directory_context()
    {
 
    }
 
 
-   dir_context::~dir_context()
+   directory_context::~directory_context()
    {
 
    }
 
 
-   void dir_context::initialize(::particle * pparticle)
+   void directory_context::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_context::initialize(pparticle);
+      auto estatus = ::directory_context::initialize(pparticle);
 
       if (!estatus)
       {
@@ -40,10 +40,10 @@ namespace universal_windows
    }
 
 
-   void dir_context::init_system()
+   void directory_context::init_system()
    {
 
-      auto estatus = ::dir_context::init_system();
+      auto estatus = ::directory_context::init_system();
 
       if (!estatus)
       {
@@ -122,7 +122,7 @@ pacmedirectory->roaming() / "home";
    }
 
 
-   ::file::listing & dir_context::root_ones(::file::listing & listing)
+   ::file::listing & directory_context::root_ones(::file::listing & listing)
    {
 
       listing.add("image://");
@@ -145,7 +145,7 @@ pacmedirectory->roaming() / "home";
 
 
 
-   ::file::listing & dir_context::ls(::file::listing & listing)
+   ::file::listing & directory_context::ls(::file::listing & listing)
    {
 
       if(listing.m_bRecursive)
@@ -163,7 +163,7 @@ pacmedirectory->roaming() / "home";
 
             scoped_restore(listing.m_eextract);
 
-            if(::dir_context::ls(listing))
+            if(::directory_context::ls(listing))
             {
 
                listing = error_failed;
@@ -179,12 +179,12 @@ pacmedirectory->roaming() / "home";
             for(i32 i = 0; i < dira.get_count(); i++)
             {
 
-               ::file::path dir_context = dira[i];
+               ::file::path directory_context = dira[i];
 
-               if(dir_context == listing.m_pathFinal)
+               if(directory_context == listing.m_pathFinal)
                   continue;
 
-               listing.m_pathFinal = dir_context;
+               listing.m_pathFinal = directory_context;
 
                if(listing.m_eextract != e_extract_all)
                {
@@ -237,7 +237,7 @@ pacmedirectory->roaming() / "home";
       else
       {
 
-         if(::dir_context::ls(listing).succeeded())
+         if(::directory_context::ls(listing).succeeded())
          {
 
             return listing;
@@ -278,7 +278,7 @@ pacmedirectory->roaming() / "home";
    }
 
 
-   bool dir_context::is_impl(const ::file::path & lpcszPath)
+   bool directory_context::is_impl(const ::file::path & lpcszPath)
    {
 
       if(lpcszPath.case_insensitive_order("image://") == 0)
@@ -321,7 +321,7 @@ pacmedirectory->roaming() / "home";
    }
 
 
-   bool dir_context::name_is(const ::file::path & str)
+   bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
       strsize iLast = str.length() - 1;
@@ -377,40 +377,40 @@ pacmedirectory->roaming() / "home";
          }
       }
 
-      bool bIsDir = ::dir_context::is(strPath);
+      bool bIsDir = ::directory_context::is(strPath);
 
       return bIsDir;
 
    }
 
 
-   ::file::path dir_context::warehouse()
+   ::file::path directory_context::warehouse()
    {
-      return dir()->ca2module();
+      return directory()->ca2module();
    }
 
-   ::file::path dir_context::time()
+   ::file::path directory_context::time()
    {
       return m_pdirsystem->m_strTimeFolder;
    }
 
-   ::file::path dir_context::stage()
+   ::file::path directory_context::stage()
    {
       return install() / "stage";
    }
 
-   ::file::path dir_context::stageapp()
+   ::file::path directory_context::stageapp()
    {
       return stage()/ "basis";
    }
 
-   ::file::path dir_context::netseed()
+   ::file::path directory_context::netseed()
    {
       return m_pdirsystem->m_strNetSeedFolder;
    }
 
    // stage in ccwarehouse spalib
-   ::file::path dir_context::install()
+   ::file::path directory_context::install()
    {
 
       return m_pdirsystem->m_strCa2;
@@ -418,7 +418,7 @@ pacmedirectory->roaming() / "home";
    }
 
 
-   ::file::path dir_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
+   ::file::path directory_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
    {
 
       __UNREFERENCED_PARAMETER(strPrefix);
@@ -427,19 +427,19 @@ pacmedirectory->roaming() / "home";
 
    }
 
-   ::file::path dir_context::time_square()
+   ::file::path directory_context::time_square()
    {
       return time() / "time";
    }
 
 
-   ::file::path dir_context::time_log()
+   ::file::path directory_context::time_log()
    {
       return appdata() / "log";
    }
 
 
-   bool dir_context::mk(const ::file::path & path)
+   bool directory_context::mk(const ::file::path & path)
    {
 
       if(is(pcsz))
@@ -534,7 +534,7 @@ pacmedirectory->roaming() / "home";
 
                string strError = get_last_error_message(dwError);
 
-               informationf("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
+               informationf("directory_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 
                //m_isdirmap.set(stra[i], false, 0);
 
@@ -566,7 +566,7 @@ try1:;
    }
 
 
-   bool dir_context::rm(const ::file::path & psz,bool bRecursive)
+   bool directory_context::rm(const ::file::path & psz,bool bRecursive)
    {
 
       if(bRecursive)
@@ -604,7 +604,7 @@ try1:;
 
 
 
-   ::file::path dir_context::trash_that_is_not_trash(const ::file::path & psz)
+   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
       if(psz == nullptr)
@@ -638,7 +638,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::appdata()
+   ::file::path directory_context::appdata()
    {
 
       return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin());
@@ -646,7 +646,7 @@ try1:;
    }
 
 
-   //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
+   //::file::path directory_context::usersystemappdata(const ::string & strPrefix)
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -656,7 +656,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::userdata()
+   //::file::path directory_context::userdata()
    //{
 
    //   return userfolder(pparticle) / "data";
@@ -664,7 +664,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::userfolder()
+   //::file::path directory_context::userfolder()
    //{
 
    //   string str = appdata();
@@ -681,7 +681,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::default_os_user_path_prefix()
+   //::file::path directory_context::default_os_user_path_prefix()
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -691,7 +691,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::default_userappdata(const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_context::default_userappdata(const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
@@ -699,7 +699,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_context::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";
@@ -707,7 +707,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::default_userfolder(const ::string & strPrefix,const ::string & strLogin)
+   //::file::path directory_context::default_userfolder(const ::string & strPrefix,const ::string & strLogin)
    //{
 
    //   return userfolder(pparticle) / strPrefix / strLogin;
@@ -715,7 +715,7 @@ try1:;
    //}
 
 
-   ::file::path dir_context::userquicklaunch()
+   ::file::path directory_context::userquicklaunch()
    {
 
       throw ::exception(todo);
@@ -723,7 +723,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::userprograms()
+   ::file::path directory_context::userprograms()
    {
 
       throw ::exception(todo);
@@ -731,7 +731,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::commonprograms()
+   ::file::path directory_context::commonprograms()
    {
 
       throw ::exception(todo);
@@ -739,7 +739,7 @@ try1:;
    }
 
 
-   bool dir_context::is_inside_time(const ::file::path & pszPath)
+   bool directory_context::is_inside_time(const ::file::path & pszPath)
    {
 
       return is_inside(time(),pszPath);
@@ -747,7 +747,7 @@ try1:;
    }
 
 
-   bool dir_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
+   bool directory_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
    {
 
       return case_insensitive_string_begins(pszDir,strPath);
@@ -755,34 +755,34 @@ try1:;
    }
 
 
-   bool dir_context::has_subdir(const ::file::path & pszDir)
+   bool directory_context::has_subdir(const ::file::path & pszDir)
    {
 
-      return ::dir_context::has_subdir(pszDir);
+      return ::directory_context::has_subdir(pszDir);
 
    }
 
 
-   ::file::path dir_context::commonappdata()
+   ::file::path directory_context::commonappdata()
    {
 
       return ::file::path(string(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin()))/ "commonappdata";
 
    }
 
-   //bool dir_context::update_module_path()
+   //bool directory_context::update_module_path()
    //{
 
    //   m_pathModule = ::path::module();
 
-   //   m_pathCa2Module = ::dir_context::ca2_module();
+   //   m_pathCa2Module = ::directory_context::ca2_module();
 
    //   return true;
 
    //}
 
 
-   ::file::path dir_context::document()
+   ::file::path directory_context::document()
    {
 
       return "document://";
@@ -790,7 +790,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::music()
+   ::file::path directory_context::music()
    {
 
       return "music://";
@@ -798,7 +798,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::video()
+   ::file::path directory_context::video()
    {
 
       return "video://";
@@ -806,7 +806,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::image::image()
+   ::file::path directory_context::image::image()
    {
 
       return "image://";

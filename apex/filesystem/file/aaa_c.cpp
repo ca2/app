@@ -14,10 +14,10 @@
 */
 
 
-bool acmefile()->put_contents(const ::file::path & path, const memory_base & memory)
+bool file_system()->put_contents(const ::file::path & path, const memory_base & memory)
 {
 
-   return acmefile()->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
+   return file_system()->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
 
 }
 
@@ -136,7 +136,7 @@ int_bool is_absolute_path(const ::scoped_string & scopedstr)
 CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 {
 
-   return ::str::is_true(::acmefile()->as_string(path));
+   return ::str::is_true(::file_system()->as_string(path));
 
 }
 
@@ -149,7 +149,7 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & stra)
 {
 
-   return acmefile()->put_contents(lpszName, stra.implode("\n"));
+   return file_system()->put_contents(lpszName, stra.implode("\n"));
 
 }
 
@@ -157,7 +157,7 @@ CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & 
 CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
 {
 
-   stra.add_lines(acmefile()->as_string(lpszName), bAddEmpty);
+   stra.add_lines(file_system()->as_string(lpszName), bAddEmpty);
 
    return true;
 

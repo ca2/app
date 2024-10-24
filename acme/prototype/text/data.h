@@ -23,15 +23,15 @@ namespace text
    protected:
 
 
-      bool                       m_bPendingUpdate;
-      translator *               m_ptranslator;
-      ::atom                       m_atom;
-      string                     m_str;
+      bool                          m_bPendingUpdate;
+      translator *                  m_ptranslator;
+      ::atom                        m_atom;
+      string                        m_str;
 
 
       friend class translator;
       friend class text;
-      friend class ::acme::context;
+      friend class ::platform::context;
       friend class ::allocator::accessor;
 
 

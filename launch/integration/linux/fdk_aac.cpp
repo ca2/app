@@ -3,8 +3,8 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
 
@@ -75,14 +75,14 @@ namespace console_integration
             
             lipo();
             
-            auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-linux/include";
+            auto pathOperatingSystemIncludeFolder = directory_system()->home() /"workspace/operating_system/operating_system-linux/include";
             ;
             
             auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             
             auto pathInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
             
-            acmedirectory()->create(pathInclude /"fdk-aac");
+            directory_system()->create(pathInclude /"fdk-aac");
             //auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
             
             m_papplication->bash("cp -Rf " + strPrefix + "/include/fdk-aac/* " + pathInclude + "/fdk-aac/");
@@ -148,7 +148,7 @@ namespace console_integration
 //         strScript +="\n";
 //         strScript +="\n";
 //         //
-//         acmefile()->put_contents(m_papplication->m_pathSource /"build", strScript);
+//         file_system()->put_contents(m_papplication->m_pathSource /"build", strScript);
 //         m_papplication->zsh("chmod +x build");
 //         m_papplication->zsh("./build");
 
@@ -235,7 +235,7 @@ namespace console_integration
 //         strScript += "make -j\n";
 //         strScript += "which ./libtool\n";
 //
-//         acmefile()->put_contents(m_papplication->m_pathSource /"call_make", strScript);
+//         file_system()->put_contents(m_papplication->m_pathSource /"call_make", strScript);
 //         m_papplication->bash("chmod +x call_make");
 //         m_papplication->bash("./call_make");
 

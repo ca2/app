@@ -7,7 +7,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/handler/request.h"
@@ -246,7 +246,7 @@ namespace filemanager
 //            try
 //            {
 //
-//               bPathIsDir = pathFolder.has_char() && dir()->is(pathFolder);
+//               bPathIsDir = pathFolder.has_char() && directory()->is(pathFolder);
 //
 //            }
 //            catch (...)

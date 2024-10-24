@@ -414,7 +414,7 @@ namespace universal_windows
             keyPlugin.SetValue("Path", ::apexacmesystem()->m_strCa2Module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", get_app()->acmefile()->as_string(dir()->ca2("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", get_app()->file_system()->as_string(directory()->ca2("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 

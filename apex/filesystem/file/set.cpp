@@ -146,13 +146,13 @@ namespace file
 
          }
 
-         m_papplication->enumerate(m_listing);
+         directory()->enumerate(m_listing);
 
          //}
          //else
          //{
 
-         //   dir()->ls_file_pattern(m_listing, pathFolder, m_straFilter);
+         //   directory()->ls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          //}
 

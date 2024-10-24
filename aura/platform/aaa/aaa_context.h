@@ -13,7 +13,7 @@ public:
 
    string_to_string                    m_mapCachedLatestBuild;
    ::pointer<::http::context>       m_phttp;
-   ::pointer<::dir_context>         m_pdir;
+   ::pointer<::directory_context>         m_pdir;
    ::pointer<::file_context>        m_pfile;
    ::pointer<::os_context>          m_pos;
 
@@ -40,7 +40,7 @@ public:
 
 
    inline ::http::context & http() { return *m_phttp; }
-   inline ::dir_context & dir() { return *m_pdir; }
+   inline ::directory_context & dir() { return *m_pdir; }
    inline ::file_context & file() { return *m_pfile; }
    inline ::os_context & os() { return *m_pos; };
 

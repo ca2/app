@@ -3,7 +3,7 @@
 #include "file.h"
 #include "file_function_definitions.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/dos_time.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -490,11 +490,11 @@ namespace folder_zip
 
             auto pathTarget = pathTargetFolder / path;
 
-            acmefile()->put_block(pathTarget, memory);
+            file_system()->put_block(pathTarget, memory);
 
             auto time = get_modification_time();
 
-            acmefile()->set_modification_time(pathTarget, time);
+            file_system()->set_modification_time(pathTarget, time);
 
          }
 
@@ -537,11 +537,11 @@ namespace folder_zip
 
                auto pathTarget = pathTargetFolder / path;
 
-               acmefile()->put_block(pathTarget, memory);
+               file_system()->put_block(pathTarget, memory);
 
                auto time = get_modification_time();
 
-               acmefile()->set_modification_time(pathTarget, time);
+               file_system()->set_modification_time(pathTarget, time);
 
                return pathTarget;
 

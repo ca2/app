@@ -17,10 +17,10 @@
 #include "acme/constant/id.h"
 //#include "acme/constant/idpool.h"
 #include "acme/exception/library_not_loaded.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/file/transfer.h"
@@ -950,14 +950,14 @@ namespace platform
 
       m_timeAfterApplicationFirstRequest = m_timeStart;
 
-      //if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+      //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
       //{
 
       //   sleep(10_s);
 
       //}
 
-      //if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+      //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
       //{
 
       //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -1063,9 +1063,9 @@ namespace platform
 
          string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
 
-         ::file::path pathCmdLineDumpFile = acmedirectory()->home() / "application" / strCmdLineDumpFileName;
+         ::file::path pathCmdLineDumpFile = directory_system()->home() / "application" / strCmdLineDumpFileName;
 
-         acmefile()->put_contents(pathCmdLineDumpFile, strCmd);
+         file_system()->put_contents(pathCmdLineDumpFile, strCmd);
 
       }
 
@@ -1129,9 +1129,9 @@ namespace platform
 
          string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
 
-         ::file::path pathEnvDumpFile = acmedirectory()->home() / "application" / strEnvDumpFileName;
+         ::file::path pathEnvDumpFile = directory_system()->home() / "application" / strEnvDumpFileName;
 
-         acmefile()->put_contents(pathEnvDumpFile, strEnv);
+         file_system()->put_contents(pathEnvDumpFile, strEnv);
 
       }
 
@@ -2708,7 +2708,7 @@ namespace platform
 
 #else
 
-         pathFolder = acmedirectory()->roaming();
+         pathFolder = directory_system()->roaming();
 
 #endif
 
@@ -2718,15 +2718,15 @@ namespace platform
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         acmefile()->put_contents(path, platform()->m_strCommandLine);
+         file_system()->put_contents(path, platform()->m_strCommandLine);
 
-         ::file::path pathExecutable = acmefile()->module();
+         ::file::path pathExecutable = file_system()->module();
 
          string strAppTitle = node()->executable_title_from_appid(strAppId);
 
          path = pathFolder / (strModifier + "_executable.txt");
 
-         acmefile()->put_contents(path, pathExecutable);
+         file_system()->put_contents(path, pathExecutable);
 
       }
 
@@ -3109,9 +3109,9 @@ namespace platform
 
        }*/
 
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
       /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
 
@@ -3141,9 +3141,9 @@ namespace platform
 
       //}
 
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
       /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
@@ -3173,9 +3173,9 @@ namespace platform
 
        }*/
 
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
       /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
 
@@ -3205,9 +3205,9 @@ namespace platform
 
       //}
 
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+      auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
       /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
@@ -3587,7 +3587,7 @@ namespace platform
    ::file::path system::local_get_matter_path()
    {
 
-      return acmedirectory()->ca2roaming() / "appmatter";
+      return directory_system()->ca2roaming() / "appmatter";
 
    }
 
@@ -3611,7 +3611,7 @@ namespace platform
    ::file::path system::local_get_matter_cache_path()
    {
 
-      return acmedirectory()->ca2roaming() / "cache/appmatter";
+      return directory_system()->ca2roaming() / "cache/appmatter";
 
    }
 

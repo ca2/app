@@ -3,11 +3,11 @@
 #include "context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/parallelization/counter.h"
 #include "acme/parallelization/fork.h"
@@ -249,7 +249,7 @@ namespace platform
       if (os_is_alias(path))
       {
 
-         return acmepath()->resolve_link(path);
+         return path_system()->resolve_link(path);
 
       }
 
@@ -474,7 +474,7 @@ namespace platform
    }
 
 
-   ::dir_context* context::dir()
+   ::directory_context* context::dir()
    {
       if (!m_pdir)
       {
@@ -500,18 +500,18 @@ namespace platform
 
 
 
-   ::dir_system * context::dirsystem()
+   ::directory_system * context::directory_system()
    {
 
-      return ::system()->dirsystem();
+      return ::system()->directory_system();
 
    }
 
 
-   ::file_system * context::filesystem()
+   ::file_system * context::file_system()
    {
 
-      return ::system()->filesystem();
+      return ::system()->file_system();
 
    }
 
@@ -524,10 +524,10 @@ namespace platform
    }
 
 
-   ::plathttp::context * context::http()
+   ::platform::http * context::http()
    {
 
-      return application()->m_phttpcontext;
+      return application()->http();
 
    }
 
@@ -580,9 +580,9 @@ namespace platform
 
 
 
-   ::acme_file* context::acmefile() { return ::system()->acmefile(); }
-   ::acme_path* context::acmepath() { return ::system()->acmepath(); }
-   ::acme_directory* context::acmedirectory() { return ::system()->acmedirectory(); }
+   ::file_system* context::file_system() { return ::system()->file_system(); }
+   ::path_system* context::path_system() { return ::system()->path_system(); }
+   ::directory_system* context::directory_system() { return ::system()->directory_system(); }
    ::platform::node* context::node() { return ::system()->node(); }
 
 
@@ -724,7 +724,7 @@ namespace platform
 
       }
 
-      path = acmepath()->defer_process_relative_path(path);
+      path = path_system()->defer_process_relative_path(path);
 
       if (defer_process_media_library_path(path))
       {
@@ -810,29 +810,10 @@ namespace platform
    void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
-      if (get_app())
+      if (application())
       {
 
-         get_app()->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
-
-      }
-      else if (session()->m_papexsession)
-      {
-
-         session()->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
-
-      }
-      else
-      {
-
-         auto psystem = system();
-
-         if (psystem)
-         {
-
-            psystem->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
-
-         }
+         application()->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
 
       }
 
@@ -842,35 +823,10 @@ namespace platform
    string context::get_locale_schema_dir()
    {
 
-      if (get_app())
+      if (application())
       {
 
-         return get_app()->get_locale_schema_dir();
-
-      }
-      else if (session())
-      {
-
-         return session()->get_locale_schema_dir();
-
-      }
-      else
-      {
-
-         auto psystem = system();
-
-         if (psystem)
-         {
-
-            return psystem->get_locale_schema_dir();
-
-         }
-         else
-         {
-
-            return "_std/_std";
-
-         }
+         return application()->get_locale_schema_dir();
 
       }
 
@@ -883,15 +839,15 @@ namespace platform
       if (case_insensitive_string_begins(path, "matter:/"))
       {
 
-         return dir()->matter(path);
+         return directory()->matter(path);
 
       }
 
       if (path.case_insensitive_begins("appmatter:/"))
       {
 
-         //path = dir()->appmatter(path, false);
-         return dir()->appmatter(path);
+         //path = directory()->appmatter(path, false);
+         return directory()->appmatter(path);
 
       }
 
@@ -900,7 +856,7 @@ namespace platform
 
          path += ".ico";
 
-         return dir()->matter(path);
+         return directory()->matter(path);
 
       }
 
@@ -918,7 +874,7 @@ namespace platform
       if (strMatter.case_insensitive_begins_eat("appmatter:/"))
       {
 
-         return dir()->install() / strMatter;
+         return directory()->install() / strMatter;
 
       }
 
@@ -932,7 +888,7 @@ namespace platform
 
       auto psystem = system();
 
-      auto pdirsystem = psystem->dirsystem();
+      auto pdirsystem = psystem->directory_system();
 
       ::file::path pathResource = pdirsystem->m_pathInstall;
 
@@ -955,11 +911,11 @@ namespace platform
 
          auto psystem = system();
 
-         ::file::path pathCache = psystem->dirsystem()->m_pathLocalAppMatterFolder / path;
+         ::file::path pathCache = psystem->directory_system()->m_pathLocalAppMatterFolder / path;
 
          if (path.flags().has(::file::e_flag_get_local_path)
             || (path.flags().is_clear(::file::e_flag_bypass_cache)
-               && ::is_existing_file_or_folder(acmepath()->get_type(pathCache))))
+               && ::is_existing_file_or_folder(path_system()->get_type(pathCache))))
          {
 
             return pathCache;
@@ -973,7 +929,7 @@ namespace platform
          if (path.flags().is_clear(::file::e_flag_bypass_cache))
          {
 
-            string strFirstLine = acmefile()->line(pathMeta, 0);
+            string strFirstLine = file_system()->line(pathMeta, 0);
 
             if (strFirstLine == "itdoesntexist" && path.flags().is_clear(::file::e_flag_required))
             {
@@ -987,7 +943,7 @@ namespace platform
                if (!retry([this, pathMeta]()
                   {
 
-                     return acmefile()->line(pathMeta, 0) != "processing";
+                     return file_system()->line(pathMeta, 0) != "processing";
 
                   }))
                {
@@ -1002,7 +958,7 @@ namespace platform
 
          ::file::path pathSide = side_get_matter_path(path);
 
-         auto etype = acmepath()->get_type(pathSide);
+         auto etype = path_system()->get_type(pathSide);
 
          if (::is_existing_file_or_folder(etype))
          {
@@ -1016,7 +972,7 @@ namespace platform
             else if (etype & ::file::e_type_folder2)
             {
 
-               dir()->create(pathCache);
+               directory()->create(pathCache);
 
             }
 
@@ -1026,7 +982,7 @@ namespace platform
 
          //auto psystem = system();
 
-         if (!psystem->dirsystem()->m_bMatterFromHttpCache)
+         if (!psystem->directory_system()->m_bMatterFromHttpCache)
          {
 
             return "";
@@ -1054,7 +1010,7 @@ namespace platform
 
                   ::particle * pparticle = this;
 
-                  return pparticle->context()->http_download(pfile, path, set);
+                  return pparticle->context()->http()->download(pfile, path, set);
 
                }))
             {
@@ -1075,7 +1031,7 @@ namespace platform
                   if (!retry([&]()
                      {
 
-                        return dir()->create(pathCache);
+                        return directory()->create(pathCache);
 
                      }))
                   {
@@ -1107,7 +1063,7 @@ namespace platform
                if (!retry([&]()
                   {
 
-                     return acmefile()->set_line(pathMeta, 0, strFsType);
+                     return file_system()->set_line(pathMeta, 0, strFsType);
 
                   }))
                {
@@ -1122,7 +1078,7 @@ namespace platform
                retry([&]()
                   {
 
-                     return acmefile()->set_line(pathMeta, 0, "itdoesntexist");
+                     return file_system()->set_line(pathMeta, 0, "itdoesntexist");
 
                   });
                return "";
@@ -1131,7 +1087,7 @@ namespace platform
 
 
          }
-         //         else if (dir()->is(path, this))
+         //         else if (directory()->is(path, this))
          //         {
          //
          //            if (!retry([&]()
@@ -1364,7 +1320,7 @@ namespace platform
    void context::http_download(const ::payload & payloadFile, const ::url::url & url, const class ::time & timeTimeout)
    {
 
-      auto pfile = acmefile()->get_writer(payloadFile);
+      auto pfile = file_system()->get_writer(payloadFile);
      
       auto pget = __create_new < ::nano::http::get >();
       
@@ -1384,7 +1340,7 @@ namespace platform
    void context::http_download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pfile = acmefile()->get_writer(payloadFile);
+      auto pfile = file_system()->get_writer(payloadFile);
 
       auto pget = __create_new < ::nano::http::get >();
       

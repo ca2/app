@@ -3,7 +3,7 @@
 #include "system.h"
 #include "_binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/prototype/datetime/_binary_stream.h"
@@ -64,9 +64,9 @@ namespace geo
 
       ::acme::department::initialize(pparticle);
 
-      m_pathCityTimeZoneFile = acmedirectory()->system() / "datetime_departament_cityTimeZone.bin";
+      m_pathCityTimeZoneFile = directory_system()->system() / "datetime_departament_cityTimeZone.bin";
 
-      m_pathLocalityTimeZoneFile = acmedirectory()->system() / "datetime_departament_LocalityTimeZone.bin";
+      m_pathLocalityTimeZoneFile = directory_system()->system() / "datetime_departament_LocalityTimeZone.bin";
 
    }
    
@@ -87,7 +87,7 @@ namespace geo
 
       }
 
-      ::file::path pathFolder = acmedirectory()->system();
+      ::file::path pathFolder = directory_system()->system();
 
       bool bOk = false;
 
@@ -720,11 +720,11 @@ namespace geo
       //
       //#ifdef WINDOWS
       //
-      //         strKey = acmefile()->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      //         strKey = file_system()->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
       //
       //#else
       //
-      //         strKey = acmefile()->as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      //         strKey = file_system()->as_string("/sensitive/sensitive/seed/timezonedb.txt");
       //
       //#endif
       //
@@ -789,7 +789,7 @@ namespace geo
       //
       //         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
       //
-      //         ::file::path path = acmedirectory()->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
+      //         ::file::path path = directory_system()->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
       //         auto & file = file()->friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //

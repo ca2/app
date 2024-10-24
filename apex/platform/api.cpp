@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/string/base64.h"
 #include "acme/crypto/crypto.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "apex/platform/application.h"
@@ -236,7 +236,7 @@ void api::ensure_authenticated()
          if (m_pathProfileFolder.is_empty())
          {
 
-            auto pathAppData = dir()->appdata();
+            auto pathAppData = directory()->appdata();
 
             m_pathProfileFolder = pathAppData / "api" / m_strImplementation;
 

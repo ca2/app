@@ -2,7 +2,7 @@
 #include "crypto.h"
 #include "rsa.h"
 #include "initializer.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 
 
 #include <openssl/ssl.h>
@@ -10,7 +10,7 @@
 #include <openssl/err.h>
 #include <openssl/whrlpool.h>
 #include <openssl/pem.h>
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 
 
 namespace crypto_openssl
@@ -1003,7 +1003,7 @@ namespace crypto_openssl
       //::file::path crypto::get_crypt_key_file_path()
       //{
 
-      //   return acmedirectory()->system() / "user" / "databin.bin";
+      //   return directory_system()->system() / "user" / "databin.bin";
 
       //}
 
@@ -1427,7 +1427,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::read_priv_pem(const string& strFile)
    {
 
-      auto memory = acmefile()->as_memory(strFile);
+      auto memory = file_system()->as_memory(strFile);
 
       if (memory.is_empty())
       {
@@ -1466,7 +1466,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::read_pub_pem(const string& strFile)
    {
 
-      auto memory = acmefile()->as_memory(strFile);
+      auto memory = file_system()->as_memory(strFile);
 
       if (memory.is_empty())
       {

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/prototype/string/base64.h"
 #include "_openssl.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 
 
 
@@ -1084,7 +1084,7 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return acmedirectory()->system() / "user" / "databin.bin";
+      return directory_system()->system() / "user" / "databin.bin";
 
    }
 
@@ -1802,7 +1802,7 @@ namespace crypto
    ::pointer<rsa>crypto::read_priv_pem(const string& strFile)
    {
 
-      auto memory = acmefile()->as_memory(strFile);
+      auto memory = file_system()->as_memory(strFile);
 
       if (memory.is_empty())
       {
@@ -1829,7 +1829,7 @@ namespace crypto
    ::pointer<rsa>crypto::read_pub_pem(const string& strFile)
    {
 
-      auto memory = acmefile()->as_memory(strFile);
+      auto memory = file_system()->as_memory(strFile);
 
       if (memory.is_empty())
       {

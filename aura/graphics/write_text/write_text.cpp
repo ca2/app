@@ -4,8 +4,8 @@
 #include "fonts.h"
 #include "true_type_font_utilities.h"
 #include "acme/constant/id.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -274,7 +274,7 @@ namespace write_text
 
    //                     pitem = __allocate ::write_text::font_enumeration_item();
 
-   //                     if (acmefile()->exists(path))
+   //                     if (file_system()->exists(path))
    //                     {
 
    //                        pitem->m_mapFileName[400] = path;
@@ -312,7 +312,7 @@ namespace write_text
 
    //      listing.set_file_listing("/system/fonts");
 
-   //      acmedirectory()->enumerate(listing);
+   //      directory_system()->enumerate(listing);
 
    //      for (auto & path : listing)
    //      {

@@ -56,12 +56,12 @@ namespace install
 
 #endif
 
-      if(acmefile()->exists(         auto psystem = system();
+      if(file_system()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
-         strVersion = acmefile()->as_string(         auto psystem = system();
+         strVersion = file_system()->as_string(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -782,7 +782,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          // erase install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(acmefile()->as_string(dir::appdata() / "install.xml")))
+         if(!node.load(file_system()->as_string(dir::appdata() / "install.xml")))
             goto run_install;
 
 
@@ -818,7 +818,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          lpnodeType->erase_child(pnode);
 
-         acmefile()->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
+         file_system()->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 
       }
 

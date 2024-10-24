@@ -2,12 +2,12 @@
 #include "framework.h"
 #include "fs_folder_sync.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/string/international.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/platform/node.h"
@@ -37,7 +37,7 @@ namespace fs_folder_sync_dropbox
 
             pathFolder.trim();
 
-            if (pathFolder.has_char() && acmedirectory()->is(pathFolder))
+            if (pathFolder.has_char() && directory_system()->is(pathFolder))
             {
 
                iTry = 0;
@@ -70,9 +70,9 @@ namespace fs_folder_sync_dropbox
 
          }
 
-         acmedirectory()->change_current(local_folder_path());
+         directory_system()->change_current(local_folder_path());
 
-         ::file::path pathHomeFolder = acmedirectory()->home();
+         ::file::path pathHomeFolder = directory_system()->home();
 
          ::file::path pathDropboxBin = pathHomeFolder / "bin/dropbox";
 
@@ -240,7 +240,7 @@ namespace fs_folder_sync_dropbox
       while (true)
       {
 
-         if (acmefile()->exists(pathTargetFolder))
+         if (file_system()->exists(pathTargetFolder))
          {
 
             break;
@@ -262,7 +262,7 @@ namespace fs_folder_sync_dropbox
 
       lines = straName;
 
-      acmedirectory()->change_current(pathTargetFolder);
+      directory_system()->change_current(pathTargetFolder);
 
       while (true)
       {
@@ -300,7 +300,7 @@ namespace fs_folder_sync_dropbox
 
             auto pathFile = pathTargetFolder / line;
 
-            if (!acmefile()->exists(pathFile))
+            if (!file_system()->exists(pathFile))
             {
 
                bOk = false;
@@ -312,7 +312,7 @@ namespace fs_folder_sync_dropbox
             if (iMinimumSize > 0)
             {
 
-               auto iSize = acmefile()->get_size(pathFile);
+               auto iSize = file_system()->get_size(pathFile);
 
                if (iSize < iMinimumSize)
                {
@@ -374,7 +374,7 @@ namespace fs_folder_sync_dropbox
       const ::file::path& pathCloudFile, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      ::file::path pathHomeFolder = acmedirectory()->home();
+      ::file::path pathHomeFolder = directory_system()->home();
 
       auto pathSource = m_pathProtocol / pathCloudFile;
 
@@ -392,7 +392,7 @@ namespace fs_folder_sync_dropbox
                " should exist to continue installation with code...)");
          }
 
-         if(acmedirectory()->is(pathSourceLocalFolder))
+         if(directory_system()->is(pathSourceLocalFolder))
          {
 
             break;
@@ -403,7 +403,7 @@ namespace fs_folder_sync_dropbox
 
       }
 
-      acmedirectory()->change_current(pathSourceLocalFolder);
+      directory_system()->change_current(pathSourceLocalFolder);
 
       auto pathLocalSource = local_path(pathSource);
 
@@ -417,7 +417,7 @@ namespace fs_folder_sync_dropbox
                " should exist to continue installation with code...)");
          }
 
-         if (acmefile()->exists(pathLocalSource))
+         if (file_system()->exists(pathLocalSource))
          {
 
             break;
@@ -462,14 +462,14 @@ namespace fs_folder_sync_dropbox
 
             auto pathFile = pathSourceLocalFolder / line;
 
-            if (!acmefile()->exists(pathFile))
+            if (!file_system()->exists(pathFile))
             {
                bOk = false;
 
                break;
             }
 
-            if (acmefile()->as_string(pathFile).trimmed().is_empty())
+            if (file_system()->as_string(pathFile).trimmed().is_empty())
             {
                bOk = false;
 
@@ -615,7 +615,7 @@ namespace fs_folder_sync_dropbox
 
             auto pathFile = pathFolder / str;
 
-            if (!acmefile()->exists(pathFile))
+            if (!file_system()->exists(pathFile))
             {
 
                bOk = false;
@@ -624,7 +624,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            if (iMinimumFileSize > 0 && acmefile()->get_size(pathFile) < iMinimumFileSize)
+            if (iMinimumFileSize > 0 && file_system()->get_size(pathFile) < iMinimumFileSize)
             {
 
                bOk = false;
@@ -650,7 +650,7 @@ namespace fs_folder_sync_dropbox
    void folder_sync::start_daemon(const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      auto pathHomeFolder = acmedirectory()->home();
+      auto pathHomeFolder = directory_system()->home();
 
       node()->detached_command(pathHomeFolder / ".dropbox-dist/dropboxd &", {});
 
@@ -695,7 +695,7 @@ namespace fs_folder_sync_dropbox
 
       auto pathFolder = local_folder_path() / path;
 
-      stra.predicate_erase([this, &pathFolder](auto& str) { return !acmedirectory()->is(pathFolder / str); });
+      stra.predicate_erase([this, &pathFolder](auto& str) { return !directory_system()->is(pathFolder / str); });
 
       return ::transfer(stra);
 
@@ -765,19 +765,19 @@ namespace fs_folder_sync_dropbox
 
       auto pathSource = m_pathProtocol / pathCloudFile;
 
-      auto pathApp = acmedirectory()->home() / ".config/integration/code";
+      auto pathApp = directory_system()->home() / ".config/integration/code";
 
       auto pathTargetFolder = pathApp / pathCloudFolder;
 
       pathTarget = pathApp / pathCloudFile;
 
-      if (bForce || !acmefile()->exists(pathTarget) || acmefile()->modification_time(pathTarget).elapsed() >=
+      if (bForce || !file_system()->exists(pathTarget) || file_system()->modification_time(pathTarget).elapsed() >=
          12_hours)
       {
 
          auto pathLocalSource = _cloud_ensure_file_txt_is_up_to_date_and_present(pathSource, callbackStatus);
 
-         acmefile()->copy(pathTarget, pathSource, true);
+         file_system()->copy(pathTarget, pathSource, true);
 
          if (ppathSource)
          {
@@ -809,7 +809,7 @@ namespace fs_folder_sync_dropbox
 
       }
 
-      auto lines = acmefile()->lines(pathTarget);
+      auto lines = file_system()->lines(pathTarget);
 
       lines.trim();
 

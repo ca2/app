@@ -57,7 +57,7 @@ namespace filemanager
 
          auto papp = get_app();
 
-         initialize_data_client(papp->m_papexapplication->dataserver());
+         initialize_data_client(papp->dataserver());
 
          //return estatus;
 

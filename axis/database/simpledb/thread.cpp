@@ -2,8 +2,8 @@
 #include "thread.h"
 #include "storage.h"
 #include "queue_item.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
@@ -155,7 +155,7 @@ namespace simpledb
 
                   sleep(500_ms);
 
-                  system()->dirsystem()->m_strApiCc = "";
+                  system()->directory_system()->m_strApiCc = "";
 
                }
 

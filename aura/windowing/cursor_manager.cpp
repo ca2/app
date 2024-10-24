@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "aura/windowing/cursor_manager.h"
@@ -267,7 +267,7 @@ namespace windowing
 
       auto pcontext = pobjectContext->m_papplication;
 
-      ::file::path pathArrow = pcontext->dir()->matter(pathMatter / "arrow.png");
+      ::file::path pathArrow = pcontext->directory()->matter(pathMatter / "arrow.png");
       
       if(pathArrow.is_empty())
       {

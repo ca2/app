@@ -450,13 +450,13 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = acmefile()->as_string(         auto psystem = system();
+//   //strUsername = file_system()->as_string(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
 pacmedirectory->system() / "config\\user.txt");
 //
-//   //strPassword = acmefile()->as_string(         auto psystem = system();
+//   //strPassword = file_system()->as_string(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

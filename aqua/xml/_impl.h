@@ -11,7 +11,7 @@
 //   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
 //   {
 //
-//      dir()->create(dir()->name(pszOutput),papp);
+//      directory()->create(directory()->name(pszOutput),papp);
 //
 //      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
@@ -29,7 +29,7 @@
 //   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
 //   {
 //
-//      dir()->create(dir()->name(pszOutput),papp);
+//      directory()->create(directory()->name(pszOutput),papp);
 //
 //      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //

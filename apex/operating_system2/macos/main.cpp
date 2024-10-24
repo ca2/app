@@ -14,9 +14,9 @@
 // //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 // //
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 // #include <assert.h>
 // #include <stdbool.h>
 // #include <sys/types.h>
@@ -239,7 +239,7 @@ namespace apex
 
       path -= 3;
       
-      auto pacmedirectory = acmedirectory();
+      auto pacmedirectory = directory_system();
 
       if(pacmedirectory->is(path))
       {
@@ -252,10 +252,10 @@ namespace apex
 
          ::file::path path2 = pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strName;
 
-         if(acmefile()->exists(path2))
+         if(file_system()->exists(path2))
          {
 
-            acmefile()->erase(path2);
+            file_system()->erase(path2);
 
          }
 
@@ -263,9 +263,9 @@ namespace apex
 
          pacmedirectory->create(pathFolder2);
 
-         bool bFilePathIsLink = acmepath()->is_symbolic_link(path2);
+         bool bFilePathIsLink = path_system()->is_symbolic_link(path2);
          
-         string strDestination = acmepath()->symbolic_link_destination(path2);
+         string strDestination = path_system()->symbolic_link_destination(path2);
 
          if(!bFilePathIsLink ||  strDestination!= path)
          {

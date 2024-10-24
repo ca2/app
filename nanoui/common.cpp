@@ -11,7 +11,7 @@
 #include "framework.h"
 #include "Object.h"
 #include "acme/platform/application.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/context.h"
@@ -311,7 +311,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 
    listing.set_file_listing(path.c_str());
 
-   papexcontext->dir()->enumerate(listing);
+   papexcontext->directory()->enumerate(listing);
 
    for (auto & path : listing)
    {

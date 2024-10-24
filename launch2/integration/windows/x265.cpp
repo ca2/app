@@ -5,8 +5,8 @@
 #include "../../windows/visual_studio.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
@@ -140,9 +140,9 @@ namespace console_integration
       void x265::insert_cmp0091_new_in_cmake()
       {
 
-         auto pathCMakeLists = acmedirectory()->get_current() / "source/CMakeLists.txt";
+         auto pathCMakeLists = directory_system()->get_current() / "source/CMakeLists.txt";
 
-         auto straLines = acmefile()->lines(pathCMakeLists);
+         auto straLines = file_system()->lines(pathCMakeLists);
 
          ::index iFind = straLines.find_first_contains("POLICY CMP0054");
 
@@ -160,7 +160,7 @@ namespace console_integration
 
                straLines.insert_at(iFind + 3, "endif()");
 
-               acmefile()->put_lines(pathCMakeLists, straLines);
+               file_system()->put_lines(pathCMakeLists, straLines);
 
             }
 
@@ -303,10 +303,10 @@ namespace console_integration
 
          bool bStatic = strConfiguration2.case_insensitive_begins_eat("Static");
 
-         acmedirectory()->create(strStorage + "/binary");
-         acmedirectory()->create(strPrefix + "/bin");
-         acmedirectory()->create(strPrefix + "/lib/pkgconfig");
-         acmedirectory()->create(strPrefix + "/include");
+         directory_system()->create(strStorage + "/binary");
+         directory_system()->create(strPrefix + "/bin");
+         directory_system()->create(strPrefix + "/lib/pkgconfig");
+         directory_system()->create(strPrefix + "/include");
 
          //m_papplication->bash("mv " + strPrefix + "/lib/libx264.dll.lib " + strPrefix + "/lib/libx264.lib");
 
@@ -316,8 +316,8 @@ namespace console_integration
          if (bStatic)
          {
 
-            acmefile()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
-            acmefile()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
+            file_system()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
+            file_system()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
 //            m_papplication->bash("cp -f " +  " + ");
   //          m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/x265-static.lib " + strStorage + "/library/x265.lib");
 
@@ -330,8 +330,8 @@ namespace console_integration
             //m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strPrefix + "/lib/x265.lib");
             //m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strStorage + "/library/x265.lib");
 
-            acmefile()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
-            acmefile()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
+            file_system()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
+            file_system()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
 
          }
 
@@ -340,13 +340,13 @@ namespace console_integration
          //m_papplication->bash("cp -f " + strPrefix + "/x265.pc " + strPrefix + "/lib/pkgconfig/");
          //m_papplication->bash("cp -f " + strPrefix + "/x265_config.h " + strPrefix + "/include/");
          
-         acmefile()->copy(strInclude + "/include/x265.h", strSource + "/source/x265.h", true);
-         acmefile()->copy(strInclude + "/include/x265_config.h", strBuild + "/x265_config.h", true);
-         acmefile()->copy(strStorage + "/library/pkgconfig/x265.pc", strBuild + "/x265.pc", true);
+         file_system()->copy(strInclude + "/include/x265.h", strSource + "/source/x265.h", true);
+         file_system()->copy(strInclude + "/include/x265_config.h", strBuild + "/x265_config.h", true);
+         file_system()->copy(strStorage + "/library/pkgconfig/x265.pc", strBuild + "/x265.pc", true);
 
-         acmefile()->copy(strPrefix + "/include/x265.h", strSource + "/source/x265.h", true);
-         acmefile()->copy(strPrefix + "/include/x265_config.h", strBuild + "/x265_config.h", true);
-         acmefile()->copy(strPrefix + "/lib/pkgconfig/x265.pc", strBuild + "/x265.pc", true);
+         file_system()->copy(strPrefix + "/include/x265.h", strSource + "/source/x265.h", true);
+         file_system()->copy(strPrefix + "/include/x265_config.h", strBuild + "/x265_config.h", true);
+         file_system()->copy(strPrefix + "/lib/pkgconfig/x265.pc", strBuild + "/x265.pc", true);
          
          
          

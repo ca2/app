@@ -10,7 +10,7 @@
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
 
@@ -465,7 +465,7 @@ namespace universal_windows
                try
                {
 
-                  wstring wstrPath(acmedirectory()->module() / strPath);
+                  wstring wstrPath(directory_system()->module() / strPath);
 
                   plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
 
@@ -483,7 +483,7 @@ namespace universal_windows
                try
                {
 
-                  wstring wstrPath(("\\\\?\\" + acmedirectory()->module()) / strPath);
+                  wstring wstrPath(("\\\\?\\" + directory_system()->module()) / strPath);
 
                   plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
 
@@ -501,7 +501,7 @@ namespace universal_windows
             //   try
             //   {
 
-            //      wstring wstr(acmedirectory()->module() / strPath);
+            //      wstring wstr(directory_system()->module() / strPath);
 
             //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 
@@ -519,7 +519,7 @@ namespace universal_windows
             //   try
             //   {
 
-            //      wstring wstr(("\\\\?\\" + acmedirectory()->module()) / strPath);
+            //      wstring wstr(("\\\\?\\" + directory_system()->module()) / strPath);
 
             //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 

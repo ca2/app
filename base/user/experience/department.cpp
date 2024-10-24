@@ -3,7 +3,7 @@
 #include "experience.h"
 #include "frame.h"
 #include "acme/exception/exit.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "aura/user/user/interaction.h"
@@ -95,7 +95,7 @@ namespace experience
 
             {
 
-               auto strExperience = papp->m_papexapplication->preferred_experience();
+               auto strExperience = papp->preferred_experience();
 
                straExperience.add(strExperience);
 
@@ -115,7 +115,7 @@ namespace experience
 
                {
 
-                  auto strExperience = file()->safe_get_string(acmedirectory()->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
+                  auto strExperience = file()->safe_get_string(directory_system()->config() / papp->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -123,7 +123,7 @@ namespace experience
 
                {
 
-                  auto strExperience = file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = file()->safe_get_string(directory_system()->config() / ::file::path(papp->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -131,7 +131,7 @@ namespace experience
 
                {
 
-                  auto strExperience = file()->safe_get_string(acmedirectory()->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = file()->safe_get_string(directory_system()->config() / ::file::path(papp->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -139,7 +139,7 @@ namespace experience
 
                {
 
-                  auto strExperience = file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
+                  auto strExperience = file()->safe_get_string(directory_system()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -147,7 +147,7 @@ namespace experience
 
                {
 
-                  string strExperience = file()->safe_get_string(acmedirectory()->config() / "system/experience.txt");
+                  string strExperience = file()->safe_get_string(directory_system()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 

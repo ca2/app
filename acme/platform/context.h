@@ -31,19 +31,19 @@ namespace platform
       ::pointer<::text::translator>                   m_ptexttranslator;
 
       ::pointer<::image::image_context>               m_pimagecontext;
-      ::pointer<::dir_context>                        m_pdir;
+      ::pointer<::directory_context>                        m_pdir;
       ::pointer<::file_context>                       m_pfile;
       ::pointer<::http::context>                      m_phttpcontext;
 
       //::pointer < ::os_context >                      m_poscontext;
 
 
-      ::string                               m_strLocale;
-      ::string                               m_strSchema;
+      ::string                                        m_strLocale;
+      ::string                                        m_strSchema;
 
 
-      string_array                        m_straMatterLocatorPriority;
-      string_array                        m_straMatterLocator;
+      string_array                                    m_straMatterLocatorPriority;
+      string_array                                    m_straMatterLocator;
 
 
       context();
@@ -85,23 +85,23 @@ namespace platform
 
 
 
-      ::acme_file * acmefile();
-      ::acme_path * acmepath();
-      ::acme_directory * acmedirectory();
+      //::file_system * file_system();
+      //::directory_system * directory_system();
 
 
 
 
-      virtual ::dir_context* dir();
-      virtual ::file_context* file();
-      ::dir_system * dirsystem();
-      ::file_system * filesystem();
+      ::directory_context* directory();
+      ::file_context* file();
+      ::directory_system * directory_system();
+      ::file_system * file_system();
+      ::path_system * pathsystem();
 
 
-      ::file::watcher * file_watcher() override;
+      ::file::watcher * file_watcher() const;
 
 
-      ::http::context * http();
+      ::platform::http * http();
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

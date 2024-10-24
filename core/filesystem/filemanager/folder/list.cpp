@@ -3,7 +3,7 @@
 #include "list.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/topic.h"
 #include "apex/platform/context.h"
@@ -152,7 +152,7 @@ namespace filemanager
 
       listing.set_listing(strParent);
 
-      dir()->enumerate(listing);
+      directory()->enumerate(listing);
 
       for (i32 i = 0; i < listing.get_count(); i++)
       {

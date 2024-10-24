@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/item.h"
 #include "acme/platform/application.h"
 #include "apex/filesystem/fs/set.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/context.h"
 #include "base/user/user/impact.h"
 
@@ -179,7 +179,7 @@ namespace userfs
 
       //   listingUser.set_listing(pitem->user_path());
 
-      //   dir()->enumerate(listingUser);
+      //   directory()->enumerate(listingUser);
 
       //   listingUser.m_pathUser = pitem->user_path();
 
@@ -296,7 +296,7 @@ namespace userfs
 
       //      pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
 
-      //      pathFinal.m_iDir = dir()->is(pathFolderCandidate) ? 1 : 0;
+      //      pathFinal.m_iDir = directory()->is(pathFolderCandidate) ? 1 : 0;
 
       //   }
 

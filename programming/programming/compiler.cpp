@@ -1,12 +1,12 @@
 // Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "compiler.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 
@@ -69,7 +69,7 @@ namespace programming
       m_pintegrationcontext->m_pathProjectFolder = pathProjectDir;
 
 
-      m_pintegrationcontext->m_pathBuildFolder = acmedirectory()->module() - 3;
+      m_pintegrationcontext->m_pathBuildFolder = directory_system()->module() - 3;
 
 
 //
@@ -114,9 +114,9 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 //
-//      auto pacmedirectory = acmedirectory();
+//      auto pacmedirectory = directory_system();
 //
-//      dir()->create(pacmedirectory->system() / "netnode_desktop/symbols");
+//      directory()->create(pacmedirectory->system() / "netnode_desktop/symbols");
 //
 //      ::file::path strVars;
 //
@@ -272,7 +272,7 @@ namespace programming
 
       m_pintegrationcontext->prepare_compile_and_link_environment();
 
-      dir()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
+      directory()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
 
       string str;
 
@@ -347,13 +347,13 @@ namespace programming
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedirectory = acmedirectory();
+//      auto pacmedirectory = directory_system();
 //
 //      pathEnvTxt = pacmedirectory->system() / "env.txt";
 //
-//      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//      file_system()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 //
-//      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+//      file_system()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 //
 //      auto psystem = system();
 //
@@ -361,7 +361,7 @@ namespace programming
 //
 //      pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 //
-//      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
+//      strLog = file_system()->as_string(pacmedirectory->system() / "env.txt");
 //
 //      stra.add_lines(strLog);
 //
@@ -431,10 +431,10 @@ namespace programming
       //   //#else
       //   // strCmd = strFolder, "app\\time-" OPERATING_SYSTEM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
-      //   dir()->create(strCmd.folder());
+      //   directory()->create(strCmd.folder());
       //   //file()->put_text_utf8(strCmd, str);
       //   file()->put_contents(strCmd, str);
-      //   dir()->create(m_strTime / "dynamic_source");
+      //   directory()->create(m_strTime / "dynamic_source");
       //
       //
       //   string strBuildCmd = m_strEnv;
@@ -444,7 +444,7 @@ namespace programming
       //   ::process::process_pointer process(e_create);
       //
       //
-      //   acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+      //   file_system()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
       //
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
@@ -568,7 +568,7 @@ namespace programming
       //
       stra.add_lines(strLog);
 
-      //string strEnv = acmefile()->as_string(         auto psystem = system();
+      //string strEnv = file_system()->as_string(         auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
@@ -615,10 +615,10 @@ namespace programming
       //#else
       // strCmd = strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
-      dir()->create(strCmd.folder());
+      directory()->create(strCmd.folder());
       //file()->put_text_utf8(strCmd, str);
       file()->put_text(strCmd, str);
-      dir()->create(m_pathTime / "dynamic_source");
+      directory()->create(m_pathTime / "dynamic_source");
 
 
    }

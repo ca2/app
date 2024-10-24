@@ -103,7 +103,7 @@ namespace account
       //   if(puser->m_strHost == purl->get_server(psession->account()->get_default_url()))
       //   {
 
-      //      file()->put_contents(dir()->appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
+      //      file()->put_contents(directory()->appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
 
       //   }
 

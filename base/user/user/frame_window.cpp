@@ -12,8 +12,8 @@
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
@@ -563,7 +563,7 @@ namespace user
 
                   pcopydesk->image_to_desk(pimage1);
 
-                  image()->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
+                  image()->save_image(directory_system()->system() / "control_alt_p.png", pimage1);
 
                   ::image::image_pointer pimage2;
 
@@ -607,7 +607,7 @@ namespace user
 
                   }
 
-                  image()->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
+                  image()->save_image(directory_system()->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -2089,7 +2089,7 @@ namespace user
 
       }
 
-      string strMatter = dir()->matter(strToolbar);
+      string strMatter = directory()->matter(strToolbar);
 //
 //      string strXml = file()->safe_get_string(strMatter);
 

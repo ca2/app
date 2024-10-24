@@ -272,7 +272,7 @@ void user::init(){
 //      //
 //      //      auto pcontext = get_context();
 //      //
-//      //      string strUser = file()->as_string(dir()->appdata() / "langstyle_settings.xml");
+//      //      string strUser = file()->as_string(directory()->appdata() / "langstyle_settings.xml");
 //      //
 //      //      string strLangUser;
 //      //

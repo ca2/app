@@ -1,8 +1,8 @@
 // Created by camilo on 2023-02-11 12:22 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
@@ -18,11 +18,11 @@ namespace application_build_helper
 
       //   printf("Preparing to generate documentation...");
       //
-      //   auto path = acmedirectory()->get_current();
+      //   auto path = directory_system()->get_current();
       //
-      //   acmedirectory()->change_current(path / "source/app/acme");
+      //   directory_system()->change_current(path / "source/app/acme");
       //
-      //   acmedirectory()->change_current(path / "source/app/acme/doxygen.directory");
+      //   directory_system()->change_current(path / "source/app/acme/doxygen.directory");
       //
       //   int iExitCode = 0;
       //
@@ -38,12 +38,12 @@ namespace application_build_helper
       //
       //   strLog = straOutput.implode("\n");
       //   
-      //   acmefile()->put_contents(path / "source/app/acme/doxygen.directory/generation.log", strLog);
+      //   file_system()->put_contents(path / "source/app/acme/doxygen.directory/generation.log", strLog);
       //
       //   
       //
       //
-      //   // acmefile()->copy("C:\\documentation-release", "C:\\documentation", true);
+      //   // file_system()->copy("C:\\documentation-release", "C:\\documentation", true);
       //
       //
       ////   //string strFolder = subsystem()->get_argument1(0);
@@ -58,7 +58,7 @@ namespace application_build_helper
       ////
       ////   pathApplicationTxt = pathFolder / "application.txt";
       ////
-      ////   if (!acmefile()->exists(pathApplicationTxt))
+      ////   if (!file_system()->exists(pathApplicationTxt))
       ////   {
       ////
       ////      return;
@@ -98,9 +98,9 @@ namespace application_build_helper
       ////
       ////   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
       ////
-      ////   acmefile()->put_contents(pathSourcePackages, strPackages);
+      ////   file_system()->put_contents(pathSourcePackages, strPackages);
       ////
-      ////   auto strPackagesConfirm = acmefile()->as_string(pathSourcePackages);
+      ////   auto strPackagesConfirm = file_system()->as_string(pathSourcePackages);
       ////
       ////#ifdef WINDOWS
       ////
@@ -149,16 +149,16 @@ namespace application_build_helper
       ////
       ////   pathTargetExtensions = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_extensions.txt";
       ////
-      ////   auto lenDepsDeprecated = acmefile()->as_string(pathDepsDeprecated).trimmed().length();
+      ////   auto lenDepsDeprecated = file_system()->as_string(pathDepsDeprecated).trimmed().length();
       ////
-      ////   auto lenSourceDependencies = acmefile()->as_string(pathSourceDependencies).trimmed().length();
+      ////   auto lenSourceDependencies = file_system()->as_string(pathSourceDependencies).trimmed().length();
       ////
       ////   if (lenDepsDeprecated > 0 && lenSourceDependencies == 0)
       ////   {
       ////
-      ////      acmefile()->set_file_normal(pathSourceDependencies);
+      ////      file_system()->set_file_normal(pathSourceDependencies);
       ////
-      ////      acmefile()->copy(pathSourceDependencies, pathDepsDeprecated, true);
+      ////      file_system()->copy(pathSourceDependencies, pathDepsDeprecated, true);
       ////
       ////   }
       ////
@@ -189,7 +189,7 @@ namespace application_build_helper
       ////
       ////   }
       ////
-      ////   acmefile()->put_contents(pathTargetPackages, strTranslatedPackages);
+      ////   file_system()->put_contents(pathTargetPackages, strTranslatedPackages);
       ////
       ////   bool bDoMatter = true;
       ////
@@ -216,7 +216,7 @@ namespace application_build_helper
       ////
       ////      ::file::path pathZip = m_pathFolder / "_matter.zip";
       ////
-      ////      if (!acmefile()->exists(pathZip))
+      ////      if (!file_system()->exists(pathZip))
       ////      {
       ////
       ////         string strError;
@@ -227,16 +227,16 @@ namespace application_build_helper
       ////
       ////      }
       ////
-      ////      acmefile()->ensure_exists(pathMatterOutput);
+      ////      file_system()->ensure_exists(pathMatterOutput);
       ////
       ////      auto pathSeedAndroid = m_pathOperatingSystem / "seed-android";
       ////
-      ////      if (acmedirectory()->is(pathSeedAndroid))
+      ////      if (directory_system()->is(pathSeedAndroid))
       ////      {
       ////
       ////         auto pathAssetsMatterZip = pathSeedAndroid / m_strPackageAppId / "app/src/main/assets/_matter.zip";
       ////
-      ////         acmefile()->copy(pathAssetsMatterZip, pathZip, true);
+      ////         file_system()->copy(pathAssetsMatterZip, pathZip, true);
       ////
       ////      }
       ////
@@ -266,11 +266,11 @@ namespace application_build_helper
 
       printf("%s", ("Generating documentation for " + scopedstrSubPath + " ...").c_str());
 
-      auto path = acmedirectory()->get_current();
+      auto path = directory_system()->get_current();
 
-      acmedirectory()->change_current(path / scopedstrSubPath);
+      directory_system()->change_current(path / scopedstrSubPath);
 
-      acmedirectory()->create(path / scopedstrSubPath / "doxygen.directory");
+      directory_system()->create(path / scopedstrSubPath / "doxygen.directory");
 
       string_array straOutput;
 
@@ -290,7 +290,7 @@ namespace application_build_helper
       
       strLog += strExitCode;
 
-      acmefile()->put_contents(path / scopedstrSubPath / "doxygen.directory/generation.log", strLog);
+      file_system()->put_contents(path / scopedstrSubPath / "doxygen.directory/generation.log", strLog);
 
 
       //   //string strFolder = subsystem()->get_argument1(0);
@@ -305,7 +305,7 @@ namespace application_build_helper
       //
       //   pathApplicationTxt = pathFolder / "application.txt";
       //
-      //   if (!acmefile()->exists(pathApplicationTxt))
+      //   if (!file_system()->exists(pathApplicationTxt))
       //   {
       //
       //      return;
@@ -345,9 +345,9 @@ namespace application_build_helper
       //
       //   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
       //
-      //   acmefile()->put_contents(pathSourcePackages, strPackages);
+      //   file_system()->put_contents(pathSourcePackages, strPackages);
       //
-      //   auto strPackagesConfirm = acmefile()->as_string(pathSourcePackages);
+      //   auto strPackagesConfirm = file_system()->as_string(pathSourcePackages);
       //
       //#ifdef WINDOWS
       //
@@ -396,16 +396,16 @@ namespace application_build_helper
       //
       //   pathTargetExtensions = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_extensions.txt";
       //
-      //   auto lenDepsDeprecated = acmefile()->as_string(pathDepsDeprecated).trimmed().length();
+      //   auto lenDepsDeprecated = file_system()->as_string(pathDepsDeprecated).trimmed().length();
       //
-      //   auto lenSourceDependencies = acmefile()->as_string(pathSourceDependencies).trimmed().length();
+      //   auto lenSourceDependencies = file_system()->as_string(pathSourceDependencies).trimmed().length();
       //
       //   if (lenDepsDeprecated > 0 && lenSourceDependencies == 0)
       //   {
       //
-      //      acmefile()->set_file_normal(pathSourceDependencies);
+      //      file_system()->set_file_normal(pathSourceDependencies);
       //
-      //      acmefile()->copy(pathSourceDependencies, pathDepsDeprecated, true);
+      //      file_system()->copy(pathSourceDependencies, pathDepsDeprecated, true);
       //
       //   }
       //
@@ -436,7 +436,7 @@ namespace application_build_helper
       //
       //   }
       //
-      //   acmefile()->put_contents(pathTargetPackages, strTranslatedPackages);
+      //   file_system()->put_contents(pathTargetPackages, strTranslatedPackages);
       //
       //   bool bDoMatter = true;
       //
@@ -463,7 +463,7 @@ namespace application_build_helper
       //
       //      ::file::path pathZip = m_pathFolder / "_matter.zip";
       //
-      //      if (!acmefile()->exists(pathZip))
+      //      if (!file_system()->exists(pathZip))
       //      {
       //
       //         string strError;
@@ -474,16 +474,16 @@ namespace application_build_helper
       //
       //      }
       //
-      //      acmefile()->ensure_exists(pathMatterOutput);
+      //      file_system()->ensure_exists(pathMatterOutput);
       //
       //      auto pathSeedAndroid = m_pathOperatingSystem / "seed-android";
       //
-      //      if (acmedirectory()->is(pathSeedAndroid))
+      //      if (directory_system()->is(pathSeedAndroid))
       //      {
       //
       //         auto pathAssetsMatterZip = pathSeedAndroid / m_strPackageAppId / "app/src/main/assets/_matter.zip";
       //
-      //         acmefile()->copy(pathAssetsMatterZip, pathZip, true);
+      //         file_system()->copy(pathAssetsMatterZip, pathZip, true);
       //
       //      }
       //

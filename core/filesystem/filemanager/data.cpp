@@ -4,7 +4,7 @@
 #include "file_list.h"
 #include "acme/prototype/data/listener.h"
 #include "apex/database/_binary_stream.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/image/image.h"
@@ -406,9 +406,9 @@ browse(pathInitialBrowse, ::e_source_initialize);
 
          }
 
-         //dir()->create(strPath);
+         //directory()->create(strPath);
 
-         if (dir()->is(strPath))
+         if (directory()->is(strPath))
          {
 
             return strPath;
@@ -426,7 +426,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
       else
       {
 
-         strPath = dir()->desktop();
+         strPath = directory()->desktop();
 
       }*/
 

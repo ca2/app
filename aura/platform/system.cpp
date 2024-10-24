@@ -3,8 +3,8 @@
 #include "acme/constant/id.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
 #include "acme/windowing/windowing.h"
 #include "acme/platform/node.h"
@@ -234,9 +234,9 @@ namespace aura
 
       //   bool bGlobalEnableStackTrace = true;
 
-      //   ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
+      //   ::file::path pathNoExceptionStackTrace = directory_system()->config() / "system/no_exception_stack_trace.txt";
 
-      //   if (acmefile()->exists(pathNoExceptionStackTrace))
+      //   if (file_system()->exists(pathNoExceptionStackTrace))
       //   {
 
       //      bGlobalEnableStackTrace = false;
@@ -400,7 +400,7 @@ namespace aura
 //            {
 //
 ////#if !defined(ANDROID)
-////               if (!plibrary->open(dir()->ca2module() / pszLibrary))
+////               if (!plibrary->open(directory()->ca2module() / pszLibrary))
 ////#endif
 ////               {
 ////
@@ -753,12 +753,12 @@ namespace aura
 //
 //         string str;
 //
-//         str = acmedirectory()->home() / ".profile";
+//         str = directory_system()->home() / ".profile";
 //
-//         if(!acmefile()->exists(str))
+//         if(!file_system()->exists(str))
 //         {
 //
-//            str = acmedirectory()->home() / ".bashrc";
+//            str = directory_system()->home() / ".bashrc";
 //
 //         }
 //
@@ -899,7 +899,7 @@ namespace aura
 //
 //pacmedirectory->create("/ca2core");
 //
-//                  acmefile()->put_contents("/ca2core/teste.txt", str, str.length());
+//                  file_system()->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -1043,10 +1043,10 @@ namespace aura
 
       //}
 
-      ////informationf("CommonAppData (matter) : " + dir()->commonappdata()  + "\n");
-      ////informationf("commonappdata (matter) : " + dir()->commonappdata() + "\n");
-      ////informationf("Common App Data (matter) : " + dir()->commonappdata() + "\n");
-      ////informationf("common app data (matter) : " + dir()->commonappdata() + "\n");
+      ////informationf("CommonAppData (matter) : " + directory()->commonappdata()  + "\n");
+      ////informationf("commonappdata (matter) : " + directory()->commonappdata() + "\n");
+      ////informationf("Common App Data (matter) : " + directory()->commonappdata() + "\n");
+      ////informationf("common app data (matter) : " + directory()->commonappdata() + "\n");
 
       //__construct_new(m_pcrypto);
 
@@ -1196,9 +1196,9 @@ namespace aura
 
       }
 
-      ::file::path path = acmedirectory()->roaming() / "system/draw2d.txt";
+      ::file::path path = directory_system()->roaming() / "system/draw2d.txt";
 
-      strImplementationName = acmefile()->safe_get_string(path);
+      strImplementationName = file_system()->safe_get_string(path);
 
       if(strImplementationName.has_char())
       {
@@ -1207,9 +1207,9 @@ namespace aura
 
       }
 
-      path = acmedirectory()->roaming()/application()->m_strAppId / "draw2d.txt";
+      path = directory_system()->roaming()/application()->m_strAppId / "draw2d.txt";
 
-      strImplementationName = acmefile()->as_string(path);
+      strImplementationName = file_system()->as_string(path);
 
       if(strImplementationName.has_char())
       {
@@ -2548,7 +2548,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //            
-//            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_normal);
+//            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2584,7 +2584,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr,dir()->module()/strApp,nullptr,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr,directory()->module()/strApp,nullptr,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2626,7 +2626,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, directory()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2662,7 +2662,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, dir()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, directory()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
 //            plauncher->launch();
 //
@@ -2857,7 +2857,7 @@ namespace aura
    //::file::path system::local_get_matter_path()
    //{
 
-   //   return acmedirectory()->ca2roaming() / "appmatter";
+   //   return directory_system()->ca2roaming() / "appmatter";
 
    //}
 
@@ -2881,7 +2881,7 @@ namespace aura
    //::file::path system::local_get_matter_cache_path()
    //{
 
-   //   return acmedirectory()->ca2roaming() / "cache/appmatter";
+   //   return directory_system()->ca2roaming() / "cache/appmatter";
 
    //}
 
@@ -2904,7 +2904,7 @@ namespace aura
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = file()->get_file(directory()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -2937,7 +2937,7 @@ namespace aura
 ////
 ////      ::file::listing straTitle(this);
 ////
-////      ::file::path pathCa2Module = dir()->ca2module();
+////      ::file::path pathCa2Module = directory()->ca2module();
 ////
 ////      informationf("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
@@ -2980,7 +2980,7 @@ namespace aura
 ////      try
 ////      {
 ////
-////         file = psession->file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////         file = psession->file()->get_file(directory()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
 ////      catch(::exception &)
@@ -3913,7 +3913,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
 //      {
 //
-//         strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
+//         strWeather = file()->as_string(directory_system()->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4159,7 +4159,7 @@ namespace aura
 //
 //      pathDir = path.folder();
 //
-//      ::file::path pathAppDataDir(acmedirectory()->ca2roaming());
+//      ::file::path pathAppDataDir(directory_system()->ca2roaming());
 //
 //      ::file::path pathProfile;
 //
@@ -4241,7 +4241,7 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + acmefile()->as_string(         auto psystem = system();
+//            strParam += " " + file_system()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4259,7 +4259,7 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = acmefile()->as_string(         auto psystem = system();
+//         string strChrome = file_system()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4288,7 +4288,7 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + acmefile()->as_string(         auto psystem = system();
+//         strParam += " " + file_system()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -4324,7 +4324,7 @@ namespace aura
 //
 //#else
 //
-//      if (dir()->is(pathProfile))
+//      if (directory()->is(pathProfile))
 //      {
 //
 //         return;
@@ -4339,7 +4339,7 @@ namespace aura
 //
 //      pathProfileDir = pathProfile.folder();
 //
-//      dir()->create(pathProfileDir);
+//      directory()->create(pathProfileDir);
 //
 //      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 //
@@ -4427,7 +4427,7 @@ namespace aura
 //
 //      }
 //
-//      if (!file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
+//      if (!file()->exists(strBrowserPath) || !directory()->is(strBrowserDir))
 //      {
 //
 //         return error_not_found;
@@ -4456,11 +4456,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
+//         file()->put_text_utf8(directory_system()->system() / "browser.txt", strBrowser);
 //
-//         file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
+//         file()->put_text_utf8(directory_system()->system() / "browser_path.txt", strBrowserPath);
 //
-//         file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
+//         file()->put_text_utf8(directory_system()->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -4970,7 +4970,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   strBuild = acmefile()->as_string(path);
+//   strBuild = file_system()->as_string(path);
 //
 //   return strBuild.has_char();
 //
@@ -4984,7 +4984,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return acmefile()->put_contents(path, pszBuild);
+//   return file_system()->put_contents(path, pszBuild);
 //
 //}
 //
@@ -5012,7 +5012,7 @@ namespace aura
 //CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
 //{
 //
-//   ::file::path pathFile = acmedirectory()->local() / "appdata" / strAppId / "last_run_path.txt";
+//   ::file::path pathFile = directory_system()->local() / "appdata" / strAppId / "last_run_path.txt";
 //
 //   return pathFile;
 //
@@ -5024,7 +5024,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   ::file::path path = ::acmefile()->as_string(pathFile);
+//   ::file::path path = ::file_system()->as_string(pathFile);
 //
 //   return path;
 //
@@ -5034,11 +5034,11 @@ namespace aura
 //CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
 //{
 //
-//   ::file::path path = acmepath()->app_module();
+//   ::file::path path = path_system()->app_module();
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return acmefile()->put_contents(pathFile, path);
+//   return file_system()->put_contents(pathFile, path);
 //
 //}
 //

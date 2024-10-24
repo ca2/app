@@ -4,7 +4,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
 
@@ -319,7 +319,7 @@ int ifs::is_dir(const ::file::path & path)
 
       listing.set_listing(path.folder());
 
-      ::particle::dir()->enumerate(listing);
+      ::particle::directory()->enumerate(listing);
 
    }
 

@@ -3,8 +3,8 @@
 #include "project_list.h"
 #include "application.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -38,7 +38,7 @@ namespace application_build_helper
 
       do_base("source");
 
-      acmefile()->put_lines("project_list.txt", m_straLines);
+      file_system()->put_lines("project_list.txt", m_straLines);
 
    }
 
@@ -63,7 +63,7 @@ namespace application_build_helper
 
       listing.set_folder_listing(pathFolder);
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       for (auto& path : listing)
       {
@@ -91,7 +91,7 @@ namespace application_build_helper
 
       listing.set_folder_listing(pathFolder);
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       for (auto& path : listing)
       {

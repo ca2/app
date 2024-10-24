@@ -10,7 +10,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/platform/context.h"
@@ -301,7 +301,7 @@ namespace filemanager
 
          listing.set_listing(pathUser);
 
-         dir()->enumerate(listing);
+         directory()->enumerate(listing);
 
       }
 
@@ -459,7 +459,7 @@ namespace filemanager
 
       //   ::pointer<::userfs::item>pitemChild;
 
-      //   if (dir()->is(pathUser))
+      //   if (directory()->is(pathUser))
       //   {
 
       //      ::data::tree_item * ptreeitemParent = get_base_item();
@@ -993,7 +993,7 @@ _001SelectItem(pchild);
 
    //   ::pointer<::userfs::item>pitemChild;
 
-   //   if (dir()->is(pathUser))
+   //   if (directory()->is(pathUser))
    //   {
 
    //      ::data::tree_item * ptreeitemParent = get_base_item();

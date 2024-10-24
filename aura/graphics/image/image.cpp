@@ -9862,7 +9862,7 @@ void image::on_exif_orientation()
 //
 //      path = strMatter;
 //
-//      path = dir()->matter(path / strIcon);
+//      path = directory()->matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {

@@ -18,7 +18,7 @@ namespace simpledb
    {
       string strMetaPath;
 
-      strMetaPath = dir()->install() / "database" / db/ "meta.xml";
+      strMetaPath = directory()->install() / "database" / db/ "meta.xml";
 
       try
       {
@@ -27,7 +27,7 @@ namespace simpledb
       }
       catch(...)
       {
-         strMetaPath = dir()->appdata() / "database" / db / "meta.xml";
+         strMetaPath = directory()->appdata() / "database" / db / "meta.xml";
          try
          {
             if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))

@@ -5,8 +5,8 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
@@ -400,7 +400,7 @@ namespace console_integration
          strCommand += "\n";
          strCommand += "do_configure\n";
 
-         acmefile()->put_contents(m_papplication->m_pathSource / "configure2.sh",
+         file_system()->put_contents(m_papplication->m_pathSource / "configure2.sh",
             strCommand);
          m_papplication->bash("chmod +x configure2.sh");
          ::string s;
@@ -423,7 +423,7 @@ namespace console_integration
    //   C:\
 
 
-         acmefile()->put_contents(m_papplication->m_pathSource / "vs_call.bat", s);
+         file_system()->put_contents(m_papplication->m_pathSource / "vs_call.bat", s);
 
          //trace_function tracefunction = [&](auto etracelevel, auto& str)
          //{
@@ -438,7 +438,7 @@ namespace console_integration
 
          //acmenode()->command_system(m_papplication->m_pathSource +"/vs_call.bat", tracefunction);
 
-         printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+         printf("Current Directory: %s\n", directory_system()->get_current().c_str());
          printf("%s\n", s.c_str());
 
          //::file::path pathVsCall = m_papplication->m_pathSource + "/vs_call.bat";

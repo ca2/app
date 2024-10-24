@@ -7,8 +7,8 @@
 #include "acme.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/handler/request.h"
@@ -634,7 +634,7 @@ namespace acme
 #else
 
          //throw ::exception(todo);
-         //m_pathModule = acmefile()->module();
+         //m_pathModule = file_system()->module();
          m_pathModule = ::get_module_path();
 
 #endif
@@ -1007,7 +1007,7 @@ namespace acme
    ::file::path application::get_app_localconfig_folder()
    {
 
-      ::file::path pathFolder = acmedirectory()->roaming() / m_strAppId;
+      ::file::path pathFolder = directory_system()->roaming() / m_strAppId;
 
       return pathFolder;
 
@@ -1021,7 +1021,7 @@ namespace acme
 
       auto pathIni = pathFolder / "this.ini";
 
-      auto pini = acmefile()->get_ini(pathIni);
+      auto pini = file_system()->get_ini(pathIni);
 
       return pini;
 
@@ -1039,9 +1039,9 @@ namespace acme
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
+      ::file::path path = directory_system()->config() / "programming/vs_build.txt";
 
-      string strBuild = acmefile()->as_string(path);
+      string strBuild = file_system()->as_string(path);
 
       strBuild.trim();
 

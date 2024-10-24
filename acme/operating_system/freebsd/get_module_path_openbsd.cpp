@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 #include "acme/operating_system/environment.h"
@@ -31,7 +31,7 @@
    str=  ::platform::get()->_get_argv(0);
    // not sure if I am doing this right??
    auto penvironment = system()->__create<::operating_system::environment>();
-   auto path = system()->acmepath()->path_get_path(str, penvironment);
+   auto path = system()->path_system()->path_get_path(str, penvironment);
    if (path.m_etype & (::file::e_type_existent_file))
    {
       int cntp = 0;

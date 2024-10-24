@@ -1,6 +1,20 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 
 
+if("${CMAKE_BUILD_TYPE}" STREQUAL "")
+
+   set(__CMAKE_BUILD_TYPE "Debug")
+
+else()
+
+   set(__CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}")
+
+endif()
+
+
+
+
+
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 

@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "application_build_helper.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 
@@ -24,7 +24,7 @@ namespace application_build_helper
 
       pathApplicationTxt = pathFolder / "application.txt";
 
-      if (!acmefile()->exists(pathApplicationTxt))
+      if (!file_system()->exists(pathApplicationTxt))
       {
 
          throw ::exception(error_failed, "application.txt doesn't exist");
@@ -70,7 +70,7 @@ namespace application_build_helper
 
       //pathZip = "/store/" + m_strSlashedOperatingSystem + "/" + m_strUnderscoreAppId + ".zip";
 
-      pathZip = acmedirectory()->home() / "store" / m_strSlashedOperatingSystem / (m_strApplication + ".zip");
+      pathZip = directory_system()->home() / "store" / m_strSlashedOperatingSystem / (m_strApplication + ".zip");
 
       pathBinaries = m_pathBaseDir + "/cmake-build-release/output";
 
@@ -80,19 +80,19 @@ namespace application_build_helper
 
       auto pathZipFolder = pathZip.folder();
 
-      acmedirectory()->create(pathZipFolder);
+      directory_system()->create(pathZipFolder);
 
       ::file::path pathPackageList;
 
       pathPackageList = m_pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
 
-      string strInput = acmefile()->as_string(pathPackageList);
+      string strInput = file_system()->as_string(pathPackageList);
 
       string_array stra;
 
       stra.add_lines(strInput, false);
 
-      acmedirectory()->change_current(pathBinaries);
+      directory_system()->change_current(pathBinaries);
 
       int iAdding = 0;
 
@@ -182,7 +182,7 @@ namespace application_build_helper
 
                      ::file::path pathItem = pathBinaries / strName;
 
-                     if (!acmefile()->exists(pathItem))
+                     if (!file_system()->exists(pathItem))
                      {
 
                         ::string strMessage;
@@ -227,7 +227,7 @@ namespace application_build_helper
 
                   ::file::path pathItem = pathBinaries / strName;
 
-                  if (!acmefile()->exists(pathItem))
+                  if (!file_system()->exists(pathItem))
                   {
 
                      ::string strMessage;

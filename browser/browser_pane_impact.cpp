@@ -598,7 +598,7 @@ namespace browser
 
       ::file::path path;
 
-      path = dir()->appdata() / "browser_menu.html";
+      path = directory()->appdata() / "browser_menu.html";
 
       file()->put_contents(path, str);
 

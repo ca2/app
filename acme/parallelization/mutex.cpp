@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 
@@ -211,9 +211,9 @@
 //
 //pacmedirectory->create(::file::path(strName).folder());
 //
-//      ::acmefile()->put_contents(strName, strName);
+//      ::file_system()->put_contents(strName, strName);
 //
-//      string strTest = acmefile()->as_string(strName);
+//      string strTest = file_system()->as_string(strName);
 //
 //      //int isCreator = 0;
 //
@@ -371,7 +371,7 @@
 //
 //pacmedirectory->create(path.folder());
 //
-//      ::acmefile()->put_contents(path, m_pszName);
+//      ::file_system()->put_contents(path, m_pszName);
 //
 //      m_key = ftok(path, 1); //Generate a unique key or supply a value
 //
@@ -1663,7 +1663,7 @@ mutex::~mutex()
 //
 //   path /= lpszName;
 //
-//   auto pacmedirectory = pmatter->acmedirectory();
+//   auto pacmedirectory = pmatter->directory_system();
 //
 //   pacmedirectory->create(path.folder());
 //

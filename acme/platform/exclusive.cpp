@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "exclusive.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 ////#include "acme/prototype/prototype/object.h"
@@ -79,7 +79,7 @@ namespace acme
 //      if(strId.case_insensitive_begins("Local\\"))
 //      {
 //
-//         path = pparticle->acmedirectory()->home() / ".config/acme";
+//         path = pparticle->directory_system()->home() / ".config/acme";
 //
 //      }
 //      else
@@ -91,7 +91,7 @@ namespace acme
 //
 //      path /= strId;
 //
-//      acmedirectory()->create(path.folder());
+//      directory_system()->create(path.folder());
 //
 //      m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 //

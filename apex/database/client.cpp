@@ -42,7 +42,7 @@ namespace database
       //
       // //auto linkedproperty = fetch_property(atom);
       //
-      // auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
+      // auto psignal = get_app()->get_signal(linkedproperty->m_atom);
       //
       // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
       //
@@ -534,7 +534,7 @@ namespace database
    ::string client::calculate_parent_data_key()
    {
 
-      return get_app()->m_papexapplication->calculate_data_key();
+      return get_app()->calculate_data_key();
 
    }
 

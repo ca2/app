@@ -1,8 +1,8 @@
 // Created by camilo on 203-06-08 22:50 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/prototype/memory.h"
 
@@ -16,7 +16,7 @@ namespace console_hello
 
       ::file::listing listing;
 
-      auto pathFolder = acmedirectory()->get_current();
+      auto pathFolder = directory_system()->get_current();
 
       listing.set_pattern_file_listing(pathFolder, {"*.h", "*.cpp", "*.c", "*.hpp" }, e_depth_recursively);
       ::file::path_array patha;
@@ -40,7 +40,7 @@ namespace console_hello
 
          }
 
-            auto lines = acmefile()->lines(path);
+            auto lines = file_system()->lines(path);
 
             for(int iLine = 1; iLine <= lines.size(); iLine++)
             {
@@ -77,7 +77,7 @@ namespace console_hello
 
 };
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       auto pathFileWithBoms = pathFolder / "file_with_boms.txt";
 
@@ -105,7 +105,7 @@ namespace console_hello
 
       //}
 
-      acmefile()->put_lines(pathFileWithBoms, strReports);
+      file_system()->put_lines(pathFileWithBoms, strReports);
 
    }
 

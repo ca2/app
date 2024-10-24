@@ -8,7 +8,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -564,7 +564,7 @@ namespace image
 
       auto pcontext = get_context();
 
-      ::file::path path = dir()->matter(strMatter);
+      ::file::path path = directory()->matter(strMatter);
 
       //auto estatus = 
       _load_image(pimage, path, loadoptions);
@@ -593,7 +593,7 @@ namespace image
 
          path = strMatter;
 
-         path = dir()->matter(path / strIcon);
+         path = directory()->matter(path / strIcon);
 
          //auto estatus = 
 

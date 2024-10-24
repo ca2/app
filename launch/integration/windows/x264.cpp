@@ -4,7 +4,7 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
@@ -207,9 +207,9 @@ namespace console_integration
 
          auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
-         acmedirectory()->create(strInclude + "/include/");
-         acmedirectory()->create(strStorage + "/binary/");
-         acmedirectory()->create(strStorage + "/library/");
+         directory_system()->create(strInclude + "/include/");
+         directory_system()->create(strStorage + "/binary/");
+         directory_system()->create(strStorage + "/library/");
 
          if (!m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {

@@ -5,7 +5,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -235,7 +235,7 @@ namespace fs
 
             listing.set_listing(path);
 
-            dir()->enumerate(listing);
+            directory()->enumerate(listing);
             
          }
          else
@@ -257,7 +257,7 @@ namespace fs
 
             listing.set_listing(path);
 
-            dir()->enumerate(listing);
+            directory()->enumerate(listing);
 
          }
          else

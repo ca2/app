@@ -6,9 +6,9 @@
 //
 #include "framework.h"
 #include "build.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
@@ -40,7 +40,7 @@ namespace console_integration
          ::console_integration::build::initialize(pparticle);
 
 
-         m_papplication->m_pathOperatingSystemStorageFolder = acmedirectory()->home() / "workspace/operating_system/storage-macos";
+         m_papplication->m_pathOperatingSystemStorageFolder = directory_system()->home() / "workspace/operating_system/storage-macos";
 
       }
 
@@ -155,7 +155,7 @@ namespace console_integration
 
          //         str+="make -j\n";
          //
-         //         acmefile()->put_contents(m_papplication->m_pathSource /"build", str);
+         //         file_system()->put_contents(m_papplication->m_pathSource /"build", str);
          //         m_papplication->bash("chmod +x build");
          //         m_papplication->bash("./build");
       }
@@ -176,8 +176,8 @@ namespace console_integration
          //         mv $PREFIX/lib/libfdk-aac.2.dylib $PREFIX/lib/libfdk-aac.dylib
          //         install_name_tool -id @executable_path/libfdk-aac.dylib $PREFIX/lib/libfdk-aac.dylib
 
-         acmedirectory()->create(pathOperatingSystemStorageFolderPlatform / "library");
-         acmedirectory()->create(m_papplication->m_pathStaticPrefix / "library");
+         directory_system()->create(pathOperatingSystemStorageFolderPlatform / "library");
+         directory_system()->create(m_papplication->m_pathStaticPrefix / "library");
 
          //         ::string strCommand1 ="cp -f " + (m_papplication->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
          //
@@ -211,7 +211,7 @@ namespace console_integration
 
          auto pathStorageA = pathOperatingSystemStorageFolderPlatform / "library" / strA;
 
-         acmefile()->copy(pathStorageA, pathA, true);
+         file_system()->copy(pathStorageA, pathA, true);
 
          auto pathB = m_papplication->m_pathStaticPrefix / "lib" / strA;
 
@@ -239,11 +239,11 @@ namespace console_integration
 
          ::string strDylib = "lib" + strLibraryName + ".dylib";
 
-         auto pathOutput = acmedirectory()->home() / "workspace/operating_system/storage-macos/library" / strDylib;
+         auto pathOutput = directory_system()->home() / "workspace/operating_system/storage-macos/library" / strDylib;
 
          auto pathFolder = pathOutput.folder();
 
-         acmedirectory()->create(pathFolder);
+         directory_system()->create(pathFolder);
 
          auto pathArm = m_mappath[strLibraryName]["arm64"];
 
@@ -255,11 +255,11 @@ namespace console_integration
 
          //   auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
          //
-         //   acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
+         //   directory_system()->create(pathOperatingSystemIncludeFolder / "include");
          //
-         //   acmedirectory()->create(pathOperatingSystemStorageFolder / "binary");
+         //   directory_system()->create(pathOperatingSystemStorageFolder / "binary");
          //
-         //   acmedirectory()->create(pathOperatingSystemStorageFolder / "library");
+         //   directory_system()->create(pathOperatingSystemStorageFolder / "library");
 
 
       }
@@ -336,7 +336,7 @@ namespace console_integration
 
          path = m_papplication->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + "-original.dylib");
 
-         auto plink = acmepath()->resolve_link(path);
+         auto plink = path_system()->resolve_link(path);
 
          if (plink)
          {

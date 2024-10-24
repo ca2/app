@@ -16,7 +16,7 @@
 
 //CLASS_DECL_ACME int_bool file_path_is_relative(const ::scoped_string & scopedstr);
 
-//CLASS_DECL_ACME int_bool acmefile()->exists(const ::file::path & path);
+//CLASS_DECL_ACME int_bool file_system()->exists(const ::file::path & path);
 
 
 //CLASS_DECL_ACME int_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);

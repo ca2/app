@@ -5,7 +5,7 @@
 //#include "acme/filesystem/filesystem/path.h"
 
 
-class CLASS_DECL_ACME dir_system :
+class CLASS_DECL_ACME directory_system :
    virtual public ::object
 {
 public:
@@ -33,8 +33,8 @@ public:
    ::file::path                  m_pathUpload;
 
 
-   dir_system();
-   ~dir_system() override;
+   directory_system();
+   ~directory_system() override;
 
 
    virtual void initialize(::particle * pparticle) override;

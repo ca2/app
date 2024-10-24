@@ -168,7 +168,7 @@ namespace android
       if((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         pcontext->dir()->create(lpszFileName.folder());
+         pcontext->directory()->create(lpszFileName.folder());
 
       }
 

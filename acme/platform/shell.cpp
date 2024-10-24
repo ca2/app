@@ -4,7 +4,7 @@
 #include "acme/constant/posix_shell.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/status.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/node.h"
 
 
@@ -504,7 +504,7 @@ namespace acme
 
          ::string strCommand;
 
-         informationf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+         informationf("Current Directory: %s\n", directory_system()->get_current().c_str());
          informationf("%s\n", strEscaped.c_str());
 
 #ifdef WINDOWS_DESKTOP

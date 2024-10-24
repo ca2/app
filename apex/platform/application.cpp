@@ -11,9 +11,9 @@
 #include "acme/exception/interface_only.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/filesystem/file/folder.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
 //#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/scoped_restore.h"
@@ -49,7 +49,7 @@
 #include "apex/interprocess/task.h"
 #include "apex/platform/application_menu.h"
 #include "apex/database/_binary_stream.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
@@ -394,7 +394,7 @@ namespace apex
    ::file::path application::local_application_path()
    {
 
-      return acmedirectory()->roaming() / "application" / m_strAppName;
+      return directory_system()->roaming() / "application" / m_strAppName;
 
 
    }
@@ -2016,7 +2016,7 @@ namespace apex
 
       //   ::file::path pathDatabase;
 
-      //   ::file::path pathFolder = dir()->appdata();
+      //   ::file::path pathFolder = directory()->appdata();
 
       //   if (is_system())
       //   {
@@ -2724,7 +2724,7 @@ namespace apex
 
          i32 iRetry = 1;
 
-         auto psession = session()->m_papexsession;
+         auto psession = session();
 
       retry_license:
 
@@ -2866,7 +2866,7 @@ namespace apex
       straLocale = payload("locale").as_string_array();
       straSchema = payload("schema").as_string_array();
 
-      ::file::path pathExe = acmefile()->module();
+      ::file::path pathExe = file_system()->module();
 
       straLocale.insert_at(0, strSystemLocale);
       straSchema.insert_at(0, strSystemSchema);
@@ -3798,7 +3798,7 @@ namespace apex
             for (auto pid : pida)
             {
 
-               if (!acmepath()->real_path_is_same(
+               if (!path_system()->real_path_is_same(
                   node()->process_identifier_module_path(pid),
                   pathPreviousLocation))
                {
@@ -4697,7 +4697,7 @@ namespace apex
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
+         file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 
       }
 
@@ -4729,7 +4729,7 @@ namespace apex
 
       static int g_iCount = 0;
 
-      string strFile = dir()->appdata() / (file()->module().name() + "_log_error.txt");
+      string strFile = directory()->appdata() / (file()->module().name() + "_log_error.txt");
 
       g_iCount++;
 
@@ -4811,7 +4811,7 @@ namespace apex
    ::file::path application::get_executable_path()
    {
 
-      return acmedirectory()->module() / (get_executable_title() + get_executable_extension());
+      return directory_system()->module() / (get_executable_title() + get_executable_extension());
 
 
    }
@@ -4950,7 +4950,7 @@ namespace apex
 
       ::string strPath = wstr.c_str();
 
-      ::string strContents = acmefile()->as_string(strPath.c_str());
+      ::string strContents = file_system()->as_string(strPath.c_str());
 
       throw ::exception(todo, "xml");
 
@@ -5326,9 +5326,9 @@ namespace apex
 
       path2 = m_papplication->defer_process_matter_path(path2Param);
 
-      path1 = acmepath()->safe_get_real_path(path1);
+      path1 = path_system()->safe_get_real_path(path1);
 
-      path2 = acmepath()->safe_get_real_path(path2);
+      path2 = path_system()->safe_get_real_path(path2);
 
       return ansi_cmp(path1, path2) == 0;
 
@@ -5362,7 +5362,7 @@ namespace apex
    ::file::path application::appconfig_folder()
    {
 
-      return acmedirectory()->config() / m_strAppName;
+      return directory_system()->config() / m_strAppName;
 
    }
 
@@ -5530,7 +5530,7 @@ namespace apex
 
       auto psystem = system();
 
-      string strNetworkPayload = file()->safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
+      string strNetworkPayload = file()->safe_get_string(directory_system()->config() / strAppId / +"http.network_payload");
 
       if (strNetworkPayload.has_char())
       {
@@ -6244,19 +6244,19 @@ namespace apex
    //      if (is_system())
    //      {
 
-   //         pathDatabase = dir()->appdata() / "system.sqlite";
+   //         pathDatabase = directory()->appdata() / "system.sqlite";
 
    //      }
    //      else if (is_session())
    //      {
 
-   //         pathDatabase = dir()->appdata() / "session.sqlite";
+   //         pathDatabase = directory()->appdata() / "session.sqlite";
 
    //      }
    //      else
    //      {
 
-   //         pathDatabase = dir()->appdata() / "app.sqlite";
+   //         pathDatabase = directory()->appdata() / "app.sqlite";
 
    //      }
 
@@ -6668,7 +6668,7 @@ namespace apex
       string strSchema;
       information() << "update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")";
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
-      ::file::path strFile = dir()->install() / strRelative;
+      ::file::path strFile = directory()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
 
       if (node()->is_debug_build())
@@ -6763,10 +6763,10 @@ namespace apex
 
       string strRequestUrl;
 
-      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
 
@@ -6805,7 +6805,7 @@ namespace apex
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      string strMatter = dir()->matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -6813,16 +6813,16 @@ namespace apex
 
    }
 
-   //string application::dir()->matter(const ::string & pszMatter,const ::string & pszMatter2)
+   //string application::directory()->matter(const ::string & pszMatter,const ::string & pszMatter2)
    //{
 
-   //   return dir()->matter(pszMatter,pszMatter2);
+   //   return directory()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir()->is_inside_time(pszPath);
+   //   return directory()->is_inside_time(pszPath);
    //}
 
 
@@ -7155,7 +7155,7 @@ namespace apex
 
          strConfigurationName = node()->process_configuration_name();
 
-         pathFolder = acmedirectory()->app_app(strPlatformName, strConfigurationName);
+         pathFolder = directory_system()->app_app(strPlatformName, strConfigurationName);
 
          pathApp = pathFolder;
 
@@ -7169,7 +7169,7 @@ namespace apex
       else
       {
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app()->m_papexapplication, nullptr);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app(), nullptr);
 
       }
 
@@ -9690,7 +9690,7 @@ namespace apex
    void application::set_title(const ::string & pszTitle)
    {
 
-      auto psession = session()->m_papexsession;
+      auto psession = session();
 
       psession->set_app_title(m_strAppName, pszTitle);
 
@@ -10010,7 +10010,7 @@ namespace apex
       if (path.has_char())
       {
 
-         if (::url::is(path) || acmefile()->exists(path))
+         if (::url::is(path) || file_system()->exists(path))
          {
 
             return file()->as_string(path);
@@ -10029,7 +10029,7 @@ namespace apex
 
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir()->matter(strFileName);
+      string strFilePath = directory()->matter(strFileName);
 
       return strFilePath;
 
@@ -10424,7 +10424,7 @@ namespace apex
 //
 //   auto papp = (::platform::application *)pApplication;
 //
-//   papp->m_papexapplication->on_application_menu_action(pszCommand);
+//   papp->on_application_menu_action(pszCommand);
 //
 //}
 

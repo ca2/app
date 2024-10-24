@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "native.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/string/international.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/platform/node.h"
@@ -32,7 +32,7 @@ namespace fs
    bool native::has_subdir(const ::file::path & path)
    {
 
-      return dir()->has_subdir(path);
+      return directory()->has_subdir(path);
 
    }
 
@@ -40,7 +40,7 @@ namespace fs
    bool native::fast_has_subdir(const ::file::path & path)
    {
       
-      return dir()->fast_has_subdir(path);
+      return directory()->fast_has_subdir(path);
       
    }
 
@@ -48,7 +48,7 @@ namespace fs
    bool native::enumerate(::file::listing & listing)
    {
 
-      return dir()->enumerate(listing);
+      return directory()->enumerate(listing);
 
    }
 
@@ -79,7 +79,7 @@ namespace fs
    /*::file::listing & native::ls_relative_name(::file::listing & listing)
    {
 
-      dir()->ls_relative_name(listing);
+      directory()->ls_relative_name(listing);
 
       return listing;
 
@@ -90,7 +90,7 @@ namespace fs
    int native::is_dir(const ::file::path & path)
    {
 
-      return dir()->is(path) ? 1 : 0;
+      return directory()->is(path) ? 1 : 0;
 
    }
 
@@ -131,7 +131,7 @@ namespace fs
    //   while(iCount > 0)
    //   {
 
-   //      strPath = dir()->name(strPath);
+   //      strPath = directory()->name(strPath);
 
    //      iCount--;
 

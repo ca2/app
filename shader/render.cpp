@@ -105,7 +105,7 @@ namespace app_shader
 
       //auto pcontext = ::object::m_pgpucontext;
 
-      //dir()->ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+      //directory()->ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
       //for (auto& path : listing)
       //{

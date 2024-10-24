@@ -1985,13 +1985,13 @@ namespace user
      if (::is_set(session()))
      {
 
-        if (this == session()->m_papexsession->m_puserprimitiveHost)
+        if (this == session()->m_puserprimitiveHost)
         {
 
            return true;
 
         }
-        else if (puiParent == session()->m_papexsession->m_puserprimitiveHost)
+        else if (puiParent == session()->m_puserprimitiveHost)
         {
 
            return true;
@@ -4087,7 +4087,7 @@ namespace user
    //void interaction_base::on_check_change()
    //{
 
-   //   get_app()->m_papexapplication->signal(m_linkedpropertyCheck->m_atom);
+   //   get_app()->signal(m_linkedpropertyCheck->m_atom);
 
    //}
 

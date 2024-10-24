@@ -49,7 +49,7 @@ namespace android
    void file_system::update_module_path()
    {
 
-      m_pathModule = acmepath()->app_module();
+      m_pathModule = path_system()->app_module();
 
       //m_pathCa2Module = m_pathModule;
 

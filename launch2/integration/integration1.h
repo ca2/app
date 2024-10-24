@@ -5,7 +5,7 @@
 #include "framework.h"
 #include "acme/console.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/prototype/prototype/url.h"
 //#include "apex/networking/http/context.h"
 
@@ -41,7 +41,7 @@ namespace console
 
             m_path = m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
 
-            acmedirectory()->create(m_pathFolder / m_path);
+            directory_system()->create(m_pathFolder / m_path);
 
          }
 

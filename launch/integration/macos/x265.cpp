@@ -3,8 +3,8 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
 
@@ -78,7 +78,7 @@ namespace console_integration
                
                auto pathPrefixInclude = m_papplication->m_pathPrefix / "include";
 
-               auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-macos/include";
+               auto pathOperatingSystemIncludeFolder = directory_system()->home() /"workspace/operating_system/operating_system-macos/include";
                
                m_papplication->bash("cp -f " + pathPrefixInclude + "/x265*.h " + pathOperatingSystemIncludeFolder + "/");
                
@@ -144,7 +144,7 @@ namespace console_integration
 
          auto pathPrefixInclude = m_papplication->m_pathPrefix / "include";
 
-         acmedirectory()->create(pathPrefixInclude);
+         directory_system()->create(pathPrefixInclude);
          
          m_papplication->bash("cp -f " + pathSource + "/x265*.h " + pathPrefixInclude + "/");
 
@@ -175,7 +175,7 @@ namespace console_integration
             
          }
          
-         acmedirectory()->create(m_papplication->m_pathPrefix);
+         directory_system()->create(m_papplication->m_pathPrefix);
          
          m_papplication->prepare_compile_and_link_environment();
          
@@ -220,15 +220,15 @@ namespace console_integration
          
          m_pathSourceBits = m_papplication->m_pathSource / strBits;
          
-         acmedirectory()->create(m_pathSourceBits);
+         directory_system()->create(m_pathSourceBits);
          
-         acmedirectory()->change_current(m_pathSourceBits);
+         directory_system()->change_current(m_pathSourceBits);
          
          string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
          
-         ::file::path pathToolchainFileCmake = acmedirectory()->home() / "workspace/operating_system/include/toolchain_file.cmake";
+         ::file::path pathToolchainFileCmake = directory_system()->home() / "workspace/operating_system/include/toolchain_file.cmake";
 
-         ::file::path pathAsmCompiler = acmedirectory()->home() / "workspace/operating_system/include/asm_compiler";
+         ::file::path pathAsmCompiler = directory_system()->home() / "workspace/operating_system/include/asm_compiler";
 
          string strCommand;
          
@@ -392,11 +392,11 @@ namespace console_integration
             //
             auto pathOperatingSystemStorageFolderPlatform = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform ;
             //
-            //   acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
+            //   directory_system()->create(pathOperatingSystemIncludeFolder / "include");
             //
-            //   acmedirectory()->create(pathOperatingSystemStorageFolder / "binary");
+            //   directory_system()->create(pathOperatingSystemStorageFolder / "binary");
             //
-            acmedirectory()->create(pathOperatingSystemStorageFolderPlatform / "library");
+            directory_system()->create(pathOperatingSystemStorageFolderPlatform / "library");
             //
             //   auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             //
@@ -444,7 +444,7 @@ namespace console_integration
 
                auto pathTarget = m_pathSourceBits / strTargetDylib;
 
-               acmefile()->copy(pathTarget, pathOriginal, true);
+               file_system()->copy(pathTarget, pathOriginal, true);
                
                ::string strCommand3 ="install_name_tool -id @executable_path/" + strTargetDylib + " " + path;
 
@@ -454,7 +454,7 @@ namespace console_integration
 
                information() << "Copying from \"" << pathTarget << "\" to \"" << pathPrefix << "\"";
                
-               acmefile()->copy(pathPrefix, pathTarget, true);
+               file_system()->copy(pathPrefix, pathTarget, true);
              
                m_mappath[m_strTargetName][m_papplication->m_strPlatform] = pathPrefix;
                
@@ -471,7 +471,7 @@ namespace console_integration
                
                information() << "Copying from \"" << pathOriginal << "\" to \"" << path << "\"";
                
-               acmefile()->copy(path, pathOriginal, true);
+               file_system()->copy(path, pathOriginal, true);
                
             }
 

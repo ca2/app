@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "counter.h"
 #include "acme/platform/node.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/factory.h"
@@ -28,7 +28,7 @@
 //   if (m_iMemoryCountersStartable && m_iMemoryCounters < 0)
 //   {
 //
-//      m_iMemoryCounters = pparticle->acmefile()->exists(pparticle->acmedirectory()->config() / "system/particle_trackers.txt") ? 1 : 0;
+//      m_iMemoryCounters = pparticle->file_system()->exists(pparticle->directory_system()->config() / "system/particle_trackers.txt") ? 1 : 0;
 //
 //      //if (g_iMemoryCounters)
 //      //{
@@ -57,13 +57,13 @@
 ////
 ////#if defined(UNIVERSAL_WINDOWS)
 ////
-////      string strBasePath = pmatter->acmedirectory()->system() / "particle_trackers";
+////      string strBasePath = pmatter->directory_system()->system() / "particle_trackers";
 ////
 ////#else
 ////
 ////      ::file::path strModule = module_path_from_pid(get_current_process_id());
 ////
-////      string strBasePath = pmatter->acmedirectory()->system() / "particle_trackers" / strModule.title() / as_string(get_current_process_id());
+////      string strBasePath = pmatter->directory_system()->system() / "particle_trackers" / strModule.title() / as_string(get_current_process_id());
 ////
 ////#endif
 ////

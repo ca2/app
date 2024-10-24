@@ -175,7 +175,7 @@ namespace core
 
       string strApplicationTitle;
 
-      strApplicationTitle = get_app()->m_papexapplication->title();
+      strApplicationTitle = get_app()->title();
 
       string strHeader__;
 

@@ -3,7 +3,7 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
 
@@ -214,11 +214,11 @@ namespace console_integration
 
          auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
+         directory_system()->create(pathOperatingSystemIncludeFolder / "include");
 
-         acmedirectory()->create(pathOperatingSystemStorageFolder / "binary");
+         directory_system()->create(pathOperatingSystemStorageFolder / "binary");
 
-         acmedirectory()->create(pathOperatingSystemStorageFolder / "library");
+         directory_system()->create(pathOperatingSystemStorageFolder / "library");
 
          auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 

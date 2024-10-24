@@ -2,9 +2,9 @@
 ////#include "acme/exception/exception.h"
 #include "application_build_helper.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 //#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/ini.h"
@@ -75,7 +75,7 @@ namespace application_build_helper
 
       pathEtcOsRelease = "/etc/os-release";
 
-      auto pini = acmefile()->get_ini(pathEtcOsRelease);
+      auto pini = file_system()->get_ini(pathEtcOsRelease);
 
       string strDistro = (*pini)["ID"];
 
@@ -327,7 +327,7 @@ namespace application_build_helper
       try
       {
 
-         m_piniPackageMap = acmefile()->get_ini(pathPackageMap);
+         m_piniPackageMap = file_system()->get_ini(pathPackageMap);
 
       }
       catch (const ::exception & e)
@@ -600,7 +600,7 @@ namespace application_build_helper
    string_array application_build_helper::get_lines(const ::file::path & path, bool bNoExceptionIfNotFound)
    {
 
-      auto strInput = acmefile()->as_string(path, -1, bNoExceptionIfNotFound);
+      auto strInput = file_system()->as_string(path, -1, bNoExceptionIfNotFound);
 
       if (strInput.is_empty())
       {
@@ -764,7 +764,7 @@ namespace application_build_helper
 
       ::file::path pathIconTarget = m_pathFolder / "icon.ico";
 
-      if (!acmefile()->exists(pathIconSource))
+      if (!file_system()->exists(pathIconSource))
       {
 
          string strMessage;
@@ -777,7 +777,7 @@ namespace application_build_helper
 
       }
 
-      acmefile()->overwrite_if_different(pathIconTarget, pathIconSource);
+      file_system()->overwrite_if_different(pathIconTarget, pathIconSource);
 
    }
 
@@ -800,7 +800,7 @@ namespace application_build_helper
          strMain += "#include \"acme/application.h\"\n";
 
          ///estatus =
-         //acmefile()->set_file_normal(pathMain);
+         //file_system()->set_file_normal(pathMain);
 
          //if(!estatus)
          //{
@@ -811,7 +811,7 @@ namespace application_build_helper
 
          //estatus =
 
-         acmefile()->put_contents(pathMain, strMain);
+         file_system()->put_contents(pathMain, strMain);
 
          //if(!estatus)
          //{
@@ -826,7 +826,7 @@ namespace application_build_helper
 
          ::file::path pathApps = m_pathFolder / "_apps.txt";
 
-         string strApps = acmefile()->as_string(pathApps);
+         string strApps = file_system()->as_string(pathApps);
 
          strApps.trim();
 
@@ -882,7 +882,7 @@ namespace application_build_helper
 
                      strApplication += "#include \"_main.inl\"\n";
 
-                     //acmefile()->set_file_normal(pathApplication);
+                     //file_system()->set_file_normal(pathApplication);
 
                      //if (!estatus)
                      //{
@@ -893,7 +893,7 @@ namespace application_build_helper
 
                      ///estatus =
 
-                     acmefile()->put_contents(pathApplication, strApplication);
+                     file_system()->put_contents(pathApplication, strApplication);
 
                      /*         if (!estatus)
                               {
@@ -957,7 +957,7 @@ namespace application_build_helper
 
       ::file::path pathApplicationMatter = m_pathSource / strDependency / "application.txt";
 
-      auto estatus = acmefile()->exists(pathApplicationMatter);
+      auto estatus = file_system()->exists(pathApplicationMatter);
 
       if (estatus)
       {
@@ -1218,7 +1218,7 @@ namespace application_build_helper
 
       string_array straLines;
 
-      straLines = acmefile()->lines(pathMap);
+      straLines = file_system()->lines(pathMap);
 
       for (auto & strLine : straLines)
       {
@@ -1254,7 +1254,7 @@ namespace application_build_helper
 
       //auto estatus =
 
-      acmefile()->ensure_exists(strFileSrc);
+      file_system()->ensure_exists(strFileSrc);
 
       //if(!estatus)
       //{
@@ -1263,7 +1263,7 @@ namespace application_build_helper
 
       //}
 
-      auto strInput = acmefile()->as_string(strFileSrc);
+      auto strInput = file_system()->as_string(strFileSrc);
 
       //if(!strInput)
       //{
@@ -1345,7 +1345,7 @@ namespace application_build_helper
 
       //estatus =
 
-      //acmefile()->set_file_normal(strFileDst);
+      //file_system()->set_file_normal(strFileDst);
 
       //if(!estatus)
       //{
@@ -1356,9 +1356,9 @@ namespace application_build_helper
 
       //estatus =
 
-      acmefile()->put_contents(strFileDst, strOutput);
+      file_system()->put_contents(strFileDst, strOutput);
 
-      //acmefile()->put_contents(strFileFactory, strFactory);
+      //file_system()->put_contents(strFileFactory, strFactory);
 
       //if(!estatus)
       //{
@@ -1377,7 +1377,7 @@ namespace application_build_helper
 
       //auto estatus =
 
-      acmefile()->ensure_exists(strFileSrc);
+      file_system()->ensure_exists(strFileSrc);
 
       //if(!estatus)
       //{
@@ -1386,7 +1386,7 @@ namespace application_build_helper
 
       //}
 
-      auto strInput = acmefile()->as_string(strFileSrc);
+      auto strInput = file_system()->as_string(strFileSrc);
 
       //if(!strInput)
       //{
@@ -1428,7 +1428,7 @@ namespace application_build_helper
 
       //estatus =
 
-      //acmefile()->set_file_normal(strFileDst);
+      //file_system()->set_file_normal(strFileDst);
 
       //if(!estatus)
       //{
@@ -1439,7 +1439,7 @@ namespace application_build_helper
 
       //estatus =
 
-      acmefile()->put_contents(strFileDst, strOutput);
+      file_system()->put_contents(strFileDst, strOutput);
 
       //if(!estatus)
       //{
@@ -1460,7 +1460,7 @@ namespace application_build_helper
 
       //auto estatus =
 
-      acmefile()->ensure_exists(pathMatter);
+      file_system()->ensure_exists(pathMatter);
 
       //if(!estatus)
       //{
@@ -1469,7 +1469,7 @@ namespace application_build_helper
 
       //}
 
-      //acmefile()->set_file_normal(pathMatter);
+      //file_system()->set_file_normal(pathMatter);
 
       //if(!estatus)
       //{
@@ -1478,7 +1478,7 @@ namespace application_build_helper
 
       //}
 
-      auto strInput = acmefile()->as_string(pathMatter);
+      auto strInput = file_system()->as_string(pathMatter);
 
       //if(!strInput)
       //{
@@ -1502,7 +1502,7 @@ namespace application_build_helper
 
       strOutput += m_strProjectId + "\n";
 
-      acmefile()->put_contents(pathMatter, strOutput);
+      file_system()->put_contents(pathMatter, strOutput);
 
    }
 

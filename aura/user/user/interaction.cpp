@@ -29961,7 +29961,7 @@ namespace user
    ::aura::application * interaction::get_app()
    {
 
-      return m_papplication && m_papplication->m_papplication->m_papexapplication
+      return m_papplication && m_papplication->m_papplication
          ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }

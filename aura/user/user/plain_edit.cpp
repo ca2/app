@@ -1346,7 +1346,7 @@ namespace user
 
          KillTimer(etimer);
 
-         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button))
+         if (session()->is_key_pressed(::user::e_key_left_button))
          {
 
             SetTimer(e_timer_overflow_scrolling, 300_ms);
@@ -1357,7 +1357,7 @@ namespace user
       else if (etimer == e_timer_overflow_scrolling)
       {
 
-         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button))
+         if (session()->is_key_pressed(::user::e_key_left_button))
          {
 
             auto pwindowing = windowing();
@@ -2422,7 +2422,7 @@ namespace user
 
          set_default_mouse_cursor(pcursor);
 
-         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button) && !is_new_focus_select_all())
+         if (session()->is_key_pressed(::user::e_key_left_button) && !is_new_focus_select_all())
          {
 
             ::point_i32 pointHost = pmouse->m_pointHost;

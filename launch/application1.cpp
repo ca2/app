@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "application.h"
 
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/prototype/datetime/datetime.h"
 //#include <stdio.h>
 //#include <sys/stat.h>
@@ -621,17 +621,17 @@ return;
 
 printf("Launching %s/%s...\n", m_strAppRoot.c_str(), m_strAppName.c_str());
 
-   auto pathStore = acmedirectory()->home() / "application" / m_strAppRoot / m_strAppName;
+   auto pathStore = directory_system()->home() / "application" / m_strAppRoot / m_strAppName;
 
-   acmedirectory()->create(pathStore);
+   directory_system()->create(pathStore);
 
    auto pathInstallingWithLaunchStore =  pathStore / "installing_with_launch_store";
 
-   acmefile()->touch(pathInstallingWithLaunchStore);
+   file_system()->touch(pathInstallingWithLaunchStore);
 
    auto pathLog =  pathStore / "log";
 
-   acmedirectory()->create(pathLog);
+   directory_system()->create(pathLog);
 
    auto strDateTimeName = datetime()->date_time_text_for_file_with_no_spaces();
 
@@ -660,9 +660,9 @@ printf("Launching %s/%s...\n", m_strAppRoot.c_str(), m_strAppName.c_str());
 //
 // chdir(szX64);
 
-   acmedirectory()->create(pathX64);
+   directory_system()->create(pathX64);
 
-   acmedirectory()->change_current(pathX64);
+   directory_system()->change_current(pathX64);
 
 #ifdef LINUX
 

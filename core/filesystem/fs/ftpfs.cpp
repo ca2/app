@@ -5,7 +5,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "core/platform/system.h"
@@ -445,7 +445,7 @@ retry:
 
       }
 
-      ::file::path pathTemp = file()->time(dir()->time());
+      ::file::path pathTemp = file()->time(directory()->time());
 
       auto psystem = system();
 

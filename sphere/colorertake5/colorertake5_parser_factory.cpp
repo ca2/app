@@ -110,7 +110,7 @@ namespace colorertake5
    string ParserFactory::searchPath()
    {
 
-      return dir()->matter("colorer.zip:catalog.xml");
+      return directory()->matter("colorer.zip:catalog.xml");
 
    }
 
@@ -191,7 +191,7 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(dir()->is(path))
+         if(directory()->is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
@@ -202,7 +202,7 @@ namespace colorertake5
             file_pointer spfile(e_create);
             for(i32 i = 0; i < patha.get_count(); i++)
             {
-               if(!dir()->is(patha[i]))
+               if(!directory()->is(patha[i]))
                {
                   string str = file()->as_string(patha[i]);
                   try

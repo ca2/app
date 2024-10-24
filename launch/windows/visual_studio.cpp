@@ -2,7 +2,7 @@
 #include "visual_studio.h"
 #include "acme_windows/_.h"
 #include "acme_windows/registry.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 
 
@@ -25,7 +25,7 @@ namespace microsoft
    ::string_array visual_studio::get_instances()
    {
 
-      auto pathProgramData = acmedirectory()->program_data();
+      auto pathProgramData = directory_system()->program_data();
 
       ::file::listing listing;
 
@@ -33,7 +33,7 @@ namespace microsoft
 
       listing.set_folder_listing(pathInstances);
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       ::string_array straInstances;
 
@@ -108,7 +108,7 @@ namespace microsoft
 
                ::file::path pathInstallLocation= key.get("InstallLocation");
 
-               if (acmedirectory()->is(pathInstallLocation))
+               if (directory_system()->is(pathInstallLocation))
                {
 
                   return pathInstallLocation;

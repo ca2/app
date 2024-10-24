@@ -2182,7 +2182,7 @@ namespace aura
       if (::is_set(m_pappCurrent))
       {
 
-         m_pappCurrent->m_papexapplication->pre_translate_message(pmessage);
+         m_pappCurrent->pre_translate_message(pmessage);
 
       }
 

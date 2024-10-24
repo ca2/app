@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "language_map.h"
 #include "language.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 
@@ -261,7 +261,7 @@ namespace user
 
             straMatterLocator.add(strLocator);
 
-            ::file::path pathApplication = dir()->matter_from_locator("stringtable.po", straMatterLocator);
+            ::file::path pathApplication = directory()->matter_from_locator("stringtable.po", straMatterLocator);
 
             string strPoData = file()->as_string(pathApplication);
 
@@ -308,13 +308,13 @@ namespace user
 
       //   ::file::path point1 = ::dir::appdata() / ("missing_translation_" + m_planguage->m_strLanguageCode + ".txt");
 
-      //   string str1 = acmefile()->as_string(point1);
+      //   string str1 = file_system()->as_string(point1);
 
       //   str1 += "\nmsgid\"" + strId + "\"\n";
       //   str1 += "\nmsgstr\"" + strId + "\"\n";
       //   str1 += "\n";
 
-      //   acmefile()->put_contents(point1, str1);
+      //   file_system()->put_contents(point1, str1);
 
       //   strText = "!" + m_planguage->m_strLanguageCode + ":" + strId;
 

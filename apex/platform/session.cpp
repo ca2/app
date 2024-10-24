@@ -740,7 +740,7 @@ namespace apex
 
 
       ::platform::session::on_instantiate_application(papplication);
-      //papp->m_papexsession = this;
+      //papp = this;
       //papp = m_papexsystem;
       //papp->m_pnode = m_pnode;
       //papp->m_papexnode = m_papexnode;
@@ -1414,7 +1414,7 @@ ret:
       if (::is_set(m_pappCurrent))
       {
 
-         m_pappCurrent->m_papexapplication->pre_translate_message(pmessage);
+         m_pappCurrent->pre_translate_message(pmessage);
 
       }
 

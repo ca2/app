@@ -166,7 +166,7 @@
 //
 //      //   string strArgument = psubsystem->get_argument1(0);
 //
-//      //   string strModule = acmefile()->module().title();
+//      //   string strModule = file_system()->module().title();
 //
 //      //   if (strArgument.case_insensitive_equals("ffmpeg"))
 //      //   {

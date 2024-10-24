@@ -3,7 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/networking/http/context.h"
 #include "axis/user/form/data.h"
 #include "base/user/simple/frame_window.h"
@@ -153,7 +153,7 @@ namespace hi5
 
          auto papp = get_app();
 
-         if(papp->m_papexapplication->m_strAppName == "winactionarea")
+         if(papp->m_strAppName == "winactionarea")
          {
 
             strAppName = "_set_windesk";
@@ -162,7 +162,7 @@ namespace hi5
          else
          {
 
-            strAppName = papp->m_papexapplication->m_strAppName;
+            strAppName = papp->m_strAppName;
 
          }
 
@@ -194,7 +194,7 @@ namespace hi5
 
          }
 
-         if(!m_pformdocumentAuth->on_open_document(dir()->matter(m_strForm)))
+         if(!m_pformdocumentAuth->on_open_document(directory()->matter(m_strForm)))
          {
 
             return;
@@ -260,7 +260,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         m_pformdocumentAuth->on_open_document(dir()->matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(directory()->matter(pszMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

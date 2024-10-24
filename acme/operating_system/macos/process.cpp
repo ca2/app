@@ -6,8 +6,8 @@
 //  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 
 #include <stdio.h>
 #include <signal.h>
@@ -18,7 +18,7 @@
 #include <mach-o/dyld.h>
 
 
-::file::path macos_app_path(::acme_directory * pacmedirectory, string strApp)
+::file::path macos_app_path(::directory_system * pacmedirectory, string strApp)
 {
 
    ::file::path path = pacmedirectory->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
@@ -106,7 +106,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 //}
 //
 
-CLASS_DECL_ACME ::file::path core_app_path(::acme_directory * pacmedirectory, string strApp)
+CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pacmedirectory, string strApp)
 {
 
    ::file::path path = getenv("HOME");

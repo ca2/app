@@ -16,7 +16,7 @@
 #include "apex/networking/sockets/http/http_tunnel.h"
 #include "apex/networking/sockets/http/http_session.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -214,7 +214,7 @@ namespace http
 
       strFile.replace_with("%19", "?");
 
-      strFile = dir()->cache() / strFile + ".meta_information";
+      strFile = directory()->cache() / strFile + ".meta_information";
 
       string strCache;
 
@@ -315,7 +315,7 @@ namespace http
       
       strFile.replace_with("%19", "?");
 
-      strFile = dir()->cache() / strFile + ".length_question";
+      strFile = directory()->cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -555,16 +555,16 @@ namespace http
       //      else if(i == 1)
       //      {
       //         // telmico: no proxy
-      //         string str = file()->as_string(dir()->appdata() / "machine/proxy.xml");
+      //         string str = file()->as_string(directory()->appdata() / "machine/proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            file()->copy(dir()->appdata()/ "proxy_original.xml", dir()->install()/ "proxy.xml", false);
+      //            file()->copy(directory()->appdata()/ "proxy_original.xml", directory()->install()/ "proxy.xml", false);
       //         }
-      //         if(file()->exists(dir()->appdata()/ "proxy.xml"))
+      //         if(file()->exists(directory()->appdata()/ "proxy.xml"))
       //         {
       //            try
       //            {
-      //               file()->del(dir()->appdata()/ "proxy.xml");
+      //               file()->del(directory()->appdata()/ "proxy.xml");
       //            }
       //            catch(...)
       //            {
@@ -574,20 +574,20 @@ namespace http
       //      else if(i == 2)
       //      {
       //         // telmico: original proxy configuration
-      //         if(file()->exists(dir()->appdata()/ "proxy_original.xml"))
+      //         if(file()->exists(directory()->appdata()/ "proxy_original.xml"))
       //         {
-      //            file()->copy(dir()->appdata()/ "proxy.xml", dir()->appdata()/"proxy_original.xml", false);
+      //            file()->copy(directory()->appdata()/ "proxy.xml", directory()->appdata()/"proxy_original.xml", false);
       //         }
       //      }
       //      else
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-      //         string str = file()->as_string(dir()->appdata()/"proxy.xml");
+      //         string str = file()->as_string(directory()->appdata()/"proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            file()->copy(dir()->appdata()/"proxy_original.xml", dir()->appdata()/"proxy.xml", false);
+      //            file()->copy(directory()->appdata()/"proxy_original.xml", directory()->appdata()/"proxy.xml", false);
       //         }
-      //         file()->put_contents(dir()->appdata()/"proxy.xml", "proxy");
+      //         file()->put_contents(directory()->appdata()/"proxy.xml", "proxy");
       //      }
    }
 
@@ -595,7 +595,7 @@ namespace http
    void context::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -901,7 +901,7 @@ namespace http
 
       //xml::document doc;
 
-      //::file::path pathProxyXml = dir()->appdata() / "proxy.xml";
+      //::file::path pathProxyXml = directory()->appdata() / "proxy.xml";
 
       //if (!file()->exists(pathProxyXml))
       //{
@@ -1341,7 +1341,7 @@ namespace http
 //
 //         auto tickTimeProfile1 = ::time::now();
 //
-//         auto papplication = psession->m_psockethandler->get_app()->m_papexapplication;
+//         auto papplication = psession->m_psockethandler->get_app();
 //
 //         string strRequest = purl->get_object(pszRequest);
 //
@@ -3025,9 +3025,9 @@ namespace http
 
    //   strSection.formatf("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   strUserNameFile = dir()->appdata() / strSection + "_1";
+   //   strUserNameFile = directory()->appdata() / strSection + "_1";
 
-   //   strPasswordFile = dir()->appdata() / strSection + "_2";
+   //   strPasswordFile = directory()->appdata() / strSection + "_2";
 
    //   bool bOk = true;
 
@@ -3081,9 +3081,9 @@ namespace http
 
    //   strSection.formatf("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   file()->del(dir()->appdata() / strSection + "_1");
+   //   file()->del(directory()->appdata() / strSection + "_1");
 
-   //   file()->del(dir()->appdata() / strSection + "_2");
+   //   file()->del(directory()->appdata() / strSection + "_2");
 
    //}
 

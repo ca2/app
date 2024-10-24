@@ -2,10 +2,10 @@
 #include "framework.h"
 #include "launcher.h"
 #include "app_launcher.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -65,7 +65,7 @@ namespace apex
 
       ::file::path path = pnode->get_last_run_application_path(m_strApp);
 
-      if(acmefile()->exists(path))
+      if(file_system()->exists(path))
       {
 
          return ::transfer(path);
@@ -82,7 +82,7 @@ namespace apex
 
       auto pcontext = get_context();
 
-      ::file::path pathCandidate = dir()->module() / strExe;
+      ::file::path pathCandidate = directory()->module() / strExe;
 
       if (file()->exists(pathCandidate))
       {
@@ -91,7 +91,7 @@ namespace apex
 
       }
 
-      return acmedirectory()->app_app(m_strPlatform, node()->process_configuration_name());
+      return directory_system()->app_app(m_strPlatform, node()->process_configuration_name());
 
    }
 

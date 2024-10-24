@@ -30,8 +30,8 @@
 #include "main_window.h"
 #include "user.h"
 #include "acme/constant/id.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/nano.h"
@@ -1454,9 +1454,9 @@ namespace micro
 
       strAppId = application()->m_strAppId;
 
-      ::file::path pathFolder = acmedirectory()->home() / "application" / strAppId / "details";
+      ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
 
-      auto pathDetails = acmefile()->time_put_contents(pathFolder, "details", "txt", str);
+      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", str);
 
       node()->shell_open(pathDetails, "");
 

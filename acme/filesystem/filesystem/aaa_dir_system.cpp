@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "dir_system.h"
+#include "directory_system.h"
 #include "file_system.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/event.h"
 #include "acme/prototype/string/_string.h"
 #include "acme/filesystem/watcher/watcher.h"
@@ -11,7 +11,7 @@
 #include "acme/platform/system.h"
 
 
-dir_system::dir_system()
+directory_system::directory_system()
 {
 
    m_pathUpload = "C:\\upload";
@@ -19,13 +19,13 @@ dir_system::dir_system()
 }
 
 
-dir_system::~dir_system()
+directory_system::~directory_system()
 {
 
 }
 
 
-void dir_system::initialize(::particle * pparticle)
+void directory_system::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
@@ -46,7 +46,7 @@ void dir_system::initialize(::particle * pparticle)
 }
 
 
-void dir_system::init_system()
+void directory_system::init_system()
 {
 
 //   if (!update_module_path())
@@ -56,7 +56,7 @@ void dir_system::init_system()
 //
 //   }
 //
-   m_pathInstall = acmedirectory()->install();
+   m_pathInstall = directory_system()->install();
 
    //auto psystem = system();
 
@@ -78,7 +78,7 @@ void dir_system::init_system()
 
    //auto psystem = system();
 
-   auto pacmedirectory = acmedirectory();
+   auto pacmedirectory = directory_system();
 
 #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
@@ -102,7 +102,7 @@ void dir_system::init_system()
 
    //__construct(m_pfilewatcher);
 
-   pacmedirectory->create(acmedirectory()->bookmark());
+   pacmedirectory->create(directory_system()->bookmark());
 
    //if (!update_module_path())
    //{
@@ -118,9 +118,9 @@ void dir_system::init_system()
 
    //}
 
-   ::string strAppId = acmedirectory()->appid();
+   ::string strAppId = directory_system()->appid();
    
-   information() << "dir_system::init_system strAppId : " << strAppId;
+   information() << "directory_system::init_system strAppId : " << strAppId;
 
    m_pathDefaultAppData = compute_default_app_data_path();
 
@@ -189,7 +189,7 @@ void dir_system::init_system()
 }
 
 
-void dir_system::term_system()
+void directory_system::term_system()
 {
 
    //m_pfilewatcher.release();
@@ -197,7 +197,7 @@ void dir_system::term_system()
 }
 
 
-void dir_system::finalize()
+void directory_system::finalize()
 {
 
    ::object::finalize();
@@ -205,16 +205,16 @@ void dir_system::finalize()
 }
 
 
-::file::path dir_system::compute_default_app_data_path()
+::file::path directory_system::compute_default_app_data_path()
 {
 
-   return acmedirectory()->home() / "application";
+   return directory_system()->home() / "application";
 
 }
 
 
 
-//bool dir_system::update_module_path()
+//bool directory_system::update_module_path()
 //{
 //
 //   //auto & context = Context;
@@ -240,7 +240,7 @@ void dir_system::finalize()
 //}
 
 
-//::string dir_system::dir_root()
+//::string directory_system::dir_root()
 //{
 //
 //   return "";
@@ -249,7 +249,7 @@ void dir_system::finalize()
 
 
 //
-//::file::path dir_system::get_memory_map_base_folder_path() const
+//::file::path directory_system::get_memory_map_base_folder_path() const
 //{
 //
 //   return "";
@@ -257,7 +257,7 @@ void dir_system::finalize()
 //}
 //
 //
-//::file::path dir_system::home()
+//::file::path directory_system::home()
 //{
 //
 //
@@ -269,7 +269,7 @@ void dir_system::finalize()
 
 //
 //
-//::file::path dir_system::program_data()
+//::file::path directory_system::program_data()
 //{
 //
 //   return "";
@@ -277,7 +277,7 @@ void dir_system::finalize()
 //}
 //
 //
-//::file::path dir_system::roaming()
+//::file::path directory_system::roaming()
 //{
 //
 //
@@ -287,7 +287,7 @@ void dir_system::finalize()
 //}
 
 
-//::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   return "";
@@ -295,7 +295,7 @@ void dir_system::finalize()
 //}
 
 
-//::file::path dir_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+//::file::path directory_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //{
 //
 //   return "";
@@ -303,7 +303,7 @@ void dir_system::finalize()
 //}
 
 
-// ::file::path dir_system::get_last_run_application_path_file(string strAppId)
+// ::file::path directory_system::get_last_run_application_path_file(string strAppId)
 // {
 
 //    return "";
@@ -311,7 +311,7 @@ void dir_system::finalize()
 // }
 
 
-// ::file::path dir_system::get_last_run_application_path(string strAppId)
+// ::file::path directory_system::get_last_run_application_path(string strAppId)
 // {
 
 //    return "";

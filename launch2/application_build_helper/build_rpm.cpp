@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "application_build_helper.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -30,7 +30,7 @@ namespace application_build_helper
 
       ::string strPackageNameDst = "store-" + strReleaseNumberDst;
 
-      ::file::path pathHome = acmedirectory()->home();
+      ::file::path pathHome = directory_system()->home();
 
       ::file::path pathRpmbuild = pathHome / "rpmbuild";
 
@@ -62,7 +62,7 @@ namespace application_build_helper
 
       ::file::path pathStoreFolder;
 
-      pathStoreFolder = acmedirectory()->home() / "store";
+      pathStoreFolder = directory_system()->home() / "store";
 
       pathStoreFolder /= m_strSlashedOperatingSystem;
 
@@ -76,7 +76,7 @@ namespace application_build_helper
 
       pathBin = pathPackageDst / "/opt/store/bin";
 
-      acmedirectory()->create(pathBin);
+      directory_system()->create(pathBin);
 
       strCommand = "unzip -o " + pathStoreZip + " -d " + pathBin + "/";
 
@@ -96,9 +96,9 @@ namespace application_build_helper
 
       set["%RELEASE_NUMBER%"] = strReleaseNumberDst;
 
-      acmefile()->find_replace(pathSpec, set);
+      file_system()->find_replace(pathSpec, set);
 
-      acmedirectory()->change_current(pathSOURCES);
+      directory_system()->change_current(pathSOURCES);
 
       strCommand = "tar -czvf " + strPackageNameDst + ".tar.gz " + strPackageNameDst;
 
@@ -106,7 +106,7 @@ namespace application_build_helper
 
       acmenode()->command_system("bash -c \"" + strCommand + "\"", std_inline_log());
 
-      acmedirectory()->change_current(pathSPECS);
+      directory_system()->change_current(pathSPECS);
 
       strCommand = "rpmbuild -ba store.spec";
 
@@ -122,7 +122,7 @@ namespace application_build_helper
 
       listing.set_pattern_file_listing(pathRPMS/"x86_64", {"*.rpm"});
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       if(listing.size() != 1)
       {

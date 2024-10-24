@@ -16,8 +16,8 @@
 
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/exception/__string.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/platform.h"
 #include "acme/parallelization/synchronous_lock.h"
 

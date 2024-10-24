@@ -497,7 +497,7 @@ namespace helloworld
 
       ::file::path path;
 
-      path = dir()->appdata() / "helloworld_menu.html";
+      path = directory()->appdata() / "helloworld_menu.html";
 
       file()->put_contents(path, str);
 

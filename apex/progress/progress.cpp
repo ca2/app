@@ -16,7 +16,7 @@ namespace progress
 
       auto papp = pprimitiveParent->get_app();
 
-      auto pprogress = papp->m_papexapplication->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
+      auto pprogress = papp->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
 
       ::pointer<::progress::real>::operator =(pprogress);
 

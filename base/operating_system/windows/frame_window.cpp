@@ -58,7 +58,7 @@
 //
 //      auto pcontext = m_papplication;
 //
-//      ::file::path pathIcon = pcontext->dir()->matter("matter://main/icon.ico");
+//      ::file::path pathIcon = pcontext->directory()->matter("matter://main/icon.ico");
 //
 //      auto picon = pwindowing->load_icon(pathIcon);
 //

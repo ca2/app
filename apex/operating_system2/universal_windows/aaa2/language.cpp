@@ -4,9 +4,9 @@
 CLASS_DECL_APEX string load_podata(string strLang, bool bOnlyHeader)
 {
 
-   ::file::path path = ::apexacmesystem()->dir()->module() / "po" / (strLang + ".po");
+   ::file::path path = ::apexacmesystem()->directory()->module() / "po" / (strLang + ".po");
 
-   return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
+   return file_system()->as_string(path, bOnlyHeader ? 4096 : -1);
 
 }
 

@@ -305,37 +305,37 @@ namespace aura
 //      if (path.case_insensitive_begins_eat("music://"))
 //      {
 //
-//         path = dir()->music() / path;
+//         path = directory()->music() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("video://"))
 //      {
 //
-//         path = dir()->video() / path;
+//         path = directory()->video() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("image://"))
 //      {
 //
-//         path = dir()->image() / path;
+//         path = directory()->image() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("document://"))
 //      {
 //
-//         path = dir()->document() / path;
+//         path = directory()->document() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("dropbox://"))
 //      {
 //
-//         path = dir()->dropbox() / path;
+//         path = directory()->dropbox() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("onedrive://"))
 //      {
 //
-//         path = dir()->onedrive() / path;
+//         path = directory()->onedrive() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("appconfig://"))
@@ -347,25 +347,25 @@ namespace aura
 //      else if (path.case_insensitive_begins_eat("download://"))
 //      {
 //
-//         path = dir()->download() / path;
+//         path = directory()->download() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("usersystem://"))
 //      {
 //
-//         path = acmedirectory()->system() / path;
+//         path = directory_system()->system() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("desktop://"))
 //      {
 //
-//         path = dir()->desktop() / path;
+//         path = directory()->desktop() / path;
 //
 //      }
 //      else if (path.case_insensitive_begins_eat("bookmark://"))
 //      {
 //
-//         path = dir()->bookmark() / path;
+//         path = directory()->bookmark() / path;
 //
 //      }
 //
@@ -395,7 +395,7 @@ namespace aura
 //      if (case_insensitive_string_begins(path, "matter://"))
 //      {
 //
-//         path = dir()->matter(path, false);
+//         path = directory()->matter(path, false);
 //
 //      }
 //
@@ -416,7 +416,7 @@ namespace aura
 //      if (strMatter.case_insensitive_begins_eat("appmatter://"))
 //      {
 //
-//         return dir()->install() / strMatter;
+//         return directory()->install() / strMatter;
 //
 //      }
 //
@@ -456,7 +456,7 @@ namespace aura
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
 //         if ((path & ::file::e_flag_get_local_path)
-//            || (!(path & ::file::e_flag_bypass_cache) && acmepath()->is_file_or_dir(pathCache, nullptr)))
+//            || (!(path & ::file::e_flag_bypass_cache) && path_system()->is_file_or_dir(pathCache, nullptr)))
 //         {
 //
 //            return pathCache;
@@ -470,7 +470,7 @@ namespace aura
 //         if (!(path & ::file::e_flag_bypass_cache))
 //         {
 //
-//            string strFirstLine = acmefile()->line(pathMeta, 0);
+//            string strFirstLine = file_system()->line(pathMeta, 0);
 //
 //            if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
 //            {
@@ -484,7 +484,7 @@ namespace aura
 //               if (!retry([pathMeta]()
 //               {
 //
-//                  return acmefile()->line(pathMeta, 0) != "processing";
+//                  return file_system()->line(pathMeta, 0) != "processing";
 //
 //               }))
 //               {
@@ -501,7 +501,7 @@ namespace aura
 //
 //         ::file::enum_type etype = ::file::e_type_none;
 //
-//         if (acmepath()->is_file_or_dir(pathSide, &etype))
+//         if (path_system()->is_file_or_dir(pathSide, &etype))
 //         {
 //
 //            if (etype == ::file::e_type_file)
@@ -513,7 +513,7 @@ namespace aura
 //            else if (etype == ::file::e_type_folder)
 //            {
 //
-//               dir()->mk(pathCache);
+//               directory()->mk(pathCache);
 //
 //            }
 //
@@ -570,7 +570,7 @@ namespace aura
 //                  if (!retry([&]()
 //                  {
 //
-//                     return dir()->mk(pathCache);
+//                     return directory()->mk(pathCache);
 //
 //                  }))
 //                  {
@@ -626,7 +626,7 @@ namespace aura
 //
 //
 //         }
-//         //         else if (dir()->is(path, this))
+//         //         else if (directory()->is(path, this))
 //         //         {
 //         //
 //         //            if (!retry([&]()
@@ -685,7 +685,7 @@ namespace aura
 //   ::file::listing& context::perform_file_listing(::file::listing& listing)
 //   {
 //
-//      return dir()->ls(listing);
+//      return directory()->ls(listing);
 //
 //   }
 //
@@ -693,7 +693,7 @@ namespace aura
 //   ::file::listing& context::perform_file_relative_name_listing(::file::listing& listing)
 //   {
 //
-//      return dir()->ls_relative_name(listing);
+//      return directory()->ls_relative_name(listing);
 //
 //   }
 //
@@ -716,7 +716,7 @@ namespace aura
 //
 //      ::file_pointer pfile;
 //
-//      if (dir()->is(path))
+//      if (directory()->is(path))
 //      {
 //
 //         pfile = file()->get_reader(path / "this.ini");
@@ -755,7 +755,7 @@ namespace aura
 //   ::handle::ini context::local_ini()
 //   {
 //
-//      ::file::path pathFolder = acmedirectory()->localconfig();
+//      ::file::path pathFolder = directory_system()->localconfig();
 //
 //      return ini_from_path(pathFolder);
 //
@@ -892,7 +892,7 @@ namespace aura
 //   bool context::sys_set(string strPath, string strValue)
 //   {
 //
-//      return file()->put_text_utf8(acmedirectory()->config() / strPath, strValue);
+//      return file()->put_text_utf8(directory_system()->config() / strPath, strValue);
 //
 //   }
 //
@@ -900,7 +900,7 @@ namespace aura
 //   string context::sys_get(string strPath, string strDefault)
 //   {
 //
-//      string strValue = file()->as_string(acmedirectory()->config() / strPath);
+//      string strValue = file()->as_string(directory_system()->config() / strPath);
 //
 //      if (strValue.is_empty())
 //      {

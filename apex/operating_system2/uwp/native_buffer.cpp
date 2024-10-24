@@ -306,7 +306,7 @@ namespace universal_windows
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         dir()->create(path.folder());
+         directory()->create(path.folder());
 
       }
 

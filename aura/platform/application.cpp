@@ -12,9 +12,9 @@
 #include "acme/handler/request.h"
 #include "acme/platform/profiler.h"
 #include "acme/prototype/text/context.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/handler/signal.h"
@@ -311,7 +311,7 @@ namespace aura
    //::file::path application::local_application_path()
    //{
 
-   //   return acmedirectory()->localconfig() / "application" / m_strAppName ;
+   //   return directory_system()->localconfig() / "application" / m_strAppName ;
 
 
    //}
@@ -1130,7 +1130,7 @@ namespace aura
 //
 //         path /= pszCommand;
 //
-//         if (acmefile()->exists(path))
+//         if (file_system()->exists(path))
 //         {
 //
 //            return path;
@@ -3023,7 +3023,7 @@ retry_license:
 //
 //         _synchronous_lock synchronouslock(this->synchronization());
 //
-//         file()->add_contents(dir()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
+//         file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
 //      }
 //
@@ -3055,7 +3055,7 @@ retry_license:
 //
 //      static int g_iCount = 0;
 //
-//      string strFile = dir()->appdata() / (file()->module().name() + "_log_error.txt");
+//      string strFile = directory()->appdata() / (file()->module().name() + "_log_error.txt");
 //
 //      g_iCount++;
 //
@@ -3132,7 +3132,7 @@ retry_license:
    //::file::path application::get_executable_path()
    //{
 
-   //   return acmedirectory()->module() / (get_executable_title() + get_executable_extension());
+   //   return directory_system()->module() / (get_executable_title() + get_executable_extension());
 
 
    //}
@@ -3230,7 +3230,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content-type = L"application/x-spa";
 //
-//      wstring app(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()));
+//      wstring app(directory_system()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()));
 //
 //      wstring icon(app);
 //
@@ -3277,11 +3277,11 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (::u8*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(acmedirectory()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
+//      wstring wstr(directory_system()->stage(m_XstrAppId, process_platform_name(), process_configuration_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
-//      while (!acmefile()->exists(utf8(wstr.c_str())) && iRetry > 0)
+//      while (!file_system()->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
 //
 //                  auto psystem = system();
@@ -3290,7 +3290,7 @@ retry_license:
 //
 //pacmedirectory->create(::file_path_folder(utf8(wstr.c_str())).c_str());
 //
-//         acmefile()->put_contents(utf8(wstr.c_str()).c_str(), "");
+//         file_system()->put_contents(utf8(wstr.c_str()).c_str(), "");
 //
 //         iRetry--;
 //
@@ -3339,7 +3339,7 @@ retry_license:
 //
 //      string str = ::path::app_app_admin(strPlatform, strConfiguration);
 //
-//      if (!::acmefile()->exists(str))
+//      if (!::file_system()->exists(str))
 //      {
 //
 //         return;
@@ -3390,7 +3390,7 @@ retry_license:
 //
 //      ::string strPath = wstr.c_str();
 //
-//      ::string strContents = acmefile()->as_string(strPath.c_str());
+//      ::string strContents = file_system()->as_string(strPath.c_str());
 //
 //      throw ::exception(todo("xml"));
 //
@@ -3614,7 +3614,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->m_papexapplication->post_message(MESSAGE_CLOSE);
+               get_app()->post_message(MESSAGE_CLOSE);
 
             }
 
@@ -4024,7 +4024,7 @@ retry_license:
    //::file::path application::appconfig_folder()
    //{
 
-   //   return acmedirectory()->config() / m_strAppName;
+   //   return directory_system()->config() / m_strAppName;
 
    //}
 
@@ -4181,7 +4181,7 @@ retry_license:
 
    //   auto& file = psystem->file();
 
-   //   string strNetworkPayload = file.as_string(acmedirectory()->config() / strAppId / +"http.network_payload");
+   //   string strNetworkPayload = file.as_string(directory_system()->config() / strAppId / +"http.network_payload");
 
    //   if (strNetworkPayload.has_char())
    //   {
@@ -4904,7 +4904,7 @@ retry_license:
 
       auto pcontext = get_context();
 
-      ::file::path strFile = dir()->install() / strRelative;
+      ::file::path strFile = directory()->install() / strRelative;
 
       ::file::path strUrl(::e_path_url);
 
@@ -5000,10 +5000,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          //pszRequestUrl = strRequestUrl;
 
@@ -5046,7 +5046,7 @@ retry_license:
 
       auto pcontext = get_context();
 
-      string strMatter = dir()->matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(pszMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -5054,16 +5054,16 @@ retry_license:
 
    }
 
-   //string application::dir()->matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::directory()->matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
-   //   return dir()->matter(pszMatter,pszMatter2);
+   //   return directory()->matter(pszMatter,pszMatter2);
 
    //}
 
    //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
-   //   return dir()->is_inside_time(pszPath);
+   //   return directory()->is_inside_time(pszPath);
    //}
 
 
@@ -5900,7 +5900,7 @@ namespace aura
       if (m_psession)
       {
 
-         m_psession->m_papexsession->route_command(pcommand, false);
+         m_psession->route_command(pcommand, false);
 
       }
 
@@ -8681,7 +8681,7 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt");
 
          if(case_insensitive_string_ends(strIgnitionServer,".ca2.software"))
          {
@@ -8930,7 +8930,7 @@ namespace aura
    string application::get_visual_studio_build()
    {
 
-      //::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
+      //::file::path path = directory_system()->config() / "programming/vs_build.txt";
 
       //string strBuild = file()->as_string(path);
       //string strBuild = "10.0.22000.0";
@@ -8948,7 +8948,7 @@ namespace aura
 
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir()->matter(strFileName);
+      string strFilePath = directory()->matter(strFileName);
 
       return strFilePath;
 

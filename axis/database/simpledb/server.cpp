@@ -6,7 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/context.h"
 #include "axis/database/database/database.h"
 
@@ -54,7 +54,7 @@ namespace simpledb
       ::file::path pathDatabase(pszDatabase);
 
       //if (!
-      dir()->create(pathDatabase.folder());
+      directory()->create(pathDatabase.folder());
 
       //{
 

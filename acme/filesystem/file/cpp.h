@@ -13,7 +13,7 @@
 
 
 
-//CLASS_DECL_ACME int_bool acmepath()->is_file_or_dir(const ::file::path & path, ::file::enum_type * petype);
+//CLASS_DECL_ACME int_bool path_system()->is_file_or_dir(const ::file::path & path, ::file::enum_type * petype);
 
 
 

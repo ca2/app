@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/system.h"
 #include <dlfcn.h>
 #ifdef __APPLE__

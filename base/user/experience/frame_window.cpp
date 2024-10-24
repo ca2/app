@@ -1620,7 +1620,7 @@ namespace experience
       //      
       //   }
 
-      //   application()->m_papexapplication->application_menu_update();
+      //   application()->application_menu_update();
       //   
       //}
 

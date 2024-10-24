@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "nano_archive_libarchive.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include <archive.h>
 #include <archive_entry.h>
@@ -114,7 +114,7 @@ namespace libarchive
                      }
                      auto pathTarget = pathFolder / path;
                      auto pathSource = pathTarget.folder() / pathSymlinkSource;
-                     acmepath()->symbolic_link(pathTarget, pathSource);
+                     path_system()->symbolic_link(pathTarget, pathSource);
                      goto next;
 
                   }

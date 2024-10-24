@@ -12,7 +12,7 @@ namespace android
 
 
 
-      ::pointer<dir_system>       m_pdirsystem;
+      ::pointer<directory_system>       m_pdirsystem;
       ::pointer<file_system>      m_pfilesystem;
 
 

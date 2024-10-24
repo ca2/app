@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "desktop_file.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -271,7 +271,7 @@ namespace freedesktop
    void desktop_file::create()
    {
 
-      ::file::path path = dir()->matter("app.desktop");
+      ::file::path path = directory()->matter("app.desktop");
 
       m_straLine = file()->lines(path);
 
@@ -288,7 +288,7 @@ namespace freedesktop
 
       }
 
-      auto papp = get_app()->m_papexapplication;
+      auto papp = get_app();
 
       string strTitle = papp->title();
 
@@ -316,7 +316,7 @@ namespace freedesktop
 
       pathUserBin = pacmedirectory->home() / "bin" / strName;
 
-      //::file::path pathIcon = dir()->matter("main/icon-256.png");
+      //::file::path pathIcon = directory()->matter("main/icon-256.png");
 
       ::file::path pathAppConfig = pacmedirectory->home() / ".config" / papp->m_strAppId;
 
@@ -326,7 +326,7 @@ namespace freedesktop
 
       //::fflush(stdout);
 
-      if (!acmefile()->exists(pathModuleIcon256))
+      if (!file_system()->exists(pathModuleIcon256))
       {
 
          auto pfileMainIcon256 = papp->get_file("matter://main/icon-256.png",
@@ -389,7 +389,7 @@ namespace freedesktop
 //
 //         strScript += "\n"; */
 //
-//         //acmefile()->put_contents(pathLaunch, strScript);
+//         //file_system()->put_contents(pathLaunch, strScript);
 //
 //         strScript = "#!/bin/bash\n";
 //
@@ -406,7 +406,7 @@ namespace freedesktop
 //
 //         strScript += "\n";
 //
-//         acmefile()->put_contents(pathUserBin, strScript);
+//         file_system()->put_contents(pathUserBin, strScript);
 //
 //         //chmod(pathLaunch, 0755);
 //         chmod(pathUserBin, 0600);

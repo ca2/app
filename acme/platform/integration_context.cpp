@@ -6,8 +6,8 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/archive/archive.h"
@@ -75,7 +75,7 @@ namespace integration
 
       m_pathSource = m_pathFolder / m_pathBase / m_pathPlatformConfiguration / "source";
 
-      //acmedirectory()->create(m_pathSource2);
+      //directory_system()->create(m_pathSource2);
 
    }
 
@@ -123,7 +123,7 @@ namespace integration
 
       ::file::path pathSourceFolder = get_source_folder_path(scopedstr);
 
-      acmedirectory()->create(pathSourceFolder);
+      directory_system()->create(pathSourceFolder);
 
    }
 
@@ -133,9 +133,9 @@ namespace integration
 
       ::file::path pathSourceFolder = get_source_folder_path(scopedstr);
 
-      acmedirectory()->create(pathSourceFolder);
+      directory_system()->create(pathSourceFolder);
 
-      acmedirectory()->change_current(pathSourceFolder);
+      directory_system()->change_current(pathSourceFolder);
 
    }
 
@@ -146,7 +146,7 @@ namespace integration
       if (m_pathPrefix.has_char())
       {
 
-         acmedirectory()->create(m_pathPrefix);
+         directory_system()->create(m_pathPrefix);
 
       }
 
@@ -280,7 +280,7 @@ namespace integration
       if (application()->payload("no-source-clean").is_true())
       {
 
-         if (acmedirectory()->is(path))
+         if (directory_system()->is(path))
          {
 
             throw ::exception(error_failed, "Source Directory \""+path+"\" already exists.");
@@ -291,7 +291,7 @@ namespace integration
       else
       {
 
-         if (acmedirectory()->is(path))
+         if (directory_system()->is(path))
          {
 
             if (path.length() > 20)
@@ -339,7 +339,7 @@ namespace integration
    void context::download_and_uncompress()
    {
 
-      if (!acmefile()->exists(acmedirectory()->get_current() / "Configure"))
+      if (!file_system()->exists(directory_system()->get_current() / "Configure"))
       {
 
          if (m_pathDownloadURL.case_insensitive_ends(".tar.gz"))
@@ -446,7 +446,7 @@ namespace integration
 
             pmemoryFileTar->seek_to_begin();
 
-            information() << "Untarring to \"" << acmedirectory()->get_current() << "\"...";
+            information() << "Untarring to \"" << directory_system()->get_current() << "\"...";
 
             ::function<void(const::scoped_string& scopedstr) > callback;
 
@@ -484,7 +484,7 @@ namespace integration
 
                };
 
-            this->untar(acmedirectory()->get_current(), pmemoryFileTar, 1, callback);
+            this->untar(directory_system()->get_current(), pmemoryFileTar, 1, callback);
 
             ::string str;
             str << iFilesExtracted << " files extracted\n";
@@ -503,7 +503,7 @@ namespace integration
    {
       //preempt(15_s);
       
-      information() << "Current Directory: " << acmedirectory()->get_current();
+      information() << "Current Directory: " << directory_system()->get_current();
       
       git_bash("git clone " + m_pathDownloadURL + " .", 2_hour);
 
@@ -666,7 +666,7 @@ namespace integration
 
       m_listingBuild.set_pattern_folder_listing(pathHostIntegrationFolder, straPattern);
 
-      acmedirectory()->enumerate(m_listingBuild);
+      directory_system()->enumerate(m_listingBuild);
 
    }
 
@@ -741,7 +741,7 @@ namespace integration
 
       auto pathCurrentIntegration = pathIntegrationFolder / "current_integration.txt";
 
-      auto strIntegration = acmefile()->as_string(pathCurrentIntegration);
+      auto strIntegration = file_system()->as_string(pathCurrentIntegration);
 
       return strIntegration;
 
@@ -761,7 +761,7 @@ namespace integration
 
       auto pathStartBuild = pathIntegrationFolder / "main_status.txt";
 
-      auto strMainStatus = acmefile()->as_string(pathStartBuild);
+      auto strMainStatus = file_system()->as_string(pathStartBuild);
 
       if (strMainStatus.begins("machine_box:"))
       {
@@ -882,14 +882,14 @@ namespace integration
 
          bool bBuilding = false;
 
-         if (!acmefile()->exists(pathBuilt) && acmefile()->exists(pathStartBuild))
+         if (!file_system()->exists(pathBuilt) && file_system()->exists(pathStartBuild))
          {
 
-            auto timeStart = acmefile()->as_time(pathStartBuild);
+            auto timeStart = file_system()->as_time(pathStartBuild);
 
             auto pathStartedBuilding = pathIntegration / "started_building.txt";
 
-            auto timeStarted = acmefile()->safe_time(pathStartedBuilding);
+            auto timeStarted = file_system()->safe_time(pathStartedBuilding);
 
             if (timeStart > 700_days)
             {

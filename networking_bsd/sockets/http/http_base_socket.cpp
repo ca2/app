@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "apex/id.h"
 //#include "apex/networking/sockets/_sockets.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/prototype/string/base64.h"
 
 
@@ -208,7 +208,7 @@ namespace sockets
       if (response().m_strFile.has_char())
       {
 
-         response().m_propertysetHeader["content-length"] = acmefile()->get_size(response().m_strFile);
+         response().m_propertysetHeader["content-length"] = file_system()->get_size(response().m_strFile);
 
       }
       else
@@ -467,10 +467,10 @@ namespace sockets
 
       }
 
-      if (!acmefile()->exists(pcsz))
+      if (!file_system()->exists(pcsz))
       {
 
-         if (acmedirectory()->is(pcsz))
+         if (directory_system()->is(pcsz))
          {
             
             outattr("http_status_code") = 200;

@@ -82,7 +82,7 @@ void networking_application::create_networking_application()
    //}
 
 
-   //      m_psocketthread->m_strCat = "cat://"+acmefile()->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
+   //      m_psocketthread->m_strCat = "cat://"+file_system()->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
      //    m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
        //  m_psocketthread->m_iSsl = 1;
 

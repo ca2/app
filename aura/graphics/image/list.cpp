@@ -445,7 +445,7 @@ namespace image
    //
    //   auto pcontext = get_context();
    //
-   //   return add_icon(dir()->matter(pszMatter));
+   //   return add_icon(directory()->matter(pszMatter));
    //
    //}
    //
@@ -635,7 +635,7 @@ namespace image
    //
    //   auto pcontext = get_context();
    //
-   //   return add_file(dir()->matter(pcsz), iItem);
+   //   return add_file(directory()->matter(pcsz), iItem);
    //
    //}
 

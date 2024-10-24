@@ -1,16 +1,16 @@
 #include "framework.h"
 #include "file_context.h"
 #include "file_system.h"
-#include "dir_context.h"
+#include "directory_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/nano/http/get.h"
 #include "acme/platform/http.h"
@@ -32,7 +32,7 @@
 #include "acme/user/micro/user.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/hasher.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 //#include "apex/networking/http/context.h"
 #include "acme/platform/application.h"
 #include "acme/platform/application.h"
@@ -382,7 +382,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    auto psystem = system();
 
-   auto pfilesystem = psystem->filesystem();
+   auto pfilesystem = psystem->file_system();
 
    return pfilesystem->m_pathModule;
 
@@ -402,14 +402,14 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::path file_context::time_square(const string &pszPrefix, const string &pszSuffix)
 {
 
-   return time(dir()->time_square(), 25, pszPrefix, pszSuffix);
+   return time(directory()->time_square(), 25, pszPrefix, pszSuffix);
 
 }
 
 
 ::file::path file_context::time_log(const string &pszId)
 {
-   return time(dir()->time_log(pszId), 9);
+   return time(directory()->time_log(pszId), 9);
 }
 
 
@@ -436,7 +436,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    str = psz;
 
-   dir()->create(str);
+   directory()->create(str);
 
    ::file::listing listing;
 
@@ -447,9 +447,9 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
    for (i32 i = 1; i <= iMaxLevel;)
    {
 
-      dir()->create(str);
+      directory()->create(str);
 
-      if (!dir()->is(str))
+      if (!directory()->is(str))
       {
 
          throw ::exception(error_path_not_found, "time square dir does not exist");
@@ -458,7 +458,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
       listing.set_listing(str);
 
-      dir()->enumerate(listing);
+      directory()->enumerate(listing);
 
       if (i < iMaxLevel)
       {
@@ -470,7 +470,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             str /= "00";
 
-            dir()->create(str);
+            directory()->create(str);
 
          }
          else if (iMax == 99)
@@ -498,7 +498,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
             if (i == iIncLevel)
             {
 
-               dir()->create(str);
+               directory()->create(str);
 
             }
 
@@ -512,7 +512,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
          listing.set_listing(str);
 
-         dir()->enumerate(listing);
+         directory()->enumerate(listing);
 
          i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
 
@@ -848,7 +848,7 @@ string file_context::as_string(const ::payload & payloadFile)
    try
    {
       
-      str = as_string(acmedirectory()->config() / scopedConfigurationFile);
+      str = as_string(directory_system()->config() / scopedConfigurationFile);
       
    }
    catch(...)
@@ -1646,7 +1646,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       listing.set_listing(varSource, e_depth_recursively);
 
-      dir()->enumerate(listing);
+      directory()->enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
@@ -1671,7 +1671,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          strDst = strDirDst / strDst;
 
-         if (dir()->is(strSrc))
+         if (directory()->is(strSrc))
          {
 
             if ((eextract == e_extract_first || eextract == e_extract_none) &&
@@ -1680,14 +1680,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             }
             else
             {
-               dir()->create(strDst);
+               directory()->create(strDst);
             }
          }
          else
          {
-            if (!dir()->is(strDst.folder()))
+            if (!directory()->is(strDst.folder()))
             {
-               dir()->create(strDst.folder());
+               directory()->create(strDst.folder());
             }
             copy(strDst, strSrc, bFailIfExists, eextract == e_extract_all ? e_extract_all : e_extract_none);
 
@@ -1722,10 +1722,10 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    if(pwriter.nok())
    {
 
-      if (!dir()->is(varTarget.as_file_path().folder()))
+      if (!directory()->is(varTarget.as_file_path().folder()))
       {
 
-         dir()->create(varTarget.as_file_path().folder());
+         directory()->create(varTarget.as_file_path().folder());
 
       }
 
@@ -1733,7 +1733,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    auto psystem = system();
 
-   auto pacmefile = psystem->acmefile();
+   auto pacmefile = psystem->file_system();
 
    ::file::path pathTarget;
 
@@ -1776,7 +1776,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::payload varNew;
 
-   if (pwriter.nok()&& dir()->is(varTarget) && (varSource.as_file_path().name().has_char() && preader.nok()))
+   if (pwriter.nok()&& directory()->is(varTarget) && (varSource.as_file_path().name().has_char() && preader.nok()))
    {
 
       varNew = ::file::path(varTarget) / varSource.as_file_path().name();
@@ -2153,7 +2153,7 @@ void file_context::erase(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
-   if (dir()->is(psz))
+   if (directory()->is(psz))
    {
       i32 i = 1;
       while (i <= 100)
@@ -2222,9 +2222,9 @@ void file_context::erase(const ::file::path & path)
 void file_context::trash_that_is_not_trash(const ::file::path &psz)
 {
 
-   ::file::path strDir = dir()->trash_that_is_not_trash(psz);
+   ::file::path strDir = directory()->trash_that_is_not_trash(psz);
 
-   dir()->create(strDir);
+   directory()->create(strDir);
 
    transfer(strDir / psz.name(), psz);
 
@@ -2242,9 +2242,9 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    }
 
-   ::file::path strDir = dir()->trash_that_is_not_trash(stra[0]);
+   ::file::path strDir = directory()->trash_that_is_not_trash(stra[0]);
 
-   dir()->create(strDir);
+   directory()->create(strDir);
 
    for (i32 i = 0; i < stra.size(); i++)
    {
@@ -2259,7 +2259,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 ::file::path file_context::get_filesystem_file(const ::file::path& path)
 {
 
-   if (acmefile()->exists(path))
+   if (file_system()->exists(path))
    {
 
       return path;
@@ -2313,7 +2313,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    listing.set_listing(pathContext);
 
-   dir()->enumerate(listing);
+   directory()->enumerate(listing);
 
    for (i32 i = 0; i < listing.size(); i++)
    {
@@ -2420,7 +2420,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
 
-   string strTempDir = acmedirectory()->sys_temp();
+   string strTempDir = directory_system()->sys_temp();
 
    if (!string_ends(strTempDir, "\\") && !string_ends(strTempDir, "/"))
    {
@@ -2462,7 +2462,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 ::file::path file_context::sys_temp_unique(const ::file::path &lpszName)
 {
 
-   return acmedirectory()->sys_temp() / lpszName;
+   return directory_system()->sys_temp() / lpszName;
 
 }
 
@@ -2478,7 +2478,7 @@ file_pointer file_context::time_square_file(const string &pszPrefix, const strin
 file_pointer file_context::get(const ::file::path &name)
 {
 
-   dir()->create(name.name());
+   directory()->create(name.name());
 
    file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2518,7 +2518,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strIndex.formatf("%08x\\", i);
 
-      strTempFile = m_papplication->system()->dirsystem()->m_pathUpload / (strTime + strIndex + pathCurrent);
+      strTempFile = m_papplication->system()->directory_system()->m_pathUpload / (strTime + strIndex + pathCurrent);
 
       if (!exists(strTempFile))
       {
@@ -2535,7 +2535,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strMessage = pdatetime->date_time_text() + " " + strTempFile;
 
-      acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
+      file_system()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
       i++;
 
@@ -2657,7 +2657,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   ::file::listing ls;
 //
-//   dir()->rls(ls, pszDir);
+//   directory()->rls(ls, pszDir);
 //
 //   dtf(pszFile, ls);
 //
@@ -2705,7 +2705,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      if (case_insensitive_string_ends(stra[i], ".zip"))
 //      {
 //      }
-//      else if (dir()->is(stra[i]))
+//      else if (directory()->is(stra[i]))
 //         continue;
 //      write_n_number(pfile, nullptr, 1);
 //      iPos = pfile->get_position();
@@ -2771,7 +2771,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
-//         dir()->create(strPath.folder());
+//         directory()->create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            throw ::exception(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);
@@ -3061,7 +3061,7 @@ void file_context::finalize()
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{
 
-//   Sys(pparticle).dir()->mk(pathOut.folder());
+//   Sys(pparticle).directory()->mk(pathOut.folder());
 
 //   file_pointer fileOut;
 
@@ -3387,7 +3387,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 #else
       pathCache.replace_with("_/", "://");
 #endif
-      pathCache = dir()->cache() / (pathCache + ".cache");
+      pathCache = directory()->cache() / (pathCache + ".cache");
 
       if (exists(pathCache))
       {
@@ -3424,7 +3424,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
       _synchronous_lock synchronouslock(system()->http_download_mutex());
 
-      if (bDoCache && acmefile()->exists(pathCache))
+      if (bDoCache && file_system()->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -3957,7 +3957,7 @@ bool file_context::is_link(const ::file::path & path)
 
    ::file::path pathNetworkPayload;
 
-   pathNetworkPayload = acmedirectory()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
+   pathNetworkPayload = directory_system()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
 
    return pathNetworkPayload;
 
@@ -3969,7 +3969,7 @@ bool file_context::is_link(const ::file::path & path)
 
    ::file::path pathGlobalIni;
 
-   pathGlobalIni = acmedirectory()->ca2roaming() / "OneDrive/settings/Personal/global.ini";
+   pathGlobalIni = directory_system()->ca2roaming() / "OneDrive/settings/Personal/global.ini";
 
    return pathGlobalIni;
 
@@ -3981,7 +3981,7 @@ bool file_context::is_link(const ::file::path & path)
 
    ::file::path pathGlobalIni = onedrive_global_ini();
 
-   string strIni = acmefile()->as_string(pathGlobalIni);
+   string strIni = file_system()->as_string(pathGlobalIni);
 
    if (strIni.is_empty())
    {
@@ -3998,7 +3998,7 @@ bool file_context::is_link(const ::file::path & path)
 
    strCid = set["cid"];
 
-   ::file::path pathIni = acmedirectory()->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
+   ::file::path pathIni = directory_system()->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
 
    return pathIni;
 
@@ -4066,7 +4066,7 @@ bool file_context::is_link(const ::file::path & path)
 
    }
 
-   return acmepath()->get_type(path);
+   return path_system()->get_type(path);
 
 }
 
@@ -4083,7 +4083,7 @@ bool file_context::is_link(const ::file::path & path)
 
    }
 
-   return acmepath()->safe_get_type(path);
+   return path_system()->safe_get_type(path);
 
 }
 

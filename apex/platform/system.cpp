@@ -45,11 +45,11 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/prototype/text/context.h"
@@ -384,11 +384,11 @@ namespace apex
 
       //xxdebug_box("box1", "box1", e_message_box_icon_information);
    //
-     // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
+     // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 
-      //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
+      //::file::path pathGlobalOutputDebugString = directory_system()->config() / "information.txt" ;
 
-      //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
+      //::apex::g_bOutputDebugString = file_system()->exists(pathOutputDebugString)||  file_system()->exists(pathGlobalOutputDebugString);
 
       //return true;
 
@@ -514,9 +514,9 @@ namespace apex
 
       //    bool bGlobalEnableStackTrace = true;
 
-      //    ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
+      //    ::file::path pathNoExceptionStackTrace = directory_system()->config() / "system/no_exception_stack_trace.txt";
 
-      //    if (acmefile()->exists(pathNoExceptionStackTrace))
+      //    if (file_system()->exists(pathNoExceptionStackTrace))
       //    {
 
       //       bGlobalEnableStackTrace = false;
@@ -590,7 +590,7 @@ namespace apex
 
 #if !defined(ANDROID) && !defined(APPLE_IOS)
 
-      if (!application()->is_service() || application()->m_papexapplication->is_user_service())
+      if (!application()->is_service() || application()->is_user_service())
       {
 
          m_pmutexUserAppData = node()->create_local_named_mutex(this, false, "ca2.UserAppData");
@@ -666,12 +666,12 @@ namespace apex
       //
       //         string str;
       //
-      //         str = acmedirectory()->home() / ".profile";
+      //         str = directory_system()->home() / ".profile";
       //
-      //         if(!acmefile()->exists(str))
+      //         if(!file_system()->exists(str))
       //         {
       //
-      //            str = acmedirectory()->home() / ".bashrc";
+      //            str = directory_system()->home() / ".bashrc";
       //
       //         }
       //
@@ -810,7 +810,7 @@ namespace apex
 
 pacmedirectory->create("/ca2core");
 
-                  acmefile()->put_contents("/ca2core/teste.txt", str, str.length());
+                  file_system()->put_contents("/ca2core/teste.txt", str, str.length());
                   */
 #endif
 
@@ -1287,7 +1287,7 @@ pacmedirectory->create("/ca2core");
    //estatus = 
       __construct_new(m_ptexttable);
 
-      auto strMain = dir()->install() / "app/_appmatter/main";
+      auto strMain = directory()->install() / "app/_appmatter/main";
 
       if (!m_ptexttable->load(strMain))
       {
@@ -2389,7 +2389,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
 
-            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2424,7 +2424,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
 
-            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, nullptr, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, nullptr, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2464,7 +2464,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
 
-            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2498,7 +2498,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
 
-            plauncher->setup(nullptr, nullptr, dir()->module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2590,7 +2590,7 @@ pacmedirectory->create("/ca2core");
    ////      if(has_property("install"))
    ////         return true;
    ////
-   ////      file_pointer pfile = file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+   ////      file_pointer pfile = file()->get_file(directory()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
    ////
    ////      if(!pfile)
    ////         return false;
@@ -2623,7 +2623,7 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::listing straTitle(this);
    ////
-   ////      ::file::path pathCa2Module = dir()->ca2module();
+   ////      ::file::path pathCa2Module = directory()->ca2module();
    ////
    ////      informationf("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
@@ -2666,7 +2666,7 @@ pacmedirectory->create("/ca2core");
    ////      try
    ////      {
    ////
-   ////         file = psession->file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+   ////         file = psession->file()->get_file(directory()->appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
    ////
    ////      }
    ////      catch(::exception &)
@@ -3097,7 +3097,7 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      papplication->m_papexapplication->post_request(prequest);
+      papplication->post_request(prequest);
 
       //      defer_accumulate_on_open_file({pszFile}, "");
 
@@ -3216,7 +3216,7 @@ pacmedirectory->create("/ca2core");
    string system::standalone_setting(string str)
    {
 
-      return acmefile()->as_string(dir()->standalone() / (str + ".txt"));
+      return file_system()->as_string(directory()->standalone() / (str + ".txt"));
 
    }
 
@@ -3224,7 +3224,7 @@ pacmedirectory->create("/ca2core");
    void system::set_standalone_setting(string str, string strSetting)
    {
 
-      acmefile()->put_contents(dir()->standalone() / (str + ".txt"), strSetting);
+      file_system()->put_contents(directory()->standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -3295,7 +3295,7 @@ pacmedirectory->create("/ca2core");
 
             //         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
-            ::file::path pathScript = acmedirectory()->tool() / "papaya/script/xcode_set_active_scheme.scpt";
+            ::file::path pathScript = directory_system()->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
             ::system("osascript \"" + pathScript + "\" \"" + strScheme + "\"");
 
@@ -3348,7 +3348,7 @@ pacmedirectory->create("/ca2core");
 
       auto psession = session();
 
-      auto papexapplication = psession->application()->m_papexapplication;
+      auto papexapplication = psession->application();
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
@@ -3387,7 +3387,7 @@ pacmedirectory->create("/ca2core");
 
       auto psession = session();
 
-      auto papexapplication = psession->application()->m_papexapplication;
+      auto papexapplication = psession->application();
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
@@ -3460,7 +3460,7 @@ pmessagebox->sync();
       if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
       {
 
-         strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
+         strWeather = file()->as_string(directory_system()->system() / "browser_weather.txt");
 
       }
 
@@ -3743,7 +3743,7 @@ pmessagebox->sync();
 
       pathDir = path.folder();
 
-      ::file::path pathAppDataDir(acmedirectory()->ca2roaming());
+      ::file::path pathAppDataDir(directory_system()->ca2roaming());
 
       ::file::path pathProfile;
 
@@ -3825,7 +3825,7 @@ pmessagebox->sync();
 
             }
 
-            strParam += " " + acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
+            strParam += " " + file_system()->as_string(directory_system()->localconfig() / "app-core/commander/chrome.txt");
 
             auto pnode = node();
 
@@ -3841,7 +3841,7 @@ pmessagebox->sync();
 
          sa.add("--user-data-dir=" + pathProfile + "");
 
-         string strChrome = acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
+         string strChrome = file_system()->as_string(directory_system()->localconfig() / "app-core/commander/chrome.txt");
 
          string_array sa2 = get_c_args_for_c(strChrome);
 
@@ -3870,7 +3870,7 @@ pmessagebox->sync();
 
          strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
-         strParam += " " + acmefile()->as_string(acmedirectory()->localconfig() / "app-core/commander/chrome.txt");
+         strParam += " " + file_system()->as_string(directory_system()->localconfig() / "app-core/commander/chrome.txt");
 
          string strCmd = path + " " + strParam;
 
@@ -3906,7 +3906,7 @@ pmessagebox->sync();
 
 #else
 
-      if (dir()->is(pathProfile))
+      if (directory()->is(pathProfile))
       {
 
          return;
@@ -3921,7 +3921,7 @@ pmessagebox->sync();
 
       pathProfileDir = pathProfile.folder();
 
-      dir()->create(pathProfileDir);
+      directory()->create(pathProfileDir);
 
       string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 
@@ -3976,7 +3976,7 @@ pmessagebox->sync();
 
       //}
 
-      if (!file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
+      if (!file()->exists(strBrowserPath) || !directory()->is(strBrowserDir))
       {
 
          throw ::exception(error_not_found);
@@ -4007,11 +4007,11 @@ pmessagebox->sync();
       if (strBrowser.has_char())
       {
 
-         file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
+         file()->put_text_utf8(directory_system()->system() / "browser.txt", strBrowser);
 
-         file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
+         file()->put_text_utf8(directory_system()->system() / "browser_path.txt", strBrowserPath);
 
-         file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
+         file()->put_text_utf8(directory_system()->system() / "browser_dir.txt", strBrowserDir);
 
       }
 

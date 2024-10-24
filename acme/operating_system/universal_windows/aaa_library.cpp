@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
 //#include "acme/operating_system/windows_common/_.h"
@@ -103,7 +103,7 @@ namespace platform
          try
          {
 
-            wstring wstrPath(acmedirectory()->module() / strPath);
+            wstring wstrPath(directory_system()->module() / strPath);
 
             plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -121,7 +121,7 @@ namespace platform
          try
          {
 
-            wstring wstrPath(("\\\\?\\" + acmedirectory()->module()) / strPath);
+            wstring wstrPath(("\\\\?\\" + directory_system()->module()) / strPath);
 
             plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -139,7 +139,7 @@ namespace platform
       //   try
       //   {
 
-      //      wstring wstr(acmedirectory()->module() / strPath);
+      //      wstring wstr(directory_system()->module() / strPath);
 
       //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 
@@ -157,7 +157,7 @@ namespace platform
       //   try
       //   {
 
-      //      wstring wstr(("\\\\?\\" + acmedirectory()->module()) / strPath);
+      //      wstring wstr(("\\\\?\\" + directory_system()->module()) / strPath);
 
       //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 

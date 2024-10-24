@@ -286,26 +286,26 @@ void particle::on_initialize_particle()
 }
 
 
-::acme_file * particle::acmefile() const
+::file_system * particle::file_system() const
 {
 
-   return m_papplication->acmefile();
+   return m_papplication->file_system();
 
 }
 
 
-::acme_path * particle::acmepath() const
+::path_system * particle::path_system() const
 {
 
-   return m_papplication->acmepath();
+   return m_papplication->path_system();
 
 }
 
 
-::acme_directory * particle::acmedirectory() const
+::directory_system * particle::directory_system() const
 {
 
-   return m_papplication->acmedirectory();
+   return m_papplication->directory_system();
 
 }
 
@@ -481,12 +481,12 @@ class ::user::user * particle::user() const
 
    auto papplication = application();
 
-   return ::is_set(papplication) ? papplication->m_papexapplication : nullptr;
+   return ::is_set(papplication) ? papplication : nullptr;
 
 }
 
 
-::dir_context * particle::dir() const
+::directory_context * particle::dir() const
 {
 
    return m_papplication->dir();
@@ -494,10 +494,10 @@ class ::user::user * particle::user() const
 }
 
 
-::dir_system * particle::dirsystem() const
+::directory_system * particle::directory_system() const
 {
 
-   return m_papplication->dirsystem();
+   return m_papplication->directory_system();
 
 }
 
@@ -510,10 +510,10 @@ class ::user::user * particle::user() const
 }
 
 
-::file_system * particle::filesystem() const
+::file_system * particle::file_system() const
 {
 
-   return m_papplication->filesystem();
+   return m_papplication->file_system();
 
 }
 

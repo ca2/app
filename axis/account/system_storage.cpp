@@ -7,7 +7,7 @@
 #include "framework.h"
 #include "system_storage.h"
 #include "department.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/system.h"
 #include "acme/crypto/crypto.h"
@@ -87,7 +87,7 @@ namespace account
       try
       {
 
-         psystem->crypto()->file_get(path, strValue, strToken, get_app()->m_papexapplication);
+         psystem->crypto()->file_get(path, strValue, strToken, get_app());
 
       }
       catch (...)
@@ -117,7 +117,7 @@ namespace account
 
       path /= psystem->crypto()->md5(strToken + strKey);
       
-      psystem->crypto()->file_set(path, strValue, strToken, get_app()->m_papexapplication);
+      psystem->crypto()->file_set(path, strValue, strToken, get_app());
       
    }
    

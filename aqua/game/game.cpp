@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "game.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/context.h"
 
 
@@ -44,7 +44,7 @@ namespace aqua
    
       auto strFileName = scopedstr + ".wav";
 
-      auto strFilePath = dir()->matter(strFileName);
+      auto strFilePath = directory()->matter(strFileName);
 
       return strFilePath;
 

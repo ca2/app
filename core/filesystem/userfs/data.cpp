@@ -3,7 +3,7 @@
 #include "list_data.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/task_flag.h"
@@ -79,7 +79,7 @@ namespace userfs
 
    //      m_pfsset->m_spafsdata.erase_all();
 
-   //      auto psession = session()->m_papexsession;
+   //      auto psession = session();
 
    //      m_pfsset->m_spafsdata.add(psession->fs());
 
@@ -376,7 +376,7 @@ namespace userfs
 
          listingUser.set_listing(pitem->user_path());
 
-         dir()->enumerate(listingUser);
+         directory()->enumerate(listingUser);
 
          listingUser.m_pathUser = pitem->user_path();
 
@@ -495,7 +495,7 @@ namespace userfs
 
             pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
 
-            pathFinal.set_type(dir()->file_type(pathFolderCandidate));
+            pathFinal.set_type(directory()->file_type(pathFolderCandidate));
 
          }
 
@@ -622,7 +622,7 @@ namespace userfs
       {
 
 
-         application()->m_papexapplication->init_fs_set(m_pfsset);
+         application()->init_fs_set(m_pfsset);
 
       }
 

@@ -3,13 +3,13 @@
 #include "interaction.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/prototype/prototype/atomic.h"
 #include "acme/prototype/collection/_sort.h"
 #include "acme/prototype/prototype/url.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/context.h"
@@ -541,7 +541,7 @@ namespace user
       
          processed_path(getfileimage);
 
-         auto pathFinal = acmepath()->safe_get_real_path(getfileimage.m_pathProcessed);
+         auto pathFinal = path_system()->safe_get_real_path(getfileimage.m_pathProcessed);
       
          getfileimage.m_pathFinal = pathFinal;
 
@@ -823,7 +823,7 @@ namespace user
 //
 //         auto pcontext = m_papplication;
 //
-//         ::file::path path = dir()->matter("cloud.ico");
+//         ::file::path path = directory()->matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -849,7 +849,7 @@ namespace user
 //
 //         auto pcontext = m_papplication;
 //
-//         ::file::path path = dir()->matter("remote.ico");
+//         ::file::path path = directory()->matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -875,7 +875,7 @@ namespace user
 //
 //         auto pcontext = m_papplication;
 //
-//         ::file::path path = dir()->matter("ftp.ico");
+//         ::file::path path = directory()->matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -908,8 +908,8 @@ namespace user
 //         {
 //
 //            str.trim();
-//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 //            _synchronous_lock sl1(m_pil48Hover->synchronization());
 //            _synchronous_lock sl2(m_pil48->synchronization());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
@@ -942,7 +942,7 @@ namespace user
 //
 //      string strRealPath = m_papplication->defer_process_matter_path(strPath);
 //
-//      string strFinalPath = acmepath()->_final(strRealPath);
+//      string strFinalPath = path_system()->_final(strRealPath);
 //
 //      if(strFinalPath.is_empty())
 //      {
@@ -993,7 +993,7 @@ namespace user
       if (strPath.case_insensitive_begins("uifs:"))
       {
 
-            ::file::path path = dir()->matter("cloud.ico");
+            ::file::path path = directory()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1017,7 +1017,7 @@ namespace user
       else if (strPath.case_insensitive_begins("fs:"))
       {
 
-            ::file::path path = dir()->matter("remote.ico");
+            ::file::path path = directory()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1041,7 +1041,7 @@ namespace user
       else if (strPath.case_insensitive_begins("ftp:"))
       {
 
-            ::file::path path = dir()->matter("ftp.ico");
+            ::file::path path = directory()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1072,8 +1072,8 @@ namespace user
          {
 
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             _synchronous_lock sl1(m_pil48Hover->synchronization());
             _synchronous_lock sl2(m_pil48->synchronization());
             iImage = m_pil16->add_icon_os_data(hicon16);
@@ -1159,7 +1159,7 @@ namespace user
          if(m_bGetFileImageByFileImage)
          {
             
-            auto pacmepath = acmepath();
+            auto pacmepath = path_system();
          
             if(pacmepath->has_custom_icon(strPath))
             {
@@ -1897,11 +1897,11 @@ namespace user
       if (strIcon.case_insensitive_begins_eat("icon://"))
       {
 
-         ::file::path pathFolder = acmedirectory()->ca2roaming() / "matter/icon";
+         ::file::path pathFolder = directory_system()->ca2roaming() / "matter/icon";
 
          //::file::path pathIco = pathFolder / "ico" / (strIcon + ".ico");
 
-         //if (acmefile()->exists(pathIco))
+         //if (file_system()->exists(pathIco))
          //{
 
          //   set_image_ico()
@@ -1936,7 +1936,7 @@ namespace user
 
             pimage = nullptr;
 
-            if (acmefile()->exists(pathImage))
+            if (file_system()->exists(pathImage))
             {
 
                pimage = image()->get_image(pathImage);
@@ -1956,7 +1956,7 @@ namespace user
 
                      pathImage = pathFolder / strSize / (strIcon + ".png");
 
-                     if (acmefile()->exists(pathImage))
+                     if (file_system()->exists(pathImage))
                      {
 
                         pimage = image()->get_image(pathImage);

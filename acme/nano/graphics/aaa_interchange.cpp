@@ -16,8 +16,8 @@
 #include "acme/user/micro/font.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/platform/sequencer.h"
@@ -810,9 +810,9 @@ void interchange::display_temporary_file_with_text(const ::string & str)
    
    strAppId = application()->m_strAppId;
    
-   ::file::path pathFolder = acmedirectory()->home() / "application" / strAppId / "details";
+   ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
    
-   auto pathDetails = acmefile()->time_put_contents(pathFolder, "details", "txt", str);
+   auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", str);
    
    node()->shell_open(pathDetails, "");
    

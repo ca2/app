@@ -29,13 +29,13 @@
 //#include "fs_simple_list_impact.h"
 //#include "fs_simple_impact.h"
 #include "thumbnail.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/collection/_container.h"
 #include "acme/prototype/mathematics/mathematics.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
 #include "acme/handler/request.h"
@@ -545,11 +545,11 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         if (pathFilemanagerProject.is_empty() || dir()->is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || directory()->is(pathFilemanagerProject)
                || pathFilemanagerProject.final_extension().case_insensitive_order("component") != 0)
          {
 
-            m_pathFilemanagerProject = acmedirectory()->localconfig() / "user.component";
+            m_pathFilemanagerProject = directory_system()->localconfig() / "user.component";
 
          }
          else
@@ -571,7 +571,7 @@ namespace filemanager
 
          }
 
-         if (dir()->is(pathFilemanagerProject))
+         if (directory()->is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -955,7 +955,7 @@ namespace filemanager
 
    //      pathFolder = pcreate->m_payloadFile;
 
-   //      if (dir()->is(pathFolder))
+   //      if (directory()->is(pathFolder))
    //      {
 
    //         pathFolder.m_iDir = 1;
@@ -1086,7 +1086,7 @@ namespace filemanager
 
    //      pathFolder = pcreate->m_payloadFile;
 
-   //      if (dir()->is(pathFolder))
+   //      if (directory()->is(pathFolder))
    //      {
 
    //         pathFolder.m_iDir = 1;

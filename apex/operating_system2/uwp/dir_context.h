@@ -5,19 +5,19 @@ namespace universal_windows
 {
 
 
-   class CLASS_DECL_APEX dir_context:
-      virtual public ::dir_context
+   class CLASS_DECL_APEX directory_context:
+      virtual public ::directory_context
    {
    public:
 
 
-      ::pointer<dir_system>      m_pdirsystem;
+      ::pointer<directory_system>      m_pdirsystem;
       ::pointer<file_system>     m_pfilesystem;
 
 
 
-      dir_context();
-      virtual ~dir_context();
+      directory_context();
+      virtual ~directory_context();
 
 
       virtual void initialize(::particle * pparticle) override;
@@ -35,7 +35,7 @@ namespace universal_windows
 
       //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
       //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
-      using ::dir_context::ls;
+      using ::directory_context::ls;
       virtual ::file::listing & ls(::file::listing & listing) override;
       //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);

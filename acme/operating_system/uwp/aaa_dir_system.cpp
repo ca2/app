@@ -6,22 +6,22 @@ namespace universal_windows
 {
 
 
-   dir_system::dir_system()
+   directory_system::directory_system()
    {
 
    }
 
    
-   dir_system::~dir_system()
+   directory_system::~directory_system()
    {
 
    }
 
 
-   void dir_system::initialize(::particle * pparticle)
+   void directory_system::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::dir_system::initialize(pparticle);
+      auto estatus = ::directory_system::initialize(pparticle);
 
       if (!estatus)
       {
@@ -70,7 +70,7 @@ namespace universal_windows
 
       //mk(m_strTimeFolder / "time", get_app());
 
-      //m_pathHome = ::dir_system::ca2roaming() / "home";
+      //m_pathHome = ::directory_system::ca2roaming() / "home";
 
       //nodeos_set_home(m_pathHome);
 
@@ -83,7 +83,7 @@ namespace universal_windows
 
 
 
-   //::file::path dir_system::trash_that_is_not_trash(const ::file::path& psz)
+   //::file::path directory_system::trash_that_is_not_trash(const ::file::path& psz)
    //{
 
    //   if (psz == nullptr)
@@ -117,7 +117,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::appdata()
+   //::file::path directory_system::appdata()
    //{
 
    //   return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
@@ -125,7 +125,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::usersystemappdata(::particle * pparticle, const ::string & strPrefix)
+   //::file::path directory_system::usersystemappdata(::particle * pparticle, const ::string & strPrefix)
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -135,7 +135,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::userdata(::particle * pparticle)
+   //::file::path directory_system::userdata(::particle * pparticle)
    //{
 
    //   return userfolder(pparticle) / "data";
@@ -143,7 +143,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::userfolder(::particle * pparticle)
+   //::file::path directory_system::userfolder(::particle * pparticle)
    //{
 
    //   string str = appdata();
@@ -160,7 +160,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::default_os_user_path_prefix(::particle * pparticle)
+   //::file::path directory_system::default_os_user_path_prefix(::particle * pparticle)
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -170,7 +170,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_system::default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
@@ -178,7 +178,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_system::default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";
@@ -186,7 +186,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::default_userfolder(::particle * pparticle,const ::string & strPrefix,const ::string & strLogin)
+   //::file::path directory_system::default_userfolder(::particle * pparticle,const ::string & strPrefix,const ::string & strLogin)
    //{
 
    //   return userfolder(pparticle) / strPrefix / strLogin;
@@ -194,7 +194,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::userquicklaunch(::particle * pparticle)
+   //::file::path directory_system::userquicklaunch(::particle * pparticle)
    //{
 
    //   throw ::exception(todo);
@@ -202,7 +202,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::userprograms(::particle * pparticle)
+   //::file::path directory_system::userprograms(::particle * pparticle)
    //{
 
    //   throw ::exception(todo);
@@ -210,7 +210,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::commonprograms()
+   //::file::path directory_system::commonprograms()
    //{
 
    //   throw ::exception(todo);
@@ -218,7 +218,7 @@ namespace universal_windows
    //}
 
 
-   //bool dir_system::is_inside_time(const ::file::path& pszPath)
+   //bool directory_system::is_inside_time(const ::file::path& pszPath)
    //{
 
    //   return is_inside(time(), pszPath, pparticle);
@@ -226,7 +226,7 @@ namespace universal_windows
    //}
 
 
-   //bool dir_system::is_inside(const ::file::path& pszDir, const ::file::path& strPath)
+   //bool directory_system::is_inside(const ::file::path& pszDir, const ::file::path& strPath)
    //{
 
    //   return case_insensitive_string_begins(pszDir, strPath);
@@ -234,7 +234,7 @@ namespace universal_windows
    //}
 
 
-   //bool dir_system::has_subdir(::particle * pparticle, const ::file::path& pszDir)
+   //bool directory_system::has_subdir(::particle * pparticle, const ::file::path& pszDir)
    //{
 
    //   return ::file::system_dir::has_subdir(pparticle, pszDir);
@@ -242,14 +242,14 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::commonappdata()
+   //::file::path directory_system::commonappdata()
    //{
 
    //   return ::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
 
    //}
 
-   bool dir_system::update_module_path()
+   bool directory_system::update_module_path()
    {
       
       m_pathModule = ::path::module();
@@ -261,7 +261,7 @@ namespace universal_windows
    }
 
 
-   //::file::path dir_system::document()
+   //::file::path directory_system::document()
    //{
 
    //   return "document://";
@@ -269,7 +269,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::music()
+   //::file::path directory_system::music()
    //{
 
    //   return "music://";
@@ -277,7 +277,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::video()
+   //::file::path directory_system::video()
    //{
 
    //   return "video://";
@@ -285,7 +285,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::image::image_pointer()
+   //::file::path directory_system::image::image_pointer()
    //{
 
    //   return "image://";

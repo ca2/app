@@ -801,10 +801,10 @@ namespace sockets
 
       auto papp = get_app();
 
-      if (get_app()->m_papexapplication->m_strHttpUserAgentToken.has_char() && get_app()->m_papexapplication->m_strHttpUserAgentVersion.has_char())
+      if (get_app()->m_strHttpUserAgentToken.has_char() && get_app()->m_strHttpUserAgentVersion.has_char())
       {
 
-         strAddUp = get_app()->m_papexapplication->m_strHttpUserAgentToken + "/" + get_app()->m_papexapplication->m_strHttpUserAgentVersion;
+         strAddUp = get_app()->m_strHttpUserAgentToken + "/" + get_app()->m_strHttpUserAgentVersion;
 
       }
       else

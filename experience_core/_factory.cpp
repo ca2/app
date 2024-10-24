@@ -78,10 +78,10 @@
 __FACTORY_EXPORT void experience_core_factory(::factory::factory* pfactory)
 {
 
-   //pfactory->add_factory_item < ::windows::dir_system, ::dir_system >();
+   //pfactory->add_factory_item < ::windows::directory_system, ::directory_system >();
    //pfactory->add_factory_item < ::windows::file_system, ::file_system >();
 
-   //pfactory->add_factory_item < ::windows::dir_context, ::dir_context >();
+   //pfactory->add_factory_item < ::windows::directory_context, ::directory_context >();
    //pfactory->add_factory_item < ::windows::file_context, ::file_context >();
 
    //add_factory_item < ::windows::stdio_file, ::file::text_file >();

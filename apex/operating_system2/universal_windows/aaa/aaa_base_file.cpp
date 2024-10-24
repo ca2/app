@@ -3,7 +3,7 @@
 #include <io.h>
 
 
-int_bool acmefile()->exists(const ::file::path & path1)
+int_bool file_system()->exists(const ::file::path & path1)
 {
 
    u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -17,7 +17,7 @@ int_bool acmefile()->exists(const ::file::path & path1)
 
 
 
-int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,count len)
+int_bool file_system()->put_contents(const ::file::path & path,const char * contents,count len)
 {
 
             auto psystem = system();
@@ -1704,7 +1704,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 
 
 //
-//int_bool acmefile()->exists(const ::file::path & path1)
+//int_bool file_system()->exists(const ::file::path & path1)
 //{
 //
 //   string str(path1);
@@ -1721,7 +1721,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 //
 
 
-//int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
+//int_bool file_system()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
 //{
 //
 //            auto psystem = system();
@@ -1752,7 +1752,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 {
 
    string str;

@@ -109,7 +109,7 @@ namespace helloworld
             get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->set_text(strText,::e_source_initialize);
 
 
-//            acmefile()->put_contents("C:\\dennisheazle\\ft.txt", as_string((iptr)get_top_level()->get_handle()));
+//            file_system()->put_contents("C:\\dennisheazle\\ft.txt", as_string((iptr)get_top_level()->get_handle()));
 
             //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->set_text(as_string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 

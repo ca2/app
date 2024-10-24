@@ -2,12 +2,12 @@
 #include "framework.h"
 #include "folder_sync.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/string/international.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/platform/node.h"
@@ -51,7 +51,7 @@ namespace fs
 
       pathLocal = local_folder_path() / pathLocal;
 
-      return dir()->has_subdir(pathLocal);
+      return directory()->has_subdir(pathLocal);
 
    }
 
@@ -70,7 +70,7 @@ namespace fs
 
       pathLocal = local_folder_path() / pathLocal;
 
-      return dir()->fast_has_subdir(pathLocal);
+      return directory()->fast_has_subdir(pathLocal);
 
    }
 
@@ -91,7 +91,7 @@ namespace fs
 
       listing.m_pathFinal = pathLocal;
 
-      return dir()->enumerate(listing);
+      return directory()->enumerate(listing);
 
    }
 
@@ -140,7 +140,7 @@ namespace fs
    /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
    {
 
-      dir()->ls_relative_name(listing);
+      directory()->ls_relative_name(listing);
 
       return listing;
 
@@ -161,7 +161,7 @@ namespace fs
 
       pathLocal = local_folder_path() / pathLocal;
 
-      return dir()->is(pathLocal) ? 1 : 0;
+      return directory()->is(pathLocal) ? 1 : 0;
 
    }
 
@@ -206,7 +206,7 @@ namespace fs
    //   while(iCount > 0)
    //   {
 
-   //      strPath = dir()->name(strPath);
+   //      strPath = directory()->name(strPath);
 
    //      iCount--;
 
@@ -314,7 +314,7 @@ namespace fs
 
             folder_sync_touch_file(pathSource, callbackStatus);
 
-            if (!acmefile()->exists(pathSource))
+            if (!file_system()->exists(pathSource))
             {
 
                if (callbackStatus)
@@ -380,7 +380,7 @@ namespace fs
 
             pathSource = pathSourceFolder / strSource;
 
-            if (!acmefile()->exists(pathSource))
+            if (!file_system()->exists(pathSource))
             {
 
                if (callbackStatus)
@@ -403,7 +403,7 @@ namespace fs
             try
             {
 
-               acmefile()->copy(pathTarget, pathSource, true);
+               file_system()->copy(pathTarget, pathSource, true);
 
             }
             catch (...)
@@ -422,7 +422,7 @@ namespace fs
 
             }
 
-            if (!acmefile()->exists(pathTarget))
+            if (!file_system()->exists(pathTarget))
             {
 
                if (callbackStatus)
@@ -481,7 +481,7 @@ namespace fs
       while (true)
       {
 
-         if (acmefile()->exists(pathLocal))
+         if (file_system()->exists(pathLocal))
          {
 
             break;
@@ -499,14 +499,14 @@ namespace fs
 
       }
 
-      acmedirectory()->change_current(pathLocal.folder());
+      directory_system()->change_current(pathLocal.folder());
 
       ::string strFile;
 
       while (true)
       {
 
-         strFile = acmefile()->as_string(pathLocal);
+         strFile = file_system()->as_string(pathLocal);
 
          auto strTrimmed = strFile.trimmed();
 
@@ -543,7 +543,7 @@ namespace fs
       while (true)
       {
 
-         if (acmefile()->exists(pathTargetFolder))
+         if (file_system()->exists(pathTargetFolder))
          {
 
             break;
@@ -565,7 +565,7 @@ namespace fs
 
       lines = straName;
 
-      acmedirectory()->change_current(pathTargetFolder);
+      directory_system()->change_current(pathTargetFolder);
 
       while (true)
       {
@@ -579,7 +579,7 @@ namespace fs
 
             auto pathFile = pathTargetFolder / line;
 
-            if (!acmefile()->exists(pathFile))
+            if (!file_system()->exists(pathFile))
             {
 
                bOk = false;
@@ -591,7 +591,7 @@ namespace fs
             if (iMinimumSize > 0)
             {
 
-               if (acmefile()->get_size(pathFile) < iMinimumSize)
+               if (file_system()->get_size(pathFile) < iMinimumSize)
                {
 
                   bOk = false;

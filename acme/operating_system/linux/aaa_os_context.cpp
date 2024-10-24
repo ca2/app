@@ -479,7 +479,7 @@ namespace linux
                   keyPlugin.SetValue("Path", ::acmeacmesystem()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", papp->acmefile()->as_string(pcontext->dir()->ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", papp->file_system()->as_string(pcontext->directory()->ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -930,7 +930,7 @@ namespace linux
    //
    //#elif defined(MACos_context)
    //   //string strDir;
-   //   //strDir = pcontext->dir()->path(getenv("HOME"), "Pictures");
+   //   //strDir = pcontext->directory()->path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";
@@ -953,7 +953,7 @@ namespace linux
 
          pathDesktop /= str;
 
-         if(acmefile()->exists(pathDesktop))
+         if(file_system()->exists(pathDesktop))
          {
 
             ::file::path pathTarget;

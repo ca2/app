@@ -3,7 +3,7 @@
 #include "main_window.h"
 #include "render.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
@@ -147,7 +147,7 @@ namespace app_shader
 
          }
 
-         pcontext->dir()->enumerate(listing);
+         pcontext->directory()->enumerate(listing);
 
          if (listing.has_elements() || bUseOwnResources)
          {

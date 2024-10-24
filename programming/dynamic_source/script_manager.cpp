@@ -16,7 +16,7 @@
 #include "acme/prototype/string/str.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/rsa.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
@@ -290,7 +290,7 @@ namespace dynamic_source
 
       listing.set_listing(m_strNetnodePath);
 
-      dir()->enumerate(listing);
+      directory()->enumerate(listing);
 
       for (auto& path : listing)
       {
@@ -817,12 +817,12 @@ namespace dynamic_source
 
 
       ::file::path str;
-      str = dir()->module();
+      str = directory()->module();
       str.ascend(2);
       str = str / "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = dir()->module();
+      str2 = directory()->module();
       str2.ascend(2);
       str2 = str2 / "netnode\\library\\include";
       str2 = ";" + str2;
@@ -1067,7 +1067,7 @@ namespace dynamic_source
          return p->element2();
       }
 
-      bool bIsDir = dir()->is(strPath);
+      bool bIsDir = directory()->is(strPath);
       m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
       return bIsDir;
    }

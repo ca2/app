@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/prototype/memory.h"
 
@@ -15,7 +15,7 @@ namespace console_hello
 
       ::file::listing listing;
 
-      auto pathFolder = acmedirectory()->get_current();
+      auto pathFolder = directory_system()->get_current();
 
       listing.set_pattern_file_listing(pathFolder, {"*.h", "*.cpp", "*.c", "*.hpp", "*.mm", "*.java" }, e_depth_recursively);
       ::file::path_array patha;
@@ -26,7 +26,7 @@ namespace console_hello
 
       listing.m_functionOnNewPath = [this,&patha,&memoryNull](auto & path)
          {
-            auto memory = acmefile()->as_memory(path);
+            auto memory = file_system()->as_memory(path);
 
             if (memory.size() >= 3 && !memory.find(memoryNull))
             {
@@ -49,7 +49,7 @@ namespace console_hello
 
 };
 
-      acmedirectory()->enumerate(listing);
+      directory_system()->enumerate(listing);
 
       auto pathFileWithBoms = pathFolder / "file_with_boms.txt";
 
@@ -77,7 +77,7 @@ namespace console_hello
 
       //}
 
-      acmefile()->put_lines(pathFileWithBoms, patha);
+      file_system()->put_lines(pathFileWithBoms, patha);
 
    }
 
@@ -85,11 +85,11 @@ namespace console_hello
    void application::remove_utf8_bom_phase2()
    {
 
-      auto pathFolder = acmedirectory()->get_current();
+      auto pathFolder = directory_system()->get_current();
       auto pathFileWithBoms = pathFolder / "file_with_boms.txt";
 
 
-      auto patha = acmefile()->lines(pathFileWithBoms);
+      auto patha = file_system()->lines(pathFileWithBoms);
 
       memory memoryNull;
 
@@ -98,7 +98,7 @@ namespace console_hello
 
       for (auto & path : patha)
       {
-         auto memory = acmefile()->as_memory(path);
+         auto memory = file_system()->as_memory(path);
 
          if (memory.size() >= 3 && !memory.find(memoryNull))
          {
@@ -112,7 +112,7 @@ namespace console_hello
 
                memory.eat_begin(nullptr, 3);
 
-               acmefile()->put_block(path, memory);
+               file_system()->put_block(path, memory);
 
             }
 

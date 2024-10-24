@@ -6,10 +6,10 @@
 #include "node.h"
 #include "acme/constant/character_set.h"
 #include "acme/constant/id.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/filesystem/filesystem/link.h"
@@ -534,7 +534,7 @@ namespace apex
 
       auto pathShortcut = app_shortcut_path(papplication);
 
-      auto path = acmefile()->module();
+      auto path = file_system()->module();
 
       ::file::path pathTarget;
 
@@ -542,14 +542,14 @@ namespace apex
 
       int iIcon = -1;
 
-      auto plink = acmepath()->resolve_link(pathShortcut);
+      auto plink = path_system()->resolve_link(pathShortcut);
 
       // Enough condition to create shortcut
       bool bEnoughCondition1 = !plink;
       bool bEnoughCondition2 = plink && !(plink->m_elink & ::file::e_link_target);
-      bool bEnoughCondition3 = plink && !acmepath()->real_path_is_same(plink->m_pathTarget, path);
+      bool bEnoughCondition3 = plink && !path_system()->real_path_is_same(plink->m_pathTarget, path);
       bool bEnoughCondition4 = plink && !(plink->m_elink & ::file::e_link_icon);
-      bool bEnoughCondition5 = plink && (plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon));
+      bool bEnoughCondition5 = plink && (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
 
       //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
 
@@ -557,7 +557,7 @@ namespace apex
 
       bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
 
-      //if (!acmefile()->exists(pathCreatedShortcut)
+      //if (!file_system()->exists(pathCreatedShortcut)
       if (bEnoughCondition1
          || bEnoughCondition2
          || bEnoughCondition3
@@ -581,7 +581,7 @@ namespace apex
 
       ////#ifdef WINDOWS_DESKTOP
 
-      //pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+      //pathShortcut = directory_system()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
       ////#else
       ////
@@ -591,7 +591,7 @@ namespace apex
       ////
       ////      strDesktopFileName.find_replace("/", ".");
       ////
-      ////      pathShortcut = acmedirectory()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
+      ////      pathShortcut = directory_system()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
       ////
       ////#endif
 
@@ -674,7 +674,7 @@ namespace apex
       if(pfilesystemoptions->m_bOperatingSystemRootOnes)
       {
          
-         dir()->root_ones(listing);
+         directory()->root_ones(listing);
          
       }
       
@@ -683,7 +683,7 @@ namespace apex
          
          ::file::path pathDropbox = m_papplication->defer_process_matter_path("dropbox://");
          
-         if(pathDropbox.has_char() && dir()->is(pathDropbox))
+         if(pathDropbox.has_char() && directory()->is(pathDropbox))
          {
             
             ::file::path & path = listing.insert_at(0, "dropbox://");
@@ -696,7 +696,7 @@ namespace apex
          
          ::file::path pathDropboxApp = m_papplication->defer_process_matter_path("dropbox-app://");
          
-         if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
+         if(pathDropboxApp.m_epath == ::e_path_file && directory()->is(pathDropboxApp))
          {
             
             ::file::path & path = listing.insert_at(0, "dropbox-app://");
@@ -714,7 +714,7 @@ namespace apex
          
          ::file::path pathOneDrive = m_papplication->defer_process_matter_path("onedrive://");
          
-         if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
+         if(pathOneDrive.m_epath == ::e_path_file && directory()->is(pathOneDrive))
          {
             
             ::file::path & path = listing.insert_at(0, "onedrive://");
@@ -730,12 +730,12 @@ namespace apex
       if(pfilesystemoptions->m_b_iCloudContainer)
       {
          
-         if(acmedirectory()->has_icloud_container())
+         if(directory_system()->has_icloud_container())
          {
             
             ::string pathContainer;
             
-            pathContainer = acmedirectory()->icloud_container_documents();
+            pathContainer = directory_system()->icloud_container_documents();
             
             ::string strContainerName;
             

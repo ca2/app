@@ -56,7 +56,7 @@ endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
 
-if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+if(${__CMAKE_BUILD_TYPE} STREQUAL "Release")
 
     set(LAUNCH_EXECUTABLE $ENV{HOME}/bin/launch)
 

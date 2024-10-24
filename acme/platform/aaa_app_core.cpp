@@ -4,8 +4,8 @@
 #include "app_core.h"
 #include "acme/platform/system_setup.h"
 //#include "apex/platform/static_start.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -199,14 +199,14 @@ void app_core::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10_s);
 
    }
 
-   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -254,7 +254,7 @@ void app_core::system_init()
 
    //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-   //   acmedirectory()->set_path_install_folder(pathModule.folder(4));
+   //   directory_system()->set_path_install_folder(pathModule.folder(4));
 
    //}
 
@@ -528,11 +528,11 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
+  // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
+   //::file::path pathGlobalOutputDebugString = directory_system()->config() / "information.txt" ;
 
-   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = file_system()->exists(pathOutputDebugString)||  file_system()->exists(pathGlobalOutputDebugString);
 
    //return true;
 

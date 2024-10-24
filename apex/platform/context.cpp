@@ -7,16 +7,16 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/prototype/string/str.h"
-#include "acme/filesystem/filesystem/dir_context.h"
-#include "acme/filesystem/filesystem/dir_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/http/context.h"
 
@@ -238,31 +238,31 @@ namespace apex
 
       }
 
-      if (dir()->image().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->image()))
+      if (directory()->image().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (dir()->music().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->music()))
+      else if (directory()->music().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (dir()->video().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->video()))
+      else if (directory()->video().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (dir()->document().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->document()))
+      else if (directory()->document().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (dir()->download().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->download()))
+      else if (directory()->download().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->download()))
       {
 
          return ::file::path("download://") / str;
@@ -290,49 +290,49 @@ namespace apex
 
       ::file::path path = defer_process_path(strParam);
 
-      if (dir()->image().has_char() && path.case_insensitive_order(dir()->image()) == 0)
+      if (directory()->image().has_char() && path.case_insensitive_order(directory()->image()) == 0)
       {
 
          return "Image";
 
       }
-      else if (dir()->music().has_char() && path.case_insensitive_order(dir()->music()) == 0)
+      else if (directory()->music().has_char() && path.case_insensitive_order(directory()->music()) == 0)
       {
 
          return "Music";
 
       }
-      else if (dir()->video().has_char() && path.case_insensitive_order(dir()->video()) == 0)
+      else if (directory()->video().has_char() && path.case_insensitive_order(directory()->video()) == 0)
       {
 
          return "Video";
 
       }
-      else if (dir()->document().has_char() && path.case_insensitive_order(dir()->document()) == 0)
+      else if (directory()->document().has_char() && path.case_insensitive_order(directory()->document()) == 0)
       {
 
          return "Document";
 
       }
-      else if (dir()->download().has_char() && path.case_insensitive_order(dir()->download()) == 0)
+      else if (directory()->download().has_char() && path.case_insensitive_order(directory()->download()) == 0)
       {
 
          return "Download";
 
       }
-      else if (dir()->desktop().has_char() && path.case_insensitive_order(dir()->desktop()) == 0)
+      else if (directory()->desktop().has_char() && path.case_insensitive_order(directory()->desktop()) == 0)
       {
 
          return "Desktop";
 
       }
-      else if (dir()->bookmark().has_char() && path.case_insensitive_order(dir()->bookmark()) == 0)
+      else if (directory()->bookmark().has_char() && path.case_insensitive_order(directory()->bookmark()) == 0)
       {
 
          return "Bookmark";
 
       }
-      else if (dir()->bookmark().has_char() && path == "/")
+      else if (directory()->bookmark().has_char() && path == "/")
       {
 
          return "File System";
@@ -423,7 +423,7 @@ namespace apex
    bool context::defer_process_media_library_path(::file::path & path)
    {
 
-      return acmedirectory()->defer_process_media_library_path(path);
+      return directory_system()->defer_process_media_library_path(path);
 
    }
 
@@ -460,31 +460,31 @@ namespace apex
       if (_001IsProtocol(path, "music:/"))
       {
 
-         path = dir()->music() / path;
+         path = directory()->music() / path;
 
       }
       else if (_001IsProtocol(path, "video:/"))
       {
 
-         path = dir()->video() / path;
+         path = directory()->video() / path;
 
       }
       else if (_001IsProtocol(path, "image:/"))
       {
 
-         path = dir()->image() / path;
+         path = directory()->image() / path;
 
       }
       else if (_001IsProtocol(path, "document:/"))
       {
 
-         path = dir()->document() / path;
+         path = directory()->document() / path;
 
       }
       else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
       {
 
-         path = dir()->dropbox() / path;
+         path = directory()->dropbox() / path;
 
       }
       else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
@@ -499,43 +499,43 @@ namespace apex
 
          }
 
-         path = dir()->dropbox_app() / path;
+         path = directory()->dropbox_app() / path;
 
       }
       else if (node()->_is_onedrive_installed() && _001IsProtocol(path, "onedrive:/"))
       {
 
-         path = dir()->onedrive() / path;
+         path = directory()->onedrive() / path;
 
       }
       else if (_001IsProtocol(path, "appconfig:/"))
       {
 
-         path = get_app()->m_papexapplication->appconfig_folder() / path;
+         path = get_app()->appconfig_folder() / path;
 
       }
       else if (_001IsProtocol(path, "download:/"))
       {
 
-         path = dir()->download() / path;
+         path = directory()->download() / path;
 
       }
       else if (_001IsProtocol(path, "usersystem:/"))
       {
 
-         path = acmedirectory()->system() / path;
+         path = directory_system()->system() / path;
 
       }
       else if (_001IsProtocol(path, "desktop:/"))
       {
 
-         path = dir()->desktop() / path;
+         path = directory()->desktop() / path;
 
       }
       else if (_001IsProtocol(path, "bookmark:/"))
       {
 
-         path = dir()->bookmark() / path;
+         path = directory()->bookmark() / path;
 
       }
       else
@@ -553,7 +553,7 @@ namespace apex
    bool context::defer_process_protocol_path(::file::path & path)
    {
       
-      return acmepath()->defer_process_protocol_path(path);
+      return path_system()->defer_process_protocol_path(path);
       
    }
 
@@ -681,7 +681,7 @@ namespace apex
       // if (os_is_alias(path))
       // {
       //
-      //    return acmepath()->resolve_link(path);
+      //    return path_system()->resolve_link(path);
       //
       // }
       //
@@ -709,7 +709,7 @@ namespace apex
    bool context::enumerate(::file::listing & listing)
    {
 
-      return dir()->enumerate(listing);
+      return directory()->enumerate(listing);
 
    }
 
@@ -717,7 +717,7 @@ namespace apex
    /*bool context::perform_file_relative_name_listing(::file::listing & listing)
    {
 
-      return dir()->ls_relative_name(listing);
+      return directory()->ls_relative_name(listing);
 
    }*/
 
@@ -740,7 +740,7 @@ namespace apex
 
       ::file_pointer pfile;
 
-      if (dir()->is(path))
+      if (directory()->is(path))
       {
 
          pfile = file()->get_reader(path / "this.ini");
@@ -777,7 +777,7 @@ namespace apex
    ::handle::ini context::local_ini()
    {
 
-      ::file::path pathFolder = acmedirectory()->localconfig();
+      ::file::path pathFolder = directory_system()->localconfig();
 
       return ini_from_path(pathFolder);
 
@@ -832,7 +832,7 @@ namespace apex
    ::file::path context::sys_path(const ::scoped_string & scopedstrPath)
    {
 
-      return acmedirectory()->config() / scopedstrPath;
+      return directory_system()->config() / scopedstrPath;
 
    }
 

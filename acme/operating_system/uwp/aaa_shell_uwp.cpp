@@ -189,7 +189,7 @@ pacmedirectory->is(strPath))
       if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
       {
 
-         ::file::path path = pcontext->dir()->matter("cloud.ico");
+         ::file::path path = pcontext->directory()->matter("cloud.ico");
 
 //       for (auto iSize : m_iaSize)
 //       {
@@ -210,7 +210,7 @@ pacmedirectory->is(strPath))
       else if (case_insensitive_string_begins(imagekey.m_strPath, "fs:"))
       {
 
-         ::file::path path = pcontext->dir()->matter("remote.ico");
+         ::file::path path = pcontext->directory()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -232,7 +232,7 @@ pacmedirectory->is(strPath))
       else if (case_insensitive_string_begins(imagekey.m_strPath, "ftp:"))
       {
 
-         ::file::path path = pcontext->dir()->matter("ftp.ico");
+         ::file::path path = pcontext->directory()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -262,8 +262,8 @@ pacmedirectory->is(strPath))
 
             str.trim();
 
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             synchronous_lock sl1(m_pil48Hover->mutex());
             synchronous_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);

@@ -2,7 +2,7 @@
 #include "image_context.h"
 ////#include "acme/exception/exception.h"
 #include "aura/platform/context.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
 
@@ -351,7 +351,7 @@ namespace imaging_freeimage
          }
          else if (bGif)
          {
-            //acmefile()->put_contents("/home/camilo/a.gif", memory);
+            //file_system()->put_contents("/home/camilo/a.gif", memory);
 
             _load_multi_frame_image(pimage, memory);
 

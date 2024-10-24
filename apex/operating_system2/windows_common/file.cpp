@@ -203,7 +203,7 @@
 //}
 
 
-//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const ::file::path & path, ::file::enum_type* petype)
+//CLASS_DECL_APEX int_bool path_system()->is_file_or_dir(const ::file::path & path, ::file::enum_type* petype)
 //{
 //
 //   auto dwFileAttributes = windows_get_file_attributes(path);

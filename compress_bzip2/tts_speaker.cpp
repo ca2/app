@@ -184,7 +184,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
       ::property_set set;
 
-      string strJson = papp->file()->as_string(papp->dir()->matter("speech/windows/lang.json"));
+      string strJson = papp->file()->as_string(papp->directory()->matter("speech/windows/lang.json"));
 
       const ::ansi_character * pszJson = strJson;
 

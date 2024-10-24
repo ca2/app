@@ -5,18 +5,18 @@ namespace android
 {
 
 
-   class CLASS_DECL_ACME dir_context :
-      virtual public ::dir_context
+   class CLASS_DECL_ACME directory_context :
+      virtual public ::directory_context
    {
    public:
 
       
-      ::pointer<dir_system>      m_pdirsystem;
+      ::pointer<directory_system>      m_pdirsystem;
       ::pointer<file_system>     m_pfilesystem;
 
 
-      dir_context();
-      virtual ~dir_context();
+      directory_context();
+      virtual ~directory_context();
 
       virtual void initialize(::particle * pparticle) override;
 

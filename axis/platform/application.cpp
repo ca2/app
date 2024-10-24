@@ -4,10 +4,10 @@
 #include "session.h"
 #include "system.h"
 ////#include "acme/exception/exception.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/user/user/language_map.h"
 #include "apex/networking/application/application.h"
 #include "axis/database/simpledb/server.h"
@@ -933,7 +933,7 @@ namespace axis
 
             auto pcontext = get_context();
 
-            ::file::path pathFolder = dir()->appdata(m_strDatabaseAppId);
+            ::file::path pathFolder = directory()->appdata(m_strDatabaseAppId);
 
             if (is_system())
             {
@@ -1816,10 +1816,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          //pszRequestUrl = strRequestUrl;
 

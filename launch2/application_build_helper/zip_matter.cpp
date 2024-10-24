@@ -5,9 +5,9 @@
 ////#include "acme/exception/exception.h"
 #include "application_build_helper.h"
 #include "acme/filesystem/file/folder.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 //#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/operating_system/process.h"
@@ -37,9 +37,9 @@ namespace application_build_helper
 
       //::file::path pathMatterZipList = m_pathFolder + "/_matter-zip-list.txt";
 
-      //auto estatus = acmefile()->ensure_exists(pathMatter);
+      //auto estatus = file_system()->ensure_exists(pathMatter);
 
-      acmefile()->ensure_exists(pathMatter);
+      file_system()->ensure_exists(pathMatter);
 
       //if(!estatus)
       //{
@@ -48,7 +48,7 @@ namespace application_build_helper
 
       //}
 
-      auto strInput = acmefile()->as_string(pathMatter);
+      auto strInput = file_system()->as_string(pathMatter);
 
       /*if(!strInput)
       {
@@ -67,7 +67,7 @@ namespace application_build_helper
 
       ::file::path pathOutput = m_pathFolder - 2;
 
-      acmedirectory()->change_current(pathOutput);
+      directory_system()->change_current(pathOutput);
 
       if (acmeapplication()->m_bVerbose)
       {
@@ -78,7 +78,7 @@ namespace application_build_helper
 
       {
 
-         auto pwriter = acmefile()->get_file(pathZip,
+         auto pwriter = file_system()->get_file(pathZip,
             ::file::e_open_defer_create_directory
             | ::file::e_open_binary 
             | ::file::e_open_write 
@@ -187,7 +187,7 @@ namespace application_build_helper
 
                   listing.set_file_listing(pathFolder, ::e_depth_recursively);
 
-                  acmedirectory()->enumerate(listing);
+                  directory_system()->enumerate(listing);
 
                   for (auto& p : listing)
                   {
@@ -229,10 +229,10 @@ namespace application_build_helper
 
                         auto path = pathOutput / pathItem;
 
-                        if (acmefile()->exists(path))
+                        if (file_system()->exists(path))
                         {
 
-                           preader = acmefile()->get_file(path, ::file::e_open_read | ::file::e_open_binary);
+                           preader = file_system()->get_file(path, ::file::e_open_read | ::file::e_open_binary);
 
                            pfolder->add_file(pathItem, preader);
 
@@ -250,11 +250,11 @@ namespace application_build_helper
 
       }
 
-//      acmefile()->put_contents(pathMatterZipList, patha.implode("\n"));
+//      file_system()->put_contents(pathMatterZipList, patha.implode("\n"));
 //      //if (bFirst)
 //      {
 //
-//         auto strCurrentDirectory = acmedirectory()->get_current();
+//         auto strCurrentDirectory = directory_system()->get_current();
 //
 //         ::string strCommandLine = strZipExe + " -r \"" + strZip + "\" -@";
 //
@@ -281,7 +281,7 @@ namespace application_build_helper
 //
 //         ::file::path pathHome = getenv("HOME");
 //
-//         acmedirectory()->change_current(pathHome);
+//         directory_system()->change_current(pathHome);
 //
 //      }
 

@@ -7,7 +7,7 @@
 //#include "acme/platform/application.h"
 //#include "acme/platform/session.h"
 //#include "acme/platform/system.h"
-//#include "acme/filesystem/filesystem/dir_context.h"
+//#include "acme/filesystem/filesystem/directory_context.h"
 #include "aura/graphics/write_text/font_list.h"
 //#include "base/user/form/document.h"
 
@@ -91,7 +91,7 @@ namespace user
       //      if (!ptopic->payload(ID_FORM).is_empty())
       //      {
 
-      //         string strMatter = dir()->matter(ptopic->payload(ID_FORM));
+      //         string strMatter = directory()->matter(ptopic->payload(ID_FORM));
 
       //         if (get_document()->on_open_document(strMatter))
       //         {

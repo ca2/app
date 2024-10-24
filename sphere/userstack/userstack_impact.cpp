@@ -135,13 +135,13 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = dir()->appdata() / "image";
+      string strImageDir = directory()->appdata() / "image";
       m_straImagePath.m_pprovider = get_app();
       m_straImagePath.rls(strImageDir);
 
       for(i32 i = 0; i < m_straImagePath.get_size();)
       {
-         if(dir()->is(m_straImagePath[i]))
+         if(directory()->is(m_straImagePath[i]))
          {
             m_straImagePath.erase_at(i);
          }

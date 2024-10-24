@@ -18,10 +18,10 @@
 #include "thread.h"
 //#include "os_context.h"
 
-//#include "dir_system.h"
+//#include "directory_system.h"
 //#include "file_system.h"
 //
-//#include "dir_context.h"
+//#include "directory_context.h"
 //#include "file_context.h"
 
 //#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))

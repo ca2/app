@@ -383,7 +383,7 @@ application_array application_container::get_applicationa()
 
    string strBuild;
 
-   ::file::path pathExe = acmepath()->app_module();
+   ::file::path pathExe = path_system()->app_module();
 
    if (!is_application_installed(pathExe, strApp, strBuild, ::auraacmesystem()->get_system_platform(),
       ::auraacmesystem()->get_system_configuration(), strLocale, strSchema))

@@ -3,8 +3,8 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
 
@@ -71,14 +71,14 @@ namespace console_integration
             
             lipo();
             
-            auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-linux/include";
+            auto pathOperatingSystemIncludeFolder = directory_system()->home() /"workspace/operating_system/operating_system-linux/include";
             ;
             
             auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             
             auto pathInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
             
-            acmedirectory()->create(pathInclude /"lame");
+            directory_system()->create(pathInclude /"lame");
             //auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
             
             m_papplication->bash("cp -Rf " + strPrefix + "/include/lame/* " + pathInclude + "/lame/");
@@ -189,7 +189,7 @@ namespace console_integration
 //
 //         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform ;
 //
-//         acmedirectory()->create(pathOperatingSystemStorageFolder / "library");
+//         directory_system()->create(pathOperatingSystemStorageFolder / "library");
 //
 //         ::string strCommand1 ="cp -f " + (m_papplication->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
 //
@@ -207,7 +207,7 @@ namespace console_integration
 //
 //         m_papplication->bash(strCommand2);
 //
-//         acmefile()->copy(path, pathOriginal, true);
+//         file_system()->copy(path, pathOriginal, true);
 //
 //         m_mappath[m_papplication->m_strPlatform] = path;
 

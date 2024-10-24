@@ -18,13 +18,36 @@
 
 
 
-class CLASS_DECL_ACME acme_directory :
+class CLASS_DECL_ACME directory_system :
    virtual public ::particle,
    virtual public ::file::enumerator
 {
 public:
 
 
+
+
+
+   ::file::path                  m_pathLocalAppMatterFolder;
+   ::file::path                  m_pathLocalAppMatterCacheFolder;
+
+   //::pointer<::file::watcher>   m_pfilewatcher;
+
+   ::file::path                  m_pathAppData;
+   ::file::path                  m_pathDefaultAppData;
+
+   string                        m_strApiCc;
+
+   ::file::path                  m_pathCa2Config;
+   //::file::path                  m_pathModule;
+   ::file::path                  m_pathHome;
+   ::file::path                  m_pathInstall;
+
+   bool                          m_bMatterFromHttpCache;
+   bool                          m_bMatterFromResource;
+
+
+   ::file::path                  m_pathUpload;
 
 
 
@@ -68,9 +91,9 @@ public:
 
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_directory *     m_pplatformdir;
-   ::acme_file *                                                     m_pacmefile;
-   ::acme_path *                                                     m_pacmepath;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::directory_system *     m_pplatformdir;
+   ::file_system *                                                     m_pacmefile;
+   ::path_system *                                                     m_pacmepath;
 
    ::file::path                                    m_pathInstallFolder;
    //::file::path                                    m_pathModuleFolder;
@@ -82,8 +105,8 @@ public:
     ::file::path                                                      m_pathFolder;
 
 
-   acme_directory();
-   ~acme_directory() override;
+   directory_system();
+   ~directory_system() override;
 
 
    void initialize(::particle * pparticle) override;
@@ -167,7 +190,7 @@ public:
    virtual ::file::e_type file_type(const ::file::path& path);
    virtual ::file::e_type _file_type(const ::file::path& path);
    // From acme/filesystem/file/dir.cpp by camilo 
-   // From acme_posix/acme_directory.h
+   // From acme_posix/directory_system.h
 // on 2021-08-09 03:20 BRT
 // <3ThomasBorregaardSorensen!!
 
@@ -176,14 +199,14 @@ public:
    //{
 
 
-   //   class CLASS_DECL_ACME_POSIX acme_directory :
-   //      virtual public ::acme_directory
+   //   class CLASS_DECL_ACME_POSIX directory_system :
+   //      virtual public ::directory_system
    //   {
 
    //   public:
 
-   //      acme_directory();
-   //      ~acme_directory();
+   //      directory_system();
+   //      ~directory_system();
 
          //virtual string name(const ::file::path & path1);
 
@@ -272,6 +295,16 @@ public:
 
    virtual bool contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
 
+
+   //virtual void initialize(::particle * pparticle) override;
+
+   virtual void init_system();
+
+   virtual void term_system();
+
+   void finalize() override;
+
+   virtual ::file::path compute_default_app_data_path();
 
 };
 

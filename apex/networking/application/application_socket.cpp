@@ -25,7 +25,7 @@ namespace networking
    void application_socket::on_send_response()
    {
 
-      auto papp = get_app()->m_papexapplication;
+      auto papp = get_app();
 
       string strUrl;
 

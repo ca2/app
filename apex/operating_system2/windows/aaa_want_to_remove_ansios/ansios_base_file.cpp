@@ -60,7 +60,7 @@ int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 
 
 
-int_bool acmefile()->exists(const ::file::path & path1)
+int_bool file_system()->exists(const ::file::path & path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -79,7 +79,7 @@ int_bool acmefile()->exists(const ::file::path & path1)
 
 
 
-int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
+int_bool file_system()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
 {
 
    bool bOk = false;
@@ -139,7 +139,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string acmefile()->as_string(const ::file::path & path)
+string file_system()->as_string(const ::file::path & path)
 {
 
    string str;

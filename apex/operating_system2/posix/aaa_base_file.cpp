@@ -69,7 +69,7 @@ int_bool file_set_length(const char * lpszName, size_t iSize)
 }
 
 
-int_bool acmefile()->exists(const ::file::path & path1)
+int_bool file_system()->exists(const ::file::path & path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -95,7 +95,7 @@ int_bool acmefile()->exists(const ::file::path & path1)
 }
 
 
-int_bool acmepath()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
+int_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
 {
 
    struct stat st;
@@ -137,7 +137,7 @@ int_bool acmepath()->is_file_or_dir(const ::file::path & path1, ::file::enum_typ
 }
 
 
-int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
+int_bool file_system()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
 {
 
    bool bOk = false;
@@ -197,7 +197,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 {
 
    string str;

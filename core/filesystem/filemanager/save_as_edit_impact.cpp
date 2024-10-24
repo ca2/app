@@ -7,11 +7,11 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/filesystem/file/item.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/micro/user.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/platform/context.h"
@@ -74,7 +74,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (dir()->is(str))
+      if (directory()->is(str))
       {
 
          filemanager_document()->browse(str, context + ::e_source_sync);
@@ -90,7 +90,7 @@ namespace filemanager
 
             strName = strName.folder();
 
-            if (dir()->is(strName))
+            if (directory()->is(strName))
             {
 
                if (filemanager_item()->user_path() != strName)

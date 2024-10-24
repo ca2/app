@@ -3,9 +3,9 @@
 #include "acme/exception/runtime_check.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/platform/system.h"
 #include "acme/platform/trace.h"
@@ -151,15 +151,15 @@ try_again:
          if (estatus == error_file_access_denied)
          {
 
-            if (acmefile()->exists(path))
+            if (file_system()->exists(path))
             {
 
                if (!bTriedSetFileNormal)
                {
 
-                  acmefile()->set_file_normal(path);
+                  file_system()->set_file_normal(path);
 
-                  acmefile()->clear_read_only(path);
+                  file_system()->clear_read_only(path);
 
                   bTriedSetFileNormal = true;
 
@@ -459,7 +459,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
    }
 
-   auto path = pparticle->acmepath()->defer_process_relative_path(pathParam);
+   auto path = pparticle->path_system()->defer_process_relative_path(pathParam);
 
    pfile->open(path, scopedstrAttrs, iShare);
 
@@ -469,7 +469,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
 
 
-memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+memory file_system::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_papplication->__create_new < stdio_file >();
@@ -481,7 +481,7 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 
    }
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = path_system()->defer_process_relative_path(pathParam);
 
    pfile->open(path, "rb", _SH_DENYNO);
 
@@ -536,14 +536,14 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 }
 
 
-memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+memory file_system::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_papplication->__create_new < stdio_file >();
 
    pfile->m_eopen |= ::file::e_open_no_exception_if_not_found;
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = path_system()->defer_process_relative_path(pathParam);
 
    pfile->open(path, "rb", _SH_DENYNO);
 
@@ -720,12 +720,12 @@ void __cdecl __clearerr_s(FILE * stream)
 }
 
 
-memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s)
+memsize file_system::as_memory(const ::file::path & pathParam, void * p, memsize s)
 {
 
    stdio_file file;
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = path_system()->defer_process_relative_path(pathParam);
 
    file.open(path, "r", _SH_DENYNO);
 
@@ -756,14 +756,14 @@ memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s
 }
 
 
-void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
+void file_system::as_memory(memory_base & memory, const ::file::path & pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
 {
 
    memory.set_size(0);
 
    stdio_file file;
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = path_system()->defer_process_relative_path(pathParam);
 
    try
    {
@@ -840,7 +840,7 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
 
 
 
-void acme_file::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
+void file_system::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
 {
 
    auto pacmedirectory = m_pacmedirectory;
@@ -901,7 +901,7 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
 }
 
 
-//filesize acme_file::get_size(FILE * pfile)
+//filesize file_system::get_size(FILE * pfile)
 //{
 //
 //    return get_size_fd(fileno(pfile));
@@ -910,12 +910,12 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
 
 
 
-string acme_file::line(const ::file::path & pathParam, ::collection::index iLine)
+string file_system::line(const ::file::path & pathParam, ::collection::index iLine)
 {
 
    string str;
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto path = path_system()->defer_process_relative_path(pathParam);
 
 #ifdef WINDOWS
 
@@ -991,7 +991,7 @@ string acme_file::line(const ::file::path & pathParam, ::collection::index iLine
 }
 
 
-void acme_file::append_wait(const ::string & strFile, const block & block, const class time & time)
+void file_system::append_wait(const ::string & strFile, const block & block, const class time & time)
 {
 
    m_pacmedirectory->create(::file_path_folder(strFile));

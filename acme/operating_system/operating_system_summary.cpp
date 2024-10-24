@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "operating_system_summary.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 
 
@@ -51,10 +51,10 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
    //}
 
    // freedesktop.org and systemd
-   if (acmefile()->exists("/etc/os-release"))
+   if (file_system()->exists("/etc/os-release"))
    {
 
-      auto set = acmefile()->parse_standard_configuration("/etc/os-release");
+      auto set = file_system()->parse_standard_configuration("/etc/os-release");
 
       m_strDistro = set["ID"];
       m_strDistroBranch = set["VARIANT_ID"];
@@ -71,7 +71,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       if (m_strDistroFamily.case_insensitive_equals("arch"))
       {
 
-         auto setArch = acmefile()->parse_standard_configuration("/etc/os-release");
+         auto setArch = file_system()->parse_standard_configuration("/etc/os-release");
 
          m_strDistroRelease = setArch["DISTRIB_RELEASE"];
          m_strDistroRelease.make_lower();
@@ -106,11 +106,11 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       strVer.make_lower();
 
    }
-   else if (acmefile()->exists("/etc/lsb-release"))
+   else if (file_system()->exists("/etc/lsb-release"))
    {
 
       //# For some versions of Debian/Ubuntu without lsb_release command
-      auto set = acmefile()->parse_standard_configuration("/etc/lsb-release");
+      auto set = file_system()->parse_standard_configuration("/etc/lsb-release");
       //./ etc / lsb - release
 
       strOs = set["DISTRIB_ID"];
@@ -120,7 +120,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
 
    }
-   else if (acmefile()->exists("/etc/debian_version"))
+   else if (file_system()->exists("/etc/debian_version"))
    {
 
 //      elif[-f / etc / debian_version];
@@ -129,13 +129,13 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 //# Older Debian/Ubuntu/etc.
 
       strOs = "Debian";
-      strVer = acmefile()->as_string("/etc/debian_version");
+      strVer = file_system()->as_string("/etc/debian_version");
       strOs.make_lower();
       strVer.make_lower();
 
 
    }
-   else if (acmefile()->exists("/etc/SuSe-release"))
+   else if (file_system()->exists("/etc/SuSe-release"))
    {
 //      elif[-f / etc / SuSe - release];
 //      then
@@ -145,7 +145,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 //              ...
    }
 
-   else if (acmefile()->exists("/etc/redhat-release"))
+   else if (file_system()->exists("/etc/redhat-release"))
    {
 
 

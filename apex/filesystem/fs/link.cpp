@@ -2,7 +2,7 @@
 #include "link.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/context.h"
 
 #if REFERENCING_DEBUGGING
@@ -170,7 +170,7 @@ namespace fs
       
       __check_refdbg
 
-      dir()->enumerate(*m_plisting);
+      directory()->enumerate(*m_plisting);
 
       __check_refdbg
 

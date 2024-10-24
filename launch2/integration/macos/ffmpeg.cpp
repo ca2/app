@@ -5,8 +5,8 @@
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
@@ -131,11 +131,11 @@ namespace console_integration
 
          prepare();
          
-         //acmedirectory()->change_current(m_papplication->m_pathFolder);
+         //directory_system()->change_current(m_papplication->m_pathFolder);
          
          auto pathConfigure = m_papplication->m_pathSource / "configure";
          
-         if(!acmefile()->exists(pathConfigure))
+         if(!file_system()->exists(pathConfigure))
          {
             
             download();
@@ -239,14 +239,14 @@ namespace console_integration
       void ffmpeg::build_dependencies()
       {
          
-         if(m_bX264 && !acmedirectory()->is(m_papplication->m_pathSource / "x264"))
+         if(m_bX264 && !directory_system()->is(m_papplication->m_pathSource / "x264"))
          {
             
             build_x264();
             
          }
 
-         if(m_bX265 && !acmedirectory()->is(m_papplication->m_pathSource / "x265"))
+         if(m_bX265 && !directory_system()->is(m_papplication->m_pathSource / "x265"))
          {
             
             build_x265("StaticRelease");
@@ -255,21 +255,21 @@ namespace console_integration
             
          }
          
-         if(m_bFdkAac && !acmedirectory()->is(m_papplication->m_pathSource / "fdk-aac"))
+         if(m_bFdkAac && !directory_system()->is(m_papplication->m_pathSource / "fdk-aac"))
          {
             
             build_fdk_aac();
             
          }
 
-         if(m_bLame && !acmedirectory()->is(m_papplication->m_pathSource / "mp3lame"))
+         if(m_bLame && !directory_system()->is(m_papplication->m_pathSource / "mp3lame"))
          {
             
             build_lame();
             
          }
 
-         if(m_bFreetype && !acmedirectory()->is(m_papplication->m_pathSource / "freetype"))
+         if(m_bFreetype && !directory_system()->is(m_papplication->m_pathSource / "freetype"))
          {
             
             build_freetype();
@@ -295,7 +295,7 @@ namespace console_integration
          
          ::string strCommand;
          
-         strCommand = acmedirectory()->home() / "bin" / "application_build_helper " + strParameters;
+         strCommand = directory_system()->home() / "bin" / "application_build_helper " + strParameters;
          
          //      auto functionTrace = [&](auto etracelevel, auto& str)
          //      {
@@ -331,7 +331,7 @@ namespace console_integration
          
          ::string strCommand;
          
-         strCommand = acmedirectory()->home() / "bin" / "application_build_helper " + strParameters;
+         strCommand = directory_system()->home() / "bin" / "application_build_helper " + strParameters;
          
       //   auto functionTrace = [&](auto etracelevel, auto& str)
       //   {
@@ -389,7 +389,7 @@ namespace console_integration
          
          ::string strCommand;
          
-         strCommand = acmedirectory()->home() / "bin" / "application_build_helper " + strParameters;
+         strCommand = directory_system()->home() / "bin" / "application_build_helper " + strParameters;
          
          m_papplication->bash(strCommand);
          
@@ -437,7 +437,7 @@ namespace console_integration
       
       ::string strCommand;
       
-      strCommand = acmedirectory()->home() / "bin" / "application_build_helper " + strParameters;
+      strCommand = directory_system()->home() / "bin" / "application_build_helper " + strParameters;
       
       m_papplication->bash(strCommand);
       
@@ -475,7 +475,7 @@ namespace console_integration
       
       ::string strCommand;
       
-      strCommand = acmedirectory()->home() / "bin" / "application_build_helper " + strParameters;
+      strCommand = directory_system()->home() / "bin" / "application_build_helper " + strParameters;
       
       m_papplication->bash(strCommand);
       
@@ -625,7 +625,7 @@ namespace console_integration
 //         strCommand += "\n";
 //         strCommand += "do_configure\n";
          
-//         acmefile()->put_contents(m_papplication->m_pathSource / "configure2.sh",
+//         file_system()->put_contents(m_papplication->m_pathSource / "configure2.sh",
 //                                  strCommand);
 //         m_papplication->bash("chmod +x configure2.sh");
 //         ::string s;
@@ -648,7 +648,7 @@ namespace console_integration
 //         //   C:\
          
          
-         //acmefile()->put_contents(m_papplication->m_pathSource / "vs_call.bat", s);
+         //file_system()->put_contents(m_papplication->m_pathSource / "vs_call.bat", s);
          
          //trace_function tracefunction = [&](auto etracelevel, auto& str)
          //{
@@ -659,7 +659,7 @@ namespace console_integration
          
          //};
          
-         printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
+         printf("Current Directory: %s\n", directory_system()->get_current().c_str());
 
          m_papplication->bash(strConfigureCommand);
          
@@ -717,7 +717,7 @@ namespace console_integration
 
          m_papplication->bash(strCommand2);
 
-         acmefile()->copy(path, pathOriginal, true);
+         file_system()->copy(path, pathOriginal, true);
          
          ::string strCommand3 ="install_name_tool -id @executable_path/" + strDylib + " " + path;
 
@@ -739,7 +739,7 @@ namespace console_integration
          
          m_papplication->bash("make install");
          
-         auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-macos/include";
+         auto pathOperatingSystemIncludeFolder = directory_system()->home() /"workspace/operating_system/operating_system-macos/include";
          ;
 
          auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder /m_papplication->m_strConfiguration;

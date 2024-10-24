@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "application_build_helper.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 
@@ -43,7 +43,7 @@ namespace application_build_helper
    void application_build_helper::build_deb()
    {
 
-      ::file::path pathHome = acmedirectory()->home();
+      ::file::path pathHome = directory_system()->home();
 
       ::file::path pathStore = pathHome / "store_0.4_amd64";
 
@@ -61,7 +61,7 @@ namespace application_build_helper
 
       ::file::path pathStoreFolder;
 
-      pathStoreFolder = acmedirectory()->home() / "store";
+      pathStoreFolder = directory_system()->home() / "store";
 
       pathStoreFolder /= m_strSlashedOperatingSystem;
 
@@ -75,7 +75,7 @@ namespace application_build_helper
 
       pathBin = pathStore / "opt/store/bin/";
 
-      acmedirectory()->create(pathBin);
+      directory_system()->create(pathBin);
 
       strCommand = "unzip -o " + pathStoreZip + " -d " + pathBin + "/";
 
@@ -83,7 +83,7 @@ namespace application_build_helper
 
       acmenode()->command_system("bash -c \"" + strCommand + "\"", std_inline_log());
 
-      acmedirectory()->change_current(pathHome);
+      directory_system()->change_current(pathHome);
 
       strCommand = "dpkg-deb --build --root-owner-group store_0.4_amd64";
 

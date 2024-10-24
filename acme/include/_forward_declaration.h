@@ -939,9 +939,9 @@ class exception_translator;
 //class counter;
 //class type;
 
-class acme_file;
-class acme_path;
-class acme_directory;
+class file_system;
+class path_system;
+class directory_system;
 
 
 namespace platform
@@ -957,8 +957,8 @@ namespace platform
 } // namespace platform
 
 
-class dir_context;
-class dir_system;
+class directory_context;
+class directory_system;
 class file_context;
 class file_system;
 
@@ -1566,22 +1566,22 @@ namespace operating_system
 // } // namespace acme
 
 
-class acme_directory;
+class directory_system;
 
-class acme_file;
+class file_system;
 
-class acme_path;
+class path_system;
 
 
 namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 {
 
 
-   class acme_directory;
+   class directory_system;
 
-   class acme_file;
+   class file_system;
 
-   class acme_path;
+   class path_system;
 
 
 } // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)

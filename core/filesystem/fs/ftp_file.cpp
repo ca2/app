@@ -4,7 +4,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/system.h"
 #include "core/networking/ftp/client_socket.h"
@@ -17,7 +17,7 @@ ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 
    m_pclient = pclient;
 
-   m_payloadFile = m_pclient->file()->time(m_pclient->dir()->time());
+   m_payloadFile = m_pclient->file()->time(m_pclient->directory()->time());
 
 }
 

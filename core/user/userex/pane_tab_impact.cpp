@@ -6,7 +6,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
@@ -395,7 +395,7 @@ namespace userex
 //
 //            ::file::path path;
 //            
-//            path = pcontext->dir()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
+//            path = pcontext->directory()->appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 //
 //            pcontext->file()->put_memory(path, strOptionsImpact);
 //

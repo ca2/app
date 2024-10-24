@@ -1066,7 +1066,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    //}
 
-   auto pappContext = get_app()->m_papexapplication;
+   auto pappContext = get_app();
 
    if (::is_set(pappContext) && pappContext != this)
    {
@@ -1075,7 +1075,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    }
 
-   auto psessionContext = session()->m_papexsession;
+   auto psessionContext = session();
 
    if (psessionContext != this && ::is_set(psessionContext))
    {

@@ -789,7 +789,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = acmefile()->as_string(pathModule);
+      string strModuleList = file_system()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -881,7 +881,7 @@ repeat:
 
       ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = acmefile()->as_string(pathModule);
+      string strModuleList = file_system()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 

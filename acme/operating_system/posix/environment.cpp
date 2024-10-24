@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "environment.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 
 ::string current_working_directory();
 

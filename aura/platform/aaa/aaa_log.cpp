@@ -52,10 +52,10 @@ pacmedirectory->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!acmefile()->exists(pathTrace))
+      if (!file_system()->exists(pathTrace))
       {
 
-         ::acmefile()->put_contents(pathTrace, "yes");
+         ::file_system()->put_contents(pathTrace, "yes");
 
       }
 
@@ -557,7 +557,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   sleep(1_s);
 
-                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(         auto psystem = system();
+                  if (!path_system()->app_module().case_insensitive_contains("logviewer") && file_system()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

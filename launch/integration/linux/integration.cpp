@@ -14,7 +14,7 @@
 #include "freetype.h"
 #include "openssl.h"
 #include <stdio.h>
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
@@ -36,7 +36,7 @@ namespace application_build_helper
       string strArgument = psubsystem->get_argument1(0);
       
 
-      string strModule = acmefile()->module().title();
+      string strModule = file_system()->module().title();
 
       if (this->has_property("j"))
       {

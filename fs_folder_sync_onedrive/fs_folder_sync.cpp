@@ -2,11 +2,11 @@
 #include "framework.h"
 #include "fs_folder_sync.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/string/international.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/platform/node.h"
@@ -91,7 +91,7 @@ namespace fs_folder_sync_onedrive
    /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
    {
 
-      dir()->ls_relative_name(listing);
+      directory()->ls_relative_name(listing);
 
       return listing;
 
@@ -141,7 +141,7 @@ namespace fs_folder_sync_onedrive
    //   while(iCount > 0)
    //   {
 
-   //      strPath = dir()->name(strPath);
+   //      strPath = directory()->name(strPath);
 
    //      iCount--;
 

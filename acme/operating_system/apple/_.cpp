@@ -312,7 +312,7 @@ i64 oswindow_id(oswindow w)
 //
 //#if defined(ANDROID)
 //
-//   return acmepath()->app_module().folder();
+//   return path_system()->app_module().folder();
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //

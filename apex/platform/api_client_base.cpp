@@ -1,8 +1,8 @@
 // From api_client_base.cpp by camilo on 2023-02-01 09:10 PM <3ThomasBorregaardSorensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -36,7 +36,7 @@ api_client_base::~api_client_base()
    if (m_pathFolder.is_empty())
    {
 
-      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation / scopedstrService;
+      m_pathFolder = directory()->appdata() / "api" / scopedstrImplementation / scopedstrService;
 
    }
 
@@ -51,7 +51,7 @@ api_client_base::~api_client_base()
 
       pathProfile = m_pathFolder / strProfile;
 
-      if (!acmedirectory()->is(pathProfile))
+      if (!directory_system()->is(pathProfile))
       {
 
          break;
@@ -87,7 +87,7 @@ api_client_base::~api_client_base()
    if (m_pathFolder.is_empty())
    {
 
-      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation / scopedstrService;
+      m_pathFolder = directory()->appdata() / "api" / scopedstrImplementation / scopedstrService;
 
    }
 

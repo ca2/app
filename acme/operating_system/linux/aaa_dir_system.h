@@ -5,8 +5,8 @@ namespace linux
 {
 
 
-  class CLASS_DECL_ACME dir_system :
-    virtual public ::dir_system
+  class CLASS_DECL_ACME directory_system :
+    virtual public ::directory_system
   {
   public:
 
@@ -21,8 +21,8 @@ namespace linux
     ::file::path            m_pathPrograms;
 
 
-          dir_system();
-      virtual ~dir_system();
+          directory_system();
+      virtual ~directory_system();
 
 
     virtual void initialize(::particle * pparticle) override;

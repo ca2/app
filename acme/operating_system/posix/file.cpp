@@ -278,7 +278,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool acmefile()->exists(const ::file::path & path1)
+//int_bool file_system()->exists(const ::file::path & path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -304,7 +304,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool acmepath()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
+//int_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -346,7 +346,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
+//int_bool file_system()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;
@@ -406,7 +406,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+//string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str;
@@ -441,7 +441,7 @@ char * malloc_get_current_dir_name()
 //string_array file_as_lines(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
-//   string str = acmefile()->as_string(path, iReadAtMostByteCount);
+//   string str = file_system()->as_string(path, iReadAtMostByteCount);
 //
 //   string_array stra;
 //

@@ -7,7 +7,7 @@
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
 //#include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 //#include "acme/platform/acme.h"
 //#include "main1.h"
 #include "acme/platform/application.h"
@@ -550,8 +550,8 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //#include "app_core.h"
 //#include "acme/platform/system_setup.h"
 ////#include "apex/platform/static_start.h"
-//#include "acme/filesystem/filesystem/acme_directory.h"
-//#include "acme/filesystem/filesystem/acme_file.h"
+//#include "acme/filesystem/filesystem/directory_system.h"
+//#include "acme/filesystem/filesystem/file_system.h"
 //#include <stdio.h>
 //#include <time.h>
 
@@ -720,14 +720,14 @@ string apple_get_bundle_identifier();
 //
 //   m_timeAfterApplicationFirstRequest = m_timeStart;
 //
-//   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+//   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
 //   {
 //
 //      sleep(10_s);
 //
 //   }
 //
-//   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+//   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
 //   {
 //
 //      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -775,7 +775,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 //
-//   //   acmedirectory()->set_path_install_folder(pathModule.folder(4));
+//   //   directory_system()->set_path_install_folder(pathModule.folder(4));
 //
 //   //}
 //
@@ -1049,11 +1049,11 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //xxdebug_box("box1", "box1", e_message_box_icon_information);
 ////
-//  // ::file::path pathOutputDebugString = acmedirectory()->system() / strAppId / "information.txt" ;
+//  // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 //
-//   //::file::path pathGlobalOutputDebugString = acmedirectory()->config() / "information.txt" ;
+//   //::file::path pathGlobalOutputDebugString = directory_system()->config() / "information.txt" ;
 //
-//   //::apex::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
+//   //::apex::g_bOutputDebugString = file_system()->exists(pathOutputDebugString)||  file_system()->exists(pathGlobalOutputDebugString);
 //
 //   //return true;
 //

@@ -2,7 +2,7 @@
 #include "file_properties_form.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/handler/request.h"
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/user/user.h"
@@ -109,7 +109,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      ::file::path path = dir()->matter("filemanager/file_properties.html");
+      ::file::path path = directory()->matter("filemanager/file_properties.html");
 
       if(!m_pdocGeneral->on_open_document(path))
       {

@@ -24,7 +24,7 @@
 
 
 
-//int_bool acmefile()->put_contents(const ::file::path & path, const char* contents, memsize len)
+//int_bool file_system()->put_contents(const ::file::path & path, const char* contents, memsize len)
 //{
 //
 //            auto psystem = system();
@@ -1747,7 +1747,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //
 ////
-////int_bool acmefile()->exists(const ::file::path & path1)
+////int_bool file_system()->exists(const ::file::path & path1)
 ////{
 ////
 ////   string str(path1);
@@ -1764,7 +1764,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 ////
 //
 //
-////int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
+////int_bool file_system()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();
@@ -1795,7 +1795,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //
 //
-//string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+//string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str;

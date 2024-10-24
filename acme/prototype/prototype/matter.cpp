@@ -340,7 +340,7 @@ bool matter::thread_is_running() const
 ::platform::application* matter::_get_app()
 {
 
-   return m_papplication ? m_papplication->m_papplication : nullptr;
+   return m_papplication;
 
 }
 

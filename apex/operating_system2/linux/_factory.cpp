@@ -12,8 +12,8 @@
 void __node_apex_factory(::factory::factory * pfactory)
 {
 
-   //add_factory_item < ::linux::dir_system         , ::dir_system             >();
-   //add_factory_item < ::linux::dir_context        , ::dir_context            >();
+   //add_factory_item < ::linux::directory_system         , ::directory_system             >();
+   //add_factory_item < ::linux::directory_context        , ::directory_context            >();
    //add_factory_item < ::linux::file_system        , ::file_system            >();
    //add_factory_item < ::linux::file_context       , ::file_context           >();
    //add_factory_item < ::linux::stdio_file         , ::file::text_file        >();

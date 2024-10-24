@@ -163,7 +163,7 @@ namespace serial
 
 
 
-      ///__creatable_from_library(acme_directory, ::acme_directory, "acme_windows_common");
+      ///__creatable_from_library(directory_system, ::directory_system, "acme_windows_common");
 
 
       /*!

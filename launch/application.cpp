@@ -1,8 +1,8 @@
 // From application_build_helper to implement.cpp by camilo on 2021-12-17 21:04 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/compress/compress.h"
@@ -180,7 +180,7 @@ namespace launch
 
       print_line("Going to install dependencies: ");
 
-      auto lines = acmefile()->lines(m_pathX64/"operating_system_packages.txt");
+      auto lines = file_system()->lines(m_pathX64/"operating_system_packages.txt");
 
       if(lines.is_empty())
       {
@@ -384,17 +384,17 @@ namespace launch
 
       printf_line("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
-      auto pathStore = acmedirectory()->home() / "application" / m_strAppRoot / m_strAppName;
+      auto pathStore = directory_system()->home() / "application" / m_strAppRoot / m_strAppName;
 
-      acmedirectory()->create(pathStore);
+      directory_system()->create(pathStore);
 
       auto pathInstallingWithLaunchStore =  pathStore / "installing_with_launch_store";
 
-      acmefile()->ensure_exists(pathInstallingWithLaunchStore);
+      file_system()->ensure_exists(pathInstallingWithLaunchStore);
 
       auto pathLogFolder =  pathStore / "log";
 
-      acmedirectory()->create(pathLogFolder);
+      directory_system()->create(pathLogFolder);
 
       auto strDateTimeName = datetime()->date_time_text_for_file_with_no_spaces();
 
@@ -423,9 +423,9 @@ namespace launch
       //
       // chdir(szX64);
 
-      acmedirectory()->create(m_pathX64);
+      directory_system()->create(m_pathX64);
 
-      acmedirectory()->change_current(m_pathX64);
+      directory_system()->change_current(m_pathX64);
 
 #if defined(LINUX) || defined(FREEBSD)
 
@@ -605,7 +605,7 @@ namespace launch
 //
 //    printf("Going to install dependencies:\n");
 //
-//    auto line = acmefile()->as_string("operating_system_packages.txt");
+//    auto line = file_system()->as_string("operating_system_packages.txt");
 //
 //    if(!psz)
 //    {

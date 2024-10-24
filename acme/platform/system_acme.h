@@ -153,11 +153,11 @@ namespace platform
       bool                                                              m_bIsReadyForUserInteraction;
 
 
-      ::pointer<class ::acme_directory>                                 m_pacmedirectory;
-      ::pointer<class ::acme_file>                                      m_pacmefile;
-      ::pointer<class ::acme_path>                                      m_pacmepath;
+      ::pointer<class ::directory_system>                                 m_pacmedirectory;
+      ::pointer<class ::file_system>                                      m_pacmefile;
+      ::pointer<class ::path_system>                                      m_pacmepath;
 
-      ::pointer<::dir_system>                                           m_pdirsystem;
+      ::pointer<::directory_system>                                           m_pdirsystem;
       ::pointer<::file_system>                                          m_pfilesystem;
 
 
@@ -237,11 +237,11 @@ namespace platform
 
       virtual ::xml::xml * xml();
 
-      virtual ::acme_file * acmefile() const;
+      virtual ::file_system * file_system() const;
 
-      virtual ::acme_directory * acmedirectory() const;
+      virtual ::directory_system * directory_system() const;
 
-      virtual ::acme_path * acmepath() const;
+      virtual ::path_system * path_system() const;
 
       virtual ::platform::system_factory * system_factory();
 

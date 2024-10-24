@@ -2,7 +2,7 @@
 #include "presence.h"
 #include "acme/constant/message.h"
 #include "acme/prototype/prototype/url.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/http/context.h"
 #include "acme/user/user/mouse.h"
@@ -73,7 +73,7 @@ namespace userpresence
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
-      string strHost = file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.software");
       straRequestingServer.add("eu-api.ca2.software");

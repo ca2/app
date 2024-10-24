@@ -2,8 +2,8 @@
 #include "framework.h"
 #include "application_build_helper.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/system.h"
 
 
@@ -20,7 +20,7 @@ namespace application_build_helper
 
       pathApplicationTxt = pathFolder / "application.txt";
 
-      if (!acmefile()->exists(pathApplicationTxt))
+      if (!file_system()->exists(pathApplicationTxt))
       {
 
          return;
@@ -71,9 +71,9 @@ namespace application_build_helper
 
       ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
 
-      acmefile()->put_contents(pathSourcePackages, strPackages);
+      file_system()->put_contents(pathSourcePackages, strPackages);
 
-      auto strPackagesConfirm = acmefile()->as_string(pathSourcePackages);
+      auto strPackagesConfirm = file_system()->as_string(pathSourcePackages);
 
 #ifdef WINDOWS
 
@@ -123,16 +123,16 @@ namespace application_build_helper
 
       pathTargetExtensions = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_extensions.txt";
 
-      auto lenDepsDeprecated = acmefile()->as_string(pathDepsDeprecated).trimmed().length();
+      auto lenDepsDeprecated = file_system()->as_string(pathDepsDeprecated).trimmed().length();
 
-      auto lenSourceDependencies = acmefile()->as_string(pathSourceDependencies).trimmed().length();
+      auto lenSourceDependencies = file_system()->as_string(pathSourceDependencies).trimmed().length();
 
       if (lenDepsDeprecated > 0 && lenSourceDependencies == 0)
       {
 
-         acmefile()->set_file_normal(pathSourceDependencies);
+         file_system()->set_file_normal(pathSourceDependencies);
 
-         acmefile()->copy(pathSourceDependencies, pathDepsDeprecated, true);
+         file_system()->copy(pathSourceDependencies, pathDepsDeprecated, true);
 
       }
 
@@ -167,7 +167,7 @@ namespace application_build_helper
 
       }
 
-      acmefile()->put_contents(pathTargetPackages, strTranslatedPackages);
+      file_system()->put_contents(pathTargetPackages, strTranslatedPackages);
 
       bool bDoMatter = true;
 
@@ -195,7 +195,7 @@ namespace application_build_helper
 
          zip_matter();
 
-         if (!acmefile()->exists(pathZip))
+         if (!file_system()->exists(pathZip))
          {
 
             string strError;
@@ -210,12 +210,12 @@ namespace application_build_helper
 
          auto pathSeedAndroid = m_pathOperatingSystem / "seed-android";
 
-         if (acmedirectory()->is(pathSeedAndroid))
+         if (directory_system()->is(pathSeedAndroid))
          {
 
             auto pathAssetsMatterZip = pathSeedAndroid / m_strProjectId / "app/src/main/assets/_matter.zip";
 
-            acmefile()->copy(pathAssetsMatterZip, pathZip, true);
+            file_system()->copy(pathAssetsMatterZip, pathZip, true);
 
          }
 

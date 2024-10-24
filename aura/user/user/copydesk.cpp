@@ -2,9 +2,9 @@
 #include "copydesk.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/string/base64.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/prototype/url.h"
 #include "apex/networking/internet.h"
@@ -92,8 +92,8 @@ namespace user
 
          if (strPath.has_char() && 
             (
-               acmedirectory()->is(strPath)
-            || acmefile()->exists(strPath)
+               directory_system()->is(strPath)
+            || file_system()->exists(strPath)
             || system()->internet()->is_common_internet_protocol(strPath)
             )
             )

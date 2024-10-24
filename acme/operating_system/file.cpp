@@ -7,7 +7,7 @@
 //
 
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/system.h"
 
 
@@ -16,7 +16,7 @@ void file_put_contents(const ::scoped_string & scopedstrFilePath, const ::scoped
    
    auto ptask = ::get_task();
    
-   ptask->acmefile()->put_contents(scopedstrFilePath, scopedstr);
+   ptask->file_system()->put_contents(scopedstrFilePath, scopedstr);
    
 }
 

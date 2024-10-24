@@ -9,7 +9,7 @@
 #include "tab_impact.h"
 #include "split_bar.h"
 #include "acme/exception/exit.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
 //#include "acme/platform/sequencer.h"
@@ -244,7 +244,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = file()->as_string(dir()->appdata()/"langstyle_settings.xml");
+      //string strUser = file()->as_string(directory()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 

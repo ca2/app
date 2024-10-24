@@ -1,8 +1,8 @@
 // Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
-#include "acme_directory.h"
-#include "acme_file.h"
-#include "acme_path.h"
+#include "directory_system.h"
+#include "file_system.h"
+#include "path_system.h"
 //#include "path_array.h"
 #include "listing.h"
 #include "acme/exception/interface_only.h"
@@ -16,20 +16,20 @@
 //CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
-acme_directory::acme_directory()
+directory_system::directory_system()
 {
 
 }
 
 
-acme_directory::~acme_directory()
+directory_system::~directory_system()
 {
 
 
 }
 
 
-void acme_directory::initialize(::particle * pparticle)
+void directory_system::initialize(::particle * pparticle)
 {
 
    ::particle::initialize(pparticle);
@@ -44,7 +44,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::app(string strPlatform, string strConfiguration)
+::file::path directory_system::app(string strPlatform, string strConfiguration)
 {
 
 #ifdef WINDOWS
@@ -60,7 +60,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::app_app_admin(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_admin(string strPlatform, string strConfiguration)
 {
 
    return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_admin.exe";
@@ -68,7 +68,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::app_app_nest(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_nest(string strPlatform, string strConfiguration)
 {
 
    return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_nest.exe";
@@ -76,7 +76,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::app_app(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app(string strPlatform, string strConfiguration)
 {
 
 #ifdef WINDOWS
@@ -92,7 +92,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::vcredist(string strPlatform, string strConfiguration)
+::file::path directory_system::vcredist(string strPlatform, string strConfiguration)
 {
 
    return stage("ca2 Store", strPlatform, strConfiguration) / "vcredist.exe";
@@ -100,7 +100,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::install_log(string strPlatform, string strConfiguration)
+::file::path directory_system::install_log(string strPlatform, string strConfiguration)
 {
 
    return install() / ("install-" + strPlatform + ".log");
@@ -110,7 +110,7 @@ void acme_directory::initialize(::particle * pparticle)
 
 
 //
-//::file::path acme_directory::module_folder()
+//::file::path directory_system::module_folder()
 //{
 //
 //   throw ::interface_only();
@@ -120,7 +120,7 @@ void acme_directory::initialize(::particle * pparticle)
 //}
 
 
-::file::path acme_directory::appdata()
+::file::path directory_system::appdata()
 {
 
    return roaming() / appid();
@@ -128,7 +128,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::public_system()
+::file::path directory_system::public_system()
 {
 
    return public_root() / "system";
@@ -136,7 +136,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::system()
+::file::path directory_system::system()
 {
 
    return ca2roaming() / "system";
@@ -144,7 +144,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::config()
+::file::path directory_system::config()
 {
 
    return ca2roaming() / "config";
@@ -152,7 +152,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::local()
+::file::path directory_system::local()
 {
 
    return ca2roaming() / "local";
@@ -160,7 +160,7 @@ void acme_directory::initialize(::particle * pparticle)
 }
 
 
-::file::path acme_directory::sensitive()
+::file::path directory_system::sensitive()
 {
 
 #ifdef WINDOWS
@@ -181,7 +181,7 @@ void acme_directory::initialize(::particle * pparticle)
 
 
 
-string acme_directory::system_short_name()
+string directory_system::system_short_name()
 {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -199,7 +199,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::relative(::file::path path)
+::file::path directory_system::relative(::file::path path)
 {
 
    path.replace_with("", ":");
@@ -211,7 +211,7 @@ string acme_directory::system_short_name()
 }
 
 
-::string acme_directory::appid()
+::string directory_system::appid()
 {
 
    return application()->m_strAppId;
@@ -219,7 +219,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_install(string strAppId, string strPlatform, string strConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -268,7 +268,7 @@ string acme_directory::system_short_name()
 
 #else
 
-   return acmefile()->module() - 4;
+   return file_system()->module() - 4;
 
 #endif
 
@@ -276,7 +276,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -299,14 +299,14 @@ string acme_directory::system_short_name()
 
 #else
 
-   return acmefile()->module() - 4;
+   return file_system()->module() - 4;
 
 #endif
 
 }
 
 
-::file::path acme_directory::install()
+::file::path directory_system::install()
 {
 
    if (m_pathInstallFolder.is_empty())
@@ -321,7 +321,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::default_install()
+::file::path directory_system::default_install()
 {
 
 #ifdef ANDROID
@@ -330,7 +330,7 @@ string acme_directory::system_short_name()
 
 #elif defined(__APPLE__)
 
-   return acmefile()->module()-3;
+   return file_system()->module()-3;
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -338,18 +338,18 @@ string acme_directory::system_short_name()
 
 #elif defined(FREEBSD) || defined(OPENBSD)
 
-   return acmefile()->module() - 2;
+   return file_system()->module() - 2;
 
 #else
 
-   return acmefile()->module() - 4;
+   return file_system()->module() - 4;
 
 #endif
 
 }
 
 
-::file::path acme_directory::beforeca2()
+::file::path directory_system::beforeca2()
 {
 
    return ::file_path_folder(install());
@@ -358,7 +358,7 @@ string acme_directory::system_short_name()
 
 
 
-::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::stage(string strAppId, string strPlatform, string strConfiguration)
 {
 
    return 
@@ -374,7 +374,7 @@ string acme_directory::system_short_name()
 //#ifdef LINUX
 //
 //
-//::file::path acme_directory::home()
+//::file::path directory_system::home()
 //{
 //
 //   return getenv("HOME");
@@ -385,7 +385,7 @@ string acme_directory::system_short_name()
 //#else
 //
 
-::file::path acme_directory::home()
+::file::path directory_system::home()
 {
 
    throw interface_only();
@@ -395,12 +395,12 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::icloud_container2(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2(const char * psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier;
    
-   str_iCloudContainerIdentifier = acmepath()->icloud_container_identifier(psz_iCloudContainerIdentifier);
+   str_iCloudContainerIdentifier = path_system()->icloud_container_identifier(psz_iCloudContainerIdentifier);
    
    ::file::path pathContainer;
    
@@ -411,7 +411,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::icloud_container2_final(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2_final(const char * psz_iCloudContainerIdentifier)
 {
    
    throw ::interface_only();
@@ -421,7 +421,7 @@ string acme_directory::system_short_name()
 }
 
 
-::file::path acme_directory::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
 {
 
    return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
@@ -429,7 +429,7 @@ string acme_directory::system_short_name()
 }
 
 
-bool acme_directory::is_icloud_container(const ::file::path & path, const char * pszContentIdentifier)
+bool directory_system::is_icloud_container(const ::file::path & path, const char * pszContentIdentifier)
 {
    
    ::file::path pathFolder;
@@ -449,7 +449,7 @@ bool acme_directory::is_icloud_container(const ::file::path & path, const char *
 }
 
 
-bool acme_directory::has_icloud_container(const char * pszContentIdentifier)
+bool directory_system::has_icloud_container(const char * pszContentIdentifier)
 {
    
    return false;
@@ -465,7 +465,7 @@ bool acme_directory::has_icloud_container(const char * pszContentIdentifier)
 //#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 //
 
-::file::path acme_directory::bookmark()
+::file::path directory_system::bookmark()
 {
 
    return localconfig() / "bookmark";
@@ -473,7 +473,7 @@ bool acme_directory::has_icloud_container(const char * pszContentIdentifier)
 }
 
 
-void acme_directory::set_path_install_folder(const string & strPath)
+void directory_system::set_path_install_folder(const string & strPath)
 {
 
    m_pathInstallFolder = strPath;
@@ -481,7 +481,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::sys_temp()
+::file::path directory_system::sys_temp()
 {
 
    return appdata() / "time";
@@ -489,7 +489,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::temp()
+::file::path directory_system::temp()
 {
 
    return sys_temp();
@@ -497,7 +497,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::string acme_directory::dir_root()
+::string directory_system::dir_root()
 {
 
    return "";
@@ -505,7 +505,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-//::file::path acme_directory::home()
+//::file::path directory_system::home()
 //{
 //
 //   return "";
@@ -513,7 +513,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-::file::path acme_directory::program_data()
+::file::path directory_system::program_data()
 {
 
    return "";
@@ -521,7 +521,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::application_home()
+::file::path directory_system::application_home()
 {
 
    return home() / "application";
@@ -529,7 +529,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::application_home(const ::scoped_string & scopedstrAppId)
+::file::path directory_system::application_home(const ::scoped_string & scopedstrAppId)
 {
 
    return application_home() / scopedstrAppId;
@@ -537,7 +537,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::ca2appdata()
+::file::path directory_system::ca2appdata()
 {
 
    return ca2roaming() / "appdata";
@@ -546,14 +546,14 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
 
 
-::file::path acme_directory::public_root()
+::file::path directory_system::public_root()
 {
 
    return program_data() / "ca2";
 
 }
 
-::file::path acme_directory::ca2roaming()
+::file::path directory_system::ca2roaming()
 {
 
    return roaming() / "ca2";
@@ -561,7 +561,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::localconfig()
+::file::path directory_system::localconfig()
 {
 
    return ca2roaming() / "localconfig";
@@ -569,7 +569,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::module()
+::file::path directory_system::module()
 {
 
    //if(m_pathModuleFolder.is_empty())
@@ -592,7 +592,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 //
-//::file::path acme_directory::base_module()
+//::file::path directory_system::base_module()
 //{
 //
 //   return "";
@@ -600,14 +600,14 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 //
 
-//::file::path acme_directory::ca2_module()
+//::file::path directory_system::ca2_module()
 //{
 //
 //   return "";
 //
 //}
 //
-::file::path acme_directory::archive()
+::file::path directory_system::archive()
 {
 
    return "";
@@ -616,7 +616,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
 
 
-::file::path acme_directory::tool()
+::file::path directory_system::tool()
 {
 
    return "";
@@ -624,7 +624,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::roaming()
+::file::path directory_system::roaming()
 {
 
    return "";
@@ -633,7 +633,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
 
 
-::file::path acme_directory::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_system::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
 {
 
    ::file::path_array patha;
@@ -662,7 +662,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::program_files_x86()
+::file::path directory_system::program_files_x86()
 {
 
    return {};
@@ -671,14 +671,14 @@ void acme_directory::set_path_install_folder(const string & strPath)
 
 
 
-::file::path acme_directory::program_files()
+::file::path directory_system::program_files()
 {
 
    return {};
 
 }
 
-::file::path acme_directory::get_memory_map_base_folder_path()
+::file::path directory_system::get_memory_map_base_folder_path()
 {
 
    return "";
@@ -686,7 +686,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-//string acme_directory::system_short_name()
+//string directory_system::system_short_name()
 //{
 //
 //   return "";
@@ -694,7 +694,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-::file::path acme_directory::machine_event_file_path()
+::file::path directory_system::machine_event_file_path()
 {
 
    return appdata() / "machine/event/machine_event.bin";
@@ -702,7 +702,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-::file::path acme_directory::user_appdata_local()
+::file::path directory_system::user_appdata_local()
 {
 
    return "";
@@ -710,7 +710,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
-//::file::path acme_directory::tool()
+//::file::path directory_system::tool()
 //{
 //
 //   return archive() / "tool-windows";
@@ -718,7 +718,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-//bool acme_directory::_is(const ::file::path & path1)
+//bool directory_system::_is(const ::file::path & path1)
 //{
 //
 //   throw ::interface_only();
@@ -728,7 +728,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-//::file::path acme_directory::base_module()
+//::file::path directory_system::base_module()
 //{
 //
 //   throw ::interface_only();
@@ -738,7 +738,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-//void acme_directory::create(const ::file::path & path)
+//void directory_system::create(const ::file::path & path)
 //{
 //
 //   return _create(path);
@@ -746,7 +746,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-void acme_directory::create(const ::file::path & pathParam)
+void directory_system::create(const ::file::path & pathParam)
 {
 
    //if (is_like_url_protocol(pathParam))
@@ -756,10 +756,10 @@ void acme_directory::create(const ::file::path & pathParam)
 
    //}
    //
-   if(acmefile()->exists(pathParam))
+   if(file_system()->exists(pathParam))
    {
       
-      acmefile()->erase(pathParam);
+      file_system()->erase(pathParam);
       
    }
 
@@ -819,7 +819,7 @@ void acme_directory::create(const ::file::path & pathParam)
 }
 
 
-void acme_directory::_create2(const ::file::path & pathParam)
+void directory_system::_create2(const ::file::path & pathParam)
 {
 
    //if (is(pathParam))
@@ -843,7 +843,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 }
 
 
-//void acme_directory::_create_directory(const ::file::path & pathParam)
+//void directory_system::_create_directory(const ::file::path & pathParam)
 //{
 //
 //   throw ::interface_only();
@@ -853,7 +853,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 
    
-::file::e_type acme_directory::file_type(const ::file::path & path)
+::file::e_type directory_system::file_type(const ::file::path & path)
 {
 
    if(path.is_empty())
@@ -872,7 +872,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //string name(string path);
 
 
-//void acme_directory::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -880,7 +880,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 //
 
-//void acme_directory::rls_dir(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::rls_dir(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -890,7 +890,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -898,7 +898,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -906,7 +906,7 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 
 
-bool acme_directory::enumerate(::file::listing & listing)
+bool directory_system::enumerate(::file::listing & listing)
 {
 
    return ::file::enumerator::enumerate(listing);
@@ -914,7 +914,7 @@ bool acme_directory::enumerate(::file::listing & listing)
 }
 
 
-bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
+bool directory_system::defer_enumerate_media_library(::file::listing& listing)
 {
 
    _synchronous_lock sl(m_pmutexMediaLibrary);
@@ -971,7 +971,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 }
 
 
-bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
+bool directory_system::defer_enumerate_protocol(::file::listing& listing)
 {
    
    return node()->defer_enumerate_protocol(listing);
@@ -979,7 +979,7 @@ bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
 }
 
 
-::media_library::item* acme_directory::media_library_item(const ::file::path& path)
+::media_library::item* directory_system::media_library_item(const ::file::path& path)
 {
 
    _synchronous_lock sl(m_pmutexMediaLibrary);
@@ -1026,7 +1026,7 @@ bool acme_directory::defer_enumerate_protocol(::file::listing& listing)
 }
 
 
-bool acme_directory::defer_process_media_library_path(::file::path& path)
+bool directory_system::defer_process_media_library_path(::file::path& path)
 {
 
    auto plibraryitem = media_library_item(path);
@@ -1045,7 +1045,7 @@ bool acme_directory::defer_process_media_library_path(::file::path& path)
 }
 
 
-bool acme_directory::defer_media_library_representative_file_name(::file::path & path)
+bool directory_system::defer_media_library_representative_file_name(::file::path & path)
 {
 
    auto plibraryitem = media_library_item(path);
@@ -1079,7 +1079,7 @@ bool acme_directory::defer_media_library_representative_file_name(::file::path &
 
 
 
-bool acme_directory::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+bool directory_system::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
    return ::file::enumerator::list(stra, scopedstr, eflag);
@@ -1087,7 +1087,7 @@ bool acme_directory::list(string_array & stra, const ::scoped_string & scopedstr
 }
 
 
-//void acme_directory::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1095,7 +1095,7 @@ bool acme_directory::list(string_array & stra, const ::scoped_string & scopedstr
 //}
 //
 //
-//void acme_directory::ls_file(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::ls_file(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1109,7 +1109,7 @@ bool acme_directory::list(string_array & stra, const ::scoped_string & scopedstr
          //::file::path archive();
 
 
-int acme_directory::make_path(const ::scoped_string & scopedstr)
+int directory_system::make_path(const ::scoped_string & scopedstr)
 {
 
    throw ::interface_only();
@@ -1145,7 +1145,7 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
       //void rls_dir(::file::path_array & patha, const ::file::path & path);
 
 
-//::file::path acme_directory::module_folder()
+//::file::path directory_system::module_folder()
 //{
 //
 //   throw ::interface_only();
@@ -1160,10 +1160,10 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 //} // namespace dir
 
 
-::file::e_type acme_directory::_file_type(const ::file::path & path)
+::file::e_type directory_system::_file_type(const ::file::path & path)
 {
 
-   auto pathFinal = acmepath()->safe_get_real_path(path);
+   auto pathFinal = path_system()->safe_get_real_path(path);
 
    auto etype = ::safe_file_type(pathFinal);
 
@@ -1172,7 +1172,7 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 }
 
 
-void acme_directory::_create4(const ::file::path & path)
+void directory_system::_create4(const ::file::path & path)
 {
 
    ::create_directory(path);
@@ -1191,7 +1191,7 @@ void acme_directory::_create4(const ::file::path & path)
 }
 
 
-void acme_directory::erase(const ::file::path & path)
+void directory_system::erase(const ::file::path & path)
 {
 
    ::erase_directory(path);
@@ -1199,7 +1199,7 @@ void acme_directory::erase(const ::file::path & path)
 }
 
 
-void acme_directory::erase_recursively(const ::file::path &path)
+void directory_system::erase_recursively(const ::file::path &path)
 {
    
    
@@ -1207,7 +1207,7 @@ void acme_directory::erase_recursively(const ::file::path &path)
 }
 
 
-string_to_string acme_directory::map_content(const ::file::path & path)
+string_to_string directory_system::map_content(const ::file::path & path)
 {
 
    ::string_to_string stringmap;
@@ -1221,7 +1221,7 @@ string_to_string acme_directory::map_content(const ::file::path & path)
    for(auto & path : listing)
    {
 
-      stringmap[path] = acmefile()->safe_get_string(path);
+      stringmap[path] = file_system()->safe_get_string(path);
 
    }
 
@@ -1230,7 +1230,7 @@ string_to_string acme_directory::map_content(const ::file::path & path)
 }
 
 
-string_array acme_directory::enumerate_content(const ::file::path &path)
+string_array directory_system::enumerate_content(const ::file::path &path)
 {
 
    ::string_array stra;
@@ -1244,7 +1244,7 @@ string_array acme_directory::enumerate_content(const ::file::path &path)
    for(auto & path : listing)
    {
 
-      stra.add(acmefile()->safe_get_string(path));
+      stra.add(file_system()->safe_get_string(path));
 
    }
 
@@ -1253,7 +1253,7 @@ string_array acme_directory::enumerate_content(const ::file::path &path)
 }
 
 
-::file::path acme_directory::get_current()
+::file::path directory_system::get_current()
 {
 
    throw ::interface_only();
@@ -1263,7 +1263,7 @@ string_array acme_directory::enumerate_content(const ::file::path &path)
 }
 
 
-void acme_directory::change_current(const ::file::path & path)
+void directory_system::change_current(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -1273,7 +1273,7 @@ void acme_directory::change_current(const ::file::path & path)
 }
 
 
-void acme_directory::change_to_home()
+void directory_system::change_to_home()
 {
 
    ::file::path pathHome = home();
@@ -1294,7 +1294,7 @@ void acme_directory::change_to_home()
 }
 
 
-void acme_directory::add_media_library_item(::media_library::item* pmedialibraryitem)
+void directory_system::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
    _synchronous_lock lock(m_pmutexMediaLibrary);
@@ -1308,7 +1308,7 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 }
 
 
-::file::path acme_directory::windows()
+::file::path directory_system::windows()
 {
 
    throw ::interface_only();
@@ -1318,7 +1318,7 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 }
 
 
-::file::path acme_directory::system_drive()
+::file::path directory_system::system_drive()
 {
 
    throw ::interface_only();
@@ -1328,7 +1328,7 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 }
 
 
-::file::path acme_directory::fonts()
+::file::path directory_system::fonts()
 {
 
    throw ::interface_only();
@@ -1338,7 +1338,7 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 }
 
 
-::file::path acme_directory::___fonts()
+::file::path directory_system::___fonts()
 {
 
    throw ::interface_only();
@@ -1349,7 +1349,7 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 
 
 
-bool acme_directory::is_accessible(const ::file::path & path)
+bool directory_system::is_accessible(const ::file::path & path)
 {
 
    return true;
@@ -1357,7 +1357,7 @@ bool acme_directory::is_accessible(const ::file::path & path)
 }
 
 
-bool acme_directory::contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+bool directory_system::contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
 {
 
    for (auto& strName : straName)
@@ -1365,7 +1365,7 @@ bool acme_directory::contains_files(const ::file::path& path, const ::string_arr
 
       auto pathFile = path / strName;
 
-      if (!acmefile()->exists(pathFile))
+      if (!file_system()->exists(pathFile))
       {
 
          return false;
@@ -1375,7 +1375,7 @@ bool acme_directory::contains_files(const ::file::path& path, const ::string_arr
       if (iMinimumSize > 0)
       {
 
-         if (acmefile()->get_size(pathFile) < iMinimumSize)
+         if (file_system()->get_size(pathFile) < iMinimumSize)
          {
 
             return false;
@@ -1390,4 +1390,315 @@ bool acme_directory::contains_files(const ::file::path& path, const ::string_arr
 
 }
 
+
+
+
+
+
+directory_system::directory_system()
+{
+
+   m_pathUpload = "C:\\upload";
+
+}
+
+
+directory_system::~directory_system()
+{
+
+}
+
+
+void directory_system::initialize(::particle * pparticle)
+{
+
+   /*auto estatus = */ ::object::initialize(pparticle);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //auto psystem = system();
+
+   //m_pathModule = psystem->m_pacmedirectory->module();
+
+   //return true;
+
+}
+
+
+void directory_system::init_system()
+{
+
+//   if (!update_module_path())
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+   m_pathInstall = directory_system()->install();
+
+   //auto psystem = system();
+
+   //auto pfile = psystem->m_pfilesystem;
+
+   //auto pathModule = pfile->m_pathModule;
+
+   //::file::path pathModuleFolder = pathModule.folder();
+
+//   m_pathModule = pathModuleFolder;
+
+   //m_pathModule = application()->get_module_folder();
+
+//   auto pathCa2Module = pfile->m_pathCa2Module;
+//
+//   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
+//
+//   m_pathCa2Module = pathCa2ModuleFolder;
+
+   //auto psystem = system();
+
+   auto pacmedirectory = directory_system();
+
+#if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+
+   if ( pacmedirectory->is(application()->side_get_matter_path("app/_matter/main")))
+   {
+
+      m_pathLocalAppMatterFolder = application()->side_get_matter_path("");
+
+      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
+
+   }
+   else
+#endif
+   {
+
+      m_pathLocalAppMatterFolder = system()->local_get_matter_path();
+
+      m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
+
+   }
+
+   //__construct(m_pfilewatcher);
+
+   pacmedirectory->create(directory_system()->bookmark());
+
+   //if (!update_module_path())
+   //{
+
+   //   return false;
+
+   //}
+
+   //if (m_pziputil == nullptr)
+   //{
+
+   //   m_pziputil = __allocate ::zip::util();
+
+   //}
+
+   ::string strAppId = directory_system()->appid();
+
+   information() << "directory_system::init_system strAppId : " << strAppId;
+
+   m_pathDefaultAppData = compute_default_app_data_path();
+
+   string strAppFolder;
+
+   //if (psystem->m_plibrary)
+   //{
+
+   //   if (psystem->m_plibrary->get_ca2_library())
+   //   {
+
+   //      strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strFolder;
+
+   //      if (strAppFolder.is_empty())
+   //      {
+
+   //         strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strName;
+
+   //      }
+
+   //   }
+
+   //}
+
+   //if (strAppFolder.is_empty())
+   //{
+
+      //strAppFolder = _002Underscore(application()->m_strAppId);
+
+   //}
+
+   m_pathDefaultAppData /= strAppFolder;
+
+   //m_strCa2DefaultAppData /= psystem->get_system_platform();
+
+   //m_strCa2DefaultAppData /= psystem->get_system_configuration();
+
+   ::file::path pathAppData;
+
+   //auto psystem = system();
+
+   if (system()->has_property("app_folder"))
+   {
+
+      //pathAppData = psystem->payload("app_folder");
+
+      pathAppData = system()->payload("app_folder");
+
+   }
+
+   if (pathAppData.has_char())
+   {
+
+      m_pathAppData = pathAppData;
+
+   }
+   else
+   {
+
+      m_pathAppData = m_pathDefaultAppData;
+
+   }
+
+   information() << "m_pathAppData : " << m_pathAppData;
+
+}
+
+
+void directory_system::term_system()
+{
+
+   //m_pfilewatcher.release();
+
+}
+
+
+void directory_system::finalize()
+{
+
+   ::object::finalize();
+
+}
+
+
+::file::path directory_system::compute_default_app_data_path()
+{
+
+   return directory_system()->home() / "application";
+
+}
+
+
+
+//bool directory_system::update_module_path()
+//{
+//
+//   //auto & context = Context;
+//
+//   auto psystem = system();
+//
+//   auto pfile = psystem->m_pfilesystem;
+//
+//   auto pathModule = pfile->m_pathModule;
+//
+//   ::file::path pathModuleFolder = pathModule.folder();
+//
+//   m_pathModule = pathModuleFolder;
+//
+//   auto pathCa2Module = pfile->m_pathCa2Module;
+//
+//   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
+//
+//   m_pathCa2Module = pathCa2ModuleFolder;
+//
+//   return true;
+//
+//}
+
+
+//::string directory_system::dir_root()
+//{
+//
+//   return "";
+//
+//}
+
+
+//
+//::file::path directory_system::get_memory_map_base_folder_path() const
+//{
+//
+//   return "";
+//
+//}
+//
+//
+//::file::path directory_system::home()
+//{
+//
+//
+//   return "";
+//
+//}
+//
+
+
+//
+//
+//::file::path directory_system::program_data()
+//{
+//
+//   return "";
+//
+//}
+//
+//
+//::file::path directory_system::roaming()
+//{
+//
+//
+//   return "";
+//
+//
+//}
+
+
+//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//{
+//
+//   return "";
+//
+//}
+
+
+//::file::path directory_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+//{
+//
+//   return "";
+//
+//}
+
+
+// ::file::path directory_system::get_last_run_application_path_file(string strAppId)
+// {
+
+//    return "";
+
+// }
+
+
+// ::file::path directory_system::get_last_run_application_path(string strAppId)
+// {
+
+//    return "";
+
+// }
 

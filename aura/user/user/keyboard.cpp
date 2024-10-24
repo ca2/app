@@ -174,23 +174,23 @@ namespace user
 //
 //#ifdef MACOS
 //
-//      strFile = dir()->matter("keyboard/windows/default.xml");
+//      strFile = directory()->matter("keyboard/windows/default.xml");
 //
 //#elif defined( LINUX)
 //
 //    return true;
 //
-//      strFile = dir()->matter("keyboard/linux/default.xml");
+//      strFile = directory()->matter("keyboard/linux/default.xml");
 //
 //#elif defined(__APPLE__)
 //
-//      strFile = dir()->matter("keyboard/macos/default.xml");
+//      strFile = directory()->matter("keyboard/macos/default.xml");
 //
 //#elif defined(ANDROID)
 //
-//      //strPath = dir()->matter("keyboard/android/default.xml");
+//      //strPath = directory()->matter("keyboard/android/default.xml");
 //
-//      strFile = dir()->matter("keyboard/windows/default.xml");
+//      strFile = directory()->matter("keyboard/windows/default.xml");
 //
 //#else
 //
@@ -238,7 +238,7 @@ namespace user
 //
 //      string str = as_string(w);
 //
-//      //strFile = dir()->matter("keyboard/windows/" + str + ".xml");
+//      //strFile = directory()->matter("keyboard/windows/" + str + ".xml");
 //
 //      //if(file()->exists(strFile))
 //      //{
@@ -254,7 +254,7 @@ namespace user
 //
 //#endif
 //
-//      strFile = dir()->matter("keyboard/windows/default.xml");
+//      strFile = directory()->matter("keyboard/windows/default.xml");
 //
 //#endif
 //
@@ -539,7 +539,7 @@ namespace user
 //
 //      ::file::path_array patha;
 //
-//      dir()->matter_ls_file("keyboard layout", patha);
+//      directory()->matter_ls_file("keyboard layout", patha);
 //
 //      for(i32 i = 0; i < patha.get_count(); i++)
 //      {
@@ -562,7 +562,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      string strOverride = acmefile()->as_string(         auto psystem = system();
+//      string strOverride = file_system()->as_string(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -573,7 +573,7 @@ namespace user
 //
 //         string strTest;
 //
-//         string strPath = dir()->matter("keyboard layout/" + strOverride + ".xml");
+//         string strPath = directory()->matter("keyboard layout/" + strOverride + ".xml");
 //
 //         strTest = file()->as_string(strPath);
 //
@@ -636,7 +636,7 @@ namespace user
 //
 //      {
 //
-//         string strPath = dir()->matter("keyboard layout/br_abnt2.xml");
+//         string strPath = directory()->matter("keyboard layout/br_abnt2.xml");
 //
 //         if(file()->exists(strPath))
 //         {
@@ -651,7 +651,7 @@ namespace user
 //
 //#endif
 //
-//      string strPath = dir()->matter("keyboard layout/en_us_international.xml");
+//      string strPath = directory()->matter("keyboard layout/en_us_international.xml");
 //
 //      if(file()->exists(strPath))
 //      {

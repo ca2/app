@@ -3,7 +3,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/node.h"
@@ -206,10 +206,10 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if(dir()->is(pszSrc) && !case_insensitive_string_ends(pszSrc,".zip"))
+      if(directory()->is(pszSrc) && !case_insensitive_string_ends(pszSrc,".zip"))
       {
 
-         dir()->create(strDst.folder());
+         directory()->create(strDst.folder());
 
          return false;
 
@@ -238,7 +238,7 @@ namespace filemanager
          //   return false;
          //}
 
-         if(file()->exists(strDst) || dir()->is(strDst))
+         if(file()->exists(strDst) || directory()->is(strDst))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -283,7 +283,7 @@ namespace filemanager
 
       }
 
-      dir()->create(strDst.folder());
+      directory()->create(strDst.folder());
 
       m_fileDst = file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
@@ -298,7 +298,7 @@ namespace filemanager
 
          propertyset["filepath"] = strDst;
 
-         papp->m_papexapplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
+         papp->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
          return false;
 
@@ -462,7 +462,7 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && dir()->is(m_stra[m_iFile]) && !case_insensitive_string_ends(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_stra.get_size() && directory()->is(m_stra[m_iFile]) && !case_insensitive_string_ends(m_stra[m_iFile],".zip"))
             {
                m_iFile++;
             }
@@ -612,7 +612,7 @@ namespace filemanager
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(dir()->is(m_stra[i]) && !case_insensitive_string_ends(m_stra[i],".zip"))
+         if(directory()->is(m_stra[i]) && !case_insensitive_string_ends(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -940,12 +940,12 @@ namespace filemanager
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
-         if(dir()->is(pathaExpand[i]) && !case_insensitive_string_ends(pathaExpand[i],".zip"))
+         if(directory()->is(pathaExpand[i]) && !case_insensitive_string_ends(pathaExpand[i],".zip"))
          {
 
             listingExpanded.set_listing(pathaExpand[i]);
 
-            dir()->enumerate(listingExpanded);
+            directory()->enumerate(listingExpanded);
 
          }
          else

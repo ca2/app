@@ -5,7 +5,7 @@
 #include "data.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/set.h"
 #include "aura/user/user/shell.h"
@@ -233,7 +233,7 @@ namespace userfs
                if (path.not_file_or_folder())
                {
                   
-                  plistitem->set_final_path_type(dir()->file_type(path));
+                  plistitem->set_final_path_type(directory()->file_type(path));
                   
                }
                
@@ -339,7 +339,7 @@ namespace userfs
 
       //      pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
 
-      //      pathFinal.m_iDir = dir()->is(pathFolderCandidate) ? 1 : 0;
+      //      pathFinal.m_iDir = directory()->is(pathFolderCandidate) ? 1 : 0;
 
       //   }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "log.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/trace.h"
 //#include "acme/prototype/prototype/payload.h"
@@ -150,14 +150,14 @@ namespace apex
       m_bInitialized = true;
 
 
-      ::file::path pathTrace = acmedirectory()->system() / "trace.txt";
+      ::file::path pathTrace = directory_system()->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!acmefile()->exists(pathTrace))
+      if (!file_system()->exists(pathTrace))
       {
 
-         acmefile()->put_contents(pathTrace, "yes");
+         file_system()->put_contents(pathTrace, "yes");
 
       }
 
@@ -179,7 +179,7 @@ namespace apex
 
 #endif
 
-      if (acmefile()->is_true(acmedirectory()->system() / "log.txt"))
+      if (file_system()->is_true(directory_system()->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -487,7 +487,7 @@ namespace apex
 ////
 ////         strIndex.formatf("%d-%05d", get_current_process_id(), iRetry);
 ////
-////         m_strLogPath = acmedirectory()->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
+////         m_strLogPath = directory_system()->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 ////
 ////         try
 ////         {
@@ -571,7 +571,7 @@ namespace apex
 ////
 ////                  sleep(1_s);
 ////
-////                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(acmedirectory()->system() / "logviewer.txt"))
+////                  if (!path_system()->app_module().case_insensitive_contains("logviewer") && file_system()->exists(directory_system()->system() / "logviewer.txt"))
 ////                  {
 ////
 ////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);

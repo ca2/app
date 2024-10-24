@@ -4,8 +4,8 @@
 #include "framework.h"
 #include "build_windows.h"
 #include <sys/stat.h>
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 
 
@@ -67,11 +67,11 @@ namespace windows
 
       //bool bTimeout = false;
 
-      //::file::path pathBaseDir = acmedirectory()->home();
+      //::file::path pathBaseDir = directory_system()->home();
 
       //::file::path pathBuildDir = pathBaseDir / "build" / m_strDistro / m_strDesktopEnvironment;
 
-      //acmedirectory()->create(pathBuildDir);
+      //directory_system()->create(pathBuildDir);
 
       //chdir(pathBuildDir);
 
@@ -79,7 +79,7 @@ namespace windows
 
       //   string strConfigure = "cmake configure " + pathBaseDir + "/solution/basis";
 
-      //   acmefile()->put_contents("/home/camilo/configure_build.sh", strConfigure);
+      //   file_system()->put_contents("/home/camilo/configure_build.sh", strConfigure);
 
       //   chmod("/home/camilo/configure_build.sh", 0777);
 
@@ -91,7 +91,7 @@ namespace windows
 
       //   string strCmakeBuild = "cmake --build " + pathBuildDir + " -- -j 8";
 
-      //   acmefile()->put_contents("/home/camilo/cmake_build.sh", strCmakeBuild);
+      //   file_system()->put_contents("/home/camilo/cmake_build.sh", strCmakeBuild);
 
       //   chmod("/home/camilo/cmake_build.sh", 0777);
 

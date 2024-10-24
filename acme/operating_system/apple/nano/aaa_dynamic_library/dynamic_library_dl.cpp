@@ -5,7 +5,7 @@
 // From acme/nano/dynamic_library on 2024-06-02 18:06 by camilo <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "dynamic_library_dl.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/_operating_system.h"
 #include <dlfcn.h>
 //#include <link.h>
@@ -113,7 +113,7 @@
 //         auto strName = path.name();
 //
 //         if ((m_strName.has_char() && strName == m_strName)
-//             || (m_path.has_char() && acmepath()->real_path_is_same(path, m_path)))
+//             || (m_path.has_char() && path_system()->real_path_is_same(path, m_path)))
 //         {
 //
 //            m_path = info->dlpi_name;

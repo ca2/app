@@ -359,7 +359,7 @@ void task::main()
 
    __task_init();
 
-   if(defer_implement(system()))
+   if(defer_implement(application()))
    {
 
       return;

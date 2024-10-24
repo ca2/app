@@ -152,9 +152,9 @@ const char * memory_counter_id(T * pthis)
 //
 //      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 //
-//      //int i = atoi(acmefile()->as_string(path));
+//      //int i = atoi(file_system()->as_string(path));
 //
-//      //acmefile()->put_contents(path, as_string(i + 1));
+//      //file_system()->put_contents(path, as_string(i + 1));
 //   }
 //
 //}
@@ -171,9 +171,9 @@ const char * memory_counter_id(T * pthis)
 //
 //      _memory_counter_decrement(psz);
 //
-//      //int i = atoi(acmefile()->as_string(path));
+//      //int i = atoi(file_system()->as_string(path));
 //
-//      //acmefile()->put_contents(path, as_string(i - 1));
+//      //file_system()->put_contents(path, as_string(i - 1));
 //
 //   }
 //

@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include <stdio.h>
 
 
@@ -53,9 +53,9 @@ bool machine_event::read(machine_event_data * pdata)
    try
    {
 
-      //pfile = fopen(acmedirectory()->machine_event_file_path(), "r", _SH_DENYNO);
+      //pfile = fopen(directory_system()->machine_event_file_path(), "r", _SH_DENYNO);
 
-      auto pfile = acmefile()->get_reader(acmedirectory()->machine_event_file_path(), ::file::e_open_no_exception_on_open);
+      auto pfile = file_system()->get_reader(directory_system()->machine_event_file_path(), ::file::e_open_no_exception_on_open);
 
       if (pfile.nok())
       {
@@ -94,12 +94,12 @@ bool machine_event::write(machine_event_data * pdata)
    try
    {
 
-      //acmedirectory()->create(::file_path_folder(acmedirectory()->machine_event_file_path()));
+      //directory_system()->create(::file_path_folder(directory_system()->machine_event_file_path()));
 
-      //pfile = fopen(acmedirectory()->machine_event_file_path(), "w", _SH_DENYWR);
-     // pfile = fopen(acmedirectory()->machine_event_file_path(), "w");
+      //pfile = fopen(directory_system()->machine_event_file_path(), "w", _SH_DENYWR);
+     // pfile = fopen(directory_system()->machine_event_file_path(), "w");
 
-      auto pfile = acmefile()->get_writer(acmedirectory()->machine_event_file_path());
+      auto pfile = file_system()->get_writer(directory_system()->machine_event_file_path());
 
       if (pfile == nullptr)
       {

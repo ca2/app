@@ -182,7 +182,7 @@ repeat:;
 
 
 
-             strUrl = "https://" + dir()->get_api_cc() + "/account/str_set_save?key=";
+             strUrl = "https://" + directory()->get_api_cc() + "/account/str_set_save?key=";
              strUrl += ::url::encode(m_itema[0]->m_strKey);
              strUrl += "&value=";
              strUrl += ::url::encode(m_itema[0]->m_str);
@@ -198,7 +198,7 @@ repeat:;
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
                 sleep(2000_ms);
-                dir()->m_strApiCc = "";
+                directory()->m_strApiCc = "";
                 goto repeat;
              }
 
@@ -299,7 +299,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       string strUrl;
 
-      strUrl = "https://" + dir()->get_api_cc() + "/account/str_set_load?key=";
+      strUrl = "https://" + directory()->get_api_cc() + "/account/str_set_load?key=";
 
       strUrl += ::url::encode(lpKey);
 

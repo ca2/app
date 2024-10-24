@@ -1,7 +1,7 @@
 // Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSorensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 ///#include "acme/exception/exception.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -59,12 +59,12 @@ void api_client::defer_api()
          
          //::file::path pathProfile;
 
-         //pathProfile = dir()->appdata() / "api" / scopedstrImplementation / (m_strProfileStore + ".network_payload");
+         //pathProfile = directory()->appdata() / "api" / scopedstrImplementation / (m_strProfileStore + ".network_payload");
 
          if (m_pathProfileFolder.is_empty())
          {
 
-            auto pathAppData = dir()->appdata();
+            auto pathAppData = directory()->appdata();
 
             m_pathProfileFolder = pathAppData / "api" / m_strImplementation;
 

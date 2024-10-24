@@ -10,7 +10,7 @@
 //{
 
 
-   class CLASS_DECL_ACME dir_context :
+   class CLASS_DECL_ACME directory_context :
       virtual public ::object,
       virtual public ::file::enumerator
    {
@@ -20,8 +20,8 @@
       ::file::path                  m_pathLocalFolder;
 
 
-      dir_context();
-      ~dir_context() override;
+      directory_context();
+      ~directory_context() override;
 
 
       virtual void initialize(::particle * pparticle) override;
@@ -248,7 +248,7 @@
    };
 
 
-   typedef ::pointer<dir_context>dir_context_pointer;
+   typedef ::pointer<directory_context>dir_context_pointer;
 
 
 //} // namespace file

@@ -31,7 +31,7 @@
 //
 //      ::file::path path = pathFolder / "last_command_line.txt";
 //
-//      acmefile()->put_contents(path, get_command_line_string());
+//      file_system()->put_contents(path, get_command_line_string());
 //
 //      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
 //
@@ -42,7 +42,7 @@
 //      if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
 //      {
 //
-//         acmefile()->put_contents(path, pathExecutable);
+//         file_system()->put_contents(path, pathExecutable);
 //
 //      }
 //

@@ -9,10 +9,10 @@
 #include "system.h"
 #include "acme/constant/id.h"
 #include "acme/exception/status.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/filesystem/filesystem/folder_dialog.h"
@@ -196,11 +196,11 @@ namespace acme
 
       ::file::path pathModule;
 
-      pathModule = acmedirectory()->roaming() / scopedstrAppId;
+      pathModule = directory_system()->roaming() / scopedstrAppId;
 
       pathModule /= "module_list.txt";
 
-      string strModuleList = acmefile()->as_string(pathModule);
+      string strModuleList = file_system()->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -247,7 +247,7 @@ namespace acme
                if (strPath.has_char())
                {
 
-                  if (acmepath()->real_path_is_same(strPath, strProcessName))
+                  if (path_system()->real_path_is_same(strPath, strProcessName))
                   {
 
                      idaPid.add(iProcessId);
@@ -384,7 +384,7 @@ namespace acme
    ::file::path node::get_default_base_integration_folder()
    {
 
-      return acmedirectory()->home() / "integration/_____";
+      return directory_system()->home() / "integration/_____";
 
    }
 
@@ -913,7 +913,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      strBuild = acmefile()->as_string(path);
+      strBuild = file_system()->as_string(path);
 
       return strBuild.has_char();
 
@@ -927,7 +927,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      acmefile()->put_contents(path, pszBuild);
+      file_system()->put_contents(path, pszBuild);
 
    }
 
@@ -939,7 +939,7 @@ namespace acme
 
       strFolder.replace_with("", ":");
 
-      return acmedirectory()->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+      return directory_system()->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
 
    }
 
@@ -949,7 +949,7 @@ namespace acme
 
       auto pathLastRun = get_last_run_application_path(strAppId);
 
-      if (pathLastRun.has_char() && acmefile()->exists(pathLastRun))
+      if (pathLastRun.has_char() && file_system()->exists(pathLastRun))
       {
 
          return pathLastRun;
@@ -958,7 +958,7 @@ namespace acme
 
       ::file::path pathFolder;
 
-      pathFolder = acmedirectory()->stage(strAppId, pszPlatform, pszConfiguration);
+      pathFolder = directory_system()->stage(strAppId, pszPlatform, pszConfiguration);
 
       string strName;
 
@@ -1003,7 +1003,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
+      ::file::path pathFile = directory_system()->roaming() / strAppId / "last_run_path.txt";
 
       //const ::file::path & pathFile = pathFile;
 
@@ -1019,7 +1019,7 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      ::file::path path = acmefile()->as_string(pathFile);
+      ::file::path path = file_system()->as_string(pathFile);
 
       return path;
 
@@ -1029,13 +1029,13 @@ namespace acme
    void node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = acmefile()->module();
+      ::file::path path = file_system()->module();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
       information() << "node::set_last_run_application_path_file path:" << path;
 
-      return acmefile()->put_contents(pathFile, path);
+      return file_system()->put_contents(pathFile, path);
 
    }
 
@@ -1650,7 +1650,7 @@ namespace acme
    string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      auto pathFolder = acmedirectory()->get_memory_map_base_folder_path();
+      auto pathFolder = directory_system()->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 
@@ -1827,7 +1827,7 @@ namespace acme
 
 //#ifdef WINDOWS
 //
-//      auto pathFolder = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
+//      auto pathFolder = directory_system()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
 //
 //      path = pathFolder / strName;
 //
@@ -1835,7 +1835,7 @@ namespace acme
 //
 //#else
 
-      auto pathFolder = acmedirectory()->home();
+      auto pathFolder = directory_system()->home();
 
       path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "binary" / strName;
       
@@ -2225,7 +2225,7 @@ return false;
 
          path /= pszCommand;
 
-         if (acmefile()->exists(path))
+         if (file_system()->exists(path))
          {
 
             return path;
@@ -3235,7 +3235,7 @@ bool node::_is_smart_git_installed()
          if (platform()->is_desktop_system())
          {
 
-            auto pathHome = dir()->home();
+            auto pathHome = directory()->home();
 
             auto pathTxt = pathHome / "dropbox.txt";
 
@@ -3246,7 +3246,7 @@ bool node::_is_smart_git_installed()
 
                strPath.trim();
 
-               if (strPath.has_char() && dir()->is(strPath))
+               if (strPath.has_char() && directory()->is(strPath))
                {
 
                   m_pathDropbox = strPath;
@@ -3291,7 +3291,7 @@ bool node::_is_smart_git_installed()
 
          __check_refdbg
 
-         if (dir()->is(m_pathDropbox))
+         if (directory()->is(m_pathDropbox))
          {
 
             m_bDropbox = true;
@@ -3575,7 +3575,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
    ::file::path_array patha;
 
-   ::file::path pathBin = acmedirectory()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
+   ::file::path pathBin = directory_system()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
 
    patha = pathBin / stra;
 
@@ -3587,7 +3587,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       for (auto & path : patha)
       {
 
-         if (acmepath()->real_path_is_same(pathSystem, path))
+         if (path_system()->real_path_is_same(pathSystem, path))
          {
 
             return true;

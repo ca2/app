@@ -5,8 +5,8 @@
 #include "framework.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/platform/system.h"
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
@@ -131,7 +131,7 @@ library_t * dynamic_library::module_by_path(const ::file::path & path)
       
       pathInProcess = _dyld_get_image_name(i);
       
-      if(acmepath()->real_path_is_same(pathInProcess, path))
+      if(path_system()->real_path_is_same(pathInProcess, path))
       {
          
          goto found;
@@ -216,7 +216,7 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
    
    strMessage += "\n(2) dlopen: " + path + " with the error: \"" + strError + "\"";
    
-   path = ::file::path(acmedirectory()->module()) / strPath;
+   path = ::file::path(directory_system()->module()) / strPath;
    
    plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
    

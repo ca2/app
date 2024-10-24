@@ -3,7 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/platform/system_setup.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/application.h"
 #include "axis/account/department.h"
 #include "axis/account/credentials.h"
@@ -1255,7 +1255,7 @@ namespace axis
       //if(puser->m_strPathPrefix.is_empty())
       //{
 
-      //   puser->m_strPathPrefix = dir()->default_os_user_path_prefix();
+      //   puser->m_strPathPrefix = directory()->default_os_user_path_prefix();
 
       //}
 
@@ -1270,9 +1270,9 @@ namespace axis
 
       auto pcontext = get_context();
 
-      puser->m_pathFolder = dir()->appdata() / "profile" / puser->m_strLogin;
+      puser->m_pathFolder = directory()->appdata() / "profile" / puser->m_strLogin;
 
-      dir()->create(puser->m_pathFolder);
+      directory()->create(puser->m_pathFolder);
 
       for (auto& papplication : m_applicationa)
       {
@@ -1280,7 +1280,7 @@ namespace axis
          if (papplication.is_set())
          {
 
-            papplication->m_papexapplication->signal(id_change_user);
+            papplication->signal(id_change_user);
 
          }
 

@@ -2,9 +2,9 @@
 #include "framework.h"
 ////#include "acme/exception/exception.h"
 #include "application_build_helper.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 //#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/ini.h"
@@ -29,9 +29,9 @@ namespace application_build_helper
 
       ::file::path pathMatterZipO = m_pathFolder / ".link_object/_matter.zip.o";
 
-      acmedirectory()->change_current(m_pathFolder);
+      directory_system()->change_current(m_pathFolder);
 
-      acmedirectory()->create(m_pathFolder / ".link_object");
+      directory_system()->create(m_pathFolder / ".link_object");
 
       string_array straOutput;
 

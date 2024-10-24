@@ -385,7 +385,7 @@ namespace filemanager
 
          KEEP(m_bRestoring);
 
-         if (pathFilemanagerProject.is_empty() || pcontext->dir()->is(pathFilemanagerProject)
+         if (pathFilemanagerProject.is_empty() || pcontext->directory()->is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().case_insensitive_order("component") != 0)
          {
 
@@ -416,7 +416,7 @@ pacmedirectory->localconfig() / "user.component";
          }
 
 
-         if (pcontext->dir()->is(pathFilemanagerProject))
+         if (pcontext->directory()->is(pathFilemanagerProject))
          {
 
             stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
@@ -800,7 +800,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->dir()->is(pathFolder))
+//      if (pcontext->directory()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -931,7 +931,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pathFolder = pcreate->m_payloadFile;
 
-//      if (pcontext->dir()->is(pathFolder))
+//      if (pcontext->directory()->is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;

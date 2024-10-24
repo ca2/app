@@ -13,9 +13,9 @@
 
 
 
-class dir_context;
+class directory_context;
 class file_context;
-class dir_system;
+class directory_system;
 class file_system;
 
 

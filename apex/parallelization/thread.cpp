@@ -2046,7 +2046,7 @@ void thread::init_task()
 
    ::task::init_task();
 
-   //if (get_app() && get_app()->m_papexapplication != this)
+   //if (get_app() && get_app() != this)
    //{
 
    //   try
@@ -2232,10 +2232,10 @@ void thread::app_pre_translate_message(::message::message* pmessage)
    try
    {
 
-      if (get_app() != nullptr && get_app()->m_papexapplication)
+      if (get_app() != nullptr && get_app())
       {
 
-         get_app()->m_papexapplication->pre_translate_message(pmessage);
+         get_app()->pre_translate_message(pmessage);
 
          if (pmessage->m_bRet)
          {
@@ -2267,7 +2267,7 @@ void thread::session_pre_translate_message(::message::message* pmessage)
          if (get_app()->session() != nullptr)
          {
 
-            get_app()->session()->m_papexsession->pre_translate_message(pmessage);
+            get_app()->session()->pre_translate_message(pmessage);
 
             if (pmessage->m_bRet)
             {
@@ -2348,7 +2348,7 @@ void thread::process_window_procedure_exception(const ::exception& e, ::message:
 void thread::process_message_filter(i32 code, ::message::message* pmessage)
 {
 
-   get_app()->m_papexapplication->process_message_filter(code, pmessage);
+   get_app()->process_message_filter(code, pmessage);
 
 }
 
@@ -4438,10 +4438,10 @@ bool thread::process_message()
       //
       // auto papp = get_app();
       //
-      // if(papp && papp->m_papexapplication)
+      // if(papp && papp)
       // {
       //
-      //    papexapplication = papp->m_papexapplication;
+      //    papexapplication = papp;
       //
       // }
       //

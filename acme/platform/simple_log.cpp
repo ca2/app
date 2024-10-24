@@ -145,7 +145,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
 //   {
 //
-//      g_iMemoryCounters = acmefile()->exists(         auto psystem = system();
+//      g_iMemoryCounters = file_system()->exists(         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //

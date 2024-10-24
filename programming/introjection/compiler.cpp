@@ -2,15 +2,15 @@
 #include "compiler.h"
 #include "library.h"
 ////#include "acme/exception/exception.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/string/str.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 
@@ -31,11 +31,11 @@ string vs_build(::particle * pparticle)
 
    ::file::path path;
 
-   auto pacmedirectory = pparticle->acmedirectory();
+   auto pacmedirectory = pparticle->directory_system();
 
    path = pacmedirectory->config() / "programming/vs_build.txt";
 
-   string strVsBuild = pparticle->acmefile()->as_string(path);
+   string strVsBuild = pparticle->file_system()->as_string(path);
 
    strVsBuild.trim();
 
@@ -92,7 +92,7 @@ namespace introjection
 //
 //         ::file::path path;
 //
-//         auto pacmedirectory = acmedirectory();
+//         auto pacmedirectory = directory_system();
 //
 //         path = pacmedirectory->config() / "programming/vs.txt";
 //
@@ -201,9 +201,9 @@ namespace introjection
 //
 //      auto pcontext = get_context();
 //
-//      auto pacmedirectory = acmedirectory();
+//      auto pacmedirectory = directory_system();
 //
-//      dir()->create(pacmedirectory->system() / "introjection\\symbols");
+//      directory()->create(pacmedirectory->system() / "introjection\\symbols");
 //
 //      ::file::path strVars;
 //
@@ -358,7 +358,7 @@ namespace introjection
 //      //   m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 //#endif
 //
-//      dir()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
+//      directory()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / "front");
 //
 //      //#ifdef WINDOWS
 //      //      string vars1batSrc;
@@ -468,13 +468,13 @@ namespace introjection
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedirectory = acmedirectory();
+//      auto pacmedirectory = directory_system();
 //
 //      pathEnvTxt = pacmedirectory->system() / "env.txt";
 //
-//      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//      file_system()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 //
-//      acmefile()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+//      file_system()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 //
 //      auto psystem = system();
 //
@@ -484,7 +484,7 @@ namespace introjection
 //
 //      string strLog;
 //
-//      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
+//      strLog = file_system()->as_string(pacmedirectory->system() / "env.txt");
 //
 //      string_array stra;
 //
@@ -559,10 +559,10 @@ namespace introjection
 //      //#else
 //      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //      //#endif
-//      dir()->create(strCmd.folder());
+//      directory()->create(strCmd.folder());
 //      //file()->put_text_utf8(strCmd, str);
 //      file()->put_contents(strCmd,str);
-//      dir()->create(m_strTime / "dynamic_source");
+//      directory()->create(m_strTime / "dynamic_source");
 //
 //   }
 
@@ -674,10 +674,10 @@ namespace introjection
       string strTargetPath;
       string strSrcName = ::file::path(pathFile).title();
       string strLogName = ::file::path(strCmd).title();
-      strTargetPath =  dir()->module() / "lib" + strSrcName;
-      string strDsymPath = (dir()->module().folder(3)) /  "lib" + strSrcName;
-      string strDdPath = dir()->module().folder(7);
-      string strBuildFolderPath = dir()->module().folder(5);
+      strTargetPath =  directory()->module() / "lib" + strSrcName;
+      string strDsymPath = (directory()->module().folder(3)) /  "lib" + strSrcName;
+      string strDdPath = directory()->module().folder(7);
+      string strBuildFolderPath = directory()->module().folder(5);
       string strSrcFolder = ::file::path(pathFile).folder();
       string strFramework = m_strFramework;
       strClog = strCmd + "-osxc.txt";
@@ -802,7 +802,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //lib->m_strBuildBat = strB;
       //m_pathScript = m_pmanager->get_script_path(strName);
       //#else
-      // lib->m_strLibraryPath.formatf(dir()->install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
+      // lib->m_strLibraryPath.formatf(directory()->install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
       //#endif
 
       try
@@ -965,8 +965,8 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
 #ifndef LINUX
 
-      //      dir()->create(strDVI.folder());
-      //      dir()->create(lib->m_strBuildBat.folder());
+      //      directory()->create(strDVI.folder());
+      //      directory()->create(lib->m_strBuildBat.folder());
       //try
       //{
       //   //         file()->copy(strDVI, strSVI, false);
@@ -1023,9 +1023,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #endif
 
-      dir()->create(plibrary->m_pathScript.folder());
-      dir()->create(strL.folder());
-      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
+      directory()->create(plibrary->m_pathScript.folder());
+      directory()->create(strL.folder());
+      directory()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
 
       ::file::path pathN = m_pintegrationcontext->m_pathProjectFolder;
 
@@ -1072,11 +1072,11 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       ///strRndTitle.release_buffer();
 
-      auto pacmedirectory = acmedirectory();
+      auto pacmedirectory = directory_system();
 
       strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");
-      dir()->create(::file::path(strHmhLctvWildPdbPath).folder());
+      directory()->create(::file::path(strHmhLctvWildPdbPath).folder());
       str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
       str.find_replace("%CA2_ROOT%",strElem);
@@ -1101,7 +1101,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
             + "/app-core/app_core_resident_desktop/" 
             + strTransformName);
 
-      dir()->create(pathOutputFolder);
+      directory()->create(pathOutputFolder);
 
 
 #if defined(LINUX) || defined(__BSD__)
@@ -1129,7 +1129,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #ifdef LINUX
 
-      acmefile()->put_contents("/tmp/introj.bash", str);
+      file_system()->put_contents("/tmp/introj.bash", str);
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1177,7 +1177,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       }
 
-      strLog= acmefile()->as_string(strClog);
+      strLog= file_system()->as_string(strClog);
 
 #else
 auto tickStart = ::time::now();
@@ -1314,7 +1314,7 @@ auto tickStart = ::time::now();
 
 #ifdef LINUX
 
-         acmefile()->put_contents("/tmp/introl.bash", str);
+         file_system()->put_contents("/tmp/introl.bash", str);
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1364,7 +1364,7 @@ auto tickStart = ::time::now();
             //::system(strLCmd + "2");
             ::system(str2);
 
-            if(!case_insensitive_string_begins(dir()->module(), "/Applications/"))
+            if(!case_insensitive_string_begins(directory()->module(), "/Applications/"))
             {
                string str2 = file()->as_string(strDCmd);
                str2.find_replace("%TARGET_PATH%", strTargetPath);
@@ -1388,7 +1388,7 @@ auto tickStart = ::time::now();
 
 #ifdef MACOS
 
-         strLog= acmefile()->as_string(strLlog);
+         strLog= file_system()->as_string(strLlog);
 
 #else
 

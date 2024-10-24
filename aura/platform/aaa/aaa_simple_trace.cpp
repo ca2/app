@@ -125,7 +125,7 @@ CLASS_DECL_AURA bool memory_counter_on()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = acmefile()->exists(         auto psystem = system();
+      g_iMemoryCounters = file_system()->exists(         auto psystem = system();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

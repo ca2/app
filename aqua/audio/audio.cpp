@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "audio.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 
@@ -64,7 +64,7 @@ namespace aqua
 
             ::file::path pathImplementation;
 
-            pathImplementation = dir()->config() / "config/system/text_to_speech.txt";
+            pathImplementation = directory()->config() / "config/system/text_to_speech.txt";
 
             m_strTtsImplementation = file()->safe_get_string(pathImplementation);
 
@@ -89,7 +89,7 @@ namespace aqua
 
       ::file::path pathImplementation;
 
-      pathImplementation = dir()->config() / "config/system/text_to_speech.txt";
+      pathImplementation = directory()->config() / "config/system/text_to_speech.txt";
 
       file()->put_text(pathImplementation, strTtsImplementation);
 

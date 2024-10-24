@@ -197,14 +197,14 @@ void app_core::system_prep()
 
    m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10000_ms);
 
    }
 
-   if (acmefile()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -536,7 +536,7 @@ pacmedirectory->system() / strAppId / "information.txt" ;
 
 pacmedirectory->config() / "information.txt" ;
 
-   ::aura::g_bOutputDebugString = acmefile()->exists(pathOutputDebugString)||  acmefile()->exists(pathGlobalOutputDebugString);
+   ::aura::g_bOutputDebugString = file_system()->exists(pathOutputDebugString)||  file_system()->exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -571,7 +571,7 @@ pacmedirectory->ca2roaming() / "program";
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      acmefile()->put_contents(path, get_command_line());
+      file_system()->put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
 
@@ -582,7 +582,7 @@ pacmedirectory->ca2roaming() / "program";
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         acmefile()->put_contents(path, pathExecutable);
+         file_system()->put_contents(path, pathExecutable);
 
       }
 

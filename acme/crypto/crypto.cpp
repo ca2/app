@@ -5,7 +5,7 @@
 #include "initializer.h"
 #include "rsa.h"
 #include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/event.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/mathematics/mathematics.h"
@@ -719,7 +719,7 @@ namespace crypto
       ::file::path crypto::get_crypt_key_file_path()
       {
 
-         return acmedirectory()->system() / "user" / "databin.bin";
+         return directory_system()->system() / "user" / "databin.bin";
 
       }
 

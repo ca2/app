@@ -1001,11 +1001,11 @@ namespace file
 
 //#include "acme/filesystem/filesystem/file_system.h"
 
-//#include "acme/filesystem/filesystem/dir_system.h"
+//#include "acme/filesystem/filesystem/directory_system.h"
 
 //#include "acme/filesystem/filesystem/file_context.h"
 
-//#include "acme/filesystem/filesystem/dir_context.h"
+//#include "acme/filesystem/filesystem/directory_context.h"
 
 //#include "apex/filesystem/file/set.h"
 

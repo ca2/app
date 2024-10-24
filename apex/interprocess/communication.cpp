@@ -7,8 +7,8 @@
 #include "handler.h"
 #include "task.h"
 ////#include "acme/exception/exception.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/manual_reset_event.h"
@@ -494,7 +494,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
-      strKey = acmedirectory()->system() / "communication" / strApp / idPid;
+      strKey = directory_system()->system() / "communication" / strApp / idPid;
 
 #elif defined(__APPLE__)
 
@@ -516,7 +516,7 @@ namespace interprocess
 
 #else
 
-      strKey = acmedirectory()->system() / "communication" / strApp / ::as_string(idPid);
+      strKey = directory_system()->system() / "communication" / strApp / ::as_string(idPid);
 
 
 #endif
@@ -816,7 +816,7 @@ namespace interprocess
 
             auto papp = get_app();
 
-            papp->m_papexapplication->on_additional_local_instance(
+            papp->on_additional_local_instance(
                payload["handled"].bool_reference(),
                strModule,
                propertyset["pid"].as_i32(),
@@ -854,7 +854,7 @@ namespace interprocess
 
       defer_add_module(strModule, idPid);
 
-      get_app()->m_papexapplication->on_new_instance(strModule, idPid);
+      get_app()->on_new_instance(strModule, idPid);
 
    }
 
@@ -921,13 +921,13 @@ namespace interprocess
 
       m_straModule.erase_all();
 
-      pathModule = acmedirectory()->roaming() / m_strApp;
+      pathModule = directory_system()->roaming() / m_strApp;
 
       pathModule /= "module_list.txt";
 
       ::file::path pathPid = pnode->process_identifier_module_path((::u32)idPid.as_i64());
 
-      string strModuleList = acmefile()->as_string(pathModule);
+      string strModuleList = file_system()->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 

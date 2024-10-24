@@ -206,7 +206,7 @@
 //
 //#endif
 //
-//      auto strMain = pcontext->dir()->install() / "app/_appmatter/main";
+//      auto strMain = pcontext->directory()->install() / "app/_appmatter/main";
 //
 //      if (!load(strMain))
 //      {

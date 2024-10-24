@@ -2,12 +2,12 @@
 #include "framework.h"
 #include "fs_folder_sync.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/string/international.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 #include "apex/platform/node.h"
@@ -151,7 +151,7 @@ namespace fs_folder_sync_dropbox
    /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
    {
 
-      dir()->ls_relative_name(listing);
+      directory()->ls_relative_name(listing);
 
       return listing;
 
@@ -201,7 +201,7 @@ namespace fs_folder_sync_dropbox
    //   while(iCount > 0)
    //   {
 
-   //      strPath = dir()->name(strPath);
+   //      strPath = directory()->name(strPath);
 
    //      iCount--;
 
@@ -268,11 +268,11 @@ namespace fs_folder_sync_dropbox
 
       pathLocal = local_folder_path() / pathLocal;
 
-      ::file::path pathDropboxBin = acmedirectory()->home() / "bin/dropbox";
+      ::file::path pathDropboxBin = directory_system()->home() / "bin/dropbox";
 
       ::string strDropboxCommand(pathDropboxBin);
 
-      //::file::path pathIndex = acmedirectory()->home() / ".config/integration/code/___repositories/index.txt";
+      //::file::path pathIndex = directory_system()->home() / ".config/integration/code/___repositories/index.txt";
 
       //auto pathSourceFolder = pathFolder / "Dropbox/box/___repositories";
 
@@ -290,7 +290,7 @@ namespace fs_folder_sync_dropbox
       while (true)
       {
 
-         if (acmefile()->exists(pathLocal))
+         if (file_system()->exists(pathLocal))
          {
 
             break;
@@ -316,7 +316,7 @@ namespace fs_folder_sync_dropbox
 
       auto pathLocalFolder = pathLocal.folder();
 
-      acmedirectory()->change_current(pathLocalFolder);
+      directory_system()->change_current(pathLocalFolder);
 
       while (true)
       {
@@ -366,7 +366,7 @@ namespace fs_folder_sync_dropbox
 
             auto pathFile = pathLocalFolder / line;
 
-            if (!acmefile()->exists(pathFile))
+            if (!file_system()->exists(pathFile))
             {
 
                bOk = false;
@@ -375,7 +375,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            strFile = acmefile()->as_string(pathFile);
+            strFile = file_system()->as_string(pathFile);
 
             auto strTrimmed = strFile.trimmed();
 

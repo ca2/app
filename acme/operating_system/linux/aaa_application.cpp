@@ -507,7 +507,7 @@ namespace acme
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
-         if(path.has_char() && !acmefile()->exists(path))
+         if(path.has_char() && !file_system()->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

@@ -2,8 +2,8 @@
 #include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 
 
 interprocess_intercommunication::interprocess::communication() 
@@ -287,7 +287,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #if defined(LINUX) || defined(FREEBSD)
 
-   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
+   strKey = directory_system()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -309,7 +309,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-   strKey = acmedirectory()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
+   strKey = directory_system()->system() / "interprocess_intercommunication" / strApp / as_string(idPid);
 
 
 #endif
@@ -592,7 +592,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          auto papp = get_app();
 
-         papp->m_papexapplication->on_additional_local_instance(
+         papp->on_additional_local_instance(
             (bool &) payload["handled"],
             strModule, 
             propertyset["pid"].i32(),
@@ -620,7 +620,7 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 
    defer_add_module(strModule, idPid);
 
-   get_app()->m_papexapplication->on_new_instance(strModule, idPid);
+   get_app()->on_new_instance(strModule, idPid);
 
 }
 
@@ -652,11 +652,11 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    ::file::path pathModule;
 
-   pathModule = acmedirectory()->system() / "interprocess_intercommunication";
+   pathModule = directory_system()->system() / "interprocess_intercommunication";
 
    pathModule /= strApp + ".module_list";
 
-   string strModuleList = acmefile()->as_string(pathModule);
+   string strModuleList = file_system()->as_string(pathModule);
 
    stra.add_lines(strModuleList);
 
@@ -750,13 +750,13 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    m_straModule.erase_all();
 
-   pathModule = acmedirectory()->system() / "interprocess_intercommunication";
+   pathModule = directory_system()->system() / "interprocess_intercommunication";
 
    pathModule /= m_strApp + ".module_list";
    
    ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-   string strModuleList = acmefile()->as_string(pathModule);
+   string strModuleList = file_system()->as_string(pathModule);
 
    m_straModule.add_lines(strModuleList);
 

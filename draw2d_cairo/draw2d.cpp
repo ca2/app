@@ -1009,7 +1009,7 @@ return g_pdraw2dcairo;
 //
 //                        pitem = __allocate ::write_text::font_enumeration_item();
 //
-//                        if (::acmefile()->exists(path))
+//                        if (::file_system()->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;

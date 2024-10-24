@@ -11,16 +11,16 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/text_stream.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/string/str.h"
 #include "acme/prototype/text/context.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/crypto/rsa.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/watcher/action.h"
 #include "acme/filesystem/watcher/watcher.h"
@@ -111,9 +111,9 @@ namespace dynamic_source
    void script_compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedirectory = acmedirectory();
+      auto pacmedirectory = directory_system();
 
-      dir()->create(pacmedirectory->system() / "netnode_desktop/symbols");
+      directory()->create(pacmedirectory->system() / "netnode_desktop/symbols");
 
 
       ::programming::compiler::prepare_compile_and_link_environment();
@@ -268,7 +268,7 @@ namespace dynamic_source
 //
 //#endif
 
-      dir()->create(m_pintegrationcontext->m_pathBuildFolder /m_strDynamicSourceStage / "front");
+      directory()->create(m_pintegrationcontext->m_pathBuildFolder /m_strDynamicSourceStage / "front");
 
       string str;
 
@@ -472,7 +472,7 @@ namespace dynamic_source
 
          ::file::path pathDVP_Folder = pathDVP.folder();
 
-         acmedirectory()->create(pathDVP_Folder);
+         directory_system()->create(pathDVP_Folder);
 
          file()->copy(pathDVP, pathSourceDVP);
 
@@ -697,9 +697,9 @@ namespace dynamic_source
       }
 
 
-      dir()->create(pscript->m_strScriptPath.folder());
-      dir()->create(strL.folder());
-      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      directory()->create(pscript->m_strScriptPath.folder());
+      directory()->create(strL.folder());
+      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
@@ -959,7 +959,7 @@ namespace dynamic_source
 
          strSymbolName += strRndTitle;
 
-         auto pacmedirectory = acmedirectory();
+         auto pacmedirectory = directory_system();
 
          strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strSymbolName;
 
@@ -1098,7 +1098,7 @@ namespace dynamic_source
 
       }
 
-      dir()->create(pscript->m_strCppPath.folder());
+      directory()->create(pscript->m_strCppPath.folder());
 
       cppize1(pscript);
 
@@ -1429,7 +1429,7 @@ namespace dynamic_source
 
       //auto papp = get_app();
 
-      //l.m_straLibSourcePath.m_pprovider = papp->m_papexapplication;
+      //l.m_straLibSourcePath.m_pprovider = papp;
 
       l.m_straLibSourcePath.clear_results();
 
@@ -1437,7 +1437,7 @@ namespace dynamic_source
 
       l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
-      dir()->enumerate(l.m_straLibSourcePath);
+      directory()->enumerate(l.m_straLibSourcePath);
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
@@ -1459,15 +1459,15 @@ namespace dynamic_source
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_pathTime / strLibRel / str + ".cpp");
       }
-      //l.m_straLibIncludePath.m_pprovider = papp->m_papexapplication;
+      //l.m_straLibIncludePath.m_pprovider = papp;
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
-      dir()->enumerate(l.m_straLibIncludePath);
+      directory()->enumerate(l.m_straLibIncludePath);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
                || ::str::case_insensitive_find(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
-               || dir()->is(l.m_straLibIncludePath[i]))
+               || directory()->is(l.m_straLibIncludePath[i]))
          {
             l.m_straLibIncludePath.erase_at(i);
          }
@@ -1498,8 +1498,8 @@ namespace dynamic_source
       // plib->m_strLibraryPath.formatf(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
       //#endif
 
-      dir()->create(l.m_strLibraryPath.folder());
-      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      directory()->create(l.m_strLibraryPath.folder());
+      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1543,7 +1543,7 @@ namespace dynamic_source
       {
          if(l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
-            acmefile()->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
+            file_system()->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
          }
          else
          {
@@ -1595,8 +1595,8 @@ namespace dynamic_source
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
          //str.find_replace("%DVP%", strDVP_B);
 
-         dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         dir()->create(m_pathTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
+         directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         directory()->create(m_pathTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1748,7 +1748,7 @@ namespace dynamic_source
       string strTargetName = l.m_strLibraryPath;
       strTargetName.case_insensitive_ends_eat(".dll");
       str.find_replace("%TARGET_NAME%", strTargetName);
-      dir()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform /"library");
+      directory()->create(m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //sleep(2000_ms);
 //      strCmd = m_pintegrationcontext->m_pathBuildFolder /m_strDynamicSourceStage/ "front\\libl1.bash";
@@ -1846,7 +1846,7 @@ auto tickStart = ::time::now();
    void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      dir()->create(lpcszDest.folder());
+      directory()->create(lpcszDest.folder());
 
       cppize1(lpcszSource, lpcszDest, enum_type);
 
@@ -2622,7 +2622,7 @@ ch_else:
 
       stra.set_listing(strPath, e_depth_recursively);
 
-      dir()->enumerate(stra);
+      directory()->enumerate(stra);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -2908,12 +2908,12 @@ ch_else:
 
       ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
 
-      if (dir()->is(pathPstrSet))
+      if (directory()->is(pathPstrSet))
       {
 
          straFile.set_listing(pathPstrSet, ::e_depth_recursively);
 
-         dir()->enumerate(straFile);
+         directory()->enumerate(straFile);
 
       }
 

@@ -922,9 +922,9 @@
 //   information(sz);
 //   informationf(" memory leaks.");
 //
-//   auto pacmedirectory = this->platform()->acmedirectory();
+//   auto pacmedirectory = this->platform()->directory_system();
 //
-//   this->platform()->acmefile()->put_contents(pacmedirectory->system() / "m.html", get_mem_info_report1());
+//   this->platform()->file_system()->put_contents(pacmedirectory->system() / "m.html", get_mem_info_report1());
 //
 //}
 //

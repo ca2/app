@@ -6,7 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item_array.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -875,14 +875,14 @@ namespace filemanager
    //   for (i32 i = 0; i < itema.get_size(); i++)
    //   {
 
-   //      if (dir()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
+   //      if (directory()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
    //      {
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
    //         for (i32 j = 0; j < straSub.get_size(); j++)
    //         {
-   //            if (!dir()->is(straSub[j]) && straSub[j].find(".svn") < 0)
+   //            if (!directory()->is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
@@ -961,7 +961,7 @@ namespace filemanager
 
    //            string strExtension = straSub[j].extension();
 
-   //            if (!dir()->is(straSub[j])
+   //            if (!directory()->is(straSub[j])
    //                  && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
    //                      || strExtension == "exe.manifest"))
    //            {
@@ -1095,7 +1095,7 @@ namespace filemanager
 
             ::file::path pathItem = stra[i];
 
-            if (dir()->is(pathItem))
+            if (directory()->is(pathItem))
             {
 
                item.m_flags.add(::file::e_flag_folder);
@@ -1851,7 +1851,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if (dir()->is(pathFinal))
+      if (directory()->is(pathFinal))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -2258,7 +2258,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               dir()->create(pathFolder);
+               directory()->create(pathFolder);
 
                ptopic->m_bRet = true;
 

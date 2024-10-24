@@ -588,7 +588,7 @@ namespace user
 
          //auto papp = get_app();
 
-         //strDocName = papp->m_papexapplication->load_string("untitled");
+         //strDocName = papp->load_string("untitled");
 
       }
 

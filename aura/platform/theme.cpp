@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "theme.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/watcher/watch.h"
 #include "acme/filesystem/watcher/watcher.h"
@@ -188,7 +188,7 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
+      ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -317,7 +317,7 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = acmedirectory()->config() / "weather_state.txt";
+      ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -459,7 +459,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      dir()->matter_enumerate("sphere/theme", patha);
+      directory()->matter_enumerate("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -468,7 +468,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (dir()->is(path))
+         if (directory()->is(path))
          {
 
             string strTheme = path.name();
@@ -481,7 +481,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_pfilewatchWeather = file_watcher()->add_watch(acmedirectory()->config(), this, false);
+      m_pfilewatchWeather = file_watcher()->add_watch(directory_system()->config(), this, false);
       
       on_change_theme();
 

@@ -344,7 +344,7 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::collection::index 
 
          }
 
-         application()->m_papexapplication->application_menu_update();
+         application()->application_menu_update();
 
       }
 

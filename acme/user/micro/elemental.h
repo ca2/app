@@ -117,7 +117,7 @@ namespace micro
       //::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
 
 
-      virtual ::point_i32 origin();
+      ::point_i32 origin() override;
 
       //virtual ::payload get_result();
 
@@ -135,19 +135,19 @@ namespace micro
       virtual void add_child(::micro::elemental * pchild);
       virtual ::micro::elemental * get_child_by_id(const ::atom & atom);
 
-      virtual ::rectangle_i32 get_client_rectangle();
+      ::rectangle_i32 get_client_rectangle() override;
 
 
       /// @brief  Child
       /// @param pnanodevice 
       virtual void on_draw(::nano::graphics::device * pnanodevice);
       //virtual void on_char(int iChar);
-      virtual void set_focus();
-      virtual bool is_focusable();
+      void set_focus() override;
+      bool is_focusable() override;
       //virtual void on_mouse_move(::user::mouse * pmouse);
-      virtual void set_capture();
-      virtual bool has_capture();
-      virtual void release_capture();
+      void set_capture() override;
+      bool has_capture() override;
+      void release_capture() override;
 
 
       virtual void resize_to_fit();
@@ -267,7 +267,7 @@ namespace micro
 
       //virtual void message_loop();
 
-      virtual void implementation_message_loop_step();
+      void implementation_message_loop_step() override;
 
       //virtual void draw(::nano::graphics::device * pnanodevice);
 
@@ -302,11 +302,11 @@ namespace micro
       // virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
 
-      virtual ::shift_i32 host_to_client();
-      virtual ::shift_i32 client_to_host();
+      ::shift_i32 host_to_client() override;
+      ::shift_i32 client_to_host() override;
 
-      virtual ::shift_i32 absolute_to_client();
-      virtual ::shift_i32 client_to_absolute();
+      ::shift_i32 absolute_to_client() override;
+      ::shift_i32 client_to_absolute() override;
 
       //virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
 
@@ -328,7 +328,7 @@ namespace micro
       virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
-      void display_temporary_file_with_text(const ::string & str);
+      void display_temporary_file_with_text(const ::string & str) override;
 
       virtual void on_mouse_move(::user::mouse * pmouse);
       virtual void on_left_button_down(::user::mouse * pmouse);

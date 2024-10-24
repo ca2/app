@@ -258,8 +258,8 @@ namespace acme
 
          //virtual void nano_window_on_create();
 
-         virtual void create_window();
-         virtual void _create_window();
+         void create_window() override;
+         void _create_window() override;
 
          //void on_create_window() override;
 
@@ -278,12 +278,12 @@ namespace acme
          virtual void show_window();
          virtual void hide_window();
 
-         virtual bool is_window_zoomed();
-         virtual void window_minimize();
-         virtual void window_maximize(); // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
-         virtual void window_full_screen(); // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
-         virtual void window_restore(); // m_pwindow->m_puserinteraction->display(::e_display_normal);
-         virtual void window_close();
+         bool is_window_zoomed() override;
+         void window_minimize() override;
+         void window_maximize() override; // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
+         void window_full_screen() override; // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
+         void window_restore() override; // m_pwindow->m_puserinteraction->display(::e_display_normal);
+         void window_close() override;
          //virtual void show_window();
          //virtual void hide_window();
 

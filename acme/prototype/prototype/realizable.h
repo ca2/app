@@ -28,7 +28,7 @@ public:
    ::pointer < ::reified < REALIZABLE > > defer_realize();
 
 
-   void destroy();
+   void destroy() override;
 
 
 };

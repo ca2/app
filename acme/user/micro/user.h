@@ -143,7 +143,8 @@ namespace micro
 
       virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
 
-      virtual ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p);
+      ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+
 
    };
 

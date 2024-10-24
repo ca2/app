@@ -66,7 +66,7 @@ namespace acme
 
       virtual void finalize_context();
 
-      virtual ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p);
+      ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
 
       inline ::image::image_context* image() { return m_pimagecontext; }
 

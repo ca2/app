@@ -155,9 +155,9 @@ namespace acme
          virtual void set_focus();
          virtual bool is_focusable();
          //virtual void on_mouse_move(::user::mouse * pmouse);
-         virtual void set_capture();
-         virtual bool has_capture();
-         virtual void release_capture();
+         void set_capture() override;
+         bool has_capture() override;
+         void release_capture() override;
 
 
          //virtual void resize_to_fit();
@@ -276,7 +276,7 @@ namespace acme
 
                virtual void show();
 
-               virtual void hide();
+               void hide() override;
 
                //virtual void message_loop();
 

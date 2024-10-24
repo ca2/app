@@ -28,6 +28,9 @@
 
 CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
+#elif defined(__BSD__)
+#include <errno.h>
+
 
 #endif
 

@@ -413,7 +413,7 @@ namespace user
 
 #endif
 
-      virtual lresult message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
+      lresult message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0) override;
 
       virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 

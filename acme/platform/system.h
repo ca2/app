@@ -294,7 +294,7 @@ namespace acme
 
       virtual void init2();
 
-      virtual void set_current_handles();
+      void set_current_handles() override;
 
       virtual void TermSystem();
 

@@ -94,7 +94,7 @@ namespace compress_zlib
             // Inflate another chunk.
             status = inflate(&zstream, Z_NO_FLUSH);
 
-            pfileUncompressed->write(memory(0, memory.size() - zstream.avail_out));
+            pfileUncompressed->write(memory.data(), memory.size() - zstream.avail_out);
 
             if (transferprogressfunction)
             {

@@ -132,7 +132,7 @@ namespace compress_zlib
 
             auto amountToWrite = (u32)memory.size() - zstream.avail_out;
 
-            pfileOut->write(memory(0, amountToWrite));
+            pfileOut->write(memory.data(), amountToWrite);
 
             if (transferprogressfunction)
             {

@@ -672,7 +672,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
                while (::task_get_run())
                {
 
-                  load_flags(pcontext->m_papexcontext->local_ini());
+                  load_flags(pcontext->local_ini());
 
                   //task_sleep(10_s);
 

@@ -391,7 +391,7 @@ namespace userex
 //
 //#if defined(_DEBUG) && !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
 //
-//            auto pcontext = m_papplication->m_papexcontext;
+//            auto pcontext = m_papplication;
 //
 //            ::file::path path;
 //            
@@ -639,7 +639,7 @@ namespace userex
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -688,7 +688,7 @@ namespace userex
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -725,7 +725,7 @@ namespace userex
 
          //auto pcontext = m_papplication;
          //
-         //auto psession = pcontext->m_pacmesession->m_paurasession;
+         //auto psession = pcontext->m_psession->m_paurasession;
          //
          //auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1045,7 +1045,7 @@ namespace userex
 
    //   auto pcontext = m_papplication;
    //   
-   //   auto psession = pcontext->m_pacmesession->m_pcoresession;
+   //   auto psession = pcontext->m_psession->m_pcoresession;
    //   
    //   auto puser = psession->m_puser->m_pcoreuser;
 

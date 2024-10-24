@@ -4722,7 +4722,7 @@ namespace user
 
             auto pwindowing = windowing();
 
-            auto pcontext = m_papplication->m_papexcontext;
+            auto pcontext = m_papplication;
 
             ::file::path pathIcon = "matter://main/icon.png";
 
@@ -18006,7 +18006,7 @@ namespace user
          else
          {
 
-            auto paurasession = m_papplication->m_pacmesession->m_paurasession;
+            auto paurasession = m_papplication->m_psession->m_paurasession;
 
             auto puser = paurasession->m_puser;
 
@@ -29970,7 +29970,7 @@ namespace user
    ::aura::session * interaction::get_session()
    {
 
-      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 

@@ -630,7 +630,7 @@ bool  stream_base::is_version(int i)
 ////   if (strLink.has_char())
 ////   {
 ////
-////      m_papplication->m_papexcontext->save_to_file(strLink, m_pvarOptions, preference);
+////      m_papplication->save_to_file(strLink, m_pvarOptions, preference);
 ////
 ////   }
 ////
@@ -668,7 +668,7 @@ bool  stream_base::is_version(int i)
 ////   if (strLink.has_char())
 ////   {
 ////
-////      m_papplication->m_papexcontext->load_from_file(preference, strLink);
+////      m_papplication->load_from_file(preference, strLink);
 ////
 ////   }
 ////

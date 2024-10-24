@@ -23,7 +23,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
       if (strLink.case_insensitive_begins("mailto:"))
       {
 
-         return pcontext->m_papexcontext->os().file_open(strLink);
+         return pcontext->os().file_open(strLink);
 
       }
 

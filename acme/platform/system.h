@@ -87,7 +87,7 @@ virtual ::particle * matter_mutex();
 
       virtual ::networking::networking * networking();
 
-      virtual ::pointer<::acme::node> & node();
+      virtual ::pointer<::platform::node> & node();
 
       virtual class ::base64 * base64();
 

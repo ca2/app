@@ -29,7 +29,7 @@ class get_file_extension_mime_type;
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
-namespace acme
+namespace platform
 {
 
 
@@ -158,13 +158,13 @@ namespace acme
       virtual void initialize(::particle * pparticle) override;
       
       virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
-      //virtual ::particle_pointer create_quit_particle(::pointer<::acme::node>& pnode);
+      //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
 
       //virtual ::particle_pointer create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
 
 
-      ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::platform::system> & psystem);
+      ///virtual void implement(::pointer<::platform::node>& pnode, ::pointer<::platform::system> & psystem);
 
       virtual void node_main();
       virtual void node_implement_main();
@@ -175,7 +175,7 @@ namespace acme
       virtual void on_system_main();
 
 
-      virtual void start_application(::pointer<::acme::node> & pnode);
+      virtual void start_application(::pointer<::platform::node> & pnode);
 
 
       virtual void acme_application_main(::platform::system * psystem);

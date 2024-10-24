@@ -42,7 +42,7 @@ namespace simpledb
 
       //}
 
-      m_bRemote = !m_papplication->m_papexcontext->is_local_data();
+      m_bRemote = !m_papplication->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {

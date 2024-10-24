@@ -169,7 +169,7 @@ public:
    ::platform::system * system() const;
    ::platform::session * session() const;
    ::platform::application * application() const;
-   ::acme::node * node() const;
+   ::platform::node * node() const;
    ::platform::context * context() const;
 
    //::aura::application* auraapplication() const;

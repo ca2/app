@@ -43,7 +43,7 @@ namespace user
    ::aura::session *form::get_session()
    {
 
-      return ::is_set(m_papplication) ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return ::is_set(m_papplication) ? m_papplication->m_psession->m_paurasession : nullptr;
 
 
    }

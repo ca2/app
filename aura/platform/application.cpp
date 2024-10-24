@@ -5897,10 +5897,10 @@ namespace aura
 
       }
 
-      if (m_pacmesession)
+      if (m_psession)
       {
 
-         m_pacmesession->m_papexsession->route_command(pcommand, false);
+         m_psession->m_papexsession->route_command(pcommand, false);
 
       }
 
@@ -9094,7 +9094,7 @@ namespace aura
    ::aura::session* application::get_session()
    {
 
-      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 

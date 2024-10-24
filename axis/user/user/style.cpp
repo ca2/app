@@ -954,7 +954,7 @@ namespace axis
       //   else
       //   {
 
-      //      pcontext->m_papexcontext->pstyle.release();
+      //      pcontext->pstyle.release();
 
       //   }
 
@@ -1528,7 +1528,7 @@ namespace axis
    //   else
    //   {
 
-   //      pcontext->m_papexcontext->pstyle.release();
+   //      pcontext->pstyle.release();
 
    //   }
 

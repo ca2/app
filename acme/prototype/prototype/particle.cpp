@@ -281,7 +281,7 @@ void particle::on_initialize_particle()
 ::platform::session* particle::session() const
 {
 
-   return m_papplication ? m_papplication->m_pacmesession : nullptr;
+   return m_papplication ? m_papplication->m_psession : nullptr;
 
 }
 
@@ -310,7 +310,7 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::node * particle::node() const
+::platform::node * particle::node() const
 {
 
    return m_papplication->node();
@@ -407,7 +407,7 @@ class ::user::user * particle::user() const
 ::apex::context* particle::apexcontext() const
 {
 
-   return m_papplication ? m_papplication->m_papexcontext : nullptr;
+   return m_papplication ? m_papplication : nullptr;
 
 }
 

@@ -168,7 +168,7 @@ namespace acme
 //
 //       ::pointer<class ::xml::xml>                                     m_pxml;
 //
-//       ::pointer<class ::acme::node>                                     m_pnode;
+//       ::pointer<class ::platform::node>                                     m_pnode;
 //       ::pointer<geometry::geometry>                                   m_pgeometry;
 //
 //
@@ -247,7 +247,7 @@ namespace acme
 //       virtual ::particle * x11_synchronization();
 // #endif
 
-      inline ::pointer<::acme::node> & node() { return m_pnode; }
+      inline ::pointer<::platform::node> & node() { return m_pnode; }
 
       inline class ::base64 * base64() { return m_pbase64; };
 

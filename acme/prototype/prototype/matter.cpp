@@ -332,7 +332,7 @@ bool matter::thread_is_running() const
 //::platform::system * matteracmesystem()
 //{
 //
-//   return ::is_set(m_papplication) ? m_papplication->m_pacmesystem : nullptr;
+//   return ::is_set(m_papplication) ? m_papplication->m_psystem : nullptr;
 //
 //}
 

@@ -647,7 +647,7 @@ namespace windowing
    ::aura::session* cursor_manager::get_session()
    {
 
-      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 

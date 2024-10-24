@@ -686,7 +686,7 @@ namespace apex
       //         while (::task_get_run())
       //         {
 
-      //            load_flags(m_papplication->m_papexcontext->local_ini());
+      //            load_flags(m_papplication->local_ini());
 
       //            //task_sleep(10_s);
 

@@ -475,7 +475,7 @@ namespace filemanager
 
       //         string strName;
 
-      //         strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+      //         strName = pcontext->defer_get_file_title(pathAscendant);
 
       //         if (pathAscendant.has_char() && strName.has_char())
       //         {
@@ -572,7 +572,7 @@ namespace filemanager
 
       //      string strName;
 
-      //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+      //      strName = pcontext->defer_get_file_title(pathUser);
 
       //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 
@@ -653,7 +653,7 @@ namespace filemanager
 
       //      string strName;
 
-      //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+      //      strName = pcontext->defer_get_file_title(pathUser);
 
       //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 
@@ -1009,7 +1009,7 @@ _001SelectItem(pchild);
 
    //         string strName;
 
-   //         strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+   //         strName = pcontext->defer_get_file_title(pathAscendant);
 
    //         if (pathAscendant.has_char() && strName.has_char())
    //         {
@@ -1106,7 +1106,7 @@ _001SelectItem(pchild);
 
    //      string strName;
 
-   //      strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
+   //      strName = pcontext->defer_get_file_title(pathUser);
 
    //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 

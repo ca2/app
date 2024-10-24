@@ -227,7 +227,7 @@ void thread::thread_common_construct()
    if (pcontext)
    {
 
-      auto papexcontext = pcontext->m_papexcontext;
+      auto papexcontext = pcontext;
 
       if (papexcontext)
       {
@@ -1932,15 +1932,15 @@ void thread::main()
 
          }
 
-         // !!!!This should be done in acme::node!!!!
+         // !!!!This should be done in ::platform::node!!!!
          //else if (application()->m_bConsole)
-         // !!!!This should be done in acme::node!!!!
-         //{ // !!!!This should be done in acme::node!!!!
-         // !!!!This should be done in acme::node!!!!
+         // !!!!This should be done in ::platform::node!!!!
+         //{ // !!!!This should be done in ::platform::node!!!!
+         // !!!!This should be done in ::platform::node!!!!
          //   application()->main();
-         // !!!!This should be done in acme::node!!!!
-         //}// !!!!This should be done in acme::node!!!!
-         // !!!!This should be done in acme::node!!!!
+         // !!!!This should be done in ::platform::node!!!!
+         //}// !!!!This should be done in ::platform::node!!!!
+         // !!!!This should be done in ::platform::node!!!!
          else
          {
 

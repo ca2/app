@@ -1724,7 +1724,7 @@ namespace aura
       //      if(m_iMatterFromHttpCache == -1)
       //      {
       //
-      //         ::file::path pathSide = pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+      //         ::file::path pathSide = pcontext->side_get_matter_path("app/_matter/main");
       //
       //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
@@ -3880,7 +3880,7 @@ namespace aura
 
 //pmessagebox->sync();
 //
-//         pcontext->m_papexcontext->os().link_open(strUrl);
+//         pcontext->os().link_open(strUrl);
 //
 //         return;
 //
@@ -3897,7 +3897,7 @@ namespace aura
 //
 //      string strParam;
 //
-//      pcontext->m_papexcontext->os().get_default_browser(strId, path, strParam);
+//      pcontext->os().get_default_browser(strId, path, strParam);
 //
 //      if (strProfile.is_empty() || strProfile == "native")
 //      {
@@ -3994,7 +3994,7 @@ namespace aura
 //         //if (m_strAppName == "app-core/commander")
 //         {
 //
-//            chromium(strUrl, strBrowser, strId, pcontext->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
+//            chromium(strUrl, strBrowser, strId, pcontext->os().get_app_path("chrome"), strProfile, strParam);
 //
 //         }
 //         //else
@@ -4149,7 +4149,7 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+//      pcontext->os().native_full_web_browser(strUrl);
 //
 //      return;
 //
@@ -4396,7 +4396,7 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+//      pcontext->os().native_full_web_browser(strUrl);
 //
 //#else
 //
@@ -6908,7 +6908,7 @@ namespace aura
    ::aura::session* system::get_session()
    {
 
-      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 

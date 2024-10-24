@@ -323,7 +323,7 @@ namespace acme
    void node::user_post(const ::procedure &procedure)
    {
 
-      information() << "acme::node::user_post going to display_post";
+      information() << "::platform::node::user_post going to display_post";
 
       ::acme::windowing::display::g_p->display_post(procedure);
 

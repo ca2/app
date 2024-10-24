@@ -65,7 +65,7 @@ namespace platform
       int                                             m_argc = 0;
       char **                                                  m_args = nullptr;
       char ** m_envp = nullptr;
-      ::platform::system* m_pacmesystem;
+      ::platform::system* m_psystem;
       //::i32 m_iExitCode;
 
 #ifdef WINDOWS

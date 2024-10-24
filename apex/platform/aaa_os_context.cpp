@@ -659,7 +659,7 @@
 //   bool os_context::is_alias(const ::file::path & path)
 //   {
 //
-//      return m_papplication->m_papexcontext->os_is_alias(path);
+//      return m_papplication->os_is_alias(path);
 //
 //   }
 //

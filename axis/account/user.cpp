@@ -257,7 +257,7 @@ namespace account
 
       }
 
-      auto psession = m_papplication->m_pacmesession->m_paxissession;
+      auto psession = m_papplication->m_psession->m_paxissession;
 
       psession->account()->on_user_logon(this);
 

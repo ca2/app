@@ -420,7 +420,7 @@ namespace xml
 
          //pszXmlParam = pszXml;
 
-         return pacmecontext->m_papexcontext->file()->as_string(m_pathLocation.sibling(extEnt));
+         return pacmecontext->file()->as_string(m_pathLocation.sibling(extEnt));
 
       }
 

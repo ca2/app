@@ -1273,7 +1273,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
       }
 
-      auto bDir = application()->http_exists(url, set);
+      auto bDir = http()->exists(url, set);
 
       if (bDir)
       {

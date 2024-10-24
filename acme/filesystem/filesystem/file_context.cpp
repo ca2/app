@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/nano/http/get.h"
+#include "acme/platform/http.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/prototype/url_domain.h"
 #include "acme/parallelization/event.h"
@@ -252,7 +253,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return system()->http_get_type(path, pvarQuery, set);
+      return http()->get_type(path, pvarQuery, set);
 
    }
 
@@ -1739,7 +1740,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    if(pwriter.nok())
    {
 
-      pathTarget = psystem->defer_process_path(varTarget.as_file_path());
+      pathTarget = application()->defer_process_path(varTarget.as_file_path());
 
    }
 
@@ -1748,7 +1749,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    if(preader.nok())
    {
 
-      pathSource = psystem->defer_process_path(varSource.as_file_path());
+      pathSource = application()->defer_process_path(varSource.as_file_path());
 
       if (exists(pathSource))
       {

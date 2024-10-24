@@ -331,7 +331,7 @@ namespace acme
    }
 
 
-   //::particle_pointer node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::platform::system> & psystem)
+   //::particle_pointer node::create_quit_particle(::pointer<::platform::node> &  pnode, ::pointer<::platform::system> & psystem)
    //{
    //   
    //   return nullptr;
@@ -351,7 +351,7 @@ namespace acme
       if (psystem->m_papplication->m_bSession)
       {
 
-         psystem->m_pacmesession->init_task();
+         psystem->m_psession->init_task();
 
       }
 
@@ -458,8 +458,8 @@ namespace acme
    }
 
 
-   //void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::platform::system>& psystem)
-   void node::start_application(::pointer<::acme::node> & pnode)
+   //void node::start_application(::pointer<::platform::node>& pnode, ::pointer<::platform::system>& psystem)
+   void node::start_application(::pointer<::platform::node> & pnode)
    {
 
       //m_pparticleQuit = create_quit_particle(pnode, psystem);
@@ -582,7 +582,7 @@ namespace acme
 
       //}
 
-      m_papplication->m_pacmenode = this;
+      m_papplication->m_pnode = this;
 
       //return estatus;
 
@@ -633,7 +633,7 @@ namespace acme
    }
 
 
-//   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::platform::system> psystem)
+//   void node::implement(::pointer<::platform::node>& pnode, ::pointer<::platform::system> psystem)
 //   {
 //
 //      //      auto psystem = system();

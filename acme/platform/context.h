@@ -19,14 +19,14 @@ namespace platform
       //::platform::platform *                          m_pplatform;
 
 
-      ::apex::context *                               m_papexcontext;
-      ::aura::context *                               m_pauracontext;
+      //::apex::context *                               m_papexcontext;
+      //::aura::context *                               m_pauracontext;
 
 
-      ::platform::application*                            m_papplication;
-      ::platform::session *                               m_pacmesession;
-      //::platform::system *                                m_pacmesystem;
-      ::acme::node *                                  m_pacmenode;
+      ::platform::application*                        m_papplication;
+      ::platform::session *                           m_psession;
+      ::platform::system *                            m_psystem;
+      ::platform::node *                              m_pnode;
 
       ::pointer<::text::translator>                   m_ptexttranslator;
 
@@ -78,7 +78,7 @@ namespace platform
 
 
       //inline ::platform::system * system();
-      ::acme::node * node();
+      ::platform::node * node();
 
 
       //inline ::os_context * os_context() { return m_poscontext; }

@@ -10,7 +10,7 @@ namespace linux
 {
 
    class CLASS_DECL_ACME node :
-      virtual public ::acme::node
+      virtual public ::platform::node
    {
    public:
 

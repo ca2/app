@@ -89,7 +89,7 @@ namespace acme
    void node::_user_post(const ::procedure &procedure)
    {
 
-      //information() << "acme::node::user_post going to display_post";
+      //information() << "::platform::node::user_post going to display_post";
 
       auto pdisplay = system()->acme_windowing()->acme_display();
 

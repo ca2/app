@@ -146,7 +146,7 @@ namespace file
 
          }
 
-         m_papplication->m_papexcontext->enumerate(m_listing);
+         m_papplication->enumerate(m_listing);
 
          //}
          //else
@@ -266,7 +266,7 @@ namespace file
             if (m_listing.is_empty())
             {
 
-               node()->::acme::node::initialize_wallpaper_fileset(this, bAddSearch);
+               node()->::platform::node::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

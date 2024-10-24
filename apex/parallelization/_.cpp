@@ -357,10 +357,10 @@ namespace parallelization
 //   if (pthread->get_context())
 //   {
 //
-//      if (::is_null(pthread->m_papplication->m_papexcontext->file()))
+//      if (::is_null(pthread->m_papplication->file()))
 //      {
 //
-//         pthread->m_papplication->m_papexcontext->initialize_context();
+//         pthread->m_papplication->initialize_context();
 //
 //      }
 //

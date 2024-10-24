@@ -209,7 +209,7 @@ namespace filemanager
 
             auto pcontext = m_papplication;
             
-            auto psession = pcontext->m_pacmesession->m_pcoresession;
+            auto psession = pcontext->m_psession->m_pcoresession;
             
             auto puser = psession->m_puser->m_pcoreuser;
 
@@ -238,7 +238,7 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1326,7 +1326,7 @@ namespace filemanager
 
       }
 
-      auto pcontext = m_papplication->m_papexcontext;
+      auto pcontext = m_papplication;
 
       if (filemanager_data()->m_bIconImpact)
       {
@@ -1398,7 +1398,7 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1462,7 +1462,7 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 
@@ -1875,7 +1875,7 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
+         auto psession = pcontext->m_psession->m_pcoresession;
          
          auto puser = psession->m_puser->m_pcoreuser;
 

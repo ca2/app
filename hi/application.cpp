@@ -936,23 +936,23 @@ namespace console_hello
 
 #endif // __STD_FORMAT__
 
-      if (m_pacmesystem->m_pplatform->m_argc == 2)
+      if (m_psystem->m_pplatform->m_argc == 2)
       {
 
 
-         if (m_pacmesystem->m_pplatform->get_arg(1) == "remove_utf8_bom_phase1")
+         if (m_psystem->m_pplatform->get_arg(1) == "remove_utf8_bom_phase1")
          {
 
             remove_utf8_bom_phase1();
 
          }
-         else if (m_pacmesystem->m_pplatform->get_arg(1) == "remove_utf8_bom_phase2")
+         else if (m_psystem->m_pplatform->get_arg(1) == "remove_utf8_bom_phase2")
          {
 
             remove_utf8_bom_phase2();
 
          }
-         else if (m_pacmesystem->m_pplatform->get_arg(1) == "search_special_characters")
+         else if (m_psystem->m_pplatform->get_arg(1) == "search_special_characters")
          {
 
             search_special_characters();

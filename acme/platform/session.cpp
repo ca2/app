@@ -13,21 +13,21 @@
 #include "acme/windowing/windowing.h"
 
 
-namespace acme
+namespace platform
 {
 
 
    session::session()
    {
 
-      m_pacmesession = this;
-      m_papexsession = nullptr;
-      m_paquasession = nullptr;
-      m_paurasession = nullptr;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pbredsession = nullptr;
-      m_pcoresession = nullptr;
+      // m_psession = this;
+      // m_papexsession = nullptr;
+      // m_paquasession = nullptr;
+      // m_paurasession = nullptr;
+      // m_paxissession = nullptr;
+      // m_pbasesession = nullptr;
+      // m_pbredsession = nullptr;
+      // m_pcoresession = nullptr;
 
 
    }
@@ -96,14 +96,14 @@ namespace acme
 
       __construct_new(m_ptextcontext);
 
-      initialize_context();
+      //initialize_context();
 
    }
 
    void session::main()
    {
 
-   ::acme::context::main();
+   //::acme::context::main();
 
 
    }
@@ -355,7 +355,7 @@ namespace acme
    }
 
 
-} // namespace apex
+} // namespace platform
 
 
 

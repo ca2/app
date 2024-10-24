@@ -28,13 +28,13 @@ namespace platform
 
 
 
-      ::apex::session* m_papexsession;
-      ::aqua::session* m_paquasession;
-      ::aura::session* m_paurasession;
-      ::axis::session* m_paxissession;
-      ::base::session* m_pbasesession;
-      ::bred::session* m_pbredsession;
-      ::core::session* m_pcoresession;
+      // ::apex::session* m_papexsession;
+      // ::aqua::session* m_paquasession;
+      // ::aura::session* m_paurasession;
+      // ::axis::session* m_paxissession;
+      // ::base::session* m_pbasesession;
+      // ::bred::session* m_pbredsession;
+      // ::core::session* m_pcoresession;
 
 
       ::pointer<::text::context>                     m_ptextcontext;

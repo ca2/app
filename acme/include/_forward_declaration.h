@@ -737,17 +737,17 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_) { class node; }
 
 
 
-namespace acme
-{
-
-
-   class system;
-
-
-   class node;
-
-
-} // namespace acme
+// namespace acme
+// {
+//
+//
+//    class system;
+//
+//
+//    class node;
+//
+//
+// } // namespace acme
 
 
 namespace apex

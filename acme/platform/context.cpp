@@ -27,7 +27,7 @@
 #include "acme/user/micro/user.h"
 
 
-namespace acme
+namespace platform
 {
 
    
@@ -36,16 +36,16 @@ namespace acme
 
       //m_pplatform = nullptr;
 
-      m_papplication = this;
+      //m_papplication = this;
 
-      m_papexcontext = nullptr;
-      m_pauracontext = nullptr;
+      //m_papexcontext = nullptr;
+      //m_pauracontext = nullptr;
 
 
       m_papplication = nullptr;
-      m_pacmesession = nullptr;
-      //m_pacmesystem = nullptr;
-      m_pacmenode = nullptr;
+      //m_psession = nullptr;
+      //m_psystem = nullptr;
+      //m_pnode = nullptr;
       m_bKeepRunningPostedProcedures = true;
 
    }
@@ -58,16 +58,16 @@ namespace acme
 
       //m_pplatform = nullptr;
 
-      m_papplication = this;
+      //m_papplication = this;
 
-      m_papexcontext = nullptr;
-      m_pauracontext = nullptr;
+      //m_papexcontext = nullptr;
+      //m_pauracontext = nullptr;
 
 
       m_papplication = nullptr;
-      m_pacmesession = nullptr;
-      //m_pacmesystem = nullptr;
-      m_pacmenode = nullptr;
+      m_psession = nullptr;
+      m_psystem = nullptr;
+      m_pnode = nullptr;
 
 
    }
@@ -115,17 +115,17 @@ namespace acme
       __check_refdbg
 
 
-      // if(!m_pacmesystem)
+      // if(!m_psystem)
       // {
       //
-      //    m_pacmesystem = pparticle->m_papplication->m_pacmesystem;
+      //    m_psystem = pparticle->m_papplication->m_psystem;
       //
       // }
 
-      if(!m_pacmesession)
+      if(!m_psession)
       {
 
-         m_pacmesession = pparticle->m_papplication->m_pacmesession;
+         m_psession = pparticle->m_papplication->m_psession;
 
       }
 
@@ -136,16 +136,16 @@ namespace acme
 
       }
 
-      if (!m_pacmenode)
+      if (!m_pnode)
       {
 
-         m_pacmenode = pparticle->m_papplication->m_pacmenode;
+         m_pnode = pparticle->m_papplication->m_pnode;
 
       }
 
       __check_refdbg
 
-      m_papplication = this;
+      //m_papplication = this;
 
       __check_refdbg
 
@@ -153,7 +153,7 @@ namespace acme
 
       __check_refdbg
 
-      m_ptexttranslator->m_papplication = this;
+      //m_ptexttranslator->m_papplication = this;
 
    }
 
@@ -519,15 +519,15 @@ namespace acme
    ::file::watcher * context::file_watcher()
    {
 
-      return ::system()->file_watcher();
+      return application()->file_watcher();
 
    }
 
 
-   ::http::context * context::http()
+   ::plathttp::context * context::http()
    {
 
-      return ::system()->m_phttpcontext;
+      return application()->m_phttpcontext;
 
    }
 
@@ -583,7 +583,7 @@ namespace acme
    ::acme_file* context::acmefile() { return ::system()->acmefile(); }
    ::acme_path* context::acmepath() { return ::system()->acmepath(); }
    ::acme_directory* context::acmedirectory() { return ::system()->acmedirectory(); }
-   ::acme::node* context::node() { return ::system()->node(); }
+   ::platform::node* context::node() { return ::system()->node(); }
 
 
 
@@ -1405,6 +1405,6 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platfrom
 
 

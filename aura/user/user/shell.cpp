@@ -198,7 +198,7 @@ namespace user
    ::aura::session *shell:: get_session()
    {
 
-      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 
@@ -1608,7 +1608,7 @@ namespace user
       
       auto pnode = psystem->node();
       
-      auto pcontext = m_papplication->m_papexcontext;
+      auto pcontext = m_papplication;
       
       string strPath = pcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
       
@@ -1847,7 +1847,7 @@ namespace user
 
       int iReturn = -1;
 
-      auto pcontext = m_papplication->m_papexcontext;
+      auto pcontext = m_papplication;
 
       auto pathFinal = pcontext->defer_process_path(strPath);
 

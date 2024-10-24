@@ -1049,7 +1049,7 @@ pacmedirectory->create("/ca2core");
       //       if (m_iMatterFromHttpCache == -1)
       //       {
       //
-      //          ::file::path pathSide = m_papplication->m_papexcontext->side_get_matter_path("app/_matter/main");
+      //          ::file::path pathSide = m_papplication->side_get_matter_path("app/_matter/main");
       //
       //          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
@@ -3427,7 +3427,7 @@ pacmedirectory->create("/ca2core");
 
 pmessagebox->sync();
 
-         m_papplication->m_papexcontext->os().link_open(strUrl);
+         m_papplication->os().link_open(strUrl);
 
          return;
 
@@ -3444,7 +3444,7 @@ pmessagebox->sync();
 
       string strParam;
 
-      m_papplication->m_papexcontext->os().get_default_browser(strId, path, strParam);
+      m_papplication->os().get_default_browser(strId, path, strParam);
 
       if (strProfile.is_empty() || strProfile == "native")
       {
@@ -3541,7 +3541,7 @@ pmessagebox->sync();
          //if (m_strAppName == "app-core/commander")
          {
 
-            chromium(strUrl, strBrowser, strId, m_papplication->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
+            chromium(strUrl, strBrowser, strId, m_papplication->os().get_app_path("chrome"), strProfile, strParam);
 
          }
          //else
@@ -3967,7 +3967,7 @@ pmessagebox->sync();
 
       }
 
-      m_pacmenode->m_papexnode->get_firefox_installation_info(strBrowserPath, strBrowserDir);
+      m_pnode->m_papexnode->get_firefox_installation_info(strBrowserPath, strBrowserDir);
 
       //if (::failed(estatus))
       //{

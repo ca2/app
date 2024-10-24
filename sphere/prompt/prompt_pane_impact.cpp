@@ -356,7 +356,7 @@ namespace prompt
 
          //iptr i = 0;
 
-         pcontext->m_papexcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
+         pcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
 
          //string str;
 

@@ -127,7 +127,7 @@ namespace app_shader
    void application::get_shader_listing(::file::listing & listing)
    {
 
-      auto pcontext = m_papplication->m_papexcontext;
+      auto pcontext = m_papplication;
 
       bool bUseOwnResources = is_sandboxed();
 

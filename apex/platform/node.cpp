@@ -51,7 +51,7 @@ namespace apex
    i64 node::increment_reference_count()
    {
 
-      return acme::node::increment_reference_count();
+      return ::platform::node::increment_reference_count();
 
    }
 
@@ -59,7 +59,7 @@ namespace apex
    i64 node::decrement_reference_count()
    {
 
-      return acme::node::decrement_reference_count();
+      return ::platform::node::decrement_reference_count();
 
    }
 
@@ -72,7 +72,7 @@ namespace apex
 
       //auto estatus =
       
-      ::acme::node::on_initialize_particle();
+      ::platform::node::on_initialize_particle();
 
       //if (!estatus)
       //{

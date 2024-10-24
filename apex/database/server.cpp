@@ -38,7 +38,7 @@ namespace database
 
       //}
 
-      if (m_papplication->m_papexcontext->is_system() || m_papplication->m_papexcontext->is_session())
+      if (m_papplication->is_system() || m_papplication->is_session())
       {
 
          m_bRemote = false;

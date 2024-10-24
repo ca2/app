@@ -1644,7 +1644,7 @@ namespace user
    ::aura::session * user::get_session()
    {
 
-      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
 
    }
 

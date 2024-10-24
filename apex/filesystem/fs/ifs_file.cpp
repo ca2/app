@@ -5,6 +5,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/platform/http.h"
 #include "apex/platform/context.h"
 #include "apex/networking/http/context.h"
 

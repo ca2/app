@@ -279,7 +279,7 @@ namespace hi5
 
             auto pcontext = m_papplication;
             
-            auto psession = pcontext->m_pacmesession->m_pcoresession;
+            auto psession = pcontext->m_psession->m_pcoresession;
             
             auto puser = psession->m_puser->m_pcoreuser;
 

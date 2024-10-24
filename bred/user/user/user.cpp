@@ -1738,7 +1738,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_pacmesession->m_paurasession;
+//      auto psession = pcontext->m_psession->m_paurasession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //
@@ -1752,7 +1752,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_pacmesession->m_paurasession;
+//      auto psession = pcontext->m_psession->m_paurasession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //
@@ -1766,7 +1766,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_pacmesession->m_paurasession;
+//      auto psession = pcontext->m_psession->m_paurasession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //

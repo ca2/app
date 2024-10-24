@@ -242,10 +242,10 @@ namespace acme
       //
       // }
       //
-      // if (!m_pacmesystem)
+      // if (!m_psystem)
       // {
       //
-      //    m_pacmesystem = m_pplatform->m_psystem;
+      //    m_psystem = m_pplatform->m_psystem;
       //
       // }
 
@@ -389,19 +389,19 @@ namespace acme
       // here system starts
 
 #if 0
-      ::set_task(m_pacmesystem);
+      ::set_task(m_psystem);
 
-      m_pacmesystem->initialize_system();
+      m_psystem->initialize_system();
 
       //information() << "acme implement_application system_construct";
 
-      m_pacmesystem->system_construct(this);
+      m_psystem->system_construct(this);
 
       //information() << "acme implement_application create_os_node";
 
-      m_pacmesystem->create_os_node();
+      m_psystem->create_os_node();
 
-      auto pnode = m_pacmesystem->node();
+      auto pnode = m_psystem->node();
 
       pnode->node_main();
 

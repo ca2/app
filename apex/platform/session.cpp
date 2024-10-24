@@ -742,7 +742,7 @@ namespace apex
       ::platform::session::on_instantiate_application(papplication);
       //papp->m_papexsession = this;
       //papp = m_papexsystem;
-      //papp->m_pacmenode = m_pacmenode;
+      //papp->m_pnode = m_pnode;
       //papp->m_papexnode = m_papexnode;
 
    }

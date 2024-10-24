@@ -309,7 +309,7 @@ namespace apex
 
       ::platform::application::initialize(pparticle);
 
-      m_pacmesystem = m_papplication->m_pacmesystem;
+      m_psystem = m_papplication->m_psystem;
 
       defer_create_synchronization();
 
@@ -2881,7 +2881,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         system()->m_pacmenode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         system()->m_pnode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -4852,7 +4852,7 @@ namespace apex
    void application::app_set(string strPath, string strValue)
    {
 
-      return m_papplication->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
+      return m_papplication->sys_set(::file::path(m_strAppName) / strPath, strValue);
 
    }
 
@@ -4860,7 +4860,7 @@ namespace apex
    string application::app_get(string strPath, string strDefault)
    {
 
-      return m_papplication->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
+      return m_papplication->sys_get(::file::path(m_strAppName) / strPath, strDefault);
 
    }
 
@@ -5548,7 +5548,7 @@ namespace apex
 
       }
 
-      system()->m_pacmenode->m_papexnode->set_last_run_application_path(strAppId);
+      system()->m_pnode->m_papexnode->set_last_run_application_path(strAppId);
 
       node()->m_papexnode->on_start_application(this);
 
@@ -10131,7 +10131,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto papex = psystem->session()->m_pacmenode->m_papexnode;
+      auto papex = psystem->session()->m_pnode->m_papexnode;
 
       return papex->get_version();
 
@@ -10143,7 +10143,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto papex = psystem->m_pacmenode->m_papexnode;
+      auto papex = psystem->m_pnode->m_papexnode;
 
       return papex->_001InitializeShellOpen();
 

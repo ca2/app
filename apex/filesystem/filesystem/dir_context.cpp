@@ -1809,12 +1809,12 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 
    straMatterLocator.erase_all();
 
-   straMatterLocator.append(m_papplication->m_papexcontext->m_straMatterLocatorPriority);
+   straMatterLocator.append(m_papplication->m_straMatterLocatorPriority);
 
    if (bIncludeMain)
    {
 
-      straMatterLocator.add(m_papplication->m_papexcontext->matter_locator("app/main"));
+      straMatterLocator.add(m_papplication->matter_locator("app/main"));
 
    }
 
@@ -1976,7 +1976,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    else
    {
 
-      strDir = m_papplication->m_papexcontext->get_matter_cache_path(strDir);
+      strDir = m_papplication->get_matter_cache_path(strDir);
 
       listing.set_listing(strDir);
 
@@ -2101,7 +2101,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          ::file::path pathLs0 = straMatterLocator.first();
 
-         pathLs0 /= m_papplication->m_papexcontext->get_locale_schema_dir();
+         pathLs0 /= m_papplication->get_locale_schema_dir();
 
          pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
@@ -2169,7 +2169,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    string_array straLocaleSchema;
 
-   m_papplication->m_papexcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
+   m_papplication->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
    //::text::context * ptextcontext = nullptr;
 

@@ -965,14 +965,14 @@ namespace http
       ////      if(!bOk)
       ////      {
       ////
-      ////         //bool bAutoDetect = m_papplication->m_papexcontext->os().connection_settings_get_auto_detect();
+      ////         //bool bAutoDetect = m_papplication->os().connection_settings_get_auto_detect();
       ////
       ////         //if(bAutoDetect)
       ////         //{
       ////
       ////         //   informationf("proxy auto_detect true");
       ////
-      ////         //   string strUrl = m_papplication->m_papexcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_papplication->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -990,7 +990,7 @@ namespace http
       ////
       ////         //   informationf("proxy auto_detect false");
       ////
-      ////         //   string strUrl = m_papplication->m_papexcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_papplication->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {

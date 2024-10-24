@@ -206,7 +206,7 @@
 //
 //#endif
 //
-//      auto strMain = pcontext->m_papexcontext->dir()->install() / "app/_appmatter/main";
+//      auto strMain = pcontext->dir()->install() / "app/_appmatter/main";
 //
 //      if (!load(strMain))
 //      {
@@ -288,46 +288,46 @@
 //      if(pcontext != nullptr)
 //      {
 //
-//         //pcontext->m_papexcontext->defer_ok(this);
+//         //pcontext->defer_ok(this);
 //
-//         if(pcontext->m_papexcontext->m_pschema != nullptr)
+//         if(pcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
+//            str = (*pcontext->m_pschema)[atom];
 //            if(str.has_char())
 //               return str;
 //
 //         }
 //
-//         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
+//         if(pcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
+//            str = (*pcontext->m_pschemaLocale)[atom];
 //            if(str.has_char())
 //               return str;
 //         }
 //
-//         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
+//         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
+//            str = (*pcontext->m_schemaptra[i])[atom];
 //            if(str.has_char())
 //               return str;
 //
 //         }
 //
 //      }
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
 //      {
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            return str;
 //      }
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(str.has_char())
 //         return str;
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            return str;
 //      }
@@ -438,28 +438,28 @@
 //      if(pcontext != nullptr)
 //      {
 //
-//         //pcontext->m_papexcontext->defer_ok(this);
+//         //pcontext->defer_ok(this);
 //
-//         if(pcontext->m_papexcontext->m_pschema != nullptr)
+//         if(pcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
+//            str = (*pcontext->m_pschema)[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //
 //         }
 //
-//         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
+//         if(pcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
+//            str = (*pcontext->m_pschemaLocale)[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //         }
 //
-//         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
+//         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
+//            str = (*pcontext->m_schemaptra[i])[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //
@@ -467,10 +467,10 @@
 //
 //      }
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            stra.add(str);
 //
@@ -480,10 +480,10 @@
 //      if(str.has_char())
 //         stra.add(str);
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            stra.add(str);
 //
@@ -842,28 +842,28 @@
 //      if(pcontext != nullptr)
 //      {
 //
-//         //pcontext->m_papexcontext->defer_ok(this);
+//         //pcontext->defer_ok(this);
 //
-//         if(pcontext->m_papexcontext->m_pschema != nullptr)
+//         if(pcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
+//            str = (*pcontext->m_pschema)[atom];
 //            if(!str.case_insensitive_order(psz))
 //               return true;
 //
 //         }
 //
-//         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
+//         if(pcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
+//            str = (*pcontext->m_pschemaLocale)[atom];
 //            if(!str.case_insensitive_order(psz))
 //               return true;
 //         }
 //
-//         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
+//         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
+//            str = (*pcontext->m_schemaptra[i])[atom];
 //            if(!str.case_insensitive_order(psz))
 //               return true;
 //
@@ -871,10 +871,10 @@
 //
 //      }
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(!str.case_insensitive_order(psz))
 //            return true;
 //
@@ -884,10 +884,10 @@
 //      if(!str.case_insensitive_order(psz))
 //         return true;
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(!str.case_insensitive_order(psz))
 //            return true;
 //
@@ -911,28 +911,28 @@
 //      if(pcontext != nullptr)
 //      {
 //
-//         //pcontext->m_papexcontext->defer_ok(this);
+//         //pcontext->defer_ok(this);
 //
-//         if(pcontext->m_papexcontext->m_pschema != nullptr)
+//         if(pcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
+//            str = (*pcontext->m_pschema)[atom];
 //            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //
 //         }
 //
-//         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
+//         if(pcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
+//            str = (*pcontext->m_pschemaLocale)[atom];
 //            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //         }
 //
-//         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
+//         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
+//            str = (*pcontext->m_schemaptra[i])[atom];
 //            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //
@@ -940,10 +940,10 @@
 //
 //      }
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //            return true;
 //
@@ -953,10 +953,10 @@
 //      if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //         return true;
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //            return true;
 //
@@ -980,28 +980,28 @@
 //      if(pcontext != nullptr)
 //      {
 //
-//         //pcontext->m_papexcontext->defer_ok(this);
+//         //pcontext->defer_ok(this);
 //
-//         if(pcontext->m_papexcontext->m_pschema != nullptr)
+//         if(pcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
+//            str = (*pcontext->m_pschema)[atom];
 //            if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //               return true;
 //
 //         }
 //
-//         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
+//         if(pcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
+//            str = (*pcontext->m_pschemaLocale)[atom];
 //            if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //               return true;
 //         }
 //
-//         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
+//         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
+//            str = (*pcontext->m_schemaptra[i])[atom];
 //            if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //               return true;
 //
@@ -1009,10 +1009,10 @@
 //
 //      }
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //            return true;
 //
@@ -1022,10 +1022,10 @@
 //      if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //         return true;
 //
-//      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
+//      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
+//         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && strTopic.case_insensitive_begins_eat(str))
 //            return true;
 //

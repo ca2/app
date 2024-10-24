@@ -37,6 +37,38 @@ namespace platform
    public:
 
 
+      virtual void on_add_session(::platform::session* papexsession);
+
+      //virtual void initialize_rich_text();
+
+      virtual ::xml::xml* _xml();
+
+      virtual void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none);
+
+
+      virtual void create_audio();
+
+      virtual void defer_audio();
+
+      virtual void defer_multimedia();
+
+      virtual void defer_audio_mixer();
+
+      virtual ::factory::factory_pointer audio_mixer_factory();
+
+      //virtual bool has_audio() override;
+
+      virtual ::aqua::multimedia* defer_get_multimedia();
+
+      virtual ::aqua::audio_mixer * get_audio_mixer();
+
+
+      virtual ::aqua::audio * audio();
+
+      virtual bool has_audio();
+
+      virtual  ::aqua::multimedia * multimedia();
+
 
    };
 

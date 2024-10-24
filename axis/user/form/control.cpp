@@ -1298,7 +1298,7 @@ namespace user
    ::axis::session * form_control::get_session()
    {
 
-      return ::is_set(m_papplication) ? m_papplication->m_pacmesession->m_paxissession : nullptr;
+      return ::is_set(m_papplication) ? m_papplication->m_psession->m_paxissession : nullptr;
 
    }
 

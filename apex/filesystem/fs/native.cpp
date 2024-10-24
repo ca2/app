@@ -63,7 +63,7 @@ namespace fs
 
       }
 
-      if(m_papplication->m_papexcontext->os_is_alias(path))
+      if(m_papplication->os_is_alias(path))
       {
 
          return true;

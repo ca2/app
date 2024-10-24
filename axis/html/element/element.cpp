@@ -1972,7 +1972,7 @@ namespace html
    //void element::nextstyle(::user::style_context * pcontext)
    //{
 
-   //   pcontext->m_papexcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;
+   //   pcontext->m_pstyle = m_pdata->m_pcoredata->m_pform;
 
    //}
 

@@ -1638,7 +1638,7 @@ namespace user
    //   else
    //   {
 
-   //      pcontext->m_papexcontext->pstyle.release();
+   //      pcontext->pstyle.release();
 
    //   }
 

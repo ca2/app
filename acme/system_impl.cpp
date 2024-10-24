@@ -139,7 +139,7 @@ namespace platform
 
       }
 
-      m_pacmesystem = this;
+      m_psystem = this;
       m_papexsystem = nullptr;
       m_paquasystem = nullptr;
       m_paurasystem = nullptr;
@@ -202,7 +202,7 @@ namespace platform
 
       trace_category_static_term();
 
-      m_pacmesystem = nullptr;
+      m_psystem = nullptr;
       m_papexsystem = nullptr;
       m_paquasystem = nullptr;
       m_paurasystem = nullptr;
@@ -653,7 +653,7 @@ namespace platform
    }
 
 
-   //   ::acme::node * system::node()
+   //   ::platform::node * system::node()
    //   {
    //
    //      return m_pnode;
@@ -736,19 +736,19 @@ namespace platform
 
       __construct(m_pnode);
 
-      m_pacmenode = m_pnode;
+      m_pnode = m_pnode;
 
-      if (m_pacmesession)
+      if (m_psession)
       {
 
-         m_pacmesession->m_pacmenode = m_pnode;
+         m_psession->m_pnode = m_pnode;
 
       }
 
       if (m_papplication)
       {
 
-         m_papplication->m_pacmenode = m_pnode;
+         m_papplication->m_pnode = m_pnode;
 
       }
 
@@ -853,9 +853,9 @@ namespace platform
 
       // }
 
-      //estatus = __construct(m_pacmenode);
+      //estatus = __construct(m_pnode);
 
-      //if (!m_pacmenode)
+      //if (!m_pnode)
       //{
 
       //   return error_no_memory;
@@ -2217,13 +2217,13 @@ namespace platform
       psession->initialize(this);
 
       psession->m_papplication = m_papplication;
-      psession->m_pacmesystem = this;
-      psession->m_pacmenode = m_pacmenode;
+      psession->m_psystem = this;
+      psession->m_pnode = m_pnode;
 
       if (m_papplication)
       {
 
-         m_papplication->m_pacmesession = psession->m_pacmesession;
+         m_papplication->m_psession = psession->m_psession;
 
       }
 
@@ -2290,16 +2290,16 @@ namespace platform
       if (pacmesession->m_iEdge == 0)
       {
 
-         if (!m_pacmesession)
+         if (!m_psession)
          {
 
-            m_pacmesession = pacmesession;
+            m_psession = pacmesession;
 
          }
 
       }
 
-      pacmesession->m_pacmesystem = this;
+      pacmesession->m_psystem = this;
 
 
       m_psystemComposite->on_add_session(pacmesession);
@@ -2786,7 +2786,7 @@ namespace platform
       if (m_papplication)
       {
 
-         m_papplication->m_pacmesystem = this;
+         m_papplication->m_psystem = this;
 
       }
 

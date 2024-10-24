@@ -56,7 +56,7 @@
 //
 //      //auto& image = app.image();
 //
-//      auto pcontext = m_papplication->m_papexcontext;
+//      auto pcontext = m_papplication;
 //
 //      ::file::path pathIcon = pcontext->dir()->matter("matter://main/icon.ico");
 //

@@ -1007,7 +1007,7 @@ namespace userfs
 
             ::file::path pathUser = pfsitem->user_path();
 
-            auto pcontext = m_papplication->m_papexcontext;
+            auto pcontext = m_papplication;
 
             ::file::path pathProcessed = pfsitem->final_path();
 

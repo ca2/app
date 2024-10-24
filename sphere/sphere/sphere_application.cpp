@@ -804,7 +804,7 @@ namespace sphere
 
    //   strSentinelPath = dir()->install() / "stage/x86/app.sentinel.exe";
 
-   //   pcontext->m_papexcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
+   //   pcontext->os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 
    //   return ::asphere::department::on_install();
    //}

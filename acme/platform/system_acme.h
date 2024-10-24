@@ -140,7 +140,7 @@ namespace platform
 
       ::pointer<class ::xml::xml>                                     m_pxml;
 
-      ::pointer<class ::acme::node>                                     m_pnode;
+      ::pointer<class ::platform::node>                                     m_pnode;
       ::pointer<geometry::geometry>                                   m_pgeometry;
 
 
@@ -231,7 +231,7 @@ namespace platform
 
       virtual ::networking::networking * networking();
 
-      virtual ::pointer<::acme::node> & node();
+      virtual ::pointer<::platform::node> & node();
 
       virtual class ::base64 * base64();
 

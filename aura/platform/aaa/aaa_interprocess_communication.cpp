@@ -126,7 +126,7 @@ namespace aura
    void inteprocess_channel::call::exclude_this_app()
    {
 
-      m_iaExclude.add(pcontext->m_papexcontext->os().get_pid());
+      m_iaExclude.add(pcontext->os().get_pid());
 
    }
 
@@ -274,7 +274,7 @@ namespace aura
 
       }
 
-      int iPid = pcontext->m_papexcontext->os().get_pid();
+      int iPid = pcontext->os().get_pid();
 
       //defer_add_module(file()->module(), iPid);
 

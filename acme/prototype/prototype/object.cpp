@@ -3810,7 +3810,7 @@ bool object::IsSerializable() const
 //::platform::session * object::get_session() const
 //{
 //
-//   return m_papplication ? m_papplication->m_pacmesession : nullptr;
+//   return m_papplication ? m_papplication->m_psession : nullptr;
 //
 //}
 

@@ -36,7 +36,7 @@ namespace bred
 
       ::base::application::on_set_platform();
 
-      factory()->add_factory_item < ::bred::system, ::acme::system >();
+      factory()->add_factory_item < ::bred::system, ::platform::system >();
 
    }
 

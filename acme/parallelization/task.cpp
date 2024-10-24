@@ -437,7 +437,7 @@ void task::run()
 
       run_posted_procedures();
 
-      if (defer_implement(m_pcontext))
+      if (defer_implement(m_papplication))
       {
 
          return;
@@ -1386,14 +1386,14 @@ bool task::has_message() const
       if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask = m_pcontext;
+         pobjectParentTask = m_papplication;
 
       }
 
       if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask = m_pcontext;
+         pobjectParentTask = m_papplication;
 
       }
 
@@ -1775,7 +1775,7 @@ bool task::has_message() const
 //      if (::is_null(pobjectParentTask))
 //      {
 //
-//         pobjectParentTask = m_pcontext;
+//         pobjectParentTask = m_papplication;
 //
 //      }
 //
@@ -2547,7 +2547,7 @@ void preempt()
 //::factory::factory_pointer & get_system_factory()
 //{
 //
-//   return ::acme::get()->m_pplatform->m_pfactory;
+//   return ::system()->m_pplatform->m_pfactory;
 //
 //}
 
@@ -2580,7 +2580,7 @@ namespace platform
 ::collection::index task_index(itask_t itask)
 {
 
-   return ::acme::get()->m_pplatform->task_index(itask);
+   return ::system()->task_index(itask);
 
 }
 

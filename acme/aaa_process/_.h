@@ -37,7 +37,7 @@ CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scope
 CLASS_DECL_ACME string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine,const ::scoped_string & scopedstrParam);
 
 
-//CLASS_DECL_ACME bool launch_command(::acme::system * psystem, const char * const pszCommand);
+//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const char * const pszCommand);
 
 
 CLASS_DECL_ACME string process_configuration_name();

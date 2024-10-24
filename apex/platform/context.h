@@ -2,7 +2,7 @@
 
 
 #include "apex/parallelization/thread.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/filesystem/filesystem/enumerator.h"
 #include "acme/prototype/collection/string_map.h"
 
@@ -16,7 +16,7 @@ namespace apex
 
    class CLASS_DECL_APEX context :
       virtual public ::thread,
-      virtual public ::acme::context,
+      virtual public ::platform::context,
       virtual public ::file::enumerator
    {
    public:
@@ -214,7 +214,6 @@ namespace apex
       virtual void perform(::nano::http::get * pget);
 
 
-      ::url::url http_get_effective_url(const ::url::url & url) override;
 
 
    };

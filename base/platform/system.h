@@ -24,7 +24,7 @@ namespace base
 
       
 
-      //void on_add_session(::acme::session * papexsession) override;
+      //void on_add_session(::platform::session * papexsession) override;
 
    };
 

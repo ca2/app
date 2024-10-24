@@ -2421,7 +2421,7 @@ namespace aura
    void session::set_app_title(const ::string & strAppId, const ::string & strTitle)
    {
 
-      ::pointer<::acme::application>papplication;
+      ::pointer<::platform::application>papplication;
 
       if (m_applicationa.lookup(strAppId, papplication) && papplication)
       {
@@ -2498,7 +2498,7 @@ namespace aura
    //}
 
 
-   void session::on_instantiate_application(::acme::application* papplication)
+   void session::on_instantiate_application(::platform::application* papplication)
    {
 
       ::aqua::session::on_instantiate_application(papplication);

@@ -429,7 +429,7 @@ namespace file
 //
 //      strFormat.formatf("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
 //
-//      ::acme::application* papp = ::get_app();
+//      ::platform::application* papp = ::get_app();
 //
 //      information(strFormat);
 //

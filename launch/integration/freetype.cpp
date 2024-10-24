@@ -29,9 +29,9 @@ namespace console_integration
 
       ::console_integration::build::initialize(pparticle);
 
-      m_pcontext->m_strName = "freetype";
+      m_papplication->m_strName = "freetype";
       
-      m_pcontext->m_pathDownloadURL = "https://github.com/freetype/freetype.git";
+      m_papplication->m_pathDownloadURL = "https://github.com/freetype/freetype.git";
 
    }
 

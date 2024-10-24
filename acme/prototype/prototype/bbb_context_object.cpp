@@ -216,19 +216,19 @@ void object::process_exit_status(const ::e_status & estatus)
          if (m_papp)
          {
 
-            m_pcontext = m_papp;
+            m_papplication = m_papp;
 
          }
          else if (m_psession)
          {
 
-            m_pcontext = m_psession;
+            m_papplication = m_psession;
 
          }
          else if (system())
          {
 
-            m_pcontext = system();
+            m_papplication = system();
 
          }
 
@@ -296,7 +296,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
    //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   //inline ::context* object::get_context() const { return m_pcontext; }
+   //inline ::context* object::get_context() const { return m_papplication; }
 
    //inline ::thread* object::get_thread() const { return m_pthread; }
 

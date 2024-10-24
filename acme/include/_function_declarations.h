@@ -31,7 +31,7 @@ CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scope
 CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage);
 
 
-//CLASS_DECL_ACME::acme::system* system();
+//CLASS_DECL_ACME::platform::system* system();
 
 
 //inline bool __enum_is_failed(const ::e_status& e);
@@ -295,5 +295,17 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle *
 
 
 CLASS_DECL_ACME void node_application_send_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
+
+namespace platform
+{
+
+   class system;
+
+} // namespace platform
+
+
+inline ::platform::system * system();
+
+
 
 

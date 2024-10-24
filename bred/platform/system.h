@@ -26,7 +26,7 @@ namespace bred
 
       virtual void initialize(::particle * pparticle) override;
 
-      //virtual void on_add_session(::acme::session * pacmesession) override;
+      //virtual void on_add_session(::platform::session * pacmesession) override;
 
 
    };

@@ -7,7 +7,7 @@
 ////#include "data.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 //#include "acme/platform/sequencer.h"
 #include "aura/user/user/check_box.h"
 #include "core/user/user/list_column.h"
@@ -78,7 +78,7 @@ namespace filemanager
 
             pcolumn->m_iWidth = 400;
             pcolumn->m_iSubItem = 0;
-            pcolumn->m_text = m_pcontext->__text("text://filemanager/list_impact/folder_path/Folder Path");
+            pcolumn->m_text = m_papplication->__text("text://filemanager/list_impact/folder_path/Folder Path");
 
 
          }
@@ -90,7 +90,7 @@ namespace filemanager
             pcolumn->m_atom = "check_recursive";
             pcolumn->m_iWidth = 80;
             pcolumn->m_iSubItem = 1;
-            pcolumn->m_text = m_pcontext->__text("text://filemanager/list_impact/recursive/Recursive");
+            pcolumn->m_text = m_papplication->__text("text://filemanager/list_impact/recursive/Recursive");
 
             auto pcheckbox = __create_new <  ::user::check_box >();
             pcheckbox->m_atom = pcolumn->m_atom;

@@ -11,7 +11,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 ////#include "acme/exception/exception.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/library.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
@@ -70,12 +70,18 @@ namespace platform
 {
 
 
-   //::platform::platform * platform::s_pplatform = nullptr;
+   ::platform::platform * platform::s_p = nullptr;
 
 
-   platform::platform(::acme::acme * pacme) :
-      m_pacme(pacme)
+   platform::platform()
    {
+
+      if (!s_p)
+      {
+
+         s_p = this;
+
+      }
       
       m_iExitCode = 0;
 
@@ -94,13 +100,13 @@ namespace platform
    platform::~platform()
    {
 
-      //if (::is_set(m_pacmeapplication))
+      //if (::is_set(m_papplication))
       //{
 
-      //   if (m_pacmeapplication->m_countReference > 0)
+      //   if (m_papplication->m_countReference > 0)
       //   {
 
-      //      m_pacmeapplication->check
+      //      m_papplication->check
 
       //   }
 
@@ -212,7 +218,7 @@ namespace platform
 
       m_bVerboseLog = true;
       m_bConsole = false;
-      //m_pacmeapplication = nullptr;
+      //m_papplication = nullptr;
       m_pmemorycounter = nullptr;
       m_bOutputDebugString = true;
 
@@ -240,7 +246,7 @@ namespace platform
 
       m_bVerboseLog = true;
       m_bConsole = false;
-      //m_pacmeapplication = nullptr;
+      //m_papplication = nullptr;
       m_pmemorycounter = nullptr;
       m_bOutputDebugString = true;
 
@@ -607,7 +613,7 @@ namespace platform
       if (!pfactory)
       {
 
-         m_psystem->__construct_new(pfactory);
+         ::system()->__construct_new(pfactory);
 
       }
 
@@ -735,16 +741,16 @@ namespace platform
    void platform::defer_initialize_platform()
    {
 
-      if (!m_psystem)
-      {
-
-         factory()->__raw_construct(m_psystem);
-
-         m_psystem->set_platform();
-
-         //initialize(m_psystem);
-
-         m_psystem->on_initialize_particle();
+      // if (!m_psystem)
+      // {
+      //
+      //    factory()->__raw_construct(m_psystem);
+      //
+      //    m_psystem->set_platform();
+      //
+      //    //initialize(m_psystem);
+      //
+      //    m_psystem->on_initialize_particle();
 
 	 auto strWindowingDebug = get_argument_begins_eat("--windowing-debug=");
 
@@ -755,7 +761,7 @@ namespace platform
 g_bWindowingOutputDebugString = true;
 }
 
-      }
+      //}
 
    }
 
@@ -1214,9 +1220,9 @@ g_bWindowingOutputDebugString = true;
 
          string strMessage = "Library couldn't be opened : " + exception.m_strMessage;
 
-         string strDetails = exception.get_consolidated_details(m_psystem);
+         string strDetails = exception.get_consolidated_details(this);
 
-         auto pmessagebox = __initialize_new_with(m_psystem) ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
             strDetails);
 
          pmessagebox->async();
@@ -1235,7 +1241,7 @@ g_bWindowingOutputDebugString = true;
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      auto plibrary = m_psystem->__create_new < ::acme::library >();
+      auto plibrary = __create_new < ::acme::library >();
 
       //plibrary->initialize_matter(this);
 
@@ -1282,7 +1288,7 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      auto plibrary = m_psystem->__create_new < ::acme::library >();
+      auto plibrary = __create_new < ::acme::library >();
 
       plibrary->m_strName = strLibrary;
 
@@ -1314,7 +1320,7 @@ g_bWindowingOutputDebugString = true;
       catch (library_not_loaded& librarynotloaded)
       {
 
-         auto pmessagebox = __initialize_new_with(m_psystem) ::message_box(librarynotloaded.get_message(),
+         auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
             "Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
 
          pmessagebox->async();

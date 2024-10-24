@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 
 
 //void assert_ok() const override                                                     \
@@ -40,7 +40,7 @@
 void on_initialize_particle() override                                             \
 {                                                                                      \
                                                                                        \
-   m_papp = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
+   m_papp = this->m_papplication ? this->m_papplication->m_papplication : nullptr;             \
                                                                                        \
    BASE1::on_initialize_particle();                                      \
                                                                        \

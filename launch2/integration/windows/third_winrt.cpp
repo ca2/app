@@ -42,9 +42,9 @@ namespace console_integration
 
       acmenode()->integration_factory();
 
-      __construct(m_pcontext);
+      __construct(m_papplication);
 
-      m_pcontext->m_strName = "third_winrt";
+      m_papplication->m_strName = "third_winrt";
 
    }
 
@@ -74,7 +74,7 @@ namespace console_integration
 
       //initialize_tts_speaker();
 
-      m_pcontext->prepare_compile_and_link_environment();
+      m_papplication->prepare_compile_and_link_environment();
 
    }
 
@@ -139,67 +139,67 @@ namespace console_integration
       try
       {
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=Win32");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=Win32");
 
          speak(1, 16, "Universal Windows Intel 32-bit Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=Win32");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=Win32");
 
          speak(2, 16, "Universal Windows Intel 32-bit Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=Win32");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=Win32");
 
          speak(3, 16, "Universal Windows Intel 32-bit Static Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=Win32");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=Win32");
 
          speak(4, 16, "Universal Windows Intel 32-bit Static Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=x64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=x64");
 
          speak(5, 16, "Universal Windows Intel 64-bit Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=x64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=x64");
 
          speak(6, 16, "Universal Windows Intel 64-bit Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=x64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=x64");
 
          speak(7, 16, "Universal Windows Intel 64-bit Static Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=x64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=x64");
 
          speak(8, 16, "Universal Windows Intel 64-bit Static Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=ARM");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=ARM");
 
          speak(9, 16, "Universal Windows ARM 32-bit Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=ARM");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=ARM");
 
          speak(10, 16, "Universal Windows ARM 32-bit Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=ARM");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=ARM");
 
          speak(11, 16, "Universal Windows ARM 32-bit Static Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=ARM");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=ARM");
 
          speak(12, 16, "Universal Windows ARM 32-bit Static Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=ARM64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Debug\";Platform=ARM64");
 
          speak(13, 16, "Universal Windows ARM 64-bit Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=ARM64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"Release\";Platform=ARM64");
 
          speak(14, 16, "Universal Windows ARM 64-bit Release", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=ARM64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticDebug\";Platform=ARM64");
 
          speak(15, 16, "Universal Windows ARM 64-bit Static Debug", iExitCode);
 
-         iExitCode = m_pcontext->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=ARM64");
+         iExitCode = m_papplication->command_system("msbuild.exe C:\\main\\solution-universal_windows\\u_third.sln /t:Rebuild /p:Configuration=\"StaticRelease\";Platform=ARM64");
 
          speak(16, 16, "Universal Windows Intel 64-bit Static Release", iExitCode);
 

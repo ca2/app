@@ -18,7 +18,7 @@ class CLASS_DECL_ACME tracer :
 public:
 
 
-   //::acme::context *           m_pcontext;
+   //::acme::context *           m_papplication;
    ::pointer < ::logger >          m_plogger;
 
 

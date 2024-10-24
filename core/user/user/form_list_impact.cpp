@@ -4,7 +4,7 @@
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"

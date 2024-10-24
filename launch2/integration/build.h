@@ -21,7 +21,7 @@ namespace console_integration
       
 
       ::file::path                                    m_pathPrefixBase;
-      ::pointer < ::integration::context >            m_pcontext;
+      ::pointer < ::integration::context >            m_papplication;
 
 
       build();

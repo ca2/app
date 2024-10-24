@@ -148,23 +148,23 @@ namespace gpu
    {
    public:
       
-      context *      m_pcontext;
+      context *      m_papplication;
       ::e_status     m_estatus;
       critical_section m_cs;
       
       context_lock(context * pcontext):
          m_estatus(error_failed),
-         m_pcontext(pcontext)
+         m_papplication(pcontext)
       {
          
-         if(m_pcontext)
+         if(m_papplication)
          {
 
             m_cs.lock();
             try
             {
 
-               m_pcontext->lock_context();
+               m_papplication->lock_context();
 
                m_estatus = success;
 
@@ -183,13 +183,13 @@ namespace gpu
       ~context_lock()
       {
          
-         if(m_pcontext)
+         if(m_papplication)
          {
          
             if(m_estatus)
             {
             
-               m_pcontext->unlock_context();
+               m_papplication->unlock_context();
                
             }
             m_cs.unlock();

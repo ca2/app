@@ -51,7 +51,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/critical_section.h"
 //#include "acme/user/user/conversation.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 //#include "acme/handler/step_function.h"
 
 //template < typename SEQUENCE >
@@ -444,7 +444,7 @@ sequence::~sequence()
 //
 //      };
 //      
-//      m_pcontext->post_procedure(λ);
+//      m_papplication->post_procedure(λ);
 //
 //   }
 //   else 

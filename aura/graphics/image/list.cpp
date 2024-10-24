@@ -418,7 +418,7 @@ namespace image
    ////
    ////   ::file::path path = payloadFile.get_file_path();
    ////
-   ////   path = m_pcontext->defer_process_matter_path(path);
+   ////   path = m_papplication->defer_process_matter_path(path);
    ////
    ////   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
    ////      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
@@ -460,7 +460,7 @@ namespace image
    //   fork([this, payloadFile, iItem]()
    //      {
    //
-   //         auto pcontext = m_pcontext->m_pauracontext;
+   //         auto pcontext = m_papplication->m_pauracontext;
    //
    //         auto pimagecontext = pcontext->image_context();
    //

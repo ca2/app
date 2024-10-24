@@ -2961,7 +2961,7 @@ namespace url
 ////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::ansi_character * pszServerName, int bInteractive)
 ////{
 ////
-////   ::acme::application * papp = (::acme::application *) instance;
+////   ::platform::application * papp = (::platform::application *) instance;
 ////
 ////   ::account::user user;
 ////

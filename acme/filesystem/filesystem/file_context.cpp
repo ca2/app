@@ -34,7 +34,7 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 //#include "apex/networking/http/context.h"
 #include "acme/platform/application.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 //#include "acme/platform/machine_event.h"
 //#include "acme/platform/machine_event_central.h"
 //#include "acme/platform/os_context.h"
@@ -110,14 +110,14 @@ void file_context::initialize(::particle * pparticle)
 bool file_context::exists(const ::file::path &pathParam)
 {
 
-   if (::is_null(m_pcontext))
+   if (::is_null(m_papplication))
    {
 
       throw ::exception(error_null_pointer);
 
    }
 
-   ::file::path path = m_pcontext->defer_process_path(pathParam);
+   ::file::path path = m_papplication->defer_process_path(pathParam);
 
    if (path.flags().is_clear(::file::e_flag_required) && path.is_empty())
    {
@@ -143,7 +143,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //bool file_context::is_file_or_dir(const ::file::path & path, ::file::enum_type * petype)
 //{
 //
-//   path = m_pcontext->defer_process_matter_path(path, papp, bOptional, bNoCache);
+//   path = m_papplication->defer_process_matter_path(path, papp, bOptional, bNoCache);
 //
 //   if (bOptional && path.is_empty())
 //   {
@@ -179,7 +179,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
       }
 
-      return system()->http_get_type(path, pvarQuery, set);
+      return http()->get_type(path, pvarQuery, set);
 
    }
 
@@ -381,7 +381,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    auto psystem = system();
 
-   auto pfilesystem = psystem->m_pfilesystem;
+   auto pfilesystem = psystem->filesystem();
 
    return pfilesystem->m_pathModule;
 
@@ -1461,7 +1461,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __allocate ::memory_file(pmemory);
 
-      system()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
+      system()->folder_factory()->__construct(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1732,7 +1732,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    auto psystem = system();
 
-   auto pacmefile = psystem->m_pacmefile;
+   auto pacmefile = psystem->acmefile();
 
    ::file::path pathTarget;
 
@@ -2517,7 +2517,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       strIndex.formatf("%08x\\", i);
 
-      strTempFile = m_pcontext->system()->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+      strTempFile = m_papplication->system()->dirsystem()->m_pathUpload / (strTime + strIndex + pathCurrent);
 
       if (!exists(strTempFile))
       {
@@ -3407,9 +3407,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->http_download_mutex());
 
-      return system()->m_straHttpDownloading.contains(url.as_string()) || system()->m_straHttpExists.contains(url.as_string());
+      return system()->http_download_array().contains(url.as_string()) || system()->http_exists_array().contains(url.as_string());
 
       });/* .failed())
    {
@@ -3421,7 +3421,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    {
 
-      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->http_download_mutex());
 
       if (bDoCache && acmefile()->exists(pathCache))
       {
@@ -3444,9 +3444,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->http_download_mutex());
 
-      system()->m_straHttpDownloading.add(url.as_string());
+      system()->http_download_array().add(url.as_string());
 
    }
 
@@ -3474,7 +3474,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
+      _synchronous_lock synchronouslock(system()->http_download_mutex());
 
       try
       {
@@ -3494,7 +3494,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       try
       {
 
-         system()->m_straHttpDownloading.erase(url.as_string());
+         system()->http_download_array().erase(url.as_string());
 
       }
       catch (...)
@@ -3714,7 +3714,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    }
 
-   auto pathProcessed = m_pcontext->defer_process_path(path);
+   auto pathProcessed = m_papplication->defer_process_path(path);
 
    if(path == "matter://main/icon-256.png")
    {
@@ -4589,7 +4589,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
    auto pfolder = system()->create < ::folder >("folder", "zip");
 
-   pfolder->initialize(m_pcontext);
+   pfolder->initialize(m_papplication);
 
    pfolder->open_for_reading(pfileZip);
 
@@ -4605,7 +4605,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
    auto pfolder = system()->create < ::folder >("folder", "zip");
 
-   pfolder->initialize(m_pcontext);
+   pfolder->initialize(m_papplication);
 
    pfolder->open_for_reading(pfileZip);
 

@@ -10,7 +10,7 @@ namespace launch
 
 
    class application :
-      virtual public ::acme::application
+      virtual public ::platform::application
    {
    public:
 

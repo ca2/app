@@ -28,7 +28,7 @@ public:
 
 
    class ::main *                m_pmain;
-   ::pointer<APPLICATION>       m_pacmeapplication;
+   ::pointer<APPLICATION>       m_papplication;
 
 
    app_runner(int argc, char * argv[], char * envp[], char * res_start, char * res_end)
@@ -50,7 +50,7 @@ public:
 
       m_pmain->m_pchar_binary__matter_zip_end = res_end;
 
-      m_pacmeapplication = __allocate APPLICATION();
+      m_papplication = __allocate APPLICATION();
 
    }
 
@@ -70,7 +70,7 @@ public:
    ~app_runner()
    {
 
-      m_pacmeapplication.release();
+      m_papplication.release();
 
       ::acme::del(m_pmain);
 

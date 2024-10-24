@@ -20,7 +20,7 @@ namespace user
       string                              m_strApp;
       string                              m_strQuery;
       ::pointer<::aura::session>         m_pbergedgeParent;
-      ::pointer<::aura::application>     m_pacmeapplication;
+      ::pointer<::aura::application>     m_papplication;
       bool                                m_bMakeVisible;
       ::pointer<::user::interaction>     m_puserinteractionParent;
       property_set                        m_setParameters;

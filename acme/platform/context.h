@@ -5,7 +5,7 @@
 #include "acme/platform/message_box.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -16,16 +16,16 @@ namespace acme
    public:
 
 
-      ::platform::platform *                          m_pplatform;
+      //::platform::platform *                          m_pplatform;
 
 
       ::apex::context *                               m_papexcontext;
       ::aura::context *                               m_pauracontext;
 
 
-      ::acme::application*                            m_pacmeapplication;
-      ::acme::session *                               m_pacmesession;
-      ::acme::system *                                m_pacmesystem;
+      ::platform::application*                            m_papplication;
+      ::platform::session *                               m_pacmesession;
+      //::platform::system *                                m_pacmesystem;
       ::acme::node *                                  m_pacmenode;
 
       ::pointer<::text::translator>                   m_ptexttranslator;
@@ -77,7 +77,7 @@ namespace acme
       virtual ::text::text __text(const ::atom& atom) override;
 
 
-      inline ::acme::system * system() { return m_pacmesystem; }
+      //inline ::platform::system * system();
       ::acme::node * node();
 
 
@@ -129,11 +129,11 @@ namespace acme
 
 
       virtual string matter_locator(string strApp);
-      virtual string matter_locator(::acme::application * papp);
+      virtual string matter_locator(::platform::application * papp);
 
 
       virtual void add_matter_locator(string strApp);
-      virtual void add_matter_locator(::acme::application * papp);
+      virtual void add_matter_locator(::platform::application * papp);
 
 
       virtual ::file::path defer_process_matter_path(::file::path path);
@@ -155,28 +155,11 @@ namespace acme
       virtual bool defer_process_known_folder_path(::file::path & path);
       virtual bool defer_process_protocol_path(::file::path & path) ;
 
-      virtual bool http_exists(const ::url::url & url, ::property_set & set);
-      virtual ::file::enum_type http_get_type(const ::url::url & url, property_set & set);
-      virtual ::file::enum_type http_get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set);
-
-
-      virtual ::string http_text(const ::url::url & url, const class ::time & timeTimeout = 5_min);
-      virtual ::string http_text(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout = 5_min);
-
-      virtual ::url::url http_get_effective_url(const ::url::url & url);
-      
-      //virtual void http_sync(::nano::http::get * pget);
-      //virtual void http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback);
-      
-      
-      virtual void http_download(const ::payload & payloadFile, const ::url::url & url, const class ::time & timeTimeout = 5_h);
-      virtual void http_download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout = 5_h);
-
 
    };
 
    
-} // namespace acme
+} // namespace platform
 
 
 

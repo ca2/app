@@ -1028,14 +1028,14 @@ namespace http
       ////      if(!bOk)
       ////      {
       ////
-      ////         //bool bAutoDetect = m_pcontext->m_papexcontext->os().connection_settings_get_auto_detect();
+      ////         //bool bAutoDetect = m_papplication->m_papexcontext->os().connection_settings_get_auto_detect();
       ////
       ////         //if(bAutoDetect)
       ////         //{
       ////
       ////         //   informationf("proxy auto_detect true");
       ////
-      ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_papplication->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1053,7 +1053,7 @@ namespace http
       ////
       ////         //   informationf("proxy auto_detect false");
       ////
-      ////         //   string strUrl = m_pcontext->m_papexcontext->os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = m_papplication->m_papexcontext->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -1794,7 +1794,7 @@ namespace http
 
       //KEEP(ptask->payload("work_url"), url);
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (!psystem->networking())
       {
@@ -1930,7 +1930,7 @@ namespace http
       if (pobjectCreator.is_null())
       {
 
-         pobjectCreator = m_pcontext;
+         pobjectCreator = m_papplication;
 
       }
 

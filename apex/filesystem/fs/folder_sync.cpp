@@ -117,7 +117,7 @@ namespace fs
 
       //}
 
-      //if(m_pcontext->m_papexcontext->os_is_alias(path))
+      //if(m_papplication->m_papexcontext->os_is_alias(path))
       //{
 
       //   return true;
@@ -238,7 +238,7 @@ namespace fs
 
       ::fs::data::on_initialize_particle();
 
-      //m_pathLocalFolder = m_pcontext->defer_process_path(m_pathProtocol);
+      //m_pathLocalFolder = m_papplication->defer_process_path(m_pathProtocol);
 
    }
 
@@ -622,7 +622,7 @@ namespace fs
       if (m_pathLocalFolder2.is_empty())
       {
 
-         m_pathLocalFolder2 = m_pcontext->defer_process_path(m_pathProtocol);
+         m_pathLocalFolder2 = m_papplication->defer_process_path(m_pathProtocol);
 
          if (m_pathLocalFolder2.contains("://"))
          {

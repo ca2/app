@@ -1716,7 +1716,7 @@
     <ClInclude Include="platform\string_exchange.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\system.h">
+    <ClInclude Include="platform\system_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\system_setup.h">
@@ -3981,6 +3981,9 @@
     <ClInclude Include="operating_system\windows\dynamic_library.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5599,6 +5602,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\calculate_edesktop.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="system_impl.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -397,7 +397,7 @@ const char * unicode_get_category_name(i32 i);
 
 
 //template < typename POINTER >
-//inline ::string as_string(const ::acme::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate < POINTER > & memoryallocpointer)
+//inline ::string as_string(const ::platform::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate < POINTER > & memoryallocpointer)
 //{
 //
 //   string str;

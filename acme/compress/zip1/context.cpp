@@ -72,7 +72,7 @@ namespace str
       if(case_insensitive_string_ends(listing.m_pathUser, ".zip"))
       {
 
-         listing.m_pathFinal = m_pcontext->defer_process_matter_path(listing.m_pathUser);
+         listing.m_pathFinal = m_papplication->defer_process_matter_path(listing.m_pathUser);
 
          strZip = listing.m_pathFinal;
 
@@ -84,7 +84,7 @@ namespace str
       else if(::str::find_file_extension("zip:", listing.m_pathUser) >= 0)
       {
 
-         listing.m_pathFinal = m_pcontext->defer_process_matter_path(listing.m_pathUser);
+         listing.m_pathFinal = m_papplication->defer_process_matter_path(listing.m_pathUser);
 
          strZip = listing.m_pathFinal;
 
@@ -232,7 +232,7 @@ namespace str
       if (case_insensitive_string_ends(strPath, ".zip"))
       {
 
-         pathFinal = m_pcontext->defer_process_matter_path(strPath);
+         pathFinal = m_papplication->defer_process_matter_path(strPath);
 
          strZip = strPath;
 
@@ -244,7 +244,7 @@ namespace str
       else if (::str::find_file_extension("zip:", strPath) >= 0)
       {
 
-         pathFinal = m_pcontext->defer_process_matter_path(strPath);
+         pathFinal = m_papplication->defer_process_matter_path(strPath);
 
          strZip = strPath;
 

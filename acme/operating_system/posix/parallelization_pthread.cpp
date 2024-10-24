@@ -63,7 +63,7 @@
    
    itask_t idthread = ::current_itask();
 
-   message_queue * pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+   message_queue * pmq = ::system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 
    int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
    //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;

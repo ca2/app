@@ -15,13 +15,13 @@
 //      add_factory_item < file                 >   (::type < ::file::binary_file >());
 ////      add_factory_item < file_set             >   (::type < ::file::set >());
 //      add_factory_item < file                 >   (::type < ::file::file >());
-//      //      add_factory_item < application                >   (::type < ::acme::application >(), 1);
+//      //      add_factory_item < application                >   (::type < ::platform::application >(), 1);
 //      add_factory_item < ::thread               >   (::type < ::thread >());
 //
 //      add_factory_item < file_system                >   (::type < ::file::system >(), 1);
 ////    add_factory_item < file_exception, ::file::exception >();
 ////    add_factory_item <    WinResource             >   (::type < ::ca2::resource >(), 1);
-//      //add_factory_item < application                >   (::type < ::acme::application >(), 1);
+//      //add_factory_item < application                >   (::type < ::platform::application >(), 1);
 //      add_factory_item < dir                        >   (::type < ::file::system_dir >(), 1);
 ////    add_factory_item < folder_watch, ::ca2::folder_watch >();
 ////      add_factory_item < window_draw                >   (::type < ::user::window_draw >(), 1);
@@ -65,11 +65,11 @@ void __node_aura_factory(::factory::factory * pfactory)
 //
 //   // add_factory_item < stdio_file         , ::file::text_file> ();
 //   // add_factory_item < file_set           , ::file::set));
-//   // add_factory_item < application        , ::acme::application), 1);
+//   // add_factory_item < application        , ::platform::application), 1);
 //   // add_factory_item < ::thread           , ::thread));
 //   // add_factory_item < file_exception     , ::file::exception >();
 //   // add_factory_item < WinResource        , ::ca2::resource), 1);
-//   // add_factory_item < application        , ::acme::application), 1);
+//   // add_factory_item < application        , ::platform::application), 1);
 //   // add_factory_item < ::ios::dir         , ::file::system_dir), 1);
 //   // add_factory_item < folder_watch       , ::ca2::folder_watch >();
 //   // add_factory_item < window_draw        , ::user::window_draw), 1);

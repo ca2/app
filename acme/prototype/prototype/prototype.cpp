@@ -28,14 +28,14 @@ namespace prototype
 
       ::particle::on_initialize_particle();
 
-      if (!system()->m_pmathematics)
+      if (!system()->mathematics())
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      m_pmathematics = system()->m_pmathematics;
+      m_pmathematics = system()->mathematics();
 
    }
 

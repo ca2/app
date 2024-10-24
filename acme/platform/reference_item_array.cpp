@@ -102,7 +102,7 @@ reference_item_array::~reference_item_array()
 
          }
 
-         auto preferencingdebugging = pacme->m_preferencingdebugging;
+         auto preferencingdebugging = ::acme::get()->m_preferencingdebugging;
 
          if (!preferencingdebugging)
          {

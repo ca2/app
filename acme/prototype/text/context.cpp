@@ -2,7 +2,7 @@
 #include "acme/constant/id.h"
 //#include "acme/constant/idpool.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/prototype/memory.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/prototype/string/parse.h"
@@ -516,7 +516,7 @@ namespace text
    //   {
    //      if(m_szMerge != nullptr && m_szMerge != m_szAlloca && m_bOwn)
    //      {
-   //         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_szMerge);
+   //         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_szMerge);
    //      }
    //   }
 
@@ -570,7 +570,7 @@ namespace text
    //            {
    //               if(m_szMerge == m_szAlloca || !m_bOwn)
    //               {
-   //                  m_szMerge = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
+   //                  m_szMerge = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
    //                  ::memory_copy(m_szMerge,m_szAlloca,oldlen);
    //               }
    //               else

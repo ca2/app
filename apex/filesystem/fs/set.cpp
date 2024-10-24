@@ -141,7 +141,7 @@ namespace fs
 
                }
                
-               auto pathRoot = m_pcontext->defer_process_path(strRoot);
+               auto pathRoot = m_papplication->defer_process_path(strRoot);
                
                if(pathRoot.has_char())
                {

@@ -20,7 +20,7 @@ void getch(i16 c)
 CLASS_DECL_TURBOC ::turboc::context & get_turboc_context()
 {
 
-   return *get_turboc_application().m_pcontext;
+   return *get_turboc_application().m_papplication;
 
 }
 

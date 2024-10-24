@@ -240,7 +240,7 @@ namespace acme
       //m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_pointer::m_p)->m_bRun = false;
 
-      //i32 iRet = ::acme::application::term_instance();
+      //i32 iRet = ::platform::application::term_instance();
 
       //::ca2pointer<::ca2::application>::destroy();
 

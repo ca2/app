@@ -207,7 +207,7 @@ namespace filemanager
          else
          {
 
-            auto pcontext = m_pcontext;
+            auto pcontext = m_papplication;
             
             auto psession = pcontext->m_pacmesession->m_pcoresession;
             
@@ -236,7 +236,7 @@ namespace filemanager
       else
       {
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          
@@ -1108,7 +1108,7 @@ namespace filemanager
 
             item.set_user_path(strPath);
 
-            item.set_final_path(m_pcontext->defer_process_matter_path(strPath));
+            item.set_final_path(m_papplication->defer_process_matter_path(strPath));
 
             item.m_strName = strName;
 
@@ -1194,7 +1194,7 @@ namespace filemanager
 
             ::file::path pathFinal = listingFinal[i];
 
-            pathFinal = m_pcontext->defer_process_matter_path(pathFinal);
+            pathFinal = m_papplication->defer_process_matter_path(pathFinal);
 
             pathFinal.set_type(listingFinal[i].type());
 
@@ -1326,7 +1326,7 @@ namespace filemanager
 
       }
 
-      auto pcontext = m_pcontext->m_papexcontext;
+      auto pcontext = m_papplication->m_papexcontext;
 
       if (filemanager_data()->m_bIconImpact)
       {
@@ -1396,7 +1396,7 @@ namespace filemanager
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          
@@ -1460,7 +1460,7 @@ namespace filemanager
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = get_document()->m_iIconSize;
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          
@@ -1873,7 +1873,7 @@ namespace filemanager
       if (i == 0)
       {
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          

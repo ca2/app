@@ -30,11 +30,11 @@ namespace console_integration
 
       ::console_integration::build::initialize(pparticle);
 
-      m_pcontext->m_strName = "openssl";
+      m_papplication->m_strName = "openssl";
 
-      m_pcontext->m_strRelease = "3.0.8";
+      m_papplication->m_strRelease = "3.0.8";
 
-      m_pcontext->m_pathDownloadURL = "https://www.openssl.org/source/openssl-" + m_pcontext->m_strRelease + ".tar.gz";
+      m_papplication->m_pathDownloadURL = "https://www.openssl.org/source/openssl-" + m_papplication->m_strRelease + ".tar.gz";
 
    }
 

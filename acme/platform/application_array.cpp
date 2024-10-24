@@ -9,7 +9,7 @@
 #include "application.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -20,7 +20,7 @@ namespace acme
 
 
    application_array::application_array(const application_array & array) :
-      pointer_array < ::acme::application >(array)
+      pointer_array < ::platform::application >(array)
    {
 
    }
@@ -29,7 +29,7 @@ namespace acme
    application_array & application_array::operator = (const application_array & array)
    {
 
-      pointer_array < ::acme::application >::operator = (array);
+      pointer_array < ::platform::application >::operator = (array);
 
       return *this;
 
@@ -37,7 +37,7 @@ namespace acme
 
 
    application_array::application_array(application_array && array) :
-      pointer_array < ::acme::application >(array)
+      pointer_array < ::platform::application >(array)
    {
 
    }
@@ -46,7 +46,7 @@ namespace acme
    application_array & application_array::operator = (application_array && array)
    {
 
-      pointer_array < ::acme::application >::operator = (array);
+      pointer_array < ::platform::application >::operator = (array);
 
       return *this;
 
@@ -71,7 +71,7 @@ namespace acme
    }
 
 
-   ::acme::application * application_array::find_by_app_id(const string & strAppId)
+   ::platform::application * application_array::find_by_app_id(const string & strAppId)
    {
 
       //synchronous_lock synchronouslock(this->synchronization());
@@ -113,7 +113,7 @@ namespace acme
    }
 
 
-   ::acme::application * application_array::find_running_defer_try_quit_damaged(const string & strAppId)
+   ::platform::application * application_array::find_running_defer_try_quit_damaged(const string & strAppId)
    {
 
       auto papplication = find_by_app_id(strAppId);
@@ -159,7 +159,7 @@ namespace acme
    }
 
 
-   bool application_array::lookup(const string & strAppId, ::pointer<::acme::application>& papp)
+   bool application_array::lookup(const string & strAppId, ::pointer<::platform::application>& papp)
    {
 
       papp = find_running_defer_try_quit_damaged(strAppId);
@@ -169,7 +169,7 @@ namespace acme
    }
 
 
-} // namespace apex
+} // namespace platform
 
 
 

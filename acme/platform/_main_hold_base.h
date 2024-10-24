@@ -11,7 +11,7 @@ class CLASS_DECL_ACME main_hold_base :
 public:
 
 
-   ::pointer<::acme::application>        m_pacmeapplication;
+   ::pointer<::platform::application>        m_papplication;
 
 
    static ::logic::boolean is_audio_enabled();

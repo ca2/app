@@ -1062,7 +1062,7 @@ namespace sockets_bsd
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      //auto pnetworking = system()->m_papexsystem->networking();
+      //auto pnetworking = system()->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
@@ -2986,7 +2986,7 @@ bool base_socket::SetSoNosigpipe(bool x)
    string base_socket::get_short_description()
    {
 
-      auto pnetworking = system()->m_papexsystem->networking();
+      auto pnetworking = system()->networking();
 
       return pnetworking->canonical_name(GetRemoteAddress());
 

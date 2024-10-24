@@ -12,7 +12,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -31,7 +31,7 @@ namespace acme
    }
 
 
-   void application_container::add_application(::acme::application* papplication)
+   void application_container::add_application(::platform::application* papplication)
    {
 
       if (!::is_set(papplication))
@@ -86,7 +86,7 @@ namespace acme
    }
 
 
-   void application_container::erase_application(::acme::application* papplication)
+   void application_container::erase_application(::platform::application* papplication)
    {
 
       auto iSizeBefore = m_applicationa.get_size();
@@ -313,14 +313,14 @@ namespace acme
    //}
 
 
-   ::pointer<::acme::application>application_container::instantiate_application(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::instantiate_application(const ::string& strAppId)
    {
 
       information() <<  "apex::application::instantiate_application";
 
       ::e_status estatus = ::success;
 
-      ::pointer<::acme::application> papplication;
+      ::pointer<::platform::application> papplication;
 
       //if (strAppId == "session")
       //{
@@ -342,10 +342,10 @@ namespace acme
 
       auto psystem = system();
 
-      if (::is_set(psystem->m_pacmeapplication))
+      if (::is_set(psystem->m_papplication))
       {
 
-         string strStartupApplicationAppId = psystem->m_pacmeapplication->m_strAppId;
+         string strStartupApplicationAppId = psystem->m_papplication->m_strAppId;
 
          if (strStartupApplicationAppId != strAppId ||
             !strAppId.begins(strStartupApplicationAppId))
@@ -357,7 +357,7 @@ namespace acme
 
          }
 
-         papplication = psystem->m_pacmeapplication;
+         papplication = psystem->m_papplication;
 
       }
       //else
@@ -365,7 +365,7 @@ namespace acme
 
       //   papp = psystem->new_app(strAppId);
 
-      //   ::acme::application::g_p->initialize_application(papp, this);
+      //   ::platform::application::g_p->initialize_application(papp, this);
 
       //}
 
@@ -411,7 +411,7 @@ namespace acme
    }
 
 
-   ::pointer<::acme::application>application_container::create_application(const ::string& strAppId, ::request* prequest)
+   ::pointer<::platform::application>application_container::create_application(const ::string& strAppId, ::request* prequest)
    {
 
       auto papplication = instantiate_application(strAppId);
@@ -438,17 +438,17 @@ namespace acme
    //}
 
 
-   void application_container::on_instantiate_application(::acme::application* papplication)
+   void application_container::on_instantiate_application(::platform::application* papplication)
    {
 
 
    }
 
 
-   ::pointer<::acme::application>application_container::assert_running(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::assert_running(const ::string& strAppId)
    {
 
-      ::pointer<::acme::application>papplication;
+      ::pointer<::platform::application>papplication;
 
       {
 
@@ -472,7 +472,7 @@ namespace acme
    }
 
 
-   //   ::pointer<::acme::application>application_container::start_application(const ::string & strAppId, ::request * prequest)
+   //   ::pointer<::platform::application>application_container::start_application(const ::string & strAppId, ::request * prequest)
    //   {
    //
    //      auto papplication = application_get(strAppId, true, true, prequest);
@@ -498,9 +498,9 @@ namespace acme
    //
    //      ::file::path pathExe = acmefile()->module();
    //
-   //      auto psystem = system()->m_papexsystem;
+   //      auto psystem = system();
    //
-   //      if (!system()->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+   //      if (!system()->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
    //         psystem->get_system_configuration(), strLocale, strSchema))
    //      {
    //
@@ -577,10 +577,10 @@ namespace acme
    //   }
 
 
-   ::acme::application* application_container::get_application(const ::string& strAppId, bool bCreate, ::request* prequest)
+   ::platform::application* application_container::get_application(const ::string& strAppId, bool bCreate, ::request* prequest)
    {
 
-      ::pointer<::acme::application>papplication;
+      ::pointer<::platform::application>papplication;
 
       if (m_applicationa.lookup(strAppId, papplication))
       {
@@ -637,7 +637,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

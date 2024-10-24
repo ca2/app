@@ -820,7 +820,7 @@
 ////   if (!m_pthreadReverse)
 ////   {
 ////
-////      auto psystem = system()->m_papexsystem;
+////      auto psystem = system();
 ////
 ////      m_pthreadReverse = psystem->fork([this]()
 ////         {

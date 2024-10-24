@@ -285,7 +285,7 @@
 //
 //      idpool();
 //
-//      static void init(::acme::system * psystem);
+//      static void init(::platform::system * psystem);
 //      static void term();
 //
 //      void reset() const

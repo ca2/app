@@ -4,7 +4,7 @@
 #include "simpledb.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
@@ -42,7 +42,7 @@ namespace simpledb
 
       //}
 
-      m_bRemote = !m_pcontext->m_papexcontext->is_local_data();
+      m_bRemote = !m_papplication->m_papexcontext->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {

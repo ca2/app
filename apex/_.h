@@ -7,6 +7,8 @@
 //#error "already included?!?! WHAT?!?! (At apex:a)"
 //#endif
 
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME apex
 
 #if defined(_apex_project)
 #define CLASS_DECL_APEX  CLASS_DECL_EXPORT
@@ -56,6 +58,7 @@ namespace apex
 
 
 #include "apex/include/_include.h"
+
 
 
 

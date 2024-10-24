@@ -64,7 +64,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //
 //   template < class APP >
-//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
+//   ::pointer<::platform::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -83,7 +83,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      ::pointer<::acme::application>papp;
+//      ::pointer<::platform::application>papp;
 //
 //      papp = pappNew;
 //

@@ -706,7 +706,7 @@ CLASS_DECL_ACME ::task * get_task()
    //if (!t_ptask)
    //{
 
-   //   auto pplatform = ::acme::get()->platform();
+   //   auto pplatform = ::system()->platform();
 
    //   if(::is_set(pplatform))
    //   {
@@ -753,7 +753,7 @@ CLASS_DECL_ACME void set_task(task * ptask)
    auto ptaskOld = t_ptask;
 // #if REFERENCING_DEBUGGING
 //
-//    ::allocator::add_referer({ ::acme::get()->platform(), __FUNCTION_FILE_LINE__ });
+//    ::allocator::add_referer({ ::system()->platform(), __FUNCTION_FILE_LINE__ });
 // #endif
 //    //::increment_reference_count(ptask);
 

@@ -10641,7 +10641,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
    ::image::image_pointer pimage;
 
-   m_pcontext->__construct(pimage);
+   m_papplication->__construct(pimage);
 
    pimage->create(size);
 

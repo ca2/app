@@ -64,7 +64,7 @@ namespace handle
    }
 
 
-   //ini::ini(::acme::application * papp)
+   //ini::ini(::platform::application * papp)
    //{
 
    //   auto preader = Ctx(papp).file()->get_reader(papp->get_app_localconfig_folder());

@@ -6,6 +6,7 @@ void application_main();
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
 
+
 //#include "acme/platform/acme.h"
 
 #ifdef CUBE
@@ -86,18 +87,18 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   ::acme::singleton pacme;
+   ::PLATFORM_LAYER_NAME::system system;
 
-   //if (this->platform()->m_pacmeapplication->has_finishing_flag())
+   //if (this->platform()->m_papplication->has_finishing_flag())
    //{
 
-   //   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
    //}
 
 #if defined(WINDOWS)
 
-   pacme->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   system.initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 
 #else
 
@@ -121,15 +122,15 @@ int main(int argc, char * argv[], char * envp[])
 
    application_main();
 
-   return pacme->platform()->m_iExitCode;
+   return system.m_iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
+   //::acme::acme::g_pacme->m_papplication->implement_application();
 
-   //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
 //   acme::acme acme;
 //
@@ -191,7 +192,7 @@ int main(int argc, char * argv[], char * envp[])
 ////
 ////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
 ////
-////   //pmainhold->m_pacmeapplication = papp;
+////   //pmainhold->m_papplication = papp;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////   //{

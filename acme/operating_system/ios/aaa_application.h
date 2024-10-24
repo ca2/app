@@ -19,7 +19,7 @@
 //   };
 //
 //   class CLASS_DECL_ACME application :
-//   virtual public ::acme::application
+//   virtual public ::platform::application
 //   {
 //   public:
 //

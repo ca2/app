@@ -652,7 +652,7 @@ m_ibuf(isize)
       if (!skip_socks && addrSocks4.has_char() && GetSocks4Port())
       {
 
-         auto paddressSocks4 = system()->m_papexsystem->networking()->create_address(addrSocks4);
+         auto paddressSocks4 = system()->networking()->create_address(addrSocks4);
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddressSocks4 = paddressSocks4;
 
@@ -758,7 +758,7 @@ m_ibuf(isize)
    bool tcp_socket::open(const string& host, ::networking::port_t port)
    {
 
-      auto pnetworking = system()->m_papexsystem->networking();
+      auto pnetworking = system()->networking();
 
       ::networking::enum_address_type eaddresstype = ::networking::e_address_type_none;
 
@@ -2478,7 +2478,7 @@ m_ibuf(isize)
 
       string strId = m_strCat;
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (strId.case_insensitive_begins("cat://"))
       {
@@ -2647,7 +2647,7 @@ m_ibuf(isize)
 
          m_psslcontext->m_pclientcontext = __allocate ssl_client_context (meth_in != nullptr ? meth_in : TLS_server_method());
 
-         m_psslcontext->m_pclientcontext->initialize(m_pcontext);
+         m_psslcontext->m_pclientcontext->initialize(m_papplication);
 
       }
 
@@ -2868,7 +2868,7 @@ m_ibuf(isize)
          synchronous_lock synchronouslock(this->synchronization());
          int i;
 
-         //auto psystem = system()->m_papexsystem;
+         //auto psystem = system();
 
          auto pnetworking2 = __SystemNetworking(system());
 

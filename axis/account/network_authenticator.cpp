@@ -299,9 +299,9 @@ namespace account
 
       ::url::parts partsGetFontopus("https://ca2.software/get_account_login");
       
-      partsGetFontopus.arguments()["lang"] = m_pcontext->m_papexcontext->get_locale();
+      partsGetFontopus.arguments()["lang"] = m_papplication->m_papexcontext->get_locale();
 
-      partsGetFontopus.arguments()["styl"] = m_pcontext->m_papexcontext->get_schema();
+      partsGetFontopus.arguments()["styl"] = m_papplication->m_papexcontext->get_schema();
 
       string strNode;
 

@@ -669,7 +669,7 @@ return -1;
       //{
       //   ::memory_copy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
 
-      //   auto psystem = system()->m_papexsystem;
+      //   auto psystem = system();
 
       //   paddressdepartment->convert(addr,  local_if);
 

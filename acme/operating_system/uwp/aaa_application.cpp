@@ -170,7 +170,7 @@ namespace acme
    //   // avoid calling CloseHandle() on our own thread handle
    //   // during the thread destructor
    //   set_os_data(nullptr);
-   //   //i32 iRet = ::acme::application::term_instance();
+   //   //i32 iRet = ::platform::application::term_instance();
 
    //   //::pointer<application_base>:destroy();
 

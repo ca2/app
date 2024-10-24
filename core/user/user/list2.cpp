@@ -1005,7 +1005,7 @@ namespace user
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 
-   //   //auto pcontext = m_pcontext;
+   //   //auto pcontext = m_papplication;
 
    //   auto payload = api_get(strUrl, set);
 
@@ -1090,7 +1090,7 @@ namespace user
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 
-   //   //auto pcontext = m_pcontext;
+   //   //auto pcontext = m_papplication;
 
    //   auto payload = api_get(strUrl, set);
 
@@ -1127,7 +1127,7 @@ namespace user
 
    //   //strGetUrl = "https://api.ca2.software/account/openweather?request=" + ::url::encode(strUrl);
 
-   //   //auto pcontext = m_pcontext;
+   //   //auto pcontext = m_papplication;
 
    //   auto payload = api_get(strUrl, set);
 

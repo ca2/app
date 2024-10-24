@@ -480,7 +480,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(psz)) return nullptr;
 //
-//   auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
+//   auto pszDup = (::ansi_character *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
 //
 //   strcpy(pszDup, psz);
 //
@@ -496,7 +496,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (len < 0) return nullptr;
 //
-//   auto pszDup = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
+//   auto pszDup = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
 //
 //   strncpy(pszDup, psz, len);
 //
@@ -1217,7 +1217,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //         }
 //
-//         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
+//         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 //
 //         return i;
 //
@@ -1259,7 +1259,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //         }
 //
-//         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
+//         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 //
 //         return i;
 //
@@ -1366,7 +1366,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+//   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1378,7 +1378,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //      if (iFree1 > 0)
 //      {
 //
-//         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *) psz1);
+//         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *) psz1);
 //
 //      }
 //      else if (iFree1 < 0)
@@ -1398,7 +1398,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //      if (iFree2 > 0)
 //      {
 //
-//         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *)psz2);
+//         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void *)psz2);
 //
 //      }
 //      else if (iFree2 < 0)
@@ -1424,7 +1424,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////   strsize len = len1 + len2 + 1;
 ////
-////   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
 ////   *psz = '\0';
 ////
@@ -1440,7 +1440,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////      strcat(psz, psz2);
 ////
-////      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
+////      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 ////
 ////   }
 ////
@@ -1459,7 +1459,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////   strsize len = len1 + len2 + 1;
 ////
-////   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
 ////   *psz = '\0';
 ////
@@ -1468,7 +1468,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////      strcat(psz, psz1);
 ////
-////      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
+////      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 ////
 ////   }
 ////
@@ -1494,7 +1494,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////   strsize len = len1 + len2 + 1;
 ////
-////   auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
 ////   *psz = '\0';
 ////
@@ -1503,7 +1503,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////      strcat(psz, psz1);
 ////
-////      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
+////      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 ////
 ////   }
 ////
@@ -1512,7 +1512,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////
 ////      strcat(psz, psz2);
 ////
-////      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
+////      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 ////
 ////   }
 ////

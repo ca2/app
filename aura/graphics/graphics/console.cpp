@@ -193,7 +193,7 @@ namespace graphics
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
-      m_pcontext->__construct(m_pimage->g()->m_pfont);
+      m_papplication->__construct(m_pimage->g()->m_pfont);
 
       m_pimage->g()->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy() * 0.92, e_unit_pixel));
 

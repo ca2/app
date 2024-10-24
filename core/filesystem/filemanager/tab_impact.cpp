@@ -80,7 +80,7 @@ namespace filemanager
 
       //   prequest->m_puserelementParent = pimpactdata->m_pplaceholder;
 
-      //   auto pcontext = m_pcontext;
+      //   auto pcontext = m_papplication;
       //   
       //   auto psession = pcontext->m_pacmesession->m_paurasession;
       //   
@@ -124,7 +124,7 @@ namespace filemanager
 
       //   pdocument->update_all_impacts(ptopic);
 
-      //   //ptopic->m_pcontext = ptopic->context(id_after_browse);
+      //   //ptopic->m_papplication = ptopic->context(id_after_browse);
 
       //   ptopic->m_atom = id_after_browse;
 
@@ -142,7 +142,7 @@ namespace filemanager
 
       //   prequest->m_puserelementParent = this;
 
-      //   auto pcontext = m_pcontext;
+      //   auto pcontext = m_papplication;
       //   
       //   auto psession = pcontext->m_pacmesession->m_paurasession;
       //   

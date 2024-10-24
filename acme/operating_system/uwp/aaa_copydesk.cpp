@@ -6,7 +6,7 @@
 
 CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream^ stream, ::image::image* pimage, ::save_image* psaveimage);
 
-bool node_save_image(::image::image *pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::acme::application * papp);
+bool node_save_image(::image::image *pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::platform::application * papp);
 
 
 CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image::image *pimage, ::save_image * psaveimage);

@@ -191,13 +191,13 @@ namespace acme
          if (m_p != nullptr)
          {
 
-            m_p = (POINTER) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(m_p, size);
+            m_p = (POINTER) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(m_p, size);
 
          }
          else
          {
 
-            m_p = (POINTER) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size, nullptr);
+            m_p = (POINTER) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size, nullptr);
 
          }
 
@@ -219,7 +219,7 @@ namespace acme
 
          m_iSize = c * sizeof(*m_p);
 
-         m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize, nullptr);
+         m_p = ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize, nullptr);
 
          if (m_p == nullptr)
          {
@@ -249,7 +249,7 @@ namespace acme
       void free()
       {
 
-         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
+         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
 
          m_p = nullptr;
 

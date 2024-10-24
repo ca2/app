@@ -6,7 +6,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h" 
 #include "acme/handler/topic.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -78,7 +78,7 @@ namespace user
    ::particle_pointer button::clone()
    {
 
-      auto pcheckbox = m_pcontext->__create_new < ::user::button >();
+      auto pcheckbox = m_papplication->__create_new < ::user::button >();
 
       return pcheckbox;
 

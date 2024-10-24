@@ -5,7 +5,7 @@
 //{
 //
 //
-//   app::acme::application()
+//   app::platform::application()
 //   {
 //
 //   }

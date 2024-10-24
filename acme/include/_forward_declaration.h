@@ -669,27 +669,35 @@ namespace message
 class matter;
 
 
-namespace acme
+namespace platform
 {
 
 
    class system; // acme - cam
 
 
-   class application; // apex(::apex::application) - tbs offloading his deep stack in ::acme::application(::acme):cstbs
+   class application; // apex(::apex::application) - tbs offloading his deep stack in ::platform::application(::acme):cstbs
 
    class session;
 
 
+   class system_factory;
+
+   class exclusive;
+
+   class context;
+
+   class http;
+
    class application_container;
 
-
+   class static_start;
 
    class node;
    class library;
 
 
-} // namespace acme
+} // namespace platform
 
 
 class memory_counter;
@@ -892,17 +900,17 @@ namespace desktop_environment_xfce
 } // namespace desktop_environment_xfce
 
 
-namespace acme
-{
-
-   class system;
-   class context;
-   class library;
-   class node;
-   class application;
-   class exclusive;
-
-} // namespace acme
+// namespace acme
+// {
+//
+//    class system;
+//    class context;
+//    class library;
+//    class node;
+//    class application;
+//    class exclusive;
+//
+// } // namespace acme
 
 
 namespace apex { class application; }
@@ -1491,7 +1499,7 @@ class folder;
 class memory_file;
 
 extern "C"
-typedef ::acme::library * NEW_LIBRARY();
+typedef ::platform::library * NEW_LIBRARY();
 
 typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
 
@@ -1540,22 +1548,22 @@ namespace operating_system
 } // namespace operating_system
 
 
-namespace acme
-{
-
-   class static_start;
-
-   class session;
-
-   class system;
-
-   class application;
-
-
-   extern CLASS_DECL_ACME bool g_bAcme;
-
-
-} // namespace acme
+// namespace acme
+// {
+//
+//    class static_start;
+//
+//    class session;
+//
+//    class system;
+//
+//    class application;
+//
+//
+// //   extern CLASS_DECL_ACME bool g_bAcme;
+//
+//
+// } // namespace acme
 
 
 class acme_directory;
@@ -2188,7 +2196,6 @@ namespace acme
 
    }
 
-   class session;
 
 } // namespace acme
 
@@ -2318,5 +2325,95 @@ namespace user
 
 } // namespace user
 
+
+
+
+
+namespace acme
+{
+   class system_factory;
+
+}
+namespace innate_ui
+{
+
+
+   class innate_ui;
+
+
+} // namespace innate_ui
+namespace hardware
+{
+
+   class devices;
+
+} // namespace hardware
+
+namespace aura
+{
+
+   class estamira;
+
+} // namespace aura
+
+namespace user
+{
+
+   class frame;
+
+} // namespace user
+
+
+namespace networking
+{
+
+   class networking;
+
+} // namespace networking
+
+
+class manager_room;
+
+
+
+namespace parallelization
+{
+class threading;
+
+
+} //namespace parallelization
+
+
+namespace input
+{
+
+class input;
+
+}
+
+
+namespace apex
+{
+
+class history;
+
+}
+
+
+namespace aqua
+{
+
+
+   class audio;
+
+   class audio_mixer;
+   class multimedia;
+
+   class audio_mixe;
+
+   class estamira;
+
+
+}
 
 

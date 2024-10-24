@@ -86,9 +86,9 @@ ffmpeg::ffmpeg()
 
       ::console_integration::build::initialize(pparticle);
 
-      m_pcontext->m_strName = "ffmpeg";
+      m_papplication->m_strName = "ffmpeg";
 
-      m_pcontext->m_pathDownloadURL = "https://git.ffmpeg.org/ffmpeg.git";
+      m_papplication->m_pathDownloadURL = "https://git.ffmpeg.org/ffmpeg.git";
 
    }
 

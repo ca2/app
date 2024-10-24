@@ -25,21 +25,21 @@ exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThre
 }
 
 
-exit_exception::exit_exception(::acme::application * papplication, const ::scoped_string & scopedstrMessage) :
+exit_exception::exit_exception(::platform::application * papplication, const ::scoped_string & scopedstrMessage) :
    exit_exception(error_exit_application, papplication, scopedstrMessage) 
 {
 
 }
 
 
-exit_exception::exit_exception(::acme::session * psession, const ::scoped_string & scopedstrMessage) :
+exit_exception::exit_exception(::platform::session * psession, const ::scoped_string & scopedstrMessage) :
    exit_exception(error_exit_session, psession, scopedstrMessage) 
 {
 
 }
 
 
-exit_exception::exit_exception(::acme::system * psystem, const ::scoped_string & scopedstrMessage) :
+exit_exception::exit_exception(::platform::system * psystem, const ::scoped_string & scopedstrMessage) :
    exit_exception(error_exit_system, psystem, scopedstrMessage) 
 {
 

@@ -1034,7 +1034,7 @@ extern thread_local ::task_pointer t_pthread;
 
       g_paAura = aaa_primitive_new::array < matter* >;
 
-      //g_pmapAura =aaa_primitive_new ::map < void *,void *,::acme::application *,::acme::application * >;
+      //g_pmapAura =aaa_primitive_new ::map < void *,void *,::platform::application *,::platform::application * >;
 
       //g_criticalsectionUiDestroyed = aaa_primitive_new ::critical_section();
 
@@ -1158,7 +1158,7 @@ extern thread_local ::task_pointer t_pthread;
 
       //return true;
 
-      //factory()->add_factory_item < ::acme::system >();
+      //factory()->add_factory_item < ::platform::system >();
 
    }
 
@@ -1519,10 +1519,10 @@ extern thread_local ::task_pointer t_pthread;
    //}
 
 
-   //::acme::system * acme_create_system(app_core * pappcore)
+   //::platform::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = aaa_primitive_new ::acme::system();
+   //   auto psystem = aaa_primitive_new ::platform::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1570,7 +1570,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      //return true;
 //
-//      //factory()->add_factory_item < ::acme::system >();
+//      //factory()->add_factory_item < ::platform::system >();
 //
 //   }
 //

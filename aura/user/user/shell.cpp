@@ -190,7 +190,7 @@ namespace user
    ::aura::application * shell::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+      return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -198,7 +198,7 @@ namespace user
    ::aura::session *shell:: get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 
@@ -522,7 +522,7 @@ namespace user
       if (getfileimage.m_pathProcessed.is_empty())
       {
 
-         ::file::path pathProcessed = m_pcontext->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
+         ::file::path pathProcessed = m_papplication->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
 
          getfileimage.m_pathProcessed = pathProcessed;
 
@@ -821,7 +821,7 @@ namespace user
 //      if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
 //
-//         auto pcontext = m_pcontext;
+//         auto pcontext = m_papplication;
 //
 //         ::file::path path = dir()->matter("cloud.ico");
 //
@@ -847,7 +847,7 @@ namespace user
 //      else if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "fs:"))
 //      {
 //
-//         auto pcontext = m_pcontext;
+//         auto pcontext = m_papplication;
 //
 //         ::file::path path = dir()->matter("remote.ico");
 //
@@ -873,7 +873,7 @@ namespace user
 //      else if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "ftp:"))
 //      {
 //
-//         auto pcontext = m_pcontext;
+//         auto pcontext = m_papplication;
 //
 //         ::file::path path = dir()->matter("ftp.ico");
 //
@@ -900,7 +900,7 @@ namespace user
 //      if (case_insensitive_string_ends(getfileimage.m_imagekey.m_strPath, ".aura"))
 //      {
 //
-//         auto pcontext = m_pcontext;
+//         auto pcontext = m_papplication;
 //
 //         string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
@@ -940,7 +940,7 @@ namespace user
 //
 //      string strPath = getfileimage.m_imagekey.m_strPath;
 //
-//      string strRealPath = m_pcontext->defer_process_matter_path(strPath);
+//      string strRealPath = m_papplication->defer_process_matter_path(strPath);
 //
 //      string strFinalPath = acmepath()->_final(strRealPath);
 //
@@ -1307,7 +1307,7 @@ namespace user
 
          }
 
-         ::image::image_pointer pimage1 = m_pcontext->m_pimagecontext->load_image(strIcon16);
+         ::image::image_pointer pimage1 = m_papplication->m_pimagecontext->load_image(strIcon16);
 
          if (pimage1.nok())
          {
@@ -1608,7 +1608,7 @@ namespace user
       
       auto pnode = psystem->node();
       
-      auto pcontext = m_pcontext->m_papexcontext;
+      auto pcontext = m_papplication->m_papexcontext;
       
       string strPath = pcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
       
@@ -1761,7 +1761,7 @@ namespace user
 
       synchronouslock.unlock();
 
-      ::file::path path = m_pcontext->defer_process_matter_path(pathIcon);
+      ::file::path path = m_papplication->defer_process_matter_path(pathIcon);
 
       auto pwindowingicon = __create < windowing::icon >();
 
@@ -1847,7 +1847,7 @@ namespace user
 
       int iReturn = -1;
 
-      auto pcontext = m_pcontext->m_papexcontext;
+      auto pcontext = m_papplication->m_papexcontext;
 
       auto pathFinal = pcontext->defer_process_path(strPath);
 

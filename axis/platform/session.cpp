@@ -1214,7 +1214,7 @@ namespace axis
    }
 
 
-   void session::on_instantiate_application(::acme::application* papplication)
+   void session::on_instantiate_application(::platform::application* papplication)
    {
 
       ::aura::session::on_instantiate_application(papplication);

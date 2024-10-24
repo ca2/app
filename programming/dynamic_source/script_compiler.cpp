@@ -1433,7 +1433,7 @@ namespace dynamic_source
 
       l.m_straLibSourcePath.clear_results();
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
 
       l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
@@ -2618,7 +2618,7 @@ ch_else:
 
       //auto papp = get_app();
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
 
       stra.set_listing(strPath, e_depth_recursively);
 
@@ -2904,7 +2904,7 @@ ch_else:
 
       //auto papp = get_app();
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
 
       ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
 

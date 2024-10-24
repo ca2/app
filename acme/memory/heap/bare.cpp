@@ -115,7 +115,7 @@
 //void memory_free_debug(void * p, i32 iBlockType)
 //{
 //
-//   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
+//   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 //
 //}
 //
@@ -171,7 +171,7 @@
 //void * _memory_count_allocate(memsize size, memsize bytes)
 //{
 //
-//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //

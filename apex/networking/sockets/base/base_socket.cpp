@@ -348,7 +348,7 @@ namespace sockets
    ::networking::networking * base_socket::networking()
    {
 
-      return system()->m_papexsystem->networking();
+      return system()->networking();
 
    }
 

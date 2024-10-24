@@ -9,7 +9,7 @@
 
 
 #define APPLICATION_INCLUDE "acme/platform/application.h"
-#define APPLICATION_CLASS ::acme::application
+#define APPLICATION_CLASS ::platform::application
 
 
 #define LAYER_NAMESPACE acme

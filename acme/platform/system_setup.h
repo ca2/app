@@ -187,7 +187,7 @@ public:
    app_factory(PFN_factory pfnFactory);
 
 
-   static ::pointer<::acme::application>new_app(::particle * pparticle);
+   static ::pointer<::platform::application>new_app(::particle * pparticle);
     
 
 };

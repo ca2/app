@@ -18,9 +18,9 @@
 //{
 //public:
 //
-//   inline static void* allocate(memsize s) { return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s); }
+//   inline static void* allocate(memsize s) { return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s); }
 //   inline static void* realloc(void* p, memsize s) { return memory_reallocate(p, s); }
-//   inline static void free(void* p) { ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p); }
+//   inline static void free(void* p) { ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p); }
 //   inline static void zero(void* p) { ::zero(p, memory_size(p)); }
 //
 //};

@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -55,7 +55,7 @@ namespace acme
    };
 
 
-} // namespace acme
+} // namespace platform
 
 
 

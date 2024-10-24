@@ -178,8 +178,8 @@ namespace apex
       m_bEnableAutoStartOption = false;
       //m_bProcessingApplicationExitRequest = false;
       m_papexapplication = this;
-      ::object::m_pcontext = this;
-      m_pcontext = this;
+      ::object::m_papplication = this;
+      m_papplication = this;
 
       //set_layer(LAYERED_APEX, this);
 
@@ -307,9 +307,9 @@ namespace apex
 
       ::thread::initialize(pparticle);
 
-      ::acme::application::initialize(pparticle);
+      ::platform::application::initialize(pparticle);
 
-      m_pacmesystem = m_pcontext->m_pacmesystem;
+      m_pacmesystem = m_papplication->m_pacmesystem;
 
       defer_create_synchronization();
 
@@ -326,7 +326,7 @@ namespace apex
 
       //set_context_app(this);
 
-      //m_pcontext = this;
+      //m_papplication = this;
 
       //if (::is_set(m_pappParent))
       //{
@@ -345,10 +345,10 @@ namespace apex
    void application::on_set_platform()
    {
 
-      ::acme::application::on_set_platform();
+      ::platform::application::on_set_platform();
 
-      factory()->add_factory_item < ::apex::system, ::acme::system >();
-      factory()->add_factory_item < ::apex::session, ::acme::session >();
+      factory()->add_factory_item < ::apex::system, ::platform::system >();
+      factory()->add_factory_item < ::apex::session, ::platform::session >();
       factory()->add_factory_item < ::apex::context, ::acme::context >();
 
       factory()->add_factory_item < ::networking::application >();
@@ -368,7 +368,7 @@ namespace apex
    //void application::on_initialize_application(::main* pmain)
    //{
 
-   //   pmain->m_pplatform->factory()->add_factory_item< ::apex::system, ::acme::system >();
+   //   pmain->m_pplatform->factory()->add_factory_item< ::apex::system, ::platform::system >();
 
    //}
 
@@ -414,7 +414,7 @@ namespace apex
 
 //#ifdef LINUX
 //
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      if (application()->m_bGtkApp)
 //      {
@@ -496,7 +496,7 @@ namespace apex
    //   void application::show_wait_cursor(bool bShow)
    //   {
    //
-   //      auto psystem = system()->m_papexsystem;
+   //      auto psystem = system();
    //
    //      auto papexnode = psystem->m_papexnode;
    //
@@ -775,7 +775,7 @@ namespace apex
    //void application::on_request_message(::request * prequest)
    //{
 
-   //   pcreate->m_pcontext = this;
+   //   pcreate->m_papplication = this;
 
    //   request(pcreate);
 
@@ -787,7 +787,7 @@ namespace apex
 
    //   do_request(pcreate);
 
-   //   //auto psystem = system()->m_papexsystem;
+   //   //auto psystem = system();
 
    //   //if (pcreate->m_ecommand == ::command_protocol)
    //   //{
@@ -1000,7 +1000,7 @@ namespace apex
 
          }
 
-         auto psystem = system()->m_papexsystem;
+         auto psystem = system();
 
          // Verry Sory for the per request overhead here for the needed information of only first request
          if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest <= 0_s)
@@ -1924,7 +1924,7 @@ namespace apex
    void application::init_instance()
    {
 
-      ::acme::application::init_instance();
+      ::platform::application::init_instance();
 
       if (m_eexclusiveinstance != e_exclusive_instance_none)
       {
@@ -2210,7 +2210,7 @@ namespace apex
 
          //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         auto psystem = system()->m_papexsystem;
+         auto psystem = system();
 
          psystem->appa_load_string_table();
 
@@ -2354,7 +2354,7 @@ namespace apex
 
             //data_pulse_change({ "ca2.savings", true }, nullptr);
 
-            auto psystem = system()->m_papexsystem;
+            auto psystem = system();
 
             psystem->appa_load_string_table();
 
@@ -2437,7 +2437,7 @@ namespace apex
    //   //
    //   //copy(message, msg);
    //   //
-   //   //auto psystem = system()->m_papexsystem;
+   //   //auto psystem = system();
    //   //
    //   //if (!is_system() && is_true("SessionSynchronizedInput"))
    //   //{
@@ -2526,7 +2526,7 @@ namespace apex
 
    //   }
 
-   //   //auto psystem = system()->m_papexsystem;
+   //   //auto psystem = system();
 
    //   //      auto psystem = system();
    //   //
@@ -2662,7 +2662,7 @@ namespace apex
    void application::do_install()
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       //if (!on_install())
       on_install();
@@ -2697,7 +2697,7 @@ namespace apex
 
       //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -2853,7 +2853,7 @@ namespace apex
 
       }
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
@@ -2963,7 +2963,7 @@ namespace apex
          
       }
 
-      return ::acme::application::on_application_menu_action(atom);
+      return ::platform::application::on_application_menu_action(atom);
 
    }
 
@@ -2987,9 +2987,9 @@ namespace apex
    void application::process_init()
    {
 
-      ::acme::application::process_init();
+      ::platform::application::process_init();
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (!m_bAppHasInstallerChangedProtected)
       {
@@ -3158,7 +3158,7 @@ namespace apex
 
       //}
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
       try
       {
 
@@ -3199,7 +3199,7 @@ namespace apex
    //void application::init_application()
    //{
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   information() << "apex::application::init_application";
 
@@ -3328,7 +3328,7 @@ namespace apex
 
       //}
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       //estatus = 
       m_puserlanguagemap = __allocate ::user::language_map();
@@ -3696,7 +3696,7 @@ namespace apex
    }
 
 
-   //::pointer<::acme::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
+   //::pointer<::platform::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
    //{
 
    //   auto & pexclusive = m_mapExclusive[strId];
@@ -4196,7 +4196,7 @@ namespace apex
       try
       {
 
-         //auto psystem = system()->m_papexsystem;
+         //auto psystem = system();
 
          if (m_pinterprocesscommunication)
          {
@@ -4253,7 +4253,7 @@ namespace apex
    {
 
       //bool bContinue = false;
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
       try
       {
 
@@ -4310,7 +4310,7 @@ namespace apex
       try
       {
 
-         //auto psystem = system()->m_papexsystem;
+         //auto psystem = system();
 
          if (m_pinterprocesscommunication)
          {
@@ -4852,7 +4852,7 @@ namespace apex
    void application::app_set(string strPath, string strValue)
    {
 
-      return m_pcontext->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
+      return m_papplication->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
 
    }
 
@@ -4860,7 +4860,7 @@ namespace apex
    string application::app_get(string strPath, string strDefault)
    {
 
-      return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
+      return m_papplication->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
 
    }
 
@@ -5322,9 +5322,9 @@ namespace apex
 
       ::file::path path2;
 
-      path1 = m_pcontext->defer_process_matter_path(path1Param);
+      path1 = m_papplication->defer_process_matter_path(path1Param);
 
-      path2 = m_pcontext->defer_process_matter_path(path2Param);
+      path2 = m_papplication->defer_process_matter_path(path2Param);
 
       path1 = acmepath()->safe_get_real_path(path1);
 
@@ -5528,7 +5528,7 @@ namespace apex
 
       string strAppId = m_strAppId;
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       string strNetworkPayload = file()->safe_get_string(acmedirectory()->config() / strAppId / +"http.network_payload");
 
@@ -6623,7 +6623,7 @@ namespace apex
    void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
@@ -9510,7 +9510,7 @@ namespace apex
    bool application::on_run_install()
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (m_strId == "session" || m_strAppName == "session")
       {
@@ -10096,7 +10096,7 @@ namespace apex
          try
          {
 
-            auto psystem = system()->m_papexsystem;
+            auto psystem = system();
 
             if (psystem)
             {
@@ -10119,7 +10119,7 @@ namespace apex
    //pointer< ::extended::future < ::conversation > > application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
    //
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
    //
    //   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
    //
@@ -10129,7 +10129,7 @@ namespace apex
    string application::get_version()
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto papex = psystem->session()->m_pacmenode->m_papexnode;
 
@@ -10141,7 +10141,7 @@ namespace apex
    void application::_001InitializeShellOpen()
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto papex = psystem->m_pacmenode->m_papexnode;
 
@@ -10422,7 +10422,7 @@ namespace apex
 //void application_on_menu_action(void * pApplication, const char * pszCommand)
 //{
 //
-//   auto papp = (::acme::application *)pApplication;
+//   auto papp = (::platform::application *)pApplication;
 //
 //   papp->m_papexapplication->on_application_menu_action(pszCommand);
 //

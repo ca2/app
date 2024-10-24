@@ -518,7 +518,7 @@
 //      {
 //         if(m_szMerge != nullptr && m_szMerge != m_szAlloca && m_bOwn)
 //         {
-//            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_szMerge);
+//            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_szMerge);
 //         }
 //      }
 //
@@ -571,7 +571,7 @@
 //               {
 //                  if(m_szMerge == m_szAlloca || !m_bOwn)
 //                  {
-//                     m_szMerge = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
+//                     m_szMerge = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iMaxSize);
 //                     ::memory_copy(m_szMerge,m_szAlloca,oldlen);
 //                  }
 //                  else

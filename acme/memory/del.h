@@ -144,7 +144,7 @@ namespace acme
 
             p = nullptr;
 
-            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdel);
+            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdel);
 
          }
 

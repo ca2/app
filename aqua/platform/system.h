@@ -14,14 +14,14 @@ namespace aqua
    public:
 
 
-      ::pointer<::aqua::audio>                        m_paudio;
-
-      ::pointer<::aqua::multimedia>                   m_pmultimedia;
-
-      ::pointer<::aqua::audio_mixer>                  m_paudiomixer;
-
-      ::pointer<::aqua::estamira>                     m_pestamira;
-
+      // ::pointer<::aqua::audio>                        m_paudio;
+      //
+      // ::pointer<::aqua::multimedia>                   m_pmultimedia;
+      //
+      // ::pointer<::aqua::audio_mixer>                  m_paudiomixer;
+      //
+      // ::pointer<::aqua::estamira>                     m_pestamira;
+      //
 
       system();
       ~system() override;
@@ -38,7 +38,7 @@ namespace aqua
       void on_initialize_particle() override;
 
 
-      virtual void on_add_session(::acme::session* papexsession) override;
+      virtual void on_add_session(::platform::session* papexsession) override;
 
       //virtual void initialize_rich_text();
 

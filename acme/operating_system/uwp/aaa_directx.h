@@ -35,7 +35,7 @@ namespace universal_windows
 
 
       bool                             m_b3D;
-      ::acme::system *                 system();
+      ::platform::system *                 system();
       ::pointer < ::mutex >                          m_pmutexDc;
       size                             m_size;
       ::windowing::window *       m_pimpl;
@@ -47,7 +47,7 @@ namespace universal_windows
       directx_base();
 
 
-      ::acme::application * get_app() const
+      ::platform::application * get_app() const
       {
 
          return get_app();

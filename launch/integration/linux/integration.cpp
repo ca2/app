@@ -81,11 +81,11 @@ namespace application_build_helper
 
          auto pffmpeg = __create_new < ::console_integration::linux::ffmpeg >();
             
-         pffmpeg->m_pcontext->m_pathFolder = m_pathFolder;
+         pffmpeg->m_papplication->m_pathFolder = m_pathFolder;
 
-         //pffmpeg->m_pcontext->m_strPlatform = strPlatform;
+         //pffmpeg->m_papplication->m_strPlatform = strPlatform;
 
-         pffmpeg->m_pcontext->m_strConfiguration = strConfiguration;
+         pffmpeg->m_papplication->m_strConfiguration = strConfiguration;
 
          pffmpeg->build();
 
@@ -120,11 +120,11 @@ namespace application_build_helper
             auto popenssl = __create_new < ::console_integration::linux::openssl >();
             
             
-            popenssl->m_pcontext->m_pathFolder = m_pathFolder;
+            popenssl->m_papplication->m_pathFolder = m_pathFolder;
 
-            popenssl->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+            popenssl->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-            popenssl->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+            popenssl->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
             
             popenssl->build();
             
@@ -147,11 +147,11 @@ namespace application_build_helper
             
             auto px264 = __create_new < ::console_integration::linux::x264 >();
             
-//            px264->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+//            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-            px264->m_pcontext->m_pathFolder = m_pathFolder;
+            px264->m_papplication->m_pathFolder = m_pathFolder;
             
-            px264->m_pcontext->m_strConfiguration = psubsystem->get_argument1(1);
+            px264->m_papplication->m_strConfiguration = psubsystem->get_argument1(1);
             
             px264->m_pathPrefixBase = psubsystem->get_argument1(2);
             
@@ -175,11 +175,11 @@ namespace application_build_helper
                      auto px265 = __create_new < ::console_integration::linux::x265 >();
             
             
-            px265->m_pcontext->m_pathFolder = m_pathFolder;
+            px265->m_papplication->m_pathFolder = m_pathFolder;
 
- //                     px265->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+ //                     px265->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-                     px265->m_pcontext->m_strConfiguration = psubsystem->get_argument1(1);
+                     px265->m_papplication->m_strConfiguration = psubsystem->get_argument1(1);
             
                      px265->m_pathPrefixBase = psubsystem->get_argument1(2);
             
@@ -219,11 +219,11 @@ namespace application_build_helper
                      auto pfdkaac = __create_new < ::console_integration::linux::fdk_aac >();
             
             
-            pfdkaac->m_pcontext->m_pathFolder = m_pathFolder;
+            pfdkaac->m_papplication->m_pathFolder = m_pathFolder;
 
- //                     px265->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+ //                     px265->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-            pfdkaac->m_pcontext->m_strConfiguration = psubsystem->get_argument1(1);
+            pfdkaac->m_papplication->m_strConfiguration = psubsystem->get_argument1(1);
             
             pfdkaac->m_pathPrefixBase = psubsystem->get_argument1(2);
             
@@ -262,11 +262,11 @@ namespace application_build_helper
                      auto plame = __create_new < ::console_integration::linux::lame >();
             
             
-            plame->m_pcontext->m_pathFolder = m_pathFolder;
+            plame->m_papplication->m_pathFolder = m_pathFolder;
 
- //                     px265->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+ //                     px265->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-            plame->m_pcontext->m_strConfiguration = psubsystem->get_argument1(1);
+            plame->m_papplication->m_strConfiguration = psubsystem->get_argument1(1);
             
             plame->m_pathPrefixBase = psubsystem->get_argument1(2);
             
@@ -306,11 +306,11 @@ namespace application_build_helper
                      auto pfreetype = __create_new < ::console_integration::linux::freetype >();
             
             
-            pfreetype->m_pcontext->m_pathFolder = m_pathFolder;
+            pfreetype->m_papplication->m_pathFolder = m_pathFolder;
 
- //                     px265->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+ //                     px265->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
-            pfreetype->m_pcontext->m_strConfiguration = psubsystem->get_argument1(1);
+            pfreetype->m_papplication->m_strConfiguration = psubsystem->get_argument1(1);
             
             pfreetype->m_pathPrefixBase = psubsystem->get_argument1(2);
             
@@ -348,7 +348,7 @@ namespace application_build_helper
          {
             //         auto pthirdwinrt = __create_new < linux::third >();
             
-            //pthirdwinrt->m_pcontext->m_pathFolder = m_pathFolder;
+            //pthirdwinrt->m_papplication->m_pathFolder = m_pathFolder;
 
             //
             //pthirdwinrt->build();

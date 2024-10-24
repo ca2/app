@@ -252,7 +252,7 @@ namespace sockets
 
       string strId = m_strCat;
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (strId.case_insensitive_begins("cat://"))
       {

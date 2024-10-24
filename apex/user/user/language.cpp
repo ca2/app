@@ -123,7 +123,7 @@ namespace user
 //
 //      string strLang = m_strLanguageCode;
 //      
-//      auto psystem = system()->m_papexsystem;
+//      auto psystem = system();
 //
 //      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
 //
@@ -135,9 +135,9 @@ namespace user
 //
 //      string strLang = m_strLanguageCode;
 //
-//      auto pcontext = m_pcontext;
+//      auto pcontext = m_papplication;
 //
-//      ::file::path path = pcontext->m_papexsystem->dir()->module() / "po" / (strLang + ".po");
+//      ::file::path path = pcontext->dir()->module() / "po" / (strLang + ".po");
 //
 //      return acmefile()->as_string(path, bOnlyHeader ? 4096 : -1);
 //

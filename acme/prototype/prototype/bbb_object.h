@@ -64,7 +64,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pparticle) override;
 
-   //inline ::application* application() { return m_pacmeapplication; }
+   //inline ::application* application() { return m_papplication; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -122,11 +122,11 @@ public:
 
    inline ::object_meta* get_meta() { defer_object_meta(); return m_pmeta; }
 
-   inline ::context* get_context() const { return m_pcontext; }
+   inline ::context* get_context() const { return m_papplication; }
 
    inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::application* get_app() const { return m_pacmeapplication; }
+   inline ::application* get_app() const { return m_papplication; }
 
    inline ::apex::session* get_session() const { return m_psession; }
 
@@ -134,7 +134,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_pacmeapplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 

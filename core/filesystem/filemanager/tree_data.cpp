@@ -272,7 +272,7 @@ namespace filemanager
 
       auto papp = get_app();
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_papplication;
       
       bool bRoot = false;
 
@@ -319,7 +319,7 @@ namespace filemanager
 
          auto & item = listing[i];
 
-         ::file::path pathFinal = m_pcontext->defer_process_matter_path(item);
+         ::file::path pathFinal = m_papplication->defer_process_matter_path(item);
 
          if(pathFinal.is_folder())
          {
@@ -487,7 +487,7 @@ namespace filemanager
 
       //               pitemChild->set_user_path(pathAscendant);
 
-      //               pitemChild->set_final_path(m_pcontext->defer_process_matter_path(pathAscendant));
+      //               pitemChild->set_final_path(m_papplication->defer_process_matter_path(pathAscendant));
 
       //               pitemChild->m_strName = strName;
 
@@ -587,7 +587,7 @@ namespace filemanager
 
       //      pitemChild->set_user_path(pathUser);
 
-      //      pitemChild->set_final_path(m_pcontext->defer_process_matter_path(pathFinal));
+      //      pitemChild->set_final_path(m_papplication->defer_process_matter_path(pathFinal));
 
       //      pitemChild->m_strName = strName;
 
@@ -668,7 +668,7 @@ namespace filemanager
 
       //      pitemChild->set_user_path(pathUser);
 
-      //      //pitemChild->set_final_path(m_pcontext->defer_process_matter_path(pathFinal));
+      //      //pitemChild->set_final_path(m_papplication->defer_process_matter_path(pathFinal));
 
       //      pitemChild->m_strName = strName;
 
@@ -863,7 +863,7 @@ _001SelectItem(pchild);
 
          auto & path = patha[i];
          
-         ::file::path pathFinal = m_pcontext->defer_process_path(path);
+         ::file::path pathFinal = m_papplication->defer_process_path(path);
 
          if(bExpandAscendants && (filemanager_data()->m_listingRoot2.find_first_contains(path) >= 0
          || filemanager_data()->m_listingRoot2.find_first_contains(pathFinal) >= 0)
@@ -1021,7 +1021,7 @@ _001SelectItem(pchild);
 
    //               pitemChild->set_user_path(pathAscendant);
 
-   //               pitemChild->set_final_path(m_pcontext->defer_process_matter_path(pathAscendant));
+   //               pitemChild->set_final_path(m_papplication->defer_process_matter_path(pathAscendant));
 
    //               pitemChild->m_strName = strName;
 
@@ -1121,7 +1121,7 @@ _001SelectItem(pchild);
 
    //      pitemChild->set_user_path(pathUser);
 
-   //      pitemChild->set_final_path(m_pcontext->defer_process_matter_path(pathFinal));
+   //      pitemChild->set_final_path(m_papplication->defer_process_matter_path(pathFinal));
 
    //      pitemChild->m_strName = strName;
 

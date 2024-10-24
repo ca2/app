@@ -173,7 +173,7 @@ void * __cdecl operator new(size_t size, std::align_val_t alignment)
 void operator delete(void * ptr, std::align_val_t) noexcept
 {
 
-   ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ptr);
+   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(ptr);
 
 }
 

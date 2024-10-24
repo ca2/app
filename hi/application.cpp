@@ -1248,7 +1248,7 @@ namespace console_hello
 ////
 ////   //set_argc_argv_envp(argc, argv, envp);
 ////
-////   ::acme::application application;
+////   ::platform::application application;
 ////
 ////   application.m_applicationflags.m_bConsole = true;
 ////
@@ -1467,7 +1467,7 @@ namespace console_hello
 //      else if (result == e_dialog_result_no)
 //      {
 //
-//         auto pcontext = application.m_pcontext;
+//         auto pcontext = application.m_papplication;
 //
 //         pcontext->fork([pcontext]()
 //         {

@@ -18,7 +18,7 @@
 //
 ////      system() = ::pointer_transfer(platform_create_system(nullptr));
 ////
-////      //      system() = __allocate ::acme::system();
+////      //      system() = __allocate ::platform::system();
 ////
 ////      system()->console_initialize();
 ////
@@ -118,7 +118,7 @@
 //
 //   //   {
 //
-//   //      auto psystem = __allocate ::acme::system();
+//   //      auto psystem = __allocate ::platform::system();
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
@@ -128,7 +128,7 @@
 //
 //   //}
 //
-//   auto psystem = __allocate ::acme::system();
+//   auto psystem = __allocate ::platform::system();
 //
 //   psystem->console_initialize();
 //

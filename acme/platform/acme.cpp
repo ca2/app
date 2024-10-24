@@ -16,6 +16,7 @@
 #include "acme/operating_system/acme_initialize.h"
 
 #include "acme/operating_system/ansi/binreloc.h"
+#include "memory/plex_heap_alloc_array.h"
 #include "parallelization/manual_reset_event.h"
 
 
@@ -246,11 +247,18 @@ namespace acme
 {
 
 
-   ::acme::acme * singleton::s_pacme = nullptr;
+   ::acme::acme * acme::s_p = nullptr;
 
 
    acme::acme()
    {
+
+      if (!s_p)
+      {
+
+         s_p = this;
+
+      }
 
       m_timeStart.Now();
 
@@ -280,13 +288,13 @@ namespace acme
 
       //::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
 
-      {
-
-         //REFDBG_THIS(this);
-
-         m_pplatform = new ::platform::platform(this);
-
-      }
+      // {
+      //
+      //    //REFDBG_THIS(this);
+      //
+      //    m_pplatform = new ::platform::platform(this);
+      //
+      // }
 #if REFERENCING_DEBUGGING
 
       {
@@ -297,7 +305,7 @@ namespace acme
 
       }
 #endif
-      m_pplatform->platform_initialize();
+      //m_pplatform->platform_initialize();
 #if REFERENCING_DEBUGGING
 
       {
@@ -350,13 +358,13 @@ namespace acme
 
       acme_destruct_platform_dependent();
 
-      m_pplatform->platform_finalize();
+      //m_pplatform->platform_finalize();
 
       //m_pplatform.release();
 
-      delete m_pplatform;
+      //delete m_pplatform;
 
-      m_pplatform = nullptr;
+      //m_pplatform = nullptr;
 
 #if REFERENCING_DEBUGGING
 
@@ -760,6 +768,7 @@ namespace acme
 //
 //
 //   }
+      ::platform::platform * acme::platform() { return ::platform::get(); }
 
 
    void acme::acme_construct()
@@ -1111,7 +1120,7 @@ namespace acme
       //}
 
 
-      //g_pmapAura =aaa_memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
+      //g_pmapAura =aaa_memory_new ::map < void *,void *,::platform::application *,::platform::application * >;
 
       //g_criticalsectionUiDestroyed = ___new ::critical_section ();
 
@@ -1245,7 +1254,7 @@ namespace acme
 
       //return true;
 
-      //factory()->add_factory_item < ::acme::system >();
+      //factory()->add_factory_item < ::platform::system >();
 #if REFERENCING_DEBUGGING
 
       {
@@ -1650,10 +1659,10 @@ namespace acme
    //}
 
 
-   //::acme::system * acme_create_system(app_core * pappcore)
+   //::platform::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = ___new ::acme::system ();
+   //   auto psystem = ___new ::platform::system ();
 
    //   psystem->initialize(nullptr);
 
@@ -1701,7 +1710,7 @@ namespace acme
 //
 //      //return true;
 //
-//      //factory()->add_factory_item < ::acme::system >();
+//      //factory()->add_factory_item < ::platform::system >();
 //
 //   }
 //
@@ -2005,53 +2014,53 @@ namespace acme
    }
 
 
-   singleton::singleton()
-   {
-
-      ::c::malloc::construct(s_pacme);
-
-   }
-
-
-   singleton::~singleton()
-   {
-
-//      auto pacme = s_pacme;
+//    singleton::singleton()
+//    {
 //
-//      if(pacme)
-//      {
+//       ::c::malloc::construct(s_pacme);
 //
-//         auto pheapmanagement = pacme->m_pheapmanagement;
-//
-//         if(pheapmanagement)
-//         {
-//
-//            pheapmanagement->m_pacmeDestroyOnDestroy = s_pacme;
-//
-//            s_pacme->acme_destruct();
-//
-//#if !REFERENCING_DEBUGGING
-//
-//            return;
-//
-//#endif
-////
-//            //return;
-//
-//         }
+//    }
 //
 //
-//      }
-
-      s_pacme->on_before_destroy();
-
-      auto pacme = s_pacme;
-
-      ::c::malloc::destroy(pacme);
-
-      s_pacme = nullptr;
-
-   }
+//    singleton::~singleton()
+//    {
+//
+// //      auto pacme = s_pacme;
+// //
+// //      if(pacme)
+// //      {
+// //
+// //         auto pheapmanagement = pacme->m_pheapmanagement;
+// //
+// //         if(pheapmanagement)
+// //         {
+// //
+// //            pheapmanagement->m_pacmeDestroyOnDestroy = s_pacme;
+// //
+// //            s_pacme->acme_destruct();
+// //
+// //#if !REFERENCING_DEBUGGING
+// //
+// //            return;
+// //
+// //#endif
+// ////
+// //            //return;
+// //
+// //         }
+// //
+// //
+// //      }
+//
+//       s_pacme->on_before_destroy();
+//
+//       auto pacme = s_pacme;
+//
+//       ::c::malloc::destroy(pacme);
+//
+//       s_pacme = nullptr;
+//
+//    }
 
 
 } // namespace acme

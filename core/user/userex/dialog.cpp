@@ -90,7 +90,7 @@ bool dialog::show(const ::string & pszMatter)
 
    varArgs["window_frame"] = true;
 
-   auto pcontext = m_pcontext;
+   auto pcontext = m_papplication;
    
    auto psession = pcontext->m_pacmesession->m_pcoresession;
    

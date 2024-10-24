@@ -774,7 +774,7 @@ void property_object::defer_propset()
 
 #endif
 
-   m_pcontext->__defer_construct_new(m_ppropertyset);
+   m_papplication->__defer_construct_new(m_ppropertyset);
 
 }
 

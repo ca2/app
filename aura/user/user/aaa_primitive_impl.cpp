@@ -10,7 +10,7 @@
 #include "acme/include/_c_swap.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
 #include "aura/platform/session.h"
@@ -1049,7 +1049,7 @@ namespace user
          else
          {
 
-            auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
+            auto paurasession = m_papplication->m_pacmesession->m_paurasession;
 
             auto puser = paurasession->m_puser;
 
@@ -3038,7 +3038,7 @@ namespace user
    ::aura::application * primitive_impl::get_app()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+      return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -3046,7 +3046,7 @@ namespace user
    ::aura::session * primitive_impl::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 

@@ -10,7 +10,7 @@ namespace app_just_message_box
 
 
    class CLASS_DECL_APP_JUST_MESSAGE_BOX_APP application :
-      virtual public ::acme::application
+      virtual public ::platform::application
    {
    public:
 

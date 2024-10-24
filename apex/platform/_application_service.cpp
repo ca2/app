@@ -15,7 +15,7 @@ namespace apex
    void application::enable_service()
    {
 
-      //auto estatus = system()->m_papexsystem->node()->enable_service();
+      //auto estatus = system()->node()->enable_service();
 
       node()->enable_service();
 

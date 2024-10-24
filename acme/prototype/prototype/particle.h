@@ -61,6 +61,7 @@ class trace_statement;
 
 #include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
+#include "acme/prototype/string/string.h"
 
 
 using particle_pointer = ::pointer <  ::particle  >;
@@ -90,11 +91,11 @@ class CLASS_DECL_ACME particle :
 public:
 
 
-   mutable ::acme::context *           m_pcontext;
-   mutable ::particle_pointer    m_pparticleSynchronization;
+   mutable ::platform::application *            m_papplication;
+   mutable ::particle_pointer                   m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
-   particle() : m_pcontext(nullptr) {}
+   particle() : m_papplication(nullptr) {}
 //#else
 //   particle() : m_countReference(1) {}
 //#endif
@@ -148,7 +149,7 @@ public:
    //class ::platform::platform * platform() const;
    static class ::platform::platform * platform();
 
-   virtual class ::platform::platform * _platform() const;
+   //virtual class ::platform::platform * _platform() const;
 
 
    ::mathematics::mathematics * mathematics() const;
@@ -165,11 +166,11 @@ public:
    class ::user::user * user() const;
 
 
-   ::acme::system * system() const;
-   ::acme::session * session() const;
-   ::acme::application * application() const;
+   ::platform::system * system() const;
+   ::platform::session * session() const;
+   ::platform::application * application() const;
    ::acme::node * node() const;
-   ::acme::context * context() const;
+   ::platform::context * context() const;
 
    //::aura::application* auraapplication() const;
 
@@ -199,7 +200,8 @@ public:
 
    virtual ::file::watcher * file_watcher();
 
-   ::http::context * http() const;
+
+   ::platform::http * http() const;
 
 
    virtual ::factory::factory_pointer & factory() const;

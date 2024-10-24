@@ -4722,7 +4722,7 @@ namespace user
 
             auto pwindowing = windowing();
 
-            auto pcontext = m_pcontext->m_papexcontext;
+            auto pcontext = m_papplication->m_papexcontext;
 
             ::file::path pathIcon = "matter://main/icon.png";
 
@@ -10332,7 +10332,7 @@ namespace user
 
       }
 
-      if (::is_null(m_pcontext))
+      if (::is_null(m_papplication))
       {
 
          initialize(puserinteractionParent);
@@ -18006,7 +18006,7 @@ namespace user
          else
          {
 
-            auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
+            auto paurasession = m_papplication->m_pacmesession->m_paurasession;
 
             auto puser = paurasession->m_puser;
 
@@ -29961,8 +29961,8 @@ namespace user
    ::aura::application * interaction::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_pacmeapplication->m_papexapplication
-         ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication->m_papexapplication
+         ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -29970,7 +29970,7 @@ namespace user
    ::aura::session * interaction::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 
@@ -29986,7 +29986,7 @@ namespace user
    ::aura::context * interaction::context()
    {
 
-      return m_pcontext ? m_pcontext->m_pauracontext : nullptr;
+      return m_papplication ? m_papplication->m_pauracontext : nullptr;
 
    }
 

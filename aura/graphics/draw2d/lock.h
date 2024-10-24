@@ -27,7 +27,7 @@ namespace draw2d
 ////
 ////#endif
 //
-//      ::acme::system * system();
+//      ::platform::system * system();
 //
 //      device_lock(::user::interaction * pinteraction);
 //      ~device_lock();

@@ -846,7 +846,7 @@ namespace user
 
       //auto pcontext = get_context();
 
-      m_path = m_pcontext->defer_process_path(pathFull);
+      m_path = m_papplication->defer_process_path(pathFull);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;

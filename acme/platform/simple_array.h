@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/memory/::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
+#include "acme/memory/::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
 
 
 // currently simple_array doesn't call any constructors/destructors on elements
@@ -17,7 +17,7 @@ public:
 
 
    simple_array() { m_p = nullptr; m_c = 0; m_cAlloc = 0; }
-   ~simple_array() { if (m_p) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p); m_p = nullptr; m_c = 0; m_cAlloc = 0; }
+   ~simple_array() { if (m_p) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p); m_p = nullptr; m_c = 0; m_cAlloc = 0; }
 
    void allocate_for_size(int s)
    {
@@ -27,11 +27,11 @@ public:
 
          m_cAlloc = s + 8;
 
-         auto pNew = (T*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_cAlloc * sizeof(T));
+         auto pNew = (T*)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_cAlloc * sizeof(T));
 
          memory_copy(pNew, m_p, m_c * sizeof(T));
 
-         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
+         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
 
          m_p = pNew;
 

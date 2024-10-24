@@ -768,7 +768,7 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       install_message_routing(m_puserinteraction);
 
-      auto psession = m_pcontext->m_pacmesession->m_paurasession;
+      auto psession = m_papplication->m_pacmesession->m_paurasession;
 
       auto puser = psession->user();
 
@@ -2915,7 +2915,7 @@ bMove = false;
    ::aura::application * window::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication
          : nullptr;
 
    }
@@ -2924,7 +2924,7 @@ bMove = false;
    ::aura::session * window::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 
@@ -14176,7 +14176,7 @@ bMove = false;
 //         else
 //         {
 //
-//            auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
+//            auto paurasession = m_papplication->m_pacmesession->m_paurasession;
 //
 //            auto puser = paurasession->m_puser;
 //
@@ -16179,7 +16179,7 @@ bMove = false;
    //::aura::application * window::get_app()
    //{
 
-   //   return m_pcontext ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+   //   return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    //}
 
@@ -16187,7 +16187,7 @@ bMove = false;
    //::aura::session * window::get_session()
    //{
 
-   //   return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+   //   return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    //}
 

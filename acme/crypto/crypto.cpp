@@ -13,7 +13,7 @@
 #include "acme/prototype/string/base64.h"
 #include "acme/prototype/string/str.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 
 
 namespace crypto
@@ -213,7 +213,7 @@ namespace crypto
          memory storage;
          key(storage);
 
-         //auto psystem = system()->m_papexsystem;
+         //auto psystem = system();
 
          auto psystem = system();
 

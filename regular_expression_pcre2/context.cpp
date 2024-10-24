@@ -48,7 +48,7 @@ namespace regular_expression_pcre2
 
       auto pregularexpression = __allocate regular_expression();
 
-      pregularexpression->m_pcontext = this;
+      pregularexpression->m_papplication = this;
 
       pregularexpression->compile(str);
 

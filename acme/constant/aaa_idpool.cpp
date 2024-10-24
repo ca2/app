@@ -22,7 +22,7 @@
 //   }
 //
 //
-//   void idpool::init(::acme::system * psystem)
+//   void idpool::init(::platform::system * psystem)
 //   {
 //
 //      auto pidpool = psystem->__create < idpool >();

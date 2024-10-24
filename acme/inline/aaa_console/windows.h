@@ -10,7 +10,7 @@ namespace acme
 
       
       void m_estatus;
-      //::pointer<::acme::system>system();
+      //::pointer<::platform::system>system();
 
    //   void create_system()
    //   {
@@ -19,7 +19,7 @@ namespace acme
    //
    //      //system() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
    //
-   ////      system() = __allocate ::acme::system();
+   ////      system() = __allocate ::platform::system();
    //
    //      //system()->console_initialize();
    //

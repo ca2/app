@@ -57,7 +57,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(atom);
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   return psystem->get_task(atom) != nullptr;
 
@@ -83,7 +83,7 @@ namespace parallelization
    //void thread_unregister(itask_t itask, ::task * ptask)
    //{
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   psystem->unset_task(itask, ptask);
 
@@ -107,7 +107,7 @@ namespace parallelization
 
    //   }
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexTask);
 
@@ -142,7 +142,7 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
 
@@ -357,10 +357,10 @@ namespace parallelization
 //   if (pthread->get_context())
 //   {
 //
-//      if (::is_null(pthread->m_pcontext->m_papexcontext->file()))
+//      if (::is_null(pthread->m_papplication->m_papexcontext->file()))
 //      {
 //
-//         pthread->m_pcontext->m_papexcontext->initialize_context();
+//         pthread->m_papplication->m_papexcontext->initialize_context();
 //
 //      }
 //
@@ -521,7 +521,7 @@ namespace apex
                if (ptask == this)
                {
 
-                  ::acme::system::do_tasks();
+                  ::platform::system::do_tasks();
 
                }
                else
@@ -546,7 +546,7 @@ namespace apex
          try
          {
 
-            auto psystem = m_papexsystem;
+            auto psystem = this;
 
             if (::is_set(psystem) && psystem != this)
             {

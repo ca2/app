@@ -5,6 +5,7 @@
 
 class sequence;
 
+#include "acme/prototype/prototype/function.h"
 
 //
 //

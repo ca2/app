@@ -564,7 +564,7 @@ namespace file
 
 
 // template < class ARRAY >
-// bool file_put_array(const ::file::path & path, ARRAY & a, ::acme::application * papp)
+// bool file_put_array(const ::file::path & path, ARRAY & a, ::platform::application * papp)
 // {
 
 
@@ -621,7 +621,7 @@ namespace file
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const ::file::path & path, ::acme::application * papp)
+// bool file_as_array(ARRAY & a, const ::file::path & path, ::platform::application * papp)
 // {
 
 //   try

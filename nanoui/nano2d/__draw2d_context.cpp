@@ -1,7 +1,7 @@
 // Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
@@ -974,7 +974,7 @@ namespace nano2d
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_pcontext->image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
+      return m_pgraphics->m_papplication->image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
 
    }
 
@@ -1024,7 +1024,7 @@ namespace nano2d
 
       auto pgraphics = m_pgraphics;
 
-      auto pcontext = pgraphics->m_pcontext;
+      auto pcontext = pgraphics->m_papplication;
 
       auto pimagecontext = pcontext->image_context();
 

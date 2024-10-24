@@ -917,7 +917,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //         }
 //
-//         //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
+//         //if (system()->m_bPreferNoFrameWindow)
 //         //{
 //
 //         //   m_bWindowFrame = false;
@@ -930,7 +930,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //   //else
 //   //{
 //
-//   //   m_bWindowFrame = system()->m_papexsystem->m_bExperienceMainFrame;
+//   //   m_bWindowFrame = system()->m_bExperienceMainFrame;
 //
 //   //}
 //
@@ -991,7 +991,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //
 //   }
 
-   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
+   //if (system()->m_bPreferNoFrameWindow)
    //{
 
    //   m_bWindowFrame = false;
@@ -1133,7 +1133,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                         {
 
                           //auto papp = get_app();
-                     //auto psystem = system()->m_papexsystem;
+                     //auto psystem = system();
 
                      //auto estatus =
 
@@ -1924,7 +1924,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       //auto pnode = psystem->node();
 
@@ -2442,7 +2442,7 @@ void simple_frame_window::on_frame_position()
 //bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
 //{
 //
-//   //if (system()->m_papexsystem->m_bPreferNoFrameWindow)
+//   //if (system()->m_bPreferNoFrameWindow)
 //   //{
 //
 //   //   set_need_layout();

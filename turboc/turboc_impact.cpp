@@ -185,7 +185,7 @@ namespace turboc
 
       GetClientRect(rectangleX);
 
-/*      pgraphics->BitBlt(rectangleX,papp->m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectangleX,papp->m_papplication->m_pimage->g());
 
 
       if(papp->m_etype == application::type_mili)

@@ -90,7 +90,7 @@ int create_process2(const char * _cmd_line, int * pprocessId)
    char *   exec_path_name;
    char *	cmd_line;
 
-   cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == nullptr)
       return 0;

@@ -222,7 +222,7 @@ void thread::thread_common_construct()
 
    //}
 
-   auto pcontext = m_pcontext;
+   auto pcontext = m_papplication;
 
    if (pcontext)
    {
@@ -353,7 +353,7 @@ void thread::term_task()
    case id_system:
    {
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       //if (psystem)
       //{
@@ -497,7 +497,7 @@ void thread::task_osterm()
 
    __set_thread_off();
 
-   //system()->m_papexsystem->m_papexnode->thread_finalize(this);
+   //system()->m_papexnode->thread_finalize(this);
 
    //::e_status estatus = m_result.m_estatus;
 
@@ -1925,7 +1925,7 @@ void thread::main()
 
          }
 
-         if (defer_implement(m_pcontext))
+         if (defer_implement(m_papplication))
          {
 
             //estatus = system()->m_estatus;
@@ -2082,7 +2082,7 @@ void thread::init_task()
 
    //}
 
-   //auto psystem = system()->m_papexsystem;
+   //auto psystem = system();
 
    //if (m_atomContextReference == id_none && psystem && psystem != this)
    //{
@@ -2295,7 +2295,7 @@ void thread::system_pre_translate_message(::message::message* pmessage)
    try
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (psystem != nullptr)
       {
@@ -2733,7 +2733,7 @@ void thread::__os_initialize()
    //
    //#endif
 
-      //system()->m_papexsystem->m_papexnode->node_thread_initialize(this);
+      //system()->m_papexnode->node_thread_initialize(this);
 
 }
 
@@ -2741,7 +2741,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   //system()->m_papexsystem->m_papexnode->node_thread_finalize(this);
+   //system()->m_papexnode->node_thread_finalize(this);
 
 }
 
@@ -2844,7 +2844,7 @@ void thread::task_osinit()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      //system()->m_papexsystem->m_papexnode->parallelization_initialize();
+      //system()->m_papexnode->parallelization_initialize();
 
    }
 
@@ -3022,9 +3022,9 @@ namespace apex
 
             //}
 
-      //      auto psystem = system()->m_papexsystem;
+      //      auto psystem = system();
       //
-      //      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
+      //      psystem->post_to_all_threads(atom, wparam, lparam);
 
    }
 
@@ -3496,7 +3496,7 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   auto pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(m_itask, true);
+   auto pmq = ::system()->m_ptaskmessagequeue->get_message_queue(m_itask, true);
 
    if (pmq->m_bQuit)
    {
@@ -4348,7 +4348,7 @@ bool thread::process_message()
          //if(msg.lParam)
          {
 
-            //auto psystem = system()->m_papexsystem;
+            //auto psystem = system();
 
             //auto ptopic = psystem->new_subject(message);
 

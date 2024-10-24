@@ -899,14 +899,14 @@ template < typename TYPE >
 using index_map = map < ::collection::index, TYPE >;
 
 
-namespace acme
+namespace platform
 {
 
 
-   using session_map = ::index_map < ::pointer < ::acme::session > >;
+   using session_map = ::index_map < ::pointer < ::platform::session > >;
 
 
-} // namespace acme
+} // namespace platform
 
 
 

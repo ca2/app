@@ -274,7 +274,7 @@ namespace apex
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
-               ::acme::system(strCmdLine);
+               ::platform::system(strCmdLine);
                exit(0);
             }
             */
@@ -561,7 +561,7 @@ namespace apex
 ////
 ////#if !defined(UNIVERSAL_WINDOWS)
 ////
-////         auto psystem = system()->m_papexsystem;
+////         auto psystem = system();
 ////
 ////         if (is_debugger_attached() && !psystem->has_apex_application_factory())
 ////         {
@@ -675,7 +675,7 @@ namespace apex
    void log::process_init()
    {
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       //if (is_debugger_attached() && !psystem->has_apex_application_factory())
       //{
@@ -686,7 +686,7 @@ namespace apex
       //         while (::task_get_run())
       //         {
 
-      //            load_flags(m_pcontext->m_papexcontext->local_ini());
+      //            load_flags(m_papplication->m_papexcontext->local_ini());
 
       //            //task_sleep(10_s);
 

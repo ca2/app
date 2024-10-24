@@ -252,7 +252,7 @@ namespace sandbox_windowing
    //   void windowing::start()
    //   {
    //
-   //      auto psystem = system()->m_papexsystem;
+   //      auto psystem = system();
    //
    //      if (psystem->m_bUser)
    //      {

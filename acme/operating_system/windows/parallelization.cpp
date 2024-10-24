@@ -75,7 +75,7 @@ bool on_init_timer_thread()
 }
 
 
-//CLASS_DECL_ACME ::acme::system * system();
+//CLASS_DECL_ACME ::platform::system * system();
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
@@ -126,7 +126,7 @@ void _do_tasks()
 
    }
 
-   auto pwindowing = system()->m_pacmewindowing;
+   auto pwindowing = ::system()->acme_windowing();
 
    if (pwindowing)
    {

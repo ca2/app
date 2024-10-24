@@ -6,7 +6,7 @@
 #include "data.h"
 #include "document.h"
 #include "acme/constant/id.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 //#include "acme/platform/sequencer.h"

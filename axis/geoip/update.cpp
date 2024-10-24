@@ -202,7 +202,7 @@ i16 parse_http_proxy(char **proxy_host, i32 *port) {
 string GeoIP_get_host_or_proxy()
 {
 
-   return system()->m_papexsystem->networking()->ip_reverse(GeoIPUpdateHost);
+   return system()->networking()->ip_reverse(GeoIPUpdateHost);
 
 }
 

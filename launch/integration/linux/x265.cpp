@@ -58,7 +58,7 @@ namespace console_integration
       void x265::build()
       {
          
-         if(m_pcontext->m_strPlatform.is_empty())
+         if(m_papplication->m_strPlatform.is_empty())
          {
             
             initialize_x265("x86_64", "x86_64-apple-macos10.13", "10.13", "x86_64-apple-darwin");
@@ -69,18 +69,18 @@ namespace console_integration
 
             build();
             
-            if(!m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+            if(!m_papplication->m_strConfiguration.case_insensitive_contains("static"))
             {
                
-               lipo(m_pcontext->m_strName + "_main12");
-               lipo(m_pcontext->m_strName + "_main10");
+               lipo(m_papplication->m_strName + "_main12");
+               lipo(m_papplication->m_strName + "_main10");
                lipo();
                
-               auto pathPrefixInclude = m_pcontext->m_pathPrefix / "include";
+               auto pathPrefixInclude = m_papplication->m_pathPrefix / "include";
 
                auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-linux/include";
                
-               m_pcontext->bash("cp -f " + pathPrefixInclude + "/x265*.h " + pathOperatingSystemIncludeFolder + "/");
+               m_papplication->bash("cp -f " + pathPrefixInclude + "/x265*.h " + pathOperatingSystemIncludeFolder + "/");
                
             }
             
@@ -140,17 +140,17 @@ namespace console_integration
 //
 //         }
 
-         auto pathSource = m_pcontext->m_pathSource / "source";
+         auto pathSource = m_papplication->m_pathSource / "source";
 
-         auto pathPrefixInclude = m_pcontext->m_pathPrefix / "include";
+         auto pathPrefixInclude = m_papplication->m_pathPrefix / "include";
 
          acmedirectory()->create(pathPrefixInclude);
          
-         m_pcontext->bash("cp -f " + pathSource + "/x265*.h " + pathPrefixInclude + "/");
+         m_papplication->bash("cp -f " + pathSource + "/x265*.h " + pathPrefixInclude + "/");
 
          auto pathSourceBits = m_pathSourceBits;
 
-         m_pcontext->bash("cp -f " + pathSourceBits + "/x265*.h " + pathPrefixInclude + "/");
+         m_papplication->bash("cp -f " + pathSourceBits + "/x265*.h " + pathPrefixInclude + "/");
          
       }
       
@@ -158,7 +158,7 @@ namespace console_integration
       void x265::clean()
       {
          
-         m_pcontext->clean();
+         m_papplication->clean();
          
       }
       
@@ -166,20 +166,20 @@ namespace console_integration
       void x265::prepare()
       {
          
-         m_pcontext->prepare();
+         m_papplication->prepare();
          
-         if(m_pcontext->m_pathPrefix.is_empty())
+         if(m_papplication->m_pathPrefix.is_empty())
          {
             
-            m_pcontext->m_pathPrefix = calculate_prefix_path(m_pcontext->m_strPlatform, m_pcontext->m_strConfiguration);
+            m_papplication->m_pathPrefix = calculate_prefix_path(m_papplication->m_strPlatform, m_papplication->m_strConfiguration);
             
          }
          
-         acmedirectory()->create(m_pcontext->m_pathPrefix);
+         acmedirectory()->create(m_papplication->m_pathPrefix);
          
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
       }
       
@@ -187,11 +187,11 @@ namespace console_integration
       void x265::download()
       {
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
          
       }
       
@@ -206,25 +206,25 @@ namespace console_integration
          switch(iBits)
          {
             case 8:
-               m_strTargetName = m_pcontext->m_strName;
+               m_strTargetName = m_papplication->m_strName;
                break;
             case 10:
-               m_strTargetName = m_pcontext->m_strName + "_main10";
+               m_strTargetName = m_papplication->m_strName + "_main10";
                break;
             case 12:
-               m_strTargetName = m_pcontext->m_strName + "_main12";
+               m_strTargetName = m_papplication->m_strName + "_main12";
                break;
             default:
                throw ::exception(error_wrong_state);
          }
          
-         m_pathSourceBits = m_pcontext->m_pathSource / strBits;
+         m_pathSourceBits = m_papplication->m_pathSource / strBits;
          
          acmedirectory()->create(m_pathSourceBits);
          
          acmedirectory()->change_current(m_pathSourceBits);
          
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
          
          ::file::path pathToolchainFileCmake = acmedirectory()->home() / "workspace/operating_system/include/toolchain_file.cmake";
 
@@ -236,7 +236,7 @@ namespace console_integration
          
          string strLibraryExtension;
          
-         if(m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if(m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
             
             strLibraryExtension = "a";
@@ -265,7 +265,7 @@ namespace console_integration
          else
          {
          
-            if(m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+            if(m_papplication->m_strConfiguration.case_insensitive_contains("static"))
             {
                
                strBitDepthFlags += " -DLINKED_10BIT=ON -DLINKED_12BIT=ON";
@@ -279,9 +279,9 @@ namespace console_integration
          
          strCommand += "cmake -G \"Ninja\"";
          //strCommand += "cmake ";
-         strCommand += " -DCMAKE_OSX_ARCHITECTURES=\"" + m_pcontext->m_strPlatform + "\"";
+         strCommand += " -DCMAKE_OSX_ARCHITECTURES=\"" + m_papplication->m_strPlatform + "\"";
          //strCommand += " -DCMAKE_BUILD_PARALLEL_LEVEL=\"6\"";
-         if(m_pcontext->m_strPlatform == "x86_64")
+         if(m_papplication->m_strPlatform == "x86_64")
          {
             strCommand += " -DCMAKE_OSX_DEPLOYMENT_TARGET=\"10.13\"";
             strCommand += " -DEXPORT_C_API=ON";
@@ -291,7 +291,7 @@ namespace console_integration
             // used by toolchain_file.cmake
             //strCommand += " -DPLATFORM=\"MAC\"";
          }
-         else if(m_pcontext->m_strPlatform == "arm64")
+         else if(m_papplication->m_strPlatform == "arm64")
          {
             strCommand += " -DCMAKE_OSX_DEPLOYMENT_TARGET=\"11.0\"";
             //strCommand += " -DCMAKE_CROSS_COMPILING=TRUE";
@@ -319,7 +319,7 @@ namespace console_integration
          strCommand += " -DENABLE_LIBNUMA=OFF";
          strCommand += " -DENABLE_CLI=OFF";
          strCommand += strBitDepthFlags;
-         if(m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if(m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
             
             strCommand += " -DENABLE_STATIC=ON";
@@ -333,14 +333,14 @@ namespace console_integration
             strCommand += " -DENABLE_SHARED=ON";
             
          }
-         strCommand += " -DBIN_INSTALL_DIR=\"" + (m_pcontext->m_pathOperatingSystemStorageFolder /"binary") + "\"";
+         strCommand += " -DBIN_INSTALL_DIR=\"" + (m_papplication->m_pathOperatingSystemStorageFolder /"binary") + "\"";
          //strCommand += " " + m_strShared + " " + m_strStatic;
-         //   if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         //   if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          //   {
          //
          //      insert_cmp0091_new_in_cmake();
          //
-         //      if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+         //      if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
          //      {
          //
          //         strCommand += " -DCMAKE_MSVC_RUNTIME_LIBRARY=\"MultiThreadedDebug\"";
@@ -358,7 +358,7 @@ namespace console_integration
          
          information() << strCommand;
          
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
          information() << "Finishing x265::configure...";
          
@@ -368,12 +368,12 @@ namespace console_integration
       void x265::compile()
       {
          
-         //m_pcontext->change_to_source_directory("source");
+         //m_papplication->change_to_source_directory("source");
          
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
          
-         //m_pcontext->bash("cmake --build " + (m_pcontext->m_pathSource / "source"));
-         m_pcontext->bash("ninja");
+         //m_papplication->bash("cmake --build " + (m_papplication->m_pathSource / "source"));
+         m_papplication->bash("ninja");
          
       }
       
@@ -381,16 +381,16 @@ namespace console_integration
       void x265::install()
       {
          
-         if(m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if(m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
             
-            //m_pcontext->change_to_source_directory();
+            //m_papplication->change_to_source_directory();
             
-            //m_pcontext->command_system("make install");
+            //m_papplication->command_system("make install");
             
-            //   auto pathOperatingSystemIncludeFolder = m_pcontext->m_pathOperatingSystemIncludeFolder;
+            //   auto pathOperatingSystemIncludeFolder = m_papplication->m_pathOperatingSystemIncludeFolder;
             //
-            auto pathOperatingSystemStorageFolderPlatform = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform ;
+            auto pathOperatingSystemStorageFolderPlatform = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform ;
             //
             //   acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
             //
@@ -398,15 +398,15 @@ namespace console_integration
             //
             acmedirectory()->create(pathOperatingSystemStorageFolderPlatform / "library");
             //
-            //   auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+            //   auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             //
-            //   auto strInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+            //   auto strInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
             //
-            //   auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+            //   auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
             //
-            //   m_pcontext->bash("cp -f " + strPrefix + "/include/* " + strInclude + "/include/");
-            //   m_pcontext->bash("cp -f " + strPrefix + "/bin/* " + strStorage + "/binary/");
-            ::string strA = "lib" + m_pcontext->m_strName + ".a";
+            //   m_papplication->bash("cp -f " + strPrefix + "/include/* " + strInclude + "/include/");
+            //   m_papplication->bash("cp -f " + strPrefix + "/bin/* " + strStorage + "/binary/");
+            ::string strA = "lib" + m_papplication->m_strName + ".a";
             
             ::string strTarget = "lib" + m_strTargetName + ".a";
 
@@ -416,11 +416,11 @@ namespace console_integration
 
             ::string strCommand2 ="mv -f " + pathOriginal + " " + pathTarget;
 
-            m_pcontext->bash(strCommand2);
+            m_papplication->bash(strCommand2);
 
             ::string strCommand ="cp -f " + pathTarget + " " + (pathOperatingSystemStorageFolderPlatform / "library/") ;
             
-            m_pcontext->bash(strCommand);
+            m_papplication->bash(strCommand);
             
          }
          else
@@ -428,9 +428,9 @@ namespace console_integration
             
             {
                
-               ::string strDylib = "lib" + m_pcontext->m_strName + ".dylib";
+               ::string strDylib = "lib" + m_papplication->m_strName + ".dylib";
 
-               ::string strDylibOriginal = "lib" + m_pcontext->m_strName + "-original.dylib";
+               ::string strDylibOriginal = "lib" + m_papplication->m_strName + "-original.dylib";
 
                auto path = m_pathSourceBits / strDylib;
 
@@ -438,7 +438,7 @@ namespace console_integration
                
                ::string strCommand2 ="mv -f " + path + " " + pathOriginal;
 
-               m_pcontext->bash(strCommand2);
+               m_papplication->bash(strCommand2);
                
                ::string strTargetDylib = "lib" + m_strTargetName + ".dylib";
 
@@ -448,26 +448,26 @@ namespace console_integration
                
                ::string strCommand3 ="install_name_tool -id @executable_path/" + strTargetDylib + " " + path;
 
-               m_pcontext->bash(strCommand3);
+               m_papplication->bash(strCommand3);
                
-               auto pathPrefix = m_pcontext->m_pathPrefix / "lib" / strTargetDylib;
+               auto pathPrefix = m_papplication->m_pathPrefix / "lib" / strTargetDylib;
 
                information() << "Copying from \"" << pathTarget << "\" to \"" << pathPrefix << "\"";
                
                acmefile()->copy(pathPrefix, pathTarget, true);
              
-               m_mappath[m_strTargetName][m_pcontext->m_strPlatform] = pathPrefix;
+               m_mappath[m_strTargetName][m_papplication->m_strPlatform] = pathPrefix;
                
             }
             
-            if(m_strTargetName == m_pcontext->m_strName)
+            if(m_strTargetName == m_papplication->m_strName)
             {
                
-               ::string strPc = m_pcontext->m_strName + ".pc";
+               ::string strPc = m_papplication->m_strName + ".pc";
                
                auto pathOriginal = m_pathSourceBits / strPc;
                
-               auto path = m_pcontext->m_pathPrefix / "lib/pkgconfig" / strPc;
+               auto path = m_papplication->m_pathPrefix / "lib/pkgconfig" / strPc;
                
                information() << "Copying from \"" << pathOriginal << "\" to \"" << path << "\"";
                

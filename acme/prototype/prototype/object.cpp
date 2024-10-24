@@ -430,7 +430,7 @@ void object::call_routine2(const ::procedure & procedure)
 //void object::post_procedure(const ::procedure& procedure)
 //{
 //
-//   m_pcontext->fork(procedure);
+//   m_papplication->fork(procedure);
 //
 //}
 //
@@ -438,7 +438,7 @@ void object::call_routine2(const ::procedure & procedure)
 //void object::send_procedure(const ::procedure& procedure)
 //{
 //
-//   m_pcontext->send_procedure(procedure);
+//   m_papplication->send_procedure(procedure);
 //
 //}
 //
@@ -474,7 +474,7 @@ void object::call_routine2(const ::procedure & procedure)
 ::text::text object::__text(const ::atom& atom)
 {
 
-   return m_pcontext->__text(atom);
+   return m_papplication->__text(atom);
 
 }
 
@@ -864,7 +864,7 @@ void object::destruct()
 //
 //#endif
 //
-//   //m_pcontext.release();
+//   //m_papplication.release();
 //
 //   //m_pthread.release();
 //
@@ -2380,14 +2380,14 @@ void object::install_message_routing(::channel* pchannel)
 ::property_object* object::parent_property_set_holder() const
 {
    
-   if(m_pcontext == this)
+   if(m_papplication == this)
    {
       
       return nullptr;
       
    }
 
-   return m_pcontext;
+   return m_papplication;
 
 }
 
@@ -2605,7 +2605,7 @@ void call_sync(const ::procedure_array& methoda)
 //void object::set_context(::context* pcontext)
 //{
 //
-//   m_pcontext.reset(pcontext);
+//   m_papplication.reset(pcontext);
 //
 //}
 //
@@ -2853,10 +2853,10 @@ void object::initialize(::particle * pparticle)
 //
 //   }
 //
-//   if (!m_pcontext)
+//   if (!m_papplication)
 //   {
 //
-//      m_pcontext = pparticle->m_pcontext;
+//      m_papplication = pparticle->m_papplication;
 //
 //   }
 //
@@ -2896,19 +2896,19 @@ void object::initialize(::particle * pparticle)
    //   if (m_papp)
    //   {
 
-   //      m_pcontext = m_papp;
+   //      m_papplication = m_papp;
 
    //   }
    //   else if (m_psession)
    //   {
 
-   //      m_pcontext = m_psession;
+   //      m_papplication = m_psession;
 
    //   }
    //   else if (system())
    //   {
 
-   //      m_pcontext = system();
+   //      m_papplication = system();
 
    //   }
 
@@ -2992,7 +2992,7 @@ void object::initialize(::particle * pparticle)
 
 //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-//inline ::context* object::get_context() const { return m_pcontext; }
+//inline ::context* object::get_context() const { return m_papplication; }
 
 //inline ::thread* object::get_thread() const { return m_pthread; }
 
@@ -3796,10 +3796,10 @@ bool object::IsSerializable() const
 
 
 
-//::acme::application * object::get_app() const
+//::platform::application * object::get_app() const
 //{
 //
-//   //return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : nullptr;
+//   //return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
 //   
 //   return ((::object *)this)->::matter::application();
 //
@@ -3807,10 +3807,10 @@ bool object::IsSerializable() const
 //
 //
 //
-//::acme::session * object::get_session() const
+//::platform::session * object::get_session() const
 //{
 //
-//   return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
+//   return m_papplication ? m_papplication->m_pacmesession : nullptr;
 //
 //}
 

@@ -216,9 +216,9 @@ elseif(${LINUX} OR ${__BSD__})
    message(STATUS "(G) PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
 endif ()
 
-
+if(${LINUX} OR ${__BSD__})
 add_dependencies(${PROJECT_NAME} nano_idn_libidn)
-
+endif()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)

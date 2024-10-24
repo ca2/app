@@ -258,7 +258,7 @@ namespace heap
 //         if(m_p == nullptr)
 //         {
 //
-//            m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(uiSize);
+//            m_p = ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(uiSize);
 //
 //         }
 //         else
@@ -286,7 +286,7 @@ namespace heap
 //         if(m_p != nullptr)
 //         {
 //
-//            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
+//            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
 //
 //            m_p = nullptr;
 //

@@ -277,7 +277,7 @@ namespace http
 
                         string strMessage;
 
-                        auto psystem = system()->m_papexsystem;
+                        auto psystem = system();
 
                         auto pdatetime = psystem->datetime();
 

@@ -137,7 +137,7 @@ namespace axis
 
       factory()->add_factory_item < ::geo::geo >();
       factory()->add_factory_item < ::axis::user, ::user::user >();
-      factory()->add_factory_item < ::axis::session, ::acme::session >();
+      factory()->add_factory_item < ::axis::session, ::platform::session >();
 
    }
 
@@ -177,7 +177,7 @@ namespace axis
    }
 
 
-   void system::on_add_session(::acme::session* papexsession)
+   void system::on_add_session(::platform::session* papexsession)
    {
 
       ::aura::system::on_add_session(papexsession);

@@ -37,7 +37,7 @@ namespace turboc
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi;
 
-      action_context *                              m_pcontext;
+      action_context *                              m_papplication;
 
       ::turboc::main *                       m_pmain;
 

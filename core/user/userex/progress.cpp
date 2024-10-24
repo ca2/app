@@ -73,7 +73,7 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         //auto pcontext = m_pcontext;
+         //auto pcontext = m_papplication;
 
          //auto psession = pcontext->m_pacmesession->m_paurasession;
 

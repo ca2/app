@@ -5,7 +5,7 @@
 #include "acme/constant/timer.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
@@ -59,7 +59,7 @@ namespace user
    ::particle_pointer check_box::clone()
    {
 
-      auto pcheckbox = m_pcontext->__create_new <::user::check_box>();
+      auto pcheckbox = m_papplication->__create_new <::user::check_box>();
 
       return pcheckbox;
 

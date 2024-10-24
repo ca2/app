@@ -124,7 +124,7 @@ public:
    int result()
    {
 
-      m_estatus = m_pcontext->application()->m_estatus;
+      m_estatus = m_papplication->application()->m_estatus;
 
       ::i32 iErrorStatus = m_estatus.error_status();
 

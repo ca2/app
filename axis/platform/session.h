@@ -41,7 +41,7 @@ namespace axis
 
       virtual void process_term() override;
 
-      virtual void on_instantiate_application(::acme::application* papp) override;
+      virtual void on_instantiate_application(::platform::application* papp) override;
 
       //virtual ::user::style* user_style() override;
 

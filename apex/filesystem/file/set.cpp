@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "set.h"
 #include "acme/parallelization/event.h"
-#include "apex/platform/context.h"
+#include "apex/platform/application.h"
 #include "apex/platform/node.h"
 //#include "apex/platform/node.h"
 //#include "apex/platform/os_context.h"
@@ -146,7 +146,7 @@ namespace file
 
          }
 
-         m_pcontext->m_papexcontext->enumerate(m_listing);
+         m_papplication->m_papexcontext->enumerate(m_listing);
 
          //}
          //else

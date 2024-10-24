@@ -1157,7 +1157,7 @@ namespace base
       if(scopedstrXml.case_insensitive_begins("matter://"))
       {
          
-         auto pcontext = pparticleContext->m_pcontext;
+         auto pcontext = pparticleContext->m_papplication;
        
          strXml = pcontext->file()->as_string(scopedstrXml);
          
@@ -1257,7 +1257,7 @@ namespace base
 //      if(scopedstrXml.case_insensitive_begins("matter://"))
 //      {
 //         
-//         auto pcontext = pinteraction->m_pcontext;
+//         auto pcontext = pinteraction->m_papplication;
 //       
 //         strXml = pcontext->file()->as_string(scopedstrXml);
 //         

@@ -71,7 +71,7 @@ namespace acme
    //void department::connect_to_context_signal()
    //{
 
-   //   m_pcontext->add_handler(id_none, this, &department::on_application_message);
+   //   m_papplication->add_handler(id_none, this, &department::on_application_message);
 
    //}
 

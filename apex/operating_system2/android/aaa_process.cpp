@@ -11,7 +11,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 
    char *   cmd_line;
 
-   cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 
    if (cmd_line == nullptr)
    {

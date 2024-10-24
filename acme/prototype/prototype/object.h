@@ -59,10 +59,10 @@ public:
 
    ::particle *                                    m_pparticleContext;
    //::task_pointer                                 m_pthread;
-   //::pointer<::apex::application>                           m_pacmeapplication;
+   //::pointer<::apex::application>                           m_papplication;
    //::pointer<::apex::session>                         m_psession;
-   //::pointer<::acme::system>                          system();
-   //::acme::context *                                     m_pcontext;
+   //::pointer<::platform::system>                          system();
+   //::acme::context *                                     m_papplication;
 
 
    //pointer< pointer_array < ::object > >                m_pobjecta;
@@ -77,11 +77,11 @@ public:
 
    //object() : m_pmeta(nullptr) { }
    object():m_pmeta(nullptr) { m_pobjectParentTask = nullptr;
-   //   m_pcontext = nullptr;
+   //   m_papplication = nullptr;
       m_pparticleContext = nullptr;
    }
    //object(::particle * pparticle);
-   //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
+   //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_papplication = nullptr; }
    //object(enum_default_initialization) : ::object() {  };
    ~object() override;
 
@@ -105,7 +105,7 @@ public:
 
 #endif
 
-   //inline ::acme::system* system() const;
+   //inline ::platform::system* system() const;
 
    //inline element_array * _composite_array() { return m_pcompositea; }
    //inline element_array * _reference_array() { return m_preferencea; }
@@ -125,7 +125,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pparticle) override;
 
-   //inline ::application* application() { return m_pacmeapplication; }
+   //inline ::application* application() { return m_papplication; }
 
 
    //inline ::application* get_app() { return _get_application(); }
@@ -311,11 +311,11 @@ public:
 
    inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   inline ::acme::context* get_context() const { return m_pcontext; }
+   //inline ::acme::context* get_context() const { return m_papplication; }
 
    //inline ::thread* get_thread() const { return m_pthread; }
 
-   //inline ::application* get_app() const { return m_pacmeapplication; }
+   //inline ::application* get_app() const { return m_papplication; }
 
    //inline ::apex::session* get_session() const { return m_psession; }
 
@@ -323,7 +323,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_pacmeapplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
@@ -758,7 +758,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pparticle) override;
 
-   //inline ::application* application() { return m_pacmeapplication; }
+   //inline ::application* application() { return m_papplication; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -816,17 +816,17 @@ public:
 
    //inline ::object_meta* get_meta() { defer_object_meta(); return m_pmeta; }
 
-   //inline ::context* get_context() const { return m_pcontext; }
+   //inline ::context* get_context() const { return m_papplication; }
 
-   //::acme::application * get_app() const;
+   //::platform::application * get_app() const;
 
-   //::acme::session * get_session() const;
+   //::platform::session * get_session() const;
 
    //::apex::system * psystem const { return m_psystemContext; }
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_pacmeapplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 

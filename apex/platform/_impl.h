@@ -580,7 +580,7 @@
 //inline void object::set_context(::context* pcontext)
 //{
 //
-//   m_pcontext = pcontext;
+//   m_papplication = pcontext;
 //
 //}
 
@@ -596,7 +596,7 @@
 //inline void object::set_context_app(::apex::application* pappContext)
 //{
 //
-//   m_pacmeapplication = pappContext;
+//   m_papplication = pappContext;
 //
 //}
 

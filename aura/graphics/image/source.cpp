@@ -6,7 +6,7 @@
 #include "context.h"
 #include "image.h"
 #include "icon.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 
 
 namespace image

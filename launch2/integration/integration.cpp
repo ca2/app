@@ -196,9 +196,9 @@ namespace application_build_helper
 //
 //            auto pffmpeg = __create_new < macos::ffmpeg >();
 //
-//            pffmpeg->m_pcontext->m_strPlatform = strPlatform;
+//            pffmpeg->m_papplication->m_strPlatform = strPlatform;
 //
-//            pffmpeg->m_pcontext->m_strConfiguration = strConfiguration;
+//            pffmpeg->m_papplication->m_strConfiguration = strConfiguration;
 //
 //            pffmpeg->build();
 //
@@ -222,9 +222,9 @@ namespace application_build_helper
 //
 //            auto popenssl = __create_new < openssl >();
 //
-//            popenssl->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+//            popenssl->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
-//            popenssl->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+//            popenssl->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 //
 //            popenssl->build();
 //
@@ -234,11 +234,11 @@ namespace application_build_helper
 //
 //            auto px264 = __create_new < x264 >();
 //
-//            px264->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+//            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
-//            px264->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+//            px264->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 //
-//            px264->m_pcontext->m_pathPrefix = psubsystem->get_argument1(3);
+//            px264->m_papplication->m_pathPrefix = psubsystem->get_argument1(3);
 //
 //            px264->build();
 //
@@ -248,11 +248,11 @@ namespace application_build_helper
 //
 //            auto px264 = __create_new < x265 >();
 //
-//            px264->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+//            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
-//            px264->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+//            px264->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 //
-//            px264->m_pcontext->m_pathPrefix = psubsystem->get_argument1(3);
+//            px264->m_papplication->m_pathPrefix = psubsystem->get_argument1(3);
 //
 //            px264->build();
 //

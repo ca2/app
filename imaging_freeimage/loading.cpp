@@ -256,7 +256,7 @@ namespace imaging_freeimage
 
       //::file::path path = payloadFile.as_file_path();
 
-      //::file::path pathProcess = m_pcontext->defer_process_matter_path(path);
+      //::file::path pathProcess = m_papplication->defer_process_matter_path(path);
 
       FIBITMAP* pfibitmap = nullptr;
 

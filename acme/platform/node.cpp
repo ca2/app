@@ -331,7 +331,7 @@ namespace acme
    }
 
 
-   //::particle_pointer node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   //::particle_pointer node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::platform::system> & psystem)
    //{
    //   
    //   return nullptr;
@@ -348,14 +348,14 @@ namespace acme
 
       psystem->init_task();
 
-      if (psystem->m_pacmeapplication->m_bSession)
+      if (psystem->m_papplication->m_bSession)
       {
 
          psystem->m_pacmesession->init_task();
 
       }
 
-      psystem->m_pacmeapplication->init_task();
+      psystem->m_papplication->init_task();
 
       if (psystem->m_pfnImplement)
       {
@@ -370,13 +370,13 @@ namespace acme
 
          prequest->initialize_command_line2(platform()->m_strCommandLine);
 
-         psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
+         psystem->m_papplication->get_property_set().merge(prequest->get_property_set());
 
-         psystem->m_pacmeapplication->main();
+         psystem->m_papplication->main();
 
       }
 
-      psystem->m_pnode.release();
+      //::system::->m_pnode.release();
 
    }
 
@@ -458,7 +458,7 @@ namespace acme
    }
 
 
-   //void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::acme::system>& psystem)
+   //void node::start_application(::pointer<::acme::node>& pnode, ::pointer<::platform::system>& psystem)
    void node::start_application(::pointer<::acme::node> & pnode)
    {
 
@@ -502,7 +502,7 @@ namespace acme
    }
 
 
-   void node::acme_application_main(::acme::system * psystem)
+   void node::acme_application_main(::platform::system * psystem)
    {
 
       system_main();
@@ -582,7 +582,7 @@ namespace acme
 
       //}
 
-      m_pcontext->m_pacmenode = this;
+      m_papplication->m_pacmenode = this;
 
       //return estatus;
 
@@ -633,7 +633,7 @@ namespace acme
    }
 
 
-//   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> psystem)
+//   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::platform::system> psystem)
 //   {
 //
 //      //      auto psystem = system();
@@ -808,7 +808,7 @@ namespace acme
    }
 
 
-   ::pointer < ::acme::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
+   ::pointer < ::platform::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
    {
 
       return nullptr;
@@ -816,7 +816,7 @@ namespace acme
    }
 
 
-   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
+   ::pointer < ::platform::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
    {
 
       auto & pexclusive = m_mapExclusive[strName];
@@ -2323,7 +2323,7 @@ return false;
    }
 
 
-   void node::create_app_shortcut(::acme::application * papp)
+   void node::create_app_shortcut(::platform::application * papp)
    {
 
 
@@ -4268,7 +4268,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    bool node::is_alias(const ::file::path & path)
    {
 
-      return m_pcontext->os_is_alias(path);
+      return m_papplication->os_is_alias(path);
 
    }
 
@@ -4374,7 +4374,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister)
+   void node::register_user_auto_start(::platform::application * papplication, const string & strArguments, bool bRegister)
    {
 
       throw interface_only();

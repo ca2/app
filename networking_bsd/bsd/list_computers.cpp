@@ -144,7 +144,7 @@ namespace networking_bsd
 //                mask,
 //                device);
 //
-//         auto paddress = system()->m_papexsystem->networking()->create_address(ip_address);
+//         auto paddress = system()->networking()->create_address(ip_address);
 //
 //         pitema->add(paddress);
 //
@@ -183,7 +183,7 @@ namespace networking_bsd
 
       kernel_arp([this, pitema](auto ip_address)
                  {
-                    auto paddress = system()->m_papexsystem->networking()->create_address(ip_address);
+                    auto paddress = system()->networking()->create_address(ip_address);
 
                     pitema->add(paddress);
 

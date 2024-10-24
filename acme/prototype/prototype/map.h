@@ -31,7 +31,7 @@ namespace acme
 {
 
    class CLASS_DECL_ACME session_map :
-      virtual public ::map < index, index, ::acme::session *, ::acme::session * >
+      virtual public ::map < index, index, ::platform::session *, ::platform::session * >
    {
 
 

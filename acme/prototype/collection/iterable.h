@@ -3521,13 +3521,13 @@ end:
          {
             if (str == nullptr)
             {
-               str = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+               str = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
             }
             else if (iSize < (ansi_length(str) + 1))
             {
                char * strOld = str;
                iSize += 1024;
-               char * strNew = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+               char * strNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
                ansi_copy(strNew, strOld);
                str = strNew;
             }
@@ -3792,7 +3792,7 @@ end:
    }
 
 
-   /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
+   /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
    void c_add(ITERABLE & iterable, char ** ppsz, ::collection::count c)
    {
@@ -3810,7 +3810,7 @@ end:
 
    }
 
-   /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
+   /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
    void c_add(ITERABLE & iterable, char ** ppszParam)
    {
@@ -3834,7 +3834,7 @@ end:
 
    }
 
-   /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
+   /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
    void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::collection::count c)
    {
@@ -3852,7 +3852,7 @@ end:
 
    }
 
-   /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
+   /// expect strings allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
    void c_add(ITERABLE & iterable, wchar_t ** ppszParam)
    {

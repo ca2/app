@@ -11,7 +11,7 @@
 
 #ifdef ACID
 
-::acme::application * get_acid_app();
+::platform::application * get_acid_app();
 
 #endif
 
@@ -209,7 +209,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 
 //#define APP_PRELUDE_LEVEL(prefix) \
 //extern "C" \
-//::acme::application * prefix##_get_new_app(::particle * pparticle); \
+//::platform::application * prefix##_get_new_app(::particle * pparticle); \
 //prelude acmeprelude(&prefix##_get_new_app);
 //
 //

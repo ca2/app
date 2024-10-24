@@ -119,7 +119,7 @@ namespace datetime
          if (((iDayCount + iFirstDayOfWeek - 1) % 7) > 0)
             iLineCount++;
 
-         auto psystem = system()->m_papexsystem;
+         auto psystem = system();
 
          iDay = 1;
          for (int32_t iWeek = 1; iWeek <= iLineCount; iWeek++)

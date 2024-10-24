@@ -75,7 +75,7 @@ namespace aqua
    }
 
 
-   void system::on_add_session(::acme::session* papexsession)
+   void system::on_add_session(::platform::session* papexsession)
    {
 
       ::apex::system::on_add_session(papexsession);

@@ -318,7 +318,7 @@ namespace allocator
       static ::pointer < T > __memory_allocate(::heap::enum_memory ememory, Args &&... args)
       {
 
-         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+         auto pheapmanagement = ::system()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -335,7 +335,7 @@ namespace allocator
       inline static T * __memory_new(::heap::enum_memory ememory, Args &&... args)
       {
 
-         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+         auto pheapmanagement = ::system()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -352,7 +352,7 @@ namespace allocator
       inline static T * __memory_new_array(::heap::enum_memory ememory, ::collection::count c)
       {
 
-         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+         auto pheapmanagement = ::system()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -369,7 +369,7 @@ namespace allocator
       static void __memory_delete(::heap::enum_memory ememory, T * p)
       {
 
-        auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+        auto pheapmanagement = ::system()->m_pheapmanagement;
 
         auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -384,7 +384,7 @@ namespace allocator
       static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
       {
 
-        auto pheapmanagement = ::acme::get()->m_pheapmanagement;
+        auto pheapmanagement = ::system()->m_pheapmanagement;
 
         auto & pmemory = pheapmanagement->m_memorya[ememory];
 

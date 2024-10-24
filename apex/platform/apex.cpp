@@ -415,7 +415,7 @@ void on_term_thread();
 ////
 ////      //::thread::g_pthreadmap = ___new ::thread_map ();
 ////
-//////      factory()->add_factory_item < ::apex::system, ::acme::system >();
+//////      factory()->add_factory_item < ::apex::system, ::platform::system >();
 //////      factory()->add_factory_item < ::apex::context, ::acme::context >();
 ////
 ////

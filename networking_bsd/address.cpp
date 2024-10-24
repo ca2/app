@@ -225,7 +225,7 @@ namespace networking_bsd
 //
 //      auto psystem = pparticle->system();
 //
-//      auto pnetworking = (::networking_bsd::networking *)psystem->m_papexsystem->networking()->m_p2;
+//      auto pnetworking = (::networking_bsd::networking *)psystem->networking()->m_p2;
 //
 //
 //#ifdef BSD_STYLE_SOCKETS

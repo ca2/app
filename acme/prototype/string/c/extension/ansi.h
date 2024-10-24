@@ -22,8 +22,8 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy);
 CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, strsize len);
 CLASS_DECL_ACME strsize                ansi_length(const ::ansi_character * psz);
-CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
-CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, strsize len); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
+CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz); // ATTENTION - ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
+CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, strsize len); // ATTENTION - ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find);
 CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find);
 CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len);

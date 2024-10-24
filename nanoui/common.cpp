@@ -10,7 +10,7 @@
 */
 #include "framework.h"
 #include "Object.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/platform/context.h"
@@ -305,7 +305,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 
    auto pparticle = get_nano2d_object(pcontext);
 
-   auto papexcontext = pparticle->m_pcontext->m_papexcontext;
+   auto papexcontext = pparticle->m_papplication->m_papexcontext;
 
    ::file::listing listing;
 

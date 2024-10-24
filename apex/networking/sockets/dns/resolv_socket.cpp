@@ -125,7 +125,7 @@ namespace sockets
 //
 //      }
 
-      m_pnetworking = system()->m_papexsystem->networking();
+      m_pnetworking = system()->networking();
 
       if (!m_pnetworking)
       {

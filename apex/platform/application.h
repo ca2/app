@@ -18,7 +18,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX application :
-      virtual public ::acme::application,
+      virtual public ::platform::application,
       virtual public ::apex::context,
       virtual public scalar_source,
       virtual public ::database::client,

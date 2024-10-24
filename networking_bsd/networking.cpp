@@ -1099,7 +1099,7 @@ namespace networking_bsd
       if (!m_pthreadReverse)
       {
 
-         auto psystem = system()->m_papexsystem;
+         auto psystem = system();
 
          m_pthreadReverse = psystem->fork([this]()
             {
@@ -2454,7 +2454,7 @@ namespace networking_bsd
       //   if (!m_pthreadReverse)
       //   {
       //
-      //      auto psystem = system()->m_papexsystem;
+      //      auto psystem = system();
       //
       //      m_pthreadReverse = psystem->fork([this]()
       //         {
@@ -3244,7 +3244,7 @@ namespace networking_bsd
    string networking::get_http_post_boundary()
    {
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       single_lock lock(m_pmutexHttpPostBoundary, true);
 

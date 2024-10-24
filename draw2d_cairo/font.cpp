@@ -176,7 +176,7 @@ namespace draw2d_cairo
 
          ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->m_paurasystem->draw2d();
 
-         auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_pcontext, m_path);
+         auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_papplication, m_path);
 
          m_pfontface = pfontface;
 

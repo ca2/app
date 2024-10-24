@@ -281,7 +281,7 @@ pacmedirectory->is(stra[i]))
    }
 
 
-   //   bool dir::rm(::acme::application *   papp, const ::file::path & psz, bool bRecursive)
+   //   bool dir::rm(::platform::application *   papp, const ::file::path & psz, bool bRecursive)
    //   {
    //      if(bRecursive)
    //      {

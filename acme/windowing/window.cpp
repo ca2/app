@@ -178,7 +178,7 @@ namespace acme
          if(psystem)
          {
 
-            auto pacmewindowing = psystem->m_pacmewindowing;
+            auto pacmewindowing = psystem->acme_windowing();
          
             if (pacmewindowing)
             {

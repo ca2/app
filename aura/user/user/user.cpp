@@ -1636,7 +1636,7 @@ namespace user
    ::aura::application * user::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -1644,7 +1644,7 @@ namespace user
    ::aura::session * user::get_session()
    {
 
-      return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 

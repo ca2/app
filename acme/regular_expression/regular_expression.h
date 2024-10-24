@@ -23,7 +23,7 @@ namespace regular_expression
 
       void *                                       m_pRegularExpression;
 
-      ::pointer<::regular_expression::context>     m_pcontext;
+      ::pointer<::regular_expression::context>     m_papplication;
 
       string                                       m_str;
 

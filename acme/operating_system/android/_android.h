@@ -9,7 +9,7 @@
 
 //string get_error_message(::u32 dwError);
 
-//::acme::application* win_instantiate_application(::acme::application* pappSystem, const ::scoped_string & scopedstrId);
+//::platform::application* win_instantiate_application(::platform::application* pappSystem, const ::scoped_string & scopedstrId);
 
 
 #include "android1.h"

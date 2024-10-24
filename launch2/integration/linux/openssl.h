@@ -18,7 +18,7 @@ virtual public ::particle
 public:
    
    
-   ::pointer < ::integration::context > m_pcontext;
+   ::pointer < ::integration::context > m_papplication;
    
    
    ::string       m_strConfigure;

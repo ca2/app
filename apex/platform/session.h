@@ -11,7 +11,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX session:
-      virtual public ::acme::session,
+      virtual public ::platform::session,
       virtual public ::apex::context
       //virtual public ::apex::application_container
       //,
@@ -286,7 +286,7 @@ namespace apex
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
-      void on_instantiate_application(::acme::application* papp) override;
+      void on_instantiate_application(::platform::application* papp) override;
 
       //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 

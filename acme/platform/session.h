@@ -12,13 +12,13 @@
 #include "acme/user/user/key_state.h"
 
 
-namespace acme
+namespace platform
 {
 
 
    class CLASS_DECL_ACME session :
-      virtual public ::acme::context,
-      virtual public ::acme::application_container,
+      virtual public ::task,
+      virtual public ::platform::application_container,
       virtual public ::user::key_state
    {
    public:
@@ -88,7 +88,7 @@ namespace acme
    };
 
 
-} // namespace apex
+} // namespace platform
 
 
 

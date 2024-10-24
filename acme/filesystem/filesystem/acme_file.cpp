@@ -159,7 +159,7 @@ file_pointer acme_file::get_file(const ::payload& payloadFile, ::file::e_open eo
 
    }
 
-   auto pfile = m_pcontext->__create < ::file::file >();
+   auto pfile = application()->__create < ::file::file >();
 
    if(!pfile)
    {
@@ -225,7 +225,7 @@ string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostB
 
    }
 
-   //auto pfile = m_pcontext->__create_new < stdio_file >();
+   //auto pfile = m_papplication->__create_new < stdio_file >();
 
    //if (bNoExceptionIfNotFound)
    //{

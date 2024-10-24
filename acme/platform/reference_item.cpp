@@ -112,7 +112,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //
 //   }
 //
-//   critical_section_lock synchronouslock(&::acme::get()->m_criticalsectionRefDbg);
+//   critical_section_lock synchronouslock(&::system()->m_criticalsectionRefDbg);
 //
 //   if (g_bEnableObjRefDbg)
 //   {
@@ -207,7 +207,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //
 //   }
 //
-//   critical_section_lock synchronouslock(&::acme::get()->m_criticalsectionRefDbg);
+//   critical_section_lock synchronouslock(&::system()->m_criticalsectionRefDbg);
 //
 //   if (g_bEnableObjRefDbg)
 //   {
@@ -222,7 +222,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //void particle::check_pending_releases()
 //{
 //
-//   critical_section_lock synchronouslock(&::acme::get()->m_criticalsectionRefDbg);
+//   critical_section_lock synchronouslock(&::system()->m_criticalsectionRefDbg);
 //
 //   if (!is_referencing_debugging_enabled())
 //   {
@@ -330,7 +330,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //void check_all_pending_releases()
 //{
 //
-//   auto c = ::acme::get()->m_pobjectreferencecountdebuga->size();
+//   auto c = ::system()->m_pobjectreferencecountdebuga->size();
 //
 //   {
 //

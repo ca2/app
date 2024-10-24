@@ -132,7 +132,7 @@ namespace simpledb
 
                //strUrl = "https://ca2.software/api/account/str_set_save?key=";
 
-               //auto psystem = system()->m_papexsystem;
+               //auto psystem = system();
 
                //auto purl = psystem->url();
 

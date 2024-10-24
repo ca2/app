@@ -69,7 +69,7 @@ namespace core
 
       bred::system::on_set_platform();
 
-      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::session, ::platform::session >();
       factory()->add_factory_item < ::core::user, ::user::user >();
 
 

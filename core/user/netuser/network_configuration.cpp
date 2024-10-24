@@ -33,7 +33,7 @@ namespace usernet
    bool network_configuration::initialize(::pointer<::user::interaction>puiParent)
    {
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_papplication;
       
       auto psession = pcontext->m_pacmesession->m_pcoresession;
       
@@ -60,7 +60,7 @@ namespace usernet
    bool network_configuration::initialize_child(::pointer<::user::interaction>puiParent)
    {
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_papplication;
       
       auto psession = pcontext->m_pacmesession->m_pcoresession;
       

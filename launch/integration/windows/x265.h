@@ -25,7 +25,7 @@ namespace console_integration
          string m_strStatic;
 
 
-         //::pointer < ::integration::context > m_pcontext;
+         //::pointer < ::integration::context > m_papplication;
 
 
          x265();

@@ -102,12 +102,12 @@
 
 void defer_create_nano_application_delegate(void * pApplication);
 
-void apple_defer_nano_application_create(class ::acme::system * psystem)
+void apple_defer_nano_application_create(class ::platform::system * psystem)
 {
    
-   auto papp = psystem->m_pacmeapplication;
+   auto papp = psystem->m_papplication;
    
-   void * pApplication = (void *) (::acme::application *) papp;
+   void * pApplication = (void *) (::platform::application *) papp;
    
    defer_create_nano_application_delegate(pApplication);
    
@@ -115,7 +115,7 @@ void apple_defer_nano_application_create(class ::acme::system * psystem)
 
 //bool g_bAcmeMacosApplicationInit = false;
 //
-//void defer_acme_macos_application_init(::acme::system * psystem)
+//void defer_acme_macos_application_init(::platform::system * psystem)
 //{
 //
 //   if(!g_bAcmeMacosApplicationInit)

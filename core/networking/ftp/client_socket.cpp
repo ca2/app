@@ -746,7 +746,7 @@ namespace ftp
 
       }
 
-      auto paddress = SourceFtpServer.::particle::system()->m_papexsystem->networking()->create_ip4_address((i32)ulIP, ushSock);
+      auto paddress = SourceFtpServer.::particle::system()->networking()->create_ip4_address((i32)ulIP, ushSock);
 
       // transmit the socket (ip ::networking::address + port) of the first FTP server to the
       // second server
@@ -1033,7 +1033,7 @@ namespace ftp
       }
 
       ::networking::address_pointer paddressTemp;
-      //auto paddress = system()->m_papexsystem->networking()->create_address((i32)ulIP, ushSock);
+      //auto paddress = system()->networking()->create_address((i32)ulIP, ushSock);
       //::networking::address csaAddressTemp(INADDR_ANY, 0);
       paddressTemp = sckDataConnection.get_socket_address();
       ushLocalSock = paddressTemp->get_service_number();

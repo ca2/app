@@ -5,7 +5,7 @@
 #include "application_array.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -21,7 +21,7 @@ namespace acme
       bool                             m_bFinalizeIfNoApplicationSetting;
       bool                             m_bFinalizeIfNoApplication;
 
-      ::pointer<::acme::application>   m_pappCurrent;
+      ::pointer<::platform::application>   m_pappCurrent;
 
 
 
@@ -30,15 +30,15 @@ namespace acme
       ~application_container() override;
 
 
-      virtual ::acme::application * get_application(const ::string & strAppId, bool bCreate = true, ::request * prequest = nullptr);
+      virtual ::platform::application * get_application(const ::string & strAppId, bool bCreate = true, ::request * prequest = nullptr);
 
 
       //virtual ::pointer<::apex::application>create_application(const ::scoped_string & scopedstrAppId, bool bSynch, ::request * prequest);
       //virtual ::pointer<::apex::application>create_platform(::apex::session * psession);
       
       
-      virtual ::pointer<::acme::application > instantiate_application(const::string& strAppIdd);
-      virtual ::pointer<::acme::application > create_application(const ::string & strAppId, ::request * prequest);
+      virtual ::pointer<::platform::application > instantiate_application(const::string& strAppIdd);
+      virtual ::pointer<::platform::application > create_application(const ::string & strAppId, ::request * prequest);
 
 
       virtual void exit_application() override;
@@ -48,20 +48,20 @@ namespace acme
 
       application_array get_applicationa();
 
-      virtual void add_application(::acme::application * papplication);
-      virtual void erase_application(::acme::application * papplication);
+      virtual void add_application(::platform::application * papplication);
+      virtual void erase_application(::platform::application * papplication);
 
 
-      ::pointer<::acme::application>assert_running(const ::string & strAppId);
+      ::pointer<::platform::application>assert_running(const ::string & strAppId);
 
 
-      virtual void on_instantiate_application(::acme::application * papplication);
+      virtual void on_instantiate_application(::platform::application * papplication);
 
 
    };
 
 
-} // namespace apex
+} // namespace platform
 
 
 

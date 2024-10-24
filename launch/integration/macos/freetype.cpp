@@ -58,7 +58,7 @@ namespace console_integration
       void freetype::build()
       {
          
-        if(m_pcontext->m_strPlatform.is_empty())
+        if(m_papplication->m_strPlatform.is_empty())
          {
             
             _001MakeInitialize("x86_64", "x86_64-apple-macos10.13", "10.13", "x86_64-apple-darwin");
@@ -74,14 +74,14 @@ namespace console_integration
             auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-macos/include";
             ;
             
-            auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+            auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             
-            auto pathInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+            auto pathInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
             
             acmedirectory()->create(pathInclude /"freetype2");
-            //auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+            //auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
             
-            m_pcontext->bash("cp -Rf " + strPrefix + "/include/freetype2/* " + pathInclude + "/freetype2/");
+            m_papplication->bash("cp -Rf " + strPrefix + "/include/freetype2/* " + pathInclude + "/freetype2/");
 
             
             return;
@@ -106,7 +106,7 @@ namespace console_integration
       void freetype::clean()
       {
          
-         m_pcontext->clean();
+         m_papplication->clean();
          
       }
 
@@ -114,18 +114,18 @@ namespace console_integration
       void freetype::prepare()
       {
          
-         m_pcontext->prepare();
+         m_papplication->prepare();
          
-         if(m_pcontext->m_pathPrefix.is_empty())
+         if(m_papplication->m_pathPrefix.is_empty())
          {
             
-            m_pcontext->m_pathPrefix = calculate_prefix_path(m_pcontext->m_strPlatform, m_pcontext->m_strConfiguration);
+            m_papplication->m_pathPrefix = calculate_prefix_path(m_papplication->m_strPlatform, m_papplication->m_strConfiguration);
             
          }
          
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
       }
 
@@ -133,11 +133,11 @@ namespace console_integration
       void freetype::download()
       {
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
          
       }
 
@@ -145,15 +145,15 @@ namespace console_integration
       void freetype::configure()
       {
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
          
 //         ::string strCommand;
 //
-//         strCommand = "./configure --prefix="+m_pcontext->m_pathPrefix+" --host="+m_strHost+" --enable-pic --enable-shared --enable-static --extra-cflags=\"-target " + m_strTargetting + "\"";
+//         strCommand = "./configure --prefix="+m_papplication->m_pathPrefix+" --host="+m_strHost+" --enable-pic --enable-shared --enable-static --extra-cflags=\"-target " + m_strTargetting + "\"";
 //
-//         auto iExitCode = m_pcontext->bash(strCommand);
+//         auto iExitCode = m_papplication->bash(strCommand);
 //
 //         if(iExitCode != 0)
 //         {
@@ -170,9 +170,9 @@ namespace console_integration
       void freetype::compile()
       {
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         m_pcontext->bash("make -j");
+         m_papplication->bash("make -j");
          
       }
 
@@ -182,33 +182,33 @@ namespace console_integration
          
          _001MakeInstall(".6");
          
-//         m_pcontext->change_to_source_directory();
+//         m_papplication->change_to_source_directory();
 //
-//         m_pcontext->command_system("make install");
+//         m_papplication->command_system("make install");
 //
-//         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform ;
+//         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform ;
 //
 //         acmedirectory()->create(pathOperatingSystemStorageFolder / "library");
 //
-//         ::string strCommand1 ="cp -f " + (m_pcontext->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
+//         ::string strCommand1 ="cp -f " + (m_papplication->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
 //
-//         m_pcontext->bash(strCommand1);
+//         m_papplication->bash(strCommand1);
 //
-//         ::string strDylib = "lib" + m_pcontext->m_strName + ".dylib";
+//         ::string strDylib = "lib" + m_papplication->m_strName + ".dylib";
 //
-//         ::string strDylibOriginal = "lib" + m_pcontext->m_strName + "-origianl.dylib";
+//         ::string strDylibOriginal = "lib" + m_papplication->m_strName + "-origianl.dylib";
 //
-//         auto path = m_pcontext->m_pathPrefix / "lib" / strDylib;
+//         auto path = m_papplication->m_pathPrefix / "lib" / strDylib;
 //
-//         auto pathOriginal = m_pcontext->m_pathPrefix / "lib" / strDylibOriginal;
+//         auto pathOriginal = m_papplication->m_pathPrefix / "lib" / strDylibOriginal;
 //
 //         ::string strCommand2 ="mv -f " + path + " " + pathOriginal;
 //
-//         m_pcontext->bash(strCommand2);
+//         m_papplication->bash(strCommand2);
 //
 //         acmefile()->copy(path, pathOriginal, true);
 //
-//         m_mappath[m_pcontext->m_strPlatform] = path;
+//         m_mappath[m_papplication->m_strPlatform] = path;
 
       }
 

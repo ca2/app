@@ -696,7 +696,7 @@ namespace sockets
 
                memory mem2;
 
-               auto psystem = system()->m_papexsystem;
+               auto psystem = system();
 
                auto pbase64 = psystem->base64();
 

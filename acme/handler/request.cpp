@@ -197,7 +197,7 @@ void request::create_common_construct(const ::payload & varOptions, ::user::elem
 }
 
 
-::acme::application * request::create_get_app(::acme::application * pappFallback)
+::platform::application * request::create_get_app(::platform::application * pappFallback)
 {
 
    auto pparticle = this;

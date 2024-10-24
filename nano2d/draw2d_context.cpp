@@ -1,7 +1,7 @@
 // Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSorensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -1079,7 +1079,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_pcontext->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
+      return m_pgraphics->m_papplication->image()->create_image_integer(w, h, (const ::image32_t *)data, iScan);
 
    }
 

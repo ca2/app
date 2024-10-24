@@ -13,7 +13,7 @@ public:
 
    class apex_apex                  m_apex;
    ::pointer<apex_main_data>        m_pmaindata;
-   ::pointer<::apex::application>   m_pacmeapplication;
+   ::pointer<::apex::application>   m_papplication;
 
 
    //static application *             s_papp;

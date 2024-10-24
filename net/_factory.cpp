@@ -5,7 +5,7 @@
 __FACTORY_EXPORT void app_net_factory(::factory::factory* pfactory)
 {
 
-   pfactory->add_factory_item < ::app_net::application, ::acme::application >();
+   pfactory->add_factory_item < ::app_net::application, ::platform::application >();
 
 }
 

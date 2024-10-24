@@ -131,14 +131,14 @@
 //
 //   void system_end();
 //
-//   //::pointer<::acme::application>new_app();
-//   //::pointer<::acme::application>new_app(const ::scoped_string & scopedstrAppId);
+//   //::pointer<::platform::application>new_app();
+//   //::pointer<::platform::application>new_app(const ::scoped_string & scopedstrAppId);
 //
 //
 //   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
 //   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId);
 //
-//   virtual void initialize_application(::acme::application* papplication, ::particle* pparticle);
+//   virtual void initialize_application(::platform::application* papplication, ::particle* pparticle);
 //
 //
 //};
@@ -146,7 +146,7 @@
 //
 //class subsystem;
 //
-//CLASS_DECL_ACME void __main(::acme::application* papplication);
+//CLASS_DECL_ACME void __main(::platform::application* papplication);
 //
 //
 //namespace acme

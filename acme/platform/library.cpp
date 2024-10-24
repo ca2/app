@@ -140,7 +140,7 @@ namespace acme
 
       auto psystem = system();
 
-      critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
+      critical_section_lock synchronouslock(&psystem->m_criticalsection);
 
       m_strMessage.empty();
 
@@ -925,7 +925,7 @@ namespace acme
 
       auto psystem = system();
 
-      critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
+      critical_section_lock synchronouslock(&psystem->m_criticalsection);
 
       return dynamic_library()->raw_get(m_plibrary,scopedstrEntryName);
 

@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "data.h"
 #include "translator.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 
 
 namespace text
@@ -27,7 +27,7 @@ namespace text
    void translator::translate_text_data(data* ptextdata)
    {
 
-      m_pcontext->translate_text_data(ptextdata);
+      m_papplication->translate_text_data(ptextdata);
 
    }
 

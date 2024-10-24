@@ -53,17 +53,17 @@ public:
 //#endif
 
 //#if REFERENCING_DEBUGGING
-//   inline matter() : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_pcontext(nullptr), m_pobjrefdbg(nullptr) { }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_pcontext(nullptr), m_pobjrefdbg(nullptr) {  }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_pcontext(matter.m_pcontext), m_pobjrefdbg(nullptr) {  }
-//   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_pcontext(matter.m_pcontext), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
-//   inline matter(::acme::context * pcontext) : m_pcontext(pcontext), m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_eobject(e_object_none), m_pobjrefdbg(matter.m_pobjrefdbg) { }
+//   inline matter() : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_papplication(nullptr), m_pobjrefdbg(nullptr) { }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_papplication(nullptr), m_pobjrefdbg(nullptr) {  }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_papplication(matter.m_papplication), m_pobjrefdbg(nullptr) {  }
+//   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_papplication(matter.m_papplication), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+//   inline matter(::acme::context * pcontext) : m_papplication(pcontext), m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_eobject(e_object_none), m_pobjrefdbg(matter.m_pobjrefdbg) { }
 //#else
 //   inline matter() : m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 //   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uError(0), m_eobject(eobject) { }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_pcontext(matter.m_pcontext) { if (matter.m_pmutex) defer_create_synchronization(); }
-//   inline matter(matter&& matter) : element(matter), m_pmutex(matter.m_pmutex), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_pcontext(matter.m_pcontext) { matter.m_pmutex = nullptr; }
-//   inline matter(::acme::context * pcontext) : m_pcontext(pcontext), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_papplication(matter.m_papplication) { if (matter.m_pmutex) defer_create_synchronization(); }
+//   inline matter(matter&& matter) : element(matter), m_pmutex(matter.m_pmutex), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_papplication(matter.m_papplication) { matter.m_pmutex = nullptr; }
+//   inline matter(::acme::context * pcontext) : m_papplication(pcontext), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 //#endif
 
    matter() {}
@@ -111,12 +111,12 @@ public:
    //void branch();
 
 
-   //::acme::context * get_context() const { return (::acme::context *) m_pcontext; }
-   //::acme::system * system() const;
+   //::acme::context * get_context() const { return (::acme::context *) m_papplication; }
+   //::platform::system * system() const;
 
-   inline ::acme::application * get_app() { return _get_app(); }
+   inline ::platform::application * get_app() { return _get_app(); }
 
-   virtual ::acme::application * _get_app();
+   virtual ::platform::application * _get_app();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();

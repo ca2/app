@@ -89,7 +89,7 @@ public:
    class ::time                                    m_timeHeartBeat;
    ::procedure                                     m_procedureTaskEnded;
 
-
+::i32 m_iExitCode;
 
    task();
    ~task() override;

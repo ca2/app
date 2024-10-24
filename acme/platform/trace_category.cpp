@@ -4,7 +4,7 @@
 #include "acme/platform/system.h"
 
 
-CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
+CLASS_DECL_ACME void trace_category_static_init(::platform::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
@@ -12,7 +12,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 pointer_array < trace_category > * trace_category::s_ptracecategorya = nullptr;
 
 
-void trace_category_static_init(::acme::system * psystem)
+void trace_category_static_init(::platform::system * psystem)
 {
 
 #if REFERENCING_DEBUGGING

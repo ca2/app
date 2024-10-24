@@ -153,9 +153,9 @@
 //
 //
 //
-//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
+//#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
-//void * ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
+//void * ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
 //#if defined(__APPLE__)
@@ -194,7 +194,7 @@
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
-//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //
@@ -357,7 +357,7 @@
 //}
 //
 //
-//void ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(void * pmemory)
+//void ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(void * pmemory)
 //{
 //
 //   return memory_free_debug(pmemory, 0);
@@ -429,7 +429,7 @@
 //
 //
 //
-//#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
+//#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //
 //void* _memory_allocate(memsize size)
@@ -467,7 +467,7 @@
 //void* _memory_count_allocate(memsize size, memsize bytes)
 //{
 //
-//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
+//   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size * bytes);
 //
 //}
 //

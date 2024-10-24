@@ -9,11 +9,12 @@
 //#if defined( FREEBSD)
 //#define __XSI_VISIBLE 1
 //#endif
+#if defined(LINUX)
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
+#endif
 
 ::file::path path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment);
 

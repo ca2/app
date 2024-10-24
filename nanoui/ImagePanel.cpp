@@ -13,7 +13,7 @@
 #include "ImagePanel.h"
 #include "VScrollPanel.h"
 #include "Screen.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/image/context.h"
 #include "aura/user/user/interaction.h"
 #include "acme/platform/scoped_restore.h"

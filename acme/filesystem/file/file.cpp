@@ -63,7 +63,7 @@ namespace file
    /// seeded (the file matter has been...)
    /// (the file matter) requires another call to effectively finish creating itself,
    ///
-   /// Much probably another ::matter with some assigned ::acme::application should be supplied
+   /// Much probably another ::matter with some assigned ::platform::application should be supplied
    /// to realize the file matter.
    file::file(const ::file::path & path) :
       m_path(path)

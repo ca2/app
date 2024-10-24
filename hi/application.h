@@ -10,7 +10,7 @@ namespace console_hello
 
 
    class application :
-      virtual public ::acme::application
+      virtual public ::platform::application
    {
 
    public:

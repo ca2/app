@@ -59,7 +59,7 @@ namespace apex
 
       string strConfiguration(scopedstrConfiguration);
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (strConfiguration.is_empty())
       {

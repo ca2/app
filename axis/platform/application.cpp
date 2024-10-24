@@ -24,7 +24,7 @@ namespace axis
    //void initialize()
    //{
 
-   //   factory()->add_factory_item< ::axis::system, ::acme::system>();
+   //   factory()->add_factory_item< ::axis::system, ::platform::system>();
 
    //}
 
@@ -52,7 +52,7 @@ namespace axis
 
       ::aura::application::on_set_platform();
 
-      factory()->add_factory_item< ::axis::system, ::acme::system>();
+      factory()->add_factory_item< ::axis::system, ::platform::system>();
 
 
 

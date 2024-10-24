@@ -29,9 +29,9 @@ namespace console_integration
 
       ::console_integration::build::initialize(pparticle);
 
-      m_pcontext->m_strName = "mp3lame";
+      m_papplication->m_strName = "mp3lame";
       
-      m_pcontext->m_pathDownloadURL = "https://github.com/lameproject/lame.git";
+      m_papplication->m_pathDownloadURL = "https://github.com/lameproject/lame.git";
 
    }
 

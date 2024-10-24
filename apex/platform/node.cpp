@@ -283,7 +283,7 @@ namespace apex
    void node::start_node()
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       //auto estatus = 
       psystem->on_start_system();
@@ -310,7 +310,7 @@ namespace apex
    // void node::on_operating_system_user_theme_change()
    // {
    //
-   //    auto psystem = system()->m_papexsystem;
+   //    auto psystem = system();
    //
    //    psystem->signal(id_operating_system_user_theme_change);
    //
@@ -323,7 +323,7 @@ namespace apex
    //    bool bOperatingSystemDarkMode = this->dark_mode();
    //
    //    system()->set_dark_mode(bOperatingSystemDarkMode);
-   //    auto psystem = system()->m_papexsystem;
+   //    auto psystem = system();
    //
    //    psystem->signal(id_operating_system_user_color_change);
    //
@@ -334,7 +334,7 @@ namespace apex
    // void node::on_operating_system_font_list_change()
    // {
    //
-   //    auto psystem = system()->m_papexsystem;
+   //    auto psystem = system();
    //
    //    psystem->signal(id_operating_system_font_list_change);
    //
@@ -523,13 +523,13 @@ namespace apex
    }
 
 
-   void node::on_create_app_shortcut(::acme::application * papplication)
+   void node::on_create_app_shortcut(::platform::application * papplication)
    {
 
    }
 
 
-   void node::defer_create_app_shortcut(::acme::application* papplication)
+   void node::defer_create_app_shortcut(::platform::application* papplication)
    {
 
       auto pathShortcut = app_shortcut_path(papplication);
@@ -574,7 +574,7 @@ namespace apex
    }
 
 
-   ::file::path node::app_shortcut_path(::acme::application* papplication)
+   ::file::path node::app_shortcut_path(::platform::application* papplication)
    {
 
       //::file::path pathShortcut;
@@ -681,7 +681,7 @@ namespace apex
       if(pfilesystemoptions->m_bDropbox)
       {
          
-         ::file::path pathDropbox = m_pcontext->defer_process_matter_path("dropbox://");
+         ::file::path pathDropbox = m_papplication->defer_process_matter_path("dropbox://");
          
          if(pathDropbox.has_char() && dir()->is(pathDropbox))
          {
@@ -694,7 +694,7 @@ namespace apex
             
          }
          
-         ::file::path pathDropboxApp = m_pcontext->defer_process_matter_path("dropbox-app://");
+         ::file::path pathDropboxApp = m_papplication->defer_process_matter_path("dropbox-app://");
          
          if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
          {
@@ -712,7 +712,7 @@ namespace apex
       if(pfilesystemoptions->m_bOneDrive)
       {
          
-         ::file::path pathOneDrive = m_pcontext->defer_process_matter_path("onedrive://");
+         ::file::path pathOneDrive = m_papplication->defer_process_matter_path("onedrive://");
          
          if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
          {

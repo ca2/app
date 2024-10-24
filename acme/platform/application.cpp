@@ -59,17 +59,17 @@ namespace acme
 
       m_bApplicationFirstRequest = true;
 
-      //if (!::platform::platform::s_pplatform->m_pacmeapplication)
+      //if (!::platform::platform::s_pplatform->m_papplication)
       //{
 
-      //   ::platform::platform::s_pplatform->m_pacmeapplication = this;
+      //   ::platform::platform::s_pplatform->m_papplication = this;
 
       //}
 
-      //m_acme.m_pacmeapplication = this;
-      //m_acme.m_pacmeapplication = this;
+      //m_acme.m_papplication = this;
+      //m_acme.m_papplication = this;
 
-      m_pacmeapplication = this;
+      m_papplication = this;
       m_papexapplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
@@ -92,26 +92,26 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-      if (session() && session()->m_pacmeapplication == this)
+      if (session() && session()->m_papplication == this)
       {
 
-         session()->m_pacmeapplication = nullptr;
+         session()->m_papplication = nullptr;
 
       }
 
-      if (system() && system()->m_pacmeapplication == this)
+      if (system() && system()->m_papplication == this)
       {
 
-         system()->m_pacmeapplication = nullptr;
+         system()->m_papplication = nullptr;
 
       }
 
-      if (m_pplatform && m_pplatform->m_pacmeapplication == this)
-      {
-
-         m_pplatform->m_pacmeapplication = nullptr;
-
-      }
+      // if (m_pplatform && m_pplatform->m_papplication == this)
+      // {
+      //
+      //    m_pplatform->m_papplication = nullptr;
+      //
+      // }
 
       /*   if (g_p == this)
        {
@@ -135,8 +135,8 @@ namespace acme
 
       ::acme::context::on_set_platform();
 
-      factory()->add_factory_item < ::acme::system >();
-      factory()->add_factory_item < ::acme::session >();
+      factory()->add_factory_item < ::platform::system >();
+      factory()->add_factory_item < ::platform::session >();
 
    }
 
@@ -233,21 +233,21 @@ namespace acme
 
       set_platform();
 
-      if (m_pplatform->m_pacmeapplication == nullptr)
-      {
-
-         m_pplatform->m_pacmeapplication = this;
-
-         m_pplatform->defer_initialize_platform();
-
-      }
-
-      if (!m_pacmesystem)
-      {
-
-         m_pacmesystem = m_pplatform->m_psystem;
-
-      }
+      // if (m_pplatform->m_papplication == nullptr)
+      // {
+      //
+      //    m_pplatform->m_papplication = this;
+      //
+      //    m_pplatform->defer_initialize_platform();
+      //
+      // }
+      //
+      // if (!m_pacmesystem)
+      // {
+      //
+      //    m_pacmesystem = m_pplatform->m_psystem;
+      //
+      // }
 
    }
 
@@ -381,10 +381,14 @@ namespace acme
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-      //auto pfactoryitem = this->platform()->m_pfactory->get_factory_item<::acme::system>();
+      //auto pfactoryitem = this->platform()->m_pfactory->get_factory_item<::platform::system>();
 
-      //::pointer<::acme::system> psystem = pfactoryitem->create_particle();
+      //::pointer<::platform::system> psystem = pfactoryitem->create_particle();
 
+
+      // here system starts
+
+#if 0
       ::set_task(m_pacmesystem);
 
       m_pacmesystem->initialize_system();
@@ -400,6 +404,8 @@ namespace acme
       auto pnode = m_pacmesystem->node();
 
       pnode->node_main();
+
+#endif
 
       //pnode->start_application(pnode, psystem);
 
@@ -619,7 +625,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-         m_pathModule = ::get_module_path((HMODULE)m_pplatform->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)system()->m_hinstanceThis);
 
 #elif defined(ANDROID)
 
@@ -1351,7 +1357,7 @@ namespace acme
       //
       //copy(message, msg);
       //
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
       //
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
@@ -1440,7 +1446,7 @@ namespace acme
 
       }
 
-      //auto psystem = system()->m_papexsystem;
+      //auto psystem = system();
 
       //      auto psystem = system();
       //
@@ -2181,7 +2187,7 @@ namespace acme
 void* application_system(void* pApplication)
 {
 
-   auto papp = (::acme::application*)pApplication;
+   auto papp = (::platform::application*)pApplication;
 
    return papp->system();
 
@@ -2190,7 +2196,7 @@ void* application_system(void* pApplication)
 bool application_get_bool(void* pApplication, const char* pszItem)
 {
 
-   auto papp = (::acme::application*)pApplication;
+   auto papp = (::platform::application*)pApplication;
 
    return papp->payload(pszItem).as_bool();
 

@@ -91,7 +91,7 @@ namespace geo
 
       bool bOk = false;
 
-      auto pcontext = m_pcontext->m_pcontext;
+      auto pcontext = m_papplication->m_papplication;
 
       auto pfile = file();
 

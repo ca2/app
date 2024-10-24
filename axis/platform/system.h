@@ -40,7 +40,7 @@ namespace axis
 
       void on_initialize_particle() override;
 
-      void on_add_session(::acme::session * papexsession) override;
+      void on_add_session(::platform::session * papexsession) override;
 
       virtual void init() override;
       virtual void inline_init() override;

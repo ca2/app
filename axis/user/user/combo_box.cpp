@@ -75,7 +75,7 @@ namespace user
    ::particle_pointer combo_box::clone()
    {
 
-      auto pcomboboxClone = m_pcontext->__create_new < combo_box >();
+      auto pcomboboxClone = m_papplication->__create_new < combo_box >();
 
       pcomboboxClone->m_estyle = m_estyle;
 

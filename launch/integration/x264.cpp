@@ -29,9 +29,9 @@ namespace console_integration
 
       ::console_integration::build::initialize(pparticle);
 
-      m_pcontext->m_strName = "x264";
+      m_papplication->m_strName = "x264";
       
-      m_pcontext->m_pathDownloadURL = "https://code.videolan.org/videolan/x264.git";
+      m_papplication->m_pathDownloadURL = "https://code.videolan.org/videolan/x264.git";
 
    }
 

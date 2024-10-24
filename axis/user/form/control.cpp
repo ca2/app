@@ -1290,7 +1290,7 @@ namespace user
    ::axis::application * form_control::get_app()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_pacmeapplication->m_paxisapplication : nullptr;
+      return ::is_set(m_papplication) ? m_papplication->m_papplication->m_paxisapplication : nullptr;
 
    }
 
@@ -1298,7 +1298,7 @@ namespace user
    ::axis::session * form_control::get_session()
    {
 
-      return ::is_set(m_pcontext) ? m_pcontext->m_pacmesession->m_paxissession : nullptr;
+      return ::is_set(m_papplication) ? m_papplication->m_pacmesession->m_paxissession : nullptr;
 
    }
 

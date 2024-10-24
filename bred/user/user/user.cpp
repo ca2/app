@@ -1736,7 +1736,7 @@ void user::destroy()
 //   ::pointer<::user::mesh_data>mesh::create_mesh_data()
 //   {
 //
-//      auto pcontext = m_pcontext;
+//      auto pcontext = m_papplication;
 //
 //      auto psession = pcontext->m_pacmesession->m_paurasession;
 //
@@ -1750,7 +1750,7 @@ void user::destroy()
 //   ::pointer<::user::list_header>list::create_list_header()
 //   {
 //
-//      auto pcontext = m_pcontext;
+//      auto pcontext = m_papplication;
 //
 //      auto psession = pcontext->m_pacmesession->m_paurasession;
 //
@@ -1764,7 +1764,7 @@ void user::destroy()
 //   ::pointer<::user::mesh_data>list::create_mesh_data()
 //   {
 //
-//      auto pcontext = m_pcontext;
+//      auto pcontext = m_papplication;
 //
 //      auto psession = pcontext->m_pacmesession->m_paurasession;
 //

@@ -2,7 +2,7 @@
 //
 //
 //// implement ====> main for console applications
-//void implement(::acme::system * psystem);
+//void implement(::platform::system * psystem);
 //
 //
 //

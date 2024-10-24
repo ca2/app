@@ -41,7 +41,7 @@ namespace console_integration
          ::console_integration::windows::build::initialize(pparticle);
          ::console_integration::x265::initialize(pparticle);
 
-         m_pcontext->m_bMsys = true;
+         m_papplication->m_bMsys = true;
 
       }
 
@@ -53,7 +53,7 @@ namespace console_integration
 
          //clean();
 
-         if (!m_pcontext->m_bOnlyInstall)
+         if (!m_papplication->m_bOnlyInstall)
          {
 
             download();
@@ -80,20 +80,20 @@ namespace console_integration
 
          strRelease.find_replace(" ", "_");
 
-         m_pcontext->m_strRelease = strRelease;
+         m_papplication->m_strRelease = strRelease;
 
-         m_pcontext->m_pathDownloadURL = "https://github.com/videolan/x265.git";
+         m_papplication->m_pathDownloadURL = "https://github.com/videolan/x265.git";
 
-         m_pcontext->prepare();
+         m_papplication->prepare();
 
-         if (m_pcontext->m_pathPrefix.is_empty())
+         if (m_papplication->m_pathPrefix.is_empty())
          {
 
-            m_pcontext->m_pathPrefix = calculate_prefix_path(m_pcontext->m_strPlatform, m_pcontext->m_strConfiguration);
+            m_papplication->m_pathPrefix = calculate_prefix_path(m_papplication->m_strPlatform, m_papplication->m_strConfiguration);
 
          }
 
-         //if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         //if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          //{
 
          //   m_strShared = "";
@@ -110,7 +110,7 @@ namespace console_integration
 
          //}
 
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
 
       }
 
@@ -118,9 +118,9 @@ namespace console_integration
       void x265::clean()
       {
 
-         //m_pcontext->change_to_source_directory();
+         //m_papplication->change_to_source_directory();
 
-         m_pcontext->clean();
+         m_papplication->clean();
 
       }
 
@@ -128,11 +128,11 @@ namespace console_integration
       void x265::download()
       {
 
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
 
       }
 
@@ -172,24 +172,24 @@ namespace console_integration
       void x265::configure()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
          string strCommand;
 
          strCommand += "cmake -G \"Visual Studio 17 2022\"";
-         strCommand += " -A " + m_pcontext->m_strPlatform;
+         strCommand += " -A " + m_papplication->m_strPlatform;
          strCommand += " -S source";
-         strCommand += " -B \"" + m_pcontext->m_pathBuild + "\"";
+         strCommand += " -B \"" + m_papplication->m_pathBuild + "\"";
          strCommand += " -DCMAKE_INSTALL_PREFIX=\"" + strPrefix + "\"";
          //strCommand += " " + m_strShared + " " + m_strStatic;
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          {
 
             insert_cmp0091_new_in_cmake();
 
-            if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+            if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
             {
 
                strCommand += " -DCMAKE_MSVC_RUNTIME_LIBRARY=\"MultiThreadedDebug\"";
@@ -204,7 +204,7 @@ namespace console_integration
 
          }
 
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
       }
 
@@ -212,7 +212,7 @@ namespace console_integration
       void x265::compile()
       {
 
-         m_pcontext->change_to_source_directory("source");
+         m_papplication->change_to_source_directory("source");
 
          trace_function functionTrace = [&](auto etracelevel, auto& str)
             {
@@ -228,7 +228,7 @@ namespace console_integration
          ::string strProject;
 
 
-         ::string strConfiguration(m_pcontext->m_strConfiguration);
+         ::string strConfiguration(m_papplication->m_strConfiguration);
 
          if (strConfiguration.case_insensitive_begins_eat("static"))
          {
@@ -245,7 +245,7 @@ namespace console_integration
 
          ::file::path pathBuildSln;
 
-         ::file::path pathPrefix = m_pcontext->prepare_path(m_pcontext->m_pathBuild);
+         ::file::path pathPrefix = m_papplication->prepare_path(m_papplication->m_pathBuild);
 
          pathBuildSln = pathPrefix / "x265.sln";
 
@@ -257,7 +257,7 @@ namespace console_integration
 
          ::string strParameters;
 
-         strParameters = " \"" + pathBuildSln.windows_path() + "\" /Build \"" + strConfiguration + "|" + m_pcontext->m_strPlatform + "\" /Project \"" + strProject + "\"";
+         strParameters = " \"" + pathBuildSln.windows_path() + "\" /Build \"" + strConfiguration + "|" + m_papplication->m_strPlatform + "\" /Project \"" + strProject + "\"";
 
          ::string strCommand;
 
@@ -269,7 +269,7 @@ namespace console_integration
 
          //strCommand = "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe\" ;
 
-         //strCommand = "devenv \"" + pathBuildSln.windows_path() + "\" /Build \"" + strConfiguration + "|" + m_pcontext->m_strPlatform + "\" /Project \"INSTALL\"";
+         //strCommand = "devenv \"" + pathBuildSln.windows_path() + "\" /Build \"" + strConfiguration + "|" + m_papplication->m_strPlatform + "\" /Project \"INSTALL\"";
 
          printf("%s\n", strCommand.c_str());
 
@@ -281,25 +281,25 @@ namespace console_integration
       void x265::install()
       {
 
-         m_pcontext->change_to_source_directory("source");
+         m_papplication->change_to_source_directory("source");
 
-         //m_pcontext->bash("make install");
+         //m_papplication->bash("make install");
 
-         auto pathOperatingSystemIncludeFolder = m_pcontext->m_pathOperatingSystemIncludeFolder;
+         auto pathOperatingSystemIncludeFolder = m_papplication->m_pathOperatingSystemIncludeFolder;
 
-         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         auto strSource = m_pcontext->prepare_path(m_pcontext->m_pathSource);
+         auto strSource = m_papplication->prepare_path(m_papplication->m_pathSource);
 
-         auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
-         auto strInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+         auto strInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
 
-         auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+         auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
-         auto strBuild = m_pcontext->prepare_path(m_pcontext->m_pathBuild);
+         auto strBuild = m_papplication->prepare_path(m_papplication->m_pathBuild);
 
-         auto strConfiguration2 = m_pcontext->m_strConfiguration;
+         auto strConfiguration2 = m_papplication->m_strConfiguration;
 
          bool bStatic = strConfiguration2.case_insensitive_begins_eat("Static");
 
@@ -308,27 +308,27 @@ namespace console_integration
          acmedirectory()->create(strPrefix + "/lib/pkgconfig");
          acmedirectory()->create(strPrefix + "/include");
 
-         //m_pcontext->bash("mv " + strPrefix + "/lib/libx264.dll.lib " + strPrefix + "/lib/libx264.lib");
+         //m_papplication->bash("mv " + strPrefix + "/lib/libx264.dll.lib " + strPrefix + "/lib/libx264.lib");
 
-         //m_pcontext->bash("cp -f " + m_pcontext->m_pathSource + "/source/x265.h " + strInclude + "/include/");
-         //m_pcontext->bash("cp -f " + strPrefix + "/Deub/*.exe " + strStorage + "/binary/");
-         ::string strConfiguration(m_pcontext->m_strConfiguration);
+         //m_papplication->bash("cp -f " + m_papplication->m_pathSource + "/source/x265.h " + strInclude + "/include/");
+         //m_papplication->bash("cp -f " + strPrefix + "/Deub/*.exe " + strStorage + "/binary/");
+         ::string strConfiguration(m_papplication->m_strConfiguration);
          if (bStatic)
          {
 
             acmefile()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
             acmefile()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/x265-static.lib", true);
-//            m_pcontext->bash("cp -f " +  " + ");
-  //          m_pcontext->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/x265-static.lib " + strStorage + "/library/x265.lib");
+//            m_papplication->bash("cp -f " +  " + ");
+  //          m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/x265-static.lib " + strStorage + "/library/x265.lib");
 
          }
          else
          {
 
-            m_pcontext->bash("cp -f " + strBuild + "/" + strConfiguration2 + "/*.dll " + strStorage + "/binary/");
-            m_pcontext->bash("cp -f " + strBuild + "/" + strConfiguration2 + "/*.dll " + strPrefix + "/bin/");
-            //m_pcontext->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strPrefix + "/lib/x265.lib");
-            //m_pcontext->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strStorage + "/library/x265.lib");
+            m_papplication->bash("cp -f " + strBuild + "/" + strConfiguration2 + "/*.dll " + strStorage + "/binary/");
+            m_papplication->bash("cp -f " + strBuild + "/" + strConfiguration2 + "/*.dll " + strPrefix + "/bin/");
+            //m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strPrefix + "/lib/x265.lib");
+            //m_papplication->bash("cp -f " + strPrefix + "/" + strConfiguration2 + "/libx265.lib " + strStorage + "/library/x265.lib");
 
             acmefile()->copy(strPrefix + "/lib/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
             acmefile()->copy(strStorage + "/library/x265.lib", strBuild + "/" + strConfiguration2 + "/libx265.lib", true);
@@ -336,9 +336,9 @@ namespace console_integration
          }
 
 
-         //m_pcontext->bash("cp -f " + m_pcontext->m_pathSource + "/source/x265.h " + strPrefix + "/include/");
-         //m_pcontext->bash("cp -f " + strPrefix + "/x265.pc " + strPrefix + "/lib/pkgconfig/");
-         //m_pcontext->bash("cp -f " + strPrefix + "/x265_config.h " + strPrefix + "/include/");
+         //m_papplication->bash("cp -f " + m_papplication->m_pathSource + "/source/x265.h " + strPrefix + "/include/");
+         //m_papplication->bash("cp -f " + strPrefix + "/x265.pc " + strPrefix + "/lib/pkgconfig/");
+         //m_papplication->bash("cp -f " + strPrefix + "/x265_config.h " + strPrefix + "/include/");
          
          acmefile()->copy(strInclude + "/include/x265.h", strSource + "/source/x265.h", true);
          acmefile()->copy(strInclude + "/include/x265_config.h", strBuild + "/x265_config.h", true);
@@ -350,7 +350,7 @@ namespace console_integration
          
          
          
-         //m_pcontext->bash("cp -f " + strPrefix + "/lib/* " + strStorage + "/library/");
+         //m_papplication->bash("cp -f " + strPrefix + "/lib/* " + strStorage + "/library/");
 
       }
 

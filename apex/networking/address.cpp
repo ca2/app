@@ -253,7 +253,7 @@ namespace networking
 //
 //      auto psystem = pparticle->system();
 //
-//      u.s.m_port = psystem->m_papexsystem->sockets().net().service_port(strService);
+//      u.s.m_port = psystem->sockets().net().service_port(strService);
 //
 //#endif
 //

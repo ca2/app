@@ -4,7 +4,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/event.h"
-#include "apex/platform/context.h"
+#include "apex/platform/application.h"
 
 
 namespace database
@@ -38,7 +38,7 @@ namespace database
 
       //}
 
-      if (m_pcontext->m_papexcontext->is_system() || m_pcontext->m_papexcontext->is_session())
+      if (m_papplication->m_papexcontext->is_system() || m_papplication->m_papexcontext->is_session())
       {
 
          m_bRemote = false;

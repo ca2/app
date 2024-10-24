@@ -650,7 +650,7 @@ void subparticle::disable_referencing_debugging()
    //   if (::allocator::t_pparticleTrackAllocation == this)
    //   {
 
-   //      //::acme::get()->m_preferencingdebugging->m_item2a.erase_last(this);
+   //      //::system()->m_preferencingdebugging->m_item2a.erase_last(this);
 
    //      ::allocator::t_pparticleTrackAllocation = nullptr;
 
@@ -749,7 +749,7 @@ bool g_bIntermediateThreadReferencingDebugging = false;
 //::particle * __call__add_referer(const ::reference_referer & referer)
 //{
 //
-//   return ::acme::get()->platform()->__call__add_referer(referer);
+//   return ::system()->platform()->__call__add_referer(referer);
 //
 //}
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();

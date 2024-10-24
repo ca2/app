@@ -1400,6 +1400,7 @@
     <ClInclude Include="platform\shell.h" />
     <ClInclude Include="platform\simple_array.h" />
     <ClInclude Include="platform\system_factory.h" />
+    <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\tracing.h" />
     <ClInclude Include="platform\url_context.h" />
     <ClInclude Include="platform\_errno.h" />
@@ -2168,6 +2169,7 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="system_impl.cpp" />
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
@@ -2806,7 +2808,7 @@
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\platform.h" />
-    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\system_impl.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />
     <ClInclude Include="platform\this_type.h" />

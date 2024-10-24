@@ -32,9 +32,9 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = system()->m_papexsystem;
+   auto psystem = system();
 
-   if(dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
+   if(dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
    {
 
       return dir.get_count() > 0;
@@ -52,9 +52,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = system()->m_papexsystem;
+   auto psystem = system();
 
-   if (dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
+   if (dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
    {
 
       return dir.get_count() > 0;
@@ -101,9 +101,9 @@ bool ifs::enumerate(::file::listing & listing)
 
    auto & dir = m_map[listing.m_pathUser];
 
-   auto psystem = system()->m_papexsystem;
+   auto psystem = system();
 
-   if (dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
+   if (dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
    {
 
       listing = dir;
@@ -310,7 +310,7 @@ int ifs::is_dir(const ::file::path & path)
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = system()->m_papexsystem;
+   auto psystem = system();
 
    if(dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
    {

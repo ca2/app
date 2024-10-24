@@ -8,7 +8,7 @@ class app_consumer :
 public:
 
 
-   ::pointer<APPLICATION>m_pacmeapplication;
+   ::pointer<APPLICATION>m_papplication;
 
 
    app_consumer()
@@ -27,12 +27,12 @@ public:
    void initialize_application_consumer()
    {
 
-      m_pacmeapplication = get_app();
+      m_papplication = get_app();
 
    }
 
 
-   inline APPLICATION* get_app() { return m_pacmeapplication.get(); }
+   inline APPLICATION* get_app() { return m_papplication.get(); }
 
 
 };

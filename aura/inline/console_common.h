@@ -4,7 +4,7 @@
 #include "application_common.h"
 
 
-int console_end(::acme::system * psystem, ::e_status estatus)
+int console_end(::platform::system * psystem, ::e_status estatus)
 {
 
    int iStatus = (int)estatus;
@@ -31,7 +31,7 @@ int console_end(::acme::system * psystem, ::e_status estatus)
 
    }
 
-   psystem->m_papexsystem->system_end();
+   psystem->system_end();
 
    return iError;
 

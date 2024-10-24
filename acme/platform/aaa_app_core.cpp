@@ -497,7 +497,7 @@ void app_core::system_init()
 
    //psystem = __move_transfer(apex_create_apex_system());
 
-   //auto psystem = system()->m_papexsystem;
+   //auto psystem = system();
    auto psystem = system();
 
    if (!psystem)
@@ -1103,13 +1103,13 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-::pointer<::acme::application>app_core::new_app()
+::pointer<::platform::application>app_core::new_app()
 {
 
-   //if(::acme::application::g_p)
+   //if(::platform::application::g_p)
    //{
 
-   //   return ::acme::application::g_p;
+   //   return ::platform::application::g_p;
 
    //}
 
@@ -1120,7 +1120,7 @@ bool app_core::has_apex_application_factory() const
 
    }
 
-   ::pointer<::acme::application>papp;
+   ::pointer<::platform::application>papp;
 
    papp = m_pfnnewmatterApplication();
 
@@ -1138,7 +1138,7 @@ bool app_core::has_apex_application_factory() const
 
 
 
-void app_core::initialize_application(::acme::application *papp, ::particle * pparticle)
+void app_core::initialize_application(::platform::application *papp, ::particle * pparticle)
 {
 
    //auto estatus = 

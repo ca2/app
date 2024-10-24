@@ -217,7 +217,7 @@ namespace user
 
          }
 
-         auto pcontextJustForInspection = pparticle->m_pcontext;
+         auto pcontextJustForInspection = pparticle->m_papplication;
 
          string strType = typeid(*pcontextJustForInspection).name();
 

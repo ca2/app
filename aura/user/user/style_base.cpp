@@ -97,7 +97,7 @@ namespace user
 
          //auto psystem = system();
 
-         //psystem->m_papexsystem->signal(id_user_style_change);
+         //psystem->signal(id_user_style_change);
 
       }
 

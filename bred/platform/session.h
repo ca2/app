@@ -24,7 +24,7 @@ namespace bred
       void initialize(::particle * pparticle) override;
 
 
-      void on_instantiate_application(::acme::application* papp) override;
+      void on_instantiate_application(::platform::application* papp) override;
 
 
    };

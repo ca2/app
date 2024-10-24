@@ -25,7 +25,7 @@ namespace core
    //void initialize()
    //{
 
-   //   factory()->add_factory_item < ::core::system, ::acme::system >();
+   //   factory()->add_factory_item < ::core::system, ::platform::system >();
 
    //}
 
@@ -61,8 +61,8 @@ namespace core
 
       ::bred::application::on_set_platform();
 
-      factory()->add_factory_item < ::core::system, ::acme::system >();
-      factory()->add_factory_item < ::core::session, ::acme::session >();
+      factory()->add_factory_item < ::core::system, ::platform::system >();
+      factory()->add_factory_item < ::core::session, ::platform::session >();
       factory()->add_factory_item < ::core::user, ::user::user >();
 
 

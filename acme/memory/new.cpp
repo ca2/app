@@ -27,7 +27,7 @@
 //void* MEMORY_DECL operator new(size_t nSize)
 //{
 //
-////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
+////   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 //   return memory_allocate(nSize);
 //
 //}
@@ -73,7 +73,7 @@
 //void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 //{
 //
-//   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
+//   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
 //
 //}
 //
@@ -121,7 +121,7 @@
 ////void* MEMORY_DECL operator new (size_t size, const c_class&)
 ////{
 ////
-////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
+////   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 ////
 ////}
 ////
@@ -129,7 +129,7 @@
 ////void* MEMORY_DECL operator new[](size_t size, const c_class&)
 ////{
 ////
-////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
+////   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
 ////
 ////}
 ////

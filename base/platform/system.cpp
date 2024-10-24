@@ -114,7 +114,7 @@ namespace base
 
       axis::system::on_set_platform();
 
-      factory()->add_factory_item< ::base::session, ::acme::session>();
+      factory()->add_factory_item< ::base::session, ::platform::session>();
       factory()->add_factory_item< ::base::user, ::user::user>();
 
    }

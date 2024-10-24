@@ -3,7 +3,7 @@
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/file/item.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "apex/filesystem/fs/set.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
@@ -150,7 +150,7 @@ namespace userfs
 
       //auto papp = get_app();
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
 
       //listingUser.clear();
 
@@ -255,7 +255,7 @@ namespace userfs
       //   
       //   pathToProcess.flags() += ::file::e_flag_resolve_alias;
 
-      //   ::file::path pathFinal  = m_pcontext->defer_process_matter_path(pathToProcess );
+      //   ::file::path pathFinal  = m_papplication->defer_process_matter_path(pathToProcess );
 
       //   pathFinal.m_iDir = pathItem.m_iDir;
 

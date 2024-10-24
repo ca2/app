@@ -719,7 +719,7 @@ namespace write_text
 
       //}
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
@@ -1246,11 +1246,11 @@ namespace write_text
 
          };
 
-         m_pcontext->fork_count(pfontlistdata->item_count(), procedure3, procedure4);
+         m_papplication->fork_count(pfontlistdata->item_count(), procedure3, procedure4);
 
       };
 
-      m_pcontext->fork_count(pfontlistdata->item_count(), procedure1, procedure2);
+      m_papplication->fork_count(pfontlistdata->item_count(), procedure1, procedure2);
    }
 
 

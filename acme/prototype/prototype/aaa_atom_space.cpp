@@ -32,7 +32,7 @@
 //
 //   }
 //
-//   char * pszNew = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
+//   char * pszNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
 //
 //   if (pszNew == nullptr)
 //   {
@@ -75,7 +75,7 @@
 //
 //            char * psz = (char *)m_psza.element_at(i);
 //
-//            ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz);
+//            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz);
 //
 //         }
 //         catch (...)

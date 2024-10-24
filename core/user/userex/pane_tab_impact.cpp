@@ -391,7 +391,7 @@ namespace userex
 //
 //#if defined(_DEBUG) && !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
 //
-//            auto pcontext = m_pcontext->m_papexcontext;
+//            auto pcontext = m_papplication->m_papexcontext;
 //
 //            ::file::path path;
 //            
@@ -637,7 +637,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          
@@ -686,7 +686,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto pcontext = m_pcontext;
+         auto pcontext = m_papplication;
          
          auto psession = pcontext->m_pacmesession->m_pcoresession;
          
@@ -723,7 +723,7 @@ namespace userex
 
          //auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
 
-         //auto pcontext = m_pcontext;
+         //auto pcontext = m_papplication;
          //
          //auto psession = pcontext->m_pacmesession->m_paurasession;
          //
@@ -1043,7 +1043,7 @@ namespace userex
 
    //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_atom)->get_title();
 
-   //   auto pcontext = m_pcontext;
+   //   auto pcontext = m_papplication;
    //   
    //   auto psession = pcontext->m_pacmesession->m_pcoresession;
    //   

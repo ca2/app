@@ -58,11 +58,11 @@ namespace console_integration
       void fdk_aac::build()
       {
          
-//         m_pcontext->zsh("_build_fdk_aac_shared");
+//         m_papplication->zsh("_build_fdk_aac_shared");
 //         
 //         return;
          
-        if(m_pcontext->m_strPlatform.is_empty())
+        if(m_papplication->m_strPlatform.is_empty())
          {
 
             _001MakeInitialize("x86_64", "x86_64-apple-macos10.13", "10.13", "x86_64-apple-darwin");
@@ -78,14 +78,14 @@ namespace console_integration
             auto pathOperatingSystemIncludeFolder = acmedirectory()->home() /"workspace/operating_system/operating_system-linux/include";
             ;
             
-            auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+            auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
             
-            auto pathInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+            auto pathInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
             
             acmedirectory()->create(pathInclude /"fdk-aac");
-            //auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+            //auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
             
-            m_pcontext->bash("cp -Rf " + strPrefix + "/include/fdk-aac/* " + pathInclude + "/fdk-aac/");
+            m_papplication->bash("cp -Rf " + strPrefix + "/include/fdk-aac/* " + pathInclude + "/fdk-aac/");
             
             return;
             
@@ -110,7 +110,7 @@ namespace console_integration
 //
 //                     strScript += strCommand1 + "\n";
 //
-////                     auto iExitCode1 = m_pcontext->zsh(strCommand1);
+////                     auto iExitCode1 = m_papplication->zsh(strCommand1);
 ////
 ////                     if(iExitCode1 != 0)
 ////                     {
@@ -125,14 +125,14 @@ namespace console_integration
 //
 //            ::string strCommand;
 //
-//            strCommand = "./configure --prefix="+m_pcontext->m_pathPrefix+" --host="+m_strHost+" --enable-shared " + " CC=\"cc -target " + m_strTargetting + "\" CXX=\"c++ -target " + m_strTargetting + "\"";
+//            strCommand = "./configure --prefix="+m_papplication->m_pathPrefix+" --host="+m_strHost+" --enable-shared " + " CC=\"cc -target " + m_strTargetting + "\" CXX=\"c++ -target " + m_strTargetting + "\"";
 //            strScript += strCommand + "\n";
 //
 //         }
 //         //            ./autogen.sh
 //         //            ./configure --prefix=$PREFIX --enable-shared --host=$HOST CC="cc -target $TARGETTING" CXX="c++ -target $TARGETTING"
 //
-////                  auto iExitCode2 = m_pcontext->zsh(strCommand2);
+////                  auto iExitCode2 = m_papplication->zsh(strCommand2);
 ////
 ////                  if(iExitCode2 != 0)
 ////                  {
@@ -148,9 +148,9 @@ namespace console_integration
 //         strScript +="\n";
 //         strScript +="\n";
 //         //
-//         acmefile()->put_contents(m_pcontext->m_pathSource /"build", strScript);
-//         m_pcontext->zsh("chmod +x build");
-//         m_pcontext->zsh("./build");
+//         acmefile()->put_contents(m_papplication->m_pathSource /"build", strScript);
+//         m_papplication->zsh("chmod +x build");
+//         m_papplication->zsh("./build");
 
          configure();
          
@@ -164,7 +164,7 @@ namespace console_integration
       void fdk_aac::clean()
       {
          
-         m_pcontext->clean();
+         m_papplication->clean();
          
       }
 
@@ -172,18 +172,18 @@ namespace console_integration
       void fdk_aac::prepare()
       {
          
-         m_pcontext->prepare();
+         m_papplication->prepare();
          
-         if(m_pcontext->m_pathPrefix.is_empty())
+         if(m_papplication->m_pathPrefix.is_empty())
          {
             
-            m_pcontext->m_pathPrefix = calculate_prefix_path(m_pcontext->m_strPlatform, m_pcontext->m_strConfiguration);
+            m_papplication->m_pathPrefix = calculate_prefix_path(m_papplication->m_strPlatform, m_papplication->m_strConfiguration);
             
          }
          
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
       }
 
@@ -191,11 +191,11 @@ namespace console_integration
       void fdk_aac::download()
       {
          
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
          
       }
 
@@ -203,13 +203,13 @@ namespace console_integration
       void fdk_aac::configure()
       {
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
          
-//         m_pcontext->zsh("glibtoolize");
+//         m_papplication->zsh("glibtoolize");
 //         
-//         m_pcontext->zsh("autoreconf -fiv");
+//         m_papplication->zsh("autoreconf -fiv");
          
          _001MakeConfigure(true, "");
          
@@ -219,13 +219,13 @@ namespace console_integration
       void fdk_aac::compile()
       {
          
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
          
-         //m_pcontext->zsh("set > ~/set-compile.txt");
+         //m_papplication->zsh("set > ~/set-compile.txt");
          
          //throw ::exception(error_failed);
          
-         m_pcontext->bash("make -j");
+         m_papplication->bash("make -j");
          
 //         ::string strScript;
 //
@@ -235,9 +235,9 @@ namespace console_integration
 //         strScript += "make -j\n";
 //         strScript += "which ./libtool\n";
 //
-//         acmefile()->put_contents(m_pcontext->m_pathSource /"call_make", strScript);
-//         m_pcontext->bash("chmod +x call_make");
-//         m_pcontext->bash("./call_make");
+//         acmefile()->put_contents(m_papplication->m_pathSource /"call_make", strScript);
+//         m_papplication->bash("chmod +x call_make");
+//         m_papplication->bash("./call_make");
 
          
       }

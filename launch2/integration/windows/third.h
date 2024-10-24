@@ -21,7 +21,7 @@ namespace console_integration
 
 
 
-      ::pointer < ::integration::context > m_pcontext;
+      ::pointer < ::integration::context > m_papplication;
 
 
       third();

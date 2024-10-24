@@ -27,7 +27,7 @@ matter::~matter()
 //
 //#endif
 //
-//   if (m_eobject & e_object_any_hook && m_pcontext)
+//   if (m_eobject & e_object_any_hook && m_papplication)
 //   {
 //
 //      system()->erase_from_any_hook(this);
@@ -329,18 +329,18 @@ bool matter::thread_is_running() const
 }
 
 
-//::acme::system * matteracmesystem()
+//::platform::system * matteracmesystem()
 //{
 //
-//   return ::is_set(m_pcontext) ? m_pcontext->m_pacmesystem : nullptr;
+//   return ::is_set(m_papplication) ? m_papplication->m_pacmesystem : nullptr;
 //
 //}
 
 
-::acme::application* matter::_get_app()
+::platform::application* matter::_get_app()
 {
 
-   return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
+   return m_papplication ? m_papplication->m_papplication : nullptr;
 
 }
 
@@ -775,7 +775,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //
 //   auto ptopic = __allocate ::topic(atom);
 //
-//   ptopic->m_pcontext = system();
+//   ptopic->m_papplication = system();
 //
 //   return ::transfer(ptopic);
 //
@@ -918,7 +918,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
 
 //
-//::acme::system * matteracmesystem() const
+//::platform::system * matteracmesystem() const
 //{
 //
 //   return ((matter*)this)->system();

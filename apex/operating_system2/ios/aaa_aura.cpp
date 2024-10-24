@@ -238,7 +238,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //   ios_apex_init()
 //   {
 //
-//      ace_set_alloc(&::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate, &memory_reallocate, &::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free, &memory_size);
+//      ace_set_alloc(&::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate, &memory_reallocate, &::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free, &memory_size);
 //
 //   }
 //

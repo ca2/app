@@ -6,7 +6,7 @@
 #include "acme/prototype/string/_string.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "acme/platform/application.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 
@@ -58,7 +58,7 @@ void dir_system::init_system()
 //
    m_pathInstall = acmedirectory()->install();
 
-   //auto psystem = system()->m_papexsystem;
+   //auto psystem = system();
 
    //auto pfile = psystem->m_pfilesystem;
 
@@ -76,16 +76,16 @@ void dir_system::init_system()
 //
 //   m_pathCa2Module = pathCa2ModuleFolder;
 
-   //auto psystem = system()->m_papexsystem;
+   //auto psystem = system();
 
    auto pacmedirectory = acmedirectory();
 
 #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
-   if ( pacmedirectory->is(system()->side_get_matter_path("app/_matter/main")))
+   if ( pacmedirectory->is(application()->side_get_matter_path("app/_matter/main")))
    {
 
-      m_pathLocalAppMatterFolder = system()->side_get_matter_path("");
+      m_pathLocalAppMatterFolder = application()->side_get_matter_path("");
 
       m_pathLocalAppMatterCacheFolder = system()->local_get_matter_cache_path();
 
@@ -160,7 +160,7 @@ void dir_system::init_system()
 
    ::file::path pathAppData;
 
-   //auto psystem = system()->m_papexsystem;
+   //auto psystem = system();
 
    if (system()->has_property("app_folder"))
    {
@@ -219,7 +219,7 @@ void dir_system::finalize()
 //
 //   //auto & context = Context;
 //
-//   auto psystem = system()->m_papexsystem;
+//   auto psystem = system();
 //
 //   auto pfile = psystem->m_pfilesystem;
 //

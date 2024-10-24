@@ -117,7 +117,7 @@ public:
          pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
-         //::acme::application * papp = get_app();
+         //::platform::application * papp = get_app();
          //informationf("handler oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return pb;

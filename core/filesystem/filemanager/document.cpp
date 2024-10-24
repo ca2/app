@@ -390,7 +390,7 @@ namespace filemanager
 
    //   auto pcontext = get_context();
 
-   //   ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
+   //   ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
    //   ::pointer<::file::item>pitem = __allocate ::file::item(pathUser, pathFinal);
 
@@ -544,7 +544,7 @@ namespace filemanager
    // void document::defer_check_manager_id(string strManagerId)
    // {
 
-   //    auto pcontext = m_pcontext;
+   //    auto pcontext = m_papplication;
    //    
    //    auto psession = pcontext->m_pacmesession->m_pcoresession;
    //    
@@ -691,7 +691,7 @@ namespace filemanager
 
       //string strManagerId;
 
-      //auto pcontext = m_pcontext->m_pauracontext;
+      //auto pcontext = m_papplication->m_pauracontext;
 
       //m_path = filemanager_project_entry(strManagerId, path, pcontext);
 
@@ -783,7 +783,7 @@ namespace filemanager
       if (context.is_user_source())
       {
 
-         //auto pcontext = m_pcontext;
+         //auto pcontext = m_papplication;
          //
          //auto psession = pcontext->m_pacmesession->m_pcoresession;
          //
@@ -898,7 +898,7 @@ namespace filemanager
 
       //prequest->finish_initialization();
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
       //
       //auto psession = pcontext->m_pacmesession->m_pcoresession;
       //
@@ -944,7 +944,7 @@ namespace filemanager
 
       //}
 
-      //auto pcontext = m_pcontext;
+      //auto pcontext = m_papplication;
       //
       //auto psession = pcontext->m_pacmesession->m_pcoresession;
       //
@@ -1588,7 +1588,7 @@ namespace filemanager
 
    //   //m_pfilemanagerdata = prequest->cast < ::filemanager::data >("filemanager::data");
    //   //
-   //   //auto pcontext = m_pcontext;
+   //   //auto pcontext = m_papplication;
    //   //
    //   //auto psession = pcontext->m_pacmesession->m_pcoresession;
    //   //

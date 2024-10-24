@@ -17,7 +17,7 @@ namespace core
    inline ::core::system* sessionacmesystem() const
    {
 
-      return ::is_set(system()) ? dynamic_cast <::core::system*> ((::acme::system *)system()) : nullptr;
+      return ::is_set(system()) ? dynamic_cast <::core::system*> ((::platform::system *)system()) : nullptr;
 
    }
 
@@ -26,7 +26,7 @@ namespace core
    inline ::core::application* core < CORE_OBJECT >::get_app() const
    {
       
-      return this->m_pcontext ? this->m_pcontext->m_pcoreapplication : nullptr;
+      return this->m_papplication ? this->m_papplication->m_pcoreapplication : nullptr;
    
    }
 
@@ -35,7 +35,7 @@ namespace core
    inline ::core::session* core < CORE_OBJECT >::get_session() const
    { 
       
-      return this->m_pcontext ? this->m_pcontext->m_pcoresesion : nullptr;
+      return this->m_papplication ? this->m_papplication->m_pcoresesion : nullptr;
    
    }
 

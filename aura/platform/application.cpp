@@ -275,8 +275,8 @@ namespace aura
 
       ::aqua::application::on_set_platform();
 
-      factory()->add_factory_item<::aura::system, ::acme::system>();
-      factory()->add_factory_item < ::aura::session, ::acme::session >();
+      factory()->add_factory_item<::aura::system, ::platform::system>();
+      factory()->add_factory_item < ::aura::session, ::platform::session >();
 
 
    }
@@ -556,7 +556,7 @@ namespace aura
    //void application::call_request(::request * prequest)
    //{
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   if (psystem->payload("exit_on_application_call_request").is_true())
    //   {
@@ -1750,7 +1750,7 @@ namespace aura
 
       //}
       
-      auto psignal = system()->m_papexsystem->get_signal(id_app_activated);
+      auto psignal = system()->get_signal(id_app_activated);
       
       psignal->add_handler(this);
 
@@ -9075,7 +9075,7 @@ namespace aura
    //void application::on_initial_frame_position(::user::frame* pframe)
    //{
 
-   //   auto psystem = system()->m_papexsystem;
+   //   auto psystem = system();
 
    //   psystem->on_initial_frame_position(pframe);
 
@@ -9094,7 +9094,7 @@ namespace aura
    ::aura::session* application::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 

@@ -71,7 +71,7 @@ namespace user
    ::particle_pointer multiple_option::clone()
    {
 
-      auto pmultipleoptionClone = m_pcontext->__create_new < multiple_option >();
+      auto pmultipleoptionClone = m_papplication->__create_new < multiple_option >();
 
       return pmultipleoptionClone;
 

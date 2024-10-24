@@ -63,7 +63,7 @@
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
-CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
+CLASS_DECL_ACME void trace_category_static_init(::platform::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
@@ -108,7 +108,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 }
 
 
-//static ::acme::system * g_psystem = nullptr;
+//static ::platform::system * g_psystem = nullptr;
 
 
 //extern const char * g_pszTopLevelDomainList[];
@@ -124,7 +124,7 @@ enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, con
 void initialize_nano_http(::factory::factory* pfactory);
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -132,13 +132,13 @@ namespace acme
    {
 
       m_pacmesystem = this;
-      m_papexsystem = nullptr;
-      m_paquasystem = nullptr;
-      m_paurasystem = nullptr;
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pbredsystem = nullptr;
-      m_pcoresystem = nullptr;
+      // m_papexsystem = nullptr;
+      // m_paquasystem = nullptr;
+      // m_paurasystem = nullptr;
+      // m_paxissystem = nullptr;
+      // m_pbasesystem = nullptr;
+      // m_pbredsystem = nullptr;
+      // m_pcoresystem = nullptr;
 
 #ifndef WINDOWS
 
@@ -195,13 +195,13 @@ namespace acme
       trace_category_static_term();
 
       m_pacmesystem = nullptr;
-      m_papexsystem = nullptr;
-      m_paquasystem = nullptr;
-      m_paurasystem = nullptr;
-      m_paxissystem = nullptr;
-      m_pbasesystem = nullptr;
-      m_pbredsystem = nullptr;
-      m_pcoresystem = nullptr;
+      // m_papexsystem = nullptr;
+      // m_paquasystem = nullptr;
+      // m_paurasystem = nullptr;
+      // m_paxissystem = nullptr;
+      // m_pbasesystem = nullptr;
+      // m_pbredsystem = nullptr;
+      // m_pcoresystem = nullptr;
 
       print_line("acme::system::~system() (end)");
 
@@ -366,7 +366,7 @@ namespace acme
             if (m_iMatterFromHttpCache == -1)
             {
 
-               ::file::path pathSide = m_pcontext->side_get_matter_path("app/_matter/main");
+               ::file::path pathSide = m_papplication->side_get_matter_path("app/_matter/main");
 
                ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
@@ -667,7 +667,7 @@ namespace acme
 
 
 
-   ::acme::system_factory* system::system_factory()
+   ::platform::system_factory* system::system_factory()
    {
 
       if (!m_psystemfactory)
@@ -700,7 +700,7 @@ namespace acme
 
       }
 
-      //information() <<"::acme::system create_os_node";
+      //information() <<"::platform::system create_os_node";
 
       auto& pfactory = node_factory();
 
@@ -734,10 +734,10 @@ namespace acme
 
       }
 
-      if (m_pacmeapplication)
+      if (m_papplication)
       {
 
-         m_pacmeapplication->m_pacmenode = m_pnode;
+         m_papplication->m_pacmenode = m_pnode;
 
       }
 
@@ -1509,7 +1509,7 @@ namespace acme
 
       __check_refdbg
 
-      //::acme::application * pappStartup = ::acme::application::g_p;
+      //::platform::application * pappStartup = ::platform::application::g_p;
 
       //if (::is_null(pappStartup))
       //{
@@ -1527,9 +1527,9 @@ namespace acme
 
       //application() = pappStartup;
 
-      m_pacmeapplication->initialize(this);
+      m_papplication->initialize(this);
 
-      m_pacmeapplication->get_property_set().merge(get_property_set());
+      m_papplication->get_property_set().merge(get_property_set());
 
       //*((::APPLICATION_FLAGS *)this) = *application();
 
@@ -2184,10 +2184,10 @@ namespace acme
 
 
 
-   ::pointer<::acme::session>system::on_create_session(::collection::index iEdge)
+   ::pointer<::platform::session>system::on_create_session(::collection::index iEdge)
    {
 
-      ::pointer<::acme::session>psession;
+      ::pointer<::platform::session>psession;
 
       //auto estatus =
       __raw_construct(psession);
@@ -2196,14 +2196,14 @@ namespace acme
 
       psession->initialize(this);
 
-      psession->m_pacmeapplication = m_pacmeapplication;
+      psession->m_papplication = m_papplication;
       psession->m_pacmesystem = this;
       psession->m_pacmenode = m_pacmenode;
 
-      if (m_pacmeapplication)
+      if (m_papplication)
       {
 
-         m_pacmeapplication->m_pacmesession = psession->m_pacmesession;
+         m_papplication->m_pacmesession = psession->m_pacmesession;
 
       }
 
@@ -2221,7 +2221,7 @@ namespace acme
    }
 
 
-   ::acme::session* system::session(::collection::index iEdge)
+   ::platform::session* system::session(::collection::index iEdge)
    {
 
       auto iterator = m_sessionmap.plookup(iEdge);
@@ -2238,7 +2238,7 @@ namespace acme
    }
 
 
-   void system::add_session(::collection::index iEdge, ::acme::session* psession)
+   void system::add_session(::collection::index iEdge, ::platform::session* psession)
    {
 
       if (!::is_set(psession))
@@ -2264,7 +2264,7 @@ namespace acme
    }
 
 
-   void system::on_add_session(::acme::session* pacmesession)
+   void system::on_add_session(::platform::session* pacmesession)
    {
 
       if (pacmesession->m_iEdge == 0)
@@ -2704,7 +2704,7 @@ namespace acme
 
 
 
-   ::acme::application* system::get_main_app()
+   ::platform::application* system::get_main_app()
    {
 
 
@@ -2735,10 +2735,10 @@ namespace acme
    }
 
 
-   void system::system_construct(::acme::application* papplication)
+   void system::system_construct(::platform::application* papplication)
    {
 
-      m_pacmeapplication = papplication;
+      m_papplication = papplication;
 
 
       ///*auto estatus = */ ::main::system_construct(papplication);
@@ -2752,10 +2752,10 @@ namespace acme
 
        return estatus;*/
 
-      if (m_pacmeapplication)
+      if (m_papplication)
       {
 
-         m_pacmeapplication->m_pacmesystem = this;
+         m_papplication->m_pacmesystem = this;
 
       }
 
@@ -3222,10 +3222,10 @@ namespace acme
    //
    //}
 
-   ::pointer<::acme::application>system::new_app(const ::scoped_string& scopedstrAppId)
+   ::pointer<::platform::application>system::new_app(const ::scoped_string& scopedstrAppId)
    {
 
-      ::pointer<::acme::application>papp;
+      ::pointer<::platform::application>papp;
 
       string strAppId = scopedstrAppId;
 
@@ -3257,7 +3257,7 @@ namespace acme
          if (strAppId.is_empty() || platform()->is_console())
          {
 
-            papp = __create < ::acme::application >();
+            papp = __create < ::platform::application >();
 
             papp->increment_reference_count();
 
@@ -3333,7 +3333,7 @@ namespace acme
             if (pfactory)
             {
 
-               papp = __create < ::acme::application >(pfactory);
+               papp = __create < ::platform::application >(pfactory);
 
                if (!papp)
                {
@@ -3440,10 +3440,10 @@ namespace acme
 
          bool bOk = false;
 
-         if (m_pacmeapplication)
+         if (m_papplication)
          {
 
-            if (m_pacmeapplication->_handle_call(payload, strObject, strMember, propertyset))
+            if (m_papplication->_handle_call(payload, strObject, strMember, propertyset))
             {
 
                return true;
@@ -4124,7 +4124,7 @@ namespace acme
 } // namespace acme
 
 
-//CLASS_DECL_ACME::acme::system * system()
+//CLASS_DECL_ACME::platform::system * system()
 //{
 
   // return g_psystem;
@@ -4159,7 +4159,7 @@ namespace acme
 //}
 
 //
-//CLASS_DECL_ACME::acme::system * get_context_system()
+//CLASS_DECL_ACME::platform::system * get_context_system()
 //{
 //
 //   return g_psystem;
@@ -4167,10 +4167,10 @@ namespace acme
 //}
 
 //
-//CLASS_DECL_ACME::acme::system * acme_system_init()
+//CLASS_DECL_ACME::platform::system * acme_system_init()
 //{
 //
-//   g_psystem = ___new ::acme::system ();
+//   g_psystem = ___new ::platform::system ();
 //
 //   return g_psystem;
 //
@@ -4188,7 +4188,7 @@ namespace acme
 void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
 {
 
-   auto psystem = (::acme::system*)pSystem;
+   auto psystem = (::platform::system*)pSystem;
 
    psystem->system_id_update(iUpdate, iParam);
 
@@ -4203,7 +4203,7 @@ void system_on_open_file(void* pSystem, const char* pszFile);
 void node_will_finish_launching(void* pSystem)
 {
 
-   auto psystem = (::acme::system*)pSystem;
+   auto psystem = (::platform::system*)pSystem;
 
    psystem->node_will_finish_launching();
 
@@ -4213,7 +4213,7 @@ void node_will_finish_launching(void* pSystem)
 void system_on_open_untitled_file(void* pSystem)
 {
 
-   auto psystem = (::acme::system*)pSystem;
+   auto psystem = (::platform::system*)pSystem;
 
    psystem->on_open_untitled_file();
 
@@ -4223,7 +4223,7 @@ void system_on_open_untitled_file(void* pSystem)
 void system_on_open_file(void* pSystem, const char* pszFile)
 {
 
-   auto psystem = (::acme::system*)pSystem;
+   auto psystem = (::platform::system*)pSystem;
 
    psystem->on_open_file(pszFile);
 
@@ -4231,7 +4231,7 @@ void system_on_open_file(void* pSystem, const char* pszFile)
 }
 
 
-//::pointer<::acme::system>platform_create_system(const ::scoped_string & scopedstrAppId)
+//::pointer<::platform::system>platform_create_system(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   string strAppId(pszAppId);
@@ -4298,7 +4298,7 @@ void system_on_open_file(void* pSystem, const char* pszFile)
 //
 //   }
 //
-//   ::pointer<::acme::system>psystem = pelement;
+//   ::pointer<::platform::system>psystem = pelement;
 //
 //   if (!psystem)
 //   {

@@ -203,7 +203,7 @@ namespace userfs
          try
          {
 
-            //::file::path path = m_pcontext->defer_process_matter_path(m_pitema->get_item(pitem->m_item.m_iItem)->m_filepathUser);
+            //::file::path path = m_papplication->defer_process_matter_path(m_pitema->get_item(pitem->m_item.m_iItem)->m_filepathUser);
 
             //if (!m_pitema->m_parray->contains_index(pitem->m_item.m_iItem) || (*m_pitema)[pitem->m_item.m_iItem].is_null())
             //{

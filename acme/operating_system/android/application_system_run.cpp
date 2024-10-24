@@ -83,7 +83,7 @@ string ca2_command_line()
 //      //if (!psystem->begin_synch())
 //      //{
 //
-//      //   informationf("Failed to begin_synch the system (::acme::system or ::acme::system derived)");
+//      //   informationf("Failed to begin_synch the system (::platform::system or ::platform::system derived)");
 //
 //      //   return ::error_failed;
 //

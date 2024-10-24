@@ -82,7 +82,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         ::file::path filepathUser = m_pcontext->defer_process_matter_path(filepathFinal);
+         ::file::path filepathUser = m_papplication->defer_process_matter_path(filepathFinal);
 
          auto pfileitem = __allocate ::file::item(filepathUser, filepathFinal);
 

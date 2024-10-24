@@ -502,7 +502,7 @@ void subparticle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = system();
+      ptask = ::system();
 
    }
 
@@ -893,13 +893,13 @@ void subparticle::acquire_ownership()
 }
 
 
-
-::acme::system * subparticle::system() const
-{
-
-   return ::system();
-
-}
-
-
+//
+// ::platform::system * subparticle::acme::get() const
+// {
+//
+//    return ::acme::get();
+//
+// }
+//
+//
 

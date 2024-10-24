@@ -16,7 +16,7 @@ namespace aqua
    //void initialize()
    //{
 
-   //   factory()->add_factory_item< ::aqua::system, ::acme::system >();
+   //   factory()->add_factory_item< ::aqua::system, ::platform::system >();
 
 
    //}
@@ -74,8 +74,8 @@ namespace aqua
 
       ::apex::application::on_set_platform();
 
-      factory()->add_factory_item< ::aqua::system, ::acme::system >();
-      factory()->add_factory_item < ::aqua::session, ::acme::session >();
+      factory()->add_factory_item< ::aqua::system, ::platform::system >();
+      factory()->add_factory_item < ::aqua::session, ::platform::session >();
 
    }
 
@@ -83,7 +83,7 @@ namespace aqua
    //void application::on_initialize_application(::main* pmain)
    //{
 
-   //   pmain->m_pplatform->factory()->add_factory_item< ::aqua::system, ::acme::system >();
+   //   pmain->m_pplatform->factory()->add_factory_item< ::aqua::system, ::platform::system >();
 
    //}
 

@@ -37,7 +37,7 @@ tracer::~tracer()
 //{
 //
 //
-//   m_pcontext = pcontext;
+//   m_papplication = pcontext;
 //   m_etracelevel = etracelevel;
 //   m_etracecategory = e_trace_category_general;
 //   m_pszFunction = nullptr;
@@ -54,7 +54,7 @@ tracer::~tracer()
 //{
 //
 //
-//   m_pcontext = pcontext;
+//   m_papplication = pcontext;
 //   m_etracelevel = etracelevel;
 //   m_etracecategory = etracecategory;
 //   m_pszFunction = nullptr;
@@ -70,7 +70,7 @@ tracer::~tracer()
 //tracer & tracer::operator()(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine, logger * plogger)
 //{
 //   
-//   m_pcontext = pcontext;
+//   m_papplication = pcontext;
 //   m_etracelevel = etracelevel;
 //   m_etracecategory = etracecategory;
 //   m_pszFunction = pszFunction;
@@ -109,7 +109,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_pcontext, e_trace_level_information).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_information).format_output_arguments(psz, arguments);
 //
 //   va_end(arguments);
 //
@@ -123,7 +123,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_pcontext, e_trace_level_warning).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_warning).format_output_arguments(psz, arguments);
 //
 //   va_end(arguments);
 //
@@ -137,7 +137,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_pcontext, e_trace_level_error).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_error).format_output_arguments(psz, arguments);
 //
 //   va_end(arguments);
 //
@@ -151,7 +151,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_pcontext, e_trace_level_fatal).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_fatal).format_output_arguments(psz, arguments);
 //
 //   va_end(arguments);
 //

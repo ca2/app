@@ -156,7 +156,7 @@ string file_module_path_dup()
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
-//   char * szImage = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iImageSize);
+//   char * szImage = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iImageSize);
 //
 //   GetModuleFileNameEx(hProcess,nullptr,szImage,iImageSize);
 //

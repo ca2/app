@@ -75,7 +75,7 @@ namespace base
    }
 
 
-   void session::on_instantiate_application(::acme::application* papp)
+   void session::on_instantiate_application(::platform::application* papp)
    {
 
       ::axis::session::on_instantiate_application(papp);

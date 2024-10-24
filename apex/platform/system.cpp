@@ -154,7 +154,7 @@ namespace apex
    system::system()
    {
 
-      m_papexsystem = this;
+      //m_papexsystem = this;
 
       //      factory()->add_factory_item < ::apex::app_launcher >();
       //
@@ -233,7 +233,7 @@ namespace apex
    i64 system::increment_reference_count()
    {
 
-      return ::acme::system::increment_reference_count();
+      return ::platform::system::increment_reference_count();
 
    }
 
@@ -241,7 +241,7 @@ namespace apex
    i64 system::decrement_reference_count()
    {
 
-      return ::acme::system::decrement_reference_count();
+      return ::platform::system::decrement_reference_count();
 
    }
 
@@ -266,7 +266,7 @@ namespace apex
 
       ::apex::context::on_initialize_particle();
 
-      ::acme::system::on_initialize_particle();
+      ::platform::system::on_initialize_particle();
 
    }
 
@@ -396,7 +396,7 @@ namespace apex
       factory()->add_factory_item<http::context>();
 
       //auto estatus = 
-      ::acme::system::process_init();
+      ::platform::system::process_init();
 
       __construct_new(m_pthreading);
 
@@ -929,7 +929,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::acme::system::init1();
+      ::platform::system::init1();
 
       //if (!estatus)
       //{
@@ -1049,7 +1049,7 @@ pacmedirectory->create("/ca2core");
       //       if (m_iMatterFromHttpCache == -1)
       //       {
       //
-      //          ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+      //          ::file::path pathSide = m_papplication->m_papexcontext->side_get_matter_path("app/_matter/main");
       //
       //          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
@@ -1240,7 +1240,7 @@ pacmedirectory->create("/ca2core");
    void system::init2()
    {
 
-      ::acme::system::init2();
+      ::platform::system::init2();
 
       //::e_status estatus = 
       // create_session();
@@ -1387,7 +1387,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::acme::system::on_start_system();
+      ::platform::system::on_start_system();
 
       //if (!estatus)
       //{
@@ -1571,7 +1571,7 @@ pacmedirectory->create("/ca2core");
    void system::defer_post_initial_request()
    {
 
-      ::acme::system::defer_post_initial_request();
+      ::platform::system::defer_post_initial_request();
 
       //if (!m_bPostedInitialRequest)
       //{
@@ -1643,7 +1643,7 @@ pacmedirectory->create("/ca2core");
    void system::inline_init()
    {
 
-      ::acme::system::inline_init();
+      ::platform::system::inline_init();
 
       ::apex::context::inline_init();
 
@@ -1705,7 +1705,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::acme::application * system::get_main_app()
+   ::platform::application * system::get_main_app()
    {
 
       return application();
@@ -1717,7 +1717,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::acme::system::init_system();
+      ::platform::system::init_system();
 
       //if(!estatus)
       //{
@@ -1726,7 +1726,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-//      ::acme::application * pappStartup = ::acme::application::g_p;
+//      ::platform::application * pappStartup = ::platform::application::g_p;
 //
 //      if(::is_null(pappStartup))
 //      {
@@ -1778,7 +1778,7 @@ pacmedirectory->create("/ca2core");
    string system::get_application_server_name()
    {
 
-      return ::acme::system::get_application_server_name();
+      return ::platform::system::get_application_server_name();
 
    }
 
@@ -1944,7 +1944,7 @@ pacmedirectory->create("/ca2core");
    void system::TermSystem()
    {
 
-      ::acme::system::TermSystem();
+      ::platform::system::TermSystem();
 
    }
 
@@ -1952,7 +1952,7 @@ pacmedirectory->create("/ca2core");
    void system::create_os_node()
    {
 
-      ::acme::system::create_os_node();
+      ::platform::system::create_os_node();
 
    }
 
@@ -2574,7 +2574,7 @@ pacmedirectory->create("/ca2core");
    void system::on_request(::request * prequest)
    {
 
-      ::acme::system::on_request(prequest);
+      ::platform::system::on_request(prequest);
 
    }
 
@@ -2916,7 +2916,7 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      ::acme::application * papplication = nullptr;
+      ::platform::application * papplication = nullptr;
 
       auto psession = session();
 
@@ -3427,7 +3427,7 @@ pacmedirectory->create("/ca2core");
 
 pmessagebox->sync();
 
-         m_pcontext->m_papexcontext->os().link_open(strUrl);
+         m_papplication->m_papexcontext->os().link_open(strUrl);
 
          return;
 
@@ -3444,7 +3444,7 @@ pmessagebox->sync();
 
       string strParam;
 
-      m_pcontext->m_papexcontext->os().get_default_browser(strId, path, strParam);
+      m_papplication->m_papexcontext->os().get_default_browser(strId, path, strParam);
 
       if (strProfile.is_empty() || strProfile == "native")
       {
@@ -3541,7 +3541,7 @@ pmessagebox->sync();
          //if (m_strAppName == "app-core/commander")
          {
 
-            chromium(strUrl, strBrowser, strId, m_pcontext->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
+            chromium(strUrl, strBrowser, strId, m_papplication->m_papexcontext->os().get_app_path("chrome"), strProfile, strParam);
 
          }
          //else
@@ -3578,7 +3578,7 @@ pmessagebox->sync();
 
          //#elif defined(LINUX)
          //
-         //      ::acme::system("xdg-open \"" + strUrl + "\"");
+         //      ::platform::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -3625,7 +3625,7 @@ pmessagebox->sync();
 
 #elif defined(MACOS)
 
-         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         ::platform::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -3712,7 +3712,7 @@ pmessagebox->sync();
          else
          {
 
-            ::acme::system("xdg-open " + strUrl);
+            ::platform::system("xdg-open " + strUrl);
 
          }
 
@@ -4295,7 +4295,7 @@ namespace apex
    //   void system::deferx_initializex_x11()
    //   {
    //
-   //      return ::acme::system::deferx_initializex_x11();
+   //      return ::platform::system::deferx_initializex_x11();
    //
    //   }
 
@@ -4871,7 +4871,7 @@ namespace apex
 
       //return ::success;
 
-      ::acme::system::destroy();
+      ::platform::system::destroy();
 
    }
 
@@ -4894,7 +4894,7 @@ namespace apex
       else
       {
 
-         ::acme::system::process_exit_status(pparticle, estatus);
+         ::platform::system::process_exit_status(pparticle, estatus);
 
       }
 
@@ -4923,10 +4923,10 @@ namespace apex
    }
 
 
-   void system::system_construct(::acme::application * papplication)
+   void system::system_construct(::platform::application * papplication)
    {
 
-      ::acme::system::system_construct(papplication);
+      ::platform::system::system_construct(papplication);
 
       //main::system_construct(papplication);
 
@@ -5024,7 +5024,7 @@ namespace apex
    {
 
       //auto estatus = 
-      ///::acme::system::get_public_internet_domain_extension_list(stra);
+      ///::platform::system::get_public_internet_domain_extension_list(stra);
 
       //return estatus;
 
@@ -5037,7 +5037,7 @@ namespace apex
    //{
 
    ////   //auto estatus = 
-   ////   ::acme::system::get_public_internet_domain_extension_list(stra);
+   ////   ::platform::system::get_public_internet_domain_extension_list(stra);
 
    //   ///return estatus;
 
@@ -5047,7 +5047,7 @@ namespace apex
    void system::system_main()
    {
 
-      ::acme::system::system_main();
+      ::platform::system::system_main();
 
    }
 
@@ -5118,7 +5118,7 @@ namespace apex
    
       this->signal(id_application_dark_mode_change);
 
-      ::acme::system::on_application_dark_mode_change();
+      ::platform::system::on_application_dark_mode_change();
 
    }
 

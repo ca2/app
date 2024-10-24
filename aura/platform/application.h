@@ -83,7 +83,7 @@ namespace aura
 
       //enum_exclusive_instance                              m_eexclusiveinstance;
 
-      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+      //string_map < ::pointer<::platform::exclusive >>    m_mapExclusive;
 
       //bool                                            m_bService;
 
@@ -439,7 +439,7 @@ namespace aura
       virtual string get_theme() override;
 
 
-      //virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual ::pointer<::platform::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 

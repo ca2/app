@@ -82,7 +82,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    itask_t idthread = puserframe->get_app()->get_itask();
 
-   message_queue * pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+   message_queue * pmq = ::system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 
    if(pmq == nullptr)
    {

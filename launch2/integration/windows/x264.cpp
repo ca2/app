@@ -39,7 +39,7 @@ namespace console_integration
          ::console_integration::windows::build::initialize(pparticle);
          ::console_integration::x264::initialize(pparticle);
 
-         m_pcontext->m_bMsys = true;
+         m_papplication->m_bMsys = true;
 
       }
 
@@ -51,7 +51,7 @@ namespace console_integration
 
          //clean();
 
-         if (!m_pcontext->m_bOnlyInstall)
+         if (!m_papplication->m_bOnlyInstall)
          {
 
             download();
@@ -78,27 +78,27 @@ namespace console_integration
 
          strRelease.find_replace(" ", "_");
 
-         m_pcontext->m_strRelease = strRelease;
+         m_papplication->m_strRelease = strRelease;
 
-         m_pcontext->m_pathDownloadURL = "https://code.videolan.org/videolan/x264.git/";
+         m_papplication->m_pathDownloadURL = "https://code.videolan.org/videolan/x264.git/";
 
-         m_pcontext->prepare();
+         m_papplication->prepare();
 
-         if (m_pcontext->m_pathPrefix.is_empty())
+         if (m_papplication->m_pathPrefix.is_empty())
          {
 
-            m_pcontext->m_pathPrefix = calculate_prefix_path(m_pcontext->m_strPlatform, m_pcontext->m_strConfiguration);
+            m_papplication->m_pathPrefix = calculate_prefix_path(m_papplication->m_strPlatform, m_papplication->m_strConfiguration);
 
          }
 
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          {
 
             m_strShared = "";
 
             m_strStatic = "--enable-static";
 
-            if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+            if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
             {
 
                m_strCFlags = " --extra-cflags=\"-MTd\"";
@@ -121,7 +121,7 @@ namespace console_integration
 
          }
 
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
 
       }
 
@@ -129,9 +129,9 @@ namespace console_integration
       void x264::clean()
       {
 
-         //m_pcontext->change_to_source_directory();
+         //m_papplication->change_to_source_directory();
 
-         m_pcontext->clean();
+         m_papplication->clean();
 
       }
 
@@ -139,15 +139,15 @@ namespace console_integration
       void x264::download()
       {
 
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
          //preempt(15_s);
 
          //auto s = stdout;
 
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
 
       }
 
@@ -155,9 +155,9 @@ namespace console_integration
       void x264::configure()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
          string strCommand;
 
@@ -166,7 +166,7 @@ namespace console_integration
          strCommand += m_strCFlags;
          strCommand += " --prefix=" + strPrefix;
 
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
       }
 
@@ -174,18 +174,18 @@ namespace console_integration
       void x264::compile()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+         auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
          printf("Storage-Folder: %s\n", strStorage.c_str());
 
          //::pointer < application > papplication = acmeapplication();
 
-         //m_pcontext->bash("make" + papplication->m_strMakeOptions);
-         m_pcontext->bash("make");
+         //m_papplication->bash("make" + papplication->m_strMakeOptions);
+         m_papplication->bash("make");
 
       }
 
@@ -193,36 +193,36 @@ namespace console_integration
       void x264::install()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         m_pcontext->bash("make install");
+         m_papplication->bash("make install");
 
-         auto pathOperatingSystemIncludeFolder = m_pcontext->m_pathOperatingSystemIncludeFolder;
+         auto pathOperatingSystemIncludeFolder = m_papplication->m_pathOperatingSystemIncludeFolder;
 
-         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
-         auto strInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+         auto strInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
 
-         auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+         auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
          acmedirectory()->create(strInclude + "/include/");
          acmedirectory()->create(strStorage + "/binary/");
          acmedirectory()->create(strStorage + "/library/");
 
-         if (!m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if (!m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
 
-            m_pcontext->bash("mv " + strPrefix + "/lib/libx264.dll.lib " + strPrefix + "/lib/libx264.lib");
+            m_papplication->bash("mv " + strPrefix + "/lib/libx264.dll.lib " + strPrefix + "/lib/libx264.lib");
 
          }
 
-         m_pcontext->bash("cp -Rf " + strPrefix + "/include/* " + strInclude + "/include/");
-         m_pcontext->bash("cp -Rf " + strPrefix + "/bin/* " + strStorage + "/binary/");
-         //m_pcontext->bash("cp -f " + strPrefix + "/bin/*.dll " + strStorage + "/binary/");
-         //m_pcontext->bash("cp -f " + strPrefix + "/bin/*.lib " + strStorage + "/library/");
-         m_pcontext->bash("cp -Rf " + strPrefix + "/lib/* " + strStorage + "/library/");
+         m_papplication->bash("cp -Rf " + strPrefix + "/include/* " + strInclude + "/include/");
+         m_papplication->bash("cp -Rf " + strPrefix + "/bin/* " + strStorage + "/binary/");
+         //m_papplication->bash("cp -f " + strPrefix + "/bin/*.dll " + strStorage + "/binary/");
+         //m_papplication->bash("cp -f " + strPrefix + "/bin/*.lib " + strStorage + "/library/");
+         m_papplication->bash("cp -Rf " + strPrefix + "/lib/* " + strStorage + "/library/");
 
       }
 

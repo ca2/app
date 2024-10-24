@@ -1002,7 +1002,7 @@ namespace networking
    bool networking::reverse(string& number, const string& hostname)
    {
 
-      //auto paddress = system()->m_papexsystem->sockets()->create_address(hostname);
+      //auto paddress = system()->sockets()->create_address(hostname);
 
       //number = paddress->get_display_number();
 
@@ -1029,7 +1029,7 @@ namespace networking
    //   if (!m_pthreadReverse)
    //   {
 
-   //      auto psystem = system()->m_papexsystem;
+   //      auto psystem = system();
 
    //      m_pthreadReverse = psystem->fork([this]()
    //         {

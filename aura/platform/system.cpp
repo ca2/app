@@ -276,7 +276,7 @@ namespace aura
    }
 
 
-   void system::on_add_session(::acme::session* pacmesession)
+   void system::on_add_session(::platform::session* pacmesession)
    {
 
       ::aqua::system::on_add_session(pacmesession);
@@ -6908,7 +6908,7 @@ namespace aura
    ::aura::session* system::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 

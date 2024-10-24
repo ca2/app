@@ -74,9 +74,9 @@
 //
 ////            auto pappStartup = system()->new_application(strAppId);
 ////
-////            system()->__refer(m_pcontext->application(), pappStartup);
+////            system()->__refer(m_papplication->application(), pappStartup);
 ////
-////            system()->set_main_struct(*m_pcontext->application());
+////            system()->set_main_struct(*m_papplication->application());
 //
 //            system()->m_bConsole = true;
 //
@@ -128,7 +128,7 @@
 //         int result()
 //         {
 //
-//            m_estatus = m_pcontext->application()->m_estatus;
+//            m_estatus = m_papplication->application()->m_estatus;
 //
 //            ::i32 iErrorStatus = m_estatus.error_status();
 //

@@ -659,7 +659,7 @@ namespace nanoui
    void Widget::add_child(Widget* pwidget)
    {
 
-      if (!pwidget->m_pcontext)
+      if (!pwidget->m_papplication)
       {
 
          pwidget->initialize(this);

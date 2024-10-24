@@ -12,7 +12,7 @@ public:
 
    class aura_aura                  m_aura;
    ::pointer<::aura::system>        system();
-   //::pointer<::aura::application>   m_pacmeapplication;
+   //::pointer<::aura::application>   m_papplication;
 
    console(int argc, wchar_t * argv[]);
    console(int argc, char * argv[]);

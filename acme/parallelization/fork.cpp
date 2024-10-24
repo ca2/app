@@ -2,7 +2,7 @@
 #include "fork.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/counter.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/prototype/prototype/function.h"
 
@@ -34,7 +34,7 @@ CLASS_DECL_ACME::task * predicate_run(::particle * pparticle, bool bSync, const 
    else
    {
 
-      return pparticle->m_pcontext->fork(procedure);
+      return pparticle->m_papplication->fork(procedure);
 
    }
 

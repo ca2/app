@@ -5,12 +5,12 @@
 //#include "acme/prototype/collection/pointer_array.h"
 
 
-namespace acme
+namespace platform
 {
 
 
    class CLASS_DECL_ACME application_array :
-      virtual public pointer_array < ::acme::application >
+      virtual public pointer_array < ::platform::application >
    {
    public:
 
@@ -25,17 +25,17 @@ namespace acme
       application_array & operator = (const application_array & a);
       application_array & operator = (application_array && a);
 
-      ::acme::application * find_by_app_id(const ::string & strAppId);
+      ::platform::application * find_by_app_id(const ::string & strAppId);
 
-      ::acme::application * find_running_defer_try_quit_damaged(const string & strAppid);
+      ::platform::application * find_running_defer_try_quit_damaged(const string & strAppid);
 
-      bool lookup(const string & strAppId, ::pointer<::acme::application>& papp);
+      bool lookup(const string & strAppId, ::pointer<::platform::application>& papp);
 
 
    };
 
 
-} // namespace apex
+} // namespace platform
 
 
 

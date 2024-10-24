@@ -928,7 +928,7 @@ namespace windowing
    ::aura::application* windowing::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -936,7 +936,7 @@ namespace windowing
    ::aura::session* windowing::get_session()
    {
 
-      return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+      return m_papplication && m_papplication->m_pacmesession ? m_papplication->m_pacmesession->m_paurasession : nullptr;
 
    }
 

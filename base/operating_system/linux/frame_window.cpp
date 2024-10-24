@@ -31,7 +31,7 @@
 //
 //      }
 //
-//      auto pcontext = m_pcontext->m_pauracontext;
+//      auto pcontext = m_papplication->m_pauracontext;
 //
 //      auto pimagecontext = pcontext->image_context();
 //

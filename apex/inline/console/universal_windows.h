@@ -100,11 +100,11 @@
 //
 //      m_estatus = (void) system()->inline_init();
 //
-//      auto papp = system()->m_papexsystem->application();
+//      auto papp = system()->application();
 //
-//      __refer(system()->m_papexsystem->application(), system()->m_papexsystem->application().get());
+//      __refer(system()->application(), system()->application().get());
 //
-//      __unbind(system()->m_papexsystem, application() REFERENCING_DEBUGGING_COMMA_P_NOTE(system(), ""));
+//      __unbind(system(), application() REFERENCING_DEBUGGING_COMMA_P_NOTE(system(), ""));
 //
 //   }
 //

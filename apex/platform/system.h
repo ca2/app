@@ -13,55 +13,55 @@ namespace apex
 
 
    class CLASS_DECL_APEX system:
-      virtual public ::acme::system,
+      virtual public ::platform::system,
       virtual public ::apex::context
    {
    public:
 
 
-
-
-#ifndef WINDOWS
-
-
-      ::pointer<::exception_translator>                 m_pexceptiontranslator;
-
-
-#endif
-
-      ::pointer < ::file::watcher >                      m_pfilewatcher;
-      //::pointer<::dump_context>                       m_pdumpcontext;
-
-      ::pointer<::networking::networking>             m_pnetworking;
-
-      //::pointer<::crypto::crypto>                     m_pcrypto;
-
-      ::pointer<class machine_event_central>           m_pmachineeventcentral;
-
-      ::pointer < ::mutex >                                m_pmutexUserAppData;
-      ::pointer < ::mutex >                                m_pmutexSystemAppData;
-
-      ::pointer<::operating_system::department>       m_poperatingsystem;
-
-      ::pointer<::parallelization::threading>         m_pthreading;
-      size_t                                             m_nSafetyPoolSize; // ideal size_i32
-
-
-      ::pointer < ::input::input >                       m_pinput;
-
-      string_array                                       m_straCommandLineAccumul;
-      string_array                                       m_straCommandLineExtra;
-      class ::time                                         m_timeCommandLineLast;
-      int                                                m_iCommandLineDelay;
-      
-      bool                                               m_bSystemSynchronizedCursor;
-      bool                                               m_bSystemSynchronizedScreen;
-
-      
-      ::pointer < ::manager_room >           m_pmanagerroom;
-
-      ::pointer<class ::apex::history>                m_phistory;
-
+//
+//
+// #ifndef WINDOWS
+//
+//
+//       ::pointer<::exception_translator>                 m_pexceptiontranslator;
+//
+//
+// #endif
+//
+//       ::pointer < ::file::watcher >                      m_pfilewatcher;
+//       //::pointer<::dump_context>                       m_pdumpcontext;
+//
+//       ::pointer<::networking::networking>             m_pnetworking;
+//
+//       //::pointer<::crypto::crypto>                     m_pcrypto;
+//
+//       ::pointer<class machine_event_central>           m_pmachineeventcentral;
+//
+//       ::pointer < ::mutex >                                m_pmutexUserAppData;
+//       ::pointer < ::mutex >                                m_pmutexSystemAppData;
+//
+//       ::pointer<::operating_system::department>       m_poperatingsystem;
+//
+//       ::pointer<::parallelization::threading>         m_pthreading;
+//       size_t                                             m_nSafetyPoolSize; // ideal size_i32
+//
+//
+//       ::pointer < ::input::input >                       m_pinput;
+//
+//       string_array                                       m_straCommandLineAccumul;
+//       string_array                                       m_straCommandLineExtra;
+//       class ::time                                         m_timeCommandLineLast;
+//       int                                                m_iCommandLineDelay;
+//
+//       bool                                               m_bSystemSynchronizedCursor;
+//       bool                                               m_bSystemSynchronizedScreen;
+//
+//
+//       ::pointer < ::manager_room >           m_pmanagerroom;
+//
+//       ::pointer<class ::apex::history>                m_phistory;
+//
 
       system();
       ~system() override;
@@ -89,7 +89,7 @@ namespace apex
 
       void install_message_routing(::channel * pchannel) override;
 
-      void system_construct(::acme::application * papplication) override;
+      void system_construct(::platform::application * papplication) override;
 
 
       //virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
@@ -115,7 +115,7 @@ namespace apex
 
       class ::manager_room * manager_room() override;
 
-      virtual ::acme::application * get_main_app() override;
+      virtual ::platform::application * get_main_app() override;
 
 
       virtual void init();
@@ -143,7 +143,7 @@ namespace apex
 
       void create_os_node() override;
 
-      ::apex::node * node();
+      //::apex::node * node();
 
       ::file::watcher * file_watcher() override;
 

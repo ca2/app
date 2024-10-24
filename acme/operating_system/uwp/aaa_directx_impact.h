@@ -8,7 +8,7 @@ namespace universal_windows
    ref class impact abstract :
       //public ::winrt::Windows::UI::Xaml::Controls::UserControl
       public ::winrt::Windows::ApplicationModel::Core::IFrameworkView,
-      public ::acme::system_window
+      public ::platform::system_window
    {
    public:
 
@@ -32,7 +32,7 @@ namespace universal_windows
       bool        m_bTextCompositionActive;
       wide_string  m_strText;
       wide_string  m_strNewText;
-      ::acme::system* system();
+      ::platform::system* system();
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > m_window;
 

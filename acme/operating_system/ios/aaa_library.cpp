@@ -4,7 +4,7 @@
 #include <dlfcn.h>
 
 
-//CLASS_DECL_ACME ::acme::system * system();
+//CLASS_DECL_ACME ::platform::system * system();
 
 namespace platform
 {

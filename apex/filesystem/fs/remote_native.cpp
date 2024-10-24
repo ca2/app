@@ -228,7 +228,7 @@ namespace fs
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > system()->m_timeFileListingCache)
+         if(millisLast.elapsed() > system()->file_listing_cache_time())
          {
             
             ::file::listing listing;

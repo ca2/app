@@ -16,7 +16,7 @@ void application_main();
 
 
 //void stage();
-::acme::system * acme_system_init();
+::platform::system * acme_system_init();
 void acme_system_term();
 
 #include "acme/platform/system.h"
@@ -92,7 +92,7 @@ int main(int argc, char ** argv, char ** envp)
 
    pacme->platform()->m_bConsole = true;
 
-   //::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
+   //::acme::acme::g_pacme->m_papplication->m_bConsole = true;
 
    //string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
 
@@ -104,7 +104,7 @@ int main(int argc, char ** argv, char ** envp)
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   //::acme::acme::g_pacme->m_pacmeapplication->implement_application();
+   //::acme::acme::g_pacme->m_papplication->implement_application();
 
    int iExitCode = -1;
 
@@ -157,7 +157,7 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::acme::get()) ::message_box(exception, "Exception", "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
          pmessagebox->sync();
 
@@ -178,7 +178,7 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::acme::get()) ::message_box("Unhandled Exception");
+         auto pmessagebox = __initialize_new_with(::system()) ::message_box("Unhandled Exception");
 
          pmessagebox->sync();
 
@@ -186,7 +186,7 @@ int main(int argc, char ** argv, char ** envp)
 
    }
 
-   //return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
+   //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
    return iExitCode;
 

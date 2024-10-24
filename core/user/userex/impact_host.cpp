@@ -653,7 +653,7 @@ namespace userex
 
       ::atom atom = idImpact;
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_papplication;
       
       auto psession = pcontext->m_pacmesession->m_pcoresession;
       
@@ -740,7 +740,7 @@ namespace userex
 
       papp->datastream()->set("frame::" + idImpact + ".visible", bShow);
 
-      auto pcontext = m_pcontext;
+      auto pcontext = m_papplication;
       
       auto psession = pcontext->m_pacmesession->m_pcoresession;
       

@@ -55,7 +55,7 @@ namespace console_integration
          ::console_integration::build::initialize(pparticle);
 
 
-         m_pcontext->m_pathOperatingSystemStorageFolder = "C:/workspace/operating_system/storage-macos";
+         m_papplication->m_pathOperatingSystemStorageFolder = "C:/workspace/operating_system/storage-macos";
 
       }
 
@@ -63,7 +63,7 @@ namespace console_integration
       ::file::path build::calculate_prefix_path(const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
       {
 
-         return m_pathPrefixBase / scopedstrPlatform / m_pcontext->m_strConfiguration / "build";
+         return m_pathPrefixBase / scopedstrPlatform / m_papplication->m_strConfiguration / "build";
 
 
       }
@@ -87,7 +87,7 @@ namespace console_integration
       //   {
       //      ::string str = "lib" + scopedstrLibraryName + ".dylib";
 
-      //      ::file::path path = m_pcontext->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + ".dylib");
+      //      ::file::path path = m_papplication->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + ".dylib");
 
       //      ::string strDependency = "lib" + scopedstrLibraryDependency + ".dylib";
 
@@ -95,7 +95,7 @@ namespace console_integration
 
       //         ::string strCommand = "install_name_tool -change " + pathDependency + " @executable_path/" + strDependency + " " + path;
 
-      //         m_pcontext->bash(strCommand);
+      //         m_papplication->bash(strCommand);
 
       //      }
 
@@ -125,7 +125,7 @@ namespace console_integration
 
       //         ::string strCommand = "install_name_tool -change " + pathDependency + " @executable_path/" + strDependency + " " + path;
 
-      //         m_pcontext->bash(strCommand);
+      //         m_papplication->bash(strCommand);
 
       //      }
 
@@ -230,9 +230,9 @@ namespace console_integration
 
       //      auto pffmpeg = __create_new < ffmpeg >();
 
-      //      pffmpeg->m_pcontext->m_strPlatform = strPlatform;
+      //      pffmpeg->m_papplication->m_strPlatform = strPlatform;
 
-      //      pffmpeg->m_pcontext->m_strConfiguration = strConfiguration;
+      //      pffmpeg->m_papplication->m_strConfiguration = strConfiguration;
 
       //      pffmpeg->build();
 
@@ -256,9 +256,9 @@ namespace console_integration
 
       //      auto popenssl = __create_new < openssl >();
 
-      //      popenssl->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+      //      popenssl->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 
-      //      popenssl->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+      //      popenssl->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 
       //      popenssl->build();
 
@@ -268,11 +268,11 @@ namespace console_integration
 
       //      auto px264 = __create_new < x264 >();
 
-      //      px264->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+      //      px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 
-      //      px264->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+      //      px264->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 
-      //      px264->m_pcontext->m_pathPrefix = psubsystem->get_argument1(3);
+      //      px264->m_papplication->m_pathPrefix = psubsystem->get_argument1(3);
 
       //      px264->build();
 
@@ -282,11 +282,11 @@ namespace console_integration
 
       //      auto px264 = __create_new < x265 >();
 
-      //      px264->m_pcontext->m_strPlatform = psubsystem->get_argument1(1);
+      //      px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 
-      //      px264->m_pcontext->m_strConfiguration = psubsystem->get_argument1(2);
+      //      px264->m_papplication->m_strConfiguration = psubsystem->get_argument1(2);
 
-      //      px264->m_pcontext->m_pathPrefix = psubsystem->get_argument1(3);
+      //      px264->m_papplication->m_pathPrefix = psubsystem->get_argument1(3);
 
       //      px264->build();
 

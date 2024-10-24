@@ -48,14 +48,15 @@ namespace platform
 //   class CLASS_DECL_ACME platform :
 //      virtual public ::particle
    class CLASS_DECL_ACME platform :
-      virtual public ::subparticle
+      virtual public ::acme::acme,
+      virtual public ::particle
    {
    public:
 
 
-      //static platform * s_pplatform;
+      static ::platform::platform * s_p;
 
-      ::acme::acme *                                  m_pacme;
+      //::acme::acme *                                  m_pacme;
 
       ::critical_section                              m_criticalsection;
 
@@ -64,8 +65,8 @@ namespace platform
       int                                             m_argc = 0;
       char **                                                  m_args = nullptr;
       char ** m_envp = nullptr;
-      ::acme::system* m_pacmesystem;
-      ::i32 m_iExitCode;
+      ::platform::system* m_pacmesystem;
+      //::i32 m_iExitCode;
 
 #ifdef WINDOWS
 
@@ -180,7 +181,7 @@ namespace platform
       ::factory::factory_pointer                      m_pfactory;
       ::factory::factory_map                          m_factorymap;
       ::factory::component_factory_map                m_componentfactorymap;
-      ::pointer < ::acme::system >                    m_psystem;
+      //::pointer < ::platform::system >                    m_psystem;
       ::pointer < ::operating_system::dynamic_library > m_pdynamiclibrary;
       int                                             m_iProcessStatus = 0;
 
@@ -192,7 +193,7 @@ namespace platform
       ::windowing::enum_toolkit                       m_etoolkit;
 
 
-      ::acme::application * m_pacmeapplication;
+      ::platform::application * m_papplication;
 
 
       ::critical_section m_criticalsectionSystemHeap;
@@ -209,7 +210,7 @@ namespace platform
 
 
 
-      platform(::acme::acme* pacme);
+      platform();
       ~platform();
 
       virtual bool is_console() const;
@@ -248,9 +249,9 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize(int argc, wchar_t * args[], wchar_t * envp[]);
+      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]);
 
-      void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
+      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
 
 #else
 
@@ -326,7 +327,7 @@ namespace platform
       void delete_all_release_on_end();
 
 
-      ::acme::acme * acme() const { return ((platform *)this)->m_pacme; }
+      //::acme::acme * acme() const { return ((platform *)this)->m_pacme; }
 
 
       ::factory::factory_pointer & factory();
@@ -380,7 +381,7 @@ namespace platform
 
 
 
-      //virtual ::acme::system * __get_system() = 0;
+      //virtual ::platform::system * __get_system() = 0;
       //class ::time start_nanosecond();
 
 
@@ -455,7 +456,7 @@ namespace platform
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
       release_time_for_project as_release_time_for_project(const char* pszStatic);
 
-      ::acme::system* system() { return m_psystem; }
+      //::platform::system* system() { return m_psystem; }
       ::operating_system::dynamic_library* dynamic_library() { return m_pdynamiclibrary; }
        
 //       // [HERE]
@@ -488,7 +489,7 @@ namespace platform
 
    //   SYSTEM      m_system;
 
-   //   ::acme::system * __get_system() override { return &m_system; }
+   //   ::platform::system * __get_system() override { return &m_system; }
 
 
    //};
@@ -498,21 +499,21 @@ namespace platform
    //{
 
 
-   inline ::platform::platform * get() { return ::acme::get() ? ::acme::get()->platform() : nullptr; }
+   inline ::platform::platform * get() { return ::platform::platform::s_p; }
    
 
 
 } // namespace platform
 
 
-inline ::acme::system* system() 
-{ 
-   
-   auto pplatform = ::platform::get();
-   
-   return pplatform ? pplatform->system() : nullptr;
-
-}
+//inline ::platform::system* system() 
+//{ 
+//   
+//   auto pplatform = ::platform::get();
+//   
+//   return pplatform ? pplatform->system() : nullptr;
+//
+//}
 
 
 inline ::operating_system::dynamic_library * dynamic_library()

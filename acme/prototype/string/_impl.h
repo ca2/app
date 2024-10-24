@@ -1254,7 +1254,7 @@ template < typename ITERATOR_TYPE >
 //   if (iNewBufferSize > iBufferSize)
 //   {
 //
-//      *ppsz = (char *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iNewBufferSize + 1);
+//      *ppsz = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iNewBufferSize + 1);
 //
 //   }
 //

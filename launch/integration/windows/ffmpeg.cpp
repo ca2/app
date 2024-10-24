@@ -46,11 +46,11 @@ namespace console_integration
 
          acmenode()->integration_factory();
 
-         __construct(m_pcontext);
+         __construct(m_papplication);
 
-         m_pcontext->m_bMsys = true;
+         m_papplication->m_bMsys = true;
 
-         m_pcontext->m_strName = "ffmpeg";
+         m_papplication->m_strName = "ffmpeg";
 
       }
 
@@ -63,14 +63,14 @@ namespace console_integration
          //clean();
 
          //If(0)
-         if (m_pcontext->m_bBuildDependencies)
+         if (m_papplication->m_bBuildDependencies)
          {
 
             build_dependencies();
 
          }
 
-         if (!m_pcontext->m_bOnlyInstall)
+         if (!m_papplication->m_bOnlyInstall)
          {
 
             //Return;
@@ -103,19 +103,19 @@ namespace console_integration
 
          strRelease.case_insensitive_ends_eat(".git");
 
-         m_pcontext->m_strRelease = strRelease;
+         m_papplication->m_strRelease = strRelease;
 
-         m_pcontext->m_pathDownloadURL = "https://git.ffmpeg.org/ffmpeg.git";
+         m_papplication->m_pathDownloadURL = "https://git.ffmpeg.org/ffmpeg.git";
 
-         m_pcontext->prepare();
+         m_papplication->prepare();
 
-         if (m_pcontext->m_strPlatform == "Win32")
+         if (m_papplication->m_strPlatform == "Win32")
          {
 
             m_strArch = "i386";
 
          }
-         else if (m_pcontext->m_strPlatform == "x64")
+         else if (m_papplication->m_strPlatform == "x64")
          {
 
             m_strArch = "x86_64";
@@ -124,11 +124,11 @@ namespace console_integration
          else
          {
 
-            throw ::exception(error_failed, "Unsupported Platform \"" + m_pcontext->m_strPlatform + "\"?!?");
+            throw ::exception(error_failed, "Unsupported Platform \"" + m_papplication->m_strPlatform + "\"?!?");
 
          }
 
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
          {
 
             m_strDebug = "--enable-debug";
@@ -141,7 +141,7 @@ namespace console_integration
 
          }
 
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          {
 
             m_strShared = "";
@@ -158,9 +158,9 @@ namespace console_integration
 
          }
 
-         m_pcontext->m_pathPrefix = m_pcontext->m_pathFolder / m_pcontext->m_pathBase / m_pcontext->m_pathPlatformConfiguration / "build";
+         m_papplication->m_pathPrefix = m_papplication->m_pathFolder / m_papplication->m_pathBase / m_papplication->m_pathPlatformConfiguration / "build";
 
-         m_pcontext->prepare_compile_and_link_environment();
+         m_papplication->prepare_compile_and_link_environment();
 
       }
 
@@ -186,15 +186,15 @@ namespace console_integration
       {
 
          ::file::path pathDependencyPrefixBase =
-            m_pcontext->m_pathFolder /
-            m_pcontext->m_strName /
-            m_pcontext->m_strRelease;
+            m_papplication->m_pathFolder /
+            m_papplication->m_strName /
+            m_papplication->m_strRelease;
 
          //int iExitCode = 0;
 
          ::string strParameters;
 
-         strParameters = "x264 " + m_pcontext->m_strPlatform + " " + m_pcontext->m_strConfiguration;
+         strParameters = "x264 " + m_papplication->m_strPlatform + " " + m_papplication->m_strConfiguration;
 
          strParameters += " \"" + pathDependencyPrefixBase + "\"";
 
@@ -213,7 +213,7 @@ namespace console_integration
 
          //acmenode()->command_system(strCommand);
 
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
          //if (iExitCode == 0)
          //{
@@ -230,11 +230,11 @@ namespace console_integration
 
          //__construct_new(m_px264);
 
-         //m_px264->m_pcontext->m_pathPrefix = m_pcontext->m_pathPrefix;
+         //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 
-         //m_px264->m_pcontext->m_strPlatform = m_pcontext->m_strPlatform;
+         //m_px264->m_papplication->m_strPlatform = m_papplication->m_strPlatform;
 
-         //m_px264->m_pcontext->m_strConfiguration = m_pcontext->m_strConfiguration;
+         //m_px264->m_papplication->m_strConfiguration = m_papplication->m_strConfiguration;
 
          //m_px264->build();
 
@@ -245,16 +245,16 @@ namespace console_integration
       {
 
          ::file::path pathDependencyPrefixBase =
-            m_pcontext->m_pathFolder /
-            m_pcontext->m_strName /
-            m_pcontext->m_strRelease;
+            m_papplication->m_pathFolder /
+            m_papplication->m_strName /
+            m_papplication->m_strRelease;
 
 
          int iExitCode = 0;
 
          ::string strParameters;
 
-         strParameters = "x265 " + m_pcontext->m_strPlatform + " " + m_pcontext->m_strConfiguration;
+         strParameters = "x265 " + m_papplication->m_strPlatform + " " + m_papplication->m_strConfiguration;
 
          strParameters += " \"" + pathDependencyPrefixBase + "\"";
 
@@ -272,7 +272,7 @@ namespace console_integration
             };
 
          //acmenode()->command_system(strCommand, functionTrace);
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
          if (iExitCode == 0)
          {
@@ -289,11 +289,11 @@ namespace console_integration
 
          //__construct_new(m_px264);
 
-         //m_px264->m_pcontext->m_pathPrefix = m_pcontext->m_pathPrefix;
+         //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 
-         //m_px264->m_pcontext->m_strPlatform = m_pcontext->m_strPlatform;
+         //m_px264->m_papplication->m_strPlatform = m_papplication->m_strPlatform;
 
-         //m_px264->m_pcontext->m_strConfiguration = m_pcontext->m_strConfiguration;
+         //m_px264->m_papplication->m_strConfiguration = m_papplication->m_strConfiguration;
 
          //m_px264->build();
 
@@ -303,7 +303,7 @@ namespace console_integration
       void ffmpeg::clean()
       {
 
-         m_pcontext->clean();
+         m_papplication->clean();
 
       }
 
@@ -311,11 +311,11 @@ namespace console_integration
       void ffmpeg::download()
       {
 
-         m_pcontext->create_source_directory();
+         m_papplication->create_source_directory();
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         m_pcontext->git_clone();
+         m_papplication->git_clone();
 
       }
 
@@ -323,9 +323,9 @@ namespace console_integration
       void ffmpeg::configure()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
          string strCommand;
 
@@ -341,11 +341,11 @@ namespace console_integration
 
          //acmenode()->set_environment_variable("PKG_CONFIG_PATH", "'" + strPkgConfigPath + "'");
 
-         //m_pcontext->bash("set");
+         //m_papplication->bash("set");
 
          //strCommand += "";
 
-         //m_pcontext->bash("export -p > environment_variables.txt");
+         //m_papplication->bash("export -p > environment_variables.txt");
 
          ::string strConfigureCommand;
 
@@ -353,10 +353,10 @@ namespace console_integration
          ::string strMoreFlags;
 
 
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
          {
 
-            if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+            if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
             {
 
                strMoreFlags = "-MTd ";
@@ -387,7 +387,7 @@ namespace console_integration
          strCommand += "do_configure()\n";
          strCommand += "{\n";
          strCommand += "\n";
-         strCommand += "   cd \"" + m_pcontext->m_pathSource + "\"\n";
+         strCommand += "   cd \"" + m_papplication->m_pathSource + "\"\n";
          strCommand += strConfigureCommand + "\n";
          strCommand += "   PKG_CONFIG_PATH='" + windows_bash_path(strPkgConfigPath) + "'\n";
          strCommand += "   export PKG_CONFIG_PATH\n";
@@ -400,12 +400,12 @@ namespace console_integration
          strCommand += "\n";
          strCommand += "do_configure\n";
 
-         acmefile()->put_contents(m_pcontext->m_pathSource / "configure2.sh",
+         acmefile()->put_contents(m_papplication->m_pathSource / "configure2.sh",
             strCommand);
-         m_pcontext->bash("chmod +x configure2.sh");
+         m_papplication->bash("chmod +x configure2.sh");
          ::string s;
 
-         if (m_pcontext->m_strPlatform.contains("64"))
+         if (m_papplication->m_strPlatform.contains("64"))
          {
             s += "call \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat\"\n";
          }
@@ -414,16 +414,16 @@ namespace console_integration
             s += "call \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars32.bat\"\n";
          }
          s += "C:\n";
-         s += "cd \"" + m_pcontext->m_pathSource.windows_path() + "\"\n";
+         s += "cd \"" + m_papplication->m_pathSource.windows_path() + "\"\n";
          s += "set CHERE_INVOKING=1\n";
          s += "set MSYSTEM=MSYS\n";
          s += "set MSYS2_PATH_TYPE=inherit\n";
-         s += "\"C:\\msys64\\usr\\bin\\bash.exe\" --login -i \"" + m_pcontext->m_pathSource + "/configure2.sh\"\n";
-         //s += "\"C:\\msys64\\msys2.exe\" -l \"" + m_pcontext->m_pathSource + "/configure2.sh\"\n";
+         s += "\"C:\\msys64\\usr\\bin\\bash.exe\" --login -i \"" + m_papplication->m_pathSource + "/configure2.sh\"\n";
+         //s += "\"C:\\msys64\\msys2.exe\" -l \"" + m_papplication->m_pathSource + "/configure2.sh\"\n";
    //   C:\
 
 
-         acmefile()->put_contents(m_pcontext->m_pathSource / "vs_call.bat", s);
+         acmefile()->put_contents(m_papplication->m_pathSource / "vs_call.bat", s);
 
          //trace_function tracefunction = [&](auto etracelevel, auto& str)
          //{
@@ -436,16 +436,16 @@ namespace console_integration
 
          //tracefunction.m_timeTimeout = 2.5_hour;
 
-         //acmenode()->command_system(m_pcontext->m_pathSource +"/vs_call.bat", tracefunction);
+         //acmenode()->command_system(m_papplication->m_pathSource +"/vs_call.bat", tracefunction);
 
          printf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
          printf("%s\n", s.c_str());
 
-         //::file::path pathVsCall = m_pcontext->m_pathSource + "/vs_call.bat";
+         //::file::path pathVsCall = m_papplication->m_pathSource + "/vs_call.bat";
 
          //acmenode()->command_system(pathVsCall.windows_path(), 2.5_hour);
 
-         m_pcontext->bash("export PKG_CONFIG_PATH='" + windows_bash_path(strPkgConfigPath) + "'; " + strConfigureCommand);
+         m_papplication->bash("export PKG_CONFIG_PATH='" + windows_bash_path(strPkgConfigPath) + "'; " + strConfigureCommand);
 
          output_debug_string("test");
 
@@ -457,11 +457,11 @@ namespace console_integration
 
          // make at configure
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
          ::pointer < ::application_build_helper::application > papplication = acmeapplication();
 
-         m_pcontext->bash("make" + papplication->m_strMakeOptions);
+         m_papplication->bash("make" + papplication->m_strMakeOptions);
 
       }
 
@@ -469,19 +469,19 @@ namespace console_integration
       void ffmpeg::install_lib(const ::scoped_string& scopedstrLibrary)
       {
 
-         auto pathSource = m_pcontext->m_pathSource;
+         auto pathSource = m_papplication->m_pathSource;
 
-         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         auto strSource = m_pcontext->prepare_path(pathSource);
+         auto strSource = m_papplication->prepare_path(pathSource);
 
-         auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+         auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
-         if (!m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if (!m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
           
-            //m_pcontext->bash("cp -f " + strSource + "/lib" + scopedstrLibrary + "/*.dll " + strStorage + "/binary/");
-            m_pcontext->bash("cp -f " + strSource + "/lib" + scopedstrLibrary + "/*.pdb " + strStorage + "/binary/");
+            //m_papplication->bash("cp -f " + strSource + "/lib" + scopedstrLibrary + "/*.dll " + strStorage + "/binary/");
+            m_papplication->bash("cp -f " + strSource + "/lib" + scopedstrLibrary + "/*.pdb " + strStorage + "/binary/");
 
          }
 
@@ -491,32 +491,32 @@ namespace console_integration
       void ffmpeg::install()
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         m_pcontext->bash("make install");
+         m_papplication->bash("make install");
 
-         auto pathOperatingSystemIncludeFolder = m_pcontext->m_pathOperatingSystemIncludeFolder;
+         auto pathOperatingSystemIncludeFolder = m_papplication->m_pathOperatingSystemIncludeFolder;
 
-         auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
 
-         auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+         auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
 
-         auto strInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+         auto strInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
 
-         auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+         auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
 
-         m_pcontext->bash("cp -Rf " + strPrefix + "/include/* " + strInclude + "/include/");
-         m_pcontext->bash("cp -f " + strPrefix + "/bin/*.exe " + strStorage + "/binary/");
+         m_papplication->bash("cp -Rf " + strPrefix + "/include/* " + strInclude + "/include/");
+         m_papplication->bash("cp -f " + strPrefix + "/bin/*.exe " + strStorage + "/binary/");
          
-         if (!m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if (!m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
           
-            m_pcontext->bash("cp -f " + strPrefix + "/bin/*.dll " + strStorage + "/binary/");
-            m_pcontext->bash("cp -f " + strPrefix + "/bin/*.lib " + strStorage + "/library/");
+            m_papplication->bash("cp -f " + strPrefix + "/bin/*.dll " + strStorage + "/binary/");
+            m_papplication->bash("cp -f " + strPrefix + "/bin/*.lib " + strStorage + "/library/");
 
          }
 
-         m_pcontext->bash("cp -Rf " + strPrefix + "/lib/* " + strStorage + "/library/");
+         m_papplication->bash("cp -Rf " + strPrefix + "/lib/* " + strStorage + "/library/");
 
          install_lib("avcodec");
          install_lib("avdevice");

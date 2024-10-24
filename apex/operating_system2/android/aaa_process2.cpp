@@ -356,7 +356,7 @@ struct chldstatus
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

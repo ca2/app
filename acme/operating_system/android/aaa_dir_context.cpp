@@ -1245,7 +1245,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    //}
 
 
-   //::file::path dir_context::default_userfolder(::acme::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
+   //::file::path dir_context::default_userfolder(::platform::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    //{
 
    //   return userfolder();

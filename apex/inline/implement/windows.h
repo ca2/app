@@ -8,7 +8,7 @@
 //#include "acme/inline/console/windows.h"
 //
 //
-//::acme::system* acme_system_init();
+//::platform::system* acme_system_init();
 //
 //
 //void acme_system_term();
@@ -90,7 +90,7 @@
 //////
 //////      }
 //////
-//////      estatus = psystem->m_papexsystem->__thread_init();
+//////      estatus = psystem->__thread_init();
 //////
 //////      if (!estatus)
 //////      {

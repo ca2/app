@@ -18,10 +18,10 @@ namespace apex
       string                                       m_strLocale;
       string                                       m_strSchema;
       class ::time                                 m_timeCheckPeriod;
-      ::pointer<::acme::application_container>     m_pcontainer;
+      ::pointer<::platform::application_container>     m_pcontainer;
 
 
-      assert_running_task(::acme::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
+      assert_running_task(::platform::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
       ~assert_running_task() override;
 
 

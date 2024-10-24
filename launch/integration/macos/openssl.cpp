@@ -34,11 +34,11 @@ void openssl::initialize(::particle * pparticle)
    
    acmenode()->integration_factory();
    
-   __construct(m_pcontext);
+   __construct(m_papplication);
    
-   m_pcontext->m_bMsys = true;
+   m_papplication->m_bMsys = true;
    
-   m_pcontext->m_strName = "openssl";
+   m_papplication->m_strName = "openssl";
    
 }
 
@@ -46,18 +46,18 @@ void openssl::initialize(::particle * pparticle)
 void openssl::build()
 {
    
-   if(m_pcontext->m_strPlatform.is_empty())
+   if(m_papplication->m_strPlatform.is_empty())
    {
       
-      m_pcontext->m_strPlatform = "amd64";
+      m_papplication->m_strPlatform = "amd64";
       
       build();
       
-      m_pcontext->m_strPlatform = "arm";
+      m_papplication->m_strPlatform = "arm";
       
       build();
       
-      m_pcontext->m_strPlatform.empty();
+      m_papplication->m_strPlatform.empty();
       
    }
    else
@@ -83,7 +83,7 @@ void openssl::build()
 void openssl::clean()
 {
    
-   m_pcontext->clean();
+   m_papplication->clean();
    
 }
 
@@ -91,16 +91,16 @@ void openssl::clean()
 void openssl::prepare()
 {
    
-   m_pcontext->m_strRelease = "3.0.8";
+   m_papplication->m_strRelease = "3.0.8";
    
-   m_pcontext->m_pathDownloadURL = "https://www.openssl.org/source/openssl-" + m_pcontext->m_strRelease + ".tar.gz";
+   m_papplication->m_pathDownloadURL = "https://www.openssl.org/source/openssl-" + m_papplication->m_strRelease + ".tar.gz";
    
-   m_pcontext->prepare();
+   m_papplication->prepare();
    
-   if (m_pcontext->m_strPlatform == "amd64")
+   if (m_papplication->m_strPlatform == "amd64")
    {
       
-      if (m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+      if (m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
       {
          
          m_strConfigure = "debug-VC-WIN32";
@@ -118,10 +118,10 @@ void openssl::prepare()
       }
       
    }
-   else if (m_pcontext->m_strPlatform == "arm")
+   else if (m_papplication->m_strPlatform == "arm")
    {
       
-      if(m_pcontext->m_strConfiguration.case_insensitive_contains("Debug"))
+      if(m_papplication->m_strConfiguration.case_insensitive_contains("Debug"))
       {
          
          m_strConfigure = "debug-VC-WIN64A";
@@ -142,11 +142,11 @@ void openssl::prepare()
    else
    {
       
-      throw ::exception(error_failed, "Unsupported Platform \"" + m_pcontext->m_strPlatform + "\"?!?");
+      throw ::exception(error_failed, "Unsupported Platform \"" + m_papplication->m_strPlatform + "\"?!?");
       
    }
    
-   if (m_pcontext->m_strConfiguration.case_insensitive_contains("Static"))
+   if (m_papplication->m_strConfiguration.case_insensitive_contains("Static"))
    {
       
       m_strShared = "no-shared";
@@ -159,13 +159,13 @@ void openssl::prepare()
       
    }
    
-   auto pathBase = m_pcontext->m_pathFolder;
+   auto pathBase = m_papplication->m_pathFolder;
    
-   auto path = m_pcontext->m_pathBase / m_pcontext->m_pathPlatformConfiguration;
+   auto path = m_papplication->m_pathBase / m_papplication->m_pathPlatformConfiguration;
    
-   m_pcontext->m_pathPrefix = pathBase / path / "build";
+   m_papplication->m_pathPrefix = pathBase / path / "build";
    
-   m_pcontext->prepare_compile_and_link_environment();
+   m_papplication->prepare_compile_and_link_environment();
    
 }
 
@@ -173,9 +173,9 @@ void openssl::prepare()
 void openssl::download()
 {
    
-   m_pcontext->change_to_source_directory();
+   m_papplication->change_to_source_directory();
    
-   m_pcontext->download_and_uncompress();
+   m_papplication->download_and_uncompress();
    
 }
 
@@ -183,19 +183,19 @@ void openssl::download()
 void openssl::configure()
 {
    
-   m_pcontext->change_to_source_directory();
+   m_papplication->change_to_source_directory();
    
-   string strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+   string strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
    
    ::string strCommand;
    
-   auto pathProgram = m_pcontext->m_pathFolder / m_pcontext->m_pathBase / m_pcontext->m_pathPlatformConfiguration / "program";
+   auto pathProgram = m_papplication->m_pathFolder / m_papplication->m_pathBase / m_papplication->m_pathPlatformConfiguration / "program";
    
    strCommand += "perl Configure " + m_strConfigure + " " + m_strDebug;
    
    strCommand += " --prefix=" + strPrefix + " --openssldir=" + pathProgram + " " + m_strShared;
    
-   m_pcontext->command_system(strCommand);
+   m_papplication->command_system(strCommand);
    
 }
 
@@ -203,9 +203,9 @@ void openssl::configure()
 void openssl::compile()
 {
    
-   m_pcontext->change_to_source_directory();
+   m_papplication->change_to_source_directory();
    
-   m_pcontext->command_system("nmake");
+   m_papplication->command_system("nmake");
    
 }
 
@@ -213,13 +213,13 @@ void openssl::compile()
 void openssl::install()
 {
    
-   m_pcontext->change_to_source_directory();
+   m_papplication->change_to_source_directory();
    
-   m_pcontext->command_system("nmake install_sw");
+   m_papplication->command_system("nmake install_sw");
    
-   auto pathOperatingSystemIncludeFolder = m_pcontext->m_pathOperatingSystemIncludeFolder;
+   auto pathOperatingSystemIncludeFolder = m_papplication->m_pathOperatingSystemIncludeFolder;
    
-   auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+   auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
    
    acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
    
@@ -227,15 +227,15 @@ void openssl::install()
    
    acmedirectory()->create(pathOperatingSystemStorageFolder / "library");
    
-   auto strPrefix = m_pcontext->prepare_path(m_pcontext->m_pathPrefix);
+   auto strPrefix = m_papplication->prepare_path(m_papplication->m_pathPrefix);
    
-   auto strInclude = m_pcontext->prepare_path(pathOperatingSystemIncludeFolder);
+   auto strInclude = m_papplication->prepare_path(pathOperatingSystemIncludeFolder);
    
-   auto strStorage = m_pcontext->prepare_path(pathOperatingSystemStorageFolder);
+   auto strStorage = m_papplication->prepare_path(pathOperatingSystemStorageFolder);
    
-   m_pcontext->bash("cp -f " + strPrefix + "/include/* " + strInclude + "/include/");
-   m_pcontext->bash("cp -f " + strPrefix + "/bin/* " + strStorage + "/binary/");
-   m_pcontext->bash("cp -f " + strPrefix + "/lib/* " + strStorage + "/library/");
+   m_papplication->bash("cp -f " + strPrefix + "/include/* " + strInclude + "/include/");
+   m_papplication->bash("cp -f " + strPrefix + "/bin/* " + strStorage + "/binary/");
+   m_papplication->bash("cp -f " + strPrefix + "/lib/* " + strStorage + "/library/");
    
 }
 

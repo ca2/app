@@ -9,7 +9,7 @@
 //   inline ::core::session* component::get_session() const
 //   {
 //
-//      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+//      return m_papplication ? m_papplication->m_pcoresession : nullptr;
 //
 //   }
 //

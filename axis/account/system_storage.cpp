@@ -80,7 +80,7 @@ namespace account
       
       path = path_prefix(strToken);
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
       
       path /= psystem->crypto()->md5(strToken + strKey);
 
@@ -109,7 +109,7 @@ namespace account
       
       path = path_prefix(strToken);
       
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 

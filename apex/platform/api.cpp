@@ -474,7 +474,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       memory mDst;
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto pcrypto = psystem->crypto();
 

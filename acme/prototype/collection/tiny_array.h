@@ -64,7 +64,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
 
          memsize sizeAllocated = 0;
 
-         auto p = (TYPE *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(TYPE) * iCount, &sizeAllocated);
+         auto p = (TYPE *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(TYPE) * iCount, &sizeAllocated);
 
          auto iAllocation = (::i32) (sizeAllocated / sizeof(TYPE));
 
@@ -79,7 +79,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
       else if (iCount > m_iAllocation)
       {
 
-         auto p = (TYPE *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(m_p, sizeof(TYPE) * iCount);
+         auto p = (TYPE *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(m_p, sizeof(TYPE) * iCount);
 
          ::zero(p + m_iCount, sizeof(TYPE) * (iCount - m_iAllocation));
 
@@ -109,7 +109,7 @@ void tiny_array < TYPE > ::free()
    if (m_iAllocation > 0)
    {
 
-      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
+      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(m_p);
 
    }
 

@@ -254,7 +254,7 @@ void * fixed_alloc_array::_alloc(size_t nAllocSize)
    }
    else
    {
-      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nAllocSize);
+      return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nAllocSize);
    }
 }
 
@@ -273,7 +273,7 @@ void fixed_alloc_array::_free(void * p, size_t nAllocSize)
    else
    {
 
-      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
+      return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
 
    }
 
@@ -303,7 +303,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    else
    {
 
-      void * pNew = pallocNew == nullptr ? ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == nullptr ? ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == nullptr)
          return nullptr;
@@ -319,7 +319,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
       else
       {
 
-         ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pOld);
+         ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pOld);
 
       }
 

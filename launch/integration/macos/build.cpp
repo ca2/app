@@ -40,7 +40,7 @@ namespace console_integration
          ::console_integration::build::initialize(pparticle);
 
 
-         m_pcontext->m_pathOperatingSystemStorageFolder = acmedirectory()->home() / "workspace/operating_system/storage-macos";
+         m_papplication->m_pathOperatingSystemStorageFolder = acmedirectory()->home() / "workspace/operating_system/storage-macos";
 
       }
 
@@ -48,21 +48,21 @@ namespace console_integration
       void build::initialize_macos_build(const ::scoped_string& scopedstrPlatform)
       {
 
-         m_pcontext->m_strPlatform = scopedstrPlatform;
-         m_pcontext->m_pathPrefix = m_pathPrefixBase /
-            m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration / "build";
+         m_papplication->m_strPlatform = scopedstrPlatform;
+         m_papplication->m_pathPrefix = m_pathPrefixBase /
+            m_papplication->m_strPlatform / m_papplication->m_strConfiguration / "build";
 
-         if (m_pcontext->m_strConfiguration.case_insensitive_contains("static"))
+         if (m_papplication->m_strConfiguration.case_insensitive_contains("static"))
          {
 
-            m_pcontext->m_pathStaticPrefix = m_pcontext->m_pathPrefix;
+            m_papplication->m_pathStaticPrefix = m_papplication->m_pathPrefix;
 
          }
          else
          {
 
-            m_pcontext->m_pathStaticPrefix = m_pathPrefixBase /
-               m_pcontext->m_strPlatform / ("Static" + m_pcontext->m_strConfiguration) / "build";
+            m_papplication->m_pathStaticPrefix = m_pathPrefixBase /
+               m_papplication->m_strPlatform / ("Static" + m_papplication->m_strConfiguration) / "build";
 
          }
 
@@ -89,7 +89,7 @@ namespace console_integration
       ::file::path build::calculate_prefix_path(const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
       {
 
-         return m_pathPrefixBase / scopedstrPlatform / m_pcontext->m_strConfiguration / "build";
+         return m_pathPrefixBase / scopedstrPlatform / m_papplication->m_strConfiguration / "build";
 
 
       }
@@ -107,7 +107,7 @@ namespace console_integration
 
          }
 
-         //         auto iExitCode0 = m_pcontext->bash("set > ~/a-set.txt");
+         //         auto iExitCode0 = m_papplication->bash("set > ~/a-set.txt");
          //
          //         throw ::exception(error_failed);
 
@@ -122,7 +122,7 @@ namespace console_integration
 
             //            str += strCommand1 + "\n";
 
-            auto iExitCode1 = m_pcontext->bash(strCommand1);
+            auto iExitCode1 = m_papplication->bash(strCommand1);
 
             if (iExitCode1 != 0)
             {
@@ -131,18 +131,18 @@ namespace console_integration
 
             }
 
-            m_pcontext->bash("set > ~/set-autogen.txt");
+            m_papplication->bash("set > ~/set-autogen.txt");
 
          }
 
          ::string strCommand2;
 
-         strCommand2 = "./configure --prefix=\"" + m_pcontext->m_pathPrefix + "\" --host=\"" + m_strHost + "\" --enable-shared " + scopedstrExtra + " CC=\"cc -target " + m_strTargetting + "\" CXX=\"c++ -target " + m_strTargetting + "\"";
+         strCommand2 = "./configure --prefix=\"" + m_papplication->m_pathPrefix + "\" --host=\"" + m_strHost + "\" --enable-shared " + scopedstrExtra + " CC=\"cc -target " + m_strTargetting + "\" CXX=\"c++ -target " + m_strTargetting + "\"";
          //str += strCommand2 + "\n";
 //            ./autogen.sh
 //            ./configure --prefix=$PREFIX --enable-shared --host=$HOST CC="cc -target $TARGETTING" CXX="c++ -target $TARGETTING"
 
-         auto iExitCode2 = m_pcontext->bash(strCommand2);
+         auto iExitCode2 = m_papplication->bash(strCommand2);
 
          if (iExitCode2 != 0)
          {
@@ -151,24 +151,24 @@ namespace console_integration
 
          }
 
-         m_pcontext->bash("set > ~/set-configure.txt");
+         m_papplication->bash("set > ~/set-configure.txt");
 
          //         str+="make -j\n";
          //
-         //         acmefile()->put_contents(m_pcontext->m_pathSource /"build", str);
-         //         m_pcontext->bash("chmod +x build");
-         //         m_pcontext->bash("./build");
+         //         acmefile()->put_contents(m_papplication->m_pathSource /"build", str);
+         //         m_papplication->bash("chmod +x build");
+         //         m_papplication->bash("./build");
       }
 
 
       void build::_001MakeInstall(const ::scoped_string& scopedstrLibraryModifier)
       {
 
-         m_pcontext->change_to_source_directory();
+         m_papplication->change_to_source_directory();
 
-         m_pcontext->command_system("make install");
+         m_papplication->command_system("make install");
 
-         auto pathOperatingSystemStorageFolderPlatform = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform;
+         auto pathOperatingSystemStorageFolderPlatform = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform;
 
          //         make -j 8
          //         make install
@@ -177,47 +177,47 @@ namespace console_integration
          //         install_name_tool -id @executable_path/libfdk-aac.dylib $PREFIX/lib/libfdk-aac.dylib
 
          acmedirectory()->create(pathOperatingSystemStorageFolderPlatform / "library");
-         acmedirectory()->create(m_pcontext->m_pathStaticPrefix / "library");
+         acmedirectory()->create(m_papplication->m_pathStaticPrefix / "library");
 
-         //         ::string strCommand1 ="cp -f " + (m_pcontext->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
+         //         ::string strCommand1 ="cp -f " + (m_papplication->m_pathPrefix / "lib/*.a") + " " + (pathOperatingSystemStorageFolder / "library") ;
          //
-         //         m_pcontext->bash(strCommand1);
+         //         m_papplication->bash(strCommand1);
 
-         ::string strDylib = "lib" + m_pcontext->m_strName + ".dylib";
+         ::string strDylib = "lib" + m_papplication->m_strName + ".dylib";
 
-         ::string strDylib2 = "lib" + m_pcontext->m_strName + scopedstrLibraryModifier + ".dylib";
+         ::string strDylib2 = "lib" + m_papplication->m_strName + scopedstrLibraryModifier + ".dylib";
 
-         auto path = m_pcontext->m_pathPrefix / "lib" / strDylib;
+         auto path = m_papplication->m_pathPrefix / "lib" / strDylib;
 
-         auto path2 = m_pcontext->m_pathPrefix / "lib" / strDylib2;
+         auto path2 = m_papplication->m_pathPrefix / "lib" / strDylib2;
 
          ::string strCommand1 = "unlink " + path;
 
-         m_pcontext->bash(strCommand1);
+         m_papplication->bash(strCommand1);
 
          ::string strCommand2 = "mv " + path2 + " " + path;
 
-         m_pcontext->bash(strCommand2);
+         m_papplication->bash(strCommand2);
 
          ::string strCommand3 = "install_name_tool -id @executable_path/" + strDylib + " " + path;
 
-         m_pcontext->bash(strCommand3);
+         m_papplication->bash(strCommand3);
 
-         m_mappath[m_pcontext->m_strName][m_pcontext->m_strPlatform] = path;
+         m_mappath[m_papplication->m_strName][m_papplication->m_strPlatform] = path;
 
-         ::string strA = "lib" + m_pcontext->m_strName + ".a";
+         ::string strA = "lib" + m_papplication->m_strName + ".a";
 
-         auto pathA = m_pcontext->m_pathPrefix / "lib" / strA;
+         auto pathA = m_papplication->m_pathPrefix / "lib" / strA;
 
          auto pathStorageA = pathOperatingSystemStorageFolderPlatform / "library" / strA;
 
          acmefile()->copy(pathStorageA, pathA, true);
 
-         auto pathB = m_pcontext->m_pathStaticPrefix / "lib" / strA;
+         auto pathB = m_papplication->m_pathStaticPrefix / "lib" / strA;
 
          ::string strCommand4 = "mv " + pathA + " " + pathB;
 
-         m_pcontext->bash(strCommand4);
+         m_papplication->bash(strCommand4);
 
       }
 
@@ -230,7 +230,7 @@ namespace console_integration
          if (strLibraryName.is_empty())
          {
 
-            strLibraryName = m_pcontext->m_strName;
+            strLibraryName = m_papplication->m_strName;
 
          }
 
@@ -251,9 +251,9 @@ namespace console_integration
 
          ::string strCommand = "lipo -create -arch arm64 \"" + pathArm + "\" -arch x86_64 \"" + pathX64 + "\" -output \"" + pathOutput + "\"";
 
-         m_pcontext->bash(strCommand);
+         m_papplication->bash(strCommand);
 
-         //   auto pathOperatingSystemStorageFolder = m_pcontext->m_pathOperatingSystemStorageFolder / m_pcontext->m_strPlatform / m_pcontext->m_strConfiguration;
+         //   auto pathOperatingSystemStorageFolder = m_papplication->m_pathOperatingSystemStorageFolder / m_papplication->m_strPlatform / m_papplication->m_strConfiguration;
          //
          //   acmedirectory()->create(pathOperatingSystemIncludeFolder / "include");
          //
@@ -281,7 +281,7 @@ namespace console_integration
          {
             ::string str = "lib" + scopedstrLibraryName + ".dylib";
 
-            ::file::path path = m_pcontext->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + ".dylib");
+            ::file::path path = m_papplication->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + ".dylib");
 
             ::string strDependency = "lib" + scopedstrLibraryDependency + ".dylib";
 
@@ -289,7 +289,7 @@ namespace console_integration
 
                ::string strCommand = "install_name_tool -change " + pathDependency + " @executable_path/" + strDependency + " " + path;
 
-               m_pcontext->bash(strCommand);
+               m_papplication->bash(strCommand);
 
             }
 
@@ -319,7 +319,7 @@ namespace console_integration
 
                ::string strCommand = "install_name_tool -change " + pathDependency + " @executable_path/" + strDependency + " " + path;
 
-               m_pcontext->bash(strCommand);
+               m_papplication->bash(strCommand);
 
             }
 
@@ -334,7 +334,7 @@ namespace console_integration
 
          ::file::path path;
 
-         path = m_pcontext->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + "-original.dylib");
+         path = m_papplication->m_pathPrefix / "lib" / ("lib" + scopedstrLibraryName + "-original.dylib");
 
          auto plink = acmepath()->resolve_link(path);
 

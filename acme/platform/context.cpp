@@ -34,17 +34,17 @@ namespace acme
    context::context()
    {
 
-      m_pplatform = nullptr;
+      //m_pplatform = nullptr;
 
-      m_pcontext = this;
+      m_papplication = this;
 
       m_papexcontext = nullptr;
       m_pauracontext = nullptr;
 
 
-      m_pacmeapplication = nullptr;
+      m_papplication = nullptr;
       m_pacmesession = nullptr;
-      m_pacmesystem = nullptr;
+      //m_pacmesystem = nullptr;
       m_pacmenode = nullptr;
       m_bKeepRunningPostedProcedures = true;
 
@@ -56,17 +56,17 @@ namespace acme
 
       //::release(m_ptexttranslator);
 
-      m_pplatform = nullptr;
+      //m_pplatform = nullptr;
 
-      m_pcontext = this;
+      m_papplication = this;
 
       m_papexcontext = nullptr;
       m_pauracontext = nullptr;
 
 
-      m_pacmeapplication = nullptr;
+      m_papplication = nullptr;
       m_pacmesession = nullptr;
-      m_pacmesystem = nullptr;
+      //m_pacmesystem = nullptr;
       m_pacmenode = nullptr;
 
 
@@ -98,7 +98,7 @@ namespace acme
    void context::set_platform()
    {
 
-      m_pplatform = ::platform::get();
+      //m_pplatform = ::platform::get();
 
       on_set_platform();
 
@@ -115,37 +115,37 @@ namespace acme
       __check_refdbg
 
 
-      if(!m_pacmesystem)
-      {
-
-         m_pacmesystem = pparticle->m_pcontext->m_pacmesystem;
-
-      }
+      // if(!m_pacmesystem)
+      // {
+      //
+      //    m_pacmesystem = pparticle->m_papplication->m_pacmesystem;
+      //
+      // }
 
       if(!m_pacmesession)
       {
 
-         m_pacmesession = pparticle->m_pcontext->m_pacmesession;
+         m_pacmesession = pparticle->m_papplication->m_pacmesession;
 
       }
 
-      if(!m_pacmeapplication)
+      if(!m_papplication)
       {
 
-         m_pacmeapplication = pparticle->m_pcontext->m_pacmeapplication;
+         m_papplication = pparticle->m_papplication->m_papplication;
 
       }
 
       if (!m_pacmenode)
       {
 
-         m_pacmenode = pparticle->m_pcontext->m_pacmenode;
+         m_pacmenode = pparticle->m_papplication->m_pacmenode;
 
       }
 
       __check_refdbg
 
-      m_pcontext = this;
+      m_papplication = this;
 
       __check_refdbg
 
@@ -153,7 +153,7 @@ namespace acme
 
       __check_refdbg
 
-      m_ptexttranslator->m_pcontext = this;
+      m_ptexttranslator->m_papplication = this;
 
    }
 
@@ -293,7 +293,7 @@ namespace acme
 
       //}
 
-      //m_papexsystem = system()->m_papexsystem;
+      //m_papexsystem = system();
       //m_paurasystem = system()->m_paurasystem;
       //m_pbasesystem = system()->m_pbasesystem;
       //m_pbredsystem = system()->m_pbredsystem;
@@ -302,7 +302,7 @@ namespace acme
       if (is_system())
       {
 
-         auto psystem = system()->m_papexsystem;
+         auto psystem = system();
 
          //m_papexsession->initialize(psystem);
 
@@ -503,7 +503,7 @@ namespace acme
    ::dir_system * context::dirsystem()
    {
 
-      return m_pacmesystem->m_pdirsystem;
+      return ::system()->dirsystem();
 
    }
 
@@ -511,7 +511,7 @@ namespace acme
    ::file_system * context::filesystem()
    {
 
-      return m_pacmesystem->m_pfilesystem;
+      return ::system()->filesystem();
 
    }
 
@@ -519,7 +519,7 @@ namespace acme
    ::file::watcher * context::file_watcher()
    {
 
-      return m_pacmesystem->file_watcher();
+      return ::system()->file_watcher();
 
    }
 
@@ -527,7 +527,7 @@ namespace acme
    ::http::context * context::http()
    {
 
-      return m_pacmesystem->m_phttpcontext;
+      return ::system()->m_phttpcontext;
 
    }
 
@@ -580,10 +580,10 @@ namespace acme
 
 
 
-   ::acme_file* context::acmefile() { return m_pacmesystem->m_pacmefile; }
-   ::acme_path* context::acmepath() { return m_pacmesystem->m_pacmepath; }
-   ::acme_directory* context::acmedirectory() { return m_pacmesystem->m_pacmedirectory; }
-   ::acme::node* context::node() { return m_pacmesystem->node(); }
+   ::acme_file* context::acmefile() { return ::system()->acmefile(); }
+   ::acme_path* context::acmepath() { return ::system()->acmepath(); }
+   ::acme_directory* context::acmedirectory() { return ::system()->acmedirectory(); }
+   ::acme::node* context::node() { return ::system()->node(); }
 
 
 
@@ -932,7 +932,7 @@ namespace acme
 
       auto psystem = system();
 
-      auto pdirsystem = psystem->m_pdirsystem;
+      auto pdirsystem = psystem->dirsystem();
 
       ::file::path pathResource = pdirsystem->m_pathInstall;
 
@@ -955,7 +955,7 @@ namespace acme
 
          auto psystem = system();
 
-         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+         ::file::path pathCache = psystem->dirsystem()->m_pathLocalAppMatterFolder / path;
 
          if (path.flags().has(::file::e_flag_get_local_path)
             || (path.flags().is_clear(::file::e_flag_bypass_cache)
@@ -1024,9 +1024,9 @@ namespace acme
 
          }
 
-         //auto psystem = system()->m_papexsystem;
+         //auto psystem = system();
 
-         if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
+         if (!psystem->dirsystem()->m_bMatterFromHttpCache)
          {
 
             return "";
@@ -1189,7 +1189,7 @@ namespace acme
    }
 
 
-   string context::matter_locator(::acme::application* papp)
+   string context::matter_locator(::platform::application* papp)
    {
 
       return ::file::path(papp->m_strRoot) / "_matter" / papp->m_strDomain;
@@ -1209,7 +1209,7 @@ namespace acme
    }
 
 
-   void context::add_matter_locator(::acme::application* papp)
+   void context::add_matter_locator(::platform::application* papp)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

@@ -23,16 +23,13 @@ namespace acme
    class singleton_pointer;
 
 
-   class CLASS_DECL_ACME acme :
-        virtual public ::particle
+   class CLASS_DECL_ACME acme
    {
    public:
 
+      static ::acme::acme * s_p;
 
-      friend class singleton;
-
-
-      ::pointer < ::platform::platform >     m_pplatform;
+      //::pointer < ::platform::platform >     m_pplatform;
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::heap::management *                   m_pheapmanagement;
       manual_reset_event *                   m_pmanualreseteventReadyToExit;
@@ -79,7 +76,7 @@ namespace acme
       class ::time start_time();
 
 
-      ::platform::platform * platform() { return m_pplatform; }
+      virtual ::platform::platform * platform();
       ::task_message_queue * task_message_queue() { return m_ptaskmessagequeue; }
       ::heap::management * heap() { return m_pheapmanagement; }
 
@@ -107,26 +104,25 @@ namespace acme
    };
 
 
-   class CLASS_DECL_ACME singleton
-   {
-   public:
+   //class CLASS_DECL_ACME singleton
+   //{
+   //public:
 
 
-      static acme * s_pacme;
+   //   static acme * s_pacme;
 
 
-      singleton();
-      ~singleton();
+   //   singleton();
+   //   ~singleton();
 
 
-      acme * operator ->() { return s_pacme; }
+   //   acme * operator ->() { return s_pacme; }
 
 
-   };
+   //};
 
 
-   inline ::acme::acme * get() { return ::acme::singleton::s_pacme; }
-
+   inline ::acme::acme * get() { return ::acme::acme::s_p; }
 
 
 } // namespace acme

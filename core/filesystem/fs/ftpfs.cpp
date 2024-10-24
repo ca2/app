@@ -447,7 +447,7 @@ retry:
 
       ::file::path pathTemp = file()->time(dir()->time());
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto purl = psystem->url();
 
@@ -539,7 +539,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    int iTry = 0;
 
-   auto papp = m_pcontext->m_pacmeapplication->m_pcoreapplication;
+   auto papp = m_papplication->m_papplication->m_pcoreapplication;
 
    if (!pclient)
    {

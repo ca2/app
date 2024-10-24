@@ -89,14 +89,14 @@ public:
 
    void system_end();
 
-   ::pointer<::acme::application>new_app();
-   ::pointer<::acme::application>new_app(const ::scoped_string & scopedstrAppId);
+   ::pointer<::platform::application>new_app();
+   ::pointer<::platform::application>new_app(const ::scoped_string & scopedstrAppId);
 
 
    //   ::pointer<::apex::application>get_new_application(::object* pparticle);
    //   ::pointer<::apex::application>get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId);
 
-   virtual void initialize_application(::acme::application * papp, ::object* pparticle);
+   virtual void initialize_application(::platform::application * papp, ::object* pparticle);
 
 
 };

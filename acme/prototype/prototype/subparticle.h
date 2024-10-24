@@ -17,12 +17,12 @@ using hsynchronization = void*;
 //{
 //
 //
-//   mutable ::acme::context *           m_pcontext;
+//   mutable ::acme::context *           m_papplication;
 //   mutable ::ptr < ::particle >        m_pparticleSynchronization;
 //
 //
 //   SUBPARTICLE() :
-//      m_pcontext(nullptr)
+//      m_papplication(nullptr)
 //   {}
 //
 //
@@ -65,7 +65,7 @@ public:
    virtual void finalize();
 
 
-   ::acme::system* system() const;
+   ::platform::system* system() const;
 
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);

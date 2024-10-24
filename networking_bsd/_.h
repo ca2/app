@@ -112,7 +112,7 @@ namespace networking_bsd
 //   ((::sockets_bsd::socket_handler *)((phandler)->m_p2))
 //
 #define __SystemNetworking(psystem) \
-   ((::networking_bsd::networking *)((psystem)->m_papexsystem->networking()))
+   ((::networking_bsd::networking *)((psystem)->networking()))
 
 
 CLASS_DECL_NETWORKING_BSD ::i32 networking_last_error();

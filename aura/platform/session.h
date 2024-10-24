@@ -412,7 +412,7 @@ namespace aura
       //virtual ::user::style * user_style();
 
 
-      virtual void on_instantiate_application(::acme::application* papplication) override;
+      virtual void on_instantiate_application(::platform::application* papplication) override;
 
 
    };

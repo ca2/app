@@ -538,7 +538,7 @@ void openURL(const string& url_str)
 //CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
 //{
 //
-//   ::acme::application * papp = (::acme::application *) instance;
+//   ::platform::application * papp = (::platform::application *) instance;
 //
 //   ::account::user user;
 //

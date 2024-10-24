@@ -85,7 +85,7 @@ namespace image
    ::image::image_pointer image_context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
-      auto pimage = m_pcontext->__create < ::image::image >();
+      auto pimage = m_papplication->__create < ::image::image >();
 
       if (!pimage)
       {
@@ -1122,7 +1122,7 @@ namespace image
 
       }
 
-      path = m_pcontext->defer_process_path(path);
+      path = m_papplication->defer_process_path(path);
 
       if (path.is_empty())
       {
@@ -1157,7 +1157,7 @@ namespace image
    //   if (pimage.nok())
    //   {
    //
-   //      auto pcontext = m_pcontext->m_pauracontext;
+   //      auto pcontext = m_papplication->m_pauracontext;
    //
    //      auto pimagecontext = pcontext->image_context();
    //

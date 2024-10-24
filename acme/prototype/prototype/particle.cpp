@@ -12,7 +12,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
-#include "acme/platform/context.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/reference_item_array.h"
 #include "acme/platform/referencing_debugging.h"
@@ -57,7 +57,7 @@ void particle::initialize(::particle * pparticle)
 
    //            m_preferenceitema->m_pparticleParent = pparticle;
 
-   //            ::acme::get()->m_preferencingdebugging->m_item2a.erase_last(m_preferenceitema);
+   //            ::system()->m_preferencingdebugging->m_item2a.erase_last(m_preferenceitema);
 
    //         }
 
@@ -73,16 +73,16 @@ void particle::initialize(::particle * pparticle)
 //   if (is_referencing_debugging_enabled())
 //   {
 //
-//      m_preferenceitema->initialize_reference_item_array(::acme::get()->m_preferencingdebugging);
+//      m_preferenceitema->initialize_reference_item_array(::system()->m_preferencingdebugging);
 //
 //   }
 //
 //#endif
 
-   if (!m_pcontext)
+   if (!m_papplication)
    {
 
-      m_pcontext = pparticle->m_pcontext;
+      m_papplication = pparticle->m_papplication;
 
       on_initialize_particle();
 
@@ -102,7 +102,7 @@ void particle::finalize()
 ::particle * particle::get_context_particle()
 {
 
-   return m_pcontext;
+   return m_papplication;
 
 }
 
@@ -206,17 +206,17 @@ const char * particle::topic_text() const
 {
 
    return ::platform::get();
-   //return ::is_set(m_pcontext) ? m_pcontext->m_pplatform : _platform();
+   //return ::is_set(m_papplication) ? m_papplication->m_pplatform : _platform();
 
 }
 
 
-class ::platform::platform * particle::_platform() const
-{
-
-   return ::acme::get()->m_pplatform;
-
-}
+// class ::platform::platform * particle::_platform() const
+// {
+//
+//    return ::system();
+//
+// }
 
 
 //void particle::destroy()
@@ -262,10 +262,10 @@ void particle::on_initialize_particle()
 //}
 
 
-::acme::application * particle::application() const
+::platform::application * particle::application() const
 {
 
-   return m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;
+   return m_papplication ? m_papplication->m_papplication : nullptr;
 
 }
 
@@ -273,15 +273,15 @@ void particle::on_initialize_particle()
 //::aura::application * particle::auraapplication() const
 //{
 //
-//   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+//   return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
 //
 //}
 
 
-::acme::session* particle::session() const
+::platform::session* particle::session() const
 {
 
-   return m_pcontext ? m_pcontext->m_pacmesession : nullptr;
+   return m_papplication ? m_papplication->m_pacmesession : nullptr;
 
 }
 
@@ -289,7 +289,7 @@ void particle::on_initialize_particle()
 ::acme_file * particle::acmefile() const
 {
 
-   return m_pcontext->acmefile();
+   return m_papplication->acmefile();
 
 }
 
@@ -297,7 +297,7 @@ void particle::on_initialize_particle()
 ::acme_path * particle::acmepath() const
 {
 
-   return m_pcontext->acmepath();
+   return m_papplication->acmepath();
 
 }
 
@@ -305,7 +305,7 @@ void particle::on_initialize_particle()
 ::acme_directory * particle::acmedirectory() const
 {
 
-   return m_pcontext->acmedirectory();
+   return m_papplication->acmedirectory();
 
 }
 
@@ -313,7 +313,7 @@ void particle::on_initialize_particle()
 ::acme::node * particle::node() const
 {
 
-   return m_pcontext->node();
+   return m_papplication->node();
 
 }
 
@@ -341,7 +341,7 @@ void particle::on_initialize_particle()
 ::image::image_context* particle::image() const
 {
 
-   return m_pcontext ? m_pcontext->image() : nullptr;
+   return m_papplication ? m_papplication->image() : nullptr;
 
 }
 
@@ -388,18 +388,18 @@ class ::user::user * particle::user() const
 }
 
 
-::acme::system * particle::system() const
-{
-
-   return ::is_set(m_pcontext) ? m_pcontext->system() : ::system();
-
-}
+// ::platform::system * particle::system() const
+// {
+//
+//    return ::is_set(m_papplication) ? m_papplication->system() : ::system();
+//
+// }
 
 
 ::acme::context* particle::context() const
 {
 
-   return m_pcontext;
+   return m_papplication;
 
 }
 
@@ -407,7 +407,7 @@ class ::user::user * particle::user() const
 ::apex::context* particle::apexcontext() const
 {
 
-   return m_pcontext ? m_pcontext->m_papexcontext : nullptr;
+   return m_papplication ? m_papplication->m_papexcontext : nullptr;
 
 }
 
@@ -415,7 +415,7 @@ class ::user::user * particle::user() const
 ::aura::context* particle::auracontext() const
 {
 
-   return m_pcontext ? m_pcontext->m_pauracontext : nullptr;
+   return m_papplication ? m_papplication->m_pauracontext : nullptr;
 
 }
 
@@ -423,7 +423,7 @@ class ::user::user * particle::user() const
 //::platform::platform * particle::platform() const
 //{
 //
-//   return m_pcontext->platform();
+//   return m_papplication->platform();
 //
 //}
 
@@ -456,7 +456,7 @@ class ::user::user * particle::user() const
 //::os_context * particle::os_context() const
 //{
 //
-//   return m_pcontext->os_context();
+//   return m_papplication->os_context();
 //
 //}
 
@@ -489,7 +489,7 @@ class ::user::user * particle::user() const
 ::dir_context * particle::dir() const
 {
 
-   return m_pcontext->dir();
+   return m_papplication->dir();
 
 }
 
@@ -497,7 +497,7 @@ class ::user::user * particle::user() const
 ::dir_system * particle::dirsystem() const
 {
 
-   return m_pcontext->dirsystem();
+   return m_papplication->dirsystem();
 
 }
 
@@ -505,7 +505,7 @@ class ::user::user * particle::user() const
 ::file_context * particle::file() const
 {
 
-   return m_pcontext->file();
+   return m_papplication->file();
 
 }
 
@@ -513,7 +513,7 @@ class ::user::user * particle::user() const
 ::file_system * particle::filesystem() const
 {
 
-   return m_pcontext->filesystem();
+   return m_papplication->filesystem();
 
 }
 
@@ -522,7 +522,7 @@ class ::user::user * particle::user() const
 ::file::watcher * particle::file_watcher()
 {
 
-   return m_pcontext->file_watcher();
+   return m_papplication->file_watcher();
 
 }
 
@@ -530,7 +530,7 @@ class ::user::user * particle::user() const
 ::http::context * particle::http() const
 {
 
-   return m_pcontext->http();
+   return m_papplication->http();
 
 }
 
@@ -887,7 +887,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //{
 //
 //
-//   get_tracer()(m_pcontext, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
 //
 //}
 
@@ -895,7 +895,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -903,7 +903,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -911,7 +911,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -919,7 +919,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -929,7 +929,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -937,7 +937,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -945,7 +945,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -953,7 +953,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
 //
 //}
 //
@@ -961,7 +961,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_pcontext, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
 //
 //}
 
@@ -1075,22 +1075,7 @@ class tracer * particle::tracer() const
    if (!ptask)
    {
 
-      auto pplatform = this->platform();
-
-      if (::is_set(pplatform))
-      {
-
-         auto psystem = pplatform->m_psystem;
-
-         if (::is_set(psystem))
-         {
-
-
-            return psystem;
-
-         }
-
-      }
+      return ::system();
 
    }
 
@@ -1280,7 +1265,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, etracelevel, trace_category()); 
+//   tracer(m_papplication, etracelevel, trace_category()); 
 //
 //   return tracer;
 //
@@ -1292,7 +1277,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //   
 //   auto & tracer = get_tracer();
 //
-//   tracer(m_pcontext, e_trace_level_information, trace_category());
+//   tracer(m_papplication, e_trace_level_information, trace_category());
 //
 //   return tracer;
 //
@@ -1304,7 +1289,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //   
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_warning, trace_category()); 
+//   tracer(m_papplication, e_trace_level_warning, trace_category()); 
 //
 //   return tracer;
 //
@@ -1316,7 +1301,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_error, trace_category()); 
+//   tracer(m_papplication, e_trace_level_error, trace_category()); 
 //
 //   return tracer;
 //
@@ -1328,7 +1313,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_fatal, trace_category()); 
+//   tracer(m_papplication, e_trace_level_fatal, trace_category()); 
 //
 //   return tracer;
 //
@@ -1340,7 +1325,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, etracelevel, etracecategory); 
+//   tracer(m_papplication, etracelevel, etracecategory); 
 //
 //   return tracer;
 //
@@ -1352,7 +1337,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_information, etracecategory); 
+//   tracer(m_papplication, e_trace_level_information, etracecategory); 
 //
 //   return tracer;
 //
@@ -1364,7 +1349,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_warning, etracecategory); 
+//   tracer(m_papplication, e_trace_level_warning, etracecategory); 
 //
 //   return tracer;
 //
@@ -1376,7 +1361,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_error, etracecategory); 
+//   tracer(m_papplication, e_trace_level_error, etracecategory); 
 //
 //   return tracer;
 //
@@ -1388,7 +1373,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //
 //   auto & tracer = get_tracer();
 //   
-//   tracer(m_pcontext, e_trace_level_fatal, etracecategory); 
+//   tracer(m_papplication, e_trace_level_fatal, etracecategory); 
 //
 //   return tracer;
 //
@@ -2120,7 +2105,7 @@ void particle::kick_idle()
 ::file_pointer particle::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
-   return m_pcontext->get_file(payloadFile, eopen, pfileexception);
+   return m_papplication->get_file(payloadFile, eopen, pfileexception);
 
 }
 
@@ -2297,7 +2282,7 @@ void particle::_main_post(const ::procedure & procedure)
 //   if (!ptask)
 //   {
 //
-//      return this->platform()->m_pcontext;
+//      return this->platform()->m_papplication;
 //
 //   }
 //
@@ -2645,7 +2630,7 @@ class ::time particle::get_default_run_timeout()
 //void particle::send(const ::procedure & procedure)
 //{
 //
-//   m_pcontext->send(procedure);
+//   m_papplication->send(procedure);
 //
 //}
 
@@ -2653,7 +2638,7 @@ class ::time particle::get_default_run_timeout()
 void particle::_post(const ::procedure & procedure)
 {
 
-   m_pcontext->_post(procedure);
+   m_papplication->_post(procedure);
 
 }
 
@@ -2661,7 +2646,7 @@ void particle::_post(const ::procedure & procedure)
 void particle::_send(const ::procedure & procedure)
 {
 
-   m_pcontext->_send(procedure);
+   m_papplication->_send(procedure);
 
 }
 

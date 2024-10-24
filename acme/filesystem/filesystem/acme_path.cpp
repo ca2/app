@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/system.h"
+#include "acme/platform/http.h"
 #include "acme/prototype/collection/map_interface.h"
 
 
@@ -168,7 +168,7 @@ void acme_path::safe_real_path(::file::path & path)
 ::file::path acme_path::get_uniform_resource_locator(const ::file::path& path)
 {
 
-   auto str = system()->http_text(path.as_url());
+   auto str = http()->text(path.as_url());
 
    return str;
 

@@ -18,8 +18,8 @@
 #include "acme/prototype/string/str.h"
 //#include "acme/prototype/string/tokenizer.h"
 #include "acme/platform/application.h"
-#include "acme/platform/context.h"
-#include "acme/platform/session.h"
+#include "acme/platform/application.h"
+#include "acme/platform/http.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_system.h"
 //#include "apex/networking/http/context.h"
@@ -481,7 +481,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    if (acmedirectory()->defer_enumerate_protocol(listing))
    {
 
-      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+      listing.m_pathFinal = application()->defer_process_path(listing.m_pathUser);
 
       return true;
 
@@ -492,7 +492,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    if (acmedirectory()->defer_enumerate_media_library(listing))
    {
 
-      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+      listing.m_pathFinal = application()->defer_process_path(listing.m_pathUser);
 
       return true;
 
@@ -503,7 +503,7 @@ bool dir_context::_enumerate(::file::listing& listing)
    if (listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
    {
 
-      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+      listing.m_pathFinal = application()->defer_process_path(listing.m_pathUser);
 
       __check_refdbg
 
@@ -559,7 +559,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
       property_set set;
 
-      string str = context()->http_text(listing.m_pathFinal.as_url(), set);
+      string str = http()->text(listing.m_pathFinal.as_url(), set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -637,7 +637,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //      property_set set;
 //
-//      string str = m_pcontext->http()->get(listing.m_pathUser, set);
+//      string str = application()->http()->get(listing.m_pathUser, set);
 //
 //      listing.add_tokens(str, "\n", false);
 //
@@ -1008,13 +1008,13 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 //   if (pathParam.case_insensitive_begins("appmatter://"))
 //   {
 //
-//      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.substr(12);
+//      path = psystem->dirsystem()->m_pathLocalAppMatterFolder / path.substr(12);
 //
 //   }
 //   else
 //   {
 //
-//      path = m_pcontext->defer_process_path(pathParam);
+//      path = application()->defer_process_path(pathParam);
 //
 //   }
 //
@@ -1201,13 +1201,13 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
    if (pathParam.case_insensitive_begins("appmatter://"))
    {
 
-      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.substr(12);
+      path = psystem->dirsystem()->m_pathLocalAppMatterFolder / path.substr(12);
 
    }
    else
    {
 
-      path = m_pcontext->defer_process_path(pathParam);
+      path = application()->defer_process_path(pathParam);
 
    }
 
@@ -1273,7 +1273,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
       }
 
-      auto bDir = system()->http_exists(url, set);
+      auto bDir = application()->http_exists(url, set);
 
       if (bDir)
       {
@@ -1899,7 +1899,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathInstall;
+   return psystem->dirsystem()->m_pathInstall;
 
 }
 
@@ -1911,7 +1911,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathCa2Config;
+   return psystem->dirsystem()->m_pathCa2Config;
 
 }
 
@@ -1923,7 +1923,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathHome;
+   return psystem->dirsystem()->m_pathHome;
 
 }
 
@@ -1959,7 +1959,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //   auto psystem = system();
 //
-//   return psystem->m_pdirsystem->m_pathCa2Module;
+//   return psystem->dirsystem()->m_pathCa2Module;
 //
 //}
 
@@ -2036,12 +2036,12 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 
    straMatterLocator.erase_all();
 
-   straMatterLocator.append(m_pcontext->m_straMatterLocatorPriority);
+   straMatterLocator.append(application()->m_straMatterLocatorPriority);
 
    if (bIncludeMain)
    {
 
-      straMatterLocator.add(m_pcontext->matter_locator("app/main"));
+      straMatterLocator.add(application()->matter_locator("app/main"));
 
    }
 
@@ -2075,7 +2075,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    string strDir = matter(path);
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->dirsystem()->m_bMatterFromHttpCache)
    {
 
       string strMatter = strDir;
@@ -2104,7 +2104,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       }
 
-      _synchronous_lock synchronouslock(psystem->m_pmutexMatter);
+      _synchronous_lock synchronouslock(psystem->matter_mutex());
 
       property_set set;
 
@@ -2144,7 +2144,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
-         strLs = context()->http_text(strUrl, set);
+         strLs = http()->text(strUrl, set);
 
          file()->put_text(strFile, strLs);
 
@@ -2185,7 +2185,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       }
 
    }
-   else if (psystem->m_pdirsystem->m_bMatterFromResource)
+   else if (psystem->dirsystem()->m_bMatterFromResource)
    {
 
       auto pfolder = file()->resource_folder();
@@ -2214,7 +2214,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    else
    {
 
-      strDir = m_pcontext->get_matter_cache_path(strDir);
+      strDir = application()->get_matter_cache_path(strDir);
 
       listing.set_listing(strDir);
 
@@ -2234,7 +2234,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //   auto psystem = system();
 //
-//   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+//   if (psystem->dirsystem()->m_bMatterFromHttpCache)
 //   {
 //
 //      property_set set;
@@ -2331,17 +2331,17 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    auto psystem = system();
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->dirsystem()->m_bMatterFromHttpCache)
    {
 
-      if (psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
+      if (psystem->dirsystem()->m_pathLocalAppMatterCacheFolder.has_char())
       {
 
          ::file::path pathLs0 = straMatterLocator.first();
 
-         pathLs0 /= m_pcontext->get_locale_schema_dir();
+         pathLs0 /= application()->get_locale_schema_dir();
 
-         pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
+         pathCache = psystem->dirsystem()->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
          information() << "cache map path: " << pathCache;
 
@@ -2378,7 +2378,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
             if (strFinal.case_insensitive_begins("appmatter://"))
             {
 
-               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.substr(12);
+               strFinal = psystem->dirsystem()->m_pathLocalAppMatterFolder / strFinal.substr(12);
 
             }
 
@@ -2407,7 +2407,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    string_array straLocaleSchema;
 
-   m_pcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
+   application()->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
    //::text::context * ptextcontext = nullptr;
 
@@ -2418,7 +2418,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    //}
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->dirsystem()->m_bMatterFromHttpCache)
    {
 
       string_array stra;
@@ -2497,7 +2497,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       const ::scoped_string& scopedstrUrl = strUrl;
 
-      strMatter = context()->http_text(strUrl, set);
+      strMatter = http()->text(strUrl, set);
 
       bool bDir = strMatter.ends("/");
 
@@ -2540,7 +2540,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          if (bDir)
          {
 
-            acmedirectory()->create(psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            acmedirectory()->create(psystem->dirsystem()->m_pathLocalAppMatterFolder / strMatter);
 
          }
 
@@ -2549,7 +2549,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       }
 
    }
-   else if (psystem->m_pdirsystem->m_bMatterFromResource)
+   else if (psystem->dirsystem()->m_bMatterFromResource)
    {
 
       string strMatter;
@@ -2595,7 +2595,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             strMatter = strLs / pathItem;
 
-            path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+            path = psystem->dirsystem()->m_pathLocalAppMatterFolder / strMatter;
 
             auto etype = acmepath()->get_type(path);
 
@@ -2620,7 +2620,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
 ret:
 
-   if (pathCache.has_char() && psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (pathCache.has_char() && psystem->dirsystem()->m_bMatterFromHttpCache)
    {
 
       string strPath;
@@ -2636,7 +2636,7 @@ ret:
 
       file()->put_text(pathCache, strPath);
 
-      //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      //::file::path pathCache2 = psystem->dirsystem()->m_pathLocalAppMatterFolder / path;
 
       //if ((path & ::file::e_flag_get_local_path)
       //   || (!(path & ::file::e_flag_bypass_cache) && acmepath()->is_file_or_dir(pathCache, nullptr)))
@@ -3085,7 +3085,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //
 //    auto psystem = system();
 //
-//    return *psystem->m_pdirsystem->m_pfilewatcher;
+//    return *psystem->dirsystem()->m_pfilewatcher;
 //
 // }
 

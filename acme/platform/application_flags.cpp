@@ -1018,7 +1018,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //psystem = __move_transfer(apex_create_apex_system());
 //
-//   //auto psystem = system()->m_papexsystem;
+//   //auto psystem = system();
 //   auto psystem = system();
 //
 //   if (!psystem)
@@ -1630,13 +1630,13 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //#endif
 //
 //
-////::pointer<::acme::application>main::new_app()
+////::pointer<::platform::application>main::new_app()
 ////{
 ////
-////   //if(::acme::application::g_p)
+////   //if(::platform::application::g_p)
 ////   //{
 ////
-////   //   return ::acme::application::g_p;
+////   //   return ::platform::application::g_p;
 ////
 ////   //}
 ////
@@ -1647,7 +1647,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////   }
 ////
-////   ::pointer<::acme::application>papp;
+////   ::pointer<::platform::application>papp;
 ////
 ////   papp = m_pfnnewmatterApplication();
 ////
@@ -1663,7 +1663,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////}
 //
 //
-//void main::initialize_application(::acme::application * papplication, ::particle * pparticle)
+//void main::initialize_application(::platform::application * papplication, ::particle * pparticle)
 //{
 //
 //   papplication->initialize(pparticle);

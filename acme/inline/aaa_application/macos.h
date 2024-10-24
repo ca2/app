@@ -13,7 +13,7 @@
 
 //    //   {
 
-//    //      auto psystem = __allocate ::acme::system();
+//    //      auto psystem = __allocate ::platform::system();
 
 //    //      psystem->set_main_struct(&mainstruct);
 

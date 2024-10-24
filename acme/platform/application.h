@@ -24,14 +24,14 @@ namespace acme { class acme;  }
 #include "acme/prototype/text/text.h"
 
 
-namespace acme
+namespace platform
 {
 
 
    class CLASS_DECL_ACME application :
 //      virtual public application_base,
       virtual public APPLICATION_FLAGS,
-      virtual public ::acme::context,
+      virtual public ::platform::context,
       virtual public ::application_exit,
       virtual public ::application_menu_callback
    {
@@ -314,7 +314,7 @@ namespace acme
    };
 
 
-} // namespace acme
+} // namespace platform
 
 
 

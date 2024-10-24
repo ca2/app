@@ -12,7 +12,7 @@ public:
 
    class apex_apex                  m_apex;
    ::pointer<::apex::system>        system();
-   //::pointer<::apex::application>   m_pacmeapplication;
+   //::pointer<::apex::application>   m_papplication;
 
    console(int argc, wchar_t * argv[]);
    console(int argc, char * argv[]);

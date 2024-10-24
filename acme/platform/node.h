@@ -125,7 +125,7 @@ namespace acme
 
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
-      string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
+      string_map < ::pointer<::platform::exclusive > >          m_mapExclusive;
 
       node();
       ~node() override;
@@ -164,7 +164,7 @@ namespace acme
       virtual ::file::path get_default_base_integration_folder();
 
 
-      ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
+      ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::platform::system> & psystem);
 
       virtual void node_main();
       virtual void node_implement_main();
@@ -178,7 +178,7 @@ namespace acme
       virtual void start_application(::pointer<::acme::node> & pnode);
 
 
-      virtual void acme_application_main(::acme::system * psystem);
+      virtual void acme_application_main(::platform::system * psystem);
       virtual void _will_finish_launching();
       
       //virtual void element_quit_post_quit();
@@ -222,9 +222,9 @@ namespace acme
 
       virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
 
-      virtual ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+      virtual ::pointer < ::platform::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
 
-      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+      virtual ::pointer < ::platform::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
 
       virtual bool erase_exclusive(const string & strName);
 
@@ -468,7 +468,7 @@ namespace acme
       virtual void on_start_system();
 
 
-      virtual void create_app_shortcut(::acme::application * papplication);
+      virtual void create_app_shortcut(::platform::application * papplication);
 
 
       virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
@@ -535,7 +535,7 @@ namespace acme
       virtual ::string get_command_line();
 
 
-      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+      //virtual ::pointer<::platform::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
 
       
       virtual i32 get_current_processor_index();
@@ -831,7 +831,7 @@ namespace acme
 
    virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
 
-   virtual void register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister);
+   virtual void register_user_auto_start(::platform::application * papplication, const string & strArguments, bool bRegister);
 
    virtual bool is_user_auto_start(const string & strAppId);
 

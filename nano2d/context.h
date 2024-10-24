@@ -527,14 +527,14 @@ namespace nano2d
    public:
 
       
-      context * m_pcontext;
+      context * m_papplication;
 
 
       guard(context * pcontext) :
-         m_pcontext(pcontext) 
+         m_papplication(pcontext) 
       {
          
-         m_pcontext->save1(); 
+         m_papplication->save1(); 
       
       }
 
@@ -542,7 +542,7 @@ namespace nano2d
       ~guard()
       {
          
-         m_pcontext->restore1(); 
+         m_papplication->restore1(); 
       
       }
 

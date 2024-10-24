@@ -33,7 +33,7 @@ namespace console_integration
          string m_strStatic;
 
 
-         ::pointer < ::integration::context > m_pcontext;
+         ::pointer < ::integration::context > m_papplication;
 
          ::pointer < x264 > m_px264;
          ::pointer < x265 > m_px265;

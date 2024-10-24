@@ -15,31 +15,31 @@ namespace aura
    {
    public:
 
-
-      bool                                              m_bAvoidFirstResponder;
-
-      ::type_atom                                       m_typeatomPaneTabImpact;
-      
-      ::pointer<::windowing::window>                    m_pwindowMain;
-
-
-      ::factory::factory_pointer                        m_pfactoryDraw2d;
-      ::pointer<::draw2d::draw2d>                       m_pdraw2d;
-
-      double                                            m_dDpi;
-
-      ::pointer < ::mutex >                             m_pmutexUserChildren;
-      ::pointer<class ::image::imaging>                 m_pimaging;
-
-      ::pointer<::gpu::approach>                        m_pgpu;
-
-      bool                                              m_bProdevianMouse;
-
-
-      string_map < ::image::image_pointer >             m_mapImage;
-
-      ::pointer<::hardware::devices>                    m_phardwaredevices;
-
+      //
+      // bool                                              m_bAvoidFirstResponder;
+      //
+      // ::type_atom                                       m_typeatomPaneTabImpact;
+      //
+      // ::pointer<::windowing::window>                    m_pwindowMain;
+      //
+      //
+      // ::factory::factory_pointer                        m_pfactoryDraw2d;
+      // ::pointer<::draw2d::draw2d>                       m_pdraw2d;
+      //
+      // double                                            m_dDpi;
+      //
+      // ::pointer < ::mutex >                             m_pmutexUserChildren;
+      // ::pointer<class ::image::imaging>                 m_pimaging;
+      //
+      // ::pointer<::gpu::approach>                        m_pgpu;
+      //
+      // bool                                              m_bProdevianMouse;
+      //
+      //
+      // string_map < ::image::image_pointer >             m_mapImage;
+      //
+      // ::pointer<::hardware::devices>                    m_phardwaredevices;
+      //
 
 
 
@@ -54,7 +54,7 @@ namespace aura
 
       void on_initialize_particle() override;
 
-      void on_add_session(::acme::session* papexsession) override;
+      void on_add_session(::platform::session* papexsession) override;
 
       void init() override;
       //virtual void init_instance() override;

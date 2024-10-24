@@ -46,7 +46,7 @@ namespace OPERATING_SYSTEM_NAMESPACE
 
 //#ifdef CUBE
 //extern "C"
-//::acme::application * cube_get_app();
+//::platform::application * cube_get_app();
 //#endif
 
 void defer_term_ui();
@@ -140,7 +140,7 @@ namespace apex
       //set_context_session(this);
 
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       if (psystem != nullptr)
       {
@@ -384,7 +384,7 @@ namespace apex
    ::color::color session::get_default_color(::color::color color)
    {
 
-      auto psystem = system()->m_papexsystem;
+      auto psystem = system();
 
       auto pnode = psystem->node();
 
@@ -415,7 +415,7 @@ namespace apex
    void session::init_task()
    {
 
-      ::acme::session::init_task();
+      ::platform::session::init_task();
 
       // init_session();
       //
@@ -511,7 +511,7 @@ namespace apex
    void session::process_term()
    {
 
-      ::acme::session::process_term();
+      ::platform::session::process_term();
 
 
    }
@@ -584,9 +584,9 @@ namespace apex
    void session::on_request(::request * prequest)
    {
 
-      ::acme::session::on_request(prequest);
+      ::platform::session::on_request(prequest);
 
-      // auto psystem = system()->m_papexsystem;
+      // auto psystem = system();
       //
       // if (prequest->m_ecommand == e_command_protocol)
       // {
@@ -735,13 +735,13 @@ namespace apex
    }
 
 
-   void session::on_instantiate_application(::acme::application* papplication)
+   void session::on_instantiate_application(::platform::application* papplication)
    {
 
 
-      ::acme::session::on_instantiate_application(papplication);
+      ::platform::session::on_instantiate_application(papplication);
       //papp->m_papexsession = this;
-      //papp->m_papexsystem = m_papexsystem;
+      //papp = m_papexsystem;
       //papp->m_pacmenode = m_pacmenode;
       //papp->m_papexnode = m_papexnode;
 
@@ -1341,7 +1341,7 @@ ret:
    {
 
 
-      ::acme::session::init_session();
+      ::platform::session::init_session();
 
    }
 
@@ -1349,7 +1349,7 @@ ret:
    void session::term_session()
    {
 
-      ::acme::session::term_session();
+      ::platform::session::term_session();
 
    }
 
@@ -1371,7 +1371,7 @@ ret:
 
       }
 
-      ::acme::session::term();
+      ::platform::session::term();
 
    }
 
@@ -1688,7 +1688,7 @@ namespace apex
    void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      ::pointer<::acme::application>papplication;
+      ::pointer<::platform::application>papplication;
 
       if (m_applicationa.lookup(pszAppId, papplication) && papplication)
       {
@@ -2040,7 +2040,7 @@ namespace apex
       if (system())
       {
 
-         system()->m_papexsystem->route_command(pcommand, false);
+         system()->route_command(pcommand, false);
 
       }
 
@@ -2136,7 +2136,7 @@ namespace apex
    void session::destroy()
    {
 
-      ::acme::application_container::m_applicationa.erase_all();
+      ::platform::application_container::m_applicationa.erase_all();
 
       ::apex::context::destroy();
 

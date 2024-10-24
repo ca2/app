@@ -31,7 +31,7 @@ public:
 //#ifdef SYSTEM_NAMESPACE
 //   ::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
 //#else
-//   ::static_object_factory < ::acme::system > m_factorySystem{ ::system_setup::flag_system };
+//   ::static_object_factory < ::platform::system > m_factorySystem{ ::system_setup::flag_system };
 //#endif
 
 
@@ -72,9 +72,9 @@ public:
 
 ////#ifdef SYSTEM_NAMESPACE
 ////         //::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
-////      factory()->add_factory_item< ::SYSTEM_NAMESPACE::system, ::acme::system >();
+////      factory()->add_factory_item< ::SYSTEM_NAMESPACE::system, ::platform::system >();
 ////#else
-////      factory()->add_factory_item< ::acme::system >();
+////      factory()->add_factory_item< ::platform::system >();
 ////#endif
 ////
 ////#if defined(HAS_AUDIO)

@@ -113,8 +113,8 @@ namespace gpu
 
       //::gpu::context_lock lock(m_pgpucontext);
 
-      //if (::is_set(m_pcontext) && ::is_set(m_pcontext->m_pbuffer)
-      //   && m_pcontext->m_pbuffer->m_pimage.ok()
+      //if (::is_set(m_papplication) && ::is_set(m_papplication->m_pbuffer)
+      //   && m_papplication->m_pbuffer->m_pimage.ok()
       //   && ::is_set(m_pprogram))
          //if (::is_set(m_pgpucontext) && ::is_set(m_pgpucontext->m_pbuffer)
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
@@ -137,19 +137,19 @@ namespace gpu
 
                   ////   float y = (float) psession->get_cursor_position().y();
 
-                  ////   m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-                  ////   m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+                  ////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
+                  ////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
 
                   ////}
 
                   //{
 
-                  //   float cx = (float) m_pcontext->m_pbuffer->m_pimage->width();
+                  //   float cx = (float) m_papplication->m_pbuffer->m_pimage->width();
 
-                  //   float cy = (float) m_pcontext->m_pbuffer->m_pimage->height();
+                  //   float cy = (float) m_papplication->m_pbuffer->m_pimage->height();
 
-                  //   m_pcontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-                  //   m_pcontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+                  //   m_papplication->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
+                  //   m_papplication->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
 
                   //}
 
@@ -161,8 +161,8 @@ namespace gpu
 
                   //   float time = (float) dTime;
 
-                  //   m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
-                  //   m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
+                  //   m_papplication->m_pprogram->m_pshader->setFloat("time", time);
+                  //   m_papplication->m_pprogram->m_pshader->setFloat("iTime", time);
 
                   //}
 
@@ -176,7 +176,7 @@ namespace gpu
 
                   ///m_pobject->draw();
 
-                  //m_pcontext->render();
+                  //m_papplication->render();
 
                   //m_pgpucontext->prepare_for_gpu_read();
 
@@ -239,8 +239,8 @@ namespace gpu
 
 //      ::gpu::context_lock lock(m_pgpucontext);
 
-      //if (::is_set(m_pcontext) && ::is_set(m_pcontext->m_pbuffer)
-      //   && m_pcontext->m_pbuffer->m_pimage.ok()
+      //if (::is_set(m_papplication) && ::is_set(m_papplication->m_pbuffer)
+      //   && m_papplication->m_pbuffer->m_pimage.ok()
       //   && ::is_set(m_pprogram))
       if (::is_set(m_pgpucontext) && ::is_set(m_pgpucontext->m_pcpubuffer)
          && m_pgpucontext->m_pcpubuffer->m_pixmap.is_ok())
@@ -261,19 +261,19 @@ namespace gpu
 
             //////   float y = (float) psession->get_cursor_position().y();
 
-            //////   m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-            //////   m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+            //////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
+            //////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
 
             //////}
 
             ////{
 
-            ////   float cx = (float) m_pcontext->m_pbuffer->m_pimage->width();
+            ////   float cx = (float) m_papplication->m_pbuffer->m_pimage->width();
 
-            ////   float cy = (float) m_pcontext->m_pbuffer->m_pimage->height();
+            ////   float cy = (float) m_papplication->m_pbuffer->m_pimage->height();
 
-            ////   m_pcontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-            ////   m_pcontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+            ////   m_papplication->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
+            ////   m_papplication->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
 
             ////}
 
@@ -285,8 +285,8 @@ namespace gpu
 
             ////   float time = (float) dTime;
 
-            ////   m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
-            ////   m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
+            ////   m_papplication->m_pprogram->m_pshader->setFloat("time", time);
+            ////   m_papplication->m_pprogram->m_pshader->setFloat("iTime", time);
 
             ////}
 
@@ -298,7 +298,7 @@ namespace gpu
 
             /////m_pobject->draw();
 
-            ////m_pcontext->render();
+            ////m_papplication->render();
 
             m_pgpucontext->prepare_for_gpu_read();
 

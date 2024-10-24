@@ -23,7 +23,8 @@ namespace acme
    class singleton_pointer;
 
 
-   class CLASS_DECL_ACME acme
+   class CLASS_DECL_ACME acme :
+        virtual public ::particle
    {
    public:
 

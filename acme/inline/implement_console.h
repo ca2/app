@@ -19,6 +19,7 @@ void application_main();
 ::acme::system * acme_system_init();
 void acme_system_term();
 
+#include "acme/platform/system.h"
 #include "acme/platform/acme.h"
 
 //::acme::layer g_layer;
@@ -28,6 +29,8 @@ void acme_system_term();
 #include "acme/operating_system/console.inl"
 
 #endif
+
+
 #include "acme/platform/platform.h"
 #include "acme/operating_system/acme_initialize.h"
 
@@ -62,7 +65,7 @@ int main(int argc, char ** argv, char ** envp)
 #endif
 {
 
-   ::acme::singleton_pointer pacme;
+   ::acme::singleton pacme;
 
    
 
@@ -108,7 +111,7 @@ int main(int argc, char ** argv, char ** envp)
    try
    {
 
-      iExitCode = application_main(pacme->platform());
+      application_main();
 
    }
    catch (const ::exception& exception)
@@ -154,9 +157,9 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), exception.get_message(), "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = __initialize_new_with(::acme::get()) ::message_box(exception, "Exception", "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
-pmessagebox->sync();
+         pmessagebox->sync();
 
       }
 
@@ -175,9 +178,9 @@ pmessagebox->sync();
       else
       {
 
-         ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), "Unhandled Exception");
+         auto pmessagebox = __initialize_new_with(::acme::get()) ::message_box("Unhandled Exception");
 
-pmessagebox->sync();
+         pmessagebox->sync();
 
       }
 

@@ -687,13 +687,13 @@ namespace user
 
             auto puser = psession->user();
 
-            auto pwindowing = puser->windowing();
+            auto pwindowing = system()->windowing();
 
             //      auto psession = get_session();
 
             //      auto puser = psession->user();
 
-            //      auto pwindowing = puser->windowing();
+            //      auto pwindowing = system()->windowing();
 
             pwindowing->new_window(this);
 
@@ -1364,7 +1364,7 @@ namespace user
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing();
+         //auto pwindowing = system()->windowing();
 
          //auto pointCursor = pwindowing->get_cursor_position();
 
@@ -2380,7 +2380,7 @@ namespace user
       //
       //         auto puser = psession->user();
       //
-      //         auto pwindowing = puser->windowing();
+      //         auto pwindowing = system()->windowing();
       //
       //         ::pointer<::message::key>pkey = pmessage;
       //
@@ -4666,7 +4666,7 @@ namespace user
 
    //   auto puser = psession->user();
 
-   //   auto pwindowing = puser->windowing();
+   //   auto pwindowing = system()->windowing();
 
    //   auto pcursor = pwindowing->get_cursor(ecursor);
 

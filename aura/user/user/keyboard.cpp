@@ -273,13 +273,7 @@ namespace user
    ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
    {
       
-      auto psystem = system();
-   
-      auto psession = psystem->get_session();
-      
-      auto puser = psession->user();
-      
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
       
       auto pkeyboard = pwindowing->keyboard();
       

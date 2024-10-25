@@ -185,7 +185,7 @@ namespace message
    //   else
    //   {
 
-   //      auto paurasession = m_papplication->m_psession->m_paurasession;
+   //      auto paurasession = m_papplication->m_psession;
 
    //      auto puser = paurasession->m_puser;
 

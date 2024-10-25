@@ -77,9 +77,9 @@ namespace user
       virtual void _on_initialize_window_object();
 
 
-      ::windowing::windowing* windowing();
-      inline ::aura::application* get_app();
-      inline ::aura::session * get_session();
+      //::windowing::windowing* windowing();
+      // inline ::aura::application* get_app();
+      // inline ::aura::session * get_session();
       //inline ::aura::system* system();
       ::windowing::desktop_environment * desktop_environment();
 

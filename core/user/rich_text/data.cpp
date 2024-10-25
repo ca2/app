@@ -1053,7 +1053,7 @@ namespace user
 
             //ptextformat->text_format_read(this, bin);
 
-            //id_update_all_impacts(ID_INCOMING_DOCUMENT);
+            //id_update_all_impacts(id_incoming_document);
 
             //}
 

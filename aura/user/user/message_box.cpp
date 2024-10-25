@@ -387,11 +387,7 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
+      system()->windowing()->display()->get_main_monitor(rectangleMonitor);
 
       int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 

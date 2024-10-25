@@ -31,7 +31,7 @@
 namespace platform
 {
 
-   
+
    context::context()
    {
 
@@ -106,7 +106,7 @@ namespace platform
    }
 
 
-   void context::initialize(::particle * pparticle)
+   void context::initialize(::particle* pparticle)
    {
 
       __check_refdbg
@@ -123,14 +123,14 @@ namespace platform
       //
       // }
 
-      if(!m_psession)
+      if (!m_psession)
       {
 
          m_psession = pparticle->m_papplication->m_psession;
 
       }
 
-      if(!m_papplication)
+      if (!m_papplication)
       {
 
          m_papplication = pparticle->m_papplication->m_papplication;
@@ -150,7 +150,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = __allocate ::text::translator ();
+      m_ptexttranslator = __allocate ::text::translator();
 
       __check_refdbg
 
@@ -175,7 +175,7 @@ namespace platform
    }
 
 
-   bool context::os_is_alias(const ::file::path & path)
+   bool context::os_is_alias(const ::file::path& path)
    {
 
       return node()->is_alias(path);
@@ -185,12 +185,12 @@ namespace platform
    }
 
 
-   ::pointer < ::file::link > context::os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
+   ::pointer<::file::link> context::os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount)
    {
 
       auto plink = _os_resolve_alias(path, bNoUI, bNoMount);
 
-      if(plink)
+      if (plink)
       {
 
          return plink;
@@ -200,7 +200,7 @@ namespace platform
       if (_os_has_alias_in_path(path))
       {
 
-         ::pointer < ::file::link > plink;
+         ::pointer<::file::link> plink;
 
          ::file::path_array patha;
 
@@ -215,7 +215,7 @@ namespace platform
 
             auto plinkHere = _os_resolve_alias(pathAlias, bNoUI, bNoMount);
 
-            if(plinkHere)
+            if (plinkHere)
             {
 
                plink = plinkHere;
@@ -235,7 +235,7 @@ namespace platform
    }
 
 
-   bool context::_os_has_alias_in_path(const ::file::path & path, bool bNoUI, bool bNoMount)
+   bool context::_os_has_alias_in_path(const ::file::path& path, bool bNoUI, bool bNoMount)
    {
 
       return node()->has_alias_in_path(path);
@@ -243,8 +243,7 @@ namespace platform
    }
 
 
-
-   ::pointer < ::file::link > context::_os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
+   ::pointer<::file::link> context::_os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount)
    {
 
       if (os_is_alias(path))
@@ -275,7 +274,8 @@ namespace platform
 
       //}
 
-      /*estatus = */ __construct(m_pfilecontext);
+      /*estatus = */
+      __construct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -316,7 +316,7 @@ namespace platform
 
          //}
 
-         //estatus = 
+         //estatus =
          m_pfilecontext->init_system();
 
          //if (!estatus)
@@ -326,7 +326,7 @@ namespace platform
 
          //}
 
-         //estatus = 
+         //estatus =
          m_pdirectorycontext->init_system();
 
          //if (!estatus)
@@ -338,7 +338,7 @@ namespace platform
 
       }
 
-      //estatus = 
+      //estatus =
       m_pfilecontext->init_context();
 
       //if(!estatus)
@@ -348,7 +348,7 @@ namespace platform
 
       //}
 
-      //estatus = 
+      //estatus =
       m_pdirectorycontext->init_context();
 
       //if(!estatus)
@@ -358,7 +358,7 @@ namespace platform
 
       //}
 
-      //estatus = 
+      //estatus =
 
       /*    if (!estatus)
           {
@@ -367,10 +367,9 @@ namespace platform
 
           }*/
 
-          //on_update_matter_locator();
+      //on_update_matter_locator();
 
-          //return ::success;
-
+      //return ::success;
 
 
    }
@@ -467,7 +466,7 @@ namespace platform
    }
 
 
-   ::pointer < ::reified < ::message_box > > context::realize(::realizable < ::message_box > * p)
+   ::pointer<::reified<::message_box>> context::realize(::realizable<::message_box>* p)
    {
 
       return system()->micro_user()->realize(p);
@@ -490,7 +489,7 @@ namespace platform
    }
 
 
-   ::file_context* context::file() 
+   ::file_context* context::file()
    {
 
       if (!m_pfilecontext)
@@ -505,9 +504,7 @@ namespace platform
    }
 
 
-
-
-   ::directory_system * context::directory_system()
+   ::directory_system* context::directory_system()
    {
 
       return ::system()->directory_system();
@@ -515,7 +512,7 @@ namespace platform
    }
 
 
-   ::file_system * context::file_system()
+   ::file_system* context::file_system()
    {
 
       return ::system()->file_system();
@@ -523,7 +520,7 @@ namespace platform
    }
 
 
-   ::file::watcher * context::file_watcher()
+   ::file::watcher* context::file_watcher()
    {
 
       return application()->file_watcher();
@@ -531,7 +528,7 @@ namespace platform
    }
 
 
-   ::platform::http * context::http()
+   ::platform::http* context::http()
    {
 
       return application()->http();
@@ -539,7 +536,7 @@ namespace platform
    }
 
 
-   void context::translate_text_data(::text::data * ptextdata)
+   void context::translate_text_data(::text::data* ptextdata)
    {
 
       bool bSet = false;
@@ -586,10 +583,24 @@ namespace platform
    //}
 
 
+   // ::file_system* context::file_system()
+   // {
+   //
+   //    return ::system()->file_system();
+   //
+   // }
 
-   //::file_system* context::file_system() { return ::system()->file_system(); }
-   //::path_system* context::path_system() { return ::system()->path_system(); }
+
+   ::path_system* context::path_system()
+   {
+
+      return ::system()->path_system();
+
+   }
+
    //::directory_system* context::directory_system() { return ::system()->directory_system(); }
+
+
    ::platform::node* context::node()
    {
 
@@ -598,8 +609,7 @@ namespace platform
    }
 
 
-
-   ::payload context::file_payload(const ::payload & payloadFile)
+   ::payload context::file_payload(const ::payload& payloadFile)
    {
 
       return payloadFile;
@@ -607,18 +617,18 @@ namespace platform
    }
 
 
-//   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
-//   {
-//
-//      auto pfile = __create < ::file::file >();
-//
-//      auto path = payloadFile.file_path();
-//
-//      pfile->open(path, eopen);
-//
-//      return pfile;
-//
-//   }
+   //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
+   //   {
+   //
+   //      auto pfile = __create < ::file::file >();
+   //
+   //      auto path = payloadFile.file_path();
+   //
+   //      pfile->open(path, eopen);
+   //
+   //      return pfile;
+   //
+   //   }
 
 
    ::file::path context::defer_process_path(::file::path path)
@@ -647,7 +657,7 @@ namespace platform
                //if (!os_resolve_alias(path, path,::is_set(get_app())? get_app()->m_puiCurrent.get(): nullptr))
                auto plink = os_resolve_alias(path);
 
-               if(!plink || plink->m_pathTarget.is_empty() || plink->m_pathTarget == path)
+               if (!plink || plink->m_pathTarget.is_empty() || plink->m_pathTarget == path)
                {
 
                   break;
@@ -681,8 +691,8 @@ namespace platform
       ::file::path pathProcess = __defer_process_path(path);
 
       if (path.flags().is(::file::e_flag_required)
-         && pathProcess.is_empty()
-         && path.flags().is_clear(::file::e_flag_bypass_cache))
+          && pathProcess.is_empty()
+          && path.flags().is_clear(::file::e_flag_bypass_cache))
       {
 
          path.flags() += ::file::e_flag_bypass_cache;
@@ -696,7 +706,7 @@ namespace platform
    }
 
 
-   bool context::defer_process_media_library_path(::file::path & path)
+   bool context::defer_process_media_library_path(::file::path& path)
    {
 
       return false;
@@ -704,7 +714,7 @@ namespace platform
    }
 
 
-   bool context::defer_process_known_folder_path(::file::path & path)
+   bool context::defer_process_known_folder_path(::file::path& path)
    {
 
       return false;
@@ -712,7 +722,7 @@ namespace platform
    }
 
 
-   bool context::defer_process_protocol_path(::file::path & path)
+   bool context::defer_process_protocol_path(::file::path& path)
    {
 
       return false;
@@ -729,7 +739,7 @@ namespace platform
 
       __check_refdbg
 
-      if(path.is_empty())
+      if (path.is_empty())
       {
 
          return {};
@@ -744,13 +754,13 @@ namespace platform
          return path;
 
       }
-      else if(defer_process_known_folder_path(path))
+      else if (defer_process_known_folder_path(path))
       {
 
          return path;
 
       }
-      else if(defer_process_protocol_path(path))
+      else if (defer_process_protocol_path(path))
       {
 
          return path;
@@ -762,7 +772,10 @@ namespace platform
    }
 
 
-   void context::fork_count(::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart)
+   void context::fork_count(::collection::count iCount,
+                            const ::function<void(::collection::index, ::collection::index, ::collection::index,
+                                                  ::collection::index)>& function,
+                            const ::procedure& procedureCompletion, ::collection::index iStart)
    {
 
       int iAffinityOrder = node()->get_current_process_affinity_order();
@@ -819,7 +832,8 @@ namespace platform
    }
 
 
-   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
+   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+                                      const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
       if (application())
@@ -879,9 +893,6 @@ namespace platform
    }
 
 
-
-
-
    ::file::path context::get_matter_path(string strMatter)
    {
 
@@ -928,8 +939,8 @@ namespace platform
          ::file::path pathCache = psystem->directory_system()->m_pathLocalAppMatterFolder / path;
 
          if (path.flags().has(::file::e_flag_get_local_path)
-            || (path.flags().is_clear(::file::e_flag_bypass_cache)
-               && ::is_existing_file_or_folder(path_system()->get_type(pathCache))))
+             || (path.flags().is_clear(::file::e_flag_bypass_cache)
+                 && ::is_existing_file_or_folder(path_system()->get_type(pathCache))))
          {
 
             return pathCache;
@@ -955,11 +966,11 @@ namespace platform
             {
 
                if (!retry([this, pathMeta]()
-                  {
+               {
 
-                     return file_system()->line(pathMeta, 0) != "processing";
+                  return file_system()->line(pathMeta, 0) != "processing";
 
-                  }))
+               }))
                {
 
                   return "";
@@ -1020,13 +1031,13 @@ namespace platform
             memory_file_pointer pfile(e_create_new, this);
 
             if (!retry([&]()
-               {
+            {
 
-                  ::particle * pparticle = this;
+               ::particle* pparticle = this;
 
-                  return pparticle->http()->download(pfile, path, set);
+               return pparticle->http()->download(pfile, path, set);
 
-               }))
+            }))
             {
 
                return "";
@@ -1043,11 +1054,11 @@ namespace platform
                {
 
                   if (!retry([&]()
-                     {
+                  {
 
-                        return directory()->create(pathCache);
+                     return directory()->create(pathCache);
 
-                     }))
+                  }))
                   {
 
                      return "";
@@ -1061,11 +1072,11 @@ namespace platform
                   pfile->seek_to_begin();
 
                   if (!retry([&]()
-                     {
+                  {
 
-                        return file()->copy(pathCache, pfile, false);
+                     return file()->copy(pathCache, pfile, false);
 
-                     }))
+                  }))
                   {
 
                      return "";
@@ -1075,11 +1086,11 @@ namespace platform
                }
 
                if (!retry([&]()
-                  {
+               {
 
-                     return file_system()->set_line(pathMeta, 0, strFsType);
+                  return file_system()->set_line(pathMeta, 0, strFsType);
 
-                  }))
+               }))
                {
 
                   return "";
@@ -1090,14 +1101,13 @@ namespace platform
             else
             {
                retry([&]()
-                  {
+               {
 
-                     return file_system()->set_line(pathMeta, 0, "itdoesntexist");
+                  return file_system()->set_line(pathMeta, 0, "itdoesntexist");
 
-                  });
+               });
                return "";
             }
-
 
 
          }
@@ -1132,6 +1142,7 @@ namespace platform
 
       return path;
    }
+
 
    string context::matter_locator(string strApp)
    {
@@ -1193,66 +1204,61 @@ namespace platform
    }
 
 
-
    //void context::http_sync(::nano::http::get * pget)
    //{
-   //   
+   //
    //   nano()->http()->sync(pget);
-   //   
+   //
    //}
 
 
    //void context::http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
    //{
-   //   
+   //
    //   nano()->http()->async(pget);
-   //   
+   //
    //}
 
 
-
-//   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl)
-//   {
-//
-//      property_set set;
-//
-//      set["raw_http"] = true;
-//
-//      set["disable_common_name_cert_check"] = true;
-//
-//      return http_get(scopedstrUrl, set);
-//
-//   }
-//
-//
-//   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
-//   {
-//
-//      //__UNREFERENCED_PARAMETER(pcontext);
-//
-//      try
-//      {
-//
-//         auto phttpresponse = system()->nano()->http()->get(scopedstrUrl, phttpresponse);
-//
-//         return phttprespons;
-//
-//      }
-//      catch (...)
-//      {
-//
-//         set["timeout"] = true;
-//
-//         return {};
-//
-//      }
-//
-//      //return pasynchronousehttpresponse->m_data.m_memory;
-//
-//   }
-
+   //   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl)
+   //   {
+   //
+   //      property_set set;
+   //
+   //      set["raw_http"] = true;
+   //
+   //      set["disable_common_name_cert_check"] = true;
+   //
+   //      return http_get(scopedstrUrl, set);
+   //
+   //   }
+   //
+   //
+   //   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   //   {
+   //
+   //      //__UNREFERENCED_PARAMETER(pcontext);
+   //
+   //      try
+   //      {
+   //
+   //         auto phttpresponse = system()->nano()->http()->get(scopedstrUrl, phttpresponse);
+   //
+   //         return phttprespons;
+   //
+   //      }
+   //      catch (...)
+   //      {
+   //
+   //         set["timeout"] = true;
+   //
+   //         return {};
+   //
+   //      }
+   //
+   //      //return pasynchronousehttpresponse->m_data.m_memory;
+   //
+   //   }
 
 
 } // namespace platfrom
-
-

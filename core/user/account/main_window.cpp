@@ -419,7 +419,7 @@ namespace account
 
                auto puser = psession->user();
 
-               auto pwindowing = puser->windowing();
+               auto pwindowing = system()->windowing();
 
                auto pdisplay = pwindowing->display();
 
@@ -530,7 +530,7 @@ namespace account
 
       //auto puser = psession->user();
 
-      //auto pwindowing = puser->windowing();
+      //auto pwindowing = system()->windowing();
 
       //pwindowing->release_mouse_capture();
 

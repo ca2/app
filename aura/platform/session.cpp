@@ -1892,9 +1892,7 @@ namespace aura
    void session::defer_initialize_host_window(const ::rectangle_i32 * lpcrect)
    {
 
-      auto puser = m_puser;
-
-      puser->windowing()->defer_initialize_host_window(lpcrect);
+      system()->windowing()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 
@@ -2509,7 +2507,7 @@ namespace aura
 
       ::aqua::session::on_instantiate_application(papplication);
 
-      //papplication->m_paurasession = this;
+      //papplication = this;
       //papplication = m_paurasystem;
       //papplication->m_pauranode = m_pauranode;
 

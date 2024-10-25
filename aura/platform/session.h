@@ -17,34 +17,34 @@ namespace aura
    {
    public:
 
-
-      //__creatable_from_base(session, ::apex::session);
-
-
-      bool                                                  m_bAcceptsFirstResponder;
-
-      ::pointer < ::user::interaction >                     m_puserinteractionPendingFocus2;
-      ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
-
-      //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
-
-      ::pointer < ::user::interaction >                     m_puiMouseMoveCapture;
-
-
-
-      ::pointer<::apex::savings>                            m_psavings;
-
-      //index                                                 m_iMainMonitor;
-      //index                                                 m_iMainWorkspace;
-
-      atom_map < ::user::interaction * >                      m_mapboundui;
-
-      ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
-      ::pointer<::user::user>                            m_puser;
-      //::pointer<::user::style>                           m_puserstyle;
-      //bool                                                  m_bUiInit;
-      //::pointer<::aura::node>                              m_pnode;
-
+      //
+      // //__creatable_from_base(session, ::apex::session);
+      //
+      //
+      // bool                                                  m_bAcceptsFirstResponder;
+      //
+      // ::pointer < ::user::interaction >                     m_puserinteractionPendingFocus2;
+      // ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
+      //
+      // //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
+      //
+      // ::pointer < ::user::interaction >                     m_puiMouseMoveCapture;
+      //
+      //
+      //
+      // ::pointer<::apex::savings>                            m_psavings;
+      //
+      // //index                                                 m_iMainMonitor;
+      // //index                                                 m_iMainWorkspace;
+      //
+      // atom_map < ::user::interaction * >                      m_mapboundui;
+      //
+      // ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
+      // ::pointer<::user::user>                            m_puser;
+      // //::pointer<::user::style>                           m_puserstyle;
+      // //bool                                                  m_bUiInit;
+      // //::pointer<::aura::node>                              m_pnode;
+      //
 
       session();
       ~session() override;

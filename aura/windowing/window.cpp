@@ -153,7 +153,7 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -485,11 +485,11 @@ namespace windowing
       //      if(bKeyMessage)
       //      {
       //
-      //         auto psession = get_session();
+      //         auto psession = session();
       //
       //         auto puser = psession->user();
       //
-      //         auto pwindowing = puser->windowing();
+      //         auto pwindowing = system()->windowing();
       //
       //         ::pointer<::message::key>pkey = pmessage;
       //
@@ -768,11 +768,7 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       install_message_routing(m_puserinteraction);
 
-      auto psession = m_papplication->m_psession->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = (::windowing::windowing *)puser->windowing();
+      auto pwindowing = (::windowing::windowing *)system()->windowing();
       //      
       //      m_pmacoswindowing = dynamic_cast < class windowing * >(pwindowing);
 
@@ -2911,22 +2907,22 @@ bMove = false;
 
    }
 
-
-   ::aura::application * window::get_app()
-   {
-
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication
-         : nullptr;
-
-   }
-
-
-   ::aura::session * window::get_session()
-   {
-
-      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
+   //
+   // ::aura::application * window::get_app()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication
+   //       : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session * window::session()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
 
    //::aura::system* windowacmesystem()
@@ -3401,7 +3397,7 @@ bMove = false;
    bool window::has_pending_focus()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -3432,7 +3428,7 @@ bMove = false;
    bool window::clear_pending_focus()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -3465,7 +3461,7 @@ bMove = false;
    bool window::set_pending_focus()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -3854,17 +3850,17 @@ bMove = false;
    //   ////         auto procedure = [&]()
    //   ////         {
 
-   //   //auto psession = get_session();
+   //   //auto psession = session();
 
    //   //auto puser = psession->user();
 
-   //   //auto pwindowing = puser->windowing();
+   //   //auto pwindowing = system()->windowing();
 
-   //   ////      auto psession = get_session();
+   //   ////      auto psession = session();
 
    //   ////      auto puser = psession->user();
 
-   //   ////      auto pwindowing = puser->windowing();
+   //   ////      auto pwindowing = system()->windowing();
 
    //   ////pwindowing->new_window();
 
@@ -4539,11 +4535,11 @@ bMove = false;
 
          //::rectangle_i32 rectangleUi;
 
-         //auto psession = get_session();
+         //auto psession = session();
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing();
+         //auto pwindowing = system()->windowing();
 
          //auto pointCursor = pwindowing->get_cursor_position();
 
@@ -4670,7 +4666,7 @@ bMove = false;
 
    //   }
 
-   //   auto psession = get_session();
+   //   auto psession = session();
 
    //   if (!m_puserinteraction->m_bMouseHover && bPointInside)
    //   {
@@ -5616,11 +5612,11 @@ bMove = false;
       //      if(bKeyMessage)
       //      {
       //
-      //         auto psession = get_session();
+      //         auto psession = session();
       //
       //         auto puser = psession->user();
       //
-      //         auto pwindowing = puser->windowing();
+      //         auto pwindowing = system()->windowing();
       //
       //         ::pointer<::message::key>pkey = pmessage;
       //
@@ -5862,7 +5858,7 @@ bMove = false;
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       //if (pmouse)
       //{
@@ -5876,7 +5872,7 @@ bMove = false;
 
       }
 
-      //         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
+      //         if(m_puserinteraction != nullptr && m_puserinteraction->session()  != nullptr && m_puserinteraction->session() != get_session())
       //         {
       //
       //            auto psystem = system();
@@ -6228,7 +6224,7 @@ bMove = false;
       //
       //      }
       //
-      //      auto psession = get_session();
+      //      auto psession = session();
       //
       //      if (psession)
       //      {
@@ -7011,7 +7007,7 @@ bMove = false;
    //void window::ReleaseCapture()
    //{
 
-   //   auto psession = get_session();
+   //   auto psession = session();
 
    //   auto pwindowing = psession->windowing();
 
@@ -7060,7 +7056,7 @@ bMove = false;
 
    //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
-   //   auto psession = get_session();
+   //   auto psession = session();
 
    //   psession->m_puiCapture = pinteraction;
 
@@ -7867,7 +7863,7 @@ bMove = false;
    //::point_i32 window::get_cursor_position() const
    //{
 
-   //   auto psession = get_session();
+   //   auto psession = session();
 
    //   if (!psession)
    //   {
@@ -7921,11 +7917,11 @@ bMove = false;
    //void window::aaa_set_mouse_cursor(enum_cursor ecursor)
    //{
 
-   //   auto psession = get_session();
+   //   auto psession = session();
 
    //   auto puser = psession->user();
 
-   //   auto pwindowing = puser->windowing();
+   //   auto pwindowing = system()->windowing();
 
    //   auto pcursor = pwindowing->get_cursor(ecursor);
 
@@ -11806,7 +11802,7 @@ bMove = false;
    //      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
    //      {
    //
-   //         auto psession = get_session();
+   //         auto psession = session();
    //
    //         auto pimplFocus = psession->m_puserinteractionPendingFocus2;
    //
@@ -14176,7 +14172,7 @@ bMove = false;
 //         else
 //         {
 //
-//            auto paurasession = m_papplication->m_psession->m_paurasession;
+//            auto paurasession = m_papplication->m_psession;
 //
 //            auto puser = paurasession->m_puser;
 //
@@ -16184,10 +16180,10 @@ bMove = false;
    //}
 
 
-   //::aura::session * window::get_session()
+   //::aura::session * window::session()
    //{
 
-   //   return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
+   //   return m_papplication ? m_papplication->m_psession : nullptr;
 
    //}
 

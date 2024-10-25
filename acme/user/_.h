@@ -12,3 +12,10 @@
 //#include "nano/_.h"
 
 
+namespace message
+{
+
+   class mouse_base;
+
+}
+

@@ -217,8 +217,8 @@ namespace aura
       //virtual string ::url::encode(const ::string & str) override;
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
-      virtual string get_locale_schema_dir() override;
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual string get_locale_schema_dir() override;
 
 
       //virtual void     initialize_system(::particle * pparticle, app_core * pappcore);

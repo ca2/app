@@ -338,7 +338,7 @@ namespace experience_tranquillum
       bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
       //    CVMSApp * pApp = (CVMSApp *) System;
-      //::aura::savings & savings = psession->m_paurasession->savings();
+      //::aura::savings & savings = psession->savings();
 
 
       ::rectangle_i32 rectangleX;

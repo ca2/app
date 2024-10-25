@@ -7461,7 +7461,7 @@ namespace user
                //
                //                     }
                //
-               //                     //str = psession->m_paurasession->()->keyboard()->process_key(pkey);
+               //                     //str = psession->()->keyboard()->process_key(pkey);
                //                     //throw ::exception(todo, "keyboard");
                //                  }
                //

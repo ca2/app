@@ -52,7 +52,7 @@
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing();
+//      auto pwindowing = system()->windowing();
 //
 //      //auto& image = app.image();
 //

@@ -925,20 +925,20 @@ namespace windowing
 //   }
 
 
-   ::aura::application* windowing::get_app()
-   {
-
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
-
-   }
-
-
-   ::aura::session* windowing::get_session()
-   {
-
-      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
+   // ::aura::application* windowing::get_app()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session* windowing::get_session()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
 
    ::pointer < ::user::interaction > windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)

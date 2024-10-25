@@ -17,6 +17,8 @@ namespace write_text
 
    class write_text;
 
+   class font_list;
+
 
 } // namespace write_text
 

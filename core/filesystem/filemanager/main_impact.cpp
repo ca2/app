@@ -201,7 +201,7 @@ namespace filemanager
          create_split_impact();
 
       }
-      else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+      else if (ptopic->m_atom == id_incoming_document)
       {
 
          informationf("filemanager::main_impact ::update_open_document");

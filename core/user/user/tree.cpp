@@ -549,7 +549,7 @@ namespace user
 
       //informationf("(1)TreeItemElapsed %d", ::time.elapsed());
 
-      //      ::aura::savings & savings = psession->m_paurasession->savings();
+      //      ::aura::savings & savings = psession->savings();
 
       if (bHover) // selected
       {
@@ -563,7 +563,7 @@ namespace user
       if (bSelected) // selected
       {
 
-         //if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
          data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96, 96, 96));
@@ -1362,7 +1362,7 @@ namespace user
       //
       //      auto puser = psession->user();
       //
-      //      auto pwindowing = puser->windowing();
+      //      auto pwindowing = system()->windowing();
       //
       //      auto pointCursor = pwindowing->get_cursor_position();
       //

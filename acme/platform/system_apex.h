@@ -172,8 +172,8 @@ namespace platform
       //virtual string ::url::encode(const ::string & str);
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-      virtual string get_locale_schema_dir();
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      //virtual string get_locale_schema_dir();
 
       virtual ::operating_system::department                        &  operating_system();
 

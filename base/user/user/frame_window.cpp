@@ -687,7 +687,7 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = system()->windowing();
 
          pwindowing->release_capture();
 
@@ -2906,7 +2906,7 @@ namespace user
 
       auto psession = get_session();
 
-      if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -3014,9 +3014,9 @@ namespace user
 //         _008CallOnDraw(pgraphics);
 //
 //      }
-//      else if (!psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
-//               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth)
-//               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_memory))
+//      else if (!psession->savings().is_trying_to_save(::e_resource_processing)
+//               && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth)
+//               && !psession->savings().is_trying_to_save(::e_resource_memory))
 //      {
 //
 //#if TEST

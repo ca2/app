@@ -121,7 +121,7 @@ namespace simple_ui
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = system()->windowing();
 
          auto pdisplay = pwindowing->display();
 

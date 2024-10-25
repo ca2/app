@@ -131,6 +131,12 @@ namespace aura
 
       common_construct();
 
+
+      factory()->add_factory_item < ::aura::session, ::apex::session >();
+      //factory()->add_factory_item < ::aura::application, ::apex::application >();
+      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
+      factory()->add_factory_item < ::user::user >();
+
    }
 
 
@@ -156,7 +162,7 @@ namespace aura
    void system::common_construct()
    {
 
-      m_paurasystem = this;
+      //m_paurasystem = this;
 
       m_bSimpleMessageLoop = false;
 
@@ -173,20 +179,20 @@ namespace aura
    }
 
 
-   void system::on_set_platform()
-   {
-
-      ::aura::context::on_set_platform();
-
-      ::aqua::system::on_set_platform();
-
-      factory()->add_factory_item < ::aura::session, ::apex::session >();
-      //factory()->add_factory_item < ::aura::application, ::apex::application >();
-      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::user::user >();
-
-
-   }
+   // void system::on_set_platform()
+   // {
+   //
+   //    //::aura::context::on_set_platform();
+   //
+   //    ::aqua::system::on_set_platform();
+   //
+   //    factory()->add_factory_item < ::aura::session, ::apex::session >();
+   //    //factory()->add_factory_item < ::aura::application, ::apex::application >();
+   //    //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
+   //    factory()->add_factory_item < ::user::user >();
+   //
+   //
+   // }
 
 
    void system::on_initialize_particle()
@@ -219,7 +225,7 @@ namespace aura
       string strId;
       strId = "ca2log";
 
-      m_pauracontext = this;
+      //m_pauracontext = this;
 
       initialize_log(strId);
       //{
@@ -287,7 +293,7 @@ namespace aura
       //   if (!m_paurasession)
       //   {
 
-      //      m_paurasession = papexsession->m_paurasession;
+      //      m_paurasession = papexsession;
 
       //   }
 
@@ -298,20 +304,20 @@ namespace aura
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
-   {
-
-      ::aura::context::locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
-
-   }
-
-
-   string system::get_locale_schema_dir()
-   {
-
-      return "_std/_std";
-
-   }
+   // void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // {
+   //
+   //    ::aura::context::locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
+   //
+   // }
+   //
+   //
+   // string system::get_locale_schema_dir()
+   // {
+   //
+   //    return "_std/_std";
+   //
+   // }
 
 
    ::aura::estamira* system::estamira()
@@ -1161,7 +1167,7 @@ namespace aura
 
       //auto psystem = system();
 
-      critical_section_lock synchronouslock(&m_pplatform->m_criticalsection);
+      critical_section_lock synchronouslock(&this->m_criticalsection);
 
       ///estatus = 
       
@@ -1567,21 +1573,21 @@ namespace aura
       if (has_property("save_processing"))
       {
 
-         psession->m_paurasession->savings().save(::e_resource_processing);
+         psession->savings().save(::e_resource_processing);
 
       }
 
       if (has_property("save_blur_back"))
       {
 
-         psession->m_paurasession->savings().save(::e_resource_blur_background);
+         psession->savings().save(::e_resource_blur_background);
 
       }
 
       if (has_property("save_transparent_back"))
       {
 
-         psession->m_paurasession->savings().save(::e_resource_translucent_background);
+         psession->savings().save(::e_resource_translucent_background);
 
       }
 
@@ -5432,69 +5438,69 @@ namespace aura
    }
 
 
-   void system::initialize_context()
-   {
-
-
-      if (application()->m_bDraw2d)
-      {
-
-         initialize_draw2d();
-
-         ////if (!initialize_draw2d())
-         //{
-
-         //   return false;
-
-         //}
-
-      }
-
-      //auto estatus =
-
-      if (application()->m_bImaging)
-      {
-
-         __construct_new(m_pimaging);
-
-      }
-      /*/if (!estatus)
-      {*/
-
-      //   if (m_bUser && m_bDraw2d && m_bImaging)
-      //   {
-
-      //      throw_statu()
-
-      //   }
-
-      //}
-
-      //estatus =
-      
-      ::aura::context::initialize_context();
-
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+   // void system::initialize_context()
+   // {
+   //
+   //
+   //    if (application()->m_bDraw2d)
+   //    {
+   //
+   //       initialize_draw2d();
+   //
+   //       ////if (!initialize_draw2d())
+   //       //{
+   //
+   //       //   return false;
+   //
+   //       //}
+   //
+   //    }
+   //
+   //    //auto estatus =
+   //
+   //    if (application()->m_bImaging)
+   //    {
+   //
+   //       __construct_new(m_pimaging);
+   //
+   //    }
+   //    /*/if (!estatus)
+   //    {*/
+   //
+   //    //   if (m_bUser && m_bDraw2d && m_bImaging)
+   //    //   {
+   //
+   //    //      throw_statu()
+   //
+   //    //   }
+   //
+   //    //}
+   //
+   //    //estatus =
+   //
+   //    ::aura::context::initialize_context();
+   //
+   //
+   //    //if(!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return estatus;
+   //
+   // }
 
 
 //   void system::node_will_finish_launching()
 //   {
 //
-//      auto pnode = session()->m_paurasession;
+//      auto pnode = session();
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing();
+//      auto pwindowing = system()->windowing();
 //
 //      pwindowing->_will_finish_launching();
 //
@@ -5504,11 +5510,11 @@ namespace aura
 //   void system::windowing_post_quit()
 //   {
 //   
-//      auto psession = session()->m_paurasession;
+//      auto psession = session();
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing();
+//      auto pwindowing = system()->windowing();
 //
 //      pwindowing->element_quit_post_quit();
 //
@@ -6905,20 +6911,20 @@ namespace aura
 //   }
 
 
-   ::aura::session* system::get_session()
-   {
+   // ::aura::session* system::get_session()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
-      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
 
-   }
-
-
-   ::aura::node* system::node()
-   {
-
-      return m_pnode ? m_pnode->m_pauranode : nullptr;
-
-   }
+   // ::aura::node* system::node()
+   // {
+   //
+   //    return m_pnode ? m_pnode->m_pauranode : nullptr;
+   //
+   // }
 
 
    class ::draw2d::draw2d * system::draw2d() const
@@ -6979,5 +6985,4 @@ namespace aura
 string get_bundle_app_library_name();
 
 #endif
-
 

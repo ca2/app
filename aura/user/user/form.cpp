@@ -43,7 +43,7 @@ namespace user
    // ::aura::session *form::get_session()
    // {
    //
-   //    return ::is_set(m_papplication) ? m_papplication->m_psession->m_paurasession : nullptr;
+   //    return ::is_set(m_papplication) ? m_papplication->m_psession : nullptr;
    //
    //
    // }
@@ -253,7 +253,7 @@ namespace user
 //   ::aura::session * form::get_session() const
 //   {
 //
-//      return m_papplication ? m_papplication->m_paurasession : nullptr;
+//      return m_papplication ? m_papplication : nullptr;
 //
 //   }
 

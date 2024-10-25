@@ -93,11 +93,11 @@
 //void menu_shared::on_idle_update()
 //{
 //
-//   auto psession = session()->m_paurasession;
+//   auto psession = session();
 //   
 //   auto puser = psession->user();
 //   
-//   auto pwindowing = puser->windowing();
+//   auto pwindowing = system()->windowing();
 //   
 //   for(int i = 0; i < m_iCount; i++)
 //   {

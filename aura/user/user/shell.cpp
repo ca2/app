@@ -187,20 +187,21 @@ namespace user
 
    }
 
-   ::aura::application * shell::get_app()
-   {
 
-      return m_papplication ? m_papplication->m_papplication : nullptr;
-
-   }
-
-
-   ::aura::session *shell:: get_session()
-   {
-
-      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
+   // ::aura::application * shell::get_app()
+   // {
+   //
+   //    return m_papplication ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session *shell:: get_session()
+   // {
+   //
+   //    return m_papplication ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
 
    //::aura::system * shellacmesystem()
@@ -1474,9 +1475,7 @@ namespace user
    bool shell::defer_get_file_image_by_file_type_image(_get_file_image_ & getfileimage)
    {
    
-      auto psystem = system();
-      
-      auto pnode = psystem->node();
+      auto pnode = node();
       
       auto pathFinal = final_path(getfileimage);
       

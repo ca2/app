@@ -42,6 +42,7 @@
 #include "apex/networking/internet.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
+#include "apex/parallelization/threading.h"
 #include "apex/user/user/language_map.h"
 #ifdef LINUX
 #include <unistd.h>
@@ -284,19 +285,19 @@ namespace apex
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
-   {
-
-
-   }
-
-
-   string system::get_locale_schema_dir()
-   {
-
-      return "_std/_std";
-
-   }
+   // void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // string system::get_locale_schema_dir()
+   // {
+   //
+   //    return "_std/_std";
+   //
+   // }
 
 
 

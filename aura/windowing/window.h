@@ -233,10 +233,10 @@ namespace windowing
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      ::aura::application* get_app();
-      ::aura::session* get_session();
-      //::aura::system* system();
-
+      // ::aura::application* get_app();
+      // ::aura::session* get_session();
+      // //::aura::system* system();
+      //
 
       void install_message_routing(::channel * pchannel) override;
 

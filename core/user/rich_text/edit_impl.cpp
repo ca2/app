@@ -1107,7 +1107,7 @@ namespace user
             }
 
          }
-         else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+         else if (ptopic->m_atom == id_incoming_document)
          {
 
             auto puserdocument = ptopic->m_pparticle.cast < ::user::document >();

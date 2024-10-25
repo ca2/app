@@ -10,6 +10,7 @@
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/string/base64.h"
 #include "acme/handler/request.h"
+#include "acme/platform/http.h"
 #include "acme/platform/profiler.h"
 #include "acme/prototype/text/context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -117,7 +118,7 @@ namespace aura
    application::application()
    {
 
-      m_pauraapplication = this;
+      //m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       //m_bSnLauncheeSetup = false;
       m_bGtkApp = false;
@@ -134,7 +135,7 @@ namespace aura
       m_bRequiresInstallation = false;
       m_bReadStringTable = true;
 
-      m_puiCurrent = nullptr;
+      //m_puiCurrent = nullptr;
 
       //m_bInitializeDataCentral = true;
 
@@ -263,7 +264,7 @@ namespace aura
 
       //}
 
-      m_pauracontext = this;
+      //m_pauracontext = this;
 
       //return estatus;
 
@@ -1749,10 +1750,16 @@ namespace aura
       //   return estatus;
 
       //}
+
+
+      ::cast < ::manager > pmanager = system();
+
+      if(pmanager)
+      {
+         auto psignal = pmanager->get_signal(id_app_activated);
       
-      auto psignal = system()->get_signal(id_app_activated);
-      
-      psignal->add_handler(this);
+         psignal->add_handler(this);
+      }
 
       //return true;
 
@@ -1910,7 +1917,7 @@ namespace aura
    void application::on_before_launching()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       string strLicense = get_license_id();
 
@@ -3493,7 +3500,7 @@ retry_license:
    void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
-      auto psession = session()->m_paurasession;
+      auto psession = session();
 
       if (puserinteraction == psession->m_puserprimitiveHost)
       {
@@ -3782,25 +3789,7 @@ retry_license:
 
 #endif
 
-      auto psession = get_session();
-
-      if (::is_null(psession))
-      {
-
-         throw ::exception(::error_wrong_state);
-
-      }
-
-      auto puser = psession->user();
-
-      if (::is_null(puser))
-      {
-
-         throw ::exception(::error_wrong_state);
-
-      }
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       if (::is_null(pwindowing))
       {
@@ -3921,6 +3910,22 @@ retry_license:
    {
 
       ::thread::post_message(atom, wparam, lparam);
+
+   }
+
+
+   void application::initialize_context()
+   {
+      ::aura::context::initialize_context();
+      ::aqua::application::initialize_context();
+   }
+
+
+   void application::initialize_context_1()
+   {
+      ::aura::context::initialize_context_1();
+      ::aqua::application::initialize_context_1();
+
 
    }
 
@@ -4524,13 +4529,13 @@ retry_license:
    }
 
 
-   void application::verb()
-   {
-
-      //return true;
-
-   }
-
+   // void application::verb()
+   // {
+   //
+   //    //return true;
+   //
+   // }
+   //
 
    //void application::SetCurrentHandles()
    //{
@@ -4919,6 +4924,8 @@ retry_license:
 
       strUrl += ::url::encode(strRelative);
 
+      ::cast <::http::context > phttpcontext = http();
+
       if (psession == nullptr)
       {
 
@@ -4927,7 +4934,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http()->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -4944,7 +4951,9 @@ retry_license:
 
       set["get_memory"] = "";
 
-      http()->request(psession, strUrl, set);
+      //::cast < ::http::context > phttpcontext = http();
+
+      phttpcontext->request(psession, strUrl, set);
 
       //if (!http()->request(psession, strUrl, set))
       //{
@@ -5000,16 +5009,16 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          //pszRequestUrl = strRequestUrl;
 
       }
 
-      if (get_session() == nullptr)
+      if (!session())
       {
 
          return false;
@@ -5583,8 +5592,6 @@ retry_license:
 
 namespace aura
 {
-
-
    //const char application::gen_FileSection[] = "Recent File List";
    //const char application::gen_FileEntry[] = "File%d";
    //const char application::gen_ThumbnailSection[] = "Settings";
@@ -5735,31 +5742,31 @@ namespace aura
    }
 
 
-//#ifdef WINDOWS
-//
-//
-//   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
-//   {
-//
-//      __UNREFERENCED_PARAMETER(pmsg);
-//
-//
-//      return false;
-//
-//   }
-//
-//#elif defined(LINUX)
-//
-//   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
-//   {
-//
-//      __UNREFERENCED_PARAMETER(pXevent);
-//
-//      return false;
-//
-//   }
-//
-//#endif
+   //#ifdef WINDOWS
+   //
+   //
+   //   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
+   //   {
+   //
+   //      __UNREFERENCED_PARAMETER(pmsg);
+   //
+   //
+   //      return false;
+   //
+   //   }
+   //
+   //#elif defined(LINUX)
+   //
+   //   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
+   //   {
+   //
+   //      __UNREFERENCED_PARAMETER(pXevent);
+   //
+   //      return false;
+   //
+   //   }
+   //
+   //#endif
 
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
@@ -5783,47 +5790,47 @@ namespace aura
    //}
 
 
-//#ifdef WINDOWS_DESKTOP
-//
-//   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
-//   {
-//
-//      memory storage;
-//
-//      if (!GetResourceData(uResource, "EnhMetaFile", storage))
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
-//
-//   }
-//
-//#endif
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
+   //   {
+   //
+   //      memory storage;
+   //
+   //      if (!GetResourceData(uResource, "EnhMetaFile", storage))
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
+   //
+   //   }
+   //
+   //#endif
 
-//   /////////////////////////////////////////////////////////////////////////////
-//   // WinApp UI related functions
-//
-//   void application::EnableModelessEx(bool bEnable)
-//   {
-//      __UNREFERENCED_PARAMETER(bEnable);
-//#ifdef ___NO_OLE_SUPPORT
-//      UNUSED(bEnable);
-//#endif
-//
-//
-//   }
+   //   /////////////////////////////////////////////////////////////////////////////
+   //   // WinApp UI related functions
+   //
+   //   void application::EnableModelessEx(bool bEnable)
+   //   {
+   //      __UNREFERENCED_PARAMETER(bEnable);
+   //#ifdef ___NO_OLE_SUPPORT
+   //      UNUSED(bEnable);
+   //#endif
+   //
+   //
+   //   }
 
 
 
-  /* void     application::run()
-   {
+   /* void     application::run()
+    {
 
-      return ::aura::application::run();
+       return ::aura::application::run();
 
-   }*/
+    }*/
 
 
    bool application::on_idle(::i32 lCount)
@@ -5845,11 +5852,11 @@ namespace aura
 
       switch (pusermessage->m_atom.m_emessage)
       {
-      case e_message_create:
-      case e_message_paint:
+         case e_message_create:
+         case e_message_paint:
 
-         return thread::process_window_procedure_exception(e, pmessage);
-            
+            return thread::process_window_procedure_exception(e, pmessage);
+
          default:
             break;
 
@@ -5863,7 +5870,7 @@ namespace aura
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
-            nIDP = "Command Failure";
+               nIDP = "Command Failure";
          pusermessage->m_lresult = (lresult)true;        // pretend the command was handled
       }
 
@@ -5897,10 +5904,12 @@ namespace aura
 
       }
 
-      if (m_psession)
+      ::cast < ::channel > pchannel = m_psession;
+
+      if (pchannel)
       {
 
-         m_psession->route_command(pcommand, false);
+         pchannel->route_command(pcommand, false);
 
       }
 
@@ -5984,7 +5993,7 @@ namespace aura
 
 
 
-   // // 
+   // //
    //{{__MSG_MAP(application)
    // Global File commands
    //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
@@ -5992,7 +6001,7 @@ namespace aura
    //   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
    //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
    //}}__MSG_MAP
-   // // 
+   // //
 
    /*#ifdef WINDOWS
 
@@ -6160,119 +6169,119 @@ namespace aura
       return _LoadSysPolicies();
    }*/
 
-//   // This function is not exception safe - will leak a registry key if exceptions are thrown from some places
-//   // To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
-//   // no dependency on non-throwing.
-//   bool application::_LoadSysPolicies() noexcept
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      HKEY hkPolicy = nullptr;
-//      ::u32 dwValue = 0;
-//      ::u32 dwDataLen = sizeof(dwValue);
-//      ::u32 dwType = 0;
-//
-//      //// clear current policy settings.
-//      //m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
-//
-//      //static __system_policy_data rgExplorerData[] =
-//      //{
-//      //   {"NoRun",___SYSPOLICY_NORUN},
-//      //   {"NoDrives",___SYSPOLICY_NODRIVES},
-//      //   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
-//      //   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
-//      //   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
-//      //   {"NoClose",___SYSPOLICY_NOCLOSE},
-//      //   {nullptr,0}
-//      //};
-//
-//      //static __system_policy_data rgNetworkData[] =
-//      //{
-//      //   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
-//      //   {nullptr,0}
-//      //};
-//
-//      //static __system_policy_data rgComDlgData[] =
-//      //{
-//      //   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
-//      //   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
-//      //   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
-//      //   {nullptr,0}
-//      //};
-//
-//      //static __system_policies rgPolicies[] =
-//      //{
-//      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-//      //      rgExplorerData
-//      //   },
-//      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
-//      //      rgNetworkData
-//      //   },
-//      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
-//      //      rgComDlgData
-//      //   },
-//      //   {nullptr,0}
-//      //};
-//
-//      //__system_policies *pPolicies = rgPolicies;
-//      //__system_policy_data *pData = nullptr;
-//
-//      //while (pPolicies->szPolicyKey != nullptr)
-//      //{
-//
-//      //   if (ERROR_SUCCESS == ::RegOpenKeyEx(
-//      //            HKEY_CURRENT_USER,
-//      //            pPolicies->szPolicyKey,
-//      //            0,
-//      //            KEY_QUERY_VALUE,
-//      //            &hkPolicy
-//      //         ))
-//      //   {
-//      //      pData = pPolicies->pData;
-//      //      while (pData->szPolicyName)
-//      //      {
-//      //         if (ERROR_SUCCESS == ::RegQueryValueEx(
-//      //                  hkPolicy,
-//      //                  pData->szPolicyName,
-//      //                  nullptr,
-//      //                  &dwType,
-//      //                  (::u8*)&dwValue,
-//      //                  &dwDataLen))
-//      //         {
-//      //            if (dwType == REG_DWORD)
-//      //            {
-//      //               if (dwValue != 0)
-//      //                  m_dwPolicies |= pData->dwID;
-//      //               else
-//      //                  m_dwPolicies &= ~pData->dwID;
-//      //            }
-//      //         }
-//      //         dwValue = 0;
-//      //         dwDataLen = sizeof(dwValue);
-//      //         dwType = 0;
-//      //         pData++;
-//      //      }
-//      //      ::RegCloseKey(hkPolicy);
-//      //      hkPolicy = nullptr;
-//      //   }
-//      //   pPolicies++;
-//      //};
-//
-//#endif
-//
-//      return true;
-//
-//
-//   }
-//
-//   bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
-//   {
-//      if (!pbValue)
-//         return false; // bad pointer
-//      *pbValue = (m_dwPolicies & dwPolicyID) != 0;
-//      return true;
-//   }
+   //   // This function is not exception safe - will leak a registry key if exceptions are thrown from some places
+   //   // To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
+   //   // no dependency on non-throwing.
+   //   bool application::_LoadSysPolicies() noexcept
+   //   {
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      HKEY hkPolicy = nullptr;
+   //      ::u32 dwValue = 0;
+   //      ::u32 dwDataLen = sizeof(dwValue);
+   //      ::u32 dwType = 0;
+   //
+   //      //// clear current policy settings.
+   //      //m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
+   //
+   //      //static __system_policy_data rgExplorerData[] =
+   //      //{
+   //      //   {"NoRun",___SYSPOLICY_NORUN},
+   //      //   {"NoDrives",___SYSPOLICY_NODRIVES},
+   //      //   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
+   //      //   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
+   //      //   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
+   //      //   {"NoClose",___SYSPOLICY_NOCLOSE},
+   //      //   {nullptr,0}
+   //      //};
+   //
+   //      //static __system_policy_data rgNetworkData[] =
+   //      //{
+   //      //   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
+   //      //   {nullptr,0}
+   //      //};
+   //
+   //      //static __system_policy_data rgComDlgData[] =
+   //      //{
+   //      //   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
+   //      //   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
+   //      //   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
+   //      //   {nullptr,0}
+   //      //};
+   //
+   //      //static __system_policies rgPolicies[] =
+   //      //{
+   //      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+   //      //      rgExplorerData
+   //      //   },
+   //      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
+   //      //      rgNetworkData
+   //      //   },
+   //      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
+   //      //      rgComDlgData
+   //      //   },
+   //      //   {nullptr,0}
+   //      //};
+   //
+   //      //__system_policies *pPolicies = rgPolicies;
+   //      //__system_policy_data *pData = nullptr;
+   //
+   //      //while (pPolicies->szPolicyKey != nullptr)
+   //      //{
+   //
+   //      //   if (ERROR_SUCCESS == ::RegOpenKeyEx(
+   //      //            HKEY_CURRENT_USER,
+   //      //            pPolicies->szPolicyKey,
+   //      //            0,
+   //      //            KEY_QUERY_VALUE,
+   //      //            &hkPolicy
+   //      //         ))
+   //      //   {
+   //      //      pData = pPolicies->pData;
+   //      //      while (pData->szPolicyName)
+   //      //      {
+   //      //         if (ERROR_SUCCESS == ::RegQueryValueEx(
+   //      //                  hkPolicy,
+   //      //                  pData->szPolicyName,
+   //      //                  nullptr,
+   //      //                  &dwType,
+   //      //                  (::u8*)&dwValue,
+   //      //                  &dwDataLen))
+   //      //         {
+   //      //            if (dwType == REG_DWORD)
+   //      //            {
+   //      //               if (dwValue != 0)
+   //      //                  m_dwPolicies |= pData->dwID;
+   //      //               else
+   //      //                  m_dwPolicies &= ~pData->dwID;
+   //      //            }
+   //      //         }
+   //      //         dwValue = 0;
+   //      //         dwDataLen = sizeof(dwValue);
+   //      //         dwType = 0;
+   //      //         pData++;
+   //      //      }
+   //      //      ::RegCloseKey(hkPolicy);
+   //      //      hkPolicy = nullptr;
+   //      //   }
+   //      //   pPolicies++;
+   //      //};
+   //
+   //#endif
+   //
+   //      return true;
+   //
+   //
+   //   }
+   //
+   //   bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
+   //   {
+   //      if (!pbValue)
+   //         return false; // bad pointer
+   //      *pbValue = (m_dwPolicies & dwPolicyID) != 0;
+   //      return true;
+   //   }
 
    //bool application::InitApplication()
    //{
@@ -6498,23 +6507,23 @@ namespace aura
 
 
 
-      /////////////////////////////////////////////////////////////////////////////
-      // application idle processing
+   /////////////////////////////////////////////////////////////////////////////
+   // application idle processing
 
-//   void application::DevModeChange(char * pDeviceName)
-//
-//   {
-//      __UNREFERENCED_PARAMETER(pDeviceName);
-//
-//
-//#ifdef WINDOWS
-//      if (m_hDevNames == nullptr)
-//         return;
-//
-//#endif
-//
-//   }
-//
+   //   void application::DevModeChange(char * pDeviceName)
+   //
+   //   {
+   //      __UNREFERENCED_PARAMETER(pDeviceName);
+   //
+   //
+   //#ifdef WINDOWS
+   //      if (m_hDevNames == nullptr)
+   //         return;
+   //
+   //#endif
+   //
+   //   }
+   //
 
    //bool application::process_exception(const ::exception & e)
    //{
@@ -6743,22 +6752,22 @@ namespace aura
    //{
    //}
 
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
-//   {
-//
-//      __UNREFERENCED_PARAMETER(hDevNames);
-//      __UNREFERENCED_PARAMETER(hDevMode);
-//      __UNREFERENCED_PARAMETER(bFreeOld);
-//      throw ::interface_only();
-//
-//   }
-//
-//
-//#endif
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //
+   //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
+   //   {
+   //
+   //      __UNREFERENCED_PARAMETER(hDevNames);
+   //      __UNREFERENCED_PARAMETER(hDevMode);
+   //      __UNREFERENCED_PARAMETER(bFreeOld);
+   //      throw ::interface_only();
+   //
+   //   }
+   //
+   //
+   //#endif
 
 
    //::draw2d::graphics* application::CreatePrinterDC()
@@ -6858,39 +6867,39 @@ namespace aura
    //   }
 
 
-//
-//   void application::EnableModeless(bool bEnable)
-//   {
-//      DoEnableModeless(bEnable);
-//   }
-//
-//   void application::DoEnableModeless(bool bEnable)
-//   {
-//      __UNREFERENCED_PARAMETER(bEnable);
-//#ifdef ___NO_OLE_SUPPORT
-//      UNUSED(bEnable);
-//#endif
-//
-//      // no-op if main window is nullptr or not a frame_window
-//      /*   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
-//      if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
-//      return;*/
-//
-//#ifndef ___NO_OLE_SUPPORT
-//      // check if notify hook installed
-//      /*xxx
-//      ASSERT_KINDOF(frame_window, pMainWnd);
-//      ::pointer<::user::frame_window>pFrameWnd = (::pointer<::user::frame_window>MainWnd;
-//      if (pFrameWnd->m_pNotifyHook != nullptr)
-//      pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
-//      */
-//#endif
-//   }
-//
-//
-//
-//
-//
+   //
+   //   void application::EnableModeless(bool bEnable)
+   //   {
+   //      DoEnableModeless(bEnable);
+   //   }
+   //
+   //   void application::DoEnableModeless(bool bEnable)
+   //   {
+   //      __UNREFERENCED_PARAMETER(bEnable);
+   //#ifdef ___NO_OLE_SUPPORT
+   //      UNUSED(bEnable);
+   //#endif
+   //
+   //      // no-op if main window is nullptr or not a frame_window
+   //      /*   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
+   //      if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
+   //      return;*/
+   //
+   //#ifndef ___NO_OLE_SUPPORT
+   //      // check if notify hook installed
+   //      /*xxx
+   //      ASSERT_KINDOF(frame_window, pMainWnd);
+   //      ::pointer<::user::frame_window>pFrameWnd = (::pointer<::user::frame_window>MainWnd;
+   //      if (pFrameWnd->m_pNotifyHook != nullptr)
+   //      pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
+   //      */
+   //#endif
+   //   }
+   //
+   //
+   //
+   //
+   //
 
 
 
@@ -6960,75 +6969,75 @@ namespace aura
       //SetRegistryKey(szRegistryKey);*/
    }
 
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//   // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
-//   // creating it if it doesn't exist
-//   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-//   HKEY application::GetAppRegistryKey()
-//   {
-//      //ASSERT(m_pszRegistryKey != nullptr);
-//      //ASSERT(m_pszProfileName != nullptr);
-//
-//      //HKEY hAppKey = nullptr;
-//      //HKEY hSoftKey = nullptr;
-//      //HKEY hCompanyKey = nullptr;
-//      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
-//      //   &hSoftKey) == ERROR_SUCCESS)
-//      //{
-//      //   ::u32 dw;
-//      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
-//      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
-//      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
-//      //   {
-//      //      RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
-//      //         REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
-//      //         &hAppKey,&dw);
-//      //   }
-//      //}
-//      //if(hSoftKey != nullptr)
-//      //   RegCloseKey(hSoftKey);
-//      //if(hCompanyKey != nullptr)
-//      //   RegCloseKey(hCompanyKey);
-//
-////      return hAppKey;
-//      return nullptr;
-//   }
-//
-//   // returns key for:
-//   //      HKEY_CURRENT_USER\"Software"\RegistryKey\AppName\pszSection
-//
-//   // creating it if it doesn't exist.
-//   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-//   HKEY application::GetSectionKey(const ::string & pszSection)
-//   {
-//
-//      ASSERT(pszSection != nullptr);
-//
-//      HKEY hSectionKey = nullptr;
-//
-//      HKEY hAppKey = GetAppRegistryKey();
-//
-//      if (hAppKey == nullptr)
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      DWORD dw;
-//
-//      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
-//
-//      RegCloseKey(hAppKey);
-//
-//      return hSectionKey;
-//
-//   }
-//
-//
-//#endif
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
+   //   // creating it if it doesn't exist
+   //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
+   //   HKEY application::GetAppRegistryKey()
+   //   {
+   //      //ASSERT(m_pszRegistryKey != nullptr);
+   //      //ASSERT(m_pszProfileName != nullptr);
+   //
+   //      //HKEY hAppKey = nullptr;
+   //      //HKEY hSoftKey = nullptr;
+   //      //HKEY hCompanyKey = nullptr;
+   //      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
+   //      //   &hSoftKey) == ERROR_SUCCESS)
+   //      //{
+   //      //   ::u32 dw;
+   //      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
+   //      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
+   //      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
+   //      //   {
+   //      //      RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
+   //      //         REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
+   //      //         &hAppKey,&dw);
+   //      //   }
+   //      //}
+   //      //if(hSoftKey != nullptr)
+   //      //   RegCloseKey(hSoftKey);
+   //      //if(hCompanyKey != nullptr)
+   //      //   RegCloseKey(hCompanyKey);
+   //
+   ////      return hAppKey;
+   //      return nullptr;
+   //   }
+   //
+   //   // returns key for:
+   //   //      HKEY_CURRENT_USER\"Software"\RegistryKey\AppName\pszSection
+   //
+   //   // creating it if it doesn't exist.
+   //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
+   //   HKEY application::GetSectionKey(const ::string & pszSection)
+   //   {
+   //
+   //      ASSERT(pszSection != nullptr);
+   //
+   //      HKEY hSectionKey = nullptr;
+   //
+   //      HKEY hAppKey = GetAppRegistryKey();
+   //
+   //      if (hAppKey == nullptr)
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      DWORD dw;
+   //
+   //      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
+   //
+   //      RegCloseKey(hAppKey);
+   //
+   //      return hSectionKey;
+   //
+   //   }
+   //
+   //
+   //#endif
 
    /*   ::u32 application::GetProfileInt(const ::string & pszSection, const ::string & pszEntry,
 
@@ -7497,29 +7506,29 @@ namespace aura
 
 
 
-//   ::user::interaction * application::get_desktop_window()
-//   {
-//#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__)
-//      throw ::exception(todo);
-//      /*#elif defined(LINUX)
-//
-//      //      _synchronous_lock synchronouslock(&user_synchronization());
-//
-//      xdisplay pdisplay.
-//      pdisplay.open(nullptr) = x11_get_display();
-//
-//      oswindow window(pdisplay, DefaultRootWindow(pdisplay));
-//
-//      XCloseDisplay(pdisplay);
-//
-//      return window_from_os_data(window);
-//      */
-//#else
-//
-//
-//#endif
-//
-//   }
+   //   ::user::interaction * application::get_desktop_window()
+   //   {
+   //#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__)
+   //      throw ::exception(todo);
+   //      /*#elif defined(LINUX)
+   //
+   //      //      _synchronous_lock synchronouslock(&user_synchronization());
+   //
+   //      xdisplay pdisplay.
+   //      pdisplay.open(nullptr) = x11_get_display();
+   //
+   //      oswindow window(pdisplay, DefaultRootWindow(pdisplay));
+   //
+   //      XCloseDisplay(pdisplay);
+   //
+   //      return window_from_os_data(window);
+   //      */
+   //#else
+   //
+   //
+   //#endif
+   //
+   //   }
 
 
 
@@ -7540,32 +7549,32 @@ namespace aura
    //   ASSERT_VALID(m_pdocmanager);*/
    //}
 
-//   void application::dump(dump_context& dumpcontext) const
-//   {
-//
-//      ::aura::application::dump(dumpcontext);
-//
-//      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
-//      dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
-//      dumpcontext << "\nm_pszProfileName = " << m_strProfileName;
-//
-//#ifdef WINDOWS
-//      dumpcontext << "\nm_hDevMode = " << (void*)m_hDevMode;
-//      dumpcontext << "\nm_hDevNames = " << (void*)m_hDevNames;
-//#endif
-//
-//      dumpcontext << "\nm_dwPromptContext = " << (::u32)m_dwPromptContext;
-//      //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
-//
-//
-//      /*      if (m_pdocmanager != nullptr)
-//      document_manager()->dump(dumpcontext);*/
-//
-//      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-//      dumpcontext << "\nm_nNumThumbnailPages = " << m_nNumThumbnailPages;
-//
-//      dumpcontext << "\n";
-//   }
+   //   void application::dump(dump_context& dumpcontext) const
+   //   {
+   //
+   //      ::aura::application::dump(dumpcontext);
+   //
+   //      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
+   //      dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
+   //      dumpcontext << "\nm_pszProfileName = " << m_strProfileName;
+   //
+   //#ifdef WINDOWS
+   //      dumpcontext << "\nm_hDevMode = " << (void*)m_hDevMode;
+   //      dumpcontext << "\nm_hDevNames = " << (void*)m_hDevNames;
+   //#endif
+   //
+   //      dumpcontext << "\nm_dwPromptContext = " << (::u32)m_dwPromptContext;
+   //      //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
+   //
+   //
+   //      /*      if (m_pdocmanager != nullptr)
+   //      document_manager()->dump(dumpcontext);*/
+   //
+   //      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
+   //      dumpcontext << "\nm_nNumThumbnailPages = " << m_nNumThumbnailPages;
+   //
+   //      dumpcontext << "\n";
+   //   }
 
 
    //void application::install_message_routing(::channel* pchannel)
@@ -7629,43 +7638,43 @@ namespace aura
 
    //}
 
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//   bool Is_Vista_or_Later()
-//   {
-//      OSVERSIONINFOEX osvi;
-//      DWORDLONG dwlConditionMask = 0;
-//      ::u8 op = VER_GREATER_EQUAL;
-//
-//      // Initialize the OSVERSIONINFOEX structure.
-//
-//      ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-//      osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-//      osvi.dwMajorVersion = 6;
-//      //   osvi.dwMinorVersion = 1;
-//      //   osvi.wServicePackMajor = 0;
-//      //   osvi.wServicePackMinor = 0;
-//
-//      // Initialize the condition mask.
-//
-//      VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
-//      //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
-//      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
-//      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
-//
-//      // Perform the test.
-//
-//      return VerifyVersionInfo(
-//         &osvi,
-//         VER_MAJORVERSION | VER_MINORVERSION |
-//         VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-//         dwlConditionMask) != false;
-//   }
-//
-//
-//#endif
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //
+   //   bool Is_Vista_or_Later()
+   //   {
+   //      OSVERSIONINFOEX osvi;
+   //      DWORDLONG dwlConditionMask = 0;
+   //      ::u8 op = VER_GREATER_EQUAL;
+   //
+   //      // Initialize the OSVERSIONINFOEX structure.
+   //
+   //      ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+   //      osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+   //      osvi.dwMajorVersion = 6;
+   //      //   osvi.dwMinorVersion = 1;
+   //      //   osvi.wServicePackMajor = 0;
+   //      //   osvi.wServicePackMinor = 0;
+   //
+   //      // Initialize the condition mask.
+   //
+   //      VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
+   //      //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
+   //      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
+   //      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
+   //
+   //      // Perform the test.
+   //
+   //      return VerifyVersionInfo(
+   //         &osvi,
+   //         VER_MAJORVERSION | VER_MINORVERSION |
+   //         VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
+   //         dwlConditionMask) != false;
+   //   }
+   //
+   //
+   //#endif
 
 
    void application::pre_translate_message(::message::message* pmessage)
@@ -7673,21 +7682,21 @@ namespace aura
 
       //::pointer<::user::message>pusermessage(pmessage);
 
-//      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
-//      {
-//
-//         /*
-//
-//         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
-//         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
-//
-//         */
-//
-//         pmessage->m_bRet = true;
-//
-//         return;
-//
-//      }
+      //      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+      //      {
+      //
+      //         /*
+      //
+      //         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
+      //         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
+      //
+      //         */
+      //
+      //         pmessage->m_bRet = true;
+      //
+      //         return;
+      //
+      //      }
 
       return thread::pre_translate_message(pmessage);
 
@@ -7700,39 +7709,39 @@ namespace aura
    //}
 
 
-//   void application::EnableShellOpen()
-//   {
-////
-////#ifdef WINDOWS_DESKTOP
-////
-////      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
-////
-////      if (m_atomApp != 0 || m_atomSystemTopic != 0)
-////      {
-////
-////         return;
-////
-////      }
-////
-////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-////      // i16 file name so we need to use the i16 file name.
-////      string strShortName;
-////
-////      strShortName = file()->module();
-////
-////      // strip out path
-////      //string strFileName = ::PathFindFileName(strShortName);
-////      // strip out extension
-////      //char * pszFileName = strFileName.GetBuffer();
-////      //::PathRemoveExtension(pszFileName);
-////      //strFileName.ReleaseBuffer();
-////
-////      //      m_atomApp = ::GlobalAddAtom(strFileName);
-////      //    m_atomSystemTopic = ::GlobalAddAtom("system");
-////
-////#endif
-//
-//   }
+   //   void application::EnableShellOpen()
+   //   {
+   ////
+   ////#ifdef WINDOWS_DESKTOP
+   ////
+   ////      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+   ////
+   ////      if (m_atomApp != 0 || m_atomSystemTopic != 0)
+   ////      {
+   ////
+   ////         return;
+   ////
+   ////      }
+   ////
+   ////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
+   ////      // i16 file name so we need to use the i16 file name.
+   ////      string strShortName;
+   ////
+   ////      strShortName = file()->module();
+   ////
+   ////      // strip out path
+   ////      //string strFileName = ::PathFindFileName(strShortName);
+   ////      // strip out extension
+   ////      //char * pszFileName = strFileName.GetBuffer();
+   ////      //::PathRemoveExtension(pszFileName);
+   ////      //strFileName.ReleaseBuffer();
+   ////
+   ////      //      m_atomApp = ::GlobalAddAtom(strFileName);
+   ////      //    m_atomSystemTopic = ::GlobalAddAtom("system");
+   ////
+   ////#endif
+   //
+   //   }
 
 
 
@@ -7955,7 +7964,7 @@ namespace aura
    void application::set_title(const ::string & pszTitle)
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       psession->set_app_title(m_strAppName, pszTitle);
 
@@ -7981,7 +7990,7 @@ namespace aura
       // hide the application's windows before closing all the documents
       HideApplication();
 
-      close(::apex::e_end_app);
+      close(::e_exit_application);
 
       return true;
 
@@ -7996,43 +8005,43 @@ namespace aura
    //   return nullptr;
 
    //}
-//
-//
-//   i32 application::send_simple_command(const ::string & psz, void* osdataSender)
-//   {
-//      string strApp;
-//      string_array stra;
-//      stra.add_tokens(psz, "::", true);
-//      if (stra.get_size() > 0)
-//      {
-//         strApp = stra[0];
-//         ::windowing::window * pwindow = get_ca2_app_wnd(strApp);
-//         if (oswindow != nullptr)
-//         {
-//            return send_simple_command((void*)oswindow, psz, osdataSender);
-//         }
-//      }
-//      return -1;
-//   }
-//
-////
-//   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
-//   {
-//#ifdef WINDOWS_DESKTOP
-//      ::windowing::window * pwindow = (::oswindow) osdata;
-//      if (!::IsWindow(oswindow))
-//         return -1;
-//      COPYDATASTRUCT cds;
-//      memory_set(&cds, 0, sizeof(cds));
-//      cds.dwData = 888888;
-//      cds.cbData = (u32)strlen(psz);
-//      cds.lpData = (PVOID)psz;
-//
-//      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
-//#else
-//      throw ::exception(todo);
-//#endif
-//   }
+   //
+   //
+   //   i32 application::send_simple_command(const ::string & psz, void* osdataSender)
+   //   {
+   //      string strApp;
+   //      string_array stra;
+   //      stra.add_tokens(psz, "::", true);
+   //      if (stra.get_size() > 0)
+   //      {
+   //         strApp = stra[0];
+   //         ::windowing::window * pwindow = get_ca2_app_wnd(strApp);
+   //         if (oswindow != nullptr)
+   //         {
+   //            return send_simple_command((void*)oswindow, psz, osdataSender);
+   //         }
+   //      }
+   //      return -1;
+   //   }
+   //
+   ////
+   //   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
+   //   {
+   //#ifdef WINDOWS_DESKTOP
+   //      ::windowing::window * pwindow = (::oswindow) osdata;
+   //      if (!::IsWindow(oswindow))
+   //         return -1;
+   //      COPYDATASTRUCT cds;
+   //      memory_set(&cds, 0, sizeof(cds));
+   //      cds.dwData = 888888;
+   //      cds.cbData = (u32)strlen(psz);
+   //      cds.lpData = (PVOID)psz;
+   //
+   //      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
+   //#else
+   //      throw ::exception(todo);
+   //#endif
+   //   }
 
 
    void application::ensure_app_interest()
@@ -8040,7 +8049,7 @@ namespace aura
 
 #ifndef UNIVERSAL_WINDOWS
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -8064,15 +8073,15 @@ namespace aura
 
    }
 
-   
+
    bool application::is_system() const
    {
 
       return false;
 
    }
-   
-   
+
+
    bool application::is_session() const
    {
 
@@ -8159,12 +8168,12 @@ namespace aura
    //}
 
 
-//   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
-//   {
-//
-//      return __allocate ::aura::session();
-//
-//   }
+   //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
+   //   {
+   //
+   //      return __allocate ::aura::session();
+   //
+   //   }
 
 
    //void application::on_change_cur_sel(::user::tab* ptab)
@@ -8247,7 +8256,7 @@ namespace aura
 
             pframe->hide_and_then_destroy();
 
-//            _001TryCloseApplication();
+            //            _001TryCloseApplication();
 
          }
          else
@@ -8308,7 +8317,7 @@ namespace aura
    {
 
       //auto estatus =
-      
+
       __construct_new(m_ptheme);
 
       //if (!estatus)
@@ -8321,8 +8330,8 @@ namespace aura
       if (m_bContextTheme)
       {
 
-         //estatus = 
-         
+         //estatus =
+
          m_ptheme->initialize_contextualized_theme();
 
          //if (!estatus)
@@ -8425,122 +8434,122 @@ namespace aura
    //   }
 
 
-      void application::handle(::topic * ptopic, ::context * pcontext)
+   void application::handle(::topic * ptopic, ::context * pcontext)
+   {
+
+      //::aqua::application::handle(ptopic, pcontext);
+
+      //::user::form_callback::handle(ptopic, pcontext);
+
+      if(ptopic->m_atom == id_app_activated)
       {
 
-         //::aqua::application::handle(ptopic, pcontext);
-
-         //::user::form_callback::handle(ptopic, pcontext);
-
-         if(ptopic->m_atom == id_app_activated)
-         {
-            
-            if(m_puserinteractionMain)
-            {
-               
-               m_puserinteractionMain->on_app_activated();
-               //m_puserinteractionMain->frame_toggle_restore();
-               
-            }
-            
-         }
-         else if (ptopic->m_atom == id_application_dark_mode_change)
+         if(m_puserinteractionMain)
          {
 
-            if (m_puserinteractionaFrame)
-            {
-               for (auto & pinteraction : m_puserinteractionaFrame->interactiona())
-               {
-
-                  pinteraction->set_need_redraw();
-
-                  pinteraction->post_redraw();
-
-               }
-            }
+            m_puserinteractionMain->on_app_activated();
+            //m_puserinteractionMain->frame_toggle_restore();
 
          }
-
-         if (ptopic->m_atom == ::id_initialize_control)
-         {
-
-            ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
-
-            if (puserinteraction->m_atom == "user_auto_start_checkbox")
-            {
-
-               try
-               {
-                  ::pointer<::user::check> pcheck = puserinteraction;
-
-                  if (pcheck.is_set())
-                  {
-
-                     // auto pcontext = get_context();
-
-                     pcheck->set_check(
-                        node()->is_user_auto_start(get_executable_appid()),
-                        ::e_source_initialize);
-
-                     ::pointer < ::user::interaction > puserinteractionCheck = pcheck;
-
-                     if (puserinteractionCheck)
-                     {
-
-                        puserinteractionCheck->add_handler(this);
-
-                     }
-
-                  }
-               }
-               catch (...)
-               {
-
-               }
-
-            }
-
-         }
-         else if (ptopic->m_atom == ::id_set_check)
-         {
-
-            auto puserinteraction = ptopic->user_interaction();
-
-            if (puserinteraction->m_atom == "user_auto_start_checkbox"
-               && ptopic->m_actioncontext.is_user_source())
-            {
-
-               try
-               {
-
-                  ::pointer<::user::check>pcheck = puserinteraction;
-
-                  if (pcheck.is_set())
-                  {
-
-                     node()->register_user_auto_start(
-                        this,
-                        "--auto_start=1",
-                        pcheck->echeck() == ::e_check_checked);
-
-                  }
-
-                  ptopic->m_bRet = true;
-
-                  return;
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
-
-         }
-
 
       }
+      else if (ptopic->m_atom == id_application_dark_mode_change)
+      {
+
+         if (m_puserinteractionaFrame)
+         {
+            for (auto & pinteraction : m_puserinteractionaFrame->interactiona())
+            {
+
+               pinteraction->set_need_redraw();
+
+               pinteraction->post_redraw();
+
+            }
+         }
+
+      }
+
+      if (ptopic->m_atom == ::id_initialize_control)
+      {
+
+         ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
+
+         if (puserinteraction->m_atom == "user_auto_start_checkbox")
+         {
+
+            try
+            {
+               ::pointer<::user::check> pcheck = puserinteraction;
+
+               if (pcheck.is_set())
+               {
+
+                  // auto pcontext = get_context();
+
+                  pcheck->set_check(
+                     node()->is_user_auto_start(get_executable_appid()),
+                     ::e_source_initialize);
+
+                  ::pointer < ::user::interaction > puserinteractionCheck = pcheck;
+
+                  if (puserinteractionCheck)
+                  {
+
+                     puserinteractionCheck->add_handler(this);
+
+                  }
+
+               }
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+      else if (ptopic->m_atom == ::id_set_check)
+      {
+
+         auto puserinteraction = ptopic->user_interaction();
+
+         if (puserinteraction->m_atom == "user_auto_start_checkbox"
+            && ptopic->m_actioncontext.is_user_source())
+         {
+
+            try
+            {
+
+               ::pointer<::user::check>pcheck = puserinteraction;
+
+               if (pcheck.is_set())
+               {
+
+                  node()->register_user_auto_start(
+                     this,
+                     "--auto_start=1",
+                     pcheck->echeck() == ::e_check_checked);
+
+               }
+
+               ptopic->m_bRet = true;
+
+               return;
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+
+   }
 
 
    //void application::process_init()
@@ -8728,69 +8737,69 @@ namespace aura
    void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
-     if (lCount <= 0)
-     {
+      if (lCount <= 0)
+      {
 
-        ::pointer<::user::interaction>pinteraction;
+         ::pointer<::user::interaction>pinteraction;
 
-        while (get_frame(pinteraction))
-        {
-           //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-           bool bOk = false;
-           try
-           {
+         while (get_frame(pinteraction))
+         {
+            //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
+            bool bOk = false;
+            try
+            {
 
-              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::e_layout_sketch);
-           }
-           catch (...)
-           {
-           }
-           if (!bOk)
-           {
-              //   try
-              //   {
-              //      papp->erase_frame(pinteraction);
-              //   }
-              //   catch(...)
-              //   {
-              //   }
-              //   try
-              //   {
-              //      psession->erase_frame(pinteraction);
-              //   }
-              //   catch(...)
-              //   {
-              //   }
-              //   try
-              //   {
-              //      psystem->erase_frame(pinteraction);
-              //   }
-              //   catch(...)
-              //   {
-              //   }
-           }
-           else
-           {
-              //               synchronouslock.unlock();
-              try
-              {
-                 pinteraction->send_message(e_message_idle_update_command_user_interface, (wparam)true);
-              }
-              catch (...)
-              {
+               bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::e_layout_sketch);
+            }
+            catch (...)
+            {
+            }
+            if (!bOk)
+            {
+               //   try
+               //   {
+               //      papp->erase_frame(pinteraction);
+               //   }
+               //   catch(...)
+               //   {
+               //   }
+               //   try
+               //   {
+               //      psession->erase_frame(pinteraction);
+               //   }
+               //   catch(...)
+               //   {
+               //   }
+               //   try
+               //   {
+               //      psystem->erase_frame(pinteraction);
+               //   }
+               //   catch(...)
+               //   {
+               //   }
+            }
+            else
+            {
+               //               synchronouslock.unlock();
+               try
+               {
+                  pinteraction->send_message(e_message_idle_update_command_user_interface, (wparam)true);
+               }
+               catch (...)
+               {
 
-              }
-              //             synchronouslock.lock();
-           }
-        }
+               }
+               //             synchronouslock.lock();
+            }
+         }
 
 
-     }
-     else if (lCount >= 0)
-     {
-     }
+      }
+      else if (lCount >= 0)
+      {
+      }
 
-     //return lCount < 0;  // nothing more to do if lCount >= 0
+      //return lCount < 0;  // nothing more to do if lCount >= 0
 
    }
 
@@ -8934,7 +8943,7 @@ namespace aura
 
       //string strBuild = file()->as_string(path);
       //string strBuild = "10.0.22000.0";
-       string strBuild = "10.0.22621.0";
+      string strBuild = "10.0.22621.0";
 
       //strBuild.trim();
 
@@ -8962,12 +8971,12 @@ namespace aura
 
    }
 
-   
+
    ::aura::game * application::game()
    {
-      
+
       return m_paquagame->m_pauragame;
-      
+
    }
 
 
@@ -9000,51 +9009,51 @@ namespace aura
    }
 
 
-//   icon_pointer application::load_icon(const ::payload& payloadFile)
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      string_array straMatter;
-//
-//      straMatter.add("main");
-//
-//      if (::is_set(get_app()))
-//      {
-//
-//         straMatter.add(get_app()->m_straMatterLocator);
-//
-//      }
-//
-//      hicon hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
-//
-//      if (hicon == nullptr)
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-//
-//      auto picon = __create_new < ::image::icon >();
-//
-//      if (!picon)
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-//
-//      picon->attach_os_data(hicon);
-//
-//      return picon;
-//
-//#else
-//
-//      return ::success;
-//
-//#endif
-//
-//   }
+   //   icon_pointer application::load_icon(const ::payload& payloadFile)
+   //   {
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      string_array straMatter;
+   //
+   //      straMatter.add("main");
+   //
+   //      if (::is_set(get_app()))
+   //      {
+   //
+   //         straMatter.add(get_app()->m_straMatterLocator);
+   //
+   //      }
+   //
+   //      hicon hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
+   //
+   //      if (hicon == nullptr)
+   //      {
+   //
+   //         return ::error_failed;
+   //
+   //      }
+   //
+   //      auto picon = __create_new < ::image::icon >();
+   //
+   //      if (!picon)
+   //      {
+   //
+   //         return ::error_failed;
+   //
+   //      }
+   //
+   //      picon->attach_os_data(hicon);
+   //
+   //      return picon;
+   //
+   //#else
+   //
+   //      return ::success;
+   //
+   //#endif
+   //
+   //   }
 
 
    //bool application::on_application_menu_action(const ::string & pszCommand)
@@ -9091,13 +9100,13 @@ namespace aura
    //}
 
 
-   ::aura::session* application::get_session()
-   {
-
-      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
-
+   // ::aura::session* application::get_session()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession : nullptr;
+   //
+   // }
+   //
 
    string application::draw2d_get_default_implementation_name()
    {
@@ -9149,7 +9158,7 @@ namespace aura
    ::user::user * application::aurauser()
    {
 
-      return session()->m_paurasession->user();
+      return session()->user();
 
    }
 
@@ -9194,99 +9203,85 @@ namespace aura
    //}
 
 
-void application::pick_browse(const ::function < void(const ::file::path &) > & callback)
-{
-   
-   auto puserinteraction = m_puserinteractionMain;
-   
-   if(!puserinteraction)
+   void application::pick_browse(const ::function < void(const ::file::path &) > & callback)
    {
-      
-      return;
-      
+
+      auto puserinteraction = m_puserinteractionMain;
+
+      if(!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      auto pwindow = puserinteraction->window();
+
+      if(!pwindow)
+      {
+
+         return;
+
+      }
+
+      pwindow->pick_browse(callback);
+
    }
-   
-   auto pwindow = puserinteraction->window();
-   
-   if(!pwindow)
-   {
-      
-      return;
-      
-   }
-   
-   pwindow->pick_browse(callback);
-   
-}
 
 
-void application::pick_media(const char *pszMediaType)
-{
-   
-   auto puserinteraction = m_puserinteractionMain;
-   
-   if(!puserinteraction)
+   void application::pick_media(const char *pszMediaType)
    {
-      
-      return;
-      
+
+      auto puserinteraction = m_puserinteractionMain;
+
+      if(!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      auto pwindow = puserinteraction->window();
+
+      if(!pwindow)
+      {
+
+         return;
+
+      }
+
+      pwindow->pick_media(pszMediaType);
+
    }
-   
-   auto pwindow = puserinteraction->window();
-   
-   if(!pwindow)
-   {
-      
-      return;
-      
-   }
-   
-   pwindow->pick_media(pszMediaType);
-   
-}
 
 
-void application::on_prompt_write_file(::user::controller *pusercontroller)
-{
-   
-   auto puserinteraction = m_puserinteractionMain;
-   
-   if(!puserinteraction)
+   void application::on_prompt_write_file(::user::controller *pusercontroller)
    {
-      
-      return;
-      
-   }
-   
-   auto pwindow = puserinteraction->window();
-   
-   if(!pwindow)
-   {
-      
-      return;
-      
-   }
-   
-   pwindow->on_prompt_write_file(pusercontroller);
-   
-}
 
-// ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
-// {
-//
-//    auto pwindowingicon = __create<windowing::icon>();
-//
-//    payload("windowing_icon") = pwindowingicon;
-//
-//    pwindowingicon->load_file("matter://main/icon.png");
-//
-//    return pwindowingicon->innate_ui_icon(size);
-//
-//
-// }
+      auto puserinteraction = m_puserinteractionMain;
+
+      if(!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      auto pwindow = puserinteraction->window();
+
+      if(!pwindow)
+      {
+
+         return;
+
+      }
+
+      pwindow->on_prompt_write_file(pusercontroller);
+
+   }
 
 
 } // namespace aura
 
 
-
+// ::pointer < ::innate_ui::icon > application::innate_ui

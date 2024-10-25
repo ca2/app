@@ -44,3 +44,14 @@ namespace file
 
 
 } // namespace file
+
+
+
+namespace filemanager
+{
+
+
+   class data;
+
+
+}

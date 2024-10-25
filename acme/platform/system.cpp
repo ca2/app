@@ -128,9 +128,16 @@ namespace platform
 {
 
 
+   ::platform::system * system::s_p = nullptr;
+
    system::system()
    {
 
+      if(!s_p)
+      {
+s_p = this;
+
+      }
       m_psystem = this;
       // m_papexsystem = nullptr;
       // m_paquasystem = nullptr;
@@ -2939,11 +2946,11 @@ namespace platform
       //
       //   pnode->_will_finish_launching();
 
-      //   auto pnode = session()->m_paurasession;
+      //   auto pnode = session();
       //
       //   auto puser = psession->user();
       //
-      //   auto pwindowing = puser->windowing();
+      //   auto pwindowing = system()->windowing();
       //
       //   pwindowing->_will_finish_launching();
 

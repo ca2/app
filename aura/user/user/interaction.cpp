@@ -1200,7 +1200,7 @@ namespace user
 
       //   auto puser = psession->user();
 
-      //   auto pwindowing = puser->windowing();
+      //   auto pwindowing = system()->windowing();
 
       //   return pwindowing;
 
@@ -3904,7 +3904,7 @@ namespace user
       try
       {
 
-         if (get_app() != nullptr && get_app()->get_session() != nullptr)
+         if (get_app() != nullptr && get_app()->session() != nullptr)
          {
 
             defer_release_mouse_capture();
@@ -7972,9 +7972,16 @@ namespace user
 
       auto psystem = system();
 
-      auto psignal = psystem->get_signal(id_user_style_change);
+      ::cast < ::manager > pmanager = psystem;
 
-      psignal->add_handler(this);
+      if(pmanager)
+      {
+
+         auto psignal = pmanager->get_signal(id_user_style_change);
+
+         psignal->add_handler(this);
+
+      }
 
       //on_create_user_interaction();
 
@@ -13764,14 +13771,14 @@ namespace user
 
       }
 
-      //auto psession = session()->m_paurasession;
+      //auto psession = session();
 
       //if (::is_set(psession))
       //{
 
       //   auto puser = psession->user();
 
-      //   auto pwindowing = puser->windowing();
+      //   auto pwindowing = system()->windowing();
 
       //   if (pwindowing)
       //   {
@@ -13784,7 +13791,7 @@ namespace user
       //         if (!(pmessage->m_uiMessageFlags & 2)) // message already pre translated
       //         {
 
-      //            auto paurasession = psession->m_paurasession;
+      //            auto paurasession = psession;
 
       //            paurasession->pre_translate_message(pmessage);
 
@@ -13974,7 +13981,7 @@ namespace user
       //
       //         auto puser = psession->user();
       //
-      //         auto pwindowing = puser->windowing();
+      //         auto pwindowing = system()->windowing();
       //
       //         ::pointer<::message::key>pkey = pmessage;
       //
@@ -16279,7 +16286,7 @@ namespace user
       //
       //      }
       //
-      //      auto pwindowing = puser->windowing();
+      //      auto pwindowing = system()->windowing();
       //
       //      if (::is_null(pwindowing))
       //      {
@@ -18006,7 +18013,7 @@ namespace user
          else
          {
 
-            auto paurasession = m_papplication->m_psession->m_paurasession;
+            auto paurasession = m_papplication->m_psession;
 
             auto puser = paurasession->m_puser;
 
@@ -20771,7 +20778,7 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = system()->windowing();
 
          auto pdisplay = pwindowing->display();
 
@@ -20989,7 +20996,7 @@ namespace user
 
       auto puser = user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -21077,7 +21084,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -21373,7 +21380,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -23106,19 +23113,19 @@ namespace user
       if (ptopic)
       {
 
-         if (ptopic->m_atom == ID_UPDATE)
+         if (ptopic->m_atom == id_update)
          {
 
             update_impact();
 
          }
-         else if (ptopic->m_atom == ID_INCOMING_DOCUMENT)
+         else if (ptopic->m_atom == id_incoming_document)
          {
 
             update_impact();
 
          }
-         else if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
+         else if (ptopic->m_atom == id_redraw || ptopic->m_atom == m_atom)
          {
 
             if (this->m_ewindowflag & ::e_window_flag_window_created)
@@ -24867,7 +24874,7 @@ namespace user
 
       ////   auto puser = psession->user();
 
-      ////   auto pwindowing = puser->windowing();
+      ////   auto pwindowing = system()->windowing();
 
       ////   pwindowing->release_mouse_capture();
 
@@ -25193,7 +25200,7 @@ namespace user
 
       //   //   auto puser = psession->user();
 
-      //   //   auto pwindowing = puser->windowing();
+      //   //   auto pwindowing = system()->windowing();
 
       //   //   auto pcursor = pwindowing->get_cursor(e_cursor_move);
 
@@ -25759,7 +25766,7 @@ namespace user
 
       //   auto puser = psession->user();
 
-      //   auto pwindowing = puser->windowing();
+      //   auto pwindowing = system()->windowing();
 
       //   pwindowing->release_mouse_capture();
 
@@ -26207,7 +26214,7 @@ namespace user
 
          //   auto puser = psession->user();
 
-         //   auto pwindowing = puser->windowing();
+         //   auto pwindowing = system()->windowing();
 
          //   auto pcursor = pwindowing->get_cursor(e_cursor_move);
 
@@ -28179,7 +28186,7 @@ namespace user
    //void interaction::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
+   //   if (ptopic->m_atom == id_redraw || ptopic->m_atom == m_atom)
    //   {
 
    //      set_need_redraw();
@@ -29970,7 +29977,7 @@ namespace user
    ::aura::session * interaction::get_session()
    {
 
-      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
+      return m_papplication ? m_papplication->m_psession : nullptr;
 
    }
 

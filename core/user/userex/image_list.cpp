@@ -344,7 +344,7 @@ namespace userex
 
    //auto puser = psession->user();
 
-   //auto pwindowing = puser->windowing();
+   //auto pwindowing = system()->windowing();
 
    //pwindowing->release_capture();
 

@@ -2968,11 +2968,11 @@ namespace platform
       //
       //   pnode->_will_finish_launching();
 
-      //   auto pnode = session()->m_paurasession;
+      //   auto pnode = session();
       //
       //   auto puser = psession->user();
       //
-      //   auto pwindowing = puser->windowing();
+      //   auto pwindowing = system()->windowing();
       //
       //   pwindowing->_will_finish_launching();
 

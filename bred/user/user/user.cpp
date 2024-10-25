@@ -769,7 +769,7 @@ void user::destroy()
 //
 //         auto psession = get_session();
 //
-//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
+//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->savings().m_eresourceflagsShouldSave.m_eenum);
 //
 //      }
 //
@@ -1738,7 +1738,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_psession->m_paurasession;
+//      auto psession = pcontext->m_psession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //
@@ -1752,7 +1752,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_psession->m_paurasession;
+//      auto psession = pcontext->m_psession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //
@@ -1766,7 +1766,7 @@ void user::destroy()
 //
 //      auto pcontext = m_papplication;
 //
-//      auto psession = pcontext->m_psession->m_paurasession;
+//      auto psession = pcontext->m_psession;
 //
 //      auto puser = psession->m_puser->m_pcoreuser;
 //

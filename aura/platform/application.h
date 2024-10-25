@@ -16,7 +16,7 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
-      ///virtual public ::aura::context,
+      virtual public ::aura::context,
       virtual public ::filemanager::callback,
       virtual public ::user::form_handler
    {
@@ -207,10 +207,10 @@ namespace aura
       //inline ::image_context& image() { return *m_pimagecontext; }
 
 
-      virtual void verb() override;
+      //virtual void verb() override;
 
 
-      ::aura::session* get_session();
+      //::aura::session* get_session();
       //::aura::system* system();
 
 
@@ -837,7 +837,8 @@ namespace aura
       //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext);
-
+void initialize_context() override;
+         void initialize_context_1() override;
 
 
 //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);

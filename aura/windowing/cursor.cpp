@@ -123,7 +123,7 @@ namespace windowing
 
    //         auto puser = psession->user();
 
-   //         auto pwindowing = puser->windowing();
+   //         auto pwindowing = system()->windowing();
 
    //         if (pwindowing->load_cursor(pcursor, path, true, bFromCache))
    //         {

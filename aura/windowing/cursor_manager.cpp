@@ -186,7 +186,7 @@ namespace windowing
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing();
+         //auto pwindowing = system()->windowing();
 
          //if (!pwindowing->load_cursor(pcursor, path, true, bFromCache))
          //{
@@ -647,7 +647,7 @@ namespace windowing
    // ::aura::session* cursor_manager::get_session()
    // {
    //
-   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession : nullptr;
    //
    // }
 

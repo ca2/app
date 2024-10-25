@@ -251,17 +251,17 @@ namespace user
    {
 
       //if (get_session() == nullptr
-      //   || get_session()->m_paurasession == nullptr)
+      //   || get_session() == nullptr)
       //{
 
       //   return nullptr;
 
       //}
 
-      //if (get_session()->m_paurasession->m_puserinteractionHost)
+      //if (get_session()->m_puserinteractionHost)
       //{
 
-      //   return __user_interaction(get_session()->m_paurasession->m_puserinteractionHost);
+      //   return __user_interaction(get_session()->m_puserinteractionHost);
 
       //}
       //else

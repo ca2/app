@@ -12,7 +12,7 @@
 #define IDI_SMALL                       108
 #define IDC_WINDOWSPROJECT2             109
 #define IDR_MAINFRAME                   128
-#define ID_UPDATE                       1000
+#define id_update                       1000
 #define IDC_BUTTON1                     1002
 #define IDC_STATIC                      -1
 

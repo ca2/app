@@ -199,7 +199,7 @@ namespace experience
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = system()->windowing();
 
          pointCursor = pwindowing->get_cursor_position();
          ::rectangle_i32 rectangleX;

@@ -19,6 +19,15 @@ namespace platform
    {
    public:
 
+      //void initialize_context() override;
+
+      ///void initialize_context_1() override;
+
+      virtual void defer_initialize_context_image();
+
+      //void finalize() override;
+
+
 
    };
 

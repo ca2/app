@@ -889,7 +889,7 @@ namespace core
 
          auto psession = get_session();
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 

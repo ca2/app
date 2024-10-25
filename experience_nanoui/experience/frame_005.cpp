@@ -361,7 +361,7 @@ namespace experience_nanoui
       bool bZoomed = pframewindow->layout().is_zoomed();
 
       //    CVMSApp * pApp = (CVMSApp *) System;
-      //::aura::savings & savings = psession->m_paurasession->savings();
+      //::aura::savings & savings = psession->savings();
 
       //auto rectangleX = pframewindow->rectangle();
 
@@ -511,7 +511,7 @@ namespace experience_nanoui
 
          rectangleDraw = rectangle_i32_dimension(x, y, cx, 1);
 
-         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorTopLeft);
@@ -530,7 +530,7 @@ namespace experience_nanoui
 
          rectangleDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
-         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorTopLeft);
@@ -550,7 +550,7 @@ namespace experience_nanoui
 
          rectangleDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
-         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorBottomRight);
@@ -570,7 +570,7 @@ namespace experience_nanoui
 
          rectangleDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
-         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorBottomRight);

@@ -2673,3 +2673,11 @@ class game;
 
 
 class main_hold_base;
+
+struct platform_media_item_t;
+namespace aqua
+{
+
+class media_item;
+
+}

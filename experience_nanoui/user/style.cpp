@@ -1475,7 +1475,7 @@ namespace experience_nanoui
 
          auto psession = get_session();
 
-         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             colorBackground.set_opaque();
@@ -1558,7 +1558,7 @@ namespace experience_nanoui
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing();
+         //auto pwindowing = system()->windowing();
 
          //auto pointCursor = pwindowing->get_cursor_position();
 

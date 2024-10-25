@@ -43,7 +43,7 @@ bool html_document::on_new_document()
 
    }
 
-   update_all_impacts(nullptr, ID_INCOMING_DOCUMENT);
+   update_all_impacts(nullptr, id_incoming_document);
 
    return true;
 

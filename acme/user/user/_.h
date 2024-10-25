@@ -134,5 +134,13 @@ namespace acme
 
 
 
+namespace user
+{
+
+class main_frame;
+
+}
+
+
 
 class form_document;

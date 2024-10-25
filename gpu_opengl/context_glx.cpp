@@ -80,11 +80,11 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_synchronization());
 
-      auto psession = session()->m_paurasession;
+      auto psession = session();
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 
@@ -191,11 +191,11 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_synchronization());
 
-      auto psession = session()->m_paurasession;
+      auto psession = session();
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = system()->windowing();
 
       auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 

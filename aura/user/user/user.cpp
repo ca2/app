@@ -211,7 +211,7 @@ namespace user
    ::user::interaction * user::interaction(oswindow oswindow)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing =system()->windowing();
 
       if (::is_null(pwindowing))
       {
@@ -246,7 +246,7 @@ namespace user
    ::user::interaction * user::get_mouse_capture(::thread * pthread)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = system()->windowing();
 
       if (::is_null(pwindowing))
       {
@@ -281,7 +281,7 @@ namespace user
    ::user::interaction * user::get_keyboard_focus(::thread * pthread)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = system()->windowing();
 
       if (::is_null(pwindowing))
       {
@@ -316,7 +316,7 @@ namespace user
    ::user::interaction * user::get_active_window(::thread * pthread)
    {
 
-      auto pwindowing = windowing()
+      auto pwindowing = system()->windowing()
 
       ;if (::is_null(pwindowing))
       {
@@ -379,7 +379,7 @@ namespace user
    ::user::interaction * user::get_foreground_window()
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = system()->windowing();
 
       if (::is_null(pwindowing))
       {
@@ -682,7 +682,7 @@ namespace user
       try
       {
 
-         auto pwindowing = windowing();
+         auto pwindowing = system()->windowing();
 
          if(::is_set(pwindowing))
          {
@@ -808,7 +808,7 @@ namespace user
    void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       for (auto& papp : psession->m_applicationa)
       {
@@ -963,10 +963,10 @@ namespace aura
 {
 
 
-   void application::close(::apex::enum_end eend)
+   void application::close(::enum_exit eexit)
    {
 
-      if (eend == ::apex::e_end_close)
+      if (eexit == ::e_exit_close)
       {
 
          return;
@@ -987,7 +987,7 @@ namespace aura
 
       //}
 
-      if (eend == ::apex::e_end_app)
+      if (eexit == ::e_exit_application)
       {
 
          destroy();
@@ -996,13 +996,13 @@ namespace aura
 
       }
 
-      if (eend == ::apex::e_end_session)
+      if (eexit == ::e_exit_session)
       {
 
          try
          {
 
-            auto psession = get_session();
+            auto psession = session();
 
             if (psession)
             {
@@ -1021,7 +1021,7 @@ namespace aura
 
       }
 
-      if (eend == ::apex::e_end_system)
+      if (eexit == ::e_exit_system)
       {
 
          try
@@ -1464,7 +1464,7 @@ namespace user
       if (pmouse->m_pointAbsolute == pmouse->m_pointDesired)
       {
 
-         auto psession = get_session();
+         auto psession = session();
 
          psession->m_pointCursor = pmouse->m_pointAbsolute;
 
@@ -1598,55 +1598,55 @@ namespace user
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
    
-   ::windowing::windowing* user::windowing()
-   {
+   // ::windowing::windowing* user::windowing()
+   // {
+   //
+   //    auto pwindowing = system()->windowing();
+   //
+   //    if (pwindowing)
+   //    {
+   //
+   //       if (!pwindowing->m_puser)
+   //       {
+   //
+   //          pwindowing->initialize_windowing(this);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return pwindowing;
+   //
+   //    //if (::is_null(windowing()))
+   //    //{
+   //
+   //    //   system()->do_graphics_and_windowing_system_factory();
+   //
+   //    //   __construct(windowing());
+   //
+   //    //   windowing()->initialize_windowing(this);
+   //
+   //    //}
+   //
+   //    return windowing();
+   //
+   // }
 
-      auto pwindowing = system()->windowing();
 
-      if (pwindowing)
-      {
-
-         if (!pwindowing->m_puser)
-         {
-
-            pwindowing->initialize_windowing(this);
-
-         }
-
-      }
-
-      return pwindowing;
-
-      //if (::is_null(windowing()))
-      //{
-
-      //   system()->do_graphics_and_windowing_system_factory();
-
-      //   __construct(windowing());
-
-      //   windowing()->initialize_windowing(this);
-
-      //}
-
-      return windowing();
-
-   }
-
-
-   ::aura::application * user::get_app()
-   {
-
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
-
-   }
-
-   
-   ::aura::session * user::get_session()
-   {
-
-      return m_papplication ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
+   // ::aura::application * user::get_app()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session * user::get_session()
+   // {
+   //
+   //    return m_papplication ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
 
    ::windowing::desktop_environment * user::desktop_environment()
@@ -1742,7 +1742,7 @@ CLASS_DECL_AURA ::particle * user_synchronization()
 
    }
 
-   auto paurasession = psession->m_paurasession;
+   auto paurasession = psession;
 
    if (::is_null(paurasession))
    {

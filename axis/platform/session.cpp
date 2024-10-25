@@ -991,10 +991,10 @@ namespace axis
    //   if (is_remote_session())
    //   {
 
-   //      //psession->m_paurasession->savings().save(::e_resource_display_bandwidth);
-   //      //psession->m_paurasession->savings().save(::e_resource_blur_background);
-   //      //psession->m_paurasession->savings().save(::e_resource_blurred_text_embossing);
-   //      //psession->m_paurasession->savings().save(::e_resource_translucent_background);
+   //      //psession->savings().save(::e_resource_display_bandwidth);
+   //      //psession->savings().save(::e_resource_blur_background);
+   //      //psession->savings().save(::e_resource_blurred_text_embossing);
+   //      //psession->savings().save(::e_resource_translucent_background);
 
    //   }
 

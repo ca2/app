@@ -540,7 +540,7 @@ namespace freedesktop
 //
 //      auto puser = user();
 //
-//      auto pwindowing = puser->windowing();
+//      auto pwindowing = system()->windowing();
 //
 //      if(!pwindowing)
 //      {

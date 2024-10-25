@@ -2577,8 +2577,8 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
    }
 
-   if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
-      || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
+   if (psession->savings().is_trying_to_save(::e_resource_processing)
+      || psession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
       auto rectangleX = this->rectangle();
@@ -2912,14 +2912,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       auto psession = get_session();
 
-      if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
+      if (psession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
 
       }
-      else if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
-         || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
+      else if (psession->savings().is_trying_to_save(::e_resource_processing)
+         || psession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
          pgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
@@ -3971,7 +3971,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 
    auto psession = get_session();
 
-   if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+   if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -4112,8 +4112,8 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
 //   {
-//      return !psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
-//             && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth);
+//      return !psession->savings().is_trying_to_save(::e_resource_processing)
+//             && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
 //   }
 //   else
 //   {

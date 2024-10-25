@@ -295,11 +295,11 @@ namespace experience
    //   if (m_eframeSizing != e_frame_none)
    //   {
 
-   //      auto psession = session()->m_paurasession;
+   //      auto psession = session();
 
    //      auto puser = psession->user();
 
-   //      auto pwindowing = puser->windowing();
+   //      auto pwindowing = system()->windowing();
 
    //      auto ecursor = translate(m_eframeSizing);
 
@@ -340,11 +340,11 @@ namespace experience
 
    //      auto ecursor = translate(m_eframeCursor);
 
-   //      auto psession = session()->m_paurasession;
+   //      auto psession = session();
 
    //      auto puser = psession->user();
 
-   //      auto pwindowing = puser->windowing();
+   //      auto pwindowing = system()->windowing();
 
    //      auto pcursor = pwindowing->get_cursor(ecursor);
 

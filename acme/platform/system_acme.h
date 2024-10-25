@@ -236,11 +236,11 @@ namespace platform
 
       virtual ::xml::xml * xml();
 
-      virtual ::file_system * file_system() const;
+      virtual ::file_system * file_system();
 
-      virtual ::directory_system * directory_system() const;
+      virtual ::directory_system * directory_system();
 
-      virtual ::path_system * path_system() const;
+      virtual ::path_system * path_system();
 
       virtual ::platform::system_factory * system_factory();
 

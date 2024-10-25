@@ -46,7 +46,7 @@ namespace experience_nanoui
 
             auto puser = psession->user();
 
-            auto pwindowing = puser->windowing();
+            auto pwindowing = system()->windowing();
 
             pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
 

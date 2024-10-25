@@ -80,7 +80,7 @@ namespace filemanager
 
          ::file::path filepathFinal = m_foldera.GetFolder((::collection::index)iItem).m_strFolderPath;
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          ::file::path filepathUser = m_papplication->defer_process_matter_path(filepathFinal);
 

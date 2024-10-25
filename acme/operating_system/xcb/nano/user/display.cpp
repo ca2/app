@@ -1167,7 +1167,7 @@ namespace xcb
             //
             //         pwindowing->m_bFirstWindowMap = true;
             //
-            //         auto psystem = system()->m_paurasystem;
+            //         auto psystem = system();
             //
             //         auto pnode = psystem->node();
             //

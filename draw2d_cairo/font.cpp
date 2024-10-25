@@ -174,7 +174,7 @@ namespace draw2d_cairo
       if (m_path.has_char())
       {
 
-         ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->m_paurasystem->draw2d();
+         ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->draw2d();
 
          auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_papplication, m_path);
 

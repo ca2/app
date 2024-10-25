@@ -99,8 +99,8 @@ namespace aura
 
 
 
-      ::aura::session* get_session();
-      ::aura::node* node();
+      //::aura::session* get_session();
+      //::aura::node* node();
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };

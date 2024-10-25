@@ -107,7 +107,7 @@ namespace axis
 
       //m_pimplPendingFocus2             = nullptr;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       if (psystem != nullptr)
       {
@@ -1268,7 +1268,7 @@ namespace axis
 //
 //      }
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       puser->m_pathFolder = directory()->appdata() / "profile" / puser->m_strLogin;
 

@@ -44,7 +44,7 @@ namespace draw2d
        if(::is_set(psystem))
        {
            
-           auto paurasystem = psystem->m_paurasystem;
+           auto paurasystem = psystem;
            
            if(::is_set(paurasystem))
            {
@@ -89,7 +89,7 @@ namespace draw2d
       if (system())
       {
 
-         system()->m_paurasystem->draw2d()->add_object(this);
+         system()->draw2d()->add_object(this);
 
       }
 

@@ -74,7 +74,7 @@ void context_fbo::run()
       this->post_procedure([this, size]()
                  {
          
-         auto pgpu = system()->m_paurasystem->get_gpu();
+         auto pgpu = system()->get_gpu();
          
          ::pointer<opengl>popengl = pgpu;
          

@@ -14,7 +14,8 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::platform::system,
-      virtual public ::platform::context
+      virtual public ::task
+      //virtual public ::platform::context
    {
    public:
 
@@ -67,7 +68,7 @@ namespace apex
       ~system() override;
 
 
-      void on_set_platform() override;
+      //void on_set_platform() override;
 
 
       void common_construct();
@@ -162,15 +163,15 @@ namespace apex
 
       //void post_request(::request* prequest);
 
-      virtual void initialize_context() override;
+      //virtual void initialize_context() override;
 
 
       virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
 
-      virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
+      //virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
 
-      virtual bool is_system() const override;
+      //virtual bool is_system() const override;
 
 
       virtual string crypto_md5_text(const ::string & str);
@@ -363,7 +364,7 @@ namespace apex
 
 
 
-      DECLARE_MESSAGE_HANDLER(on_application_signal);
+      //DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
       void set_history(::apex::history* phistory);

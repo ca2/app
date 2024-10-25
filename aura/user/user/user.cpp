@@ -539,7 +539,7 @@ namespace user
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -1027,7 +1027,7 @@ namespace aura
          try
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             if (psystem)
             {
@@ -1557,7 +1557,7 @@ namespace user
 
    //      debugf("aura::user::create_windowing (2.2)\n");
 
-   //      auto paurasystem = psystem->m_paurasystem;
+   //      auto paurasystem = psystem;
 
    //      pauranode->m_pwindowingAuraNode = windowing();
 
@@ -1636,7 +1636,7 @@ namespace user
    ::aura::application * user::get_app()
    {
 
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
 
    }
 

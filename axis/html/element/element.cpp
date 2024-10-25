@@ -1004,7 +1004,7 @@ namespace html
 
             }
 
-            auto pcontext = get_context();
+            // auto pcontext = get_context();
 
             ::string str = file()->as_string(strUrl);
 
@@ -1054,7 +1054,7 @@ namespace html
             
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
 
-            auto pcontext = get_context();
+            // auto pcontext = get_context();
 
             string str = file()->as_string(m_pparent->get_tag()->get_attr_value("href"));
 

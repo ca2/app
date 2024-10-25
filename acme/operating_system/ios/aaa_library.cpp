@@ -91,7 +91,7 @@ namespace platform
 
       strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
       
-      path = ::file::path(psystem->m_pacmedirectory->module()).folder() / strPath;
+      path = ::file::path(psystem->m_pdirectorysystem->module()).folder() / strPath;
 
       plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

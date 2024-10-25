@@ -109,7 +109,7 @@ namespace hi5
 
          ::pointer<::request>prequest(e_create, this);
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
          prequest->m_puserelementParent = psystem->cast < ::user::interaction >("top_parent");
@@ -174,7 +174,7 @@ namespace hi5
 
          property_set & setDoc = m_pformdocumentAuth->form_document_property_set();
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          setDoc["application_name"] = http()->get(strUrl,set);
 
@@ -258,7 +258,7 @@ namespace hi5
 
          m_pformdocumentAuth->get_form_data()->m_pimpl->get_property_set() = set;
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          m_pformdocumentAuth->on_open_document(directory()->matter(pszMatter));
          display_main_frame();

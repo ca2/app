@@ -74,7 +74,7 @@ namespace user
       void format::initialize_user_rich_text_format(::user::rich_text::format_host * pformathost)
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pnode = psystem->node();
 

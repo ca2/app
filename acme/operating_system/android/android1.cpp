@@ -10,7 +10,7 @@
 
    auto psystem = this->platform()->system();
 
-   return psystem->m_pacmedirectory->module();
+   return psystem->m_pdirectorysystem->module();
 
 }
 

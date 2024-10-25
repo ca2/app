@@ -49,7 +49,7 @@ namespace app_net
 
       __construct(m_pfont);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pnode = psystem->node();
 

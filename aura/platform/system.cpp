@@ -293,7 +293,7 @@ namespace aura
 
       //}
 
-      //papexsession->m_paurasystem = this;
+      //papexsession = this;
 
    }
 
@@ -895,7 +895,7 @@ namespace aura
 //
 //                           auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->create("/ca2core");
 //
@@ -994,7 +994,7 @@ namespace aura
 
       //}
 
-      //if(!__construct(m_pdirsystem))
+      //if(!__construct(m_pdirectorysystem))
       //{
 
       //   error() <<"failed to initialize dir-system";
@@ -1016,7 +1016,7 @@ namespace aura
 
       //}
 
-      //estatus = m_pdirsystem->init_system();
+      //estatus = m_pdirectorysystem->init_system();
 
       //if (!estatus)
       //{
@@ -1187,7 +1187,7 @@ namespace aura
 
       string strImplementationName;
 
-      strImplementationName = application()->m_pauraapplication->draw2d_get_default_implementation_name();
+      strImplementationName = application()->draw2d_get_default_implementation_name();
 
       if (strImplementationName.has_char())
       {
@@ -1730,11 +1730,11 @@ namespace aura
       //
       //         bool bFileSystemMatter =          auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->is(pathSide) ||          auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->is(pathLocal);
       //
@@ -1748,7 +1748,7 @@ namespace aura
       //
       //      }
       //
-      //      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+      //      m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
       //
       //      //estatus = create_html();
       //
@@ -1952,7 +1952,7 @@ namespace aura
       //try
       //{
 
-      //   auto psystem = system()->m_paurasystem;
+      //   auto psystem = system();
 
       //   synchronous_lock synchronouslock(m_pmutexLibrary2);
 
@@ -2546,7 +2546,7 @@ namespace aura
 //
 //            auto plauncher = __create_new<::apex::shell_launcher>();
 //
-//            auto pcontext = get_context();
+//            // auto pcontext = get_context();
 //            
 //            plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 //
@@ -2582,7 +2582,7 @@ namespace aura
 //#else
 //            auto plauncher = __create_new<::apex::shell_launcher>();
 //
-//            auto pcontext = get_context();
+//            // auto pcontext = get_context();
 //
 //            plauncher->setup(nullptr,nullptr,directory()->module()/strApp,nullptr,nullptr, e_display_normal);
 //
@@ -2624,7 +2624,7 @@ namespace aura
 //
 //            auto plauncher = __create_new<::apex::shell_launcher>();
 //
-//            auto pcontext = get_context();
+//            // auto pcontext = get_context();
 //
 //            plauncher->setup(nullptr,nullptr, directory()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
@@ -2660,7 +2660,7 @@ namespace aura
 //
 //            auto plauncher = __create_new<::apex::shell_launcher>();
 //
-//            auto pcontext = get_context();
+//            // auto pcontext = get_context();
 //
 //            plauncher->setup(nullptr,nullptr, directory()->ca2module() / strApp,strParameters,nullptr, e_display_normal);
 //
@@ -4243,7 +4243,7 @@ namespace aura
 //
 //            strParam += " " + file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -4261,7 +4261,7 @@ namespace aura
 //
 //         string strChrome = file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -4290,7 +4290,7 @@ namespace aura
 //
 //         strParam += " " + file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -6865,10 +6865,10 @@ namespace aura
 //   {
 //
 //      if (::is_null(application())
-//         || ::is_null(application()->m_pauraapplication)
-//         || ::is_null(application()->m_pauraapplication->get_session())
-//         || ::is_null(application()->m_pauraapplication->get_session()->user())
-//         || ::is_null(application()->m_pauraapplication->get_session()->user()->windowing())
+//         || ::is_null(application())
+//         || ::is_null(application()->get_session())
+//         || ::is_null(application()->get_session()->user())
+//         || ::is_null(application()->get_session()->user()->windowing())
 //         )
 //      {
 //
@@ -6876,7 +6876,7 @@ namespace aura
 //
 //      }
 //
-//      auto pwindowing = application()->m_pauraapplication->get_session()->user()->windowing();
+//      auto pwindowing = application()->get_session()->user()->windowing();
 //
 //      pwindowing->windowing_send(procedure);
 //
@@ -6887,10 +6887,10 @@ namespace aura
 //   {
 //
 //      if(::is_null(application())
-//         || ::is_null(application()->m_pauraapplication)
-//            || ::is_null(application()->m_pauraapplication->get_session())
-//               || ::is_null(application()->m_pauraapplication->get_session()->user())
-//                  || ::is_null(application()->m_pauraapplication->get_session()->user()->windowing())
+//         || ::is_null(application())
+//            || ::is_null(application()->get_session())
+//               || ::is_null(application()->get_session()->user())
+//                  || ::is_null(application()->get_session()->user()->windowing())
 //               )
 //      {
 //
@@ -6898,7 +6898,7 @@ namespace aura
 //
 //      }
 //
-//      auto pwindowing = application()->m_pauraapplication->get_session()->user()->windowing();
+//      auto pwindowing = application()->get_session()->user()->windowing();
 //
 //      pwindowing->windowing_post(procedure);
 //

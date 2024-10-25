@@ -12,7 +12,7 @@ namespace draw2d
       m_pmatter(pmatter)
    {
 
-      m_pmatter->system()->m_paurasystem->m_pdraw2d->lock_device();
+      m_pmatter->system()->m_pdraw2d->lock_device();
 
    }
 
@@ -20,7 +20,7 @@ namespace draw2d
    device_lock::~device_lock()
    {
 
-      m_pmatter->system()->m_paurasystem->m_pdraw2d->unlock_device();
+      m_pmatter->system()->m_pdraw2d->unlock_device();
 
    }
 

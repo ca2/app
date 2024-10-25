@@ -67,7 +67,7 @@ namespace browser
 
                   auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - needs include shlobj.h
 

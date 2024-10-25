@@ -190,7 +190,7 @@ namespace user
    ::aura::application * shell::get_app()
    {
 
-      return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return m_papplication ? m_papplication->m_papplication : nullptr;
 
    }
 
@@ -206,7 +206,7 @@ namespace user
    //::aura::system * shellacmesystem()
    //{
 
-   //   return system() ? system()->m_paurasystem : nullptr;
+   //   return system() ? system() : nullptr;
 
    //}
 
@@ -1244,7 +1244,7 @@ namespace user
       else
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pnode = psystem->node();
          
@@ -1474,7 +1474,7 @@ namespace user
    bool shell::defer_get_file_image_by_file_type_image(_get_file_image_ & getfileimage)
    {
    
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
       
       auto pnode = psystem->node();
       
@@ -1604,7 +1604,7 @@ namespace user
    bool shell::defer_get_file_image_by_file_image(_get_file_image_ & getfileimage)
    {
       
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
       
       auto pnode = psystem->node();
       

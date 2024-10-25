@@ -20,10 +20,13 @@ namespace aqua
    system::system()
    {
 
-      m_paquasystem = this;
+      //m_paquasystem = this;
       //set_layer(LAYERED_AQUA, this);
 
       common_construct();
+
+      factory()->add_factory_item < ::aqua::session, ::apex::session >();
+
 
    }
 
@@ -45,14 +48,13 @@ namespace aqua
    }
 
 
-   void system::on_set_platform()
-   {
-
-      ::apex::system::on_set_platform();
-
-      factory()->add_factory_item < ::aqua::session, ::apex::session >();
-
-   }
+   // void system::on_set_platform()
+   // {
+   //
+   //    ::apex::system::on_set_platform();
+   //
+   //
+   // }
 
 
    void system::on_initialize_particle()

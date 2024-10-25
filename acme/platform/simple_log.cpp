@@ -147,7 +147,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //      g_iMemoryCounters = file_system()->exists(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
 //
@@ -180,7 +180,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //      string strBasePath =          auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "memory_counters";
 //
@@ -190,7 +190,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //      string strBasePath =          auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "memory_counters" / strModule.title() / as_string(getpid());
 //

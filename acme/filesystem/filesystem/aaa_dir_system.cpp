@@ -39,7 +39,7 @@ void directory_system::initialize(::particle * pparticle)
 
    //auto psystem = system();
 
-   //m_pathModule = psystem->m_pacmedirectory->module();
+   //m_pathModule = psystem->m_pdirectorysystem->module();
 
    //return true;
 

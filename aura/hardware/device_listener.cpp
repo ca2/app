@@ -26,7 +26,7 @@ namespace hardware
    void device_listener::register_device_listener(enum_device edevice)
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       psystem->defer_initialize_hardware_devices();
 
@@ -45,7 +45,7 @@ namespace hardware
    void device_listener::unregister_device_listener(enum_device edevice)
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto phardwaredevices = psystem->hardware_devices();
 

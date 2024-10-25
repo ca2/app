@@ -594,7 +594,7 @@ void draw2d::emboss_predicate(
 
       pimage->get_graphics()->offset_origin(-rectangleCache.left() + rectangle.left(), -rectangleCache.top() + rectangle.top());
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       pimageBlur->create(size);
 

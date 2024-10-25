@@ -806,7 +806,7 @@ namespace apex
 
                            auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->create("/ca2core");
 
@@ -1038,9 +1038,9 @@ pacmedirectory->create("/ca2core");
       //    if (bMatterFromResource)
       //    {
       //
-      //       m_pdirsystem->m_bMatterFromHttpCache = false;
+      //       m_pdirectorysystem->m_bMatterFromHttpCache = false;
       //
-      //       m_pdirsystem->m_bMatterFromResource = true;
+      //       m_pdirectorysystem->m_bMatterFromResource = true;
       //
       //    }
       //    else
@@ -1053,7 +1053,7 @@ pacmedirectory->create("/ca2core");
       //
       //          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
-      //          bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+      //          bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
       //
       //          bMatterFromHttpCache = !bFileSystemMatter;
       //
@@ -1065,9 +1065,9 @@ pacmedirectory->create("/ca2core");
       //
       //       }
       //
-      //       m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+      //       m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
       //
-      //       m_pdirsystem->m_bMatterFromResource = false;
+      //       m_pdirectorysystem->m_bMatterFromResource = false;
       //
       //    }
       //

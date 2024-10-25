@@ -1013,7 +1013,7 @@ bool directory_context::is(const ::file::path& pathParam)
    if (pathParam.case_insensitive_begins("appmatter://"))
    {
 
-      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.substr(12);
+      path = psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / path.substr(12);
 
    }
    else
@@ -1672,7 +1672,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathInstall;
+   return psystem->m_pdirectorysystem->m_pathInstall;
 
 }
 
@@ -1684,7 +1684,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathCa2Config;
+   return psystem->m_pdirectorysystem->m_pathCa2Config;
 
 }
 
@@ -1696,7 +1696,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
    auto psystem = system();
 
-   return psystem->m_pdirsystem->m_pathHome;
+   return psystem->m_pdirectorysystem->m_pathHome;
 
 }
 
@@ -1732,7 +1732,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //   auto psystem = system();
 //
-//   return psystem->m_pdirsystem->m_pathCa2Module;
+//   return psystem->m_pdirectorysystem->m_pathCa2Module;
 //
 //}
 
@@ -1850,7 +1850,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    string strDir = matter(path);
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
    {
 
       string strMatter = strDir;
@@ -1947,7 +1947,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
       }
 
    }
-   else if (psystem->m_pdirsystem->m_bMatterFromResource)
+   else if (psystem->m_pdirectorysystem->m_bMatterFromResource)
    {
 
       auto pfolder = file()->resource_folder();
@@ -1996,7 +1996,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //
 //   auto psystem = system();
 //
-//   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+//   if (psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
 //   {
 //
 //      property_set set;
@@ -2093,17 +2093,17 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    auto psystem = system();
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
    {
 
-      if (psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
+      if (psystem->m_pdirectorysystem->m_pathLocalAppMatterCacheFolder.has_char())
       {
 
          ::file::path pathLs0 = straMatterLocator.first();
 
          pathLs0 /= m_papplication->get_locale_schema_dir();
 
-         pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
+         pathCache = psystem->m_pdirectorysystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
          information() << "cache map path: " << pathCache;
 
@@ -2140,7 +2140,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
             if (strFinal.case_insensitive_begins("appmatter://"))
             {
 
-               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.substr(12);
+               strFinal = psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / strFinal.substr(12);
 
             }
 
@@ -2180,7 +2180,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    //}
 
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
    {
 
       string_array stra;
@@ -2291,7 +2291,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
          if (bDir)
          {
 
-            directory_system()->create(psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            directory_system()->create(psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / strMatter);
 
          }
 
@@ -2300,7 +2300,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
       }
 
    }
-   else if (psystem->m_pdirsystem->m_bMatterFromResource)
+   else if (psystem->m_pdirectorysystem->m_bMatterFromResource)
    {
 
       string strMatter;
@@ -2346,7 +2346,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter = strLs / pathItem;
 
-            path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+            path = psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / strMatter;
 
             auto etype = path_system()->get_type(path);
 
@@ -2371,7 +2371,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
 ret:
 
-   if (pathCache.has_char() && psystem->m_pdirsystem->m_bMatterFromHttpCache)
+   if (pathCache.has_char() && psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
    {
 
       string strPath;
@@ -2387,7 +2387,7 @@ ret:
 
       file()->put_text(pathCache, strPath);
 
-      //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      //::file::path pathCache2 = psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / path;
 
       //if ((path & ::file::e_flag_get_local_path)
       //   || (!(path & ::file::e_flag_bypass_cache) && path_system()->is_file_or_dir(pathCache, nullptr)))
@@ -2836,7 +2836,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 
    auto psystem = system();
 
-   return *psystem->m_pdirsystem->m_pfilewatcher;
+   return *psystem->m_pdirectorysystem->m_pfilewatcher;
 
 }
 

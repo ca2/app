@@ -31,7 +31,7 @@ namespace universal_windows
 
       }
 
-      __refer(m_pdirsystem, ::apexacmesystem()->m_pdirsystem);
+      __refer(m_pdirectorysystem, ::apexacmesystem()->m_pdirectorysystem);
 
       __refer(m_pfilesystem, ::apexacmesystem()->m_pfilesystem);
 
@@ -56,7 +56,7 @@ namespace universal_windows
 
       string strCa2Module = ca2module();
 
-      m_pdirsystem->m_strCa2 = strCa2Module;
+      m_pdirectorysystem->m_strCa2 = strCa2Module;
 
       //#if !defined(CUBE) && !defined(ANDROID)
       //
@@ -72,46 +72,46 @@ namespace universal_windows
       //if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       //{
 
-      //   m_pdirsystem->m_strTimeFolder = pdocument->root()->get_child_value("time");
+      //   m_pdirectorysystem->m_strTimeFolder = pdocument->root()->get_child_value("time");
 
-      //   m_pdirsystem->m_strNetSeedFolder = pdocument->root()->get_child_value("netseed");
+      //   m_pdirectorysystem->m_strNetSeedFolder = pdocument->root()->get_child_value("netseed");
 
       //}
 
-      if (m_pdirsystem->m_strTimeFolder.is_empty())
+      if (m_pdirectorysystem->m_strTimeFolder.is_empty())
       {
 
-         m_pdirsystem->m_strTimeFolder = appdata() / "time";
+         m_pdirectorysystem->m_strTimeFolder = appdata() / "time";
 
       }
 
-      if (m_pdirsystem->m_strNetSeedFolder.is_empty())
+      if (m_pdirectorysystem->m_strNetSeedFolder.is_empty())
       {
 
-         m_pdirsystem->m_strNetSeedFolder = install() / "net";
+         m_pdirectorysystem->m_strNetSeedFolder = install() / "net";
 
       }
 
-      mk(m_pdirsystem->m_strTimeFolder);
+      mk(m_pdirectorysystem->m_strTimeFolder);
 
-      if (!is(m_pdirsystem->m_strTimeFolder))
+      if (!is(m_pdirectorysystem->m_strTimeFolder))
       {
 
          return false;
 
       }
 
-      mk(m_pdirsystem->m_strTimeFolder / "time");
+      mk(m_pdirectorysystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome =          auto psystem = system();
+      m_pdirectorysystem->m_pathHome =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->ca2roaming() / "home";
 
-      //nodeos_set_home(m_pdirsystem->m_pathHome);
+      //nodeos_set_home(m_pdirectorysystem->m_pathHome);
 
-      //nodeos_set_temp(m_pdirsystem->m_strTimeFolder / "time");
+      //nodeos_set_temp(m_pdirectorysystem->m_strTimeFolder / "time");
 
       return true;
 
@@ -387,7 +387,7 @@ pacmedirectory->ca2roaming() / "home";
 
    ::file::path directory_context::time()
    {
-      return m_pdirsystem->m_strTimeFolder;
+      return m_pdirectorysystem->m_strTimeFolder;
    }
 
    ::file::path directory_context::stage()
@@ -402,14 +402,14 @@ pacmedirectory->ca2roaming() / "home";
 
    ::file::path directory_context::netseed()
    {
-      return m_pdirsystem->m_strNetSeedFolder;
+      return m_pdirectorysystem->m_strNetSeedFolder;
    }
 
    // stage in ccwarehouse spalib
    ::file::path directory_context::install()
    {
 
-      return m_pdirsystem->m_strCa2;
+      return m_pdirectorysystem->m_strCa2;
 
    }
 

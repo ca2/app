@@ -90,7 +90,7 @@ namespace platform
 
 #endif
 
-      virtual void __task_init();
+      //virtual void __task_init();
 
 
       virtual class ::manager_room * manager_room();
@@ -98,28 +98,28 @@ namespace platform
       virtual ::platform::application * get_main_app();
 
 
-      virtual void init();
-
-      virtual void inline_init();
-      virtual void inline_term();
-
-
-      virtual void init_system();
-      virtual void term_system();
-
-      virtual void on_system_construct();
-
-      virtual void on_start_system();
-
-      virtual void system_main();
-
-      virtual void term();
+      // virtual void init();
+      //
+      // virtual void inline_init();
+      // virtual void inline_term();
+      //
+      //
+      // virtual void init_system();
+      // virtual void term_system();
+      //
+      // virtual void on_system_construct();
+      //
+      // virtual void on_start_system();
+      //
+      // virtual void system_main();
+      //
+      // virtual void term();
 
       //DECLARE_MESSAGE_HANDLER(on_message_erase_session);
 
       virtual string get_application_server_name();
 
-      virtual bool task_get_run() const;
+      //virtual bool task_get_run() const;
 
       virtual void create_os_node();
 
@@ -132,35 +132,35 @@ namespace platform
 
       virtual ::pointer<::factory::factory>& node_factory();
 
-      virtual void process_init();
-
-      virtual void init1();
-
-      virtual void init2();
+      // virtual void process_init();
+      //
+      // virtual void init1();
+      //
+      // virtual void init2();
 
       void defer_post_initial_request();
 
       //void post_request(::request* prequest);
 
-      virtual void initialize_context();
+      //virtual void initialize_context();
 
 
       virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
 
-      virtual void verb(); // ambigous inheritance from ::apex::system/::axis::application
+      //virtual void verb(); // ambigous inheritance from ::apex::system/::axis::application
 
 
-      virtual bool is_system() const;
+      //virtual bool is_system() const;
 
 
       virtual string crypto_md5_text(const ::string & str);
 
 
 
-      void on_request(::request * prequest);
-
-      void destroy();
-
+      // void on_request(::request * prequest);
+      //
+      // void destroy();
+      //
 
       virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
 

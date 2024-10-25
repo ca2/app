@@ -186,7 +186,7 @@ namespace freedesktop
 
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pdirectorysystem;
 
       path = pacmedirectory->localconfig() / "desk/monitor-0/2desk";
 
@@ -312,7 +312,7 @@ namespace freedesktop
 
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pdirectorysystem;
 
       pathUserBin = pacmedirectory->home() / "bin" / strName;
 

@@ -30,10 +30,10 @@ namespace platform
       virtual ::file::enum_type get_type(const ::url::url& url, ::payload* pvarQuery, property_set& set);
 
 
-      virtual ::string text(const ::url::url& url, const class ::time& timeTimeout = 5_min);
+      virtual ::string get(const ::url::url& url, const class ::time& timeTimeout = 5_min);
 
 
-      virtual ::string text(const ::url::url& url, ::property_set& set, const class ::time& timeTimeout = 5_min);
+      virtual ::string get(const ::url::url& url, ::property_set& set, const class ::time& timeTimeout = 5_min);
 
 
       virtual ::url::url get_effective_url(const ::url::url& url);

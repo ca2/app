@@ -42,3 +42,9 @@ namespace message
 
 
 
+
+
+#define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
+
+
+

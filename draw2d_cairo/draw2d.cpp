@@ -944,7 +944,7 @@ return g_pdraw2dcairo;
 //
 //      string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 //
-//            auto psystem = system()->m_paurasystem;
+//            auto psystem = system();
 
       //auto pxml = psystem->xml();
 
@@ -1482,7 +1482,7 @@ return g_pdraw2dcairo;
 
       ::file::path path = pcontext->defer_process_path(pathFile);
 
-      auto pmemorypointer = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+      auto pmemorypointer = system()->draw2d()->write_text()->get_file_memory(pcontext, path);
 
       return private_ftface_from_memory(*pmemorypointer, pathFile);
 

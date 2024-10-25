@@ -400,7 +400,7 @@ namespace account
          if(!m_bCred)
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             strText = psystem->crypto()->nessie(strText);
 

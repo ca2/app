@@ -388,7 +388,7 @@ namespace filemanager
    //void document::browse(const ::file::path & pathUser, const ::action_context & context)
    //{
 
-   //   auto pcontext = get_context();
+   //   // auto pcontext = get_context();
 
    //   ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
@@ -405,7 +405,7 @@ namespace filemanager
       if (m_pfilewatch)
       {
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          file_watcher()->erase_watch(m_pfilewatch);
 
@@ -810,7 +810,7 @@ namespace filemanager
       try
       {
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          auto pdir = dir();
 

@@ -717,7 +717,7 @@ namespace aura
 
    //      }
 
-   //      auto psystem = system()->m_paurasystem;
+   //      auto psystem = system();
 
    //      // Verry Sory for the per request overhead here for the needed information of only first request
    //      if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
@@ -1878,7 +1878,7 @@ namespace aura
    void application::do_install()
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
 
       on_install();
@@ -1914,7 +1914,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -2008,7 +2008,7 @@ retry_license:
 
 // #ifdef WINDOWS_DESKTOP
 
-//          auto psystem = system()->m_paurasystem;
+//          auto psystem = system();
 
 //          string strModuleName = psystem->file()->module();
 
@@ -2221,7 +2221,7 @@ retry_license:
 
       //}
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       //if (psystem->m_bImaging)
       //{
@@ -3286,7 +3286,7 @@ retry_license:
 //
 //                  auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->create(::file_path_folder(utf8(wstr.c_str())).c_str());
 //
@@ -4063,7 +4063,7 @@ retry_license:
    void application::on_initial_frame_position(::user::frame * pframe)
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       psystem->on_initial_frame_position(pframe);
 
@@ -4879,7 +4879,7 @@ retry_license:
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          psystem->install_progress_add_up();
 
@@ -4902,7 +4902,7 @@ retry_license:
       
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       ::file::path strFile = directory()->install() / strRelative;
 
@@ -5044,7 +5044,7 @@ retry_license:
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       string strMatter = directory()->matter(::file::path(pszMatter) / pszMatter2);
 
@@ -8476,7 +8476,7 @@ namespace aura
                   if (pcheck.is_set())
                   {
 
-                     auto pcontext = get_context();
+                     // auto pcontext = get_context();
 
                      pcheck->set_check(
                         node()->is_user_auto_start(get_executable_appid()),

@@ -30,7 +30,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, ::acmeacmesystem()->m_pdirsystem);
+      estatus = __refer(m_pdirectorysystem, ::acmeacmesystem()->m_pdirectorysystem);
 
       if (!estatus)
       {

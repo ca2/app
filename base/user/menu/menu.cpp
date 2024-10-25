@@ -504,7 +504,7 @@ namespace user
 
       information() << "::user::menu::initialize_user_menu";
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -2124,7 +2124,7 @@ namespace user
 
       rectangleScreenHint = m_rectangleScreenHint;
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 

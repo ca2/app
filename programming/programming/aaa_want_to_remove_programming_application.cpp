@@ -55,7 +55,7 @@ namespace programming
 
          ::pointer<::acme::library>lib = pcompiler->compile(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
@@ -86,7 +86,7 @@ pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp
 
       ::file::path path =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->config() / "programming/vs_build.txt";
 

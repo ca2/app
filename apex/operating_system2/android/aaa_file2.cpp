@@ -75,7 +75,7 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 //    return          auto psystem = system();
 
- /*        auto pacmedirectory = psystem->m_pacmedirectory;
+ /*        auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->localconfig() / "favorites";*/
 

@@ -1179,7 +1179,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 
    auto path = path_system()->defer_process_relative_path(pathParam);
 
-   m_pacmedirectory->create(path.folder());
+   m_pdirectorysystem->create(path.folder());
 
    auto pfile = get_file(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
 

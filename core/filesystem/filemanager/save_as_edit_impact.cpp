@@ -72,7 +72,7 @@ namespace filemanager
 
       str = as_text();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if (directory()->is(str))
       {

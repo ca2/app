@@ -108,7 +108,7 @@ namespace opengl
       if (!m_hdc || !m_hrc)
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pgpu = psystem->get_gpu();
 

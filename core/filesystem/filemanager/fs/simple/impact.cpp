@@ -156,7 +156,7 @@ namespace filemanager
             fork([this, iFolder]()
             {
 
-                  auto pcontext = get_context();
+                  // auto pcontext = get_context();
 
                auto phttpmessage = __create_new < ::http::message >();
 

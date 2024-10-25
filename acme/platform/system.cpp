@@ -253,7 +253,7 @@ namespace platform
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if (platform()->has_argument("--log"))
+      if (this->has_argument("--log"))
       {
 
          informationf("selecting informational trace\n");
@@ -300,10 +300,10 @@ namespace platform
 
       }
 
-      //         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
+      //         for (int i = 0; i < this->get_argument_count1(); i++)
       //         {
       //
-      //            string strArg = m_pplatform->get_argument1(i);
+      //            string strArg = this->get_argument1(i);
       //
       //            if (strArg == "verbose")
       //            {
@@ -355,9 +355,9 @@ namespace platform
          if (bMatterFromResource)
          {
 
-            m_pdirsystem->m_bMatterFromHttpCache = false;
+            m_pdirectorysystem->m_bMatterFromHttpCache = false;
 
-            m_pdirsystem->m_bMatterFromResource = true;
+            m_pdirectorysystem->m_bMatterFromResource = true;
 
          }
          else
@@ -370,7 +370,7 @@ namespace platform
 
                ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
-               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+               bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
 
                bMatterFromHttpCache = !bFileSystemMatter;
 
@@ -382,9 +382,9 @@ namespace platform
 
             }
 
-            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+            m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
 
-            m_pdirsystem->m_bMatterFromResource = false;
+            m_pdirectorysystem->m_bMatterFromResource = false;
 
          }
 
@@ -482,8 +482,8 @@ namespace platform
       //factory()->add_factory_item<::acme::idpool>();
 
       //m_pacme = nullptr;
-      //m_pacmedirectory = nullptr;
-      //m_pacmepath = nullptr;
+      //m_pdirectorysystem = nullptr;
+      //m_ppathsystem = nullptr;
 
       __defer_construct_new(m_pmathematics);
 
@@ -729,12 +729,12 @@ namespace platform
 
       m_pnode = m_pnode;
 
-      if (m_psession)
-      {
-
-         m_psession->m_pnode = m_pnode;
-
-      }
+      // if (m_psession)
+      // {
+      //
+      //    m_psession->m_pnode = m_pnode;
+      //
+      // }
 
       if (m_papplication)
       {
@@ -853,9 +853,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pacmedirectory);
+      //auto estatus = __raw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pacmedirectory);
+      __raw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -864,24 +864,13 @@ namespace platform
 
        }*/
 
-       //      m_pacmedirectory = pacmedirectory;
+       //      m_pdirectorysystem = pacmedirectory;
 
-       //    m_pacmedirectory->increment_reference_count();
+       //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pacmefile);
+       //estatus = __raw_construct(m_pfilesystem);
 
-      __raw_construct(m_pacmefile);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = __raw_construct(m_pacmepath);
-
-      __raw_construct(m_pacmepath);
+      __raw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -890,16 +879,9 @@ namespace platform
 
       //}
 
-      m_pacmedirectory->m_pacmefile = m_pacmefile;
-      m_pacmedirectory->m_pacmepath = m_pacmepath;
-      m_pacmefile->m_pacmedirectory = m_pacmedirectory;
-      m_pacmefile->m_pacmepath = m_pacmepath;
-      m_pacmepath->m_pacmedirectory = m_pacmedirectory;
-      m_pacmepath->m_pacmefile = m_pacmefile;
+      //estatus = __raw_construct(m_ppathsystem);
 
-      //estatus = m_pacmefile->initialize(this);
-
-      m_pacmefile->initialize(this);
+      __raw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -908,9 +890,16 @@ namespace platform
 
       //}
 
-      //estatus = m_pacmepath->initialize(this);
+      m_pdirectorysystem->m_pfilesystem = m_pfilesystem;
+      m_pdirectorysystem->m_ppathsystem = m_ppathsystem;
+      m_pfilesystem->m_pdirectorysystem = m_pdirectorysystem;
+      m_pfilesystem->m_ppathsystem = m_ppathsystem;
+      m_ppathsystem->m_pdirectorysystem = m_pdirectorysystem;
+      m_ppathsystem->m_pfilesystem = m_pfilesystem;
 
-      m_pacmepath->initialize(this);
+      //estatus = m_pfilesystem->initialize(this);
+
+      m_pfilesystem->initialize(this);
 
       //if (!estatus)
       //{
@@ -919,9 +908,20 @@ namespace platform
 
       //}
 
-      //estatus = m_pacmedirectory->initialize(this);
+      //estatus = m_ppathsystem->initialize(this);
 
-      m_pacmedirectory->initialize(this);
+      m_ppathsystem->initialize(this);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus = m_pdirectorysystem->initialize(this);
+
+      m_pdirectorysystem->initialize(this);
 
 
       //throw ::exception(error_failed);
@@ -971,7 +971,7 @@ namespace platform
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      __construct(m_pdirsystem);
+      __construct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -997,7 +997,7 @@ namespace platform
       //}
 
       //estatus =
-      m_pdirsystem->init_system();
+      m_pdirectorysystem->init_system();
 
       //if (!estatus)
       //{
@@ -1035,14 +1035,14 @@ namespace platform
 
       {
 
-         string strExecutable = platform()->get_executable();
+         string strExecutable = this->get_executable();
 
          string_array straArguments;
 
-         for (int i = 0; i < platform()->get_argument_count1(); i++)
+         for (int i = 0; i < this->get_argument_count1(); i++)
          {
 
-            string strArgument = platform()->get_argument1(i);
+            string strArgument = this->get_argument1(i);
 
             straArguments.add(strArgument);
 
@@ -1064,12 +1064,12 @@ namespace platform
 
          string_array straEnv;
 #ifdef WINDOWS_DESKTOP
-         if (platform()->m_wenvp)
+         if (this->m_wenvp)
          {
 
             int iIndex = 0;
 
-            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
+            for (auto wenv = this->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
@@ -1100,10 +1100,10 @@ namespace platform
          }
          else
 #endif
-            if (platform()->m_envp)
+            if (this->m_envp)
             {
 
-               for (auto env = platform()->m_envp; *env != 0; env++)
+               for (auto env = this->m_envp; *env != 0; env++)
                {
 
                   auto thisEnv = *env;
@@ -1208,11 +1208,11 @@ namespace platform
 
       m_pfactoryFolder.release();
 
-      m_pdirsystem.release();
+      m_pdirectorysystem.release();
       m_pfilesystem.release();
-      m_pacmefile.release();
-      m_pacmedirectory.release();
-      m_pacmepath.release();
+      m_pfilesystem.release();
+      m_pdirectorysystem.release();
+      m_ppathsystem.release();
 
       m_purlcontext.release();
 
@@ -1663,7 +1663,7 @@ namespace platform
    void system::init1()
    {
 
-      initialize_context_1();
+      //initialize_context_1();
 
    }
 
@@ -2194,18 +2194,18 @@ namespace platform
       //auto estatus =
       __raw_construct(psession);
 
-      psession->set_platform();
+      //psession->set_platform();
 
       psession->initialize(this);
 
       psession->m_papplication = m_papplication;
-      psession->m_psystem = this;
-      psession->m_pnode = m_pnode;
+      //psession->m_psystem = this;
+      //psession->m_pnode = m_pnode;
 
       if (m_papplication)
       {
 
-         m_papplication->m_psession = psession->m_psession;
+         m_papplication->m_psession = psession;
 
       }
 
@@ -2281,7 +2281,7 @@ namespace platform
 
       }
 
-      pacmesession->m_psystem = this;
+      //pacmesession->m_psystem = this;
 
    }
 
@@ -2393,7 +2393,7 @@ namespace platform
 
          auto prequest = __create_new< ::request>();
 
-         auto strCommandLine = platform()->m_strCommandLine;
+         auto strCommandLine = this->m_strCommandLine;
 
          strCommandLine.trim();
 
@@ -2417,18 +2417,18 @@ namespace platform
          else
          {
 
-            strApp = m_pplatform->m_args[0];
+            strApp = this->m_args[0];
 
             ::string_array straFiles;
 
-            for (int iArgument = 1; iArgument < m_pplatform->m_argc; )
+            for (int iArgument = 1; iArgument < this->m_argc; )
             {
 
                auto iArgumentBefore = iArgument;
 
                if (node()->defer_consume_main_arguments(
-                  m_pplatform->m_argc,
-                  m_pplatform->m_args,
+                  this->m_argc,
+                  this->m_args,
                   iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2438,8 +2438,8 @@ namespace platform
                }
 
                if (application()->defer_consume_main_arguments(
-                  m_pplatform->m_argc,
-                  m_pplatform->m_args,
+                  this->m_argc,
+                  this->m_args,
                   iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2448,7 +2448,7 @@ namespace platform
 
                }
 
-               ::string strArgument = m_pplatform->m_args[iArgument];
+               ::string strArgument = this->m_args[iArgument];
 
                if (strArgument.begins("-"))
                {
@@ -2503,7 +2503,7 @@ namespace platform
 
       process_init();
 
-      if (platform()->is_console())
+      if (this->is_console())
       {
 
          application()->main();
@@ -2689,7 +2689,7 @@ namespace platform
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         file_system()->put_contents(path, platform()->m_strCommandLine);
+         file_system()->put_contents(path, this->m_strCommandLine);
 
          ::file::path pathExecutable = file_system()->module();
 
@@ -3256,7 +3256,7 @@ namespace platform
       if (!papp)
       {
 
-         if (strAppId.is_empty() || platform()->is_console())
+         if (strAppId.is_empty() || this->is_console())
          {
 
             papp = __create < ::platform::application >();
@@ -3282,7 +3282,7 @@ namespace platform
 
             //auto psystem = system()->m_papexsystem;
 
-            auto& plibrary = m_pplatform->library(strLibrary);
+            auto& plibrary = this->library(strLibrary);
 
             if (!plibrary)
             {
@@ -3512,7 +3512,7 @@ namespace platform
 
 #endif
 
-      ::platform::context::destroy();
+      //::platform::context::destroy();
 
       ::task::destroy();
 
@@ -3525,14 +3525,14 @@ namespace platform
 
       }
 
-      auto pplatform = ::platform::get();
-
-      if(pplatform)
-      {
-
-         pplatform->m_psystem.release();
-
-      }
+      //auto pplatform = ::platform::get();
+      //
+      // if(pplatform)
+      // {
+      //
+      //    pplatform->m_psystem.release();
+      //
+      // }
 
    }
 

@@ -55,7 +55,7 @@ namespace draw2d_opengl
       ::draw2d::draw2d::initialize(pparticle);
 
 
-      system()->m_paurasystem->create_gpu();
+      system()->create_gpu();
       //if (!estatus)
       //{
 
@@ -149,7 +149,7 @@ namespace draw2d_opengl
 
    //   pfont->m_pcollection = ___new Gdiplus::PrivateFontCollection();
 
-   //   auto pmemory = system()->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+   //   auto pmemory = system()->draw2d()->write_text()->get_file_memory(pcontext, path);
 
    //   if (pmemory->has_data())
    //   {

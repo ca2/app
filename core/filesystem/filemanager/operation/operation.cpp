@@ -204,7 +204,7 @@ namespace filemanager
    bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if(directory()->is(pszSrc) && !case_insensitive_string_ends(pszSrc,".zip"))
       {
@@ -378,7 +378,7 @@ namespace filemanager
    bool operation::file_operation_thread_step()
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       switch(m_eoperation)
       {
@@ -607,7 +607,7 @@ namespace filemanager
 
       ::payload varLen;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
@@ -898,7 +898,7 @@ namespace filemanager
       }
 
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if(has_digit(strName))
       {

@@ -207,7 +207,7 @@
 //
 //               auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->create(::file::path(strName).folder());
 //
@@ -272,7 +272,7 @@
 //
 //#ifdef ANDROID
 //
-//         path = system()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
+//         path = system()->m_pdirectorysystem->system() / "tmp/ca2/lock/mutex" / string(pstrName);
 //
 //#else
 //
@@ -286,7 +286,7 @@
 //
 //#ifdef ANDROID
 //
-//         path =  system()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+//         path =  system()->m_pdirectorysystem->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 //
 //#elif defined __APPLE__
 //
@@ -307,7 +307,7 @@
 //
 //      path /= pstrName;
 //
-//      system()->m_pacmedirectory->create(path.folder());
+//      system()->m_pdirectorysystem->create(path.folder());
 //
 //      m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 //
@@ -367,7 +367,7 @@
 //
 //               auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->create(path.folder());
 //

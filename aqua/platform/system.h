@@ -33,7 +33,7 @@ namespace aqua
       void common_construct();
 
 
-      void on_set_platform() override;
+      //void on_set_platform() override;
 
       void on_initialize_particle() override;
 

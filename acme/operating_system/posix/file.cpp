@@ -353,7 +353,7 @@ char * malloc_get_current_dir_name()
 //
 //            auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->create(::file_path_folder(path));
 //

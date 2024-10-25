@@ -59,7 +59,7 @@ namespace user
 
       m_puserstyle = this;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
       

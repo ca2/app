@@ -2910,6 +2910,7 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    platform/application_acme.cpp
    platform/application_aqua.cpp
    platform/session_acme.h
+   prototype/prototype/cast.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

@@ -295,7 +295,7 @@ namespace platform
       //}
 
       //m_papexsystem = system();
-      //m_paurasystem = system()->m_paurasystem;
+      //m_paurasystem = system();
       //m_pbasesystem = system()->m_pbasesystem;
       //m_pbredsystem = system()->m_pbredsystem;
       //m_pcoresystem = system()->m_pcoresystem;

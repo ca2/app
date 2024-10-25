@@ -720,7 +720,7 @@ namespace user
 
             m_bFirstShown = true;
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             psystem->signal(id_font_enumeration);
 

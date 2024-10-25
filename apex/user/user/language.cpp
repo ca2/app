@@ -125,7 +125,7 @@ namespace user
 //      
 //      auto psystem = system();
 //
-//      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
+//      ::file::path pathCa2 = psystem->m_pdirectorysystem->m_pathCa2;
 //
 //      ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
 //

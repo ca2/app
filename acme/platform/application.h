@@ -40,92 +40,92 @@ namespace platform
       virtual public ::data::client,
       virtual public ::application_exit,
       virtual public ::application_menu_callback,
-      virtual public ::acme_application_layer_t,
-      virtual public ::apex_application_layer_t,
-      virtual public ::aqua_application_layer_t,
-      virtual public ::aura_application_layer_t,
-      virtual public ::acme_application_layer,
-      virtual public ::apex_application_layer,
-      virtual public ::aqua_application_layer,
-      virtual public ::aura_application_layer
+      virtual public ::platform::acme_application_layer_t,
+      virtual public ::platform::apex_application_layer_t,
+      virtual public ::platform::aqua_application_layer_t,
+      virtual public ::platform::aura_application_layer_t,
+      virtual public ::platform::acme_application_layer,
+      virtual public ::platform::apex_application_layer,
+      virtual public ::platform::aqua_application_layer,
+      virtual public ::platform::aura_application_layer
    {
    public:
 
-
-      // mutable ::apex::application* m_papexapplication;
-      // mutable ::aqua::application* m_paquaapplication;
-      // mutable ::aura::application* m_pauraapplication;
-      // mutable ::axis::application* m_paxisapplication;
-      // mutable ::base::application* m_pbaseapplication;
-      // mutable ::bred::application* m_pbredapplication;
-      // mutable ::core::application* m_pcoreapplication;
-      
-      class user_message :
-      virtual public ::particle
-      {
-         
-         public:
-         
-         ::e_status m_estatus;
-         ::particle_pointer m_pparticle;
-         long long m_ll;
-         void * m_p;
-         
-      };
-
-      bool                                            m_bTransferToContainer;
-      bool                                            m_bTransferredToContainer;
-#if REFERENCING_DEBUGGING
-      ::reference_referer* m_prefererCreation = nullptr;
-#endif
-      //mutable ::platform::platform *               m_pplatform;
-
-      //::APPLICATION_FLAGS                      m_applicationflags;
-      ::pointer<main_hold_base>                       m_pmainholdbase;
-      // FROM ::main (Now main2)
-      ::pointer < ::filesystem::file_system_options > m_pfilesystemoptions;
-      ::pointer_array < user_message >                m_usermessagea;
-      bool                                            m_bGUIReady = false;
-      bool                                            m_bModulePath = false;
-      ::file::path                                    m_pathModule;
-
-      bool                                            m_bModuleFolder = false;
-      ::file::path                                    m_pathModuleFolder;
-
-
-      string                              m_strProgName;
-      string                           m_strStandalone;
-      int                              m_iExitCode = 0;
-      bool                             m_bApplicationFirstRequest;
-      //::pointer < ::request >                         m_prequest;
-
-
-      // END FROM ::main (Now main2 : merge)
-
-      //::pointer < ::platform::platform >              m_pplatform;
-      string                                          m_strAppId;
-      string                                          m_strAppName;
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLibraryName;
-      string                                          m_strBuild;
-      string                                          m_strInstallToken;
-      string_array                                    m_straAppCategory;
-      bool                                            m_bLicense;
-
-      enum_application_capability_array               m_eapplicationcapabilitya;
-      ::text::text                                    m_textAppTitle;
-      ::text::text                                    m_textAppName;
-
-      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
-
-      ::pointer < ::mutex >                                      m_pmutexStr;
+//
+//       // mutable ::apex::application* m_papexapplication;
+//       // mutable ::aqua::application* m_paquaapplication;
+//       // mutable ::aura::application* m_pauraapplication;
+//       // mutable ::axis::application* m_paxisapplication;
+//       // mutable ::base::application* m_pbaseapplication;
+//       // mutable ::bred::application* m_pbredapplication;
+//       // mutable ::core::application* m_pcoreapplication;
+//
+//       class user_message :
+//       virtual public ::particle
+//       {
+//
+//          public:
+//
+//          ::e_status m_estatus;
+//          ::particle_pointer m_pparticle;
+//          long long m_ll;
+//          void * m_p;
+//
+//       };
+//
+//       bool                                            m_bTransferToContainer;
+//       bool                                            m_bTransferredToContainer;
+// #if REFERENCING_DEBUGGING
+//       ::reference_referer* m_prefererCreation = nullptr;
+// #endif
+//       //mutable ::platform::platform *               m_pplatform;
+//
+//       //::APPLICATION_FLAGS                      m_applicationflags;
+//       ::pointer<main_hold_base>                       m_pmainholdbase;
+//       // FROM ::main (Now main2)
+//       ::pointer < ::filesystem::file_system_options > m_pfilesystemoptions;
+//       ::pointer_array < user_message >                m_usermessagea;
+//       bool                                            m_bGUIReady = false;
+//       bool                                            m_bModulePath = false;
+//       ::file::path                                    m_pathModule;
+//
+//       bool                                            m_bModuleFolder = false;
+//       ::file::path                                    m_pathModuleFolder;
+//
+//
+//       string                              m_strProgName;
+//       string                           m_strStandalone;
+//       int                              m_iExitCode = 0;
+//       bool                             m_bApplicationFirstRequest;
+//       //::pointer < ::request >                         m_prequest;
+//
+//
+//       // END FROM ::main (Now main2 : merge)
+//
+//       //::pointer < ::platform::platform >              m_pplatform;
+//       string                                          m_strAppId;
+//       string                                          m_strAppName;
+//       string                                          m_strRoot;
+//       string                                          m_strDomain;
+//       string                                          m_strLibraryName;
+//       string                                          m_strBuild;
+//       string                                          m_strInstallToken;
+//       string_array                                    m_straAppCategory;
+//       bool                                            m_bLicense;
+//
+//       enum_application_capability_array               m_eapplicationcapabilitya;
+//       ::text::text                                    m_textAppTitle;
+//       ::text::text                                    m_textAppName;
+//
+//       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+//
+//       ::pointer < ::mutex >                                      m_pmutexStr;
 
 
       application();
       ~application() override;
       
-     
+
       virtual ::release_time_for_project release_time();
 
 
@@ -140,10 +140,10 @@ namespace platform
 #endif
 
       virtual void _001TryCloseApplication();
-      
+
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
-      
-      
+
+
       virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
 
 
@@ -151,7 +151,7 @@ namespace platform
 
       virtual ::i32 application_main();
 
-      
+
       void on_set_platform() override;
 
 
@@ -160,11 +160,11 @@ namespace platform
 
       //void initialize(::particle * pparticle) override;
 
-      
+
       virtual void start_application(::request* prequest);
-      
+
       //virtual void on_initialize_application();
-      
+
       virtual class ::application_menu * application_menu();
 
 //      using ::platform::context::factory;
@@ -188,7 +188,7 @@ namespace platform
       virtual ::file::path get_module_path();
       virtual ::file::path get_module_folder();
 
-      
+
       virtual ::string app_name();
 
       //virtual ::string app_name();
@@ -215,7 +215,7 @@ namespace platform
       virtual int main_loop();
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
-      
+
       virtual void on_before_launching();
       virtual void os_native_bergedge_start();
 
@@ -305,8 +305,8 @@ namespace platform
 
       bool on_application_menu_action(const ::atom & atom) override;
 
-      
-      
+
+
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);

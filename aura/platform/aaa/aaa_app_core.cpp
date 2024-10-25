@@ -526,13 +526,13 @@ pmessagebox->sync();
 
    ::file::path pathOutputDebugString =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / strAppId / "information.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->config() / "information.txt" ;
 
@@ -558,7 +558,7 @@ void app_core::set_command_line(const ::string & psz)
 
    ::file::path pathFolder =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->ca2roaming() / "program";
 

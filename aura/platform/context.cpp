@@ -12,7 +12,7 @@ namespace aura
    context::context()
    {
 
-      m_pauracontext = this;
+      //m_pauracontext = this;
 
    }
 
@@ -98,7 +98,7 @@ namespace aura
       m_pimagecontext.release();
 
 
-      apex::context::finalize();
+      //::apex::context::finalize();
 
    }
 
@@ -430,7 +430,7 @@ namespace aura
 //
 //      auto psystem = system();
 //
-//      auto pdirsystem = psystem->m_pdirsystem;
+//      auto pdirsystem = psystem->m_pdirectorysystem;
 //
 //      ::file::path pathResource = pdirsystem->m_pathInstall;
 //
@@ -453,7 +453,7 @@ namespace aura
 //
 //         auto psystem = system();
 //
-//         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+//         ::file::path pathCache = psystem->m_pdirectorysystem->m_pathLocalAppMatterFolder / path;
 //
 //         if ((path & ::file::e_flag_get_local_path)
 //            || (!(path & ::file::e_flag_bypass_cache) && path_system()->is_file_or_dir(pathCache, nullptr)))
@@ -523,7 +523,7 @@ namespace aura
 //
 //         //auto psystem = system();
 //
-//         if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
+//         if (!psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
 //         {
 //
 //            return "";

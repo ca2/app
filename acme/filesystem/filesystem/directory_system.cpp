@@ -194,7 +194,7 @@ string directory_system::system_short_name()
 
    ::file::path pathSystemShortName = localconfig() / "system_short_name.txt";
 
-   return m_pacmefile->as_string(pathSystemShortName).trimmed();
+   return m_pfilesystem->as_string(pathSystemShortName).trimmed();
 
 #endif
 
@@ -650,7 +650,7 @@ void directory_system::set_path_install_folder(const string & strPath)
       strCandidate = patha[i] / pszTopic;
 
       //if (file()->exists(strCandidate))
-      if (m_pacmefile->exists(strCandidate))
+      if (m_pfilesystem->exists(strCandidate))
       {
          
          return strCandidate;
@@ -831,12 +831,12 @@ void directory_system::_create2(const ::file::path & pathParam)
 
    //}
 
-   auto bExists = m_pacmefile->exists(pathParam);
+   auto bExists = m_pfilesystem->exists(pathParam);
 
    if(bExists)
    {
 
-      m_pacmefile->erase(pathParam);
+      m_pfilesystem->erase(pathParam);
 
    }
 
@@ -1425,7 +1425,7 @@ bool directory_system::contains_files(const ::file::path& path, const ::string_a
 //
 //   //auto psystem = system();
 //
-//   //m_pathModule = psystem->m_pacmedirectory->module();
+//   //m_pathModule = psystem->m_pdirectorysystem->module();
 //
 //   //return true;
 //

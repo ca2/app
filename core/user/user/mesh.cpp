@@ -1213,7 +1213,7 @@ namespace user
 
       set_need_redraw();
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -4260,7 +4260,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4829,7 +4829,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4884,7 +4884,7 @@ namespace user
 
       }
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5036,7 +5036,7 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5111,7 +5111,7 @@ namespace user
    void mesh::_001OnMeshHeaderItemDblClk(::collection::index iHeaderItem)
    {
       
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -5697,7 +5697,7 @@ namespace user
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::collection::count)(sizePage.cy() / m_dItemHeight));
 
-               //auto psystem = system()->m_paurasystem;
+               //auto psystem = system();
 
                //auto pdraw2d = psystem->draw2d();
 
@@ -5739,7 +5739,7 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               //auto psystem = system()->m_paurasystem;
+               //auto psystem = system();
 
                //auto pdraw2d = psystem->draw2d();
 
@@ -6243,7 +6243,7 @@ namespace user
 
             //::aura::application * get_app() = m_pmesh->get_app();
 
-            auto psystem = m_pitem->m_pmesh->system()->m_paurasystem;
+            auto psystem = m_pitem->m_pmesh->system();
 
             psystem->imaging()->channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
             pimage1->clear(::color::transparent);

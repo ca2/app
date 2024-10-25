@@ -451,7 +451,7 @@ namespace programming
       //
       //   ::file::path pathCommand =          auto psystem = system();
 
-      //         auto pacmedirectory = psystem->m_pacmedirectory;
+      //         auto pacmedirectory = psystem->m_pdirectorysystem;
       //
       //pacmedirectory->system() / "env.bat";
       //
@@ -570,7 +570,7 @@ namespace programming
 
       //string strEnv = file_system()->as_string(         auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "env.txt");
 

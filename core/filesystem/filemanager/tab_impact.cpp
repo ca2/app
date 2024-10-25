@@ -224,7 +224,7 @@ namespace filemanager
 //
 //         create_impact < impact >(pimpactdata);
 //
-//         auto pcontext = get_context();
+//         // auto pcontext = get_context();
 //
 //         if(pdocument != nullptr)
 //         {

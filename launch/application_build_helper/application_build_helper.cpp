@@ -864,7 +864,7 @@ namespace application_build_helper
                   ::file::path pathApplication =
                      m_pathFolder / "operating_system" / m_strSlashedOperatingSystem / ("_" + strAppName + ".cpp");
 
-                  //if (!psystem->m_pacmefile->exists(pathApplication))
+                  //if (!psystem->m_pfilesystem->exists(pathApplication))
                   {
 
                      string strApplication;

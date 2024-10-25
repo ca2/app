@@ -703,10 +703,10 @@ namespace apex
       //
       //#endif
 
-      DECLARE_MESSAGE_HANDLER(on_message_app_exit);
-      DECLARE_MESSAGE_HANDLER(on_message_close);
-      DECLARE_MESSAGE_HANDLER(on_command_display_about);
-      //virtual bool _001OnAgreeExit();
+      // DECLARE_MESSAGE_HANDLER(on_message_app_exit);
+      // DECLARE_MESSAGE_HANDLER(on_message_close);
+      // DECLARE_MESSAGE_HANDLER(on_command_display_about);
+      // //virtual bool _001OnAgreeExit();
 
 
       //virtual void request_exit_application();
@@ -834,7 +834,7 @@ namespace apex
       //virtual void get_time(micro_time * pmicrotime);
 
 
-      virtual void close(::apex::enum_end eend);
+      virtual void close(::enum_exit eexit);
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);

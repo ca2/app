@@ -62,7 +62,7 @@ namespace xml
    //   
    //   string str;
 
-   //   auto psystem = system()->m_paurasystem;
+   //   auto psystem = system();
 
    //   str = file()->as_string(psz);
 

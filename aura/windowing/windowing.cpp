@@ -928,7 +928,7 @@ namespace windowing
    ::aura::application* windowing::get_app()
    {
 
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
 
    }
 

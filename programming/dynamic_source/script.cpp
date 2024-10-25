@@ -345,7 +345,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if(!file()->exists(m_strScriptPath))
       {

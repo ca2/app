@@ -39,7 +39,7 @@ namespace menu
       
       m_procedureCompleted = procedureCompleted;
       
-      application()->m_pauraapplication->track_popup_menu(this);
+      application()->track_popup_menu(this);
       
    }
 

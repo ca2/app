@@ -86,7 +86,7 @@ image::~image()
    if (::is_set(psystem))
    {
       
-      auto paurasystem = psystem->m_paurasystem;
+      auto paurasystem = psystem;
       
       if(::is_set(paurasystem))
       {
@@ -110,7 +110,7 @@ image::~image()
 void image::on_initialize_particle()
 {
 
-   system()->m_paurasystem->draw2d()->add_image(this);
+   system()->draw2d()->add_image(this);
 
    ::particle::on_initialize_particle();
 

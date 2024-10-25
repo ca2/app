@@ -44,9 +44,8 @@ namespace platform
       //::core::system* m_pcoresystem;
 
 
-      ::platform::session_map                               m_sessionmap;
-
-
+      ::platform::session_map                         m_sessionmap;
+      ::pointer < ::platform::session >               m_psession;
       bool                                            m_bFinalizeIfNoSessionSetting;
       bool                                            m_bFinalizeIfNoSession;
 
@@ -74,7 +73,7 @@ namespace platform
       // FROM ::main (Now main2)
 
       ::file::path                              m_pathCacheDirectory;
-      class ::time                              m_timeStart;
+      //class ::time                              m_timeStart;
       class ::time                              m_timeAfterApplicationFirstRequest;
 
       //int                                       m_iExitCode = 0;
@@ -153,12 +152,12 @@ namespace platform
       bool                                                              m_bIsReadyForUserInteraction;
 
 
-      ::pointer<class ::directory_system>                                 m_pacmedirectory;
-      ::pointer<class ::file_system>                                      m_pacmefile;
-      ::pointer<class ::path_system>                                      m_pacmepath;
+      ::pointer<class ::directory_system>                                 m_pdirectorysystem;
+      ::pointer<class ::file_system>                                      m_pfilesystem;
+      ::pointer<class ::path_system>                                      m_ppathsystem;
 
-      ::pointer<::directory_system>                                           m_pdirsystem;
-      ::pointer<::file_system>                                          m_pfilesystem;
+      //::pointer<::directory_system>                                           m_pdirectorysystem;
+      //::pointer<::file_system>                                          m_pfilesystem;
 
 
       ::pointer < ::mutex >                                m_pmutexMatter;

@@ -4947,7 +4947,7 @@ const ::color::color & color)
 
    }
 
-   auto psystem = system()->m_paurasystem;
+   auto psystem = system();
 
    auto pdraw2d = psystem->draw2d();
 
@@ -5146,7 +5146,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
 
-   auto psystem = system()->m_paurasystem;
+   auto psystem = system();
 
    auto pdraw2d = psystem->draw2d();
 

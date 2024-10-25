@@ -51,7 +51,7 @@ namespace user
 
       m_pwindow = pwindow;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pnode = psystem->node();
       
@@ -85,7 +85,7 @@ namespace user
 
       stra.add_lines(str);
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       for (auto & strPath : stra)
       {
@@ -414,7 +414,7 @@ namespace user
                payloadFile["http_set"]["raw_http"] = true;
                payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
-               auto pcontext = get_context();
+               // auto pcontext = get_context();
 
                file()->as_memory(payloadFile, *pmemory);
 

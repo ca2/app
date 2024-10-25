@@ -181,11 +181,11 @@ namespace acme
 //       bool                                                              m_bIsReadyForUserInteraction;
 //
 //
-//       ::pointer<class ::directory_system>                                 m_pacmedirectory;
-//       ::pointer<class ::file_system>                                      m_pacmefile;
-//       ::pointer<class ::path_system>                                      m_pacmepath;
+//       ::pointer<class ::directory_system>                                 m_pdirectorysystem;
+//       ::pointer<class ::file_system>                                      m_pfilesystem;
+//       ::pointer<class ::path_system>                                      m_ppathsystem;
 //
-//       ::pointer<::directory_system>                                           m_pdirsystem;
+//       ::pointer<::directory_system>                                           m_pdirectorysystem;
 //       ::pointer<::file_system>                                          m_pfilesystem;
 //
 //
@@ -253,11 +253,11 @@ namespace acme
 
       inline ::xml::xml * xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
-      inline ::file_system * file_system() const { return m_pacmefile; }
+      inline ::file_system * file_system() const { return m_pfilesystem; }
 
-      inline ::directory_system * directory_system() const { return m_pacmedirectory; }
+      inline ::directory_system * directory_system() const { return m_pdirectorysystem; }
 
-      inline ::path_system * path_system() const { return m_pacmepath; }
+      inline ::path_system * path_system() const { return m_ppathsystem; }
 
       virtual ::platform::system_factory* system_factory();
 

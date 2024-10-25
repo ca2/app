@@ -443,7 +443,7 @@ namespace image
    //i32 image_list::add_matter_icon(const ::string & pszMatter, int iItem)
    //{
    //
-   //   auto pcontext = get_context();
+   //   // auto pcontext = get_context();
    //
    //   return add_icon(directory()->matter(pszMatter));
    //
@@ -633,7 +633,7 @@ namespace image
    //i32 image_list::add_std_matter(const ::string & pcsz, int iItem)
    //{
    //
-   //   auto pcontext = get_context();
+   //   // auto pcontext = get_context();
    //
    //   return add_file(directory()->matter(pcsz), iItem);
    //

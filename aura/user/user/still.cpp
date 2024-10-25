@@ -459,7 +459,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
@@ -858,7 +858,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       if (get_translucency(pstyle) >= e_translucency_present)
       {

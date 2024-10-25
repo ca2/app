@@ -237,7 +237,7 @@ namespace experience_core
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
-         //auto psystem = system()->m_paurasystem;
+         //auto psystem = system();
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 

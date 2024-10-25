@@ -548,7 +548,7 @@ bool html_form::open_document(const ::payload & payloadFile)
 
    auto path = payloadFile.as_file_path();
 
-   auto psystem = system()->m_paurasystem;
+   auto psystem = system();
 
 //   if (path.is_empty())
 //   {

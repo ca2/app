@@ -100,6 +100,8 @@
 //#error "already included?!?! WHAT?!?! (After including acme/include/(1))"
 //#endif
 
+#include "acme/prototype/prototype/cast.h"
+
 
 #include "acme/parallelization/_preamble.h"
 

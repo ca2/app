@@ -190,7 +190,7 @@ namespace aura
 
       ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       string strState = file()->safe_get_string(pathWeatherState);
 
@@ -319,7 +319,7 @@ namespace aura
 
       ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       string strWeatherState = file()->safe_get_string(pathWeatherState);
 
@@ -457,7 +457,7 @@ namespace aura
 
       ::file::listing patha;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       directory()->matter_enumerate("sphere/theme", patha);
 

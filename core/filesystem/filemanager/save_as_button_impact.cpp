@@ -67,7 +67,7 @@ namespace filemanager
 
       strTitle = get_typed_parent<save_as_impact>()->m_pedit->as_text();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if (strTitle.folder().has_char() && filemanager_data()->fs_data()->is_dir(strTitle.folder()))
       {

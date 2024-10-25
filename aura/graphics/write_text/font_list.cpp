@@ -571,7 +571,7 @@ namespace write_text
          if (!pgraphics)
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             auto pdraw2d = psystem->draw2d();
 
@@ -748,7 +748,7 @@ namespace write_text
       if (eid == id_font_enumeration)
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
@@ -847,7 +847,7 @@ namespace write_text
 
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
@@ -1080,7 +1080,7 @@ namespace write_text
       auto procedure1 = [this, pfontlistdata, bSameSize](::collection::index iOrder, ::collection::index iStart, ::collection::index iCount, ::collection::index iScan)
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 

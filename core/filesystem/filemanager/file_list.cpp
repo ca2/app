@@ -173,7 +173,7 @@ namespace filemanager
 
       ::file::path filepathNew = filepath.folder() / wstrNameNew;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       file()->rename(filepathNew, filepath);
 
@@ -668,7 +668,7 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       file()->trash_that_is_not_trash(patha);
 
@@ -707,7 +707,7 @@ namespace filemanager
 
          string_array stra;
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          node()->file_extension_get_open_with_list_keys(stra, strExt);
 
@@ -834,7 +834,7 @@ namespace filemanager
 
          ::file::path pathUser = patha.first();
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          node()->file_open(pathUser);
 
@@ -1080,7 +1080,7 @@ namespace filemanager
 
          auto papp = ::filemanager_impact_base::get_app();
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          papp->datastream()->get(filemanager_data()->m_strDataKeyStatic, stra);
 
@@ -1167,7 +1167,7 @@ namespace filemanager
 
       update_impact();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       {
 
@@ -1849,7 +1849,7 @@ namespace filemanager
 
       item.m_strName = strName;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if (directory()->is(pathFinal))
       {
@@ -1976,7 +1976,7 @@ namespace filemanager
 
       ::collection::index strictDrag = display_to_strict(iDisplayDrag);
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       if (strict >= 0 && fs_list_item(strict)->IsFolder())
       {
@@ -2239,7 +2239,7 @@ namespace filemanager
             if (ptopic->payload(id_find).has_char())
             {
 
-               auto pcontext = get_context();
+               // auto pcontext = get_context();
 
                ::file::path pathFolder = filemanager_item()->user_path();
 
@@ -2256,7 +2256,7 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->user_path() / ptopic->payload(id_folder);
 
-               auto pcontext = get_context();
+               // auto pcontext = get_context();
 
                directory()->create(pathFolder);
 

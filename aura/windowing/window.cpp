@@ -2915,7 +2915,7 @@ bMove = false;
    ::aura::application * window::get_app()
    {
 
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication
          : nullptr;
 
    }
@@ -2932,7 +2932,7 @@ bMove = false;
    //::aura::system* windowacmesystem()
    //{
 
-   //   return system() ? system()->m_paurasystem : nullptr;
+   //   return system() ? system() : nullptr;
 
    //}
 
@@ -3717,12 +3717,12 @@ bMove = false;
    void window::operating_system_create_host()
    {
 
-      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_pwindow)
       //      {
       //
-      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_pwindowMain;
       //
       //         m_pwindow = this;
       //
@@ -3743,10 +3743,10 @@ bMove = false;
       //
       //         //}
       //
-      //         if (!system()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_pwindowMain)
       //         {
       //
-      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -3908,12 +3908,12 @@ bMove = false;
    void window::native_create_host_alternate()
    {
 
-      //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
+      //      auto pwindowMain = system()->m_pwindowMain;
       //
       //      if (pwindowMain && !pwindowMain->m_pwindow)
       //      {
       //
-      //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
+      //         m_pwindow = system()->m_pwindowMain;
       //
       //         m_pwindow = this;
       //
@@ -3934,10 +3934,10 @@ bMove = false;
       //
       //         //}
       //
-      //         if (!system()->m_paurasystem->m_pwindowMain)
+      //         if (!system()->m_pwindowMain)
       //         {
       //
-      //            system()->m_paurasystem->m_pwindowMain = m_pwindow;
+      //            system()->m_pwindowMain = m_pwindow;
       //
       //         }
       //
@@ -9175,7 +9175,7 @@ bMove = false;
 
       //::size_i32 sizeDrawn;
 
-      //single_lock synchronouslockObjects(system()->m_paurasystem->draw2d()->get_object_list_mutex());
+      //single_lock synchronouslockObjects(system()->draw2d()->get_object_list_mutex());
 
       //if (!synchronouslockObjects.lock(0_s))
       //{
@@ -9183,7 +9183,7 @@ bMove = false;
       //   return;
 
       //}
-      //single_lock synchronouslockImages(system()->m_paurasystem->draw2d()->get_image_list_mutex());
+      //single_lock synchronouslockImages(system()->draw2d()->get_image_list_mutex());
 
       //if (!synchronouslockImages.lock(0_s))
       //{
@@ -9191,7 +9191,7 @@ bMove = false;
       //   return;
 
       //}
-      //single_lock synchronouslockGraphicsContext(system()->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+      //single_lock synchronouslockGraphicsContext(system()->draw2d()->get_graphics_context_list_mutex());
 
       //if (!synchronouslockGraphicsContext.lock(0_s))
       //{
@@ -9485,7 +9485,7 @@ bMove = false;
                      if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
                      {
 
-                        if (system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+                        if (system()->draw2d()->graphics_context_does_full_redraw())
                         {
 
                            pgraphics->m_puserredraw->m_bEnabled = false;
@@ -16179,7 +16179,7 @@ bMove = false;
    //::aura::application * window::get_app()
    //{
 
-   //   return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+   //   return m_papplication ? m_papplication->m_papplication : nullptr;
 
    //}
 
@@ -16195,7 +16195,7 @@ bMove = false;
    //::aura::system * primitive_implacmesystem()
    //{
 
-   //   return system() ? system()->m_paurasystem : nullptr;
+   //   return system() ? system() : nullptr;
 
    //}
 

@@ -75,7 +75,7 @@ namespace apex
    session::session()
    {
 
-      m_papexsession = this;
+      //m_papexsession = this;
 
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;

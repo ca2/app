@@ -433,7 +433,7 @@ string context::defer_get_file_title(string strParam)
 
       path =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / path;
 
@@ -510,7 +510,7 @@ pacmedirectory->system() / path;
 ::file::path context::side_get_matter_path(string strMatter)
 {
 
-   auto pdirsystem = ::auraacmesystem()->m_pdirsystem;
+   auto pdirsystem = ::auraacmesystem()->m_pdirectorysystem;
 
    ::file::path pathResource = pdirsystem->m_pathInstall;
 
@@ -531,7 +531,7 @@ pacmedirectory->system() / path;
    if (::str::case_insensitive_begins_eat((string &) path, "appmatter://"))
    {
 
-      ::file::path pathCache = ::auraacmesystem()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
+      ::file::path pathCache = ::auraacmesystem()->m_pdirectorysystem->m_pathLocalAppMatterFolder / path;
 
       if ((path & ::file::e_flag_get_local_path)
          || (!(path & ::file::e_flag_bypass_cache) && path_system()->is_file_or_dir(pathCache, nullptr)))
@@ -599,7 +599,7 @@ pacmedirectory->system() / path;
 
       }
 
-      if (!::auraacmesystem()->m_pdirsystem->m_bMatterFromHttpCache)
+      if (!::auraacmesystem()->m_pdirectorysystem->m_bMatterFromHttpCache)
       {
 
          return "";
@@ -832,7 +832,7 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
 
    ::file::path pathFolder =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->localconfig();
 
@@ -959,7 +959,7 @@ bool context::sys_set(string strPath, string strValue)
 
    return file()->put_text_utf8(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->config() / strPath, strValue);
 
@@ -971,7 +971,7 @@ string context::sys_get(string strPath, string strDefault)
 
    string strValue = file()->as_string(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->config() / strPath);
 

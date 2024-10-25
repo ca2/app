@@ -52,7 +52,7 @@ namespace database
       void initialize_data_client(server * pserver);
 
 //      DECLARE_MESSAGE_HANDLER(data_on_before_change);
-      DECLARE_MESSAGE_HANDLER(data_on_after_change);
+      //DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
 
       virtual void data_on_before_change(client* pclient, const ::scoped_string & strKey, ::payload& payload, ::topic * ptopic);

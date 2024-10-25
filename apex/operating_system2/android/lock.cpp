@@ -93,7 +93,7 @@ string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, i3
 
    auto psystem = system();
 
-   auto pacmedirectory = psystem->m_pacmedirectory;
+   auto pacmedirectory = psystem->m_pdirectorysystem;
 
    pacmedirectory->create(::file_path_folder(str));
 

@@ -11,7 +11,7 @@ namespace ios
    public:
 
       
-      ::pointer<directory_system>     m_pdirsystem;
+      ::pointer<directory_system>     m_pdirectorysystem;
       ::pointer<file_system>    m_pfilesystem;
 
 

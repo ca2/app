@@ -559,7 +559,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 
       property_set set;
 
-      string str = http()->text(listing.m_pathFinal.as_url(), set);
+      string str = http()->get(listing.m_pathFinal.as_url(), set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -2144,7 +2144,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
-         strLs = http()->text(strUrl, set);
+         strLs = http()->get(strUrl, set);
 
          file()->put_text(strFile, strLs);
 
@@ -2497,7 +2497,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       const ::scoped_string& scopedstrUrl = strUrl;
 
-      strMatter = http()->text(strUrl, set);
+      strMatter = http()->get(strUrl, set);
 
       bool bDir = strMatter.ends("/");
 

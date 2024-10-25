@@ -12,6 +12,7 @@
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/http.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/prototype/string/str.h"
@@ -31,7 +32,7 @@ namespace apex
    context::context()
    {
 
-      m_papexcontext = this;
+      //m_papexcontext = this;
 
    }
 
@@ -107,7 +108,7 @@ namespace apex
 
       iRetry++;
 
-      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(scopedstrAppId));
+      strBuild = http()->get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(scopedstrAppId));
 
       ::str::_008Trim(strBuild);
 
@@ -214,7 +215,7 @@ namespace apex
 
       m_phttpcontext.release();
 
-      acme::context::finalize_context();
+      ::platform::context::finalize_context();
 
    }
 
@@ -523,7 +524,7 @@ namespace apex
       else if (_001IsProtocol(path, "usersystem:/"))
       {
 
-         path = directory_system()->system() / path;
+         path = directory_system()->user() / path;
 
       }
       else if (_001IsProtocol(path, "desktop:/"))
@@ -721,17 +722,17 @@ namespace apex
 
    }*/
 
-
-   string context::http_get(const ::string & strUrl, ::property_set & set)
-   {
-
-      __UNREFERENCED_PARAMETER(strUrl);
-      __UNREFERENCED_PARAMETER(set);
-
-      return "";
-
-   }
-
+   //
+   // string context::get(const ::string & strUrl, ::property_set & set)
+   // {
+   //
+   //    __UNREFERENCED_PARAMETER(strUrl);
+   //    __UNREFERENCED_PARAMETER(set);
+   //
+   //    return "";
+   //
+   // }
+   //
 
    ::handle::ini context::ini_from_path(::file::path & path)
    {
@@ -786,47 +787,47 @@ namespace apex
 
 
 
-   bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
-   {
+   // bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
+   // {
+   //
+   //    string strUrl = scopedstrUrl;
+   //
+   //    property_set set;
+   //
+   //    set["raw_http"] = true;
+   //
+   //    set["disable_common_name_cert_check"] = true;
+   //
+   //    return http()->download(strUrl, scopedstrFile, set);
+   //
+   // }
 
-      string strUrl = scopedstrUrl;
 
-      property_set set;
-
-      set["raw_http"] = true;
-
-      set["disable_common_name_cert_check"] = true;
-
-      return http()->download(strUrl, scopedstrFile, set);
-
-   }
-
-
-   string context::http_get(const ::scoped_string & scopedstrUrl)
-   {
-
-      property_set set;
-
-      set["get_response"] = "";
-
-      set["raw_http"] = true;
-
-      set["disable_common_name_cert_check"] = true;
-
-      string strResponse;
-
-      http()->get(strResponse, scopedstrUrl, set);
-
-      //if (!http()->get(strResponse, pszUrl, set))
-      //{
-
-      //   return "";
-
-      //}
-
-      return strResponse;
-
-   }
+   // string context::http_get(const ::scoped_string & scopedstrUrl)
+   // {
+   //
+   //    property_set set;
+   //
+   //    set["get_response"] = "";
+   //
+   //    set["raw_http"] = true;
+   //
+   //    set["disable_common_name_cert_check"] = true;
+   //
+   //    string strResponse;
+   //
+   //    http()->get(strResponse, scopedstrUrl, set);
+   //
+   //    //if (!http()->get(strResponse, pszUrl, set))
+   //    //{
+   //
+   //    //   return "";
+   //
+   //    //}
+   //
+   //    return strResponse;
+   //
+   // }
 
 
    ::file::path context::sys_path(const ::scoped_string & scopedstrPath)
@@ -918,7 +919,7 @@ namespace apex
    file_pointer context::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-      auto pfile = m_papexcontext->file()->get_file(payloadFile, eopen, pfileexception);
+      auto pfile = file()->get_file(payloadFile, eopen, pfileexception);
 
       return pfile;
 
@@ -1146,22 +1147,22 @@ namespace apex
 //
 //   }
 
+   //
+   // void context::perform(::nano::http::get * pget)
+   // {
+   //
+   //    http()->perform(pget);
+   //
+   // }
 
-   void context::perform(::nano::http::get * pget)
-   {
-
-      http()->perform(pget);
-
-   }
-
-
-   ::url::url context::http_get_effective_url(const ::url::url & url)
-   {
-
-      return http()->get_effective_url(url);
-
-   }
-
+   //
+   // ::url::url context::http_get_effective_url(const ::url::url & url)
+   // {
+   //
+   //    return http()->get_effective_url(url);
+   //
+   // }
+   //
 
 } // namespace apex
 

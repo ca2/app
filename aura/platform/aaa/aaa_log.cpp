@@ -46,7 +46,7 @@ namespace aura
 
       ::file::path pathTrace =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "trace.txt";
 
@@ -181,7 +181,7 @@ pacmedirectory->system() / "trace.txt";
 
       if (file_is_true_dup(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "log.txt"))
       {
@@ -482,7 +482,7 @@ pacmedirectory->system() / "log.txt"))
 
                      auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->create(::file_path_folder(m_strLogPath));
 
@@ -559,7 +559,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   if (!path_system()->app_module().case_insensitive_contains("logviewer") && file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "logviewer.txt"))
                   {

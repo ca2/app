@@ -123,27 +123,27 @@ namespace geo
 
             //file()->to_array(m_straCity,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "weather-cit.bin");
             //file()->to_array(m_straCityLo,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "weather-cil.bin");
             //file()->to_array(m_iaIds,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "weather-ids.bin");
             //file()->to_array(m_daLon,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "weather-lon.bin");
             //file()->to_array(m_daLat,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pdirectorysystem;
    //
    //pacmedirectory->system() / "weather-lat.bin");
 
@@ -596,7 +596,7 @@ namespace geo
 
       string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       string str = http()->get(strGetUrl, set);
 

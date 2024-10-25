@@ -24,10 +24,10 @@
 //#undef App
 //
 //
-//#define ::auraacmesystem() (psystem->m_paurasystem)
+//#define ::auraacmesystem() (psystem)
 //#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
-//#define App(playered) (*::get_app(playered)->m_pauraapplication)
+//#define App(playered) (*::get_app(playered))
 
 
 namespace acme_posix { class node; }

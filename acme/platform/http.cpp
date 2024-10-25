@@ -59,7 +59,7 @@ namespace platform
 
 
 
-   ::string http::text(const ::url::url & url, const class ::time & timeTimeout)
+   ::string http::get(const ::url::url & url, const class ::time & timeTimeout)
    {
 
       auto pget = __create_new < ::nano::http::get >();
@@ -77,7 +77,7 @@ namespace platform
    }
 
 
-   ::string http::text(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
+   ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
       auto pget = __create_new < ::nano::http::get >();

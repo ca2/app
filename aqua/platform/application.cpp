@@ -27,7 +27,7 @@ namespace aqua
 
       //::aqua::initialize();
 
-      m_paquaapplication = this;
+      //m_paquaapplication = this;
       ///set_layer(LAYERED_AQUA, this);
 
 

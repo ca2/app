@@ -92,7 +92,7 @@ string _ca_get_file_name(const char * lpszName, bool bCreate, i32 * pfd)
 
             auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->create(::file_path_folder(str));
 

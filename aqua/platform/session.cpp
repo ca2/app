@@ -11,7 +11,7 @@ namespace aqua
    session::session()
    {
 
-      m_paquasession = this;
+      //m_paquasession = this;
 
       //set_layer(LAYERED_AQUA, this);
 

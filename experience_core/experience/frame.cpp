@@ -140,7 +140,7 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pimaging = psystem->imaging();
 
@@ -498,7 +498,7 @@ namespace experience_core
 
       auto pframewindow = m_pframewindow;
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 

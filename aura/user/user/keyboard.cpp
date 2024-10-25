@@ -62,7 +62,7 @@ namespace user
 
       //}
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
 //      SET_ENUM_TEXT(e_key_0);
 //      SET_ENUM_TEXT(e_key_1);
@@ -273,7 +273,7 @@ namespace user
    ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
    {
       
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
    
       auto psession = psystem->get_session();
       
@@ -302,7 +302,7 @@ namespace user
 
       //::type typeinfoKey = ::type < ::user::enum_key >();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       string str = file()->as_string(pszPath);
 
@@ -564,7 +564,7 @@ namespace user
 //
 //      string strOverride = file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "config\\system\\keyboard_layout.txt");
 //

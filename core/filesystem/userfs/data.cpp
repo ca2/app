@@ -116,7 +116,7 @@ namespace userfs
 
    //   //      // assume can resume at least from this exception one time
 
-   //   //      auto pcontext = get_context();
+   //   //      // auto pcontext = get_context();
 
    //   //      m_pitem = __allocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
 
@@ -131,7 +131,7 @@ namespace userfs
    //   //if (m_pfilewatch >= 0)
    //   //{
 
-   //   //   auto pcontext = get_context();
+   //   //   // auto pcontext = get_context();
 
    //   //   file_watcher()->erase_watch(m_pfilewatch);
 
@@ -140,7 +140,7 @@ namespace userfs
    //   //try
    //   //{
 
-   //   //   auto pcontext = get_context();
+   //   //   // auto pcontext = get_context();
 
    //   //   auto pdir = dir();
 
@@ -278,7 +278,7 @@ namespace userfs
 
       information() << "::userfs::data::browse";
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 

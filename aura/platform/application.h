@@ -16,7 +16,7 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
-      virtual public ::aura::context,
+      ///virtual public ::aura::context,
       virtual public ::filemanager::callback,
       virtual public ::user::form_handler
    {
@@ -859,7 +859,7 @@ namespace aura
 
       //virtual void get_time(struct timeval *point_i32) override;
 
-      virtual void close(::apex::enum_end eend) override;
+      virtual void close(::enum_exit eexit) override;
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);

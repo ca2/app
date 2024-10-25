@@ -96,7 +96,7 @@ namespace app_integration
       
       string strTitle;
       
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
       
       auto pdraw2d = psystem->draw2d();
       

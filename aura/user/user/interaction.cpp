@@ -4505,7 +4505,7 @@ namespace user
 
                printf_line("About to erase a %s instance from an aura::application from thread %s!!", pszName, task_get_name().c_str());
 
-               auto pauraapplication = get_app()->m_pauraapplication;
+               auto pauraapplication = get_app();
 
                pauraapplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
@@ -4521,7 +4521,7 @@ namespace user
             //               try
             //               {
             //
-            //                  auto papp = get_app()->m_pauraapplication;
+            //                  auto papp = get_app();
             //
             //                  papp->erase_user_interaction(
             //                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
@@ -4945,7 +4945,7 @@ namespace user
 
       }
 
-      if (system()->m_paurasystem->draw2d()->graphics_context_does_full_redraw())
+      if (system()->draw2d()->graphics_context_does_full_redraw())
       {
 
          return;
@@ -7970,7 +7970,7 @@ namespace user
 
       //}
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto psignal = psystem->get_signal(id_user_style_change);
 
@@ -18409,7 +18409,7 @@ namespace user
    ::draw2d::graphics_pointer interaction::create_memory_graphics()
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -29962,7 +29962,7 @@ namespace user
    {
 
       return m_papplication && m_papplication->m_papplication
-         ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+         ? m_papplication->m_papplication : nullptr;
 
    }
 
@@ -29978,7 +29978,7 @@ namespace user
    //::aura::system * interactionacmesystem()
    //{
 
-   //   return system() ? system()->m_paurasystem : nullptr;
+   //   return system() ? system() : nullptr;
 
    //}
 

@@ -366,9 +366,9 @@ namespace platform
          if (bMatterFromResource)
          {
 
-            m_pdirsystem->m_bMatterFromHttpCache = false;
+            m_pdirectorysystem->m_bMatterFromHttpCache = false;
 
-            m_pdirsystem->m_bMatterFromResource = true;
+            m_pdirectorysystem->m_bMatterFromResource = true;
 
          }
          else
@@ -381,7 +381,7 @@ namespace platform
 
                ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
-               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+               bool bFileSystemMatter = m_pdirectorysystem->is(pathSide) || m_pdirectorysystem->is(pathLocal);
 
                bMatterFromHttpCache = !bFileSystemMatter;
 
@@ -393,9 +393,9 @@ namespace platform
 
             }
 
-            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+            m_pdirectorysystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
 
-            m_pdirsystem->m_bMatterFromResource = false;
+            m_pdirectorysystem->m_bMatterFromResource = false;
 
          }
 
@@ -491,8 +491,8 @@ namespace platform
       //factory()->add_factory_item<::acme::idpool>();
 
       //m_pacme = nullptr;
-      //m_pacmedirectory = nullptr;
-      //m_pacmepath = nullptr;
+      //m_pdirectorysystem = nullptr;
+      //m_ppathsystem = nullptr;
 
       __defer_construct_new(m_pmathematics);
 
@@ -862,9 +862,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pacmedirectory);
+      //auto estatus = __raw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pacmedirectory);
+      __raw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -873,24 +873,13 @@ namespace platform
 
        }*/
 
-       //      m_pacmedirectory = pacmedirectory;
+       //      m_pdirectorysystem = pacmedirectory;
 
-       //    m_pacmedirectory->increment_reference_count();
+       //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pacmefile);
+       //estatus = __raw_construct(m_pfilesystem);
 
-      __raw_construct(m_pacmefile);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = __raw_construct(m_pacmepath);
-
-      __raw_construct(m_pacmepath);
+      __raw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -899,16 +888,9 @@ namespace platform
 
       //}
 
-      m_pacmedirectory->m_pacmefile = m_pacmefile;
-      m_pacmedirectory->m_pacmepath = m_pacmepath;
-      m_pacmefile->m_pacmedirectory = m_pacmedirectory;
-      m_pacmefile->m_pacmepath = m_pacmepath;
-      m_pacmepath->m_pacmedirectory = m_pacmedirectory;
-      m_pacmepath->m_pacmefile = m_pacmefile;
+      //estatus = __raw_construct(m_ppathsystem);
 
-      //estatus = m_pacmefile->initialize(this);
-
-      m_pacmefile->initialize(this);
+      __raw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -917,9 +899,16 @@ namespace platform
 
       //}
 
-      //estatus = m_pacmepath->initialize(this);
+      m_pdirectorysystem->m_pfilesystem = m_pfilesystem;
+      m_pdirectorysystem->m_ppathsystem = m_ppathsystem;
+      m_pfilesystem->m_pdirectorysystem = m_pdirectorysystem;
+      m_pfilesystem->m_ppathsystem = m_ppathsystem;
+      m_ppathsystem->m_pdirectorysystem = m_pdirectorysystem;
+      m_ppathsystem->m_pfilesystem = m_pfilesystem;
 
-      m_pacmepath->initialize(this);
+      //estatus = m_pfilesystem->initialize(this);
+
+      m_pfilesystem->initialize(this);
 
       //if (!estatus)
       //{
@@ -928,9 +917,20 @@ namespace platform
 
       //}
 
-      //estatus = m_pacmedirectory->initialize(this);
+      //estatus = m_ppathsystem->initialize(this);
 
-      m_pacmedirectory->initialize(this);
+      m_ppathsystem->initialize(this);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus = m_pdirectorysystem->initialize(this);
+
+      m_pdirectorysystem->initialize(this);
 
 
       //throw ::exception(error_failed);
@@ -980,7 +980,7 @@ namespace platform
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      __construct(m_pdirsystem);
+      __construct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1006,7 +1006,7 @@ namespace platform
       //}
 
       //estatus =
-      m_pdirsystem->init_system();
+      m_pdirectorysystem->init_system();
 
       //if (!estatus)
       //{
@@ -1217,11 +1217,11 @@ namespace platform
 
       m_pfactoryFolder.release();
 
-      m_pdirsystem.release();
+      m_pdirectorysystem.release();
       m_pfilesystem.release();
-      m_pacmefile.release();
-      m_pacmedirectory.release();
-      m_pacmepath.release();
+      m_pfilesystem.release();
+      m_pdirectorysystem.release();
+      m_ppathsystem.release();
 
       m_purlcontext.release();
 

@@ -585,7 +585,7 @@ namespace userex
 
       ::acme::library * plibrary = nullptr;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
 //      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {

@@ -397,7 +397,7 @@ namespace android
 //
 //                     strIcon =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 //
@@ -1070,7 +1070,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 
       if (         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->is(strPath))
       {

@@ -12,7 +12,7 @@ namespace aura
 
    class CLASS_DECL_AURA session :
       virtual public ::aqua::session,
-      virtual public ::aura::context,
+      //virtual public ::aura::context,
       virtual public ::filemanager::item_action
    {
    public:
@@ -150,8 +150,8 @@ namespace aura
       //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
-      virtual string get_locale_schema_dir() override;
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual string get_locale_schema_dir() override;
 
 
       //virtual void     initialize(::particle * pparticle) override;

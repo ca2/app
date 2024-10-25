@@ -446,7 +446,7 @@ namespace filemanager
 
       //synchronous_lock synchronouslock(pparticleSynchronization);
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       //auto pointOffset = get_context_offset();
 
@@ -980,7 +980,7 @@ _001SelectItem(pchild);
 
    //synchronous_lock synchronouslock(pparticleSynchronization);
 
-   //auto pcontext = get_context();
+   //// auto pcontext = get_context();
 
    //auto pointOffset = get_context_offset();
 

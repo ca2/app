@@ -232,7 +232,7 @@ auto m_timeRoll = ::time::now();
 
       //d.save_to_file(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "obs.png");
 

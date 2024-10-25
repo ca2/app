@@ -75,7 +75,7 @@ i64 fd_get_file_size(i32 fd)
 //
 ////    return          auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->localconfig() / "favorites";
 //

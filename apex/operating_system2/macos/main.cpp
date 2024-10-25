@@ -246,7 +246,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
          
          string strName =path.name();
 
@@ -270,7 +270,7 @@ namespace apex
          if(!bFilePathIsLink ||  strDestination!= path)
          {
             
-            auto pacmefile = pacmedirectory->m_pacmefile;
+            auto pacmefile = pacmedirectory->m_pfilesystem;
             
             if(pacmefile->exists(path2))
             {
@@ -279,7 +279,7 @@ namespace apex
                
             }
             
-            auto pacmepath = pacmedirectory->m_pacmepath;
+            auto pacmepath = pacmedirectory->m_ppathsystem;
 
             pacmepath->create_symbolic_link(path2, path);
         //    ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

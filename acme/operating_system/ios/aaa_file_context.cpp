@@ -33,7 +33,7 @@ namespace ios
          
       }
       
-      m_pdirsystem = ::acmeacmesystem()->m_pdirsystem;
+      m_pdirectorysystem = ::acmeacmesystem()->m_pdirectorysystem;
       
       m_pfilesystem = ::acmeacmesystem()->m_pfilesystem;
 
@@ -68,7 +68,7 @@ namespace ios
 
       m_pfilesystem->m_pathModule = apple_app_module_path();
 
-      //m_pfilesystem->m_pathCa2Module = m_pdirsystem->m_pathModule;
+      //m_pfilesystem->m_pathCa2Module = m_pdirectorysystem->m_pathModule;
 
       return ::success;
 

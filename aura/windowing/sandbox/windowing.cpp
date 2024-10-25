@@ -50,12 +50,12 @@ namespace sandbox_windowing
    ::pointer<::windowing::window>pwindow;
    
    if (::is_set(system())
-       && ::is_set(system()->m_paurasystem)
-       && ::is_set(system()->m_paurasystem->m_pwindowMain)
-       && ::is_null(system()->m_paurasystem->m_pwindowMain->m_pwindow))
+       && ::is_set(system())
+       && ::is_set(system()->m_pwindowMain)
+       && ::is_null(system()->m_pwindowMain->m_pwindow))
    {
       
-      pwindow = system()->m_paurasystem->m_pwindowMain;
+      pwindow = system()->m_pwindowMain;
       
    }
    else
@@ -75,10 +75,10 @@ namespace sandbox_windowing
 //
 //      ::pointer<::sandbox_windowing::window>pwindow;
 //
-//      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_pwindow))
+//      if (::is_null(system()->m_pwindowMain->m_pwindow))
 //      {
 //
-//         pwindow = system()->m_paurasystem->m_pwindowMain;
+//         pwindow = system()->m_pwindowMain;
 //
 //      }
 //      else

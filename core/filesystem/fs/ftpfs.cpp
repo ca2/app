@@ -171,7 +171,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       if (dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
       {
@@ -248,7 +248,7 @@ retry:
 
    string strPath;
 
-   auto psystem = system()->m_paurasystem;
+   auto psystem = system();
 
    auto purl = psystem->url();
 

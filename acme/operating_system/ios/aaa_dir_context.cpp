@@ -173,7 +173,7 @@ namespace ios
 
       if(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->is(path))
       {
@@ -263,7 +263,7 @@ pacmedirectory->is(path))
 
             if(!         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->is(stra[i]))
             {
@@ -421,7 +421,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::time()
    {
       
-      return ::acmeacmesystem()->m_pdirsystem->m_pathModule;
+      return ::acmeacmesystem()->m_pdirectorysystem->m_pathModule;
       
    }
 
@@ -455,7 +455,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::module()
    {
 
-      return ::acmeacmesystem()->m_pdirsystem->m_pathModule;
+      return ::acmeacmesystem()->m_pdirectorysystem->m_pathModule;
 
    }
 
@@ -463,7 +463,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::ca2module()
    {
 
-      return ::acmeacmesystem()->m_pdirsystem->m_pathCa2Module;
+      return ::acmeacmesystem()->m_pdirectorysystem->m_pathCa2Module;
 
    }
 
@@ -554,7 +554,7 @@ pacmedirectory->is(stra[i]))
          
       }
       
-      m_pdirsystem = ::acmeacmesystem()->m_pdirsystem;
+      m_pdirectorysystem = ::acmeacmesystem()->m_pdirectorysystem;
       
       m_pfilesystem = ::acmeacmesystem()->m_pfilesystem;
 
@@ -580,22 +580,22 @@ pacmedirectory->is(stra[i]))
 
          str.release_buffer(uiSize);
 
-         m_pdirsystem->m_strCa2 = str;
+         m_pdirectorysystem->m_strCa2 = str;
 
       }
 
 
       ::file::path pathHome;
 
-      pathHome = m_pdirsystem->m_strCa2/"Documents";
+      pathHome = m_pdirectorysystem->m_strCa2/"Documents";
 
       ::acmeacmesystem()->m_strIosHome = pathHome;
 
-      m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
+      m_pdirectorysystem->m_pathHome = m_pdirectorysystem->m_strCa2/"Documents";
 
       //nodeos_set_home(::acmeacmesystem()->m_strIosHome);
 
-      ::file::path str = m_pdirsystem->m_strCa2 / ".ca2/appdata";
+      ::file::path str = m_pdirectorysystem->m_strCa2 / ".ca2/appdata";
 
 //      m_pathUser = m_strCa2 / ".ca2/user";
 
@@ -603,21 +603,21 @@ pacmedirectory->is(stra[i]))
 
       strRelative = install();
 
-      m_pdirsystem->m_strCa2AppData = str / "ca2" / strRelative;
+      m_pdirectorysystem->m_strCa2AppData = str / "ca2" / strRelative;
 
-      str = m_pdirsystem->m_pathModule.folder();
+      str = m_pdirectorysystem->m_pathModule.folder();
 
-      m_pdirsystem->m_strCommonAppData = str / "commonappdata";
+      m_pdirectorysystem->m_strCommonAppData = str / "commonappdata";
 
 
 
       str = "/usr/bin";
 
-      m_pdirsystem->m_strPrograms = str;
+      m_pdirectorysystem->m_strPrograms = str;
 
       str = "/usr/share/";
 
-      m_pdirsystem->m_strCommonPrograms = str;
+      m_pdirectorysystem->m_strCommonPrograms = str;
 
       return true;
 
@@ -639,38 +639,38 @@ pacmedirectory->is(stra[i]))
          if(doc.root()->get_name() == "directory_configuration")
          {
 
-            m_pdirsystem->m_strTimeFolder = doc.root()->get_child_value("time");
+            m_pdirectorysystem->m_strTimeFolder = doc.root()->get_child_value("time");
 
-            m_pdirsystem->m_strNetSeedFolder = doc.root()->get_child_value("netseed");
+            m_pdirectorysystem->m_strNetSeedFolder = doc.root()->get_child_value("netseed");
 
          }
 
       }
 
-      if(m_pdirsystem->m_strTimeFolder.is_empty())
+      if(m_pdirectorysystem->m_strTimeFolder.is_empty())
       {
 
-         m_pdirsystem->m_strTimeFolder = m_pdirsystem->m_strCa2 / "Library/Cache/time";
+         m_pdirectorysystem->m_strTimeFolder = m_pdirectorysystem->m_strCa2 / "Library/Cache/time";
 
       }
 
-      if(m_pdirsystem->m_strNetSeedFolder.is_empty())
+      if(m_pdirectorysystem->m_strNetSeedFolder.is_empty())
       {
 
-         m_pdirsystem->m_strNetSeedFolder = install() / "net";
+         m_pdirectorysystem->m_strNetSeedFolder = install() / "net";
 
       }
 
-      mk(m_pdirsystem->m_strTimeFolder);
+      mk(m_pdirectorysystem->m_strTimeFolder);
 
-      if(!is(m_pdirsystem->m_strTimeFolder))
+      if(!is(m_pdirectorysystem->m_strTimeFolder))
       {
 
          return false;
 
       }
 
-      string strTime = m_pdirsystem->m_strTimeFolder / "time";
+      string strTime = m_pdirectorysystem->m_strTimeFolder / "time";
 
       mk(strTime);
 
@@ -689,11 +689,11 @@ pacmedirectory->is(stra[i]))
 
       str = "/usr/bin";
 
-      m_pdirsystem->m_strPrograms = str;
+      m_pdirectorysystem->m_strPrograms = str;
 
       str = "/usr/share/";
 
-      m_pdirsystem->m_strCommonPrograms = str;
+      m_pdirectorysystem->m_strCommonPrograms = str;
 
       return true;
 
@@ -703,7 +703,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::appdata()
    {
 
-      return m_pdirsystem->m_strCa2AppData;
+      return m_pdirectorysystem->m_strCa2AppData;
 
    }
 
@@ -711,14 +711,14 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::commonappdata_root()
    {
 
-      return m_pdirsystem->m_strCommonAppData;
+      return m_pdirectorysystem->m_strCommonAppData;
 
    }
 
    ::file::path directory_context::userquicklaunch()
    {
 
-      return m_pdirsystem->m_strAppData / "Microsoft\\Internet Explorer\\Quick Launch";
+      return m_pdirectorysystem->m_strAppData / "Microsoft\\Internet Explorer\\Quick Launch";
 
    }
 
@@ -726,7 +726,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::userprograms()
    {
 
-      return m_pdirsystem->m_strPrograms;
+      return m_pdirectorysystem->m_strPrograms;
 
    }
 
@@ -734,7 +734,7 @@ pacmedirectory->is(stra[i]))
    ::file::path directory_context::commonprograms()
    {
 
-      return m_pdirsystem->m_strCommonPrograms;
+      return m_pdirectorysystem->m_strCommonPrograms;
 
    }
 

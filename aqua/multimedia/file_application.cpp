@@ -53,7 +53,7 @@ namespace multimedia
 
 #endif
 
-      auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       return file()->get_file(payloadFile, eopen);
 

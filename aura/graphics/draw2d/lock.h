@@ -46,7 +46,7 @@ namespace draw2d
       lock(::particle * pparticle)
       {
 
-         m_pdraw2d = pparticle->system()->m_paurasystem->draw2d();
+         m_pdraw2d = pparticle->system()->draw2d();
 
          if (m_pdraw2d)
          {

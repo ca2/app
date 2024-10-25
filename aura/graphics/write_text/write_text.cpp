@@ -72,9 +72,14 @@ namespace write_text
 
          //}
 
-         auto psystem = system()->m_paurasystem;
+         ::cast < ::manager > pmanager = system();
 
-         psystem->signal(id_font_enumeration);
+         if(pmanager)
+         {
+
+            pmanager->signal(id_font_enumeration);
+
+         }
 
       }
 
@@ -209,7 +214,7 @@ namespace write_text
 
    //   string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 
-   //   auto psystem = system()->m_paurasystem;
+   //   auto psystem = system();
 
    //   auto pxml = psystem->xml();
 

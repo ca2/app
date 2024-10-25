@@ -53,7 +53,7 @@ namespace opengl
    void context_egl::create_context()
    {
 
-//      auto psystem = system()->m_paurasystem;
+//      auto psystem = system();
 //
 //      auto pgpu = psystem->get_gpu();
 //
@@ -206,7 +206,7 @@ namespace opengl
 //   void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
 //   {
 //
-//      auto psystem = system()->m_paurasystem;
+//      auto psystem = system();
 //
 //      auto pgpu = psystem->get_gpu();
 //
@@ -350,7 +350,7 @@ namespace opengl
    void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pgpu = psystem->get_gpu();
 

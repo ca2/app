@@ -718,7 +718,7 @@ namespace user
    bool menu_impact::load_xml(::payload payloadFile)
    {
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       string strXml = file()->as_string(payloadFile);
 

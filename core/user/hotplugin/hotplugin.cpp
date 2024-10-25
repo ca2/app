@@ -42,7 +42,7 @@ namespace hotplugin
 
 //         if(file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         {
@@ -52,7 +52,7 @@ pacmedirectory->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         }
 //         if(file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 //         {

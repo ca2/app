@@ -107,7 +107,7 @@ namespace filemanager
    void file_properties_form::page1()
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       ::file::path path = directory()->matter("filemanager/file_properties.html");
 

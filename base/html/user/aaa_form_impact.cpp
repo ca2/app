@@ -214,7 +214,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 
             ::file::path matter;
 
-            auto pcontext = get_context();
+            // auto pcontext = get_context();
 
             matter = pcontext->directory()->matter(ptopic->payload(id_form));
 

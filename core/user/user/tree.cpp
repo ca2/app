@@ -1022,7 +1022,7 @@ namespace user
    
       //      style_context context(this);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -1731,7 +1731,7 @@ namespace user
 
       auto iIndent = _001GetIndentation();
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 

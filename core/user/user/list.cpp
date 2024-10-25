@@ -1680,7 +1680,7 @@ namespace user
 
       }
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -4203,7 +4203,7 @@ namespace user
 
                         }
 
-                        auto pcontext = get_context();
+                        // auto pcontext = get_context();
 
                         file()->put_text(strSort, stra.implode("\n"));
 
@@ -5743,7 +5743,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -6646,7 +6646,7 @@ namespace user
    void list::_001OnListHeaderItemDblClk(::collection::index iHeaderItem)
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdraw2d = psystem->draw2d();
 
@@ -7847,7 +7847,7 @@ namespace user
 
          strSort += "-" + get_display_tag() + ".icon_list_impact_sort";
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          string str = file()->safe_get_string(strSort);
          string_array stra;

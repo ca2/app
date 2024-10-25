@@ -386,7 +386,7 @@ namespace dynamic_source
 
       strMillis.release_buffer();
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdatetime = psystem->datetime();
 
@@ -1338,7 +1338,7 @@ namespace dynamic_source
       if(::str::case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       if(m_straSync.get_count() > 1)
       {
@@ -2988,7 +2988,7 @@ ch_else:
 
       synchronous_lock synchronouslock(m_pmanager->synchronization());
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 

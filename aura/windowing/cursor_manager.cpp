@@ -205,7 +205,7 @@ namespace windowing
    void cursor_manager::load_hotspot(const ::file::path & pathDir)
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       parse_hotspot_text(file()->as_string(pathDir / "hotspot.txt"));
 
@@ -639,7 +639,7 @@ namespace windowing
    ::aura::application* cursor_manager::get_app()
    {
 
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
 
    }
 
@@ -655,7 +655,7 @@ namespace windowing
    //::aura::system* cursor_manageracmesystem()
    //{
 
-   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system() : nullptr;
 
    //}
 

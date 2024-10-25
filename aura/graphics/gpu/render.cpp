@@ -58,11 +58,11 @@ namespace gpu
 
       ::particle::initialize(pparticle);
 
-      //m_pgpucontext = system()->m_paurasystem->get_gpu()->create_context(this);
+      //m_pgpucontext = system()->get_gpu()->create_context(this);
 
       //m_pgpucontext->initialize(this);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pgpu = psystem->get_gpu();
 
@@ -89,7 +89,7 @@ namespace gpu
 
    //   //initialize_application_consumer();
 
-   //   auto psystem = system()->m_paurasystem;
+   //   auto psystem = system();
 
    //   auto pgpu = psystem->get_gpu();
 

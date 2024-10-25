@@ -168,7 +168,7 @@ void path_system::safe_real_path(::file::path & path)
 ::file::path path_system::get_uniform_resource_locator(const ::file::path& path)
 {
 
-   auto str = http()->text(path.as_url());
+   auto str = http()->get(path.as_url());
 
    return str;
 
@@ -394,7 +394,7 @@ bool path_system::has_custom_icon(const ::file::path & path)
    if(pathFolder.is_empty())
    {
 
-      pathFolder = m_pacmedirectory->m_pathFolder;
+      pathFolder = m_pdirectorysystem->m_pathFolder;
 
    }
 

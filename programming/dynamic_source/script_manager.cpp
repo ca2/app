@@ -270,7 +270,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       {
 
@@ -278,7 +278,7 @@ namespace dynamic_source
 
          pwatcher->m_pmanager = this;
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          file_watcher()->add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
@@ -813,7 +813,7 @@ namespace dynamic_source
       information(buf);
       del*/
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
 
       ::file::path str;
@@ -1021,7 +1021,7 @@ namespace dynamic_source
    bool script_manager::include_matches_file_exists(const ::string& strPath)
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
@@ -1060,7 +1060,7 @@ namespace dynamic_source
 
       auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       if (p)
       {
@@ -1094,7 +1094,7 @@ namespace dynamic_source
 
       }
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       // roughly detect this way: by finding the <?
 
@@ -1354,7 +1354,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexRsa);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pcrypto = psystem->crypto();
 
@@ -1382,7 +1382,7 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pcrypto = psystem->crypto();
 
@@ -1622,7 +1622,7 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const ::file::path& strFile, ::size_i32* psize)
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       auto pfile = file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
@@ -1780,7 +1780,7 @@ namespace dynamic_source
 
       strScript = strName.title();
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
 #ifdef WINDOWS
 

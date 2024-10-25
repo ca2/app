@@ -60,7 +60,7 @@ namespace user
 
       //}
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
       

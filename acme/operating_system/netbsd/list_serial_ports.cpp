@@ -160,7 +160,7 @@ namespace serial
 
       auto psystem = pmatter->system();
 
-      auto pacmefile = psystem->m_pacmefile;
+      auto pacmefile = psystem->m_pfilesystem;
 
       device_number = atoi(pacmefile->first_line(sys_usb_path + "/devnum"));
 

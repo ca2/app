@@ -23,7 +23,7 @@
 
    ::file::path path = pacmedirectory->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
-   return pacmedirectory->m_pacmefile->as_string(path);
+   return pacmedirectory->m_pfilesystem->as_string(path);
 
 }
 
@@ -115,7 +115,7 @@ CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pacmedirectory, 
 
    path += ".txt";
 
-   return pacmedirectory->m_pacmefile->as_string(path);
+   return pacmedirectory->m_pfilesystem->as_string(path);
 
 }
 

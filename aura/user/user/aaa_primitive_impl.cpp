@@ -3038,7 +3038,7 @@ namespace user
    ::aura::application * primitive_impl::get_app()
    {
 
-      return m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return m_papplication ? m_papplication->m_papplication : nullptr;
 
    }
 
@@ -3054,7 +3054,7 @@ namespace user
    //::aura::system * primitive_implacmesystem()
    //{
 
-   //   return system() ? system()->m_paurasystem : nullptr;
+   //   return system() ? system() : nullptr;
 
    //}
 

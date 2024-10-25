@@ -87,7 +87,7 @@ namespace usernet
    void network_configuration::on_show()
    {
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       if(!m_pdocument->on_open_document(directory()->matter("system/network/configuration/proxy.xhtml")))
       {
@@ -118,7 +118,7 @@ namespace usernet
    void network_configuration::handle(::topic * ptopic, ::context * )
    {
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       if(ptopic->m_atom == ::id_click)
       {

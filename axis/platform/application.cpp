@@ -489,7 +489,7 @@ namespace axis
 
          ////data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         //auto psystem = system()->m_paurasystem;
+         //auto psystem = system();
 
          //psystem->appa_load_string_table();
 
@@ -747,7 +747,7 @@ namespace axis
          if (!is_session() && !is_system())
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             if (psystem != nullptr)
             {
@@ -931,7 +931,7 @@ namespace axis
 
             ::file::path pathDatabase;
 
-            auto pcontext = get_context();
+            // auto pcontext = get_context();
 
             ::file::path pathFolder = directory()->appdata(m_strDatabaseAppId);
 

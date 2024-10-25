@@ -258,7 +258,7 @@ public:
    virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
 
 
-   DECLARE_MESSAGE_HANDLER(on_message_branch);
+   //DECLARE_MESSAGE_HANDLER(on_message_branch);
 
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);

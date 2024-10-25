@@ -32,7 +32,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, ::acmeacmesystem()->m_pdirsystem);
+      estatus = __refer(m_pdirectorysystem, ::acmeacmesystem()->m_pdirectorysystem);
 
       if (!estatus)
       {
@@ -797,7 +797,7 @@ namespace android
    ::file::path directory_context::time()
    {
 
-      return m_pdirsystem->m_strTimeFolder;
+      return m_pdirectorysystem->m_strTimeFolder;
 
    }
 
@@ -821,7 +821,7 @@ namespace android
    ::file::path directory_context::netseed()
    {
 
-      return m_pdirsystem->m_strNetSeedFolder;
+      return m_pdirectorysystem->m_strNetSeedFolder;
 
    }
 
@@ -832,7 +832,7 @@ namespace android
 
       single_lock synchronouslock(mutex(), true);
 
-      return m_pdirsystem->m_pathInstall;
+      return m_pdirectorysystem->m_pathInstall;
 
    }
 
@@ -997,49 +997,49 @@ namespace android
 
       ::file::path pathInstall = ::acmeacmesystem()->m_pathCacheDir;
 
-      m_pdirsystem->m_pathInstall = pathInstall;
+      m_pdirectorysystem->m_pathInstall = pathInstall;
 
       //nodeos_set_home(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "home");
 
       //nodeos_set_temp(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "temp");
 
-      m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
+      m_pdirectorysystem->m_strCommonAppData = pathInstall / "commonappdata";
 
-      mk(m_pdirsystem->m_strCommonAppData);
+      mk(m_pdirectorysystem->m_strCommonAppData);
 
-      if (!is(m_pdirsystem->m_strCommonAppData))
+      if (!is(m_pdirectorysystem->m_strCommonAppData))
          return false;
 
 
       if (doc.get_name() == "directory_configuration")
       {
 
-         m_pdirsystem->m_strTimeFolder = doc.get_child_value("time");
+         m_pdirectorysystem->m_strTimeFolder = doc.get_child_value("time");
 
-         m_pdirsystem->m_strNetSeedFolder = doc.get_child_value("netseed");
+         m_pdirectorysystem->m_strNetSeedFolder = doc.get_child_value("netseed");
 
       }
 
-      if (m_pdirsystem->m_strTimeFolder.is_empty())
-         m_pdirsystem->m_strTimeFolder = appdata() / "time";
+      if (m_pdirectorysystem->m_strTimeFolder.is_empty())
+         m_pdirectorysystem->m_strTimeFolder = appdata() / "time";
 
-      if (m_pdirsystem->m_strNetSeedFolder.is_empty())
-         m_pdirsystem->m_strNetSeedFolder = install() / "net";
+      if (m_pdirectorysystem->m_strNetSeedFolder.is_empty())
+         m_pdirectorysystem->m_strNetSeedFolder = install() / "net";
 
-      mk(m_pdirsystem->m_strTimeFolder);
+      mk(m_pdirectorysystem->m_strTimeFolder);
 
-      if (!is(m_pdirsystem->m_strTimeFolder))
+      if (!is(m_pdirectorysystem->m_strTimeFolder))
          return false;
 
-      mk(m_pdirsystem->m_strTimeFolder / "time");
+      mk(m_pdirectorysystem->m_strTimeFolder / "time");
 
       return true;
 
@@ -1107,7 +1107,7 @@ pacmedirectory->system() / "temp");
 
       str =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / ".ca2/app/appdata";
       string strRelative;
@@ -1127,7 +1127,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::commonappdata()
    {
 
-      return m_pdirsystem->m_strCommonAppData;
+      return m_pdirectorysystem->m_strCommonAppData;
 
    }
 
@@ -1256,7 +1256,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::userquicklaunch()
    {
 
-      return m_pdirsystem->m_pathInstall / ".ca2/app/Microsoft/Internet Explorer/Quick Launch";
+      return m_pdirectorysystem->m_pathInstall / ".ca2/app/Microsoft/Internet Explorer/Quick Launch";
 
    }
 
@@ -1264,7 +1264,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::bookmark()
    {
 
-      return m_pdirsystem->m_pathInstall / "bookmark";
+      return m_pdirectorysystem->m_pathInstall / "bookmark";
 
    }
 
@@ -1272,7 +1272,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::userprograms()
    {
 
-      return m_pdirsystem->m_pathInstall / "userprograms";
+      return m_pdirectorysystem->m_pathInstall / "userprograms";
 
    }
 
@@ -1280,7 +1280,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::commonprograms()
    {
 
-      return m_pdirsystem->m_pathInstall / "commonprograms";
+      return m_pdirectorysystem->m_pathInstall / "commonprograms";
 
    }
 
@@ -1317,7 +1317,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    ::file::path directory_context::commonappdata_root()
    {
 
-      return m_pdirsystem->m_strCommonAppData;
+      return m_pdirectorysystem->m_strCommonAppData;
 
    }
 

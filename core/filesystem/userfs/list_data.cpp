@@ -198,7 +198,7 @@ namespace userfs
                   m_bPendingSize = true;
                }*/
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          try
          {

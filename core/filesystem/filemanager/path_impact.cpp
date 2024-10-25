@@ -111,7 +111,7 @@ namespace filemanager
    //   //else
    //   //{
 
-   //   //   auto pcontext = get_context();
+   //   //   // auto pcontext = get_context();
 
    //   //   ::file::path pathAddress = str;
 
@@ -264,7 +264,7 @@ namespace filemanager
       else
       {
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          ::file::path pathAddress = str;
 

@@ -50,12 +50,12 @@ namespace install
 
       if(file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\plugin\\version.txt"))
          strVersion = file_system()->as_string(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\plugin\\version.txt");
 

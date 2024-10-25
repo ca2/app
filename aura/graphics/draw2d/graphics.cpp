@@ -4598,7 +4598,7 @@ namespace draw2d
 
       }
 
-      auto paurasystem = system()->m_paurasystem;
+      auto paurasystem = system();
 
       auto pdraw2d = paurasystem->draw2d();
 
@@ -5600,17 +5600,17 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      auto penumeration = system()->m_paurasystem->draw2d()->write_text()->fonts()->enumeration("system");
+      auto penumeration = system()->draw2d()->write_text()->fonts()->enumeration("system");
 
       penumeration->m_eventReady.wait(30_s);
 
-      critical_section_lock synchronouslock(&system()->m_paurasystem->draw2d()->write_text()->m_csFont);
+      critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = system()->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = system()->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

@@ -34,7 +34,7 @@ namespace user
    ::aura::application *form::get_app()
    {
 
-      return ::is_set(m_papplication) ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+      return ::is_set(m_papplication) ? m_papplication->m_papplication : nullptr;
 
 
    }
@@ -52,7 +52,7 @@ namespace user
    //::aura::system *formacmesystem()
    //{
 
-   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system() : nullptr;
 
 
    //}
@@ -245,7 +245,7 @@ namespace user
 //   ::aura::application * form::get_app() const
 //   {
 //
-//      return m_papplication ? m_papplication->m_pauraapplication : nullptr;
+//      return m_papplication ? m_papplication : nullptr;
 //
 //   }
 //

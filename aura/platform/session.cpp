@@ -270,7 +270,7 @@ namespace aura
 
       //}
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -2300,7 +2300,7 @@ namespace aura
    bool session::is_remote_session()
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       return node()->is_remote_session();
 
@@ -2504,7 +2504,7 @@ namespace aura
       ::aqua::session::on_instantiate_application(papplication);
 
       //papplication->m_paurasession = this;
-      //papplication->m_paurasystem = m_paurasystem;
+      //papplication = m_paurasystem;
       //papplication->m_pauranode = m_pauranode;
 
    }
@@ -2538,7 +2538,7 @@ namespace aura
    //::aura::system * sessionacmesystem()
    //{
 
-   //   return ::is_set(system()) ? system()->m_paurasystem : nullptr;
+   //   return ::is_set(system()) ? system() : nullptr;
 
    //}
 

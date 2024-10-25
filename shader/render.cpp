@@ -521,7 +521,7 @@ namespace app_shader
 
             __construct(pfont);
 
-            auto pnode = system()->m_paurasystem->node();
+            auto pnode = system()->node();
 
             auto strFontName = pnode->font_name(e_font_sans_ui);
 

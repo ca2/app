@@ -92,8 +92,8 @@ public:
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::directory_system *     m_pplatformdir;
-   ::file_system *                                                     m_pacmefile;
-   ::path_system *                                                     m_pacmepath;
+   ::file_system *                                                     m_pfilesystem;
+   ::path_system *                                                     m_ppathsystem;
 
    ::file::path                                    m_pathInstallFolder;
    //::file::path                                    m_pathModuleFolder;

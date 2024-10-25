@@ -4,6 +4,7 @@
 #include "acme/parallelization/event.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/platform/application.h"
+#include "apex/networking/application/application.h"
 
 
 namespace networking

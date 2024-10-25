@@ -844,7 +844,7 @@ namespace user
       //      psystem->file_system().FullPath(strFullPath, strPathName);
       pathFull = strPathName;
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       m_path = m_papplication->defer_process_path(pathFull);
       //m_filepathEx = strFullPath;
@@ -1100,7 +1100,7 @@ namespace user
 
       //}
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
@@ -1173,7 +1173,7 @@ namespace user
 
       }
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
@@ -1249,7 +1249,7 @@ namespace user
    bool document::on_save_document(const ::payload & payloadFile)
    {
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       auto pwriter = file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
@@ -1850,7 +1850,7 @@ namespace user
 
       wait_cursor wait(this);
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       if (!on_save_document(newName))
       {
@@ -1888,7 +1888,7 @@ namespace user
    bool document::do_file_save()
    {
 
-      //auto pcontext = get_context();
+      //// auto pcontext = get_context();
 
       if (is_new_document() || file()->is_read_only(m_path))
       {

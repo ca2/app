@@ -85,7 +85,7 @@ namespace introjection
 
       //}
 
-//      auto pcontext = get_context();
+//      // auto pcontext = get_context();
 //
 //#ifdef WINDOWS
 //      {
@@ -199,7 +199,7 @@ namespace introjection
 //
 //      //auto papp = get_app();
 //
-//      auto pcontext = get_context();
+//      // auto pcontext = get_context();
 //
 //      auto pacmedirectory = directory_system();
 //
@@ -386,7 +386,7 @@ namespace introjection
 //      //
 //      //#endif
 //
-//      auto psystem = system()->m_paurasystem;
+//      auto psystem = system();
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
@@ -513,7 +513,7 @@ namespace introjection
 //#endif
 //#endif
 //
-//      auto pcontext = get_context();
+//      // auto pcontext = get_context();
 //
 //      ::file::path strFolder;
 //
@@ -704,7 +704,7 @@ namespace introjection
 
                auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->create("/var/tmp/ca2/intermediate");
 

@@ -774,7 +774,7 @@ namespace html
 
       string strDebugUrl2 = payloadFile2.as_file_path();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       str = file()->as_string(payloadFile2);
 

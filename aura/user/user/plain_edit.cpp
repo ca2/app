@@ -1237,7 +1237,7 @@ namespace user
       }
 //                                                       )
 //      
-//      application()->m_pauraapplication->track_popup_menu(this, "matter://plain_edit_context_menu.menu", 0, pointCursor);
+//      application()->track_popup_menu(this, "matter://plain_edit_context_menu.menu", 0, pointCursor);
 
    }
 
@@ -2389,7 +2389,7 @@ namespace user
 
       post_redraw();
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -6219,7 +6219,7 @@ namespace user
 
       //index iLineUpdate = -1;
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -6339,7 +6339,7 @@ namespace user
       if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
@@ -8841,7 +8841,7 @@ namespace user
 
             __check_refdbg
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             __check_refdbg
 
@@ -8932,7 +8932,7 @@ namespace user
 
             m_base64map.erase_all();
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             psystem->_001AddPacks(m_base64map, str);
 
@@ -9755,7 +9755,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       ::string strText(scopedstrText);
 
@@ -10041,7 +10041,7 @@ namespace user
          if (iHint == id_set_file)
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             auto pdraw2d = psystem->draw2d();
 

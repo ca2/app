@@ -1066,34 +1066,55 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    //}
 
-   auto pappContext = get_app();
+   auto papplication = application();
 
-   if (::is_set(pappContext) && (::task*) pappContext != (::task *) this)
+   if (::is_set(papplication))
    {
 
-      return pappContext;
+      auto pthreadApplication = dynamic_cast < ::thread * >(papplication);
+
+      if(::is_set(pthreadApplication))
+      {
+
+         return pthreadApplication;
+
+      }
 
    }
 
-   auto psessionContext = session();
+   auto psession = session();
 
-   if (psessionContext != this && ::is_set(psessionContext))
+   if (::is_set(psession))
    {
 
-      return psessionContext;
+      auto pthreadSession = dynamic_cast < ::thread * >(psession);
+
+      if(::is_set(pthreadSession))
+      {
+
+         return pthreadSession;
+
+      }
 
    }
 
-   auto psystemContext = system();
+   auto psystem = system();
 
-   if (psystemContext != (::task*) this && ::is_set(psystemContext))
+   if (::is_set(psystem))
    {
 
-      return psystemContext;
+      auto pthreadSystem = dynamic_cast < ::thread * >(psystem);
+
+      if(::is_set(pthreadSystem))
+      {
+
+         return pthreadSystem;
+
+      }
 
    }
 
-   return psystemContext;
+   return nullptr;
 
 }
 

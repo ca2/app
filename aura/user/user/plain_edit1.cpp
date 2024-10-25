@@ -2104,7 +2104,7 @@ namespace user
 
       post_redraw();
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -5893,7 +5893,7 @@ namespace user
 
       //index iLineUpdate = -1;
 
-      //auto psystem = system()->m_paurasystem;
+      //auto psystem = system();
 
       //auto pdraw2d = psystem->draw2d();
 
@@ -6013,7 +6013,7 @@ namespace user
       if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
 
-         auto psystem = system()->m_paurasystem;
+         auto psystem = system();
 
          auto pdraw2d = psystem->draw2d();
 
@@ -8503,7 +8503,7 @@ namespace user
 
             m_base64map.erase_all();
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             psystem->_001AddPacks(m_base64map, str);
 
@@ -9250,7 +9250,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       psystem->_001AddPacks(m_base64map, strText);
 
@@ -9534,7 +9534,7 @@ namespace user
          if (iHint == id_set_file)
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             auto pdraw2d = psystem->draw2d();
 

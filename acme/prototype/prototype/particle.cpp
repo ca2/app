@@ -273,7 +273,7 @@ void particle::on_initialize_particle()
 //::aura::application * particle::auraapplication() const
 //{
 //
-//   return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication->m_pauraapplication : nullptr;
+//   return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
 //
 //}
 

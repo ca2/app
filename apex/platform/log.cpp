@@ -494,7 +494,7 @@ namespace apex
 ////
 ////                     auto psystem = system();
 //
-////         auto pacmedirectory = psystem->m_pacmedirectory;
+////         auto pacmedirectory = psystem->m_pdirectorysystem;
 ////
 ////pacmedirectory->create(::file_path_folder(m_strLogPath));
 ////

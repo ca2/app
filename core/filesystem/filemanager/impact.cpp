@@ -123,7 +123,7 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 

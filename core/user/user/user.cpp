@@ -304,7 +304,7 @@ namespace core
       factory()->add_factory_item <menu_frame >();
       //factory()->add_factory_item <menu_impact >();
 
-      auto psystem = system()->m_paurasystem;
+      auto psystem = system();
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
@@ -390,7 +390,7 @@ namespace core
       //
       //      auto pdocumentUser = pxml->create_document();
       //
-      //      auto pcontext = get_context();
+      //      // auto pcontext = get_context();
       //
       //      string strUser = file()->as_string(directory()->appdata() / "langstyle_settings.xml");
       //
@@ -1838,7 +1838,7 @@ namespace core
          fork([this]()
          {
 
-            auto psystem = system()->m_paurasystem;
+            auto psystem = system();
 
             auto pdraw2d = psystem->draw2d();
 

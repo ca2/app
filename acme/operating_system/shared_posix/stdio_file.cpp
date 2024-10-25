@@ -844,7 +844,7 @@ void file_system::as_memory(memory_base & memory, const ::file::path & pathParam
 void file_system::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
 {
 
-   auto pacmedirectory = m_pacmedirectory;
+   auto pacmedirectory = m_pdirectorysystem;
 
    pacmedirectory->create(::file_path_folder(pathFile));
 
@@ -995,9 +995,9 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
 void file_system::append_wait(const ::string & strFile, const block & block, const class time & time)
 {
 
-   m_pacmedirectory->create(::file_path_folder(strFile));
+   m_pdirectorysystem->create(::file_path_folder(strFile));
 
-   if (!m_pacmedirectory->is(::file_path_folder(strFile)))
+   if (!m_pdirectorysystem->is(::file_path_folder(strFile)))
    {
 
       throw ::exception(::error_not_a_directory);

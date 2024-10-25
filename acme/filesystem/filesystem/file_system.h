@@ -17,8 +17,8 @@ public:
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *       m_pplatformfile;
-   ::directory_system *                                             m_pacmedirectory;
-   ::path_system *                                                  m_pacmepath;
+   ::directory_system *                                             m_pdirectorysystem;
+   ::path_system *                                                  m_ppathsystem;
 
    ::file::path                                                   m_pathExecutable;
 

@@ -222,17 +222,17 @@ void thread::thread_common_construct()
 
    //}
 
-   auto pcontext = m_papplication;
+   auto papplication = m_papplication;
 
-   if (pcontext)
+   if (papplication)
    {
 
-      auto papexcontext = pcontext;
+      ::cast <::thread > pthreadApplication = papplication;
 
-      if (papexcontext)
+      if (pthreadApplication)
       {
 
-         m_bZipIsDir2 = papexcontext->m_bZipIsDir2;
+         m_bZipIsDir2 = pthreadApplication->m_bZipIsDir2;
 
       }
 

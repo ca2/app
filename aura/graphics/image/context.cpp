@@ -562,7 +562,7 @@ namespace image
    void image_context::_load_matter_image(::image::image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
    {
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       ::file::path path = directory()->matter(strMatter);
 
@@ -586,7 +586,7 @@ namespace image
 
       ::file::path path;
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       for (auto & strMatter : straMatter)
       {
@@ -694,7 +694,7 @@ namespace image
 
       pimage->set_nok();
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       auto pfile = file()->get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
@@ -747,7 +747,7 @@ namespace image
 
       //}
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       file()->put_memory(payloadFile, mem);
 
@@ -781,7 +781,7 @@ namespace image
       //try
       //{
 
-      auto pcontext = get_context();
+      // auto pcontext = get_context();
 
       auto pfile = file()->get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
@@ -1133,7 +1133,7 @@ namespace image
 
       _synchronous_lock synchronouslock(image_synchronization());
 
-      auto & pimage = system()->m_paurasystem->m_mapImage[path];
+      auto & pimage = system()->m_mapImage[path];
 
       if (!pimage)
       {

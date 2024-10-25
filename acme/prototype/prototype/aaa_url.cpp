@@ -568,13 +568,13 @@ void openURL(const string& url_str)
 //
 //   //strUsername = file_system()->as_string(         auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "config\\user.txt");
 ////
 ////   //strPassword = file_system()->as_string(         auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "config\\pass.txt");
 ////
@@ -1136,13 +1136,13 @@ int ui_open_url(const ::scoped_string & scopedstr);
 //
 //   //strUsername = file_system()->as_string(         auto psystem = system();
 
-   /*      auto pacmedirectory = psystem->m_pacmedirectory;
+   /*      auto pacmedirectory = psystem->m_pdirectorysystem;
 
 pacmedirectory->system() / "config\\user.txt")*/;
 //
 //   //strPassword = file_system()->as_string(         auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pdirectorysystem;
 //
 //pacmedirectory->system() / "config\\pass.txt");
 //

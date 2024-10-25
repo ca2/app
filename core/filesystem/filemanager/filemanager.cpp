@@ -543,7 +543,7 @@ namespace filemanager
 
          KEEP(m_bRestoring);
 
-         auto pcontext = get_context();
+         // auto pcontext = get_context();
 
          if (pathFilemanagerProject.is_empty() || directory()->is(pathFilemanagerProject)
                || pathFilemanagerProject.final_extension().case_insensitive_order("component") != 0)

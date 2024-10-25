@@ -7,7 +7,7 @@ namespace acme
 {
 
 
-   bool implementable::defer_implement(::acme::context * pcontext)
+   bool implementable::defer_implement(::platform::context * pcontext)
    {
 
       if (!m_pfnImplement)

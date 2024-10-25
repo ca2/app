@@ -42,8 +42,8 @@ namespace xml
       void create_root(const ::string & strName);
 
    
-      string consume_entity_ref(::ansi_range & rangeXml, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext);
-      char * patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::acme::context * pacmecontext);
+      string consume_entity_ref(::ansi_range & rangeXml, string & strName, bool useExtEnt, bool & bExt, ::platform::context * pacmecontext);
+      char * patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::platform::context * pacmecontext);
 
       node* root() { return first_xml_node(); }
       const node * root() const { return first_xml_node(); }

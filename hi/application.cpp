@@ -41,7 +41,7 @@ enum enum_test_increment
 
 
 //
-//void implement(::acme::context * pcontext)
+//void implement(::platform::context * pcontext)
 //{
 //
 //   //throw ::exception(error_debug_testing);

@@ -60,7 +60,7 @@ namespace draw2d_opengl
       virtual string write_text_get_default_implementation_name() override;
 
 
-      //virtual private_font * get_file_private_font(::acme::context * pcontext, const ::file::path & path);
+      //virtual private_font * get_file_private_font(::platform::context * pcontext, const ::file::path & path);
       virtual int  opengl_init();
 
    };

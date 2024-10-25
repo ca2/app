@@ -33,7 +33,7 @@ tracer::~tracer()
 //}
 //
 //
-//tracer & tracer::operator()(::acme::context * pcontext, enum_trace_level etracelevel)
+//tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel)
 //{
 //
 //
@@ -50,7 +50,7 @@ tracer::~tracer()
 //}
 //
 //
-//tracer & tracer::operator()(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory)
+//tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory)
 //{
 //
 //
@@ -67,7 +67,7 @@ tracer::~tracer()
 //}
 //
 //
-//tracer & tracer::operator()(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine, logger * plogger)
+//tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine, logger * plogger)
 //{
 //   
 //   m_papplication = pcontext;

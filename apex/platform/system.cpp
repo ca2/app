@@ -4458,7 +4458,7 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!::acme::context::http()->download(pszUrl, filename, set))
+      if (!::platform::context::http()->download(pszUrl, filename, set))
 
       {
 
@@ -4481,7 +4481,7 @@ namespace apex
 
          file()->erase(filename);
 
-         return ::acme::context::http()->download(str, strLocation, set);
+         return ::platform::context::http()->download(str, strLocation, set);
 
       }
 

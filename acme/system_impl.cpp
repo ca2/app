@@ -221,7 +221,7 @@ namespace platform
    void system::on_set_platform()
    {
 
-      ::acme::context::on_set_platform();
+      ::platform::context::on_set_platform();
 
 
       m_psystemComposite->on_set_platform();
@@ -408,7 +408,7 @@ namespace platform
    void system::on_initialize_particle()
    {
 
-      ::acme::context::on_initialize_particle();
+      ::platform::context::on_initialize_particle();
 
       //::output_debug_string("Going to create simple log\n");
 
@@ -3543,7 +3543,7 @@ namespace platform
 
 #endif
 
-      ::acme::context::destroy();
+      ::platform::context::destroy();
 
       ::task::destroy();
 

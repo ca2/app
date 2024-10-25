@@ -50,7 +50,7 @@ namespace write_text
 
 
       virtual font_pointer create_font();
-      virtual memory_pointer get_file_memory(::acme::context * pcontext, const ::file::path & path);
+      virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
 
       
       virtual font_descriptor calculate_font_descriptor(const char * face, float size);

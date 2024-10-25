@@ -10,7 +10,7 @@
 //logger *  g_plogger = nullptr;
 //
 //
-//void logger::t_construct(::acme::context * pcontext)
+//void logger::t_construct(::platform::context * pcontext)
 //{
 //
 //   if(!g_plogger)

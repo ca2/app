@@ -1464,7 +1464,7 @@ return g_pdraw2dcairo;
    }
 
 
-   cairo_font_face_t * draw2d::private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile)
+   cairo_font_face_t * draw2d::private_ftface_from_file(::platform::context * pcontext, const ::payload & payloadFile)
    {
 
       synchronous_lock synchronouslock(::draw2d_cairo::mutex());

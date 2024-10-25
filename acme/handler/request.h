@@ -68,7 +68,7 @@ public:
 
    ::file::item_array *             m_pitema;
 
-   ::pointer<::acme::context>       m_pcontextFork;
+   ::pointer<::platform::context>       m_pcontextFork;
    string                           m_strExe;
    string                           m_strApp;
    string                           m_strAppType;

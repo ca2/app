@@ -19,7 +19,7 @@
 //    enum_trace_level     m_etracelevelMinimum = e_trace_level_undefined;
 //
 //
-//    static void t_construct(::acme::context * pcontext);
+//    static void t_construct(::platform::context * pcontext);
 //    static void t_release();
 //
 //

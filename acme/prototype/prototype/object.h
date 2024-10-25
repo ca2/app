@@ -12,32 +12,32 @@ enum enum_method : ::i32;
 enum enum_future : ::i32;
 
 
-namespace acme
-{
+// namespace acme
+// {
+//
+//    class context;
+//
+// }
 
-   class context;
-
-}
-
-
-namespace apex
-{
-
- 
-   class context;
-
-
-} // namespace apex
-
-
-namespace aura
-{
-
-
-   class context;
-
-
-} // namespace aura
+//
+// namespace apex
+// {
+//
+//
+//    class context;
+//
+//
+// } // namespace apex
+//
+//
+// namespace aura
+// {
+//
+//
+//    class context;
+//
+//
+// } // namespace aura
 
 
 class CLASS_DECL_ACME object :
@@ -62,7 +62,7 @@ public:
    //::pointer<::apex::application>                           m_papplication;
    //::pointer<::apex::session>                         m_psession;
    //::pointer<::platform::system>                          system();
-   //::acme::context *                                     m_papplication;
+   //::platform::context *                                     m_papplication;
 
 
    //pointer< pointer_array < ::object > >                m_pobjecta;
@@ -311,7 +311,7 @@ public:
 
    inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   //inline ::acme::context* get_context() const { return m_papplication; }
+   //inline ::platform::context* get_context() const { return m_papplication; }
 
    //inline ::thread* get_thread() const { return m_pthread; }
 

@@ -155,7 +155,7 @@ namespace write_text
    }
 
    
-   memory_pointer write_text::get_file_memory(::acme::context * pcontext, const ::file::path & path)
+   memory_pointer write_text::get_file_memory(::platform::context * pcontext, const ::file::path & path)
    {
 
       auto & pmemory = m_mapFileMemory[path];

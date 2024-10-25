@@ -103,7 +103,7 @@ namespace platform
    void session::main()
    {
 
-   //::acme::context::main();
+   //::platform::context::main();
 
 
    }

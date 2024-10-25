@@ -25,6 +25,7 @@ namespace data
    ::string client::calculate_data_key()
    {
 
+      return {};
 
    }
 
@@ -32,6 +33,7 @@ namespace data
    ::string client::calculate_data_key(const ::scoped_string& strKey)
    {
 
+      return {};
 
    }
 

@@ -47,7 +47,7 @@ namespace apex
 
       ::thread::initialize(pparticle);
 
-      ::acme::context::initialize(pparticle);
+      ::platform::context::initialize(pparticle);
 
       ::file::enumerator::initialize(pparticle);
 
@@ -154,7 +154,7 @@ namespace apex
    void context::initialize_context()
    {
 
-      ::acme::context::initialize_context();
+      ::platform::context::initialize_context();
 
       __construct(m_phttpcontext);
 
@@ -168,7 +168,7 @@ namespace apex
    void context::initialize_context_1()
    {
 
-      ::acme::context::initialize_context_1();
+      ::platform::context::initialize_context_1();
 
    }
 
@@ -351,7 +351,7 @@ namespace apex
    ::file::path context::defer_process_path(::file::path path)
    {
 
-      return ::acme::context::defer_process_path(path);
+      return ::platform::context::defer_process_path(path);
    //
    //    if (path.flags() & ::file::e_flag_final_path)
    //    {
@@ -407,7 +407,7 @@ namespace apex
    ::file::path context::_defer_process_path(::file::path path)
    {
 
-      return ::acme::context::_defer_process_path(path);
+      return ::platform::context::_defer_process_path(path);
 
    }
 
@@ -415,7 +415,7 @@ namespace apex
    ::file::path context::__defer_process_path(::file::path path)
    {
 
-      return ::acme::context::__defer_process_path(path);
+      return ::platform::context::__defer_process_path(path);
 
    }
 
@@ -613,7 +613,7 @@ namespace apex
    ::pointer < ::file::link > context::os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return ::acme::context::os_resolve_alias(path, bNoUI, bNoMount);
+      return ::platform::context::os_resolve_alias(path, bNoUI, bNoMount);
 
       // auto plink = _os_resolve_alias(path, bNoUI, bNoMount);
       //
@@ -665,7 +665,7 @@ namespace apex
    bool context::_os_has_alias_in_path(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return ::acme::context::_os_has_alias_in_path(path, bNoUI, bNoMount);
+      return ::platform::context::_os_has_alias_in_path(path, bNoUI, bNoMount);
 
       //return node()->has_alias_in_path(path);
 
@@ -676,7 +676,7 @@ namespace apex
    ::pointer < ::file::link > context::_os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return ::acme::context::_os_resolve_alias(path, bNoUI, bNoMount);
+      return ::platform::context::_os_resolve_alias(path, bNoUI, bNoMount);
 
       // if (os_is_alias(path))
       // {
@@ -695,7 +695,7 @@ namespace apex
    bool context::os_is_alias(const ::file::path & path)
    {
 
-      return ::acme::context::os_is_alias(path);
+      return ::platform::context::os_is_alias(path);
 
 //      return node()->is_alias(path);
 
@@ -1007,7 +1007,7 @@ namespace apex
 
       ::thread::destroy();
 
-      ::acme::context::destroy();
+      ::platform::context::destroy();
 
       //return success;
 

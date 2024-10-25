@@ -133,7 +133,7 @@ namespace acme
    void application::on_set_platform()
    {
 
-      ::acme::context::on_set_platform();
+      ::platform::context::on_set_platform();
 
       factory()->add_factory_item < ::platform::system >();
       factory()->add_factory_item < ::platform::session >();
@@ -144,7 +144,7 @@ namespace acme
    void application::on_initialize_particle()
    {
 
-      ::acme::context::on_initialize_particle();
+      ::platform::context::on_initialize_particle();
 
       {
 

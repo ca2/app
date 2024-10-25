@@ -155,7 +155,7 @@ namespace platform
       
       virtual class ::application_menu * application_menu();
 
-//      using ::acme::context::factory;
+//      using ::platform::context::factory;
 
 //      virtual ::factory::factory_pointer& factory() const override;
 

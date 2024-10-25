@@ -17,7 +17,7 @@ using hsynchronization = void*;
 //{
 //
 //
-//   mutable ::acme::context *           m_papplication;
+//   mutable ::platform::context *           m_papplication;
 //   mutable ::ptr < ::particle >        m_pparticleSynchronization;
 //
 //

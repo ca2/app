@@ -349,7 +349,7 @@ namespace apex
 
       factory()->add_factory_item < ::apex::system, ::platform::system >();
       factory()->add_factory_item < ::apex::session, ::platform::session >();
-      factory()->add_factory_item < ::apex::context, ::acme::context >();
+      factory()->add_factory_item < ::apex::context, ::platform::context >();
 
       factory()->add_factory_item < ::networking::application >();
 
@@ -6694,7 +6694,7 @@ namespace apex
 
             property_set setEmpty;
 
-            if (::acme::context::http()->open(psession, strUrl, setEmpty, nullptr))
+            if (::platform::context::http()->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -6711,7 +6711,7 @@ namespace apex
 
       set["get_memory"] = "";
 
-      ::acme::context::http()->request(psession, strUrl, set);
+      ::platform::context::http()->request(psession, strUrl, set);
       //{
       //
       //m_pdraw2d->init()

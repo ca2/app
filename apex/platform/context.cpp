@@ -953,41 +953,15 @@ namespace apex
 
    bool context::contains(::request * prequest) const
    {
-
-      if (::is_null(prequest))
-      {
-
-         return false;
-
-      }
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      return m_requestaPending.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
-         || m_requestaHistory.predicate_contains([&prequest](auto & p) {return p.get() == prequest; })
-         || m_prequest.get() == prequest;
-
+      return ::handler::handler::contains(prequest);
    }
 
 
    string context::command_line_text() const
    {
 
-      if (!m_prequest)
-      {
+      return ::handler::handler::command_line_text();
 
-         return "";
-
-      }
-
-      //if (!m_prequest->m_pcommandline)
-      //{
-
-      //   return "";
-
-      //}
-
-      return m_prequest->m_strCommandLine;
 
    }
 
@@ -995,16 +969,7 @@ namespace apex
    void context::destroy()
    {
 
-      m_requestaPending.clear();
-
-      for (auto & r : m_requestaHistory)
-      {
-
-         r.defer_destroy();
-
-      }
-
-      m_requestaHistory.clear();
+      ::handler::handler::destroy();
 
       ::thread::destroy();
 
@@ -1056,24 +1021,8 @@ namespace apex
    void context::post_request(::request * prequest)
    {
 
-      {
+      ::handler::handler::post_request(prequest);
 
-         _synchronous_lock synchronouslock(this->synchronization());
-
-         if (::is_null(prequest) || contains(prequest))
-         {
-
-            throw ::exception(error_bad_argument);
-
-         }
-
-         prequest->m_bNew = true;
-
-         m_requestaPending.add(prequest);
-
-      }
-
-      kick_idle();
 
    }
 
@@ -1081,39 +1030,10 @@ namespace apex
    bool context::on_idle()
    {
 
-      if (post_next_pending_request())
-      {
-
-         return true;
-
-      }
-
-      return false;
+      return ::handler::handler::on_idle();
 
    }
 
-
-   bool context::post_next_pending_request()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      if (!m_requestaPending.has_element())
-      {
-
-         return false;
-
-      }
-
-      auto prequest = m_requestaPending.pick_first();
-
-      m_requestaHistory.add(prequest);
-
-      ::thread::post_request(prequest);
-
-      return true;
-
-   }
 
 
    string context::get_store_server_base_url()

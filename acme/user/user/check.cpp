@@ -12,7 +12,7 @@ namespace user
 
 
    check::check() :
-      m_checkproperty(this, this, ID_CHECK)
+      m_checkproperty(this, this, id_check)
    {
 
       m_checkproperty.set_check_property(m_checkproperty);

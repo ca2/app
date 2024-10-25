@@ -411,6 +411,7 @@ list(APPEND library_source
    #operating_system/ansi/user.cpp
    operating_system/application.cpp
    operating_system/application.h
+
    operating_system/argcargv.cpp
    operating_system/a_system_menu.cpp
    operating_system/a_system_menu.h
@@ -2911,6 +2912,7 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    platform/application_aqua.cpp
    platform/session_acme.h
    prototype/prototype/cast.h
+   user/menu/_.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

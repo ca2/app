@@ -22,136 +22,136 @@ namespace aura
    {
    public:
 
-
-      //__creatable_from_base(application, ::apex::application);
-
-
-      void* m_pnativeapp;
-
-
-      ::aura::application *                           m_pappParent;
-      //string                                          m_strAppName;
-      //string                                          m_strAppTitle;
-      //string                                          m_XstrAppId;
-      //string                                          m_strBaseSupportId;
-      //string                                          m_strRoot;
-      //string                                          m_strDomain;
-      //string                                          m_strLibraryName;
-      //string                                          m_strRelativeFolder;
-      //string                                          m_strBuild;
-      //string                                          m_strInstallToken;
-      //string                                          m_strInstallTraceLabel;
-      //string                                          m_strInstallBuild;
-      //string                                          m_strHttpUserAgentToken;
-      //string                                          m_strHttpUserAgentVersion;
-      //string_array                                    m_straAppCategory;
-      //bool                                            m_bLicense;
-      //bool                                            m_bRequiresInstallation;
-
-      //bool                                            m_bReadStringTable;
-
-      //::pointer<::application_menu>            m_pappmenu;
-
-      //::pointer<::game::game>                      m_pgame;
-      ::pointer<::user::interaction>               m_puserinteractionMain;
-
-      ::pointer<shell_open>                        m_pshellopen;
-
-      ::string_array                               m_straOptionsFormMakerLibrary;
-      ::user::interaction_base *                             m_puiCurrent;
-      //bool                                            m_bContextTheme;
-
-// #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
-//       bool                                            m_bSnLauncheeSetup;
-// #endif
-      //semaphore                                       m_semCompiler;
-      // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-
-      ::u32                                           m_dwInstallGoodToCheckAgain;
-
-      //bool                                            m_bAppHasInstallerProtected;
-      //bool                                            m_bAppHasInstallerChangedProtected;
-      //::install::installer *                          m_pinstaller;
-
-      particle_address_array                         m_particleaddressaEventHook;
-
-      ::pointer < ::mutex >                                           m_pmutexFrame;
-      ::pointer<::user::interaction_array>           m_puserinteractiona;
-      ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
-
-      //e_thread                                        m_ethreadClose;
-
-      //enum_exclusive_instance                              m_eexclusiveinstance;
-
-      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
-
-      //bool                                            m_bService;
-
-      //bool                                            m_bUpdateMatterOnInstall;
-
-      ::user::interaction *                              m_puiMainContainer;
-
-      ::pointer < ::mutex >                                           m_pmutexMatterLocator;
-
-      //::pointer < ::mutex >                                         m_pmutexStr;
-      //string_table                                    m_stringtable;
-      //string_table                                    m_stringtableStd;
-      //map < atom, atom, string, string >                  m_stringmap;
-
-      //atom_map < ::pointer<::channel >>                m_mapNotify;
-
-      //::pointer<image_context>                       m_pimagecontext;
-
-      //bool                                            m_bInitializeDataCentral;
-
-      //string                                          m_strLicense;
-
-      //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-
-      //::pointer<::simpledb::server>                  m_psimpledb;
-
-      //::userex::pane_tab_impact *                       m_pmainpane;
-
-
-//      string                                          m_strHelpFilePath;
 //
-//#ifdef WINDOWS
+//       //__creatable_from_base(application, ::apex::application);
 //
-//      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
-//      HGLOBAL                                         m_hDevNames;            // printer Device Names
 //
-//#endif
+//       void* m_pnativeapp;
 //
-//      u32                                             m_dwPromptContext;        // help action_context override for message box
-//      // LKG
-//      u32                                             m_dwPolicies;            // block for storing boolean system policies
 //
-//      // Support for Shift+F1 help mode.
-//      // true if we're in SHIFT+F1 mode.
-//      bool                                            m_bHelpMode;
+//       ::aura::application *                           m_pappParent;
+//       //string                                          m_strAppName;
+//       //string                                          m_strAppTitle;
+//       //string                                          m_XstrAppId;
+//       //string                                          m_strBaseSupportId;
+//       //string                                          m_strRoot;
+//       //string                                          m_strDomain;
+//       //string                                          m_strLibraryName;
+//       //string                                          m_strRelativeFolder;
+//       //string                                          m_strBuild;
+//       //string                                          m_strInstallToken;
+//       //string                                          m_strInstallTraceLabel;
+//       //string                                          m_strInstallBuild;
+//       //string                                          m_strHttpUserAgentToken;
+//       //string                                          m_strHttpUserAgentVersion;
+//       //string_array                                    m_straAppCategory;
+//       //bool                                            m_bLicense;
+//       //bool                                            m_bRequiresInstallation;
 //
-//      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
+//       //bool                                            m_bReadStringTable;
 //
-//      string                                          m_strProfileName;
+//       //::pointer<::application_menu>            m_pappmenu;
 //
-//      ATOM                                            m_atomApp;
-//      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
+//       //::pointer<::game::game>                      m_pgame;
+//       ::pointer<::user::interaction>               m_puserinteractionMain;
 //
-//      string                                          m_strId;
-
-//      i32                                             m_iResourceId;
-
-      //::pointer<::experience::department>          m_pexperience;
-      ::pointer<::aura::theme>                       m_ptheme;
-
-
-      //string_array                                    m_straAppInterest;
-      //string_map < oswindow, oswindow >               m_mapAppInterest;
-
-      //i32                                             m_iGcomBackgroundUpdateMillis;
-
-
+//       ::pointer<shell_open>                        m_pshellopen;
+//
+//       ::string_array                               m_straOptionsFormMakerLibrary;
+//       ::user::interaction_base *                             m_puiCurrent;
+//       //bool                                            m_bContextTheme;
+//
+// // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+// //       bool                                            m_bSnLauncheeSetup;
+// // #endif
+//       //semaphore                                       m_semCompiler;
+//       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+//
+//       ::u32                                           m_dwInstallGoodToCheckAgain;
+//
+//       //bool                                            m_bAppHasInstallerProtected;
+//       //bool                                            m_bAppHasInstallerChangedProtected;
+//       //::install::installer *                          m_pinstaller;
+//
+//       particle_address_array                         m_particleaddressaEventHook;
+//
+//       ::pointer < ::mutex >                                           m_pmutexFrame;
+//       ::pointer<::user::interaction_array>           m_puserinteractiona;
+//       ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
+//
+//       //e_thread                                        m_ethreadClose;
+//
+//       //enum_exclusive_instance                              m_eexclusiveinstance;
+//
+//       //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+//
+//       //bool                                            m_bService;
+//
+//       //bool                                            m_bUpdateMatterOnInstall;
+//
+//       ::user::interaction *                              m_puiMainContainer;
+//
+//       ::pointer < ::mutex >                                           m_pmutexMatterLocator;
+//
+//       //::pointer < ::mutex >                                         m_pmutexStr;
+//       //string_table                                    m_stringtable;
+//       //string_table                                    m_stringtableStd;
+//       //map < atom, atom, string, string >                  m_stringmap;
+//
+//       //atom_map < ::pointer<::channel >>                m_mapNotify;
+//
+//       //::pointer<image_context>                       m_pimagecontext;
+//
+//       //bool                                            m_bInitializeDataCentral;
+//
+//       //string                                          m_strLicense;
+//
+//       //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+//
+//       //::pointer<::simpledb::server>                  m_psimpledb;
+//
+//       //::userex::pane_tab_impact *                       m_pmainpane;
+//
+//
+// //      string                                          m_strHelpFilePath;
+// //
+// //#ifdef WINDOWS
+// //
+// //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+// //      HGLOBAL                                         m_hDevNames;            // printer Device Names
+// //
+// //#endif
+// //
+// //      u32                                             m_dwPromptContext;        // help action_context override for message box
+// //      // LKG
+// //      u32                                             m_dwPolicies;            // block for storing boolean system policies
+// //
+// //      // Support for Shift+F1 help mode.
+// //      // true if we're in SHIFT+F1 mode.
+// //      bool                                            m_bHelpMode;
+// //
+// //      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
+// //
+// //      string                                          m_strProfileName;
+// //
+// //      ATOM                                            m_atomApp;
+// //      ATOM                                            m_atomSystemTopic;   // for DDE open
+// //      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
+// //
+// //      string                                          m_strId;
+//
+// //      i32                                             m_iResourceId;
+//
+//       //::pointer<::experience::department>          m_pexperience;
+//       ::pointer<::aura::theme>                       m_ptheme;
+//
+//
+//       //string_array                                    m_straAppInterest;
+//       //string_map < oswindow, oswindow >               m_mapAppInterest;
+//
+//       //i32                                             m_iGcomBackgroundUpdateMillis;
+//
+//
       application();
       ~application() override;
       

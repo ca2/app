@@ -40,6 +40,25 @@ namespace platform
    }
 
 
+   void session::destroy()
+   {
+
+      ::task::destroy();
+
+      ::handler::handler::destroy();
+
+      ::platform::application_container::destroy();
+
+   }
+
+
+   text::context* session::text_context()
+   {
+
+      return m_ptextcontext;
+   }
+
+
    ::user::user * session::user()
    {
 

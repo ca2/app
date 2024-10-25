@@ -2646,3 +2646,30 @@ namespace progress
    class real;
 
 }
+
+class shell_open;
+
+
+namespace user
+{
+
+
+class interaction_array;
+
+
+}
+
+
+
+namespace aura
+{
+
+class game;
+
+}
+
+
+
+
+
+class main_hold_base;

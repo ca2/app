@@ -1618,7 +1618,7 @@ namespace apex
    void application::init_task()
    {
 
-      acme::application::init_task();
+      ::platform::application::init_task();
 
    }
 
@@ -1626,7 +1626,7 @@ namespace apex
    void application::term_task()
    {
 
-      acme::application::term_task();
+      ::platform::application::term_task();
 
    }
 
@@ -1673,7 +1673,7 @@ namespace apex
 
    //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-   //      //auto estatus = 
+   //      //auto estatus =
    //      on_before_launching();
 
    //      //if(!estatus)
@@ -1916,7 +1916,7 @@ namespace apex
    void application::pos_run()
    {
 
-      acme::application::pos_run();
+      ::platform::application::pos_run();
 
    }
 
@@ -1939,7 +1939,7 @@ namespace apex
 //      {
 //
 //         __raw_construct_new(m_pinterprocesscommunication);
-//         
+//
 //         //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
 //
 //         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
@@ -1952,47 +1952,47 @@ namespace apex
 
       if (!platform()->is_sandboxed())
       {
-         
+
          if (!check_exclusive(m_prequest, bHandled))
          {
-            
+
             if (!bHandled &&
                 (!has_property("install")
                  && !has_property("uninstall")))
             {
-               
+
                class time timeTimeout;
-               
+
                //#ifdef __DEBUG
                //
                //          timeTimeout = minutes(5);
                //
                //#else //__DEBUG
-               
+
                timeTimeout = 5_s;
-               
+
                //#endif //!__DEBUG
-               
+
                string strMessage;
-               
+
                strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
-               
+
                //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
-               
+
                //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
-               
+
                //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
-               
+
                informationf(strMessage + m_strAppName);
-               
+
                information() << "apex::application::init_application exit";
-               
+
                throw exit_exception(error_exit_system, this, "Another install of the application is running.");
-               
+
             }
-            
+
          }
-         
+
       }
 
       information() << "apex::application::init_application .2";
@@ -2058,7 +2058,7 @@ namespace apex
 
       information() << "axis::application::init_instance success";
 
-      //auto estatus = 
+      //auto estatus =
       create_impact_system();
 
       //if (failed(estatus))
@@ -2378,13 +2378,13 @@ namespace apex
 
          if(__defer_raw_construct_new(m_pinterprocesscommunication))
          {
-            
+
             //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
-            
+
             m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-            
+
          }
-         
+
       }
 
    }
@@ -2409,7 +2409,7 @@ namespace apex
    void application::term_instance()
    {
 
-      acme::application::term_instance();
+      ::platform::application::term_instance();
 
    }
 
@@ -2493,7 +2493,7 @@ namespace apex
    //   try
    //   {
 
-   //      //estatus = 
+   //      //estatus =
 
    //      process_init();
 
@@ -2644,7 +2644,7 @@ namespace apex
    void application::application_pos_run()
    {
 
-      acme::application::application_pos_run();
+      ::platform::application::application_pos_run();
 
    }
 
@@ -2818,7 +2818,7 @@ namespace apex
       if (is_service())
       {
 
-         //auto estatus = 
+         //auto estatus =
          disable_service();
 
          //if(!estatus)
@@ -2953,14 +2953,14 @@ namespace apex
 
    bool application::on_application_menu_action(const ::atom & atom)
    {
-      
+
       if(atom == "display_about")
       {
-         
+
          show_about_box();
-         
+
          return true;
-         
+
       }
 
       return ::platform::application::on_application_menu_action(atom);
@@ -3125,7 +3125,7 @@ namespace apex
 
       //return true;
 
-      
+
 
    }
 
@@ -3191,7 +3191,7 @@ namespace apex
       }
 
 
-      acme::application::process_term();
+      ::platform::application::process_term();
 
    }
 
@@ -3319,7 +3319,7 @@ namespace apex
 
       initialize_context_1();
 
-      //auto estatus = 
+      //auto estatus =
 
       //if (!estatus)
       //{
@@ -3330,9 +3330,9 @@ namespace apex
 
       auto psystem = system();
 
-      //estatus = 
+      //estatus =
       m_puserlanguagemap = __allocate ::user::language_map();
-      
+
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
 
@@ -3465,7 +3465,7 @@ namespace apex
    void application::term1()
    {
 
-      acme::application::term1();
+      ::platform::application::term1();
 
       //try
       //{
@@ -3520,7 +3520,7 @@ namespace apex
    void application::term2()
    {
 
-      acme::application::term2();
+      ::platform::application::term2();
       //try
       //{
 
@@ -3580,7 +3580,7 @@ namespace apex
    void application::term3()
    {
 
-      acme::application::term3();
+      ::platform::application::term3();
       //try
       //{
 
@@ -3691,7 +3691,7 @@ namespace apex
 
       }
 
-      acme::application::term_application();
+      ::platform::application::term_application();
 
    }
 
@@ -3789,12 +3789,12 @@ namespace apex
          auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
 
          class ::time time;
-         
+
          time.Now();
 
          while(time.elapsed() < 5_minutes)
          {
-            
+
             for (auto pid : pida)
             {
 
@@ -4905,7 +4905,7 @@ namespace apex
 
       auto pnode = psystem->node();
 
-      //auto bOk= 
+      //auto bOk=
 
       pnode->register_spa_file_type(m_strAppId);
 
@@ -6439,33 +6439,33 @@ namespace apex
       error() <<"1.1";
 
       auto papplicationmenu = application_menu();
-      
+
       papplicationmenu->erase_all();
-      
+
       using namespace ::apex;
-      
+
       {
-         
+
          auto ppopupApp = papplicationmenu->popup(application_title());
-         
+
          //pmenuMain->add(pmenuApp);
-         
+
          ppopupApp->item("About " + application_title(), "display_about", "", "");
-         
+
          ppopupApp->separator();
-         
+
          ppopupApp->item("Quit " + application_title(), "app_exit", "", "");
-         
+
       }
 
 //      {
-//         
+//
 //         auto ppopupView = papplicationmenu->popup("View");
-//         
+//
 //         //ppopupView->add(pmenuView);
-//         
+//
 //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-//         
+//
 //      }
 //
 //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
@@ -6505,7 +6505,7 @@ namespace apex
 
       m_papplicationmenu.release();
 
-      acme::application::term();
+      ::platform::application::term();
 
    }
 

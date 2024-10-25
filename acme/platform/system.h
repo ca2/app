@@ -3,6 +3,7 @@
 #pragma once
 
 
+#include "acme/handler/handler.h"
 #include "system_acme.h"
 #include "system_apex.h"
 #include "system_aqua.h"
@@ -16,6 +17,7 @@ namespace platform
 
    class CLASS_DECL_ACME system :
       virtual public ::platform::platform,
+      virtual public ::handler::handler,
       virtual public ::platform::acme_system_layer_t,
       virtual public ::platform::apex_system_layer_t,
       virtual public ::platform::aqua_system_layer_t,

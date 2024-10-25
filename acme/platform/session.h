@@ -7,7 +7,8 @@
 #pragma once
 
 
-#include "context.h"
+//#include "context.h"
+#include "acme/handler/handler.h"
 #include "application_container.h"
 #include "acme/user/user/key_state.h"
 
@@ -24,6 +25,7 @@ namespace platform
 
    class CLASS_DECL_ACME session :
       virtual public ::task,
+      virtual public ::handler::handler,
       virtual public ::platform::application_container,
       virtual public ::user::key_state,
       virtual public ::platform::acme_session_layer_t,
@@ -62,8 +64,9 @@ namespace platform
       ~session() override;
 
 
+      void destroy() override;
 
-      ::text::context* text_context() { return m_ptextcontext.get(); }
+      virtual ::text::context* text_context();
 
 
       virtual class ::user::user * user();

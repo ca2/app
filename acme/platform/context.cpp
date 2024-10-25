@@ -523,7 +523,7 @@ namespace platform
    }
 
 
-   ::file::watcher * context::file_watcher() const
+   ::file::watcher * context::file_watcher()
    {
 
       return application()->file_watcher();
@@ -841,6 +841,8 @@ namespace platform
          return application()->get_locale_schema_dir();
 
       }
+
+      return {};
 
    }
 

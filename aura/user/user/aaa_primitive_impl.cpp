@@ -2604,7 +2604,7 @@ namespace user
 //
 //      fflush(stdout);
 
-      m_puserinteraction->defer_run_property(ID_CREATE);
+      m_puserinteraction->defer_run_property(id_create);
 
 //      if(::is_null(m_puserinteraction->m_pwindow))
 //      {

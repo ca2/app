@@ -167,7 +167,7 @@ namespace apex
    void session::install_message_routing(::channel* pchannel)
    {
 
-      ::platform::context::install_message_routing(pchannel);
+      //::platform::context::install_message_routing(pchannel);
       
       //MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
@@ -207,29 +207,29 @@ namespace apex
 
    //}
 
+   //
+   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // string session::get_locale_schema_dir()
+   // {
+   //
+   //    return "_std/_std";
+   //
+   // }
 
-   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
-   {
 
-
-   }
-
-
-   string session::get_locale_schema_dir()
-   {
-
-      return "_std/_std";
-
-   }
-
-
-   bool session::is_session() const
-   {
-
-      return true;
-
-   }
-
+   // bool session::is_session() const
+   // {
+   //
+   //    return true;
+   //
+   // }
+   //
 
    //void session::ui_init()
    //{
@@ -467,7 +467,7 @@ namespace apex
    void session::term_task()
    {
 
-      acme::session::term_task();
+      ::platform::session::term_task();
 
       // try
       // {
@@ -530,7 +530,7 @@ namespace apex
    void session::process_init()
    {
 
-      acme::session::process_init();
+      ::platform::session::process_init();
 
       //information() << "apex::session::process_init";
 
@@ -576,7 +576,7 @@ namespace apex
 
       }
 
-      return ::platform::context::on_get_task_name(strTaskName);
+      return ::thread::on_get_task_name(strTaskName);
 
    }
 
@@ -1089,7 +1089,7 @@ ret:
       //auto estatus = 
       
 
-      initialize_context_1();
+      ////initialize_context_1();
 
       __check_refdbg
 
@@ -1411,10 +1411,19 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
+      auto papplication = m_pappCurrent;
+
+      if (::is_set(papplication))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         ::cast < ::thread> pthread = papplication;
+
+         if(pthread)
+         {
+
+            pthread->pre_translate_message(pmessage);
+
+         }
 
       }
 

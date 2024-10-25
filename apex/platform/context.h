@@ -32,9 +32,6 @@ namespace apex
 
 
 
-      ::payload                           m_payloadFile;
-      ::pointer_array < ::request >       m_requestaPending;
-      ::pointer_array < ::request >       m_requestaHistory;
 
 
       context();
@@ -49,8 +46,6 @@ namespace apex
       void post_request(::request * prequest) override;
 
       bool on_idle() override;
-
-      bool post_next_pending_request();
 
       string get_store_server_base_url();
 

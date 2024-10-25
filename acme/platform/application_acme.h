@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/prototype/text/text.h"
+
+
 namespace platform
 {
 

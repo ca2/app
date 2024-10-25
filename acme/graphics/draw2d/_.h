@@ -12,6 +12,8 @@ namespace draw2d
 
    class draw2d;
 
+   class printer;
+
 
 } // namespace draw2d
 

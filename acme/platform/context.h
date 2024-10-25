@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/handler/handler.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/message_box.h"
 
@@ -11,6 +12,7 @@ namespace platform
 
    class CLASS_DECL_ACME context :
       virtual public ::task,
+      //virtual public ::handler::handler,
       virtual public ::reificator < ::message_box >
    {
    public:
@@ -91,17 +93,17 @@ namespace platform
 
 
 
-      ::directory_context* directory();
-      ::file_context* file();
-      ::directory_system * directory_system();
-      ::file_system * file_system();
-      ::path_system * pathsystem();
+      virtual ::directory_context* directory();
+      virtual ::file_context* file();
+      virtual ::directory_system * directory_system();
+      virtual ::file_system * file_system();
+      virtual ::path_system * path_system();
 
 
-      ::file::watcher * file_watcher() const;
+      virtual ::file::watcher * file_watcher();
 
 
-      ::platform::http * http();
+      virtual ::platform::http * http();
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

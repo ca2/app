@@ -935,7 +935,7 @@ namespace platform
    void application::term_task()
    {
 
-      debug() << "acme::application::term_task";
+      debug() << "::platform::applicationterm_task";
 
       m_timeHeartBeat.Now();
 
@@ -1758,7 +1758,7 @@ namespace platform
    void application::pos_run()
    {
 
-      debug() << "acme::application::pos_run";
+      debug() << "::platform::applicationpos_run";
 
       try
       {
@@ -1773,7 +1773,7 @@ namespace platform
       catch (...)
       {
 
-         information() << "acme::application::pos_run exception.4";
+         information() << "::platform::applicationpos_run exception.4";
 
       }
 

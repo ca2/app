@@ -266,7 +266,7 @@ namespace apex
    void system::on_initialize_particle()
    {
 
-      ::platform::context::on_initialize_particle();
+      //::platform::context::on_initialize_particle();
 
       ::platform::system::on_initialize_particle();
 
@@ -276,7 +276,7 @@ namespace apex
    void system::install_message_routing(::channel * pchannel)
    {
 
-      ::platform::context::install_message_routing(pchannel);
+      //::platform::context::install_message_routing(pchannel);
 
       //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
@@ -305,14 +305,14 @@ namespace apex
    bool system::on_get_task_name(string & strTaskName)
    {
 
-      if (platform()->is_console())
+      if (this->is_console())
       {
 
          return false;
 
       }
 
-      return ::platform::context::on_get_task_name(strTaskName);
+      return ::thread::on_get_task_name(strTaskName);
 
    }
 
@@ -347,7 +347,7 @@ namespace apex
 
          string strShowApplicationInformation;
 
-         if (is_command_line_parameter_true(strShowApplicationInformation, platform()->m_strCommandLine, "show_application_information"))
+         if (is_command_line_parameter_true(strShowApplicationInformation, this->m_strCommandLine, "show_application_information"))
          {
 
             application()->m_bShowApplicationInformation = true;
@@ -375,7 +375,7 @@ namespace apex
 
       //debug_context_object(psystem);
 
-      initialize(this);
+      //initialize(this);
 
       //set_object(psystem);
 
@@ -397,7 +397,7 @@ namespace apex
 
       factory()->add_factory_item<http::context>();
 
-      //auto estatus = 
+      //auto estatus =
       ::platform::system::process_init();
 
       __construct_new(m_pthreading);
@@ -625,7 +625,7 @@ namespace apex
 
       //set_system_set_modified(&apex_system_set_modified);
 
-      //estatus = 
+      //estatus =
       //system_prep();
 
       //if (!estatus)
@@ -919,9 +919,9 @@ pacmedirectory->create("/ca2core");
 
             //}
 
-            //estatus = 
+            //estatus =
 
-      initialize_context();
+      //initialize_context();
 
 
    }
@@ -930,7 +930,7 @@ pacmedirectory->create("/ca2core");
    void system::init1()
    {
 
-      //auto estatus = 
+      //auto estatus =
       ::platform::system::init1();
 
       //if (!estatus)
@@ -940,7 +940,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      //estatus = 
+      //estatus =
       //system_init();
 
       /*if (!estatus)
@@ -974,7 +974,7 @@ pacmedirectory->create("/ca2core");
 
          pfactoryCrypto->merge_to_global_factory();
 
-         //estatus = 
+         //estatus =
          pfactoryCrypto->__construct(this, m_pcrypto);
 
       }
@@ -995,7 +995,7 @@ pacmedirectory->create("/ca2core");
 
       //on_update_matter_locator();
 
-      //estatus = 
+      //estatus =
 
       if (application()->m_bNetworking || application()->m_bNetworking.undefined())
       {
@@ -1210,8 +1210,8 @@ pacmedirectory->create("/ca2core");
 
    //   //::pointer<::uncompress>puncompress;
 
-   //   /*auto estatus = */ 
-   //   
+   //   /*auto estatus = */
+   //
    //   auto puncompress = new_uncompress(scopedstrImplementation);
 
    //   //if (!estatus)
@@ -1244,7 +1244,7 @@ pacmedirectory->create("/ca2core");
 
       ::platform::system::init2();
 
-      //::e_status estatus = 
+      //::e_status estatus =
       // create_session();
 
       //if (!estatus)
@@ -1261,7 +1261,7 @@ pacmedirectory->create("/ca2core");
       //if (application()->is_console())
       //{
 
-         //estatus = 
+         //estatus =
 
          //get_session()->inline_init();
 
@@ -1286,7 +1286,7 @@ pacmedirectory->create("/ca2core");
 
    //}
 
-   //estatus = 
+   //estatus =
       __construct_new(m_ptexttable);
 
       auto strMain = directory()->install() / "app/_appmatter/main";
@@ -1343,22 +1343,22 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::initialize_context()
-   {
-
-      //auto estatus =
-      ::platform::context::initialize_context();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+   // void system::initialize_context()
+   // {
+   //
+   //    //auto estatus =
+   //    ::platform::context::initialize_context();
+   //
+   //    //if(!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return estatus;
+   //
+   // }
 
 
    void system::on_system_construct()
@@ -1388,7 +1388,7 @@ pacmedirectory->create("/ca2core");
    void system::on_start_system()
    {
 
-      //auto estatus = 
+      //auto estatus =
       ::platform::system::on_start_system();
 
       //if (!estatus)
@@ -1433,19 +1433,19 @@ pacmedirectory->create("/ca2core");
    //
    //
    //#ifdef _WIN32
-   //      
+   //
    //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-   //      
+   //
    //      GetSystemTimeAsFileTime(&ft);
-   //      
+   //
    //      u64 tt;
-   //      
+   //
    //      ::memory_copy(&tt, &ft, sizeof(tt));
    //
    //      tt /= 10; // make it usecs
-   //      
+   //
    //      pmicrotime->m_secs = (long)tt / 1'000'000;
-   //      
+   //
    //      pmicrotime->m_micros = (long)tt % 1'000'000;
    //
    //#else
@@ -1718,7 +1718,7 @@ pacmedirectory->create("/ca2core");
    void system::init_system()
    {
 
-      //auto estatus = 
+      //auto estatus =
       ::platform::system::init_system();
 
       //if(!estatus)
@@ -4038,13 +4038,13 @@ pmessagebox->sync();
    //
    //string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    //{
-   //   
+   //
    //   string strId(pszId);
-   //   
+   //
    //   string strMutex;
-   //   
+   //
    //   strMutex.formatf("Local\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
-   //   
+   //
    //   return strMutex;
 
    //}
@@ -4052,11 +4052,11 @@ pmessagebox->sync();
    //
    //string system::get_global_mutex_name(const ::string & pszAppName)
    //{
-   //   
+   //
    //   string strMutex;
-   //   
+   //
    //   strMutex.formatf("Global\\%s", pszAppName.c_str());
-   //   
+   //
    //   return strMutex;
 
    //}
@@ -4064,9 +4064,9 @@ pmessagebox->sync();
    //
    //string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    //{
-   //   
+   //
    //   string strId(pszId);
-   //   
+   //
    //   string strMutex;
 
    //   strMutex.formatf("Global\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
@@ -4324,7 +4324,7 @@ namespace apex
    void system::set_history(::apex::history * phistory)
    {
 
-      //auto estatus = 
+      //auto estatus =
       //__construct(m_phistory, phistory);
 
       m_phistory = phistory;
@@ -4701,7 +4701,7 @@ namespace apex
       //else
       //{
 
-         //auto estatus = 
+         //auto estatus =
       ::thread::main();
 
       //if (!estatus)
@@ -4784,7 +4784,7 @@ namespace apex
    //   {
    //
    //      manager::add_signal_handler(signalhandler, atomSignal);
-   //      
+   //
    //   }
 
 
@@ -4937,7 +4937,7 @@ namespace apex
 
    void system::defer_innate_ui()
    {
-      
+
       if (!m_pinnateui)
       {
 
@@ -4954,7 +4954,7 @@ namespace apex
 //#elif defined(MACOS)
 //
 //         node()->m_papexnode->defer_innate_ui();
-//         
+//
 //#endif
 
          __construct(m_pinnateui);
@@ -5025,7 +5025,7 @@ namespace apex
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      //auto estatus = 
+      //auto estatus =
       ///::platform::system::get_public_internet_domain_extension_list(stra);
 
       //return estatus;
@@ -5038,7 +5038,7 @@ namespace apex
    //void system::get_public_internet_domain_extension_list(string_array& stra)
    //{
 
-   ////   //auto estatus = 
+   ////   //auto estatus =
    ////   ::platform::system::get_public_internet_domain_extension_list(stra);
 
    //   ///return estatus;
@@ -5056,8 +5056,8 @@ namespace apex
    //
    //   void system::windowing_post_quit()
    //   {
-   //      
-   //      
+   //
+   //
    //   }
 
    void system::initialize_networking()
@@ -5117,7 +5117,7 @@ namespace apex
 
    void system::on_application_dark_mode_change()
    {
-   
+
       this->signal(id_application_dark_mode_change);
 
       ::platform::system::on_application_dark_mode_change();

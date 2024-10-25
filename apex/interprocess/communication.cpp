@@ -72,7 +72,7 @@ namespace interprocess
 
 #endif
 
-      defer_run_property(ID_CREATE);
+      defer_run_property(id_create);
 
       //call_procedures(CREATE_ROUTINE);
 

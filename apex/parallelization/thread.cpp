@@ -2271,13 +2271,17 @@ void thread::session_pre_translate_message(::message::message* pmessage)
    try
    {
 
-      if (get_app() != nullptr)
+      auto psession = session();
+
+      if (psession)
       {
 
-         if (get_app()->session() != nullptr)
+         ::cast < ::thread > pthread = psession;
+
+         if(pthread)
          {
 
-            get_app()->session()->pre_translate_message(pmessage);
+            pthread->pre_translate_message(pmessage);
 
             if (pmessage->m_bRet)
             {
@@ -2307,15 +2311,22 @@ void thread::system_pre_translate_message(::message::message* pmessage)
 
       auto psystem = system();
 
-      if (psystem != nullptr)
+      if (psystem)
       {
 
-         psystem->pre_translate_message(pmessage);
+         ::cast < ::thread > pthread = psystem;
 
-         if (pmessage->m_bRet)
+         if(pthread)
          {
 
-            return;
+            pthread->pre_translate_message(pmessage);
+
+            if (pmessage->m_bRet)
+            {
+
+               return;
+
+            }
 
          }
 
@@ -2358,7 +2369,24 @@ void thread::process_window_procedure_exception(const ::exception& e, ::message:
 void thread::process_message_filter(i32 code, ::message::message* pmessage)
 {
 
-   get_app()->process_message_filter(code, pmessage);
+   auto papplication = application();
+
+   if(papplication)
+   {
+
+
+      ::cast < ::thread > pthread = papplication;
+
+      if(pthread)
+      {
+
+         pthread->process_message_filter(code, pmessage);
+
+      }
+
+   }
+
+
 
 }
 

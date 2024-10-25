@@ -32,7 +32,7 @@ namespace data
 
    using check_changed = ::function < void(check_change &) >;
 
-   //template < enum_id t_eid = (enum_id) ID_CHECK>
+   //template < enum_id t_eid = (enum_id) id_check>
    class CLASS_DECL_ACME check_property :
       public ::data::property
    {

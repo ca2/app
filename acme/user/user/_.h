@@ -22,7 +22,7 @@ namespace user
    class acme_content;
    class acme_tool;
 
-
+   class system;
 
    DECLARE_ENUMERATION(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::collection::index iIndex);
@@ -133,3 +133,6 @@ namespace acme
 } // namespace acme
 
 
+
+
+class form_document;

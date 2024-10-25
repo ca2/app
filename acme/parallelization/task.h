@@ -7,6 +7,7 @@
 //#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/procedure_array.h"
 #include "counter.h"
+#include "acme/handler/handler.h"
 #include "acme/handler/source.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/platform/implementable.h"
@@ -27,6 +28,7 @@ class CLASS_DECL_ACME task :
    virtual public object,
    //virtual public synchronization_object,
    virtual public acme::implementable,
+   virtual public ::handler::handler,
    virtual public tracer,
    virtual public ::source,
    virtual public ::data::property_container

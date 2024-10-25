@@ -31,41 +31,41 @@ namespace user
    }
 
 
-   ::aura::application *form::get_app()
-   {
-
-      return ::is_set(m_papplication) ? m_papplication->m_papplication : nullptr;
-
-
-   }
-
-
-   ::aura::session *form::get_session()
-   {
-
-      return ::is_set(m_papplication) ? m_papplication->m_psession->m_paurasession : nullptr;
-
-
-   }
-
-
-   //::aura::system *formacmesystem()
-   //{
-
-   //   return ::is_set(system()) ? system() : nullptr;
-
-
-   //}
-
-
-   ::user::user *form::user()
-   {
-
-
-      return get_session() ? get_session()->user() : nullptr;
-
-
-   }
+   // ::aura::application *form::get_app()
+   // {
+   //
+   //    return ::is_set(m_papplication) ? m_papplication->m_papplication : nullptr;
+   //
+   //
+   // }
+   //
+   //
+   // ::aura::session *form::get_session()
+   // {
+   //
+   //    return ::is_set(m_papplication) ? m_papplication->m_psession->m_paurasession : nullptr;
+   //
+   //
+   // }
+   //
+   //
+   // //::aura::system *formacmesystem()
+   // //{
+   //
+   // //   return ::is_set(system()) ? system() : nullptr;
+   //
+   //
+   // //}
+   //
+   //
+   // ::user::user *form::user()
+   // {
+   //
+   //
+   //    return get_session() ? get_session()->user() : nullptr;
+   //
+   //
+   // }
 
 
    //enum_control_type form::get_control_type() const

@@ -62,13 +62,24 @@ namespace user
 
       auto psystem = system();
 
-      auto psignal = psystem->get_signal(id_operating_system_user_color_change);
+      if(psystem)
+      {
+
+         ::cast < ::manager> pmanager = psystem;
+
+         if(pmanager)
+         {
+
+            auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
       
-      auto psignalDarkModeChange = psystem->get_signal(id_application_dark_mode_change);
+            auto psignalDarkModeChange = pmanager->get_signal(id_application_dark_mode_change);
 
-      psignal->add_handler(this);
+            psignal->add_handler(this);
 
-      psignalDarkModeChange->add_handler(this);
+            psignalDarkModeChange->add_handler(this);
+         }
+
+      }
 
       on_user_color();
 

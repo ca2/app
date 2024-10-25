@@ -351,7 +351,7 @@ namespace apex
       virtual bool is_running();
 
 
-      //bool pump_runnable();
+      bool pump_runnable() override;
 
       virtual void add_activation_message(const ::string& strMessage);
 
@@ -362,7 +362,7 @@ namespace apex
       virtual bool defer_process_activation_message();
 
 
-      //virtual void on_request(::request * prequest) override;
+      virtual void on_request(::request * prequest) override;
 
 
       virtual bool assert_user_logged_in();
@@ -376,7 +376,7 @@ namespace apex
       //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      //virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
+      virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
 
 
       virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
@@ -542,7 +542,7 @@ namespace apex
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      //virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
 
 
       virtual void app_set(string strPath, string strValue);
@@ -646,9 +646,9 @@ namespace apex
       // virtual void pre_run();
       //virtual void application_pre_run();
 
-      //virtual void on_pos_run_thread() override;
-      //virtual void pos_run() override;
-      //virtual void application_pos_run() override;
+      virtual void on_pos_run_thread() override;
+      virtual void pos_run() override;
+      virtual void application_pos_run() override;
 
 
       //virtual bool InitApplication();

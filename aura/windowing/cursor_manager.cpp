@@ -636,20 +636,20 @@ namespace windowing
    }
 
 
-   ::aura::application* cursor_manager::get_app()
-   {
-
-      return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
-
-   }
-
-
-   ::aura::session* cursor_manager::get_session()
-   {
-
-      return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
-
-   }
+   // ::aura::application* cursor_manager::get_app()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_papplication ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session* cursor_manager::get_session()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_psession ? m_papplication->m_psession->m_paurasession : nullptr;
+   //
+   // }
 
 
    //::aura::system* cursor_manageracmesystem()

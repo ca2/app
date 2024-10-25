@@ -17,6 +17,9 @@ namespace platform
    public:
 
 
+      ::property_set    m_setHttp;
+
+
       http();
       ~http();
 

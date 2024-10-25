@@ -187,8 +187,8 @@ namespace user
       virtual ::file::path & processed_path(_get_file_image_ & getfileimage);
       virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
-      ::aura::application * get_app();
-      ::aura::session * get_session();
+      //::aura::application * get_app();
+      //::aura::session * get_session();
       //::aura::system * system();
 
 

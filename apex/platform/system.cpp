@@ -27,6 +27,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/http.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -1647,7 +1648,7 @@ pacmedirectory->create("/ca2core");
 
       ::platform::system::inline_init();
 
-      ::platform::context::inline_init();
+      //::platform::context::inline_init();
 
    }
 
@@ -1655,7 +1656,7 @@ pacmedirectory->create("/ca2core");
    void system::inline_term()
    {
 
-      ::platform::context::inline_term();
+      //::platform::context::inline_term();
 
 #if REFERENCING_DEBUGGING
 
@@ -1688,7 +1689,7 @@ pacmedirectory->create("/ca2core");
       try
       {
 
-         ::platform::context::__task_init();
+         ::thread::__task_init();
 
       }
       catch (exception & exception)
@@ -1696,7 +1697,7 @@ pacmedirectory->create("/ca2core");
 
          string strMoreDetails;
 
-         strMoreDetails = "command line: " + string(platform()->m_strCommandLine) + "\n\n";
+         strMoreDetails = "command line: " + string(this->m_strCommandLine) + "\n\n";
 
          auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
 
@@ -1788,7 +1789,7 @@ pacmedirectory->create("/ca2core");
    bool system::task_get_run() const
    {
 
-      return ::platform::context::task_get_run();
+      return ::thread::task_get_run();
 
    }
 
@@ -1959,12 +1960,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::apex::node * system::node()
-   {
-
-      return m_pnode ? m_pnode->m_papexnode : nullptr;
-
-   }
+   // ::apex::node * system::node()
+   // {
+   //
+   //    return m_pnode ? m_pnode->m_papexnode : nullptr;
+   //
+   // }
 
 
    ::file::watcher * system::file_watcher()
@@ -2031,12 +2032,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   bool system::is_system() const
-   {
-
-      return true;
-
-   }
+   // bool system::is_system() const
+   // {
+   //
+   //    return true;
+   //
+   // }
 
 
    i32 system::_001OnDebugReport(i32 i1, const ::string & psz1, i32 i2, const ::string & psz2, const ::string & psz3, va_list args)
@@ -4009,11 +4010,11 @@ pmessagebox->sync();
       if (strBrowser.has_char())
       {
 
-         file()->put_text_utf8(directory_system()->system() / "browser.txt", strBrowser);
+         file()->put_text_utf8(directory_system()->user() / "browser.txt", strBrowser);
 
-         file()->put_text_utf8(directory_system()->system() / "browser_path.txt", strBrowserPath);
+         file()->put_text_utf8(directory_system()->user() / "browser_path.txt", strBrowserPath);
 
-         file()->put_text_utf8(directory_system()->system() / "browser_dir.txt", strBrowserDir);
+         file()->put_text_utf8(directory_system()->user() / "browser_dir.txt", strBrowserDir);
 
       }
 
@@ -4156,12 +4157,12 @@ pmessagebox->sync();
    }
 
 
-   void system::verb() // ambigous inheritance from ::apex::system/::axis::application
-   {
-
-      return ::thread::verb();
-
-   }
+   // void system::verb() // ambigous inheritance from ::apex::system/::axis::application
+   // {
+   //
+   //    return ::thread::verb();
+   //
+   // }
 
 
    string system::crypto_md5_text(const ::string & str)
@@ -4460,8 +4461,11 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!::platform::context::http()->download(pszUrl, filename, set))
-
+      try
+      {
+         http()->download(pszUrl, filename, set);
+      }
+      catch(...)
       {
 
          return false;
@@ -4483,7 +4487,18 @@ namespace apex
 
          file()->erase(filename);
 
-         return ::platform::context::http()->download(str, strLocation, set);
+         try
+         {
+            http()->download(str, strLocation, set);
+         }
+         catch(...)
+         {
+
+            return false;
+
+         }
+
+         return true;
 
       }
 
@@ -4821,7 +4836,7 @@ namespace apex
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      acme::system::handle(ptopic, pcontext);
+      ::thread::handle(ptopic, pcontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;
@@ -4865,7 +4880,7 @@ namespace apex
 
       //::main::destroy();
 
-      ::platform::context::destroy();
+      //::platform::context::destroy();
 
       m_sessionmap.clear();
 

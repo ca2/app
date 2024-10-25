@@ -1,79 +1,65 @@
+//
+// Created by camilo on 2024-10-24 04:01 <3ThomasBorregaardSorensen!!
+//
 #pragma once
-
-
-#include "acme/handler/handler.h"
-#include "acme/parallelization/task.h"
-#include "acme/platform/message_box.h"
-#include "context_acme.h"
-#include "context_apex.h"
-#include "context_aqua.h"
-#include "context_aura.h"
-
 
 
 namespace platform
 {
 
 
-   class CLASS_DECL_ACME context :
-      virtual public ::task,
-      //virtual public ::handler::handler,
-      virtual public ::reificator < ::message_box >,
-   virtual public ::platform::acme_context_layer_t,
-   virtual public ::platform::apex_context_layer_t,
-   virtual public ::platform::aqua_context_layer_t,
-   virtual public ::platform::aura_context_layer_t,
-   virtual public ::platform::acme_context_layer,
-   virtual public ::platform::apex_context_layer,
-   virtual public ::platform::aqua_context_layer,
-   virtual public ::platform::aura_context_layer
+   struct CLASS_DECL_ACME acme_context_layer_t
+   {
+
+
+
+
+      //::platform::platform *                          m_pplatform;
+
+
+      //::platform::context *                               m_papexcontext;
+      //::aura::context *                               m_pauracontext;
+
+
+      //::platform::application*                        m_papplication;
+      ::platform::session *                           m_psession;
+      ::platform::system *                            m_psystem;
+      ::platform::node *                              m_pnode;
+
+      ::pointer<::text::translator>                   m_ptexttranslator;
+
+      ::pointer<::image::image_context>               m_pimagecontext;
+      ::pointer<::directory_context>                  m_pdirectorycontext;
+      ::pointer<::file_context>                       m_pfilecontext;
+      ::pointer<::http::context>                      m_phttpcontext;
+
+      //::pointer < ::os_context >                      m_poscontext;
+
+
+      ::string                                        m_strLocale;
+      ::string                                        m_strSchema;
+
+
+      string_array                                    m_straMatterLocatorPriority;
+      string_array                                    m_straMatterLocator;
+
+
+   };
+
+
+   class CLASS_DECL_ACME acme_context_layer
    {
    public:
-      //
-      //
-      // //::platform::platform *                          m_pplatform;
-      //
-      //
-      // //::platform::context *                               m_papexcontext;
-      // //::aura::context *                               m_pauracontext;
-      //
-      //
-      // ::platform::application*                        m_papplication;
-      // ::platform::session *                           m_psession;
-      // ::platform::system *                            m_psystem;
-      // ::platform::node *                              m_pnode;
-      //
-      // ::pointer<::text::translator>                   m_ptexttranslator;
-      //
-      // ::pointer<::image::image_context>               m_pimagecontext;
-      // ::pointer<::directory_context>                  m_pdirectorycontext;
-      // ::pointer<::file_context>                       m_pfilecontext;
-      // ::pointer<::http::context>                      m_phttpcontext;
-      //
-      // //::pointer < ::os_context >                      m_poscontext;
-      //
-      //
-      // ::string                                        m_strLocale;
-      // ::string                                        m_strSchema;
-      //
-      //
-      // string_array                                    m_straMatterLocatorPriority;
-      // string_array                                    m_straMatterLocator;
-      //
 
-      context();
-      ~context() override;
+      //void destroy() override;
 
 
-      void destroy() override;
-
-
-      virtual void on_set_platform();
+      //virtual void on_set_platform();
 
       virtual void set_platform();
 
 
-      void initialize(::particle * pparticle) override;
+      //void initialize(::particle * pparticle) override;
 
       virtual void initialize_context();
 
@@ -81,19 +67,19 @@ namespace platform
 
       virtual void finalize_context();
 
-      ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+      //::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
 
-      inline ::image::image_context* image() { return m_pimagecontext; }
+      virtual ::image::image_context* image();
 
-      virtual bool is_system() const;
-      virtual bool is_session() const;
+      // virtual bool is_system() const;
+      // virtual bool is_session() const;
 
       virtual void translate_text_data(::text::data * ptextdata);
-      virtual ::text::text __text(const ::atom& atom) override;
+      //virtual ::text::text __text(const ::atom& atom) override;
 
 
       //inline ::platform::system * system();
-      ::platform::node * node();
+      //::platform::node * node();
 
 
       //inline ::os_context * os_context() { return m_poscontext; }
@@ -170,11 +156,12 @@ namespace platform
       virtual bool defer_process_known_folder_path(::file::path & path);
       virtual bool defer_process_protocol_path(::file::path & path) ;
 
-
    };
 
-   
+
 } // namespace platform
+
+
 
 
 

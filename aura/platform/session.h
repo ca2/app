@@ -81,7 +81,7 @@ namespace aura
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
-      virtual bool is_session() const override;
+      //virtual bool is_session() const override;
 
       //void construct(::particle * pparticle, int iPhase) override;
 

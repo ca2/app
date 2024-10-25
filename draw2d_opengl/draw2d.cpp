@@ -207,7 +207,7 @@ namespace draw2d_opengl
       //ZeroMemory(&wc, sizeof(wc));
       //wc.style = CS_OWNDC;
       //wc.lpfnWndProc = opengl_window_proc;
-      //wc.hInstance = (HINSTANCE) system()->m_pplatform->m_hinstanceThis;
+      //wc.hInstance = (HINSTANCE) system()->m_hinstanceThis;
       //wc.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
       //m_atomClass = RegisterClassW(&wc);
 

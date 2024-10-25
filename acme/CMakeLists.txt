@@ -513,6 +513,14 @@ list(APPEND library_source
    platform/checked.cpp
    platform/context.cpp
    platform/context.h
+   platform/context_acme.cpp
+   platform/context_acme.h
+   platform/context_apex.cpp
+   platform/context_apex.h
+   platform/context_aqua.cpp
+   platform/context_aqua.h
+   platform/context_aura.cpp
+   platform/context_aura.h
    platform/debug.cpp
    platform/department.cpp
    platform/department.h

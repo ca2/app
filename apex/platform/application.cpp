@@ -15,7 +15,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
-//#include "acme/platform/get_file_extension_mime_type.h"
+#include "acme/platform/http.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
@@ -2858,8 +2858,8 @@ namespace apex
       _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
       string strId(pszId);
-      string strSystemLocale = psystem->m_strLocale;
-      string strSystemSchema = psystem->m_strSchema;
+      //string strSystemLocale = psystem->m_strLocale;
+      //string strSystemSchema = psystem->m_strSchema;
       string_array straLocale;
       string_array straSchema;
 
@@ -2868,8 +2868,8 @@ namespace apex
 
       ::file::path pathExe = file_system()->module();
 
-      straLocale.insert_at(0, strSystemLocale);
-      straSchema.insert_at(0, strSystemSchema);
+      //straLocale.insert_at(0, strSystemLocale);
+      //straSchema.insert_at(0, strSystemSchema);
       straLocale.insert_at(0, "_std");
       straSchema.insert_at(0, "_std");
 
@@ -3035,7 +3035,19 @@ namespace apex
 
       information() << "apex::application::process_init";
 
-      m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
+      if(psystem)
+      {
+
+         ::cast < ::thread > pthread = psystem;
+
+         if(pthread)
+         {
+
+            m_bThreadToolsForIncreasedFps = pthread->m_bThreadToolsForIncreasedFps;
+
+         }
+
+      }
 
       if (::get_task() == nullptr)
       {
@@ -3612,7 +3624,7 @@ namespace apex
       try
       {
 
-         close(::apex::e_end_app);
+         close(::e_exit_application);
 
       }
       catch (...)
@@ -5538,7 +5550,7 @@ namespace apex
          try
          {
 
-            psystem->http()->m_setHttp.parse_network_payload(strNetworkPayload);
+            http()->m_setHttp.parse_network_payload(strNetworkPayload);
 
          }
          catch (...)
@@ -5833,12 +5845,12 @@ namespace apex
    }
 
 
-   void application::verb()
-   {
-
-      //return true;
-
-   }
+   // void application::verb()
+   // {
+   //
+   //    //return true;
+   //
+   // }
 
 
    void application::_001TryCloseApplication()
@@ -6686,6 +6698,9 @@ namespace apex
 
       strUrl += ::url::encode(strRelative);
 
+
+      ::cast < ::http::context > phttpcontext = http();
+
       if (psession == nullptr)
       {
 
@@ -6694,7 +6709,7 @@ namespace apex
 
             property_set setEmpty;
 
-            if (::platform::context::http()->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -6711,7 +6726,7 @@ namespace apex
 
       set["get_memory"] = "";
 
-      ::platform::context::http()->request(psession, strUrl, set);
+      phttpcontext->request(psession, strUrl, set);
       //{
       //
       //m_pdraw2d->init()
@@ -6763,10 +6778,10 @@ namespace apex
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
 
@@ -7169,7 +7184,7 @@ namespace apex
       else
       {
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app(), nullptr);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine, this, nullptr);
 
       }
 
@@ -10044,10 +10059,10 @@ namespace apex
    }
 
 
-   void application::close(::apex::enum_end eend)
+   void application::close(::enum_exit eexit)
    {
 
-      if (eend == ::apex::e_end_close)
+      if (eexit == ::e_exit_close)
       {
 
          return;
@@ -10056,7 +10071,7 @@ namespace apex
 
       m_ethreadcontextClose = e_thread_context_application;
 
-      if (eend == ::apex::e_end_app)
+      if (eexit == ::e_exit_application)
       {
 
          destroy();
@@ -10065,7 +10080,7 @@ namespace apex
 
       }
 
-      if (eend == ::apex::e_end_session)
+      if (eexit == ::e_exit_session)
       {
 
          try
@@ -10090,7 +10105,7 @@ namespace apex
 
       }
 
-      if (eend == ::apex::e_end_system)
+      if (eexit == ::e_exit_system)
       {
 
          try
@@ -10129,11 +10144,7 @@ namespace apex
    string application::get_version()
    {
 
-      auto psystem = system();
-
-      auto papex = psystem->session()->m_pnode->m_papexnode;
-
-      return papex->get_version();
+      return node()->get_version();
 
    }
 

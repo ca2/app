@@ -46,7 +46,7 @@ namespace console
 
             auto psystem = system();
 
-            auto pplatform = psystem->m_pplatform;
+            auto pplatform = psystem;
 
             for (int i = 0; i < pplatform->get_argument_count1(); i++)
             {

@@ -2548,7 +2548,7 @@ void preempt()
 //::factory::factory_pointer & get_system_factory()
 //{
 //
-//   return ::system()->m_pplatform->m_pfactory;
+//   return ::system()->m_pfactory;
 //
 //}
 

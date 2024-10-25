@@ -20,6 +20,14 @@ public:
 
    }
 
+   template < typename TYPE2 >
+cast(const ::pointer < TYPE2 > & p2)
+   {
+
+      m_p = dynamic_cast < TYPE  *>((::subparticle *)(p2.m_psubparticle));
+
+   }
+
 
    operator TYPE *()
    {

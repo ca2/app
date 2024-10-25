@@ -63,8 +63,8 @@ namespace windowing
       virtual void set_dark_mode(bool bDarkMode);
 
 
-      ::aura::application* get_app();
-      ::aura::session* get_session();
+      //::aura::application* get_app();
+      //::aura::session* get_session();
       //::aura::system* system();
 
       ::windowing::windowing * windowing_windowing() override;

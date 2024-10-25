@@ -21,12 +21,12 @@ namespace apex
       virtual public ::channel
    {
    public:
-
-
-      ::set < ::channel * >         m_setChannelSystemOptionsHtml;
-      //::apex::node*                 m_papexnode;
-      //::aura::node*                 m_pauranode;
-
+      //
+      //
+      // ::set < ::channel * >         m_setChannelSystemOptionsHtml;
+      // //::apex::node*                 m_papexnode;
+      // //::aura::node*                 m_pauranode;
+      //
 
       node();
       ~node() override;

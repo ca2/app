@@ -69,7 +69,7 @@ namespace aura
    session::session()
    {
 
-      m_paurasession = this;
+      //m_paurasession = this;
 
       m_bAcceptsFirstResponder = true;
 
@@ -122,7 +122,7 @@ namespace aura
 
       //estatus = 
       
-      ::aura::context::on_initialize_particle();
+      //::aura::context::on_initialize_particle();
 
       //if(!estatus)
       //{
@@ -159,7 +159,7 @@ namespace aura
 
       //}
 
-      m_pauracontext = this;
+      //m_pauracontext = this;
 
       //m_pnode = node();
 
@@ -218,28 +218,28 @@ namespace aura
 
    //}
 
-
-   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
-   {
-
-
-   }
-
-
-   string session::get_locale_schema_dir()
-   {
-
-      return "_std/_std";
-
-   }
+   //
+   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // {
+   //
+   //
+   // }
 
 
-   bool session::is_session() const
-   {
+   // string session::get_locale_schema_dir()
+   // {
+   //
+   //    return "_std/_std";
+   //
+   // }
 
-      return true;
-
-   }
+   //
+   // bool session::is_session() const
+   // {
+   //
+   //    return true;
+   //
+   // }
 
 
    void session::process_init()
@@ -2179,12 +2179,18 @@ namespace aura
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
-      {
+      ::apex::session::pre_translate_message(pmessage);
 
-         m_pappCurrent->pre_translate_message(pmessage);
-
-      }
+      // auto papplication = application
+      //
+      // if (::is_set(m_pappCurrent))
+      // {
+      //
+      //
+      //
+      //    m_pappCurrent->pre_translate_message(pmessage);
+      //
+      // }
 
    }
 

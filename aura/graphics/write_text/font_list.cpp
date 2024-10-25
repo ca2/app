@@ -721,9 +721,21 @@ namespace write_text
 
       auto psystem = system();
 
-      auto psignal = psystem->get_signal(id_operating_system_user_color_change);
+      ::cast < ::manager > pmanager = psystem;
 
-      psignal->add_handler(this);
+      if(pmanager)
+      {
+
+         auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
+
+         if(psignal)
+         {
+
+            psignal->add_handler(this);
+
+         }
+
+      }
 
       signal(id_operating_system_user_color_change);
 

@@ -11,6 +11,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/text/context.h"
@@ -2147,8 +2148,10 @@ namespace apex
 
       ::platform::application_container::m_applicationa.erase_all();
 
-      ::platform::context::destroy();
+      //::platform::context::destroy();
 
+
+      ::task::destroy();
       //return success;
 
    }

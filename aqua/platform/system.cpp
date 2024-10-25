@@ -92,7 +92,7 @@ namespace aqua
 
       //}
 
-      //papexsession->m_paquasystem = this;
+      //papexsession = this;
 
    }
 

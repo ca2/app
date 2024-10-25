@@ -396,7 +396,7 @@ namespace integration
 
 
 
-            pparticle->context()->http_download(pmemoryFileTarGz, url, set);
+            pparticle->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 

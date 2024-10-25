@@ -105,6 +105,9 @@ namespace http
 
       virtual bool put(const ::url::url & url, memory_base & memory, property_set & set);
       virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
+      virtual bool put(const ::url::url & url, memory_base * pmemory, property_set & set);
+      //virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
+
 
       virtual ::url::url get_effective_url(const ::url::url & url);
 
@@ -157,8 +160,6 @@ namespace http
       //virtual bool download(const ::url::url & url, ::payload payloadFile, property_set & set);
 
 
-      virtual bool put(const ::url::url & url, memory_base * pmemory, property_set & set);
-      //virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
 
       virtual string locale_schema_url(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 

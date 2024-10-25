@@ -11,7 +11,7 @@
 
 #include "acme/prototype/media_library/item.h"
 #include "enumerator.h"
-//#include "acme/filesystem/filesystem/path.h"
+#include "acme/platform/department.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/parallelization/mutex.h"
@@ -19,7 +19,7 @@
 
 
 class CLASS_DECL_ACME directory_system :
-   virtual public ::particle,
+   virtual public ::acme::department,
    virtual public ::file::enumerator
 {
 public:
@@ -132,8 +132,9 @@ public:
    virtual ::file::path appdata(); // appdata
    virtual ::file::path archive();
    virtual ::file::path tool();
-   virtual ::file::path public_system();
-   virtual ::file::path system();
+   //virtual ::file::path public_system();
+   //virtual ::file::path system();
+   virtual ::file::path user();
    virtual ::file::path config();
    virtual ::file::path local();
    virtual ::file::path sensitive();

@@ -31,8 +31,8 @@ namespace platform
       ::pointer<::text::translator>                   m_ptexttranslator;
 
       ::pointer<::image::image_context>               m_pimagecontext;
-      ::pointer<::directory_context>                        m_pdir;
-      ::pointer<::file_context>                       m_pfile;
+      ::pointer<::directory_context>                  m_pdirectorycontext;
+      ::pointer<::file_context>                       m_pfilecontext;
       ::pointer<::http::context>                      m_phttpcontext;
 
       //::pointer < ::os_context >                      m_poscontext;

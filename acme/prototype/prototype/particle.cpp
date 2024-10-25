@@ -396,29 +396,29 @@ class ::user::user * particle::user() const
 // }
 
 
-::acme::context* particle::context() const
-{
-
-   return m_papplication;
-
-}
-
-
-::apex::context* particle::apexcontext() const
-{
-
-   return m_papplication ? m_papplication : nullptr;
-
-}
+// ::platform::context* particle::context() const
+// {
+//
+//    return m_papplication;
+//
+// }
 
 
-::aura::context* particle::auracontext() const
-{
+// ::apex::context* particle::apexcontext() const
+// {
+//
+//    return m_papplication ? m_papplication : nullptr;
+//
+// }
+//
 
-   return m_papplication ? m_papplication->m_pauracontext : nullptr;
-
-}
-
+// ::aura::context* particle::auracontext() const
+// {
+//
+//    return m_papplication ? m_papplication->m_pauracontext : nullptr;
+//
+// }
+//
 
 //::platform::platform * particle::platform() const
 //{
@@ -475,32 +475,32 @@ class ::user::user * particle::user() const
 
 }
 
+//
+// ::apex::application * particle::apexapplication() const
+// {
+//
+//    auto papplication = application();
+//
+//    return ::is_set(papplication) ? papplication : nullptr;
+//
+// }
 
-::apex::application * particle::apexapplication() const
+
+::directory_context * particle::directory() const
 {
 
-   auto papplication = application();
-
-   return ::is_set(papplication) ? papplication : nullptr;
+   return m_papplication->directory();
 
 }
 
 
-::directory_context * particle::dir() const
-{
-
-   return m_papplication->dir();
-
-}
-
-
-::directory_system * particle::directory_system() const
-{
-
-   return m_papplication->directory_system();
-
-}
-
+// ::directory_system * particle::directory_system() const
+// {
+//
+//    return system()->directory_system();
+//
+// }
+//
 
 ::file_context * particle::file() const
 {
@@ -509,17 +509,17 @@ class ::user::user * particle::user() const
 
 }
 
+//
+// ::file_system * particle::file_system() const
+// {
+//
+//    return system()->file_system();
+//
+// }
 
-::file_system * particle::file_system() const
-{
-
-   return m_papplication->file_system();
-
-}
 
 
-
-::file::watcher * particle::file_watcher()
+::file::watcher * particle::file_watcher() const
 {
 
    return m_papplication->file_watcher();
@@ -527,7 +527,7 @@ class ::user::user * particle::user() const
 }
 
 
-::http::context * particle::http() const
+::platform::http * particle::http() const
 {
 
    return m_papplication->http();

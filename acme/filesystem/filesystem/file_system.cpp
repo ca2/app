@@ -1622,18 +1622,18 @@ void file_system::_erase(const ::file::path & path)
 
 
 
-file_system::file_system()
-{
-
-}
-
-
-file_system::~file_system()
-{
-
-
-}
-
+// file_system::file_system()
+// {
+//
+// }
+//
+//
+// file_system::~file_system()
+// {
+//
+//
+// }
+//
 
 void file_system::initialize(::particle * pparticle)
 {
@@ -1647,7 +1647,7 @@ void file_system::initialize(::particle * pparticle)
    //
    //}
 
-   ::file::path pathModule = file_system()->module();
+   ::file::path pathModule = this->module();
 
    m_pathModule = pathModule;
 

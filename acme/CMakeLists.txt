@@ -2866,6 +2866,9 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    platform/system_aqua.h
    platform/system_aura.h
    platform/http.h
+   prototype/data/client.h
+   platform/http.cpp
+   prototype/data/client.cpp
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

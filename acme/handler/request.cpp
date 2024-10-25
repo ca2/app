@@ -629,10 +629,10 @@ void request::_001ParseCommandLine(const ::string& strCommandLine)
    if (!has_property("build") || payload("build").is_empty())
    {
 
-      if (file_system()->exists(directory_system()->system() / "config\\plugin\\build.txt"))
+      if (file_system()->exists(directory_system()->user() / "config\\plugin\\build.txt"))
       {
 
-         string str = file_system()->as_string(directory_system()->system() / "config\\plugin\\build.txt");
+         string str = file_system()->as_string(directory_system()->user() / "config\\plugin\\build.txt");
 
          payload("build") = str;
 

@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/platform/trace.h"
 #include "acme/prototype/prototype/memory.h"
@@ -450,7 +451,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 ::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-   auto pfile = pparticle->m_papplication->__create_new < ::stdio_file >();
+   auto pfile = pparticle->application()->__create_new < ::stdio_file >();
 
    if (!pfile)
    {

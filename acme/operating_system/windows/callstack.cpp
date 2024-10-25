@@ -78,7 +78,7 @@
 //::critical_section * ::platform::get()->sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
 //
 
-namespace acme
+namespace platform
 {
 
 
@@ -241,7 +241,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

@@ -2,6 +2,7 @@
 #include "manager.h"
 #include "signal.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/action_context.h"

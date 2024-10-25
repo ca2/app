@@ -19,6 +19,8 @@
 directory_system::directory_system()
 {
 
+   m_pathUpload = "C:\\upload";
+
 }
 
 
@@ -128,18 +130,18 @@ void directory_system::initialize(::particle * pparticle)
 }
 
 
-::file::path directory_system::public_system()
+//::file::path directory_system::user_config()
+//{
+//
+//   return public_root() / "system";
+//
+//}
+//
+//
+::file::path directory_system::user()
 {
 
-   return public_root() / "system";
-
-}
-
-
-::file::path directory_system::system()
-{
-
-   return ca2roaming() / "system";
+   return ca2roaming() / "user";
 
 }
 
@@ -1394,40 +1396,40 @@ bool directory_system::contains_files(const ::file::path& path, const ::string_a
 
 
 
+//
+//directory_system::directory_system()
+//{
+//
+//   m_pathUpload = "C:\\upload";
+//
+//}
+//
+//
+//directory_system::~directory_system()
+//{
+//
+//}
 
-directory_system::directory_system()
-{
-
-   m_pathUpload = "C:\\upload";
-
-}
-
-
-directory_system::~directory_system()
-{
-
-}
-
-
-void directory_system::initialize(::particle * pparticle)
-{
-
-   /*auto estatus = */ ::object::initialize(pparticle);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //auto psystem = system();
-
-   //m_pathModule = psystem->m_pacmedirectory->module();
-
-   //return true;
-
-}
+//
+//void directory_system::initialize(::particle * pparticle)
+//{
+//
+//   /*auto estatus = */ ::object::initialize(pparticle);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //auto psystem = system();
+//
+//   //m_pathModule = psystem->m_pacmedirectory->module();
+//
+//   //return true;
+//
+//}
 
 
 void directory_system::init_system()
@@ -1440,7 +1442,7 @@ void directory_system::init_system()
 //
 //   }
 //
-   m_pathInstall = directory_system()->install();
+   m_pathInstall = this->install();
 
    //auto psystem = system();
 
@@ -1462,7 +1464,7 @@ void directory_system::init_system()
 
    //auto psystem = system();
 
-   auto pacmedirectory = directory_system();
+   auto pacmedirectory = this;
 
 #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
@@ -1486,7 +1488,7 @@ void directory_system::init_system()
 
    //__construct(m_pfilewatcher);
 
-   pacmedirectory->create(directory_system()->bookmark());
+   pacmedirectory->create(this->bookmark());
 
    //if (!update_module_path())
    //{
@@ -1502,7 +1504,7 @@ void directory_system::init_system()
 
    //}
 
-   ::string strAppId = directory_system()->appid();
+   ::string strAppId = this->appid();
 
    information() << "directory_system::init_system strAppId : " << strAppId;
 
@@ -1592,10 +1594,9 @@ void directory_system::finalize()
 ::file::path directory_system::compute_default_app_data_path()
 {
 
-   return directory_system()->home() / "application";
+   return this->home() / "application";
 
 }
-
 
 
 //bool directory_system::update_module_path()

@@ -170,7 +170,7 @@ public:
    ::platform::session * session() const;
    ::platform::application * application() const;
    ::platform::node * node() const;
-   ::platform::context * context() const;
+   //::platform::context * context() const;
 
    //::aura::application* auraapplication() const;
 
@@ -178,7 +178,6 @@ public:
 
 
    //::file_system * file_system() const;
-   //::path_system * path_system() const;
    //::directory_system * directory_system() const;
    //::apex::context* apexcontext() const;
    //::aura::context* auracontext() const;
@@ -197,6 +196,8 @@ public:
    ::directory_system * directory_system() const;
    ::file_context * file() const;
    ::file_system * file_system() const;
+   ::path_system * path_system() const;
+
 
    virtual ::file::watcher * file_watcher() const;
 

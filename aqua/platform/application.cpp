@@ -91,12 +91,12 @@ namespace aqua
    void application::exit_application()
    {
 
-      if (system()->m_paquasystem->m_pmultimedia)
+      if (system()->m_pmultimedia)
       {
 
          //auto estatus = 
          
-         system()->m_paquasystem->m_pmultimedia->exit_application();
+         system()->m_pmultimedia->exit_application();
 
          //if (!estatus)
          //{
@@ -128,7 +128,7 @@ namespace aqua
 
       ::apex::application::init2();
 
-      system()->m_paquasystem->defer_audio();
+      system()->defer_audio();
 
    }
 

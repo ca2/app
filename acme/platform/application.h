@@ -21,6 +21,7 @@ namespace acme { class acme;  }
 #include "application_menu_callback.h"
 #include "context.h"
 #include "release_time_for_project.h"
+#include "acme/prototype/data/client.h"
 #include "acme/prototype/text/text.h"
 
 
@@ -32,6 +33,7 @@ namespace platform
 //      virtual public application_base,
       virtual public APPLICATION_FLAGS,
       virtual public ::platform::context,
+      virtual public ::data::client,
       virtual public ::application_exit,
       virtual public ::application_menu_callback
    {

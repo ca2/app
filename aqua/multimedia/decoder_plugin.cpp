@@ -71,7 +71,7 @@ namespace multimedia
 //
       //m_plibrary.create(this);
 
-      auto psystem = system()->m_paquasystem;
+      auto psystem = system();
 
       m_pfactory = psystem->factory(strTitle);
 

@@ -395,7 +395,7 @@ namespace user
    bool menu::load_xml_menu(const ::payload& payload)
    {
 
-      system()->m_paquasystem->_xml();
+      system()->_xml();
 
       auto pxmldocument = __create_new < ::xml::document >();
 

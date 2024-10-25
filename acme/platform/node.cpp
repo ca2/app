@@ -55,7 +55,7 @@ CLASS_DECL_ACME ::string as_string(::windowing::enum_toolkit etoolkit);
 ::i32 get_processor_count();
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -4743,7 +4743,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 void node_application_send_status(const char * pszStatus, void * p, long long ll)

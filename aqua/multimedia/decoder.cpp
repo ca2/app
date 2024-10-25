@@ -101,7 +101,7 @@ namespace multimedia
 
       {
 
-         auto psystem = system()->m_paquasystem;
+         auto psystem = system();
 
          auto pmultimedia = psystem->multimedia();
 
@@ -200,7 +200,7 @@ namespace multimedia
       if (bMediaCall)
       {
 
-         auto psystem = system()->m_paquasystem;
+         auto psystem = system();
 
          psystem->multimedia()->on_decoder_fill_title_info(this, wstraFormat, wstr2aTitle);
 

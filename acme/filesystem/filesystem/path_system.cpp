@@ -293,11 +293,11 @@ bool path_system::case_insensitive_real_path_begins_eat(string & str, const ::sc
 
       string strFull;
 
-      strFull = path_system()->real_path(str);
+      strFull = this->real_path(str);
 
       string strFullPath;
 
-      strFullPath = path_system()->real_path(strPath);
+      strFullPath = this->real_path(strPath);
 
       if (strFull.case_insensitive_begins_eat(strFullPath))
       {

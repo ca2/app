@@ -4,7 +4,7 @@
 #include "key.h"
 ////#include "acme/prototype/prototype/object.h"
 #include "acme/prototype/collection/address_array.h"
-
+#include "acme/prototype/data/client.h"
 
 namespace data
 {
@@ -21,7 +21,8 @@ namespace database
 
 
    class CLASS_DECL_APEX client :
-      virtual public ::object
+      virtual public ::object,
+   virtual public ::data::client
    {
    protected:
 
@@ -174,11 +175,11 @@ namespace database
       virtual ::string get_data_key_modifier();
 
 
+      virtual ::string calculate_data_key();
       virtual ::string calculate_data_key(const ::scoped_string & strKey);
 
 
       virtual ::string calculate_parent_data_key();
-      virtual ::string calculate_data_key();
       virtual void defer_update_data_key();
       virtual void update_data_key();
       //virtual bool is_local_data();

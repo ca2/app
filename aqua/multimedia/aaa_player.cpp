@@ -91,7 +91,7 @@ namespace wave
 
       ::pointer<::audio::plugin>pplugin;
 
-      auto paudio = system()->m_paquasystem->audio()->m_paudio;
+      auto paudio = system()->audio()->m_paudio;
 
       if (pcommand->GetCommand() == command_open_plugin)
       {

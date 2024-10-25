@@ -18,6 +18,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/http/get.h"
+#include "acme/platform/http.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -78,8 +79,8 @@ namespace platform
 
       m_ptexttranslator.defer_destroy();
       m_pimagecontext.defer_destroy();
-      m_pdir.defer_destroy();
-      m_pfile.defer_destroy();
+      m_pdirectorycontext.defer_destroy();
+      m_pfilecontext.defer_destroy();
       m_phttpcontext.defer_destroy();
 
 
@@ -274,7 +275,7 @@ namespace platform
 
       //}
 
-      /*estatus = */ __construct(m_pfile);
+      /*estatus = */ __construct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -284,7 +285,7 @@ namespace platform
       //}
 
       //estatus =
-      __construct(m_pdir);
+      __construct(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -316,7 +317,7 @@ namespace platform
          //}
 
          //estatus = 
-         m_pfile->init_system();
+         m_pfilecontext->init_system();
 
          //if (!estatus)
          //{
@@ -326,7 +327,7 @@ namespace platform
          //}
 
          //estatus = 
-         m_pdir->init_system();
+         m_pdirectorycontext->init_system();
 
          //if (!estatus)
          //{
@@ -338,7 +339,7 @@ namespace platform
       }
 
       //estatus = 
-      m_pfile->init_context();
+      m_pfilecontext->init_context();
 
       //if(!estatus)
       //{
@@ -348,7 +349,7 @@ namespace platform
       //}
 
       //estatus = 
-      m_pdir->init_context();
+      m_pdirectorycontext->init_context();
 
       //if(!estatus)
       //{
@@ -387,9 +388,9 @@ namespace platform
 
       try
       {
-         if (m_pdir)
+         if (m_pdirectorycontext)
          {
-            m_pdir->term_context();
+            m_pdirectorycontext->term_context();
          }
       }
       catch (...)
@@ -398,21 +399,9 @@ namespace platform
       }
       try
       {
-         if (m_pfile)
+         if (m_pfilecontext)
          {
-            m_pfile->term_context();
-
-         }
-      }
-      catch (...)
-      {
-
-      }
-      try
-      {
-         if (m_pdir)
-         {
-            m_pdir->term_system();
+            m_pfilecontext->term_context();
 
          }
       }
@@ -422,9 +411,21 @@ namespace platform
       }
       try
       {
-         if (m_pfile)
+         if (m_pdirectorycontext)
          {
-            m_pfile->term_system();
+            m_pdirectorycontext->term_system();
+
+         }
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         if (m_pfilecontext)
+         {
+            m_pfilecontext->term_system();
          }
       }
       catch (...)
@@ -434,9 +435,9 @@ namespace platform
 
       try
       {
-         if (m_pdir)
+         if (m_pdirectorycontext)
          {
-            m_pdir->finalize();
+            m_pdirectorycontext->finalize();
          }
       }
       catch (...)
@@ -447,9 +448,9 @@ namespace platform
 
       try
       {
-         if (m_pfile)
+         if (m_pfilecontext)
          {
-            m_pfile->finalize();
+            m_pfilecontext->finalize();
          }
       }
       catch (...)
@@ -457,9 +458,9 @@ namespace platform
 
       }
 
-      m_pdir.release();
+      m_pdirectorycontext.release();
 
-      m_pfile.release();
+      m_pfilecontext.release();
 
       m_ptexttranslator.release();
 
@@ -474,29 +475,35 @@ namespace platform
    }
 
 
-   ::directory_context* context::dir()
+   ::directory_context* context::directory()
    {
-      if (!m_pdir)
+
+      if (!m_pdirectorycontext)
       {
 
          initialize_context();
 
       }
-      
-      
-      return m_pdir; 
+
+      return m_pdirectorycontext;
+
    }
+
 
    ::file_context* context::file() 
    {
-      if (!m_pfile)
+
+      if (!m_pfilecontext)
       {
 
          initialize_context();
 
       }
-      return m_pfile; 
+
+      return m_pfilecontext;
+
    }
+
 
 
 
@@ -516,7 +523,7 @@ namespace platform
    }
 
 
-   ::file::watcher * context::file_watcher()
+   ::file::watcher * context::file_watcher() const
    {
 
       return application()->file_watcher();
@@ -580,10 +587,15 @@ namespace platform
 
 
 
-   ::file_system* context::file_system() { return ::system()->file_system(); }
-   ::path_system* context::path_system() { return ::system()->path_system(); }
-   ::directory_system* context::directory_system() { return ::system()->directory_system(); }
-   ::platform::node* context::node() { return ::system()->node(); }
+   //::file_system* context::file_system() { return ::system()->file_system(); }
+   //::path_system* context::path_system() { return ::system()->path_system(); }
+   //::directory_system* context::directory_system() { return ::system()->directory_system(); }
+   ::platform::node* context::node()
+   {
+
+      return ::system()->node();
+
+   }
 
 
 
@@ -1010,7 +1022,7 @@ namespace platform
 
                   ::particle * pparticle = this;
 
-                  return pparticle->context()->http()->download(pfile, path, set);
+                  return pparticle->http()->download(pfile, path, set);
 
                }))
             {
@@ -1179,85 +1191,6 @@ namespace platform
    }
 
 
-   bool context::http_exists(const ::url::url & url, ::property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return false;
-
-
-   }
-
-
-   ::file::enum_type context::http_get_type(const ::url::url & url, property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return ::file::e_type_unknown;
-
-   }
-
-
-   ::file::enum_type context::http_get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set)
-   {
-
-      throw ::interface_only();
-
-      return ::file::e_type_unknown;
-
-   }
-
-
-
-   ::string context::http_text(const ::url::url & url, const class ::time & timeTimeout)
-   {
-      
-      auto pget = __create_new < ::nano::http::get >();
-      
-      pget->m_url = url;
-      
-      pget->m_timeSyncTimeout = timeTimeout;
-
-      pget->call();
-
-      ::string str = pget->m_memory.as_utf8();
-
-      return str;
-
-   }
-
-
-   ::string context::http_text(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
-   {
-
-      auto pget = __create_new < ::nano::http::get >();
-      
-      pget->m_url = url;
-      
-      pget->m_setIn = set;
-      
-      pget->m_timeSyncTimeout =  timeTimeout;
-      
-      pget->call();
-
-      ::string str = pget->m_memory.as_utf8();
-      
-      set = pget->m_setOut;
-
-      return str;
-
-   }
-
-
-   ::url::url context::http_get_effective_url(const ::url::url& url)
-   {
-
-      return nano()->http()->get_effective_url(url);
-
-   }
-
 
    //void context::http_sync(::nano::http::get * pget)
    //{
@@ -1316,49 +1249,6 @@ namespace platform
 //
 //   }
 
-
-   void context::http_download(const ::payload & payloadFile, const ::url::url & url, const class ::time & timeTimeout)
-   {
-
-      auto pfile = file_system()->get_writer(payloadFile);
-     
-      auto pget = __create_new < ::nano::http::get >();
-      
-      pget->m_url = url;
-      
-      pget->m_timeSyncTimeout =  timeTimeout;
-      
-      pget->call();
-
-      pfile->write(pget->m_memory);
-      
-      pfile->seek_to_begin();
-
-   }
-
-
-   void context::http_download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
-   {
-
-      auto pfile = file_system()->get_writer(payloadFile);
-
-      auto pget = __create_new < ::nano::http::get >();
-      
-      pget->m_url = url;
-      
-      pget->m_setIn = set;
-      
-      pget->m_timeSyncTimeout =  timeTimeout;
-      
-      pget->call();
-
-      set = pget->m_setOut;
-
-      pfile->write(pget->m_memory);
-      
-      pfile->seek_to_begin();
-
-   }
 
 
 } // namespace platfrom

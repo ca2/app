@@ -1634,7 +1634,7 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
-   auto pdir = dir();
+   auto pdir = directory();
 
    auto bSourceIsDir = pdir->is(varSource);
 

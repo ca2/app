@@ -1293,7 +1293,7 @@ namespace user
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
@@ -1327,7 +1327,7 @@ namespace user
       }
 
       MESSAGE_LINK(e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
    }
 
@@ -1901,7 +1901,7 @@ namespace user
 
       //#endif
 
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 

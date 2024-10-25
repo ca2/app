@@ -1305,7 +1305,7 @@ namespace user
 
                defer_close();
 
-               // this may be destroyed by MESSAGE_CLOSE above
+               // this may be destroyed by e_message_close above
 
                if (::is_set(pchannelNotify))
                {
@@ -1376,7 +1376,7 @@ namespace user
 
          m_pmenuSubMenu->m_bCloseParentOnClose = false;
 
-         m_pmenuSubMenu->post_message(MESSAGE_CLOSE);
+         m_pmenuSubMenu->post_message(e_message_close);
 
          m_pmenuSubMenu = nullptr;
          //m_pitemSubMenu.release();
@@ -1470,7 +1470,7 @@ namespace user
 
          //if (m_atomSubMenu.has_char())
          //{
-         //   m_psubmenu->send_message(MESSAGE_CLOSE);
+         //   m_psubmenu->send_message(e_message_close);
          //   m_psubmenu = nullptr;
          //   m_atomSubMenu.is_empty();
          //}
@@ -1766,7 +1766,7 @@ namespace user
             if (m_pmenuParent != nullptr)
             {
 
-               m_pmenuParent->post_message(MESSAGE_CLOSE);
+               m_pmenuParent->post_message(e_message_close);
 
             }
 

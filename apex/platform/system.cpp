@@ -185,6 +185,9 @@ namespace apex
 
       common_construct();
 
+      factory()->add_factory_item < ::apex::session, ::apex::session >();
+
+
    }
 
 
@@ -249,16 +252,15 @@ namespace apex
 #endif
 
 
-   void system::on_set_platform()
-   {
-
-      apex::context::on_set_platform();
-
-      acme::system::on_set_platform();
-
-      factory()->add_factory_item < ::apex::session, ::apex::session >();
-
-   }
+   // void system::on_set_platform()
+   // {
+   //
+   //    apex::context::on_set_platform();
+   //
+   //    acme::system::on_set_platform();
+   //
+   //
+   // }
 
 
    void system::on_initialize_particle()

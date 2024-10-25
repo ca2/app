@@ -60,7 +60,7 @@ namespace userfs
       MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
       MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
 
    }

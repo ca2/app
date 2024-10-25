@@ -265,7 +265,7 @@ namespace user
          //if (m_plistbox.is_set() && m_plistbox->is_window())
          //{
 
-         //   m_plistbox->post_message(MESSAGE_CLOSE);
+         //   m_plistbox->post_message(e_message_close);
 
          //}
 
@@ -479,7 +479,7 @@ namespace user
       //if (::is_set(m_plistbox) && m_plistbox->is_window())
       //{
 
-      //   m_plistbox->post_message(MESSAGE_CLOSE);
+      //   m_plistbox->post_message(e_message_close);
 
       //}
 

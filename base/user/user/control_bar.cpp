@@ -59,8 +59,8 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &control_bar::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &control_bar::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
       MESSAGE_LINK(e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 

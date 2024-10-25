@@ -77,8 +77,8 @@ namespace app_integration
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE,psender,this,&menu::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, psender, this, &menu::on_message_destroy);
+      MESSAGE_LINK(e_message_create,psender,this,&menu::on_message_create);
+      MESSAGE_LINK(e_message_destroy, psender, this, &menu::on_message_destroy);
 
    }
 

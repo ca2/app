@@ -122,7 +122,7 @@ namespace apex
       //auto estatus = 
       ::thread::initialize(pparticle);
 
-      ::platform::context::initialize(pparticle);
+      //::platform::context::initialize(pparticle);
 
       //if (!estatus)
       //{

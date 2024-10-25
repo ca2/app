@@ -4468,7 +4468,7 @@ bMove = false;
 
    //   //::windowing::window_base::prio_install_message_routing(pchannel);
 
-   //   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &window::_001OnPrioCreate);
+   //   MESSAGE_LINK(e_message_create, pchannel, this, &window::_001OnPrioCreate);
    //   MESSAGE_LINK(e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
    //}
@@ -4506,7 +4506,7 @@ bMove = false;
       }
 
       MESSAGE_LINK(e_message_destroy_window, pchannel, this, &window::_001OnDestroyWindow);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &window::on_message_destroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &window::on_message_destroy);
 
    }
 
@@ -5080,7 +5080,7 @@ bMove = false;
 
       //#endif
 
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &window::on_message_destroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &window::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -15835,9 +15835,9 @@ bMove = false;
 
       //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
       MESSAGE_LINK(e_message_show_window, pchannel, this, &window::on_message_show_window);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &window::on_message_destroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &window::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &window::on_message_non_client_destroy);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &window::_001OnPrioCreate);
+      MESSAGE_LINK(e_message_create, pchannel, this, &window::_001OnPrioCreate);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
       if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))

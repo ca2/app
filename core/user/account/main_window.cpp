@@ -94,7 +94,7 @@ namespace account
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &main_window::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
       MESSAGE_LINK(e_message_char, pchannel, this, &main_window::on_message_character);
       //      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&main_window::on_message_left_button_down);
       //      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&main_window::on_message_left_button_up);

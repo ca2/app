@@ -86,7 +86,7 @@ namespace handler
       }
 
 
-      inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == ID_FULL; }
+      inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == id_full; }
 
       void subject_common_construct();
 

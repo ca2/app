@@ -217,7 +217,7 @@ namespace data
    ::string text_property::as_text() const
    {
 
-      return this->get_property({ ID_TEXT }).as_string();
+      return this->get_property({ id_text }).as_string();
 
    }
 
@@ -225,7 +225,7 @@ namespace data
    ::strsize text_property::selection_begin() const
    {
 
-      return this->get_property({ ID_TEXT_SELECTION_BEGIN }).as_iptr();
+      return this->get_property({ id_text_selection_begin }).as_iptr();
 
    }
 
@@ -233,7 +233,7 @@ namespace data
    ::strsize text_property::selection_end() const
    {
 
-      return this->get_property({ ID_TEXT_SELECTION_END }).as_iptr();
+      return this->get_property({ id_text_selection_end }).as_iptr();
 
 
    }
@@ -279,7 +279,7 @@ namespace data
    bool text_property::set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext)
    {
 
-      return set_property({ ID_TEXT }, scopedstrText, actioncontext);
+      return set_property({ id_text }, scopedstrText, actioncontext);
 
    }
 
@@ -411,7 +411,7 @@ namespace data
    void text_property::set_selection_begin(strsize iBegin, const ::action_context & actioncontext)
    {
 
-      set_property({ ID_TEXT_SELECTION_BEGIN }, iBegin, actioncontext);
+      set_property({ id_text_selection_begin }, iBegin, actioncontext);
 
    }
 
@@ -419,7 +419,7 @@ namespace data
    void text_property::set_selection_end(strsize iEnd, const ::action_context & actioncontext)
    {
 
-      set_property({ ID_TEXT_SELECTION_END }, iEnd, actioncontext);
+      set_property({ id_text_selection_end }, iEnd, actioncontext);
 
    }
 

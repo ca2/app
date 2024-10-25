@@ -158,7 +158,7 @@ namespace user
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
       add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
       add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });

@@ -64,7 +64,7 @@ namespace user
 
       ::user::color_selector_control::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &color_selector_impact::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &color_selector_impact::on_message_create);
 
    }
 

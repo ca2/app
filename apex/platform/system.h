@@ -5,7 +5,7 @@
 #include "context.h"
 #include "acme/constant/os_text.h"
 #include "acme/platform/system.h"
-#include "apex/parallelization/threading.h"
+#include "apex/parallelization/thread.h"
 
 
 namespace apex
@@ -14,7 +14,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::platform::system,
-      virtual public ::task
+      virtual public ::thread
       //virtual public ::platform::context
    {
    public:

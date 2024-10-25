@@ -3004,7 +3004,7 @@ namespace user
       if (m_bMessageWindow)
       {
 
-         //MESSAGE_LINK(MESSAGE_DESTROY              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
+         //MESSAGE_LINK(e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
 
       }
       else
@@ -8847,7 +8847,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_alt))
             {
 
-               post_message(MESSAGE_CLOSE);
+               post_message(e_message_close);
 
                pmessage->m_bRet = true;
 
@@ -15678,7 +15678,7 @@ namespace user
 
    //   }
 
-   //   post_message(MESSAGE_CLOSE);
+   //   post_message(e_message_close);
 
    //   if (::is_set(m_ptaskModal))
    //   {
@@ -23704,7 +23704,7 @@ namespace user
              || pitem->m_item.m_eelement == ::e_element_close_icon)
          {
 
-            post_message(MESSAGE_CLOSE);
+            post_message(e_message_close);
 
             return true;
 

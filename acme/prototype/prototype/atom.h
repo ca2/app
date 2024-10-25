@@ -341,10 +341,10 @@ public:
 
    inline atom(enum_id eid);
    inline atom(enum_element eelement);
-   inline atom(ENUM_ID EID);
+   //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
    inline atom(enum_message emessage);
-   inline atom(ENUM_MESSAGE EMESSAGE);
+   //inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
    inline atom(ENUM_IMPACT EIMPACT);
    inline atom(enum_property eproperty);
@@ -580,13 +580,13 @@ public:
    //inline bool operator >= (::enum_id eid) const;
 
 
-   //inline ::std::strong_ordering order(ENUM_ID EID) const { return order((::enum_id)EID); }
-   inline bool operator == (ENUM_ID EID) const { return *this == (::enum_id)EID; }
-   inline ::std::strong_ordering operator <=> (ENUM_ID EID) const { return *this <=> (::enum_id)EID; }
-   //inline bool operator < (ENUM_ID EID) const { return operator<((::enum_id)EID); }
-   //inline bool operator <= (ENUM_ID EID) const { return operator<=((::enum_id)EID); }
-   //inline bool operator > (ENUM_ID EID) const { return operator>((::enum_id)EID); }
-   //inline bool operator >= (ENUM_ID EID) const { return operator>=((::enum_id)EID); }
+   // //inline ::std::strong_ordering order(::enum_id EID) const { return order((::enum_id)EID); }
+   // inline bool operator == (::enum_id EID) const { return *this == (::enum_id)EID; }
+   // inline ::std::strong_ordering operator <=> (::enum_id EID) const { return *this <=> (::enum_id)EID; }
+   // //inline bool operator < (::enum_id EID) const { return operator<((::enum_id)EID); }
+   // //inline bool operator <= (::enum_id EID) const { return operator<=((::enum_id)EID); }
+   // //inline bool operator > (::enum_id EID) const { return operator>((::enum_id)EID); }
+   // //inline bool operator >= (::enum_id EID) const { return operator>=((::enum_id)EID); }
 
     inline bool operator == (::enum_command ecommand) const;
     inline ::std::strong_ordering operator <=> (::enum_command ecommand) const;
@@ -609,13 +609,13 @@ public:
    //inline bool operator >= (::enum_message emessage) const;
 
 
-   //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::enum_message)EID); }
-   inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::enum_message)EID; }
-   inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::enum_message)EID; }
-   //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
-   //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
-   //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
-   //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
+   // //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::enum_message)EID); }
+   // inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::enum_message)EID; }
+   // inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::enum_message)EID; }
+   // //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
+   // //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
+   // //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
+   // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
 
 
    //inline int order(::enum_topic etopic) const;

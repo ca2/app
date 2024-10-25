@@ -46,7 +46,7 @@ namespace user
 
       ::user::combo_box::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &::user::font_combo_box::on_message_create);
+      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::on_message_create);
 
    }
 

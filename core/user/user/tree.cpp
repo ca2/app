@@ -1001,7 +1001,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);

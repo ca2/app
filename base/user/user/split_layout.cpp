@@ -44,7 +44,7 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &split_layout::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }

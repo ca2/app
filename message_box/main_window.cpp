@@ -170,7 +170,7 @@ namespace app_message_box
             if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
-               post_message(MESSAGE_CLOSE);
+               post_message(e_message_close);
 
             }
             else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)

@@ -861,7 +861,7 @@ namespace experience
 
             informationf("button_clicked : button_close");
 
-            post_message(MESSAGE_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 
@@ -1003,7 +1003,7 @@ namespace experience
          {
          case e_button_close:
 
-            post_message(MESSAGE_CLOSE);
+            post_message(e_message_close);
 
             set_need_redraw();
 

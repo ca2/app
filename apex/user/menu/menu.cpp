@@ -24,13 +24,13 @@ menu::~menu()
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu::on_message_create);
-//      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu::on_message_destroy);
+//      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
+//      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
 //      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
 //      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
 //      MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
 //      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-//      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &menu::on_message_close);
+//      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
 //      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
 //      MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
 //      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
@@ -1148,7 +1148,7 @@ menu::~menu()
 //
 //               defer_close();
 //
-//               // this may be destroyed by MESSAGE_CLOSE above
+//               // this may be destroyed by e_message_close above
 //
 //               if (::is_set(pchannelNotify))
 //               {
@@ -1209,7 +1209,7 @@ menu::~menu()
 //
 //         m_pmenuSubMenu->m_bCloseParentOnClose = false;
 //
-//         m_pmenuSubMenu->post_message(MESSAGE_CLOSE);
+//         m_pmenuSubMenu->post_message(e_message_close);
 //
 //         m_pmenuSubMenu = nullptr;
 //         //m_pitemSubMenu.release();
@@ -1303,7 +1303,7 @@ menu::~menu()
 //
 //            //if (m_atomSubMenu.has_char())
 //            //{
-//            //   m_psubmenu->send_message(MESSAGE_CLOSE);
+//            //   m_psubmenu->send_message(e_message_close);
 //            //   m_psubmenu = nullptr;
 //            //   m_atomSubMenu.is_empty();
 //            //}
@@ -1599,7 +1599,7 @@ menu::~menu()
 //               if (m_pmenuParent != nullptr)
 //               {
 //
-//                  m_pmenuParent->post_message(MESSAGE_CLOSE);
+//                  m_pmenuParent->post_message(e_message_close);
 //
 //               }
 //

@@ -108,7 +108,7 @@ namespace user
 
       MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &toolbar::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);

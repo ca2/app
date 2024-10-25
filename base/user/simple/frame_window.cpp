@@ -385,12 +385,12 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &simple_frame_window::on_message_create);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::on_message_create);
    //#ifdef WINDOWS_DESKTOP
       //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
    //#endif
-   MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &simple_frame_window::on_message_destroy);
-   MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &simple_frame_window::on_message_close);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
+   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::on_message_close);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
    MESSAGE_LINK(e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
 
@@ -3987,7 +3987,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //void simple_frame_window::WfiOnClose()
 //{
 //
-//   post_message(MESSAGE_CLOSE);
+//   post_message(e_message_close);
 //
 //}
 //

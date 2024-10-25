@@ -206,7 +206,7 @@ namespace user
 
       MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::on_message_key_down);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this,&mesh::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
       add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 

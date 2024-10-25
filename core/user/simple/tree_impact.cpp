@@ -21,7 +21,7 @@ void simple_tree_impact::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
    ::user::tree::install_message_routing(pchannel);
-   MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &simple_tree_impact::on_message_create);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_tree_impact::on_message_create);
 
 }
 

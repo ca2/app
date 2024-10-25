@@ -27,8 +27,6 @@
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
-
-
 //bool on_init_thread();
 
 
@@ -44,15 +42,13 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #endif
 
 
-
-
 //CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
-
 
 
 #ifdef WINDOWS_DESKTOP
 
 #include "acme/_operating_system.h"
+
 
 ::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, u32* pline, u32* pdisplacement = 0);
 
@@ -80,11 +76,13 @@ struct send_thread_message :
    virtual public object
 {
 
-   MESSAGE                 m_message;
+   MESSAGE m_message;
 
-   manual_reset_event      m_ev;
+   manual_reset_event m_ev;
+
 
    send_thread_message(::particle* pparticle);
+
 
    virtual ~send_thread_message();
 
@@ -139,9 +137,9 @@ thread::thread()
    //
    //#endif
 
-      //set_layer(LAYERED_THREAD, this);
+   //set_layer(LAYERED_THREAD, this);
 
-      //m_pthread = this;
+   //m_pthread = this;
 
    m_bThreadClosed = false;
 
@@ -227,7 +225,7 @@ void thread::thread_common_construct()
    if (papplication)
    {
 
-      ::cast <::thread > pthreadApplication = papplication;
+      ::cast<::thread> pthreadApplication = papplication;
 
       if (pthreadApplication)
       {
@@ -321,65 +319,65 @@ void thread::term_task()
 
    switch (m_atomContextReference)
    {
-   case id_application:
-   {
+      case id_application:
+      {
 
-      //auto papp = get_app();
+         //auto papp = get_app();
 
-      //if (papp)
-      //{
+         //if (papp)
+         //{
 
-      //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
+         //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
 
-      //}
+         //}
 
-   }
-   break;
-
-   case id_session:
-   {
-
-      //auto pcontextsession = get_session();
-
-      //if (pcontextsession)
-      //{
-
-      //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
-
-      //}
-
-   }
-   break;
-   case id_system:
-   {
-
-      //auto psystem = system();
-
-      //if (psystem)
-      //{
-
-      //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
-
-      //}
-
-   }
-   break;
-   case id_thread:
-   {
-
-      //auto pthread = get_task();
-      //
-      //if (pthread)
-      //{
-
-      //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
-
-      //}
-
-   }
-   break;
-   default:
+      }
       break;
+
+      case id_session:
+      {
+
+         //auto pcontextsession = get_session();
+
+         //if (pcontextsession)
+         //{
+
+         //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
+
+         //}
+
+      }
+      break;
+      case id_system:
+      {
+
+         //auto psystem = system();
+
+         //if (psystem)
+         //{
+
+         //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
+
+         //}
+
+      }
+      break;
+      case id_thread:
+      {
+
+         //auto pthread = get_task();
+         //
+         //if (pthread)
+         //{
+
+         //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
+
+         //}
+
+      }
+      break;
+      default:
+         break;
 
    }
 
@@ -390,7 +388,7 @@ void thread::term_task()
    //if (this)
    //{
 
-     // this->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
+   // this->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
 
    //}
 
@@ -398,7 +396,7 @@ void thread::term_task()
    //if (get_session())
    //{
 
-   //   
+   //
 
    //}
 
@@ -424,7 +422,7 @@ void thread::term_task()
       if (m_peventaWait)
       {
 
-         for (auto& pmanualresetevent : *m_peventaWait)
+         for (auto& pmanualresetevent: *m_peventaWait)
          {
 
             try
@@ -538,15 +536,12 @@ bool thread::is_alive()
 }
 
 
-
 //bool thread::is_auto_delete()
 //{
 //
 //   return m_bAutoDelete;
 //
 //}
-
-
 
 
 CLASS_DECL_APEX void thread_alloc_ready(bool bReady)
@@ -589,7 +584,7 @@ bool thread::has_message() const
 
    MESSAGE msg;
 
-   return ((thread*)this)->peek_message(&msg, nullptr, 0, 0) != false;
+   return ((thread *)this)->peek_message(&msg, nullptr, 0, 0) != false;
 
 }
 
@@ -667,7 +662,6 @@ void thread::thread_loop()
             break;
 
 
-
             //            if(strType.contains("wave_player"))
             //            {
             //
@@ -719,6 +713,7 @@ void thread::thread_loop()
    //return m_estatus;
 
 }
+
 
 //void thread::run()
 //{
@@ -849,9 +844,9 @@ bool thread::pump_message()
    if (m_messageaInitialQueue.has_element())
    {
 
-      for (auto& m : m_messageaInitialQueue)
+      for (auto& m: m_messageaInitialQueue)
       {
-      
+
          ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
 
       }
@@ -930,7 +925,8 @@ bool thread::pump_message()
 
          }
 
-         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
+         information()(e_trace_category_appmsg) << ::type(this).name() <<
+            " thread::pump_message - Received e_message_quit.";
 
          information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
 
@@ -1061,7 +1057,8 @@ bool thread::raw_pump_message()
 
          }
 
-         information()(e_trace_category_appmsg) << "xx" << strType << " thread::raw_pump_message - Received e_message_quit";
+         information()(e_trace_category_appmsg) << "xx" << strType <<
+            " thread::raw_pump_message - Received e_message_quit";
 
          information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
 
@@ -1147,7 +1144,8 @@ bool thread::process_thread_message(::message::message* pmessage)
    catch (...)
    {
 
-      information() << "application::process_thread_message : ::extended::status processing application thread message (...)";
+      information() <<
+         "application::process_thread_message : ::extended::status processing application thread message (...)";
 
    }
 
@@ -1216,7 +1214,10 @@ bool thread::defer_pump_message()
       if (m_message.m_atom == e_message_quit)
       {
 
-         informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
+         informationf(
+            "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
+            ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
+            ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1406,7 +1407,7 @@ void thread::post_quit()
       /// this is quite dangerous
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::pointer<manual_reset_event>pev = m_pevSleep;
+      ::pointer<manual_reset_event> pev = m_pevSleep;
 
       if (pev.is_set())
       {
@@ -1732,7 +1733,7 @@ void thread::destroy()
 bool thread::task_get_run() const
 {
 
-   if (((::thread*)this)->check_tasks_finished())
+   if (((::thread *)this)->check_tasks_finished())
    {
 
       return true;
@@ -1909,12 +1910,12 @@ void thread::main()
          __task_init();
          //estatusStart = __thread_init();
 
-      //}
+         //}
 
-   //}
+         //}
 
-   //if (::succeeded(estatusStart))
-   //{
+         //if (::succeeded(estatusStart))
+         //{
 
          if (m_peventStarted.is_set())
          {
@@ -2124,6 +2125,7 @@ void thread::init_task()
 
 }
 
+
 //
 //void thread::on_pre_run_thread()
 //{
@@ -2139,6 +2141,7 @@ void thread::dispatch_thread_message(::message::message* pusermessage)
    route_message(pusermessage);
 
 }
+
 
 //
 //void thread::wait()
@@ -2232,16 +2235,23 @@ void thread::app_pre_translate_message(::message::message* pmessage)
    try
    {
 
-      if (get_app() != nullptr && get_app())
+      auto papplication = application();
+
+      if (papplication)
       {
 
-         get_app()->pre_translate_message(pmessage);
+         ::cast<::thread> pthread = papplication;
 
-         if (pmessage->m_bRet)
+         if (pthread)
          {
+            pthread->pre_translate_message(pmessage);
 
-            return;
+            if (pmessage->m_bRet)
+            {
 
+               return;
+
+            }
          }
 
       }
@@ -2353,9 +2363,6 @@ void thread::process_message_filter(i32 code, ::message::message* pmessage)
 }
 
 
-
-
-
 //thread_startup::thread_startup(::particle * pparticle) :
 //   ::object(pparticle)
 //{
@@ -2397,7 +2404,8 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //}
 
 
-::pointer<::task>thread::branch(enum_parallelization eparallelization, const ::create_task_attributes& createtaskattributes)
+::pointer<::task> thread::branch(enum_parallelization eparallelization,
+                                 const ::create_task_attributes& createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2413,58 +2421,58 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
    //}
 
-//#ifdef __DEBUG
-//
-//   string strId = m_atom;
-//
-//   if (strId.case_insensitive_contains("forking_thread"))
-//   {
-//
-//#if 0
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::exception_engine().reset();
-//
-//      OS_DWORD                dwDisplacement;
-//
-//      OS_DWORD                uia[4096];
-//
-//      dwDisplacement = 0;
-//
-//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
-//
-//      ULONG BackTraceHash;
-//
-//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
-//
-//      char sz[1024];
-//
-//      zero(sz);
-//
-//      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
-//
-//      u32 uiLine = 0;
-//
-//      {
-//         critical_section_lock csl(&::exception_engine().m_criticalsection);
-//
-//         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
-//
-//      }
-//
-//      strId =  string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
-//
-//#endif
-//
-//#endif
-//
-//   }
-//
-//   m_pszDebug = strdup(strId);
-//
-//#endif
-//
+   //#ifdef __DEBUG
+   //
+   //   string strId = m_atom;
+   //
+   //   if (strId.case_insensitive_contains("forking_thread"))
+   //   {
+   //
+   //#if 0
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      ::exception_engine().reset();
+   //
+   //      OS_DWORD                dwDisplacement;
+   //
+   //      OS_DWORD                uia[4096];
+   //
+   //      dwDisplacement = 0;
+   //
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+   //
+   //      ULONG BackTraceHash;
+   //
+   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+   //
+   //      char sz[1024];
+   //
+   //      zero(sz);
+   //
+   //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+   //
+   //      u32 uiLine = 0;
+   //
+   //      {
+   //         critical_section_lock csl(&::exception_engine().m_criticalsection);
+   //
+   //         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+   //
+   //      }
+   //
+   //      strId =  string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
+   //
+   //#endif
+   //
+   //#endif
+   //
+   //   }
+   //
+   //   m_pszDebug = strdup(strId);
+   //
+   //#endif
+   //
    //auto pparticle = this;
 
    //if (::is_set(pparticle) && pparticle != this)
@@ -2521,7 +2529,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
    //
    //   }
 
-      //return ::success;
+   //return ::success;
 
    return ptask;
 
@@ -2548,7 +2556,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //}
 
 
-::pointer<::task>thread::branch_synchronously(const create_task_attributes& createtaskattributes)
+::pointer<::task> thread::branch_synchronously(const create_task_attributes& createtaskattributes)
 {
 
    auto ptask = ::task::branch_synchronously(createtaskattributes);
@@ -2556,6 +2564,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
    return ptask;
 
 }
+
 
 void thread::stop_task()
 {
@@ -2588,7 +2597,7 @@ void thread::inline_init()
 
    set_current_handles();
 
-   //::e_status estatus = 
+   //::e_status estatus =
    __task_init();
 
    //if (!estatus)
@@ -2611,7 +2620,7 @@ void thread::inline_term()
    //try
    //{
 
-      //estatus = __thread_term();
+   //estatus = __thread_term();
 
    __task_term();
 
@@ -2650,8 +2659,6 @@ bool thread::task_active() const
    return !m_bThreadClosed && m_htask != (htask_t)0;
 
 }
-
-
 
 
 iptr thread::item() const
@@ -2733,7 +2740,7 @@ void thread::__os_initialize()
    //
    //#endif
 
-      //system()->m_papexnode->node_thread_initialize(this);
+   //system()->m_papexnode->node_thread_initialize(this);
 
 }
 
@@ -2842,7 +2849,8 @@ void thread::task_osinit()
 
       }
 
-      processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
+      processor_cache_oriented_set_thread_memory_pool(0);
+      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
       //system()->m_papexnode->parallelization_initialize();
 
@@ -2907,14 +2915,14 @@ void thread::__set_thread_on()
 
    //}
 
-//   if (!os_on_init_task())
-//   {
-//
-//      m_estatus = error_failed;
-//
-//      return;
-//
-//   }
+   //   if (!os_on_init_task())
+   //   {
+   //
+   //      m_estatus = error_failed;
+   //
+   //      return;
+   //
+   //   }
 
 
 }
@@ -2923,24 +2931,24 @@ void thread::__set_thread_on()
 void thread::__set_thread_off()
 {
 
-//   try
-//   {
-//
-//      // apex commented
-//      //if (g_axisontermthread)
-//      //{
-//
-//      //   g_axisontermthread();
-//
-//      //}
-//
-//      os_on_term_task();
-//
-//   }
-//   catch (...)
-//   {
-//
-//   }
+   //   try
+   //   {
+   //
+   //      // apex commented
+   //      //if (g_axisontermthread)
+   //      //{
+   //
+   //      //   g_axisontermthread();
+   //
+   //      //}
+   //
+   //      os_on_term_task();
+   //
+   //   }
+   //   catch (...)
+   //   {
+   //
+   //   }
 
    ::thread* pthread = this;
 
@@ -2957,6 +2965,7 @@ void thread::__set_thread_off()
    //::set_task(nullptr);
 
 }
+
 
 //
 //void thread::__thread_main()
@@ -2996,7 +3005,6 @@ namespace apex
    }
 
 
-
    void system::post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
    {
 
@@ -3012,15 +3020,15 @@ namespace apex
       //
       //#endif
 
-            //for e_message_quit please use post_quit_to_all_threads;
-            //if(atom == e_message_quit)
-            //{
+      //for e_message_quit please use post_quit_to_all_threads;
+      //if(atom == e_message_quit)
+      //{
 
-            //   ::parallelization::post_quit_to_all_threads();
+      //   ::parallelization::post_quit_to_all_threads();
 
-            //   return;
+      //   return;
 
-            //}
+      //}
 
       //      auto psystem = system();
       //
@@ -3074,10 +3082,10 @@ void thread::post_element(const ::atom& atom, wparam wparam, ::particle* ppartic
 void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 {
 
-   if (atom == MESSAGE_CLOSE)
+   if (atom == e_message_close)
    {
 
-      informationf("thread::post_message MESSAGE_CLOSE");
+      informationf("thread::post_message e_message_close");
 
    }
    else if (atom == e_message_branch)
@@ -3347,9 +3355,9 @@ void thread::__task_init()
    //
    //   }
 
-      //m_result = m_estatus;
+   //m_result = m_estatus;
 
-      //return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -3520,7 +3528,8 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage)
+bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,
+                          bool bRemoveMessage)
 {
 
    if (m_pmessagequeue)
@@ -3551,7 +3560,8 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       MSG msg;
 
-      if (::PeekMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
+      if (::PeekMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax,
+                         bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
          ::copy(*pMsg, msg);
@@ -3862,7 +3872,6 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 //}
 
 
-
 void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
@@ -4131,7 +4140,6 @@ void thread::post(::message::message* pmessage)
 }
 
 
-
 void thread::handle_posted_messages()
 {
 
@@ -4201,7 +4209,7 @@ void thread::handle_posted_messages()
 
       synchronouslock.unlock();
 
-      ::pointer < ::user::message > pusermessage = pmessage;
+      ::pointer<::user::message> pusermessage = pmessage;
 
       if (pusermessage)
       {
@@ -4220,7 +4228,6 @@ void thread::handle_posted_messages()
 
       if (pmessage->has_property("flush_similar_messages"))
       {
-
 
 
       }
@@ -4369,7 +4376,7 @@ bool thread::process_message()
          if (message.wParam == e_system_message_create)
          {
 
-            ::pointer<::request >prequest(message.lParam);
+            ::pointer<::request> prequest(message.lParam);
 
             if (prequest.is_set())
             {
@@ -4400,7 +4407,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_meta)
          {
 
-            ::pointer<::send_thread_message>pmessage(message.lParam);
+            ::pointer<::send_thread_message> pmessage(message.lParam);
 
             m_message = pmessage->m_message;
 
@@ -4432,7 +4439,7 @@ bool thread::process_message()
 
       }
 
-      ::pointer<::message::message>pmessage;
+      ::pointer<::message::message> pmessage;
 
       // ::apex::application * papexapplication = nullptr;
       //
@@ -4508,7 +4515,7 @@ bool thread::raw_process_message()
    try
    {
 
-      ::pointer<::message::message>pmessage;
+      ::pointer<::message::message> pmessage;
 
       pmessage = get_message(&m_message);
 
@@ -4542,7 +4549,6 @@ bool thread::raw_process_message()
    return false;
 
 }
-
 
 
 bool thread::set_thread_priority(::enum_priority epriority)
@@ -4604,9 +4610,6 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //}
 
 
-
-
-
 //void thread::start()
 //{
 //
@@ -4662,7 +4665,6 @@ bool thread::do_tasks()
    return bProcessed1 || bProcessed2;
 
 }
-
 
 
 ///
@@ -4756,7 +4758,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
    if (m_puserinteractionbaseaThread == nullptr)
    {
 
-      m_puserinteractionbaseaThread = ___new ::user::interaction_base_array  ();
+      m_puserinteractionbaseaThread = ___new ::user::interaction_base_array();
 
    }
 
@@ -4777,14 +4779,10 @@ CLASS_DECL_APEX u32 random_processor_index_generator()
 }
 
 
-
-
 thread_ptra::thread_ptra()
 {
 
 }
-
-
 
 
 thread_ptra::~thread_ptra()
@@ -4969,7 +4967,6 @@ class ::time thread::set_file_sharing_violation_timeout(const class time& time)
 }
 
 
-
 bool thread::is_running() const
 {
 
@@ -4990,8 +4987,6 @@ bool thread::is_running() const
 //}
 
 
-
-
 // please refer to object::finish verses/documentation
 // ::user::interaction implements custom/dedicated finish protocol/feature/function
 // this is why default finish isn't/(and shouldn't be) called here
@@ -5003,8 +4998,6 @@ void thread::delete_this()
    object::delete_this();
 
 }
-
-
 
 
 //void thread::destroy()

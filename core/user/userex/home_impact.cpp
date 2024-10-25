@@ -65,7 +65,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &home_impact::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &home_impact::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_impact::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_impact::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_impact::on_message_left_button_up);

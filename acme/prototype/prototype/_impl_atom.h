@@ -4,6 +4,10 @@
 #pragma once
 
 
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+
+
 template < typename ITERATOR_TYPE >
 inline const_string_range < ITERATOR_TYPE >::const_string_range(const block & block)
 {
@@ -278,11 +282,11 @@ inline atom::atom(enum_element eelement) :
 //}
 
 
-inline atom::atom(ENUM_ID EID) :
-        atom((::enum_id)EID) // used m_iLargest to reset 64-bit field
-{
-
-}
+// inline atom::atom(::enum_id EID) :
+//         atom((::enum_id)EID) // used m_iLargest to reset 64-bit field
+// {
+//
+// }
 
 
 inline atom::atom(enum_message emessage) :
@@ -293,11 +297,11 @@ inline atom::atom(enum_message emessage) :
 }
 
 
-inline atom::atom(ENUM_MESSAGE EMESSAGE) :
-        atom((::enum_message)EMESSAGE)
-{
-
-}
+// inline atom::atom(ENUM_MESSAGE EMESSAGE) :
+//         atom((::enum_message)EMESSAGE)
+// {
+//
+// }
 
 
 inline atom::atom(enum_impact eimpact) :
@@ -1328,7 +1332,7 @@ inline ::iptr atom::as_iptr() const
 inline enum_message atom::as_emessage() const
 {
 
-   return m_etype == e_type_message ? m_emessage : (enum_message) MESSAGE_UNDEFINED;
+   return m_etype == e_type_message ? m_emessage : (enum_message) e_message_undefined;
 
 }
 
@@ -1336,7 +1340,7 @@ inline enum_message atom::as_emessage() const
 inline enum_id atom::as_eid() const
 {
 
-   return m_etype == e_type_id ? m_eid : (enum_id)ID_NONE;
+   return m_etype == e_type_id ? m_eid : (enum_id)id_none;
 
 }
 

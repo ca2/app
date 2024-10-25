@@ -113,7 +113,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(MESSAGE_CREATE       , pchannel, this, &simple_toolbar::on_message_create);
+   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
    MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);

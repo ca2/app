@@ -10,8 +10,9 @@ namespace aura
 
 
    class CLASS_DECL_AURA system:
-      virtual public ::aqua::system,
-      virtual public ::aura::context
+      virtual public ::aqua::system
+         //,
+      //virtual public ::aura::context
    {
    public:
 
@@ -50,7 +51,7 @@ namespace aura
 
       void common_construct();
 
-      void on_set_platform() override;
+      //void on_set_platform() override;
 
       void on_initialize_particle() override;
 
@@ -135,7 +136,7 @@ namespace aura
 
       virtual void init2() override;
 
-      virtual void initialize_context() override;
+      //virtual void initialize_context() override;
 
       //virtual void defer_xml();
        

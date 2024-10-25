@@ -115,7 +115,7 @@ namespace user
       MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::on_message_activate);
       //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
-      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &list_box::on_message_close);
+      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);

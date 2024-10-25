@@ -401,7 +401,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		case e_message_mouse_wheel:
 //			break;
 //
-//		case MESSAGE_CLOSE:
+//		case e_message_close:
 //			DestroyWindow(hWnd);
 //			break;
 //

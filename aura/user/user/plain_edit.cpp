@@ -1835,15 +1835,15 @@ namespace user
          if (change.m_atoma.get_size() == 2)
          {
 
-            switch ((ENUM_ID) change.m_atoma[1].as_eid())
+            switch ((::enum_id) change.m_atoma[1].as_eid())
             {
-            case ID_TEXT:
+            case id_text:
                set_text(change.m_payload.as_string(), change.m_actioncontext);
                return;
-            case ID_TEXT_SELECTION_BEGIN:
+            case id_text_selection_begin:
                plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
-            case ID_TEXT_SELECTION_END:
+            case id_text_selection_end:
                plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
             default:
@@ -1868,9 +1868,9 @@ namespace user
          if (atoma.get_size() == 2)
          {
 
-            switch ((ENUM_ID) atoma[1].as_eid())
+            switch ((::enum_id) atoma[1].as_eid())
             {
-            case ID_TEXT:
+            case id_text:
             {
 
                ::string str;
@@ -1880,7 +1880,7 @@ namespace user
                return str;
 
             }
-            case ID_TEXT_SELECTION_BEGIN:
+            case id_text_selection_begin:
             {
 
                strsize iBeg;
@@ -1892,7 +1892,7 @@ namespace user
                return iBeg;
 
             }
-            case ID_TEXT_SELECTION_END:
+            case id_text_selection_end:
             {
 
                strsize iBeg;

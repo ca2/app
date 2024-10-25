@@ -508,7 +508,7 @@ namespace user
          if(pkey->m_ekey == ::user::e_key_q && get_session()->is_key_pressed(::user::e_key_command))
          {
             
-            post_message(MESSAGE_CLOSE);
+            post_message(e_message_close);
             pmessage->m_bRet = true;
             
          }

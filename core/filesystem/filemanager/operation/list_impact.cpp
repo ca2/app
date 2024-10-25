@@ -29,7 +29,7 @@ namespace filemanager
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::_001OnTimer);
-      MESSAGE_LINK(MESSAGE_CREATE,pchannel,this,&operation_list_impact::on_message_create);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_impact::on_message_create);
    }
 
 

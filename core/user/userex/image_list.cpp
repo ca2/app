@@ -270,8 +270,8 @@ namespace userex
 
       ::user::image_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &image_list_impact::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
 //      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
       //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
       //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);

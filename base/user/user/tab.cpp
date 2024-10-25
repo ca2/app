@@ -1654,7 +1654,7 @@ namespace user
 
       //install_hover_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tab::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);

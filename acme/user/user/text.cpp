@@ -11,7 +11,7 @@ namespace user
 
 
    text::text() :
-      m_textproperty(this, this, ID_TEXT)
+      m_textproperty(this, this, id_text)
    {
 
       m_textproperty.set_text_property(m_textproperty);

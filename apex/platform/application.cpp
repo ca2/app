@@ -177,7 +177,7 @@ namespace apex
 
       m_bEnableAutoStartOption = false;
       //m_bProcessingApplicationExitRequest = false;
-      m_papexapplication = this;
+      //m_papexapplication = this;
       ::object::m_papplication = this;
       m_papplication = this;
 
@@ -290,12 +290,12 @@ namespace apex
    {
 
       //acme::del(m_pappimpl);
-      m_papexapplication = nullptr;
-      m_paquaapplication = nullptr;
-      m_paxisapplication = nullptr;
-      m_pbaseapplication = nullptr;
-      m_pbredapplication = nullptr;
-      m_pcoreapplication = nullptr;
+      // m_papexapplication = nullptr;
+      // m_paquaapplication = nullptr;
+      // m_paxisapplication = nullptr;
+      // m_pbaseapplication = nullptr;
+      // m_pbredapplication = nullptr;
+      // m_pcoreapplication = nullptr;
 
    }
 
@@ -619,7 +619,7 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &application::on_message_close);
+      MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
       add_command_handler("app_exit", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
@@ -1502,7 +1502,7 @@ namespace apex
    void application::_001CloseApplication()
    {
 
-      post_message(MESSAGE_CLOSE, 0, 0);
+      post_message(e_message_close, 0, 0);
 
    }
 
@@ -5844,7 +5844,7 @@ namespace apex
    void application::_001TryCloseApplication()
    {
 
-      post_message(MESSAGE_CLOSE, 1, 0);
+      post_message(e_message_close, 1, 0);
 
    }
 
@@ -8549,7 +8549,7 @@ namespace apex
    //
    ////ASSERT(m_puserinteractionMain != nullptr);
    //
-   ////m_puserinteractionMain->m_puiThis->send_message(MESSAGE_CLOSE);
+   ////m_puserinteractionMain->m_puiThis->send_message(e_message_close);
    //
    //}
    //

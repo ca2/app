@@ -1219,7 +1219,7 @@ _001SelectItem(pchild);
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &tree_data::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tree_data::on_message_create);
 
    }
 

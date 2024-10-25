@@ -3614,7 +3614,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->post_message(MESSAGE_CLOSE);
+               get_app()->post_message(e_message_close);
 
             }
 
@@ -6794,7 +6794,7 @@ namespace aura
 
    //   auto puserinteractionMain = __user_interaction(m_puserinteractionMain);
 
-   //   puserinteractionMain->m_puiThis->send_message(MESSAGE_CLOSE);
+   //   puserinteractionMain->m_puiThis->send_message(e_message_close);
 
    //}
 

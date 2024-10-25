@@ -104,8 +104,8 @@ namespace user
 
          ::user::rich_text::edit::install_message_routing(pchannel);
 
-         MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &edit_impl::on_message_create);
-         MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &edit_impl::on_message_destroy);
+         MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::on_message_create);
+         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::on_message_show_window);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);

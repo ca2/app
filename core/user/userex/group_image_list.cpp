@@ -86,7 +86,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &group_image_list_impact::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
 
 
    }

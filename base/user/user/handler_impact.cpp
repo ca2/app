@@ -51,7 +51,7 @@ namespace user
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &handler_impact::on_message_create);
+      MESSAGE_LINK(e_message_create, psender, this, &handler_impact::on_message_create);
 
 
    }

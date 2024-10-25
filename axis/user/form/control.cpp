@@ -878,7 +878,7 @@ namespace user
 
       form::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel,this,&form_control::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::on_message_create);
       MESSAGE_LINK(e_message_pos_create, pchannel,this,&form_control::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
       //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::on_message_key_down);
@@ -1068,7 +1068,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(MESSAGE_CLOSE);
+      post_message(e_message_close);
 
    }
 

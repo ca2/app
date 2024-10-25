@@ -83,7 +83,6 @@ namespace platform
 
       }
       
-      m_iExitCode = 0;
 
 #if REFERENCING_DEBUGGING
 
@@ -276,7 +275,7 @@ namespace platform
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
-   void platform::initialize(int argc, wchar_t * args[], wchar_t * envp[])
+   void platform::initialize_system(int argc, wchar_t * args[], wchar_t * envp[])
    {
 
       m_argc = argc;
@@ -286,7 +285,7 @@ namespace platform
    }
 
 
-   void platform::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
+   void platform::initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
    {
 
       m_hinstanceThis = hinstanceThis;

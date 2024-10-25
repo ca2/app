@@ -348,10 +348,10 @@ namespace platform
 
       psystem->init_task();
 
-      if (psystem->m_papplication->m_bSession)
+      if (application()->m_bSession)
       {
 
-         psystem->m_psession->init_task();
+         session()->init_task();
 
       }
 
@@ -360,7 +360,7 @@ namespace platform
       if (psystem->m_pfnImplement)
       {
 
-         (*psystem->m_pfnImplement)(psystem);
+         (*psystem->m_pfnImplement)(application());
 
       }
       else
@@ -808,7 +808,7 @@ namespace platform
    }
 
 
-   ::pointer < ::platform::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
+   ::pointer < ::acme::exclusive > node::_get_exclusive(::particle * pparticleContext, const ::string & strName, security_attributes * psecurityattributes)
    {
 
       return nullptr;
@@ -816,7 +816,7 @@ namespace platform
    }
 
 
-   ::pointer < ::platform::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
+   ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes)
    {
 
       auto & pexclusive = m_mapExclusive[strName];

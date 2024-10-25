@@ -1085,23 +1085,6 @@ namespace fs
 class ifs;
 
 
-namespace apex
-{
-
-
-   enum enum_end
-   {
-
-      e_end_close,
-      e_end_app,
-      e_end_session,
-      e_end_system,
-
-   };
-
-
-} // namespace apex
-
 
 namespace user
 {

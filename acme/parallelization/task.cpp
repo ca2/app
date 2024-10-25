@@ -61,6 +61,7 @@ task::task()
 {
 
    m_pfnImplement = nullptr;
+   m_iExitCode = 0;
 
    //m_bTaskPending = true;
 

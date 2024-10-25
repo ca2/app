@@ -349,7 +349,7 @@ namespace apex
 
       factory()->add_factory_item < ::apex::system, ::platform::system >();
       factory()->add_factory_item < ::apex::session, ::platform::session >();
-      factory()->add_factory_item < ::apex::context, ::platform::context >();
+      factory()->add_factory_item < ::platform::context, ::platform::context >();
 
       factory()->add_factory_item < ::networking::application >();
 
@@ -445,7 +445,7 @@ namespace apex
       m_puserlanguagemap.release();
 
       //auto estatus = 
-      ::apex::context::destroy();
+      ::platform::context::destroy();
 
       //return estatus;
 
@@ -3696,7 +3696,7 @@ namespace apex
    }
 
 
-   //::pointer<::platform::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
+   //::pointer<::acme::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
    //{
 
    //   auto & pexclusive = m_mapExclusive[strId];
@@ -6018,7 +6018,7 @@ namespace apex
    //void application::destroy()
    //{
    //
-   //   auto estatus = ::apex::context::destroy();
+   //   auto estatus = ::platform::context::destroy();
    //
    //   if (!estatus)
    //   {

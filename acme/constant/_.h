@@ -133,3 +133,17 @@ enum enum_domain : ::i32
 
 
 
+
+
+
+enum enum_exit
+{
+
+   e_exit_close,
+   e_exit_application,
+   e_exit_session,
+   e_exit_system,
+
+};
+
+

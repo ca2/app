@@ -12,7 +12,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA context :
-      virtual public ::apex::context
+      virtual public ::platform::context
    {
    public:
 

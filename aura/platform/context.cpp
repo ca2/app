@@ -28,7 +28,7 @@ namespace aura
 
       //auto estatus =
 
-      ::apex::context::initialize_context();
+      ::platform::context::initialize_context();
 
       //if (!estatus)
       //{
@@ -45,7 +45,7 @@ namespace aura
    void context::initialize_context_1()
    {
 
-      ::apex::context::initialize_context_1();
+      ::platform::context::initialize_context_1();
 
       defer_initialize_context_image();
 

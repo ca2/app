@@ -1,6 +1,7 @@
 #include "framework.h" 
 #include "http_tunnel.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/platform/http.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/context.h"
@@ -281,11 +282,12 @@ namespace sockets
       if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
       {
       }
-      else 
-         if (bConfigProxy)
+      else if (bConfigProxy)
       {
 
-         http()->config_proxy(get_url(), this);
+         ::pointer < ::http::context > phttp = http();
+
+         phttp->config_proxy(get_url(), this);
 
       }
       else

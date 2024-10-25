@@ -11,6 +11,12 @@
 #include "application_container.h"
 #include "acme/user/user/key_state.h"
 
+#include "session_acme.h"
+#include "session_apex.h"
+#include "session_aqua.h"
+#include "session_aura.h"
+
+
 
 namespace platform
 {
@@ -19,7 +25,15 @@ namespace platform
    class CLASS_DECL_ACME session :
       virtual public ::task,
       virtual public ::platform::application_container,
-      virtual public ::user::key_state
+      virtual public ::user::key_state,
+      virtual public ::platform::acme_session_layer_t,
+      virtual public ::platform::apex_session_layer_t,
+      virtual public ::platform::aqua_session_layer_t,
+      virtual public ::platform::aura_session_layer_t,
+      virtual public ::platform::acme_session_layer,
+      virtual public ::platform::apex_session_layer,
+      virtual public ::platform::aqua_session_layer,
+      virtual public ::platform::aura_session_layer
    {
    public:
 

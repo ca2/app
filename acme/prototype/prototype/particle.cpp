@@ -404,7 +404,7 @@ class ::user::user * particle::user() const
 // }
 
 
-// ::apex::context* particle::apexcontext() const
+// ::platform::context* particle::apexcontext() const
 // {
 //
 //    return m_papplication ? m_papplication : nullptr;

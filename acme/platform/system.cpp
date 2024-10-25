@@ -210,13 +210,13 @@ namespace platform
    }
 
 
-   void system::on_set_platform()
-   {
-
-      ::platform::context::on_set_platform();
-
-   }
-
+   // void system::on_set_platform()
+   // {
+   //
+   //    ::platform::context::on_set_platform();
+   //
+   // }
+   //
 
    enum_trace_level system::get_trace_level()
    {
@@ -279,7 +279,7 @@ namespace platform
       //if (etracelevel > e_trace_level_debug)
       //{
 
-      auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
+      auto strTraceLevel = this->get_argument_begins_eat("--trace-level=");
 
       if (strTraceLevel == "debug")
       {
@@ -397,7 +397,9 @@ namespace platform
    void system::on_initialize_particle()
    {
 
-      ::platform::context::on_initialize_particle();
+      ::platform::platform::on_initialize_particle();
+
+      ::task::on_initialize_particle();
 
       //::output_debug_string("Going to create simple log\n");
 
@@ -492,7 +494,7 @@ namespace platform
    }
 
 
-   void system::initialize_system()
+   void system::initialize_layer()
    {
 
       //information() << "initialize_system factory()->initialize";
@@ -582,7 +584,7 @@ namespace platform
       //}
 
       /*estatus =*/
-      if (platform()->is_console())
+      if (this->is_console())
       {
 
          process_init();
@@ -1006,7 +1008,7 @@ namespace platform
 
       //}
 
-      //estatus = ::apex::context::initialize_context();
+      //estatus = ::platform::context::initialize_context();
 
       //if (!estatus)
       //{

@@ -25,7 +25,7 @@ namespace networking
    void application_socket::on_send_response()
    {
 
-      auto papp = get_app();
+      auto papp = m_pnetworkingapplication;
 
       string strUrl;
 

@@ -1027,7 +1027,7 @@ namespace aura
 
       //}
 
-      //estatus = ::apex::context::initialize_context();
+      //estatus = ::platform::context::initialize_context();
 
       //if (!estatus)
       //{

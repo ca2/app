@@ -1068,7 +1068,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
    auto pappContext = get_app();
 
-   if (::is_set(pappContext) && pappContext != this)
+   if (::is_set(pappContext) && (::task*) pappContext != (::task *) this)
    {
 
       return pappContext;

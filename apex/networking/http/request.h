@@ -46,7 +46,7 @@ namespace http
       /** No more writing */
       void CloseBody();
 
-      void ParseBody(::apex::context * pcontextUploadFile);
+      void ParseBody(::platform::context * pcontextUploadFile);
 
       http::form & form();
 

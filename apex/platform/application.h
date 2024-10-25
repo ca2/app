@@ -8,6 +8,7 @@
 #include "apex/database/client.h"
 #include "apex/networking/application/application_handler.h"
 //#include "acme/parallelization/semaphore.h"
+#include "apex/platform/context.h"
 #include "acme/platform/application.h"
 //#include "acme/prototype/mathematics/scalar.h"
 #include "apex/progress/real.h"
@@ -22,145 +23,144 @@ namespace apex
       virtual public ::apex::context,
       virtual public scalar_source,
       virtual public ::database::client,
-      //virtual public ::application_exit,
       virtual public ::networking::application_handler
    {
    public:
 
 
-      //__creatable(application);
-
-      void * m_pnativeapp;
-
-      ::string m_strNetworkingApplicationHostname;
-      //class application_impl *                     m_pappimpl;
-
-      // 2020-01-25: removing from ::apex::system, placing here (at ::context)
-      // 2020-07-23: now at ::application
-      ::pointer<::user::language_map>              m_puserlanguagemap;
-
-      //::pointer<::apex::application>             m_pappParent;
-      string                                       m_strBaseSupportId;
-      string                                       m_strDatabaseAppId;
-      string                                       m_strRelativeFolder;
-      string                                       m_strInstallTraceLabel;
-      string                                       m_strInstallBuild;
-      string                                       m_strHttpUserAgentToken;
-      string                                       m_strHttpUserAgentVersion;
-      bool                                         m_bRequiresInstallation;
-
-      bool                                         m_bReadStringTable;
-
-      ::pointer<class ::application_menu>          m_papplicationmenu;
-      //::pointer<::apex::menu>                 m_pmainmenu;
-
-      //::pointer<::game::game>                    m_pgame;
-
-      ::pointer<::user::interaction_base>                 m_puiCurrent;
-      bool                                         m_bContextTheme;
-
-// #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
-//       bool                                         m_bSnLauncheeSetup;
-// #endif
-      //semaphore                                    m_semCompiler;
-      // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-      string_array                                 m_straActivationMessage;
-
-      ::u32                                        m_dwInstallGoodToCheckAgain;
-
-      bool                                         m_bAppHasInstallerProtected;
-      bool                                         m_bAppHasInstallerChangedProtected;
-      ::pointer<::install::installer>              m_pinstaller;
-
-      particle_address_array                       m_particleaddressaEventHook;
-
-      bool                                         m_bAttendedFirstRequest;
-
-      //bool                                       m_bAgreeExit;
-      //bool                                       m_bAgreeExitOk;
-      //bool                                       m_bFranceExit;
-
-      bool                                         m_bEnableAutoStartOption;
-      bool                                         m_bInterprocessCommunication;
-      ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
-      ::pointer<::interprocess::handler>           m_pinterprocesshandler;
-      //::pointer<service>                         m_pservice;
-
-      //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
-
-
-      // apex commented
-      //::pointer < ::mutex >                                         m_pmutexFrame;
-      //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
-
-      enum_thread_context                          m_ethreadcontextClose;
-
-      enum_exclusive_instance                      m_eexclusiveinstance;
-
-      bool                                         m_bService;
-
-      bool                                         m_bUpdateMatterOnInstall;
-
-      //::user::interaction *                      m_puiMainContainer;
-
-      string_table                                 m_stringtable;
-      string_table                                 m_stringtableStd;
-      atom_map < string >                            m_stringmap;
-
-      atom_map < ::pointer<::channel >>              m_mapNotify;
-
-      string                                       m_strLicense;
-
-      i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-
-      //::pointer<::simpledb::server>              m_psimpledb;
-
-      //::userex::pane_tab_impact *                m_pmainpane;
-
-
-      string                                       m_strHelpFilePath;
-
-      //#ifdef WINDOWS
-      //
-      //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
-      //      HGLOBAL                                         m_hDevNames;            // printer Device Names
-      //
-      //#endif
-
-      u32                                          m_dwPromptContext;        // help action_context override for message box
-      // LKG
-      u32                                          m_dwPolicies;            // block for storing boolean system policies
-
-      // Support for Shift+F1 help mode.
-      // true if we're in SHIFT+F1 mode.
-      bool                                         m_bHelpMode;
-
-      //::userex::pane_tab_impact *                m_ppaneimpactMain;
-
-      string                                       m_strProfileName;
-
-      //#ifdef WINDOWS
-      //      ATOM                                 m_atomApp;
-      //      ATOM                                 m_atomSystemTopic;   // for DDE open
-      //#endif
-
-      ::u32                                        m_nNumThumbnailPages; // number of default printed pages
-
-      string                                       m_strId;
-
-      i32                                          m_iResourceId;
-
-      //::pointer<::experience::department>        m_pexperience;
-      //::pointer<::apex::theme>                   m_ptheme;
-
-
-      string_array                                 m_straAppInterest;
-
-      ::pointer<::service_handler>                 m_pservicehandler;
-
-      ::pointer<::networking::application>         m_pnetworkingapplication;
-
-      ::string_map < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
+//       //__creatable(application);
+//
+//       void * m_pnativeapp;
+//
+//       ::string m_strNetworkingApplicationHostname;
+//       //class application_impl *                     m_pappimpl;
+//
+//       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
+//       // 2020-07-23: now at ::application
+//       ::pointer<::user::language_map>              m_puserlanguagemap;
+//
+//       //::pointer<::apex::application>             m_pappParent;
+//       string                                       m_strBaseSupportId;
+//       string                                       m_strDatabaseAppId;
+//       string                                       m_strRelativeFolder;
+//       string                                       m_strInstallTraceLabel;
+//       string                                       m_strInstallBuild;
+//       string                                       m_strHttpUserAgentToken;
+//       string                                       m_strHttpUserAgentVersion;
+//       bool                                         m_bRequiresInstallation;
+//
+//       bool                                         m_bReadStringTable;
+//
+//       ::pointer<class ::application_menu>          m_papplicationmenu;
+//       //::pointer<::apex::menu>                 m_pmainmenu;
+//
+//       //::pointer<::game::game>                    m_pgame;
+//
+//       ::pointer<::user::interaction_base>                 m_puiCurrent;
+//       bool                                         m_bContextTheme;
+//
+// // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+// //       bool                                         m_bSnLauncheeSetup;
+// // #endif
+//       //semaphore                                    m_semCompiler;
+//       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+//       string_array                                 m_straActivationMessage;
+//
+//       ::u32                                        m_dwInstallGoodToCheckAgain;
+//
+//       bool                                         m_bAppHasInstallerProtected;
+//       bool                                         m_bAppHasInstallerChangedProtected;
+//       ::pointer<::install::installer>              m_pinstaller;
+//
+//       particle_address_array                       m_particleaddressaEventHook;
+//
+//       bool                                         m_bAttendedFirstRequest;
+//
+//       //bool                                       m_bAgreeExit;
+//       //bool                                       m_bAgreeExitOk;
+//       //bool                                       m_bFranceExit;
+//
+//       bool                                         m_bEnableAutoStartOption;
+//       bool                                         m_bInterprocessCommunication;
+//       ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
+//       ::pointer<::interprocess::handler>           m_pinterprocesshandler;
+//       //::pointer<service>                         m_pservice;
+//
+//       //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+//
+//
+//       // apex commented
+//       //::pointer < ::mutex >                                         m_pmutexFrame;
+//       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
+//
+//       enum_thread_context                          m_ethreadcontextClose;
+//
+//       enum_exclusive_instance                      m_eexclusiveinstance;
+//
+//       bool                                         m_bService;
+//
+//       bool                                         m_bUpdateMatterOnInstall;
+//
+//       //::user::interaction *                      m_puiMainContainer;
+//
+//       string_table                                 m_stringtable;
+//       string_table                                 m_stringtableStd;
+//       atom_map < string >                            m_stringmap;
+//
+//       atom_map < ::pointer<::channel >>              m_mapNotify;
+//
+//       string                                       m_strLicense;
+//
+//       i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+//
+//       //::pointer<::simpledb::server>              m_psimpledb;
+//
+//       //::userex::pane_tab_impact *                m_pmainpane;
+//
+//
+//       string                                       m_strHelpFilePath;
+//
+//       //#ifdef WINDOWS
+//       //
+//       //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+//       //      HGLOBAL                                         m_hDevNames;            // printer Device Names
+//       //
+//       //#endif
+//
+//       u32                                          m_dwPromptContext;        // help action_context override for message box
+//       // LKG
+//       u32                                          m_dwPolicies;            // block for storing boolean system policies
+//
+//       // Support for Shift+F1 help mode.
+//       // true if we're in SHIFT+F1 mode.
+//       bool                                         m_bHelpMode;
+//
+//       //::userex::pane_tab_impact *                m_ppaneimpactMain;
+//
+//       string                                       m_strProfileName;
+//
+//       //#ifdef WINDOWS
+//       //      ATOM                                 m_atomApp;
+//       //      ATOM                                 m_atomSystemTopic;   // for DDE open
+//       //#endif
+//
+//       ::u32                                        m_nNumThumbnailPages; // number of default printed pages
+//
+//       string                                       m_strId;
+//
+//       i32                                          m_iResourceId;
+//
+//       //::pointer<::experience::department>        m_pexperience;
+//       //::pointer<::apex::theme>                   m_ptheme;
+//
+//
+//       string_array                                 m_straAppInterest;
+//
+//       ::pointer<::service_handler>                 m_pservicehandler;
+//
+//       ::pointer<::networking::application>         m_pnetworkingapplication;
+//
+//       ::string_map < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
 
       application();
       ~application() override;
@@ -227,7 +227,7 @@ namespace apex
       virtual ::database::server * dataserver();
 
 
-      virtual void verb() override;
+      //virtual void verb();
 
 
       virtual bool Ex2OnAppInstall();
@@ -302,7 +302,7 @@ namespace apex
 
       virtual bool is_running();
 
-      bool pump_runnable() override;
+      //bool pump_runnable();
 
       virtual void add_activation_message(const ::string & strMessage);
 
@@ -337,7 +337,7 @@ namespace apex
       //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
+      //virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
 
 
 
@@ -456,7 +456,7 @@ namespace apex
       //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //using ::apex::context::message_box;
+      //using ::platform::context::message_box;
       //virtual void message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
       //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
@@ -494,7 +494,7 @@ namespace apex
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
+      //virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
 
 
       virtual void app_set(string strPath, string strValue);
@@ -569,9 +569,9 @@ namespace apex
       // virtual void pre_run();
       //virtual void application_pre_run();
 
-      virtual void on_pos_run_thread() override;
-      virtual void pos_run() override;
-      virtual void application_pos_run() override;
+      //virtual void on_pos_run_thread() override;
+      //virtual void pos_run() override;
+      //virtual void application_pos_run() override;
 
 
 

@@ -179,7 +179,7 @@ public:
 
    //::file_system * file_system() const;
    //::directory_system * directory_system() const;
-   //::apex::context* apexcontext() const;
+   //::platform::context* apexcontext() const;
    //::aura::context* auracontext() const;
    ::datetime::datetime * datetime() const;
    ::internet::internet * internet() const;

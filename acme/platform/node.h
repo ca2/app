@@ -9,123 +9,117 @@
 // Created by camilo on 2021-03-21 18:11 <3ThomasBS_!!
 #pragma once
 
-#include "acme/constant/application_capability.h"
-#include "acme/constant/element.h"
-#include "acme/exception/__string.h"
-#include "acme/operating_system/security_attributes.h"
-#include "acme/platform/serial_shared.h"
-//#include "acme/exception/status.h"
-////#include "acme/prototype/prototype/object.h"
-//#include "acme/prototype/prototype/pointer.h"
-#include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/collection/string_map.h"
-//#include "acme/prototype/time/time.h"
-#include "shell.h"
 
-struct os_theme_colors;
-namespace file { class set; }
-namespace windowing { class display; }
-class get_file_extension_mime_type;
-
-using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+#include "node_acme.h"
+#include "node_apex.h"
+#include "node_aqua.h"
+#include "node_aura.h"
 
 namespace platform
 {
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::acme::shell
+      virtual public ::acme::shell,
+      virtual public ::platform::acme_node_layer_t,
+      virtual public ::platform::apex_node_layer_t,
+      virtual public ::platform::aqua_node_layer_t,
+      virtual public ::platform::aura_node_layer_t,
+      virtual public ::platform::acme_node_layer,
+      virtual public ::platform::apex_node_layer,
+      virtual public ::platform::aqua_node_layer,
+      virtual public ::platform::aura_node_layer
    {
    public:
 
-         bool                          m_bDropboxCalculated;
-         bool                          m_bDropbox;
-         ::file::path                  m_pathDropbox;
-
-
-         bool                          m_bOneDriveCalculated;
-         bool                          m_bOneDrive;
-         ::file::path                  m_pathOneDrive;
-
-   protected:
-
-
-
-
-   //::procedure_array            m_routineaPost;
-
-
-   public:
-
-
-      union
-      {
-
-         ::u64                                              m_uNodeFlags;
-
-         bool                                               m_bHasNodePostedSystemInitialRequest : 1;
-
-      };
-
-      htask_t                                               m_htaskSystem;
-      ::apex::node *                                        m_papexnode;
-      ::aura::node *                                        m_pauranode;
-
-      ::acme_posix::node *                                  m_pAcmePosix;
-      ::apex_posix::node *                                  m_pApexPosix;
-      ::aura_posix::node *                                  m_pAuraPosix;
-
-      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node *  m_pAcmePlatform;
-      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node *  m_pApexPlatform;
-      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
-      
-      
-      //::particle_pointer                              m_pparticleQuit;
-
-
-      //::particle_pointer                              m_pparticleStandardIOSynchronization;
-      
-
-      bool                                                  m_bCallStackInitialized;
-      bool                                                  m_bUpdateCallStack;
-
-
-      string                                                m_strTheme;
-      string                                                m_strIconTheme;
-
-      map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
-      string_map < enum_character_set >                     m_mapCharacterSetEnum;
-
-      ::os_theme_colors *                                   m_pthemecolors;
-
-      //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
-
-
-      //::windowing_win32::node *                             m_pWindowingWin32Node;
-      //::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
-
-
-      //::windowing_x11::node *                               m_pNodeX11;
-      //::windowing_xcb::node *                               m_pNodeXcb;
-      ::node_gtk3::node *                                   m_pNodeGtk3;
-      ::node_gtk4::node *                                   m_pNodeGtk4;
-      ::node_gtk_based::node *                              m_pNodeGtkBased;
-      ::node_kde5::node *                                   m_pNodeKDE5;
-      ::node_kde6::node *                                   m_pNodeKDE6;
-      ::node_xfce::node *                                   m_pNodeXfce;
-      ::desktop_environment_gtk_based::node *               m_pNodeDesktopEnvironmentGtkBased;
-      ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;
-      ::desktop_environment_xfce::node *                    m_pNodeDesktopEnvironmentXfce;
-
-      //bool                                                m_bUserDarkMode;
-
-      //bool                                                  m_bOperatingSystemDarkMode;
-      //int                                                   m_iWeatherDarkness;
-      ::file::path                                          m_pathModule;
-
-
-      enum_application_capability_array                     m_eapplicationcapabilitya;
-      string_map < ::pointer<::platform::exclusive > >          m_mapExclusive;
+   //       bool                          m_bDropboxCalculated;
+   //       bool                          m_bDropbox;
+   //       ::file::path                  m_pathDropbox;
+   //
+   //
+   //       bool                          m_bOneDriveCalculated;
+   //       bool                          m_bOneDrive;
+   //       ::file::path                  m_pathOneDrive;
+   //
+   // protected:
+   //
+   //
+   //
+   //
+   // //::procedure_array            m_routineaPost;
+   //
+   //
+   // public:
+   //
+   //
+   //    union
+   //    {
+   //
+   //       ::u64                                              m_uNodeFlags;
+   //
+   //       bool                                               m_bHasNodePostedSystemInitialRequest : 1;
+   //
+   //    };
+   //
+   //    htask_t                                               m_htaskSystem;
+   //    ::apex::node *                                        m_papexnode;
+   //    ::aura::node *                                        m_pauranode;
+   //
+   //    ::acme_posix::node *                                  m_pAcmePosix;
+   //    ::apex_posix::node *                                  m_pApexPosix;
+   //    ::aura_posix::node *                                  m_pAuraPosix;
+   //
+   //    :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node *  m_pAcmePlatform;
+   //    :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node *  m_pApexPlatform;
+   //    :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
+   //
+   //
+   //    //::particle_pointer                              m_pparticleQuit;
+   //
+   //
+   //    //::particle_pointer                              m_pparticleStandardIOSynchronization;
+   //
+   //
+   //    bool                                                  m_bCallStackInitialized;
+   //    bool                                                  m_bUpdateCallStack;
+   //
+   //
+   //    string                                                m_strTheme;
+   //    string                                                m_strIconTheme;
+   //
+   //    map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+   //    string_map < enum_character_set >                     m_mapCharacterSetEnum;
+   //
+   //    ::os_theme_colors *                                   m_pthemecolors;
+   //
+   //    //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
+   //
+   //
+   //    //::windowing_win32::node *                             m_pWindowingWin32Node;
+   //    //::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
+   //
+   //
+   //    //::windowing_x11::node *                               m_pNodeX11;
+   //    //::windowing_xcb::node *                               m_pNodeXcb;
+   //    ::node_gtk3::node *                                   m_pNodeGtk3;
+   //    ::node_gtk4::node *                                   m_pNodeGtk4;
+   //    ::node_gtk_based::node *                              m_pNodeGtkBased;
+   //    ::node_kde5::node *                                   m_pNodeKDE5;
+   //    ::node_kde6::node *                                   m_pNodeKDE6;
+   //    ::node_xfce::node *                                   m_pNodeXfce;
+   //    ::desktop_environment_gtk_based::node *               m_pNodeDesktopEnvironmentGtkBased;
+   //    ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;
+   //    ::desktop_environment_xfce::node *                    m_pNodeDesktopEnvironmentXfce;
+   //
+   //    //bool                                                m_bUserDarkMode;
+   //
+   //    //bool                                                  m_bOperatingSystemDarkMode;
+   //    //int                                                   m_iWeatherDarkness;
+   //    ::file::path                                          m_pathModule;
+   //
+   //
+   //    enum_application_capability_array                     m_eapplicationcapabilitya;
+   //    string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
 
       node();
       ~node() override;
@@ -222,9 +216,9 @@ namespace platform
 
       virtual ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix);
 
-      virtual ::pointer < ::platform::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+      virtual ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
 
-      virtual ::pointer < ::platform::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
+      virtual ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr);
 
       virtual bool erase_exclusive(const string & strName);
 
@@ -535,7 +529,7 @@ namespace platform
       virtual ::string get_command_line();
 
 
-      //virtual ::pointer<::platform::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
 
       
       virtual i32 get_current_processor_index();

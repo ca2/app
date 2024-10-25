@@ -35,7 +35,7 @@ namespace message
 } // namespace messagse
 
 
-#define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
+
 
 
 //#include "message.h"

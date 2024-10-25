@@ -19,7 +19,7 @@ namespace platform
       //::platform::platform *                          m_pplatform;
 
 
-      //::apex::context *                               m_papexcontext;
+      //::platform::context *                               m_papexcontext;
       //::aura::context *                               m_pauracontext;
 
 

@@ -13,6 +13,7 @@
 #include "acme/nano/archive/archive.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/application.h"
+#include "acme/platform/http.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
@@ -396,7 +397,7 @@ namespace integration
 
 
 
-            pparticle->http_download(pmemoryFileTarGz, url, set);
+            pparticle->http()->download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
 

@@ -486,6 +486,14 @@ list(APPEND library_source
    #platform/apex_main_struct.h
    platform/application.cpp
    platform/application.h
+   platform/application_acme.cpp
+   platform/application_acme.h
+   platform/application_apex.cpp
+   platform/application_apex.h
+   platform/application_aqua.cpp
+   platform/application_aqua.h
+   platform/application_aura.cpp
+   platform/application_aura.h
    platform/application_array.cpp
    platform/application_array.h
    platform/application_base.cpp
@@ -544,6 +552,14 @@ list(APPEND library_source
    platform/nanosecond_timer.h
    platform/node.cpp
    platform/node.h
+   platform/node_acme.cpp
+   platform/node_acme.h
+   platform/node_apex.cpp
+   platform/node_apex.h
+   platform/node_aqua.cpp
+   platform/node_aqua.h
+   platform/node_aura.cpp
+   platform/node_aura.h
    platform/predicate_holder.cpp
    platform/predicate_holder.h
    platform/printf.cpp
@@ -553,6 +569,14 @@ list(APPEND library_source
    platform/serial.cpp
    platform/session.cpp
    platform/session.h
+   platform/session_acme.cpp
+   platform/session_acme.h
+   platform/session_apex.cpp
+   platform/session_apex.h
+   platform/session_aqua.cpp
+   platform/session_aqua.h
+   platform/session_aura.cpp
+   platform/session_aura.h
    platform/platform.cpp
    platform/platform.h
    platform/shell.cpp
@@ -566,6 +590,14 @@ list(APPEND library_source
    platform/referencing_debugging.cpp
    platform/referencing_debugging.h
    platform/system.cpp
+   platform/system_acme.cpp
+   platform/system_acme.h
+   platform/system_apex.cpp
+   platform/system_apex.h
+   platform/system_aqua.cpp
+   platform/system_aqua.h
+   platform/system_aura.cpp
+   platform/system_aura.h
    platform/system_factory.cpp
    platform/system_factory.h
    platform/system_setup.cpp
@@ -2869,6 +2901,15 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    prototype/data/client.h
    platform/http.cpp
    prototype/data/client.cpp
+   platform/application_apex.h
+   platform/application_acme.h
+   platform/application_aqua.h
+   platform/application_aura.h
+   platform/application_aura.cpp
+   platform/application_apex.cpp
+   platform/application_acme.cpp
+   platform/application_aqua.cpp
+   platform/session_acme.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

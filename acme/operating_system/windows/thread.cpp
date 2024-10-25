@@ -213,7 +213,7 @@ bool __os_term_thread()
 }
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -278,7 +278,7 @@ namespace acme
 
    //}
 
-}  // namespace acme
+}  // namespace platform
 
 
 

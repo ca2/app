@@ -122,7 +122,7 @@ namespace apex
       //auto estatus = 
       ::thread::initialize(pparticle);
 
-      ::apex::context::initialize(pparticle);
+      ::platform::context::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -167,7 +167,7 @@ namespace apex
    void session::install_message_routing(::channel* pchannel)
    {
 
-      ::apex::context::install_message_routing(pchannel);
+      ::platform::context::install_message_routing(pchannel);
       
       //MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
@@ -534,7 +534,7 @@ namespace apex
 
       //information() << "apex::session::process_init";
 
-      //auto estatus = ::apex::context::initialize_context();
+      //auto estatus = ::platform::context::initialize_context();
 
       //if (!estatus)
       //{
@@ -576,7 +576,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_task_name(strTaskName);
+      return ::platform::context::on_get_task_name(strTaskName);
 
    }
 
@@ -2138,7 +2138,7 @@ namespace apex
 
       ::platform::application_container::m_applicationa.erase_all();
 
-      ::apex::context::destroy();
+      ::platform::context::destroy();
 
       //return success;
 

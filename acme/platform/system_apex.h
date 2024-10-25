@@ -376,7 +376,7 @@ namespace platform
       virtual void main();
 
 
-      virtual bool do_tasks();
+      //virtual bool do_tasks();
 
 
       void post_quit_to_all_threads();

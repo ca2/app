@@ -29206,7 +29206,7 @@ namespace user
       else
       {
 
-         ::pointer<::apex::context> pcontext = get_context();
+         ::pointer<::platform::context> pcontext = get_context();
 
          if (pcontext)
          {

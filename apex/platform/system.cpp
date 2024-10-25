@@ -264,7 +264,7 @@ namespace apex
    void system::on_initialize_particle()
    {
 
-      ::apex::context::on_initialize_particle();
+      ::platform::context::on_initialize_particle();
 
       ::platform::system::on_initialize_particle();
 
@@ -274,7 +274,7 @@ namespace apex
    void system::install_message_routing(::channel * pchannel)
    {
 
-      ::apex::context::install_message_routing(pchannel);
+      ::platform::context::install_message_routing(pchannel);
 
       //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
@@ -310,7 +310,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_task_name(strTaskName);
+      return ::platform::context::on_get_task_name(strTaskName);
 
    }
 
@@ -1345,7 +1345,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus =
-      ::apex::context::initialize_context();
+      ::platform::context::initialize_context();
 
       //if(!estatus)
       //{
@@ -1645,7 +1645,7 @@ pacmedirectory->create("/ca2core");
 
       ::platform::system::inline_init();
 
-      ::apex::context::inline_init();
+      ::platform::context::inline_init();
 
    }
 
@@ -1653,7 +1653,7 @@ pacmedirectory->create("/ca2core");
    void system::inline_term()
    {
 
-      ::apex::context::inline_term();
+      ::platform::context::inline_term();
 
 #if REFERENCING_DEBUGGING
 
@@ -1686,7 +1686,7 @@ pacmedirectory->create("/ca2core");
       try
       {
 
-         ::apex::context::__task_init();
+         ::platform::context::__task_init();
 
       }
       catch (exception & exception)
@@ -1786,7 +1786,7 @@ pacmedirectory->create("/ca2core");
    bool system::task_get_run() const
    {
 
-      return ::apex::context::task_get_run();
+      return ::platform::context::task_get_run();
 
    }
 
@@ -4750,7 +4750,7 @@ namespace apex
    //   void system::add_handler(::matter* pmatter, bool bPriority)
    //   {
    //
-   //      ::apex::context::add_handler(pmatter, bPriority);
+   //      ::platform::context::add_handler(pmatter, bPriority);
    //
    //   }
 
@@ -4863,7 +4863,7 @@ namespace apex
 
       //::main::destroy();
 
-      ::apex::context::destroy();
+      ::platform::context::destroy();
 
       m_sessionmap.clear();
 

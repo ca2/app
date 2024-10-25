@@ -71,7 +71,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::ParseBody(::apex::context * pcontextUploadFile)
+   void request::ParseBody(::platform::context * pcontextUploadFile)
    {
 
       m_form.clear();

@@ -23,6 +23,10 @@ namespace acme { class acme;  }
 #include "release_time_for_project.h"
 #include "acme/prototype/data/client.h"
 #include "acme/prototype/text/text.h"
+#include "application_acme.h"
+#include "application_apex.h"
+#include "application_aqua.h"
+#include "application_aura.h"
 
 
 namespace platform
@@ -35,7 +39,15 @@ namespace platform
       virtual public ::platform::context,
       virtual public ::data::client,
       virtual public ::application_exit,
-      virtual public ::application_menu_callback
+      virtual public ::application_menu_callback,
+      virtual public ::acme_application_layer_t,
+      virtual public ::apex_application_layer_t,
+      virtual public ::aqua_application_layer_t,
+      virtual public ::aura_application_layer_t,
+      virtual public ::acme_application_layer,
+      virtual public ::apex_application_layer,
+      virtual public ::aqua_application_layer,
+      virtual public ::aura_application_layer
    {
    public:
 

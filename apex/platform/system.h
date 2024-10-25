@@ -14,7 +14,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::platform::system,
-      virtual public ::apex::context
+      virtual public ::platform::context
    {
    public:
 

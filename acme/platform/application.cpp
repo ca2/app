@@ -45,7 +45,7 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -70,13 +70,13 @@ namespace acme
       //m_acme.m_papplication = this;
 
       m_papplication = this;
-      m_papexapplication = nullptr;
-      m_paquaapplication = nullptr;
-      m_pauraapplication = nullptr;
-      m_paxisapplication = nullptr;
-      m_pbaseapplication = nullptr;
-      m_pbredapplication = nullptr;
-      m_pcoreapplication = nullptr;
+      // m_papexapplication = nullptr;
+      // m_paquaapplication = nullptr;
+      // m_pauraapplication = nullptr;
+      // m_paxisapplication = nullptr;
+      // m_pbaseapplication = nullptr;
+      // m_pbredapplication = nullptr;
+      // m_pcoreapplication = nullptr;
 
    }
 
@@ -84,13 +84,13 @@ namespace acme
    application::~application()
    {
 
-      m_papexapplication = nullptr;
-      m_paquaapplication = nullptr;
-      m_pauraapplication = nullptr;
-      m_paxisapplication = nullptr;
-      m_pbaseapplication = nullptr;
-      m_pbredapplication = nullptr;
-      m_pcoreapplication = nullptr;
+      // m_papexapplication = nullptr;
+      // m_paquaapplication = nullptr;
+      // m_pauraapplication = nullptr;
+      // m_paxisapplication = nullptr;
+      // m_pbaseapplication = nullptr;
+      // m_pbredapplication = nullptr;
+      // m_pcoreapplication = nullptr;
 
       if (session() && session()->m_papplication == this)
       {
@@ -2181,7 +2181,7 @@ namespace acme
 
 
 
-} // namespace acme
+} // namespace platform
 
 
 void* application_system(void* pApplication)

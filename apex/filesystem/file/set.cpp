@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "set.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/parallelization/event.h"
 #include "apex/platform/application.h"
 #include "apex/platform/node.h"

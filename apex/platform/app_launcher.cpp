@@ -80,7 +80,7 @@ namespace apex
 
       strExe += get_executable_extension();
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       ::file::path pathCandidate = directory()->module() / strExe;
 

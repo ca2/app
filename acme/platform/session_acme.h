@@ -1,8 +1,29 @@
 //
-// Created by camilo on 2024-10-24.
+// Created by camilo on 2024-10-24 22:56 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef SESSION_ACME_H
-#define SESSION_ACME_H
 
-#endif //SESSION_ACME_H
+namespace platform
+{
+
+
+   struct CLASS_DECL_ACME acme_session_layer_t
+   {
+
+   };
+
+
+   class CLASS_DECL_ACME acme_session_layer
+   {
+   public:
+
+   };
+
+
+} // namespace platform
+
+
+
+
+

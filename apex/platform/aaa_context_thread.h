@@ -7,7 +7,7 @@
 //
 //   class CLASS_DECL_APEX context_thread :
 //      virtual public ::thread,
-//      virtual public ::apex::context
+//      virtual public ::platform::context
 //   {
 //   public:
 //

@@ -973,3 +973,8 @@ template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { usi
 template < typename ENUM >
 using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::type;
 
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+

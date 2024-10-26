@@ -98,7 +98,7 @@ namespace filemanager
 
       //info.lpDirectory = nullptr;
 
-      //auto psession = get_session();
+      //
 
       //info.hwnd = psession->get_active_ui()->m_puiThis->get_handle();
       //info.lpVerb = MAKEINTRESOURCEA(uId - 0x1000);

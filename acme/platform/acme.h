@@ -11,11 +11,6 @@
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/time/time/time.h"
 
-
-class task_message_queue;
-
-class referencing_debugging;
-
 namespace acme
 {
 
@@ -27,13 +22,14 @@ namespace acme
    {
    public:
 
-      static ::acme::acme * s_p;
 
-      //::pointer < ::platform::platform >     m_pplatform;
-      ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
-      ::heap::management *                   m_pheapmanagement;
-      manual_reset_event *                   m_pmanualreseteventReadyToExit;
-      manual_reset_event *                   m_pmanualreseteventMainLoopEnd;
+      static ::acme::acme *                     s_p;
+
+
+      //::pointer < ::platform::platform >      m_pplatform;
+      ::heap::management *                      m_pheapmanagement;
+      manual_reset_event *                      m_pmanualreseteventReadyToExit;
+      manual_reset_event *                      m_pmanualreseteventMainLoopEnd;
 
 
 
@@ -77,7 +73,6 @@ namespace acme
 
 
       virtual ::platform::platform * platform();
-      ::task_message_queue * task_message_queue() { return m_ptaskmessagequeue; }
       ::heap::management * heap() { return m_pheapmanagement; }
 
 
@@ -87,18 +82,20 @@ namespace acme
       void acme_destruct();
 
 
-      void acme_construct_platform_dependent();
-      void acme_destruct_platform_dependent();
+      //void acme_construct_platform_dependent();
+      //void acme_destruct_platform_dependent();
 
 
       void initialize_memory_management();
       void finalize_memory_management();
 
 
-      void initialize_message_queue();
-      void finalize_message_queue();
+      //void initialize_message_queue();
+      //void finalize_message_queue();
 
-      virtual void on_before_destroy();
+      virtual void on_system_before_destroy();
+
+      virtual void on_acme_before_destroy();
 
 
    };

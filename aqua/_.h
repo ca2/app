@@ -9,6 +9,8 @@
 //#error "already included?!?! WHAT?!?! (At aqua:a)"
 //#endif
 
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME aqua
 
 #if defined(_aqua_project)
 #define CLASS_DECL_AQUA  CLASS_DECL_EXPORT
@@ -22,6 +24,9 @@
 
 
 #include "aqua/include/_include.h"
+
+
+#include "aqua/platform/system.h"
 
 
 

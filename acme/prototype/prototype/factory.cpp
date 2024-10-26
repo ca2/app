@@ -72,7 +72,7 @@ namespace factory
    factory * factory::__call__add_referer2(const ::reference_referer & referer) const
    {
 
-      ::allocator::defer_add_referer(referer);
+      ::allocator::defer_push_referer(nullptr, referer);
 
       return (factory *)this;
 

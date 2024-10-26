@@ -1196,7 +1196,7 @@ namespace user
       //if (::is_null(pwindow))
       //{
 
-      //   auto psession = get_session();
+      //   
 
       //   auto puser = psession->user();
 
@@ -1249,7 +1249,7 @@ namespace user
    ::user::interaction * interaction::get_host_user_interaction()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (psession == nullptr)
       {
@@ -1358,7 +1358,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -1393,7 +1393,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -1532,7 +1532,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -1572,7 +1572,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -2149,7 +2149,7 @@ namespace user
 
       auto edisplayWindow = pinteraction->layout().window().display();
 
-      auto psession = get_session();
+      auto psession = session();
 
       if ((layout().sketch().is_screen_visible()
          || edisplaySketch != edisplayWindow
@@ -2337,7 +2337,9 @@ namespace user
    ::user::interaction_base * interaction::get_bind_ui()
    {
 
-      if (::is_null(get_session()))
+      auto psession = session();
+
+      if (::is_null(psession))
       {
 
          return nullptr;
@@ -2350,8 +2352,6 @@ namespace user
          return nullptr;
 
       }
-
-      auto psession = get_session();
 
       return psession->get_bound_ui(m_atomImpact);
 
@@ -2411,7 +2411,7 @@ namespace user
    //   bool interaction::is_host_top_level() const
    //   {
    //
-   //      auto psession = get_session();
+   //      
    //
    //      if (::is_null(psession))
    //      {
@@ -2655,10 +2655,12 @@ namespace user
 
       auto emessage = pmessage->m_atom.as_emessage();
 
+      auto psession = session();
+
       if (emessage == e_message_left_button_down)
       {
 
-         //         auto psession = get_session();
+         //         
          //
          //         try
          //         {
@@ -2675,7 +2677,7 @@ namespace user
       else if (emessage == e_message_left_button_up)
       {
 
-         //         auto psession = get_session();
+         //         
          //
          //         try
          //         {
@@ -2692,8 +2694,6 @@ namespace user
       else if (emessage == e_message_right_button_down)
       {
 
-         auto psession = get_session();
-
          try
          {
 
@@ -2709,7 +2709,7 @@ namespace user
       else if (emessage == e_message_right_button_up)
       {
 
-         auto psession = get_session();
+
 
          try
          {
@@ -2726,7 +2726,7 @@ namespace user
       else if (emessage == e_message_middle_button_down)
       {
 
-         auto psession = get_session();
+
 
          try
          {
@@ -2743,7 +2743,7 @@ namespace user
       else if (emessage == e_message_middle_button_up)
       {
 
-         auto psession = get_session();
+
 
          try
          {
@@ -2802,7 +2802,7 @@ namespace user
          if (emessage == e_message_key_down || emessage == e_message_sys_key_down)
          {
 
-            auto psession = get_session();
+
 
             try
             {
@@ -2819,7 +2819,7 @@ namespace user
          else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
          {
 
-            auto psession = get_session();
+            
 
             try
             {
@@ -2865,7 +2865,7 @@ namespace user
    //
    //         // get_keyboard_focus will return the control with focus
    //
-   //         auto psession = get_session();
+   //         
    //
    //         auto puserinteractionHost = psession->get_user_interaction_host();
    //
@@ -2954,7 +2954,7 @@ namespace user
    ::user::element * interaction::get_keyboard_focus()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -3780,7 +3780,7 @@ namespace user
 
       //}
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -4009,10 +4009,19 @@ namespace user
       try
       {
 
-         if (::is_set(get_app()))
+         auto papplication = application();
+
+         if (papplication)
          {
 
-            get_app()->m_puserprimitiveActive = nullptr;
+            ::cast < ::thread > pthread = papplication;
+
+            if(pthread)
+            {
+
+               pthread->m_puserprimitiveActive = nullptr;
+
+            }
 
          }
 
@@ -4040,7 +4049,7 @@ namespace user
 
       }
 
-      if (get_session())
+      if (psession)
       {
 
          {
@@ -4587,7 +4596,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto psession = session();
 
       if (this == psession->get_user_interaction_host())
       {
@@ -7609,7 +7618,7 @@ namespace user
 
       element * pelement = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
-      auto psession = get_session();
+      
 
       if (pelement == nullptr || pelement == this)
       {
@@ -7623,6 +7632,8 @@ namespace user
          pelement->set_keyboard_focus();
 
       }
+
+      auto psession = session();
 
       if (::is_null(psession))
       {
@@ -8014,7 +8025,7 @@ namespace user
 
       route(ptopic);
 
-      //auto psession = get_session();
+      //
 
       if (is_top_level_window() && !is_message_only_window())
       {
@@ -8309,7 +8320,7 @@ namespace user
 
    //      }
 
-   //      auto psession = get_session();
+   //      
 
    //      bThisCapture = is_descendant(psession->m_puiCapture, true);
 
@@ -8849,7 +8860,7 @@ namespace user
          if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_f4)
          {
 
-            auto psession = this->get_session();
+            auto psession = session();
 
             if (psession->is_key_pressed(::user::e_key_alt))
             {
@@ -8869,7 +8880,7 @@ namespace user
       if (m_pappearance)
       {
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -8938,7 +8949,7 @@ namespace user
       if (m_pappearance)
       {
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -10368,7 +10379,7 @@ namespace user
       //
       //      }
 
-            //auto psession = get_session();
+            //
 
             //auto puserinteractionHost = psession->get_user_interaction_host();
 
@@ -13977,7 +13988,7 @@ namespace user
       //      if(bKeyMessage)
       //      {
       //
-      //         auto psession = get_session();
+      //         
       //
       //         auto puser = psession->user();
       //
@@ -16268,7 +16279,7 @@ namespace user
    bool interaction::is_active_window()
    {
 
-      //      auto psession = get_session();
+      //      
       //
       //      if (::is_null(psession))
       //      {
@@ -17089,7 +17100,7 @@ namespace user
       //            if (m_ewindowflag & e_window_flag_embedded_graphics_thread)
       //            {
       //
-      //               auto psession = get_session();
+      //               
       //
       //               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
       //               {
@@ -19087,7 +19098,7 @@ namespace user
 
       }
 
-      //auto psession = get_session();
+      //
 
       //if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
       if (m_bUserInteractionHost)
@@ -20774,7 +20785,7 @@ namespace user
 
          ::rectangle_i32 rectangleMonitor;
 
-         auto psession = get_session();
+         auto psession = session();
 
          auto puser = psession->user();
 
@@ -20992,7 +21003,7 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
-      auto psession = get_session();
+      
 
       auto puser = user();
 
@@ -21079,10 +21090,6 @@ namespace user
       debug() << "calculate_broad_and_compact_restore sizeMin : " << sizeMin;
 
       ::rectangle_i32 rectangleWorkspace;
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
 
       auto pwindowing = system()->windowing();
 
@@ -21375,10 +21382,6 @@ namespace user
       }
 
       ::rectangle_i32 rectangleNew;
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
 
       auto pwindowing = system()->windowing();
 
@@ -23456,7 +23459,7 @@ namespace user
    //void interaction::defer_notify_mouse_move(bool & bPointInside, point_i32 & pointLast)
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   if (psession->get_capture() != nullptr)
    //   {
@@ -23572,7 +23575,7 @@ namespace user
    //
    //      }
    //
-   //      auto psession = get_session();
+   //      
    //
    //      if (psession->get_capture() != nullptr)
    //      {
@@ -24493,7 +24496,7 @@ namespace user
 
       }
 
-      //auto psession = get_session();
+      //
 
       //try
       //{
@@ -24639,7 +24642,7 @@ namespace user
 
             information() << "interaction::on_message_parent_left_button_down pitemLButtonDown set : " << strType;
 
-            //auto psession = get_session();
+            //
 
             auto pwindowHost = window();
 
@@ -24739,7 +24742,7 @@ namespace user
       //      //
       //      //            }
       //      //
-      //      //            auto psession = get_session();
+      //      //            
       //      //
       //      //            psession->m_puiLastLButtonDown = this;
       //      //
@@ -24870,7 +24873,7 @@ namespace user
 
       ////   }
 
-      ////   auto psession = get_session();
+      ////   
 
       ////   auto puser = psession->user();
 
@@ -25057,7 +25060,7 @@ namespace user
 
       //   screen_to_client()(pointClient);
 
-      //   auto psession = this->get_session();
+      //   auto psession = session();
 
       //   auto ekeyModifiers = psession->key_modifiers();
 
@@ -25196,7 +25199,7 @@ namespace user
       //   //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
       //   //{
 
-      //   //   auto psession = get_session();
+      //   //   
 
       //   //   auto puser = psession->user();
 
@@ -25314,7 +25317,7 @@ namespace user
 //
 //               //   _screen_to_client(pointClient, pmouse->m_point);
 //
-//               //   auto psession = this->get_session();
+//               //   auto psession = session();
 //
 //               //   auto ekeyModifiers = psession->key_modifiers();
 //
@@ -25345,7 +25348,7 @@ namespace user
 
       //      bool bRet;
 
-      //      auto psession = this->get_session();
+      //      auto psession = session();
 
       //      auto ekeyModifiers = psession->key_modifiers();
 
@@ -25404,7 +25407,7 @@ namespace user
 
             {
 
-               auto psession = get_session();
+               auto psession = session();
 
                psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -25447,7 +25450,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      
 
       on_message_left_button_down_handle_keyboard_focus(pmessage);
 
@@ -25523,7 +25526,7 @@ namespace user
 //         if (::is_item_set(puseritemLButtonDown))
 //         {
 //
-//            //auto psession = get_session();
+//            //
 //
 //            pwindowHost->m_puiLastLButtonDown = this;
 //
@@ -25594,6 +25597,8 @@ namespace user
 
             host_to_client()(pointClient);
 
+            auto psession = session();
+
             auto ekeyModifiers = psession->key_modifiers();
 
             bool bDoubleClick = false;
@@ -25621,7 +25626,7 @@ namespace user
       //
       //            }
       //
-      //            auto psession = get_session();
+      //            
       //
       //            psession->m_puiLastLButtonDown = this;
       //
@@ -25762,7 +25767,7 @@ namespace user
 
       //   }
 
-      //   auto psession = get_session();
+      //   
 
       //   auto puser = psession->user();
 
@@ -26015,7 +26020,7 @@ namespace user
 
          host_to_client()(pointClient);
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -26210,7 +26215,7 @@ namespace user
          //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
          //{
 
-         //   auto psession = get_session();
+         //   
 
          //   auto puser = psession->user();
 
@@ -26294,7 +26299,7 @@ namespace user
 //
 //               //   _screen_to_client(pointClient, pmouse->m_point);
 //
-//               //   auto psession = this->get_session();
+//               //   auto psession = session();
 //
 //               //   auto ekeyModifiers = psession->key_modifiers();
 //
@@ -26325,7 +26330,7 @@ namespace user
 
             bool bRet;
 
-            auto psession = this->get_session();
+            auto psession = session();
 
             auto ekeyModifiers = psession->key_modifiers();
 
@@ -26596,7 +26601,7 @@ namespace user
 
          host_to_client()(pointClient);
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -26650,7 +26655,7 @@ namespace user
 
             host_to_client()(pointClient);
 
-            auto psession = this->get_session();
+            auto psession = session();
 
             auto ekeyModifiers = psession->key_modifiers();
 
@@ -26709,7 +26714,7 @@ namespace user
 
          host_to_client()(pointClient);
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -26822,7 +26827,7 @@ namespace user
 
          bool bRet;
 
-         auto psession = this->get_session();
+         auto psession = session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -28758,7 +28763,7 @@ namespace user
    ::user::enum_state interaction::get_state()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puser = psession->user();
 
@@ -29213,12 +29218,12 @@ namespace user
       else
       {
 
-         ::pointer<::platform::context> pcontext = get_context();
+         ::cast<::channel> pchannel = application();
 
-         if (pcontext)
+         if (pchannel)
          {
 
-            pcontext->route_command(pcommand);
+            pchannel->route_command(pcommand);
 
          }
 
@@ -29964,22 +29969,22 @@ namespace user
 
    //}
 
-
-   ::aura::application * interaction::get_app()
-   {
-
-      return m_papplication && m_papplication->m_papplication
-         ? m_papplication->m_papplication : nullptr;
-
-   }
-
-
-   ::aura::session * interaction::get_session()
-   {
-
-      return m_papplication ? m_papplication->m_psession : nullptr;
-
-   }
+   //
+   // ::aura::application * interaction::get_app()
+   // {
+   //
+   //    return m_papplication && m_papplication->m_papplication
+   //       ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::aura::session * interaction::get_session()
+   // {
+   //
+   //    return m_papplication ? m_papplication->m_psession : nullptr;
+   //
+   // }
 
 
    //::aura::system * interactionacmesystem()
@@ -29990,12 +29995,12 @@ namespace user
    //}
 
 
-   ::aura::context * interaction::context()
-   {
-
-      return m_papplication ? m_papplication->m_pauracontext : nullptr;
-
-   }
+   // ::aura::context * interaction::context()
+   // {
+   //
+   //    return m_papplication ? m_papplication->m_pauracontext : nullptr;
+   //
+   // }
 
 
    double interaction::screen_scaler()

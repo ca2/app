@@ -111,11 +111,7 @@ void payload::_set_element(::subparticle * pelement)
 
    }
 
-#if REFERENCING_DEBUGGING
-
-   m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
-
-#endif
+   m_preferer = __refdbg_add_referer_for(pelement);
 
    ::increment_reference_count(pelement);
 

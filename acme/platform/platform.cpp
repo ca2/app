@@ -93,6 +93,11 @@ namespace platform
 
       m_pdynamiclibrary = ::operating_system::new_dynamic_library();
 
+      //factory_initialize();
+      
+      platform_initialize();
+
+
    }
 
 
@@ -780,9 +785,12 @@ g_bWindowingOutputDebugString = true;
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
-
+      __check_refdbg
 
       factory()->add_factory_item<manual_reset_event>();
+
+      __check_refdbg
+
       factory()->add_factory_item<task>();
 
 
@@ -896,9 +904,9 @@ g_bWindowingOutputDebugString = true;
    {
 
       _synchronous_lock synchronouslock(m_pmutexTask);
-#if   REFERENCING_DEBUGGING
-      ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-#endif
+
+      __refdbg_add_referer_for(ptask);
+
       m_taskmap[itask] = ptask;
 
       m_taskidmap[ptask] = itask;
@@ -1242,6 +1250,7 @@ g_bWindowingOutputDebugString = true;
 
       auto plibrary = __create_new < ::acme::library >();
 
+      __check_refdbg
       //plibrary->initialize_matter(this);
 
       //auto estatus = plibrary->open(strLibrary);

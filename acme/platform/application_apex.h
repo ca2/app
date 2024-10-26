@@ -374,10 +374,10 @@ namespace platform
       //virtual void verb();
 
 
-      virtual bool Ex2OnAppInstall();
+      //virtual bool Ex2OnAppInstall();
 
 
-      virtual bool Ex2OnAppUninstall();
+      //virtual bool Ex2OnAppUninstall();
 
 
       //virtual void init_application();

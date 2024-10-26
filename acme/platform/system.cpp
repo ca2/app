@@ -62,8 +62,13 @@
 //#endif
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
-CLASS_DECL_ACME void trace_category_static_init(::platform::system * psystem);
+CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
+                                           const ::string& strMoreDetails);
+
+
+CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
+
+
 CLASS_DECL_ACME void trace_category_static_term();
 
 
@@ -96,6 +101,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 
 }
 
+
 ::file::path _ca2_config_system_folder_path()
 {
 
@@ -114,8 +120,8 @@ CLASS_DECL_ACME void trace_category_static_term();
 //extern const char * g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle, const ::enum_message_box& emessagebox);
-
+enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
+                                           const ::enum_message_box& emessagebox);
 
 
 #include "acme/_operating_system.h"
@@ -128,14 +134,17 @@ namespace platform
 {
 
 
-   ::platform::system * system::s_p = nullptr;
+   ::platform::system* system::s_p = nullptr;
+
 
    system::system()
    {
 
-      if(!s_p)
+
+
+      if (!s_p)
       {
-s_p = this;
+         s_p = this;
 
       }
       m_psystem = this;
@@ -170,7 +179,7 @@ s_p = this;
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iComputed = (int) (((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+      int iComputed = (int)(((::u8 *)pAll - (::u8 *)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
@@ -190,6 +199,11 @@ s_p = this;
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
       m_bGraphicsAndWindowingSystemInitialized = false;
+
+
+      m_bKeepRunningPostedProcedures = true;
+
+      create_task_message_queue();
 
    }
 
@@ -213,6 +227,9 @@ s_p = this;
       print_line("acme::system::~system() (end)");
 
       //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
+      on_system_before_destroy();
+
+
 
    }
 
@@ -228,7 +245,7 @@ s_p = this;
    enum_trace_level system::get_trace_level()
    {
 
-      if(m_etracelevelMinimum != e_trace_level_undefined)
+      if (m_etracelevelMinimum != e_trace_level_undefined)
       {
 
          return m_etracelevelMinimum;
@@ -401,6 +418,14 @@ s_p = this;
 
 
 
+   ::task_message_queue * system::task_message_queue()
+   {
+
+      return m_ptaskmessagequeue;
+
+   }
+
+
    void system::on_initialize_particle()
    {
 
@@ -467,7 +492,6 @@ s_p = this;
       //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
 
       //m_strAppId = papplication->m_strAppId;
-
 
 
       //information() << "initialize_system trace_category_static_init";
@@ -546,7 +570,8 @@ s_p = this;
    void system::on_pre_run_task()
    {
 
-      /*auto estatus =*/ on_start_system();
+      /*auto estatus =*/
+      on_start_system();
 
       //if (!estatus)
       //{
@@ -612,9 +637,9 @@ s_p = this;
 
          __task_init();
 
-//         m_peventInitialization->SetEvent();
+         //         m_peventInitialization->SetEvent();
 
-         while(task_get_run())
+         while (task_get_run())
          {
 
             run_posted_procedures();
@@ -629,10 +654,7 @@ s_p = this;
       }
 
 
-
       //run();
-
-
 
 
       //if (!estatus)
@@ -657,6 +679,14 @@ s_p = this;
    //   }
 
 
+   ::url::url_context* system::url()
+   {
+
+      return m_purlcontext;
+
+   }
+
+
    class ::mathematics::mathematics* system::mathematics()
    {
 
@@ -674,6 +704,13 @@ s_p = this;
 
    }
 
+
+   ::crypto::crypto* system::crypto()
+   {
+
+      return m_pcrypto;
+
+   }
 
 
    ::platform::system_factory* system::system_factory()
@@ -743,13 +780,6 @@ s_p = this;
       //
       // }
 
-      if (m_papplication)
-      {
-
-         m_papplication->m_pnode = m_pnode;
-
-      }
-
       m_pmutexHttpDownload = node()->create_mutex();
 
 
@@ -779,7 +809,7 @@ s_p = this;
    }
 
 
-   void system::speak(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrLang, enum_gender egender)
+   void system::speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang, enum_gender egender)
    {
 
       nano()->speech()->speak(scopedstr, scopedstrLang, egender);
@@ -814,7 +844,6 @@ s_p = this;
       factory()->add_factory_item<::request>();
 
 
-
 #if REFERENCING_DEBUGGING
 
       ::refdbg_top_track toptrack(this);
@@ -825,10 +854,9 @@ s_p = this;
 
       //::acme::idpool::init(this);
 
-//      /// Create/Replace logger
+      //      /// Create/Replace logger
 
       __construct_new(m_pdatetime);
-
 
 
       m_pnode->m_htaskSystem = m_htask;
@@ -871,11 +899,11 @@ s_p = this;
 
        }*/
 
-       //      m_pdirectorysystem = pacmedirectory;
+      //      m_pdirectorysystem = pacmedirectory;
 
-       //    m_pdirectorysystem->increment_reference_count();
+      //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pfilesystem);
+      //estatus = __raw_construct(m_pfilesystem);
 
       __raw_construct(m_pfilesystem);
 
@@ -934,7 +962,6 @@ s_p = this;
       //throw ::exception(error_failed);
 
 
-
       //if (!estatus)
       //{
 
@@ -960,25 +987,25 @@ s_p = this;
 
       //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
 
-      //}
-      //estatus =
+      ////}
+      ////estatus =
 
-      __construct(m_pfilesystem);
+      //__construct(m_pfilesystem);
 
-      //if(!estatus)
-      //{
+      ////if(!estatus)
+      ////{
 
-      //   ERROR("failed to initialize file-system");
+      ////   ERROR("failed to initialize file-system");
 
-      //   return estatus;
+      ////   return estatus;
 
-      //}
+      ////}
 
-      //estatus =
+      ////estatus =
 
-      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+      ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      __construct(m_pdirectorysystem);
+      //__construct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1081,13 +1108,14 @@ s_p = this;
 
                auto thisEnv = *wenv;
 
-               int iLen = (int) wcslen(thisEnv);
+               int iLen = (int)wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
                   output_debug_string("aaa");
                }
-               else*/ if (!wcsncmp(thisEnv, L"Path=", 5))
+               else*/
+               if (!wcsncmp(thisEnv, L"Path=", 5))
                {
 
                   output_debug_string("aaa");
@@ -1142,9 +1170,6 @@ s_p = this;
 #endif
 
 
-
-
-
    }
 
 
@@ -1191,11 +1216,11 @@ s_p = this;
          {
 
             m_procedureTaskEnded = [pacmewindowing]()
-               {
+            {
 
-                  ::acme::get()->m_pmanualreseteventReadyToExit->set_event();
+               ::acme::get()->m_pmanualreseteventReadyToExit->set_event();
 
-               };
+            };
 
             m_pacmewindowing->windowing_post_quit();
 
@@ -1245,13 +1270,11 @@ s_p = this;
       //m_mapFactory.clear();
 
       //m_mapComponentFactory.clear();
+      //m_ptaskmessagequeue.defer_destroy();
 
-
-
+      destroy_task_message_queue();
 
       destroy();
-
-
 
 
       //m_mapLibrary4.clear();
@@ -1271,6 +1294,134 @@ s_p = this;
 
       return m_strOsUserTheme;
 
+   }
+
+
+   ::particle* system::ui_destroyed_synchronization()
+   {
+      return m_pmutexUiDestroyed;
+   }
+
+
+   text::table* system::texttable()
+   {
+      return m_ptexttable;
+
+   }
+
+
+   ::internet::internet* system::internet()
+   {
+
+      return m_pinternet;
+
+   }
+
+
+   datetime::datetime* system::datetime()
+   {
+
+      return m_pdatetime;
+   }
+
+
+   path_system* system::path_system() const
+   {
+
+
+      return m_ppathsystem;
+   }
+
+
+   geometry::geometry* system::geometry()
+   {
+      return m_pgeometry;
+   }
+
+
+   file_system* system::file_system() const
+   {
+
+      return m_pfilesystem;
+   }
+
+
+   directory_system* system::directory_system() const
+   {
+
+      return m_pdirectorysystem;
+   }
+
+
+   xml::xml* system::xml()
+   {
+
+      return m_pxml;
+   }
+
+
+   base64* system::base64()
+   {
+
+      return m_pbase64;
+   }
+
+
+   prototype::prototype* system::prototype()
+   {
+      return m_pprototype;
+   }
+
+
+   networking::networking* system::networking()
+   {
+
+      return m_pnetworking;
+   }
+
+
+   pointer<::platform::node>& system::node()
+   {
+
+      return m_pnode;
+   }
+
+   time& system::file_listing_cache_time()
+   {
+
+      return m_timeFileListingCache;
+   }
+
+
+   void system::process_machine_event_data(machine_event_data* pdata)
+   {
+
+   }
+
+
+   string_array& system::http_download_array()
+   {
+
+      return m_straHttpDownloading;
+   }
+
+
+   string_array& system::http_exists_array()
+   {
+
+      return m_straHttpExists;
+   }
+
+particle* system::matter_mutex()
+{
+
+      return m_pmutexMatter;
+}
+
+   particle* system::http_download_mutex()
+   {
+
+      return m_pmutexHttpDownload;
    }
 
 
@@ -1370,8 +1521,6 @@ s_p = this;
    //   }
 
 
-
-
    void system::init_task()
    {
 
@@ -1394,6 +1543,7 @@ s_p = this;
       task::term_task();
 
    }
+
 
    string system::__get_text(const ::string& str)
    {
@@ -1494,7 +1644,7 @@ s_p = this;
 
          //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
 
-//pmessagebox->sync();
+         //pmessagebox->sync();
 
          string strMoreDetails;
 
@@ -1609,7 +1759,7 @@ s_p = this;
    }
 
 
-   ::innate_ui::innate_ui * system::innate_ui()
+   ::innate_ui::innate_ui* system::innate_ui()
    {
 
       defer_innate_ui();
@@ -1625,6 +1775,8 @@ s_p = this;
       throw ::interface_only();
 
    }
+
+
    //::nano::nano * system::nano()
    //{
    //
@@ -1726,7 +1878,6 @@ s_p = this;
    }
 
 
-
    //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
    //{
 
@@ -1750,10 +1901,6 @@ s_p = this;
    //   return plibrary;
 
    //}
-
-
-
-
 
 
    //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
@@ -2037,7 +2184,7 @@ s_p = this;
    }
 
 
-   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string& pszStyle)
+   ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::string& pszStyle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2075,7 +2222,7 @@ s_p = this;
    }
 
 
-   ::pointer<::regular_expression::context>system::get_pcre_context()
+   ::pointer<::regular_expression::context> system::get_pcre_context()
    {
 
       return get_regular_expression_context("pcre2");
@@ -2143,7 +2290,7 @@ s_p = this;
 
          }
 
-         stra.add({ pStart, pEnd - pStart - 1 });
+         stra.add({pStart, pEnd - pStart - 1});
 
       }
 
@@ -2153,7 +2300,7 @@ s_p = this;
 
       information() << "acme::system::get_public_internet_domain_extension_list";
 
-      for (auto& str : stra)
+      for (auto& str: stra)
       {
 
          informationf("%s", str.c_str());
@@ -2192,11 +2339,10 @@ s_p = this;
    }
 
 
-
-   ::pointer<::platform::session>system::on_create_session(::collection::index iEdge)
+   ::pointer<::platform::session> system::on_create_session(::collection::index iEdge)
    {
 
-      ::pointer<::platform::session>psession;
+      ::pointer<::platform::session> psession;
 
       //auto estatus =
       __raw_construct(psession);
@@ -2352,12 +2498,12 @@ s_p = this;
 
       }
 
-      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
+      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
+         ")";
 
       psession->post_request(prequest);
 
    }
-
 
 
    void system::process_exit_status(::particle* pparticle, const ::e_status& estatus)
@@ -2398,7 +2544,7 @@ s_p = this;
 
          m_bPostedInitialRequest = true;
 
-         auto prequest = __create_new< ::request>();
+         auto prequest = __create_new<::request>();
 
          auto strCommandLine = this->m_strCommandLine;
 
@@ -2428,16 +2574,16 @@ s_p = this;
 
             ::string_array straFiles;
 
-            for (int iArgument = 1; iArgument < this->m_argc; )
+            for (int iArgument = 1; iArgument < this->m_argc;)
             {
 
                auto iArgumentBefore = iArgument;
 
                if (node()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
+                      this->m_argc,
+                      this->m_args,
+                      iArgument)
+                   && iArgument > iArgumentBefore)
                {
 
                   continue;
@@ -2445,10 +2591,10 @@ s_p = this;
                }
 
                if (application()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
+                      this->m_argc,
+                      this->m_args,
+                      iArgument)
+                   && iArgument > iArgumentBefore)
                {
 
                   continue;
@@ -2522,7 +2668,7 @@ s_p = this;
          // on canonical system on_start_system is called before main loop
          on_start_system();
 
-         //auto estatus = 
+         //auto estatus =
          main();
 
          //if (!estatus)
@@ -2555,7 +2701,6 @@ s_p = this;
       m_pnode->system_main();
 
    }
-
 
 
    //::application* system::get_main_application()
@@ -2626,10 +2771,12 @@ s_p = this;
 
    }
 
+
    void system::end()
    {
 
-      /*auto estatus = */ on_end();
+      /*auto estatus = */
+      on_end();
 
       //if (!estatus)
       //{
@@ -2638,7 +2785,8 @@ s_p = this;
 
       //}
 
-      /*estatus = */ inline_term();
+      /*estatus = */
+      inline_term();
 
       //if (!estatus)
       //{
@@ -2711,8 +2859,6 @@ s_p = this;
    }
 
 
-
-
    ::platform::application* system::get_main_app()
    {
 
@@ -2747,7 +2893,8 @@ s_p = this;
    void system::system_construct(::platform::application* papplication)
    {
 
-      m_papplication = papplication;
+      ::particle::initialize(papplication);
+      //m_papplication = papplication;
 
 
       ///*auto estatus = */ ::main::system_construct(papplication);
@@ -2780,12 +2927,11 @@ s_p = this;
    //}
 
 
-
-//   void system::os_construct()
-//   {
-//
-//
-//   }
+   //   void system::os_construct()
+   //   {
+   //
+   //
+   //   }
 
 
 #ifdef _DEBUG
@@ -2816,6 +2962,7 @@ s_p = this;
       call((::enum_id)iId, iPayload);
 
    }
+
 
    void system::handle(::topic* ptopic, ::context* pcontext)
    {
@@ -2862,7 +3009,7 @@ s_p = this;
       else if (ptopic->m_atom == id_open_hyperlink)
       {
 
-         auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->_extended_topic()->m_payload.cast<::hyperlink>();
 
          if (plink)
          {
@@ -2887,7 +3034,7 @@ s_p = this;
       {
 
          node()->on_app_activated();
-         
+
          if (::is_set(application()))
          {
 
@@ -2901,8 +3048,8 @@ s_p = this;
 
          if (::is_set(application()))
          {
-            
-            auto pszUrl = (const char *) ptopic->payload("wparam").as_iptr();
+
+            auto pszUrl = (const char *)ptopic->payload("wparam").as_iptr();
 
             application()->did_pick_document_at_url(pszUrl);
 
@@ -2935,7 +3082,7 @@ s_p = this;
 
    //   void system::erase_signal_handlers(::particle * pparticle)
    //   {
-   //      
+   //
    //   }
 
 
@@ -2988,10 +3135,10 @@ s_p = this;
    }
 
 
-   ::pointer < ::compress > system::_new_compress(const ::scoped_string& scopedstrImplementation)
+   ::pointer<::compress> system::_new_compress(const ::scoped_string& scopedstrImplementation)
    {
 
-      auto pcompress = create < ::compress >("compress", scopedstrImplementation);
+      auto pcompress = create<::compress>("compress", scopedstrImplementation);
 
       if (!pcompress)
       {
@@ -3005,10 +3152,10 @@ s_p = this;
    }
 
 
-   ::pointer < ::uncompress > system::_new_uncompress(const ::scoped_string& scopedstrImplementation)
+   ::pointer<::uncompress> system::_new_uncompress(const ::scoped_string& scopedstrImplementation)
    {
 
-      auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
+      auto puncompress = create<::uncompress>("compress", scopedstrImplementation);
 
       if (!puncompress)
       {
@@ -3026,7 +3173,7 @@ s_p = this;
    }
 
 
-   ::pointer < ::compress > system::new_zlib_compress()
+   ::pointer<::compress> system::new_zlib_compress()
    {
 
       if (!m_pfactoryitemCompressZlib)
@@ -3034,13 +3181,11 @@ s_p = this;
 
          auto& pfactory = this->factory("compress", "zlib");
 
-         m_pfactoryitemCompressZlib = pfactory->get_factory_item< ::compress>();
+         m_pfactoryitemCompressZlib = pfactory->get_factory_item<::compress>();
 
       }
 
-#if REFERENCING_DEBUGGING
-      ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
-#endif
+      __refdbg_add_referer
 
       auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
 
@@ -3051,8 +3196,7 @@ s_p = this;
    }
 
 
-
-   ::pointer < ::uncompress > system::new_zlib_uncompress()
+   ::pointer<::uncompress> system::new_zlib_uncompress()
    {
 
       if (!m_pfactoryitemUncompressZlib)
@@ -3060,7 +3204,7 @@ s_p = this;
 
          auto& pfactory = this->factory("compress", "zlib");
 
-         m_pfactoryitemUncompressZlib = pfactory->get_factory_item< ::uncompress>();
+         m_pfactoryitemUncompressZlib = pfactory->get_factory_item<::uncompress>();
 
       }
 
@@ -3073,10 +3217,11 @@ s_p = this;
    }
 
 
-   void system::_compress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation)
+   void system::_compress(const ::payload& payloadTarget, const ::payload& payloadSource,
+                          const ::scoped_string& scopedstrImplementation)
    {
 
-      ::pointer<::compress>pcompress = _new_compress(scopedstrImplementation);
+      ::pointer<::compress> pcompress = _new_compress(scopedstrImplementation);
 
       ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
@@ -3087,11 +3232,14 @@ s_p = this;
 
        }*/
 
-      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget,
+                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
+                                                 ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
-      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+      /*estatus = */
+      pcompress->transfer(pfileTarget, pfileSource);
 
       //if (!estatus)
       //{
@@ -3105,10 +3253,12 @@ s_p = this;
    }
 
 
-   void system::_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction)
+   void system::_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource,
+                            const ::scoped_string& scopedstrImplementation,
+                            transfer_progress_function transferprogressfunction)
    {
 
-      ::pointer<::uncompress>puncompress = _new_uncompress(scopedstrImplementation);
+      ::pointer<::uncompress> puncompress = _new_uncompress(scopedstrImplementation);
 
       ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 
@@ -3119,11 +3269,14 @@ s_p = this;
 
       //}
 
-      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget,
+                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
+                                                 ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
+      /*estatus = */
+      puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
       //if (!estatus)
       //{
@@ -3140,7 +3293,7 @@ s_p = this;
    void system::zlib_compress(const ::payload& payloadTarget, const ::payload& payloadSource)
    {
 
-      ::pointer<::compress>pcompress = new_zlib_compress();
+      ::pointer<::compress> pcompress = new_zlib_compress();
 
       ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
@@ -3151,11 +3304,14 @@ s_p = this;
 
        }*/
 
-      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget,
+                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
+                                                 ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
-      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+      /*estatus = */
+      pcompress->transfer(pfileTarget, pfileSource);
 
       //if (!estatus)
       //{
@@ -3169,10 +3325,11 @@ s_p = this;
    }
 
 
-   void system::zlib_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, transfer_progress_function transferprogressfunction)
+   void system::zlib_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource,
+                                transfer_progress_function transferprogressfunction)
    {
 
-      ::pointer<::uncompress>puncompress = new_zlib_uncompress();
+      ::pointer<::uncompress> puncompress = new_zlib_uncompress();
 
       ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 
@@ -3183,11 +3340,14 @@ s_p = this;
 
       //}
 
-      auto pfileTarget = file_system()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      auto pfileTarget = file_system()->get_file(payloadTarget,
+                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
+                                                 ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
+      /*estatus = */
+      puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
       //if (!estatus)
       //{
@@ -3218,8 +3378,6 @@ s_p = this;
    }
 
 
-
-
    //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
    //
@@ -3231,10 +3389,10 @@ s_p = this;
    //
    //}
 
-   ::pointer<::platform::application>system::new_app(const ::scoped_string& scopedstrAppId)
+   ::pointer<::platform::application> system::new_app(const ::scoped_string& scopedstrAppId)
    {
 
-      ::pointer<::platform::application>papp;
+      ::pointer<::platform::application> papp;
 
       string strAppId = scopedstrAppId;
 
@@ -3266,7 +3424,7 @@ s_p = this;
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = __create < ::platform::application >();
+            papp = __create<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -3300,7 +3458,9 @@ s_p = this;
 
                //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
 
-               informationf("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
+               informationf(
+                  "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary +
+                  "\" could not be loaded. " + "ca2");
 
 #endif
 
@@ -3342,12 +3502,15 @@ s_p = this;
             if (pfactory)
             {
 
-               papp = __create < ::platform::application >(pfactory);
+               papp = __create<::platform::application>(pfactory);
 
                if (!papp)
                {
 
-                  informationf("\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  informationf(
+                     "\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " +
+                     strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId
+                     + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -3441,7 +3604,8 @@ s_p = this;
    }
 
 
-   bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
+   bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember,
+                             ::property_set& propertyset)
    {
 
       try
@@ -3519,6 +3683,7 @@ s_p = this;
 
 #endif
 
+
       //::platform::context::destroy();
 
       ::task::destroy();
@@ -3544,7 +3709,8 @@ s_p = this;
    }
 
 
-   ::string system::implementation_name(const ::scoped_string& scopedstrComponent, const ::scoped_string& scopedstrImplementation)
+   ::string system::implementation_name(const ::scoped_string& scopedstrComponent,
+                                        const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrImplementation;
@@ -3552,7 +3718,8 @@ s_p = this;
    }
 
 
-   ::string system::library_name(const ::scoped_string& scopedstrComponent, const ::scoped_string& scopedstrImplementation)
+   ::string system::library_name(const ::scoped_string& scopedstrComponent,
+                                 const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrComponent + "_" + scopedstrImplementation;
@@ -3642,7 +3809,6 @@ s_p = this;
    }
 
 
-
    string system::get_system_platform()
    {
 
@@ -3666,13 +3832,12 @@ s_p = this;
    }
 
 
-   class ::manager_room * system::manager_room()
+   class ::manager_room* system::manager_room()
    {
 
       return nullptr;
 
    }
-
 
 
    ::string system::get_application_server_name()
@@ -3721,7 +3886,7 @@ s_p = this;
    }
 
 
-   void system::background_color(const ::color::color & color)
+   void system::background_color(const ::color::color& color)
    {
 
       if (m_colorBackground == color)
@@ -3834,7 +3999,7 @@ s_p = this;
    }
 
 
-   bool system::defer_component_factory(const ::scoped_string & scopedstrComponent)
+   bool system::defer_component_factory(const ::scoped_string& scopedstrComponent)
    {
 
       auto pnode = node();
@@ -3870,7 +4035,7 @@ s_p = this;
 
       }
 
-      if(_defer_component_factory(scopedstrComponent))
+      if (_defer_component_factory(scopedstrComponent))
       {
 
          return true;
@@ -3883,7 +4048,7 @@ s_p = this;
    }
 
 
-   bool system::_defer_component_factory(const ::scoped_string & scopedstrComponent)
+   bool system::_defer_component_factory(const ::scoped_string& scopedstrComponent)
    {
 
       //if (scopedstrComponent == "nano_dynamic_library")
@@ -3897,91 +4062,91 @@ s_p = this;
 
       //}
 
-//      else if (scopedstrComponent == "nano_user")
-//      {
-//
-//
-//#if defined(WINDOWS_DESKTOP)
-//
-//
-//         auto pfactory = this->factory();
-//
-//         nano_user_win32_factory(pfactory);
-//
-//         return;
-//         
-//#elif defined(UNIVERSAL_WINDOWS)
-//
-//
-//         auto pfactory = this->factory();
-//
-//
-//         nano_user_universal_windows_factory(pfactory);
-//
-//
-//         return;
-//
-//#elif defined(MACOS)
-//         
-//         auto pfactory = this->factory();
-//
-//         nano_user_macos_factory(pfactory);
-//
-//         return;
-//         
-//#elif defined(APPLE_IOS)
-//
-//         return;
-//
-//#endif
-//
-//      }
-//      else if (scopedstrComponent == "nano_user")
-//      {
-//
-//
-//#if defined(WINDOWS_DESKTOP)
-//
-//
-//         auto pfactory = this->factory();
-//
-//         nano_user_win32_factory(pfactory);
-//
-//         return;
-//
-//#elif defined(UNIVERSAL_WINDOWS)
-//
-//
-//         auto pfactory = this->factory();
-//
-//
-//         nano_user_universal_windows_factory(pfactory);
-//
-//
-//         return;
-//
-//#elif defined(MACOS)
-//
-//         auto pfactory = this->factory();
-//
-//         nano_user_macos_factory(pfactory);
-//
-//         return;
-//
-//#elif defined(APPLE_IOS)
-//
-//         return;
-//
-//#endif
-//
-//      }
+      //      else if (scopedstrComponent == "nano_user")
+      //      {
+      //
+      //
+      //#if defined(WINDOWS_DESKTOP)
+      //
+      //
+      //         auto pfactory = this->factory();
+      //
+      //         nano_user_win32_factory(pfactory);
+      //
+      //         return;
+      //
+      //#elif defined(UNIVERSAL_WINDOWS)
+      //
+      //
+      //         auto pfactory = this->factory();
+      //
+      //
+      //         nano_user_universal_windows_factory(pfactory);
+      //
+      //
+      //         return;
+      //
+      //#elif defined(MACOS)
+      //
+      //         auto pfactory = this->factory();
+      //
+      //         nano_user_macos_factory(pfactory);
+      //
+      //         return;
+      //
+      //#elif defined(APPLE_IOS)
+      //
+      //         return;
+      //
+      //#endif
+      //
+      //      }
+      //      else if (scopedstrComponent == "nano_user")
+      //      {
+      //
+      //
+      //#if defined(WINDOWS_DESKTOP)
+      //
+      //
+      //         auto pfactory = this->factory();
+      //
+      //         nano_user_win32_factory(pfactory);
+      //
+      //         return;
+      //
+      //#elif defined(UNIVERSAL_WINDOWS)
+      //
+      //
+      //         auto pfactory = this->factory();
+      //
+      //
+      //         nano_user_universal_windows_factory(pfactory);
+      //
+      //
+      //         return;
+      //
+      //#elif defined(MACOS)
+      //
+      //         auto pfactory = this->factory();
+      //
+      //         nano_user_macos_factory(pfactory);
+      //
+      //         return;
+      //
+      //#elif defined(APPLE_IOS)
+      //
+      //         return;
+      //
+      //#endif
+      //
+      //      }
 
       return false;
 
    }
 
 
-   ::micro::user * system::micro_user()
+   ::micro::user* system::micro_user()
    {
 
       if (!m_pmicrouser)
@@ -3996,7 +4161,7 @@ s_p = this;
    }
 
 
-   ::acme::windowing::windowing * system::acme_windowing()
+   ::acme::windowing::windowing* system::acme_windowing()
    {
 
       if (!m_pacmewindowing)
@@ -4013,7 +4178,7 @@ s_p = this;
    }
 
 
-   ::windowing::windowing * system::windowing()
+   ::windowing::windowing* system::windowing()
    {
 
       return acme_windowing()->windowing_windowing();
@@ -4024,7 +4189,7 @@ s_p = this;
    void system::do_graphics_and_windowing_system_factory()
    {
 
-      if(!m_bGraphicsAndWindowingSystemInitialized)
+      if (!m_bGraphicsAndWindowingSystemInitialized)
       {
 
          m_bGraphicsAndWindowingSystemInitialized = true;
@@ -4049,24 +4214,24 @@ s_p = this;
 
    //}
 
-   
-//   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
-//                                                       const ::e_message_box & emessagebox,
-//                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
-//   {
-//      
-//      
-//      return micro_user()->message_box(
-//strMessage,
-//strTitle,
-//emessagebox,
-//strDetails,
-//picon);
-//   }
+
+   //   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+   //                                                       const ::e_message_box & emessagebox,
+   //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+   //   {
+   //
+   //
+   //      return micro_user()->message_box(
+   //strMessage,
+   //strTitle,
+   //emessagebox,
+   //strDetails,
+   //picon);
+   //   }
 
 
    //::pointer < ::message_box > system::exception_message_box(
-   //    const ::exception & exception, const ::string & strMessage, 
+   //    const ::exception & exception, const ::string & strMessage,
    //   const ::string & strTitle,
    //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
    //{
@@ -4085,7 +4250,7 @@ s_p = this;
    //                                                           const ::e_message_box & emessagebox,
    //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
    //{
-   //   
+   //
    //   return micro_user()->message_console(
    //      strMessage,
    //      strTitle,
@@ -4136,7 +4301,7 @@ s_p = this;
 //CLASS_DECL_ACME::platform::system * system()
 //{
 
-  // return g_psystem;
+// return g_psystem;
 
 //}
 
@@ -4155,8 +4320,6 @@ s_p = this;
 //   return system()->get_latest_deployment_number(strBranch);
 //
 //}
-
-
 
 
 //
@@ -4197,7 +4360,7 @@ s_p = this;
 void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
 {
 
-   auto psystem = (::platform::system*)pSystem;
+   auto psystem = (::platform::system *)pSystem;
 
    psystem->system_id_update(iUpdate, iParam);
 
@@ -4205,14 +4368,18 @@ void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
 
 
 void node_will_finish_launching(void* pSystem);
+
+
 void system_on_open_untitled_file(void* pSystem);
+
+
 void system_on_open_file(void* pSystem, const char* pszFile);
 
 
 void node_will_finish_launching(void* pSystem)
 {
 
-   auto psystem = (::platform::system*)pSystem;
+   auto psystem = (::platform::system *)pSystem;
 
    psystem->node_will_finish_launching();
 
@@ -4222,7 +4389,7 @@ void node_will_finish_launching(void* pSystem)
 void system_on_open_untitled_file(void* pSystem)
 {
 
-   auto psystem = (::platform::system*)pSystem;
+   auto psystem = (::platform::system *)pSystem;
 
    psystem->on_open_untitled_file();
 
@@ -4232,7 +4399,7 @@ void system_on_open_untitled_file(void* pSystem)
 void system_on_open_file(void* pSystem, const char* pszFile)
 {
 
-   auto psystem = (::platform::system*)pSystem;
+   auto psystem = (::platform::system *)pSystem;
 
    psystem->on_open_file(pszFile);
 
@@ -4329,4 +4496,3 @@ CLASS_DECL_ACME task_pointer fork(::particle* pparticle, const ::procedure& proc
    return pparticle->system()->fork(procedure);
 
 }
-

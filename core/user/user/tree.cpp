@@ -1358,7 +1358,7 @@ namespace user
 
       ::user::scroll_base::on_change_context_offset(elayout);
 
-      //      auto psession = get_session();
+      //      
       //
       //      auto puser = psession->user();
       //

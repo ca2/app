@@ -3,7 +3,18 @@ project(_app_integration CXX)
 
 
 
-add_executable(${PROJECT_NAME} application_main.cpp)
+
+list(APPEND application_source application_main.cpp)
+
+
+if(MSVC)
+    list(APPEND application_source ../deployment.rc main.rc)
+endif()
+
+
+add_executable(${PROJECT_NAME} ${application_source})
+
+
 
 
 if(${LINUX} OR ${__BSD__})

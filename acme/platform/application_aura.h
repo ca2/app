@@ -1043,7 +1043,7 @@ namespace platform
       //void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
 
-      virtual ::user::user * user();
+      //virtual ::user::user * user();
       // ::axis::user * axisuser() override;
       // ::base::user * baseuser() override;
       // ::bred::user * breduser() override;

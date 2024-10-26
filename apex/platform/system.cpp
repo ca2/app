@@ -3037,7 +3037,7 @@ pacmedirectory->create("/ca2core");
    bool system::on_open_file(::payload payloadFile, string strExtra)
    {
 
-      //auto psession = get_session();
+      //
 
       //auto applicationa = psession->get_applicationa();
 
@@ -5138,6 +5138,11 @@ namespace apex
 
       ::platform::system::on_application_dark_mode_change();
 
+   }
+
+
+   void system::dump_command_line_and_environment_variables_to_file()
+   {
    }
 
 

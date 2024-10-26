@@ -277,7 +277,7 @@ namespace user
    ::base::user* menu_interaction::baseuser()
    {
 
-      auto psession = get_session();
+      
 
       return ::is_set(psession) ? psession->baseuser() : nullptr;
 

@@ -169,7 +169,9 @@ payload::payload(::subparticle * pelement) :
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = ::allocator::defer_get_referer(::system(), { this, __FUNCTION_FILE_LINE__ });
+   //m_preferer = ::allocator::defer_push_referer(pelement, { pelement, this, __FUNCTION_FILE_LINE__ });
+
+   m_preferer = ::allocator::defer_push_referer(pelement, { this, __FUNCTION_FILE_LINE__ });
 
 #endif
 
@@ -1610,11 +1612,9 @@ class ::payload & payload::operator = (const class ::payload & payload)
          // should dereference (this operator here means a content copy)
          set_type(payload.get_type(), false);
          m_ppropertyset = payload.m_ppropertyset;
-#if REFERENCING_DEBUGGING
-         m_preferer=::allocator::defer_add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
-#endif
-             m_ppropertyset->increment_reference_count();
-              return *this;
+         __refdbg_assign_referer_for(m_ppropertyset);
+         m_ppropertyset->increment_reference_count();
+         return *this;
       case e_type_pi32:
          // should dereference (this operator here means a content copy)
          *this  = *((class ::payload &)payload).m_pi32;
@@ -1676,11 +1676,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
 
-#if REFERENCING_DEBUGGING
-
-         m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
-
-#endif
+         __refdbg_assign_referer_for(m_p);
 
          payload_increment_reference_count();
 

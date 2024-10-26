@@ -6843,7 +6843,7 @@ namespace draw2d_cairo
 ////
 ////#elif defined(ANDROID)
 ////
-////   auto psession = get_session();
+////   
 ////
 ////   itema.add(psession->m_fontenumitema);
 ////

@@ -212,7 +212,7 @@ SizingNone:;
 
       }
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -1152,7 +1152,7 @@ SizingNone:;
 
       //rectangle.bottom()++;
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -1410,7 +1410,7 @@ SizingNone:;
 //
 //      }
 //
-//      auto psession = get_session();
+//      
 //
 //      auto pframewindow = m_pframewindow;
 //
@@ -2350,7 +2350,7 @@ SizingNone:;
 //
 //      rectangle.bottom()++;
 //
-//      auto psession = get_session();
+//      
 //
 //      auto pframewindow = m_pframewindow;
 //

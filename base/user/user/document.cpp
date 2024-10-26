@@ -135,7 +135,7 @@ namespace user
    ::base::user* document::baseuser()
    {
 
-      auto psession = get_session();
+      
 
       return ::is_set(psession) ? psession->baseuser() : nullptr;
 

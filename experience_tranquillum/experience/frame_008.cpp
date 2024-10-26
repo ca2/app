@@ -192,7 +192,7 @@ namespace experience_tranquillum
 
             }
 
-            //auto psession = get_session();
+            //
 
             status < ::color::color > crMoveableBorder;
             status < ::color::color > crMoveableBorderHilight;
@@ -207,7 +207,7 @@ namespace experience_tranquillum
             else
             {
 
-               //auto psession = get_session();
+               //
 
                auto pstyle = pframewindow->get_style(pgraphics);
 

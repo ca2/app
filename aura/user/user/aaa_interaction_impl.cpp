@@ -237,7 +237,7 @@ namespace user
    bool interaction_impl::has_pending_focus()
    {
 
-      auto psession = get_session();
+      
 
       if (::is_null(psession))
       {
@@ -268,7 +268,7 @@ namespace user
    bool interaction_impl::clear_pending_focus()
    {
 
-      auto psession = get_session();
+      
 
       if (::is_null(psession))
       {
@@ -301,7 +301,7 @@ namespace user
    bool interaction_impl::set_pending_focus()
    {
 
-      auto psession = get_session();
+      
 
       if (::is_null(psession))
       {
@@ -683,13 +683,13 @@ namespace user
 //         auto procedure = [&]()
 //         {
 
-            auto psession = get_session();
+            
 
             auto puser = psession->user();
 
             auto pwindowing = system()->windowing();
 
-            //      auto psession = get_session();
+            //      
 
             //      auto puser = psession->user();
 
@@ -1360,7 +1360,7 @@ namespace user
 
          //::rectangle_i32 rectangleUi;
 
-         //auto psession = get_session();
+         //
 
          //auto puser = psession->user();
 
@@ -1491,7 +1491,7 @@ namespace user
 
    //   }
 
-   //   auto psession = get_session();
+   //   
 
    //   if (!m_puserinteraction->m_bMouseHover && bPointInside)
    //   {
@@ -2376,7 +2376,7 @@ namespace user
       //      if(bKeyMessage)
       //      {
       //
-      //         auto psession = get_session();
+      //         
       //
       //         auto puser = psession->user();
       //
@@ -2617,7 +2617,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      
 
       //if (pmouse)
       //{
@@ -2979,7 +2979,7 @@ namespace user
 //
 //      }
 //
-//      auto psession = get_session();
+//      
 //
 //      if (psession)
 //      {
@@ -3762,7 +3762,7 @@ namespace user
    //void interaction_impl::ReleaseCapture()
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   auto pwindowing = psession->windowing();
 
@@ -3811,7 +3811,7 @@ namespace user
 
    //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
-   //   auto psession = get_session();
+   //   
 
    //   psession->m_puiCapture = pinteraction;
 
@@ -4609,7 +4609,7 @@ namespace user
    //::point_i32 interaction_impl::get_cursor_position() const
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   if (!psession)
    //   {
@@ -4662,7 +4662,7 @@ namespace user
    //void interaction_impl::aaa_set_mouse_cursor(enum_cursor ecursor)
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   auto puser = psession->user();
 
@@ -8475,7 +8475,7 @@ namespace user
 //      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
 //      {
 //
-//         auto psession = get_session();
+//         
 //
 //         auto pimplFocus = psession->m_puserinteractionPendingFocus2;
 //

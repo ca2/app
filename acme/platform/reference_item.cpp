@@ -38,8 +38,12 @@ reference_item::~reference_item()
 
    if (::is_set(m_preferer))
    {
+
+      auto preferer = m_preferer;
+
+      m_preferer = nullptr;
     
-      ::allocator::erase_referer(m_preferer);
+      ::allocator::erase_referer(preferer);
 
    }
 

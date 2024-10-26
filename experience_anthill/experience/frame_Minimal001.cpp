@@ -213,7 +213,7 @@ namespace experience_anthill
 
       }
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -235,7 +235,7 @@ namespace experience_anthill
       }
       else
       {
-         //auto psession = get_session();
+         //
 
          auto pstyle = pframewindow->get_style(pgraphics);
 

@@ -631,17 +631,17 @@ public:
    //}
 
 
-   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
+   virtual ::pointer<::task>branch_procedure(const ::procedure & procedure, bool bAutoDelete = true, enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
-   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, const create_task_attributes & createtaskattributes = nullptr);
+   virtual ::pointer<::task>branch_procedure_synchronously(const ::procedure & procedure, bool bAutoDelete = true, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
 
    //using property_object::branch;
 
-   virtual ::pointer<::task> branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
+   //virtual ::pointer<::task> branch(bool bAutoRelease = false, enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
-   virtual ::pointer<::task> branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
+   //virtual ::pointer<::task> branch_synchronously(bool bAutoRelease = false, const create_task_attributes & createtaskattributes = nullptr);
 
    //::task_pointer defer_fork(string strThread = "");
 

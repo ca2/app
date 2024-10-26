@@ -108,7 +108,7 @@ namespace user
       else
       {
 
-         auto psession = get_session();
+         //
 
          auto strWindowText = get_window_text();
 

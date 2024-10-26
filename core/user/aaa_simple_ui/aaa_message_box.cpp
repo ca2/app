@@ -106,7 +106,7 @@ namespace simple_ui
 
       maximum_line_length(m_stra, 100);
 
-      auto psession = get_session();
+      
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 

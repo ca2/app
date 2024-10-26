@@ -38,7 +38,7 @@ public:
 
    //Creatable(task);
 
-
+   bool                                            m_bAutoRelease : 1;
    bool                                            m_bAvoidProcedureFork : 1;
    bool                                            m_bIsRunning : 1;
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
@@ -174,9 +174,9 @@ public:
 
    virtual bool has_message() const;
 
-   ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr) override;
+   virtual ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
-   ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
+   virtual ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
 
    virtual bool task_sleep(const class time & timeWait);
 

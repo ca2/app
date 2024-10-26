@@ -340,7 +340,7 @@ namespace userex
    //void image_list_impact::on_message_mouse_leave(::message::message * pmessage)
    //{
 
-   //auto psession = get_session();
+   //
 
    //auto puser = psession->user();
 

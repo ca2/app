@@ -1375,7 +1375,7 @@ throw_todo();
 
    //   }
 
-   //   auto psession = get_session();
+   //   
 
    //   pdescriptor->m_type = psession->user()->controltype_to_typeinfo(pdescriptor->get_control_type());
 

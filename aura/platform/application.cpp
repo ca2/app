@@ -3456,7 +3456,7 @@ retry_license:
 
 #ifdef ANDROID
 
-      auto psession = get_session();
+      
 
       if (psession->get_user_interaction_host() != nullptr)
       {
@@ -3820,7 +3820,7 @@ retry_license:
 
    //     }
 
-   //     auto psession = get_session();
+   //     
 
    //     auto puser = psession->m_puser;
 

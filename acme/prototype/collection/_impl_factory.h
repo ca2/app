@@ -313,7 +313,7 @@ inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::fact
 
 #if REFERENCING_DEBUGGING
 
-   ::allocator::add_referer(REFERENCING_DEBUGGING_ARGUMENTS);
+   ::allocator::push_referer(REFERENCING_DEBUGGING_ARGUMENTS);
 
 #endif
 

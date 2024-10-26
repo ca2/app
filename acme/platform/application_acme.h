@@ -35,8 +35,8 @@ namespace platform
 
       };
 
-      bool                                            m_bTransferToContainer;
-      bool                                            m_bTransferredToContainer;
+      //bool                                            m_bTransferToContainer;
+      //bool                                            m_bTransferredToContainer;
 #if REFERENCING_DEBUGGING
       ::reference_referer* m_prefererCreation = nullptr;
 #endif

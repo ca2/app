@@ -62,7 +62,7 @@ namespace experience_nanoui
 
       frame::on_initialize_experience_frame();
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -246,7 +246,7 @@ namespace experience_nanoui
 
       }
 
-      //auto psession = get_session();
+      //
 
       status < ::color::color > crMoveableBorder;
       status < ::color::color > crMoveableBorderHilight;
@@ -496,7 +496,7 @@ namespace experience_nanoui
    void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
    {
 
-      auto psession = get_session();
+      
 
       ::rectangle_i32 rectangle(rectangleParam);
       i32 x = rectangle.left();
@@ -738,7 +738,7 @@ namespace experience_nanoui
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 

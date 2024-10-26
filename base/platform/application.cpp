@@ -136,7 +136,7 @@ namespace base
    void application::close(::apex::enum_end eend)
    {
 
-      auto psession = get_session();
+      
 
       if (psession->m_puser)
       {

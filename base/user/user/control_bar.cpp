@@ -255,7 +255,7 @@ namespace user
       __UNREFERENCED_PARAMETER(ptimer);
 //      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
-      auto psession = get_session();
+      
 
       if (psession->is_key_pressed(::user::e_key_left_button))
          return;

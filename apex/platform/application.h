@@ -168,6 +168,12 @@ namespace apex
       ~application() override;
 
 
+#ifdef DEBUG
+
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+
+#endif
       void initialize(::particle* pparticle) override;
 
 
@@ -362,7 +368,7 @@ namespace apex
       virtual bool defer_process_activation_message();
 
 
-      virtual void on_request(::request * prequest) override;
+      //virtual void on_request(::request * prequest) override;
 
 
       virtual bool assert_user_logged_in();

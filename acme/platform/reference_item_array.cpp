@@ -15,7 +15,7 @@ void destruct_particle_reference_item_array(::subparticle * psubparticle);
 
 
 //extern struct lparam_debug g_lparamdbg;
-::i64 g_iReferenceItemArraySerial = 0;
+::interlocked_count g_iReferenceItemArraySerial;
 
 
 //CLASS_DECL_ACME::particle * task_get_top_track();
@@ -65,6 +65,9 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
 reference_item_array::~reference_item_array()
 {
 
+   int i = 1;
+   int b = 2;
+   int c = i + b;
 #if REFERENCING_DEBUGGING
 
    for (auto & preferenceitema : m_item2a)
@@ -72,7 +75,7 @@ reference_item_array::~reference_item_array()
 
       //::platform::allocator::__delete(preferenceitema);
 
-      delete preferenceitema;
+      //delete preferenceitema;
 
    }
 
@@ -207,6 +210,19 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
    auto pitem = new_reference_item(this, ::new_reference_item_serial(), preferer, bIncludeCallStackTrace);
 
+   //if(!preferer->m_psubparticleExisting)
+   //{
+
+   //   preferer->m_psubparticleExisting = m_psubparticle;
+
+   //}
+   //else if(preferer->m_psubparticleExisting != m_psubparticle)
+   //{
+
+   //   throw ::exception(error_wait_failed, "preferer->m_psubparticleExisting != m_psubparticle");
+
+   //}
+
    pitem->m_iStep = m_iStep++;
 
    auto iSerial = m_iSerial;
@@ -277,12 +293,19 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
    //}
 
+   if (::is_null(preferer))
+   {
+
+      return -1;
+
+   }
+
    auto iFind = m_itema.predicate_find_last([preferer](auto & pitem)
       {
 
          //return pitem->m_bOn && pitem->m_referer == referer;
 
-         return pitem->m_preferer == preferer;
+         return pitem->m_preferer->m_iSerial == preferer->m_iSerial;
 
       });
 

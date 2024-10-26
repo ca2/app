@@ -926,7 +926,7 @@ namespace user
       // use the main bitmap for up, the selected bitmap for down
       ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
-      auto psession = get_session();
+      //
 
       if(echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
          pimage = m_pbitmap->m_pimageSel;
@@ -1025,7 +1025,7 @@ namespace user
             // use the main bitmap for up, the selected bitmap for down
             ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
-            auto psession = get_session();
+            //
 
             if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
                pimage = m_pbitmap->m_pimageSel;

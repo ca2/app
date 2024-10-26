@@ -58,19 +58,24 @@ m_errorcodea(errorcodea)
 
       auto ptask = ::get_task();
 
-      auto psystem = ptask->system();
-
-      if(psystem)
+      if(ptask)
       {
 
-         auto pnode = psystem->node();
+         auto psystem = ptask->system();
 
-         if(pnode)
+         if(psystem)
          {
 
-            m_strCallStackTrace = pnode->get_call_stack_trace(call_stack_default_format(), iSkip, caller_address);
+            auto pnode = psystem->node();
 
-            //printf("%s", m_strCallStackTrace.c_str());
+            if(pnode)
+            {
+
+               m_strCallStackTrace = pnode->get_call_stack_trace(call_stack_default_format(), iSkip, caller_address);
+
+               //printf("%s", m_strCallStackTrace.c_str());
+
+            }
 
          }
 

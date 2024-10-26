@@ -1525,7 +1525,7 @@ namespace apex
    //void session::request_topic_file(::payload& varQuery)
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   request_file(psession->m_varTopicFile, varQuery);
 
@@ -1535,7 +1535,7 @@ namespace apex
    //void session::request_topic_file()
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   request_file(psession->m_varTopicFile);
 
@@ -1545,9 +1545,8 @@ namespace apex
    ::pointer<::apex::application>session::get_current_application()
    {
 
-      auto psession = get_session();
 
-      return psession->m_pappCurrent;
+      return this->m_pappCurrent;
 
    }
 
@@ -1637,7 +1636,7 @@ namespace apex
    //void session::check_topic_file_change()
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   if (psession->m_varCurrentImpactFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
    //   {

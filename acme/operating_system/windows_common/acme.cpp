@@ -13,7 +13,7 @@ namespace acme
    void acme::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
    {
 
-      m_pplatform->initialize(argc, argv, envp);
+      //m_pplatform->initialize(argc, argv, envp);
 
    }
 
@@ -21,7 +21,7 @@ namespace acme
    void acme::initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow)
    {
 
-      m_pplatform->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+      //m_pplatform->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 
    }
 

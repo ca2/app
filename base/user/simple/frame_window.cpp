@@ -753,7 +753,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 ::pointer < ::experience::frame > simple_frame_window::frame_experience()
 {
 
-   auto psession = get_session();
+   
 
    auto puser = psession->baseuser();
 
@@ -2566,7 +2566,7 @@ void simple_frame_window::on_after_graphical_update()
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto psession = get_session();
+   
 
    if (get_app() == nullptr
       || get_app()->get_session() == nullptr
@@ -2910,7 +2910,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //rectangleX.offset(rectangleX.top_left());
 
-      auto psession = get_session();
+      
 
       if (psession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
@@ -3604,7 +3604,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          auto pmenu = m_pnotifyicon->menu();
 
-         //auto psession = get_session();
+         //
 
          //auto puser = psession->baseuser();
          
@@ -3969,7 +3969,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto psession = get_session();
+   
 
    if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
@@ -4108,7 +4108,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto pstyle = get_style(pgraphics);
 //
-//   auto psession = get_session();
+//   
 //
 //   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
 //   {
@@ -4510,7 +4510,7 @@ void simple_frame_window::on_select_user_style()
       if (strSchema.has_char() || is_top_level_window())
       {
 
-         auto psession = get_session();
+         
 
          auto puser = psession->baseuser();
 

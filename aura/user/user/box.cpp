@@ -630,9 +630,14 @@ namespace user
       if (m_windowdisplayandlayoutStore.m_edisplay == e_display_undefined)
       {
 
-         auto papp = get_app();
+         ::cast < ::database::client > pdatabaseclient = get_app();
 
-         papp->datastream()->get(strDataKey, m_windowdisplayandlayoutStore);
+         if(pdatabaseclient)
+         {
+
+            pdatabaseclient->datastream()->get(strDataKey, m_windowdisplayandlayoutStore);
+
+         }
 
       }
       

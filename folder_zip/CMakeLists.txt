@@ -56,9 +56,9 @@ set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/folder_zip.lib")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/folder_zip.def")
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus sqlite)
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} )
 elseif (${LINUX} OR ${__BSD__})
 
 

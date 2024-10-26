@@ -2,7 +2,18 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_just_apex_message_box CXX)
 
 
-add_executable(${PROJECT_NAME} application_main.cpp)
+
+list(APPEND application_source application_main.cpp)
+
+
+if(MSVC)
+    list(APPEND application_source ../deployment.rc main.rc)
+endif()
+
+
+add_executable(${PROJECT_NAME} ${application_source})
+
+
 
 
 list(APPEND executable_references
@@ -42,6 +53,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
+    add_dependencies(${PROJECT_NAME} copy_libraries_step)
 
 
 elseif(${LINUX} OR ${__BSD__})

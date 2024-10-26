@@ -491,7 +491,7 @@ void user::destroy()
 //
 //      ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 //
-//      //auto psession = get_session();
+//      //
 //
 //      //auto papp = pparticle->get_app();
 //
@@ -767,7 +767,7 @@ void user::destroy()
 //      if (pchange->m_strDataKey == "ca2.savings")
 //      {
 //
-//         auto psession = get_session();
+//         
 //
 //         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->savings().m_eresourceflagsShouldSave.m_eenum);
 //
@@ -1649,7 +1649,7 @@ void user::destroy()
 //            ::type < ::simple_frame_window >(),
 //            ::type < ::user::color_selector_impact >()));
 //
-//         //auto psession = get_session();
+//         //
 //
 //         //psession->add_document_template(ptemplate);
 //
@@ -1680,7 +1680,7 @@ void user::destroy()
 //            ::type < ::simple_frame_window >(),
 //            ::type < ::userex::font_impact >()));
 //
-//         //auto psession = get_session();
+//         //
 //
 //         //psession->add_document_template(ptemplate);
 //

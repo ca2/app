@@ -96,7 +96,7 @@ namespace user
 
          information() << "interaction::create_host(2)";
 
-         auto psession = get_session();
+         //auto psession = //t_session();
 
          auto pwindowing = windowing();
 
@@ -143,7 +143,7 @@ namespace user
 
          //auto rectangle(this->screen_rectangle());
 
-         /* auto psession = get_session();
+         /* 
 
           if (puserinteractionParent == nullptr && psession->get_user_interaction_host().is_set() && psession->get_user_interaction_host() != this)
           {
@@ -505,7 +505,7 @@ namespace user
       {
 
          
-         if(pkey->m_ekey == ::user::e_key_q && get_session()->is_key_pressed(::user::e_key_command))
+         if(pkey->m_ekey == ::user::e_key_q && session()->is_key_pressed(::user::e_key_command))
          {
             
             post_message(e_message_close);
@@ -1068,10 +1068,6 @@ namespace user
       }
       else
       {
-
-         auto psession = get_session();
-
-         auto puser = psession->m_puser;
 
          auto pwindowing = system()->windowing();
 

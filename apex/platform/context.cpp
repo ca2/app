@@ -905,7 +905,20 @@ namespace apex
 
    }
 
+   void context::save_to_file(const ::payload& payloadFile, const ::particle* pparticle)
+   {
+   }
 
+
+   void context::save_to_file(const ::payload& payloadFile,const ::payload * ppayload,  const ::particle* pparticle)
+   {
+   }
+   void context::load_from_file(::particle* pparticle, const ::payload& payloadFile)
+   {
+   }
+   void context::load_from_file(::particle* pparticle, const ::payload& payloadFile,const ::payload * ppayload)
+   {
+   }
    //   void context::destroy()
    //   {
    //

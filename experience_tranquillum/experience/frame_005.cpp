@@ -66,7 +66,7 @@ namespace experience_tranquillum
 
       m_pbrushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -251,7 +251,7 @@ namespace experience_tranquillum
 
       }
 
-      //auto psession = get_session();
+      //
 
       status < ::color::color > crMoveableBorder;
       status < ::color::color > crMoveableBorderHilight;
@@ -266,7 +266,7 @@ namespace experience_tranquillum
       else
       {
 
-         //auto psession = get_session();
+         //
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -514,7 +514,7 @@ namespace experience_tranquillum
    void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectangleParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
    {
 
-      auto psession = get_session();
+      
 
 
 
@@ -761,7 +761,7 @@ namespace experience_tranquillum
    void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectangleParam)
    {
 
-      ///auto psession = get_session();
+      ///
 
       auto pframewindow = m_pframewindow;
 

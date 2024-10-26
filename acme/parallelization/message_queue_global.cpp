@@ -140,7 +140,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 
    }
 
-   auto pmessagequeue = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, true);
+   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(idthread, true);
 
    if (::is_null(pmessagequeue))
    {
@@ -181,7 +181,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmessagequeue = acme::get()->m_ptaskmessagequeue->current_task_message_queue(true);
+   auto pmessagequeue = ::system()->task_message_queue()->current_task_message_queue(true);
 
    if (pmessagequeue == nullptr)
    {

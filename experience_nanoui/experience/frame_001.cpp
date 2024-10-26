@@ -215,7 +215,7 @@ namespace experience_nanoui
       else
       {
 
-         //auto psession = get_session();
+         //
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -1148,7 +1148,7 @@ namespace experience_nanoui
 
       //rectangle.bottom()++;
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 

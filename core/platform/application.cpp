@@ -123,7 +123,7 @@ namespace core
    void application::initialize_rich_text_kit()
    {
 
-      auto psession = get_session();
+      
 
       auto puser = psession->user()->m_pcoreuser;
 

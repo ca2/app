@@ -193,7 +193,7 @@ namespace platform
       ::windowing::enum_toolkit                       m_etoolkit;
 
 
-      ::platform::application * m_papplication;
+      //::platform::application * m_papplication;
 
 
       ::critical_section m_criticalsectionSystemHeap;

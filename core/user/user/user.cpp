@@ -611,7 +611,7 @@ namespace core
 
    //   ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-   //   //auto psession = get_session();
+   //   //
 
    //   //auto papp = pparticle->get_app();
 
@@ -887,7 +887,7 @@ namespace core
       if (pchange->m_strDataKey == "ca2.savings")
       {
 
-         auto psession = get_session();
+         
 
          CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->savings().m_eresourceflagsShouldSave.m_eenum);
 
@@ -1750,7 +1750,7 @@ namespace core
                   ::type < ::filemanager::impact >()));
             //::type < main_impact >()));
 
-         //auto psession = get_session();
+         //
 
          //psession->add_document_template(m_pimpactsystemFileManager);
 
@@ -1799,7 +1799,7 @@ namespace core
             ::type < ::simple_frame_window >(),
             ::type < ::user::color_selector_impact >()));
 
-         //auto psession = get_session();
+         //
 
          //psession->add_document_template(ptemplate);
 
@@ -1829,7 +1829,7 @@ namespace core
             ::type < ::simple_frame_window >(),
             ::type < ::userex::font_impact >()));
 
-         //auto psession = get_session();
+         //
 
          //psession->add_document_template(ptemplate);
 

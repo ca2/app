@@ -2,7 +2,9 @@
 #include "application.h"
 #include "acme/application.h"
 
+
 //app_just_message_box::application g_appjustmessageboxapplication;
+
 
 void application_main()
 {

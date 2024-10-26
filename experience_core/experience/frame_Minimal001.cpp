@@ -212,7 +212,7 @@ namespace experience_core
 
       }
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -1152,7 +1152,7 @@ namespace experience_core
 
       //rectangle.bottom()++;
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 

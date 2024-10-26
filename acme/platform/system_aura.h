@@ -110,7 +110,7 @@ namespace platform
 
 
 
-      ::aura::session * get_session();
+      //::aura::session * get_session();
       //::aura::node * node();
 
       virtual ::gpu::approach * get_gpu();
@@ -159,7 +159,7 @@ namespace platform
 
       virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
 
-      virtual void verb(); // ambigous inheritance from ::aura::system/::axis::application
+      //virtual void verb(); // ambigous inheritance from ::aura::system/::axis::application
 
 
       //virtual bool is_system() const override;

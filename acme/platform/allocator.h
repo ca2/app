@@ -208,13 +208,17 @@ namespace allocator
       template < typename T, typename ...Args >
       static ::pointer < T > __allocator_base_allocate(::heap::allocator_base * pallocatorbase, Args &&... args)
       {
+
 #if REFERENCING_DEBUGGING
 
-         auto preferer = ::allocator::get_referer();
+         auto preferer = ::allocator::get_top_referer();
+
 #endif
+
          auto p = __allocator_base_new< T >(pallocatorbase, ::std::forward < Args >(args)...);
 
          pointer < T > pointer{ transfer_t{}, p };
+
 #if REFERENCING_DEBUGGING
 
          if (!p->is_referencing_debugging_enabled())
@@ -229,7 +233,9 @@ namespace allocator
             pointer.m_preferer = preferer;
 
          }
+
 #endif
+
          return ::transfer(pointer);
 
       }
@@ -417,9 +423,10 @@ namespace allocator
 
 #if REFERENCING_DEBUGGING
 
+         ::allocator::push_referer(referer);
 
-         ::allocator::add_referer(referer);
 #endif
+
          return (accessor *) this;
 
       }

@@ -5,6 +5,11 @@
 #include "aqua/_.h"
 
 
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME aura
+
+
+
 #if defined(_aura_project)
 #define CLASS_DECL_AURA  CLASS_DECL_EXPORT
 #else
@@ -36,5 +41,8 @@ namespace aura
 
 #include "aura/include/_include.h"
 
+
+
+#include "aura/platform/system.h"
 
 

@@ -983,11 +983,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-#if REFERENCING_DEBUGGING
-
-   ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-
-#endif
+   __refdbg_add_referer_for(pobjectTask);
 
    m_pparticleaChildrenTask->add(pobjectTask);
 
@@ -1095,7 +1091,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   ::pointer < ::task > ptaskTask = ptask;
+   ::cast < ::task > ptaskTask = ptask;
 
    if(ptaskTask)
    {
@@ -1767,7 +1763,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch_procedure(const ::procedure & procedure, enum_parallelization eparallelization, const create_task_attributes & createtaskattributes)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, bool bAutoRelease, enum_parallelization eparallelization, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1785,6 +1781,8 @@ void object::branch_each(const ::procedure_array& routinea)
       throw ::exception(error_failed);
 
    }
+
+   ptask->m_bAutoRelease = bAutoRelease;
 
    ptask->m_procedure = procedure;
    
@@ -1800,7 +1798,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
 
 ::pointer<::task>object::branch_procedure_synchronously(
-   const ::procedure & procedure, const create_task_attributes & createtaskattributes)
+   const ::procedure & procedure, bool bAutoRelease, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1819,6 +1817,8 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
+   ptask->m_bAutoRelease = bAutoRelease;
+
    ptask->m_procedure = procedure;
    
    auto pbase = procedure.m_pbase.m_p;
@@ -1831,25 +1831,25 @@ void object::branch_each(const ::procedure_array& routinea)
 
 }
 
+//
+//::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
+//{
+//
+//   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
+//
+//   return ptask;
+//
+//}
 
-::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
-{
-
-   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
-
-   return ptask;
-
-}
-
-
-::pointer<task>object::branch_synchronously(const create_task_attributes & createthreadattributes)
-{
-
-   auto ptask = branch_procedure_synchronously(this, createthreadattributes);
-
-   return ptask;
-
-}
+//
+//::pointer<task>object::branch_synchronously(const create_task_attributes & createthreadattributes)
+//{
+//
+//   auto ptask = branch_procedure_synchronously(this, createthreadattributes);
+//
+//   return ptask;
+//
+//}
 
 
 ::task_pointer object::run_procedure(bool bSyncronously, const ::procedure & procedure)
@@ -3823,6 +3823,8 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 
       __construct(ptask);
 
+      ptask->m_bAutoRelease = true;
+
       ::pointer < ::object > pobjectHoldThis = this;
 
       ptask->m_procedure = [procedure, &ptask, pobjectHoldThis]()
@@ -3853,7 +3855,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 ::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = this->branch_procedure(procedure, e_parallelization_asynchronous, createthreadattributes);
+   auto ptask = this->branch_procedure(procedure, true, e_parallelization_asynchronous, createthreadattributes);
 
    if (!ptask)
    {

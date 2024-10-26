@@ -231,9 +231,6 @@ CLASS_DECL_ACME void __seed_srand();
 extern thread_local ::task_pointer t_pthread;
 
 
-//void check_all_pending_releases();
-
-
 #if REFERENCING_DEBUGGING
 
 
@@ -250,7 +247,8 @@ namespace acme
    ::acme::acme * acme::s_p = nullptr;
 
 
-   acme::acme()
+   acme::acme() :
+      m_timeStart(now_t{})
    {
 
       if (!s_p)
@@ -260,15 +258,11 @@ namespace acme
 
       }
 
-      m_timeStart.Now();
-
       m_pmanualreseteventReadyToExit = nullptr;
 
       m_pmanualreseteventMainLoopEnd = nullptr;
 
       m_pheapmanagement = nullptr;
-
-//      s_pacme = this;
 
       acme_construct();
 
@@ -276,69 +270,20 @@ namespace acme
 
       initialize_referencing_debugging();
 
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-
 #endif
 
-      //::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-
-      // {
-      //
-      //    //REFDBG_THIS(this);
-      //
-      //    m_pplatform = new ::platform::platform(this);
-      //
-      // }
-#if REFERENCING_DEBUGGING
-
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-#endif
-      //m_pplatform->platform_initialize();
-#if REFERENCING_DEBUGGING
-
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-#endif
-      acme_construct_platform_dependent();
-#if REFERENCING_DEBUGGING
-
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-#endif
-         //m_pmanualreseteventReadyToExit = __allocate ::manual_reset_event();
+      __check_refdbg
 
 #if REFERENCING_DEBUGGING
 
-         g_bDefaultEnableObjectReferenceCountDebug = true;
+      g_bDefaultEnableObjectReferenceCountDebug = true;
 
 #endif
 
    }
 
    
-   void acme::on_before_destroy()
+   void acme::on_system_before_destroy()
    {
 
       if (m_pmanualreseteventReadyToExit)
@@ -352,19 +297,14 @@ namespace acme
 
       }
 
-      m_ptaskmessagequeue.release();
-
       ::task_release();
 
-      acme_destruct_platform_dependent();
+   }
 
-      //m_pplatform->platform_finalize();
 
-      //m_pplatform.release();
+   void acme::on_acme_before_destroy()
+   {
 
-      //delete m_pplatform;
-
-      //m_pplatform = nullptr;
 
 #if REFERENCING_DEBUGGING
 
@@ -389,10 +329,6 @@ namespace acme
 
       }
 
-      //dump_pending_releases();
-
-      //m_preferencingdebugging.release();
-
 #endif
 
    }
@@ -401,66 +337,14 @@ namespace acme
    acme::~acme()
    {
 
-
+      on_acme_before_destroy();
 
       acme_destruct();
-
-      //s_pacme = nullptr;
 
    }
 
 
-   //void acme::acme_initialize()
-   //{
-
-
-   //}
-   //  
-
-   //void acme::acme_finalize()
-   //{
-
-
-   //}
-
-
-//#if defined(WINDOWS)  && defined(UNICODE)
-//
-//
-//   void initialize(int argc, wchar_t* argv[], wchar_t* envp[])
-//   {
-//
-//      m_pplatform->initialize(argc, argv, envp);
-//
-//   }
-//
-//
-//   void initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
-//   {
-//
-//      m_pplatform->initialize(hinstanceThis, hinstancePrev, nCmdShow);
-//
-//   }
-//
-//
-//#else
-//
-//
-//   void initialize(int argc, platform_char** argv, platform_char** envp)
-//   {
-//
-//      m_pplatform->initialize(argc, argv, envp);
-//
-//   }
-//
-//
-//#endif
-
-
-   //acme * acme::g_p = nullptr;
-
-
-   
+   bool g_bAcme;
 
 
 #if OBJECT_TYPE_COUNTER
@@ -468,9 +352,6 @@ namespace acme
    map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
 
 #endif
-
-
-   bool g_bAcme;
 
 
 #if OBJECT_TYPE_COUNTER
@@ -775,16 +656,9 @@ namespace acme
    {
 
       initialize_memory_management();
-#if REFERENCING_DEBUGGING
 
-      {
+      __check_refdbg
 
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-#endif
       //static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
 
       //static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
@@ -1266,36 +1140,36 @@ namespace acme
       }
 #endif
    }
+//
+//
+//   void acme::acme_construct_platform_dependent()
+//   {
+//
+//      initialize_message_queue();
+//
+//#if REFERENCING_DEBUGGING
+//
+//      {
+//
+//         auto p = ::allocator::task_get_top_track();
+//
+//         ASSERT(p == nullptr);
+//
+//      }
+//
+//
+//#endif
+//
+//
+//   }
 
 
-   void acme::acme_construct_platform_dependent()
-   {
+   //void acme::acme_destruct_platform_dependent()
+   //{
 
-      initialize_message_queue();
+   //   finalize_message_queue();
 
-#if REFERENCING_DEBUGGING
-
-      {
-
-         auto p = ::allocator::task_get_top_track();
-
-         ASSERT(p == nullptr);
-
-      }
-
-
-#endif
-
-
-   }
-
-
-   void acme::acme_destruct_platform_dependent()
-   {
-
-      finalize_message_queue();
-
-   }
+   //}
 
 
    void acme::acme_destruct()

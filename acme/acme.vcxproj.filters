@@ -4439,12 +4439,6 @@
     <ClCompile Include="platform\library.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_directory.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_path.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="prototype\prototype\object.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
@@ -4525,9 +4519,6 @@
     </ClCompile>
     <ClCompile Include="platform\c_class.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_file.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -5117,10 +5108,10 @@
     <ClCompile Include="user\user\drag_client.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp">
+    <ClCompile Include="filesystem\filesystem\directory_context.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp">
+    <ClCompile Include="filesystem\filesystem\directory_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_context.cpp">
@@ -5603,8 +5594,83 @@
     <ClCompile Include="operating_system\windows\calculate_edesktop.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="system_impl.cpp">
+    <ClCompile Include="platform\application_acme.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\release_time_for_project.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\string_exchange.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\transport_payload.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\path_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\data\client.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

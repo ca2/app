@@ -925,11 +925,8 @@
     <ClCompile Include="exception\runtime_check.cpp" />
     <ClCompile Include="exception\serialization.cpp" />
     <ClCompile Include="exception\translator.cpp" />
-    <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
-    <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
-    <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\directory_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\directory_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context_interface.cpp" />
@@ -942,6 +939,7 @@
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_system.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
@@ -1966,7 +1964,11 @@
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\allocator.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\application_acme.cpp" />
+    <ClCompile Include="platform\application_apex.cpp" />
+    <ClCompile Include="platform\application_aqua.cpp" />
     <ClCompile Include="platform\application_array.cpp" />
+    <ClCompile Include="platform\application_aura.cpp" />
     <ClCompile Include="platform\application_base.cpp" />
     <ClCompile Include="platform\application_container.cpp" />
     <ClCompile Include="platform\application_exit.cpp" />
@@ -1975,6 +1977,11 @@
     <ClCompile Include="platform\c.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\context_acme.cpp" />
+    <ClCompile Include="platform\context_apex.cpp" />
+    <ClCompile Include="platform\context_aqua.cpp" />
+    <ClCompile Include="platform\context_aura.cpp" />
+    <ClCompile Include="platform\http.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\Debug.cpp" />
@@ -1997,6 +2004,10 @@
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\node.cpp" />
+    <ClCompile Include="platform\node_acme.cpp" />
+    <ClCompile Include="platform\node_apex.cpp" />
+    <ClCompile Include="platform\node_aqua.cpp" />
+    <ClCompile Include="platform\node_aura.cpp" />
     <ClCompile Include="platform\reference_item.cpp" />
     <ClCompile Include="platform\reference_item_array.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
@@ -2007,12 +2018,22 @@
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\reference_referer.cpp" />
     <ClCompile Include="platform\referencing_debugging.cpp" />
+    <ClCompile Include="platform\release_time_for_project.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\session_acme.cpp" />
+    <ClCompile Include="platform\session_apex.cpp" />
+    <ClCompile Include="platform\session_aqua.cpp" />
+    <ClCompile Include="platform\session_aura.cpp" />
     <ClCompile Include="platform\shell.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\platform.cpp" />
+    <ClCompile Include="platform\string_exchange.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\system_acme.cpp" />
+    <ClCompile Include="platform\system_apex.cpp" />
+    <ClCompile Include="platform\system_aqua.cpp" />
+    <ClCompile Include="platform\system_aura.cpp" />
     <ClCompile Include="platform\system_factory.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -2026,6 +2047,7 @@
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\trace_statement.cpp" />
     <ClCompile Include="platform\tracing.cpp" />
+    <ClCompile Include="platform\transport_payload.cpp" />
     <ClCompile Include="platform\url_context.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -2041,6 +2063,7 @@
     <ClCompile Include="prototype\collection\_range.cpp" />
     <ClCompile Include="prototype\collection\__payload_array.cpp" />
     <ClCompile Include="prototype\data\check_property.cpp" />
+    <ClCompile Include="prototype\data\client.cpp" />
     <ClCompile Include="prototype\data\container.cpp" />
     <ClCompile Include="prototype\data\data.cpp" />
     <ClCompile Include="prototype\data\item.cpp" />
@@ -2169,7 +2192,6 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
-    <ClCompile Include="system_impl.cpp" />
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>

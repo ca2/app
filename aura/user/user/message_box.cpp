@@ -296,7 +296,7 @@ namespace user
 //
 //      ::rectangle_i32 rectangleMonitor;
 //
-//      auto psession = get_session();
+//      
 //
 //      auto puser = psession->user();
 //

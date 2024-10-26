@@ -340,7 +340,7 @@ namespace handler
       if (!should_poll(poll_time()))
       {
 
-         branch();
+         fork([this]() {call(); });
 
       }
 

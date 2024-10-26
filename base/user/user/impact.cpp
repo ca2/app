@@ -830,7 +830,7 @@ namespace user
    ::base::user* impact::baseuser()
    {
 
-      auto psession = get_session();
+      
 
       return ::is_set(psession) ? psession->baseuser() : nullptr;
 
@@ -1266,7 +1266,7 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
-         auto psession = get_session();
+         
 
          auto puser = psession->user();
 
@@ -1338,7 +1338,7 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
-         auto psession = get_session();
+         
 
          auto puser = psession->user();
 

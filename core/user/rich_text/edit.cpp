@@ -149,7 +149,7 @@ namespace user
 
          __construct_new(m_plinea);
 
-         auto psession = get_session();
+         
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -212,7 +212,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = get_session();
+            
 
             auto puser = psession->user();
 
@@ -1489,7 +1489,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         auto psession = get_session();
+         
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1635,7 +1635,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         auto psession = get_session();
+         
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1720,7 +1720,7 @@ namespace user
 
          }
 
-         auto psession = get_session();
+         
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 

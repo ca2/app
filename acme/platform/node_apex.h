@@ -39,7 +39,7 @@ namespace platform
       //virtual void on_initialize_particle() override;
 
 
-      virtual void main();
+      //virtual void main();
 
 
       virtual ::string system_options_html();

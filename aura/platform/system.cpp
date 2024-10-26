@@ -1568,7 +1568,7 @@ namespace aura
 
       m_timeHeartBeat.Now();
 
-      ::pointer<::aura::session>psession = get_session();
+      ::pointer<::aura::session>psession = session();
 
       if (has_property("save_processing"))
       {
@@ -1668,7 +1668,7 @@ namespace aura
       //}
 
 
-      //auto psession = get_session();
+      //
 
       //if (psession->m_ptextcontext)
       //{
@@ -3197,7 +3197,7 @@ namespace aura
 
    //   }
 
-   //   auto psession = get_session();
+   //   
 
    //   auto appptra = psession->get_applicationa();
 
@@ -3238,7 +3238,7 @@ namespace aura
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   auto psession = get_session();
+   //   
 
    //   auto applicationa = psession->m_applicationa;
 
@@ -3338,7 +3338,7 @@ namespace aura
    //bool system::on_open_file(::payload payloadFile, string strExtra)
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   auto applicationa = psession->get_applicationa();
 
@@ -3823,7 +3823,7 @@ namespace aura
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         //auto psession = get_session();
+//         //
 //
 //         auto puserinteraction = __user_interaction(pframe);
 //
@@ -6804,7 +6804,7 @@ namespace aura
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   auto psession = get_session();
+   //   
 
    //   auto applicationa = psession->m_applicationa;
 

@@ -276,7 +276,7 @@ namespace user
       if(pMsg->m_atom == e_message_left_button_down)
       {
 
-         auto psession = get_session();
+         
 
          if(psession->is_mouse_button_pressed(::user::e_mouse_left_button))
          {
@@ -1188,7 +1188,7 @@ namespace user
 //         if(m_iState != stateInitial)
 //         {
 //
-//            auto psession = get_session();
+//            
 //
 //            auto puser = psession->user();
 //

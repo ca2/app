@@ -582,7 +582,7 @@ namespace platform
 
       //}
 
-      m_papplication->m_pnode = this;
+      //m_papplication->m_pnode = this;
 
       //return estatus;
 

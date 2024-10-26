@@ -44,8 +44,7 @@ if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura)
-    add_dependencies(${PROJECT_NAME} draw2d_gdiplus)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
 elseif (${LINUX})
@@ -67,7 +66,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _APP_JUST_MESSAGE_BOX_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 add_subdirectory(__implement)

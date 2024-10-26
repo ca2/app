@@ -182,7 +182,7 @@ namespace windowing
 
          pcursor->set_file_path(path);
 
-         //auto psession = get_session();
+         //
 
          //auto puser = psession->user();
 

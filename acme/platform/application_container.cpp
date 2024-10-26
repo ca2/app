@@ -55,33 +55,29 @@ namespace platform
 
       }
 
-#if REFERENCING_DEBUGGING
-
-      ::allocator::add_referer(__refdbg_function_file_line__);
-
-#endif
+      __refdbg_add_referer_for(papplication);
 
       m_applicationa.add(papplication);
 
-      if (papplication->m_bTransferToContainer)
-      {
-
-         if (!papplication->m_bTransferredToContainer)
-         {
-
-#if REFERENCING_DEBUGGING
-
-            ::allocator::add_releaser(papplication->m_prefererCreation);
-
-#endif
-
-            papplication->release();
-
-            papplication->m_bTransferredToContainer = true;
-
-         }
-
-      }
+//      if (papplication->m_bTransferToContainer)
+//      {
+//
+//         if (!papplication->m_bTransferredToContainer)
+//         {
+//
+////#if REFERENCING_DEBUGGING
+////
+////            ::allocator::add_releaser(papplication->m_prefererCreation);
+////
+////#endif
+////
+//            //papplication->release();
+//
+//            papplication->m_bTransferredToContainer = true;
+//
+//         }
+//
+//      }
 
    }
 
@@ -320,7 +316,7 @@ namespace platform
 
       ::e_status estatus = ::success;
 
-      ::pointer<::platform::application> papplication;
+      ::platform::application * papplication = nullptr;
 
       //if (strAppId == "session")
       //{

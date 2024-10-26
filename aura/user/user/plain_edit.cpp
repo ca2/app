@@ -1273,9 +1273,9 @@ namespace user
 
       set_keyboard_focus();
 
-      auto psession = get_session();
+      //
 
-      psession->user()->set_mouse_focus_RButtonDown(this);
+      session()->user()->set_mouse_focus_RButtonDown(this);
 
       pmouse->m_bRet = true;
 
@@ -1480,10 +1480,10 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      auto psession = get_session();
-
       if (pkey->m_ekey == ::user::e_key_return)
       {
+
+      auto psession = session();
 
          if (psession->is_key_pressed(::user::e_key_control)
             && psession->is_key_pressed(::user::e_key_alt))
@@ -1541,7 +1541,7 @@ namespace user
 
    //   }
 
-   //   auto psession = get_session();
+   //   
 
    //   bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
@@ -3006,7 +3006,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         auto psession = get_session();
+         
 
          string strTextPrevious;
 
@@ -3016,6 +3016,8 @@ namespace user
 
          if (strText.contains("\n"))
          {
+
+            auto psession = session();
 
             if (psession->m_bProgrammerMode)
             {
@@ -3034,6 +3036,8 @@ namespace user
 
          if (strText.contains("\r"))
          {
+
+            auto psession = session();
 
             if (psession->m_bProgrammerMode)
             {
@@ -6473,6 +6477,8 @@ namespace user
 
       ::collection::index iLineUpdate = -1;
 
+      auto psession = session();
+
       {
 
          information() << "plain_edit::_001OnMessageKey (1)";
@@ -6481,7 +6487,7 @@ namespace user
 
          string strChar;
 
-         auto psession = get_session();
+         
 
          information() << "on_message_key_down (1)";
 
@@ -6511,7 +6517,7 @@ namespace user
          if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            auto psession = get_session();
+            auto psession = session();
 
             if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
@@ -6550,7 +6556,7 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_tab)
          {
 
-            auto psession = get_session();
+
 
             if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
@@ -6622,7 +6628,7 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_c)
          {
 
-            auto psession = get_session();
+
 
             if (psession->is_key_pressed(::user::e_key_control))
             {

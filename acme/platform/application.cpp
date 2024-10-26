@@ -52,8 +52,8 @@ namespace platform
    application::application()
    {
 
-      m_bTransferToContainer = true;
-      m_bTransferredToContainer = false;
+      //m_bTransferToContainer = true;
+      //m_bTransferredToContainer = false;
 
       m_pfilesystemoptions = __allocate::filesystem::file_system_options();
 
@@ -77,6 +77,7 @@ namespace platform
       // m_pbaseapplication = nullptr;
       // m_pbredapplication = nullptr;
       // m_pcoreapplication = nullptr;
+      system()->system_construct(this);
 
    }
 
@@ -135,7 +136,12 @@ namespace platform
 
       ::platform::context::on_set_platform();
 
+      __check_refdbg
+
       factory()->add_factory_item < ::platform::system >();
+
+      __check_refdbg
+
       factory()->add_factory_item < ::platform::session >();
 
    }
@@ -350,7 +356,11 @@ namespace platform
    ::i32 application::application_main()
    {
 
+      __check_refdbg
+
       initialize_application();
+
+      __check_refdbg
 
       //output_debug_string("acme::application implement_application\n");
 
@@ -385,27 +395,25 @@ namespace platform
 
       //::pointer<::platform::system> psystem = pfactoryitem->create_particle();
 
+      // ::set_task(m_psystem);
 
-      // here system starts
-
-#if 0
-      ::set_task(m_psystem);
-
-      m_psystem->initialize_system();
+      system()->initialize_layer();
 
       //information() << "acme implement_application system_construct";
 
-      m_psystem->system_construct(this);
-
       //information() << "acme implement_application create_os_node";
 
-      m_psystem->create_os_node();
+      //m_psystem->create_os_node();
 
-      auto pnode = m_psystem->node();
+      //auto pnode = m_psystem->node();
 
-      pnode->node_main();
+      system()->create_os_node();
 
-#endif
+      // system.branch_synchronously();
+
+      // here system starts
+
+      node()->node_main();
 
       //pnode->start_application(pnode, psystem);
 
@@ -1027,6 +1035,26 @@ namespace platform
 
    }
 
+
+#ifdef DEBUG
+
+
+   ::i64 application::increment_reference_count()
+   {
+
+      return ::platform::context::increment_reference_count();
+
+   }
+   
+   
+   ::i64 application::decrement_reference_count()
+   {
+
+      return ::platform::context::decrement_reference_count();
+
+   }
+
+#endif
 
    ::release_time_for_project application::release_time()
    {

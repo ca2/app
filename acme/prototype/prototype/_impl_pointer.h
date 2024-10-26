@@ -168,22 +168,16 @@ inline pointer < T > ::pointer(const pointer & t)
 
       ::reference_referer * prefererNew = nullptr;
 
-      auto prefererOnStack = ::allocator::get_referer();
-
-      if(prefererOnStack)
+      if(pNew->is_referencing_debugging_enabled())
       {
 
-         ::allocator::_set_referer(nullptr);
+         //::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
+         ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
       }
 
-      if (pNew->is_referencing_debugging_enabled())
-      {
-
-         prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
-
-      }
 #endif
+
       pNew->increment_reference_count();
 
       m_psubparticle = pNew;
@@ -191,13 +185,6 @@ inline pointer < T > ::pointer(const pointer & t)
       m_p = t.m_p;
 
 #if REFERENCING_DEBUGGING
-
-      if(prefererOnStack != nullptr)
-      {
-
-         ::allocator::set_referer(prefererOnStack);
-
-      }
 
       m_preferer = prefererNew;
 
@@ -410,7 +397,17 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
 
       auto pNew = dynamic_cast < T * >((non_const < T2 > *) p);
 
-      if (m_p != pNew)
+      if (m_p == pNew)
+      {
+
+#if REFERENCING_DEBUGGING
+
+         ::allocator::defer_erase_referer(pNew);
+
+#endif
+
+      }
+      else
       {
 
          ::subparticle * pOld = nullptr;
@@ -443,7 +440,15 @@ inline pointer < T > & pointer < T > ::reset (T2 * p)
                if (pNew->is_referencing_debugging_enabled())
                {
 
-                  prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+                  //prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
+
+                  prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+               }
+               else
+               {
+
+                  ::allocator::defer_erase_referer(pNew);
 
                }
 
@@ -562,11 +567,11 @@ inline pointer < T > & pointer < T > ::transfer(T2 * p)
                   if(pNew->m_prefererTransfer)
                   {
 
-                     ::allocator::add_referer(pNew->m_prefererTransfer);
+                     ::allocator::_push_referer(pNew->m_prefererTransfer);
 
                   }
 
-                  prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+                  prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
 
                }
 
@@ -682,7 +687,9 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
             if (pNew->is_referencing_debugging_enabled())
             {
 
-               prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+               //prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
+
+               prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
             }
 
@@ -1668,7 +1675,8 @@ inline pointer < T >& pointer < T > ::operator = (const pointer < T2 > & t)
          if (pNew->is_referencing_debugging_enabled())
          {
 
-            prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+            //prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
+            prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
 

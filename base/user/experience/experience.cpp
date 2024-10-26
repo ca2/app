@@ -63,7 +63,7 @@ namespace experience
    ::base::user * experience::baseuser()
    {
 
-      auto psession = get_session();
+      
       
       return ::is_set(psession) ? psession->baseuser() : nullptr; 
    

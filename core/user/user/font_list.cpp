@@ -89,7 +89,7 @@ namespace user
    void font_list::set_font_list_type(::write_text::enum_font_list efontlist)
    {
 
-      auto psession = get_session();
+      
 
       if (efontlist == ::write_text::e_font_list_single_column)
       {
@@ -173,7 +173,7 @@ namespace user
 
       auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-      auto psession = get_session();
+      
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 

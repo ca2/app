@@ -139,7 +139,7 @@ namespace base
    //::base::user* user::user()
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   return ::is_set(psession) ? psession->user() : nullptr;
 
@@ -419,7 +419,7 @@ namespace base
 
       //auto pappBase = get_app();
 
-      auto psession = get_session();
+      
 
       for (auto & pappApex : psession->m_applicationa)
       {
@@ -1289,7 +1289,7 @@ namespace base
    ::type_atom user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      auto psession = get_session();
+      
 
       return psession->user()->controltype_to_typeinfo(econtroltype);
 

@@ -17,29 +17,38 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
       
    if(pOld != p.m_p)
    {
+
 #if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
        
-      auto prefererNew = ::allocator::defer_add_referer({this, __FUNCTION_FILE_LINE__});
+      auto prefererNew = ::allocator::defer_push_referer(p.m_p, {p.m_p, this, __FUNCTION_FILE_LINE__});
+
 #endif
+
       p.m_p->increment_reference_count();
          
       m_p = p.m_p;
          
       if (__pointer_is_set(pOld))
       {
+
 #if REFERENCING_DEBUGGING
 
          ::allocator::add_releaser(prefererOld);
+
 #endif
+
          pOld->release();
 
       }
+
 #if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
+
 #endif
+
    }
    
    return *this;
@@ -107,29 +116,38 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE2 > & p)
       
    if(pOld != pNew)
    {
+
 #if REFERENCING_DEBUGGING
 
       auto prefererOld = m_preferer;
        
-      auto prefererNew = ::allocator::defer_add_referer({this, __FUNCTION_FILE_LINE__});
+      auto prefererNew = ::allocator::defer_push_referer(p.m_p, {p.m_p, this, __FUNCTION_FILE_LINE__});
+
 #endif
+
       pNew->increment_reference_count();
          
       m_p = pNew;
          
       if (__pointer_is_set(pOld))
       {
+
 #if REFERENCING_DEBUGGING
 
          ::allocator::add_releaser(prefererOld);
+
 #endif
+
          pOld->release();
 
       }
+
 #if REFERENCING_DEBUGGING
 
       m_preferer = prefererNew;
+
 #endif
+
    }
    
    return *this;

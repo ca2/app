@@ -262,7 +262,7 @@ namespace user
       if(m_pmenuitem != nullptr)
       {
 
-         auto psession = get_session();
+         
 
          auto puser = psession->baseuser();
 
@@ -291,7 +291,7 @@ namespace user
          ::image::image_list::info ii;
          ::image::image_list_pointer  pimagelist;
 
-         auto psession = get_session();
+         
 
          auto puser = psession->baseuser();
 
@@ -335,7 +335,7 @@ namespace user
 
                pgraphics->fill_rectangle(rectangleImageBorder, rgb(127, 127, 127));
 
-               //auto psession = get_session();
+               //
 
                auto pstyle = get_style(pgraphics);
 

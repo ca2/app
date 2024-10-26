@@ -663,3 +663,51 @@ namespace windows
 
 
 
+
+
+
+bool is_directory_accessible(const ::file::path & path)
+{
+
+   // 0 check for existence only
+   return ::_access(path, 0) == 0;
+
+}
+
+
+
+
+::file::e_type operating_system_executable_type(const ::file::path & path)
+{
+
+   struct stat buff;
+
+   if (stat(path.c_str(), &buff))
+   {
+
+      return ::file::e_type_doesnt_exist;
+
+   }
+
+   // check existence only at windows
+   if(access(path.c_str(), 0))
+   {
+
+      return ::file::e_type_non_executable;
+
+   }
+
+   return buff.st_mode &_S_IFREG ? ::file::e_type_executable : ::file::e_type_folder2;
+
+
+}
+
+
+void operating_system_determine_executable(::file::path & path)
+{
+
+   path.m_etype = path.m_etype & (::file::e_type_executable | ::file::e_type_non_executable);
+
+   path.m_etype |= operating_system_executable_type(path);
+
+}

@@ -774,7 +774,7 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
       {
 
-         auto psession = get_session();
+         
 
          if (pdrawitem->m_pmesh->m_plist->m_bMorePlain)
          {
@@ -3637,7 +3637,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto psession = get_session();
+      
 
       m_bLButtonDown = true;
 
@@ -4198,7 +4198,7 @@ namespace user
 
       pmouse->previous();
 
-      auto psession = get_session();
+      
 
       auto point = pmouse->m_point;
 

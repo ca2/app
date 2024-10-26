@@ -43,6 +43,7 @@ namespace platform
       //::bred::system* m_pbredsystem;
       //::core::system* m_pcoresystem;
 
+      ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
 
       ::platform::session_map                         m_sessionmap;
       ::pointer < ::platform::session >               m_psession;
@@ -192,6 +193,7 @@ namespace platform
 
       //void on_set_platform() override;
 
+      virtual ::task_message_queue * task_message_queue();
 
       //void on_initialize_particle() override;
 

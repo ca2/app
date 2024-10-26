@@ -2022,7 +2022,7 @@ namespace user
 
          bool bOk;
 
-         auto psession = get_session();
+         
 
          if (psession->is_key_pressed(::user::e_key_shift))
          {
@@ -2292,7 +2292,7 @@ namespace user
 
       //   client_to_screen(rScreen);
 
-      //   auto psession = get_session();
+      //   
 
       //   if (rScreen.contains(psession->m_pointCursor))
       //   {

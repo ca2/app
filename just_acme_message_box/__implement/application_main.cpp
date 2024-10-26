@@ -7,9 +7,11 @@
 void application_main()
 {
 
-   auto papplication = ___new app_just_acme_message_box::application();
+   __check_refdbg
 
-   papplication->application_main();
+   app_just_acme_message_box::application application;
+
+   application.application_main();
 
 }
 

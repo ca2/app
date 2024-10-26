@@ -1536,7 +1536,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    //}
 
-   //auto psession = get_session();
+   //
 
    //if (has_mouse_capture())
    //{

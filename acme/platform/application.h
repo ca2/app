@@ -125,6 +125,12 @@ namespace platform
       application();
       ~application() override;
       
+#ifdef DEBUG
+
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+
+#endif
 
       virtual ::release_time_for_project release_time();
 

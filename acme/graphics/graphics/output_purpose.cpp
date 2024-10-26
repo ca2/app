@@ -79,7 +79,9 @@ namespace graphics
       {
 
 #if REFERENCING_DEBUGGING
-         m_preferer = __refdbg_add_referer
+
+         m_preferer = __refdbg_add_referer(pparticle);
+
 #endif
 
          pparticle->increment_reference_count();

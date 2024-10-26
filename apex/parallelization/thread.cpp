@@ -220,36 +220,6 @@ void thread::thread_common_construct()
 
    //}
 
-   auto papplication = m_papplication;
-
-   if (papplication)
-   {
-
-      ::cast<::thread> pthreadApplication = papplication;
-
-      if (pthreadApplication)
-      {
-
-         m_bZipIsDir2 = pthreadApplication->m_bZipIsDir2;
-
-      }
-
-   }
-
-   auto ptask = ::_get_task();
-
-   if (::is_set(ptask))
-   {
-
-      m_bAvoidProcedureFork = ptask->m_bAvoidProcedureFork;
-
-   }
-   else
-   {
-
-      m_bAvoidProcedureFork = false;
-
-   }
 
 }
 
@@ -1845,6 +1815,38 @@ void thread::initialize(::particle* pparticle)
 
    ::channel::initialize(pparticle);
 
+
+   auto papplication = m_papplication;
+
+   if (papplication)
+   {
+
+      ::cast<::thread> pthreadApplication = papplication;
+
+      if (pthreadApplication)
+      {
+
+         m_bZipIsDir2 = pthreadApplication->m_bZipIsDir2;
+
+      }
+
+   }
+
+   auto ptask = ::_get_task();
+
+   if (::is_set(ptask))
+   {
+
+      m_bAvoidProcedureFork = ptask->m_bAvoidProcedureFork;
+
+   }
+   else
+   {
+
+      m_bAvoidProcedureFork = false;
+
+   }
+
    //memory_counter_decrement(pparticle);
 
 
@@ -1905,6 +1907,7 @@ void thread::main()
       try
       {
 
+         __check_refdbg
          //if (::succeeded(estatusOs))
 
          __task_init();
@@ -2826,9 +2829,9 @@ void thread::task_osinit()
 #endif
 
    m_estatus = ::success;
-
+   __check_refdbg
    __set_thread_on();
-
+   __check_refdbg
    //{
 
    //   auto pthreadParent = ::parallelization::calc_parent(this);
@@ -2869,14 +2872,14 @@ void thread::task_osinit()
 
    {
 
-
+      __check_refdbg
       if (::_get_task() != this)
       {
-
+         __check_refdbg
          ::set_task(this);
-
+         __check_refdbg
       }
-
+      __check_refdbg
       processor_cache_oriented_set_thread_memory_pool(0);
       // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -2886,9 +2889,11 @@ void thread::task_osinit()
 
    //try
    //{
+   __check_refdbg
 
    __os_initialize();
 
+   __check_refdbg
    //}
    //catch (const ::exception & e)
    //{
@@ -2931,9 +2936,9 @@ void thread::__set_thread_on()
    //::parallelization::task_register(m_itask, this);
 
    //task_register();
-
+   __check_refdbg
    register_task();
-
+   __check_refdbg
 
    // apex commented
    //if (g_axisoninitthread)

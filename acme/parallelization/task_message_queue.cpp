@@ -98,24 +98,38 @@ void task_message_queue::clear_message_queue(itask_t itask)
 }
 
 
-namespace acme
+namespace platform
 {
 
 
-   void acme::initialize_message_queue()
+   void system::create_task_message_queue()
    {
 
       //g_pmutexMq = ___new mutex();
 
-      m_ptaskmessagequeue = __allocate ::task_message_queue();
+      if(m_ptaskmessagequeue)
+      {
+
+         return;
+
+      }
+
+      __construct_new(m_ptaskmessagequeue);
 
    }
 
 
-   void acme::finalize_message_queue()
+   void system::destroy_task_message_queue()
    {
 
-      m_ptaskmessagequeue.release();
+      if (!m_ptaskmessagequeue)
+      {
+
+         return;
+
+      }
+
+      m_ptaskmessagequeue.defer_destroy();
 
    }
 

@@ -155,7 +155,7 @@ namespace user
 
          //}
 
-         auto psession = get_session();
+         
 
          //prichtextdata->set_synchronization(synchronization());
 
@@ -264,7 +264,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = get_session();
+            
 
             auto puser = psession->user();
 
@@ -352,7 +352,7 @@ namespace user
 
          }
 
-         auto psession = get_session();
+         
 
          auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
@@ -455,7 +455,7 @@ namespace user
 
          auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-         auto psession = get_session();
+         
 
          auto prichtextdata = get_rich_text_data();
 
@@ -1230,7 +1230,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         auto psession = get_session();
+         
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1388,7 +1388,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         auto psession = get_session();
+         
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1460,7 +1460,7 @@ namespace user
 
          ::message::key & key = *pkey;
 
-         auto psession = get_session();
+         
 
          if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_left_shift || key.m_ekey == ::user::e_key_right_shift
                || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_left_control || key.m_ekey == ::user::e_key_right_control
@@ -1570,7 +1570,7 @@ namespace user
 
          string strChar;
 
-         auto psession = get_session();
+         
 
          if (pkey->m_ekey == ::user::e_key_s)
          {

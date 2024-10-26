@@ -42,7 +42,7 @@ namespace experience_nanoui
       fork([this]()
          {
 
-            auto psession = get_session();
+            
 
             auto puser = psession->user();
 

@@ -212,7 +212,7 @@ namespace experience_core
 
       }
 
-      //auto psession = get_session();
+      //
 
       status < ::color::color > crMoveableBorder;
       status < ::color::color > crMoveableBorderHilight;
@@ -602,7 +602,7 @@ namespace experience_core
    void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
    {
 
-      //auto psession = get_session();
+      //
 
       ::rectangle_i32 rectangle(rectangleParam);
 

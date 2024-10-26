@@ -212,7 +212,7 @@ namespace experience_core
       else
       {
 
-         //auto psession = get_session();
+         //
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -1145,7 +1145,7 @@ namespace experience_core
 
       //rectangle.bottom()++;
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 

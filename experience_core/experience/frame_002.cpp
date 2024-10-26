@@ -202,7 +202,7 @@ namespace experience_core
    void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
    {
 
-      //auto psession = get_session();
+      //
 
       auto rectangleX(rectangleXParam);
 
@@ -958,7 +958,7 @@ namespace experience_core
    void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
    {
 
-      //auto psession = get_session();
+      //
 
       ::rectangle_i32 rectangle(rectangleParam);
 

@@ -297,7 +297,7 @@ namespace experience_tranquillum
    void frame::set_frame_color_system_default_001()
    {
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 
@@ -534,7 +534,7 @@ namespace experience_tranquillum
 
       }
 
-      //auto psession = get_session();
+      //
 
       //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -730,7 +730,7 @@ namespace experience_tranquillum
          else
          {
 
-            //auto psession = get_session();
+            //
 
             auto pstyle = pframewindow->get_style(pgraphics);
 

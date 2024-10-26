@@ -703,7 +703,7 @@ namespace experience_core
 
       }
 
-      //auto psession = get_session();
+      //
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 

@@ -151,7 +151,9 @@ public:
          if (pNew->is_referencing_debugging_enabled())
          {
 
-            prefererNew = ::allocator::defer_get_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+            //prefererNew = ::allocator::push_referer({pNew, this, __FUNCTION_FILE_LINE__ });
+
+            prefererNew = ::allocator::push_referer({ this, __FUNCTION_FILE_LINE__ });
 
          }
 #endif
@@ -1362,7 +1364,7 @@ public:
 
       //m_preferer = __raw_new ::reference_referer(referer);
 
-      m_preferer = ::allocator::add_referer(referer);
+      m_preferer = ::allocator::push_referer(referer);
 
       if (pprefererGet)
       {
@@ -1485,7 +1487,7 @@ public:
    
 #if REFERENCING_DEBUGGING
 
-      m_preferer = ::allocator::add_referer(referer);
+      m_preferer = ::allocator::push_referer(referer);
 
       //if (pprefererGet)
       //{

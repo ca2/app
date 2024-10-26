@@ -48,7 +48,7 @@
 ////
 ////      defer_set_icon();
 //
-//      auto psession = get_session();
+//      
 //
 //      auto puser = psession->user();
 //

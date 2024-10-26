@@ -121,11 +121,11 @@ void particle::defer_create_synchronization()
    if (!m_pparticleSynchronization)
    {
 
-#if REFERENCING_DEBUGGING
-
-      refdbg_top_track toptrack(this);
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//      refdbg_top_track toptrack(this);
+//
+//#endif
 
       set_synchronization(__create< ::mutex >(nullptr));
 
@@ -2330,7 +2330,7 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 ::particle * particle::__call__add_referer2(const ::reference_referer & referer) const
 {
 
-   ::allocator::defer_add_referer(referer);
+   ::allocator::push_referer(referer);
 
    return (::particle *) this;
 
@@ -2703,3 +2703,10 @@ string particle::as_string() const
 
 
 
+
+::platform::system * particle::system() const
+{
+
+   return ::system();
+
+}

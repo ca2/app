@@ -12,7 +12,7 @@
 //CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
 //{
 //
-//   //auto psession = get_session();
+//   //
 //
 //   //auto puser = psession->m_puser;
 //
@@ -56,7 +56,7 @@
 CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwindow)
 {
 
-   //auto psession = get_session();
+   //
 
    //auto puser = psession->m_puser;
 
@@ -80,7 +80,9 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    }
 
-   itask_t idthread = puserframe->get_app()->get_itask();
+   ::cast < ::thread > pthread = puserframe->application();
+
+   itask_t idthread = pthread->get_itask();
 
    message_queue * pmq = ::system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 

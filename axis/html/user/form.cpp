@@ -646,7 +646,7 @@ bool html_form::open_html(const ::string & str)
 void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
 {
 
-   auto psession = get_session();
+   
 
    ::pointer < ::user::interaction > puserinteraction = get_keyboard_focus();
 
@@ -668,7 +668,7 @@ void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::ac
       if(pfocus != nullptr)
       {
 
-         auto psession = get_session();
+         
 
          pfocus->set_keyboard_focus();
 

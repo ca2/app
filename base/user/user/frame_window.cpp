@@ -518,7 +518,7 @@ namespace user
       if (pkey.is_set())
       {
 
-         auto psession = get_session();
+         
 
          if (psession->is_key_pressed(::user::e_key_alt) && psession->is_key_pressed(::user::e_key_control))
          {
@@ -683,7 +683,7 @@ namespace user
 
       // release capture if this interaction_impl has it
       if (psession->GetCapture() == get_handle())
-         auto psession = get_session();
+         
 
          auto puser = psession->user();
 
@@ -2663,7 +2663,7 @@ namespace user
 //
 //      ::u16 keyState = 0;
 //
-//      auto psession = get_session();
+//      
 //
 //      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
 //      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
@@ -2835,7 +2835,7 @@ namespace user
    ::base::user* frame_window::baseuser()
    {
 
-      auto psession = get_session();
+      
 
       return ::is_set(psession) ? psession->baseuser() : nullptr;
 
@@ -2904,7 +2904,7 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto psession = get_session();
+      
 
       if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -3002,7 +3002,7 @@ namespace user
 //
 //      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 //
-//      auto psession = get_session();
+//      
 //
 //      if (bBlurBackground)
 //      {

@@ -2274,7 +2274,7 @@ namespace aura
    //void session::request_topic_file(::payload& varQuery)
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   request_file(psession->m_varTopicFile, varQuery);
 
@@ -2284,7 +2284,7 @@ namespace aura
    //void session::request_topic_file()
    //{
 
-   //   auto psession = get_session();
+   //   
 
    //   request_file(psession->m_varTopicFile);
 
@@ -2294,9 +2294,7 @@ namespace aura
    ::pointer<::aura::application>session::get_current_application()
    {
 
-      auto psession = get_session();
-
-      return psession->m_pappCurrent;
+      return this->m_pappCurrent;
 
    }
 
@@ -2524,7 +2522,7 @@ namespace aura
    void system::on_finish_launching()
    {
 
-      auto psession = get_session();
+      auto psession = session();
 
       auto puserinteractionHost = psession->m_puserprimitiveHost.cast < ::user::interaction>();
 

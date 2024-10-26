@@ -468,28 +468,33 @@ namespace allocator
 {
 
 
-   CLASS_DECL_ACME ::reference_referer* defer_add_referer(const ::reference_referer& referer);
+   //CLASS_DECL_ACME ::reference_referer* defer_add_referer(const ::reference_referer& referer);
 
 
-   CLASS_DECL_ACME ::reference_referer* add_referer(const ::reference_referer& referer);
+   CLASS_DECL_ACME ::reference_referer* push_referer(const ::reference_referer& referer);
+
+   CLASS_DECL_ACME ::reference_referer * defer_push_referer(::subparticle * psubparticleExisting, const ::reference_referer& referer);
 
 
-   CLASS_DECL_ACME void set_referer(::reference_referer* preferer);
+   CLASS_DECL_ACME void _push_referer(::reference_referer* preferer);
 
 
-   CLASS_DECL_ACME void _set_referer(::reference_referer* preferer);
+   //CLASS_DECL_ACME ::reference_referer* defer_pop_referer(::subparticle* p, const ::reference_referer& referer);
 
 
-   CLASS_DECL_ACME ::reference_referer* defer_get_referer(::subparticle* p, const ::reference_referer& referer);
-
-
-   CLASS_DECL_ACME ::reference_referer* get_referer();
+   //CLASS_DECL_ACME ::reference_referer* get_referer();
 
 
    CLASS_DECL_ACME ::reference_referer* pop_referer();
 
 
+   CLASS_DECL_ACME ::reference_referer* get_top_referer();
+
+
    CLASS_DECL_ACME void defer_erase_referer();
+
+
+   CLASS_DECL_ACME void defer_erase_referer(::subparticle * psubparticle);
 
 
    CLASS_DECL_ACME void erase_referer(::reference_referer* preferer);
@@ -2681,3 +2686,19 @@ namespace aqua
 class media_item;
 
 }
+
+
+class task_message_queue;
+
+
+
+#if REFERENCING_DEBUGGING
+
+
+
+class referencing_debugging;
+
+
+#endif
+
+

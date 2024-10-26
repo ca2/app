@@ -493,6 +493,12 @@ void subparticle::_wait()
 
 }
 
+::platform::system * subparticle::system() const
+{
+
+   return ::system();
+
+}
 
 ::e_status subparticle::wait()
 {

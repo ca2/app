@@ -300,6 +300,26 @@ namespace apex
    }
 
 
+#ifdef DEBUG
+
+
+   ::i64 application::increment_reference_count()
+   {
+
+      return ::platform::context::increment_reference_count();
+
+   }
+
+
+   ::i64 application::decrement_reference_count()
+   {
+
+      return ::platform::context::decrement_reference_count();
+
+   }
+
+#endif
+
    void application::initialize(::particle * pparticle)
    {
 

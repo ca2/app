@@ -226,7 +226,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = get_session();
+                  
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 

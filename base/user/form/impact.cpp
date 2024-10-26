@@ -147,7 +147,7 @@ namespace user
 
          }
 
-         auto psession = get_session();
+         
 
          pformNew = create_impact(psession->user()->get_html_impact_type());
 

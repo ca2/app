@@ -457,10 +457,10 @@ namespace user
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor();
-      ::aura::application * get_app();
-      ::aura::session * get_session();
-      //::aura::system * system();
-      ::aura::context * context();
+      // ::aura::application * get_app();
+      // ::aura::session * get_session();
+      // //::aura::system * system();
+      // ::aura::context * context();
 
 
       ::user::interaction * user_interaction() override;

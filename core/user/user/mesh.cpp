@@ -644,7 +644,7 @@ namespace user
       if(pdrawitem->m_bListItemSelected)
          pdrawitem->m_iState |= ItemStateSelected;
 
-      auto psession = get_session();
+      
 
       if(pdrawitem->m_bListItemSelected)
       {
@@ -2925,7 +2925,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto psession = get_session();
+      
 
       if (m_bDrag)
       {
@@ -3084,7 +3084,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      
 
       set_keyboard_focus();
 
@@ -3366,7 +3366,7 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      
 
       if(psession->is_key_pressed(::user::e_key_shift))
       {
@@ -3813,7 +3813,7 @@ namespace user
 
                m_iItemEnter = -1;
 
-               auto psession = get_session();
+               
 
                bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_left_shift);
                bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_right_shift);

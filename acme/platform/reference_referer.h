@@ -28,15 +28,20 @@ class CLASS_DECL_ACME reference_referer
 {
 public:
 
-   ::subparticle *      m_psubparticle;
-   void *               m_p;
-   ::i64                m_iSerial;
-   ::c::string          m_cstringType;
-   ::c::string          m_cstringFunctionName;
-   ::c::string          m_cstringDebug;
+   //bool                    m_bConstructor;
+   //::subparticle *         m_psubparticleExisting;
+   ::subparticle *         m_psubparticle;
+   void *                  m_p;
+   ::i64                   m_iSerial;
+   ::c::string             m_cstringType;
+   ::c::string             m_cstringFunctionName;
+   ::c::string             m_cstringDebug;
+   //::reference_referer *   m_preferencerefererNext = nullptr;
 
    static ::i64 new_serial() { return new_reference_referer_serial(); }
    reference_referer(const char * pszType = nullptr, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
+      //m_bConstructor(true),
+      //m_psubparticleExisting(nullptr),
       m_psubparticle(nullptr),
       m_p(nullptr),
       m_cstringType(pszType),
@@ -46,6 +51,8 @@ public:
    {
    }
    reference_referer(const reference_referer & referer) :
+      //m_bConstructor(referer.m_bConstructor),
+      //m_psubparticleExisting(referer.m_psubparticleExisting),
       m_psubparticle(referer.m_psubparticle),
       m_cstringType(referer.m_cstringType),
       m_cstringFunctionName(referer.m_cstringFunctionName),
@@ -55,6 +62,8 @@ public:
    {
    }
    reference_referer(reference_referer && referer) :
+      //m_bConstructor(referer.m_bConstructor),
+      //m_psubparticleExisting(referer.m_psubparticleExisting),
       m_psubparticle(referer.m_psubparticle),
       m_cstringType(::transfer(referer.m_cstringType)),
       m_cstringFunctionName(::transfer(referer.m_cstringFunctionName)),
@@ -62,12 +71,17 @@ public:
       m_p(referer.m_p),
       m_iSerial(referer.m_iSerial)
    {
+      //referer.m_psubparticleExisting = nullptr;
       referer.m_psubparticle = nullptr;
       referer.m_p = nullptr;
       referer.m_iSerial = -1;
+      //referer.m_preferencerefererNext = nullptr;
    }
    template < primitive_subparticle A_SUBPARTICLE >
+   //reference_referer(::subparticle * psubparticleExisting, A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
    reference_referer(A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
+      //m_bConstructor(!psubparticleExisting),
+      //m_psubparticleExisting(psubparticleExisting),
       m_psubparticle(pparticle),
       m_cstringType(typeid(*pparticle).name()),
       m_cstringFunctionName(pszFunctionName),
@@ -77,7 +91,10 @@ public:
    {
    }
    template < non_primitive_subparticle NON_SUBPARTICLE >
+   //reference_referer(::subparticle * psubparticleExisting, NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
    reference_referer(NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
+      //m_bConstructor(!psubparticleExisting),
+      //m_psubparticleExisting(psubparticleExisting),
       m_psubparticle(nullptr),
       m_cstringType(typeid(*p).name()),
       m_cstringFunctionName(pszFunctionName),
@@ -92,6 +109,7 @@ public:
    }
    void destroy()
    {
+      //m_bConstructor = false;
       m_p = nullptr;
       m_cstringType.destroy();
       m_cstringFunctionName.destroy();
@@ -115,12 +133,15 @@ public:
       if (this != &referer)
       {
          destroy();
+         //m_bConstructor = referer.m_bConstructor;
+         //m_psubparticleExisting = referer.m_psubparticleExisting;
          m_psubparticle = referer.m_psubparticle;
          m_cstringType = referer.m_cstringType;
          m_cstringFunctionName = referer.m_cstringFunctionName;
          m_cstringDebug = referer.m_cstringDebug;
          m_p = referer.m_p;
          m_iSerial = referer.m_iSerial;
+         //m_preferencerefererNext = referer.m_preferencerefererNext;
       }
       return *this;
    }
@@ -129,15 +150,21 @@ public:
       if (this != &referer)
       {
          destroy();
+         //m_bConstructor = referer.m_bConstructor;
+         //m_psubparticleExisting = referer.m_psubparticleExisting;
          m_psubparticle = referer.m_psubparticle;
          m_cstringType = ::transfer(referer.m_cstringType);
          m_cstringFunctionName = ::transfer(referer.m_cstringFunctionName);
          m_cstringDebug = ::transfer(referer.m_cstringDebug);
+         //m_preferencerefererNext = referer.m_preferencerefererNext;
          m_p = referer.m_p;
          m_iSerial = referer.m_iSerial;
+         //referer.m_bConstructor = false;
+         //referer.m_psubparticleExisting = nullptr;
          referer.m_psubparticle = nullptr;
          referer.m_p = nullptr;
          referer.m_iSerial = -1;
+         //referer.m_preferencerefererNext = nullptr;
       }
       return *this;
    }
@@ -177,7 +204,7 @@ public:
       if (!::allocator::is_suppressing_referencing_debugging())
       {
 
-         m_preferer = ::allocator::add_referer(referer);
+         m_preferer = ::allocator::push_referer(referer);
 
          if (pprefererGet)
          {

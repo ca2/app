@@ -62,7 +62,9 @@ public:
    }
 
 
-   time(now_t)
+   time(now_t) :
+      posix_time(no_initialize_t{}),
+      nanosecond(no_initialize_t{})
    {
 
       Now();

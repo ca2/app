@@ -22,6 +22,18 @@ namespace prototype
 
    }
 
+#ifdef DEBUG
+   ::i64 prototype::increment_reference_count()
+   {
+
+      return ::particle::increment_reference_count();
+
+   }
+   ::i64 prototype::decrement_reference_count()
+   {
+      return ::particle::decrement_reference_count();
+   }
+#endif
 
    void prototype::on_initialize_particle()
    {

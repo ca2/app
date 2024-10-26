@@ -28,7 +28,7 @@ namespace platform
       // m_pbasesession = nullptr;
       // m_pbredsession = nullptr;
       // m_pcoresession = nullptr;
-
+      m_bKeepRunningPostedProcedures = true;
 
    }
       
@@ -123,7 +123,7 @@ namespace platform
    {
 
    //::platform::context::main();
-
+      ::task::main();
 
    }
 

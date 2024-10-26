@@ -1961,7 +1961,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         auto psession = get_session();
+         
 
          if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
@@ -2042,7 +2042,7 @@ namespace experience_core
 
          //pbar->client_to_screen()(point1);
 
-         //auto psession = get_session();
+         //
 
          //auto puser = psession->user();
 

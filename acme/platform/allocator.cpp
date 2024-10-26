@@ -39,23 +39,35 @@ namespace allocator
    thread_local ::reference_referer * t_preferencerefererTopic = nullptr;
    thread_local ::reference_referer * t_preferencerefererReleaser = nullptr;
 
-   void set_referer(::reference_referer * preferer)
+   //void _push_referer(::reference_referer * preferer)
+   //{
+
+   //   if (!t_preferencerefererTopic)
+   //   {
+
+   //      t_preferencerefererTopic = preferer;
+
+   //   }
+   //   else
+   //   {
+
+   //      preferer->m_preferencerefererNext = t_preferencerefererTopic;
+
+   //      t_preferencerefererTopic = preferer;
+
+   //   }
+
+   //}
+
+   void _push_referer(::reference_referer * preferer)
    {
 
       if (t_preferencerefererTopic)
       {
 
-         throw "error_wrong_state set_referer";
+         throw "123";
 
       }
-
-      t_preferencerefererTopic = preferer;
-
-   }
-
-
-   void _set_referer(::reference_referer * preferer)
-   {
 
       t_preferencerefererTopic = preferer;
 
@@ -74,15 +86,138 @@ namespace allocator
    }
 
 
-   ::reference_referer * defer_add_referer(const ::reference_referer & referer)
+   // ::reference_referer * defer_add_referer(const ::reference_referer & referer)
+   // {
+   //
+   //    auto preferencereferer = get_referer();
+   //
+   //    if(!preferencereferer)
+   //    {
+   //
+   //       preferencereferer = add_referer(referer);
+   //
+   //    }
+   //
+   //    return preferencereferer;
+   //
+   // }
+
+   //
+   // ::reference_referer * defer_get_referer(::subparticle * p, const ::reference_referer & referer)
+   // {
+   //
+   //    if (referer.m_cstringType && referer.m_cstringType == "class pointer<class item>")
+   //    {
+   //
+   //       ::string strDebugTitle = p->get_debug_title();
+   //
+   //       if (strDebugTitle.contains("e_element_none"))
+   //       {
+   //
+   //          output_debug_string("");
+   //
+   //       }
+   //
+   //    }
+   //
+   //    auto preferencereferer = get_referer();
+   //
+   //    if(!preferencereferer)
+   //    {
+   //
+   //       preferencereferer = add_referer(referer);
+   //
+   //    }
+   //
+   //    return preferencereferer;
+   //
+   // }
+   //
+
+
+   //::reference_referer * push_referer(const ::reference_referer & referer)
+   //{
+
+   //   auto prefererefererExisting = get_top_referer();
+
+   //   if(prefererefererExisting && referer.m_bConstructor && prefererefererExisting->m_bConstructor)
+   //   {
+
+   //      return prefererefererExisting;
+
+   //   }
+
+   //   auto preferencereferer = new_referer(::transfer(referer));
+
+   //   _push_referer(preferencereferer);
+
+   //   return preferencereferer;
+
+   //}
+
+
+   ::reference_referer * push_referer(const ::reference_referer & referer)
    {
 
-      auto preferencereferer = get_referer();
+      auto prefererefererExisting = get_top_referer();
 
-      if(!preferencereferer)
+      if (prefererefererExisting)
       {
 
-         preferencereferer = add_referer(referer);
+         //throw "23";
+         return prefererefererExisting;
+
+      }
+
+      auto preferencereferer = new_referer(referer);
+
+      _push_referer(preferencereferer);
+
+      return preferencereferer;
+
+   }
+
+   CLASS_DECL_ACME ::reference_referer* get_top_referer()
+   {
+
+      return t_preferencerefererTopic;
+
+   }
+
+
+   //::reference_referer * defer_push_referer(::subparticle * psubparticleExisting, const ::reference_referer & referer)
+   //{
+
+   //   auto preferencereferer = get_top_referer();
+
+   //   if(!preferencereferer
+   //      || preferencereferer->m_bConstructor
+   //      || preferencereferer->m_psubparticleExisting != psubparticleExisting)
+   //   {
+
+   //      preferencereferer = new_referer(::transfer(referer));
+
+   //      preferencereferer->m_psubparticleExisting = psubparticleExisting;
+
+   //      _push_referer(preferencereferer);
+
+   //   }
+
+   //   return preferencereferer;
+
+   //}
+
+   ::reference_referer * defer_push_referer(::subparticle * psubparticleExisting, const ::reference_referer & referer)
+   {
+
+      auto preferencereferer = get_top_referer();
+
+      if (!preferencereferer)
+      {
+
+         preferencereferer = new_referer(referer);
+
+         _push_referer(preferencereferer);
 
       }
 
@@ -90,57 +225,82 @@ namespace allocator
 
    }
 
-
-   ::reference_referer * defer_get_referer(::subparticle * p, const ::reference_referer & referer)
+   /*::reference_referer * pop_referer()
    {
 
-      if (referer.m_cstringType && referer.m_cstringType == "class pointer<class item>")
+      auto preferer = t_preferencerefererTopic;
+
+      if(!preferer->m_bConstructor)
       {
 
-         ::string strDebugTitle = p->get_debug_title();
-
-         if (strDebugTitle.contains("e_element_none"))
-         {
-
-            output_debug_string("");
-
-         }
+         t_preferencerefererTopic = preferer->m_preferencerefererNext;
 
       }
 
-      auto preferencereferer = get_referer();
-
-      if(!preferencereferer)
+      if (::is_null(preferer))
       {
 
-         preferencereferer = add_referer(referer);
+         throw "error_wrong_state";
 
       }
 
-      return preferencereferer;
+      if (preferer->m_bConstructor)
+      {
 
-   }
+         t_preferencerefererTopic = new ::reference_referer(*preferer);
 
+         return preferer;
 
+      }
+      else
+      {
 
-   ::reference_referer * add_referer(const ::reference_referer & referer)
-   {
+         return preferer;
 
-      auto preferencereferer = new_referer(::transfer(referer));
+      }
 
-      set_referer(preferencereferer);
-
-      return preferencereferer;
-
-   }
-
+   }*/
 
    ::reference_referer * pop_referer()
    {
 
       auto preferer = t_preferencerefererTopic;
 
+      if (::is_null(preferer))
+      {
+
+         throw "error_wrong_state";
+
+      }
+
       t_preferencerefererTopic = nullptr;
+
+      return preferer;
+
+   }
+
+   //::reference_referer * construct_pop_referer()
+   //{
+
+   //   auto preferer = t_preferencerefererTopic;
+
+   //   t_preferencerefererTopic = preferer->m_preferencerefererNext;
+
+   //   if (::is_null(preferer))
+   //   {
+
+   //      throw "error_wrong_state";
+
+   //   }
+
+   //   return preferer;
+
+   //}
+
+   ::reference_referer * construct_pop_referer()
+   {
+
+      auto preferer = t_preferencerefererTopic;
 
       if (::is_null(preferer))
       {
@@ -153,16 +313,89 @@ namespace allocator
 
    }
 
+   //void defer_erase_referer()
+   //{
+
+   //   auto preferer = t_preferencerefererTopic;
+
+   //   if (::is_set(preferer) && !preferer->m_bConstructor)
+   //   {
+
+   //      t_preferencerefererTopic = preferer->m_preferencerefererNext;
+
+   //      if (preferer->m_psubparticle 
+   //         && preferer->m_psubparticle->is_referencing_debugging_enabled())
+   //      {
+   //         
+   //         ::output_debug_string("56");
+
+   //      }
+   //      else
+   //      {
+   //         
+   //         return erase_referer(preferer);
+
+   //      }
+
+   //   }
+
+   //}
 
    void defer_erase_referer()
    {
 
       auto preferer = t_preferencerefererTopic;
 
-      t_preferencerefererTopic = nullptr;
+      if (::is_set(preferer))
+      {
+
+         t_preferencerefererTopic = nullptr;
+
+         return erase_referer(preferer);
+
+      }
+
+   }
+
+   //void defer_erase_referer(::subparticle * psubparticle)
+   //{
+
+   //   auto preferer = t_preferencerefererTopic;
+
+   //   if (::is_set(preferer))
+   //   {
+
+   //      t_preferencerefererTopic = preferer->m_preferencerefererNext;
+
+   //      if (!preferer->m_psubparticle
+   //         || preferer->m_psubparticle == psubparticle
+   //         || !preferer->m_psubparticle->is_referencing_debugging_enabled())
+   //      {
+
+   //         return erase_referer(preferer);
+
+   //      }
+   //      else
+   //      {
+
+   //         ::output_debug_string("67");
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   void defer_erase_referer(::subparticle * psubparticle)
+   {
+
+      auto preferer = t_preferencerefererTopic;
 
       if (::is_set(preferer))
       {
+
+         t_preferencerefererTopic = nullptr;
 
          return erase_referer(preferer);
 
@@ -579,9 +812,31 @@ namespace allocator
 
          psubparticle->m_preferenceitema->m_strDebug = psubparticle->get_debug_title();
 
+         if (get_top_referer()
+            && psubparticle->m_preferenceitema->m_itema[0]
+            && psubparticle->m_preferenceitema->m_itema[0]->m_preferer)
+         {
+
+            if (get_top_referer()->m_iSerial == psubparticle->m_preferenceitema->m_itema[0]->m_preferer->m_iSerial)
+            {
+
+               defer_erase_referer();
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         defer_erase_referer();
+
       }
 
       refdbg_erase_top_track(psubparticle);
+
+
 
    }
 

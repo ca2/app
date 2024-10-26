@@ -195,7 +195,7 @@ namespace experience
          /*if(m_bFocus)
          {
          ::point_i32 pointCursor;
-         auto psession = get_session();
+         
 
          auto puser = psession->user();
 

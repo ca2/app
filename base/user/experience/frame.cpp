@@ -479,7 +479,7 @@ namespace experience
    bool frame::on_message_parent_mouse_move(::message::mouse * pmouse)
    {
 
-      auto psession = get_session();
+      
 
       psession->m_pointCursor = pmouse->m_pointAbsolute;
 
@@ -588,7 +588,7 @@ namespace experience
    bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 
-      auto psession = get_session();
+      
 
       psession->m_pointCursor = pmouse->m_pointAbsolute;
 
@@ -697,7 +697,7 @@ namespace experience
    //   bool frame::on_message_set_cursor(::message::set_cursor * psetcursor)
    //   {
    //
-   //      auto psession = get_session();
+   //      
    //
    //      psession->m_pointCursor = psetcursor->m_point;
    //

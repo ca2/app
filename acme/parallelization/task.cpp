@@ -59,6 +59,8 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
 task::task()
 {
+   
+   m_bAutoRelease = false;
 
    m_pfnImplement = nullptr;
    m_iExitCode = 0;
@@ -645,13 +647,21 @@ void* task::s_os_task(void* p)
 
    ::procedure procedureTaskEnded;
 
+   auto ptask = (::task *)p;
+
+   at_end_of_scope
    {
 
-      ::pointer < ::task > ptask((::task *)p);
+      if (ptask->m_bAutoRelease)
+      {
 
-      ptask->_os_task(procedureTaskEnded);
+         ::release(ptask);
 
-   }
+      }
+
+   };
+
+   ptask->_os_task(procedureTaskEnded);
 
    if (procedureTaskEnded)
    {
@@ -734,12 +744,12 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
       }
 
-      auto pacme = ::acme::get();
+      auto psystem = system();
 
-      if(pacme)
+      if(psystem)
       {
 
-         auto ptaskmessagequeue = pacme->m_ptaskmessagequeue;
+         auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
 
          if(ptaskmessagequeue)
          {
@@ -1382,37 +1392,51 @@ bool task::has_message() const
    if (::is_null(m_pobjectParentTask))
    {
 
-      auto pobjectParentTask = ::get_task();
-
-      if (::is_null(pobjectParentTask))
+      if (this == ::system())
       {
-
-         pobjectParentTask = m_papplication;
-
-      }
-
-      if (::is_null(pobjectParentTask))
-      {
-
-         pobjectParentTask = m_papplication;
-
-      }
-
-      if (pobjectParentTask)
-      {
-
-         if (pobjectParentTask != this)
-         {
-
-            pobjectParentTask->add_task(this);
-
-         }
 
       }
       else
       {
 
-         throw ::exception(error_invalid_usage);
+         if (this == (::task *) session())
+         {
+
+            m_pobjectParentTask = system();
+
+         }
+         else
+         {
+
+            m_pobjectParentTask = ::get_task();
+
+            if (::is_null(m_pobjectParentTask))
+            {
+
+               m_pobjectParentTask = m_papplication;
+
+            }
+
+         }
+
+
+         if (m_pobjectParentTask)
+         {
+
+            if (m_pobjectParentTask != this)
+            {
+
+               m_pobjectParentTask->add_task(this);
+
+            }
+
+         }
+         else
+         {
+
+            throw ::exception(error_invalid_usage);
+
+         }
 
       }
 

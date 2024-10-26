@@ -24,6 +24,17 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
+//#define __create __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
+//#define __construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+//#define __id_create __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
+//#define __create_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
+//#define __id_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
+//#define __raw_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
+//#define __construct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
+//#define __defer_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
+//#define __create_new_clone __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
+//#define __defer_construct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
+
 #define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
 #define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 #define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
@@ -40,19 +51,50 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 
 //#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &prefererNew)->
+
+
+
+
+//#define __new__prefix(pprefererGet) __new_site({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
 #define __new__prefix(pprefererGet) __new_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
+
+
+
 //#define ___new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
 
+//#define __refdbg_function_file_line_for__(p) { p, refdbg_this(), __FUNCTION_FILE_LINE__ }
+//#define __comma_refdbg_function_file_line_for__(p) , __refdbg_function_file_line_for__(p)
+//
+//#define __refdbg_function_file_line__ __refdbg_function_file_line_for__(nullptr)
+//#define __comma_refdbg_function_file_line__ __comma_refdbg_function_file_line_for__(nullptr)
+//
+//#define __refdbg_function_file_line_for__preferernew(p) __refdbg_function_file_line_for__(p), &prefererNew
+//#define __comma_refdbg_function_file_line_for__preferernew(p) , __refdbg_function_file_line_for__preferernew(p)
+//
+//#define __refdbg_function_file_line__preferernew __refdbg_function_file_line_for__preferernew(nullptr)
+//#define __comma_refdbg_function_file_line__preferernew , __refdbg_function_file_line_for__preferernew(nullptr)
+//
+//#define __refdbg_call_add_referer_for(p) __call__add_referer({ p, refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
+//#define __refdbg_call_add_referer __refdbg_call_add_referer_for(nullptr) <<
 
-#define __refdbg_function_file_line__ { refdbg_this(), __FUNCTION_FILE_LINE__ }
-#define __comma_refdbg_function_file_line__ , __refdbg_function_file_line__
 
-#define __refdbg_function_file_line__preferernew __refdbg_function_file_line__, &prefererNew
-#define __comma_refdbg_function_file_line__preferernew , __refdbg_function_file_line__preferernew
+#define __refdbg_function_file_line_for__(p) { refdbg_this(), __FUNCTION_FILE_LINE__ }
+#define __comma_refdbg_function_file_line_for__(p) , __refdbg_function_file_line_for__(p)
 
-#define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
+#define __refdbg_function_file_line__ __refdbg_function_file_line_for__(nullptr)
+#define __comma_refdbg_function_file_line__ __comma_refdbg_function_file_line_for__(nullptr)
+
+#define __refdbg_function_file_line_for__preferernew(p) __refdbg_function_file_line_for__(p), &prefererNew
+#define __comma_refdbg_function_file_line_for__preferernew(p) , __refdbg_function_file_line_for__preferernew(p)
+
+#define __refdbg_function_file_line__preferernew __refdbg_function_file_line_for__preferernew(nullptr)
+#define __comma_refdbg_function_file_line__preferernew , __refdbg_function_file_line_for__preferernew(nullptr)
+
+#define __refdbg_call_add_referer_for(p) __call__add_referer({ p, refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
+#define __refdbg_call_add_referer __refdbg_call_add_referer_for(nullptr) <<
+
 
 #define __fn_refdbg_referer__ refdbg_referer() 
 
@@ -66,9 +108,15 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define __check_refdbg check_refdbg();
 
-#define __refdbg_add_referer ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
-#define __refdbg_add_releaser(preferer) ::allocator::add_releaser(preferer);
+//#define __refdbg_add_referer ::allocator::push_referer({nullptr, refdbg_this(), __FUNCTION_FILE_LINE__});
+//#define __refdbg_add_referer_for(p) ::allocator::defer_push_referer(p, {p, refdbg_this(), __FUNCTION_FILE_LINE__});
+//#define __refdbg_assign_referer_for(p) m_preferer = ::allocator::defer_push_referer(p, {p, refdbg_this(), __FUNCTION_FILE_LINE__});
+//#define __refdbg_add_releaser(preferer) ::allocator::add_releaser(preferer);
 
+#define __refdbg_add_referer ::allocator::push_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+#define __refdbg_add_referer_for(p) ::allocator::defer_push_referer(p, {refdbg_this(), __FUNCTION_FILE_LINE__});
+#define __refdbg_assign_referer_for(p) m_preferer = ::allocator::defer_push_referer(p, {refdbg_this(), __FUNCTION_FILE_LINE__});
+#define __refdbg_add_releaser(preferer) ::allocator::add_releaser(preferer);
 
 CLASS_DECL_ACME void check_refdbg();
 

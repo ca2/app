@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_just_acme_message_box CXX)
 
 
-add_executable(${PROJECT_NAME} application_main.cpp)
+list(APPEND application_source application_main.cpp)
+
+
+if(MSVC)
+    list(APPEND application_source ../deployment.rc main.rc)
+endif()
+
+
+add_executable(${PROJECT_NAME} ${application_source})
+
 
 
 list(APPEND executable_references
@@ -61,6 +70,7 @@ add_dependencies(${PROJECT_NAME} ${default_acme})
 add_dependencies(${PROJECT_NAME} folder_zip)
 add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
 add_dependencies(${PROJECT_NAME} ${default_acme_windowing})
+add_dependencies(${PROJECT_NAME} copy_libraries_step)
 
 
 

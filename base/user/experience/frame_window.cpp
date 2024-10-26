@@ -239,7 +239,7 @@ namespace experience
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         auto psession = get_session();
+         
 
          if(pkey->user_interaction() == this)
          {
@@ -306,7 +306,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
                {
 
-                  auto psession = get_session();
+                  
 
                   if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
@@ -376,7 +376,7 @@ namespace experience
    ::pointer<::experience::experience>frame_window::create_experience(const ::string & strExperience)
    {
 
-      auto psession = get_session();
+      
 
       auto puser = psession->baseuser();
 
@@ -388,7 +388,7 @@ namespace experience
    ::pointer<::experience::experience>frame_window::experience(const ::string & strExperience)
    {
 
-      auto psession = get_session();
+      
 
       auto puser = psession->baseuser();
 
@@ -400,7 +400,7 @@ namespace experience
    ::pointer<::experience::frame>frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
    {
 
-      auto psession = get_session();
+      
 
       auto puser = psession->baseuser();
 

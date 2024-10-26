@@ -1619,7 +1619,7 @@ namespace user
 
             {
 
-               auto psession = get_session();
+               
 
                synchronous_lock synchronouslock(psession->synchronization());
 
@@ -1639,7 +1639,7 @@ namespace user
 
             {
 
-               auto psession = get_session();
+               
 
                synchronous_lock synchronouslock(psession->synchronization());
 

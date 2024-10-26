@@ -24,7 +24,7 @@ namespace platform
       //::platform::application*                        m_papplication;
       ::platform::session *                           m_psession;
       ::platform::system *                            m_psystem;
-      ::platform::node *                              m_pnode;
+      //::platform::node *                              m_pnode;
 
       ::pointer<::text::translator>                   m_ptexttranslator;
 

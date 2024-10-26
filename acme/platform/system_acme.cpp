@@ -3879,7 +3879,12 @@ namespace platform
       return *((class ::time*)0);
    }
 
+   ::task_message_queue * acme_system_layer::task_message_queue()
+   {
 
+      return nullptr;
+
+   }
    //void acme_system_layer::on_set_platform() override{}
 
 

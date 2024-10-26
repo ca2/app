@@ -119,7 +119,7 @@ namespace windowing
 
    //         pcursor->initialize_system_default();
 
-   //         auto psession = get_session();
+   //         
 
    //         auto puser = psession->user();
 

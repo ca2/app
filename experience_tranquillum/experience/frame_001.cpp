@@ -1146,7 +1146,7 @@ namespace experience_tranquillum
    void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectangleParam)
    {
 
-      //auto psession = get_session();
+      //
 
       auto pframewindow = m_pframewindow;
 

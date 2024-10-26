@@ -193,7 +193,7 @@ namespace experience_anthill
    void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_border eside)
    {
 
-      //      auto psession = get_session();
+      //      
 
       ::rectangle_i32 rectangleX(rectangleXParam);
 
@@ -217,7 +217,7 @@ namespace experience_anthill
       }
       else
       {
-         //   auto psession = get_session();
+         //   
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -1136,7 +1136,7 @@ namespace experience_anthill
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      //  auto psession = get_session();
+      //  
 
       auto pframewindow = m_pframewindow;
 

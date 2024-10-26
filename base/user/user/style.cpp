@@ -69,7 +69,7 @@ namespace base
    ::base::user* style::baseuser()
    {
 
-      auto psession = get_session();
+      
 
       return ::is_set(psession) ? psession->baseuser() : nullptr;
 
@@ -79,7 +79,7 @@ namespace base
    ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::menu::item* pitem)
    {
 
-      auto psession = get_session();
+      
       
       auto puser = psession->baseuser();
 

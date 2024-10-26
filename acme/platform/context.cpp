@@ -35,6 +35,9 @@ namespace platform
    context::context()
    {
 
+
+      m_psystem = ::system();
+      m_psession = nullptr;
       //m_pplatform = nullptr;
 
       //m_papplication = this;
@@ -66,9 +69,9 @@ namespace platform
 
 
       m_papplication = nullptr;
-      m_psession = nullptr;
+      //m_psession = nullptr;
       m_psystem = nullptr;
-      m_pnode = nullptr;
+      //m_pnode = nullptr;
 
 
    }
@@ -126,21 +129,14 @@ namespace platform
       if (!m_psession)
       {
 
-         m_psession = pparticle->m_papplication->m_psession;
+         m_psession = m_psystem->m_psession;
 
       }
 
       if (!m_papplication)
       {
 
-         m_papplication = pparticle->m_papplication->m_papplication;
-
-      }
-
-      if (!m_pnode)
-      {
-
-         m_pnode = pparticle->m_papplication->m_pnode;
+         m_papplication = m_psystem->m_papplication;
 
       }
 

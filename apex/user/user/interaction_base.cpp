@@ -4159,7 +4159,7 @@ namespace user
 
 //      interaction_base * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 //
-//      auto psession = get_session();
+//      
 //
 //      if (pprimitive == nullptr || pprimitive == this)
 //      {

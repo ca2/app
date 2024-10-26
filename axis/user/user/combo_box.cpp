@@ -913,7 +913,7 @@ namespace user
 
          defer_create_list_box();
 
-         auto psession = get_session();
+         
 
          psession->on_show_user_input_popup(m_plistbox);
 

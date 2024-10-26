@@ -49,7 +49,7 @@ namespace experience_tranquillum
       fork([this]()
          {
 
-            auto psession = get_session();
+            
 
             psession->user()->windowing()->set_cursor_set_from_matter(this, "cursor/tranquillum");
 

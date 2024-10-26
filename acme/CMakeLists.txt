@@ -1043,6 +1043,8 @@ list(APPEND library_source
    #prototype/string/_conv_ansi.cpp
    #prototype/string/_conv_ansi.h
    #prototype/string/_conv_ansi_impl.h
+   prototype/string/__wide.cpp
+   prototype/string/__wide.h
    prototype/string/_defer.h
    prototype/string/_impl.h
    prototype/string/_impl_prio.h
@@ -2087,6 +2089,9 @@ if (WIN32)
       #operating_system/windows/base/print_job.h
       #operating_system/windows/base/_windows.h
       #operating_system/windows/console.h
+      operating_system/windows/calculate_edesktop.cpp
+      operating_system/windows/calculate_etoolkit.cpp
+      operating_system/windows/calculate_ewindowing.cpp
       operating_system/windows/callstack.cpp
       operating_system/windows/file1.cpp
       #operating_system/windows/heap_allocator.cpp
@@ -2095,10 +2100,12 @@ if (WIN32)
       operating_system/windows/dynamic_library.h
       #operating_system/windows/memory.cpp
       operating_system/windows/message_box.cpp
+      operating_system/windows/message_loop.cpp
       operating_system/windows/parallelization.cpp
       operating_system/windows/process.cpp
       operating_system/windows/thread.cpp
       operating_system/windows/user.cpp
+      operating_system/windows/window.cpp
       operating_system/windows/windows.cpp
       #operating_system/windows/exception.h
       #operating_system/windows/
@@ -2210,6 +2217,10 @@ endif ()
 if (${WIN32} OR ${UWP})
 
    list(APPEND library_source
+      operating_system/windows_common/nano/idn/_.h
+      operating_system/windows_common/nano/idn/_idn.cpp
+      operating_system/windows_common/nano/idn/idn.cpp
+      operating_system/windows_common/nano/idn/idn.h
       #      operating_system/windows_common/_dll.cpp
       #      operating_system/windows_common/aura.cpp
       #      operating_system/windows_common/base.cpp
@@ -2226,7 +2237,13 @@ if (${WIN32} OR ${UWP})
       operating_system/windows_common/handle.cpp
       operating_system/windows_common/handle.h
       #operating_system/windows_common/idn.cpp
+      operating_system/windows_common/heap_allocator.cpp
+      operating_system/windows_common/heap_allocator.h
+      operating_system/windows_common/last_error.h
+      operating_system/windows_common/last_error_exception.cpp
+      operating_system/windows_common/last_error_exception.h
       operating_system/windows_common/library.cpp
+      operating_system/windows_common/memory.cpp
       operating_system/windows_common/parallelization.cpp
       operating_system/windows_common/process.cpp
       operating_system/windows_common/time.cpp

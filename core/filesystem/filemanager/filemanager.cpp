@@ -280,7 +280,7 @@ namespace filemanager
 
       //__construct(m_pimpactsystemForm, pmulti);
 
-    /*  auto psession = get_session();
+    /*  
 
       psession->add_document_template(pmulti);*/
 
@@ -335,7 +335,7 @@ namespace filemanager
                ::type < impact >()));
             //::type < main_impact >()));
 
-         //auto psession = get_session();
+         //
 
          //psession->add_document_template(m_pimpactsystemFileManager);
 
@@ -409,7 +409,7 @@ namespace filemanager
    //         ::type < impact >()));
    //   }
 
-   //   auto psession = get_session();
+   //   
 
    //   psession->add_document_template(pdoctemplate);
 

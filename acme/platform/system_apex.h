@@ -192,7 +192,7 @@ namespace platform
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
 
 
-      virtual void __set_thread_on();
+      //virtual void __set_thread_on();
 
       //virtual string get_local_mutex_name(const ::string & pszAppName);
       //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
@@ -202,38 +202,38 @@ namespace platform
 
       virtual void initialize_networking();
 
-
-      virtual bool on_get_task_name(string& strTaskName);
-
+      //
+      // virtual bool on_get_task_name(string& strTaskName);
+      //
 
 
       virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
 
-
-
-
-      virtual void init_task();
-      virtual void term_task();
-
-
-
-      virtual void thread_loop();
-
-
-      virtual void post_pending_requests();
-
-
-      virtual void term2();
-
-      virtual void term1();
-
-
-      virtual void TermSystem();
-
-
-      virtual void process_term();
-
+      //
+      //
+      //
+      // virtual void init_task();
+      // virtual void term_task();
+      //
+      //
+      //
+      // virtual void thread_loop();
+      //
+      //
+      // virtual void post_pending_requests();
+      //
+      //
+      // virtual void term2();
+      //
+      // virtual void term1();
+      //
+      //
+      // virtual void TermSystem();
+      //
+      //
+      // virtual void process_term();
+      //
 
 
 
@@ -366,24 +366,24 @@ namespace platform
 
       virtual string get_host_location_url();
 
-      virtual bool is_thread() const;
-
-
-
-      // void assert_ok() const override;
-      //void dump(dump_context& action_context) const override;
-
-      virtual void main();
+      // virtual bool is_thread() const;
+      //
+      //
+      //
+      // // void assert_ok() const override;
+      // //void dump(dump_context& action_context) const override;
+      //
+      // virtual void main();
 
 
       //virtual bool do_tasks();
 
 
-      void post_quit_to_all_threads();
-      void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
+      virtual void post_quit_to_all_threads();
+      virtual void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
 
 
-      void dump_command_line_and_environment_variables_to_file();
+      virtual void dump_command_line_and_environment_variables_to_file();
 
       virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
 

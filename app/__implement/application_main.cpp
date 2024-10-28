@@ -6,9 +6,9 @@
 void application_main()
 {
 
-   auto papplication = ___new app_app::application();
+   app_app::application application;
 
-   papplication->application_main();
+   application.application_main();
 
 }
 

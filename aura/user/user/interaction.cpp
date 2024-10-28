@@ -9013,7 +9013,7 @@ namespace user
    }
 
 
-   bool interaction::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
+   bool interaction::on_drag_start(::point_i32 & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
 
       get_wnd()->hide_software_keyboard(this);
@@ -9257,7 +9257,7 @@ namespace user
    }
 
 
-   void interaction::drag_set_cursor(::item * pitem)
+   void interaction::drag_set_cursor(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pwindowing = windowing();
@@ -9266,7 +9266,7 @@ namespace user
 
       auto pcursor = pwindowing->get_cursor(pdrag->m_ecursor);
 
-      user_mouse_set_cursor(pdrag->m_pmouse, pcursor);
+      user_mouse_set_cursor(pmouse, pcursor);
 
    }
 
@@ -21599,7 +21599,6 @@ namespace user
 
       return puserthread;
 
-
    }
 
 
@@ -23886,12 +23885,9 @@ namespace user
       while (has_pending_redraw_flags())
       {
 
-         system()->do_tasks();
-
-         sleep(5_ms);
+         ::task_run(5_ms);
 
       }
-
 
    }
 
@@ -26877,7 +26873,7 @@ namespace user
       if (::is_item_set(pitemHitTest))
       {
 
-         bRet = drag_on_mouse_hover(pitemHitTest);
+         bRet = drag_on_mouse_hover(pitemHitTest, pmouse);
 
          if (!user_mouse_get_cursor(pmouse))
          {

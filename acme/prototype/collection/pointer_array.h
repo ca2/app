@@ -582,8 +582,15 @@ public:
 
 
 
-   const pointer < T > & sp_at(::collection::index nIndex) const
+   pointer < T > sp_at(::collection::index nIndex) const
    {
+
+      if (nIndex < 0 || nIndex >= this->size())
+      {
+
+         return {};
+
+      }
 
       return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
 
@@ -593,6 +600,13 @@ public:
    pointer < T > & sp_at(::collection::index nIndex)
    {
 
+      if (nIndex < 0 || nIndex >= this->size())
+      {
+
+         return *((pointer < T > *)nullptr);
+
+      }
+
       return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
 
    }
@@ -601,7 +615,14 @@ public:
    T * ptr_at(::collection::index nIndex) const
    {
 
-      return this->sp_at(nIndex);
+      if (nIndex < 0 || nIndex >= this->size())
+      {
+
+         return nullptr;
+
+      }
+
+      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex).m_p;
 
    }
 

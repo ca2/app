@@ -112,14 +112,18 @@ namespace axis
    void system::common_construct()
    {
 
-      m_paxissystem = this;
+      factory()->add_factory_item < ::geo::geo >();
+      factory()->add_factory_item < ::axis::user, ::user::user >();
+      factory()->add_factory_item < ::axis::session, ::platform::session >();
+
+      //m_paxissystem = this;
 
       //factory()->add_factory_item < ::axis::application, ::apex::application >();
       //factory()->add_factory_item < ::axis::session, ::apex::session >();
       ////factory()->add_factory_item < ::axis::idpool, ::acme::idpool >();
       //add_factory_item < ::imaging >();
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
@@ -129,18 +133,18 @@ namespace axis
 
    }
 
-
-   void system::on_set_platform()
-   {
-
-      aura::system::on_set_platform();
-
-      factory()->add_factory_item < ::geo::geo >();
-      factory()->add_factory_item < ::axis::user, ::user::user >();
-      factory()->add_factory_item < ::axis::session, ::platform::session >();
-
-   }
-
+   //
+   // void system::on_set_platform()
+   // {
+   //
+   //    aura::system::on_set_platform();
+   //
+   //    factory()->add_factory_item < ::geo::geo >();
+   //    factory()->add_factory_item < ::axis::user, ::user::user >();
+   //    factory()->add_factory_item < ::axis::session, ::platform::session >();
+   //
+   // }
+   //
 
    void system::on_initialize_particle()
    {
@@ -148,6 +152,8 @@ namespace axis
       //auto estatus = 
       
       ::aura::system::on_initialize_particle();
+
+
 
       //if (!estatus)
       //{
@@ -188,13 +194,13 @@ namespace axis
       //   if (!m_pacmxissession)
       //   {
 
-      //      m_paxissession = papexsession->m_paxissession;
+      //      m_paxissession = papexsession;
 
       //   }
 
       //}
 
-      //papexsession->m_paxissystem = this;
+      //papexsession = this;
 
    }
 
@@ -434,7 +440,7 @@ namespace axis
       if (!m_pgeo)
       {
 
-         m_pgeo = application()->m_paxisapplication->create_geo();
+         m_pgeo = application()->create_geo();
 
       }
 

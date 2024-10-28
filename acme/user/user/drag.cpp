@@ -12,16 +12,15 @@ namespace user
    drag::drag()
    {
 
-      //m_eelement = e_element_none;
-      
-
       m_ecursor = e_cursor_none;
 
       m_bDrag = false;
 
       m_bLButtonDown = false;
 
-      m_pmouse = nullptr;
+      m_bLButtonDownUsed = false;
+
+//      m_pmouse = nullptr;
 
    }
 
@@ -36,7 +35,7 @@ namespace user
    void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::point_i32 & pointDrag)
    {
 
-      m_pmouse = pmouse;
+//      m_pmouse = pmouse;
 
       m_bLButtonDown = true;
 
@@ -58,7 +57,7 @@ namespace user
 
       m_bDrag = false;
 
-      m_pmouse.release();
+      //m_pmouse.release();
 
    }
 

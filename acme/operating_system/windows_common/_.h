@@ -106,10 +106,7 @@ namespace windows
    };
 
 
-   CLASS_DECL_ACME ::e_status wait_result_status(int iResult);
-
-
-
+   CLASS_DECL_ACME ::e_status wait_result_status(int iResult, int nCount);
 
    CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path);
 

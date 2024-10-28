@@ -59,7 +59,7 @@ enum enum_flag : u64
    //e_flag_no_referencing_debugging = 1ll << 42,
    e_flag_carriage_return = 1ll << 43,
    //e_flag_realized = 1 << 44,
-
+   e_flag_initialized = 1ll << 47,
 
 };
 

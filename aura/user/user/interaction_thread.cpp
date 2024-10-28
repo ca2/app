@@ -86,7 +86,7 @@ namespace user
 
       m_strDebugType = strType;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
       //return estatus;
 
@@ -348,12 +348,12 @@ namespace user
 
 
 
-   bool thread::pump_runnable()
-   {
+   //bool thread::pump_runnable()
+   //{
 
-      return ::thread::pump_runnable();
+   //   return ::thread::pump_runnable();
 
-   }
+   //}
 
 
    //bool thread::task_get_run() const
@@ -366,166 +366,151 @@ namespace user
 
    //}
 
-
-   bool thread::pump_message()
+   void thread::on_task_quit()
    {
 
-      try
+      if (m_puserinteractionUserThread
+   && m_puserinteractionUserThread->m_ewindowflag & e_window_flag_is_window
+   && ::thread::has_finishing_flag())
       {
 
-         if (pump_runnable())
-         {
-
-            return true;
-
-         }
-
-      }
-      catch (...)
-      {
-
-         if (m_strDebugType.contains("filemanager"))
-         {
-
-            //information() << "filemanager";
-
-         }
+         m_puserinteractionUserThread->destroy_window();
 
       }
 
-      try
-      {
-
-         //auto estatus =
-         
-         get_message(&m_message, nullptr, 0, 0);
-
-         if(m_message.m_atom == e_message_quit)
-         {
-
-            if (m_strDebugType.contains("filemanager"))
-            {
-
-               //information() << "filemanager";
-
-            }
-
-            information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.\n";
-
-            //::information(::type(this).name()) << " thread::pump_message - Received e_message_quit.\n");
-
-            m_nDisablePumpCount++; // application must die
-            // Note: prevents calling message loop things in 'exit_thread'
-            // will never be decremented
-            return false;
-
-         }
-
-         if(m_message.m_atom == e_message_left_button_down)
-         {
-
-            informationf("pump_message e_message_left_button_down");
-
-         }
-
-         if (m_message.m_atom == e_message_quit)
-         {
-
-            if (m_puserinteractionUserThread 
-               && m_puserinteractionUserThread->m_ewindowflag & e_window_flag_is_window
-               && ::thread::has_finishing_flag())
-            {
-
-               m_puserinteractionUserThread->destroy_window();
-
-            }
-
-         }
-
-         if(m_message.m_atom == e_message_left_button_down)
-         {
-
-            informationf("::user::thread::LBUTTONDOWN");
-
-         }
-         else if(m_message.m_atom == e_message_left_button_up)
-         {
-
-            informationf("::user::thread::LBUTTONUP");
-
-         }
-
-         if (m_message.m_atom != e_message_kick_idle && m_message.m_atom != e_message_quit)
-         {
-
-            if (m_message.m_atom == e_message_destroy_window)
-            {
-
-               if (m_strDebugType.contains("notify_icon"))
-               {
-
-                  information() << "notify_icon";
-
-               }
-               else if (m_strDebugType.contains("main_frame"))
-               {
-
-                  information() << "main_frame";
-
-               }
-
-            }
-
-            //if (estatus != status_kick_idle)
-            {
-
-               process_message();
-
-            }
-
-         }
-
-         return true;
-
-      }
-      catch (const ::exception & e)
-      {
-
-         if (m_strDebugType.contains("filemanager"))
-         {
-
-            //information() << "filemanager";
-
-         }
-
-         handle_exception(e);
-
-         //if (handle_exception(e))
-         //{
-
-         //   return true;
-
-         //}
-
-         //// get_app() may be it self, it is ok...
-         //if (papp->final_handle_exception(e))
-         //{
-
-         //   return true;
-
-         //}
-
-      }
-      catch (...)
-      {
-
-         information() << "... exception";
-
-      }
-
-      return false;
+      ::thread::on_task_quit();
 
    }
+
+
+   //bool thread::task_iteration()
+   //{
+
+   //   try
+   //   {
+
+   //      //auto estatus =
+   //      
+   //      get_message(&m_message, nullptr, 0, 0);
+
+   //      if(m_message.m_atom == e_message_quit)
+   //      {
+
+   //         if (m_strDebugType.contains("filemanager"))
+   //         {
+
+   //            //information() << "filemanager";
+
+   //         }
+
+   //         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.\n";
+
+   //         //::information(::type(this).name()) << " thread::pump_message - Received e_message_quit.\n");
+
+   //         m_nDisablePumpCount++; // application must die
+   //         // Note: prevents calling message loop things in 'exit_thread'
+   //         // will never be decremented
+   //         return false;
+
+   //      }
+
+   //      if(m_message.m_atom == e_message_left_button_down)
+   //      {
+
+   //         informationf("pump_message e_message_left_button_down");
+
+   //      }
+
+   //      if (m_message.m_atom == e_message_quit)
+   //      {
+
+
+   //      }
+
+   //      if(m_message.m_atom == e_message_left_button_down)
+   //      {
+
+   //         informationf("::user::thread::LBUTTONDOWN");
+
+   //      }
+   //      else if(m_message.m_atom == e_message_left_button_up)
+   //      {
+
+   //         informationf("::user::thread::LBUTTONUP");
+
+   //      }
+
+   //      if (m_message.m_atom != e_message_kick_idle && m_message.m_atom != e_message_quit)
+   //      {
+
+   //         if (m_message.m_atom == e_message_destroy_window)
+   //         {
+
+   //            if (m_strDebugType.contains("notify_icon"))
+   //            {
+
+   //               information() << "notify_icon";
+
+   //            }
+   //            else if (m_strDebugType.contains("main_frame"))
+   //            {
+
+   //               information() << "main_frame";
+
+   //            }
+
+   //         }
+
+   //         //if (estatus != status_kick_idle)
+   //         {
+
+   //            process_message();
+
+   //         }
+
+   //      }
+
+   //      return true;
+
+   //   }
+   //   catch (const ::exception & e)
+   //   {
+
+   //      if (m_strDebugType.contains("filemanager"))
+   //      {
+
+   //         //information() << "filemanager";
+
+   //      }
+
+   //      handle_exception(e);
+
+   //      //if (handle_exception(e))
+   //      //{
+
+   //      //   return true;
+
+   //      //}
+
+   //      //// get_app() may be it self, it is ok...
+   //      //if (papp->final_handle_exception(e))
+   //      //{
+
+   //      //   return true;
+
+   //      //}
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //      information() << "... exception";
+
+   //   }
+
+   //   return false;
+
+   //}
 
 
    bool thread::process_message()
@@ -865,175 +850,177 @@ namespace user
    void thread::run()
    {
 
-      ASSERT_VALID(this);
+      ::thread::run();
 
-      ::string strType = ::type(m_puserinteractionUserThread.m_p).name();
-
-      information()
-         << "usrthrd " << strType << " : "
-         << "user::thread::run";
-
-      if (m_strDebugType.contains("main_frame"))
-      {
-
-         informationf("xxthread::run from main_frame");
-
-      }
-
-      // get the keystroke manager interfce
-      //if (SUCCEEDED(m_pthreadmgr->QueryInterface(IID_ITfKeystrokeMgr, (void**)& m_pKeyMgr)))
-      //{
-      //   // get the message pump wrapper interface
-      //   if (SUCCEEDED(m_pthreadmgr->QueryInterface(IID_ITfMessagePump, (void**)& m_pMsgPump)))
-      //   {
-
-      //   }
-      //}
-      int_bool    fResult = true;
-
-      //while (fResult)
-      //{
-      //   MSG     msg;
-      //   BOOL    fEaten;
-
-         /*
-         Get the next message in the queue. fResult receives false if e_message_quit is encountered
-         */
-         //            }
-
-               //}
-
-                     //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
-                     //{
-                     //   fResult = false;
-                     //}
-                     //else if (e_message_key_down == msg.message)
-                     //{
-                     //   // does an ime want it?
-                     //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-                     //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-                     //   {
-                     //      continue;
-                     //   }
-                     //}
-                     //else if (e_message_key_up == msg.message)
-                     //{
-                     //   // does an ime want it?
-                     //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-                     //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-                     //   {
-                     //      continue;
-                     //   }
-                     //}
-
-                     //if (fResult)
-                     //{
-                     //   TranslateMessage(&msg);
-                     //   DispatchMessage(&msg);
-                     //}
-
-                     //if (e_message_quit == msg.message)
-                     //{
-                     //   nReturn = (int)msg.wParam;
-                     //}
-
-      if (m_bMessageThread)
-      {
-
-         bool bWindowSetFinish = false;
-
-         while (task_get_run())
-         {
-
-            if (has_finishing_flag())
-            {
-
-               if (m_puserinteractionUserThread && !m_puserinteractionUserThread->has_destroying_flag())
-               {
-
-                  m_puserinteractionUserThread->destroy_window();
-
-               }
-
-            }
-
-            if (m_puserinteractionUserThread && m_puserinteractionUserThread->m_pacmewindowingwindow)
-            {
-
-               m_puserinteractionUserThread->window()->process_messages();
-
-            }
-
-            if (!pump_message())
-            {
-
-               if (m_strDebugType.contains("filemanager"))
-               {
-
-                  //information() << "filemanager";
-
-               }
-
-               if (m_strDebugType.contains("main_frame"))
-               {
-
-                  informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
-
-               }
-
-               break;
-
-            }
-
-//            if (m_bSetFinish)
+//      ASSERT_VALID(this);
+//
+//      ::string strType = ::type(m_puserinteractionUserThread.m_p).name();
+//
+//      information()
+//         << "usrthrd " << strType << " : "
+//         << "user::thread::run";
+//
+//      if (m_strDebugType.contains("main_frame"))
+//      {
+//
+//         informationf("xxthread::run from main_frame");
+//
+//      }
+//
+//      // get the keystroke manager interfce
+//      //if (SUCCEEDED(m_pthreadmgr->QueryInterface(IID_ITfKeystrokeMgr, (void**)& m_pKeyMgr)))
+//      //{
+//      //   // get the message pump wrapper interface
+//      //   if (SUCCEEDED(m_pthreadmgr->QueryInterface(IID_ITfMessagePump, (void**)& m_pMsgPump)))
+//      //   {
+//
+//      //   }
+//      //}
+//      int_bool    fResult = true;
+//
+//      //while (fResult)
+//      //{
+//      //   MSG     msg;
+//      //   BOOL    fEaten;
+//
+//         /*
+//         Get the next message in the queue. fResult receives false if e_message_quit is encountered
+//         */
+//         //            }
+//
+//               //}
+//
+//                     //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
+//                     //{
+//                     //   fResult = false;
+//                     //}
+//                     //else if (e_message_key_down == msg.message)
+//                     //{
+//                     //   // does an ime want it?
+//                     //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+//                     //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+//                     //   {
+//                     //      continue;
+//                     //   }
+//                     //}
+//                     //else if (e_message_key_up == msg.message)
+//                     //{
+//                     //   // does an ime want it?
+//                     //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+//                     //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+//                     //   {
+//                     //      continue;
+//                     //   }
+//                     //}
+//
+//                     //if (fResult)
+//                     //{
+//                     //   TranslateMessage(&msg);
+//                     //   DispatchMessage(&msg);
+//                     //}
+//
+//                     //if (e_message_quit == msg.message)
+//                     //{
+//                     //   nReturn = (int)msg.wParam;
+//                     //}
+//
+//      if (m_bMessageThread)
+//      {
+//
+//         bool bWindowSetFinish = false;
+//
+//         while (task_get_run())
+//         {
+//
+//            if (has_finishing_flag())
 //            {
 //
-//               if (!bWindowSetFinish)
+//               if (m_puserinteractionUserThread && !m_puserinteractionUserThread->has_destroying_flag())
 //               {
 //
-//                  bWindowSetFinish = true;
-//
-//                  if (m_puserinteractionUserThread)
-//                  {
-//
-//                     auto puserinteraction = m_puserinteractionUserThread;
-//
-//                     if (puserinteraction)
-//                     {
-//
-//                        puserinteraction->destroy_window();
-//
-//                     }
-//
-//                  }
+//                  m_puserinteractionUserThread->destroy_window();
 //
 //               }
 //
 //            }
-
-         }
-
-      }
-
-      //m_pMsgPump->Release();
-
-      //   m_pKeyMgr->Release();
-
-      if (m_strDebugType.contains("main_frame"))
-      {
-
-         informationf("ending xxthread::run from main_frame");
-
-      }
-
-      if (m_strDebugType.contains("filemanager"))
-      {
-
-         //information() << "filemanager";
-
-      }
-
-      //return m_estatus;
+//
+//            if (m_puserinteractionUserThread && m_puserinteractionUserThread->m_pacmewindowingwindow)
+//            {
+//
+//               m_puserinteractionUserThread->window()->process_messages();
+//
+//            }
+//
+//            if (!pump_message())
+//            {
+//
+//               if (m_strDebugType.contains("filemanager"))
+//               {
+//
+//                  //information() << "filemanager";
+//
+//               }
+//
+//               if (m_strDebugType.contains("main_frame"))
+//               {
+//
+//                  informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
+//
+//               }
+//
+//               break;
+//
+//            }
+//
+////            if (m_bSetFinish)
+////            {
+////
+////               if (!bWindowSetFinish)
+////               {
+////
+////                  bWindowSetFinish = true;
+////
+////                  if (m_puserinteractionUserThread)
+////                  {
+////
+////                     auto puserinteraction = m_puserinteractionUserThread;
+////
+////                     if (puserinteraction)
+////                     {
+////
+////                        puserinteraction->destroy_window();
+////
+////                     }
+////
+////                  }
+////
+////               }
+////
+////            }
+//
+//         }
+//
+//      }
+//
+//      //m_pMsgPump->Release();
+//
+//      //   m_pKeyMgr->Release();
+//
+//      if (m_strDebugType.contains("main_frame"))
+//      {
+//
+//         informationf("ending xxthread::run from main_frame");
+//
+//      }
+//
+//      if (m_strDebugType.contains("filemanager"))
+//      {
+//
+//         //information() << "filemanager";
+//
+//      }
+//
+//      //return m_estatus;
 
    }
 

@@ -33,11 +33,20 @@ namespace handler
    }
 
 
+   void handler::on_initialize_particle()
+   {
+
+      ::matter::on_initialize_particle();
+
+      defer_create_synchronization();
+
+   }
+
+
    void handler::destroy()
    {
 
-
-      m_requestaPending.clear();
+      m_requestaPosted.clear();
 
       for (auto& r: m_requestaHistory)
       {
@@ -49,6 +58,16 @@ namespace handler
       m_requestaHistory.clear();
 
       ::matter::destroy();
+
+   }
+
+
+   ::manual_reset_event * handler::new_request_posted_event()
+   {
+
+      __defer_construct_new(m_pmanualreseteventNewRequestPosted);
+
+      return m_pmanualreseteventNewRequestPosted;
 
    }
 
@@ -69,11 +88,60 @@ namespace handler
 
          prequest->m_bNew = true;
 
-         m_requestaPending.add(prequest);
+         m_requestaPosted.add(prequest);
+
+         new_request_posted_event()->set_event();
 
       }
 
-      kick_idle();
+      //kick_idle();
+
+   }
+
+
+   ::request * handler::pick_next_posted_request()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      if (m_requestaPosted.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      auto prequest = m_requestaPosted.pick_first();
+
+      if (m_requestaPosted.is_empty())
+      {
+
+         new_request_posted_event()->ResetEvent();
+
+      }
+
+      m_requestaHistory.add(prequest);
+
+      return prequest;
+
+   }
+
+
+   bool handler::handle_next_posted_request()
+   {
+
+      auto prequest = pick_next_posted_request();
+
+      if (!prequest)
+      {
+
+         return false;
+
+      }
+
+      handle(prequest);
+
+      return true;
 
    }
 
@@ -90,7 +158,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_requestaPending.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
+      return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_prequest.get() == prequest;
 
@@ -122,7 +190,7 @@ namespace handler
    bool handler::on_idle()
    {
 
-      if (post_next_pending_request())
+      if (handle_next_posted_request())
       {
 
          return true;
@@ -217,6 +285,16 @@ namespace handler
    }
 
 
+   void handler::handle(::request * prequest)
+   {
+
+      m_prequest = prequest;
+
+      request(prequest);
+
+   }
+
+
    bool handler::_handle_uri(const block& blockUri)
    {
 
@@ -266,34 +344,6 @@ namespace handler
 //    return handle_uri(blockUri);
 //
 // }
-
-
-
-
-
-
-
-   bool handler::post_next_pending_request()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      if (!m_requestaPending.has_element())
-      {
-
-         return false;
-
-      }
-
-      auto prequest = m_requestaPending.pick_first();
-
-      m_requestaHistory.add(prequest);
-
-      post_request(prequest);
-
-      return true;
-
-   }
 
 
 } // namespace handler

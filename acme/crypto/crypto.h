@@ -82,8 +82,8 @@ namespace crypto
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
       virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
 
-      virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
-      virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
+      virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
+      virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
 
       // get a ___new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

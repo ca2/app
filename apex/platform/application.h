@@ -186,7 +186,7 @@ namespace apex
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;
-
+      void main() override;
 
       virtual string __get_text(string str);
 
@@ -357,7 +357,7 @@ namespace apex
       virtual bool is_running();
 
 
-      bool pump_runnable() override;
+      //bool pump_runnable() override;
 
       virtual void add_activation_message(const ::string& strMessage);
 
@@ -365,7 +365,11 @@ namespace apex
       virtual bool has_activation_message() const;
 
 
-      virtual bool defer_process_activation_message();
+      virtual void handle_posted_activation_message();
+
+      bool task_iteration() override;
+
+
 
 
       //virtual void on_request(::request * prequest) override;

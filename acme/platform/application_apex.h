@@ -328,10 +328,10 @@ namespace platform
 
       //virtual string load_podata(string strLang, bool bOnlyHeader);
 
-      virtual string load_string(const ::atom& atom);
+      //virtual string load_string(const ::atom& atom);
 
 
-      virtual bool load_string(string& str, const ::atom& atom);
+      //virtual bool load_string(string& str, const ::atom& atom);
 
 
       virtual void load_string_table();

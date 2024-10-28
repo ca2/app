@@ -82,7 +82,7 @@ inline pointer < T > ::pointer(place_t, T2 * p)
          if (m_psubparticle->is_referencing_debugging_enabled())
          {
 
-            auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.first();
+            auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
 
             m_preferer = preferenceitem->m_preferer;
 
@@ -243,6 +243,13 @@ template < class T >
 inline T * pointer < T > ::operator ->()
 {
 
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
+
    return m_p;
 
 }
@@ -251,6 +258,13 @@ inline T * pointer < T > ::operator ->()
 template < class T >
 inline T * pointer < T > ::operator ->() const
 {
+
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
 
    return m_p;
 
@@ -261,6 +275,13 @@ template < class T >
 inline T & pointer < T > ::operator * ()
 {
 
+   if (is_null())
+   {
+
+      return *((T*)nullptr);
+
+   }
+
    return *m_p;
 
 }
@@ -269,6 +290,13 @@ inline T & pointer < T > ::operator * ()
 template < class T >
 inline T & pointer < T > ::operator * () const
 {
+
+   if (is_null())
+   {
+
+      return *((T *)nullptr);
+
+   }
 
    return *m_p;
 
@@ -279,6 +307,13 @@ template < class T >
 inline pointer < T > ::operator T * ()
 {
 
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
+
    return m_p;
 
 }
@@ -287,6 +322,13 @@ inline pointer < T > ::operator T * ()
 template < class T >
 inline pointer < T > ::operator T * const () const
 {
+
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
 
    return m_p;
 
@@ -297,6 +339,14 @@ template < class T >
 inline T * pointer < T > ::get()
 {
 
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
+
+
    return m_p;
 
 }
@@ -305,6 +355,13 @@ inline T * pointer < T > ::get()
 template < class T >
 inline const T * pointer < T > ::get() const
 {
+
+   if (is_null())
+   {
+
+      return nullptr;
+
+   }
 
    return m_p;
 

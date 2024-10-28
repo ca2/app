@@ -57,7 +57,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return directory_system()->system() / "credential_storage";
+      return directory_system()->user() / "credential_storage";
 
    }
 
@@ -371,7 +371,7 @@ namespace account
 
       m_ptaskpool->set_timer(e_timer_slow, 1_minute);
 
-      auto psession = session()->m_paxissession;
+      auto psession = session();
 
       psession->on_user_logon(puser);
 

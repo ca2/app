@@ -27,6 +27,7 @@ namespace acme { class acme;  }
 #include "application_apex.h"
 #include "application_aqua.h"
 #include "application_aura.h"
+#include "application_axis.h"
 
 
 namespace platform
@@ -44,10 +45,12 @@ namespace platform
       virtual public ::platform::apex_application_layer_t,
       virtual public ::platform::aqua_application_layer_t,
       virtual public ::platform::aura_application_layer_t,
+      virtual public ::platform::axis_application_layer_t,
       virtual public ::platform::acme_application_layer,
       virtual public ::platform::apex_application_layer,
       virtual public ::platform::aqua_application_layer,
-      virtual public ::platform::aura_application_layer
+      virtual public ::platform::aura_application_layer,
+      virtual public ::platform::axis_application_layer
    {
    public:
 
@@ -181,10 +184,10 @@ namespace platform
 
       virtual void initialize_application_flags();
 
-      virtual bool is_application() const;
+      //virtual bool is_application() const;
 
-      bool is_system() const override;
-      bool is_session() const override;
+      //bool is_system() const override;
+      //bool is_session() const override;
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
@@ -216,9 +219,11 @@ namespace platform
 //
 //#endif
 
-      virtual int __implement();
+      //virtual int __implement();
 
-      virtual int main_loop();
+      //virtual int main_loop();
+
+      void main() override;
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
 

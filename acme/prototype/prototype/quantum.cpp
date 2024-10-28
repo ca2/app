@@ -12,4 +12,19 @@ quantum::~quantum()
 }
 
 
+void quantum::request(::request * prequest)
+{
+
+   on_request(prequest);
+
+}
+
+
+void quantum::on_request(::request * prequest)
+{
+
+
+}
+
+
 

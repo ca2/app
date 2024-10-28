@@ -1278,7 +1278,7 @@ namespace acme
          }
 
 
-         bool interaction::on_drag_start(::point_i32 & point, ::item * pitem)
+         bool interaction::on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem)
          {
 
             if (pitem->m_item.m_eelement == e_element_client)
@@ -1286,7 +1286,7 @@ namespace acme
 
                auto pdrag = drag(pitem);
 
-               if (acme_windowing_window()->defer_perform_entire_reposition_process(pdrag->m_pmouse))
+               if (acme_windowing_window()->defer_perform_entire_reposition_process(pmouse))
                {
 
                   return false;
@@ -1368,7 +1368,7 @@ namespace acme
          }
 
 
-         void interaction::drag_set_cursor(::item * pitem)
+         void interaction::drag_set_cursor(::item * pitem, ::user::mouse * pmouse)
          {
 
             auto pdrag = drag(pitem);

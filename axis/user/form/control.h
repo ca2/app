@@ -31,10 +31,10 @@ namespace user
 
 
 
-      ::axis::application* get_app();
-      ::axis::session* get_session();
-      ::axis::system * get_system();
-      ::axis::user * axisuser() override;
+      // ::axis::application* get_app();
+      // ::axis::session* get_session();
+      // ::axis::system * get_system();
+      // ::axis::user * axisuser() override;
 
       //ref_array < CTransparentStatic > m_staticpa;
 

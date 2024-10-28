@@ -498,101 +498,101 @@ namespace apex
 {
 
 
-   bool system::do_tasks()
-   {
+   //bool system::do_tasks()
+   //{
 
-      bool bProcess = false;
+   //   bool bProcess = false;
 
-      bool bProcessed = false;
+   //   bool bProcessed = false;
 
-      do
-      {
+   //   do
+   //   {
 
-         bool bProcess1 = false;
+   //      bool bProcess1 = false;
 
-         try
-         {
+   //      try
+   //      {
 
-            auto ptask = ::get_task();
+   //         auto ptask = ::get_task();
 
-            if (::is_set(ptask))
-            {
+   //         if (::is_set(ptask))
+   //         {
 
-               if (ptask == this)
-               {
+   //            if (ptask == this)
+   //            {
 
-                  ::platform::system::do_tasks();
+   //               ::platform::system::do_tasks();
 
-               }
-               else
-               {
+   //            }
+   //            else
+   //            {
 
-                  bProcess1 = ptask->do_tasks();
+   //               bProcess1 = ptask->do_tasks();
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-         }
+   //      }
 
-         bool bProcess2 = false;
+   //      bool bProcess2 = false;
 
-         bool bProcess3 = false;
+   //      bool bProcess3 = false;
 
-         try
-         {
+   //      try
+   //      {
 
-            auto psystem = this;
+   //         auto psystem = this;
 
-            if (::is_set(psystem) && psystem != this)
-            {
+   //         if (::is_set(psystem) && psystem != this)
+   //         {
 
-               bProcess2 = psystem->do_tasks();
+   //            bProcess2 = psystem->do_tasks();
 
-               try
-               {
+   //            try
+   //            {
 
-                  auto psession = session();
+   //               auto psession = session();
 
-                  if (::is_set(psession))
-                  {
+   //               if (::is_set(psession))
+   //               {
 
-                     bProcess3 = psystem->do_tasks();
+   //                  bProcess3 = psystem->do_tasks();
 
-                  }
+   //               }
 
-               }
-               catch (...)
-               {
+   //            }
+   //            catch (...)
+   //            {
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-         }
+   //      }
 
-         bool bProcess = bProcess1 || bProcess2 || bProcess3;
+   //      bool bProcess = bProcess1 || bProcess2 || bProcess3;
 
-         if (bProcess)
-         {
+   //      if (bProcess)
+   //      {
 
-            bProcessed = bProcess;
+   //         bProcessed = bProcess;
 
-         }
+   //      }
 
-      } while (bProcess);
+   //   } while (bProcess);
 
-      return bProcessed;
+   //   return bProcessed;
 
-   }
+   //}
 
 
    //bool do_tasks(const class time & time)

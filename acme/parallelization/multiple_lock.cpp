@@ -15,37 +15,11 @@
 #endif
 
 
-
-
-
-
-
-multiple_lock::multiple_lock()
+multiple_lock::multiple_lock(synchronization_array & synchronizationa,bool bInitialLock) :
+   m_synchronizationa(synchronizationa)
 {
 
-}
-
-
-multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool bInitialLock)
-{
-
-   ASSERT(synchronizationa.synchronization_count() > 0 && synchronizationa.synchronization_count() <= MAXIMUM_WAIT_OBJECTS);
-
-   if(synchronizationa.synchronization_count() <= 0)
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   for (::collection::index i = 0; i < synchronizationa.synchronization_count(); i++)
-   {
-
-      m_synchronizationa.add_item(synchronizationa.m_synchronizationa[i]);
-
-   }
-
-   //m_baLocked.set_size(m_hsyncaCache.get_size());
+   ASSERT(m_synchronizationa.size() > 0 && m_synchronizationa.size() <= MAXIMUM_WAIT_OBJECTS);
 
    if(bInitialLock)
    {
@@ -56,31 +30,31 @@ multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool
 
 }
 
-
-multiple_lock::multiple_lock(::collection::count c, const synchronization_array & synchronizationa, bool bInitialLock)
-{
-
-   ASSERT(synchronizationa.has_synchronization() && c > 0 && c <= synchronizationa.synchronization_count() && c <= MAXIMUM_WAIT_OBJECTS);
-
-   if (synchronizationa.has_no_synchronization() || c <= 0 || c > synchronizationa.synchronization_count() || c > MAXIMUM_WAIT_OBJECTS)
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   m_synchronizationa.add(synchronizationa);
-
-   memory_set(&m_bitsLocked, 0, sizeof(m_bitsLocked));
-
-   if (bInitialLock)
-   {
-
-      lock();
-
-   }
-
-}
+//
+//multiple_lock::multiple_lock(::collection::count c, const synchronization_array & synchronizationa, bool bInitialLock)
+//{
+//
+//   ASSERT(synchronizationa.has_synchronization() && c > 0 && c <= synchronizationa.synchronization_count() && c <= MAXIMUM_WAIT_OBJECTS);
+//
+//   if (synchronizationa.has_no_synchronization() || c <= 0 || c > synchronizationa.synchronization_count() || c > MAXIMUM_WAIT_OBJECTS)
+//   {
+//
+//      throw ::exception(error_bad_argument);
+//
+//   }
+//
+//   m_synchronizationa.add(synchronizationa);
+//
+//   memory_set(&m_bitsLocked, 0, sizeof(m_bitsLocked));
+//
+//   if (bInitialLock)
+//   {
+//
+//      lock();
+//
+//   }
+//
+//}
 
 
 multiple_lock::~multiple_lock()
@@ -91,18 +65,18 @@ multiple_lock::~multiple_lock()
 }
 
 
-::collection::index multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
+::e_status multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
 {
 
-   if (m_synchronizationa.has_no_synchronization())
-   {
+   //if (m_synchronizationa.has_no_synchronization())
+   //{
 
-      throw ::exception(error_invalid_empty_argument);
+   //   throw ::exception(error_invalid_empty_argument);
 
-   }
+   //}
 
    //auto estatus = m_synchronizationa.wait(time, bWaitForAll, dwWakeMask);
-   auto iSignaled = m_synchronizationa.wait(time, bWaitForAll, dwWakeMask);
+   auto estatus = m_synchronizationa.wait(time, bWaitForAll, dwWakeMask);
 
 
 
@@ -123,40 +97,42 @@ multiple_lock::~multiple_lock()
 
    //auto iSignaled = estatus.signaled_index();
 
-   if(iSignaled < 0)
-   {
+   //if(iSignaled < 0)
+   //{
 
-      ::e_status estatus = ::get_last_status();
+   //   ::e_status estatus = ::get_last_status();
 
-      // TRACELASTERROR();
+   //   // TRACELASTERROR();
 
-   }
-   else if (iSignaled >= 0)
-   {
+   //}
+   //else if (iSignaled >= 0)
+   //{
 
-      if (bWaitForAll)
-      {
+   //   if (bWaitForAll)
+   //   {
 
-         for (::u8 j = 0, i = 0; j < m_synchronizationa.synchronization_count(); j++)
-         {
+   //      for (::u8 j = 0, i = 0; j < m_synchronizationa.size(); j++)
+   //      {
 
-            m_bitsLocked.set(i);
+   //         m_bitsLocked.set(i);
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_bitsLocked.set(iSignaled);
+   //      m_bitsLocked.set(iSignaled);
 
-      }
+   //   }
 
-   }
+   //}
 
    //return estatus;
 
-   return iSignaled;
+   //return iSignaled;
+
+   return estatus;
 
 }
 
@@ -164,13 +140,13 @@ multiple_lock::~multiple_lock()
 void multiple_lock::unlock()
 {
 
-   for (::collection::index i=0; i < m_synchronizationa.synchronization_count(); i++)
+   for (::collection::index i=0; i < m_synchronizationa.size(); i++)
    {
 
-      if (m_bitsLocked.is_set(i) && m_synchronizationa.m_synchronizationa[i])
+      if (m_bitsLocked.is_set(i))
       {
 
-         m_synchronizationa.m_synchronizationa[i]->unlock();
+         m_synchronizationa.unlock_item(i);
 
          m_bitsLocked.set(i, false);
 
@@ -188,28 +164,15 @@ void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
    //bool bGotOne = false;
 
-   for (::collection::index i=0; i < m_synchronizationa.synchronization_count(); i++)
+   for (::collection::index i=0; i < m_synchronizationa.size(); i++)
    {
 
-      if (m_bitsLocked.is_set(i) && m_synchronizationa.m_synchronizationa[i])
+      if (m_bitsLocked.is_set(i))
       {
 
-         semaphore * pSemaphore = m_synchronizationa.synchronization_at(i).cast < semaphore >();
+         m_synchronizationa.unlock_item(i,lCount, pPrevCount);
 
-         if (pSemaphore != nullptr)
-         {
-
-            //bGotOne = true;
-
-            //if (m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount))
-            m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount);
-            {
-
-               m_bitsLocked.unset(i);
-
-            }
-
-         }
+         m_bitsLocked.unset(i);
 
       }
 

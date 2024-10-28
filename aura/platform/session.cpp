@@ -73,7 +73,7 @@ namespace aura
 
       m_bAcceptsFirstResponder = true;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
 

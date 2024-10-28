@@ -13,8 +13,9 @@
 //#include "acme/prototype/string/hex.h"
 //#include "acme/prototype/time/integral/operator.h"
 #include "acme/crypto/crypto.h"
+#include "acme/platform/http.h"
+#include "acme/platform/system.h"
 #include "apex/networking/http/context.h"
-#include "apex/platform/context.h"
 #include "axis/networking/email_department.h"
 #include "axis/platform/application.h"
 #include "axis/platform/system.h"
@@ -232,10 +233,10 @@ namespace account
 
          }
 
-         auto psystem = system()->m_paxissystem;
+         auto psystem = system();
 
          bool bBadUser = strUser.is_empty()
-            || !psystem->email().is_valid_public_address(strUser);
+            || !psystem->email()->is_valid_public_address(strUser);
 
          bool bBadHash = strHash.length() < 80
             || strOlen.is_empty()
@@ -428,7 +429,7 @@ namespace account
 
       get_mod(straHash,straSource);
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       m_strModHash = psystem->crypto()->md5(straHash.implode(";"));
 
@@ -501,7 +502,7 @@ namespace account
          try
          {
 
-            http()->get(strUrl, strResponse, set);
+            strResponse = http()->get(strUrl, set);
 
             break;
 

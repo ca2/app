@@ -8,6 +8,7 @@
 #include "system_apex.h"
 #include "system_aqua.h"
 #include "system_aura.h"
+#include "system_axis.h"
 
 
 namespace platform
@@ -22,10 +23,12 @@ namespace platform
       virtual public ::platform::apex_system_layer_t,
       virtual public ::platform::aqua_system_layer_t,
       virtual public ::platform::aura_system_layer_t,
+   virtual public ::platform::axis_system_layer_t,
       virtual public ::platform::acme_system_layer,
       virtual public ::platform::apex_system_layer,
       virtual public ::platform::aqua_system_layer,
       virtual public ::platform::aura_system_layer,
+   virtual public ::platform::axis_system_layer,
       virtual public ::task
    {
    public:
@@ -63,8 +66,9 @@ virtual ::particle * matter_mutex();
 
       virtual void do_graphics_and_windowing_system_factory();
 
+      virtual void application_main(::platform::application * papplication);
 
-      void initialize_layer();
+      virtual void initialize_layer();
 
       virtual enum_trace_level get_trace_level();
       //void os_construct();
@@ -144,8 +148,8 @@ virtual ::particle * matter_mutex();
 
      virtual::prototype::prototype * prototype();
 
-      virtual ::draw2d::draw2d * draw2d() const;
-      virtual ::write_text::write_text * write_text() const;
+      virtual ::draw2d::draw2d * draw2d();
+      virtual ::write_text::write_text * write_text();
 
       //virtual ::windowing::windowing_base * windowing_base();
 
@@ -172,7 +176,7 @@ virtual ::particle * matter_mutex();
       virtual void erase_from_any_hook(::matter * pmatter);
 
 
-      virtual void create_os_node();
+      virtual void create_os_node(::platform::application * papplication);
 
       virtual string os_get_user_theme();
 
@@ -505,6 +509,9 @@ virtual ::particle * matter_mutex();
 
       //virtual void windowing_send(const ::procedure & procedure);
       //virtual void windowing_post(const ::procedure & procedure);
+
+
+      void _post(const ::procedure & procedure) override;
 
 
       bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;

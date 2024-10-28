@@ -257,7 +257,7 @@ namespace account
 
       }
 
-      auto psession = m_papplication->m_psession->m_paxissession;
+      auto psession = m_papplication->m_psession;
 
       psession->account()->on_user_logon(this);
 
@@ -275,7 +275,7 @@ namespace account
 
       ::pointer<credentials>pcredentials = __allocate credentials();
 
-      auto psession = session()->m_paxissession;
+      auto psession = session();
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -482,7 +482,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            auto psession = session()->m_paxissession;
+            auto psession = session();
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

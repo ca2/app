@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   bool scroll_base::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
+   bool scroll_base::on_drag_start(::point_i32 & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
 
       if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
@@ -100,7 +100,7 @@ namespace user
 
       }
 
-      return ::user::interaction::on_drag_start(pointDrag, pitem);
+      return ::user::interaction::on_drag_start(pointDrag, pmouse, pitem);
 
    }
 

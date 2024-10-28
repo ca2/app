@@ -679,25 +679,25 @@ namespace user
 
       set_finishing_flag();
 
-      try
-      {
+      //try
+      //{
 
-         auto pwindowing = system()->windowing();
+      //   auto pwindowing = system()->windowing();
 
-         if(::is_set(pwindowing))
-         {
+      //   if(::is_set(pwindowing))
+      //   {
 
-            pwindowing->windowing_post_quit();
+      //      pwindowing->windowing_post_quit();
 
-         }
-
-
-      }
-      catch(...)
-      {
+      //   }
 
 
-      }
+      //}
+      //catch(...)
+      //{
+
+
+      //}
 
       //pstyle.release();
 //      ::acme::del(m_pufeschema);

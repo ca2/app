@@ -191,7 +191,7 @@ thread::thread()
 
    m_nDisablePumpCount = 0;
 
-   m_bSimpleMessageLoop = true;
+   //m_bSimpleMessageLoop = true;
 
 #ifdef WINDOWS
 
@@ -525,13 +525,13 @@ CLASS_DECL_APEX void thread_alloc_ready(bool bReady)
 bool thread::has_step() const
 {
 
-   if (m_bSimpleMessageLoop)
-   {
+   //if (m_bSimpleMessageLoop)
+   //{
 
-      return has_raw_message();
+   //   return has_raw_message();
 
-   }
-   else
+   //}
+   //else
    {
 
       return has_message();
@@ -541,12 +541,12 @@ bool thread::has_step() const
 }
 
 
-bool thread::has_raw_message() const
-{
-
-   return has_message();
-
-}
+//bool thread::has_raw_message() const
+//{
+//
+//   return has_message();
+//
+//}
 
 
 bool thread::has_message() const
@@ -559,130 +559,157 @@ bool thread::has_message() const
 }
 
 
-bool thread::thread_step()
+bool thread::handle_messages()
 {
 
-   if (m_bSimpleMessageLoop)
+   //if (m_bSimpleMessageLoop)
+   //{
+
+   //   return raw_handle_message();
+
+   //}
+   //else
    {
 
-      return raw_pump_message();
-
-   }
-   else
-   {
-
-      return pump_message();
+      return handle_message();
 
    }
 
 }
 
-
-void thread::thread_loop()
-{
-
-   while (true)
-   {
-
-      if (!task_get_run())
-      {
-
-         string strType = ::type(this).name();
-
-         //         if (strType.case_insensitive_contains("session"))
-         //         {
-         //
-         //            auto bShouldRun = task_get_run();
-         //
-         //            if (!bShouldRun)
-         //            {
-         //
-         //               informationf("session_shouldn't_run?");
-         //
-         //            }
-         //
-         //         }
-
-         break;
-
-      }
-
-      try
-      {
-
-         if (!thread_step())
-         {
-
-            //            string strType = ::type(this).name();
-            //
-            //            if (strType.case_insensitive_contains("session"))
-            //            {
-            //
-            //               auto bShouldRun = task_get_run();
-            //
-            //               if (!bShouldRun)
-            //               {
-            //
-            //                  informationf("session_shouldn't_run?");
-            //
-            //               }
-            //
-            //            }
-
-            break;
-
-
-            //            if(strType.contains("wave_player"))
-            //            {
-            //
-            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
-            //
-            //            }
-            //            else if(strType.case_insensitive_ends("out"))
-            //            {
-            //
-            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
-            //
-            //            }
-            //            else if(strType.contains("output_thread"))
-            //            {
-            //
-            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
-            //
-            //            }
-
-            break;
-
-         }
-
-      }
-      catch (const ::exception& e)
-      {
-
-         handle_exception(e);
-         //{
-
-         //   informationf("exception occurred (2.1)");
-
-         //   break;
-
-         //}
-
-      }
-      catch (...)
-      {
-
-         informationf("exception occurred (2.2)");
-
-         break;
-
-      }
-
-   }
-
-   //return m_estatus;
-
-}
+//
+//void thread::thread_loop()
+//{
+//
+//   while (true)
+//   {
+//
+//      if (!task_get_run())
+//      {
+//
+//         string strType = ::type(this).name();
+//
+//         //         if (strType.case_insensitive_contains("session"))
+//         //         {
+//         //
+//         //            auto bShouldRun = task_get_run();
+//         //
+//         //            if (!bShouldRun)
+//         //            {
+//         //
+//         //               informationf("session_shouldn't_run?");
+//         //
+//         //            }
+//         //
+//         //         }
+//
+//         break;
+//
+//      }
+//
+//      try
+//      {
+//
+//         main_loop_iteration(1_s);
+//
+//      }
+//      catch (const ::exception & e)
+//      {
+//
+//         handle_exception(e);
+//         //{
+//
+//         //   informationf("exception occurred (2.1)");
+//
+//         //   break;
+//
+//         //}
+//
+//      }
+//      catch (...)
+//      {
+//
+//         informationf("exception occurred (2.2)");
+//
+//         break;
+//
+//      }
+//      try
+//      {
+//
+//         if (!thread_step())
+//         {
+//
+//            //            string strType = ::type(this).name();
+//            //
+//            //            if (strType.case_insensitive_contains("session"))
+//            //            {
+//            //
+//            //               auto bShouldRun = task_get_run();
+//            //
+//            //               if (!bShouldRun)
+//            //               {
+//            //
+//            //                  informationf("session_shouldn't_run?");
+//            //
+//            //               }
+//            //
+//            //            }
+//
+//            break;
+//
+//
+//            //            if(strType.contains("wave_player"))
+//            //            {
+//            //
+//            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
+//            //
+//            //            }
+//            //            else if(strType.case_insensitive_ends("out"))
+//            //            {
+//            //
+//            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
+//            //
+//            //            }
+//            //            else if(strType.contains("output_thread"))
+//            //            {
+//            //
+//            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
+//            //
+//            //            }
+//
+//            break;
+//
+//         }
+//
+//      }
+//      catch (const ::exception& e)
+//      {
+//
+//         handle_exception(e);
+//         //{
+//
+//         //   informationf("exception occurred (2.1)");
+//
+//         //   break;
+//
+//         //}
+//
+//      }
+//      catch (...)
+//      {
+//
+//         informationf("exception occurred (2.2)");
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//   //return m_estatus;
+//
+//}
 
 
 //void thread::run()
@@ -710,29 +737,29 @@ void thread::run()
 
    }
 
-   if (m_bSimpleMessageLoop)
-   {
+   //if (m_bSimpleMessageLoop)
+   //{
 
-      information() << "running thread with simple message loop";
+   //   information() << "running thread with simple message loop";
 
-   }
+   //}
 
-   thread_loop();
-
-}
-
-
-bool thread::pump_runnable()
-{
-
-   handle_posted_messages();
-
-   run_posted_procedures();
-
-   return false;
+   ::task::run();
 
 }
 
+
+//bool thread::pump_runnable()
+//{
+//
+//   handle_posted_messages();
+//
+//   run_posted_procedures();
+//
+//   return false;
+//
+//}
+//
 
 void thread::on_message_branch(::message::message* pmessage)
 {
@@ -806,7 +833,7 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 w
 }
 
 
-bool thread::pump_message()
+bool thread::task_iteration()
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -814,7 +841,7 @@ bool thread::pump_message()
    if (m_messageaInitialQueue.has_element())
    {
 
-      for (auto& m: m_messageaInitialQueue)
+      for (auto & m : m_messageaInitialQueue)
       {
 
          ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
@@ -827,134 +854,168 @@ bool thread::pump_message()
 
 #endif
 
-   try
+   if (!::task::task_iteration())
    {
 
-      if (pump_runnable())
-      {
-
-         return true;
-
-      }
-
-   }
-   catch (...)
-   {
-
-      if (m_strDebugType.contains("filemanager"))
-      {
-
-         //information() << "filemanager";
-
-      }
+      return false;
 
    }
 
-   try
-   {
+   return true;
 
-      //auto estatus = get_message(&m_message, nullptr, 0, 0);
-
-      if (!peek_message(&m_message, nullptr, 0, 0, true))
-      {
-
-         if (on_idle())
-         {
-
-            return true;
-
-         }
-
-         get_message(&m_message, nullptr, 0, 0);
-
-      }
-
-      if (m_message.m_atom == e_message_quit)
-      {
-
-         string strType = ::type(this).name();
-
-         if (strType.case_insensitive_contains("session"))
-         {
-
-            auto bShouldRun = task_get_run();
-
-            if (!bShouldRun)
-            {
-
-               informationf("session_shouldn't_run?");
-
-            }
-
-         }
-
-         if (m_strDebugType.contains("filemanager"))
-         {
-
-            //information() << "filemanager";
-
-         }
-
-         information()(e_trace_category_appmsg) << ::type(this).name() <<
-            " thread::pump_message - Received e_message_quit.";
-
-         information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
-
-         m_nDisablePumpCount++; // application must die
-         // Note: prevents calling message loop things in 'exit_thread'
-         // will never be decremented
-         return false;
-
-      }
-      else
-      {
-
-         if (m_message.m_atom == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
-         {
-
-            information() << "notify_icon";
-
-         }
-
-         process_message();
-
-      }
-
-      return true;
-
-   }
-   catch (const ::exception& e)
-   {
-
-      if (m_strDebugType.contains("filemanager"))
-      {
-
-         //information() << "filemanager";
-
-      }
-
-      handle_exception(e);
-
-      //// get_app() may be it self, it is ok...
-      //if (get_app()->final_handle_exception(e))
-      //{
-
-      //   return true;
-
-      //}
-
-   }
-   catch (...)
-   {
-
-      information() << "... exception";
-
-   }
-
-   return false;
 
 }
 
+//
+//bool thread::pump_message()
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   if (m_messageaInitialQueue.has_element())
+//   {
+//
+//      for (auto& m: m_messageaInitialQueue)
+//      {
+//
+//         ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
+//
+//      }
+//
+//      m_messageaInitialQueue.clear();
+//
+//   }
+//
+//#endif
+//
+//   //try
+//   //{
+//
+//   //   if (pump_runnable())
+//   //   {
+//
+//   //      return true;
+//
+//   //   }
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   if (m_strDebugType.contains("filemanager"))
+//   //   {
+//
+//   //      //information() << "filemanager";
+//
+//   //   }
+//
+//   //}
+//
+//   try
+//   {
+//
+//      //auto estatus = get_message(&m_message, nullptr, 0, 0);
+//
+//      if (!peek_message(&m_message, nullptr, 0, 0, true))
+//      {
+//
+//         if (on_idle())
+//         {
+//
+//            return true;
+//
+//         }
+//
+//         get_message(&m_message, nullptr, 0, 0);
+//
+//      }
+//
+//      if (m_message.m_atom == e_message_quit)
+//      {
+//
+//         string strType = ::type(this).name();
+//
+//         if (strType.case_insensitive_contains("session"))
+//         {
+//
+//            auto bShouldRun = task_get_run();
+//
+//            if (!bShouldRun)
+//            {
+//
+//               informationf("session_shouldn't_run?");
+//
+//            }
+//
+//         }
+//
+//         if (m_strDebugType.contains("filemanager"))
+//         {
+//
+//            //information() << "filemanager";
+//
+//         }
+//
+//         information()(e_trace_category_appmsg) << ::type(this).name() <<
+//            " thread::pump_message - Received e_message_quit.";
+//
+//         information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
+//
+//         m_nDisablePumpCount++; // application must die
+//         // Note: prevents calling message loop things in 'exit_thread'
+//         // will never be decremented
+//         return false;
+//
+//      }
+//      else
+//      {
+//
+//         if (m_message.m_atom == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+//         {
+//
+//            information() << "notify_icon";
+//
+//         }
+//
+//         process_message();
+//
+//      }
+//
+//      return true;
+//
+//   }
+//   catch (const ::exception& e)
+//   {
+//
+//      if (m_strDebugType.contains("filemanager"))
+//      {
+//
+//         //information() << "filemanager";
+//
+//      }
+//
+//      handle_exception(e);
+//
+//      //// get_app() may be it self, it is ok...
+//      //if (get_app()->final_handle_exception(e))
+//      //{
+//
+//      //   return true;
+//
+//      //}
+//
+//   }
+//   catch (...)
+//   {
+//
+//      information() << "... exception";
+//
+//   }
+//
+//   return false;
+//
+//}
+//
 
 bool thread::get_message()
 {
@@ -979,100 +1040,100 @@ bool thread::get_message()
 }
 
 
-bool thread::raw_pump_message()
-{
-
-   string strType = ::type(this).name();
-
-   try
-   {
-
-      if (strType.contains("output_thread"))
-      {
-
-         //informationf("\nOUTPUT_THREAD thread::raw_pump_message");
-
-      }
-
-      if (!get_message())
-      {
-
-         if (strType.begins("multimedia::"))
-         {
-
-            if (strType.contains("wave_player"))
-            {
-
-               informationf("!xxGetMessage !xxpump_message xxthread::run from wave_player");
-
-            }
-            else if (strType.case_insensitive_ends("out"))
-            {
-
-               informationf("!xxGetMessage !xxpump_message xxthread::run from out");
-
-            }
-            else if (strType.contains("output_thread"))
-            {
-
-               informationf("!xxGetMessage !xxpump_message xxthread::run from output_thread");
-
-            }
-            else
-            {
-
-               informationf("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
-
-            }
-
-         }
-
-         information()(e_trace_category_appmsg) << "xx" << strType <<
-            " thread::raw_pump_message - Received e_message_quit";
-
-         information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
-
-         m_nDisablePumpCount++; // application must die
-         // Note: prevents calling message loop things in 'exit_thread'
-         // will never be decremented
-         return false;
-
-      }
-
-      raw_process_message();
-
-      return true;
-
-   }
-   catch (const ::exception& e)
-   {
-      handle_exception(e);
-      ////if (handle_exception(e))
-      //{
-
-      //   return true;
-
-      //}
-
-      //// get_app() may be it self, it is ok...
-      //if (get_app()->final_handle_exception(e))
-      //{
-
-      //   return true;
-
-      //}
-
-   }
-   catch (...)
-   {
-
-      informationf("xxcatch... xx" + strType + "xxraw_pump_message");
-
-   }
-
-   return false;
-
-}
+//bool thread::raw_handle_message()
+//{
+//
+//   string strType = ::type(this).name();
+//
+//   try
+//   {
+//
+//      if (strType.contains("output_thread"))
+//      {
+//
+//         //informationf("\nOUTPUT_THREAD thread::raw_pump_message");
+//
+//      }
+//
+//      if (!get_message())
+//      {
+//
+//         if (strType.begins("multimedia::"))
+//         {
+//
+//            if (strType.contains("wave_player"))
+//            {
+//
+//               informationf("!xxGetMessage !xxpump_message xxthread::run from wave_player");
+//
+//            }
+//            else if (strType.case_insensitive_ends("out"))
+//            {
+//
+//               informationf("!xxGetMessage !xxpump_message xxthread::run from out");
+//
+//            }
+//            else if (strType.contains("output_thread"))
+//            {
+//
+//               informationf("!xxGetMessage !xxpump_message xxthread::run from output_thread");
+//
+//            }
+//            else
+//            {
+//
+//               informationf("!xxGetMessage !xxpump_message xxthread::run from multimedia::*");
+//
+//            }
+//
+//         }
+//
+//         information()(e_trace_category_appmsg) << "xx" << strType <<
+//            " thread::raw_pump_message - Received e_message_quit";
+//
+//         information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
+//
+//         m_nDisablePumpCount++; // application must die
+//         // Note: prevents calling message loop things in 'exit_thread'
+//         // will never be decremented
+//         return false;
+//
+//      }
+//
+//      raw_process_message();
+//
+//      return true;
+//
+//   }
+//   catch (const ::exception& e)
+//   {
+//      handle_exception(e);
+//      ////if (handle_exception(e))
+//      //{
+//
+//      //   return true;
+//
+//      //}
+//
+//      //// get_app() may be it self, it is ok...
+//      //if (get_app()->final_handle_exception(e))
+//      //{
+//
+//      //   return true;
+//
+//      //}
+//
+//   }
+//   catch (...)
+//   {
+//
+//      informationf("xxcatch... xx" + strType + "xxraw_pump_message");
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
 bool thread::process_message(::message::message* pmessage)
@@ -1175,7 +1236,7 @@ bool thread::process_thread_message(::message::message* pmessage)
 //}
 
 
-bool thread::defer_pump_message()
+bool thread::handle_message()
 {
 
    if (peek_message(&m_message, nullptr, 0, 0, true))
@@ -1199,7 +1260,7 @@ bool thread::defer_pump_message()
 
    }
 
-   return false;
+   return true;
 
 }
 
@@ -2628,7 +2689,10 @@ void thread::inline_init()
 
    set_current_handles();
 
+   m_bDedicated = true;
+
    //::e_status estatus =
+
    __task_init();
 
    //if (!estatus)
@@ -2703,29 +2767,7 @@ iptr thread::item() const
 void thread::__priority_and_affinity()
 {
 
-   if (m_uThreadAffinityMask != 0)
-   {
-
-#if defined(WINDOWS_DESKTOP) || defined(LINUX)
-
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
-
-      if (bOk)
-      {
-
-         //informationf("successfully set thread affinity mask");
-
-      }
-      else
-      {
-
-         informationf("failed to set thread affinity mask");
-
-      }
-
-#endif
-
-   }
+   ::task::__priority_and_affinity();
 
    if (m_epriority != e_priority_normal)
    {
@@ -2734,44 +2776,47 @@ void thread::__priority_and_affinity()
 
    }
 
+
+
+//
+//   if (m_uThreadAffinityMask != 0)
+//   {
+//
+//#if defined(WINDOWS_DESKTOP) || defined(LINUX)
+//
+//      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+//
+//      if (bOk)
+//      {
+//
+//         //informationf("successfully set thread affinity mask");
+//
+//      }
+//      else
+//      {
+//
+//         informationf("failed to set thread affinity mask");
+//
+//      }
+//
+//#endif
+//
+//   }
+//
+//   if (m_epriority != e_priority_normal)
+//   {
+//
+//      set_thread_priority(m_epriority);
+//
+//   }
+
 }
 
 
 void thread::__os_initialize()
 {
 
-   //#ifdef WINDOWS_DESKTOP
-   //
-   //   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
-   //
-   //#else
-   //
-   //   m_htask = ::current_htask();
-   //
-   //#endif
-   //
-   //   m_uThread = ::current_itask();
-
-   try
-   {
-
-      __priority_and_affinity();
-
-   }
-   catch (...)
-   {
-
-      // affinity isn't critical
-
-   }
-
-   //#ifndef WINDOWS
-   //
-   //   information() << "init_thread : " << ::type(this).name();
-   //
-   //#endif
-
-   //system()->m_papexnode->node_thread_initialize(this);
+   ::task::__os_initialize();
 
 }
 
@@ -2779,7 +2824,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   //system()->m_papexnode->node_thread_finalize(this);
+   ::task::__os_finalize();
 
 }
 
@@ -2794,17 +2839,6 @@ void thread::__os_finalize()
 
 void thread::task_osinit()
 {
-
-   set_current_handles();
-
-   m_bDedicated = true;
-
-   if (has_finishing_flag())
-   {
-
-      clear_finishing_flag();
-
-   }
 
 #ifdef WINDOWS_DESKTOP
 
@@ -2828,100 +2862,7 @@ void thread::task_osinit()
 
 #endif
 
-   m_estatus = ::success;
-   __check_refdbg
-   __set_thread_on();
-   __check_refdbg
-   //{
-
-   //   auto pthreadParent = ::parallelization::calc_parent(this);
-
-   //   if (pthreadParent)
-   //   {
-
-   //      if (!pthreadParent->task_add(this))
-   //      {
-
-   //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
-   //         {
-
-   //            pthreadParent->task_erase(this);
-
-   //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
-
-   //            if (!pthreadParent->task_add(this))
-   //            {
-
-   //               return ::error_failed;
-
-   //            }
-
-   //         }
-   //         else
-   //         {
-
-   //            return ::error_failed;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //}
-
-   {
-
-      __check_refdbg
-      if (::_get_task() != this)
-      {
-         __check_refdbg
-         ::set_task(this);
-         __check_refdbg
-      }
-      __check_refdbg
-      processor_cache_oriented_set_thread_memory_pool(0);
-      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
-
-      //system()->m_papexnode->parallelization_initialize();
-
-   }
-
-   //try
-   //{
-   __check_refdbg
-
-   __os_initialize();
-
-   __check_refdbg
-   //}
-   //catch (const ::exception & e)
-   //{
-
-   //   m_estatus = e.m_estatus;
-
-   //   if (succeeded(m_estatus))
-   //   {
-
-   //      m_estatus = error_failed;
-
-   //   }
-
-   //   m_result.add(e);
-
-   //   top_handle_exception(e);
-
-   //}
-   //catch (...)
-   //{
-
-   //   m_estatus = error_failed;
-
-   //   m_result.add(error_failed);
-
-   //}
-
-   //return m_estatus;
+   ::task::task_osinit();
 
 }
 
@@ -2929,34 +2870,7 @@ void thread::task_osinit()
 void thread::__set_thread_on()
 {
 
-   //SetCurrentHandles();
-
-   //auto atom = ::current_itask();
-
-   //::parallelization::task_register(m_itask, this);
-
-   //task_register();
-   __check_refdbg
-   register_task();
-   __check_refdbg
-
-   // apex commented
-   //if (g_axisoninitthread)
-   //{
-
-   //   g_axisoninitthread();
-
-   //}
-
-   //   if (!os_on_init_task())
-   //   {
-   //
-   //      m_estatus = error_failed;
-   //
-   //      return;
-   //
-   //   }
-
+   ::task::__set_thread_on();
 
 }
 
@@ -2964,38 +2878,7 @@ void thread::__set_thread_on()
 void thread::__set_thread_off()
 {
 
-   //   try
-   //   {
-   //
-   //      // apex commented
-   //      //if (g_axisontermthread)
-   //      //{
-   //
-   //      //   g_axisontermthread();
-   //
-   //      //}
-   //
-   //      os_on_term_task();
-   //
-   //   }
-   //   catch (...)
-   //   {
-   //
-   //   }
-
-   ::thread* pthread = this;
-
-   //::parallelization::task_unregister(m_itask, pthread);
-
-   //unregister_task();
-
-   unregister_task();
-
-   auto atom = ::current_itask();
-
-   ::platform::get()->set_task_off(::current_itask());
-
-   //::set_task(nullptr);
+   ::task::__set_thread_off();
 
 }
 
@@ -4681,23 +4564,23 @@ int thread::get_x_window_count() const
 }
 
 
-bool thread::do_tasks()
-{
-
-   bool bProcessed1 = false;
-
-   while (defer_pump_message())
-   {
-
-      bProcessed1 = true;
-
-   }
-
-   auto bProcessed2 = ::task::do_tasks();
-
-   return bProcessed1 || bProcessed2;
-
-}
+//bool thread::do_tasks()
+//{
+//
+//   bool bProcessed1 = false;
+//
+//   while (defer_pump_message())
+//   {
+//
+//      bProcessed1 = true;
+//
+//   }
+//
+//   auto bProcessed2 = ::task::do_tasks();
+//
+//   return bProcessed1 || bProcessed2;
+//
+//}
 
 
 ///
@@ -4758,7 +4641,7 @@ void thread::request(::request* prequest)
 
    m_prequest = prequest;
 
-   main();
+   on_request(prequest);
 
 }
 
@@ -4825,72 +4708,72 @@ thread_ptra::~thread_ptra()
 }
 
 
-bool thread::pump_sleep(const class time& timeWait, ::particle* pparticleSynchronization)
-{
-
-   auto timeStart = ::time::now();
-
-   while (true)
-   {
-
-      ::collection::count cMessage = 0;
-
-      try
-      {
-
-         while (has_message())
-         {
-
-            while (defer_pump_message());
-
-            cMessage++;
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      auto waitNow = minimum(timeWait - timeStart.elapsed(), 100_ms);
-
-      if (waitNow <= 0_s)
-      {
-
-         break;
-
-      }
-
-      if (::is_set(pparticleSynchronization))
-      {
-
-         _synchronous_lock synchronouslock(pparticleSynchronization);
-
-         synchronouslock._wait(waitNow);
-
-         //if (synchronouslock.wait(waitNow).succeeded())
-         //{
-
-         //   break;
-
-         //}
-
-      }
-      else
-      {
-
-         sleep(waitNow);
-
-      }
-
-   }
-
-   ::preempt();
-   return true;
-
-}
-
+//bool thread::pump_sleep(const class time& timeWait, ::particle* pparticleSynchronization)
+//{
+//
+//   auto timeStart = ::time::now();
+//
+//   while (true)
+//   {
+//
+//      ::collection::count cMessage = 0;
+//
+//      try
+//      {
+//
+//         while (has_message())
+//         {
+//
+//            while (defer_pump_message());
+//
+//            cMessage++;
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      auto waitNow = minimum(timeWait - timeStart.elapsed(), 100_ms);
+//
+//      if (waitNow <= 0_s)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      if (::is_set(pparticleSynchronization))
+//      {
+//
+//         _synchronous_lock synchronouslock(pparticleSynchronization);
+//
+//         synchronouslock._wait(waitNow);
+//
+//         //if (synchronouslock.wait(waitNow).succeeded())
+//         //{
+//
+//         //   break;
+//
+//         //}
+//
+//      }
+//      else
+//      {
+//
+//         sleep(waitNow);
+//
+//      }
+//
+//   }
+//
+//   ::preempt();
+//   return true;
+//
+//}
+//
 
 ::e_status thread::get_result_status()
 {

@@ -17,14 +17,14 @@ class single_lock;
 
 
 
-class sync_object;
+//class sync_object;
 class semaphore;
 class mutex;
 class event;
 class critical_section;
 class manual_reset_event;
 class single_lock;
-class multi_lock;
+class multiple_lock;
 
 
 

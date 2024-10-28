@@ -270,9 +270,9 @@ namespace aura
       //}
 
 
-      class ::draw2d::draw2d * draw2d() const override;
+      class ::draw2d::draw2d * draw2d() override;
 
-      class ::write_text::write_text * write_text() const override;
+      class ::write_text::write_text * write_text() override;
       
       
       class ::image::imaging * imaging() override;
@@ -400,7 +400,7 @@ namespace aura
       virtual void term_task() override;
 
 
-      virtual void thread_loop() override;
+      //virtual void thread_loop() override;
 
       //virtual void init();
 

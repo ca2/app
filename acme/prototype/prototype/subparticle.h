@@ -235,7 +235,7 @@ public:
    virtual bool is_locked() const;
 
    virtual void unlock();
-   virtual void unlock(::i32 /* lCount */, ::i32* /* pPrevCount=nullptr */);
+   virtual void unlock(::i32 lCount, ::i32* pPrevCount=nullptr);
 
 
    virtual void init_wait();

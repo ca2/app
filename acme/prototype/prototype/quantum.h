@@ -50,6 +50,11 @@ public:
    void set_finishing_flag();
    inline void clear_finishing_flag() { clear_flag(e_flag_finishing); }
 
+   
+   [[nodiscard]] inline bool has_initialized_flag() const { return has_flag(e_flag_initialized); }
+   inline void set_initialized_flag() { set_flag(e_flag_initialized); }
+   inline void clear_initialized_flag() { clear_flag(e_flag_initialized); }
+
 
    [[nodiscard]] inline bool has_acquired_flag() const { return has_flag(e_flag_acquired); }
    inline void set_acquired_flag() { set_flag(e_flag_acquired); }
@@ -109,6 +114,8 @@ public:
 ///   inline void set_realized() { set_flag(e_flag_realized); }
 
 
+   virtual void request(::request * prequest);
+   virtual void on_request(::request * prequest);
 
 
 };

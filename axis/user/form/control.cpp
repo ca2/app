@@ -1287,38 +1287,38 @@ namespace user
    }
 
 
-   ::axis::application * form_control::get_app()
-   {
-
-      return ::is_set(m_papplication) ? m_papplication->m_papplication->m_paxisapplication : nullptr;
-
-   }
-
-
-   ::axis::session * form_control::get_session()
-   {
-
-      return ::is_set(m_papplication) ? m_papplication->m_psession->m_paxissession : nullptr;
-
-   }
-
-
-   ::axis::system * form_control::get_system()
-   {
-
-      auto pacmesystem = system();
-      
-      return ::is_set(pacmesystem) ? pacmesystem->m_paxissystem : nullptr; 
-   
-   }
-
-
-   ::axis::user * form_control::axisuser()
-   {
-      
-      return user() ? user()->m_paxisuser : nullptr; 
-   
-   }
+   // ::axis::application * form_control::get_app()
+   // {
+   //
+   //    return ::is_set(m_papplication) ? m_papplication->m_papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::axis::session * form_control::get_session()
+   // {
+   //
+   //    return ::is_set(m_papplication) ? m_papplication->m_psession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::axis::system * form_control::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::axis::user * form_control::axisuser()
+   // {
+   //
+   //    return user() ? user()->m_paxisuser : nullptr;
+   //
+   // }
 
 
    string form_control::get_path()

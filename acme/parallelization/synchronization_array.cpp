@@ -37,16 +37,10 @@ synchronization_array::synchronization_array()
 
 
 synchronization_array::synchronization_array(const ::synchronization_array & array) :
-   //matter(array),
-#ifdef WINDOWS
-   m_hsyncaCache(array.m_hsyncaCache),
-#endif
-   m_synchronizationa(array.m_synchronizationa)
+   m_subparticlea(array.m_subparticlea),
+   m_hsynca(array.m_hsynca),
+   m_uaIndexes(array.m_uaIndexes)
 {
-
-#ifdef WINDOWS
-   ::memory_copy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
-#endif
 
 }
 
@@ -63,11 +57,9 @@ synchronization_array & synchronization_array::operator = (const synchronization
    if(this != &synca)
    {
 
-#ifdef WINDOWS
-      m_hsyncaCache = synca.m_hsyncaCache;
-      ::memory_copy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
-#endif
-      m_synchronizationa = synca.m_synchronizationa;
+      m_subparticlea = synca.m_subparticlea;
+      m_hsynca = synca.m_hsynca;
+      m_uaIndexes =  synca.m_uaIndexes;
 
    }
 
@@ -79,56 +71,50 @@ synchronization_array & synchronization_array::operator = (const synchronization
 void	synchronization_array::clear()
 {
 
-   m_synchronizationa.clear();
-#ifdef WINDOWS
-   m_hsyncaCache.clear();
-#endif
+   m_subparticlea.clear();
+   m_hsynca.clear();
 
 }
 
 
-::collection::count synchronization_array::size() const
-{
+//::collection::count synchronization_array::size() const
+//{
+//
+//   return m_subparticlea.get_size();
+//
+//}
 
-   return m_synchronizationa.get_size();
 
-}
-
-
-bool synchronization_array::is_empty() const
-{
-
-   return m_synchronizationa.is_empty();
-
-}
-
+//bool synchronization_array::is_empty() const
+//{
+//
+//   return m_subparticlea.is_empty();
+//
+//}
+//
 
 bool synchronization_array::add_item(::subparticle * psubparticle)
 {
 
-   if (m_synchronizationa.size() >= MAXIMUM_WAIT_OBJECTS)
+   if (m_subparticlea.size() >= MAXIMUM_WAIT_OBJECTS)
    {
 
       return false;
 
    }
 
-#ifdef WINDOWS
-
    auto handle = psubparticle->get_synchronization_handle();
 
    if (handle != nullptr)
    {
 
-      m_byteaSyncIndex[m_hsyncaCache.get_size()] = (::u8) m_synchronizationa.get_size();
+      m_uaIndexes[m_hsynca.get_size()] = (::u8) m_subparticlea.get_size();
 
-      m_hsyncaCache.add(handle);
+      m_hsynca.add(handle);
 
    }
 
-#endif
-
-   m_synchronizationa.add(psubparticle);
+   m_subparticlea.add(psubparticle);
 
    return true;
 
@@ -140,7 +126,7 @@ bool synchronization_array::add(const synchronization_array& synca)
 
 #ifdef WINDOWS
 
-   if (m_hsyncaCache.size() + synca.m_hsyncaCache.get_size() > MAXIMUM_WAIT_OBJECTS)
+   if (m_hsynca.size() + synca.m_hsynca.get_size() > MAXIMUM_WAIT_OBJECTS)
    {
 
       return false;
@@ -149,7 +135,7 @@ bool synchronization_array::add(const synchronization_array& synca)
 
 #endif
 
-   for (auto& psync : synca.m_synchronizationa)
+   for (auto& psync : synca.m_subparticlea)
    {
 
       add_item(psync);
@@ -164,22 +150,18 @@ bool synchronization_array::add(const synchronization_array& synca)
 void synchronization_array::erase(::subparticle * psubparticle)
 {
 
-   m_synchronizationa.erase(psubparticle);
-
-#ifdef WINDOWS
+   m_subparticlea.erase(psubparticle);
 
    auto handle = psubparticle->get_synchronization_handle();
 
    if (handle != nullptr)
    {
 
-      auto iIndex = m_hsyncaCache.erase(handle);
+      auto iIndex = m_hsynca.erase(handle);
 
-      ::memory_transfer(&m_byteaSyncIndex[iIndex], &m_byteaSyncIndex[iIndex + 1], m_hsyncaCache.get_count() - 1);
+      ::memory_transfer(&m_uaIndexes[iIndex], &m_uaIndexes[iIndex + 1], m_hsynca.get_count() - 1);
 
    }
-
-#endif
 
 }
 
@@ -187,16 +169,18 @@ void synchronization_array::erase(::subparticle * psubparticle)
 void synchronization_array::erase(::collection::index index)
 {
 
-   if (index >= m_synchronizationa.size())
+   if (index >= m_subparticlea.size())
    {
 
       throw ::exception(error_range, "synchronization_array::erase: index out of bounds");
 
    }
 
-   auto pparticle = m_synchronizationa[index];
+   auto sizeOld = (int) this->size();
 
-   erase_synchronization(pparticle);
+   m_subparticlea.erase_at(index);
+   m_hsynca.erase_at(index);
+   m_uaIndexes.erase_at(index, sizeOld);
 
 }
 
@@ -209,7 +193,7 @@ void synchronization_array::erase(::collection::index index)
 }
 
 
-::collection::index synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
+::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
@@ -223,12 +207,14 @@ void synchronization_array::erase(::collection::index index)
 
    u32 windowsWaitResult;
 
+   ::u32 uCount = (u32)m_hsynca.size();
+
 #if !defined(UNIVERSAL_WINDOWS)
 
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)uCount, m_hsynca.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -237,19 +223,17 @@ void synchronization_array::erase(::collection::index index)
 
    {
 
-      ::u32 uCount = (u32)m_hsyncaCache.size();
-
-      auto psynca = m_hsyncaCache.get_data();
+      auto psynca = m_hsynca.get_data();
 
       windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, ::windows::wait(timeWait));
 
    }
 
-   auto estatus = ::windows::wait_result_status(windowsWaitResult);
+   auto estatus = ::windows::wait_result_status(windowsWaitResult, (int) uCount);
 
 #else
 
-   for(auto & psync : m_synchronizationa)
+   for(auto & psync : m_subparticlea)
    {
 
       psync->init_wait();
@@ -325,20 +309,38 @@ void synchronization_array::erase(::collection::index index)
 
 #endif
 
-   if (estatus == error_wait_timeout)
-   {
+   //if (estatus == error_wait_timeout)
+   //{
 
-      return -1;
+   //   return -1;
 
-   }
-   else if (estatus.failed())
-   {
+   //}
+   //else if (estatus.failed())
+   //{
 
-      throw ::exception(estatus);
+   //   throw ::exception(estatus);
 
-   }
+   //}
 
-   return (::collection::index) (estatus.m_eenum - signaled_base);
+   //return (::collection::index) (estatus.m_eenum - signaled_base);
+
+   return estatus;
+
+}
+
+
+void synchronization_array::unlock_item(::collection::index index)
+{
+
+   m_subparticlea[index]->unlock();
+
+}
+
+
+void synchronization_array::unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount)
+{
+
+   m_subparticlea[index]->unlock(lCount, pPrevCount);
 
 }
 
@@ -354,14 +356,14 @@ void synchronization_array::contains(const ::e_status & result) const
    //index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
 
    //position = maximum(0)
-   //for ( ++position; position<m_synchronizationa.get_size(); ++position )
+   //for ( ++position; position<m_subparticlea.get_size(); ++position )
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)
    //   {
-   //      i32 res = ::WaitForSingleObjectEx(m_synchronizationa[position], 0, false);
+   //      i32 res = ::WaitForSingleObjectEx(m_subparticlea[position], 0, false);
    //      if ( res == WAIT_TIMEOUT )
    //         continue;
-   //      return synchronization_result( static_cast<i32>(position), m_synchronizationa.get_size() );
+   //      return synchronization_result( static_cast<i32>(position), m_subparticlea.get_size() );
    //   }
    //}
 

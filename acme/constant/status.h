@@ -119,7 +119,6 @@ enum enum_status : ::int64_t
    error_network_payload_parsing,
    error_pure_call,
    error_invalid_operation,
-   error_wait_io_completion,
    error_wait_failed,
    error_wait_timeout,
    error_need_restart_application_to_activate_feature,
@@ -299,6 +298,9 @@ error_file_open,
    success_scheduled,
    status_quit,
    status_kick_idle,
+   success_io_completion,
+   success_messages,
+
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

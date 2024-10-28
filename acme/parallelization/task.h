@@ -9,8 +9,9 @@
 #include "counter.h"
 #include "acme/handler/handler.h"
 #include "acme/handler/source.h"
-#include "acme/prototype/data/property_container.h"
+#include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/implementable.h"
+#include "acme/prototype/data/property_container.h"
 
 
 class locale;
@@ -38,7 +39,7 @@ public:
 
    //Creatable(task);
 
-   bool                                            m_bAutoRelease : 1;
+   //bool                                            m_bAutoRelease : 1;
    bool                                            m_bAvoidProcedureFork : 1;
    bool                                            m_bIsRunning : 1;
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
@@ -56,11 +57,13 @@ public:
 
 #if defined(WINDOWS)
 
-   ::pointer<::exception_translator>              m_pexceptiontranslator;
+   ::pointer<::exception_translator>               m_pexceptiontranslator;
 
 #endif
 
+   ::pointer<::manual_reset_event>                 m_pmanualreseteventNewProcedurePosted;
 
+   ::synchronization_array                         m_synchronizationaMainLoop;
    htask_t                                         m_htask;
    itask_t                                         m_itask;
    string                                          m_strTaskName;
@@ -102,10 +105,21 @@ public:
    
    virtual void on_pre_run_task();
 
+   virtual void __priority_and_affinity();
+   void set_finish() override;
+   virtual void __os_initialize();
+   //   virtual void __os_thread_start();
+   virtual void __set_thread_on();
+   virtual void __os_finalize();
+   virtual void __set_thread_off();
+
+   void task_osinit() override;
 
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
+   virtual ::manual_reset_event * new_procedure_posted_event();
 
+   virtual procedure pick_next_posted_procedure();
 
    string get_tag() const override;
    string task_get_name() const;
@@ -156,7 +170,7 @@ public:
    //virtual v do_synchronously(sequence * psequence);
 
 
-   virtual void run_posted_procedures();
+   virtual void handle_posted_procedures();
 
    virtual void task_caller_on_init();
 
@@ -168,8 +182,8 @@ public:
    //virtual void do_task() override;
    //virtual void on_task() override;
 
-   virtual bool do_tasks();
-   virtual bool defer_pump_message();
+   //virtual bool do_tasks();
+   //virtual bool defer_pump_message();
 
 
    virtual bool has_message() const;
@@ -222,11 +236,19 @@ public:
 
    virtual void update_task_ready_to_quit();
 
+   virtual void on_task_quit();
+
    virtual void kick_thread();
 
    virtual void main();
 
    void run() override;
+
+   virtual bool task_run(const class ::time & time);
+
+   virtual bool task_iteration();
+
+   virtual bool handle_messages();
 
    virtual void stop_task();
 
@@ -383,7 +405,9 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 }
 
 
-
 CLASS_DECL_ACME void task_release();
+CLASS_DECL_ACME void task_iteration();
+CLASS_DECL_ACME void task_run(const class ::time & time);
+
 
 

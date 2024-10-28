@@ -14,7 +14,7 @@ namespace axis
    public:
 
 
-      ::pointer<::account::department>                m_paccount;
+      //::pointer<::account::department>                m_paccount;
 
 
       session();
@@ -45,7 +45,7 @@ namespace axis
 
       //virtual ::user::style* user_style() override;
 
-      inline ::account::department * account() { return m_paccount; }
+      virtual ::account::department * account();
 
       virtual void on_user_logon(::account::user* puser);
 

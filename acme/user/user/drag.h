@@ -26,10 +26,11 @@ namespace user
       //::e_element                 m_eelement;
       //e_zorder                    m_ezorder;
       bool                          m_bLButtonDown;
+      bool                          m_bLButtonDownUsed;
       ::point_i32                   m_pointLButtonDown2;
       ::point_i32                   m_pointInitial;
       //::size_i32                  m_sizeLButtonDownOffset;
-      ::pointer<::user::mouse>      m_pmouse;
+      //::pointer<::user::mouse>      m_pmouse;
       enum_cursor                   m_ecursor;
 
       bool                          m_bDrag;

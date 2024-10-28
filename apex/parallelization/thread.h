@@ -79,7 +79,7 @@ public:
    bool                                               m_bReady;
    ::pointer<::user::interaction_base>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
    ::pointer<::user::interaction_base>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
-   bool                                               m_bSimpleMessageLoop;
+   //bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
    ::pointer<file_info>                               m_pfileinfo;
@@ -265,7 +265,7 @@ public:
    virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
-   virtual bool has_raw_message() const;
+   //virtual bool has_raw_message() const;
    bool has_message() const override;
 
    // running and idle processing
@@ -273,14 +273,15 @@ public:
    virtual void app_pre_translate_message(::message::message * pmessage);
    virtual void session_pre_translate_message(::message::message * pmessage);
    virtual void system_pre_translate_message(::message::message * pmessage);
-   virtual void thread_loop(); // low level thread loop
-   virtual bool thread_step();     // low level step
-   virtual bool pump_message();     // low level message pump
-   virtual bool pump_runnable();
+   //virtual void thread_loop(); // low level thread loop
+   bool handle_messages() override;     // low level step
+   virtual bool handle_message();     // low level message pump
+   //virtual bool pump_runnable();
+   bool task_iteration() override;
    using channel::get_message;
    virtual bool get_message();     // low level message pump
-   virtual bool raw_pump_message();     // low level message pump
-   bool defer_pump_message() override;     // deferred message pump
+   //virtual bool raw_handle_message();     // low level message pump
+   //bool defer_pump_message() override;     // deferred message pump
    virtual bool process_message(::message::message * pmessage);
    ///virtual void process_base_message(::message::message * pmessage);
    virtual bool process_thread_message(::message::message * pmessage);
@@ -352,9 +353,9 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const class ::time & dur);
 
-   virtual bool pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization = nullptr);
+   //virtual bool pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization = nullptr);
 
-   bool do_tasks() override;
+   //bool do_tasks() override;
    // virtual bool do_events(const time& time);
 
    virtual bool task_get_run() const override;
@@ -449,15 +450,15 @@ protected:
 
 
    virtual void __priority_and_affinity();
-   virtual void __os_initialize();
+   void __os_initialize() override;
 //   virtual void __os_thread_start();
-   virtual void __set_thread_on();
-   virtual void __os_finalize();
+   void __set_thread_on() override;
+   void __os_finalize() override;
   // virtual void __os_thread_end();
 
    // last called function for the thread lifetime.
    // after its call, the thread object must considered invalid/destroyed
-   virtual void __set_thread_off();
+   void __set_thread_off() override;
 
 
 };

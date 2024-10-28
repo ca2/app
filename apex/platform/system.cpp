@@ -219,7 +219,7 @@ namespace apex
       //factory()->add_factory_item < ::apex::application >();
       //add_factory_item < ::imaging >();
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
 
       m_bFinalizeIfNoSessionSetting = true;
@@ -1561,15 +1561,15 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::post_pending_requests()
-   {
+   //void system::post_pending_requests()
+   //{
 
-      while (post_next_pending_request())
-      {
+   //   while (handle_next_pending_request())
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void system::defer_post_initial_request()
@@ -1823,12 +1823,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::thread_loop()
-   {
+   //void system::thread_loop()
+   //{
 
-      return thread::thread_loop();
+   //   return thread::thread_loop();
 
-   }
+   //}
 
 
    void system::term_task()
@@ -1953,12 +1953,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::create_os_node()
-   {
+   //void system::create_os_node()
+   //{
 
-      ::platform::system::create_os_node();
+   //   ::platform::system::create_os_node();
 
-   }
+   //}
 
 
    // ::apex::node * system::node()

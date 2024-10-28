@@ -77,7 +77,6 @@ namespace platform
       // m_pbaseapplication = nullptr;
       // m_pbredapplication = nullptr;
       // m_pcoreapplication = nullptr;
-      system()->system_construct(this);
 
    }
 
@@ -239,6 +238,7 @@ namespace platform
 
       set_platform();
 
+
       // if (m_pplatform->m_papplication == nullptr)
       // {
       //
@@ -397,8 +397,6 @@ namespace platform
 
       // ::set_task(m_psystem);
 
-      system()->initialize_layer();
-
       //information() << "acme implement_application system_construct";
 
       //information() << "acme implement_application create_os_node";
@@ -407,13 +405,7 @@ namespace platform
 
       //auto pnode = m_psystem->node();
 
-      system()->create_os_node();
-
-      // system.branch_synchronously();
-
-      // here system starts
-
-      node()->node_main();
+      system()->application_main(this);
 
       //pnode->start_application(pnode, psystem);
 
@@ -575,28 +567,28 @@ namespace platform
 
 
 
-   bool application::is_application() const
-   {
+   //bool application::is_application() const
+   //{
 
-      return true;
+   //   return true;
 
-   }
-
-
-   bool application::is_system() const
-   {
-
-      return false;
-
-   }
+   //}
 
 
-   bool application::is_session() const
-   {
+   //bool application::is_system() const
+   //{
 
-      return true;
+   //   return false;
 
-   }
+   //}
+
+
+   //bool application::is_session() const
+   //{
+
+   //   return true;
+
+   //}
 
 
    bool application::is_service() const
@@ -840,23 +832,28 @@ namespace platform
    //#endif
 
 
-   int application::__implement()
+   //int application::__implement()
+   //{
+
+   //   return main_loop();
+
+   //}
+
+
+   //int application::main_loop()
+   //{
+
+   //   //__main(this);
+
+   //   return m_iExitCode;
+
+   //}
+   void application::main()
    {
 
-      return main_loop();
+      ::task::main();
 
    }
-
-
-   int application::main_loop()
-   {
-
-      //__main(this);
-
-      return m_iExitCode;
-
-   }
-
 
    void application::init1()
    {

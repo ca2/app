@@ -55,6 +55,10 @@ namespace platform
 
       bool                                            m_bGraphicsAndWindowingSystemInitialized;
 
+
+      ::pointer < manual_reset_event >                m_pmanualreseteventReadyToExit;
+      ::pointer < manual_reset_event >                m_pmanualreseteventMainLoopEnd;
+
       ::i32_sz* m_pintstringLanguageResourceMap;
       int                              m_iMatterFromHttpCache;
 
@@ -279,8 +283,8 @@ namespace platform
 
      virtual::prototype::prototype * prototype();
 
-      virtual ::draw2d::draw2d * draw2d() const;
-      virtual ::write_text::write_text * write_text() const;
+      virtual ::draw2d::draw2d * draw2d();
+      virtual ::write_text::write_text * write_text();
 
       //virtual ::windowing::windowing_base * windowing_base();
 

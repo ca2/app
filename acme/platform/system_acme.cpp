@@ -4096,13 +4096,13 @@ return nullptr;
    }
 
 
-   ::draw2d::draw2d* acme_system_layer::draw2d() const
+   ::draw2d::draw2d* acme_system_layer::draw2d()
    {
       return nullptr;
    }
 
 
-   ::write_text::write_text*acme_system_layer:: write_text() const
+   ::write_text::write_text*acme_system_layer:: write_text()
    {
       return nullptr;
    }

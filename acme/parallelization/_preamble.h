@@ -37,6 +37,12 @@ namespace factory
 
 //CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
 
+
+#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
+
+using hsync = ::subparticle *;
+
+
 #else
 
 #define CRITICAL_SECTION_FUNCTION_RETURN void

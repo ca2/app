@@ -5083,7 +5083,7 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 

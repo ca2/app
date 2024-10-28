@@ -806,7 +806,7 @@ bool event::_wait (const class time & timeWait)
 
    DWORD dwResult = ::WaitForSingleObjectEx(m_handle, ::windows::wait(timeWait), false);
 
-   estatus = ::windows::wait_result_status(dwResult);
+   estatus = ::windows::wait_result_status(dwResult, 1);
 
    if (estatus == error_wait_timeout)
    {

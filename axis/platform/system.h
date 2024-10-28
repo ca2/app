@@ -14,20 +14,20 @@ namespace axis
    public:
 
 
-      ::pointer<class ::account::user_set>            m_puserset;
+      //::pointer<class ::account::user_set>            m_puserset;
 
-      //::pointer<class ::xml::department>              m_pxml;
-
-
-      ::pointer<class ::geo::geo>                     m_pgeo;
+      ////::pointer<class ::xml::department>              m_pxml;
 
 
-      ::pointer<::networking::email_department>      m_pemaildepartment;
+      //::pointer<class ::geo::geo>                     m_pgeo;
 
 
-      ::pointer<::html::html>                        m_phtml;
+      //::pointer<::networking::email_department>      m_pemaildepartment;
 
-      ::pointer<::factory::factory>                          m_pfactoryRegularExpressionPcre;
+
+      //::pointer<::html::html>                        m_phtml;
+
+      //::pointer<::factory::factory>                          m_pfactoryRegularExpressionPcre;
 
 
       system();
@@ -36,33 +36,33 @@ namespace axis
 
       void common_construct();
 
-      void on_set_platform() override;
+      //void on_set_platform() override;
 
       void on_initialize_particle() override;
 
       void on_add_session(::platform::session * papexsession) override;
 
-      virtual void init() override;
-      virtual void inline_init() override;
-      virtual void inline_term() override;
+      void init() override;
+      void inline_init() override;
+      void inline_term() override;
 
-      virtual void init_system() override;
-      virtual void term_system() override;
+      void init_system() override;
+      void term_system() override;
 
-      virtual void term() override;
+      void term() override;
 
 
 
-      virtual void process_init() override;
+      void process_init() override;
 
-      virtual void init1() override;
+      void init1() override;
 
-      virtual void init2() override;
+      void init2() override;
 
       // virtual void defer_xml();
 
 
-      virtual void verb() override; // ambigous inheritance from ::aura::system/::axis::application
+      void verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
 
@@ -71,13 +71,13 @@ namespace axis
 
 
 
-      ::networking::email_department &             email();
+      ::networking::email_department *             email() override;
 
       //::xml::department &                          xml();
 
-      ::geo::geo *                          geo();
+      ::geo::geo *                          geo() override;
 
-      ::pointer<::account::user_set>              userset();
+      ::pointer<::account::user_set>              userset() override;
 
 
       //virtual ::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str) override;
@@ -96,20 +96,20 @@ namespace axis
 
       //virtual void term_system();
 
-      virtual void term2() override;
+      void term2() override;
 
-      virtual void term1() override;
+      void term1() override;
 
       //virtual void term();
 
-      virtual void TermSystem() override;
+      void TermSystem() override;
 
 
-      virtual void process_term() override;
+      void process_term() override;
 
-      virtual void create_html();
+      void create_html() override;
 
-      virtual void defer_create_html();
+      void defer_create_html() override;
 
 
       // void assert_ok() const override;

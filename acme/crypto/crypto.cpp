@@ -547,7 +547,7 @@ namespace crypto
       }
 
 
-      void crypto::file_set(::payload payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt, ::apex::application* papp)
+      void crypto::file_set(::payload payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt, ::platform::application* papp)
       {
 
          memory memoryEncrypt;
@@ -559,7 +559,7 @@ namespace crypto
       }
 
 
-      void crypto::file_get(::payload payloadFile, string& str, const ::scoped_string & scopedstrSalt, ::apex::application* papp)
+      void crypto::file_get(::payload payloadFile, string& str, const ::scoped_string & scopedstrSalt, ::platform::application* papp)
       {
 
          memory memoryEncrypt;

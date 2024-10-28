@@ -87,7 +87,7 @@ namespace user
 
       //m_bVisualUpdated = true;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
    }
 
@@ -362,7 +362,7 @@ namespace user
 
             }
 
-            pump_runnable();
+            task_iteration();
 
          }
 

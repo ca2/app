@@ -84,6 +84,13 @@ void particle::initialize(::particle * pparticle)
 
       m_papplication = pparticle->m_papplication;
 
+   }
+
+   if(m_papplication && !has_initialized_flag())
+   {
+
+      set_initialized_flag();
+
       on_initialize_particle();
 
    }
@@ -1569,6 +1576,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 void particle::set_finish()
 {
 
+   set_finishing_flag();
 
 }
 

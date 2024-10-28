@@ -13,7 +13,7 @@ namespace base
    session::session()
    {
 
-      m_pbasesession = this;
+      //m_pbasesession = this;
 
    }
 

@@ -23,7 +23,7 @@ namespace gpu
 
       m_bCreated = false;
       m_emode = e_mode_none;
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
    }
 

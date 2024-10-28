@@ -127,7 +127,7 @@ namespace aura
       //m_bConsole = false;
       m_pappParent = nullptr;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
       m_ethreadcontextClose = e_thread_context_none;
 
       m_puiMainContainer = nullptr;

@@ -79,7 +79,7 @@ namespace html
 
             strStyle.make_lower();
 
-            auto psession = m_papplication->m_psession->m_paxissession;
+            auto psession = m_papplication->m_psession;
 
             auto puser = psession->user();
 

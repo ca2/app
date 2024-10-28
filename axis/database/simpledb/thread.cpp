@@ -5,10 +5,10 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/http.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
 #include "apex/networking/http/context.h"
-#include "apex/platform/system.h"
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
 
@@ -24,9 +24,11 @@ namespace simpledb
 
       single_lock synchronouslock(this->synchronization());
 
-      ::pointer<::axis::application>papp = get_app();
+      //::pointer<::axis::application>papp = get_app();
 
-      ::pointer<::axis::session>psession = papp->get_session();
+      //::pointer<::axis::session>psession = papp->get_session();
+
+      //auto psession = session();
 
       try
       {
@@ -39,14 +41,14 @@ namespace simpledb
             try
             {
 
-               if (psession->m_paccount == nullptr)
+               if (session()->m_paccount == nullptr)
                {
 
                   break;
 
                }
 
-               if (papp->interactive_get_user() == nullptr)
+               if (application()->interactive_get_user() == nullptr)
                {
 
                   sleep(5000_ms);

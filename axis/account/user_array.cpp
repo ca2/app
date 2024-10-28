@@ -197,7 +197,7 @@ namespace account
 
       synchronouslock.unlock();
 
-      auto psession = session()->m_paxissession;
+      auto psession = session();
 
       for(auto & pair : map)
       {
@@ -226,7 +226,7 @@ namespace account
 
       auto pathUrl = pathUrlParam;
 
-      auto psession = session()->m_paxissession;
+      auto psession = session();
 
       if(pathUrl.is_empty())
       {
@@ -264,7 +264,7 @@ namespace account
    bool user_array::is_authenticated(const ::file::path & pathUrl, bool bInteractive)
    {
 
-      ::pointer<::axis::application>papp = application()->m_paxisapplication;
+      ::pointer<::axis::application>papp = application();
 
       auto puser = papp->get_user(pathUrl, true, bInteractive);
 

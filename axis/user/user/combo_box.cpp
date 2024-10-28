@@ -913,9 +913,7 @@ namespace user
 
          defer_create_list_box();
 
-         
-
-         psession->on_show_user_input_popup(m_plistbox);
+         session()->on_show_user_input_popup(m_plistbox);
 
          auto psystem = system();
 

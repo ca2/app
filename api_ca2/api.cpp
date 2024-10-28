@@ -372,7 +372,7 @@ namespace api_ca2
 
 #ifdef APPLE_IOS
 
-      auto papp = get_app()->m_paxisapplication;
+      auto papp = get_app();
 
       papp->networking_application()->add_handler("redirect", this);
 
@@ -387,7 +387,7 @@ namespace api_ca2
 
       int iCurrentPort = 0;
 
-      auto papp = get_app()->m_paxisapplication;
+      auto papp = get_app();
 
       string strAppId = papp->m_strAppId;
 

@@ -325,12 +325,12 @@ namespace acme
 
                // drag_client
                void drag_set_capture() override;
-               bool on_drag_start(::point_i32 & point, ::item * pitem) override;
+               bool on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem) override;
                ::point_i32 drag_mouse_cursor_position(::item * pitem, const ::point_i32 & point) override;
                bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
                bool drag_hover(::item * pitem) override;
                void drag_release_capture() override;
-               void drag_set_cursor(::item * pitem) override;
+               void drag_set_cursor(::item * pitem, ::user::mouse * pmouse) override;
 
 
                // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);

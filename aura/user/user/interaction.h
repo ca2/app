@@ -1790,13 +1790,13 @@ namespace user
 
       // drag_client
       void drag_set_capture() override;
-      bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
+      bool on_drag_start(::point_i32 & pointStart, ::user::mouse * pmouse, ::item * pitem) override;
       ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
       bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
       //virtual bool on_drag_shift_element_client(::item * pitem, ::user::mouse * pmouse);
       bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
-      void drag_set_cursor(::item * pitem) override;
+      void drag_set_cursor(::item * pitem, ::user::mouse * pmouse) override;
 
       
       virtual void set_text_and_selection(const ::scoped_string & scopedstr, strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext);

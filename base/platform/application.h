@@ -63,7 +63,7 @@ namespace base
       virtual void create_impact_system() override;
       virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 
-      virtual void close(::apex::enum_end eend) override;
+      virtual void close(::enum_exit eexit) override;
 
 
       virtual void on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context) override;

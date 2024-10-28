@@ -164,7 +164,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
 
-      auto psession = m_papplication->m_psession->m_paxissession;
+      auto psession = m_papplication->m_psession;
 
       auto puser = psession->user();
 
@@ -339,7 +339,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
 
-      auto psession = m_papplication->m_psession->m_paxissession;
+      auto psession = m_papplication->m_psession;
 
       auto puser = psession->user();
 
@@ -511,7 +511,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
 
-      auto psession = m_papplication->m_psession->m_paxissession;
+      auto psession = m_papplication->m_psession;
 
       auto puser = psession->user();
 
@@ -1299,7 +1299,7 @@ namespace html
    void style::initialize_style(e_tag etag)
    {
 
-      auto psession = m_papplication->m_psession->m_paxissession;
+      auto psession = m_papplication->m_psession;
 
       auto puser = psession->user();
 

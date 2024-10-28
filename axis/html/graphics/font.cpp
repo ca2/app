@@ -79,7 +79,7 @@ namespace html
       }
 //      strsize iLen;
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       auto pnode = psystem->node();
       string strName;

@@ -31,10 +31,10 @@ namespace user
 
 
 
-      inline ::axis::application * get_app() { return form_control::get_app(); }
-      inline ::axis::session * get_session() { return form_control::get_session(); }
-      inline ::axis::system * get_system() { return form_control::get_system(); }
-      //inline ::axis::user * axisuser() { return form_control::axisuser(); }
+      // inline ::axis::application * get_app() { return form_control::get_app(); }
+      // inline ::axis::session * get_session() { return form_control::get_session(); }
+      // inline ::axis::system * get_system() { return form_control::get_system(); }
+      // //inline ::axis::user * axisuser() { return form_control::axisuser(); }
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;

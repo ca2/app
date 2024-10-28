@@ -92,9 +92,9 @@ namespace user
 
       //bool task_get_run() const override;
 
-      virtual bool pump_message() override;
+      //bool thread_iteraction() override;
 
-      virtual bool pump_runnable() override;
+      //virtual bool pump_runnable() override;
 
       virtual bool process_message() override;
 
@@ -116,6 +116,9 @@ namespace user
 
       //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
       void on_destroy() override;
+
+
+      void on_task_quit() override;
 
       // deprecated schedule window visual
       //void start_window_visual();

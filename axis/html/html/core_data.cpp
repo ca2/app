@@ -267,7 +267,7 @@ namespace html
 
       ::html::reader reader;
 
-      phtmlreader->m_phtml = system()->m_paxissystem->m_phtml;
+      phtmlreader->m_phtml = system()->m_phtml;
 
       phtmlreader->setEventHandler(&reader);
 

@@ -1395,6 +1395,11 @@
     <ClInclude Include="platform\referencing_debugging.h" />
     <ClInclude Include="platform\reference_item.h" />
     <ClInclude Include="platform\release_time_for_project.h" />
+    <ClInclude Include="platform\session_acme.h" />
+    <ClInclude Include="platform\session_apex.h" />
+    <ClInclude Include="platform\session_aqua.h" />
+    <ClInclude Include="platform\session_aura.h" />
+    <ClInclude Include="platform\session_axis.h" />
     <ClInclude Include="platform\shell.h" />
     <ClInclude Include="platform\simple_array.h" />
     <ClInclude Include="platform\system_factory.h" />
@@ -2025,6 +2030,7 @@
     <ClCompile Include="platform\session_apex.cpp" />
     <ClCompile Include="platform\session_aqua.cpp" />
     <ClCompile Include="platform\session_aura.cpp" />
+    <ClCompile Include="platform\session_axis.cpp" />
     <ClCompile Include="platform\shell.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\platform.cpp" />

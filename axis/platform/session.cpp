@@ -72,7 +72,7 @@ namespace axis
    session::session()
    {
 
-      m_paxissession = this;
+      //m_paxissession = this;
 
    }
 
@@ -1219,8 +1219,8 @@ namespace axis
 
       ::aura::session::on_instantiate_application(papplication);
 
-      //papp->m_paxissession = this;
-      //papp->m_paxissystem = m_paxissystem;
+      //papp = this;
+      //papp = m_paxissystem;
 
    }
 
@@ -1238,6 +1238,14 @@ namespace axis
    //   return m_puser->m_puserstyle;
 
    //}
+
+   
+   ::account::department * session::account()
+   {
+      
+      return m_paccount; 
+   
+   }
 
 
    void session::on_user_logon(::account::user* puser)
@@ -1280,7 +1288,14 @@ namespace axis
          if (papplication.is_set())
          {
 
-            papplication->signal(id_change_user);
+            ::cast < ::manager > pmanager = papplication;
+
+            if(pmanager)
+            {
+
+               pmanager->signal(id_change_user);
+
+            }
 
          }
 

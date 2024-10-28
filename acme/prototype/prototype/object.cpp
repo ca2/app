@@ -749,18 +749,6 @@ void object::defer_update_object_id()
 //}
 
 
-void object::request(::request* prequest)
-{
-
-   on_request(prequest);
-
-}
-
-
-void object::on_request(::request * prequest)
-{
-
-}
 
 
 void object::destruct()
@@ -1782,7 +1770,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   ptask->m_bAutoRelease = bAutoRelease;
+   //ptask->m_bAutoRelease = bAutoRelease;
 
    ptask->m_procedure = procedure;
    
@@ -1817,7 +1805,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   ptask->m_bAutoRelease = bAutoRelease;
+   //ptask->m_bAutoRelease = bAutoRelease;
 
    ptask->m_procedure = procedure;
    
@@ -3823,7 +3811,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 
       __construct(ptask);
 
-      ptask->m_bAutoRelease = true;
+      //ptask->m_bAutoRelease = true;
 
       ::pointer < ::object > pobjectHoldThis = this;
 

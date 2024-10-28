@@ -9,9 +9,9 @@
 void application_main()
 {
 
-   auto papplication = ___new app_just_apex_message_box::application();
+   app_just_apex_message_box::application application;
 
-   papplication->application_main();
+   application.application_main();
 
 }
 

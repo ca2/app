@@ -194,7 +194,8 @@ namespace platform
 
       }
 #endif
-
+      
+      m_pintstringLanguageResourceMap = nullptr;
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
@@ -525,6 +526,30 @@ namespace platform
    }
 
 
+   void system::application_main(::platform::application * papplication)
+   {
+
+      create_os_node(papplication);
+
+
+      system_construct(papplication);
+
+
+      initialize_layer();
+
+      
+      papplication->initialize(papplication);
+
+      // system.branch_synchronously();
+
+      // here system starts
+
+      node()->node_main();
+
+
+   }
+
+
    void system::initialize_layer()
    {
 
@@ -621,7 +646,7 @@ namespace platform
 
          process_init();
 
-         run_posted_procedures();
+         task_run(0_s);
 
          application()->main();
 
@@ -637,18 +662,20 @@ namespace platform
 
          __task_init();
 
-         //         m_peventInitialization->SetEvent();
+         run();
 
-         while (task_get_run())
-         {
+         ////         m_peventInitialization->SetEvent();
 
-            run_posted_procedures();
+         //while (task_get_run())
+         //{
 
-            preempt(100_ms);
+         //   run_posted_procedures();
 
-         }
+         //   preempt(100_ms);
 
-         //acme_windowing()->windowing_system_application_main_loop();
+         //}
+
+         ////acme_windowing()->windowing_system_application_main_loop();
 
 
       }
@@ -736,7 +763,7 @@ namespace platform
    }
 
 
-   void system::create_os_node()
+   void system::create_os_node(::platform::application * papplication)
    {
 
       if (m_pnode)
@@ -769,7 +796,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      __construct(m_pnode);
+      papplication->__construct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -1209,26 +1236,25 @@ namespace platform
       if (pacmewindowing)
       {
 
-         ::acme::get()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_event();
-         ::acme::get()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_event();
+         m_pmanualreseteventReadyToExit = __allocate manual_reset_event();
+         m_pmanualreseteventMainLoopEnd = __allocate manual_reset_event();
+
+         auto pReadyToExit = m_pmanualreseteventReadyToExit;
+         auto pMainLoopEnd = m_pmanualreseteventMainLoopEnd;
 
          if (!m_procedureTaskEnded)
          {
 
-            m_procedureTaskEnded = [pacmewindowing]()
+            m_procedureTaskEnded = [pReadyToExit]()
             {
 
-               ::acme::get()->m_pmanualreseteventReadyToExit->set_event();
+               pReadyToExit->set_event();
 
             };
 
             m_pacmewindowing->windowing_post_quit();
 
-            ::acme::get()->m_pmanualreseteventMainLoopEnd->_wait(2.5_min);
-
-            delete ::acme::get()->m_pmanualreseteventMainLoopEnd;
-
-            ::acme::get()->m_pmanualreseteventMainLoopEnd = nullptr;
+            pMainLoopEnd->_wait(2.5_min);
 
          }
 
@@ -3604,6 +3630,14 @@ particle* system::matter_mutex()
    }
 
 
+   void system::_post(const ::procedure & procedure)
+   {
+
+      ::task::_post(procedure);
+
+   }
+
+
    bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember,
                              ::property_set& propertyset)
    {
@@ -3854,7 +3888,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::draw2d::draw2d* system::draw2d() const
+   ::draw2d::draw2d* system::draw2d()
    {
 
       return nullptr;
@@ -3862,7 +3896,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::write_text::write_text* system::write_text() const
+   ::write_text::write_text* system::write_text()
    {
 
       return nullptr;

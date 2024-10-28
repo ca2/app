@@ -219,7 +219,7 @@ namespace acme
 
          ::acme::department::on_initialize_particle();
 
-         defer_create_synchronization();
+         ::task::on_initialize_particle();
 
       }
 

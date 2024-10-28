@@ -8,6 +8,7 @@
 // Created by camilo on 2021-08-31 16:00 BRT <3ThomasBS_!!
 #pragma once
 
+
 class subparticle;
 
 
@@ -1498,6 +1499,14 @@ namespace sockets // only usable from base.dll and dependants
 } // namespace sockets // only usable from base.dll and dependants
 
 
+namespace simpledb
+{
+
+   class server;
+
+}
+
+
 namespace url
 {
 
@@ -2635,6 +2644,8 @@ namespace networking
    class application_handler;
    class application_socket;
 
+   class email_department;
+
 }
 
 
@@ -2700,5 +2711,47 @@ class referencing_debugging;
 
 
 #endif
+
+
+
+
+namespace account
+{
+
+   
+   class department;
+
+
+   class user;
+
+
+   class credentials;
+
+
+   class user_set;
+
+
+} // namespace account
+
+
+namespace geo
+{
+
+
+   class geo;
+
+
+} // namespace geo
+
+
+namespace html
+{
+
+
+   class html;
+
+
+} // namespace html
+
 
 

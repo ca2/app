@@ -64,9 +64,9 @@ namespace geo
 
       ::acme::department::initialize(pparticle);
 
-      m_pathCityTimeZoneFile = directory_system()->system() / "datetime_departament_cityTimeZone.bin";
+      m_pathCityTimeZoneFile = directory_system()->user() / "datetime_departament_cityTimeZone.bin";
 
-      m_pathLocalityTimeZoneFile = directory_system()->system() / "datetime_departament_LocalityTimeZone.bin";
+      m_pathLocalityTimeZoneFile = directory_system()->user() / "datetime_departament_LocalityTimeZone.bin";
 
    }
    
@@ -592,7 +592,7 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
@@ -632,7 +632,7 @@ namespace geo
    bool  geo::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       auto pcity = psystem->geo()->openweather_find_city(strLocality + ", " + strCountry);
 
@@ -699,7 +699,7 @@ namespace geo
 
       //    double dLon;
 
-      auto psystem = system()->m_paxissystem;
+      auto psystem = system();
 
       auto pcity = psystem->geo()->openweather_find_city(strQ);
 

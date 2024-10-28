@@ -586,6 +586,8 @@ list(APPEND library_source
    platform/session_aqua.h
    platform/session_aura.cpp
    platform/session_aura.h
+   platform/session_axis.cpp
+   platform/session_axis.h
    platform/platform.cpp
    platform/platform.h
    platform/shell.cpp
@@ -607,6 +609,8 @@ list(APPEND library_source
    platform/system_aqua.h
    platform/system_aura.cpp
    platform/system_aura.h
+   platform/system_axis.cpp
+   platform/system_axis.h
    platform/system_factory.cpp
    platform/system_factory.h
    platform/system_setup.cpp
@@ -2927,17 +2931,20 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    prototype/data/client.h
    platform/http.cpp
    prototype/data/client.cpp
-   platform/application_apex.h
    platform/application_acme.h
+   platform/application_acme.cpp
+   platform/application_apex.h
+   platform/application_apex.cpp
    platform/application_aqua.h
+   platform/application_aqua.cpp
    platform/application_aura.h
    platform/application_aura.cpp
-   platform/application_apex.cpp
-   platform/application_acme.cpp
-   platform/application_aqua.cpp
-   platform/session_acme.h
+   platform/application_axis.h
+   platform/application_axis.cpp
    prototype/prototype/cast.h
    user/menu/_.h
+   platform/application_axis.h
+   platform/application_axis.cpp
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

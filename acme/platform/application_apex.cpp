@@ -49,16 +49,16 @@ namespace platform
 
    //::string apex_application_layer::apex_application_layer::load_podata(string strLang, bool bOnlyHeader){}
 
-   ::string apex_application_layer::apex_application_layer::load_string(const ::atom& atom)
-   {
-      return {};
-   }
+   // ::string apex_application_layer::apex_application_layer::load_string(const ::atom& atom)
+   // {
+   //    return {};
+   // }
 
 
-   bool apex_application_layer::load_string(string& str, const ::atom& atom)
-   {
-      return false;
-   }
+   // bool apex_application_layer::load_string(string& str, const ::atom& atom)
+   // {
+   //    return false;
+   // }
 
 
    void apex_application_layer::load_string_table()

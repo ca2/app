@@ -56,7 +56,7 @@ void html_form::initialize(::particle * pparticle)
 
    //}
 
-   auto psystem = system()->m_paxissystem;
+   auto psystem = system();
 
    //estatus = 
    
@@ -278,7 +278,7 @@ void html_form::on_message_create(::message::message * pmessage)
 
    ::pointer<::message::create>pcreate(pmessage);
 
-   auto psystem = system()->m_paxissystem;
+   auto psystem = system();
 
    psystem->defer_create_html();
 

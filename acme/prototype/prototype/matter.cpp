@@ -620,7 +620,6 @@ void matter::__task_main()
 void matter::task_osinit()
 {
 
-   //return ::success;
 
 }
 

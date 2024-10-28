@@ -78,7 +78,7 @@ namespace apex
 
       //m_papexsession = this;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
 

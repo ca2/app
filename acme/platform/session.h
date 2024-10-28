@@ -16,7 +16,7 @@
 #include "session_apex.h"
 #include "session_aqua.h"
 #include "session_aura.h"
-
+#include "session_axis.h"
 
 
 namespace platform
@@ -32,10 +32,12 @@ namespace platform
       virtual public ::platform::apex_session_layer_t,
       virtual public ::platform::aqua_session_layer_t,
       virtual public ::platform::aura_session_layer_t,
+      virtual public ::platform::axis_session_layer_t,
       virtual public ::platform::acme_session_layer,
       virtual public ::platform::apex_session_layer,
       virtual public ::platform::aqua_session_layer,
-      virtual public ::platform::aura_session_layer
+      virtual public ::platform::aura_session_layer,
+      virtual public ::platform::axis_session_layer
    {
    public:
 

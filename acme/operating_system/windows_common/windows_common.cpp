@@ -215,7 +215,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME::e_status wait_result_status(int iResult)
+   CLASS_DECL_ACME::e_status wait_result_status(int iResult, int nCount)
    {
 
       if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
@@ -227,7 +227,7 @@ namespace windows
       else if (iResult == WAIT_IO_COMPLETION)
       {
 
-         return error_wait_io_completion;
+         return success_io_completion;
 
       }
       else if (iResult == WAIT_FAILED)
@@ -240,6 +240,12 @@ namespace windows
       {
 
          return error_wait_timeout;
+
+      }
+      else if (iResult == WAIT_OBJECT_0 + nCount)
+      {
+
+         return success_messages;
 
       }
       else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))

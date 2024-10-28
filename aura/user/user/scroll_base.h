@@ -33,7 +33,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      bool on_drag_start(::point_i32 & pointStart, ::item * pitem) override;
+      bool on_drag_start(::point_i32 & pointStart, ::user::mouse * pmouse, ::item * pitem) override;
       bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 
       void sketch_to_lading() override;

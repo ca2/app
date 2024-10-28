@@ -12,6 +12,7 @@
 #include "acme/nano/nano.h"
 #include "acme/windowing/window.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/multiple_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
@@ -39,7 +40,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 extern bool g_bIntermediateThreadReferencingDebugging;
 
 
-CLASS_DECL_ACME void _do_tasks();
+//CLASS_DECL_ACME void task_iteration(const class ::time & timeTimeout);
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -59,8 +60,8 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
 task::task()
 {
-   
-   m_bAutoRelease = false;
+
+   //m_bAutoRelease = false;
 
    m_pfnImplement = nullptr;
    m_iExitCode = 0;
@@ -78,13 +79,13 @@ task::task()
 #endif
    m_bIsRunning = false;
    m_bIsPredicate = true;
-   
+
 #ifdef PARALLELIZATION_PTHREAD
 
    m_bJoinable = false;
-   
+
 #endif
-   
+
    m_htask = null_htask;
    m_itask = 0;
 
@@ -116,6 +117,10 @@ void task::on_initialize_particle()
 {
 
    /*auto estatus =*/ ::object::on_initialize_particle();
+   ::handler::handler::on_initialize_particle();
+
+   m_synchronizationaMainLoop.add_item(new_request_posted_event());
+   m_synchronizationaMainLoop.add_item(new_procedure_posted_event());
 
    //m_pprintingformat);
 
@@ -127,6 +132,16 @@ void task::on_initialize_particle()
    //}
 
    //return ::success;
+
+}
+
+
+::manual_reset_event * task::new_procedure_posted_event()
+{
+
+   __defer_construct_new(m_pmanualreseteventNewProcedurePosted);
+
+   return m_pmanualreseteventNewProcedurePosted;
 
 }
 
@@ -164,7 +179,8 @@ const char * task::get_task_tag()
 }
 
 
-void task::add_task(::object* pobjectTask)
+
+void task::add_task(::object * pobjectTask)
 {
 
    if (m_pobjectParentTask)
@@ -205,28 +221,31 @@ bool task::is_current_task() const
 //}
 
 
-void task::post_request(::request* prequest)
+void task::post_request(::request * prequest)
 {
 
-   auto prequestHold =  __retain prequest;
+   ::handler::handler::post_request(prequest);
 
-   post([this, prequestHold]
-      {
 
-         request(prequestHold);
+   //auto prequestHold =  __retain prequest;
 
-      }
-   );
+   //post([this, prequestHold]
+   //   {
+
+   //      request(prequestHold);
+
+   //   }
+   //);
 
 }
 
 
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
-   
-   if(::current_itask() == m_itask)
+
+   if (::current_itask() == m_itask)
    {
-      
+
       ::task_set_name(scopedstrTaskName);
       //{
       //   
@@ -244,13 +263,13 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
       m_strTaskTag = m_strTaskName;
 
    }
-//   if (!::task_set_name(m_htask, pszTaskName))
-//   {
-//
-//      return false;
-//
-//   }
-//
+   //   if (!::task_set_name(m_htask, pszTaskName))
+   //   {
+   //
+   //      return false;
+   //
+   //   }
+   //
    return true;
 
 }
@@ -277,7 +296,7 @@ bool task::is_ready_to_quit() const
 bool task::task_active() const
 {
 
-   return m_htask != (htask_t) 0;
+   return m_htask != (htask_t)0;
 
 }
 
@@ -330,6 +349,92 @@ void task::on_pre_run_task()
 }
 
 
+
+void task::set_finish()
+{
+
+   set_finishing_flag();
+
+   kick_idle();
+
+}
+
+
+void task::__priority_and_affinity()
+{
+
+   if (m_uThreadAffinityMask != 0)
+   {
+
+#if defined(WINDOWS_DESKTOP) || defined(LINUX)
+
+      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+
+      if (bOk)
+      {
+
+         //informationf("successfully set thread affinity mask");
+
+      }
+      else
+      {
+
+         informationf("failed to set thread affinity mask");
+
+      }
+
+#endif
+
+   }
+
+}
+
+
+void task::__os_initialize()
+{
+
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
+   //
+   //#else
+   //
+   //   m_htask = ::current_htask();
+   //
+   //#endif
+   //
+   //   m_uThread = ::current_itask();
+
+   try
+   {
+
+      __priority_and_affinity();
+
+   }
+   catch (...)
+   {
+
+      // affinity isn't critical
+
+   }
+
+   //#ifndef WINDOWS
+   //
+   //   information() << "init_thread : " << ::type(this).name();
+   //
+   //#endif
+
+   //system()->m_papexnode->node_thread_initialize(this);
+
+}
+
+
+void task::__os_finalize()
+{
+
+
+}
+
 //bool task::os_on_init_task()
 //{
 //
@@ -353,16 +458,210 @@ void task::on_pre_run_task()
 //}
 
 
+void task::on_task_quit()
+{
+
+
+}
+
+
+void task::task_osinit()
+{
+
+
+   set_current_handles();
+
+   if (has_finishing_flag())
+   {
+
+      clear_finishing_flag();
+
+   }
+
+
+
+   m_estatus = ::success;
+   __check_refdbg
+      __set_thread_on();
+   __check_refdbg
+      //{
+
+      //   auto pthreadParent = ::parallelization::calc_parent(this);
+
+      //   if (pthreadParent)
+      //   {
+
+      //      if (!pthreadParent->task_add(this))
+      //      {
+
+      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
+      //         {
+
+      //            pthreadParent->task_erase(this);
+
+      //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
+
+      //            if (!pthreadParent->task_add(this))
+      //            {
+
+      //               return ::error_failed;
+
+      //            }
+
+      //         }
+      //         else
+      //         {
+
+      //            return ::error_failed;
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //}
+
+   {
+
+      __check_refdbg
+      if (::_get_task() != this)
+      {
+         __check_refdbg
+         ::set_task(this);
+         __check_refdbg
+      }
+      __check_refdbg
+      processor_cache_oriented_set_thread_memory_pool(0);
+      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
+
+      //system()->m_papexnode->parallelization_initialize();
+
+   }
+
+      //try
+      //{
+      __check_refdbg
+
+      __os_initialize();
+
+   __check_refdbg
+      //}
+      //catch (const ::exception & e)
+      //{
+
+      //   m_estatus = e.m_estatus;
+
+      //   if (succeeded(m_estatus))
+      //   {
+
+      //      m_estatus = error_failed;
+
+      //   }
+
+      //   m_result.add(e);
+
+      //   top_handle_exception(e);
+
+      //}
+      //catch (...)
+      //{
+
+      //   m_estatus = error_failed;
+
+      //   m_result.add(error_failed);
+
+      //}
+
+      //return m_estatus;
+
+}
+
+
+
+void task::__set_thread_on()
+{
+
+   //SetCurrentHandles();
+
+   //auto atom = ::current_itask();
+
+   //::parallelization::task_register(m_itask, this);
+
+   //task_register();
+   __check_refdbg
+      register_task();
+   __check_refdbg
+
+      // apex commented
+      //if (g_axisoninitthread)
+      //{
+
+      //   g_axisoninitthread();
+
+      //}
+
+      //   if (!os_on_init_task())
+      //   {
+      //
+      //      m_estatus = error_failed;
+      //
+      //      return;
+      //
+      //   }
+
+
+}
+
+
+void task::__set_thread_off()
+{
+
+   //   try
+   //   {
+   //
+   //      // apex commented
+   //      //if (g_axisontermthread)
+   //      //{
+   //
+   //      //   g_axisontermthread();
+   //
+   //      //}
+   //
+   //      os_on_term_task();
+   //
+   //   }
+   //   catch (...)
+   //   {
+   //
+   //   }
+
+   ::task * ptask = this;
+
+   //::parallelization::task_unregister(m_itask, pthread);
+
+   //unregister_task();
+
+   unregister_task();
+
+   auto atom = ::current_itask();
+
+   ::platform::get()->set_task_off(::current_itask());
+
+   //::set_task(nullptr);
+
+}
+
+
+
 void task::main()
 {
 
    task_osinit();
 
-
-
    __task_init();
 
-   if(defer_implement(application()))
+   if (defer_implement(application()))
    {
 
       return;
@@ -372,11 +671,11 @@ void task::main()
    if (m_procedure && m_procedure != this)
    {
 
-      run_posted_procedures();
+      task_iteration();
 
       m_procedure();
 
-      run_posted_procedures();
+      task_iteration();
 
       //// ITCN?   Is This Code Needed?
 
@@ -407,18 +706,20 @@ void task::main()
       run();
 
    }
-   catch(::exception & exception)
+   catch (::exception & exception)
    {
 
-      send(__initialize_new ::message_box(exception, application()->m_strAppId, exception.m_strDetails));
+      send(__initialize_new::message_box(exception, application()->m_strAppId, exception.m_strDetails));
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
 
-  __task_term();
+   on_task_quit();
+
+   __task_term();
 
 }
 
@@ -438,7 +739,9 @@ void task::run()
    try
    {
 
-      run_posted_procedures();
+      task_iteration();
+
+      bool b = m_bKeepRunningPostedProcedures;
 
       if (defer_implement(m_papplication))
       {
@@ -446,33 +749,130 @@ void task::run()
          return;
 
       }
-
-      if(m_bKeepRunningPostedProcedures)
+      else
       {
 
-         while(task_get_run())
+         b = true;
+
+      }
+
+      if (b)
+      {
+
+         while (task_get_run())
          {
 
-            run_posted_procedures();
+            if (!task_run(100_ms))
+            {
 
-            preempt(100_ms);
+               break;
+
+            }
 
          }
 
       }
 
    }
-   catch(::exception & exception)
+   catch (::exception & exception)
    {
 
       string strMoreDetails;
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new ::message_box(exception, strMoreDetails));
+      send(__initialize_new::message_box(exception, strMoreDetails));
 
    }
 
+
+}
+
+
+bool task::task_iteration()
+{
+
+   if (!handle_messages())
+   {
+
+      return false;
+
+   }
+
+   handle_next_posted_request();
+
+   handle_posted_procedures();
+
+   return true;
+
+}
+
+
+bool task::task_run(const class ::time & time)
+{
+
+   if (!task_iteration())
+   {
+
+      return false;
+
+   }
+
+   auto timeStart = class ::time(now_t{});
+
+   auto remaining = time;
+
+   while (true)
+   {
+
+      ::multiple_lock multiplelock(m_synchronizationaMainLoop);
+
+      auto estatus = multiplelock.lock(remaining, false, QS_ALLINPUT);
+
+      if (estatus == error_wait_timeout)
+      {
+
+         return true;
+
+      }
+      else if (estatus.failed())
+      {
+
+         throw ::exception(error_failed);
+
+      }
+      else
+      {
+
+         if (!task_iteration())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      auto elapsed = timeStart.elapsed();
+
+      if (elapsed >= time)
+      {
+
+         return true;
+
+      }
+
+      remaining = time - elapsed;
+
+   }
+
+}
+
+
+bool task::handle_messages()
+{
+
+   return true;
 
 }
 
@@ -520,7 +920,7 @@ void task::stop_task()
 
       if (!bTasksFinished)
       {
-         
+
          informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
 
       }
@@ -587,7 +987,7 @@ void task::__task_init()
 
    __check_refdbg
 
-   on_task_init();
+      on_task_init();
 
    if (m_peventInitialization)
    {
@@ -613,7 +1013,7 @@ void task::on_task_init()
 
    __check_refdbg
 
-   init_task();
+      init_task();
 
    m_estatus = ::success;
 
@@ -639,29 +1039,21 @@ bool task::is_thread() const
 
 
 #ifdef WINDOWS
-::u32 WINAPI task::s_os_task(void* p)
+::u32 WINAPI task::s_os_task(void * p)
 #else
-void* task::s_os_task(void* p)
+void * task::s_os_task(void * p)
 #endif
 {
 
    ::procedure procedureTaskEnded;
 
-   auto ptask = (::task *)p;
-
-   at_end_of_scope
    {
 
-      if (ptask->m_bAutoRelease)
-      {
+      ::pointer < ::task > ptask(transfer_t{}, (::task *)p);
 
-         ::release(ptask);
+      ptask->_os_task(procedureTaskEnded);
 
-      }
-
-   };
-
-   ptask->_os_task(procedureTaskEnded);
+   }
 
    if (procedureTaskEnded)
    {
@@ -685,19 +1077,19 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
       __check_refdbg
 
-      os_task_init_term ostaskinitterm;
+         os_task_init_term ostaskinitterm;
 
       __check_refdbg
 
-      ::set_task(this);
+         ::set_task(this);
 
       __check_refdbg
 
-//      ptask->_os_task();
+         //      ptask->_os_task();
 
 #if 0
 
-      information() << "s_os_task current_itask : " << current_itask();
+         information() << "s_os_task current_itask : " << current_itask();
 
 #endif
 
@@ -729,15 +1121,15 @@ void task::_os_task(::procedure & procedureTaskEnded)
          error() << "Exit Exception reached task procedure (1)";
 
          exitexception.finish(this);
-         
+
       }
-      catch (::exception& exception)
+      catch (::exception & exception)
       {
 
          error() << "Exception reached task procedure : " << exception;
 
       }
-      catch(...)
+      catch (...)
       {
 
          error() << "Exception reached task procedure (...)";
@@ -746,12 +1138,12 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
       auto psystem = system();
 
-      if(psystem)
+      if (psystem)
       {
 
          auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
 
-         if(ptaskmessagequeue)
+         if (ptaskmessagequeue)
          {
 
             ptaskmessagequeue->clear_message_queue(m_itask);
@@ -839,7 +1231,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
 bool task::is_task_registered() const
 {
-   
+
    return ::platform::get()->get_task_id(this) != 0;
 
 }
@@ -863,9 +1255,9 @@ void task::unregister_task()
 
 ::locale * task::locale()
 {
-   
+
    return m_plocale;
-   
+
 }
 
 
@@ -894,9 +1286,9 @@ void task::_post(const ::procedure & procedure)
 
       m_procedurea.add(procedure);
 
-   }
+      new_procedure_posted_event()->set_event();
 
-   kick_idle();
+   }
 
 }
 
@@ -937,7 +1329,7 @@ void task::_post(const ::procedure & procedure)
 //
 //}
 
- 
+
 void task::_send(const ::procedure & procedure)
 {
 
@@ -965,38 +1357,51 @@ void task::_send(const ::procedure & procedure)
 
 }
 
-
-void task::run_posted_procedures()
+procedure task::pick_next_posted_procedure()
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   if (m_procedurea.has_element())
+   if (m_procedurea.is_empty())
    {
 
-      do
-      {
-
-         //information() << "run_posted_procedures reference_count before_pick : " << (::iptr) m_procedurea.m_begin[0].m_pbase->m_countReference;
-
-         auto procedure = ::transfer(m_procedurea.pick_first());
-
-         //information() << "run_posted_procedures reference_count : " << (::iptr) procedure->m_countReference;
-
-         synchronouslock.unlock();
-
-         /*auto estatus =*/ procedure();
-
-         synchronouslock._lock();
-
-      } while (m_procedurea.has_element());
-
-
-      //return ::success;
+      return {};
 
    }
 
-   //return ::success_none;
+   auto procedure = ::transfer(m_procedurea.pick_first());
+
+   if (m_procedurea.is_empty())
+   {
+
+      new_procedure_posted_event()->ResetEvent();
+
+   }
+
+   return ::transfer(procedure);
+
+}
+
+
+void task::handle_posted_procedures()
+{
+
+   while (auto procedure = pick_next_posted_procedure())
+   {
+
+      try
+      {
+
+         procedure();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+   }
 
 }
 
@@ -1084,10 +1489,10 @@ void task::init_task()
 
    }
 
-   if(m_procedure)
+   if (m_procedure)
    {
 
-      if(m_procedure != this)
+      if (m_procedure != this)
       {
 
          m_procedure->init_task();
@@ -1205,34 +1610,34 @@ void task::term_task()
 //}
 
 
-bool task::do_tasks()
-{
-   
-   //throw ::interface_only("tasks don't have message queue, threads do (1)");
+//bool task::do_tasks()
+//{
+//   
+//   //throw ::interface_only("tasks don't have message queue, threads do (1)");
+//
+//   _do_tasks();
+//
+//   if (platform()->m_bConsole || (m_eflagElement & e_flag_running))
+//   {
+//
+//      run_posted_procedures();
+//
+//   }
+//
+//   return true;
+//
+//}
 
-   _do_tasks();
 
-   if (platform()->m_bConsole || (m_eflagElement & e_flag_running))
-   {
-
-      run_posted_procedures();
-
-   }
-
-   return true;
-
-}
-
-
-bool task::defer_pump_message()
-{
-
-   throw ::interface_only("tasks don't have message queue, threads do (2)");
-
-   return false;
-
-}
-
+//bool task::defer_pump_message()
+//{
+//
+//   throw ::interface_only("tasks don't have message queue, threads do (2)");
+//
+//   return false;
+//
+//}
+//
 
 bool task::has_message() const
 {
@@ -1263,7 +1668,7 @@ bool task::has_message() const
 ::pointer<::task>task::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
 {
 
-   if(eparallelization == e_parallelization_synchronous)
+   if (eparallelization == e_parallelization_synchronous)
    {
 
       return branch_synchronously(createtaskattributes);
@@ -1297,12 +1702,12 @@ bool task::has_message() const
 
    }
 
-//   if (::is_null(m_pelement))
-//   {
-//
-//      m_pelement = this;
-//
-//   }
+   //   if (::is_null(m_pelement))
+   //   {
+   //
+   //      m_pelement = this;
+   //
+   //   }
 
 #ifdef __DEBUG
 
@@ -1399,7 +1804,7 @@ bool task::has_message() const
       else
       {
 
-         if (this == (::task *) session())
+         if (this == (::task *)session())
          {
 
             m_pobjectParentTask = system();
@@ -1442,14 +1847,18 @@ bool task::has_message() const
 
    }
 
+   __refdbg_add_referer
+
+      increment_reference_count();
+
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
 
    m_htask = ::CreateThread(
       (LPSECURITY_ATTRIBUTES)(createtaskattributes.m_psecurityattributes ? createtaskattributes.m_psecurityattributes->get_os_security_attributes() : nullptr),
-      createtaskattributes.m_uStackSize, 
-      (LPTHREAD_START_ROUTINE) & ::task::s_os_task, 
+      createtaskattributes.m_uStackSize,
+      (LPTHREAD_START_ROUTINE) & ::task::s_os_task,
       (LPVOID)(task *)this,
       createtaskattributes.m_uCreateFlags,
       &dwThread);
@@ -1469,24 +1878,24 @@ bool task::has_message() const
 
    }
 
-   if(!m_bJoinable)
+   if (!m_bJoinable)
    {
-      
+
       pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
-      
+
    }
 
    int iError = pthread_create(
-      (pthread_t *) &m_htask,
+      (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
       this);
 
 
-   if(iError != 0)
+   if (iError != 0)
    {
 
-      if(iError == EAGAIN)
+      if (iError == EAGAIN)
       {
          // EAGAIN Insufficient resources to create another thread.
          //
@@ -1502,13 +1911,13 @@ bool task::has_message() const
 
          throw ::exception(error_resource);
       }
-      else if(iError == EINVAL)
+      else if (iError == EINVAL)
       {
          //EINVAL Invalid settings in attr.
          throw ::exception(error_bad_argument);
 
       }
-      else if(iError == EPERM)
+      else if (iError == EPERM)
       {
          //EPERM  No permission to set the scheduling policy and parameters
          //     specified in attr.
@@ -1521,6 +1930,8 @@ bool task::has_message() const
 
    if (!m_htask)
    {
+
+      release();
 
       m_bIsRunning = false;
 
@@ -1673,212 +2084,212 @@ bool task::has_message() const
 
    }
 
-//   if (m_atom.is_empty())
-//   {
-//
-//      if (m_pelement)
-//      {
-//
-//         m_atom = ::type(m_pelement).name();
-//
-//      }
-//      else
-//      {
-//
-//         m_atom = ::type(this).name();
-//
-//      }
-//
-//   }
-//
-//   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
-//   {
-//
-//      throw ::exception(error_bad_argument);
-//
-//      ///return ::error_failed;
-//
-//   }
-//
-//   //   if (::is_null(m_pelement))
-//   //   {
-//   //
-//   //      m_pelement = this;
-//   //
-//   //   }
-//
-//#ifdef __DEBUG
-//
-//   string strId = m_atom;
-//
-//   if (strId.case_insensitive_contains("forking_thread"))
-//   {
-//
-//#if 0
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::exception_engine().reset();
-//
-//      OS_DWORD                dwDisplacement;
-//
-//      OS_DWORD                uia[4096];
-//
-//      dwDisplacement = 0;
-//
-//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
-//
-//      ULONG BackTraceHash;
-//
-//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
-//
-//      char sz[1024];
-//
-//      zero(sz);
-//
-//      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
-//
-//      u32 uiLine = 0;
-//
-//      {
-//         critical_section_lock csl(&::exception_engine().m_criticalsection);
-//
-//         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
-//
-//      }
-//
-//      strId = string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
-//
-//#endif
-//
-//#endif
-//
-//   }
-//
-//   m_pszDebug = strdup(strId);
-//
-//#endif
-//
-//   /*auto estatus =*/ task_caller_on_init();
-//
-//   //if (!estatus)
-//   //{
-//
-//   //   return estatus;
-//
-//   //}
-//
-//   //if (m_pobjectParent && m_bIsPredicate)
-//   //{
-//
-//   //   //auto pthreadParent = calc_parent_thread();
-//
-//   //   m_pobjectParent->task_add(this);
-//
-//
-//   //   if (pthreadParent)
-//   //   {
-//
-//   //
-//
-//   //   }
-//
-//   //}
-//
-//   // __task_procedure() should release this (pelement)
-//   //increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
-//
-//   m_bIsRunning = true;
-//
-//   set(e_flag_task_started);
-//
-//   if (::is_null(m_pobjectParentTask))
-//   {
-//
-//      auto pobjectParentTask = ::get_task();
-//
-//      if (::is_null(pobjectParentTask))
-//      {
-//
-//         pobjectParentTask = m_papplication;
-//
-//      }
-//
-//      if (::is_null(pobjectParentTask))
-//      {
-//
-//         pobjectParentTask = system();
-//
-//      }
-//
-//      if (pobjectParentTask)
-//      {
-//
-//         if (pobjectParentTask != this)
-//         {
-//
-//            pobjectParentTask->add_task(this);
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         throw ::exception(error_invalid_usage);
-//
-//      }
-//
-//   }
-//
-//#ifdef WINDOWS
-//
-//   DWORD dwThread = 0;
-//
-//   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) & ::task::s_os_task, (LPVOID)(task *)this, uCreateFlags, &dwThread);
-//
-//   m_itask = dwThread;
-//
-//#else
-//
-//   pthread_attr_t taskAttr;
-//
-//   pthread_attr_init(&taskAttr);
-//
-//   if (nStackSize > 0)
-//   {
-//
-//      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
-//
-//   }
-//
-//   if (!m_bJoinable)
-//   {
-//
-//      pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
-//
-//   }
-//
-//   pthread_create(
-//      (pthread_t *)&m_htask,
-//      &taskAttr,
-//      &task::s_os_task,
-//      this);
-//
-//#endif
-//
-//   if (!m_htask)
-//   {
-//
-//      m_bIsRunning = false;
-//
-//      throw ::exception(error_wrong_state);
-//
-//      //return ::error_failed;
-//
-//   }
-//
-//   //return ::success;
+   //   if (m_atom.is_empty())
+   //   {
+   //
+   //      if (m_pelement)
+   //      {
+   //
+   //         m_atom = ::type(m_pelement).name();
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         m_atom = ::type(this).name();
+   //
+   //      }
+   //
+   //   }
+   //
+   //   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
+   //   {
+   //
+   //      throw ::exception(error_bad_argument);
+   //
+   //      ///return ::error_failed;
+   //
+   //   }
+   //
+   //   //   if (::is_null(m_pelement))
+   //   //   {
+   //   //
+   //   //      m_pelement = this;
+   //   //
+   //   //   }
+   //
+   //#ifdef __DEBUG
+   //
+   //   string strId = m_atom;
+   //
+   //   if (strId.case_insensitive_contains("forking_thread"))
+   //   {
+   //
+   //#if 0
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //      ::exception_engine().reset();
+   //
+   //      OS_DWORD                dwDisplacement;
+   //
+   //      OS_DWORD                uia[4096];
+   //
+   //      dwDisplacement = 0;
+   //
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+   //
+   //      ULONG BackTraceHash;
+   //
+   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+   //
+   //      char sz[1024];
+   //
+   //      zero(sz);
+   //
+   //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+   //
+   //      u32 uiLine = 0;
+   //
+   //      {
+   //         critical_section_lock csl(&::exception_engine().m_criticalsection);
+   //
+   //         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+   //
+   //      }
+   //
+   //      strId = string(sz) + "(" + as_string(uiLine) + ") :: forking_thread";
+   //
+   //#endif
+   //
+   //#endif
+   //
+   //   }
+   //
+   //   m_pszDebug = strdup(strId);
+   //
+   //#endif
+   //
+   //   /*auto estatus =*/ task_caller_on_init();
+   //
+   //   //if (!estatus)
+   //   //{
+   //
+   //   //   return estatus;
+   //
+   //   //}
+   //
+   //   //if (m_pobjectParent && m_bIsPredicate)
+   //   //{
+   //
+   //   //   //auto pthreadParent = calc_parent_thread();
+   //
+   //   //   m_pobjectParent->task_add(this);
+   //
+   //
+   //   //   if (pthreadParent)
+   //   //   {
+   //
+   //   //
+   //
+   //   //   }
+   //
+   //   //}
+   //
+   //   // __task_procedure() should release this (pelement)
+   //   //increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+   //
+   //   m_bIsRunning = true;
+   //
+   //   set(e_flag_task_started);
+   //
+   //   if (::is_null(m_pobjectParentTask))
+   //   {
+   //
+   //      auto pobjectParentTask = ::get_task();
+   //
+   //      if (::is_null(pobjectParentTask))
+   //      {
+   //
+   //         pobjectParentTask = m_papplication;
+   //
+   //      }
+   //
+   //      if (::is_null(pobjectParentTask))
+   //      {
+   //
+   //         pobjectParentTask = system();
+   //
+   //      }
+   //
+   //      if (pobjectParentTask)
+   //      {
+   //
+   //         if (pobjectParentTask != this)
+   //         {
+   //
+   //            pobjectParentTask->add_task(this);
+   //
+   //         }
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         throw ::exception(error_invalid_usage);
+   //
+   //      }
+   //
+   //   }
+   //
+   //#ifdef WINDOWS
+   //
+   //   DWORD dwThread = 0;
+   //
+   //   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) & ::task::s_os_task, (LPVOID)(task *)this, uCreateFlags, &dwThread);
+   //
+   //   m_itask = dwThread;
+   //
+   //#else
+   //
+   //   pthread_attr_t taskAttr;
+   //
+   //   pthread_attr_init(&taskAttr);
+   //
+   //   if (nStackSize > 0)
+   //   {
+   //
+   //      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+   //
+   //   }
+   //
+   //   if (!m_bJoinable)
+   //   {
+   //
+   //      pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
+   //
+   //   }
+   //
+   //   pthread_create(
+   //      (pthread_t *)&m_htask,
+   //      &taskAttr,
+   //      &task::s_os_task,
+   //      this);
+   //
+   //#endif
+   //
+   //   if (!m_htask)
+   //   {
+   //
+   //      m_bIsRunning = false;
+   //
+   //      throw ::exception(error_wrong_state);
+   //
+   //      //return ::error_failed;
+   //
+   //   }
+   //
+   //   //return ::success;
 
    return this;
 
@@ -1887,10 +2298,10 @@ bool task::has_message() const
 
 bool task::task_sleep(const class time & timeWait)
 {
-   
+
    auto waitStart = ::time::now();
-   
-   while(task_get_run())
+
+   while (task_get_run())
    {
 
       auto waitStep = minimum(timeWait - waitStart.elapsed(), 100_ms);
@@ -1901,11 +2312,11 @@ bool task::task_sleep(const class time & timeWait)
          return true;
 
       }
-      
+
       ::preempt(waitStep);
-      
+
    }
-   
+
    return false;
 
 }
@@ -1970,6 +2381,7 @@ void task::set_current_handles()
 void task::kick_idle()
 {
 
+   _post([]() {});
 
 }
 
@@ -2028,7 +2440,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task* task)
+CLASS_DECL_ACME bool __task_sleep(task * task)
 {
 
    while (task->task_get_run())
@@ -2043,7 +2455,7 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
+CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 {
 
    if (timeWait < 1000_ms)
@@ -2111,7 +2523,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, ::particle * pparticle)
+CLASS_DECL_ACME bool __task_sleep(::task * ptask, ::particle * pparticle)
 {
 
    try
@@ -2135,7 +2547,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, ::particle * pparticle)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait, ::particle * pparticle)
+CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::particle * pparticle)
 {
 
    if (timeWait < 1000_ms)
@@ -2154,7 +2566,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait, ::pa
 
    }
 
-   auto iTenths = (::i32) (timeWait.integral_millisecond() / 100);
+   auto iTenths = (::i32)(timeWait.integral_millisecond() / 100);
 
    try
    {
@@ -2272,27 +2684,27 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait, ::pa
 
 CLASS_DECL_ACME bool task_sleep(const class time & timeWait)
 {
-   
+
    auto ptask = ::get_task();
-   
-   if(::is_null(ptask))
+
+   if (::is_null(ptask))
    {
-    
+
       ::preempt(timeWait);
-      
+
       return true;
-      
+
    }
-   
-   if(!ptask->task_sleep(timeWait))
+
+   if (!ptask->task_sleep(timeWait))
    {
-      
+
       return false;
-      
+
    }
-      
+
    return true;
-   
+
 }
 
 
@@ -2580,7 +2992,7 @@ void preempt()
 namespace platform
 {
 
-   
+
    ::collection::index platform::task_index(itask_t itask, bool bAddIfNotInList)
    {
 
@@ -2618,26 +3030,15 @@ namespace platform
 }
 
 
-void do_tasks()
+void task_iteration()
 {
-
-   _do_tasks();
 
    auto ptask = ::get_task();
 
    if (ptask)
    {
 
-      ptask->do_tasks();
-
-   }
-
-   if (::platform::get()->m_bConsole)
-   {
-
-      system()->application()->do_tasks();
-
-      system()->do_tasks();
+      ptask->task_iteration();
 
    }
 
@@ -2645,6 +3046,28 @@ void do_tasks()
 
 
 
+void task_run(const class ::time & time)
+{
+
+   auto ptask = ::get_task();
+
+   if (ptask)
+   {
+
+      ptask->task_run(time);
+
+   }
+
+   //if (::platform::get()->m_bConsole)
+   //{
+
+   //   system()->application()->do_tasks();
+
+   //   system()->do_tasks();
+
+   //}
+
+}
 
 
 CLASS_DECL_ACME::string get_task_object_name()
@@ -2672,7 +3095,7 @@ CLASS_DECL_ACME::string get_task_object_debug()
 
 static htask_t g_htaskMain = (htask_t) nullptr;
 
-static itask_t g_itaskMain = (itask_t) 0;
+static itask_t g_itaskMain = (itask_t)0;
 
 
 CLASS_DECL_ACME void set_main_htask(htask_t htask)

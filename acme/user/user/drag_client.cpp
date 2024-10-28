@@ -162,11 +162,9 @@ namespace user
       if (pdrag)
       {
 
-         pdrag->m_pmouse = pmouse;
-
          ::point_i32 pointDrag;
          
-         if (on_drag_start(pointDrag, pitem))
+         if (on_drag_start(pointDrag, pmouse, pitem))
          {
 
             drag_set_capture();
@@ -199,7 +197,7 @@ namespace user
          if (m_pdragCurrent->m_bLButtonDown)
          {
 
-            m_pdragCurrent->m_pmouse = pmouse;
+            //m_pdragCurrent->m_pmouse = pmouse;
 
             //set_cursor(e_cursor_move);
 
@@ -213,18 +211,18 @@ namespace user
             if (!m_pdragCurrent->m_bDrag)
             {
 
+               m_pdragCurrent->m_bDrag = true;
+
                auto pdrag = m_pdragCurrent;
 
                _synchronouslock.unlock();
-
-               pdrag->m_bDrag = true;
 
                drag_shift(pdrag->m_pitem, pmouse);
 
                if (pdrag->m_ecursor != e_cursor_none)
                {
 
-                     drag_set_cursor(pdrag->m_pitem);
+                  drag_set_cursor(pdrag->m_pitem, pmouse);
 
                }
 
@@ -243,7 +241,7 @@ namespace user
    }
 
 
-   bool drag_client::drag_on_mouse_hover(::item * pitem)
+   bool drag_client::drag_on_mouse_hover(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (::is_null(pitem))
@@ -269,14 +267,14 @@ namespace user
 
             auto * puseritem = user_item(pitem);
 
-            pdrag->m_pmouse = puseritem->m_pmouse;
+            //pdrag->m_pmouse = puseritem->m_pmouse;
 
             bool bRet = drag_hover(pitem);
 
             if (pdrag->m_ecursor != e_cursor_none)
             {
 
-               drag_set_cursor(pitem);
+               drag_set_cursor(pitem, pmouse);
 
             }
 
@@ -303,7 +301,11 @@ namespace user
 
       ASSERT(m_pdragCurrent->m_bLButtonDown || m_pdragCurrent->m_bDrag);
 
-      m_pdragCurrent->m_pmouse = pmouse;
+      //m_pdragCurrent->m_pmouse = pmouse;
+
+      m_pdragCurrent->m_bLButtonDown = false;
+
+      m_pdragCurrent->m_bDrag = false;
 
       drag_release_capture();
 

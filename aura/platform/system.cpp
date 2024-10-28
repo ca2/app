@@ -164,7 +164,7 @@ namespace aura
 
       //m_paurasystem = this;
 
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
@@ -1988,22 +1988,22 @@ namespace aura
    }
 
 
-   void system::thread_loop()
-   {
-
-//#ifdef LINUX
-
-  //    run_gtk_main(this);
-
-    //  return m_estatus;
-
-//#else
-
-      return thread::thread_loop();
-
-//#endif // LINUX
-
-   }
+//   void system::thread_loop()
+//   {
+//
+////#ifdef LINUX
+//
+//  //    run_gtk_main(this);
+//
+//    //  return m_estatus;
+//
+////#else
+//
+//      return thread::thread_loop();
+//
+////#endif // LINUX
+//
+//   }
 
 
    void system::term_task()
@@ -6927,18 +6927,25 @@ namespace aura
    // }
 
 
-   class ::draw2d::draw2d * system::draw2d() const
+   class ::draw2d::draw2d * system::draw2d()
    {
+
+      if (!m_pdraw2d)
+      {
+
+         initialize_draw2d();
+
+      }
 
       return m_pdraw2d;
 
    }
 
 
-   class ::write_text::write_text * system::write_text() const
+   class ::write_text::write_text * system::write_text()
    {
 
-      return m_pdraw2d->write_text();
+      return draw2d()->write_text();
 
    }
 

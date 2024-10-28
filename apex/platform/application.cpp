@@ -190,7 +190,7 @@ namespace apex
 
       //m_pappParent = nullptr;
       m_bMessageThread = true;
-      m_bSimpleMessageLoop = false;
+      //m_bSimpleMessageLoop = false;
       m_ethreadcontextClose = e_thread_context_none;
 
       //m_puiMainContainer = nullptr;
@@ -551,6 +551,14 @@ namespace apex
 //      //dumpcontext << "\n";
 //
 //   }
+   
+   
+   void application::main()
+   {
+
+      ::thread::main();
+
+   }
 
 
    string application::__get_text(string str)
@@ -6468,7 +6476,7 @@ namespace apex
 
       }
 
-      error() <<"1.1";
+      error() << "1.1";
 
       auto papplicationmenu = application_menu();
 
@@ -6490,21 +6498,21 @@ namespace apex
 
       }
 
-//      {
-//
-//         auto ppopupView = papplicationmenu->popup("View");
-//
-//         //ppopupView->add(pmenuView);
-//
-//         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-//
-//      }
-//
-//      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-//
-////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-////
-////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+      //      {
+      //
+      //         auto ppopupView = papplicationmenu->popup("View");
+      //
+      //         //ppopupView->add(pmenuView);
+      //
+      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+      //
+      //      }
+      //
+      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+      //
+      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+      ////
+      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
 
       application_menu_update();
 
@@ -6550,12 +6558,29 @@ namespace apex
    }
 
 
-   bool application::pump_runnable()
+   //bool application::pump_runnable()
+   //{
+
+   //   defer_process_activation_message();
+
+   //   return ::thread::pump_runnable();
+
+   //}
+
+
+   bool application::task_iteration()
    {
 
-      defer_process_activation_message();
+      if (!::platform::application::task_iteration())
+      {
 
-      return ::thread::pump_runnable();
+         return false;
+
+      }
+
+      handle_posted_activation_message();
+
+      return true;
 
    }
 
@@ -6586,7 +6611,7 @@ namespace apex
    }
 
 
-   bool application::defer_process_activation_message()
+   void application::handle_posted_activation_message()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -6594,7 +6619,7 @@ namespace apex
       if (!m_bAttendedFirstRequest)
       {
 
-         return false;
+         return;
 
       }
 
@@ -6603,7 +6628,7 @@ namespace apex
       if (m_straActivationMessage.is_empty())
       {
 
-         return false;
+         return;
 
       }
 
@@ -6612,7 +6637,7 @@ namespace apex
       if (::is_null(pinterprocesscommunication))
       {
 
-         return false;
+         return;
 
       }
 
@@ -6633,7 +6658,7 @@ namespace apex
 
       } while (m_straActivationMessage.has_element());
 
-      return true;
+      //return true;
 
    }
 

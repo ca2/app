@@ -11,23 +11,56 @@ using hsync_array = ::address_array < hsync >;
 #endif
 
 
-class CLASS_DECL_ACME synchronization_array :
-   virtual public ::particle
+template < typename T, ::collection::count t_iCount >
+class fixed_raw_array
 {
 public:
 
 
-#ifdef WINDOWS
+   T     m_ta[t_iCount];
 
+   fixed_raw_array()
+   {
+      ::memory_set(m_ta, 0, sizeof(T) * t_iCount);
 
-   hsync_array          m_hsyncaCache;
-   ::u8                 m_byteaSyncIndex[MAXIMUM_SYNCHRONIZING_OBJECTS];
+   }
+   fixed_raw_array(const fixed_raw_array & a)
+   {
 
+      ::memory_copy(m_ta, a.m_ta, sizeof(T) * t_iCount);
 
-#endif
+   }
+   ::collection::count size() const { return t_iCount; }
+   T & operator[](::collection::index i) { return m_ta[i]; }
+   const T & operator[](::collection::index i) const { return m_ta[i]; }
+   void erase_at(::collection::index i, ::collection::count s)
+   {
+      ::memory_transfer(&m_ta[i], &m_ta[i + 1], s - i - 1);
+   }
+   fixed_raw_array & operator = (const fixed_raw_array & a)
+   {
+      if (this != &a)
+      {
 
+         ::memory_copy(m_ta, a.m_ta, sizeof(T) * t_iCount);
+      }
+      return *this;
+   }
+};
 
-   DECLARE_ARRAY_CONTAINER_OF(synchronization_array, synchronization, m_synchronizationa, subparticle);
+class CLASS_DECL_ACME synchronization_array :
+   virtual public ::particle
+{
+protected:
+   
+   
+   ::pointer_array < subparticle >                             m_subparticlea;
+
+   hsync_array                                                 m_hsynca;
+   fixed_raw_array < ::u8, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
+
+public:
+
 
 
    synchronization_array();
@@ -37,9 +70,7 @@ public:
 
    void	clear();
 
-   ::collection::count size() const;
-
-   bool is_empty() const;
+   
 
    bool add_item(::subparticle * pparticle);
 
@@ -53,13 +84,20 @@ public:
 
    ::e_status wait() override;
 
-   virtual ::collection::index wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::e_status wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
+
+   virtual void unlock_item(::collection::index index);
+
+   virtual void unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount = nullptr);
 
    virtual void contains(const ::e_status & result) const;
 
    synchronization_array & operator = (const synchronization_array & synca);
 
-
+   hsync * data() {return m_hsynca.data(); }
+   ::collection::count size() const { return m_hsynca.size(); }
+   bool is_empty() const { return this->size() <= 0; }
+   ::subparticle * at(::collection::index i) const { return m_subparticlea.ptr_at(i); }
 };
 
 

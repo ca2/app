@@ -17,29 +17,41 @@ namespace handler
    class CLASS_DECL_ACME handler :
       virtual public ::matter
    {
+   protected:
+
+
+      ::pointer_array < ::request >       m_requestaPosted;
+      ::pointer_array < ::request >       m_requestaHistory;
+      ::pointer < ::manual_reset_event >  m_pmanualreseteventNewRequestPosted;
+
+
    public:
 
 
       ::pointer < ::request >             m_prequest;
 
       ::payload                           m_payloadFile;
-      ::pointer_array < ::request >       m_requestaPending;
-      ::pointer_array < ::request >       m_requestaHistory;
 
 
       handler();
       ~handler() override;
 
 
+      void on_initialize_particle() override;
+
       void destroy() override;
 
+      virtual ::manual_reset_event * new_request_posted_event();
 
       virtual void post_request(::request * prequest);
+
+      virtual ::request * pick_next_posted_request();
+
+      virtual bool handle_next_posted_request();
 
       virtual bool contains(::request * prequest) const;
 
       virtual string command_line_text() const;
-
 
       virtual bool on_idle();
       // ThomasBorregaardSorensen!! Like handlers
@@ -51,12 +63,13 @@ namespace handler
       // ThomasBorregaardSorensen!! Like handlers
       virtual void handle(::topic * ptopic, ::context * pcontext);
       virtual void handle(::message::message * pmessage);
+      virtual void handle(::request * prequest);
 
 
       virtual bool _handle_uri(const ::block & blockUri);
       virtual bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset);
 
-      virtual bool post_next_pending_request();
+      
 
    };
 

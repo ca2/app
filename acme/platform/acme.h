@@ -28,8 +28,6 @@ namespace acme
 
       //::pointer < ::platform::platform >      m_pplatform;
       ::heap::management *                      m_pheapmanagement;
-      manual_reset_event *                      m_pmanualreseteventReadyToExit;
-      manual_reset_event *                      m_pmanualreseteventMainLoopEnd;
 
 
 

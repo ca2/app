@@ -8,7 +8,6 @@
 #include "acme/platform/system.h"
 
 
-CLASS_DECL_ACME void do_tasks();
 
 
 #if REFERENCING_DEBUGGING
@@ -508,13 +507,6 @@ void subparticle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = ::system();
-
-   }
-
-   if (::is_null(ptask))
-   {
-
       //try { throw "errorABC1"; } catch(...){}
 
       printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
@@ -530,7 +522,7 @@ void subparticle::_wait()
    while (true)
    {
 
-      do_tasks();
+      ::task_iteration();
 
       //try { throw "errorABC2"; } catch(...){}
 
@@ -586,13 +578,6 @@ void subparticle::_wait()
    if (::is_null(ptask))
    {
 
-      ptask = system();
-
-   }
-
-   if (::is_null(ptask))
-   {
-
       auto bOk = this->_wait(timeWait);
 
       if (!bOk)
@@ -611,7 +596,7 @@ void subparticle::_wait()
    while (true)
    {
 
-      ::do_tasks();
+      ::task_iteration();
 
       auto waitElapsed = waitStart.elapsed();
 

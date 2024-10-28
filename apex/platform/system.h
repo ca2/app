@@ -142,7 +142,7 @@ namespace apex
 
       bool task_get_run() const override;
 
-      void create_os_node() override;
+      //void create_os_node() override;
 
       //::apex::node * node();
 
@@ -249,10 +249,10 @@ namespace apex
 
 
 
-      virtual void thread_loop() override;
+      //virtual void thread_loop() override;
 
 
-      virtual void post_pending_requests();
+      //virtual void post_pending_requests();
 
 
       virtual void term2();
@@ -407,7 +407,7 @@ namespace apex
       void main() override;
 
 
-      bool do_tasks() override;
+      //bool do_tasks() override;
 
 
       void post_quit_to_all_threads();

@@ -361,12 +361,14 @@ namespace platform
       if (::is_set(psystem))
       {
 
-         psystem->post([this]()
+         auto iEdge = m_iEdge;
+
+         psystem->post([psystem, iEdge]()
             {
 
-                  system()->erase_session(m_iEdge);
+               psystem->erase_session(iEdge);
 
-         });
+            });
 
       }
 

@@ -1402,6 +1402,11 @@
     <ClInclude Include="platform\session_axis.h" />
     <ClInclude Include="platform\shell.h" />
     <ClInclude Include="platform\simple_array.h" />
+    <ClInclude Include="platform\system_acme.h" />
+    <ClInclude Include="platform\system_apex.h" />
+    <ClInclude Include="platform\system_aqua.h" />
+    <ClInclude Include="platform\system_aura.h" />
+    <ClInclude Include="platform\system_axis.h" />
     <ClInclude Include="platform\system_factory.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\tracing.h" />
@@ -2040,6 +2045,7 @@
     <ClCompile Include="platform\system_apex.cpp" />
     <ClCompile Include="platform\system_aqua.cpp" />
     <ClCompile Include="platform\system_aura.cpp" />
+    <ClCompile Include="platform\system_axis.cpp" />
     <ClCompile Include="platform\system_factory.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />

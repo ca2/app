@@ -3999,6 +3999,21 @@
     <ClInclude Include="platform\session_axis.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\system_acme.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_apex.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_aqua.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_aura.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_axis.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5688,6 +5703,9 @@
       <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
     <ClCompile Include="platform\session_axis.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_axis.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

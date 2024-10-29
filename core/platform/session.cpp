@@ -54,7 +54,7 @@ namespace core
       ::bred::session::on_instantiate_application(papp);
 
       //papp->m_pcoresession = this;
-      //papp->m_pcoresystem = m_pcoresystem;
+      //papp = m_pcoresystem;
 
    }
 

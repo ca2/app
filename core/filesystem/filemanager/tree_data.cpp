@@ -149,7 +149,7 @@ namespace filemanager
 
       auto pacmesystem = system();
 
-      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
 
    }
 

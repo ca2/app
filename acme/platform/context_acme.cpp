@@ -23,11 +23,22 @@ namespace platform
 
    void acme_context_layer::initialize_context_1()
    {
+
+
    }
 
 
    void acme_context_layer::finalize_context()
    {
+
+
+   }
+
+
+   void acme_context_layer::initialize_http()
+   {
+
+
    }
 
 
@@ -98,10 +109,10 @@ namespace platform
    }
 
 
-   ::platform::http* acme_context_layer::http()
-   {
-      return nullptr;
-   }
+   // ::platform::http* acme_context_layer::http()
+   // {
+   //    return nullptr;
+   // }
 
 
    ::payload acme_context_layer::file_payload(const ::payload& payloadFile)
@@ -254,6 +265,14 @@ namespace platform
    bool acme_context_layer::defer_process_protocol_path(::file::path& path)
    {
       return false;
+   }
+
+
+   ::platform::http * acme_context_layer::http()
+   {
+
+      return nullptr;
+
    }
 
 

@@ -2,6 +2,7 @@
 #include "remote_native_file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/platform/http.h"
 #include "acme/prototype/prototype/url.h"
 //#include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/filesystem/file_context.h"

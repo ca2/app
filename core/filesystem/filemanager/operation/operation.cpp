@@ -931,9 +931,11 @@ namespace filemanager
    void operation::expand(::file::listing & listingExpanded,::file::path_array & pathaExpand)
    {
 
-      auto pcontext = m_papplication->m_pauracontext;
+      auto papplication = m_papplication;
 
-      listingExpanded.m_penumerator = pcontext;
+      ::cast < ::file::enumerator > pfileenumerator = papplication;
+
+      listingExpanded.m_penumerator = pfileenumerator;
 
       auto papp = get_app();
 

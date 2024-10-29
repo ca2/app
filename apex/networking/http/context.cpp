@@ -2,6 +2,8 @@
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
+#include "pac.h"
+#include "proxy.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/nano/http/get.h"
 #include "acme/prototype/prototype/url.h"
@@ -635,32 +637,8 @@ namespace http
    //}
 
 
-   context::pac::pac()
-   {
 
-      throw ::exception(todo, "scripting");
-      //m_pjs = ___new tinyjs();
-
-   }
-
-
-   context::pac::~pac()
-   {
-
-      //throw ::exception(todo("scripting"));
-
-
-      //if (m_pjs == nullptr)
-      //{
-
-      //   delete m_pjs;
-
-      //}
-
-   }
-
-
-   context::pac * context::get_pac(const ::url::url & url)
+   ::http::pac * context::get_pac(const ::url::url & url)
    {
 
       single_lock synchronouslock(m_pmutexPac, true);
@@ -728,24 +706,8 @@ namespace http
    }
 
 
-   //context::proxy::proxy(::particle * pparticle) :
-   //   ::object(pparticle)
-   //{
 
-   //   m_bDirect = true;
-
-   //}
-
-
-   context::proxy::proxy()
-   {
-
-      m_bDirect = true;
-
-   }
-
-
-   ::http::context::proxy * context::get_proxy(const ::url::url & url)
+   ::http::proxy * context::get_proxy(const ::url::url & url)
    {
 
       single_lock synchronouslock(m_pmutexProxy, true);
@@ -763,7 +725,7 @@ namespace http
             
          }
 
-         auto pproxy = __create_new < class ::http::context::proxy >();
+         auto pproxy = __create_new < class ::http::proxy >();
 
          pproxy->m_timeLastChecked= ::time::now();
 
@@ -873,7 +835,7 @@ namespace http
 
 #else
 
-      ::http::context::proxy * pproxy = get_proxy(url);
+      ::http::proxy * pproxy = get_proxy(url);
 
       if (pproxy == nullptr)
          return;
@@ -894,7 +856,7 @@ namespace http
    }
 
 
-   void context::config_proxy(const ::url::url & url, ::http::context::proxy * pproxy)
+   void context::config_proxy(const ::url::url & url, ::http::proxy * pproxy)
    {
 
       //throw ::exception(todo("xml"));

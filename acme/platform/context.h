@@ -116,14 +116,13 @@ namespace platform
       virtual ::file::watcher * file_watcher();
 
 
-      virtual ::platform::http * http();
-
-
       virtual ::payload file_payload(const ::payload & payloadFile);
 
+      ::platform::http * http() override;
+
+      void initialize_http() override;
 
       //::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen) override;
-
 
       virtual ::file::path defer_process_path(::file::path path);
       virtual ::file::path _defer_process_path(::file::path path);

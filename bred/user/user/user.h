@@ -135,10 +135,10 @@ namespace bred
       ~user() override;
 
 
-      ::bred::application* get_app();
-      ::bred::session* get_session();
-      ::bred::system* get_system();
-
+      // ::bred::application* get_app();
+      // ::bred::session* get_session();
+      // ::bred::system* get_system();
+      //
 
 
       void destroy() override;

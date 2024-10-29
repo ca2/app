@@ -64,6 +64,9 @@ namespace apex
       void initialize_context_1() override;
 
 
+      void initialize_http() override;
+
+
       void finalize_context() override;
 
 

@@ -189,7 +189,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
    auto papp = application();
 
-   //auto puser = papp->get_session()->user()->m_pbaseuser;
+   //auto puser = papp->get_session()->user();
 
    auto strAppTitle = papp->application_title();
 

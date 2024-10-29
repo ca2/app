@@ -79,7 +79,7 @@ namespace userex
 
          //auto puser = psession->m_puser->m_pcoreuser;
 
-         m_pdocument = user()->m_pbaseuser->impact_system("progress_impact")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
+         m_pdocument = user()->impact_system("progress_impact")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
          m_pimpact = m_pdocument->get_typed_impact<::userex::progress_impact>();
 

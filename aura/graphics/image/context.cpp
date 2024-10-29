@@ -1157,7 +1157,7 @@ namespace image
    //   if (pimage.nok())
    //   {
    //
-   //      auto pcontext = m_papplication->m_pauracontext;
+   //      auto papplication = m_papplication;
    //
    //      auto pimagecontext = pcontext->image_context();
    //

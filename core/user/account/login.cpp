@@ -328,7 +328,7 @@ namespace account
 
          float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
-         //auto psystem = system()->m_pcoresystem;
+         //auto psystem = system();
 
          //auto pnode = psystem->node();
 

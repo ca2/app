@@ -1,16 +1,37 @@
 //
-// Created by camilo on 2024-10-29.
+// Created by camilo on 2024-10-29 01:29 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef PAC_H
-#define PAC_H
 
-namespace http {
+namespace http
+{
 
-class pac {
 
-};
+   class CLASS_DECL_APEX pac :
+      virtual public ::object
+   {
+   public:
 
-} // http
 
-#endif //PAC_H
+      ::url::url              m_url;
+      string                  m_strAutoConfigScript;
+      ::pointer < tinyjs >    m_pjs;
+      class ::time            m_timeLastChecked;
+
+
+      //pac(::particle * pparticle);
+      pac();
+
+
+      ~pac() override;
+
+
+   };
+
+
+} // namespace http
+
+
+
+

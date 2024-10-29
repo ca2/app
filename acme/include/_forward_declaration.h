@@ -831,14 +831,15 @@ namespace platform
 
    class context;
 
-   class http;
-
    class application_container;
 
    class static_start;
 
    class node;
    class library;
+
+
+   class http;
 
 
 } // namespace platform
@@ -1302,6 +1303,9 @@ class string_buffer;
 namespace http
 {
 
+   class message;
+   class session;
+
    class cookie;
    class cookies;
 
@@ -1490,11 +1494,13 @@ namespace data
 
 } // namespace data
 
+
 namespace sockets // only usable from base.dll and dependants
 {
 
    class sockets; // only usable from base.dll and dependants
-
+   class http_client_socket;
+   class http_tunnel;
 
 } // namespace sockets // only usable from base.dll and dependants
 
@@ -2150,7 +2156,12 @@ namespace core
 namespace http
 {
 
+
    class context;
+
+   class proxy;
+   class pac;
+
 
 } // namespace http
 

@@ -93,7 +93,7 @@ namespace filemanager
 
       auto pacmesystem = system();
 
-      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
 
    }
 
@@ -691,7 +691,7 @@ namespace filemanager
 
       //string strManagerId;
 
-      //auto pcontext = m_papplication->m_pauracontext;
+      //auto papplication = m_papplication;
 
       //m_path = filemanager_project_entry(strManagerId, path, pcontext);
 

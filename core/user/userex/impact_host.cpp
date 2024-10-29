@@ -88,7 +88,7 @@ namespace userex
 
       auto pacmesystem = system();
 
-      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
 
    }
 
@@ -225,27 +225,27 @@ namespace userex
    ::pointer<::userex::pane_tab_impact>impact_host::get_pane_tab_impact()
    {
 
-      if (!user()->m_pbaseuser->impact_system("main"))
+      if (!user()->impact_system("main"))
       {
 
          //m_ptemplateTab = ;;
-         user()->m_pbaseuser->add_impact_system(
+         user()->add_impact_system(
             "main", __initialize_new user::single_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),
             ::type < ::userex::pane_tab_impact >()));
 
-         //user()->m_pbaseuser->initialize(this);
+         //user()->initialize(this);
 
       }
 
-      ::pointer<::user::document>pdocTab = user()->m_pbaseuser->impact_system("main")->get_document();
+      ::pointer<::user::document>pdocTab = user()->impact_system("main")->get_document();
 
       if (pdocTab == nullptr)
       {
 
-         pdocTab = user()->m_pbaseuser->impact_system("main")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
+         pdocTab = user()->impact_system("main")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
 
       }
 
@@ -407,10 +407,10 @@ namespace userex
 
             ::pointer<simple_frame_window>pframewindowTab;
 
-            if (user()->m_pbaseuser->impact_system("main") != nullptr)
+            if (user()->impact_system("main") != nullptr)
             {
 
-               ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document(0);
+               ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document(0);
 
                if (pdocument.is_set())
                {
@@ -434,12 +434,12 @@ namespace userex
 
                pframewindow->on_frame_position();
 
-               if (user()->m_pbaseuser->impact_system("main") != nullptr)
+               if (user()->impact_system("main") != nullptr)
                {
 
                   string strId = pframewindow->m_atom;
 
-                  ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document(0);
+                  ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document(0);
 
                   if (pdocument.is_set())
                   {
@@ -481,12 +481,12 @@ namespace userex
    void impact_host::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (user()->m_pbaseuser->impact_system("main") != nullptr)
+      if (user()->impact_system("main") != nullptr)
       {
 
          ::rectangle_i32 rectangleTab;
 
-         ::pointer<::user::document>pdocument = user()->m_pbaseuser->impact_system("main")->get_document();
+         ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document();
 
          if (pdocument != nullptr)
          {

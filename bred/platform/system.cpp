@@ -15,6 +15,10 @@ namespace bred
 
       common_construct();
 
+      factory()->add_factory_item < ::bred::application, ::apex::application >();
+      factory()->add_factory_item < ::bred::session, ::apex::session >();
+
+
    }
 
 
@@ -35,35 +39,35 @@ namespace bred
    }
 
 
-   void system::on_set_platform()
-   {
+   // void system::on_set_platform()
+   // {
+   //
+   //    ::base::system::on_set_platform();
+   //
+   //    factory()->add_factory_item < ::bred::application, ::apex::application >();
+   //    factory()->add_factory_item < ::bred::session, ::apex::session >();
+   //
+   //
+   // }
 
-      ::base::system::on_set_platform();
 
-      factory()->add_factory_item < ::bred::application, ::apex::application >();
-      factory()->add_factory_item < ::bred::session, ::apex::session >();
-
-
-   }
-
-
-   void system::initialize(::particle * pparticle)
-   {
-
-      //auto estatus =
-      
-      ::apex::system::initialize(pparticle);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+   // void system::initialize(::particle * pparticle)
+   // {
+   //
+   //    //auto estatus =
+   //
+   //    ::base::system::initialize(pparticle);
+   //
+   //    //if (!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return estatus;
+   //
+   // }
 
 
 

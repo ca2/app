@@ -44,7 +44,7 @@ namespace core
    inline ::core::system* core < CORE_OBJECT >system() const 
    { 
       
-      return ::is_set(this->system()) ? this->system()->m_pcoresystem : nullptr;
+      return ::is_set(this->system()) ? this->system() : nullptr;
    
    }
 

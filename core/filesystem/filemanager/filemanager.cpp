@@ -271,7 +271,7 @@ namespace filemanager
       //   return estatus;
 
       //}
-      user()->m_pbaseuser->add_impact_system(
+      user()->add_impact_system(
          "filemanager", __initialize_new ::user::multiple_document_template(
          "filemanager",
          __form_document_type(),
@@ -284,7 +284,7 @@ namespace filemanager
 
       psession->add_document_template(pmulti);*/
 
-      user()->m_pbaseuser->add_impact_system(
+      user()->add_impact_system(
          "filemanager_operation", __initialize_new ::user::multiple_document_template(
          "filemanager",
          ::type < operation_document >(),
@@ -303,17 +303,17 @@ namespace filemanager
    void  filemanager::filemanager_finalize()
    {
 
-      if (user()->m_pbaseuser->impact_system("filemanager"))
+      if (user()->impact_system("filemanager"))
       {
 
-         user()->m_pbaseuser->impact_system("filemanager")->close_all_documents(false);
+         user()->impact_system("filemanager")->close_all_documents(false);
 
       }
 
-      if (user()->m_pbaseuser->impact_system("filemanager_operation"))
+      if (user()->impact_system("filemanager_operation"))
       {
 
-         user()->m_pbaseuser->impact_system("filemanager_operation")->close_all_documents(false);
+         user()->impact_system("filemanager_operation")->close_all_documents(false);
 
       }
 

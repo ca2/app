@@ -16,7 +16,7 @@ namespace bred
 
       print_line("bred::user::user");
 
-      m_pbreduser = this;
+      //m_pbreduser = this;
 
    }
 
@@ -27,34 +27,34 @@ namespace bred
    }
 
 
-   ::bred::application * user::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbredapplication : nullptr;
-
-   }
-
-
-   ::bred::session * user::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbredsession : nullptr;
-
-   }
-
-
-   ::bred::system * user::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbredsystem : nullptr;
-
-   }
+   // ::bred::application * user::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication->m_pbredapplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::bred::session * user::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbredsession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::bred::system * user::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem->m_pbredsystem : nullptr;
+   //
+   // }
 
 
 //   void user::initialize(::particle * pparticle)

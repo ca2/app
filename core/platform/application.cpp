@@ -84,7 +84,7 @@ namespace core
 
       auto pacmesystem = system();
 
-      return ::is_set(pacmesystem) ? pacmesystem->m_pcoresystem : nullptr;
+      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
 
    }
 
@@ -130,7 +130,7 @@ namespace core
       puser->will_use_impact_hint(COLORSEL_IMPACT);
       puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-      auto psystem = system()->m_pcoresystem;
+      auto psystem = system();
 
       psystem->initialize_rich_text();
 

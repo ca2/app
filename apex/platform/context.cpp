@@ -157,7 +157,7 @@ namespace apex
 
       ::platform::context::initialize_context();
 
-      __construct(m_phttpcontext);
+      ///__construct(m_phttp);
 
       //__construct(m_poscontext);
 
@@ -170,6 +170,14 @@ namespace apex
    {
 
       ::platform::context::initialize_context_1();
+
+   }
+
+
+   void context::initialize_http()
+   {
+
+      __construct(m_phttp);
 
    }
 
@@ -194,13 +202,13 @@ namespace apex
 //
 //      }
 
-      if (m_phttpcontext)
+      if (m_phttp)
       {
 
          try
          {
 
-            m_phttpcontext->finalize();
+            m_phttp->finalize();
 
          }
          catch (...)
@@ -213,7 +221,7 @@ namespace apex
 
       //m_poscontext.release();
 
-      m_phttpcontext.release();
+      m_phttp.release();
 
       ::platform::context::finalize_context();
 

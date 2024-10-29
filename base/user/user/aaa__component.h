@@ -561,7 +561,7 @@
 //   inline ::base::user* session::user() const
 //   { 
 //      
-//      return m_puser ? m_puser->m_pbaseuser : nullptr; 
+//      return m_puser ? m_puser : nullptr; 
 //   
 //   }
 //

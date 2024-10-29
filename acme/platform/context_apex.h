@@ -13,11 +13,10 @@ namespace platform
 
 
 
-      string                              m_strStoreServerBaseUrl;
+      string                                    m_strStoreServerBaseUrl;
 
-      string_to_string                    m_mapCachedLatestBuild;
-      //::pointer<::http::context>          m_phttpcontext;
-      //::pointer<::os_context>             m_poscontext;
+      string_to_string                          m_mapCachedLatestBuild;
+      //::pointer<::os_context>                 m_poscontext;
 
 
 
@@ -198,8 +197,6 @@ namespace platform
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
 
       //virtual void perform(::nano::http::get * pget);
-
-
 
 
    };

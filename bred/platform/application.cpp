@@ -19,7 +19,7 @@ namespace bred
 
       //::bred::initialize();
 
-      m_pbredapplication = this;
+      //m_pbredapplication = this;
 
 
    }

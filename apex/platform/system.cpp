@@ -188,6 +188,7 @@ namespace apex
       common_construct();
 
       factory()->add_factory_item < ::apex::session, ::apex::session >();
+      factory()->add_factory_item < ::http::context, ::platform::http >();
 
 
    }

@@ -1,48 +1,30 @@
+//
+// Created by camilo on 2024-10-28 23:55 <3ThomasBorregaardSorensen!!
+//
 #pragma once
 
 
-#include "acme/platform/http.h"
-#include "acme/prototype/collection/string_map.h"
-////#include "acme/prototype/prototype/object.h"
-
-
-namespace http
+namespace platform
 {
 
 
+   struct CLASS_DECL_ACME apex_http_layer_t
+   {
 
-   class CLASS_DECL_APEX context :
-      virtual public ::platform::http
+      //::property_set    m_setHttp;
+
+   };
+
+
+   class CLASS_DECL_ACME apex_http_layer
    {
    public:
 
-
-      ::pointer < ::mutex >                  m_pmutexPac;
-      string_map < ::pointer<pac >>          m_mapPac;
-      ::pointer < ::mutex >                  m_pmutexProxy;
-      string_map < ::pointer<proxy >>        m_mapProxy;
-
-      // ::property_set                         m_setHttp;
-      //
-      //
-      // //::sockets::socket_handler *          m_phandler;
-      //
-      //
-      //
-      // //context(::particle * pparticle);
-      context();
-      ~context() override;
-
-
-      void on_initialize_particle() override;
-
-
-      void finalize() override;
-
-
       virtual void http_system_destruct();
 
-      DECLARE_MESSAGE_HANDLER(get);
+
+      virtual void get(::http::message * phttpmessage);
+
 
       virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::url::url & url, property_set & set);
       virtual bool get(::http::session & session, const ::url::url & url, string & str, property_set & set);
@@ -77,13 +59,13 @@ namespace http
       virtual void auto_config_proxy(i32 i);
       virtual i32 auto_config_proxy_count();
       virtual void config_proxy(const ::url::url & url, ::sockets::http_tunnel * psocket);
-      virtual void config_proxy(const ::url::url & url, proxy * pproxy);
-      virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, proxy * pproxy);
+      virtual void config_proxy(const ::url::url & url, ::http::proxy * pproxy);
+      virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, ::http::proxy * pproxy);
 
       virtual string gmdate(posix_time t);
 
-      virtual pac * get_pac(const ::url::url & url);
-      virtual proxy * get_proxy(const ::url::url & url);
+      virtual ::http::pac * get_pac(const ::url::url & url);
+      virtual ::http::proxy * get_proxy(const ::url::url & url);
 
       //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser);
 
@@ -113,7 +95,7 @@ namespace http
 
       virtual void get(string & str, const ::url::url & url , property_set & set);
       virtual void get(memory_base * pmemory, const ::url::url & url, property_set & set);
-      
+
       virtual void perform(::nano::http::get * pget);
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, property_set & set);
@@ -125,10 +107,11 @@ namespace http
 
       virtual string get_locale_schema(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
+
    };
 
 
-} // namespace http
+} // namespace platform
 
 
 

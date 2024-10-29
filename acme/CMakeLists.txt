@@ -2929,10 +2929,6 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    platform/system_apex.h
    platform/system_aqua.h
    platform/system_aura.h
-   platform/http.h
-   prototype/data/client.h
-   platform/http.cpp
-   prototype/data/client.cpp
    platform/application_acme.h
    platform/application_acme.cpp
    platform/application_apex.h
@@ -2943,12 +2939,21 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    platform/application_aura.cpp
    platform/application_axis.h
    platform/application_axis.cpp
-   prototype/prototype/cast.h
-   user/menu/_.h
    platform/application_axis.h
    platform/application_axis.cpp
-#   user/user/user_aura.h
+   platform/http.cpp
+   platform/http.h
+   platform/http_acme.cpp
+   platform/http_acme.h
+   platform/http_apex.cpp
+   platform/http_apex.h
+   prototype/prototype/cast.h
+   prototype/data/client.h
+   prototype/data/client.cpp
+   user/menu/_.h
 )
+
+
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)
 

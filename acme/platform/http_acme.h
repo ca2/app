@@ -1,33 +1,24 @@
 //
-// Created by camilo on 2024-10-24 19:05 <3ThomasBorregaardSorensen
+// Created by camilo on 2024-10-28 23:49 <3ThomasBorregaardSorensen!!
 //
 #pragma once
-
-
-#include "http_acme.h"
-#include "http_apex.h"
-#include "acme/platform/department.h"
 
 
 namespace platform
 {
 
 
-   class CLASS_DECL_ACME http :
-      virtual public ::acme::department,
-      virtual public ::platform::acme_http_layer_t,
-      virtual public ::platform::apex_http_layer_t,
-      virtual public ::platform::acme_http_layer,
-      virtual public ::platform::apex_http_layer
+   struct CLASS_DECL_ACME acme_http_layer_t
+   {
+
+      ::property_set    m_setHttp;
+
+   };
+
+
+   class CLASS_DECL_ACME acme_http_layer
    {
    public:
-
-
-      // ::property_set    m_setHttp;
-
-
-      http();
-      ~http() override;
 
 
       virtual bool exists(const ::url::url& url, ::property_set& set);
@@ -69,7 +60,4 @@ namespace platform
    };
 
 
-} // namespace platform
-
-
-
+}

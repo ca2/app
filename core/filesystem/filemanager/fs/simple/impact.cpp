@@ -4,6 +4,7 @@
 #include "tree.h"
 #include "acme/handler/item.h"
 #include "acme/constant/message.h"
+#include "acme/platform/http.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"

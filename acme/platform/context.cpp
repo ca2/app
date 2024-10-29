@@ -15,10 +15,11 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/application.h"
+#include "acme/platform/http.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/http/get.h"
-#include "acme/platform/http.h"
+//#include "acme/platform/http.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -84,7 +85,7 @@ namespace platform
       m_pimagecontext.defer_destroy();
       m_pdirectorycontext.defer_destroy();
       m_pfilecontext.defer_destroy();
-      m_phttpcontext.defer_destroy();
+      m_phttp.defer_destroy();
 
 
       ::task::destroy();
@@ -294,7 +295,7 @@ namespace platform
       //m_paurasystem = system();
       //m_pbasesystem = system();
       //m_pbredsystem = system()->m_pbredsystem;
-      //m_pcoresystem = system()->m_pcoresystem;
+      //m_pcoresystem = system();
 
       // if (is_system())
       // {
@@ -539,10 +540,25 @@ namespace platform
    }
 
 
-   ::platform::http* context::http()
+   ::platform::http * context::http()
    {
 
-      return application()->http();
+      if(!m_phttp)
+      {
+
+         initialize_http();
+
+      }
+
+      return m_phttp;
+
+   }
+
+
+   void context::initialize_http()
+   {
+
+      m_phttp = system()->nano()->http();
 
    }
 

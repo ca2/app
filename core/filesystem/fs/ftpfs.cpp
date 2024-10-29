@@ -73,7 +73,7 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   auto psystem = system()->m_pcoresystem;
+   auto psystem = system();
 
    if (dir.m_timeLast.elapsed() < psystem->m_timeFileListingCache)
    {
@@ -372,7 +372,7 @@ retry:
 
    dir_listing & dir = m_map[path.folder()];
 
-   auto psystem = system()->m_pcoresystem;
+   auto psystem = system();
 
    if (dir.m_timeLast.elapsed() > psystem->m_timeFileListingCache)
    {
@@ -524,7 +524,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto plogon = __allocate ::ftp::logon();
 
-   auto psystem = system()->m_pcoresystem;
+   auto psystem = system();
 
    auto purl = psystem->url();
 

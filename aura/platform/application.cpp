@@ -9180,7 +9180,7 @@ namespace aura
    // ::base::user * application::baseuser()
    // {
    //
-   //    return aurauser()->m_pbaseuser;
+   //    return aurauser();
    //
    // }
    //

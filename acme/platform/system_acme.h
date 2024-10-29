@@ -59,8 +59,8 @@ namespace platform
       ::pointer < manual_reset_event >                m_pmanualreseteventReadyToExit;
       ::pointer < manual_reset_event >                m_pmanualreseteventMainLoopEnd;
 
-      ::i32_sz* m_pintstringLanguageResourceMap;
-      int                              m_iMatterFromHttpCache;
+      ::i32_sz *                                      m_pintstringLanguageResourceMap;
+      int                                             m_iMatterFromHttpCache;
 
       const char* m_pszMain;
 
@@ -77,13 +77,13 @@ namespace platform
 
       // FROM ::main (Now main2)
 
-      ::file::path                              m_pathCacheDirectory;
-      //class ::time                              m_timeStart;
-      class ::time                              m_timeAfterApplicationFirstRequest;
+      ::file::path                                    m_pathCacheDirectory;
+      //class ::time                                  m_timeStart;
+      class ::time                                    m_timeAfterApplicationFirstRequest;
 
-      //int                                       m_iExitCode = 0;
-      enum_trace_level                          m_etracelevelMinimum;
-      ::pointer < ::platform::system_factory >      m_psystemfactory;
+      //int                                           m_iExitCode = 0;
+      enum_trace_level                                m_etracelevelMinimum;
+      ::pointer < ::platform::system_factory >        m_psystemfactory;
       // END FROM ::main (Now main2)
 
 
@@ -91,85 +91,85 @@ namespace platform
       // ::pointer<::platform::application>     application();
 
 
-      //::pointer<main_hold_base>                                         m_pmainholdbase;
-      //::pointer<system_impl> *                                        m_psystemimpl;
+      //::pointer<main_hold_base>                                             m_pmainholdbase;
+      //::pointer<system_impl> *                                              m_psystemimpl;
 #if !defined(WINDOWS)
-      ::pointer<::exception_translator>                                 m_pexceptiontranslator;
+      ::pointer<::exception_translator>                                       m_pexceptiontranslator;
 #endif
-      ::pointer<::factory::factory>                                     m_pfactoryFolder;
+      ::pointer<::factory::factory>                                           m_pfactoryFolder;
 
-      bool                                                              m_bPostedInitialRequest;
-
-
-      ::pointer<::apex::system>                                       m_psystemParent;
-
-      ::pointer < ::prototype::prototype >                              m_pprototype;
-      //::pointer < ::mutex >                                           m_pmutexFactory;
-      //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
-      //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
+      bool                                                                    m_bPostedInitialRequest;
 
 
-      pointer< string_map < ::pointer<::regular_expression::context >>>                        m_pmapRegularExpressionContext;
+      ::pointer<::apex::system>                                               m_psystemParent;
+
+      ::pointer < ::prototype::prototype >                                    m_pprototype;
+      //::pointer < ::mutex >                                                 m_pmutexFactory;
+      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
+      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
+
+
+      pointer< string_map < ::pointer<::regular_expression::context >>>       m_pmapRegularExpressionContext;
 
 #ifdef __APPLE__
-      void * m_pmmos;
+      void *                                                                  m_pmmos;
 #endif
 
-      //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
+      //::pointer < ::draw2d::draw2d  >                                       m_pdraw2d;
 
 
 
 
-      ::pointer < ::datetime::datetime >                       m_pdatetime;
+      ::pointer < ::datetime::datetime >                                      m_pdatetime;
 
-      ::pointer<::particle>                                    m_pmutexUiDestroyed;
+      ::pointer<::particle>                                                   m_pmutexUiDestroyed;
 
-      ::pointer <::nano::nano >                                m_pnano;
-
-
-      ::pointer <::crypto::crypto >                            m_pcrypto;
-
-      string                                                            m_strOsUserTheme;
-
-      class ::time                                                        m_timeFileListingCache;
-      //critical_section                                                  m_csEnumText;
-      //string_map < i64_map < string > >                                 m_mapEnumToText;
-      //string_map < string_map < i64 > >                                 m_mapTextToEnum;
+      ::pointer <::nano::nano >                                               m_pnano;
 
 
-      ::pointer<::internet::internet>                                   m_pinternet;
-      ::pointer<::url::url_context>                                     m_purlcontext;
+      ::pointer <::crypto::crypto >                                           m_pcrypto;
 
-      ::pointer<class ::base64>                                  m_pbase64;
+      string                                                                  m_strOsUserTheme;
 
-      ::pointer<class ::xml::xml>                                     m_pxml;
-
-      ::pointer<class ::platform::node>                                     m_pnode;
-      ::pointer<geometry::geometry>                                   m_pgeometry;
-
-
-      ::pointer<::text::table>                                        m_ptexttable;
+      class ::time                                                            m_timeFileListingCache;
+      //critical_section                                                      m_csEnumText;
+      //string_map < i64_map < string > >                                     m_mapEnumToText;
+      //string_map < string_map < i64 > >                                     m_mapTextToEnum;
 
 
-      //enum_trace_level                                                  m_etracelevel;
-      class ::time                                                        m_timeMainStart;
-      //class ::time                                                        m_timeAfterApplicationFirstRequest;
-      bool                                                              m_bIsReadyForUserInteraction;
+      ::pointer<::internet::internet>                                         m_pinternet;
+      ::pointer<::url::url_context>                                           m_purlcontext;
+
+      ::pointer<class ::base64>                                               m_pbase64;
+
+      ::pointer<class ::xml::xml>                                             m_pxml;
+
+      ::pointer<class ::platform::node>                                       m_pnode;
+      ::pointer<geometry::geometry>                                           m_pgeometry;
 
 
-      ::pointer<class ::directory_system>                                 m_pdirectorysystem;
-      ::pointer<class ::file_system>                                      m_pfilesystem;
-      ::pointer<class ::path_system>                                      m_ppathsystem;
-
-      //::pointer<::directory_system>                                           m_pdirectorysystem;
-      //::pointer<::file_system>                                          m_pfilesystem;
+      ::pointer<::text::table>                                                m_ptexttable;
 
 
-      ::pointer < ::mutex >                                m_pmutexMatter;
+      //enum_trace_level                                                      m_etracelevel;
+      class ::time                                                            m_timeMainStart;
+      //class ::time                                                          m_timeAfterApplicationFirstRequest;
+      bool                                                                    m_bIsReadyForUserInteraction;
 
-      ::pointer < ::mutex >                  m_pmutexHttpDownload;
-      string_array                           m_straHttpDownloading;
-      string_array                           m_straHttpExists;
+
+      ::pointer<class ::directory_system>                                     m_pdirectorysystem;
+      ::pointer<class ::file_system>                                          m_pfilesystem;
+      ::pointer<class ::path_system>                                          m_ppathsystem;
+
+      //::pointer<::directory_system>                                         m_pdirectorysystem;
+      //::pointer<::file_system>                                              m_pfilesystem;
+
+
+      ::pointer < ::mutex >                                                   m_pmutexMatter;
+
+      ::pointer < ::mutex >                                                   m_pmutexHttpDownload;
+      string_array                                                            m_straHttpDownloading;
+      string_array                                                            m_straHttpExists;
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::particle_pointer                                 m_pmutexXlib;

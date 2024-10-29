@@ -15,7 +15,6 @@ namespace platform
 {
 
 
-
    class CLASS_DECL_ACME system :
       virtual public ::platform::platform,
       virtual public ::handler::handler,
@@ -23,12 +22,12 @@ namespace platform
       virtual public ::platform::apex_system_layer_t,
       virtual public ::platform::aqua_system_layer_t,
       virtual public ::platform::aura_system_layer_t,
-   virtual public ::platform::axis_system_layer_t,
+      virtual public ::platform::axis_system_layer_t,
       virtual public ::platform::acme_system_layer,
       virtual public ::platform::apex_system_layer,
       virtual public ::platform::aqua_system_layer,
       virtual public ::platform::aura_system_layer,
-   virtual public ::platform::axis_system_layer,
+      virtual public ::platform::axis_system_layer,
       virtual public ::task
    {
    public:
@@ -44,7 +43,7 @@ namespace platform
       system();
       ~system() override;
 
-virtual ::particle * matter_mutex();
+      virtual ::particle * matter_mutex();
       virtual ::particle * http_download_mutex();
 
       virtual ::string_array & http_download_array();
@@ -152,6 +151,8 @@ virtual ::particle * matter_mutex();
       virtual ::write_text::write_text * write_text();
 
       //virtual ::windowing::windowing_base * windowing_base();
+
+      //virtual ::http_system * http_system();
 
       virtual string get_system_platform();
       virtual string get_system_configuration();

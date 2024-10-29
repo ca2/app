@@ -93,7 +93,7 @@ namespace core
 
    //   }
 
-   //   papexsession->m_pcoresystem = this;
+   //   papexsession = this;
 
    //}
 

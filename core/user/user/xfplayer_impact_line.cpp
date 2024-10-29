@@ -1499,7 +1499,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          size = pgraphics->get_text_extent(m_strPrefix);
 
-        /* auto psystem = system()->m_pcoresystem;
+        /* auto psystem = system();
 
          psystem->*/imaging()->AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy(), m_strPrefix, color32, dBlend);
 
@@ -1530,7 +1530,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          pgraphics->set(m_pfont);
 
-         /*auto psystem = system()->m_pcoresystem;
+         /*auto psystem = system();
 
          psystem->*/imaging()->AlphaTextOut(pgraphics, iLeft, iTop, scopedstr, color32, dBlend);
 
@@ -1657,7 +1657,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    }
 
-   auto psystem = system()->m_pcoresystem;
+   auto psystem = system();
 
    imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
@@ -1687,7 +1687,7 @@ void xfplayer_impact_line::PrepareURLLinks()
 
    string str;
 
-   auto psystem = system()->m_pcoresystem;
+   auto psystem = system();
 
    auto pregex = psystem->compile_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 

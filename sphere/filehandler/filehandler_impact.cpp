@@ -124,9 +124,9 @@ namespace filehandler
       bool bHover = pimpact->m_pitemHover == m_iIndex;
 
       color32 = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
-      if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
-            && !Sess(papp).savings().is_trying_to_save(::e_resource_display_bandwidth)
-            && !Sess(papp).savings().is_trying_to_save(::e_resource_memory))
+      if(!Sess(papp).savings()->is_trying_to_save(::e_resource_processing)
+            && !Sess(papp).savings()->is_trying_to_save(::e_resource_display_bandwidth)
+            && !Sess(papp).savings()->is_trying_to_save(::e_resource_memory))
       {
          class imaging & imaging = App(papp).imaging();
          imaging.color_blend(pgraphics, m_rectangleItem, color32, 127);

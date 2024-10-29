@@ -1124,7 +1124,7 @@ namespace user
    // }
 
 
-   //::user::frame * element::top_level_frame() const
+   //::user::frame_interaction * element::top_level_frame() const
    //{
 
    //   throw ::interface_only();
@@ -1768,7 +1768,7 @@ namespace user
    //}
 
 
-   //::user::frame * element::GetParentTopLevelFrame() const
+   //::user::frame_interaction * element::GetParentTopLevelFrame() const
    //{
 
    //   throw ::interface_only();
@@ -1778,7 +1778,7 @@ namespace user
    //}
 
 
-   //::user::frame * element::EnsureParentFrame()
+   //::user::frame_interaction * element::EnsureParentFrame()
    //{
 
    //   throw ::interface_only();
@@ -1852,7 +1852,7 @@ namespace user
    }
 
 
-   //::user::frame * element::get_parent_frame() const
+   //::user::frame_interaction * element::get_parent_frame() const
    //{
 
    //   throw ::interface_only();
@@ -1909,7 +1909,7 @@ namespace user
    }
 
 
-   /*::user::frame * element::get_owner_frame() const
+   /*::user::frame_interaction * element::get_owner_frame() const
    {
 
       throw ::interface_only();
@@ -1937,7 +1937,7 @@ namespace user
    //}
 
 
-   //::user::frame * element::frame() const
+   //::user::frame_interaction * element::frame() const
    //{
 
    //   throw ::interface_only();

@@ -191,7 +191,7 @@ namespace platform
 
       //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
 
-      virtual ::apex::savings &                  savings();
+      virtual ::apex::savings *                  savings();
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem);
 

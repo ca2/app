@@ -21,7 +21,7 @@
 
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/plain_edit.h"

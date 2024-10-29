@@ -29,7 +29,7 @@
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 
 #if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <stdio.h>
@@ -61,12 +61,12 @@ namespace user
 
       print_line("user::user::initialize (aura)");
 
-      m_paxisuser = nullptr;
-      m_pbaseuser = nullptr;
-      m_pbreduser = nullptr;
-      m_pcoreuser = nullptr;
-      //::initialize_user_mutex();
-      //initialize_children_mutex();
+      // m_paxisuser = nullptr;
+      // m_pbaseuser = nullptr;
+      // m_pbreduser = nullptr;
+      // m_pcoreuser = nullptr;
+      // //::initialize_user_mutex();
+      // //initialize_children_mutex();
 
       m_bOnInitializeWindowObject = false;
 

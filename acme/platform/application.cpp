@@ -170,6 +170,13 @@ namespace platform
    }
 
 
+   ::user::user * application::user()
+   {
+
+      return nullptr;
+
+   }
+
    //::i32 application::application_main()
    //{
 

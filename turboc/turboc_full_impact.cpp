@@ -176,7 +176,7 @@ namespace turboc
 
       ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
-      if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if(!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          if(m_dMinRadius > 3.0)
@@ -226,7 +226,7 @@ namespace turboc
 
          }
 
-         if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+         if(!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
          {
 
 /*            m_pimage->channel_copy(::color::e_channel_opacity,::color::e_channel_green);
@@ -245,7 +245,7 @@ namespace turboc
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if(session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
 
          pbrushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));

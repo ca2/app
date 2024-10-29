@@ -155,20 +155,20 @@ namespace platform
    }
 
 
-   bool context::is_system() const
-   {
+   //bool context::is_system() const
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool context::is_session() const
-   {
+   //bool context::is_session() const
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool context::os_is_alias(const ::file::path& path)
@@ -292,47 +292,47 @@ namespace platform
 
       //m_papexsystem = system();
       //m_paurasystem = system();
-      //m_pbasesystem = system()->m_pbasesystem;
+      //m_pbasesystem = system();
       //m_pbredsystem = system()->m_pbredsystem;
       //m_pcoresystem = system()->m_pcoresystem;
 
-      if (is_system())
-      {
-
-         auto psystem = system();
-
-         //m_papexsession->initialize(psystem);
-
-         ////estatus = m_papexsession->initialize_context();
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         //estatus =
-         m_pfilecontext->init_system();
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         //estatus =
-         m_pdirectorycontext->init_system();
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-      }
+      // if (is_system())
+      // {
+      //
+      //    auto psystem = system();
+      //
+      //    //m_papexsession->initialize(psystem);
+      //
+      //    ////estatus = m_papexsession->initialize_context();
+      //
+      //    //if (!estatus)
+      //    //{
+      //
+      //    //   return estatus;
+      //
+      //    //}
+      //
+      //    //estatus =
+      //    m_pfilecontext->init_system();
+      //
+      //    //if (!estatus)
+      //    //{
+      //
+      //    //   return estatus;
+      //
+      //    //}
+      //
+      //    //estatus =
+      //    m_pdirectorycontext->init_system();
+      //
+      //    //if (!estatus)
+      //    //{
+      //
+      //    //   return estatus;
+      //
+      //    //}
+      //
+      // }
 
       //estatus =
       m_pfilecontext->init_context();
@@ -466,6 +466,21 @@ namespace platform
    {
 
       return system()->micro_user()->realize(p);
+
+   }
+
+
+   ::image::image_context * context::image()
+   {
+
+      if (!m_pimagecontext)
+      {
+
+         defer_initialize_context_image();
+
+      }
+
+      return m_pimagecontext;
 
    }
 

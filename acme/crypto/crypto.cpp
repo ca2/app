@@ -719,7 +719,7 @@ namespace crypto
       ::file::path crypto::get_crypt_key_file_path()
       {
 
-         return directory_system()->user() / "databin.bin";
+         return directory_system()->userconfig() / "databin.bin";
 
       }
 

@@ -100,6 +100,11 @@ namespace axis
 
       common_construct();
 
+      factory()->add_factory_item < ::geo::geo >();
+      factory()->add_factory_item < ::axis::user, ::user::user >();
+      factory()->add_factory_item < ::axis::session, ::platform::session >();
+
+
    }
 
 
@@ -112,9 +117,6 @@ namespace axis
    void system::common_construct()
    {
 
-      factory()->add_factory_item < ::geo::geo >();
-      factory()->add_factory_item < ::axis::user, ::user::user >();
-      factory()->add_factory_item < ::axis::session, ::platform::session >();
 
       //m_paxissystem = this;
 
@@ -416,10 +418,10 @@ namespace axis
    }
 
 
-   ::networking::email_department& system::email()
+   ::networking::email_department * system::email()
    {
 
-      return *m_pemaildepartment;
+      return m_pemaildepartment;
 
    }
 

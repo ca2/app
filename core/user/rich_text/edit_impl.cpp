@@ -18,7 +18,7 @@
 #include "acme/platform/scoped_restore.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
 #include "base/user/user/user.h"
 #include "core/platform/session.h"

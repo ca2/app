@@ -147,34 +147,34 @@ namespace experience
    }
 
 
-   ::base::application * frame::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session * frame::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system * frame::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
+   // ::base::application * frame::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session * frame::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system * frame::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    int frame::adjust_client_height(int iHeight)
@@ -479,9 +479,7 @@ namespace experience
    bool frame::on_message_parent_mouse_move(::message::mouse * pmouse)
    {
 
-      
-
-      psession->m_pointCursor = pmouse->m_pointAbsolute;
+      session()->m_pointCursor = pmouse->m_pointAbsolute;
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
@@ -588,9 +586,7 @@ namespace experience
    bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 
-      
-
-      psession->m_pointCursor = pmouse->m_pointAbsolute;
+      session()->m_pointCursor = pmouse->m_pointAbsolute;
 
       if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
@@ -1395,7 +1391,7 @@ namespace experience
 
       auto estyle = m_pframewindow->m_estyle;
 
-      auto color = m_pframewindow->m_puserstyle->get_style_moveable_border_color(estyle);
+      auto color = m_pframewindow->m_puserstyleFrameInteraction->get_style_moveable_border_color(estyle);
 
       set_moveable_border_color(color);
 

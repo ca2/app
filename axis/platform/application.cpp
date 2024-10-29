@@ -35,7 +35,7 @@ namespace axis
 
       //::axis::initialize();
 
-      m_paxisapplication = this;
+      ///m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
    }
@@ -1330,7 +1330,7 @@ namespace axis
    void application::interactive_credentials(::account::credentials * pcredentials)
    {
 
-      ::pointer<::axis::session>psession = get_session();
+      auto psession = session();
 
       psession->interactive_credentials(pcredentials);
 
@@ -1340,14 +1340,14 @@ namespace axis
    ::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
    {
 
-      if(::is_null(get_session()))
+      auto psession = session();
+
+      if(::is_null(psession))
       {
 
          return nullptr;
 
       }
-
-      ::pointer<::axis::session>psession = get_session();
 
       return psession->get_user(pathUrl, bFetch, bInteractive);
 
@@ -1816,23 +1816,23 @@ namespace axis
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          //pszRequestUrl = strRequestUrl;
 
       }
 
-      if (get_session() == nullptr)
+      if (session() == nullptr)
       {
 
          return false;
 
       }
 
-      ::pointer<::axis::session>psession = get_session();
+      auto psession = session();
 
       if (psession->account() == nullptr)
       {

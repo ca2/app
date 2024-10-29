@@ -6,7 +6,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/request.h"
 #include "apex/platform/session.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 
 
 //#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)

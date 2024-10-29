@@ -27,10 +27,10 @@ namespace user
       virtual void initialize_menu_interaction(::menu::item* pmenuitem);
 
 
-      ::base::application* get_app();
-      ::base::session* get_session();
-      ::base::system* get_system();
-      ::base::user* baseuser() override;
+      // ::base::application* get_app();
+      // ::base::session* get_session();
+      // ::base::system* get_system();
+      // ::base::user* baseuser() override;
 
       void install_message_routing(::channel * pchannel) override;
 

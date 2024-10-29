@@ -1475,7 +1475,7 @@ namespace experience_nanoui
 
          
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             colorBackground.set_opaque();

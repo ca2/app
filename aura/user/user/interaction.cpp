@@ -8,7 +8,7 @@
 #include "interaction_thread.h"
 #include "style.h"
 #include "user.h"
-#include "frame.h"
+#include "frame_interaction.h"
 #include "form.h"
 #include "still.h"
 #include "size_parent_layout.h"
@@ -1556,10 +1556,10 @@ namespace user
 
       auto pframe = top_level_frame();
 
-      if (pframe && pframe->m_puserstyle)
+      if (pframe && pframe->m_puserstyleFrameInteraction)
       {
 
-         return pframe->m_puserstyle;
+         return pframe->m_puserstyleFrameInteraction;
 
       }
 
@@ -1586,7 +1586,7 @@ namespace user
    ::user::style * interaction::get_style(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return pgraphics ? get_style(pgraphics->m_puserstyle) : get_style();
+      return pgraphics ? get_style(pgraphics->m_puserstyleGraphics) : get_style();
 
    }
 
@@ -11628,7 +11628,7 @@ namespace user
    //}
 
 
-   ::user::frame * interaction::frame()
+   ::user::frame_interaction * interaction::frame()
    {
 
       ::user::interaction * pinteraction = (::user::interaction *)this;
@@ -11646,7 +11646,7 @@ namespace user
          if (pinteraction->is_frame_window())
          {
 
-            return dynamic_cast <::user::frame *>(pinteraction);
+            return dynamic_cast <::user::frame_interaction *>(pinteraction);
 
          }
 
@@ -11667,7 +11667,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::top_level_frame()
+   ::user::frame_interaction * interaction::top_level_frame()
    {
 
       return _top_level_frame();
@@ -11675,7 +11675,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::parent_frame()
+   ::user::frame_interaction * interaction::parent_frame()
    {
 
       return _parent_frame();
@@ -11683,7 +11683,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::_parent_frame()
+   ::user::frame_interaction * interaction::_parent_frame()
    {
 
       ::user::interaction * pinteraction = get_parent();
@@ -11728,7 +11728,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::_top_level_frame()
+   ::user::frame_interaction * interaction::_top_level_frame()
    {
 
       auto pframe = frame();
@@ -11740,7 +11740,7 @@ namespace user
 
       }
 
-      ::user::frame * pframeTopLevel;
+      ::user::frame_interaction * pframeTopLevel;
 
       do
       {
@@ -12493,7 +12493,7 @@ namespace user
    }
 
 
-   ::user::frame * interaction::get_owner_frame()
+   ::user::frame_interaction * interaction::get_owner_frame()
    {
 
       ::user::interaction * pinteraction = get_owner();
@@ -12505,7 +12505,7 @@ namespace user
 
       }
 
-      ::user::frame * pframe = dynamic_cast <::user::frame *> (pinteraction);
+      ::user::frame_interaction * pframe = dynamic_cast <::user::frame_interaction *> (pinteraction);
 
       while (pinteraction != nullptr)
       {
@@ -12535,7 +12535,7 @@ namespace user
 
          }
 
-         pframe = dynamic_cast <::user::frame *> (pinteraction);
+         pframe = dynamic_cast <::user::frame_interaction *> (pinteraction);
 
       }
 

@@ -314,8 +314,8 @@ namespace user
       property_set                              m_setStyle;
 
       //::user::interaction *                     m_puserinteractionTopLevel;
-      //::user::frame *                           m_puserframeTopLevel;
-      //::user::frame *                           m_puserframeParent;
+      //::user::frame_interaction *                           m_puserframeTopLevel;
+      //::user::frame_interaction *                           m_puserframeParent;
       bool                                      m_bAutoResize;
       bool                                      m_bNeedAutoResizePerformLayout;
 
@@ -1673,16 +1673,16 @@ namespace user
       //virtual void get_window_text(string& rectangleString) override;
       //virtual strsize get_window_text_length() override;
 
-      virtual ::user::frame* frame();
+      virtual ::user::frame_interaction* frame();
       virtual ::user::interaction * top_level();
-      virtual ::user::frame * top_level_frame();
-      virtual ::user::frame * parent_frame();
-      virtual ::user::frame* get_owner_frame();
+      virtual ::user::frame_interaction * top_level_frame();
+      virtual ::user::frame_interaction * parent_frame();
+      virtual ::user::frame_interaction* get_owner_frame();
       virtual ::user::interaction* top_owner();
 
       ::user::interaction * _top_level() override;
-      virtual ::user::frame * _top_level_frame();
-      virtual ::user::frame * _parent_frame();
+      virtual ::user::frame_interaction * _top_level_frame();
+      virtual ::user::frame_interaction * _parent_frame();
       virtual ::user::interaction* _top_owner();
 
 
@@ -1899,15 +1899,15 @@ namespace user
       
       //virtual bool is_host_top_level();
 
-      //virtual ::user::frame* get_parent_frame() override;
-      //virtual ::user::frame* get_owner_frame() override;
+      //virtual ::user::frame_interaction* get_parent_frame() override;
+      //virtual ::user::frame_interaction* get_owner_frame() override;
 
 
       //void clear_cache(bool bRecursive = true);
 
 
-      //virtual ::user::frame * frame() override;
-      //virtual ::user::frame * top_level_frame() override;
+      //virtual ::user::frame_interaction * frame() override;
+      //virtual ::user::frame_interaction * top_level_frame() override;
 
 
       void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;

@@ -167,7 +167,7 @@ namespace filemanager
 
       ::atom get_toolbar_id() override;
       
-      //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
+      //virtual ::user::toolbar * get_toolbar(::user::frame_interaction * pframe, bool bCreate) override;
 
       void on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context) override;
 

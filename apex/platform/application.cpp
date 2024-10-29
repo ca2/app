@@ -6823,10 +6823,10 @@ namespace apex
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
 

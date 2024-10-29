@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "frame.h"
+#include "frame_interaction.h"
 #include "interaction_thread.h"
 #include "interaction_graphics_thread.h"
 #include "interaction.h"

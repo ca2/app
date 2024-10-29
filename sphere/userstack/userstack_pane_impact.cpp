@@ -122,7 +122,7 @@ namespace userstack
       //   {
       ///*      ::pointer<::user::interaction>pinteraction = m_pformOptions->ve_display_bandwidth");
       //      matter * pcheck = dynamic_cast < matter * > (puie);
-      //      if(psession->savings().save().has(::ca2::save_display_bandwidth))
+      //      if(session()->savings()->save().has(::ca2::save_display_bandwidth))
       //      {
       //         pcheck->set_check(e_check_checked, false);
       //      }

@@ -588,7 +588,7 @@ namespace platform
    //void aura_system_layer::on_event(::u64 u, ::particle * pparticle) override{}
 
 
-   void aura_system_layer::on_initial_frame_position(::user::frame* pframe)
+   void aura_system_layer::on_initial_frame_position(::user::frame_interaction* pframe)
    {
    }
 

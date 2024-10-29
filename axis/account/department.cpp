@@ -57,7 +57,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return directory_system()->user() / "credential_storage";
+      return directory_system()->userconfig() / "credential_storage";
 
    }
 

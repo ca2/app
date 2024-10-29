@@ -351,12 +351,12 @@ namespace user
       else
       {
 
-         ::pointer<::platform::context>pcontext = get_context();
+         ::pointer<::channel> pchannel = application();
 
-         if (pcontext)
+         if (pchannel)
          {
 
-            pcontext->route_command(pcommand);
+            pchannel->route_command(pcommand);
 
          }
 
@@ -373,7 +373,7 @@ namespace user
       if (ptopic)
       {
 
-         if (ptopic->m_atom == ID_INITIAL_UPDATE)
+         if (ptopic->m_atom == id_initial_update)
          {
 
             if (get_document()->is_opened())
@@ -475,7 +475,7 @@ namespace user
    }
 
 
-   toolbar * impact::get_toolbar(::user::frame * pframewindow, bool bCreate)
+   toolbar * impact::get_toolbar(::user::frame_interaction * pframewindow, bool bCreate)
    {
 
       if (!has_toolbar())
@@ -797,44 +797,44 @@ namespace user
 //   }
 
 
-   ::base::application* impact::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session* impact::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system* impact::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::user* impact::baseuser()
-   {
-
-      
-
-      return ::is_set(psession) ? psession->baseuser() : nullptr;
-
-   }
+   // ::base::application* impact::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session* impact::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system* impact::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::user* impact::baseuser()
+   // {
+   //
+   //
+   //
+   //    return ::is_set(psession) ? user() : nullptr;
+   //
+   // }
 
 
    void impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
@@ -1266,9 +1266,7 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
-         
-
-         auto puser = psession->user();
+         auto puser = user();
 
          if(puser)
          {
@@ -1338,9 +1336,7 @@ namespace user
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
-         
-
-         auto puser = psession->user();
+         auto puser = user();
 
          ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(window()->m_puserthread);
 

@@ -7,7 +7,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "base/user/experience/control_box.h"
 
 

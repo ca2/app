@@ -16,4 +16,31 @@
 #include "appearance/_.h"
 
 
+namespace user
+{
+
+
+   class menu_central;
+
+
+   class menu_interaction;
+
+
+   class impact_data;
+
+
+} // namespace user
+
+
+
+namespace experience
+{
+
+
+   class department;
+
+
+} // namespace experience
+
+
 

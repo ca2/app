@@ -257,7 +257,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       
 
-      if (psession->is_key_pressed(::user::e_key_left_button))
+      if (session()->is_key_pressed(::user::e_key_left_button))
          return;
 #else
       throw ::exception(todo);

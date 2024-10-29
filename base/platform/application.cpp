@@ -15,6 +15,7 @@
 #include "base/user/menu/item.h"
 #include "base/user/menu/menu.h"
 #include "base/user/user/document_manager.h"
+#include "base/user/user/document_manager_container.h"
 #include "base/user/user/impact_system.h"
 #include "aura/user/user/still.h"
 #include "base/user/user/tab_impact.h"
@@ -30,7 +31,7 @@ namespace base
 
       //::base::initialize();
 
-      m_pbaseapplication = this;
+      //m_pbaseapplication = this;
 
 
     
@@ -133,22 +134,27 @@ namespace base
    }
 
 
-   void application::close(::apex::enum_end eend)
+   void application::close(::enum_exit eexit)
    {
 
-      
+      auto puser = user();
 
-      if (psession->m_puser)
+      if (puser)
       {
 
-         auto puser = psession->baseuser();
+         ::cast < ::user::document_manager_container > pdocumentmanagercontainer = puser;
 
-         auto pdocumentmanager = puser->document_manager();
-
-         if (pdocumentmanager)
+         if (pdocumentmanagercontainer)
          {
 
-            pdocumentmanager->close_all_documents(eend != ::apex::e_end_close);
+            auto pdocumentmanager = pdocumentmanagercontainer->document_manager();
+
+            if(pdocumentmanager)
+            {
+
+               pdocumentmanager->close_all_documents(eexit != ::e_exit_close);
+
+            }
 
          }
 
@@ -157,11 +163,11 @@ namespace base
       if (document_manager())
       {
 
-         document_manager()->close_all_documents(eend != ::apex::e_end_close);
+         document_manager()->close_all_documents(eexit != ::e_exit_close);
 
       }
 
-      ::aura::application::close(eend);
+      ::aura::application::close(eexit);
 
    }
 
@@ -206,34 +212,34 @@ namespace base
    }
 
    
-   ::base::system * application::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::session * application::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system * session::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
+   // ::base::system * application::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session * application::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system * session::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void application::create_options_impact(::user::interaction * pparent)
@@ -324,7 +330,9 @@ namespace base
 
          bool bCheck = change.payload().as_bool();
 
-         auto papplication = m_papexapplication;
+         ///auto papplication = m_papexapplication;
+
+         auto papplication = this;
 
          node()->register_user_auto_start(
             papplication,
@@ -449,7 +457,7 @@ namespace base
    i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
       
-      auto puser = session()->user()->m_pbaseuser;
+      auto puser = user();
 
       puser->track_popup_menu(ptrackpopup);
 

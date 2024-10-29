@@ -598,7 +598,9 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
 
          auto papp = get_app();
 
-         papp->datastream()->get("wfi_down", bWfiDown);
+         ::cast < ::database::client > pdatabaseclient = papp;
+
+         pdatabaseclient->datastream()->get("wfi_down", bWfiDown);
 
          if (bWfiDown)
          {
@@ -663,7 +665,9 @@ void simple_frame_window::WindowDataSaveWindowRectangle()
 
       auto papp = get_app();
 
-      papp->datastream()->set("wfi_down", bDown);
+      ::cast < ::database::client > pdatabaseclient = papp;
+
+      pdatabaseclient->datastream()->set("wfi_down", bDown);
 
    }
 
@@ -753,9 +757,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 ::pointer < ::experience::frame > simple_frame_window::frame_experience()
 {
 
-   
-
-   auto puser = psession->baseuser();
+   auto puser = user();
 
    if (!puser || puser->experience() == nullptr)
    {
@@ -1065,6 +1067,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
+
+   //if (m_bWindowFrame)
+   //{
+
+   initialize_frame_window_experience();
+
+
    on_select_user_style();
 
    if (get_parent() == nullptr)
@@ -1078,11 +1087,6 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       }
 
    }
-
-   //if (m_bWindowFrame)
-   //{
-
-   initialize_frame_window_experience();
 
    //if (!initialize_frame_window_experience())
    //{
@@ -1870,7 +1874,9 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       if (strImpact.case_insensitive_ends_eat("::frame"))
       {
 
-         papp->datastream()->set("frame::" + strImpact + ".visible", bShow);
+         ::cast < ::database::client > pdatabaseclient = papp;
+
+         pdatabaseclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
       }
 
@@ -2569,16 +2575,16 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
    
 
    if (get_app() == nullptr
-      || get_app()->get_session() == nullptr
-      || psession->m_psavings == nullptr)
+      || !session()
+      || !session()->savings())
    {
 
       return;
 
    }
 
-   if (psession->savings().is_trying_to_save(::e_resource_processing)
-      || psession->savings().is_trying_to_save(::e_resource_translucent_background))
+   if (session()->savings()->is_trying_to_save(::e_resource_processing)
+      || session()->savings()->is_trying_to_save(::e_resource_translucent_background))
    {
 
       auto rectangleX = this->rectangle();
@@ -2902,7 +2908,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
 
-      //auto psystem = system()->m_pbasesystem;
+      //auto psystem = system();
 
 //      class imaging & imaging = psystem->imaging();
 
@@ -2912,14 +2918,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       
 
-      if (psession->savings().is_trying_to_save(::e_resource_translucent_background))
+      if (session()->savings()->is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rectangle(rectangleX, rgb(150, 220, 140));
 
       }
-      else if (psession->savings().is_trying_to_save(::e_resource_processing)
-         || psession->savings().is_trying_to_save(::e_resource_blur_background))
+      else if (session()->savings()->is_trying_to_save(::e_resource_processing)
+         || session()->savings()->is_trying_to_save(::e_resource_blur_background))
       {
 
          pgraphics->fill_rectangle(rectangleX, argb(150, 150, 180, 140));
@@ -3606,7 +3612,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //
 
-         //auto puser = psession->baseuser();
+         //auto puser = user();
          
          
          auto ptrackpopup  = __allocate  ::menu::track_popup (
@@ -3971,7 +3977,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 
    
 
-   if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+   if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -4112,8 +4118,8 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
 //   {
-//      return !psession->savings().is_trying_to_save(::e_resource_processing)
-//             && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
+//      return !session()->savings()->is_trying_to_save(::e_resource_processing)
+//             && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth);
 //   }
 //   else
 //   {
@@ -4502,7 +4508,7 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 void simple_frame_window::on_select_user_style()
 {
 
-   if (m_puserstyle.is_null())
+   if (!m_puserstyleFrameInteraction)
    {
 
       string strSchema(m_varFrame["experience"].as_string());
@@ -4510,13 +4516,11 @@ void simple_frame_window::on_select_user_style()
       if (strSchema.has_char() || is_top_level_window())
       {
 
-         
+         auto puser = user();
 
-         auto puser = psession->baseuser();
+         auto pstyle = puser->get_user_style(strSchema, application());
 
-         auto pstyle = puser->get_user_style(strSchema, get_app());
-
-         m_puserstyle = pstyle;
+         m_puserstyleFrameInteraction = pstyle;
 
       }
 

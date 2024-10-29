@@ -1845,7 +1845,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::frame()
+   ::user::frame_interaction * primitive_impl::frame()
    {
 
       if (!m_puserinteraction)
@@ -1860,7 +1860,7 @@ namespace user
    }
 
 
-   //::user::frame * primitive_impl::get_parent_frame() const
+   //::user::frame_interaction * primitive_impl::get_parent_frame() const
    //{
 
    //   if (!m_puserinteraction)
@@ -1920,7 +1920,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::top_level_frame()
+   ::user::frame_interaction * primitive_impl::top_level_frame()
    {
 
       if (!m_puserinteraction)
@@ -3012,7 +3012,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::parent_frame()
+   ::user::frame_interaction * primitive_impl::parent_frame()
    {
       
       return m_puserinteraction->parent_frame();

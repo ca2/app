@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"

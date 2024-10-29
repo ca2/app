@@ -15,7 +15,7 @@
 #include "acme/platform/system.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "core/platform/application.h"
 
 

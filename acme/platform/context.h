@@ -83,10 +83,10 @@ namespace platform
 
       ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
 
-      inline ::image::image_context* image() { return m_pimagecontext; }
+      virtual ::image::image_context * image();
 
-      virtual bool is_system() const;
-      virtual bool is_session() const;
+      //virtual bool is_system() const;
+      //virtual bool is_session() const;
 
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;

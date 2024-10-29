@@ -93,10 +93,10 @@ namespace experience
       void destroy() override;
 
 
-      ::base::application * get_app();
-      ::base::session * get_session();
-      ::base::system * get_system();
-      ::base::user * user();
+      // ::base::application * get_app();
+      // ::base::session * get_session();
+      // ::base::system * get_system();
+      // ::base::user * user();
 
 
       virtual int adjust_client_height(int iHeight);

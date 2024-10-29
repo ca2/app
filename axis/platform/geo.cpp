@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/platform/sequencer.h"
+#include "acme/platform/http.h"
 #include "acme/prototype/datetime/_binary_stream.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/datetime/earth_zone_time.h"
@@ -64,9 +64,9 @@ namespace geo
 
       ::acme::department::initialize(pparticle);
 
-      m_pathCityTimeZoneFile = directory_system()->user() / "datetime_departament_cityTimeZone.bin";
+      m_pathCityTimeZoneFile = directory_system()->userconfig() / "datetime_departament_cityTimeZone.bin";
 
-      m_pathLocalityTimeZoneFile = directory_system()->user() / "datetime_departament_LocalityTimeZone.bin";
+      m_pathLocalityTimeZoneFile = directory_system()->userconfig() / "datetime_departament_LocalityTimeZone.bin";
 
    }
    
@@ -87,7 +87,7 @@ namespace geo
 
       }
 
-      ::file::path pathFolder = directory_system()->system();
+      ::file::path pathFolder = directory_system()->userconfig();
 
       bool bOk = false;
 

@@ -9,7 +9,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "base/user/menu/central.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/tab.h"

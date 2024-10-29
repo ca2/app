@@ -51,7 +51,7 @@ namespace user
       inline bool is_dark_mode() const { return m_bDarkMode; }
 
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe);
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe);
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics);
 
       virtual ::rectangle_i32 simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);

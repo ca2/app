@@ -64,7 +64,7 @@ namespace user
    void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::frame::install_message_routing(pchannel);
+      ::user::frame_interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
 
@@ -213,7 +213,7 @@ namespace user
       if(is_custom_size(edisplay))
       {
 
-         auto sizeMinimum = frame::get_window_minimum_size();
+         auto sizeMinimum = frame_interaction::get_window_minimum_size();
 
          auto rectangleX = const_layout().state(e_layout_sketch).raw_rectangle();
 

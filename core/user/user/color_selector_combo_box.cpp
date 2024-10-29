@@ -9,7 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/simple/frame_window.h"

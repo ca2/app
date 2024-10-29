@@ -524,7 +524,7 @@ namespace apex
       else if (_001IsProtocol(path, "usersystem:/"))
       {
 
-         path = directory_system()->user() / path;
+         path = directory_system()->userconfig() / path;
 
       }
       else if (_001IsProtocol(path, "desktop:/"))

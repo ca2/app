@@ -581,7 +581,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual void on_event(::u64 u, ::particle * pparticle) override;
 
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      virtual void on_initial_frame_position(::user::frame_interaction * pframe);
 
       virtual void on_graphics_ready();
 

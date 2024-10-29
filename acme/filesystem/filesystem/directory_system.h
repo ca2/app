@@ -134,7 +134,7 @@ public:
    virtual ::file::path tool();
    //virtual ::file::path public_system();
    //virtual ::file::path system();
-   virtual ::file::path user();
+   virtual ::file::path userconfig();
    virtual ::file::path config();
    virtual ::file::path local();
    virtual ::file::path sensitive();

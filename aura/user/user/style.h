@@ -39,7 +39,7 @@ namespace user
       //::pointer<::user::i32_map>          m_mapInt;
       //::pointer<::user::double_map>       m_mapDouble;
 
-      ::pointer<::user::style>              m_puserstyle;
+      ::pointer<::user::style>              m_puserstyleComposite;
 
       //::pointer<::aura::node>               m_pnode;
 
@@ -90,7 +90,7 @@ namespace user
       template < typename CONTROL_STYLE >
       void get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe) override;
 
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 

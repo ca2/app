@@ -445,7 +445,7 @@ namespace draw2d
    void graphics::set_font(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
-      auto pstyle = pinteraction->get_style(m_puserstyle);
+      auto pstyle = pinteraction->get_style(m_puserstyleGraphics);
 
       auto pfont = pinteraction->get_font(pstyle, eelement, estate);
 

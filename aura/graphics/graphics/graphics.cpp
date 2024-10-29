@@ -4,7 +4,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/windowing/window.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"

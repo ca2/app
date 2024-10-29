@@ -776,11 +776,11 @@ public:
    virtual ::particle_pointer clone();
 
 
-   virtual ::user::user * aurauser();
-   virtual ::axis::user * axisuser();
-   virtual ::base::user * baseuser();
-   virtual ::bred::user * breduser();
-   virtual ::core::user * coreuser();
+   virtual ::user::user * user();
+   // virtual ::axis::user * axisuser();
+   // virtual ::base::user * baseuser();
+   // virtual ::bred::user * breduser();
+   // virtual ::core::user * coreuser();
 
 
    virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);

@@ -378,8 +378,8 @@ namespace user
       virtual ::user::interaction * get_wnd(::u32 nCmd);
 
 
-      virtual ::user::frame * frame();
-      virtual ::user::frame * top_level_frame();
+      virtual ::user::frame_interaction * frame();
+      virtual ::user::frame_interaction * top_level_frame();
 
 
       //virtual ::user::interaction * GetTopWindow() const;
@@ -392,9 +392,9 @@ namespace user
       virtual ::user::interaction * get_parent_owner();
       virtual ::user::interaction * get_parent_or_owner();
       virtual ::user::interaction * get_top_level_owner();
-      inline ::user::frame * parent_frame();
-      //virtual ::user::frame * GetParentTopLevelFrame() const;
-      //virtual ::user::frame * EnsureParentFrame();
+      inline ::user::frame_interaction * parent_frame();
+      //virtual ::user::frame_interaction * GetParentTopLevelFrame() const;
+      //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
       virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point = {});

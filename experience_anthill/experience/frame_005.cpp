@@ -502,7 +502,7 @@ namespace experience_anthill
 
          rectangleDraw = rectangle_i32_dimension(x, y, cx, 1);
 
-         if (psession->savings().is_trying_to_save(e_resource_processing))
+         if (session()->savings()->is_trying_to_save(e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, crTopLeft);
@@ -521,7 +521,7 @@ namespace experience_anthill
 
          rectangleDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, crTopLeft);
@@ -541,7 +541,7 @@ namespace experience_anthill
 
          rectangleDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, crBottomRight);
@@ -561,7 +561,7 @@ namespace experience_anthill
 
          rectangleDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, crBottomRight);

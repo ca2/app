@@ -277,7 +277,7 @@ namespace user
       virtual void _001OnTabLayout(::draw2d::graphics_pointer & pgraphics);
       
       
-      bool on_drag_start(::point_i32 & pointDrag, ::item * pitem) override;
+      bool on_drag_start(::point_i32 & pointDrag, ::user::mouse * pmouse, ::item * pitem) override;
 
 
       void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics) override;

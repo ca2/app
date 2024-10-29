@@ -262,9 +262,7 @@ namespace user
       if(m_pmenuitem != nullptr)
       {
 
-         
-
-         auto puser = psession->baseuser();
+         auto puser = user();
 
          if (puser)
          {
@@ -293,7 +291,7 @@ namespace user
 
          
 
-         auto puser = psession->baseuser();
+         auto puser = user();
 
          if (puser)
          {

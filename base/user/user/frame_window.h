@@ -83,10 +83,10 @@ namespace user
       ~frame_window() override;
 
 
-      ::base::application * get_app();
-      ::base::session * get_session();
-      ::base::system * get_system();
-      ::base::user * baseuser() override;
+      // ::base::application * get_app();
+      // ::base::session * get_session();
+      // ::base::system * get_system();
+      // ::base::user * baseuser() override;
 
 
       void common_construct();

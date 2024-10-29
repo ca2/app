@@ -13,7 +13,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"
@@ -1963,7 +1963,7 @@ namespace experience_core
 
          
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             colorBackground.m_u8Opacity = 255;
@@ -2287,7 +2287,7 @@ namespace experience_core
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
    {
 
       ::draw2d::save_context savecontext(pgraphics);

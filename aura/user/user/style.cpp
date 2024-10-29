@@ -57,7 +57,7 @@ namespace user
 
       //pnode->_get_os_theme_colors();
 
-      m_puserstyle = this;
+      m_puserstyleComposite = this;
 
       auto psystem = system();
 
@@ -81,7 +81,7 @@ namespace user
    {
 
       m_controlstyle.clear();
-      m_puserstyle.release();
+      m_puserstyleComposite.release();
       m_pfactory.release();
 
       m_pfont.release();
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
    {
 
       return false;
@@ -1776,7 +1776,7 @@ namespace user
    style * style::userstyle()
    {
 
-      return m_puserstyle;
+      return m_puserstyleComposite;
 
    }
 

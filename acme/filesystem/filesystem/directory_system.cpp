@@ -138,7 +138,7 @@ void directory_system::initialize(::particle * pparticle)
 //}
 //
 //
-::file::path directory_system::user()
+::file::path directory_system::userconfig()
 {
 
    return ca2roaming() / "user";

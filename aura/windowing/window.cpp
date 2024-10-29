@@ -3,7 +3,7 @@
 #include "framework.h"
 #include "cursor.h"
 #include "display.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
@@ -9530,7 +9530,7 @@ bMove = false;
 
                   pgraphics->m_pdraw2dhost = m_puserinteraction;
 
-                  pgraphics->m_puserstyle.release();
+                  pgraphics->m_puserstyleGraphics.release();
 
                   if (pgraphics->m_pimage)
                   {
@@ -14968,7 +14968,7 @@ bMove = false;
    }
 
 
-   ::user::frame * window::frame()
+   ::user::frame_interaction * window::frame()
    {
 
       if (!m_puserinteraction)
@@ -14983,7 +14983,7 @@ bMove = false;
    }
 
 
-   //::user::frame * window::get_parent_frame() const
+   //::user::frame_interaction * window::get_parent_frame() const
    //{
 
    //   if (!m_puserinteraction)
@@ -15043,7 +15043,7 @@ bMove = false;
    }
 
 
-   ::user::frame * window::top_level_frame()
+   ::user::frame_interaction * window::top_level_frame()
    {
 
       if (!m_puserinteraction)
@@ -16149,7 +16149,7 @@ bMove = false;
    //}
 
 
-   ::user::frame * window::parent_frame()
+   ::user::frame_interaction * window::parent_frame()
    {
 
       return m_puserinteraction->parent_frame();

@@ -49,7 +49,7 @@ namespace axis
 
       virtual void on_user_logon(::account::user* puser);
 
-      ::axis::user* axisuser() override;
+      //::axis::user* axisuser() override;
 
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 

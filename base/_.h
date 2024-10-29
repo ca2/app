@@ -5,6 +5,10 @@
 #include "axis/_.h"
 
 
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME base
+
+
 #if defined(_base_project)
 #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING

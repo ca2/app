@@ -4,7 +4,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 #endif
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "interaction_graphics_thread.h"
 #include "interaction_thread.h"
 //#include "interaction_impl.h"

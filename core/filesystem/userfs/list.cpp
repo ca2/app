@@ -16,7 +16,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/user/interaction_array.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"

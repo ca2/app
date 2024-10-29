@@ -22,35 +22,35 @@ namespace base
    public:
 
 
-      //::pointer < ::user::impact_system >                m_ptemplateForm;
-      //::pointer < ::user::impact_system >                m_ptemplateChildForm;
-
-
-      ::pointer < ::user::interaction_base >                    m_pmousefocusLButtonDown;
-      ::pointer < ::user::interaction_base >                    m_pmousefocusRButtonDown;
-      string_array                                       m_straEscape;
-
-      //::pointer<::user::shell>                         m_pshell;
-
-      //::type_atom                                      m_typeatomHtmlDocument;
-      //::type_atom                                      m_typeatomHtmlImpact;
-
-      ::pointer < ::user::menu_central >                 m_pmenucentral;
-
-      ::pointer < ::experience::department >             m_pexperience;
-
-      //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
-
-      //::user::impact_system * m_ptemplateHtmlChildForm1;
+      // //::pointer < ::user::impact_system >                m_ptemplateForm;
+      // //::pointer < ::user::impact_system >                m_ptemplateChildForm;
+      //
+      //
+      // ::pointer < ::user::interaction_base >                    m_pmousefocusLButtonDown;
+      // ::pointer < ::user::interaction_base >                    m_pmousefocusRButtonDown;
+      // string_array                                       m_straEscape;
+      //
+      // //::pointer<::user::shell>                         m_pshell;
+      //
+      // //::type_atom                                      m_typeatomHtmlDocument;
+      // //::type_atom                                      m_typeatomHtmlImpact;
+      //
+      // ::pointer < ::user::menu_central >                 m_pmenucentral;
+      //
+      // ::pointer < ::experience::department >             m_pexperience;
+      //
+      // //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+      //
+      // //::user::impact_system * m_ptemplateHtmlChildForm1;
 
 
       user();
       ~user() override;
 
 
-      ::base::application* get_app();
-      ::base::session* get_session();
-      ::base::system* get_system();
+      //::base::application* get_app();
+      //::base::session* get_session();
+      //::base::system* get_system();
 
 
       virtual void initialize(::particle * pparticle) override;
@@ -123,9 +123,9 @@ namespace base
       ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
 
-      virtual void defer_instantiate_user_style(const ::string & strExperience = nullptr);
-      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::apex::application* papp = nullptr);
-      ::user::style_pointer get_user_style(const ::string & strExperience, ::apex::application* papp = nullptr);
+      void defer_instantiate_user_style(const ::string & strExperience = nullptr) override;
+      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::platform::application* papp = nullptr) override;
+      ::user::style_pointer get_user_style(const ::string & strExperience, ::platform::application* papp = nullptr) override;
 
 
       //virtual ::type_atom get_pane_tab_impact_type_info();

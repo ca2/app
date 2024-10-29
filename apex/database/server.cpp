@@ -38,18 +38,18 @@ namespace database
 
       //}
 
-      if (m_papplication->is_system() || m_papplication->is_session())
+      //if (m_papplication->is_system() || m_papplication->is_session())
       {
 
          m_bRemote = false;
 
       }
-      else
-      {
+      //else
+      //{
 
-         m_bRemote = true;
+      //   m_bRemote = true;
 
-      }
+      //}
 
       //return estatus;
 

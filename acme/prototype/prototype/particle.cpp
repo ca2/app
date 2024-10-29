@@ -1845,44 +1845,44 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 }
 
 
-::user::user * particle::aurauser()
+::user::user * particle::user()
 {
 
-   return ::is_set(application()) ? application()->aurauser() : nullptr;
+   return ::is_set(application()) ? application()->user() : nullptr;
 
 }
 
 
-::axis::user * particle::axisuser()
-{
-
-   return ::is_set(application()) ? application()->axisuser() : nullptr;
-
-}
-
-
-::base::user * particle::baseuser()
-{
-
-   return ::is_set(application()) ? application()->baseuser() : nullptr;
-
-}
-
-
-::bred::user * particle::breduser()
-{
-
-   return ::is_set(application()) ? application()->breduser() : nullptr;
-
-}
-
-
-::core::user * particle::coreuser()
-{
-
-   return ::is_set(application()) ? application()->coreuser() : nullptr;
-
-}
+// ::axis::user * particle::axisuser()
+// {
+//
+//    return ::is_set(application()) ? application()->axisuser() : nullptr;
+//
+// }
+//
+//
+// ::base::user * particle::baseuser()
+// {
+//
+//    return ::is_set(application()) ? application()->baseuser() : nullptr;
+//
+// }
+//
+//
+// ::bred::user * particle::breduser()
+// {
+//
+//    return ::is_set(application()) ? application()->breduser() : nullptr;
+//
+// }
+//
+//
+// ::core::user * particle::coreuser()
+// {
+//
+//    return ::is_set(application()) ? application()->coreuser() : nullptr;
+//
+// }
 
 
 void particle::set_generic_object_name(const ::scoped_string & scopedstrName)

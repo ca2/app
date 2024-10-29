@@ -2,8 +2,11 @@
 #include "style.h"
 #include "user.h"
 #include "acme/platform/system.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/interaction.h"
 #include "base/platform/session.h"
+#include "base/user/menu/interaction.h"
+#include "user/menu/item.h"
 
 
 namespace base
@@ -36,54 +39,54 @@ namespace base
    }
 
 
-   ::base::application* style::get_app()
+   // ::base::application* style::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session* style::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system* style::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::user* style::baseuser()
+   // {
+   //
+   //
+   //
+   //    return ::is_set(psession) ? user() : nullptr;
+   //
+   // }
+
+
+   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::draw2d::graphics_pointer & pgraphics, ::menu::item* pitem)
    {
 
-      auto papplication = application();
+      auto puser = user();
 
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
+      pgraphics->m_puserstyleGraphics = this;
 
-   }
-
-
-   ::base::session* style::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system* style::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::user* style::baseuser()
-   {
-
-      
-
-      return ::is_set(psession) ? psession->baseuser() : nullptr;
-
-   }
-
-
-   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::menu::item* pitem)
-   {
-
-      
-      
-      auto puser = psession->baseuser();
-
-      return puser->create_menu_button(pstyle, pitem);
+      return puser->create_menu_button(pitem->m_pmenu, pgraphics, pitem);
 
    }
 
@@ -284,7 +287,7 @@ namespace base
 }
 //
 //
-//   //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe) override;
+//   //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe) override;
 //   //virtual void DrawCheck(enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 //   //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
 //   //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;

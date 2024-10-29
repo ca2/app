@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "frame.h"
+#include "frame_interaction.h"
 
 
 namespace user
@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_AURA main_window :
-      virtual public ::user::frame
+      virtual public ::user::frame_interaction
    {
    public:
 

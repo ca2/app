@@ -426,6 +426,8 @@ list(APPEND library_source
    #operating_system/http.cpp
    operating_system/main_window.cpp
    operating_system/main_window.h
+   operating_system/message.cpp
+   operating_system/message.h
    operating_system/message_box.cpp
    operating_system/message_box.h
    operating_system/parallelization.cpp
@@ -2945,6 +2947,7 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    user/menu/_.h
    platform/application_axis.h
    platform/application_axis.cpp
+#   user/user/user_aura.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
    operating_system/posix/_null_nano_dynamic_library_dl.cpp)

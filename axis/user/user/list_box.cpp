@@ -1619,13 +1619,11 @@ namespace user
 
             {
 
-               
-
-               synchronous_lock synchronouslock(psession->synchronization());
+               synchronous_lock synchronouslock(session()->synchronization());
 
                auto pinteraction = __create_new < ::user::interaction >();
 
-               auto puser = psession->user();
+               auto puser = user();
 
                puser->m_uiptraToolWindow.add(pinteraction);
 
@@ -1639,11 +1637,9 @@ namespace user
 
             {
 
-               
+               synchronous_lock synchronouslock(session()->synchronization());
 
-               synchronous_lock synchronouslock(psession->synchronization());
-
-               auto puser = psession->user();
+               auto puser = user();
 
                auto iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 

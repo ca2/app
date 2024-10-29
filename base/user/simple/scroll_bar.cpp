@@ -2294,7 +2294,7 @@ bool simple_scroll_bar::drag_shift(::item * pitem, ::user::mouse * pmouse)
 }
 
 
-bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::item * pitem)
+bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem)
 {
 
    if (pitem->m_item.m_eelement == e_element_scrollbar_trackbar)

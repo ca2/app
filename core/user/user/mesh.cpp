@@ -648,7 +648,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleItem,argb(255,96,96,96));
          }

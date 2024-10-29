@@ -36,7 +36,7 @@
 #include "aura/user/user/user.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/system.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/plain_edit.h"
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
@@ -226,6 +226,12 @@ namespace aura
    }
 
 
+   ::user::user * application::user()
+   {
+
+         return session()->user();
+
+   }
 
 
    void application::initialize(::particle * pparticle)
@@ -4065,7 +4071,7 @@ retry_license:
    //}
 
 
-   void application::on_initial_frame_position(::user::frame * pframe)
+   void application::on_initial_frame_position(::user::frame_interaction * pframe)
    {
 
       auto psystem = system();
@@ -5009,10 +5015,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_system()->as_string(directory_system()->user() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          //pszRequestUrl = strRequestUrl;
 
@@ -8243,7 +8249,7 @@ namespace aura
    }
 
 
-   bool application::on_close_frame_window(::user::frame* pframe)
+   bool application::on_close_frame_window(::user::frame_interaction* pframe)
    {
 
       if (pframe->m_bCloseApplicationIfLastVisibleFrame)
@@ -9081,7 +9087,7 @@ namespace aura
 
    //}
 
-   //void application::on_initial_frame_position(::user::frame* pframe)
+   //void application::on_initial_frame_position(::user::frame_interaction* pframe)
    //{
 
    //   auto psystem = system();
@@ -9130,7 +9136,7 @@ namespace aura
       //if (pinteraction != nullptr)
       //{
 
-      //   ::user::frame * pframe = pinteraction->top_level_frame();
+      //   ::user::frame_interaction * pframe = pinteraction->top_level_frame();
 
       //   if (pframe != nullptr)
       //   {
@@ -9155,52 +9161,52 @@ namespace aura
    }
 
 
-   ::user::user * application::aurauser()
-   {
-
-      return session()->user();
-
-   }
-
-
-   ::axis::user * application::axisuser()
-   {
-
-      return aurauser()->m_paxisuser;
-
-   }
-
-
-   ::base::user * application::baseuser()
-   {
-
-      return aurauser()->m_pbaseuser;
-
-   }
-
-
-   ::bred::user * application::breduser()
-   {
-
-      return aurauser()->m_pbreduser;
-
-   }
-
-
-   ::core::user * application::coreuser()
-   {
-
-      return aurauser()->m_pcoreuser;
-
-   }
-
-
-   //::core::user * application::coreuser()
-   //{
-
-   //   return user()->m_pcobreuser;
-
-   //}
+   // ::user::user * application::aurauser()
+   // {
+   //
+   //    return session()->user();
+   //
+   // }
+   //
+   //
+   // ::axis::user * application::axisuser()
+   // {
+   //
+   //    return aurauser()->m_paxisuser;
+   //
+   // }
+   //
+   //
+   // ::base::user * application::baseuser()
+   // {
+   //
+   //    return aurauser()->m_pbaseuser;
+   //
+   // }
+   //
+   //
+   // ::bred::user * application::breduser()
+   // {
+   //
+   //    return aurauser()->m_pbreduser;
+   //
+   // }
+   //
+   //
+   // ::core::user * application::coreuser()
+   // {
+   //
+   //    return aurauser()->m_pcoreuser;
+   //
+   // }
+   //
+   //
+   // //::core::user * application::coreuser()
+   // //{
+   //
+   // //   return user()->m_pcobreuser;
+   //
+   // //}
 
 
    void application::pick_browse(const ::function < void(const ::file::path &) > & callback)

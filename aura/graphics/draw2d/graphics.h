@@ -116,7 +116,7 @@ namespace draw2d
 
       bool                                   m_bPrinting;
       void *                                 m_osdata[8];
-      ::user::style_pointer                  m_puserstyle;
+      ::user::style_pointer                  m_puserstyleGraphics;
       //::point_f64                            m_pointAddShapeTranslate;
       bool                                   m_bUseImageMipMapsOrResizedImages;
 
@@ -147,7 +147,7 @@ namespace draw2d
       inline operator ::user::style & ()
       {
 
-         return *m_puserstyle;
+         return *m_puserstyleGraphics;
 
       }
 

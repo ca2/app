@@ -24,12 +24,12 @@ namespace base
    {
    public:
 
-
-      //::pointer<::aura::application_menu>      m_pappmenu;
-
-      ::pointer < ::user::tab_impact >                m_ptabimpactBase;
-      ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
-
+      //
+      // //::pointer<::aura::application_menu>      m_pappmenu;
+      //
+      // ::pointer < ::user::tab_impact >                m_ptabimpactBase;
+      // ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
+      //
 
       application();
       ~application() override;
@@ -51,8 +51,8 @@ namespace base
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      ::base::system* get_system();
-      ::base::session* get_session();
+      // ::base::system* get_system();
+      // ::base::session* get_session();
 
 
       virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom());

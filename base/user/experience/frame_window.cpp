@@ -265,7 +265,7 @@ namespace experience
                   else if (pkey->m_ekey == ::user::e_key_return)
                   {
 
-                     if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
+                     if (session()->is_key_pressed(::user::e_key_control) && session()->is_key_pressed(::user::e_key_alt))
                      {
 
                         m_bFullScreenReturn = true;
@@ -306,9 +306,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
                {
 
-                  
-
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && session()->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -337,7 +335,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_left_control || pkey->m_ekey == ::user::e_key_right_control)
                {
 
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && session()->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -376,9 +374,7 @@ namespace experience
    ::pointer<::experience::experience>frame_window::create_experience(const ::string & strExperience)
    {
 
-      
-
-      auto puser = psession->baseuser();
+      auto puser = user();
 
       return puser->experience()->create_experience(this, strExperience);
 
@@ -388,9 +384,7 @@ namespace experience
    ::pointer<::experience::experience>frame_window::experience(const ::string & strExperience)
    {
 
-      
-
-      auto puser = psession->baseuser();
+      auto puser = user();
 
       return puser->experience()->experience(this, strExperience);
 
@@ -400,9 +394,7 @@ namespace experience
    ::pointer<::experience::frame>frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
    {
 
-      
-
-      auto puser = psession->baseuser();
+      auto puser = user();
 
       auto pframe = puser->experience()->frame_experience(this, strExperience, strFrame);
 
@@ -2395,7 +2387,7 @@ namespace experience
 
       }
 
-      auto psystem = system()->m_pbasesystem;
+      auto psystem = system();
 
       double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
 

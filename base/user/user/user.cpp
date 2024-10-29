@@ -59,7 +59,7 @@ namespace base
 
       print_line("base::user::user");
 
-      m_pbaseuser = this;
+      //m_pbaseuser = this;
 
    }
 
@@ -106,34 +106,34 @@ namespace base
    }
 
 
-   ::base::application * user::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session * user::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system * user::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
+   // ::base::application * user::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session * user::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system * user::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    //::base::user* user::user()
@@ -280,7 +280,7 @@ namespace base
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      auto psystem = system()->m_pbasesystem;
+      auto psystem = system();
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -419,9 +419,9 @@ namespace base
 
       //auto pappBase = get_app();
 
-      
 
-      for (auto & pappApex : psession->m_applicationa)
+
+      for (auto & pappApex : session()->m_applicationa)
       {
 
          ::pointer<::base::application>pappItem = pappApex;
@@ -513,7 +513,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate ::user::menu_button();
+      auto pmenubutton = __allocate::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -567,7 +567,7 @@ namespace base
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __allocate ::user::interaction();
+      auto pinteraction = __allocate::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -1121,54 +1121,54 @@ namespace base
 
    ::pointer < ::user::menu > user::user_menu_from_menu(::menu::menu * pmenu)
    {
-      
+
       ::pointer < ::user::menu > pusermenu = pmenu;
-      
-      if(pusermenu)
+
+      if (pusermenu)
       {
-       
+
          return pusermenu;
-         
+
       }
-      
+
       ::pointer < ::application_menu > papplicationmenu = pmenu;
-      
-      if(papplicationmenu)
+
+      if (papplicationmenu)
       {
-         
-         auto pusermenu = pmenu->__create_new < ::user::menu > ();
-         
+
+         auto pusermenu = pmenu->__create_new < ::user::menu >();
+
          pusermenu->m_pmenuitem = menu_item_from_application_menu(papplicationmenu, pusermenu);
-         
+
          return pusermenu;
-         
+
       }
-      
+
       return {};
-      
+
    }
 
 
    ::pointer < ::menu::menu > user::menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml)
    {
-      
+
       ::string strXml;
-      
-      if(scopedstrXml.case_insensitive_begins("matter://"))
+
+      if (scopedstrXml.case_insensitive_begins("matter://"))
       {
-         
+
          auto pcontext = pparticleContext->m_papplication;
-       
+
          strXml = pcontext->file()->as_string(scopedstrXml);
-         
+
       }
       else
       {
-         
+
          strXml = scopedstrXml;
-         
+
       }
-      
+
       ::pointer<::user::menu>pmenu = pparticleContext->__create <  ::user::menu  >();
 
       if (!pmenu->load_xml_menu(strXml))
@@ -1181,18 +1181,18 @@ namespace base
       }
 
       return pmenu;
-      
+
    }
 
 
    void user::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
-      
+
       auto pusermenu = user_menu_from_menu(ptrackpopup->m_pmenu);
 
       ptrackpopup->m_pmenuImplementation = pusermenu;
-      
-      
+
+
       //__defer_construct(pitem->m_pmenu);
 
       //pitem->m_pmenu->m_pmenuitem = pitem;
@@ -1200,20 +1200,20 @@ namespace base
       //pitem->m_pmenu->m_sizeMinimum = sizeMinimum;
 
       //pitem->m_pmenu->hints(iFlags, pointCursor);
-      
+
       ///pmenu->track_hints(ptrackpopup);
 
       pusermenu->track_popup_menu(ptrackpopup);
-      
-//      {
-//
-//         //pitem->m_pmenu.release();
-//
-//         ///return nullptr;
-//
-//      }
 
-      //return pitem->m_pmenu;
+      //      {
+      //
+      //         //pitem->m_pmenu.release();
+      //
+      //         ///return nullptr;
+      //
+      //      }
+
+            //return pitem->m_pmenu;
 
    }
 
@@ -1237,66 +1237,66 @@ namespace base
    }
 
 
-//   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
-//   {
-//
-//      ::pointer<::user::menu> pmenu = __create <  ::user::menu  >();
-//
-//      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
-//
-//      return _track_popup_menu(pinteraction, pmenuitem, iFlags, point, sizeMinimum, pchannelNotify);
-//
-//   }
+   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   {
+   //
+   //      ::pointer<::user::menu> pmenu = __create <  ::user::menu  >();
+   //
+   //      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
+   //
+   //      return _track_popup_menu(pinteraction, pmenuitem, iFlags, point, sizeMinimum, pchannelNotify);
+   //
+   //   }
 
 
-//   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, i32 iFlags, const ::point_i32 & pointCursor, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
-//   {
-//      
-//      ::string strXml;
-//      
-//      if(scopedstrXml.case_insensitive_begins("matter://"))
-//      {
-//         
-//         auto pcontext = pinteraction->m_papplication;
-//       
-//         strXml = pcontext->file()->as_string(scopedstrXml);
-//         
-//      }
-//      else
-//      {
-//         
-//         strXml = scopedstrXml;
-//         
-//      }
-//      
-//      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  >();
-//
-//      if (!pmenu->load_xml_menu(strXml))
-//      {
-//
-//         pmenu.release();
-//
-//         return nullptr;
-//
-//      }
-//
-//      return _track_popup_menu(pinteraction, pmenu->m_pmenuitem, iFlags, pointCursor, sizeMinimum, pchannelNotify);
-//
-//   }
+   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, i32 iFlags, const ::point_i32 & pointCursor, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   {
+   //      
+   //      ::string strXml;
+   //      
+   //      if(scopedstrXml.case_insensitive_begins("matter://"))
+   //      {
+   //         
+   //         auto pcontext = pinteraction->m_papplication;
+   //       
+   //         strXml = pcontext->file()->as_string(scopedstrXml);
+   //         
+   //      }
+   //      else
+   //      {
+   //         
+   //         strXml = scopedstrXml;
+   //         
+   //      }
+   //      
+   //      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  >();
+   //
+   //      if (!pmenu->load_xml_menu(strXml))
+   //      {
+   //
+   //         pmenu.release();
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      return _track_popup_menu(pinteraction, pmenu->m_pmenuitem, iFlags, pointCursor, sizeMinimum, pchannelNotify);
+   //
+   //   }
 
 
 
    ::type_atom user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      
 
-      return psession->user()->controltype_to_typeinfo(econtroltype);
+
+      return controltype_to_typeinfo(econtroltype);
 
    }
 
 
-   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::apex::application * papp)
+   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::platform::application * papp)
    {
 
       auto & pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1315,7 +1315,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::apex::application * papp)
+   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::platform::application * papp)
    {
 
       auto pexperience = experience()->experience(papp, strExperience);
@@ -1377,14 +1377,14 @@ namespace base
 
       }
 
-      auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
+      auto pimpactsystem = application()->impact_system(typeatom);
 
       if (!pimpactsystem)
       {
 
          throw ::exception(todo);
 
-         //application()->m_pbaseapplication->add_impact_system(
+         //application()->add_impact_system(
          //   m_ptemplateForm->m_atom, 
          //   __initialize_new ::user::multiple_document_template(
          //      m_ptemplateForm->m_atom,
@@ -1627,7 +1627,7 @@ namespace base
 
          }
 
-         auto pimpactsystem = application()->m_pbaseapplication->impact_system(typeatom);
+         auto pimpactsystem = application()->impact_system(typeatom);
 
          if (!pimpactsystem)
          {
@@ -1716,7 +1716,7 @@ namespace base
 
 #ifdef DEBUG
 
-         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          pmessagebox->async();
 
@@ -1730,7 +1730,7 @@ namespace base
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          pmessagebox->async();
 
@@ -1774,7 +1774,7 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate ::user::show < ::calculator::edit > ();
+      return __allocate::user::show < ::calculator::edit >();
 
    }
 
@@ -1797,7 +1797,7 @@ namespace base
 
          add_impact_system(
             atom,
-            __allocate ::user::multiple_document_template (
+            __allocate::user::multiple_document_template(
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),
@@ -1838,12 +1838,29 @@ namespace base
    }
 
 
-::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
-{
-   
-   return pusermenu->create_menu_button(pgraphics, pmenuitem);
-   
-}
+   ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
+   {
+
+      auto pmenubutton = __allocate::user::menu_button();
+
+      pmenubutton->initialize_menu_interaction(pmenuitem);
+
+      if (pmenuitem->m_pimage->is_set())
+      {
+
+         pmenubutton->set_button_style(::user::button::e_style_image_and_text);
+
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
+
+         //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
+
+         //pmenubutton->LoadBitmaps(pimage);
+
+      }
+
+      return pmenubutton;
+
+   }
 
 
 } // namespace base

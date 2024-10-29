@@ -464,13 +464,13 @@ namespace write_text
             if (pfontlistitem == puserinteraction->m_pitemHover)
             {
 
-               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected));
+               pgraphics->fill_rectangle(rectangle, puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_selected));
 
             }
 
@@ -478,7 +478,7 @@ namespace write_text
          else if (pfontlistitem == puserinteraction->m_pitemHover)
          {
 
-            auto color = puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
+            auto color = puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_hover);
 
             //auto u8Opacity = color.m_u8Opacity;
 

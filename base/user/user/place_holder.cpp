@@ -87,7 +87,7 @@ namespace user
       //            while (puserinteractionParent)
       //            {
 
-      //               ::pointer<::user::frame>pframe = puserinteractionParent;
+      //               ::pointer<::user::frame_interaction>pframe = puserinteractionParent;
 
       //               if (pframe)
       //               {

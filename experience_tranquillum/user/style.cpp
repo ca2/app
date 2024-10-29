@@ -12,7 +12,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "style.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"
@@ -831,7 +831,7 @@ namespace experience_tranquillum
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer& pgraphics, ::user::frame* pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer& pgraphics, ::user::frame_interaction* pframe)
    {
 
       ::draw2d::save_context savecontext(pgraphics);

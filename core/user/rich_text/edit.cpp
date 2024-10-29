@@ -20,7 +20,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/platform/session.h"
 

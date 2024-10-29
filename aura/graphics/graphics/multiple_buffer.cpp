@@ -4,7 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "aura/graphics/image/image.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
 #include "aura/graphics/image/array.h"

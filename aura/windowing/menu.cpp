@@ -176,7 +176,7 @@ namespace windowing
 
    void menu::on_idle(::channel * pchannel)
 {
-//      void menu_shared_idle(::user::frame * pframe)
+//      void menu_shared_idle(::user::frame_interaction * pframe)
 //      {
 //
 //         auto pmenushared = pframe->m_pmenushared;

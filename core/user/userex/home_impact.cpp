@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
 #include "base/user/user/document.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 
 //#include "aura/update.h"

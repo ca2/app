@@ -3,7 +3,7 @@
 //#include "_graphics.h"
 #include "device_context.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
 

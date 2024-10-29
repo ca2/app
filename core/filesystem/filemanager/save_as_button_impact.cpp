@@ -17,7 +17,7 @@
 #include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/platform/context.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 
 
 namespace filemanager

@@ -13,7 +13,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "core/user/user/color_selector_popup.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/font_combo_box.h"

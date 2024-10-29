@@ -17,7 +17,7 @@
 #include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
 #include "aura/graphics/image/list.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/interaction_array.h"
 #include "style.h"
@@ -1395,10 +1395,10 @@ namespace user
    }
 
 
-   bool tab::on_drag_start(::point_i32 & pointDrag, ::item * pitem)
+   bool tab::on_drag_start(::point_i32 & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
       
-      if(::user::interaction::on_drag_start(pointDrag, pitem))
+      if(::user::interaction::on_drag_start(pointDrag, pmouse, pitem))
       {
          
          return true;
@@ -1559,7 +1559,7 @@ namespace user
 
       }
 
-      auto psystem = system()->m_pbasesystem;
+      auto psystem = system();
 
       if (psystem->has_property("no_tabs"))
       {

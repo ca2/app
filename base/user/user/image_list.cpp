@@ -138,14 +138,14 @@ namespace user
 
       
 
-      if (!psession->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
+      if (!session()->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
       {
 
          iaSel.erase_all();
 
       }
 
-      if (psession->is_key_pressed(::user::e_key_shift) && m_bMultiSel)
+      if (session()->is_key_pressed(::user::e_key_shift) && m_bMultiSel)
       {
 
          if (main_content().m_pitemCurrent.is_set())

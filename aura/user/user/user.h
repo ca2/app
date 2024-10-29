@@ -2,7 +2,11 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/prototype/collection/list.h"
+#include "aura/user/user/user_aura.h"
+#include "aura/user/user/user_axis.h"
+#include "aura/user/user/user_base.h"
+#include "aura/user/user/user_bred.h"
+#include "aura/user/user/user_core.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/prototype/collection/string_map.h"
 //#include "acme/user/user/user.h"
@@ -26,7 +30,17 @@ namespace user
 
 
    class CLASS_DECL_AURA user :
-      virtual public ::acme::department
+      virtual public ::acme::department,
+      virtual public ::user::aura_user_layer_t,
+      virtual public ::user::axis_user_layer_t,
+      virtual public ::user::base_user_layer_t,
+   virtual public ::user::bred_user_layer_t,
+   virtual public ::user::core_user_layer_t,
+      virtual public ::user::aura_user_layer,
+      virtual public ::user::axis_user_layer,
+      virtual public ::user::base_user_layer,
+   virtual public ::user::bred_user_layer,
+   virtual public ::user::core_user_layer
    {
    public:
 
@@ -34,36 +48,36 @@ namespace user
       //__creatable(user);
 
 
-      ::axis::user* m_paxisuser;
-      ::base::user* m_pbaseuser;
-      ::bred::user* m_pbreduser;
-      ::core::user* m_pcoreuser;
+      //::axis::user* m_paxisuser;
+      //::base::user* m_pbaseuser;
+      //::bred::user* m_pbreduser;
+      //::core::user* m_pcoreuser;
 
-      ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
-      ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
-      string_array                              m_straEscape;
-      ::user::style_pointer                     m_puserstyle;
-      string_map < ::user::style_pointer >      m_mapUserStyle;
-
-      ::pointer<::html::html>                m_phtml; // defined in upper level
-
-      ::type_atom                               m_typeatomHtmlDocument;
-      ::type_atom                               m_typeatomHtmlImpact;
-      
-      pointer_array < ::user::interaction >      m_uiptraToolWindow;
-
-      //::pointer<::windowing::windowing>      m_pwindowing;
-      ::pointer <::mutex  >                     m_pmutexUser;
-
-      ::pointer < ::mutex >                                   m_pmutexRunnable;
-
-      ::list < ::pointer<::matter >>           m_listRunnable;
-
-      ::pointer<::user::shell>               m_pshell;
-
-      ::pointer<::windowing::desktop_environment> m_pdesktopenvironment;
-
-      bool                                      m_bOnInitializeWindowObject;
+      // ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
+      // ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
+      // string_array                              m_straEscape;
+      // ::user::style_pointer                     m_puserstyle;
+      // string_map < ::user::style_pointer >      m_mapUserStyle;
+      //
+      // ::pointer<::html::html>                m_phtml; // defined in upper level
+      //
+      // ::type_atom                               m_typeatomHtmlDocument;
+      // ::type_atom                               m_typeatomHtmlImpact;
+      //
+      // pointer_array < ::user::interaction >      m_uiptraToolWindow;
+      //
+      // //::pointer<::windowing::windowing>      m_pwindowing;
+      // ::pointer <::mutex  >                     m_pmutexUser;
+      //
+      // ::pointer < ::mutex >                                   m_pmutexRunnable;
+      //
+      // ::list < ::pointer<::matter >>           m_listRunnable;
+      //
+      // ::pointer<::user::shell>               m_pshell;
+      //
+      // ::pointer<::windowing::desktop_environment> m_pdesktopenvironment;
+      //
+      // bool                                      m_bOnInitializeWindowObject;
 
 
       user();
@@ -87,7 +101,7 @@ namespace user
 
 
 
-      
+
 
       virtual ::user::interaction * interaction(oswindow oswindow);
 
@@ -99,7 +113,7 @@ namespace user
 
       virtual void set_active_window(::user::interaction *);
 
-      
+
       virtual ::user::interaction * get_foreground_window();
       virtual void set_foreground_window(::user::interaction *);
 

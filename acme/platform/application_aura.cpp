@@ -696,7 +696,7 @@ namespace platform
    //
    //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr){}
 
-   void aura_application_layer::on_initial_frame_position(::user::frame* pframe)
+   void aura_application_layer::on_initial_frame_position(::user::frame_interaction* pframe)
    {
    }
 
@@ -937,7 +937,7 @@ namespace platform
    // bool can_close_application() override{}
 
 
-   bool aura_application_layer::on_close_frame_window(::user::frame* pframe)
+   bool aura_application_layer::on_close_frame_window(::user::frame_interaction* pframe)
    {
       return false;
    }

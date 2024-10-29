@@ -219,9 +219,11 @@ namespace user
 
       string strText;
 
-      auto papp = get_app();
+      //auto papp = get_app();
 
-      papp->datastream()->get(m_atom + ".cur_text", strText);
+      ::cast < ::database::client > pdatabaseclient = application();
+
+      pdatabaseclient->datastream()->get(m_atom + ".cur_text", strText);
 
       m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 

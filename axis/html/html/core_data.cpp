@@ -22,7 +22,7 @@
 #include "axis/html/user/form.h"
 #include "axis/platform/system.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 
 
 namespace html

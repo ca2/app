@@ -6,7 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
 #include "aura/graphics/write_text/font_list.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 //#include "aura/user/user/primitive_impl.h"
 #include "base/user/user/document.h"
 #include "core/user/user/font_list_impact.h"

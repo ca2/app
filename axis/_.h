@@ -7,6 +7,9 @@
 
 #include "aura/_.h"
 
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME axis
+
 
 #if defined(_axis_project)
 #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT

@@ -1573,21 +1573,21 @@ namespace aura
       if (has_property("save_processing"))
       {
 
-         psession->savings().save(::e_resource_processing);
+         session()->savings()->save(::e_resource_processing);
 
       }
 
       if (has_property("save_blur_back"))
       {
 
-         psession->savings().save(::e_resource_blur_background);
+         session()->savings()->save(::e_resource_blur_background);
 
       }
 
       if (has_property("save_transparent_back"))
       {
 
-         psession->savings().save(::e_resource_translucent_background);
+         session()->savings()->save(::e_resource_translucent_background);
 
       }
 
@@ -3815,7 +3815,7 @@ namespace aura
 //   }
 
 
-   void system::on_initial_frame_position(::user::frame * pframe)
+   void system::on_initial_frame_position(::user::frame_interaction * pframe)
    {
 
       if(application()->m_bExperienceMainFrame)

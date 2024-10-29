@@ -22,7 +22,7 @@ namespace axis
 
       print_line("axis::user::user");
 
-      m_paxisuser = this;
+      //m_paxisuser = this;
 
    }
 

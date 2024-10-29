@@ -244,44 +244,44 @@ namespace user
    }
 
 
-   ::base::application* menu_interaction::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session* menu_interaction::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system* menu_interaction::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::user* menu_interaction::baseuser()
-   {
-
-      
-
-      return ::is_set(psession) ? psession->baseuser() : nullptr;
-
-   }
+   // ::base::application* menu_interaction::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session* menu_interaction::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system* menu_interaction::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::user* menu_interaction::baseuser()
+   // {
+   //
+   //
+   //
+   //    return ::is_set(psession) ? user() : nullptr;
+   //
+   // }
 
 } // namespace user
 

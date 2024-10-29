@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "style.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -14,7 +14,7 @@ namespace axis
    style::style()
    {
 
-      m_puserstyle = this;
+      m_puserstyleComposite = this;
       m_pgraphics = nullptr;
 
       default_style_construct();
@@ -51,7 +51,7 @@ namespace axis
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
    {
 
       ::draw2d::save_context savecontext(pgraphics);

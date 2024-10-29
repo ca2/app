@@ -58,10 +58,10 @@ namespace user
 
       pdata->m_pcallback = this;
 
-      if (!application()->m_pbaseapplication->m_ptabimpactBase)
+      if (!application()->m_ptabimpactBase)
       {
 
-         application()->m_pbaseapplication->m_ptabimpactBase = this;
+         application()->m_ptabimpactBase = this;
 
       }
 
@@ -986,7 +986,14 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  application()->m_pbaseapplication->create_options_impact(puserinteraction);
+               ::cast < ::user::options_impact_handler > poptionsimpacthandler = application();
+
+               if(poptionsimpacthandler)
+               {
+
+                  poptionsimpacthandler->create_options_impact(puserinteraction);
+
+               }
 
                };
 
@@ -1001,7 +1008,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  application()->m_pbaseapplication->create_about_impact(puserinteraction);
+                  application()->create_about_impact(puserinteraction);
 
                };
 
@@ -1018,7 +1025,7 @@ namespace user
          if (case_insensitive_string_begins(pimpactdata->m_atom.m_str, "form_"))
          {
 
-            auto puser = user()->m_pbaseuser;
+            auto puser = user();
 
             ::pointer<form_document>pformdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
@@ -1159,7 +1166,7 @@ namespace user
 
       }
 
-      application()->m_pbaseapplication->on_after_prepare_impact_menu(pmenu);
+      application()->on_after_prepare_impact_menu(pmenu);
 
       auto pframe = top_level_frame();
 
@@ -1170,7 +1177,7 @@ namespace user
 
          __defer_construct_new(pmenu->m_pmenuitem);
 
-         get_session()->user()->m_pbaseuser->from_application_menu(
+         user()->from_application_menu(
             pmenu->m_pmenuitem,
             pframe->notify_icon()->menu(),
             pmenu);
@@ -1599,7 +1606,7 @@ namespace user
 
       //throw ::exception(todo, "experience");
 
-      //::pointer<::user::frame>pframewindow = pimpactdata->m_puserinteraction;
+      //::pointer<::user::frame_interaction>pframewindow = pimpactdata->m_puserinteraction;
 
       //if(pframewindow.is_set())
       //{

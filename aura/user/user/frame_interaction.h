@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA frame:
+   class CLASS_DECL_AURA frame_interaction :
       virtual public ::user::box
    {
    public:
@@ -34,7 +34,7 @@ namespace user
       string                                       m_strFrameTitle;
       ::size_i32                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
-      ::pointer<::user::style>                  m_puserstyle;
+      ::pointer<::user::style>                     m_puserstyleFrameInteraction;
       bool                                         m_bShowControlBox;
       
       
@@ -45,8 +45,8 @@ namespace user
       ::pointer<::task_pool>                      m_ptaskpool;
 
   
-      frame();
-      ~frame() override;
+      frame_interaction();
+      ~frame_interaction() override;
 
 
 

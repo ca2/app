@@ -3,7 +3,7 @@
 //#include "data.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/image/icon.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "core/user/user/user.h"
 #include "core/user/userex/pane_tab_impact.h"
 

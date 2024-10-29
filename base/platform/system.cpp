@@ -20,6 +20,9 @@ namespace base
 
       common_construct();
 
+      factory()->add_factory_item< ::base::session, ::platform::session>();
+      factory()->add_factory_item< ::base::user, ::user::user>();
+
    }
 
 
@@ -100,24 +103,26 @@ namespace base
    void system::common_construct()
    {
 
-      m_pbasesystem = this;
+      //m_pbasesystem = this;
 
       //factory()->add_factory_item < ::base::session, ::apex::session >();
       //factory()->add_factory_item < ::base::application, ::apex::application >();
       //factory()->add_factory_item < ::base::idpool, ::acme::idpool >();
 
+
+
    }
 
 
-   void system::on_set_platform()
-   {
-
-      axis::system::on_set_platform();
-
-      factory()->add_factory_item< ::base::session, ::platform::session>();
-      factory()->add_factory_item< ::base::user, ::user::user>();
-
-   }
+   // void system::on_set_platform()
+   // {
+   //
+   //    axis::system::on_set_platform();
+   //
+   //    factory()->add_factory_item< ::base::session, ::platform::session>();
+   //    factory()->add_factory_item< ::base::user, ::user::user>();
+   //
+   // }
 
 
    void system::on_initialize_particle()
@@ -164,7 +169,7 @@ namespace base
 
    //   }
 
-   //   papexsession->m_pbasesystem = this;
+   //   papexsession = this;
 
    //}
 

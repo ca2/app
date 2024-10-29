@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"
 #include "aura/platform/system.h"

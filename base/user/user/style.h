@@ -24,10 +24,10 @@ namespace base
       void destroy() override;
 
 
-      ::base::application * get_app();
-      ::base::session * get_session();
-      ::base::system * get_system();
-      ::base::user * baseuser() override;
+      //::base::application * get_app();
+      //::base::session * get_session();
+      //::base::system * get_system();
+      //::base::user * baseuser() override;
 
 
       virtual void construct_fallback_theme();
@@ -36,12 +36,12 @@ namespace base
 
       //virtual void nextstyle(style_context * pcontext) override;
 
-      virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer& pstyle, ::menu::item* pitem);
+      virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer& pstyle, ::draw2d::graphics_pointer &pgraphics, ::menu::item* pitem);
       virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem);
       virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem);
 
 
-      //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe) override;
+      //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe) override;
       //virtual void DrawCheck(enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
       //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;

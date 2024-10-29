@@ -1668,7 +1668,7 @@ menu::~menu()
 //
 //         //}
 //
-//         //if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
+//         //if (dynamic_cast <::user::frame_interaction *> (puiTarget) == nullptr)
 //         //{
 //
 //         //   puiTarget = puiTarget->get_parent_frame();
@@ -1793,7 +1793,7 @@ menu::~menu()
 //
 //         ::pointer<::base::session>psession = get_session();
 //
-//         auto puser = psession->baseuser();
+//         auto puser = user();
 //
 //         auto pinteraction = puser->create_menu_button(pstyle, pitem);
 //

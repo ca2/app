@@ -1078,7 +1078,7 @@ namespace platform
       //
       //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
-      //virtual void on_initial_frame_position(::user::frame * pframe);
+      //virtual void on_initial_frame_position(::user::frame_interaction * pframe);
 
       //virtual void on_graphics_ready();
 

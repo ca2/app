@@ -549,7 +549,7 @@ namespace user
 
       //informationf("(1)TreeItemElapsed %d", ::time.elapsed());
 
-      //      ::aura::savings & savings = psession->savings();
+      //      ::aura::savings & savings = session()->savings();
 
       if (bHover) // selected
       {
@@ -563,7 +563,7 @@ namespace user
       if (bSelected) // selected
       {
 
-         //if(psession->savings().is_trying_to_save(::e_resource_processing))
+         //if(session()->savings()->is_trying_to_save(::e_resource_processing))
          //{
 
          data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96, 96, 96));

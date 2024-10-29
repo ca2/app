@@ -82,7 +82,7 @@ public:
    //virtual bool set_scroll_state(::user::scroll_state * pscrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
    bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
-   bool on_drag_start(::point_i32 & point, ::item * pitem) override;
+   bool on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem) override;
    //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
    //i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);

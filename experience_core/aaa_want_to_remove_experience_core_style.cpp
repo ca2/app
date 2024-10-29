@@ -648,7 +648,7 @@ namespace experience_lite
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         if (psession->savings().is_trying_to_save(::e_resource_processing))
+         if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->FillSolidRect(rectangleX, rgb(255, 255, 255));

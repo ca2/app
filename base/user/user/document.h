@@ -55,10 +55,10 @@ namespace user
       ::pointer < ::data::data > create_data(const ::atom & atom) override;
 
 
-      ::base::application * get_app();
-      ::base::session * get_session();
-      ::base::system * get_system();
-      ::base::user * baseuser() override;
+      // ::base::application * get_app();
+      // ::base::session * get_session();
+      // ::base::system * get_system();
+      // ::base::user * baseuser() override;
 
 
       ::user::interaction* impact_at(::collection::index iImpact) override;
@@ -409,7 +409,7 @@ namespace user
       
       virtual ::atom get_toolbar_id();
 
-      virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
+      virtual toolbar * get_toolbar(::user::frame_interaction * pframe, bool bCreate = true);
 
 
    };

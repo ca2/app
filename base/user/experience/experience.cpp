@@ -35,7 +35,7 @@ namespace experience
    //
    //    auto papplication = application();
    //
-   //    return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
+   //    return ::is_set(papplication) ? papplication : nullptr;
    //
    // }
    //
@@ -55,7 +55,7 @@ namespace experience
    //
    //    auto pacmesystem = system();
    //
-   //    return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
    //
    // }
    //
@@ -65,7 +65,7 @@ namespace experience
    //
    //
    //
-   //    return ::is_set(psession) ? psession->baseuser() : nullptr;
+   //    return ::is_set(psession) ? user() : nullptr;
    //
    // }
 

@@ -5,7 +5,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/timer.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 
 

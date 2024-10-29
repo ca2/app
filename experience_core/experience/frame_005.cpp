@@ -363,7 +363,7 @@ namespace experience_core
       bool bZoomed = pframewindow->layout().is_zoomed();
 
       //    CVMSApp * pApp = (CVMSApp *) System;
-      //::aura::savings & savings = psession->savings();
+      //::aura::savings & savings = session()->savings();
 
       //auto rectangleX = pframewindow->rectangle();
 
@@ -493,8 +493,6 @@ namespace experience_core
    void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,enum_border eborder,const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
    {
 
-      
-
       ::rectangle_i32 rectangle(rectangleParam);
       i32 x = rectangle.left();
       i32 y = rectangle.top();
@@ -508,7 +506,7 @@ namespace experience_core
 
          rectangleDraw = rectangle_i32_dimension(x, y, cx, 1);
 
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorTopLeft);
@@ -527,7 +525,7 @@ namespace experience_core
 
          rectangleDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorTopLeft);
@@ -547,7 +545,7 @@ namespace experience_core
 
          rectangleDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorBottomRight);
@@ -567,7 +565,7 @@ namespace experience_core
 
          rectangleDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
-         if(psession->savings().is_trying_to_save(::e_resource_processing))
+         if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
             pgraphics->fill_rectangle(rectangleDraw, colorBottomRight);

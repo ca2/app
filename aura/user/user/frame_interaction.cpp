@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "frame.h"
+#include "frame_interaction.h"
 #include "key.h"
 #include "style.h"
 #include "interaction_thread.h"
@@ -25,7 +25,7 @@ namespace user
 {
 
 
-   frame::frame()
+   frame_interaction::frame_interaction()
    {
 
       m_puserframewindow = nullptr;
@@ -41,13 +41,13 @@ namespace user
    }
 
 
-   frame::~frame()
+   frame_interaction::~frame_interaction()
    {
 
    }
 
 
-   void frame::create_window()
+   void frame_interaction::create_window()
    {
 
       //__construct(windowing_window());
@@ -270,7 +270,7 @@ namespace user
    }
 
 
-   void frame::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
+   void frame_interaction::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
    {
 
 ::user::box::on_before_create_window(pacmewindowingwindow);
@@ -283,7 +283,7 @@ namespace user
    }
 
 
-   void frame::destroy()
+   void frame_interaction::destroy()
    {
 
       if (m_pacmewindowingwindow)
@@ -300,7 +300,7 @@ namespace user
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
       if (m_pdrawcontext) m_pdrawcontext->destroy();
 
-      m_puserstyle.defer_destroy();
+      m_puserstyleFrameInteraction.defer_destroy();
 
       m_pdrawicon.defer_destroy();
       //}
@@ -409,7 +409,7 @@ namespace user
    }
 
 
-   //void frame::start_destroying_window()
+   //void frame_interaction::start_destroying_window()
    //{
 
    //   ::user::interaction::start_destroying_window();
@@ -419,7 +419,7 @@ namespace user
    //}
 
 
-   void frame::destroy_window()
+   void frame_interaction::destroy_window()
    {
 
       ::user::interaction::destroy_window();
@@ -429,7 +429,7 @@ namespace user
    }
 
 
-   void frame::install_message_routing(::channel* pchannel)
+   void frame_interaction::install_message_routing(::channel* pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
@@ -437,12 +437,12 @@ namespace user
 
 
 
-      add_command_handler("app_exit", { this, &frame::on_message_application_exit });
+      add_command_handler("app_exit", { this, &frame_interaction::on_message_application_exit });
       
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame::on_message_destroy);
-      MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
+      MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
       system()->add_signal_handler(this, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
@@ -450,7 +450,7 @@ namespace user
 //      if (is_frame_window())
 //      {
 //
-//         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame::_001OnSysCommand);
+//         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
 //
 //      }
 //
@@ -460,7 +460,7 @@ namespace user
    }
 
    
-   void frame::on_message_destroy(::message::message * pmessage)
+   void frame_interaction::on_message_destroy(::message::message * pmessage)
    {
 
       erase_graphical_output_purpose(this);
@@ -468,7 +468,7 @@ namespace user
    }
 
 
-   void frame::on_message_application_exit(::message::message* pmessage)
+   void frame_interaction::on_message_application_exit(::message::message* pmessage)
    {
 
       ::pointer<::user::message>pusermessage(pmessage);
@@ -496,7 +496,7 @@ namespace user
    }
 
 
-   void frame::on_message_key_down(::message::message* pmessage)
+   void frame_interaction::on_message_key_down(::message::message* pmessage)
    {
 
       ::pointer<::user::key>pkey(pmessage);
@@ -531,7 +531,7 @@ namespace user
    }
 
 
-   ::task_pool * frame::taskpool()
+   ::task_pool * frame_interaction::taskpool()
    {
 
       __defer_construct_new(m_ptaskpool);
@@ -541,7 +541,7 @@ namespace user
    }
 
 
-   //void frame::destroy()
+   //void frame_interaction::destroy()
    //{
 
    //   m_puserstyle.defer_destroy();
@@ -550,7 +550,7 @@ namespace user
 
    //}
 
-//   bool frame::is_os_host() const
+//   bool frame_interaction::is_os_host() const
 //   {
 //
 //      return false;
@@ -558,15 +558,15 @@ namespace user
 //   }
 
 
-   style * frame::get_style() const
+   style * frame_interaction::get_style() const
    {
 
-      return m_puserstyle;
+      return m_puserstyleFrameInteraction;
 
    }
 
 
-   ::color::color frame::get_border_main_body_color()
+   ::color::color frame_interaction::get_border_main_body_color()
    {
 
       return color::transparent;
@@ -574,7 +574,7 @@ namespace user
    }
 
 
-   void frame::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
+   void frame_interaction::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
    {
 
       m_straMenuParent.add(strPath);
@@ -586,7 +586,7 @@ namespace user
    }
 
 
-   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
+   ::user::tool_window * frame_interaction::tool_window(enum_tool etool, bool bCreate)
    {
 
       return nullptr;
@@ -594,7 +594,7 @@ namespace user
    }
 
 
-//   ::user::toolbar * frame::get_toolbar(const ::atom & idToolBar)
+//   ::user::toolbar * frame_interaction::get_toolbar(const ::atom & idToolBar)
 //   {
 //
 //      return nullptr;
@@ -602,7 +602,7 @@ namespace user
 //   }
 
 
-   void frame::add_control_bar(::user::control_bar * pcontrolbar)
+   void frame_interaction::add_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw ::interface_only();
@@ -612,7 +612,7 @@ namespace user
    }
 
 
-   void frame::erase_control_bar(::user::control_bar * pcontrolbar)
+   void frame_interaction::erase_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw ::interface_only();
@@ -622,7 +622,7 @@ namespace user
    }
 
 
-   void frame::show_control_bar(::user::control_bar * pcontrolbar)
+   void frame_interaction::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw ::interface_only();
@@ -632,7 +632,7 @@ namespace user
    }
 
 
-   void frame::hide_control_bar(::user::control_bar * pcontrolbar)
+   void frame_interaction::hide_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw ::interface_only();
@@ -642,7 +642,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;
@@ -650,7 +650,7 @@ namespace user
 //   }
 
 
-   void frame::on_create_bars()
+   void frame_interaction::on_create_bars()
    {
 
       //return ::success;
@@ -658,7 +658,7 @@ namespace user
    }
 
 
-   bool frame::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
+   bool frame_interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -684,7 +684,7 @@ namespace user
 
 
 
-   ::user::interaction* frame::get_active_impact()
+   ::user::interaction* frame_interaction::get_active_impact()
    {
 
       return nullptr;
@@ -692,14 +692,14 @@ namespace user
    }
 
 
-   void frame::set_active_impact(::user::impact* pImpactNew, bool bNotify)
+   void frame_interaction::set_active_impact(::user::impact* pImpactNew, bool bNotify)
    {
 
 
    }
 
 
-   void frame::ActivateFrame(::e_display edisplay)
+   void frame_interaction::ActivateFrame(::e_display edisplay)
    {
 
 
@@ -707,7 +707,7 @@ namespace user
 
 
 
-   void frame::set_frame_title(const string& strFrameTitle)
+   void frame_interaction::set_frame_title(const string& strFrameTitle)
    {
 
       m_strFrameTitle = strFrameTitle;
@@ -724,7 +724,7 @@ namespace user
    }
 
 
-   string frame::get_frame_title()
+   string frame_interaction::get_frame_title()
    {
 
       return m_strFrameTitle;
@@ -732,7 +732,7 @@ namespace user
    }
 
 
-   ::image::icon* frame::get_draw_icon()
+   ::image::icon* frame_interaction::get_draw_icon()
    {
 
       if (::is_set(m_pdrawicon))
@@ -778,7 +778,7 @@ namespace user
    }
 
 
-   //void frame::this->rectangle(::rectangle_i32* lprect)
+   //void frame_interaction::this->rectangle(::rectangle_i32* lprect)
    //{
    //   
    //   ::user::interaction::this->rectangle(lprect);
@@ -793,22 +793,22 @@ namespace user
    //}
 
 
-   ::color::color frame::get_moveable_border_color()
+   ::color::color frame_interaction::get_moveable_border_color()
    {
 
-      if (!m_puserstyle)
+      if (!m_puserstyleFrameInteraction)
       {
 
          return ::color::color();
 
       }
 
-      return m_puserstyle->get_style_moveable_border_color(m_estyle);
+      return m_puserstyleFrameInteraction->get_style_moveable_border_color(m_estyle);
 
    }
 
 
-   bool frame::is_translucid_user_style(enum_style estyle)
+   bool frame_interaction::is_translucid_user_style(enum_style estyle)
    {
 
       return
@@ -820,7 +820,7 @@ namespace user
    }
 
 
-   ::user::enum_style frame::translate_user_style(const ::string & pszStyle)
+   ::user::enum_style frame_interaction::translate_user_style(const ::string & pszStyle)
    {
 
       string strStyle(pszStyle);
@@ -920,7 +920,7 @@ namespace user
 
 
    
-   void frame::set_user_style(enum_style estyle)
+   void frame_interaction::set_user_style(enum_style estyle)
    {
 
       m_estyle = estyle;
@@ -928,7 +928,7 @@ namespace user
    }
 
 
-   void frame::set_user_style(const ::string & strStyle)
+   void frame_interaction::set_user_style(const ::string & strStyle)
    {
 
       m_strStyle = strStyle;
@@ -942,14 +942,14 @@ namespace user
 
 
 
-   void frame::on_user_style_change()
+   void frame_interaction::on_user_style_change()
    {
 
    }
 
 
 
-   enum_window_type frame::get_window_type()
+   enum_window_type frame_interaction::get_window_type()
    {
 
       return e_window_type_frame;
@@ -957,7 +957,7 @@ namespace user
    }
 
 
-   void frame::handle(::topic * ptopic, ::context * pcontext)
+   void frame_interaction::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_user_style_change)
@@ -978,7 +978,7 @@ namespace user
    }
 
 
-   void frame::display_previous_restore()
+   void frame_interaction::display_previous_restore()
    {
 
       ::user::box::display_previous_restore();
@@ -986,7 +986,7 @@ namespace user
    }
 
 
-   void frame::display_system_minimize()
+   void frame_interaction::display_system_minimize()
    {
 
       ::user::box::display_system_minimize();
@@ -995,7 +995,7 @@ namespace user
 
 
 
-   bool frame::is_frame_window()
+   bool frame_interaction::is_frame_window()
    {
 
       return true;
@@ -1003,7 +1003,7 @@ namespace user
    }
 
 
-   // bool frame::_001FancyInitialFramePlacement(bool bForceRestore)
+   // bool frame_interaction::_001FancyInitialFramePlacement(bool bForceRestore)
    // {
 
    //    return ::user::box::_001FancyInitialFramePlacement(bForceRestore);
@@ -1011,7 +1011,7 @@ namespace user
    // }
 
 
-   void frame::initial_frame_placement()
+   void frame_interaction::initial_frame_placement()
    {
 
 #if defined(SANDBOXED_PLATFORM)
@@ -1026,10 +1026,10 @@ namespace user
    }
 
 
-   void frame::initial_frame_display()
+   void frame_interaction::initial_frame_display()
    {
 
-      information() << "frame::initial_frame_display";
+      information() << "frame_interaction::initial_frame_display";
 
       if (!const_layout().sketch().is_screen_visible())
       {
@@ -1051,7 +1051,7 @@ namespace user
    }
 
 
-   size_i32 frame::get_window_minimum_size()
+   size_i32 frame_interaction::get_window_minimum_size()
    {
 
       if (m_sizeMinimum.area() > 0)
@@ -1078,7 +1078,7 @@ namespace user
    }
 
 
-   void frame::user_interaction_on_destroy()
+   void frame_interaction::user_interaction_on_destroy()
    {
 
       ::user::interaction::user_interaction_on_destroy();
@@ -1089,7 +1089,7 @@ namespace user
    }
 
 
-   //::user::thread * frame::user_thread()
+   //::user::thread * frame_interaction::user_thread()
    //{
 
    //   return m_puserthread;
@@ -1097,7 +1097,7 @@ namespace user
    //}
 
 
-   ::user::interaction_base * frame::set_parent(::user::interaction_base * puserinteractionParent)
+   ::user::interaction_base * frame_interaction::set_parent(::user::interaction_base * puserinteractionParent)
    {
 
       if (puserinteractionParent == nullptr && get_parent() == nullptr)
@@ -1183,8 +1183,8 @@ namespace user
 
          ::pointer<::aura::application> papp = get_app();
 
-         //psession->erase_frame(this); // no more a top level frame if it were one
-         papp->erase_user_interaction(this); // no more a top level frame if it were one
+         //psession->erase_frame(this); // no more a top level frame_interaction if it were one
+         papp->erase_user_interaction(this); // no more a top level frame_interaction if it were one
 
          //m_pprimitiveimpl = pprimitiveimplNew;
 

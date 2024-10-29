@@ -150,7 +150,7 @@ namespace apex
       m_bInitialized = true;
 
 
-      ::file::path pathTrace = directory_system()->user() / "trace.txt";
+      ::file::path pathTrace = directory_system()->userconfig() / "trace.txt";
 
 #ifdef __DEBUG
 
@@ -179,7 +179,7 @@ namespace apex
 
 #endif
 
-      if (file_system()->is_true(directory_system()->user() / "log.txt"))
+      if (file_system()->is_true(directory_system()->userconfig() / "log.txt"))
       {
 
          m_bLog = true;

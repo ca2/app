@@ -510,7 +510,7 @@ namespace menu
          if (pinteraction.is_null())
          {
 
-            pinteraction = user()->m_paxisuser->create_menu_button(m_pmenu, pgraphics, pitem);
+            pinteraction = user()->create_menu_button(m_pmenu, pgraphics, pitem);
 
          }
 

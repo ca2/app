@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/message/user.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/graphics/image/image.h"
 #include "axis/html/graphics/font.h"
 #include "axis/html/graphics/style.h"

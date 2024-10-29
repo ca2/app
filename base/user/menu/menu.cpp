@@ -1837,7 +1837,7 @@ namespace user
 
       //}
 
-      //if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
+      //if (dynamic_cast <::user::frame_interaction *> (puiTarget) == nullptr)
       //{
 
       //   puiTarget = puiTarget->get_parent_frame();
@@ -1960,11 +1960,11 @@ namespace user
 
       auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
 
-      ::pointer<::base::session>psession = get_session();
+      ::pointer<::base::session>psession = session();
 
-      auto puser = psession->baseuser();
+      auto puser = user();
 
-      auto pinteraction = puser->create_menu_button(pstyle, pitem);
+      auto pinteraction = puser->create_menu_button(pitem->m_pmenu, pgraphics, pitem);
 
       if (!pinteraction)
       {

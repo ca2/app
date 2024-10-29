@@ -162,6 +162,9 @@ namespace aura
       void on_set_platform() override;
 
 
+         ::user::user * user() override;
+
+
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
@@ -847,7 +850,7 @@ void initialize_context() override;
 //
 //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      virtual void on_initial_frame_position(::user::frame_interaction * pframe);
 
       virtual void on_graphics_ready();
 
@@ -1026,7 +1029,7 @@ void initialize_context() override;
       bool can_close_application() override;
 
 
-      virtual bool on_close_frame_window(::user::frame* pframe);
+      virtual bool on_close_frame_window(::user::frame_interaction* pframe);
 
 
       void create_impact_system() override;
@@ -1055,11 +1058,11 @@ void initialize_context() override;
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
 
-      ::user::user * aurauser() override;
-      ::axis::user * axisuser() override;
-      ::base::user * baseuser() override;
-      ::bred::user * breduser() override;
-      ::core::user * coreuser() override;
+      // ::user::user * aurauser() override;
+      // ::axis::user * axisuser() override;
+      // ::base::user * baseuser() override;
+      // ::bred::user * breduser() override;
+      // ::core::user * coreuser() override;
 
       void pick_browse(const ::function < void(const ::file::path & path) > & callback) override;
       

@@ -47,16 +47,16 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ID_BROWSE)
+      else if (ptopic->m_atom == id_browse)
       {
 
-         if (!ptopic->payload(ID_FORM).is_empty())
+         if (!ptopic->payload(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(ptopic->payload(ID_FORM)))
+            if (get_document()->on_open_document(ptopic->payload(id_form)))
             {
 
-               m_strPath = ptopic->payload(ID_FORM);
+               m_strPath = ptopic->payload(id_form);
 
             }
 
@@ -66,7 +66,7 @@ namespace user
       else if (ptopic->m_atom == id_get_form_impact)
       {
 
-         ptopic->payload(ID_FORM) = this;
+         ptopic->payload(id_form) = this;
 
       }
       else if (ptopic->m_atom == id_incoming_document)
@@ -88,7 +88,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->payload(ID_FORM) = this;
+         ptopic->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 
@@ -110,7 +110,7 @@ namespace user
    bool form_impact::open_document(const ::payload & payloadFile)
    {
 
-      auto psystem = system()->m_pbasesystem;
+      auto psystem = system();
 
       psystem->defer_create_html();
 
@@ -147,9 +147,7 @@ namespace user
 
          }
 
-         
-
-         pformNew = create_impact(psession->user()->get_html_impact_type());
+         pformNew = create_impact(user()->get_html_impact_type());
 
          if(pformNew)
          {

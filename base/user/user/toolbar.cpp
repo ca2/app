@@ -14,7 +14,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context.h"
 //#include "aura/user/user/interaction_impl.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/windowing/window.h"
 #include "aura/message/user.h"
 

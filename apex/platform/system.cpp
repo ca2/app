@@ -2935,13 +2935,13 @@ pacmedirectory->create("/ca2core");
 
          auto appptra = psession->get_applicationa();
 
-         appptra.predicate_erase([](auto & papp)
-            {
-
-               return papp->is_system() || papp->is_session();
-
-            });
-
+         // appptra.predicate_erase([](auto & papp)
+         //    {
+         //
+         //       return papp->is_system() || papp->is_session();
+         //
+         //    });
+         //
          if (appptra.has_elements())
          {
 
@@ -4011,11 +4011,11 @@ pmessagebox->sync();
       if (strBrowser.has_char())
       {
 
-         file()->put_text_utf8(directory_system()->user() / "browser.txt", strBrowser);
+         file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", strBrowser);
 
-         file()->put_text_utf8(directory_system()->user() / "browser_path.txt", strBrowserPath);
+         file()->put_text_utf8(directory_system()->userconfig() / "browser_path.txt", strBrowserPath);
 
-         file()->put_text_utf8(directory_system()->user() / "browser_dir.txt", strBrowserDir);
+         file()->put_text_utf8(directory_system()->userconfig() / "browser_dir.txt", strBrowserDir);
 
       }
 

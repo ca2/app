@@ -2504,7 +2504,7 @@ namespace aura
 namespace user
 {
 
-   class frame;
+   class frame_interaction;
 
 } // namespace user
 
@@ -2670,7 +2670,13 @@ namespace user
 {
 
 
-class interaction_array;
+   class interaction_array;
+   class tab_impact;
+   class options_impact_handler;
+   class document;
+   class split_impact;
+   class tab;
+   class menu;
 
 
 }

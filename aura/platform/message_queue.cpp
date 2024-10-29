@@ -2,7 +2,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "aura/platform/message_queue.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction.h"

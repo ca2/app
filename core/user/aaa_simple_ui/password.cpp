@@ -68,8 +68,8 @@ namespace simple_ui
 
       }
 
-      /*else if(!psession->savings().is_trying_to_save(::e_resource_processing)
-      && !psession->savings().is_trying_to_save(::e_resource_blur_background))
+      /*else if(!session()->savings()->is_trying_to_save(::e_resource_processing)
+      && !session()->savings()->is_trying_to_save(::e_resource_blur_background))
       {
 
       pgraphics->blur(true, 4, rectangleX);

@@ -769,7 +769,7 @@ void user::destroy()
 //
 //         
 //
-//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)psession->savings().m_eresourceflagsShouldSave.m_eenum);
+//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
 //
 //      }
 //

@@ -7,7 +7,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
-#include "aura/user/user/frame.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/progress.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"

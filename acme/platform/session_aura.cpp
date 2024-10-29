@@ -162,9 +162,12 @@ return nullptr;
 
    //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId){}
 
-   ::apex::savings& aura_session_layer::savings()
+
+   ::apex::savings * aura_session_layer::savings()
    {
-      return *((::apex::savings*)nullptr);
+
+      return nullptr;
+
    }
 
 

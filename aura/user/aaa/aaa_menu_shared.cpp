@@ -208,7 +208,7 @@ public: // re-implementations only
 
 
 
-void menu_shared_idle(::user::frame * pframe)
+void menu_shared_idle(::user::frame_interaction * pframe)
 {
 
    menu_shared * pmenushared = pframe->m_pmenushared;

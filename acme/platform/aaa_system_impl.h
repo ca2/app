@@ -1285,7 +1285,7 @@ namespace acme
 //       //virtual void on_event(::u64 u, ::particle * pparticle) override;
 //
 //
-//       virtual void on_initial_frame_position(::user::frame * pframe);
+//       virtual void on_initial_frame_position(::user::frame_interaction * pframe);
 //
 //       virtual void on_graphics_ready();
 //

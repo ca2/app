@@ -35,10 +35,10 @@ namespace user
 
 
 
-      ::base::application * get_app();
-      ::base::session * get_session();
-      ::base::system * get_system();
-      ::base::user * baseuser() override;
+      // ::base::application * get_app();
+      // ::base::session * get_session();
+      // ::base::system * get_system();
+      // ::base::user * baseuser() override;
 
 
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
@@ -237,7 +237,7 @@ namespace user
 
       virtual ::atom get_toolbar_id();
 
-      virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
+      virtual toolbar * get_toolbar(::user::frame_interaction * pframe, bool bCreate = true);
 
    };
 

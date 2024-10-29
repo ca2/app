@@ -102,44 +102,44 @@ namespace user
    }
 
 
-   ::base::application* document::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session* document::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system* document::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::user* document::baseuser()
-   {
-
-      
-
-      return ::is_set(psession) ? psession->baseuser() : nullptr;
-
-   }
+   // ::base::application* document::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session* document::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system* document::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::user* document::baseuser()
+   // {
+   //
+   //
+   //
+   //    return ::is_set(psession) ? user() : nullptr;
+   //
+   // }
 
 
    ::user::interaction* document::impact_at(::collection::index iImpact)
@@ -419,7 +419,7 @@ namespace user
    }
 
 
-   toolbar * document::get_toolbar(::user::frame * pframewindow, bool bCreate)
+   toolbar * document::get_toolbar(::user::frame_interaction * pframewindow, bool bCreate)
    {
 
       if (!has_toolbar())
@@ -808,7 +808,7 @@ namespace user
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
-         auto psystem = system()->m_pbasesystem;
+         auto psystem = system();
 
          auto pdatetime = psystem->datetime();
 
@@ -1384,7 +1384,7 @@ namespace user
          for (auto & pimpact : m_impacta)
          {
 
-            ::user::frame * pframe = pimpact->parent_frame();
+            ::user::frame_interaction * pframe = pimpact->parent_frame();
 
             if (::is_set(pframe))
             {
@@ -1470,7 +1470,7 @@ namespace user
 
       //}
 
-      update_all_impacts(nullptr, ID_PRE_CLOSE_DOCUMENT);
+      update_all_impacts(nullptr, id_pre_close_document);
 
    }
 
@@ -2280,7 +2280,7 @@ namespace user
    void document::call_initial_update()
    {
 
-      id_update_all_impacts(ID_INITIAL_UPDATE);
+      id_update_all_impacts(id_initial_update);
 
    }
 

@@ -518,9 +518,7 @@ namespace user
       if (pkey.is_set())
       {
 
-         
-
-         if (psession->is_key_pressed(::user::e_key_alt) && psession->is_key_pressed(::user::e_key_control))
+         if (session()->is_key_pressed(::user::e_key_alt) && session()->is_key_pressed(::user::e_key_control))
          {
 
             if (pkey->m_ekey == ::user::e_key_p)
@@ -563,7 +561,7 @@ namespace user
 
                   pcopydesk->image_to_desk(pimage1);
 
-                  image()->save_image(directory_system()->system() / "control_alt_p.png", pimage1);
+                  image()->save_image(directory_system()->userconfig() / "control_alt_p.png", pimage1);
 
                   ::image::image_pointer pimage2;
 
@@ -607,7 +605,7 @@ namespace user
 
                   }
 
-                  image()->save_image(directory_system()->system() / "control_alt_p_w300.png", pimage2);
+                  image()->save_image(directory_system()->userconfig() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -1509,7 +1507,7 @@ namespace user
          //m_bLockSketchToDesign = false;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+         send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
 
          // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pimpact != nullptr)
@@ -1665,7 +1663,7 @@ namespace user
    //void frame_window::on_command(::message::command* pcommand)
    //{
 
-   //   ::user::frame::on_command(pcommand);
+   //   ::user::frame_interaction::on_command(pcommand);
 
    //}
 
@@ -2802,44 +2800,44 @@ namespace user
 //   }
 
 
-   ::base::application* frame_window::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pbaseapplication : nullptr;
-
-   }
-
-
-   ::base::session* frame_window::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
-
-   }
-
-
-   ::base::system* frame_window::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem->m_pbasesystem : nullptr;
-
-   }
-
-
-   ::base::user* frame_window::baseuser()
-   {
-
-      
-
-      return ::is_set(psession) ? psession->baseuser() : nullptr;
-
-   }
+   // ::base::application* frame_window::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::session* frame_window::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::system* frame_window::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
+   //
+   //
+   // ::base::user* frame_window::baseuser()
+   // {
+   //
+   //
+   //
+   //    return ::is_set(psession) ? user() : nullptr;
+   //
+   // }
 
 
 
@@ -2904,9 +2902,7 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      
-
-      if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -3014,9 +3010,9 @@ namespace user
 //         _008CallOnDraw(pgraphics);
 //
 //      }
-//      else if (!psession->savings().is_trying_to_save(::e_resource_processing)
-//               && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth)
-//               && !psession->savings().is_trying_to_save(::e_resource_memory))
+//      else if (!session()->savings()->is_trying_to_save(::e_resource_processing)
+//               && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth)
+//               && !session()->savings()->is_trying_to_save(::e_resource_memory))
 //      {
 //
 //#if TEST

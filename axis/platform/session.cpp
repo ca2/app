@@ -991,10 +991,10 @@ namespace axis
    //   if (is_remote_session())
    //   {
 
-   //      //psession->savings().save(::e_resource_display_bandwidth);
-   //      //psession->savings().save(::e_resource_blur_background);
-   //      //psession->savings().save(::e_resource_blurred_text_embossing);
-   //      //psession->savings().save(::e_resource_translucent_background);
+   //      //session()->savings()->save(::e_resource_display_bandwidth);
+   //      //session()->savings()->save(::e_resource_blur_background);
+   //      //session()->savings()->save(::e_resource_blurred_text_embossing);
+   //      //session()->savings()->save(::e_resource_translucent_background);
 
    //   }
 
@@ -1305,12 +1305,12 @@ namespace axis
 //   __namespace_session_factory(session);
 
 
-    ::axis::user * session::axisuser()
-      {
-            
-         return ::is_set(m_puser) ? m_puser->m_paxisuser : nullptr; 
-         
-      }
+    // ::axis::user * session::axisuser()
+    //   {
+    //
+    //      return ::is_set(m_puser) ? m_puser->m_paxisuser : nullptr;
+    //
+    //   }
       
 
 } // namespace axis

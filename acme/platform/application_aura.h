@@ -835,7 +835,7 @@ namespace platform
 //
 //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      virtual void on_initial_frame_position(::user::frame_interaction * pframe);
 
       virtual void on_graphics_ready();
 
@@ -1014,7 +1014,7 @@ namespace platform
       // bool can_close_application() override;
 
 
-      virtual bool on_close_frame_window(::user::frame* pframe);
+      virtual bool on_close_frame_window(::user::frame_interaction* pframe);
 
 
       //void create_impact_system() override;

@@ -241,7 +241,7 @@ namespace user
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
-         //auto psystem = system()->m_pbasesystem;
+         //auto psystem = system();
 
          if (!pframe)
          {

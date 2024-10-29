@@ -759,9 +759,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = tool_item_style(iItem);
 
-   auto psession = session()->m_pbasesession;
+   auto psession = session();
 
-   auto puser = psession->baseuser();
+   auto puser = user();
 
    auto pmenucentral = puser->menu();
 

@@ -1097,7 +1097,7 @@ namespace platform
    //
    //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl){}
 
-   //void apex_application_layer::on_initial_frame_position(::user::frame * pframe){}
+   //void apex_application_layer::on_initial_frame_position(::user::frame_interaction * pframe){}
 
    //void apex_application_layer::on_graphics_ready(){}
 

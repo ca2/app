@@ -28,6 +28,7 @@ namespace acme { class acme;  }
 #include "application_aqua.h"
 #include "application_aura.h"
 #include "application_axis.h"
+#include "application_base.h"
 
 
 namespace platform
@@ -46,11 +47,13 @@ namespace platform
       virtual public ::platform::aqua_application_layer_t,
       virtual public ::platform::aura_application_layer_t,
       virtual public ::platform::axis_application_layer_t,
+      virtual public ::platform::base_application_layer_t,
       virtual public ::platform::acme_application_layer,
       virtual public ::platform::apex_application_layer,
       virtual public ::platform::aqua_application_layer,
       virtual public ::platform::aura_application_layer,
-      virtual public ::platform::axis_application_layer
+      virtual public ::platform::axis_application_layer,
+      virtual public ::platform::base_application_layer
    {
    public:
 
@@ -166,6 +169,7 @@ namespace platform
 
       void on_initialize_particle() override;
 
+         ::user::user * user() override;
 
       //void initialize(::particle * pparticle) override;
 

@@ -1,8 +1,32 @@
 //
-// Created by camilo on 2024-10-28.
+// Created by camilo on 2024-10-28 03:53 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef USER_AXIS_H
-#define USER_AXIS_H
 
-#endif //USER_AXIS_H
+namespace user
+{
+
+
+   struct CLASS_DECL_AURA axis_user_layer_t
+   {
+
+
+   };
+
+
+   class CLASS_DECL_AURA axis_user_layer
+   {
+   public:
+
+
+      virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem);
+
+
+   };
+
+
+} // namespace user
+
+
+

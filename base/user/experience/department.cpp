@@ -81,7 +81,7 @@ namespace experience
 
          {
 
-            auto psystem = system()->m_pbasesystem;
+            auto psystem = system();
 
             auto strExperience = psystem->payload("experience").as_string();
 
@@ -190,7 +190,7 @@ namespace experience
          if (pexperienceSelected.is_null())
          {
 
-            auto psystem = system()->m_pbasesystem;
+            auto psystem = system();
 
             throw exit_exception(::error_exit_system, psystem, "no experience_* plugin installed");
 

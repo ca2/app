@@ -80,7 +80,12 @@ namespace graphics
 
 #if REFERENCING_DEBUGGING
 
-         m_preferer = __refdbg_add_referer(pparticle);
+         if(pparticle->is_referencing_debugging_enabled())
+         {
+
+            m_preferer = __refdbg_add_referer(pparticle);
+
+         }
 
 #endif
 
@@ -102,7 +107,12 @@ namespace graphics
          if (m_pparticleGraphicalOutputPurposeOriginator2 != this)
          {
 
-            __refdbg_add_releaser(m_preferer)
+            if(m_pparticleGraphicalOutputPurposeOriginator2->is_referencing_debugging_enabled())
+            {
+
+               __refdbg_add_releaser(m_preferer)
+
+            }
 
             m_pparticleGraphicalOutputPurposeOriginator2->release();
 

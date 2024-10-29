@@ -62,16 +62,16 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 endif ()
 
 
-set_target_properties(experience_tranquillum PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
-    target_compile_options(experience_tranquillum PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_tranquillum PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_tranquillum PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_tranquillum.lib")
-    target_link_options(experience_tranquillum PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_tranquillum.def")
-    target_link_libraries(experience_tranquillum PRIVATE ${library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_tranquillum.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_tranquillum.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 elseif(${LINUX})
 
@@ -82,7 +82,7 @@ elseif(${LINUX})
 
 
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
-    target_link_libraries(experience_tranquillum PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
@@ -99,7 +99,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_compile_definitions(experience_tranquillum PRIVATE _APP_EXPERIENCE_TRANQUILLUM_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 

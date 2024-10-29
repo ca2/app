@@ -198,7 +198,7 @@ namespace windowing
 
       synchronouslock.unlock();
 
-      __defer_construct(m_pcursormanager);
+      __defer_construct_new(m_pcursormanager);
 
       m_pcursormanager->m_pwindowing = this;
 

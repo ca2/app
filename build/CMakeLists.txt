@@ -73,5 +73,5 @@ elseif(${LINUX} OR ${__BSD__})
 endif ()
 
 
-target_compile_definitions(build PRIVATE _BUILD_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 

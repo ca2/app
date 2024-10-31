@@ -729,7 +729,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       m_itemLButtonDown = -1;
 
@@ -756,7 +756,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       ReleaseCapture();
 

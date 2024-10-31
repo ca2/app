@@ -780,7 +780,7 @@ public:
 
    virtual ::user::user * user();
    // virtual ::axis::user * axisuser();
-   // virtual ::base::user * baseuser();
+   // virtual ::base::user * user();
    // virtual ::bred::user * breduser();
    // virtual ::core::user * coreuser();
 

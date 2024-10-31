@@ -279,9 +279,9 @@ namespace hi5
 
             auto pcontext = m_papplication;
             
-            auto psession = pcontext->m_psession->m_pcoresession;
+            auto psession = pcontext->m_psession;
             
-            auto puser = psession->m_puser->m_pcoreuser;
+            auto puser = psession->m_puser;
 
             m_pformdocumentAuth = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 

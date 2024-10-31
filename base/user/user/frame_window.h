@@ -86,7 +86,7 @@ namespace user
       // ::base::application * get_app();
       // ::base::session * get_session();
       // ::base::system * get_system();
-      // ::base::user * baseuser() override;
+      // ::base::user * user() override;
 
 
       void common_construct();

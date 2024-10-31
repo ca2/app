@@ -155,7 +155,7 @@ namespace windowing
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       puser->on_initialize_window_object();
 
@@ -487,7 +487,7 @@ namespace windowing
       //
       //         auto psession = session();
       //
-      //         auto puser = psession->user();
+      //         auto puser = user();
       //
       //         auto pwindowing = system()->windowing();
       //
@@ -3852,13 +3852,13 @@ bMove = false;
 
    //   //auto psession = session();
 
-   //   //auto puser = psession->user();
+   //   //auto puser = user();
 
    //   //auto pwindowing = system()->windowing();
 
    //   ////      auto psession = session();
 
-   //   ////      auto puser = psession->user();
+   //   ////      auto puser = user();
 
    //   ////      auto pwindowing = system()->windowing();
 
@@ -4537,7 +4537,7 @@ bMove = false;
 
          //auto psession = session();
 
-         //auto puser = psession->user();
+         //auto puser = user();
 
          //auto pwindowing = system()->windowing();
 
@@ -5614,7 +5614,7 @@ bMove = false;
       //
       //         auto psession = session();
       //
-      //         auto puser = psession->user();
+      //         auto puser = user();
       //
       //         auto pwindowing = system()->windowing();
       //
@@ -7919,7 +7919,7 @@ bMove = false;
 
    //   auto psession = session();
 
-   //   auto puser = psession->user();
+   //   auto puser = user();
 
    //   auto pwindowing = system()->windowing();
 

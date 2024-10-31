@@ -367,64 +367,6 @@ found:
 void __node_acme_pre_init()
 {
 
-   //xxdebug_box("__node_acme_pre_init","box",e_message_box_ok);
-
-   //g_pgdiplusStartupInput     = normal_new Gdiplus::GdiplusStartupInput();
-
-   //g_pgdiplusStartupOutput    = normal_new Gdiplus::GdiplusStartupOutput();
-
-   //g_gdiplusToken             = NULL;
-
-   //g_gdiplusHookToken         = NULL;
-
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
-
-   //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
-
-   //if(statusStartup != Gdiplus::Ok)
-   //{
-
-   //   output_error_message("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
-
-   //   return 0;
-
-   //}
-
-   //statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
-
-   //if(statusStartup != Gdiplus::Ok)
-   //{
-
-   //   auto pmessagebox = __initialize_new ::message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
-
-//pmessagebox->sync();
-
-   //   return 0;
-
-   //}
-
-// #ifndef USE_OS_IMAGE_LOADER
-
-//    try
-//    {
-
-//       FreeImage_Initialise(false);
-
-//    }
-//    catch (...)
-//    {
-
-//       ::message_box(nullptr, "Failure to initialize FreeImage (::acme::init_core)", "FreeImage_Initialise failure", e_message_box_icon_exclamation);
-
-//       return false;
-
-//    }
-
-// #endif // SMALLCODE
-
-
-
-   //return true;
 
 }
 
@@ -432,16 +374,6 @@ void __node_acme_pre_init()
 void __node_acme_pos_init()
 {
 
-   //_set_purecall_handler(_ca2_purecall);
-
-   //HMODULE hmoduleUser32 = ::LoadLibraryW(L"User32");
-   //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
-
-
-
-
-
-   //return true;
 
 }
 
@@ -450,9 +382,6 @@ void __node_acme_pre_term()
 {
 
 
-
-   //return true;
-
 }
 
 
@@ -460,68 +389,7 @@ void __node_acme_pos_term()
 {
 
 
-   // #ifndef USE_OS_IMAGE_LOADER
-
-   //    try
-   //    {
-
-   //       FreeImage_DeInitialise();
-
-   //    }
-   //    catch (...)
-   //    {
-
-   //    }
-
-   // #endif // USE_OS_IMAGE_LOADER
-
-
-      //if (g_pgdiplusStartupOutput != nullptr)
-      //{
-
-      //   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-
-      //   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
-
-
-      //   ::acme::del(g_pgdiplusStartupInput);
-      //   ::acme::del(g_pgdiplusStartupOutput);
-      //}
-
-   //if (is_verbose())
-   //{
-
-   //   information(L"acme terminating!\n");
-
-   //}
-
-   //::CoUninitialize();
-
-
-   //WSACleanup();
-
-
-   //return true;
-
 }
-
-
-//void attach_thread_input_to_main_thread(bool bAttach)
-//{
-//
-//   MSG msg;
-//
-//   if (bAttach)
-//   {
-//
-//      PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-//
-//   }
-//
-//   AttachThreadInput(::GetCurrentThreadId(), (DWORD)main_user_itask(), bAttach ? true : false);
-//
-//}
 
 
 string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)

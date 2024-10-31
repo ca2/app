@@ -206,6 +206,8 @@ namespace platform
 
       create_task_message_queue();
 
+      factory()->add_factory_item< ::nano::http::get>();
+
    }
 
 
@@ -1226,6 +1228,106 @@ namespace platform
    //      return estatus;
    //
    //   }
+
+   ::task* system::get_task(itask_t itask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      return m_taskmap[itask];
+
+   }
+
+
+   itask_t system::get_task_id(const ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      itask_t itask = null_itask;
+
+      if (!m_taskidmap.lookup((::task* const)ptask, itask))
+      {
+
+         return 0;
+
+      }
+
+      return itask;
+
+   }
+
+
+   void system::set_task(itask_t itask, ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      __refdbg_add_referer_for(ptask);
+
+      m_taskmap[itask] = ptask;
+
+      m_taskidmap[ptask] = itask;
+
+   }
+
+
+   void system::unset_task(itask_t itask, ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
+
+      if(m_taskidmap.has(ptask)) m_taskidmap.erase_item(ptask);
+
+   }
+
+
+   bool system::is_task_on(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      return m_mapTaskOn.plookup(atom);
+
+   }
+
+
+   bool system::is_active(::task* ptask)
+   {
+
+      if (::is_null(ptask))
+      {
+
+         return false;
+
+      }
+
+      return is_task_on(ptask->m_itask);
+
+   }
+
+
+   void system::set_task_on(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      m_mapTaskOn.set_at(atom, atom);
+
+   }
+
+
+   void system::set_task_off(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      m_mapTaskOn.erase_item(atom);
+
+   }
+
 
 
    void system::TermSystem()
@@ -3121,7 +3223,7 @@ particle* system::matter_mutex()
 
       //   auto pnode = session();
       //
-      //   auto puser = psession->user();
+      //   auto puser = user();
       //
       //   auto pwindowing = system()->windowing();
       //

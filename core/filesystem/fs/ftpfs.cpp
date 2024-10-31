@@ -539,7 +539,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    int iTry = 0;
 
-   auto papp = m_papplication->m_papplication->m_pcoreapplication;
+   auto papp = m_papplication->m_papplication;
 
    if (!pclient)
    {
@@ -565,7 +565,9 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
 retry:
 
-      papp->interactive_credentials(plogon);
+      ::cast < ::account::interactive > paccountinteractive = papp;
+
+      paccountinteractive->interactive_credentials(plogon);
 
 retry_login:
 

@@ -38,7 +38,7 @@ namespace user
       // ::base::application * get_app();
       // ::base::session * get_session();
       // ::base::system * get_system();
-      // ::base::user * baseuser() override;
+      // ::base::user * user() override;
 
 
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);

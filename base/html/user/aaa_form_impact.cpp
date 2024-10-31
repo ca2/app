@@ -206,7 +206,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
    ////__update(::update)
    {
 
-      if (ptopic->m_atom == ID_BROWSE)
+      if (ptopic->m_atom == id_browse)
       {
 
          if (!ptopic->payload(id_form).is_empty())

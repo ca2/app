@@ -211,7 +211,7 @@ namespace filemanager
 
       }
 
-      if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
+      if (filemanager_document() == ptopic->cast < ::user::document >(id_document))
       {
 
          if (ptopic->m_atom == id_open_selection_properties)

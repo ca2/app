@@ -111,7 +111,18 @@ void payload::_set_element(::subparticle * pelement)
 
    }
 
-   m_preferer = __refdbg_add_referer_for(pelement);
+   if(pelement->is_referencing_debugging_enabled())
+   {
+
+      m_preferer = __refdbg_add_referer_for(pelement);
+
+   }
+   else
+   {
+
+      m_preferer = nullptr;
+
+   }
 
    ::increment_reference_count(pelement);
 

@@ -142,7 +142,7 @@ namespace userpresence
    void department::_001OnTimer(::timer * ptimer)
    {
 
-      auto psession = session()->m_pbasesession;
+      auto psession = session();
 
       if(psession->account()->get_user() != nullptr)
       {

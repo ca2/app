@@ -181,7 +181,7 @@ namespace filemanager
 
       BASE::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INITIAL_UPDATE)
+      if (ptopic->m_atom == id_initial_update)
       {
 
          set_pending_column_update();

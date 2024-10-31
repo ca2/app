@@ -423,7 +423,7 @@ namespace userex
 
       pinteraction->window_rectangle(rectangleWindow);
       
-      auto puser = baseuser();
+      auto puser = user();
       
       auto pmenuSource = puser->menu_from_xml(this, strXml);
       

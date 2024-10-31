@@ -94,7 +94,7 @@ namespace user
       if (efontlist == ::write_text::e_font_list_single_column)
       {
 
-         m_pfontlist = psession->get_single_column_font_list();
+         m_pfontlist = session()->get_single_column_font_list();
 
       }
       else if (efontlist == ::write_text::e_font_list_wide)
@@ -175,7 +175,7 @@ namespace user
 
       
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       if (!::is_same_item(pitem, main_content().m_pitemCurrent))
       {
@@ -722,7 +722,9 @@ namespace user
 
             auto psystem = system();
 
-            psystem->signal(id_font_enumeration);
+            ::cast < ::manager > pmanager = psystem;
+
+            pmanager->signal(id_font_enumeration);
 
          }
 

@@ -206,7 +206,7 @@ namespace account
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
 
-      
+      auto psession = session();
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
@@ -417,7 +417,7 @@ namespace account
             else
             {
 
-               auto puser = psession->user();
+               auto puser = user();
 
                auto pwindowing = system()->windowing();
 
@@ -528,7 +528,7 @@ namespace account
 
       //
 
-      //auto puser = psession->user();
+      //auto puser = user();
 
       //auto pwindowing = system()->windowing();
 

@@ -685,13 +685,13 @@ namespace user
 
             
 
-            auto puser = psession->user();
+            auto puser = user();
 
             auto pwindowing = system()->windowing();
 
             //      
 
-            //      auto puser = psession->user();
+            //      auto puser = user();
 
             //      auto pwindowing = system()->windowing();
 
@@ -1362,7 +1362,7 @@ namespace user
 
          //
 
-         //auto puser = psession->user();
+         //auto puser = user();
 
          //auto pwindowing = system()->windowing();
 
@@ -1962,6 +1962,12 @@ namespace user
 
       detach_window();
 
+      ASSERT(m_puserinteraction);
+
+      ASSERT(m_puserthread);
+
+      m_puserthread->erase_task(m_puserinteraction);
+
       m_puserinteraction.release();
 
       if (::is_set(pwindowthread))
@@ -2378,7 +2384,7 @@ namespace user
       //
       //         
       //
-      //         auto puser = psession->user();
+      //         auto puser = user();
       //
       //         auto pwindowing = system()->windowing();
       //
@@ -4664,7 +4670,7 @@ namespace user
 
    //   
 
-   //   auto puser = psession->user();
+   //   auto puser = user();
 
    //   auto pwindowing = system()->windowing();
 

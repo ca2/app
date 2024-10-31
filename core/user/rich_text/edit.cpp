@@ -214,7 +214,7 @@ namespace user
 
             
 
-            auto puser = psession->user();
+            auto puser = user();
 
             //auto puserinteractionFocusNew = puser->interaction(pkillfocus->m_oswindowNew);
 
@@ -1489,7 +1489,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         
+         auto psession = session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1635,7 +1635,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         
+         auto psession = session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1720,7 +1720,7 @@ namespace user
 
          }
 
-         
+         auto psession = session();
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 

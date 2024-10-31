@@ -11,7 +11,7 @@ namespace core
    session::session()
    {
 
-      m_pcoresession = this;
+      //m_pcoresession = this;
 
    }
 
@@ -53,7 +53,7 @@ namespace core
 
       ::bred::session::on_instantiate_application(papp);
 
-      //papp->m_pcoresession = this;
+      //papp = this;
       //papp = m_pcoresystem;
 
    }

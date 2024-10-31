@@ -24,7 +24,7 @@ namespace core
       //void on_set_platform() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
+      //virtual void initialize(::particle * pparticle) override;
 
 
       virtual void initialize_rich_text();

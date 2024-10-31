@@ -22,6 +22,10 @@ namespace core
 
       common_construct();
 
+      factory()->add_factory_item < ::core::session, ::platform::session >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
+
+
    }
 
 
@@ -34,7 +38,7 @@ namespace core
    void system::common_construct()
    {
 
-      m_pcoresystem = this;
+      //m_pcoresystem = this;
 
       //factory()->add_factory_item < ::core::idpool, ::acme::idpool >();
       //factory()->add_factory_item < ::core::user, ::user::user >();
@@ -43,38 +47,38 @@ namespace core
    }
 
 
-   void system::initialize(::particle * pparticle)
-   {
+   // void system::initialize(::particle * pparticle)
+   // {
+   //
+   //    //auto estatus =
+   //
+   //    ::base::system::initialize(pparticle);
+   //
+   //
+   //
+   //    //if (!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return estatus;
+   //
+   // }
 
-      //auto estatus = 
-      
-      ::base::system::initialize(pparticle);
-
-
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
-
-
-   void system::on_set_platform()
-   {
-
-      bred::system::on_set_platform();
-
-      factory()->add_factory_item < ::core::session, ::platform::session >();
-      factory()->add_factory_item < ::core::user, ::user::user >();
-
-
-   }
-
+   //
+   // void system::on_set_platform()
+   // {
+   //
+   //    bred::system::on_set_platform();
+   //
+   //    // factory()->add_factory_item < ::core::session, ::platform::session >();
+   //    // factory()->add_factory_item < ::core::user, ::user::user >();
+   //    //
+   //
+   // }
+   //
 
    //void system::on_add_session(::apex::session* papexsession)
    //{
@@ -87,7 +91,7 @@ namespace core
    //      if (!m_pcoresession)
    //      {
 
-   //         m_pcoresession = papexsession->m_pcoresession;
+   //         m_pcoresession = papexsession;
 
    //      }
 

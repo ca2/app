@@ -39,34 +39,34 @@ namespace user
    }
 
 
-   ::core::application* color_combo_box::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* color_combo_box::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* color_combo_box::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* color_combo_box::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* color_combo_box::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* color_combo_box::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
    void color_combo_box::install_message_routing(::channel * psender)
    {

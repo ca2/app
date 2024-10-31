@@ -1055,6 +1055,12 @@
     <ClInclude Include="windowing\window_base.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
+    <ClInclude Include="networking\http\pac.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\proxy.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1524,6 +1530,12 @@
     </ClCompile>
     <ClCompile Include="windowing\window_base.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\pac.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\proxy.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

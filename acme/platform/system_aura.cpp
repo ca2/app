@@ -147,11 +147,11 @@ namespace platform
    //virtual bool is_system() const override{}
 
 
-   ::string aura_system_layer::crypto_md5_text(const ::string& str)
-   {
-      return {};
-   }
-
+   // ::string aura_system_layer::crypto_md5_text(const ::string& str)
+   // {
+   //    return {};
+   // }
+   //
 
    //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
    //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}

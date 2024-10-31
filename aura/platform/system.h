@@ -389,6 +389,7 @@ namespace aura
       //virtual void process_init();
 
       virtual void initialize_draw2d();
+         virtual void initialize_imaging();
       //virtual void initialize_write_text();
       virtual ::pointer<::factory::factory>& draw2d_factory();
       virtual ::string draw2d_get_default_implementation_name();

@@ -18,6 +18,8 @@ namespace userfs
    item::item(::userfs::tree_data * ptreedata) :
       m_ptreedata(ptreedata)
    {
+
+      initialize(ptreedata);
       
       //m_iImage = -1;
       //m_iImageSelected = -1;
@@ -105,9 +107,9 @@ namespace userfs
 
       }
 
-      auto psession = m_ptreedata->get_session();
+      auto psession = m_ptreedata->session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pshell = puser->shell();
 

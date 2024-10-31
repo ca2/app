@@ -151,34 +151,34 @@ namespace user
 
 
 
-   ::core::application* mesh::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* mesh::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* mesh::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* mesh::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* mesh::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* mesh::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
    void mesh::install_message_routing(::channel * pchannel)
    {
@@ -3088,7 +3088,7 @@ namespace user
 
       set_keyboard_focus();
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       if (!_001DisplayHitTest(point, m_iDisplayItemLButtonDown1))
       {
@@ -3096,6 +3096,8 @@ namespace user
          m_iDisplayItemLButtonDown1 = -1;
 
       }
+
+      auto psession = session();
 
       if(m_bSelect)
       {
@@ -3366,7 +3368,7 @@ namespace user
 
       }
 
-      
+      auto psession = session();
 
       if(psession->is_key_pressed(::user::e_key_shift))
       {
@@ -3813,7 +3815,7 @@ namespace user
 
                m_iItemEnter = -1;
 
-               
+               auto psession = session();
 
                bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_left_shift);
                bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_right_shift);

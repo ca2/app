@@ -266,7 +266,7 @@ namespace user
 
             
 
-            auto puser = psession->user();
+            auto puser = user();
 
             //auto puserinteractionFocusNew = puser->interaction(pkillfocus->m_oswindowNew);
 
@@ -371,6 +371,8 @@ namespace user
 
             m_timeStartDrag.Now();
 
+            auto psession = session();
+
             if (psession->is_key_pressed(e_key_shift))
             {
 
@@ -403,7 +405,7 @@ namespace user
 
             set_keyboard_focus();
 
-            psession->user()->set_mouse_focus_LButtonDown(this);
+            user()->set_mouse_focus_LButtonDown(this);
 
             pmouse->m_bRet = true;
 
@@ -459,7 +461,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         if (pitem && psession->user()->get_mouse_focus_LButtonDown() == this)
+         if (pitem && user()->get_mouse_focus_LButtonDown() == this)
          {
 
             m_iSelEnd = pitem->m_item.m_iItem;
@@ -1230,7 +1232,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         
+         auto psession = session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1388,7 +1390,7 @@ namespace user
 
          auto pkey = pmessage->m_union.m_pkey;
 
-         
+         auto psession = session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1482,6 +1484,8 @@ namespace user
 
          }
 
+         auto psession = session();
+
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
          if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
@@ -1570,7 +1574,7 @@ namespace user
 
          string strChar;
 
-         
+         auto psession = session();
 
          if (pkey->m_ekey == ::user::e_key_s)
          {

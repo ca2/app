@@ -360,7 +360,7 @@ namespace api_ca2
 
       auto pmemoryfile = create_memory_file();
 
-      http()->download(scopedstrUrl, pmemoryfile, set);
+      http()->download(pmemoryfile, scopedstrUrl, set);
 
       return pmemoryfile->memory();
 

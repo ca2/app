@@ -2159,6 +2159,24 @@ namespace user
 
       ::task::destroy();
 
+      if(m_pimagelist.size()>0)
+      {
+         for(auto &pimagelist : m_pimagelist.payloads())
+         {
+            pimagelist.defer_destroy();
+         }
+      }
+      if(m_pimagelistHover.size()>0)
+      {
+         for(auto &pimagelist : m_pimagelistHover.payloads())
+         {
+            pimagelist.defer_destroy();
+         }
+      }
+      m_pimagelist.clear();
+      m_pimagelistHover.clear();
+
+
       //task_erase_all();
 
       //return ::success;

@@ -84,7 +84,7 @@ namespace filemanager
       //   
       //   auto psession = pcontext->m_psession;
       //   
-      //   auto puser = psession->m_puser->m_pcoreuser;
+      //   auto puser = psession->m_puser;
 
       //   puser->m_pimpactsystemForm->request(prequest);
 
@@ -99,24 +99,24 @@ namespace filemanager
 
       //   form * pformview = pdocument->get_typed_impact < form >();
 
-      //   auto ptopic = create_topic(ID_BROWSE);
+      //   auto ptopic = create_topic(id_browse);
 
       //   if (pimpactdata->m_atom == "new_folder")
       //   {
 
-      //      ptopic->payload(ID_FORM) = "matter://filemanager/new_folder.html";
+      //      ptopic->payload(id_form) = "matter://filemanager/new_folder.html";
 
       //   }
       //   if (pimpactdata->m_atom == "replace_name")
       //   {
 
-      //      ptopic->payload(ID_FORM) = "matter://filemanager/replace_name_in_file_system.html";
+      //      ptopic->payload(id_form) = "matter://filemanager/replace_name_in_file_system.html";
 
       //   }
       //   else if (pimpactdata->m_atom == "add_location")
       //   {
 
-      //      ptopic->payload(ID_FORM) = "matter://filemanager/add_location_1.html";
+      //      ptopic->payload(id_form) = "matter://filemanager/add_location_1.html";
 
       //   }
 
@@ -146,7 +146,7 @@ namespace filemanager
       //   
       //   auto psession = pcontext->m_psession;
       //   
-      //   auto puser = psession->m_puser->m_pcoreuser;
+      //   auto puser = psession->m_puser;
 
       //   puser->m_pimpactsystemOperation->request(prequest);
 
@@ -169,10 +169,10 @@ namespace filemanager
       //else
       {
 
-         auto pfilemanagerdata = application()->m_pcoreapplication->
+         auto pfilemanagerdata = application()->
             filemanager()->create_filemanager_data();
 
-         application()->m_pcoreapplication->
+         application()->
             filemanager()->impact_system()->create_subdocument(
                pimpactdata,
                pfilemanagerdata);

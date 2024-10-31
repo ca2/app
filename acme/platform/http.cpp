@@ -70,7 +70,7 @@ namespace platform
 
       pget->call();
 
-      ::string str = pget->m_memory.as_utf8();
+      ::string str = pget->get_memory_response()->as_utf8();
 
       return str;
 
@@ -84,15 +84,15 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->m_setIn = set;
+      pget->get_property_set() = set;
 
       pget->m_timeSyncTimeout =  timeTimeout;
 
       pget->call();
 
-      ::string str = pget->m_memory.as_utf8();
+      ::string str = pget->get_memory_response()->as_utf8();
 
-      set = pget->m_setOut;
+      set = pget->get_property_set();
 
       return str;
 
@@ -120,7 +120,7 @@ namespace platform
 
       pget->call();
 
-      pfile->write(pget->m_memory);
+      pfile->write(*pget->get_memory_response());
 
       pfile->seek_to_begin();
 
@@ -136,15 +136,15 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->m_setIn = set;
+      pget->get_property_set() = set;
 
       pget->m_timeSyncTimeout =  timeTimeout;
 
       pget->call();
 
-      set = pget->m_setOut;
+      set = pget->get_property_set();
 
-      pfile->write(pget->m_memory);
+      pfile->write(*pget->get_memory_response());
 
       pfile->seek_to_begin();
 

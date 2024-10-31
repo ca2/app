@@ -1764,13 +1764,6 @@ void thread::destroy()
 bool thread::task_get_run() const
 {
 
-   if (((::thread *)this)->check_tasks_finished())
-   {
-
-      return true;
-
-   }
-
    if (m_bMessageThread)
    {
 
@@ -1786,19 +1779,16 @@ bool thread::task_get_run() const
 
       }
 
-      return !has_finishing_flag();
-
    }
-   else
+
+   if (!::task::task_get_run())
    {
 
-      auto bFinishing = has_finishing_flag();
-
-      auto bDestroying = has_flag(e_flag_destroying);
-
-      return !bFinishing;
+      return false;
 
    }
+
+   return true;
 
 }
 

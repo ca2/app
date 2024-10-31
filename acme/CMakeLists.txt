@@ -501,6 +501,10 @@ list(APPEND library_source
    platform/application_array.h
    platform/application_base.cpp
    platform/application_base.h
+   platform/application_bred.cpp
+   platform/application_bred.h
+   platform/application_core.cpp
+   platform/application_core.h
    platform/application_container.cpp
    platform/application_container.h
    platform/application_exit.cpp
@@ -613,6 +617,8 @@ list(APPEND library_source
    platform/system_aura.h
    platform/system_axis.cpp
    platform/system_axis.h
+   platform/system_core.cpp
+   platform/system_core.h
    platform/system_factory.cpp
    platform/system_factory.h
    platform/system_setup.cpp

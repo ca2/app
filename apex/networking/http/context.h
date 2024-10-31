@@ -42,7 +42,7 @@ namespace http
 
       virtual void http_system_destruct();
 
-      DECLARE_MESSAGE_HANDLER(get);
+      //DECLARE_MESSAGE_HANDLER(get);
 
       virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::url::url & url, property_set & set);
       virtual bool get(::http::session & session, const ::url::url & url, string & str, property_set & set);
@@ -91,7 +91,7 @@ namespace http
 
       property_set & process_set(property_set & set, const ::url::url & url);
 
-      //DECLARE_MESSAGE_HANDLER(get);
+      void get(::http::message * pmessage) override;
 
       virtual bool get(::pointer<::sockets::http_client_socket>& psocket, const ::url::url & url, property_set & set);
 

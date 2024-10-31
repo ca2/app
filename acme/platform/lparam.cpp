@@ -21,7 +21,7 @@ lparam::lparam(const ::subparticle * psubparticle)
 
       //((subparticle*)psubparticle)->m_prefererTransfer = ::allocator::defer_push_referer((::subparticle *)psubparticle, { (::subparticle *)psubparticle, this, __FUNCTION_FILE_LINE__ });
 
-      ((subparticle *)psubparticle)->m_prefererTransfer = ::allocator::defer_push_referer((::subparticle *)psubparticle, { this, __FUNCTION_FILE_LINE__ });
+      ((subparticle *)psubparticle)->m_prefererTransfer2 = __refdbg_add_referer;
 
    }
 
@@ -50,7 +50,7 @@ lparam::lparam(::subparticle * psubparticle, ::reference_referer * preferer)
 
    }
 
-   psubparticle->m_prefererTransfer = preferer;
+   psubparticle->m_prefererTransfer2 = preferer;
 
    m_lparam = (iptr)(void *)psubparticle;
 

@@ -730,7 +730,7 @@ namespace userfs
       if (i == 0)
       {
 
-         return user()->m_pcoreuser->shell()->GetImageList(16);
+         return user()->shell()->GetImageList(16);
 
       }
 
@@ -1001,9 +1001,9 @@ namespace userfs
 
             }
 
-            ::pointer<::core::session>psession = get_session();
+            auto psession = session();
 
-            auto puser = psession->user();
+            auto puser = user();
 
             ::file::path pathUser = pfsitem->user_path();
 

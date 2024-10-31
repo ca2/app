@@ -22,9 +22,9 @@ public:
 
 
 
-   ::core::application* get_app();
-   ::core::session* get_session();
-   ::core::system* get_system();
+   // ::core::application* get_app();
+   // ::core::session* get_session();
+   // ::core::system* get_system();
 
    ::filemanager::document * get_document();
    virtual ::filemanager::data * filemanager_data();
@@ -109,7 +109,7 @@ public:
 
    ::fs::set * fs_data() override { return ::filemanager_impact_base::fs_data(); }
 
-   ::core::application* get_app() { return ::filemanager_impact_base::get_app(); }
+   //::core::application* get_app() { return ::filemanager_impact_base::get_app(); }
 
    ::filemanager::document* get_document() { return ::filemanager_impact_base::get_document(); }
 

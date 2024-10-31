@@ -8057,7 +8057,7 @@ namespace aura
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pwindowing = system()->windowing();
 
@@ -9177,7 +9177,7 @@ namespace aura
    // }
    //
    //
-   // ::base::user * application::baseuser()
+   // ::base::user * application::user()
    // {
    //
    //    return aurauser();
@@ -9196,7 +9196,7 @@ namespace aura
    // ::core::user * application::coreuser()
    // {
    //
-   //    return aurauser()->m_pcoreuser;
+   //    return aurauser();
    //
    // }
    //

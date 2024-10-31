@@ -80,13 +80,13 @@ namespace base
 
       ::axis::session::on_instantiate_application(papp);
 
-      //papp->m_pbasesession = this;
+      //papp = this;
       //papp = m_pbasesystem;
 
    }
 
    
-   // ::base::user* session::baseuser()
+   // ::base::user* session::user()
    // {
    //
    //    return m_puser ? m_puser : nullptr;

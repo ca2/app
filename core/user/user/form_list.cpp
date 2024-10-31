@@ -43,34 +43,34 @@ namespace user
    }
 
 
-   ::core::application* form_list::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* form_list::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* form_list::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* form_list::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* form_list::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* form_list::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void form_list::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra)
@@ -2022,7 +2022,7 @@ namespace user
 
          bool bOk;
 
-         
+         auto psession = session();
 
          if (psession->is_key_pressed(::user::e_key_shift))
          {

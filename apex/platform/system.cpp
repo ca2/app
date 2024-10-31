@@ -39,6 +39,7 @@
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
 #include "apex/networking/http/cookie.h"
+#include "apex/networking/http/message.h"
 #include "apex/networking/internet.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
@@ -189,7 +190,7 @@ namespace apex
 
       factory()->add_factory_item < ::apex::session, ::apex::session >();
       factory()->add_factory_item < ::http::context, ::platform::http >();
-
+      factory()->add_factory_item< ::http::message, ::nano::http::get>();
 
    }
 

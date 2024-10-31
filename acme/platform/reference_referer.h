@@ -353,9 +353,26 @@ class __new_refdbg_continuation_site
 public:
 
 
+#if REFERENCING_DEBUGGING
+
+   ::reference_referer * m_preferencerefererTransferStack;
+
+#endif
+
 
    __new_refdbg_continuation_site()
    {
+
+#if REFERENCING_DEBUGGING
+
+      if(::allocator::get_top_referer())
+      {
+
+         m_preferencerefererTransferStack = ::allocator::get_top_referer();
+
+      }
+
+#endif
 
    }
 
@@ -367,6 +384,8 @@ public:
 #if REFERENCING_DEBUGGING
 
       p->on_after_construct(nullptr);
+
+      p->m_prefererTransfer2 = m_preferencerefererTransferStack;
 
 #endif
 

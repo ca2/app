@@ -100,9 +100,9 @@ namespace user
 
             //   auto pcontext = m_papplication;
 
-            //   auto psession = pcontext->m_psession->m_pcoresession;
+            //   auto psession = pcontext->m_psession;
 
-            //   auto puser = psession->m_puser->m_pcoreuser;
+            //   auto puser = psession->m_puser;
 
             //   puser->will_use_impact_hint(COLORSEL_IMPACT);
 

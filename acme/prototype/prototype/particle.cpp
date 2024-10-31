@@ -117,6 +117,8 @@ void particle::finalize()
 void particle::set_synchronization(::particle *pparticleSynchronization)
 {
 
+   __refdbg_add_referer
+
    m_pparticleSynchronization = pparticleSynchronization;
 
 }
@@ -1861,10 +1863,10 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 // }
 //
 //
-// ::base::user * particle::baseuser()
+// ::base::user * particle::user()
 // {
 //
-//    return ::is_set(application()) ? application()->baseuser() : nullptr;
+//    return ::is_set(application()) ? application()->user() : nullptr;
 //
 // }
 //

@@ -35,34 +35,34 @@ filemanager_impact_base::~filemanager_impact_base()
 }
 
 
-::core::application* filemanager_impact_base::get_app()
-{
-
-   auto papplication = application();
-
-   return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-}
-
-
-::core::session* filemanager_impact_base::get_session()
-{
-
-   auto pacmesession = session();
-
-   return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-}
-
-
-::core::system* filemanager_impact_base::get_system()
-{
-
-   auto pacmesystem = system();
-
-   return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-}
+// ::core::application* filemanager_impact_base::get_app()
+// {
+//
+//    auto papplication = application();
+//
+//    return ::is_set(papplication) ? papplication : nullptr;
+//
+// }
+//
+//
+// ::core::session* filemanager_impact_base::get_session()
+// {
+//
+//    auto pacmesession = session();
+//
+//    return ::is_set(pacmesession) ? pacmesession : nullptr;
+//
+// }
+//
+//
+// ::core::system* filemanager_impact_base::get_system()
+// {
+//
+//    auto pacmesystem = system();
+//
+//    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+//
+// }
 
 
 ::filemanager::document * filemanager_impact_base::get_document()
@@ -303,7 +303,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    if (ptopic->m_atom == id_initialize)
    {
 
-      //if (filemanager_document() == ptopic->cast < ::user::document >(ID_DOCUMENT))
+      //if (filemanager_document() == ptopic->cast < ::user::document >(id_document))
       //{
 
       //   //::pointer<::database::client>pclient = parent_frame();

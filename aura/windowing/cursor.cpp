@@ -121,7 +121,7 @@ namespace windowing
 
    //         
 
-   //         auto puser = psession->user();
+   //         auto puser = user();
 
    //         auto pwindowing = system()->windowing();
 

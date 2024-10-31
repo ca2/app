@@ -110,13 +110,13 @@ namespace nano
 
             pget->m_url = strUrl;
 
-            pget->m_setIn["only_headers"] = true;
+            pget->payload("only_headers") = true;
             
             pget->m_timeSyncTimeout = 5_min;
 
             pget->send();
 
-            auto strLocation = pget->m_setOut["location"].as_string();
+            auto strLocation = pget->payload("location").as_string();
 
             if (strLocation.is_empty())
             {
@@ -151,13 +151,13 @@ namespace nano
 
          pget->m_url = strUrl;
 
-         pget->m_setIn["only_headers"] = true;
+         pget->payload("only_headers") = true;
 
          pget->m_timeSyncTimeout = 5_min;
 
          pget->send();
 
-         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
 
          return iHttpStatusCode == 200;
 
@@ -178,11 +178,11 @@ namespace nano
 
          pget->send();
 
-         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
 
          ::string strOutput;
 
-         strOutput = pget->m_memory.as_utf8();
+         strOutput = pget->get_memory_response()->as_utf8();
 
          return strOutput;
 
@@ -202,9 +202,9 @@ namespace nano
 
          pget->send();
 
-         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
 
-         file_system()->put_block(path, pget->m_memory);
+         file_system()->put_block(path, *pget->get_memory_response());
 
       }
 

@@ -32,7 +32,7 @@ namespace bred
    //
    //    auto papplication = application();
    //
-   //    return ::is_set(papplication) ? papplication->m_pbredapplication : nullptr;
+   //    return ::is_set(papplication) ? papplication : nullptr;
    //
    // }
    //
@@ -1475,7 +1475,7 @@ void user::destroy()
 //
 //   //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 //
-//   //   if (&Session == nullptr || psession->user() == nullptr)
+//   //   if (&Session == nullptr || user() == nullptr)
 //   //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 //
 //   //   return puser->message_box(puiOwner, pszMessage, fuStyle);
@@ -1486,7 +1486,7 @@ void user::destroy()
 //   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
 //   //{
 //
-//   //   if (psession->user() == nullptr)
+//   //   if (user() == nullptr)
 //   //   {
 //
 //   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
@@ -1740,7 +1740,7 @@ void user::destroy()
 //
 //      auto psession = pcontext->m_psession;
 //
-//      auto puser = psession->m_puser->m_pcoreuser;
+//      auto puser = psession->m_puser;
 //
 //      return puser->default_create_mesh_data(this);
 //
@@ -1754,7 +1754,7 @@ void user::destroy()
 //
 //      auto psession = pcontext->m_psession;
 //
-//      auto puser = psession->m_puser->m_pcoreuser;
+//      auto puser = psession->m_puser;
 //
 //      return puser->default_create_list_header(this);
 //
@@ -1768,7 +1768,7 @@ void user::destroy()
 //
 //      auto psession = pcontext->m_psession;
 //
-//      auto puser = psession->m_puser->m_pcoreuser;
+//      auto puser = psession->m_puser;
 //
 //      return puser->default_create_list_data(this);
 //

@@ -1180,7 +1180,7 @@ namespace user
 
       
 
-      psession->user()->set_mouse_focus_RButtonDown(this);
+      user()->set_mouse_focus_RButtonDown(this);
 
       pmouse->m_bRet = true;
 

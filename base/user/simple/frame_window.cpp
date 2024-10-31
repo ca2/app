@@ -2360,7 +2360,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
    //if (pusersystem == nullptr)   // send initial update
    //{
 
-     // send_message_to_descendants(e_message_system_update, ID_INITIAL_UPDATE, (lparam)0, true, true);
+     // send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
 
    //}
 

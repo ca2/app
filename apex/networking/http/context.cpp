@@ -119,11 +119,11 @@ namespace http
    void context::perform(::nano::http::get * pget)
    {
 
-      ::property_set set(pget->m_setIn);
+      ::property_set set(pget->get_property_set());
       
-      get(&pget->m_memory, pget->url(), set);
+      get(pget->get_memory_response(), pget->url(), set);
       
-      pget->m_setOut = set;
+      pget->get_property_set() = set;
    
    }
 
@@ -2611,7 +2611,22 @@ namespace http
          if (pmemory != nullptr)
          {
 
-            pmemory->assign(psocket->GetDataPtr(), psocket->GetContentLength());
+            const char * pszData = (const char *) psocket->GetDataPtr();
+
+            auto size = psocket->GetContentLength();
+
+            if(::is_set(pszData) && size > 0)
+            {
+
+               pmemory->assign(pszData, size);
+
+            }
+            else
+            {
+
+               pmemory->clear();
+
+            }
 
          }
          else
@@ -2630,7 +2645,7 @@ namespace http
    }
 
 
-   void context::get(::message::message * pmessage)
+   void context::get(::http::message * pmessage)
    {
 
       ::pointer<message>pmessageMessage(pmessage);
@@ -2670,23 +2685,23 @@ namespace http
 
       }
 
-      pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_url);
+      process_set(*pmessage->m_ppropertyset, pmessageMessage->m_url);
 
       //auto phandler = __create< ::sockets::socket_handler >();
 
       property_set & set = pmessage->get_property_set();
 
-      if (pmessageMessage->m_setPost.property_count() > 0)
+      if (pmessageMessage->payload("post").as_property_set().property_count() > 0)
       {
 
-         set["post"] = pmessageMessage->m_setPost;
+         set["post"] = pmessageMessage->payload("post");
 
       }
 
-      if (pmessageMessage->m_setHeaders.property_count() > 0)
+      if (pmessageMessage->payload("in_headers").as_property_set().property_count() > 0)
       {
 
-         set["headers"] = pmessageMessage->m_setHeaders;
+         set["headers"] = pmessageMessage->payload("in_headers");
 
       }
 
@@ -2726,7 +2741,7 @@ namespace http
 
       pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
-      pmessageMessage->m_setHeaders = psocket->outheaders();
+      pmessageMessage->payload("out_headers") = psocket->outheaders();
 
       i32 iStatusCode;
 

@@ -387,7 +387,7 @@ namespace user
 
       }
 
-   //   //call_update(ID_INITIAL_UPDATE);        // initial update
+   //   //call_update(id_initial_update);        // initial update
 
    }
 
@@ -812,7 +812,7 @@ namespace user
    //
    //    auto pacmesession = session();
    //
-   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
    //
    // }
    //
@@ -827,7 +827,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* impact::baseuser()
+   // ::base::user* impact::user()
    // {
    //
    //
@@ -1218,7 +1218,7 @@ namespace user
 
    /*void impact::handle(::topic * ptopic, ::context * pcontext)
    {
-   call_update(ID_INITIAL_UPDATE);        // initial update
+   call_update(id_initial_update);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)

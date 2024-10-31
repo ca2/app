@@ -121,7 +121,7 @@ namespace base
    //
    //    auto pacmesession = session();
    //
-   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
    //
    // }
    //
@@ -141,7 +141,7 @@ namespace base
 
    //   
 
-   //   return ::is_set(psession) ? psession->user() : nullptr;
+   //   return ::is_set(psession) ? user() : nullptr;
 
    //}
 

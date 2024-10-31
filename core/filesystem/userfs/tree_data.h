@@ -35,10 +35,10 @@ namespace userfs
       void destroy() override;
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
-
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
+      //
 
 #ifdef _DEBUG
       virtual i64 increment_reference_count() override;

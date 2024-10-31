@@ -342,7 +342,7 @@ namespace userex
 
    //
 
-   //auto puser = psession->user();
+   //auto puser = user();
 
    //auto pwindowing = system()->windowing();
 
@@ -373,9 +373,9 @@ namespace userex
 
       string strText;
 
-      auto papp = get_app();
+      ::cast < ::database::client > pdatabaseclient = application();
 
-      papp->datastream()->get(m_atom + ".cur_text", strText);
+      pdatabaseclient->datastream()->get(m_atom + ".cur_text", strText);
 
    }
 

@@ -215,6 +215,8 @@ namespace allocator
       if (!preferencereferer)
       {
 
+         //::output_debug_string("hey! wait! deferedly pushing a referer?!");
+
          preferencereferer = new_referer(referer);
 
          _push_referer(preferencereferer);
@@ -684,13 +686,13 @@ namespace allocator
 
          pparticle->add_reference_item(pparticle->m_bIncludeCallStackTrace);
 
-         if (!pparticle->m_prefererTransfer
-            && pparticle->m_preferenceitema->m_itema[0])
-         {
-
-            pparticle->m_prefererTransfer = pparticle->m_preferenceitema->m_itema[0]->m_preferer;
-
-         }
+         // if (!pparticle->m_prefererTransfer
+         //    && pparticle->m_preferenceitema->m_itema[0])
+         // {
+         //
+         //    pparticle->m_prefererTransfer = pparticle->m_preferenceitema->m_itema[0]->m_preferer;
+         //
+         // }
 
 
       }

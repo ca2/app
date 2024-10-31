@@ -43,34 +43,34 @@ namespace userfs
    }
 
 
-   ::core::application* tree_data::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* tree_data::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* tree_data::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* tree_data::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* tree_data::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* tree_data::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
 #ifdef _DEBUG

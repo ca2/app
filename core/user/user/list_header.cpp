@@ -456,9 +456,9 @@ namespace user
 
          }
 
-         auto papp = get_app();
+         ::cast < ::database::client > pdatabaseclient = application();
 
-         papp->datastream()->set(strDataKey, iaWidth);
+         pdatabaseclient->datastream()->set(strDataKey, iaWidth);
 
          //if (!papp->datastream()->set(datakey, iaWidth))
          //{
@@ -471,9 +471,9 @@ namespace user
       else
       {
 
-         auto papp = get_app();
+         ::cast < ::database::client > pdatabaseclient = application();
 
-         if (papp->datastream()->get(strDataKey, iaWidth))
+         if (pdatabaseclient->datastream()->get(strDataKey, iaWidth))
          {
 
             ::collection::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());

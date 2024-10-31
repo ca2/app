@@ -117,7 +117,7 @@ namespace user
    //
    //    auto pacmesession = session();
    //
-   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
    //
    // }
    //
@@ -132,7 +132,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* document::baseuser()
+   // ::base::user* document::user()
    // {
    //
    //

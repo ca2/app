@@ -977,7 +977,7 @@ void object::add_task(::object* pobjectTask)
 
    pobjectTask->m_pobjectParentTask = this;
 
-   if(::is_set(ptaskOldParent))
+   if(::is_set(ptaskOldParent) && ptaskOldParent != this)
    {
 
       if(::is_set(ptaskOldParent->m_pparticleaChildrenTask))
@@ -1175,36 +1175,50 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
 }
 
 
-bool object::check_tasks_finished()
+bool object::set_children_to_finish_and_check_them_finished()
 {
+
+   if (!has_finishing_flag())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
 
    if (::is_null(m_pparticleaChildrenTask))
    {
+
+      return true;
+
+   }
+
+   if (has_flag(e_flag_checking_children_task))
+   {
+
+      if(m_pparticleaChildrenTask->is_empty())
+      {
+
+         return true;
+
+      }
 
       return false;
 
    }
 
-   if (m_bCheckingChildrenTask)
-   {
-
-      return m_pparticleaChildrenTask->has_element();
-
-   }
-
-   if (!has_finishing_flag())
-   {
-
-      return m_pparticleaChildrenTask->has_element();
-
-   }
-
    _synchronous_lock lock(synchronization());
 
-   if (m_bCheckingChildrenTask)
+   if (has_flag(e_flag_checking_children_task))
    {
 
-      return m_pparticleaChildrenTask->has_element();
+      if(m_pparticleaChildrenTask->is_empty())
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -1266,34 +1280,6 @@ bool object::check_tasks_finished()
              iChildTask++;
 
           }
-      //    else
-      //    {
-
-      //       _synchronous_lock synchronouslockChild(ptaskChild->synchronization());
-
-      //       string strType = ::type(ptaskChild).name();
-
-      //       if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
-      //       {
-
-      //          if (ptaskChild->m_pobjectParentTask == this)
-      //          {
-
-      //             ptaskChild->m_pobjectParentTask = nullptr;
-
-      //          }
-
-      //          m_pparticleaChildrenTask->erase_at(iChildTask);
-
-      //       }
-      //       else
-      //       {
-
-      //          iChildTask++;
-
-      //       }
-
-      //    }
 
       }
 
@@ -1303,26 +1289,10 @@ bool object::check_tasks_finished()
 
    }
 
-   if (m_pparticleaChildrenTask->has_element())
+   if (m_pparticleaChildrenTask->is_empty())
    {
 
       return true;
-
-   }
-
-   if(!has_flag(e_flag_checking_children_task))
-   {
-
-      try
-      {
-
-         post_quit();
-
-      }
-      catch (...)
-      {
-
-      }
 
    }
 
@@ -1349,10 +1319,10 @@ void object::destroy_tasks()
 
    set_finish();
 
-   while (check_tasks_finished())
+   while (!set_children_to_finish_and_check_them_finished())
    {
 
-      preempt(100_ms);
+      task_run(100_ms);
 
    }
 

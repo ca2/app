@@ -1198,7 +1198,7 @@ namespace user
 
       //   
 
-      //   auto puser = psession->user();
+      //   auto puser = user();
 
       //   auto pwindowing = system()->windowing();
 
@@ -1360,7 +1360,7 @@ namespace user
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pstyleSession = puser->user_style();
 
@@ -1395,7 +1395,7 @@ namespace user
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pstyleSession = puser->user_style();
 
@@ -1534,7 +1534,7 @@ namespace user
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pstyleSession = puser->user_style();
 
@@ -1574,7 +1574,7 @@ namespace user
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pstyleSession = puser->user_style();
 
@@ -2448,6 +2448,27 @@ namespace user
    //
    //   }
 
+   bool interaction::task_get_run() const
+   {
+
+      if(!(is_top_level() || is_root()))
+      {
+
+         return ::user::interaction_base::task_get_run();
+
+      }
+
+      if(!(m_ewindowflag & e_window_flag_destroyed))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
    ::user::element * interaction::get_parent_primitive()
    {
@@ -2963,7 +2984,7 @@ namespace user
 
       }
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (::is_null(puser))
       {
@@ -4572,6 +4593,8 @@ namespace user
       m_ptooltip.release();
 
       // windowing_window().release();
+
+
 
    }
 
@@ -7642,7 +7665,7 @@ namespace user
 
       }
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (::is_null(puser))
       {
@@ -13787,7 +13810,7 @@ namespace user
       //if (::is_set(psession))
       //{
 
-      //   auto puser = psession->user();
+      //   auto puser = user();
 
       //   auto pwindowing = system()->windowing();
 
@@ -13990,7 +14013,7 @@ namespace user
       //
       //         
       //
-      //         auto puser = psession->user();
+      //         auto puser = user();
       //
       //         auto pwindowing = system()->windowing();
       //
@@ -16288,7 +16311,7 @@ namespace user
       //
       //      }
       //
-      //      auto puser = psession->user();
+      //      auto puser = user();
       //
       //      if (!puser)
       //      {
@@ -19016,7 +19039,16 @@ namespace user
    bool interaction::is_child(element * puiIsChild)
    {
 
-      return ::user::interaction_base::is_child(puiIsChild);
+      if(!m_puserinteractionpointeraChild)
+      {
+
+         return false;
+
+      }
+
+      ::cast < ::user::interaction > puserinteractionIsChild = puiIsChild;
+
+      return m_puserinteractionpointeraChild->contains_interaction(puserinteractionIsChild);
 
    }
 
@@ -19442,12 +19474,14 @@ namespace user
          if (bStart)
          {
 
-            defer_branch("transparent_mouse_event_thread",
+            defer_branch(m_ptaskTransparentMouseEvents,
                [this]()
                {
 
                   _task_transparent_mouse_event();
+
                }
+
             );
 
             //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
@@ -19460,14 +19494,14 @@ namespace user
 
             _synchronous_lock synchronouslock(this->synchronization());
 
-            auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
+            auto pthread = m_ptaskTransparentMouseEvents;
 
             if (pthread)
             {
 
                pthread->post_quit();
 
-               payload("transparent_mouse_event_thread").unset();
+               m_ptaskTransparentMouseEvents.release();
 
             }
 
@@ -20787,7 +20821,7 @@ namespace user
 
          auto psession = session();
 
-         auto puser = psession->user();
+         auto puser = user();
 
          auto pwindowing = system()->windowing();
 
@@ -24504,7 +24538,7 @@ namespace user
 
       //      {
 
-      //         psession->user()->set_mouse_focus_LButtonDown(this);
+      //         user()->set_mouse_focus_LButtonDown(this);
 
       //         //set_need_redraw();
 
@@ -24871,7 +24905,7 @@ namespace user
 
       ////   
 
-      ////   auto puser = psession->user();
+      ////   auto puser = user();
 
       ////   auto pwindowing = system()->windowing();
 
@@ -25197,7 +25231,7 @@ namespace user
 
       //   //   
 
-      //   //   auto puser = psession->user();
+      //   //   auto puser = user();
 
       //   //   auto pwindowing = system()->windowing();
 
@@ -25405,7 +25439,7 @@ namespace user
 
                auto psession = session();
 
-               psession->user()->set_mouse_focus_LButtonDown(this);
+               user()->set_mouse_focus_LButtonDown(this);
 
                //set_need_redraw();
 
@@ -25765,7 +25799,7 @@ namespace user
 
       //   
 
-      //   auto puser = psession->user();
+      //   auto puser = user();
 
       //   auto pwindowing = system()->windowing();
 
@@ -26213,7 +26247,7 @@ namespace user
 
          //   
 
-         //   auto puser = psession->user();
+         //   auto puser = user();
 
          //   auto pwindowing = system()->windowing();
 
@@ -28761,7 +28795,7 @@ namespace user
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (m_pdrawcontext != nullptr)
       {

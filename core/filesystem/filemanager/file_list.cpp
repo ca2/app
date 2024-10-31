@@ -209,9 +209,9 @@ namespace filemanager
 
             auto pcontext = m_papplication;
             
-            auto psession = pcontext->m_psession->m_pcoresession;
+            auto psession = pcontext->m_psession;
             
-            auto puser = psession->m_puser->m_pcoreuser;
+            auto puser = psession->m_puser;
 
             auto pointCursor = pcontextmenu->m_pointHost;
             
@@ -238,9 +238,9 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          auto pointCursor = pcontextmenu->m_pointHost;
 
@@ -367,7 +367,7 @@ namespace filemanager
       if (ptimer->m_uEvent == 888888)
       {
 
-         auto psession = ::user::list::get_session();
+         auto psession = session();
 
          if (filemanager_data()->m_bSetBergedgeTopicFile)
          {
@@ -1080,9 +1080,9 @@ namespace filemanager
 
          auto papp = ::filemanager_impact_base::get_app();
 
-         // auto pcontext = get_context();
+         ::cast < ::database::client > pdatabaseclient = papp;
 
-         papp->datastream()->get(filemanager_data()->m_strDataKeyStatic, stra);
+         pdatabaseclient->datastream()->get(filemanager_data()->m_strDataKeyStatic, stra);
 
          synchronous_lock lock(fs_list()->synchronization());
 
@@ -1398,9 +1398,9 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          pcolumn->m_pimagelist = puser->shell()->GetImageList(get_document()->m_iIconSize);
          pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(get_document()->m_iIconSize);
@@ -1462,9 +1462,9 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          pcolumn->m_pimagelist = puser->shell()->GetImageList(iIconSize);
 
@@ -1875,9 +1875,9 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          return puser->shell()->GetImageList(get_document()->m_iIconSize);
 
@@ -2073,7 +2073,9 @@ namespace filemanager
 
          ::file::path_array filepatha;
 
-         papp->datastream()->get(filemanager_data()->m_strDataKeyStatic, filepatha);
+         ::cast < ::database::client > pdatabaseclient = application();
+
+         pdatabaseclient->datastream()->get(filemanager_data()->m_strDataKeyStatic, filepatha);
 
          //filepatha.add().stra());
 
@@ -2091,7 +2093,7 @@ namespace filemanager
 
                ::generic::container::copy(stra, filepatha);
 
-               papp->datastream()->set(filemanager_data()->m_strDataKeyStatic, stra);
+               pdatabaseclient->datastream()->set(filemanager_data()->m_strDataKeyStatic, stra);
 
                add_fs_item(filemanager_item()->user_path(),
                   filemanager_item()->final_path(), filemanager_item()->user_path().name());

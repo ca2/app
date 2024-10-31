@@ -171,7 +171,12 @@ payload::payload(::subparticle * pelement) :
 
    //m_preferer = ::allocator::defer_push_referer(pelement, { pelement, this, __FUNCTION_FILE_LINE__ });
 
-   m_preferer = ::allocator::defer_push_referer(pelement, { this, __FUNCTION_FILE_LINE__ });
+   if(pelement->is_referencing_debugging_enabled())
+   {
+
+      m_preferer = ::allocator::defer_push_referer(pelement, { this, __FUNCTION_FILE_LINE__ });
+
+   }
 
 #endif
 
@@ -1676,7 +1681,12 @@ class ::payload & payload::operator = (const class ::payload & payload)
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
 
-         __refdbg_assign_referer_for(m_p);
+         if(m_p->is_referencing_debugging_enabled())
+         {
+
+            __refdbg_assign_referer_for(m_p);
+
+         }
 
          payload_increment_reference_count();
 

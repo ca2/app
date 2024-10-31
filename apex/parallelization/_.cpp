@@ -146,7 +146,7 @@ namespace parallelization
 
       synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
 
-      for (auto& pair : ::platform::get()->m_taskidmap)
+      for (auto& pair : ::system()->m_taskidmap)
       {
 
          try
@@ -170,7 +170,7 @@ namespace parallelization
 
       synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
 
-      for (auto& pair : ::platform::get()->m_taskidmap)
+      for (auto& pair : ::system()->m_taskidmap)
       {
 
          try

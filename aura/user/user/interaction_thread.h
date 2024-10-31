@@ -82,6 +82,8 @@ namespace user
 #endif
 
 
+      void on_before_branch() override;
+
       virtual void init_task() override;
       virtual void term_task() override;
 

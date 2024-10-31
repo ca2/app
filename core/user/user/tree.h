@@ -72,9 +72,9 @@ namespace user
       ~tree() override;
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
 
 
       void user_tree_common_construct();

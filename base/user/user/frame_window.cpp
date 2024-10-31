@@ -683,7 +683,7 @@ namespace user
       if (psession->GetCapture() == get_handle())
          
 
-         auto puser = psession->user();
+         auto puser = user();
 
          auto pwindowing = system()->windowing();
 
@@ -2815,7 +2815,7 @@ namespace user
    //
    //    auto pacmesession = session();
    //
-   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
    //
    // }
    //
@@ -2830,7 +2830,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* frame_window::baseuser()
+   // ::base::user* frame_window::user()
    // {
    //
    //

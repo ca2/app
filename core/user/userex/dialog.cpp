@@ -92,9 +92,9 @@ bool dialog::show(const ::string & pszMatter)
 
    auto pcontext = m_papplication;
    
-   auto psession = pcontext->m_psession->m_pcoresession;
+   auto psession = pcontext->m_psession;
    
-   auto puser = psession->m_puser->m_pcoreuser;
+   auto puser = psession->m_puser;
 
    m_pformdocument = puser->create_form(this, nullptr, this, psession->get_user_interaction_host(), payload, varArgs);
 

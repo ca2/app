@@ -82,9 +82,22 @@ inline pointer < T > ::pointer(place_t, T2 * p)
          if (m_psubparticle->is_referencing_debugging_enabled())
          {
 
-            auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
+            if(m_psubparticle->m_prefererTransfer2)
+            {
 
-            m_preferer = preferenceitem->m_preferer;
+               m_preferer = m_psubparticle->m_prefererTransfer2;
+
+               m_psubparticle->m_prefererTransfer2 = nullptr;
+
+            }
+            else
+            {
+
+               auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
+
+               m_preferer = preferenceitem->m_preferer;
+
+            }
 
          }
 
@@ -1284,9 +1297,9 @@ inline pointer < T >::pointer(lparam & lparam)
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = m_psubparticle->m_prefererTransfer;
+   m_preferer = m_psubparticle->m_prefererTransfer2;
 
-   m_psubparticle->m_prefererTransfer = nullptr;
+   m_psubparticle->m_prefererTransfer2 = nullptr;
 
 #endif
    

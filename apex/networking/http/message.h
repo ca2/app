@@ -3,6 +3,7 @@
 
 //////#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/prototype/payload.h"
+#include "acme/nano/http/get.h"
 #include "apex/message/message.h"
 
 
@@ -11,18 +12,18 @@ namespace http
 
 
    class CLASS_DECL_APEX message :
-      public ::message::message //,
-      //virtual public ::object
+      virtual public ::message::message,
+      virtual public ::nano::http::get
    {
    public:
 
 
       //memory                         m_memoryRet;
-      ::e_status                       m_estatusRet;
 
-      ::url::url                       m_url;
-      property_set                     m_setPost;
-      property_set                     m_setHeaders;
+
+      //::url::url                       m_url;
+      // property_set                     m_setPost;
+      // property_set                     m_setHeaders;
 
       ::pointer<::http::cookies>       m_pcookies;
 
@@ -33,12 +34,7 @@ namespace http
       message();
 
 
-      void want_memory_response(memory_base * pusermessage = nullptr);
-      void want_string_response();
-
-      memory_pointer get_memory_response();
-      string get_string_response();
-
+      void run();
 
    };
 

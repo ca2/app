@@ -217,7 +217,7 @@ namespace html
 
             auto psession = session();
 
-            auto puser = psession->user();
+            auto puser = user();
 
             auto pcursor = phtml->m_puserinteraction->get_mouse_cursor(e_cursor_hand);
 

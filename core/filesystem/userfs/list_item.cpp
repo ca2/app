@@ -49,8 +49,7 @@ namespace userfs
 } // namespace userfs
 
 
-template <>
-::file::item cast < ::file::item > (::userfs::list_item & item)
+::file::item as_file_item(::userfs::list_item & item)
 {
 
    ::file::item itemT;

@@ -53,9 +53,9 @@ namespace userex
       void add_pane_tab_impact_handler_library(const ::string & strLibrary);
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);

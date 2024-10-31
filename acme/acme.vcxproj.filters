@@ -5711,6 +5711,21 @@
     <ClCompile Include="platform\application_axis.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\application_bred.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_core.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_core.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

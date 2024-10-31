@@ -16,127 +16,127 @@ namespace core
    {
    public:
 
-
-
-      //::user::impact_system *                      m_ptemplatePlaceHolder;
-
-
-
-      //::user::multiple_document_template *         m_ptemplateProgress2;
-
-
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
-
-      //atom_map < ::user::impact_system * >           m_mapimpactsystem;
-
-
-      //::pointer<::userex::userex>             m_puserex;
-      bool                                         m_bFontSelInitialized;
-
-
-      
-
-
-      string_array                                 m_straEscape;
-
-      ::type_atom                                  m_typeatomDefaultMeshData;
-      ::type_atom                                  m_typeatomDefaultListHeader;
-      ::type_atom                                  m_typeatomDefaultListData;
-
-      ::pointer<::userfs::userfs>               m_puserfs;
-
-      ::e_status                                   m_estatus;
-
-      //::pointer<::user::keyboard>             m_pkeyboard;
-
-      //index                                      m_iEdge;
-      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
-
-      //bool                                       m_bProgrammerMode;
-
-      //bool                                       m_bSystemSynchronizedCursor;
-      //point_i32                                      m_pointCursor;
-
-      //pointer_array < ::user::interaction >         m_uiptraToolWindow;
-
-      //::windowing::window *                            m_pimplPendingFocus2;
-      //::user::interaction *                                 m_puiLastUserInputPopup;
-      //::image::cursor *                                    m_pcursor;
-      //::image::cursor *                                    m_pcursorCursor;
-      //e_cursor                                              m_ecursorDefault;
-      //e_cursor                                              m_ecursor;
-
-      //::pointer<::user::theme>                           m_ptheme;
-      //string_map < ::pointer<::user::theme >>            m_mapTheme;
-
-      //::user::interaction *                                 m_puiCapture;
-      //bool                                                  m_bDrawCursor;
-
-
-      //::pointer<::user::copydesk>                        m_pcopydesk;
-
-      //::user::interaction *                                 m_puiMouseMoveCapture;
-      //::user::interaction *                                 m_puiLastLButtonDown;
-
-
-      //::write_text::font_enumeration_item_array                        m_fontenumitema;
-
-      ////index                                               m_iEdge;
-
-      //::pointer<::account::department>                   m_paccount;
-      ////::pointer<::account::licensing>                    m_plicensing;
-      ////::pointer<::user::interaction>                     m_puserinteractionSystem;
-
-      //::payload                                                   m_varTopicFile;
-      //::payload                                                   m_varCurrentImpactFile;
-      //bool                                                  m_bShowPlatform;
-
-      //::pointer<::text::context>                     m_ptextcontext;
-
-
-      //bool                                                  m_bSystemSynchronizedScreen;
-      //rectangle_i32_array                                            m_rectangleaMonitor;
-      //rectangle_i32_array                                            m_rectangleaWorkspace;
-      //index                                                 m_iMainMonitor;
-      //index                                                 m_iMainWorkspace;
-
-
-
-      //atom_map < ::user::interaction * >                      m_mapboundui;
-
-
-
-      //::pointer<::userpresence::department>              m_puserpresence;
-
-
-      ////::pointer<::ftpfs>                                 m_pftpfs;
-      ////::pointer<::fs::remote_native>                     m_premotefs;
-      ////::pointer<::fs::fs>                                m_pfs;
-      ////::pointer<::fs::data>                              m_pfsdata;
-      ////::pointer<::ifs>                                   m_pifs;
-      //////ke
-      ////bool                                                  m_bIfs;
-
-      //bool                                                  m_bMatterFromHttpCache;
-
-      //::u32                                                 m_dwLongPhRESSingTime;
-
-
-      //::pointer<::userex::userex>                        m_puserex;
-      //bool                                                  m_bFontSelInitialized;
-      //::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
-      //::pointer<::user::user>                            m_puser;
-      
+      //
+      //
+      // //::user::impact_system *                      m_ptemplatePlaceHolder;
+      //
+      //
+      //
+      // //::user::multiple_document_template *         m_ptemplateProgress2;
+      //
+      //
+      // //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //
+      // //atom_map < ::user::impact_system * >           m_mapimpactsystem;
+      //
+      //
+      // //::pointer<::userex::userex>             m_puserex;
+      // bool                                         m_bFontSelInitialized;
+      //
+      //
+      //
+      //
+      //
+      // string_array                                 m_straEscape;
+      //
+      // ::type_atom                                  m_typeatomDefaultMeshData;
+      // ::type_atom                                  m_typeatomDefaultListHeader;
+      // ::type_atom                                  m_typeatomDefaultListData;
+      //
+      // ::pointer<::userfs::userfs>               m_puserfs;
+      //
+      // ::e_status                                   m_estatus;
+      //
+      // //::pointer<::user::keyboard>             m_pkeyboard;
+      //
+      // //index                                      m_iEdge;
+      // //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
+      //
+      // //bool                                       m_bProgrammerMode;
+      //
+      // //bool                                       m_bSystemSynchronizedCursor;
+      // //point_i32                                      m_pointCursor;
+      //
+      // //pointer_array < ::user::interaction >         m_uiptraToolWindow;
+      //
+      // //::windowing::window *                            m_pimplPendingFocus2;
+      // //::user::interaction *                                 m_puiLastUserInputPopup;
+      // //::image::cursor *                                    m_pcursor;
+      // //::image::cursor *                                    m_pcursorCursor;
+      // //e_cursor                                              m_ecursorDefault;
+      // //e_cursor                                              m_ecursor;
+      //
+      // //::pointer<::user::theme>                           m_ptheme;
+      // //string_map < ::pointer<::user::theme >>            m_mapTheme;
+      //
+      // //::user::interaction *                                 m_puiCapture;
+      // //bool                                                  m_bDrawCursor;
+      //
+      //
+      // //::pointer<::user::copydesk>                        m_pcopydesk;
+      //
+      // //::user::interaction *                                 m_puiMouseMoveCapture;
+      // //::user::interaction *                                 m_puiLastLButtonDown;
+      //
+      //
+      // //::write_text::font_enumeration_item_array                        m_fontenumitema;
+      //
+      // ////index                                               m_iEdge;
+      //
+      // //::pointer<::account::department>                   m_paccount;
+      // ////::pointer<::account::licensing>                    m_plicensing;
+      // ////::pointer<::user::interaction>                     m_puserinteractionSystem;
+      //
+      // //::payload                                                   m_varTopicFile;
+      // //::payload                                                   m_varCurrentImpactFile;
+      // //bool                                                  m_bShowPlatform;
+      //
+      // //::pointer<::text::context>                     m_ptextcontext;
+      //
+      //
+      // //bool                                                  m_bSystemSynchronizedScreen;
+      // //rectangle_i32_array                                            m_rectangleaMonitor;
+      // //rectangle_i32_array                                            m_rectangleaWorkspace;
+      // //index                                                 m_iMainMonitor;
+      // //index                                                 m_iMainWorkspace;
+      //
+      //
+      //
+      // //atom_map < ::user::interaction * >                      m_mapboundui;
+      //
+      //
+      //
+      // //::pointer<::userpresence::department>              m_puserpresence;
+      //
+      //
+      // ////::pointer<::ftpfs>                                 m_pftpfs;
+      // ////::pointer<::fs::remote_native>                     m_premotefs;
+      // ////::pointer<::fs::fs>                                m_pfs;
+      // ////::pointer<::fs::data>                              m_pfsdata;
+      // ////::pointer<::ifs>                                   m_pifs;
+      // //////ke
+      // ////bool                                                  m_bIfs;
+      //
+      // //bool                                                  m_bMatterFromHttpCache;
+      //
+      // //::u32                                                 m_dwLongPhRESSingTime;
+      //
+      //
+      // //::pointer<::userex::userex>                        m_puserex;
+      // //bool                                                  m_bFontSelInitialized;
+      // //::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
+      // //::pointer<::user::user>                            m_puser;
+      //
 
 
       user();
       ~user() override;
 
-
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
-
+      //
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
+      //
 
 
       void destroy() override;
@@ -170,7 +170,7 @@ namespace core
 
       virtual void data_on_after_change(::message::message * pmessage);
 
-      class keyboard & keyboard();
+      //virtual class ::user::keyboard * keyboard();
 
       virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
@@ -199,12 +199,13 @@ namespace core
       virtual void term_instance() override;
 
 
-      void LoadStdProfileSettings(::u32 nMaxMRU = 10);
-
-      ::collection::count get_template_count() const;
-      ::pointer<::user::impact_system>get_template(::collection::index index) const;
+      //void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
 
+      //::collection::count get_template_count() const;
+
+
+      //::pointer<::user::impact_system>get_template(::collection::index index) const;
 
 
       ::user::document * hold(::pointer<::user::interaction>pinteraction);

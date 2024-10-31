@@ -305,7 +305,7 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
          //return pitem->m_bOn && pitem->m_referer == referer;
 
-         return pitem->m_preferer->m_iSerial == preferer->m_iSerial;
+         return pitem->m_preferer == preferer;
 
       });
 

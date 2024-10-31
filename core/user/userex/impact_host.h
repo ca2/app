@@ -60,9 +60,9 @@ namespace userex
       ~impact_host() override;
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
 
       void install_message_routing(::channel * pchannel) override;
 

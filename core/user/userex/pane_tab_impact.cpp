@@ -236,34 +236,34 @@ namespace userex
    }
 
 
-   ::core::application* pane_tab_impact::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* pane_tab_impact::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* pane_tab_impact::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* pane_tab_impact::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* pane_tab_impact::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* pane_tab_impact::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void pane_tab_impact::on_message_create(::message::message * pmessage)
@@ -639,9 +639,9 @@ namespace userex
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          puser->will_use_impact_hint(FONTSEL_IMPACT);
 
@@ -688,9 +688,9 @@ namespace userex
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          puser->will_use_impact_hint(COLORSEL_IMPACT);
 
@@ -727,7 +727,7 @@ namespace userex
          //
          //auto psession = pcontext->m_psession;
          //
-         //auto puser = psession->m_puser->m_pcoreuser;
+         //auto puser = psession->m_puser;
 
          //if (pfilemanagerdata.is_null())
          //{
@@ -736,7 +736,7 @@ namespace userex
 
          //}
 
-         auto pfilemanager = application()->m_pcoreapplication->filemanager();
+         auto pfilemanager = application()->filemanager();
 
          auto pfilemanagerdata = pfilemanager->create_filemanager_data();
 
@@ -1045,9 +1045,9 @@ namespace userex
 
    //   auto pcontext = m_papplication;
    //   
-   //   auto psession = pcontext->m_psession->m_pcoresession;
+   //   auto psession = pcontext->m_psession;
    //   
-   //   auto puser = psession->m_puser->m_pcoreuser;
+   //   auto puser = psession->m_puser;
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 

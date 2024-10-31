@@ -1861,7 +1861,7 @@ namespace experience_anthill
 
       auto estyle = ptoolbar->tool_item_style(iItem);
 
-      auto puser = baseuser();
+      auto puser = user();
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
@@ -2181,7 +2181,7 @@ namespace experience_anthill
 
 //      bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      auto puser = baseuser();
+      auto puser = user();
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 

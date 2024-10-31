@@ -270,18 +270,18 @@ namespace acme
       }
 
 
-      ::e_status windowing::defer_initialize_windowing()
+      // ::e_status windowing::defer_initialize_windowing()
+      // {
+      //
+      //    return ::success;
+      //
+      // }
+
+
+      void windowing::initialize_windowing()
       {
 
-         return ::success;
-
-      }
-
-
-      ::e_status windowing::initialize_windowing()
-      {
-
-         return ::success;
+         //return ::success;
 
       }
 

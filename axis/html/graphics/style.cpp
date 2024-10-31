@@ -166,7 +166,7 @@ namespace html
 
       auto psession = m_papplication->m_psession;
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if(m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_left")))
          pstyleLeft = this;
@@ -341,7 +341,7 @@ namespace html
 
       auto psession = m_papplication->m_psession;
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_width"))
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_width")], fW))
@@ -513,7 +513,7 @@ namespace html
 
       auto psession = m_papplication->m_psession;
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_color"))
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_color")], crW))
@@ -1301,7 +1301,7 @@ namespace html
 
       auto psession = m_papplication->m_psession;
 
-      auto puser = psession->user();
+      auto puser = user();
 
       if (m_propertyset.has_property("html_display"))
       {

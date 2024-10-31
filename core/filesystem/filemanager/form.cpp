@@ -29,9 +29,9 @@ namespace filemanager
          if(ptopic->user_interaction()->m_atom == "lfs")
          {
 
-            auto ptopic = create_topic(ID_BROWSE);
+            auto ptopic = create_topic(id_browse);
 
-            ptopic->payload(ID_FORM) = "filemanager_add_location_lfs.xhtml";
+            ptopic->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
             ::user::form_impact::get_document()->update_all_impacts(ptopic);
 
@@ -44,9 +44,9 @@ namespace filemanager
          else if(ptopic->user_interaction()->m_atom == "ftp")
          {
 
-            auto ptopic = create_topic(ID_BROWSE);
+            auto ptopic = create_topic(id_browse);
 
-            ptopic->payload(ID_FORM) = "filemanager_add_location_ftp.xhtml";
+            ptopic->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
             ::user::form_impact::get_document()->update_all_impacts(ptopic);
 

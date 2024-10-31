@@ -47,7 +47,6 @@ class CLASS_DECL_ACME object :
 protected:
 
 
-   bool                                            m_bCheckingChildrenTask;
    ::pointer < ::object >                          m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >    m_pparticleaChildrenTask;
    ::pointer < atom_map < ::pointer < ::parallelization::queue > > > m_pqueuemap;
@@ -280,7 +279,7 @@ public:
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
    //virtual void on_finish() override;
 
-   virtual bool check_tasks_finished();
+   virtual bool set_children_to_finish_and_check_them_finished();
 
    void destroy() override;
 

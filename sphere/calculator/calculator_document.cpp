@@ -24,7 +24,7 @@ namespace calculator
 
       }
 
-      update_all_impacts(nullptr, ID_INITIAL_UPDATE);
+      update_all_impacts(nullptr, id_initial_update);
 
       return true;
 

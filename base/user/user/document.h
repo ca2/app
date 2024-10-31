@@ -58,7 +58,7 @@ namespace user
       // ::base::application * get_app();
       // ::base::session * get_session();
       // ::base::system * get_system();
-      // ::base::user * baseuser() override;
+      // ::base::user * user() override;
 
 
       ::user::interaction* impact_at(::collection::index iImpact) override;

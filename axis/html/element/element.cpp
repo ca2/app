@@ -141,7 +141,7 @@ namespace html
 
       auto psession = phtmldata->session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       m_etag = puser->m_phtml->tag_name_to_id(m_atomTagName);
 
@@ -1800,7 +1800,7 @@ namespace html
 
          auto psession = phtmldata->m_pcoredata->session();
 
-         auto puser = psession->user();
+         auto puser = user();
 
          str += puser->m_phtml->entities(m_strBody);
 
@@ -1836,7 +1836,7 @@ namespace html
 
             auto psession = phtmldata->m_pcoredata->session();
 
-            auto puser = psession->user();
+            auto puser = user();
 
             str += puser->m_phtml->entities(m_strBody);
 

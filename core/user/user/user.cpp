@@ -134,7 +134,7 @@ namespace core
 
       print_line("core::user::user");
 
-      m_pcoreuser = this;
+      //m_pcoreuser = this;
       //m_ptemplateForm = nullptr;
       //m_ptemplateChildForm = nullptr;
       //m_ptemplatePlaceHolder = nullptr;
@@ -150,34 +150,34 @@ namespace core
 
 
 
-   ::core::application * user::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session * user::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system * user::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application * user::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session * user::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system * user::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void user::initialize(::particle * pparticle)
@@ -972,16 +972,18 @@ namespace core
 
       auto papp = get_app();
 
-      ASSERT(papp->document_manager() != nullptr);
+      ::cast < ::user::document_manager_container > puserdocumentmanager = application();
 
-      if (papp->document_manager() == nullptr)
+      ASSERT(puserdocumentmanager->document_manager() != nullptr);
+
+      if (puserdocumentmanager->document_manager() == nullptr)
       {
 
          return;
 
       }
 
-      papp->document_manager()->_001OnFileNew();
+      puserdocumentmanager->document_manager()->_001OnFileNew();
 
    }
 
@@ -1595,7 +1597,7 @@ namespace core
 
    //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 
-   //   if (&Session == nullptr || psession->user() == nullptr)
+   //   if (&Session == nullptr || user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 
    //   return puser->message_box(puiOwner, pszMessage, fuStyle);
@@ -1606,7 +1608,7 @@ namespace core
    //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
-   //   if (psession->user() == nullptr)
+   //   if (user() == nullptr)
    //   {
 
    //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
@@ -1736,7 +1738,7 @@ namespace core
          }
 
 
-         application()->m_pcoreapplication->filemanager();
+         application()->filemanager();
 
          //if (::is_null(user()->impact_system("filemanager_filemanager")))
          {
@@ -1885,7 +1887,7 @@ namespace user
    ::pointer<::user::mesh_data>mesh::create_mesh_data()
    {
 
-      return user()->m_pcoreuser->default_create_mesh_data(this);
+      return user()->default_create_mesh_data(this);
 
    }
 
@@ -1893,7 +1895,7 @@ namespace user
    ::pointer<::user::list_header>list::create_list_header()
    {
 
-      return user()->m_pcoreuser->default_create_list_header(this);
+      return user()->default_create_list_header(this);
 
    }
 
@@ -1901,7 +1903,7 @@ namespace user
    ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
-      return user()->m_pcoreuser->default_create_list_data(this);
+      return user()->default_create_list_data(this);
 
    }
 

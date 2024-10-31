@@ -81,7 +81,7 @@ namespace html
 
             auto psession = m_papplication->m_psession;
 
-            auto puser = psession->user();
+            auto puser = user();
 
             pstyle->m_etag = puser->m_phtml->tag_name_to_id(strStyle);
 

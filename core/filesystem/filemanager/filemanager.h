@@ -34,7 +34,7 @@ namespace filemanager
       ~filemanager() override;
 
 
-      inline ::core::session* get_session();
+      //inline ::core::session* get_session();
 
 
       virtual void initialize_filemanager_component(::particle * pparticle);

@@ -1338,14 +1338,14 @@ namespace filemanager
 
 
 
-   ::core::session * filemanager::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
+   // ::core::session * filemanager::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
 
 
 } // namespace filemanager

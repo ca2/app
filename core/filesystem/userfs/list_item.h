@@ -35,13 +35,16 @@ namespace userfs
 
 } // namespace userfs
 
+//
+// template < class T >
+// T cast (::userfs::list_item & item)
+// {
+//    return T(item);
+// }
 
-template < class T >
-T cast (::userfs::list_item & item)
-{
-   return T(item);
-}
+
+CLASS_DECL_CORE ::file::item as_file_item(::userfs::list_item & item);
 
 
-template <>
-CLASS_DECL_CORE ::file::item cast < ::file::item > (::userfs::list_item & item);
+// template <>
+// CLASS_DECL_CORE ::file::item cast < ::file::item > (::userfs::list_item & item);

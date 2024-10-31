@@ -260,6 +260,8 @@ namespace acme
       if (m_strName.has_char())
       {
 
+         __refdbg_add_referer
+
          platform()->m_mapLibrary[m_strName] = this;
 
       }

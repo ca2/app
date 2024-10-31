@@ -110,7 +110,7 @@ namespace user
 
       auto papplication = application();
 
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
+      return ::is_set(papplication) ? papplication : nullptr;
 
    }
 
@@ -120,7 +120,7 @@ namespace user
 
       auto pacmesession = session();
 
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
+      return ::is_set(pacmesession) ? pacmesession : nullptr;
 
    }
 
@@ -3746,7 +3746,7 @@ namespace user
 
       set_keyboard_focus();
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       if (!_001DisplayHitTest(point, m_iDisplayItemLButtonDown1))
       {

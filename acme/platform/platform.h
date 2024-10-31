@@ -167,23 +167,18 @@ namespace platform
       string                                          m_strCommandLine;
 
 
-      ::particle_pointer                                 m_pmutexTask;
-      task_map                                                 m_taskmap;
-      task_id_map                                              m_taskidmap;
+      ::particle_pointer                                    m_pmutexTask;
       ::particle_pointer                                 m_pmutexTaskOn;
 
 
-      ::map < itask_t, itask_t >                               m_mapTaskOn;
-
-
-      ::block                                         m_blockMatter;
-      ::acme::library_map                             m_mapLibrary;
-      ::factory::factory_pointer                      m_pfactory;
-      ::factory::factory_map                          m_factorymap;
-      ::factory::component_factory_map                m_componentfactorymap;
+      ::block                                               m_blockMatter;
+      ::acme::library_map                                   m_mapLibrary;
+      ::factory::factory_pointer                            m_pfactory;
+      ::factory::factory_map                                m_factorymap;
+      ::factory::component_factory_map                      m_componentfactorymap;
       //::pointer < ::platform::system >                    m_psystem;
-      ::pointer < ::operating_system::dynamic_library > m_pdynamiclibrary;
-      int                                             m_iProcessStatus = 0;
+      ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
+      int                                                   m_iProcessStatus = 0;
 
       ::critical_section                              m_criticalsectionTask;
       ::index_array                                   m_iaTaskIndex;
@@ -305,15 +300,6 @@ namespace platform
       void set_status(int iStatus);
 
 
-      ::task* get_task(itask_t itask);
-      itask_t get_task_id(const ::task* ptask);
-      void set_task(itask_t itask, ::task* ptask);
-      void unset_task(itask_t itask, ::task* ptask);
-
-      virtual bool is_task_on(itask_t atom);
-      virtual bool is_active(::task * ptask);
-      virtual void set_task_on(itask_t atom);
-      virtual void set_task_off(itask_t atom);
 
 
       virtual void set_resource_block(const char * pstart, const char * pend);

@@ -163,7 +163,7 @@ namespace base
    //      if (!m_pbasesession)
    //      {
 
-   //         m_pbasesession = papexsession->m_pbasesession;
+   //         m_pbasesession = papexsession;
 
    //      }
 

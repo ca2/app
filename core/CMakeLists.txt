@@ -845,26 +845,20 @@ if (NOT ${NO_PRECOMPILED_HEADER})
    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
-
-   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
 
 
-set_target_properties(core PROPERTIES LINKER_LANGUAGE CXX)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
 
-   target_compile_options(core PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_compile_options(core PRIVATE "/bigobj")
-   target_link_options(core PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(core PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/core.lib")
-   #target_link_options(core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/core.def")
-   target_link_libraries(core PRIVATE ${library_references})
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
 elseif(${LINUX} OR ${__BSD__})

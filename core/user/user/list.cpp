@@ -109,34 +109,34 @@ namespace user
    }
 
 
-   ::core::application* list::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* list::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* list::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* list::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* list::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* list::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void list::install_message_routing(::channel * pchannel)
@@ -3881,7 +3881,7 @@ namespace user
 
       set_keyboard_focus();
 
-      psession->user()->set_mouse_focus_LButtonDown(this);
+      user()->set_mouse_focus_LButtonDown(this);
 
       if (!_001DisplayHitTest(point, m_iDisplayItemLButtonDown1))
       {
@@ -3940,6 +3940,8 @@ namespace user
          }
          else
          {
+
+            auto psession = session();
 
             if (m_bMultiSelect && psession->is_key_pressed(::user::e_key_shift))
             {
@@ -4346,6 +4348,9 @@ namespace user
          set_keyboard_focus();
 
       }
+
+      auto psession = session();
+
       if (psession->is_key_pressed(::user::e_key_shift))
       {
       }

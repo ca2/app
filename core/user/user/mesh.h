@@ -281,9 +281,9 @@ namespace user
       //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
 
 
       void install_message_routing(::channel * pchannel) override;

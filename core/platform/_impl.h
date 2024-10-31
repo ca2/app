@@ -26,7 +26,7 @@ namespace core
    inline ::core::application* core < CORE_OBJECT >::get_app() const
    {
       
-      return this->m_papplication ? this->m_papplication->m_pcoreapplication : nullptr;
+      return this->m_papplication ? this->m_papplication : nullptr;
    
    }
 

@@ -54,4 +54,7 @@ namespace filemanager
    class data;
 
 
+   class filemanager;
+
+
 }

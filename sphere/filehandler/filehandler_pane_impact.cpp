@@ -135,7 +135,7 @@ namespace filehandler
          if(pdocument != nullptr)
          {
          ::pointer<::user::impact>pimpact = pdocument->get_impact();
-         pimpact->call_update(ID_INITIAL_UPDATE);
+         pimpact->call_update(id_initial_update);
          if(pimpact != nullptr)
          {
          ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());

@@ -259,7 +259,7 @@ namespace user
    //
    //    auto pacmesession = session();
    //
-   //    return ::is_set(pacmesession) ? pacmesession->m_pbasesession : nullptr;
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
    //
    // }
    //
@@ -274,7 +274,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* menu_interaction::baseuser()
+   // ::base::user* menu_interaction::user()
    // {
    //
    //

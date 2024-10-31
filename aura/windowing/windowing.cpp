@@ -60,12 +60,12 @@ namespace windowing
    }
 
 
-   void windowing::initialize_windowing(::user::user * puser)
+   void windowing::initialize_windowing()
    {
 
       informationf("aura::windowing::initialize_windowing");
 
-      m_puser = puser;
+      //m_puser = puser;
 
       factory()->add_factory_item < cursor_manager >();
 
@@ -77,14 +77,16 @@ namespace windowing
 
       informationf("aura::windowing::initialize_windowing end");
 
-   }
-
-
-   void windowing::terminate_windowing()
-   {
-
+      //return ::success;
 
    }
+
+
+   // void windowing::terminate_windowing()
+   // {
+   //
+   //
+   // }
 
 
    void windowing::defer_term_ui()
@@ -116,7 +118,7 @@ namespace windowing
 
       m_pwindowMouseCapture.release();
 
-      m_puser.release();
+      //m_puser.release();
 
       m_displaymap.clear();
 

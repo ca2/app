@@ -35,7 +35,7 @@ namespace core
 
       //::core::initialize();
 
-      m_pcoreapplication = this;
+      //m_pcoreapplication = this;
 
       //m_strAppId = "app-complex/drawing";
 
@@ -69,24 +69,24 @@ namespace core
 
    }
 
-   ::core::session * application::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system * application::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::session * application::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system * application::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void application::initialize(::particle * pparticle)
@@ -125,7 +125,7 @@ namespace core
 
       
 
-      auto puser = psession->user()->m_pcoreuser;
+      auto puser = user();
 
       puser->will_use_impact_hint(COLORSEL_IMPACT);
       puser->will_use_impact_hint(FONTSEL_IMPACT);
@@ -240,10 +240,10 @@ namespace core
    }
 
 
-   ::filemanager::filemanager * application::filemanager() const
+   ::filemanager::filemanager * application::filemanager()
    {
 
-      auto & pfilemanager = ((application *)this)->m_pfilemanager;
+      auto & pfilemanager = this->m_pfilemanager;
 
       if (!pfilemanager)
       {
@@ -318,7 +318,7 @@ namespace core
 
       bool bCheck = false;
 
-      auto papplication = m_papexapplication;
+      auto papplication = this;
 
       bool bUserAutoStart = node()->is_user_auto_start(papplication->get_executable_appid());
 
@@ -329,7 +329,7 @@ namespace core
 
             bool bCheck = change.payload().as_bool();
 
-            auto papplication = m_papexapplication;
+            auto papplication = this;
 
             node()->register_user_auto_start(
                papplication,

@@ -123,7 +123,7 @@ namespace windows
 
             ::string strHeaders(wstrHeaders);
 
-            pget->m_setOut.parse_network_headers(strHeaders);
+            pget->payload("out_headers").as_property_set().parse_network_headers(strHeaders);
 
             ::u64 contentLength = 0;
             DWORD dwContentLengthBufferSize = sizeof(contentLength);
@@ -142,7 +142,7 @@ namespace windows
 
             }
 
-            bool bOnlyHeaders = pget->m_setIn["only_headers"].as_bool();
+            bool bOnlyHeaders = pget->payload("only_headers").as_bool();
 
             if (bOnlyHeaders)
             {
@@ -153,7 +153,7 @@ namespace windows
 
             transfer_progress_function transferprogressfunction;
 
-            transferprogressfunction = pget->m_setIn["transfer_progress_function"];
+            transferprogressfunction = pget->payload("transfer_progress_function");
 
             dwSize = 0;
             do
@@ -194,7 +194,7 @@ namespace windows
                if (dwDownloaded > 0)
                {
 
-                  pget->m_memory.append(memory);
+                  pget->get_memory_response()->append(memory);
 
                   if (transferprogressfunction)
                   {
@@ -202,14 +202,14 @@ namespace windows
                      if (contentLength > 0)
                      {
 
-                        transferprogressfunction((double)pget->m_memory.size() /
-                           (double)contentLength, pget->m_memory.size(),
+                        transferprogressfunction((double)pget->get_memory_response()->size() /
+                           (double)contentLength, pget->get_memory_response()->size(),
                            contentLength);
                      }
                      else
                      {
 
-                        transferprogressfunction(0., pget->m_memory.size(),
+                        transferprogressfunction(0., pget->get_memory_response()->size(),
                            0);
 
                      }

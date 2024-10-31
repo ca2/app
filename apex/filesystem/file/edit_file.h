@@ -179,6 +179,12 @@ namespace file
       edit_file();
       ~edit_file() override;
 
+#ifdef DEBUG
+
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+
+#endif
 
       void destroy() override;
 

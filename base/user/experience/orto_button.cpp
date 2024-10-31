@@ -197,7 +197,7 @@ namespace experience
          ::point_i32 pointCursor;
          
 
-         auto puser = psession->user();
+         auto puser = user();
 
          auto pwindowing = system()->windowing();
 

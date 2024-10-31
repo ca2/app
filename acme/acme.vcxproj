@@ -1981,7 +1981,9 @@
     <ClCompile Include="platform\application_aura.cpp" />
     <ClCompile Include="platform\application_axis.cpp" />
     <ClCompile Include="platform\application_base.cpp" />
+    <ClCompile Include="platform\application_bred.cpp" />
     <ClCompile Include="platform\application_container.cpp" />
+    <ClCompile Include="platform\application_core.cpp" />
     <ClCompile Include="platform\application_exit.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
@@ -1993,6 +1995,8 @@
     <ClCompile Include="platform\context_aqua.cpp" />
     <ClCompile Include="platform\context_aura.cpp" />
     <ClCompile Include="platform\http.cpp" />
+    <ClCompile Include="platform\http_acme.cpp" />
+    <ClCompile Include="platform\http_apex.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\Debug.cpp" />
@@ -2047,6 +2051,7 @@
     <ClCompile Include="platform\system_aqua.cpp" />
     <ClCompile Include="platform\system_aura.cpp" />
     <ClCompile Include="platform\system_axis.cpp" />
+    <ClCompile Include="platform\system_core.cpp" />
     <ClCompile Include="platform\system_factory.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />

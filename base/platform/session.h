@@ -36,7 +36,7 @@ namespace base
       virtual void on_instantiate_application(::platform::application* papp) override;
 
 
-      // ::base::user* baseuser() override;
+      // ::base::user* user() override;
       //
       //
       // ::base::system* get_system();

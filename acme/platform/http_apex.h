@@ -40,7 +40,7 @@ namespace platform
 
       virtual bool request(::pointer<::sockets::http_session>& spsession, const ::url::request & request, property_set & set);
 
-      virtual ::payload get(const ::url::url & url, property_set & set);
+      //virtual ::payload get(const ::url::url & url, property_set & set);
 
       virtual bool request(const ::scoped_string & scopedstrMethod, const ::url::url & url, property_set & set);
 

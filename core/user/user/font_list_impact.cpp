@@ -33,7 +33,7 @@ namespace user
 
    //   auto papplication = application();
 
-   //   return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
+   //   return ::is_set(papplication) ? papplication : nullptr;
 
    //}
 
@@ -43,7 +43,7 @@ namespace user
 
    //   auto pacmesession = session();
 
-   //   return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
+   //   return ::is_set(pacmesession) ? pacmesession : nullptr;
 
    //}
 
@@ -58,10 +58,10 @@ namespace user
    //}
 
 
-   //::base::user * font_list_impact::baseuser()
+   //::base::user * font_list_impact::user()
    //{
 
-   //   return ::user::impact::baseuser();
+   //   return ::user::impact::user();
 
    //}
 
@@ -85,18 +85,18 @@ namespace user
       //////__update(::update)
       //{
 
-      //   if (ptopic->m_atom == ID_BROWSE)
+      //   if (ptopic->m_atom == id_browse)
       //   {
 
-      //      if (!ptopic->payload(ID_FORM).is_empty())
+      //      if (!ptopic->payload(id_form).is_empty())
       //      {
 
-      //         string strMatter = directory()->matter(ptopic->payload(ID_FORM));
+      //         string strMatter = directory()->matter(ptopic->payload(id_form));
 
       //         if (get_document()->on_open_document(strMatter))
       //         {
 
-      //            m_strPath = ptopic->payload(ID_FORM);
+      //            m_strPath = ptopic->payload(id_form);
 
       //         }
 
@@ -106,7 +106,7 @@ namespace user
       //   else if (ptopic->m_atom == id_get_form_impact)
       //   {
 
-      //      ptopic->payload(ID_FORM) = this;
+      //      ptopic->payload(id_form) = this;
 
       //   }
 
@@ -115,7 +115,7 @@ namespace user
       //if (m_pcallback != nullptr)
       //{
 
-      //   ptopic->payload(ID_FORM) = this;
+      //   ptopic->payload(id_form) = this;
 
       //   m_pcallback->handle(ptopic, pcontext);
 

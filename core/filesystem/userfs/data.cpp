@@ -594,7 +594,7 @@ namespace userfs
 
          information() << "::userfs::data::browse !is_zero_latency";
 
-         auto ptopic = create_topic(ID_SYNCHRONIZE_PATH);
+         auto ptopic = create_topic(id_synchronize_path);
 
          ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
@@ -643,7 +643,7 @@ namespace userfs
 //
 //      }
 //
-//      auto pextendedtopic = create_extended_topic(ID_SYNCHRONIZE_PATH);
+//      auto pextendedtopic = create_extended_topic(id_synchronize_path);
 //
 //      pextendedtopic->m_pfileitem = pitem;
 //

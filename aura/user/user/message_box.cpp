@@ -298,7 +298,7 @@ namespace user
 //
 //      
 //
-//      auto puser = psession->user();
+//      auto puser = user();
 //
 //      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 //

@@ -35,9 +35,9 @@ namespace usernet
 
       auto pcontext = m_papplication;
       
-      auto psession = pcontext->m_psession->m_pcoresession;
+      auto psession = pcontext->m_psession;
       
-      auto puser = psession->m_puser->m_pcoreuser;
+      auto puser = psession->m_puser;
 
       m_pdocument = puser->create_form(this, nullptr, this, puiParent);
 
@@ -62,9 +62,9 @@ namespace usernet
 
       auto pcontext = m_papplication;
       
-      auto psession = pcontext->m_psession->m_pcoresession;
+      auto psession = pcontext->m_psession;
       
-      auto puser = psession->m_puser->m_pcoreuser;
+      auto puser = psession->m_puser;
 
       puser->create_child_form(this, nullptr, this, puiParent);
 

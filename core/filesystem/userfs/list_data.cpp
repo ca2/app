@@ -450,9 +450,9 @@ namespace userfs
 
                auto & pathFinal = m_pitema->get_item((::collection::index)psubitem->m_pitem->m_iItem)->final_path();
 
-               auto psession = session()->m_pcoresession;
+               auto psession = session();
 
-               auto puser = psession->user();
+               auto puser = user();
 
                psubitem->m_iImage = puser->shell()->get_file_image(
                   pathFinal,

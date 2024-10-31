@@ -7,11 +7,15 @@
 //#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/procedure_array.h"
 #include "counter.h"
+#include "acme/constant/happening.h"
 #include "acme/handler/handler.h"
 #include "acme/handler/source.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+
+
+DECLARE_ENUMERATION(e_happening, enum_happening);
 
 
 class locale;
@@ -35,6 +39,7 @@ class CLASS_DECL_ACME task :
    virtual public ::data::property_container
 {
 public:
+
 
 
    //Creatable(task);
@@ -69,12 +74,14 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   ::particle_array                                 m_particleaHold;
-   ::pointer<manual_reset_event>                  m_peventInitialization;
+   ::particle_array                                m_particleaHold;
+   ::pointer<manual_reset_event>                   m_peventInitialization;
 
    ::procedure                                     m_procedure;
-   ::pointer<manual_reset_event>                  m_pevSleep;
-   ::pointer<manual_reset_event>                      m_peventFinished2;
+   ::pointer<manual_reset_event>                   m_pevSleep;
+   ::pointer<manual_reset_event>                   m_peventFinished2;
+   ::pointer<manual_reset_event>                   m_pmanualreseteventHappening;
+   ::comparable_array<e_happening>                 m_ehappeninga;
 
 
 #ifdef WINDOWS
@@ -120,6 +127,8 @@ public:
    virtual ::manual_reset_event * new_procedure_posted_event();
 
    virtual procedure pick_next_posted_procedure();
+
+   virtual e_happening pick_happening();
 
    string get_tag() const override;
    string task_get_name() const;
@@ -176,6 +185,9 @@ public:
 
    virtual bool on_get_task_name(string & strThreadName);
 
+   virtual void set_happened(e_happening ehappening);
+
+   virtual bool on_happening(e_happening ehappening);
 
    void init_task() override;
    virtual void term_task();
@@ -188,11 +200,16 @@ public:
 
    virtual bool has_message() const;
 
+   virtual void on_before_branch();
+
    virtual ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
 
    virtual ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
 
    virtual bool task_sleep(const class time & timeWait);
+
+   virtual void on_before_destroy_task();
+
 
    //template < typename METHOD >
    //inline static ::task_pointer __task(METHOD method)
@@ -232,7 +249,7 @@ public:
    virtual bool task_active() const;
    virtual bool is_running() const override;
 
-   bool check_tasks_finished() override;
+   bool set_children_to_finish_and_check_them_finished() override;
 
    virtual void update_task_ready_to_quit();
 

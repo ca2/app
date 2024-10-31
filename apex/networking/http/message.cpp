@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "message.h"
-#include "acme/prototype/prototype/memory.h"
+#include "acme/platform/http.h"
 
 
 namespace http
@@ -15,60 +15,12 @@ namespace http
    }
 
 
-   void message::want_memory_response(memory_base * pusermessage)
-   {
+void message::run()
+{
 
-      if (::is_set(pusermessage))
-      {
+      http()->get(this);
 
-         payload("get_memory") = create_memory();
-
-      }
-      else
-      {
-
-         payload("get_memory") = pusermessage;
-
-      }
-
-   }
-
-
-   void message::want_string_response()
-   {
-
-      want_memory_response();
-
-   }
-
-
-   memory_pointer message::get_memory_response()
-   {
-
-      return payload("get_memory").cast < memory>();
-
-   }
-
-
-   string message::get_string_response()
-   {
-
-      auto pmemory = get_memory_response();
-
-      if (::is_null(pmemory))
-      {
-
-         return "";
-
-      }
-
-      string str;
-
-      str = pmemory->get_string();
-
-      return str;
-
-   }
+}
 
 
 

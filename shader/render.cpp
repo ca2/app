@@ -271,7 +271,7 @@ namespace app_shader
                   
                   //::pointer<::aura::session>psession = get_session();
                   
-                  //auto puser = psession->user();
+                  //auto puser = user();
                   
                   auto pointCursor = m_puserinteraction->mouse_cursor_position();
                   

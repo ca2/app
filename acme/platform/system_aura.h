@@ -165,7 +165,7 @@ namespace platform
       //virtual bool is_system() const override;
 
 
-      virtual string crypto_md5_text(const ::string & str);
+      //virtual string crypto_md5_text(const ::string & str);
 
 
       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;

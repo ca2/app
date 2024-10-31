@@ -82,7 +82,7 @@ namespace opengl
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pwindowing = system()->windowing();
 
@@ -193,7 +193,7 @@ namespace opengl
 
       auto psession = session();
 
-      auto puser = psession->user();
+      auto puser = user();
 
       auto pwindowing = system()->windowing();
 

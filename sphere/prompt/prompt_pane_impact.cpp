@@ -247,8 +247,8 @@ namespace prompt
          ::pointer<::user::impact>pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
-         ptopic->m_atom = ID_BROWSE;
-         ptopic->payload(ID_FORM) = "filemanager\\replace_name_in_file_system.xhtml";
+         ptopic->m_atom = id_browse;
+         ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_impacts(pupdate);
 
          ptopic->m_atom = id_get_form_impact;

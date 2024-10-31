@@ -13,9 +13,9 @@ namespace core
    {
    public:
 
-
-      ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
-      ::pointer < ::filemanager::filemanager> m_pfilemanager;
+      //
+      // ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
+      // ::pointer < ::filemanager::filemanager> m_pfilemanager;
 
 
       application();
@@ -28,8 +28,8 @@ namespace core
       void on_set_platform() override;
 
 
-      ::core::session* get_session();
-      ::core::system* get_system();
+      //::core::session* get_session();
+      //::core::system* get_system();
 
 
 
@@ -48,7 +48,7 @@ namespace core
       virtual string prepare_impact_options_footer();
 
 
-      ::filemanager::filemanager * filemanager() const;
+      ::filemanager::filemanager * filemanager() override;
 
 
       void create_options_footer(::user::interaction * pparent) override;

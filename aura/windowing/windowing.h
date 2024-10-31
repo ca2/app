@@ -46,7 +46,7 @@ namespace windowing
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      ::pointer<::user::user>                   m_puser;
+      //::pointer<::user::user>                   m_puser;
 
       // Fallback implementation of a Main thread mouse capture
       ::pointer<::windowing::window>            m_pwindowMouseCapture;
@@ -75,9 +75,11 @@ namespace windowing
       virtual bool has_readily_gettable_absolute_coordinates() const;
 
 
-      virtual void initialize_windowing(::user::user * puser);
+      //virtual void initialize_windowing(::user::user * puser);
 
-      virtual void terminate_windowing();
+      void initialize_windowing() override;
+
+      //virtual void terminate_windowing();
 
       virtual void defer_term_ui();
 

@@ -43,6 +43,10 @@ namespace platform
       //::bred::system* m_pbredsystem;
       //::core::system* m_pcoresystem;
 
+      task_map                                        m_taskmap;
+      task_id_map                                     m_taskidmap;
+      ::map < itask_t, itask_t >                      m_mapTaskOn;
+
       ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
 
       ::platform::session_map                         m_sessionmap;

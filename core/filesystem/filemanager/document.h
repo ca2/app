@@ -31,10 +31,10 @@ namespace filemanager
       ~document() override;
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
-
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
+      //
       
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

@@ -70,12 +70,12 @@ namespace platform
    }
 
 
-   ::payload apex_http_layer::get(const ::url::url& url, property_set& set)
-   {
-
-      return {};
-
-   }
+   // ::payload apex_http_layer::get(const ::url::url& url, property_set& set)
+   // {
+   //
+   //    return {};
+   //
+   // }
 
 
    bool apex_http_layer::request(const ::scoped_string& scopedstrMethod, const ::url::url& url, property_set& set)
@@ -167,19 +167,19 @@ namespace platform
    }
 
 
-   // void apex_http_layer::config_proxy(const ::url::url& url, proxy* pproxy)
-   // {
-   //
-   //
-   // }
+   void apex_http_layer::config_proxy(const ::url::url& url, ::http::proxy* pproxy)
+   {
 
 
-   // bool apex_http_layer::try_pac_script(const ::scoped_string& scopedstrScriptUrl, const ::url::url& url, proxy* pproxy)
-   // {
-   //
-   //    return false;
-   //
-   // }
+   }
+
+
+   bool apex_http_layer::try_pac_script(const ::scoped_string& scopedstrScriptUrl, const ::url::url& url, ::http::proxy* pproxy)
+   {
+
+      return false;
+
+   }
 
 
    string apex_http_layer::gmdate(posix_time t)
@@ -190,20 +190,20 @@ namespace platform
    }
 
 
-   // pac* apex_http_layer::get_pac(const ::url::url& url)
-   // {
-   //
-   //    return nullptr;
-   //
-   // }
+   ::http::pac* apex_http_layer::get_pac(const ::url::url& url)
+   {
+
+      return nullptr;
+
+   }
 
 
-   // proxy* apex_http_layer::get_proxy(const ::url::url& url)
-   // {
-   //
-   //    return nullptr;
-   //
-   // }
+   ::http::proxy* apex_http_layer::get_proxy(const ::url::url& url)
+   {
+
+      return nullptr;
+
+   }
 
 
    //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser){}

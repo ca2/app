@@ -44,7 +44,7 @@ namespace experience_nanoui
 
             
 
-            auto puser = psession->user();
+            auto puser = user();
 
             auto pwindowing = system()->windowing();
 

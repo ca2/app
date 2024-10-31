@@ -63,34 +63,34 @@ namespace userex
    //}
 
 
-   ::core::application* impact_host::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* impact_host::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* impact_host::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* impact_host::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* impact_host::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* impact_host::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    void impact_host::install_message_routing(::channel * pchannel)
@@ -655,9 +655,9 @@ namespace userex
 
       auto pcontext = m_papplication;
       
-      auto psession = pcontext->m_psession->m_pcoresession;
+      auto psession = pcontext->m_psession;
       
-      auto puser = psession->m_puser->m_pcoreuser;
+      auto puser = psession->m_puser;
 
       ::user::impact_system * pimpactsystem = puser->impact_system(idImpact);
 
@@ -736,15 +736,15 @@ namespace userex
 
       bool bShow = true;
 
-      auto papp = get_app();
+      ::cast < ::database::client > pdatabaseclient = application();
 
-      papp->datastream()->set("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->set("frame::" + idImpact + ".visible", bShow);
 
       auto pcontext = m_papplication;
       
-      auto psession = pcontext->m_psession->m_pcoresession;
+      auto psession = pcontext->m_psession;
       
-      auto puser = psession->m_puser->m_pcoreuser;
+      auto puser = psession->m_puser;
 
       puser->will_use_impact_hint(idImpact);
 
@@ -774,9 +774,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto papp = get_app();
+      ::cast < ::database::client > pdatabaseclient = application();
 
-      papp->datastream()->set("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->set("frame::" + idImpact + ".visible", bShow);
 
       ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
 
@@ -804,9 +804,9 @@ namespace userex
 
             bool bShow = false;
 
-            auto papp = get_app();
+            ::cast < ::database::client > pdatabaseclient = application();
 
-            papp->datastream()->get("frame::" + idImpact + ".visible", bShow);
+            pdatabaseclient->datastream()->get("frame::" + idImpact + ".visible", bShow);
 
             bShow = !bShow;
 
@@ -834,9 +834,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto papp = get_app();
+      ::cast < ::database::client > pdatabaseclient = application();
 
-      papp->datastream()->get("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->get("frame::" + idImpact + ".visible", bShow);
 
       if (!bShow)
       {

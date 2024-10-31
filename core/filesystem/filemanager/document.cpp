@@ -68,34 +68,34 @@ namespace filemanager
    }
 
 
-   ::core::application * document::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session * document::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return ::is_set(pacmesession) ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system * document::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application * document::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session * document::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return ::is_set(pacmesession) ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system * document::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
    bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
@@ -197,9 +197,9 @@ namespace filemanager
 
          ::pointer<document>pdocument = this;
 
-         auto ptopic = create_topic(ID_TOPIC_OK);
+         auto ptopic = create_topic(id_topic_ok);
 
-         ptopic->payload(ID_DOCUMENT) = pfilemanagerdata;
+         ptopic->payload(id_document) = pfilemanagerdata;
 
          ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
 
@@ -546,9 +546,9 @@ namespace filemanager
 
    //    auto pcontext = m_papplication;
    //    
-   //    auto psession = pcontext->m_psession->m_pcoresession;
+   //    auto psession = pcontext->m_psession;
    //    
-   //    auto puser = psession->m_puser->m_pcoreuser;
+   //    auto puser = psession->m_puser;
 
    //    if(puser->m_pathFilemanagerProject.has_char())
    //    {
@@ -785,9 +785,9 @@ namespace filemanager
 
          //auto pcontext = m_papplication;
          //
-         //auto psession = pcontext->m_psession->m_pcoresession;
+         //auto psession = pcontext->m_psession;
          //
-         //auto puser = psession->m_puser->m_pcoreuser;
+         //auto puser = psession->m_puser;
 
          auto pfilemanagerdata = filemanager_data();
 
@@ -812,7 +812,7 @@ namespace filemanager
 
          // auto pcontext = get_context();
 
-         auto pdir = dir();
+         auto pdir = directory();
 
          //auto & watcher = pdir->watcher();
 
@@ -900,9 +900,9 @@ namespace filemanager
 
       //auto pcontext = m_papplication;
       //
-      //auto psession = pcontext->m_psession->m_pcoresession;
+      //auto psession = pcontext->m_psession;
       //
-      //auto puser = psession->m_puser->m_pcoreuser;
+      //auto puser = psession->m_puser;
 
       //puser->add_filemanager("", prequest);
 
@@ -946,9 +946,9 @@ namespace filemanager
 
       //auto pcontext = m_papplication;
       //
-      //auto psession = pcontext->m_psession->m_pcoresession;
+      //auto psession = pcontext->m_psession;
       //
-      //auto puser = psession->m_puser->m_pcoreuser;
+      //auto puser = psession->m_puser;
 
       //puser->erase_filemanager(pfilemanagerdata.m_p);
 
@@ -1590,9 +1590,9 @@ namespace filemanager
    //   //
    //   //auto pcontext = m_papplication;
    //   //
-   //   //auto psession = pcontext->m_psession->m_pcoresession;
+   //   //auto psession = pcontext->m_psession;
    //   //
-   //   //auto puser = psession->m_puser->m_pcoreuser;
+   //   //auto puser = psession->m_puser;
 
    //   //if (!m_pfilemanagerdata)
    //   //{

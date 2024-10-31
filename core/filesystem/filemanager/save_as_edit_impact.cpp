@@ -130,7 +130,7 @@ namespace filemanager
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ID_INITIALIZE && ptopic->m_puserelement == this)
+      if (ptopic->m_atom == id_initialize && ptopic->m_puserelement == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -146,7 +146,7 @@ namespace filemanager
          DISetSection(str);
          _001UpdateColumns();*/
       }
-      else if (ptopic->m_atom == ID_FILTER)
+      else if (ptopic->m_atom == id_filter)
       {
          /*if(ptopic->payload(id_filter).is_empty())
          {

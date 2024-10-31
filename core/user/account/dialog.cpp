@@ -251,7 +251,7 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      ::pointer<::core::session>psession = get_session();
+      auto psession = session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -453,7 +453,7 @@ namespace account
 
       auto pcredentials = m_pcredentials;
 
-      ::pointer<::core::session>psession = get_session();
+      auto psession = session();
 
       ::pointer<::core::application>papp = get_app();
 

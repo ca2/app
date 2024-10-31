@@ -60,7 +60,12 @@ namespace draw2d
       ~lock()
       {
 
-         m_pdraw2d->unlock_device();
+         if(m_pdraw2d)
+         {
+
+            m_pdraw2d->unlock_device();
+
+         }
 
       }
 

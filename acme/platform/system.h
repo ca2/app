@@ -9,6 +9,7 @@
 #include "system_aqua.h"
 #include "system_aura.h"
 #include "system_axis.h"
+#include "system_core.h"
 
 
 namespace platform
@@ -23,11 +24,13 @@ namespace platform
       virtual public ::platform::aqua_system_layer_t,
       virtual public ::platform::aura_system_layer_t,
       virtual public ::platform::axis_system_layer_t,
+      virtual public ::platform::core_system_layer_t,
       virtual public ::platform::acme_system_layer,
       virtual public ::platform::apex_system_layer,
       virtual public ::platform::aqua_system_layer,
       virtual public ::platform::aura_system_layer,
       virtual public ::platform::axis_system_layer,
+      virtual public ::platform::core_system_layer,
       virtual public ::task
    {
    public:
@@ -88,6 +91,17 @@ namespace platform
 
       virtual void create_task_message_queue();
       virtual void destroy_task_message_queue();
+
+
+      ::task* get_task(itask_t itask);
+      itask_t get_task_id(const ::task* ptask);
+      void set_task(itask_t itask, ::task* ptask);
+      void unset_task(itask_t itask, ::task* ptask);
+
+      virtual bool is_task_on(itask_t atom);
+      virtual bool is_active(::task * ptask);
+      virtual void set_task_on(itask_t atom);
+      virtual void set_task_off(itask_t atom);
 
 
       virtual ::mathematics::mathematics * mathematics();

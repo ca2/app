@@ -20,18 +20,25 @@ namespace nano
    
    
       class CLASS_DECL_ACME get :
-         virtual public ::transport_payload < get >
+         virtual public ::transport_payload < get >,
+         virtual public ::property_object
       {
       public:
 
 
+         ::e_status                    m_estatusRet;
+
          ::url::url                    m_url;
 
-         ::property_set                m_setIn;
+         //::property_set                m_setIn;
 
-         ::property_set                m_setOut;
+         //::property_set                m_setOut;
 
-         memory                        m_memory;
+         //property_set                     m_setPost;
+         //property_set                     m_setHeaders;
+
+
+         //memory                        m_memory;
 
          transfer_progress_function    m_transferprogressfunction;
 
@@ -46,7 +53,12 @@ namespace nano
          virtual get * this_transport_payload() override;
 
          virtual void run() override;
-         
+         void want_memory_response(memory_base * pusermessage = nullptr);
+         void want_string_response();
+
+         memory_pointer get_memory_response();
+         string get_string_response();
+
       };
    
    

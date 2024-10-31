@@ -106,9 +106,9 @@ namespace acme
 
          virtual void _do_tasks();
 
-         virtual ::e_status defer_initialize_windowing();
+         //virtual void defer_initialize_windowing();
 
-         virtual ::e_status initialize_windowing();
+         virtual void initialize_windowing();
 
          virtual void finalize_windowing();
 

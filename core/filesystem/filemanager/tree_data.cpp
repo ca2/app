@@ -124,34 +124,34 @@ namespace filemanager
    }
 
 
-   ::core::application* tree_data::get_app()
-   {
-
-      auto papplication = application();
-
-      return ::is_set(papplication) ? papplication->m_pcoreapplication : nullptr;
-
-   }
-
-
-   ::core::session* tree_data::get_session()
-   {
-
-      auto pacmesession = session();
-
-      return pacmesession ? pacmesession->m_pcoresession : nullptr;
-
-   }
-
-
-   ::core::system* tree_data::get_system()
-   {
-
-      auto pacmesystem = system();
-
-      return ::is_set(pacmesystem) ? pacmesystem : nullptr;
-
-   }
+   // ::core::application* tree_data::get_app()
+   // {
+   //
+   //    auto papplication = application();
+   //
+   //    return ::is_set(papplication) ? papplication : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::session* tree_data::get_session()
+   // {
+   //
+   //    auto pacmesession = session();
+   //
+   //    return pacmesession ? pacmesession : nullptr;
+   //
+   // }
+   //
+   //
+   // ::core::system* tree_data::get_system()
+   // {
+   //
+   //    auto pacmesystem = system();
+   //
+   //    return ::is_set(pacmesystem) ? pacmesystem : nullptr;
+   //
+   // }
 
 
 #ifdef _DEBUG
@@ -205,7 +205,7 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      auto puser = baseuser();
+      auto puser = user();
 
       m_pimagelist = puser->shell()->GetImageList(16);
 
@@ -807,7 +807,7 @@ auto path = filemanager_data()->m_pitem->user_path();
 ::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
 _001SelectItem(pchild);
 
-      auto puser = baseuser();
+      auto puser = user();
 
       if (::is_null(m_pimagelist))
       {

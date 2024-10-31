@@ -156,9 +156,9 @@ namespace filemanager
 
          auto pcontext = m_papplication;
          
-         auto psession = pcontext->m_psession->m_pcoresession;
+         auto psession = pcontext->m_psession;
          
-         auto puser = psession->m_puser->m_pcoreuser;
+         auto puser = psession->m_puser;
 
          m_pdocGeneral = puser->create_form(this, nullptr, this, m_ptabimpact);
 

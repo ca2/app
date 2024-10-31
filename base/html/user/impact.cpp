@@ -116,7 +116,7 @@ void html_impact::on_message_context_menu(::message::message * pmessage)
 //
 //   
 //
-//   auto puser = psession->user();
+//   auto puser = user();
 //
 //   auto pwindowing = system()->windowing();
 //

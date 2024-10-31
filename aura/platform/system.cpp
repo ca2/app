@@ -5438,6 +5438,19 @@ namespace aura
    }
 
 
+   void system::initialize_imaging()
+   {
+if(!m_pimaging)
+{
+   if (application()->m_bImaging)
+   {
+
+      __construct_new(m_pimaging);
+
+   }
+}
+   }
+
    // void system::initialize_context()
    // {
    //
@@ -5498,7 +5511,7 @@ namespace aura
 //
 //      auto pnode = session();
 //
-//      auto puser = psession->user();
+//      auto puser = user();
 //
 //      auto pwindowing = system()->windowing();
 //
@@ -5512,7 +5525,7 @@ namespace aura
 //   
 //      auto psession = session();
 //
-//      auto puser = psession->user();
+//      auto puser = user();
 //
 //      auto pwindowing = system()->windowing();
 //
@@ -6851,18 +6864,20 @@ namespace aura
    void system::TermSystem()
    {
 
+      m_pdraw2d.defer_destroy();
+
       m_phardwaredevices.defer_destroy();
 
       ::aqua::system::TermSystem();
 
-      if (m_pdraw2d)
-      {
-
-         m_pdraw2d->destroy();
-
-         m_pdraw2d.release();
-
-      }
+      // if (m_pdraw2d)
+      // {
+      //
+      //    m_pdraw2d->destroy();
+      //
+      //    m_pdraw2d.release();
+      //
+      // }
 
    }
 
@@ -6952,6 +6967,13 @@ namespace aura
 
    class ::image::imaging * system::imaging()
    {
+
+      if(!m_pimaging)
+      {
+
+         initialize_imaging();
+
+      }
 
       return m_pimaging;
 

@@ -25,7 +25,7 @@ namespace nano
          
          strKey.make_lower();
       
-         m_setOut[strKey] = scopedstrPayload;
+         payload("out_header")[strKey] = scopedstrPayload;
          
       }
    
@@ -33,7 +33,7 @@ namespace nano
       bool get::only_headers() const
    {
     
-      if(!m_setIn.has_property("only_headers"))
+      if(!payload("in_header").has_property("only_headers"))
       {
        
          return false;
@@ -42,7 +42,7 @@ namespace nano
          
       }
       
-      return m_setIn["only_headers"].as_bool();
+      return payload("only_headers").as_bool();
       
    }
 
@@ -50,9 +50,9 @@ namespace nano
       void get::set_response(long http_status, const void * data, long size)
       {
          
-         m_memory.assign(data, size);
+         get_memory_response()->assign(data, size);
          
-         m_setOut["http_status_code"] = (::i64) http_status;
+         payload("http_status_code") = (::i64) http_status;
          
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          
@@ -81,6 +81,60 @@ namespace nano
       //    m_functionOnHttpGetFinished(this);
       //
       // }
+      void get::want_memory_response(memory_base * pmemory)
+      {
+
+         if (::is_set(pmemory))
+         {
+
+            payload("get_memory") = pmemory;
+
+         }
+         else
+         {
+
+            payload("get_memory") = create_memory();
+
+         }
+
+      }
+
+
+      void get::want_string_response()
+      {
+
+         want_memory_response();
+
+      }
+
+
+      memory_pointer get::get_memory_response()
+      {
+
+         return payload("get_memory").cast < memory>();
+
+      }
+
+
+      string get::get_string_response()
+      {
+
+         auto pmemory = get_memory_response();
+
+         if (::is_null(pmemory))
+         {
+
+            return "";
+
+         }
+
+         string str;
+
+         str = pmemory->get_string();
+
+         return str;
+
+      }
 
 
    }//namespace http

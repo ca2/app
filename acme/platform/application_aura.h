@@ -1045,7 +1045,7 @@ namespace platform
 
       //virtual ::user::user * user();
       // ::axis::user * axisuser() override;
-      // ::base::user * baseuser() override;
+      // ::base::user * user() override;
       // ::bred::user * breduser() override;
       // ::core::user * coreuser() override;
 

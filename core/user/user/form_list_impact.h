@@ -28,10 +28,10 @@ namespace user
       void destroy() override;
 
 
-      ::core::application* get_app();
-      ::core::session* get_session();
-      ::core::system* get_system();
-      ::base::user * baseuser() override;
+      // ::core::application* get_app();
+      // ::core::session* get_session();
+      // ::core::system* get_system();
+      // ::base::user * user() override;
 
 
 //      // void assert_ok() const override;

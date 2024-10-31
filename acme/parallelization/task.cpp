@@ -71,7 +71,7 @@ task::task()
    //m_bSetFinish = false;
    //m_bTaskTerminated = false;
    //m_bTaskStarted = false;
-   m_bCheckingChildrenTask = false;
+//   m_bCheckingChildrenTask = false;
    //m_pthread = nullptr;
    m_bMessageThread = false;
 #ifdef WINDOWS
@@ -119,8 +119,11 @@ void task::on_initialize_particle()
    /*auto estatus =*/ ::object::on_initialize_particle();
    ::handler::handler::on_initialize_particle();
 
+   __defer_construct_new(m_pmanualreseteventHappening);
+
    m_synchronizationaMainLoop.add_item(new_request_posted_event());
    m_synchronizationaMainLoop.add_item(new_procedure_posted_event());
+   m_synchronizationaMainLoop.add_item(m_pmanualreseteventHappening);
 
    //m_pprintingformat);
 
@@ -278,7 +281,21 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 bool task::task_get_run() const
 {
 
-   return !has_finishing_flag();
+   if(!has_finishing_flag())
+   {
+
+      return true;
+
+   }
+
+   if(((::task *)this)->set_children_to_finish_and_check_them_finished())
+   {
+
+      return false;
+
+   }
+
+   return true;
 
 }
 
@@ -309,17 +326,14 @@ bool task::is_running() const
 }
 
 
-bool task::check_tasks_finished()
+bool task::set_children_to_finish_and_check_them_finished()
 {
 
-   auto b = ::object::check_tasks_finished();
+   set_finishing_flag();
 
-   if (has_finishing_flag())
-   {
+   auto b = ::object::set_children_to_finish_and_check_them_finished();
 
-      update_task_ready_to_quit();
-
-   }
+   update_task_ready_to_quit();
 
    return b;
 
@@ -354,6 +368,8 @@ void task::set_finish()
 {
 
    set_finishing_flag();
+
+   set_happened(e_happening_finish);
 
    kick_idle();
 
@@ -646,7 +662,7 @@ void task::__set_thread_off()
 
    auto atom = ::current_itask();
 
-   ::platform::get()->set_task_off(::current_itask());
+   ::system()->set_task_off(::current_itask());
 
    //::set_task(nullptr);
 
@@ -762,12 +778,7 @@ void task::run()
          while (task_get_run())
          {
 
-            if (!task_run(100_ms))
-            {
-
-               break;
-
-            }
+            task_run(1_s);
 
          }
 
@@ -844,6 +855,18 @@ bool task::task_run(const class ::time & time)
       else
       {
 
+         while(auto ehappening = pick_happening())
+         {
+
+            if(!on_happening(ehappening))
+            {
+
+               return false;
+
+            }
+
+         }
+
          if (!task_iteration())
          {
 
@@ -916,7 +939,7 @@ void task::stop_task()
 
       }
 
-      auto bTasksFinished = check_tasks_finished();
+      auto bTasksFinished = set_children_to_finish_and_check_them_finished();
 
       if (!bTasksFinished)
       {
@@ -1175,34 +1198,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
       try
       {
 
-         ::pointer<::object>pparentTask = m_pobjectParentTask;
-
-         if (::is_set(pparentTask))
-         {
-
-            try
-            {
-
-               pparentTask->transfer_tasks_from(this);
-
-            }
-            catch (...)
-            {
-
-            }
-
-            try
-            {
-
-               pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
+         on_before_destroy_task();
 
       }
       catch (...)
@@ -1232,7 +1228,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
 bool task::is_task_registered() const
 {
 
-   return ::platform::get()->get_task_id(this) != 0;
+   return ::system()->get_task_id(this) != 0;
 
 }
 
@@ -1240,7 +1236,7 @@ bool task::is_task_registered() const
 void task::register_task()
 {
 
-   ::platform::get()->set_task(m_itask, this);
+   ::system()->set_task(m_itask, this);
 
 }
 
@@ -1248,7 +1244,7 @@ void task::register_task()
 void task::unregister_task()
 {
 
-   ::platform::get()->unset_task(m_itask, this);
+   ::system()->unset_task(m_itask, this);
 
 }
 
@@ -1383,6 +1379,32 @@ procedure task::pick_next_posted_procedure()
 }
 
 
+e_happening task::pick_happening()
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if (m_ehappeninga.is_empty())
+   {
+
+      return {};
+
+   }
+
+   auto ehappening = ::transfer(m_ehappeninga.pick_first());
+
+   if (m_ehappeninga.is_empty())
+   {
+
+      m_pmanualreseteventHappening->ResetEvent();
+
+   }
+
+   return ehappening;
+
+}
+
+
 void task::handle_posted_procedures()
 {
 
@@ -1448,6 +1470,33 @@ bool task::on_get_task_name(string & strTaskName)
       //::task_set_name(::type(this).name());
 
       strTaskName = ::type(this).name();
+
+   }
+
+   return true;
+
+}
+
+
+void task::set_happened(e_happening ehappening)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   m_ehappeninga.add(ehappening);
+
+   m_pmanualreseteventHappening->set_event();
+
+}
+
+
+bool task::on_happening(e_happening ehappening)
+{
+
+   if(ehappening == e_happening_finish)
+   {
+
+      return false;
 
    }
 
@@ -1665,6 +1714,64 @@ bool task::has_message() const
 //}
 
 
+void task::on_before_branch()
+{
+
+   if (::is_null(m_pobjectParentTask))
+   {
+
+      if (this == ::system())
+      {
+
+      }
+      else
+      {
+
+         if (this == (::task *)session())
+         {
+
+            m_pobjectParentTask = system();
+
+         }
+         else
+         {
+
+            m_pobjectParentTask = ::get_task();
+
+            if (::is_null(m_pobjectParentTask))
+            {
+
+               m_pobjectParentTask = m_papplication;
+
+            }
+
+         }
+
+         if (m_pobjectParentTask)
+         {
+
+            if (m_pobjectParentTask != this)
+            {
+
+               m_pobjectParentTask->add_task(this);
+
+            }
+
+         }
+         else
+         {
+
+            throw ::exception(error_invalid_usage);
+
+         }
+
+      }
+
+   }
+
+}
+
+
 ::pointer<::task>task::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
 {
 
@@ -1794,62 +1901,15 @@ bool task::has_message() const
 
    set_flag(e_flag_task_started);
 
-   if (::is_null(m_pobjectParentTask))
-   {
+   on_before_branch();
 
-      if (this == ::system())
-      {
+#if REFERENCING_DEBUGGING
 
-      }
-      else
-      {
+   m_prefererTransfer2 = __refdbg_add_referer
 
-         if (this == (::task *)session())
-         {
+#endif
 
-            m_pobjectParentTask = system();
-
-         }
-         else
-         {
-
-            m_pobjectParentTask = ::get_task();
-
-            if (::is_null(m_pobjectParentTask))
-            {
-
-               m_pobjectParentTask = m_papplication;
-
-            }
-
-         }
-
-
-         if (m_pobjectParentTask)
-         {
-
-            if (m_pobjectParentTask != this)
-            {
-
-               m_pobjectParentTask->add_task(this);
-
-            }
-
-         }
-         else
-         {
-
-            throw ::exception(error_invalid_usage);
-
-         }
-
-      }
-
-   }
-
-   __refdbg_add_referer
-
-      increment_reference_count();
+   increment_reference_count();
 
 #ifdef WINDOWS
 
@@ -2320,6 +2380,42 @@ bool task::task_sleep(const class time & timeWait)
    return false;
 
 }
+
+
+void task::on_before_destroy_task()
+{
+
+   ::pointer<::object>pparentTask = m_pobjectParentTask;
+
+   if (::is_set(pparentTask))
+   {
+
+      try
+      {
+
+         pparentTask->transfer_tasks_from(this);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+}
+
 
 //void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{

@@ -473,6 +473,28 @@ namespace file
    {
 
    }
+
+
+#ifdef DEBUG
+
+   ::i64 edit_file::increment_reference_count()
+   {
+
+      return ::data::tree::increment_reference_count();
+
+   }
+
+
+   ::i64 edit_file::decrement_reference_count()
+   {
+
+      return ::data::tree::decrement_reference_count();
+
+   }
+
+#endif
+
+
    void edit_file::destroy()
    {
 

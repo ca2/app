@@ -39,6 +39,7 @@ namespace platform
       virtual ::file::enum_type get_type(const ::url::url& url, ::payload* pvarQuery, property_set& set);
 
 
+      using ::platform::apex_http_layer::get;
       virtual ::string get(const ::url::url& url, const class ::time& timeTimeout = 5_min);
 
 

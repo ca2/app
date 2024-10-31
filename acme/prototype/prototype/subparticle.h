@@ -118,8 +118,6 @@ protected:
 
 public:
 
-   ::reference_referer * m_prefererTransfer = nullptr;
-
    ::subparticle * get_top_track() const;
    void add_top_track(::subparticle* psubparticle);
    void erase_top_track(::subparticle* psubparticle);
@@ -132,6 +130,7 @@ public:
    bool                                m_bHeapAllocation = false;
    void *                              m_pType = nullptr;
    memsize                             m_sType = sizeof(::subparticle);
+   ::reference_referer *               m_prefererTransfer2 = nullptr;
    bool                                m_bReferencingDebuggingEnabled : 1 = true;
    bool                                m_bIncludeCallStackTrace : 1 = false;
 

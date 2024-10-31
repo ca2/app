@@ -328,7 +328,7 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
       procedure                                 m_procedureOnAfterCreate;
-
+      ::task_pointer                            m_ptaskTransparentMouseEvents;
 
 
       ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
@@ -1883,11 +1883,14 @@ namespace user
       ::user::interaction * get_first_child_window() override;
 
 
-      inline bool is_hosted() { return m_ewindowflag & e_window_flag_hosted; }
-      inline bool is_top_level()  { return m_ewindowflag & e_window_flag_top_level; }
-      inline bool is_root()  { return m_ewindowflag & e_window_flag_root; }
+      inline bool is_hosted() const { return m_ewindowflag & e_window_flag_hosted; }
+      inline bool is_top_level() const  { return m_ewindowflag & e_window_flag_top_level; }
+      inline bool is_root() const  { return m_ewindowflag & e_window_flag_root; }
 
       bool is_host_top_level() override;
+
+
+      bool task_get_run() const override;
 
       ::user::element * get_parent_primitive() override;
 

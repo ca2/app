@@ -119,7 +119,7 @@ namespace simple_ui
       else
       {
 
-         auto puser = psession->user();
+         auto puser = user();
 
          auto pwindowing = system()->windowing();
 

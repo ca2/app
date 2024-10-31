@@ -2771,4 +2771,28 @@ namespace html
 } // namespace html
 
 
+namespace ftp
+{
+
+
+   class file_status;
+
+
+} // namespace ftp
+
+
+
+
+namespace aqua
+{
+
+
+   class game;
+
+
+   class media_player;
+
+
+} // namespace aqua
+
 

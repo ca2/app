@@ -381,22 +381,22 @@ using polygon_shape = _shape < ::polygon_base < NUMBER >, e_shape_polygon, HOLDE
 
 
 template < typename HOLDEE >
-using arc_f64_shape = arc_shape < ::f64, HOLDEE >;
+using arc_f64_shape = arc_shape < double, HOLDEE >;
 
 template < typename HOLDEE >
-using line_f64_shape = line_shape < ::f64, HOLDEE >;
+using line_f64_shape = line_shape < double, HOLDEE >;
 
 template < typename HOLDEE >
-using rectangle_f64_shape = rectangle_shape < ::f64, HOLDEE >;
+using rectangle_f64_shape = rectangle_shape < double, HOLDEE >;
 
 template < typename HOLDEE >
-using ellipse_f64_shape = ellipse_shape < ::f64, HOLDEE >;
+using ellipse_f64_shape = ellipse_shape < double, HOLDEE >;
 
 template < typename HOLDEE >
-using lines_f64_shape = lines_shape < ::f64, HOLDEE >;
+using lines_f64_shape = lines_shape < double, HOLDEE >;
 
 template < typename HOLDEE >
-using polygon_f64_shape = polygon_shape < ::f64, HOLDEE >;
+using polygon_f64_shape = polygon_shape < double, HOLDEE >;
 
 
 

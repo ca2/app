@@ -11,7 +11,7 @@
 inline ::string ellipsis(const ::ansi_character * psz, strsize len);
 inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
 inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline ::f64 consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
 
 
 #include "write_text_stream.h"

@@ -343,7 +343,7 @@ inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const po
 }
 
 
-inline void get_intersection_points(point_f64_array & pa, const point_f64 & point1, const point_f64 & point2, const point_f64_array & paPolygon)
+inline void get_intersection_points(point_double_array & pa, const point_f64 & point1, const point_f64 & point2, const point_double_array & paPolygon)
 {
 
    point_f64 point;

@@ -61,7 +61,7 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(enum_scroll_command ecommand, ::f64 dPosition)
+   void scroll_bar::post_scroll_message(enum_scroll_command ecommand, double dPosition)
    {
 
       auto pscroll = __allocate ::message::scroll();
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   ::f64 scroll_bar::scroll_bar_thickness(::user::enum_layout elayout)
+   double scroll_bar::scroll_bar_thickness(::user::enum_layout elayout)
    {
 
       return m_pscrolllayout->m_scrollstatea[elayout].m_dThickness;

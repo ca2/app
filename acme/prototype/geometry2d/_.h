@@ -1076,8 +1076,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //using point_i32_array = point_array_base < point_i32 >;
 //using point_i64_array = point_array_base < point_i64 >;
-//using point_f32_array = point_array_base < point_f32 >;
-//using point_f64_array = point_array_base < point_f64 >;
+//using point_float_array = point_array_base < point_f32 >;
+//using point_double_array = point_array_base < point_f64 >;
 //
 //
 //using rectangle = ::rectangle_f64;
@@ -1835,80 +1835,80 @@ class lines_base;
 
 using point_i32 = point_type < int >;
 using point_i64 = point_type < ::i64 >;
-using point_f32 = point_type < ::f32 >;
-using point_f64 = point_type < ::f64 >;
+using point_f32 = point_type < float >;
+using point_f64 = point_type < double >;
 
 
 using size_i32 = size_type < int >;
 using size_i64 = size_type < ::i64 >;
-using size_f32 = size_type < ::f32 >;
-using size_f64 = size_type < ::f64 >;
+using size_f32 = size_type < float >;
+using size_f64 = size_type < double >;
 
 
 using rectangle_i32 = rectangle_type < int >;
 using rectangle_i64 = rectangle_type < ::i64 >;
-using rectangle_f32 = rectangle_type < ::f32 >;
-using rectangle_f64 = rectangle_type < ::f64 >;
+using rectangle_f32 = rectangle_type < float >;
+using rectangle_f64 = rectangle_type < double >;
 
 
 using ellipse_i32 = ellipse_type < int >;
 using ellipse_i64 = ellipse_type < ::i64 >;
-using ellipse_f32 = ellipse_type < ::f32 >;
-using ellipse_f64 = ellipse_type < ::f64 >;
+using ellipse_f32 = ellipse_type < float >;
+using ellipse_f64 = ellipse_type < double >;
 
 
 using line_i32 = line_type < int >;
 using line_i64 = line_type < ::i64 >;
-using line_f32 = line_type < ::f32 >;
-using line_f64 = line_type < ::f64 >;
+using line_f32 = line_type < float >;
+using line_f64 = line_type < double >;
 
 
 using arc_i32 = arc_type < int >;
 using arc_i64 = arc_type < ::i64 >;
-using arc_f32 = arc_type < ::f32 >;
-using arc_f64 = arc_type < ::f64 >;
+using arc_f32 = arc_type < float >;
+using arc_f64 = arc_type < double >;
 
 
 using point_i32_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
-using point_f32_array = point_array_base < ::f32 >;
-using point_f64_array = point_array_base < ::f64 >;
+using point_float_array = point_array_base < float >;
+using point_double_array = point_array_base < double >;
 
 
 using polygon_i32 = polygon_type < int >;
 using polygon_i64 = polygon_type < ::i64 >;
-using polygon_f32 = polygon_type < ::f32 >;
-using polygon_f64 = polygon_type < ::f64 >;
+using polygon_f32 = polygon_type < float >;
+using polygon_f64 = polygon_type < double >;
 
 
 using poly_polygon_i32 = poly_polygon_type < int >;
 using poly_polygon_i64 = poly_polygon_type < ::i64 >;
-using poly_polygon_f32 = poly_polygon_type < ::f32 >;
-using poly_polygon_f64 = poly_polygon_type < ::f64 >;
+using poly_polygon_f32 = poly_polygon_type < float >;
+using poly_polygon_f64 = poly_polygon_type < double >;
 
 
 using point_i32_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
-using point_f32_array = point_array_base < ::f32 >;
-using point_f64_array = point_array_base < ::f64 >;
+using point_float_array = point_array_base < float >;
+using point_double_array = point_array_base < double >;
 
 
 using size_i32_array = size_array_base < int >;
 using size_i64_array = size_array_base < ::i64 >;
-using size_f32_array = size_array_base < ::f32 >;
-using size_f64_array = size_array_base < ::f64 >;
+using size_float_array = size_array_base < float >;
+using size_double_array = size_array_base < double >;
 
 
 using rectangle_i32_array = rectangle_array_base < int >;
 using rectangle_i64_array = rectangle_array_base < ::i64 >;
-using rectangle_f32_array = rectangle_array_base < ::f32 >;
-using rectangle_f64_array = rectangle_array_base < ::f64 >;
+using rectangle_float_array = rectangle_array_base < float >;
+using rectangle_double_array = rectangle_array_base < double >;
 
 
 using lines_i32 = lines_base < int >;
 using lines_i64 = lines_base < ::i64 >;
-using lines_f32 = lines_base < ::f32 >;
-using lines_f64 = lines_base < ::f64 >;
+using lines_f32 = lines_base < float >;
+using lines_f64 = lines_base < double >;
 
 
 

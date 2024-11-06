@@ -524,7 +524,7 @@ namespace httpd
    void socket::simple_file_server(const ::string& pszPath, bool bMatter)
    {
 
-      pointer_array < ::i32_array > rangea;
+      pointer_array < ::int_array > rangea;
 
       if (m_request.m_url.as_string() ==
          "https://designbykyle.com/images/me1.jpg")
@@ -561,7 +561,7 @@ namespace httpd
                if (straRange.get_count() == 2)
                {
 
-                  rangea.add(___new ::i32_array ());
+                  rangea.add(___new ::int_array ());
 
                   rangea.last_ptr()->add(atoi(straRange[0]));
 

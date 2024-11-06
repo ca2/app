@@ -40,7 +40,7 @@ CLASS_DECL_ACME::u64 string_to_natural(const ::wd16_character * pwsz)
 }
 
 
-CLASS_DECL_ACME ::f64 string_to_floating(const ::wd16_character * pwsz)
+CLASS_DECL_ACME double string_to_floating(const ::wd16_character * pwsz)
 {
 
 #ifdef WINDOWS

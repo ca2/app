@@ -23,22 +23,22 @@ namespace user
       //bool           m_bScrollEnable;
       ////bool           m_bShowScroll;
 
-      ::f64          m_dMinimum;
-      ::f64          m_dMaximum;
+      double          m_dMinimum;
+      double          m_dMaximum;
 
       ///// @brief  if m_iPage is zero, 
       ///// units in this struct_data are expressed in pixels.
       //int            m_iPage;
-      ::f64          m_dPosition;
-      ::f64          m_dTrackingPosition;
+      double          m_dPosition;
+      double          m_dTrackingPosition;
       //bool           m_bHasScroll;
       //bool           m_bScrollEnable;
 
 
-      ::f64          m_dPage;
-      ::f64          m_dLine;
-      ::f64          m_dWheel;
-      ::f64          m_dThickness;
+      double          m_dPage;
+      double          m_dLine;
+      double          m_dWheel;
+      double          m_dThickness;
       bool           m_bHasScroll;
       bool           m_bScrollEnable;
 
@@ -51,7 +51,7 @@ namespace user
       }
 
 
-      inline ::f64 dimension() const
+      inline double dimension() const
       {
 
          return m_dMaximum - m_dMinimum;
@@ -59,7 +59,7 @@ namespace user
       }
 
 
-      inline void set_dimension(::f64 dDimension)
+      inline void set_dimension(double dDimension)
       {
 
          m_dMaximum = dDimension + m_dMinimum;
@@ -67,7 +67,7 @@ namespace user
       }
 
 
-      inline ::f64 range() const
+      inline double range() const
       {
 
          return m_dMaximum - m_dMinimum - m_dPage;

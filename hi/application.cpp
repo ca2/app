@@ -251,7 +251,7 @@ void trim_right_001()
 void test_001()
 {
 
-   i32_array a{ 1,1,2,3,5,8,13,21,34 };
+   int_array a{ 1,1,2,3,5,8,13,21,34 };
 
    auto print_elem = [](auto const e) {::platform::get()->informationf(::as_string(e) + "\n"); };
 

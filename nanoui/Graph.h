@@ -49,16 +49,16 @@ namespace nanoui
       const ::color::color & text_color() const { return m_colorText; }
       void set_text_color(const ::color::color & text_color) { m_colorText = text_color; }
 
-      const ::f32_array & values() const { return m_values; }
-      ::f32_array & values() { return m_values; }
-      void set_values(const ::f32_array & values) { m_values = values; }
+      const ::float_array & values() const { return m_values; }
+      ::float_array & values() { return m_values; }
+      void set_values(const ::float_array & values) { m_values = values; }
 
       virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       ::string m_strCaption, m_header, m_footer;
       ::color::color m_colorBackground, m_fill_color, m_stroke_color, m_colorText;
-      ::f32_array m_values;
+      ::float_array m_values;
 };
 
 

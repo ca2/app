@@ -27,7 +27,7 @@ namespace draw2d
       int                                 m_iTopic;
       int                                 m_iTopicLines;
       int                                 m_iClose;
-      ::point_f64_array                   m_pointa;
+      ::point_double_array                   m_pointa;
       ::pointer < ::geometry2d::item >    m_pitemTopic;
 
       

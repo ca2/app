@@ -795,13 +795,13 @@ using sequence2_i64 = sequence_type<::i64, 2>;
 using sequence3_i64 = sequence_type<::i64, 3>;
 using sequence4_i64 = sequence_type<::i64, 4>;
 
-using sequence2_f32 = sequence_type<::f32, 2>;
-using sequence3_f32 = sequence_type<::f32, 3>;
-using sequence4_f32 = sequence_type<::f32, 4>;
+using sequence2_f32 = sequence_type<float, 2>;
+using sequence3_f32 = sequence_type<float, 3>;
+using sequence4_f32 = sequence_type<float, 4>;
 
-using sequence2_f64 = sequence_type<::f64, 2>;
-using sequence3_f64 = sequence_type<::f64, 3>;
-using sequence4_f64 = sequence_type<::f64, 4>;
+using sequence2_f64 = sequence_type<double, 2>;
+using sequence3_f64 = sequence_type<double, 3>;
+using sequence4_f64 = sequence_type<double, 4>;
 
 ///**
 // * \class Color common.h nanoui/common.h

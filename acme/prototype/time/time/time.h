@@ -391,7 +391,7 @@ public:
    constexpr double floating_second() const { return ((double)m_iSecond) + ((double) m_iNanosecond / 1'000'000'000.0); }
    constexpr double floating_millisecond() const { return ((double)m_iSecond * 1'000.0) + ((double)m_iNanosecond / 1'000'000.0);}
    constexpr double floating_microsecond() const { return ((double)m_iSecond * 1'000'000.0) + ((double)m_iNanosecond / 1'000.0); }
-   constexpr double floating_nanosecond() const { return (::f64)integral_nanosecond(); }
+   constexpr double floating_nanosecond() const { return (double)integral_nanosecond(); }
 
 
    int millisecond() const { return (int) (m_iNanosecond / 1'000'000); }

@@ -931,7 +931,7 @@ namespace draw2d
    }
 
 
-   void graphics::polyline(const ::point_f64_array & pointa)
+   void graphics::polyline(const ::point_double_array & pointa)
    {
 
       polyline(pointa.data(), pointa.size());
@@ -3736,7 +3736,7 @@ namespace draw2d
    }
 
 
-   ::collection::count graphics::get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart, strsize iCount)
+   ::collection::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart, strsize iCount)
    {
 
       daLeft.erase_all();
@@ -5347,7 +5347,7 @@ namespace draw2d
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);
 
-         point_f64_array pointa;
+         point_double_array pointa;
 
          pointa.add(rectangle.bottom_left());
 
@@ -5363,7 +5363,7 @@ namespace draw2d
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);
 
-         point_f64_array pointa;
+         point_double_array pointa;
 
          pointa.add(rectangle.top_left());
 

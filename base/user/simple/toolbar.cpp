@@ -2698,7 +2698,7 @@ rectangle_i32 simple_toolbar::get_bar_border()
 }
 
 
-::f64 simple_toolbar::get_pixel_font_size() const
+double simple_toolbar::get_pixel_font_size() const
 {
 
    if (m_fontsize.eunit() == e_unit_pixel)

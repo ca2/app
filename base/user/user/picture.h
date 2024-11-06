@@ -38,7 +38,7 @@ namespace user
          rectangle_f64                    m_rectangleBounding;
          polygon_f64                      m_polygon;
          polygon_f64                      m_polygonDrawing;
-         point_f64_array                  m_pointaCursor;
+         point_double_array                  m_pointaCursor;
          double                           m_dZoom;
          point_f64                        m_pointDrag2;
 
@@ -72,7 +72,7 @@ namespace user
       };
 
 
-      point_f64_array                  m_pointaCache1;
+      point_double_array                  m_pointaCache1;
 
 
       ::pointer<picture_impl>    m_ppictureimpl;
@@ -106,7 +106,7 @@ namespace user
       virtual ::draw2d::region_pointer get_region() const;
 
       virtual rectangle_f64 drawing_bounds() const;
-      virtual point_f64_array & drawing_polygon() const;
+      virtual point_double_array & drawing_polygon() const;
 
       virtual void update_drawing_rect(::size_f64 sizePage, ::size_f64 sizeClient);
       virtual void update_screen_rect(::size_f64 sizePage, ::size_f64 sizeClient);

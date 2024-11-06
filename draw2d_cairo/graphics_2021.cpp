@@ -5975,7 +5975,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::point_f64_array & pointa)
+   bool graphics::_set(const ::point_double_array & pointa)
    {
 
       if (pointa.get_count() <= 1)
@@ -6064,7 +6064,7 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      _set((const ::point_f64_array &) lines);
+      _set((const ::point_double_array &) lines);
 
       return true;
 
@@ -6108,7 +6108,7 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      _set((const ::point_f64_array &) polygon_i32);
+      _set((const ::point_double_array &) polygon_i32);
 
       cairo_close_path(m_pdc);
 

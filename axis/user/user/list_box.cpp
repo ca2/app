@@ -744,7 +744,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         set_context_offset_y((::f64)(iItem * _001GetItemHeight()));
+         set_context_offset_y((double)(iItem * _001GetItemHeight()));
 
       }
       else

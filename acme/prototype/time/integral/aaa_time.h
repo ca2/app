@@ -175,7 +175,7 @@
 ////floating_frequency operator * (FLOATING floating, const integral_time < INTEGRAL_TIME_TYPE > & integraltime)
 ////{
 ////
-////   return (::f64)(floating / integraltime.m_i);
+////   return (double)(floating / integraltime.m_i);
 ////
 ////}
 //

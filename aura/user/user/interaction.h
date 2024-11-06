@@ -305,8 +305,8 @@ namespace user
       property_set                              m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
-      ::i32_array                               m_iaSubItemDuplicate;
-      ::i32_array                               m_iaSubItemDisable;
+      ::int_array                               m_iaSubItemDuplicate;
+      ::int_array                               m_iaSubItemDisable;
 
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;
@@ -2160,20 +2160,20 @@ namespace user
       virtual ::size_f64 get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_design);
-      virtual ::f64 get_context_offset_x(::user::enum_layout elayout = ::user::e_layout_design);
-      virtual ::f64 get_context_offset_y(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual double get_context_offset_x(::user::enum_layout elayout = ::user::e_layout_design);
+      virtual double get_context_offset_y(::user::enum_layout elayout = ::user::e_layout_design);
       virtual void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void set_total_size(const ::size_f64 & size, ::user::enum_layout = ::user::e_layout_sketch);
       virtual void set_page_size(const ::size_f64& size, ::user::enum_layout = ::user::e_layout_sketch);
       virtual void set_context_offset(const ::point_f64 & point, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void set_scroll_tracking_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void set_scroll_tracking_y(::f64 y, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void set_context_offset_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void set_context_offset_y(::f64 y, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_scroll_tracking_x(double x, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_scroll_tracking_y(double y, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_context_offset_x(double x, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void set_context_offset_y(double y, ::user::enum_layout = ::user::e_layout_sketch);
       virtual void offset_context_offset(const ::size_f64 & size, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void offset_context_offset_x(::f64 cx, ::user::enum_layout = ::user::e_layout_sketch);
-      virtual void offset_context_offset_y(::f64 cy, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void offset_context_offset_x(double cx, ::user::enum_layout = ::user::e_layout_sketch);
+      virtual void offset_context_offset_y(double cy, ::user::enum_layout = ::user::e_layout_sketch);
       virtual void constrain_context_offset(point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void on_change_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics);
@@ -2528,7 +2528,7 @@ namespace user
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
       //virtual bool get_element_rectangle(::rectangle_i32* prectangle, enum_element eelement);
-      virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);
+      virtual void get_simple_drop_down_open_arrow_polygon(point_double_array& pointa);
       // control member functions END
 
 

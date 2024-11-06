@@ -33,7 +33,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_f64_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_double_array & sizea)
    {
 
 

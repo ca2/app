@@ -47,9 +47,9 @@ public:
 
    //::rectangle_i32 get_buttonB_rectangle(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::point_f64_array get_arrowA(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::point_double_array get_arrowA(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
-   //::point_f64_array get_arrowB(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
+   //::point_double_array get_arrowB(const ::rectangle_i32 & rectangleX, ::draw2d::graphics_pointer & pgraphics);
 
    //::status < ::rectangle_i32 > get_pageA_rectangle(const ::rectangle_i32 & rectangleX, const ::rectangle_i32 & rectangleTrack, ::draw2d::graphics_pointer & pgraphics);
 
@@ -59,9 +59,9 @@ public:
 
    ::rectangle_f64 get_buttonB_rectangle(const ::rectangle_f64 & rectangle);
 
-   ::point_f64_array get_arrowA(const ::rectangle_f64 & rectangle);
+   ::point_double_array get_arrowA(const ::rectangle_f64 & rectangle);
 
-   ::point_f64_array get_arrowB(const ::rectangle_f64 & rectangle);
+   ::point_double_array get_arrowB(const ::rectangle_f64 & rectangle);
 
    ::status < ::rectangle_f64 > get_pageA_rectangle(const ::rectangle_f64 & rectangle, const ::rectangle_f64 & rectangleTrack);
 
@@ -142,7 +142,7 @@ public:
    ::point_i32 drag_point(::item * pitem, ::user::mouse * pmouse) override;
 
 
-   //::f64 scroll_bar_thickness(::user::enum_layout elayout) override;
+   //double scroll_bar_thickness(::user::enum_layout elayout) override;
 
 
 };

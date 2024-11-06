@@ -19,7 +19,7 @@ namespace draw2d
       ~graphics_extension() override;
 
 
-      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_f64_array & sizea);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_double_array & sizea);
 
       void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, size_f64 & size);
 

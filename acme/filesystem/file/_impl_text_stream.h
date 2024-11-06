@@ -81,7 +81,7 @@ inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBeg
 }
 
 
-inline ::f64 consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;

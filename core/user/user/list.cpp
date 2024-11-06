@@ -276,7 +276,7 @@ namespace user
 
          pgraphics->set(pbrushText);
 
-         ::size_f64_array sizea;
+         ::size_double_array sizea;
 
          m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
@@ -5764,7 +5764,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::size_f64_array sizea;
+      ::size_double_array sizea;
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
@@ -6479,7 +6479,7 @@ namespace user
       }
    }
 
-   void list::FilterInclude(::i32_array & array)
+   void list::FilterInclude(::int_array & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (::collection::index i = 0; i < array.get_size(); i++)

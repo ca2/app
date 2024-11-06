@@ -849,7 +849,7 @@ namespace write_text
    void font_list::update_extents()
    {
 
-      ::i32_array iaSize;
+      ::int_array iaSize;
 
       int iBaseSize;
 

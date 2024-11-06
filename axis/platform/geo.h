@@ -77,8 +77,8 @@ namespace geo
       string_array                                       m_straCityLo;
       string_array                                       m_straCity;
       i64_array                                          m_iaIds;
-      f64_array                                       m_daLon;
-      f64_array                                       m_daLat;
+      double_array                                       m_daLon;
+      double_array                                       m_daLat;
 
       string_map < openweather_city* >                  m_mapCity;
 

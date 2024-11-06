@@ -198,7 +198,7 @@ template < primitive_pole POLE >
 inline ::point_f64 __point_f64(const POLE & pole)
 {
 
-   return { (::f64)pole.x(), (::f64)pole.y() };
+   return { (double)pole.x(), (double)pole.y() };
 
 }
 
@@ -214,8 +214,8 @@ inline ::point_i32 u32_point_i32(const POLE & pole)
 
 using pole_i32 = ::pole_type < int >;
 using pole_i64 = ::pole_type < ::i64>;
-using pole_f32 = ::pole_type < ::f32 >;
-using pole_f64 = ::pole_type < ::f64 >;
+using pole_f32 = ::pole_type < float >;
+using pole_f64 = ::pole_type < double >;
 
 
 

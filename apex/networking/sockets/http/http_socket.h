@@ -42,7 +42,7 @@ namespace sockets
       //bool               m_bExpectRequest;
       memsize              m_body_size_left;
       memsize              m_body_size_downloaded;
-      ::f64                m_dDownloadRate;
+      double                m_dDownloadRate;
       ::i64                m_iDownloaded;
       memsize              m_chunk_size;
       int                  m_chunk_state;

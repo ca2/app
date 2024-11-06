@@ -928,7 +928,7 @@ namespace user
 
       int h = ::height(rectangle);
 
-      point_f64_array pta;
+      point_double_array pta;
       pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
       pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
@@ -959,7 +959,7 @@ namespace user
 
       int h = ::height(rectangle);
 
-      point_f64_array pta;
+      point_double_array pta;
       pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
       pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);

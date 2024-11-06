@@ -168,7 +168,7 @@ namespace user
          rectanglePopupArrow.right() = rectangleX.right() - 4;
          rectanglePopupArrow.top() = ((rectangleX.top() + rectangleX.bottom()) / 2) - 4;
          rectanglePopupArrow.bottom() = ((rectangleX.top() + rectangleX.bottom()) / 2) + 4;
-         point_f64_array pointa;
+         point_double_array pointa;
          pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
          pointa.add(point_i32(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
          pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.top()));

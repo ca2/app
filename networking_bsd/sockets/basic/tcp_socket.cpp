@@ -2502,7 +2502,7 @@ m_ibuf(isize)
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   ::i32_array ia;
+      //   ::int_array ia;
 
       //   ia.add(512);
       //   ia.add(1024);
@@ -2561,7 +2561,7 @@ m_ibuf(isize)
 
          //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
-         i32_array iaCurves;
+         int_array iaCurves;
          //int* curves_new;
          //char* cs = NULL;
          //char* p, * q;

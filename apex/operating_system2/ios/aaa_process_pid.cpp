@@ -168,7 +168,7 @@ atom_array get_pids()
 
    return atom_array();
 
-//   ::i32_array pids;
+//   ::int_array pids;
 //
 //   array < pid_t > pida;
 //
@@ -198,7 +198,7 @@ atom_array get_pids()
 //      if (!newprocess)
 //      {
 //
-//         return ::i32_array();
+//         return ::int_array();
 //
 //      }
 //
@@ -242,14 +242,14 @@ atom_array get_pids()
 }
 
 
-::i32_array module_path_get_pid(const char * csProcessName)
+::int_array module_path_get_pid(const char * csProcessName)
 {
 
-   return ::i32_array();
+   return ::int_array();
 
-//   ::i32_array iaPid;
+//   ::int_array iaPid;
 //
-//   ::i32_array pids = get_pids();
+//   ::int_array pids = get_pids();
 //
 //   string strPath;
 //

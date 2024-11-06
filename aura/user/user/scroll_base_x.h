@@ -45,7 +45,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void send_scroll_x_message(enum_scroll_command ecommand, ::f64 dPosition = F64_MOST_NEGATIVE);
+      virtual void send_scroll_x_message(enum_scroll_command ecommand, double dPosition = F64_MOST_NEGATIVE);
 
       //virtual void GetScrollRect(::rectangle_i32 * prectangle);
 
@@ -56,10 +56,10 @@ namespace user
       virtual void layout_scroll_bar_x(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void defer_create_scroll_bar_x(::user::enum_layout elayout = ::user::e_layout_sketch);
       //virtual void on_create_scroll_bar_x();
-      void set_scroll_tracking_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch) override;
-      ::f64 get_context_offset_x(::user::enum_layout = ::user::e_layout_sketch) override;
-      void set_context_offset_x(::f64 x, ::user::enum_layout = ::user::e_layout_sketch) override;
-      virtual void constrain_context_offset_x(::f64 & x, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      void set_scroll_tracking_x(double x, ::user::enum_layout = ::user::e_layout_sketch) override;
+      double get_context_offset_x(::user::enum_layout = ::user::e_layout_sketch) override;
+      void set_context_offset_x(double x, ::user::enum_layout = ::user::e_layout_sketch) override;
+      virtual void constrain_context_offset_x(double & x, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void scroll_left_line();
       virtual void scroll_right_line();
       virtual void scroll_left_page();

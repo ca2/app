@@ -98,9 +98,9 @@ namespace html
       {
       public:
 
-         f32_array       m_cxa;
-         f32_array       m_cxMax;
-         f32_array       m_cya;
+         float_array       m_cxa;
+         float_array       m_cxMax;
+         float_array       m_cya;
          bool                          m_bHasChar;
          float                         m_cy;
 
@@ -140,11 +140,11 @@ namespace html
       {
       public:
          int           m_iBody;
-         f32_array       m_yParent;
+         float_array       m_yParent;
          float             m_y;
-         //         f32_array       m_cyStack;
-         f32_array       m_xParent;
-         f32_array       m_cya;
+         //         float_array       m_cyStack;
+         float_array       m_xParent;
+         float_array       m_cya;
          //       int                           m_iy;
          float             m_x;
          float             m_cx;

@@ -25,7 +25,7 @@ namespace nano2d
 	public:
 
 		::pointer_array < text_row >     m_rowa;
-		::f32                            m_fWidth;
+		float                            m_fWidth;
 
 	};
 

@@ -101,7 +101,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline ::f64 floor(::f64 f)
+   inline double floor(double f)
    {
 
       return ::floor(f);
@@ -109,7 +109,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline ::f32 floor(::f32 f)
+   inline float floor(float f)
    {
 
       return ::floorf(f);
@@ -117,7 +117,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline ::f64 ceil(::f64 f)
+   inline double ceil(double f)
    {
 
       return ::ceil(f);
@@ -125,7 +125,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline ::f32 ceil(::f32 f)
+   inline float ceil(float f)
    {
 
       return ::ceilf(f);

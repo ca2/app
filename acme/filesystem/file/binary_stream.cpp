@@ -619,7 +619,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       throw ::exception(todo);
 
-      //throw ::exception(todo);      __exchange_load_array(*this, (::i32_array &) payload);
+      //throw ::exception(todo);      __exchange_load_array(*this, (::int_array &) payload);
 
    }
    break;

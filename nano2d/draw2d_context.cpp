@@ -770,8 +770,8 @@ pstate->m_ppen->m_color = color;
 
       ::rectangle_f32 r;
 
-      r.left() = (::f32) ((double)x + offsetx);
-      r.top() = (::f32) ((double)y + offsety);
+      r.left() = (float) ((double)x + offsetx);
+      r.top() = (float) ((double)y + offsety);
       r.set_size(size);
 
       auto ealignForDrawText = m_pstate->m_ealignText;
@@ -786,8 +786,8 @@ pstate->m_ppen->m_color = color;
    int draw2d_context::text_glyph_positions(float x, float y, const ::scoped_string& scopedstr, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
-      f64_array daLeft;
-      f64_array daRight;
+      double_array daLeft;
+      double_array daRight;
 
       __set_current_font();
 
@@ -1157,7 +1157,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::collection::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
+   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
    {
 
       __set_current_font();

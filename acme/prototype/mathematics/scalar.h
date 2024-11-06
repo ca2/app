@@ -6,7 +6,7 @@
 
 
 
-//using real = ::f64;
+//using real = double;
 //using integer = ::i64;
 
 class CLASS_DECL_ACME number
@@ -25,8 +25,8 @@ public:
       ::i64       m_i64;
       ::u64       m_u64;
 
-      ::f32       m_f32;
-      ::f64       m_f64;
+      float       m_f32;
+      double       m_f64;
 
    };
 
@@ -119,10 +119,10 @@ public:
          m_u64 = (::u64)t;
          break;
       case e_number_f32:
-         m_f32 = (::f32)t;
+         m_f32 = (float)t;
          break;
       case e_number_f64:
-         m_f64 = (::f64)t;
+         m_f64 = (double)t;
          break;
       };
 
@@ -136,8 +136,8 @@ public:
    unsigned int get_u32() const { return get < unsigned int>(); }
    ::i64 get_i64() const { return get < ::i64>(); }
    ::u64 get_u64() const { return get < ::u64>(); }
-   ::f32 get_f32() const { return get < ::f32>(); }
-   ::f64 get_f64() const { return get < ::f64>(); }
+   float get_f32() const { return get < float>(); }
+   double get_f64() const { return get < double>(); }
 
 
    ::number operator + (const number& number) const

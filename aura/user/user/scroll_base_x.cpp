@@ -261,7 +261,7 @@ namespace user
    //}
 
 
-   void scroll_base_x::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
+   void scroll_base_x::set_scroll_tracking_x(double x, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -278,7 +278,7 @@ namespace user
    }
 
 
-   ::f64 scroll_base_x::get_context_offset_x(::user::enum_layout elayout)
+   double scroll_base_x::get_context_offset_x(::user::enum_layout elayout)
    {
 
       return m_pscrolllayoutX->m_scrollstatea[elayout].m_dPosition;
@@ -286,7 +286,7 @@ namespace user
    }
 
 
-   void scroll_base_x::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
+   void scroll_base_x::set_context_offset_x(double x, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -303,7 +303,7 @@ namespace user
    }
 
 
-   void scroll_base_x::constrain_context_offset_x(::f64 & x, ::user::enum_layout elayout)
+   void scroll_base_x::constrain_context_offset_x(double & x, ::user::enum_layout elayout)
    {
 
       auto scrollstatex = get_scroll_state_x(elayout);
@@ -356,7 +356,7 @@ namespace user
 
       auto scrollstatex = get_scroll_state_x(elayout);
 
-      scrollstatex.m_dThickness = (::f64) get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatex.m_dThickness = (double) get_int(pstyle, e_int_scroll_bar_thickness);
 
       auto rectangleX = this->rectangle();
 
@@ -419,7 +419,7 @@ namespace user
 
 
 
-   void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, ::f64 dPosition)
+   void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, double dPosition)
    {
 
       auto pscroll = __allocate ::message::scroll();

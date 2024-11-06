@@ -681,7 +681,7 @@ namespace user
 
    }
 
-   point_f64_array & picture::drawing_polygon() const
+   point_double_array & picture::drawing_polygon() const
    {
 
       rectangle_f64 rectangle(0.0, 0.0, 0.0, 0.0);

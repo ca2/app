@@ -47,7 +47,7 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::i32_array ()const { return m_payload.as_i32_array(); }
+   operator ::int_array ()const { return m_payload.as_i32_array(); }
    operator ::i64_array ()const { return m_payload.as_i64_array(); }
    operator ::string_array ()const { return m_payload.as_string_array(); }
    operator ::payload_array() const { return m_payload.as_payload_array(); }

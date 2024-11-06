@@ -28,7 +28,7 @@
 //using floating_nanosecond = floating_time < floating_nanosecond_t >;
 
 
-// inline floating_nanosecond get_floating_nanosecond() { return floating_nanosecond((::f64)get_integral_nanosecond().m_i); }
+// inline floating_nanosecond get_floating_nanosecond() { return floating_nanosecond((double)get_integral_nanosecond().m_i); }
 
 
 // template <  >

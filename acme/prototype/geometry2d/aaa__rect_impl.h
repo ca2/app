@@ -715,12 +715,12 @@
 //
 //   {
 //
-//      point_f64_array::get_bounding_box(this, ppoint, count);
+//      point_double_array::get_bounding_box(this, ppoint, count);
 //
 //
 //   }
 //
-//  TEMPLATE void rectangle_f64::get_bounding_box(const point_f64_array & pointa)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const point_double_array & pointa)
 //   {
 //
 //      pointa.get_bounding_box(this);

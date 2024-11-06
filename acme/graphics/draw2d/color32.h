@@ -48,10 +48,10 @@ struct color32_t
    constexpr unsigned char & u8_opacity() { return m_u8Opacity; }
 
 
-   constexpr ::f32 f32_red() const { return m_u8Red / 255.f; }
-   constexpr ::f32 f32_green() const { return m_u8Green / 255.f; }
-   constexpr ::f32 f32_blue() const { return m_u8Blue / 255.f; }
-   constexpr ::f32 f32_opacity() const { return m_u8Opacity / 255.f; }
+   constexpr float f32_red() const { return m_u8Red / 255.f; }
+   constexpr float f32_green() const { return m_u8Green / 255.f; }
+   constexpr float f32_blue() const { return m_u8Blue / 255.f; }
+   constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
 
 
 };

@@ -365,7 +365,7 @@ namespace nanoui
    {
 
       /* Compute minimum row / column sizes */
-      ::i32_array grid[2];
+      ::int_array grid[2];
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
@@ -390,7 +390,7 @@ namespace nanoui
    }
 
 
-   void GridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array * grid, bool bRecalcTextSize) const
+   void GridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
    {
 
       auto iAxisIndex1 = index_of(m_eorientation);
@@ -490,7 +490,7 @@ namespace nanoui
       auto container_size = sizeFixed.prefer_self_coordinate_if_set(pwidget->size());
 
       /* Compute minimum row / column sizes */
-      ::i32_array grid[2];
+      ::int_array grid[2];
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
@@ -600,7 +600,7 @@ namespace nanoui
       }
    }
 
-   AdvancedGridLayout::AdvancedGridLayout(const ::i32_array& cols, const ::i32_array& rows, int margin)
+   AdvancedGridLayout::AdvancedGridLayout(const ::int_array& cols, const ::int_array& rows, int margin)
       : m_cols(cols), m_rows(rows), m_iMargin(margin) {
       m_col_stretch.resize(m_cols.size(), 0);
       m_row_stretch.resize(m_rows.size(), 0);
@@ -611,7 +611,7 @@ namespace nanoui
    {
 
       /* Compute minimum row / column sizes */
-      ::i32_array grid[2];
+      ::int_array grid[2];
 
       compute_layout(pcontext, pwidget, grid);
 
@@ -636,7 +636,7 @@ namespace nanoui
    void AdvancedGridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      ::i32_array grid[2];
+      ::int_array grid[2];
       compute_layout(pcontext, pwidget, grid);
 
       grid[0].insert_at(0, m_iMargin);
@@ -724,7 +724,7 @@ namespace nanoui
 
    }
 
-   void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array* _grid)
+   void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array* _grid)
    {
 
       sequence2_i32 fs_w = pwidget->fixed_size();
@@ -741,9 +741,9 @@ namespace nanoui
       container_size -= extra;
 
       for (int iAxisIndex = 0; iAxisIndex < 2; ++iAxisIndex) {
-         ::i32_array& grid = _grid[iAxisIndex];
-         ::i32_array& sizes = iAxisIndex == 0 ? m_cols : m_rows;
-         ::f32_array& stretch = iAxisIndex == 0 ? m_col_stretch : m_row_stretch;
+         ::int_array& grid = _grid[iAxisIndex];
+         ::int_array& sizes = iAxisIndex == 0 ? m_cols : m_rows;
+         ::float_array& stretch = iAxisIndex == 0 ? m_col_stretch : m_row_stretch;
          grid = sizes;
 
          for (int phase = 0; phase < 2; ++phase) {

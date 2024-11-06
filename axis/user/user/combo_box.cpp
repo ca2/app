@@ -228,7 +228,7 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(point_double_array& pointa)
    {
 
       ::rectangle_i32 rectangleDropDown;
@@ -376,7 +376,7 @@ namespace user
 
       auto ppath = __create < ::draw2d::path > ();
 
-      point_f64_array pointa;
+      point_double_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

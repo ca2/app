@@ -55,7 +55,7 @@ namespace write_text
       class ::time                                    m_timeLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
-      ::i32_array                                 m_iaSize;
+      ::int_array                                 m_iaSize;
 
       int                                       m_iSelUpdateId;
       //::collection::index                                   m_iSel;

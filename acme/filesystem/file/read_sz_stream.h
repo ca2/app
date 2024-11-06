@@ -52,7 +52,7 @@ public:
 //    }
 
 
-    ::f64 read_floating();
+    double read_floating();
 //    {
 //
 //       return consume_floating(m_psz, m_pszBegin);

@@ -24,8 +24,8 @@ public:
    constexpr opacity(INTEGRAL i) { m_u8Opacity = u8_clip(i); }
 
 
-   constexpr ::f64 f64_opacity() const { return m_u8Opacity / 255.; }
-   constexpr ::f32 f32_opacity() const { return m_u8Opacity / 255.f; }
+   constexpr double f64_opacity() const { return m_u8Opacity / 255.; }
+   constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
    constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
 
 

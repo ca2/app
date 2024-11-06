@@ -2820,8 +2820,8 @@ void TransformSkewX(float* t, float a)
       //fonsTextIterInit(fs, &iter, 0, 0, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
       //prevIter = iter;
       
-		::f64_array daLeft;
-		::f64_array daRight;
+		::double_array daLeft;
+		::double_array daRight;
       
 		character_metric(daLeft, daRight, scopedstr);
 
@@ -3406,7 +3406,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::collection::count context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
+	::collection::count context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
 	{
 
 		throw ::interface_only();

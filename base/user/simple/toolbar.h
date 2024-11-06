@@ -50,7 +50,7 @@ public:
    virtual ::rectangle_i32 get_bar_border();
    virtual ::rectangle_i32 get_item_pad();
 
-   virtual ::f64 get_pixel_font_size() const;
+   virtual double get_pixel_font_size() const;
 
    //bool create(::user::interaction * puiParent, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, atom nID = "__IDW_TOOLBAR");
    //using ::user::interaction::create_window_ex;

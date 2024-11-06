@@ -35,7 +35,7 @@ namespace user
       rectangle_f64                    m_rectangleBounding;
       polygon_f64                      m_polygon;
       polygon_f64                      m_polygonDrawing;
-      point_f64_array                  m_pointaCursor;
+      point_double_array                  m_pointaCursor;
       double                           m_dZoom;
       point_f64                        m_pointDrag2;
 

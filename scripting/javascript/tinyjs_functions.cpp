@@ -230,7 +230,7 @@ void scArrayRemove(CScriptVar * ca, void * data)
 
    CScriptVar * obj = ca->getParameter("obj");
 
-   ::i32_array erasedIndices;
+   ::int_array erasedIndices;
 
    CScriptVarLink * v;
    // erase

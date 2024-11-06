@@ -217,7 +217,7 @@ namespace helloworld
       ////
       ////#endif
 
-      //f64_array daFrame;
+      //double_array daFrame;
 
       //index iLastFrameId;
 

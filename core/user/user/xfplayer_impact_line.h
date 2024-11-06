@@ -37,7 +37,7 @@ public:
    string                                          m_str;
    string                                          m_strPrefix;
    string                                          m_strRoot;
-   ::i32_array                                       m_iaPosition;
+   ::int_array                                       m_iaPosition;
 
    ::rectangle_i32                                 m_rectangle;
 

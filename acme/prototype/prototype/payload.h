@@ -87,10 +87,10 @@ public:
       ::i64 * m_pi64;
       ::u64 * m_pu64;
       ::string * m_pstr;
-      ::f32                                  m_f32;
-      ::f32 * m_pf32;
-      ::f64                                  m_f64;
-      ::f64 * m_pf64;
+      float                                  m_f32;
+      float * m_pf32;
+      double                                  m_f64;
+      double * m_pf64;
       //payload * m_ppayload;
       ::earth::time                          m_earthtime;
       file_time                              m_filetime;
@@ -136,7 +136,7 @@ public:
 
       ::subparticle * m_p;
       ::string_array * m_pstra;
-      ::i32_array  * m_pia;
+      ::int_array  * m_pia;
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
       ::i64_array * m_pi64a;
@@ -185,8 +185,8 @@ public:
    template < same_as < unsigned int > U32 > payload(U32 u) : m_etype(e_type_u32) {m_u32 = u;}
    template < same_as < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
    template < same_as < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
-   template < same_as < ::f32 > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
-   template < same_as < ::f64 > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
+   template < same_as < float > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
+   template < same_as < double > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
 #ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
@@ -219,7 +219,7 @@ public:
    payload(const ::subparticle & particle);
    payload(const ::file::path & path);
    payload(const ::string_array & stra);
-   payload(const ::i32_array & ia);
+   payload(const ::int_array & ia);
    payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    //payload(const ::property & property);
@@ -455,8 +455,8 @@ public:
    unsigned int & as(unsigned int & u)  const { return u = as_u32(); }
    ::i64 & as(::i64 & i)  const { return i = as_i64(); }
    ::u64 & as(::u64 & u)  const { return u = as_u64(); }
-   ::f32 & as(::f32 & f) const { return f = as_f32(); }
-   ::f64 & as(::f64 & f) const { return f = as_f64(); }
+   float & as(float & f) const { return f = as_f32(); }
+   double & as(double & f) const { return f = as_f64(); }
 
 
    char as_i8(char iDefault = 0) const;
@@ -467,8 +467,8 @@ public:
    unsigned int as_u32(unsigned int uiDefault = 0)  const;
    ::i64 as_i64(::i64 iDefault = 0)  const;
    ::u64 as_u64(::u64 uiDefault = 0)  const;
-   ::f32 as_f32(::f32 fDefault = 0) const;
-   ::f64 as_f64(::f64 fDefault = 0) const;
+   float as_f32(float fDefault = 0) const;
+   double as_f64(double fDefault = 0) const;
 
 
    inline ::iptr as_iptr(::iptr iDefault = 0)  const;
@@ -504,7 +504,7 @@ public:
 
    ::memory as_memory() const;
    ::string_array as_string_array() const;
-   ::i32_array as_i32_array() const;
+   ::int_array as_i32_array() const;
    ::i64_array as_i64_array() const;
    ::payload_array as_payload_array()  const;
    ::property_set as_property_set() const;
@@ -634,8 +634,8 @@ public:
 
 
 
-   operator ::f32() const { return this->as_f32(); }
-   operator ::f64() const { return this->as_f64(); }
+   operator float() const { return this->as_f32(); }
+   operator double() const { return this->as_f64(); }
    //operator ::string() const;
    //::memory memory() const;
    //operator ::file::path() const { return this->as_file_path(); }
@@ -659,7 +659,7 @@ public:
 
 
    ::string_array & string_array_reference();
-   ::i32_array & i32_array_reference();
+   ::int_array & i32_array_reference();
    ::i64_array & i64_array_reference();
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
@@ -674,7 +674,7 @@ public:
    ::color::hls & color_hls_reference();
 
    const ::string_array & string_array_reference() const;
-   const ::i32_array & i32_array_reference() const;
+   const ::int_array & i32_array_reference() const;
    const ::i64_array & i64_array_reference() const;
    const ::payload_array & payload_array_reference() const;
    const class time & time_reference() const;
@@ -707,8 +707,8 @@ public:
    unsigned int & u32_reference();
    ::i64 & i64_reference();
    ::u64 & u64_reference();
-   ::f32 & f32_reference();
-   ::f64 & f64_reference();
+   float & f32_reference();
+   double & f64_reference();
 
 
    template < primitive_signed SIGNED >
@@ -916,8 +916,8 @@ public:
    payload & assign_u32    (unsigned int    u)   { return __assign_primitive(m_u32 , e_type_u32   , u ); }
    payload & assign_i64    (::i64    i)   { return __assign_primitive(m_i64 , e_type_i64   , i ); }
    payload & assign_u64    (::u64    u)   { return __assign_primitive(m_u64 , e_type_u64   , u ); }
-   payload & assign_f32    (::f32    f)   { return __assign_primitive(m_f32 , e_type_f32   , f ); }
-   payload & assign_f64    (::f64    f)   { return __assign_primitive(m_f64 , e_type_f64   , f ); }
+   payload & assign_f32    (float    f)   { return __assign_primitive(m_f32 , e_type_f32   , f ); }
+   payload & assign_f64    (double    f)   { return __assign_primitive(m_f64 , e_type_f64   , f ); }
 
 
    payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }
@@ -929,8 +929,8 @@ public:
    payload & assign_pu32   (unsigned int * pu)   { return __assign_primitive_pointer(m_pu32   , e_type_pu32  , pu); }
    payload & assign_pi64   (::i64 * pi)   { return __assign_primitive_pointer(m_pi64   , e_type_pi64  , pi); }
    payload & assign_pu64   (::u64 * pu)   { return __assign_primitive_pointer(m_pu64   , e_type_pu64  , pu); }
-   payload & assign_pf32   (::f32 * pf)   { return __assign_primitive_pointer(m_pf32   , e_type_pf32  , pf); }
-   payload & assign_pf64   (::f64 * pf)   { return __assign_primitive_pointer(m_pf64   , e_type_pf64  , pf); }
+   payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf32   , e_type_pf32  , pf); }
+   payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pf64   , e_type_pf64  , pf); }
 
 protected:
 
@@ -996,13 +996,13 @@ protected:
       else if(get_type() == e_type_pf32)
       {
 
-         *m_pf32 = (::f32) primitive;
+         *m_pf32 = (float) primitive;
 
       }
       else if(get_type() == e_type_pf64)
       {
 
-         *m_pf64 = (::f64) primitive;
+         *m_pf64 = (double) primitive;
 
       }
       else
@@ -1045,8 +1045,8 @@ public:
    template < same_as < unsigned int > U32 > payload & operator=(U32 u) { return assign_u32(u); }
    template < same_as < ::i64 > I64 > payload & operator=(I64 i) { return assign_i64(i); }
    template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_u64(u); }
-   template < same_as < ::f32 > F32 > payload & operator=(F32 f) { return assign_f32(f); }
-   template < same_as < ::f64 > F64 > payload & operator=(F64 f) { return assign_f64(f); }
+   template < same_as < float > F32 > payload & operator=(F32 f) { return assign_f32(f); }
+   template < same_as < double > F64 > payload & operator=(F64 f) { return assign_f64(f); }
 
 
    payload & operator=(char * pi) { return assign_pi8(pi); }
@@ -1080,7 +1080,7 @@ public:
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
    payload & operator = (const ::payload & payload);
-   payload & operator = (const ::i32_array & ia);
+   payload & operator = (const ::int_array & ia);
    payload & operator = (const ::string_array & stra);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);

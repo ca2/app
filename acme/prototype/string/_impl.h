@@ -195,7 +195,7 @@ template < primitive_string STRING, primitive_floating FLOATING >
 inline STRING& copy(STRING& string, const FLOATING& number)
 {
 
-	string.format("%f", (::f64)number);
+	string.format("%f", (double)number);
 
 	return string;
 

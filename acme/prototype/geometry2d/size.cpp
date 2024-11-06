@@ -29,7 +29,7 @@ void image_impact_center_debug()
 
 
 
-   bool bOk = sizeof(t1) == sizeof(::f32);
+   bool bOk = sizeof(t1) == sizeof(float);
 
    offset = size * .5f * pixel_ratio - sizeImage * scale;
 

@@ -74,7 +74,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(point_double_array& pointa) override;
 
       virtual bool has_action_hover();
 

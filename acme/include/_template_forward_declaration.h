@@ -498,7 +498,7 @@ class numeric_array;
 
 using i8_array = numeric_array < char >;
 using i16_array = numeric_array < short >;
-using i32_array = numeric_array < int >;
+using int_array = numeric_array < int >;
 using i64_array = numeric_array < i64 >;
 
 using u8_array = numeric_array < unsigned char >;
@@ -506,14 +506,14 @@ using u16_array = numeric_array < unsigned short >;
 using u32_array = numeric_array < unsigned int >;
 using u64_array = numeric_array < u64 >;
 
-using f32_array = numeric_array < f32 >;
-using f64_array = numeric_array < f64 >;
+using float_array = numeric_array < float >;
+using double_array = numeric_array < double >;
 
 
-using i32_array_array = ::array < i32_array >;
+using i32_array_array = ::array < int_array >;
 
-using f32_array_array = ::array < f32_array >;
-using f64_array_array = ::array < f64_array >;
+using float_array_array = ::array < float_array >;
+using double_array_array = ::array < double_array >;
 
 
 using index_array = numeric_array < ::collection::index >;
@@ -539,7 +539,7 @@ using unique_iptr_sort_array = unique_i64_sort_array;
 #else
 
 
-using iptr_array = i32_array;
+using iptr_array = int_array;
 using uptr_array = u32_array;
 
 using unique_iptr_sort_array = unique_i32_sort_array;
@@ -547,8 +547,8 @@ using unique_iptr_sort_array = unique_i32_sort_array;
 
 #endif
 
-using f32_array = numeric_array < ::f32 >;
-using f64_array = numeric_array < ::f64 >;
+using float_array = numeric_array < float >;
+using double_array = numeric_array < double >;
 
 using strsize_array = iptr_array;
 

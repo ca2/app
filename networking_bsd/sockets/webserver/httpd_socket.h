@@ -61,7 +61,7 @@ namespace sockets
 
 
 
-      //virtual bool read_file(const ::file::path & path,pointer_array < ::i32_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
+      //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
 
 
 

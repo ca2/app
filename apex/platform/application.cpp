@@ -4147,7 +4147,7 @@ namespace apex
             property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
-            set["oh_my_god2"].i32_array_reference() = ::i32_array({ 1, 2, 3 });
+            set["oh_my_god2"].i32_array_reference() = ::int_array({ 1, 2, 3 });
 
             int a1 = 1;
             int a2 = 2;

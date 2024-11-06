@@ -52,7 +52,7 @@ inline   ::i64 read_sz_stream::read_integer(int iRadix = 10)
     }
 
 
-inline    ::f64 read_sz_stream::read_floating()
+inline    double read_sz_stream::read_floating()
     {
 
        return consume_floating(m_psz, m_pszBegin);

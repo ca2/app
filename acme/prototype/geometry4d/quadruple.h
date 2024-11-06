@@ -118,8 +118,8 @@ struct quadruple_type :
 };
 
 
-using quadruple_f32 = quadruple_type < ::f32 >;
-using quadruple_f64 = quadruple_type < ::f64 >;
+using quadruple_f32 = quadruple_type < float >;
+using quadruple_f64 = quadruple_type < double >;
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >

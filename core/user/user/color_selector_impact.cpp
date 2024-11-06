@@ -310,7 +310,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(rectangleOuter.left(), point.y() - dHalfTriBase));
    //      pointa.add(point_f64(rectangleInner.left(), point.y()));
@@ -322,7 +322,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.top()));
    //      pointa.add(point_f64(point.x(), rectangleInner.top()));
@@ -334,7 +334,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(rectangleOuter.right(), point.y() - dHalfTriBase));
    //      pointa.add(point_f64(rectangleInner.right(), point.y()));
@@ -346,7 +346,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.bottom()));
    //      pointa.add(point_f64(point.x(), rectangleInner.bottom()));
@@ -382,7 +382,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(rectangleOuter.left(), y - dHalfTriBase));
    //      pointa.add(point_f64(rectangleInner.left(), y));
@@ -394,7 +394,7 @@ namespace user
 
    //   {
 
-   //      point_f64_array pointa;
+   //      point_double_array pointa;
 
    //      pointa.add(point_f64(rectangleOuter.right(), y - dHalfTriBase));
    //      pointa.add(point_f64(rectangleInner.right(), y));

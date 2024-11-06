@@ -39,8 +39,8 @@ namespace menu
 //      bool                                   m_bInline;
 //      bool                                   m_bMenuOk;
 //      ::pointer<::menu::item>                   m_pmenuitemSub;
-//      ::i32_array                            m_iaColumnWidth;
-//      ::i32_array                            m_iaColumnHeight;
+//      ::int_array                            m_iaColumnWidth;
+//      ::int_array                            m_iaColumnHeight;
 //      bool                                   m_bCloseButton;
 //
 

@@ -251,7 +251,7 @@ namespace user
          const ::point_i32 & pointContextOrg = pgraphics->get_origin();
 
          pgraphics->set(pbrushText);
-         ::size_f64_array sizea;
+         ::size_double_array sizea;
          m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
          ::collection::index x = 0;
          ::collection::index right = (::collection::index)rectangleX.right();
@@ -4278,7 +4278,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::size_f64_array sizea;
+      ::size_double_array sizea;
 
       m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
 
@@ -4943,7 +4943,7 @@ namespace user
    }
 
 
-   void mesh::FilterInclude(::i32_array & array)
+   void mesh::FilterInclude(::int_array & array)
    {
 
       ASSERT(m_efilterstate == FilterStateSetup);

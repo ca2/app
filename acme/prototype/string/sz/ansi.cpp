@@ -19,7 +19,7 @@ CLASS_DECL_ACME::u64 string_to_natural(const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME ::f64 string_to_floating(const ::ansi_character * psz)
+CLASS_DECL_ACME double string_to_floating(const ::ansi_character * psz)
 {
 
    return strtod(psz, nullptr);

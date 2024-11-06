@@ -154,7 +154,7 @@ namespace user
       virtual int _001GetGroupHeight(::collection::index iGroup);
 
 
-      //void FilterInclude(::i32_array& array) override;
+      //void FilterInclude(::int_array& array) override;
       //void FilterInclude(::collection::index iItem) override;
       //void FilterExcludeAll() override;
       //void FilterClose() override;

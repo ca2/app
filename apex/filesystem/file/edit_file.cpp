@@ -591,7 +591,7 @@ namespace file
 
       //      edit_group_item * pitemgroup = nullptr;
 
-      ::i32_array ia;
+      ::int_array ia;
 
       m_bRootDirection = calc_root_direction();
 

@@ -338,9 +338,9 @@ namespace user
 
       scrollstatey.m_bHasScroll = false;
 
-      scrollstatex.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatex.m_dThickness = (double)get_int(pstyle, e_int_scroll_bar_thickness);
 
-      scrollstatey.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatey.m_dThickness = (double)get_int(pstyle, e_int_scroll_bar_thickness);
 
       if (rectangleX.area() <= 0)
       {

@@ -61,8 +61,8 @@ template < typename T >
 //   u32hash(INTEGRAL i) : m_u((unsigned int)i) {}
 //   template < a_enum ENUM >
 //   u32hash(const ::enumeration < ENUM > & e) : m_u((unsigned int)e.m_eenum) {}
-//   u32hash(::f32 f) : m_u(*(unsigned int *)&f) {}
-//   u32hash(::f64 d) : m_u(((unsigned int*)&d)[0]| ((unsigned int*)&d)[1]) {}
+//   u32hash(float f) : m_u(*(unsigned int *)&f) {}
+//   u32hash(double d) : m_u(((unsigned int*)&d)[0]| ((unsigned int*)&d)[1]) {}
 //   template < typename T >
 //   u32hash(const ::pointer < T >& t) : m_u((unsigned int)(::uptr)t.m_p) {}
 //   u32hash(const ::u32hash& u32hash) : m_u(u32hash.m_u) {}

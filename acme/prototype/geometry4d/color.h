@@ -144,8 +144,8 @@ public:
 };
 
 
-using color_f32 = color_type < ::f32 >;
-using color_f64 = color_type < ::f64 >;
+using color_f32 = color_type < float >;
+using color_f64 = color_type < double >;
 
 
 template < primitive_number NUMBER1, primitive_number NUMBER2 >

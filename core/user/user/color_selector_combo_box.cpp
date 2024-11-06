@@ -415,7 +415,7 @@ namespace user
 
       auto ppath = __create < ::draw2d::path > ();
 
-      point_f64_array pointa;
+      point_double_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

@@ -7,8 +7,8 @@
 struct SIZE_F32
 {
 
-   ::f32 cx;
-   ::f32 cy;
+   float cx;
+   float cy;
 
 };
 
@@ -18,8 +18,8 @@ typedef const SIZE_F32 * LPCSIZE_F32;
 struct POINT_F32
 {
 
-   ::f32 x;
-   ::f32 y;
+   float x;
+   float y;
 
 };
 
@@ -30,10 +30,10 @@ typedef const POINT_F32 * LPCPOINT_F32;
 struct RECTANGLE_F32
 {
 
-   ::f32 left;
-   ::f32 top;
-   ::f32 right;
-   ::f32 bottom;
+   float left;
+   float top;
+   float right;
+   float bottom;
 
 };
 

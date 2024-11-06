@@ -250,7 +250,7 @@ namespace user
 
 
       //bool                              m_bActionHover;
-      array < f64_array >              m_daExtent;
+      array < double_array >              m_daExtent;
       ::file::insert_item *               m_pinsert;
       plain_text_set_sel_command *        m_ppropertysetsel;
       bool                                m_bParseDataPacks;

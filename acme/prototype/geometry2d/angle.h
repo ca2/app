@@ -68,8 +68,8 @@ public:
 };
 
 
-using angle_f32 = angle_type < ::f32 >;
-using angle_f64 = angle_type < ::f64 >;
+using angle_f32 = angle_type < float >;
+using angle_f64 = angle_type < double >;
 
 template < primitive_floating FLOATING >
 constexpr angle_type < FLOATING > radians(FLOATING fAngle)

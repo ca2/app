@@ -17934,7 +17934,7 @@ namespace user
 
          pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
 
-         pmessage->m_dPosition = (::f64)(short)upper_u16(wparam);
+         pmessage->m_dPosition = (double)(short)upper_u16(wparam);
 
       }
       break;
@@ -21956,8 +21956,8 @@ namespace user
    }
 
 
-   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::f64 cx)
-   void interaction::offset_context_offset_x(::f64 cx, ::user::enum_layout elayout)
+   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, double cx)
+   void interaction::offset_context_offset_x(double cx, ::user::enum_layout elayout)
    {
 
       auto x = get_context_offset_x(elayout);
@@ -21970,7 +21970,7 @@ namespace user
 
 
    //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
-   void interaction::offset_context_offset_y(::f64 cy, ::user::enum_layout elayout)
+   void interaction::offset_context_offset_y(double cy, ::user::enum_layout elayout)
    {
 
       auto y = get_context_offset_y(elayout);
@@ -22079,7 +22079,7 @@ namespace user
    }
 
 
-   ::f64 interaction::get_context_offset_x(::user::enum_layout elayout)
+   double interaction::get_context_offset_x(::user::enum_layout elayout)
    {
 
       //::point_i32 point = m_pointScroll + m_pointDragScroll;
@@ -22092,7 +22092,7 @@ namespace user
    }
 
 
-   ::f64 interaction::get_context_offset_y(::user::enum_layout elayout)
+   double interaction::get_context_offset_y(::user::enum_layout elayout)
    {
 
       //::point_i32 point = m_pointScroll + m_pointDragScroll;
@@ -22139,7 +22139,7 @@ namespace user
    //}
 
 
-   void interaction::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
+   void interaction::set_scroll_tracking_x(double x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -22147,7 +22147,7 @@ namespace user
    }
 
 
-   void interaction::set_scroll_tracking_y(::f64 x, ::user::enum_layout elayout)
+   void interaction::set_scroll_tracking_y(double x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -22156,7 +22156,7 @@ namespace user
 
 
 
-   void interaction::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
+   void interaction::set_context_offset_x(double x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -22164,7 +22164,7 @@ namespace user
    }
 
 
-   void interaction::set_context_offset_y(::f64 x, ::user::enum_layout elayout)
+   void interaction::set_context_offset_y(double x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -29558,7 +29558,7 @@ namespace user
    }
 
 
-   void interaction::get_simple_drop_down_open_arrow_polygon(point_f64_array & pointa)
+   void interaction::get_simple_drop_down_open_arrow_polygon(point_double_array & pointa)
    {
 
       ::rectangle_i32 rectangleDropDown;

@@ -252,7 +252,7 @@ namespace nanoui
 
                         }
 
-                        m_fScroll = (::f32) fScroll;
+                        m_fScroll = (float) fScroll;
 
                         addUp /= 2.0;
 

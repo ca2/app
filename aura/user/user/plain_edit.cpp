@@ -2910,7 +2910,7 @@ namespace user
 
       //   const ::ansi_character * pszNext = pszStart;
 
-      //   f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
       //   if (daExtent.get_size() <= 0)
       //   {
@@ -4172,7 +4172,7 @@ namespace user
 //
 //      //   const ::ansi_character * pszNext = pszStart;
 //
-//      //   f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+//      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 //
 //      //   if (daExtent.get_size() <= 0)
 //      //   {
@@ -4582,7 +4582,7 @@ namespace user
 //
 //         const ::ansi_character * pszNext = pszStart;
 //
-//         f64_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+//         double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 //
 //         auto sizeTotal = get_total_size(elayout);
 //

@@ -741,8 +741,8 @@ namespace nano2d
    int draw2d_context::text_glyph_positions(float x, float y, const char * stringParam, const char * end, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
-      f64_array daLeft;
-      f64_array daRight;
+      double_array daLeft;
+      double_array daRight;
 
       ::string strText(stringParam, end ? end - stringParam : string_safe_length(stringParam));
 

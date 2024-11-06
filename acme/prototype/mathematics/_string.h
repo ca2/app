@@ -420,7 +420,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 
 
 
-//inline ::f64 as_f64(const ::scoped_string & scopedstr)
+//inline double as_f64(const ::scoped_string & scopedstr)
 //{
 //
 //

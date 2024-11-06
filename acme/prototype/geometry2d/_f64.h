@@ -7,8 +7,8 @@
 struct SIZE_F64
 {
 
-   ::f64 cx;
-   ::f64 cy;
+   double cx;
+   double cy;
 
 };
 
@@ -18,8 +18,8 @@ typedef const SIZE_F64 * LPCSIZE_F64;
 struct POINT_F64
 {
 
-   ::f64 x;
-   ::f64 y;
+   double x;
+   double y;
 
 };
 
@@ -30,10 +30,10 @@ typedef const POINT_F64 * LPCPOINT_F64;
 struct RECTANGLE_F64
 {
 
-   ::f64 left;
-   ::f64 top;
-   ::f64 right;
-   ::f64 bottom;
+   double left;
+   double top;
+   double right;
+   double bottom;
 
 };
 

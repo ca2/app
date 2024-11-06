@@ -7,8 +7,8 @@ namespace trigonometry
 {
 
 
-   inline ::f32 sin(::f32 f) { return ::sinf(f); }
-   inline ::f64 sin(::f64 f) { return ::sin(f); }
+   inline float sin(float f) { return ::sinf(f); }
+   inline double sin(double f) { return ::sin(f); }
 
 
 } // namespace trigonometry

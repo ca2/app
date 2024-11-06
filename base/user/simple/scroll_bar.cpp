@@ -326,7 +326,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    auto sizeTrack = get_track_size(elayout);
 
-   ::f64 dPosition;
+   double dPosition;
 
    if (m_bTracking)
    {
@@ -491,7 +491,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       auto dWidth = rectangleX.width() - dScrollBarThickness * 2.;
 
-      ::f64 cx = 0;
+      double cx = 0;
 
       if (dWidth > 0)
       {
@@ -530,7 +530,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       auto dHeight = rectangleX.height() - dScrollBarThickness * 2;
 
-      ::f64 cy = 0.;
+      double cy = 0.;
 
       if (dHeight > 0)
       {
@@ -573,7 +573,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 void simple_scroll_bar::set_scroll_tracking_position(const ::point_f64 & point, ::user::enum_layout elayout)
 {
 
-   ::f64 dPos = 0.;
+   double dPos = 0.;
 
    auto sizeTrack = get_track_size(elayout);
 
@@ -687,7 +687,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style();
 
-   m_pscrolllayout->m_scrollstatea[::user::e_layout_design].m_dThickness = (::f64) get_int(pstyle, ::user::e_int_scroll_bar_thickness);
+   m_pscrolllayout->m_scrollstatea[::user::e_layout_design].m_dThickness = (double) get_int(pstyle, ::user::e_int_scroll_bar_thickness);
 
    //::size_i32 size = rectangleX.size();
 
@@ -1188,7 +1188,7 @@ void simple_scroll_bar::UpdateBitmaps()
 }
 
 
-::point_f64_array simple_scroll_bar::get_arrowA(const ::rectangle_f64 & rectangle)
+::point_double_array simple_scroll_bar::get_arrowA(const ::rectangle_f64 & rectangle)
 {
 
    //auto pstyle = get_style(pgraphics);
@@ -1201,7 +1201,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::size_i32 size = rectangle.size();
 
-   point_f64_array pointaA;
+   point_double_array pointaA;
 
    int iArrowForce = 4;
 
@@ -1245,7 +1245,7 @@ void simple_scroll_bar::UpdateBitmaps()
 }
 
 
-::point_f64_array simple_scroll_bar::get_arrowB(const ::rectangle_f64 & rectangle)
+::point_double_array simple_scroll_bar::get_arrowB(const ::rectangle_f64 & rectangle)
 {
 
    //auto pstyle = get_style(pgraphics);
@@ -1258,7 +1258,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
    ::size_i32 size = rectangle.size();
 
-   point_f64_array pointaB;
+   point_double_array pointaB;
 
    int iArrowForce = 4;
 

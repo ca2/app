@@ -127,7 +127,7 @@ CLASS_DECL_ACME strsize unichar_count(const ::ansi_character * pstr);
 
 CLASS_DECL_ACME ::i64 string_to_signed(const ::ansi_character * psz);
 CLASS_DECL_ACME ::u64 string_to_natural(const ::ansi_character * psz);
-CLASS_DECL_ACME ::f64 string_to_floating(const ::ansi_character * psz);
+CLASS_DECL_ACME double string_to_floating(const ::ansi_character * psz);
 
 
 

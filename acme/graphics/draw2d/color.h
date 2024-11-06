@@ -157,14 +157,14 @@ namespace color
       constexpr unsigned char u8_green() const { return m_u8Green; }
       constexpr unsigned char u8_blue() const { return m_u8Blue; }
       constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
-      constexpr ::f32 f32_red() const { return m_u8Red / 255.f; }
-      constexpr ::f32 f32_green() const { return m_u8Green / 255.f; }
-      constexpr ::f32 f32_blue() const { return m_u8Blue / 255.f; }
-      constexpr ::f32 f32_opacity() const { return m_u8Opacity / 255.f; }
-      constexpr ::f64 f64_red() const { return m_u8Red / 255.; }
-      constexpr ::f64 f64_green() const { return m_u8Green / 255.; }
-      constexpr ::f64 f64_blue() const { return m_u8Blue / 255.; }
-      constexpr ::f64 f64_opacity() const { return m_u8Opacity / 255.; }
+      constexpr float f32_red() const { return m_u8Red / 255.f; }
+      constexpr float f32_green() const { return m_u8Green / 255.f; }
+      constexpr float f32_blue() const { return m_u8Blue / 255.f; }
+      constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
+      constexpr double f64_red() const { return m_u8Red / 255.; }
+      constexpr double f64_green() const { return m_u8Green / 255.; }
+      constexpr double f64_blue() const { return m_u8Blue / 255.; }
+      constexpr double f64_opacity() const { return m_u8Opacity / 255.; }
 
       constexpr color contrasting_color() const {
          float luminance = 0.299f * f32_red() + 0.587f * f32_green() + 0.144f * f32_blue();

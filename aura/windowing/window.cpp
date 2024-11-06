@@ -14059,7 +14059,7 @@ bMove = false;
 //
 //         pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
 //
-//         pmessage->m_dPosition = (::f64)(short)upper_u16(wparam);
+//         pmessage->m_dPosition = (double)(short)upper_u16(wparam);
 //
 //      }
 //      break;

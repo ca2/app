@@ -463,10 +463,10 @@ retry:
 }
 
 
-::i32_array module_path_get_pid(const ::file::path & path)
+::int_array module_path_get_pid(const ::file::path & path)
 {
 
-   ::i32_array ia;
+   ::int_array ia;
 
    ::file::path_array stra;
 

@@ -42,7 +42,7 @@ namespace draw2d
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      array < point_f64_array, point_f64_array & > * pglyph,
+      array < point_double_array, point_double_array & > * pglyph,
       double                        dRateX,
       point_f64 *                      ppointOffset);
 

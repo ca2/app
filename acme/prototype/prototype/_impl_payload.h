@@ -843,7 +843,7 @@ inline INTEGRAL & copy(INTEGRAL & integral, const ::payload & payload)
 }
 
 
-inline ::f32 & copy(::f32 & f, const ::payload & payload)
+inline float & copy(float & f, const ::payload & payload)
 {
 
    return f = payload.as_f32();
@@ -851,7 +851,7 @@ inline ::f32 & copy(::f32 & f, const ::payload & payload)
 }
 
 
-inline ::f64 & copy(::f64 & f, const ::payload & payload)
+inline double & copy(double & f, const ::payload & payload)
 {
 
    return f = payload.as_f64();

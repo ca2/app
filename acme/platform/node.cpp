@@ -215,7 +215,7 @@ namespace platform
 
       string_array stra2;
 
-      ::i32_array iaPid2;
+      ::int_array iaPid2;
 
       auto psystem = system();
 

@@ -804,7 +804,7 @@ repeat:
 
       string_array stra2;
 
-      ::i32_array iaPid2;
+      ::int_array iaPid2;
 
       for (auto & str : stra)
       {
@@ -887,7 +887,7 @@ repeat:
 
       string_array stra2;
 
-      ::i32_array iaPid2;
+      ::int_array iaPid2;
 
       for (::collection::index i = 0; i < m_straModule.get_count();)
       {

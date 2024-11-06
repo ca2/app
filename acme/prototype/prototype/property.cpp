@@ -268,7 +268,7 @@ string & property::get_network_arguments(::string & str) const
 //   return stra();
 //}
 //
-//::i32_array & property::inta()
+//::int_array & property::inta()
 //{
 //   return inta();
 //}
@@ -288,7 +288,7 @@ string & property::get_network_arguments(::string & str) const
 //   return stra();
 //}
 //
-//const ::i32_array & property::inta() const
+//const ::int_array & property::inta() const
 //{
 //   return inta();
 //}

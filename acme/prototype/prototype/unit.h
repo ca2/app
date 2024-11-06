@@ -137,7 +137,7 @@ public:
    unit_base & operator *= (FLOATING f)
    {
 
-      m_d = this->double() * f;
+      m_d = this->as_double() * f;
 
       set_floating();
 

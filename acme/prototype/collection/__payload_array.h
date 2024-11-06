@@ -34,14 +34,14 @@ public:
    inline ::collection::index add(const ::string & str) { return add((const ::payload &) str); }
    inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
 
-   inline ::collection::index add(char i) { return add((const ::payload &) i); }
-   inline ::collection::index add(unsigned char u) { return add((const ::payload &) u); }
-   inline ::collection::index add(short i) { return add((const ::payload &) i); }
-   inline ::collection::index add(unsigned short u) { return add((const ::payload &) u); }
+   inline ::collection::index add(char ch) { return add((const ::payload &) ch); }
+   inline ::collection::index add(unsigned char uch) { return add((const ::payload &) uch); }
+   inline ::collection::index add(short sh) { return add((const ::payload &) sh); }
+   inline ::collection::index add(unsigned short ush) { return add((const ::payload &) ush); }
    inline ::collection::index add(int i) { return add((const ::payload &) i); }
-   inline ::collection::index add(unsigned int u) { return add((const ::payload &) u); }
-   inline ::collection::index add(i64 i) { return add((const ::payload &) i); }
-   inline ::collection::index add(u64 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(unsigned int ui) { return add((const ::payload &) ui); }
+   inline ::collection::index add(i64 i64) { return add((const ::payload &) i64); }
+   inline ::collection::index add(u64 u64) { return add((const ::payload &) u64); }
 
    ::collection::count append_unique(const payload_array & payloada);
 

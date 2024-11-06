@@ -176,7 +176,7 @@ public:
       payload.m_payloadall = {};
    }
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
-   template < char_type CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
+   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
    template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
    template < same_as < unsigned char > U8 > payload(U8 u) : m_etype(e_type_u8) {m_u8 = u;}
    template < same_as < short > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}

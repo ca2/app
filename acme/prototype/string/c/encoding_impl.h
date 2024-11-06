@@ -151,7 +151,7 @@ inline strsize wd16_to_wd32_char(::wd32_character * output, const ::wd16_charact
 inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, strsize srclen)
 {
 
-   ::wd32_character unsigned int = 0;
+   ::wd32_character wd32ch = 0;
 
    unsigned char c;
    char extraBytesToRead = utf8_e(*input);

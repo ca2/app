@@ -240,51 +240,25 @@ public:
 
 
    binary_stream & operator <<(char ch) { raw_write(ch); return *this; }
-   binary_stream & operator <<(uchar uch) {
-      raw_write(uch);  return *this;
-   }
-   binary_stream & operator <<(char i) {
-      raw_write(i);  return *this;
-   }
-   binary_stream & operator <<(short i) {
-      raw_write(i);  return *this;
-   }
-   binary_stream & operator <<(unsigned short u) {
-      raw_write(u); return *this;
-   }
+   binary_stream & operator <<(unsigned uch) { raw_write(uch);  return *this; }
+   binary_stream & operator <<(short sh) { raw_write(sh);  return *this; }
+   binary_stream & operator <<(unsigned short ush) { raw_write(ush); return *this; }
 #ifdef WINDOWS
    binary_stream & operator <<(unichar wch) {
       raw_write(wch);  return *this;
    }
 #endif
    binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
-   binary_stream & operator <<(int i) {
-      raw_write(i);  return *this;
-   }
-   binary_stream & operator <<(unsigned int u) {
-      raw_write(u);  return *this;
-   }
-   binary_stream & operator <<(i64 i) {
-      raw_write(i); return *this;
-   }
-   binary_stream & operator <<(u64 u) {
-      raw_write(u); return *this;
-   }
+   binary_stream & operator <<(int i) { raw_write(i); return *this; }
+   binary_stream & operator <<(unsigned int ui) { raw_write(ui); return *this; }
+   binary_stream & operator <<(i64 i64) { raw_write(i64); return *this; }
+   binary_stream & operator <<(u64 u64) { raw_write(u64); return *this; }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
-   binary_stream & operator <<(unsigned long u) {
-      raw_write(u); return *this;
-   }
-   binary_stream & operator <<(long l) {
-      raw_write(l);  return *this;
-   }
-   //inline void write (long long ll);
+   binary_stream & operator <<(unsigned long u) { raw_write(u); return *this; }
+   binary_stream & operator <<(long l) { raw_write(l);  return *this; }
 #endif
-   binary_stream & operator <<(float f) {
-      raw_write(f); return *this;
-   }
-   binary_stream & operator <<(double d) {
-      raw_write(d); return *this;
-   }
+   binary_stream & operator <<(float f) { raw_write(f); return *this; }
+   binary_stream & operator <<(double d) { raw_write(d); return *this; }
    // void write(const ::point_i32 & point) { raw_write(point); }
    // void write(const ::size_i32 & size) { raw_write(size); }
    // void write(const ::rectangle_i32 &crect) { raw_write(crect); }
@@ -312,7 +286,7 @@ public:
 
 
 
-   binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(unsigned char); b = unsigned char ? true : false; return *this; }
+   binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(uch); b = uch ? true : false; return *this; }
    binary_stream & operator >>(char & ch) {
       raw_read(ch); return *this;
    }

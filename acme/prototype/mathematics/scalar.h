@@ -17,10 +17,10 @@ public:
    {
 
       ::i8        m_i8;
-      ::u8        m_u8;
+      unsigned char        m_u8;
       ::i16       m_i16;
       ::u16       m_u16;
-      ::i32       m_i32;
+      int       m_i32;
       ::u32       m_u32;
       ::i64       m_i64;
       ::u64       m_u64;
@@ -34,7 +34,7 @@ public:
 
    number(enum_number enumber = e_number_none) { m_i64 = 0; m_enumber = enumber; }
    number(i8 i) { m_i8 = i; m_enumber = e_number_i8; }
-   number(u8 u) { m_u8 = u; m_enumber = e_number_u8; }
+   number(unsigned char u) { m_u8 = u; m_enumber = e_number_u8; }
    number(i16 i) { m_i16 = i; m_enumber = e_number_i16; }
    number(u16 u) { m_u16 = u; m_enumber = e_number_u16; }
    number(i32 i) { m_i32 = i; m_enumber = e_number_i32; }
@@ -98,7 +98,7 @@ public:
          m_i8 = (::i8) t;
          break;
       case e_number_u8:
-         m_u8 = (::u8) t;
+         m_u8 = (unsigned char) t;
          break;
       case e_number_i16:
          m_i16 = (::i16) t;
@@ -107,7 +107,7 @@ public:
          m_u16 = (::u16)t;
          break;
       case e_number_i32:
-         m_i32 = (::i32)t;
+         m_i32 = (int)t;
          break;
       case e_number_u32:
          m_u32 = (::u32)t;
@@ -129,10 +129,10 @@ public:
    }
 
    ::i8 get_i8() const { return get < ::i8>(); }
-   ::u8 get_u8() const { return get < ::u8>(); }
+   unsigned char get_u8() const { return get < unsigned char>(); }
    ::i16 get_i16() const { return get < ::i16>(); }
    ::u16 get_u16() const { return get < ::u16>(); }
-   ::i32 get_i32() const { return get < ::i32>(); }
+   int get_i32() const { return get < int>(); }
    ::u32 get_u32() const { return get < ::u32>(); }
    ::i64 get_i64() const { return get < ::i64>(); }
    ::u64 get_u64() const { return get < ::u64>(); }

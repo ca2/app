@@ -28,7 +28,7 @@ public:
 
    operator bool() const { return m_payload.get_bool(); }
    operator i8 ()const { return m_payload.as_i8(); }
-   operator u8 ()const { return m_payload.as_u8(); }
+   operator unsigned char ()const { return m_payload.as_u8(); }
    operator i16 () const { return m_payload.as_i16(); }
    operator u16 ()const { return m_payload.as_u16(); }
    operator i32 () const { return m_payload.as_i32(); }

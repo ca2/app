@@ -102,9 +102,9 @@ int aura_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, boo
 
 #ifdef WINDOWS
 
-i32 windows_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow);
+int windows_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow);
 
-i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
 {
 
    return windows_main(hinstance, hPrevInstance, pCmdLine, nCmdShow);

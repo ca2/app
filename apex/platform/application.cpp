@@ -7655,7 +7655,7 @@ namespace apex
    }*/
 
 
-   bool application::on_idle(::i32 lCount)
+   bool application::on_idle(int lCount)
    {
 
       return false;
@@ -7735,7 +7735,7 @@ namespace apex
    ::collection::count count = (len + 1) / 2;
    memory.set_size(count);
    ::collection::index i = 0;
-   ::u8 b;
+   unsigned char b;
    while(*pszHex != '\0')
    {
    char ch = (char) tolower(*pszHex);
@@ -7786,9 +7786,9 @@ namespace apex
 
    for(::collection::index i = 0; i < count; i++)
    {
-   *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
+   *psz++ = ::hex::lower_from((unsigned char) ((memory.get_data()[i] >> 4) & 0xf));
 
-   *psz++ = ::hex::lower_from((::u8) (memory.get_data()[i] & 0xf));
+   *psz++ = ::hex::lower_from((unsigned char) (memory.get_data()[i] & 0xf));
 
    }
    strHex.ReleaseBuffer(count * 2);
@@ -8058,7 +8058,7 @@ namespace apex
    ////                  pData->szPolicyName,
    ////                  nullptr,
    ////                  &dwType,
-   ////                  (::u8*)&dwValue,
+   ////                  (unsigned char*)&dwValue,
    ////                  &dwDataLen))
    ////         {
    ////            if (dwType == REG_DWORD)
@@ -8861,9 +8861,9 @@ namespace apex
    u32 dwValue;
    u32 dwType;
    u32 dwCount = sizeof(u32);
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (::u8 *)&dwValue, &dwCount);
+   (unsigned char *)&dwValue, &dwCount);
    RegCloseKey(hSecKey);
    if (lResult == ERROR_SUCCESS)
    {
@@ -8901,7 +8901,7 @@ namespace apex
    string strValue;
    u32 dwType=REG_NONE;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
    if (lResult == ERROR_SUCCESS)
@@ -8909,7 +8909,7 @@ namespace apex
    ASSERT(dwType == REG_SZ);
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
-   (::u8 *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+   (unsigned char *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
    strValue.ReleaseBuffer();
    }
    RegCloseKey(hSecKey);
@@ -8941,7 +8941,7 @@ namespace apex
 
    bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   ::u8** ppData, ::u32* pBytes)
+   unsigned char** ppData, ::u32* pBytes)
    {
    ASSERT(pszSection != nullptr);
 
@@ -8966,13 +8966,13 @@ namespace apex
 
    u32 dwType=0;
    u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+   int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = ___new ::u8[*pBytes];
+   *ppData = ___new unsigned char[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -9000,10 +9000,10 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = ___new ::u8[*pBytes];
+   *ppData = ___new unsigned char[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
-   (*ppData)[i/2] = (::u8)
+   (*ppData)[i/2] = (unsigned char)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
    return true;
@@ -9025,9 +9025,9 @@ namespace apex
 
    if (hSecKey == nullptr)
    return false;
-   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+   int lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
-   (::u8 *)&nValue, sizeof(nValue));
+   (unsigned char *)&nValue, sizeof(nValue));
    RegCloseKey(hSecKey);
    return lResult == ERROR_SUCCESS;
    }
@@ -9052,7 +9052,7 @@ namespace apex
 
    if (m_pszRegistryKey != nullptr)
    {
-   ::i32 lResult;
+   int lResult;
    if (pszEntry == nullptr) //delete whole department
 
    {
@@ -9083,7 +9083,7 @@ namespace apex
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (::u8 *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+   (unsigned char *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
 
    RegCloseKey(hSecKey);
    }
@@ -9101,13 +9101,13 @@ namespace apex
 
    bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
-   ::u8 * pData, ::u32 nBytes)
+   unsigned char * pData, ::u32 nBytes)
    {
    ASSERT(pszSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   ::i32 lResult;
+   int lResult;
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
@@ -10046,7 +10046,7 @@ namespace apex
    }
 
 
-   void application::on_thread_on_idle(::thread * pthread, ::i32 lCount)
+   void application::on_thread_on_idle(::thread * pthread, int lCount)
    {
 
       throw ::exception(todo, "interaction");
@@ -10474,15 +10474,6 @@ namespace apex
 
 } // namespace apex
 
-
-//void application_on_menu_action(void * pApplication, const char * pszCommand)
-//{
-//
-//   auto papp = (::platform::application *)pApplication;
-//
-//   papp->on_application_menu_action(pszCommand);
-//
-//}
 
 
 

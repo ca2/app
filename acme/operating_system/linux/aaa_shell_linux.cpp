@@ -527,9 +527,9 @@ namespace linux
 
          if (         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->is(strPath))
+pdirectorysystem->is(strPath))
          {
 
             return folder_file_system;

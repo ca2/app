@@ -15,7 +15,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-//void fastblur(::image::image *ppimg, i32 radius);
+//void fastblur(::image::image *ppimg, int radius);
 
 #elif defined(UNIVERSAL_WINDOWS)
 //#include <wincodec.h>
@@ -76,15 +76,15 @@ void imaging::initialize(::particle * pparticle)
 
 void imaging::embossed_text_out(
 ::draw2d::graphics *        pgraphics,
-i32                 x,
-i32                 y,
+int                 x,
+int                 y,
 const char *            pcsz,
 
 size_t                  cb,
 ::color::color                crText,
 ::color::color                crShadow,
-i32                 cx,
-i32                 cy)
+int                 cx,
+int                 cy)
 {
 
 
@@ -126,9 +126,9 @@ i32                 cy)
    sizeText = pgraphics->get_text_extent(string(pcsz,cb));
 
    rectangleText.left()    = x;
-   rectangleText.right()   = ::i32 (x + cx + sizeText.cx());
+   rectangleText.right()   = int (x + cx + sizeText.cx());
    rectangleText.top()     = y;
-   rectangleText.bottom()  = ::i32(y + cy + sizeText.cy());
+   rectangleText.bottom()  = int(y + cy + sizeText.cy());
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rectangleText, psz, cb, nullptr);
 
    //pgraphics->SetBkMode(TRANSPARENT);
@@ -180,7 +180,7 @@ i32                 cy)
 //   {
 //      const string &str = pArray->get_at(nIndex);
 //      wstring wstr(str);
-//      GetTextExtentPoint32W(hDC,wstr,(i32)wstr.get_length(),&size);
+//      GetTextExtentPoint32W(hDC,wstr,(int)wstr.get_length(),&size);
 //      if(size.cx() > pSize->cx())
 //
 //         pSize->cx() = size.cx();
@@ -192,7 +192,7 @@ i32                 cy)
 //   //      tm.tmExternalLeading +
 //   //      tm.tmInternalLeading) *
 //   nSize;
-//   pSize->cy() = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+//   pSize->cy() = (int)((tm.tmHeight + tm.tmExternalLeading) * nSize);
 //
 //
 //#else
@@ -218,14 +218,14 @@ i32                 cy)
 //
 //   nSize = pArray->get_size();
 //
-//   i32 yPos = 0;
+//   int yPos = 0;
 //
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
 //   {
 //
 //      const string &str = pArray->get_at(nIndex);
 //      wstring wstr(str);
-//      TextOutW(hDC,0,yPos,wstr,(i32)wstr.get_length());
+//      TextOutW(hDC,0,yPos,wstr,(int)wstr.get_length());
 //
 //      yPos +=
 //      tm.tmHeight +
@@ -244,10 +244,10 @@ i32                 cy)
 
 //void imaging::GrayVRCP(
 //   ::draw2d::graphics * pgraphics,
-//   i32 x,
-//   i32 y,
-//   i32 cx,
-//   i32 cy,
+//   int x,
+//   int y,
+//   int cx,
+//   int cy,
 //   ::color::color crAlpha)
 //{
 //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -301,7 +301,7 @@ spgraphics->CreateCompatibleDC(pgraphics);
 
 ::image::image_list::info ii;
 
-for(i32 i = 0; i < pil->get_image_count(); i++)
+for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::rectangle_i32 & rectangle = ii.m_rectangle;
@@ -330,7 +330,7 @@ spgraphics->CreateCompatibleDC(pgraphics);
 
 ::image::image_list::info ii;
 
-for(i32 i = 0; i < pil->get_image_count(); i++)
+for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::rectangle_i32 & rectangle = ii.m_rectangle;
@@ -365,7 +365,7 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 //
-//void imaging::color_blend(::image::image *pimage, const ::color::color& color32, ::u8 bAlpha)
+//void imaging::color_blend(::image::image *pimage, const ::color::color& color32, unsigned char bAlpha)
 //{
 //
 //   try
@@ -417,7 +417,7 @@ spgraphics->CreateCompatibleDC(pgraphics);
 
 ::image::image_list::info ii;
 
-for(i32 i = 0; i < pil->get_image_count(); i++)
+for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::rectangle_i32 & rectangle = ii.m_rectangle;
@@ -436,10 +436,10 @@ return pil;
 
 //   ::draw2d::bitmap * pitmapMask,
 
-//   i32 x,
-//   i32 y,
-//   i32 cx,
-//   i32 cy,
+//   int x,
+//   int y,
+//   int cx,
+//   int cy,
 //   ::color::color crAlpha)
 //{
 //
@@ -458,12 +458,12 @@ return pil;
 ////
 ////#endif
 ////
-////   //::u8 uch3dfaceR = ::red(cr3dface);
-////   //::u8 uch3dfaceG = ::green(cr3dface);
-////   //::u8 uch3dfaceB = ::blue(cr3dface);
-////   ::u8 uch3dshadowR = ::red(cr3dshadow);
-////   ::u8 uch3dshadowG = ::green(cr3dshadow);
-////   ::u8 uch3dshadowB = ::blue(cr3dshadow);
+////   //unsigned char uch3dfaceR = ::red(cr3dface);
+////   //unsigned char uch3dfaceG = ::green(cr3dface);
+////   //unsigned char uch3dfaceB = ::blue(cr3dface);
+////   unsigned char uch3dshadowR = ::red(cr3dshadow);
+////   unsigned char uch3dshadowG = ::green(cr3dshadow);
+////   unsigned char uch3dshadowB = ::blue(cr3dshadow);
 ////
 ////
 ////#ifdef WINDOWS_DESKTOP
@@ -477,9 +477,9 @@ return pil;
 ////#endif
 ////
 ////
-////   ::u8 uch3dhighlightR = ::red(cr3dhighlight);
-////   ::u8 uch3dhighlightG = ::green(cr3dhighlight);
-////   ::u8 uch3dhighlightB = ::blue(cr3dhighlight);
+////   unsigned char uch3dhighlightR = ::red(cr3dhighlight);
+////   unsigned char uch3dhighlightG = ::green(cr3dhighlight);
+////   unsigned char uch3dhighlightB = ::blue(cr3dhighlight);
 ////
 ////   const ::size_i32 & size = pitmap->get_size();
 
@@ -504,16 +504,16 @@ return pil;
 ////   bmi.bmiHeader.biClrUsed = 0;
 ////   bmi.bmiHeader.biClrImportant = 0;
 ////
-////   ::u8 * pData = (::u8 *)malloc(cbImage);
+////   unsigned char * pData = (unsigned char *)malloc(cbImage);
 
 
-////   ::u8 * pShadow = (::u8 *)malloc(cbMask);
+////   unsigned char * pShadow = (unsigned char *)malloc(cbMask);
 
 
-////   ::u8 * pMask = (::u8 *)malloc(cbMask);
+////   unsigned char * pMask = (unsigned char *)malloc(cbMask);
 
 
-////   //::u8 * pShadow = pData;
+////   //unsigned char * pShadow = pData;
 
 
 
@@ -600,70 +600,70 @@ return pil;
 
 
 ////
-////   ::u8 * pBase = pData + cbLine * y + x * 3;
+////   unsigned char * pBase = pData + cbLine * y + x * 3;
 
 
 
 
-////   ::u8 * pBaseShift = pData + cbLine * (y + 1) + (x + 1) * 3;
+////   unsigned char * pBaseShift = pData + cbLine * (y + 1) + (x + 1) * 3;
 
 
 
 
-////   ::u8 * pBaseShadow = pShadow + size.cx() * y + x * 3;
+////   unsigned char * pBaseShadow = pShadow + size.cx() * y + x * 3;
 
 
 
 
-////   ::u8 * pBaseMask = pMask + size.cx() * y + x;
+////   unsigned char * pBaseMask = pMask + size.cx() * y + x;
 
 
 
 
-////   ::u8 * pBaseMaskShift = pMask + size.cx() * (y + 1) + (x + 1);
+////   unsigned char * pBaseMaskShift = pMask + size.cx() * (y + 1) + (x + 1);
 
 
 
 
 ////
 ////
-////   ::u8 br,bg,bb;
+////   unsigned char br,bg,bb;
 ////
 ////   //   ::color::color crBtnFace = crButtonFace;
 ////   //   ::color::color crBtnShad = crButtonShadow;
 ////   //   ::color::color crWndBack = psession->get_default_color(COLOR_WINDOW);
 ////
-////   //   ::u8 bRBtnFace = ::red(crBtnFace);
-////   //   ::u8 bGBtnFace = ::green(crBtnFace);
-////   //   ::u8 bBBtnFace = ::blue(crBtnFace);
+////   //   unsigned char bRBtnFace = ::red(crBtnFace);
+////   //   unsigned char bGBtnFace = ::green(crBtnFace);
+////   //   unsigned char bBBtnFace = ::blue(crBtnFace);
 ////
-////   //   ::u8 bRBtnShad = ::red(crBtnShad);
-////   //   ::u8 bGBtnShad = ::green(crBtnShad);
-////   //   ::u8 bBBtnShad = ::blue(crBtnShad);
+////   //   unsigned char bRBtnShad = ::red(crBtnShad);
+////   //   unsigned char bGBtnShad = ::green(crBtnShad);
+////   //   unsigned char bBBtnShad = ::blue(crBtnShad);
 ////
-////   //   ::u8 bRWndBack = ::red(crWndBack);
-////   //   ::u8 bGWndBack = ::green(crWndBack);
-////   //   ::u8 bBWndBack = ::blue(crWndBack);
+////   //   unsigned char bRWndBack = ::red(crWndBack);
+////   //   unsigned char bGWndBack = ::green(crWndBack);
+////   //   unsigned char bBWndBack = ::blue(crWndBack);
 ////
-////   i32 i;
+////   int i;
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      ::u8 * pLine = pBase + cbLine * i;
+////      unsigned char * pLine = pBase + cbLine * i;
 
 
 
 
-////      ::u8 * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
 
 
 
 
-////      ::u8 * pLineMask = pBaseMask + size.cy() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cy() * i;
 
 
 
 
-////      for(i32 j = 0; j < cx; j++)
+////      for(int j = 0; j < cx; j++)
 ////      {
 ////         bb = *pLine++;
 
@@ -707,12 +707,12 @@ return pil;
 ////
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      ::u8 * pLine = pBase + cbLine * i;
+////      unsigned char * pLine = pBase + cbLine * i;
 
 
 
 
-////      for(i32 j = 0; j < cx; j++)
+////      for(int j = 0; j < cx; j++)
 ////      {
 ////         *pLine++ = 0;
 
@@ -737,12 +737,12 @@ return pil;
 ////
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      ::u8 * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
 
 
 
 
-////      for(i32 j = 0; j < cx; j++)
+////      for(int j = 0; j < cx; j++)
 ////      {
 ////         *pLineMask++ = 1;
 
@@ -753,28 +753,28 @@ return pil;
 ////
 ////
 ////
-////   i32 cyminus1 = cy - 1;
-////   i32 cxminus1 = cx - 1;
-////   ::u8 b;
+////   int cyminus1 = cy - 1;
+////   int cxminus1 = cx - 1;
+////   unsigned char b;
 ////
 ////   for(i = 0; i < cyminus1; i ++)
 ////   {
-////      ::u8 * pLine = pBaseShift + cbLine * i;
+////      unsigned char * pLine = pBaseShift + cbLine * i;
 
 
 
 
-////      ::u8 * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
 
 
 
 
-////      ::u8 * pLineMask = pBaseMaskShift + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMaskShift + size.cx() * i;
 
 
 
 
-////      for(i32 j = 0; j < cxminus1; j++)
+////      for(int j = 0; j < cxminus1; j++)
 ////      {
 ////         b = *pLineShadow;
 
@@ -818,22 +818,22 @@ return pil;
 ////
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      ::u8 * pLine = pBase + cbLine * i;
+////      unsigned char * pLine = pBase + cbLine * i;
 
 
 
 
-////      ::u8 * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
 
 
 
 
-////      ::u8 * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
 
 
 
 
-////      for(i32 j = 0; j < cx; j++)
+////      for(int j = 0; j < cx; j++)
 ////      {
 ////         b = *pLineShadow;
 
@@ -932,19 +932,19 @@ return pil;
 //   ::draw2d::bitmap * pitmap,
 
 //   const rectangle_i32 & rectangleParam,
-//   i32 &iWidthParam,
+//   int &iWidthParam,
 //   ::u32 & uiStartScanLineParam,
 //   ::u32 & uiScanLineCountParam,
-//   i32 & iLimitYParam)
+//   int & iLimitYParam)
 //{
 //   __UNREFERENCED_PARAMETER(pitmap);
 
 //   ::rectangle_i32 rectangle(rectangleParam);
 //
-//   //   i32 x = rectangle.left();
-//   i32 y = rectangle.top();
-//   //   i32 cx = rectangle.width();
-//   i32 cy = rectangle.height();
+//   //   int x = rectangle.left();
+//   int y = rectangle.top();
+//   //   int cx = rectangle.width();
+//   int cy = rectangle.height();
 //
 //   ::draw2d::bitmap_pointer spbmpTemp(this);
 //   if(!spbmpTemp->CreateCompatibleBitmap(pgraphics,1,1))
@@ -986,7 +986,7 @@ return pil;
 //         bmi.bmiHeader.biYPelsPerMeter = 0;
 //         bmi.bmiHeader.biClrUsed = 0;
 //         bmi.bmiHeader.biClrImportant = 0;
-//         i32 iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
+//         int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
 //         iWidthParam = iLineBytes;
 //         try
 //         {
@@ -1038,7 +1038,7 @@ return pil;
 //#endif
 //
 //      }
-//      catch(i32)
+//      catch(int)
 //      {
 //         //         ::u32 user = get_last_error();
 //         pgraphics->set(pmpOld);
@@ -1065,16 +1065,16 @@ memory & memorystorage,
 ::draw2d::bitmap   ** ppbitmap,
 ::rectangle_i32 * prectangle,
 
-i32 &iWidthParam,
+int &iWidthParam,
 ::u32 & uiStartScanLineParam,
 ::u32 & uiScanLineCountParam,
-i32 & iLimitYParam)
+int & iLimitYParam)
 {
 
-i32 x = 0;
-i32 y = 0;
-i32 cx = -1;
-i32 cy = -1;
+int x = 0;
+int y = 0;
+int cx = -1;
+int cy = -1;
 
 ::draw2d::bitmap * pmpOld = pgraphics->get_current_bitmap();
 
@@ -1121,7 +1121,7 @@ bmi.bmiHeader.biXPelsPerMeter = 0;
 bmi.bmiHeader.biYPelsPerMeter = 0;
 bmi.bmiHeader.biClrUsed = 0;
 bmi.bmiHeader.biClrImportant = 0;
-i32 iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
+int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
 iWidthParam = iLineBytes;
 try
 {
@@ -1157,7 +1157,7 @@ DIB_RGB_COLORS
 ))
 throw ::exception(::exception("integer_exception" + as_string($1)));
 }
-catch(i32)
+catch(int)
 {
 ::u32 user = get_last_error();
 pgraphics->set(pmpOld);
@@ -1223,7 +1223,7 @@ bmi.bmiHeader.biXPelsPerMeter = 0;
 bmi.bmiHeader.biYPelsPerMeter = 0;
 bmi.bmiHeader.biClrUsed = 0;
 bmi.bmiHeader.biClrImportant = 0;
-i32 iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
+int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
 iWidthParam = iLineBytes;
 try
 {
@@ -1247,11 +1247,11 @@ uiStartScanLineParam = uiStartScanLine;
 //::u32 uStartScanLine = bm.bmHeight - y - cy;
 ::u32 uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
-i32 xOffset = (x + pointContext.x()) * 3;
+int xOffset = (x + pointContext.x()) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
 //  throw ::exception(::exception("integer_exception" + as_string($1)));
-i32 iLimitY = cy;
+int iLimitY = cy;
 if(!(iLimitYParam =
 GetDIBits(
 graphicsMem->get_os_data(),
@@ -1264,7 +1264,7 @@ pv,
 &bmi,
 DIB_RGB_COLORS)))
 throw ::exception(::exception("integer_exception" + as_string($1)));
-i32 iLimitX = cx;
+int iLimitX = cx;
 
 if(bm.bmWidth - x - pointContext.x() < iLimitX)
 {
@@ -1278,7 +1278,7 @@ pgraphics->set(pmpOld);
 
 return true;
 }
-catch(i32)
+catch(int)
 {
 return false;
 }
@@ -1290,25 +1290,25 @@ return true;
 }*/
 
 void imaging::BitmapBlend24CC(
-::u8 * pAParam,
+unsigned char * pAParam,
 
-i32 x1,
-i32 y1,
-i32 w1,
-i32 cx,
-i32 cy,
-::u8 * pBParam,
+int x1,
+int y1,
+int w1,
+int cx,
+int cy,
+unsigned char * pBParam,
 
-i32 x2,
-i32 y2,
-i32 w2,
-::u8 * pCParam,
+int x2,
+int y2,
+int w2,
+unsigned char * pCParam,
 
-i32 x3,
-i32 y3,
-i32 w3)
+int x3,
+int y3,
+int w3)
 {
-   i32 i,j;
+   int i,j;
    x1 *= 3;
    x2 *= 3;
    x3 *= 3;
@@ -1316,31 +1316,31 @@ i32 w3)
    y2 *= w2;
    y3 *= w3;
 
-   ::u8 * pA1 = (::u8 *)pAParam + y1 + x1;
+   unsigned char * pA1 = (unsigned char *)pAParam + y1 + x1;
 
-   ::u8 * pB1 = (::u8 *)pBParam + y2 + x2;
+   unsigned char * pB1 = (unsigned char *)pBParam + y2 + x2;
 
-   ::u8 * pC1 = (::u8 *)pCParam + y3 + x3;
+   unsigned char * pC1 = (unsigned char *)pCParam + y3 + x3;
 
 
-   //   ::u8 dwA;
+   //   unsigned char dwA;
    for(i = 0; i < cy; i++)
    {
 
-      ::u8 * pA = (::u8 *)pA1 + (w1 * i);
+      unsigned char * pA = (unsigned char *)pA1 + (w1 * i);
 
-      ::u8 * pB = (::u8 *)pB1 + (w2 * i);
+      unsigned char * pB = (unsigned char *)pB1 + (w2 * i);
 
-      ::u8 * pC = (::u8 *)pC1 + (w3 * i);
+      unsigned char * pC = (unsigned char *)pC1 + (w3 * i);
 
       for(j = 0; j < cx; j++)
       {
 
-         pA[0] = (::u8)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)pB[0]) * ((u32)pC[0])))) / 255);
+         pA[0] = (unsigned char)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)pB[0]) * ((u32)pC[0])))) / 255);
 
-         pA[1] = (::u8)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)pB[1]) * ((u32)pC[1])))) / 255);
+         pA[1] = (unsigned char)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)pB[1]) * ((u32)pC[1])))) / 255);
 
-         pA[2] = (::u8)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)pB[2]) * ((u32)pC[2])))) / 255);
+         pA[2] = (unsigned char)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)pB[2]) * ((u32)pC[2])))) / 255);
 
          pA+=3;
 
@@ -1356,48 +1356,48 @@ i32 w3)
 
 
 void imaging::BitmapBlend24CC(
-::u8 * pDestParam,
+unsigned char * pDestParam,
 
 
-i32 xDest,
-i32 yDest,
-i32 wDest,
-i32 cx,
-i32 cy,
-::u8 * pSrcParam,
+int xDest,
+int yDest,
+int wDest,
+int cx,
+int cy,
+unsigned char * pSrcParam,
 
 
-i32 xSrc,
-i32 ySrc,
-i32 wSrc,
-::u8 bAlpha)
+int xSrc,
+int ySrc,
+int wSrc,
+unsigned char bAlpha)
 {
-   i32 i,j;
+   int i,j;
    xDest *= 3;
    xSrc *= 3;
    yDest *= wDest;
    ySrc *= wSrc;
 
-   //   i32 maxw = cx * 3;
-   //   i32 cw = (maxw) & ~3;
+   //   int maxw = cx * 3;
+   //   int cw = (maxw) & ~3;
 
 
 
-   i32 iDestPadding = wDest - cx * 3;
-   i32 iSrcPadding = wSrc - cx * 3;
+   int iDestPadding = wDest - cx * 3;
+   int iSrcPadding = wSrc - cx * 3;
 
 
-   pDestParam = (::u8 *)     pDestParam + yDest + xDest;
-
-
-
-   pSrcParam = (::u8 *)pSrcParam + ySrc + xSrc;
+   pDestParam = (unsigned char *)     pDestParam + yDest + xDest;
 
 
 
+   pSrcParam = (unsigned char *)pSrcParam + ySrc + xSrc;
 
-   //   ::u8 bAlphaComplement = 255 - bAlpha;
-   //   ::u8 dwA;
+
+
+
+   //   unsigned char bAlphaComplement = 255 - bAlpha;
+   //   unsigned char dwA;
    if(bAlpha == 0)
    {
    }
@@ -1405,11 +1405,11 @@ i32 wSrc,
    {
       for(i = 0; i < cy; i++)
       {
-         ::u8 * pDst = (::u8 *)pDestParam + (wDest * i);
+         unsigned char * pDst = (unsigned char *)pDestParam + (wDest * i);
 
 
 
-         ::u8 * pSrc = (::u8 *)pSrcParam + (wSrc * i);
+         unsigned char * pSrc = (unsigned char *)pSrcParam + (wSrc * i);
 
 
 
@@ -1432,11 +1432,11 @@ i32 wSrc,
    }
    else
    {
-      ::u8 * pDst = (::u8 *)pDestParam;
+      unsigned char * pDst = (unsigned char *)pDestParam;
 
 
 
-      ::u8 * pSrc = (::u8 *)pSrcParam;
+      unsigned char * pSrc = (unsigned char *)pSrcParam;
 
 
 
@@ -1445,19 +1445,19 @@ i32 wSrc,
 
          for(j = 0; j < cx; j++)
          {
-            pDst[0] = (::u8)(((((i32)pSrc[0] - pDst[0]) * ((i32)(bAlpha))) / 256) + (i32)pDst[0]);
+            pDst[0] = (unsigned char)(((((int)pSrc[0] - pDst[0]) * ((int)(bAlpha))) / 256) + (int)pDst[0]);
 
 
 
 
 
-            pDst[1] = (::u8)(((((i32)pSrc[1] - pDst[1]) * ((i32)(bAlpha))) / 256) + (i32)pDst[1]);
+            pDst[1] = (unsigned char)(((((int)pSrc[1] - pDst[1]) * ((int)(bAlpha))) / 256) + (int)pDst[1]);
 
 
 
 
 
-            pDst[2] = (::u8)(((((i32)pSrc[2] - pDst[2]) * ((i32)(bAlpha))) / 256) + (i32)pDst[2]);
+            pDst[2] = (unsigned char)(((((int)pSrc[2] - pDst[2]) * ((int)(bAlpha))) / 256) + (int)pDst[2]);
 
 
 
@@ -1470,11 +1470,11 @@ i32 wSrc,
 
 
          }
-         pDst = (::u8 *)pDst + iDestPadding;
+         pDst = (unsigned char *)pDst + iDestPadding;
 
 
 
-         pSrc = (::u8 *)pSrc + iSrcPadding;
+         pSrc = (unsigned char *)pSrc + iSrcPadding;
 
 
 
@@ -1503,15 +1503,15 @@ i32 wSrc,
       pushDest++;
 
       }
-      ::u8 * pDst = (::u8 *) lpushDest;
+      unsigned char * pDst = (unsigned char *) lpushDest;
 
 
-      ::u8 * pSrc = (::u8 *) lpushSrc;
+      unsigned char * pSrc = (unsigned char *) lpushSrc;
 
 
       for(;j < maxw; j++)
       {
-      *pDst++ = (::u8) (((u32) (*pSrc++ - *pDst) * ((u32) (bAlpha))) / 256) + *pDst;
+      *pDst++ = (unsigned char) (((u32) (*pSrc++ - *pDst) * ((u32) (bAlpha))) / 256) + *pDst;
 
 
 
@@ -1520,12 +1520,12 @@ i32 wSrc,
 
 
       }
-      pDst = (::u8 *) pDestParam + iDestPadding;
+      pDst = (unsigned char *) pDestParam + iDestPadding;
 
 
 
 
-      pSrc = (::u8 *) pSrcParam + iSrcPadding;
+      pSrc = (unsigned char *) pSrcParam + iSrcPadding;
 
 
 
@@ -1543,7 +1543,7 @@ void imaging::BitmapDivBlend(
    const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc, // source device
    const ::point_i32 & pointSrc,
-   ::u8 bAlpha)
+   unsigned char bAlpha)
 {
 
    ::image::image_pointer pimage;
@@ -1606,7 +1606,7 @@ void imaging::BitmapDivBlend(
 //const ::size_i32 & size,
 //::draw2d::graphics * pdcSrc, // source device
 //const ::point_i32 & pointSrc,
-//::u8 bAlpha)
+//unsigned char bAlpha)
 //{
 //
 //   return pdcDst->alpha_blend(rectangle_f64(pointDst, size), pdcSrc, pointSrc, bAlpha / 255.0);
@@ -1619,7 +1619,7 @@ void imaging::BitmapDivBlend(
 //                           const ::size_i32 & size,
 //                           ::image::image *pimage,
 //                           const ::point_i32 & pointSrc,
-//                           ::u8 bAlpha)
+//                           unsigned char bAlpha)
 //{
 //
 //   return pdcDst->alpha_blend(::rectangle_f64(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
@@ -1627,7 +1627,7 @@ void imaging::BitmapDivBlend(
 //}
 //
 
-void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy)
+void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int cy)
 {
 
 
@@ -1644,7 +1644,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    //    single_lock synchronouslock(&m_csMem, true);
 
-   /*i32 iOriginalMapMode ;
+   /*int iOriginalMapMode ;
 
    ::draw2d::bitmap_pointer spbmpTemp(this);
 
@@ -1709,7 +1709,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    bmi.bmiHeader.biYPelsPerMeter = 0;
    bmi.bmiHeader.biClrUsed = 0;
    bmi.bmiHeader.biClrImportant = 0;
-   i32 iLineBytes =  (bm.bmWidthBytes + 3) & ~3;
+   int iLineBytes =  (bm.bmWidthBytes + 3) & ~3;
    try
    {
    memstorageA.set_size(iLineBytes * cy);
@@ -1728,11 +1728,11 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
    ::u32 uScanLines = cy;
-   i32 xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x()) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
    //  throw ::exception(::exception("integer_exception" + as_string($1)));
-   i32 iLimitY = cy;
+   int iLimitY = cy;
    if(!(iLimitY =
    GetDIBits(
    (HDC)graphicsMem->get_os_data(),
@@ -1744,35 +1744,35 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    &bmi,
    DIB_RGB_COLORS)))
    return false;
-   i32 iLimitX = cx;
+   int iLimitX = cx;
 
    if(bm.bmWidth - x - pointContext.x() < iLimitX)
    {
    iLimitX = bm.bmWidth - x - pointContext.x();
    }
 
-   ::u8 * p;
+   unsigned char * p;
 
 
-   i32 i, j;
+   int i, j;
    for(i = 0; i < iLimitY; i++)
    {
-   p = (::u8 *) lpv + (iLineBytes * i) + xOffset;
+   p = (unsigned char *) lpv + (iLineBytes * i) + xOffset;
 
 
    for(j = 0; j < iLimitX; j++)
    {
-   *p++ = (::u8) 255 - *p;
+   *p++ = (unsigned char) 255 - *p;
 
 
 
 
-   *p++ = (::u8) 255 - *p;
+   *p++ = (unsigned char) 255 - *p;
 
 
 
 
-   *p++ = (::u8) 255 - *p;
+   *p++ = (unsigned char) 255 - *p;
 
 
 
@@ -1796,7 +1796,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    pgraphics->SetMapMode(iOriginalMapMode);
    return true;
    }
-   catch(i32)
+   catch(int)
    {
    pgraphics->SetMapMode(iOriginalMapMode);
    return false;
@@ -1825,7 +1825,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    bmi.bmiHeader.biYPelsPerMeter = 0;
    bmi.bmiHeader.biClrUsed = 0;
    bmi.bmiHeader.biClrImportant = 0;
-   i32 iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
+   int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
 
    memory memstorageA;
    try
@@ -1843,11 +1843,11 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
    ::u32 uScanLines = cy;
-   i32 xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x()) * 3;
 
 
-   //i32 xOffset = (x) * 3;
-   i32 iLimitY = cy;
+   //int xOffset = (x) * 3;
+   int iLimitY = cy;
    if(!(iLimitY =
    GetDIBits(
    (HDC)pgraphics->get_os_data(),
@@ -1860,7 +1860,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    &bmi,
    DIB_RGB_COLORS)))
    throw ::exception(::exception("integer_exception" + as_string($1)));
-   i32 iLimitX = cx;
+   int iLimitX = cx;
 
 
    if(bm.bmWidth - x - pointContext.x() < iLimitX)
@@ -1868,13 +1868,13 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    iLimitX = bm.bmWidth - x - pointContext.x();
    }
 
-   ::u8 * p;
+   unsigned char * p;
 
 
-   i32 i, j;
+   int i, j;
    for(i = 0; i < iLimitY; i++)
    {
-   p = (::u8 *) lpv + (iLineBytes * i) + xOffset;
+   p = (unsigned char *) lpv + (iLineBytes * i) + xOffset;
 
 
    if(p < lpv)
@@ -1883,17 +1883,17 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    continue;
    for(j = 0; j < iLimitX; j++)
    {
-   *p++ = (::u8) 255 - *p ;
+   *p++ = (unsigned char) 255 - *p ;
 
 
 
 
-   *p++ = (::u8) 255 - *p;
+   *p++ = (unsigned char) 255 - *p;
 
 
 
 
-   *p++ = (::u8) 255 - *p;
+   *p++ = (unsigned char) 255 - *p;
 
 
 
@@ -1909,7 +1909,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    throw ::exception(::exception("integer_exception" + as_string($1)));
    }
-   catch(i32)
+   catch(int)
    {
    pgraphics->SetMapMode(iOriginalMapMode);
    return false;
@@ -1919,7 +1919,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    return true;*/
 }
 
-/*void imaging::allocate(i32 iSize)
+/*void imaging::allocate(int iSize)
 {
 if(iSize > m_iSize)
 {
@@ -2003,7 +2003,7 @@ return true;
 
 
 
-void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectangleParam, const ::color::color & color, ::u8 alpha)
+void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectangleParam, const ::color::color & color, unsigned char alpha)
 {
 
    ::rectangle_i32 rectangle(rectangleParam);
@@ -2017,7 +2017,7 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 }
 
 
-void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size, const ::color::color & color,::u8 bA)
+void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size, const ::color::color & color,unsigned char bA)
 {
 
    pgraphics->fill_rectangle(rectangle_i32(size), color & ::opacity(bA));
@@ -2035,7 +2035,7 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 }
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, ::color32_t color32, ::u8 alpha)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, ::color32_t color32, unsigned char alpha)
 //{
 //
 //   return color_blend(pgraphics,(const ::rectangle_i32 &)rectangle,color32,alpha);
@@ -2043,7 +2043,7 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, ::u8 alpha)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, unsigned char alpha)
 //{
 //
 //   return color_blend(pgraphics, rectangle.origin(), rectangle.size(), color32, alpha);
@@ -2051,7 +2051,7 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,::color32_t color32,::u8 bA)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,int x,int y,int cx,int cy,::color32_t color32,unsigned char bA)
 //{
 //
 //   return color_blend(pgraphics,point_i32(x,y),size_i32(cx,cy),color32,bA);
@@ -2059,7 +2059,7 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,::u8 bA)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,unsigned char bA)
 //{
 //
 //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2071,12 +2071,12 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-//void imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, i32 cx, i32 cy)
+//void imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, int cx, int cy)
 //{
 //   
-//   i32 cxout = cx;
+//   int cxout = cx;
 //
-//   i32 cyout = cy;
+//   int cyout = cy;
 //
 //   pgraphics->set(pbitmapOld);
 //
@@ -2140,12 +2140,12 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 //
 //
-//void imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,i32 cx,i32 cy)
+//void imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,int cx,int cy)
 //{
 //
-//   i32 cxout = cx;
+//   int cxout = cx;
 //
-//   i32 cyout = cy;
+//   int cyout = cy;
 //
 //   pgraphics->set(pitmapOld);
 //
@@ -2212,7 +2212,7 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-void imaging::blur(::image::image *pimage, i32 iRadius)
+void imaging::blur(::image::image *pimage, int iRadius)
 {
 
    if (!pimage->is_ok())
@@ -2233,7 +2233,7 @@ void imaging::blur(::image::image *pimage, i32 iRadius)
 }
 
 
-void imaging::blur(::image::image *pimage, rectangle_i32 rectangle, i32 iRadius)
+void imaging::blur(::image::image *pimage, rectangle_i32 rectangle, int iRadius)
 {
 
    if (!pimage->is_ok())
@@ -2263,52 +2263,52 @@ void imaging::blur(::image::image *pimage, rectangle_i32 rectangle, i32 iRadius)
 }
 
 
-void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32 iRadius)
+void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,int iRadius)
 {
-   i32 iFilterWidth = iRadius * 2 + 1;
-   i32 iFilterHeight = iRadius * 2 + 1;
-   i32 divisor = iFilterWidth * iFilterHeight;
-   ::u8 *pSource;
+   int iFilterWidth = iRadius * 2 + 1;
+   int iFilterHeight = iRadius * 2 + 1;
+   int divisor = iFilterWidth * iFilterHeight;
+   unsigned char *pSource;
 
 
-   ::u8 *pDestination;
+   unsigned char *pDestination;
 
 
-   ::u8 *pSource1;
+   unsigned char *pSource1;
 
 
-   ::u8 *pSource2;
+   unsigned char *pSource2;
 
 
-   ::u8 *pFilter;
+   unsigned char *pFilter;
 
-   ::u8 * pFilterData = __raw_new  ::u8[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
 
-   i32 cx = pimageSrc->width();
-   i32 cy = pimageSrc->height();
-   //i32 wSrc = cx * 4;
-   //i32 wDest = cx * 4;
-   i32 wSrc = pimageSrc->scan_size();
-   i32 wDest = pimageDst->scan_size();
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - iFilterWidth;
-   //   i32 maxy3 = cy - iFilterWidth / 2;
-   i32 max3x1 = maxx1 * 4;
-   //   i32 max3x2 = (maxx1 - iFilterHeight) * 4;
-   //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 4;
-   //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
-   //   i32 w = cx * 3;
+   int cx = pimageSrc->width();
+   int cy = pimageSrc->height();
+   //int wSrc = cx * 4;
+   //int wDest = cx * 4;
+   int wSrc = pimageSrc->scan_size();
+   int wDest = pimageDst->scan_size();
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
+   int max3x1 = maxx1 * 4;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 4;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
+   //int bm3Width = (cy * 3 + 3) & ~0x3L;
+   //   int w = cx * 3;
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
-   /*for(i32 y = 0; y < cy; y++)
+   /*for(int y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;
 
@@ -2319,7 +2319,7 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
 
 
 
-   for(i32 x = 0; x < w; x++)
+   for(int x = 0; x < w; x++)
    {
    *pDestination = *pSource;
 
@@ -2339,15 +2339,15 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
    u32 dwB;
    u32 dwA;
 
-   i32 iFilterXBegin;
-   i32 iFilterXEnd;
-   i32 iFilterYBegin;
-   i32 iFilterYEnd;
+   int iFilterXBegin;
+   int iFilterXEnd;
+   int iFilterYBegin;
+   int iFilterYEnd;
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    yLowerBound[0] = 0;
@@ -2373,13 +2373,13 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
    xLowerBound[3] = 0;
    xUpperBound[3] = max3x1;
 
-   /*   for(i32 i = 0; i < 4; i++)
+   /*   for(int i = 0; i < 4; i++)
    {
-   i32 yL = yLowerBound[i];
-   i32 yU = yUpperBound[i];
-   i32 xL = xLowerBound[i];
-   i32 xU = xUpperBound[i];
-   for(i32 y1 = yL; y1 < yU; y1++)
+   int yL = yLowerBound[i];
+   int yU = yUpperBound[i];
+   int xL = xLowerBound[i];
+   int xU = xUpperBound[i];
+   for(int y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
    {
@@ -2406,7 +2406,7 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
 
 
 
-   for(i32 x1 = xL; x1 < xU; x1+=3)
+   for(int x1 = xL; x1 < xU; x1+=3)
    {
    if(x1 < iFilterHeight /2)
    {
@@ -2437,12 +2437,12 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
    dwR = 0;
    dwG = 0;
    dwB = 0;
-   for(i32 y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
+   for(int y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
    {
    pSource2 = pSource1 + (wSrc * y2);
 
 
-   for(i32 x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
+   for(int x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
    {
    dwR += *pSource2++ * *lpFilter;
 
@@ -2494,19 +2494,19 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
    iFilterXBegin = 0;
    iFilterXEnd = iFilterHeight;
 
-   i32 iFilterHalfWidth = iFilterWidth / 2;
-   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   int iFilterHalfWidth = iFilterWidth / 2;
+   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
-   i32 yL = iFilterHalfWidth;
-   i32 yU = maxy1 - iFilterHalfWidth;
-   i32 xL = iFilterHalfWidthBytes;
-   i32 xU = max3x1 - iFilterHalfWidthBytes;
+   int yL = iFilterHalfWidth;
+   int yU = maxy1 - iFilterHalfWidth;
+   int xL = iFilterHalfWidthBytes;
+   int xU = max3x1 - iFilterHalfWidthBytes;
 
 
-   i32 y1 = yL;
-   i32 y2 = yL - iFilterHalfWidth;
-   i32 x1;
-   i32 x2;
+   int y1 = yL;
+   int y2 = yL - iFilterHalfWidth;
+   int x1;
+   int x2;
 
    divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
 
@@ -2536,13 +2536,13 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
          dwG = 0;
          dwB = 0;
          dwA = 0;
-         for(i32 yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
+         for(int yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
          {
             pSource2 = pSource1 + (wSrc * yFilter);
 
 
 
-            for(i32 xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
             {
                dwR += *pSource2++ * *pFilter;
 
@@ -2588,30 +2588,30 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32
 void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 {
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
 
 
-   i32 cx = pimageSrc->width();
-   i32 cy = pimageSrc->height();
-   //i32 wSrc = cx * 4;
-   //i32 wDest = cx * 4;
-   i32 wSrc = pimageSrc->scan_size();
-   i32 wDest = pimageDst->scan_size();
+   int cx = pimageSrc->width();
+   int cy = pimageSrc->height();
+   //int wSrc = cx * 4;
+   //int wDest = cx * 4;
+   int wSrc = pimageSrc->scan_size();
+   int wDest = pimageDst->scan_size();
 
-   ::u8 *pSource;
-
-
-   ::u8 *pDestination;
+   unsigned char *pSource;
 
 
-   ::u8 *pSource1;
+   unsigned char *pDestination;
 
 
-   ::u8 *pSource2[5];
+   unsigned char *pSource1;
+
+
+   unsigned char *pSource2[5];
 
 
 
@@ -2621,29 +2621,29 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
    if(cy <= 0)
       return;
 
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - 5;
-   //   i32 maxy3 = cy - 2;
-   i32 max3x1 = maxx1 * 4;
-   //   i32 max3x2 = (maxx1 - 5) * 4;
-   ///   i32 max3x3 = (maxx1 - 2) * 4;
-   //   i32 w = cx * 3;
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - 5;
+   //   int maxy3 = cy - 2;
+   int max3x1 = maxx1 * 4;
+   //   int max3x2 = (maxx1 - 5) * 4;
+   ///   int max3x3 = (maxx1 - 2) * 4;
+   //   int w = cx * 3;
    //u32 dwR;
    //u32 dwG;
    //u32 dwB;
    //u32 dwA;
 
-   i32 yL = 2;
-   i32 yU = maxy1 - 2;
-   i32 xL = 8;
-   i32 xU = max3x1 - 8;
+   int yL = 2;
+   int yU = maxy1 - 2;
+   int xL = 8;
+   int xU = max3x1 - 8;
 
 
-   i32 y1 = 2;
-   i32 y2 = yL - 2;
-   i32 x1;
-   i32 x2;
+   int y1 = 2;
+   int y2 = yL - 2;
+   int x1;
+   int x2;
 
    for(; y1 < yU;)
    {
@@ -2942,7 +2942,7 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 }
 
 
-void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,i32 iChannel,i32 iRadius)
+void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,int iChannel,int iRadius)
 {
 
    if (size.cx() <= 0 || size.cy() <= 0)
@@ -3022,7 +3022,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 }
 
 
-void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius)
+void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, int iChannel, int iRadius)
 {
 
    if (size.area() <= 0)
@@ -3103,78 +3103,78 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
 
 void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
-                                     i32 iChannel,i32 iRadius)
+                                     int iChannel,int iRadius)
 {
 
    if(iRadius <= 0)
       throw ::exception(error_wrong_state);
 
-   i32 cx = pimageDst->width();
-   i32 cy = pimageDst->height();
+   int cx = pimageDst->width();
+   int cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
-
-
-
-   //i32 wSrc = cx * 4;
-   //i32 wDst = cx * 4;
-   i32 wSrc = pimageSrc->scan_size();
-   i32 wDst = pimageDst->scan_size();
-
-   i32 iFilterW = iRadius * 2 + 1;
-   i32 iFilterH = iRadius * 2 + 1;
-   i32 iFilterHalfW = iRadius;
-   i32 iFilterHalfH = iRadius;
-   //   i32 iFilterArea = iFilterW * iFilterH;
-   i32 iDivisor;
-
-   ::u8 *pDestination;
-
-
-   ::u8 *pDestination_1;
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
 
 
+   //int wSrc = cx * 4;
+   //int wDst = cx * 4;
+   int wSrc = pimageSrc->scan_size();
+   int wDst = pimageDst->scan_size();
 
-   ::u8 *pSource;
+   int iFilterW = iRadius * 2 + 1;
+   int iFilterH = iRadius * 2 + 1;
+   int iFilterHalfW = iRadius;
+   int iFilterHalfH = iRadius;
+   //   int iFilterArea = iFilterW * iFilterH;
+   int iDivisor;
+
+   unsigned char *pDestination;
 
 
-   ::u8 *pSource1;
+   unsigned char *pDestination_1;
 
 
-   ::u8 *pSource2;
 
 
-   ::u8 *pSource_3;
+   unsigned char *pSource;
+
+
+   unsigned char *pSource1;
+
+
+   unsigned char *pSource2;
+
+
+   unsigned char *pSource_3;
 
 
 
    u32 dwI;
 
-   i32 x,y;
-   //i32 x2;
-   i32 x3;
-   i32 iFilterXLowerBound;
-   i32 iFilterXUpperBound;
-   i32 iFilterYLowerBound;
-   i32 iFilterYUpperBound;
-   i32 xFilter;
-   i32 yFilter;
+   int x,y;
+   //int x2;
+   int x3;
+   int iFilterXLowerBound;
+   int iFilterXUpperBound;
+   int iFilterYLowerBound;
+   int iFilterYUpperBound;
+   int xFilter;
+   int yFilter;
 
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
 
-   i32 xmax = cx - 1;
-   i32 ymax = cy - 1;
+   int xmax = cx - 1;
+   int ymax = cy - 1;
 
    // top
    xLowerBound[0] = 0;
@@ -3201,14 +3201,14 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
    yUpperBound[3] = cy - 1;
 
 
-   i32 iFilterLine;
+   int iFilterLine;
 
-   for(i32 i = 0; i < 4; i++)
+   for(int i = 0; i < 4; i++)
    {
-      i32 xL = xLowerBound[i];
-      i32 xU = xUpperBound[i];
-      i32 yL = yLowerBound[i];
-      i32 yU = yUpperBound[i];
+      int xL = xLowerBound[i];
+      int xU = xUpperBound[i];
+      int yL = yLowerBound[i];
+      int yU = yUpperBound[i];
       for(y = yL; y <= yU; y++)
       {
          iFilterYLowerBound = y - iFilterHalfH;
@@ -3270,19 +3270,19 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
             iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
-               pDestination_1[0] = (::u8)maximum(0u,minimum(dwI,255u));
+               pDestination_1[0] = (unsigned char)maximum(0u,minimum(dwI,255u));
 
 
-               pDestination_1[1] = (::u8)maximum(0u,minimum(dwI,255u));
+               pDestination_1[1] = (unsigned char)maximum(0u,minimum(dwI,255u));
 
 
-               pDestination_1[2] = (::u8)minimum(0u,minimum(dwI,255u));
+               pDestination_1[2] = (unsigned char)minimum(0u,minimum(dwI,255u));
 
 
             }
             else
             {
-               pDestination_1[0] = (::u8)(dwI / iDivisor);
+               pDestination_1[0] = (unsigned char)(dwI / iDivisor);
 
 
                pDestination_1[1] = pDestination_1[0];
@@ -3305,17 +3305,17 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
    iFilterXLowerBound     = 0;
    iFilterXUpperBound     = iFilterH - 1;
 
-   i32 yL = iFilterHalfH;
-   i32 yU = cy - iFilterHalfH + (iFilterHalfH % 2 == 1 ? 0 : 1);
-   i32 xL = iFilterHalfW;
-   i32 xU = cx - iFilterHalfW + (iFilterHalfW % 2 == 1 ? 0 : 1);
+   int yL = iFilterHalfH;
+   int yU = cy - iFilterHalfH + (iFilterHalfH % 2 == 1 ? 0 : 1);
+   int xL = iFilterHalfW;
+   int xU = cx - iFilterHalfW + (iFilterHalfW % 2 == 1 ? 0 : 1);
 
-   i32 y1 = yL;
-   i32 x1;
+   int y1 = yL;
+   int x1;
 
    iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
-   i32 wDiff = wDst - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    pSource = pSrc + iChannel;
 
 
@@ -3339,14 +3339,14 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
          pSource2 = pSource1;
 
 
-         for(i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+         for(int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
          {
             pSource_3 = pSource2;
 
 
 
 
-            for(i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+            for(int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
             {
                dwI += *pSource_3;
 
@@ -3396,14 +3396,14 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 
 void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
-      i32 iChannel,i32 iRadius)
+      int iChannel,int iRadius)
 {
 
    if(iRadius <= 0)
       throw ::exception(error_wrong_state);
 
-   i32 cx = pimageDst->width();
-   i32 cy = pimageDst->height();
+   int cx = pimageDst->width();
+   int cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
@@ -3413,65 +3413,65 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
 
    pimageSrc->map();
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
-
-
-
-   //i32 wSrc = cx * 4;
-   //i32 wDst = cx * 4;
-   i32 wSrc = pimageSrc->scan_size();
-   i32 wDst = pimageDst->scan_size();
-
-   i32 iFilterW = iRadius * 2 + 1;
-   i32 iFilterH = iRadius * 2 + 1;
-   i32 iFilterHalfW = iRadius;
-   i32 iFilterHalfH = iRadius;
-   //   i32 iFilterArea = iFilterW * iFilterH;
-   i32 iDivisor;
-
-   ::u8 *pDestination;
-
-
-   ::u8 *pDestination_1;
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
 
 
+   //int wSrc = cx * 4;
+   //int wDst = cx * 4;
+   int wSrc = pimageSrc->scan_size();
+   int wDst = pimageDst->scan_size();
 
-   ::u8 *pSource;
+   int iFilterW = iRadius * 2 + 1;
+   int iFilterH = iRadius * 2 + 1;
+   int iFilterHalfW = iRadius;
+   int iFilterHalfH = iRadius;
+   //   int iFilterArea = iFilterW * iFilterH;
+   int iDivisor;
+
+   unsigned char *pDestination;
 
 
-   ::u8 *pSource1;
+   unsigned char *pDestination_1;
 
 
-   ::u8 *pSource2;
 
 
-   ::u8 *pSource_3;
+   unsigned char *pSource;
+
+
+   unsigned char *pSource1;
+
+
+   unsigned char *pSource2;
+
+
+   unsigned char *pSource_3;
 
 
 
    u32 dwI;
 
-   i32 x,y;
-   //i32 x2;
-   i32 x3;
-   i32 iFilterXLowerBound;
-   i32 iFilterXUpperBound;
-   i32 iFilterYLowerBound;
-   i32 iFilterYUpperBound;
-   i32 xFilter;
-   i32 yFilter;
+   int x,y;
+   //int x2;
+   int x3;
+   int iFilterXLowerBound;
+   int iFilterXUpperBound;
+   int iFilterYLowerBound;
+   int iFilterYUpperBound;
+   int xFilter;
+   int yFilter;
 
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
 
-   i32 xmax = cx - 1;
-   i32 ymax = cy - 1;
+   int xmax = cx - 1;
+   int ymax = cy - 1;
 
    // top
    xLowerBound[0] = 0;
@@ -3498,14 +3498,14 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
    yUpperBound[3] = cy - 1;
 
 
-   i32 iFilterLine;
+   int iFilterLine;
 
-   for(i32 i = 0; i < 4; i++)
+   for(int i = 0; i < 4; i++)
    {
-      i32 xL = xLowerBound[i];
-      i32 xU = xUpperBound[i];
-      i32 yL = yLowerBound[i];
-      i32 yU = yUpperBound[i];
+      int xL = xLowerBound[i];
+      int xU = xUpperBound[i];
+      int yL = yLowerBound[i];
+      int yU = yUpperBound[i];
       for(y = yL; y <= yU; y++)
       {
          iFilterYLowerBound = y - iFilterHalfH;
@@ -3567,22 +3567,22 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
             iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
             if(iDivisor == 0)
             {
-               pDestination_1[0] = (::u8)maximum(0u,minimum(dwI,255u));
+               pDestination_1[0] = (unsigned char)maximum(0u,minimum(dwI,255u));
 
 
-               pDestination_1[1] = (::u8)maximum(0u,minimum(dwI,255u));
+               pDestination_1[1] = (unsigned char)maximum(0u,minimum(dwI,255u));
 
 
-               pDestination_1[2] = (::u8)minimum(0u,minimum(dwI,255u));
+               pDestination_1[2] = (unsigned char)minimum(0u,minimum(dwI,255u));
 
 
-               pDestination_1[3] = (::u8)minimum(0u,minimum(dwI,255u));
+               pDestination_1[3] = (unsigned char)minimum(0u,minimum(dwI,255u));
 
 
             }
             else
             {
-               pDestination_1[0] = (::u8)(dwI / iDivisor);
+               pDestination_1[0] = (unsigned char)(dwI / iDivisor);
 
 
                pDestination_1[1] = pDestination_1[0];
@@ -3609,17 +3609,17 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
    iFilterXLowerBound     = 0;
    iFilterXUpperBound     = iFilterH - 1;
 
-   i32 yL = iFilterHalfH;
-   i32 yU = cy - iFilterHalfH;
-   i32 xL = iFilterHalfW;
-   i32 xU = cx - iFilterHalfW;
+   int yL = iFilterHalfH;
+   int yU = cy - iFilterHalfH;
+   int xL = iFilterHalfW;
+   int xU = cx - iFilterHalfW;
 
-   i32 y1 = yL;
-   i32 x1;
+   int y1 = yL;
+   int x1;
 
    iDivisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
-   i32 wDiff = wDst - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    pSource = pSrc + iChannel;
 
 
@@ -3643,14 +3643,14 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
          pSource2 = pSource1;
 
 
-         for(i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+         for(int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
          {
             pSource_3 = pSource2;
 
 
 
 
-            for(i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+            for(int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
             {
                dwI += *pSource_3;
 
@@ -3704,9 +3704,9 @@ const ::point_i32 & pointDst,
 const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
-i32 iChannel,
+int iChannel,
 const ::size_i32 & sizeFilter,
-::u8 * pFilter)
+unsigned char * pFilter)
 {
 
    if (size.cx() <= 0 || size.cy() <= 0)
@@ -3792,72 +3792,72 @@ const ::size_i32 & sizeFilter,
 
 
 void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
-                                     i32 iChannel,
-                                     i32 iFilterWidth,
-                                     i32 iFilterHeight,
-                                     ::u8 * pFilterParam)
+                                     int iChannel,
+                                     int iFilterWidth,
+                                     int iFilterHeight,
+                                     unsigned char * pFilterParam)
 
 
 {
 
-   i32 cx = pimageDst->width();
-   i32 cy = pimageDst->height();
+   int cx = pimageDst->width();
+   int cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
-
-
-
-   //i32 wSrc = cx * 4;
-   //i32 wDst = cx * 4;
-   i32 wSrc = pimageSrc->scan_size();
-   i32 wDst = pimageDst->scan_size();
-
-   i32 iFilterArea = iFilterWidth * iFilterHeight;
-   i32 divisor;
-
-   ::u8 *pDestination;
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
 
 
+   //int wSrc = cx * 4;
+   //int wDst = cx * 4;
+   int wSrc = pimageSrc->scan_size();
+   int wDst = pimageDst->scan_size();
 
-   ::u8 *pSource;
+   int iFilterArea = iFilterWidth * iFilterHeight;
+   int divisor;
 
-
-   ::u8 *pSource1;
-
-
-   ::u8 *pSource2;
-
-
-   ::u8 *pSource_3;
+   unsigned char *pDestination;
 
 
 
-   ::u8 *pFilter;
 
-   ::u8 * pFilterData = __raw_new ::u8 [iFilterHeight *iFilterWidth];
+   unsigned char *pSource;
+
+
+   unsigned char *pSource1;
+
+
+   unsigned char *pSource2;
+
+
+   unsigned char *pSource_3;
+
+
+
+   unsigned char *pFilter;
+
+   unsigned char * pFilterData = __raw_new unsigned char [iFilterHeight *iFilterWidth];
 
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - iFilterWidth;
-   //   i32 maxy3 = cy - iFilterWidth / 2;
-   i32 max3x1 = maxx1 * 4;
-   //   i32 max3x2 = (maxx1 - iFilterHeight) * 4;
-   //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 4;
-   //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
-   //   i32 w = cx * 4;
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
+   int max3x1 = maxx1 * 4;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 4;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
+   //int bm3Width = (cy * 3 + 3) & ~0x3L;
+   //   int w = cx * 4;
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
-   /*for(i32 y = 0; y < cy; y++)
+   /*for(int y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;
 
@@ -3868,7 +3868,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 
 
-   for(i32 x = 0; x < w; x++)
+   for(int x = 0; x < w; x++)
    {
    *pDestination = *pSource;
 
@@ -3885,15 +3885,15 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
    }*/
    u32 dwI;
 
-   i32 iFilterXBegin;
-   i32 iFilterXEnd;
-   i32 iFilterYBegin;
-   i32 iFilterYEnd;
+   int iFilterXBegin;
+   int iFilterXEnd;
+   int iFilterYBegin;
+   int iFilterYEnd;
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    yLowerBound[0] = 0;
@@ -3919,13 +3919,13 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
    xLowerBound[3] = 0;
    xUpperBound[3] = max3x1;
 
-   /*   for(i32 i = 0; i < 4; i++)
+   /*   for(int i = 0; i < 4; i++)
    {
-   i32 yL = yLowerBound[i];
-   i32 yU = yUpperBound[i];
-   i32 xL = xLowerBound[i];
-   i32 xU = xUpperBound[i];
-   for(i32 y1 = yL; y1 < yU; y1++)
+   int yL = yLowerBound[i];
+   int yU = yUpperBound[i];
+   int xL = xLowerBound[i];
+   int xU = xUpperBound[i];
+   for(int y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
    {
@@ -3952,7 +3952,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 
 
-   for(i32 x1 = xL; x1 < xU; x1+=3)
+   for(int x1 = xL; x1 < xU; x1+=3)
    {
    if(x1 < iFilterHeight /2)
    {
@@ -3983,12 +3983,12 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
    dwR = 0;
    dwG = 0;
    dwB = 0;
-   for(i32 y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
+   for(int y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
    {
    pSource2 = pSource1 + (wSrc * y2);
 
 
-   for(i32 x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
+   for(int x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
    {
    dwR += *pSource2++ * *lpFilter;
 
@@ -4045,29 +4045,29 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 
 
-   for(i32 i = 0; i < iFilterArea; i++)
+   for(int i = 0; i < iFilterArea; i++)
    {
       divisor += *pFilter++;
 
    }
 
-   i32 iFilterHalfWidth = iFilterWidth / 2;
-   //   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   int iFilterHalfWidth = iFilterWidth / 2;
+   //   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
-   i32 yL = iFilterHalfWidth;
-   i32 yU = cy - iFilterHalfWidth;
-   i32 xL = iFilterHalfWidth;
-   i32 xU = cx - iFilterHalfWidth;
+   int yL = iFilterHalfWidth;
+   int yU = cy - iFilterHalfWidth;
+   int xL = iFilterHalfWidth;
+   int xU = cx - iFilterHalfWidth;
 
 
-   i32 y1 = yL;
-   //i32 y2 = yL - iFilterHalfWidth;
-   i32 x1;
-   //i32 x2;
+   int y1 = yL;
+   //int y2 = yL - iFilterHalfWidth;
+   int x1;
+   //int x2;
 
    divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
 
-   i32 wDiff = wDst - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    pSource = pSrc + iChannel;
 
 
@@ -4099,14 +4099,14 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
          pSource2 = pSource1;
 
 
-         for(i32 yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
+         for(int yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
          {
             pSource_3 = pSource2;
 
 
 
 
-            for(i32 xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
             {
                dwI += *pSource_3 * *pFilter++;
 
@@ -4258,55 +4258,55 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 
 
 void imaging::color_blend_24CC(
-::u8 * pAParam,
+unsigned char * pAParam,
 
-i32 x1,
-i32 y1,
-i32 w1,
-i32 cx,
-i32 cy,
+int x1,
+int y1,
+int w1,
+int cx,
+int cy,
 ::color32_t color32,
-::u8 * pCParam,
+unsigned char * pCParam,
 
-i32 x3,
-i32 y3,
-i32 w3)
+int x3,
+int y3,
+int w3)
 {
-   i32 i,j;
+   int i,j;
    x1 *= 3;
    x3 *= 3;
    y1 *= w1;
    y3 *= w3;
 
-   ::u8 bR = color32.u8_red();
-   ::u8 bG = color32.u8_green();
-   ::u8 bB = color32.u8_blue();
+   unsigned char bR = color32.u8_red();
+   unsigned char bG = color32.u8_green();
+   unsigned char bB = color32.u8_blue();
 
-   pAParam = (::u8 *)pAParam + y1 + x1;
-
-
-
-   pCParam = (::u8 *)pCParam + y3 + x3;
+   pAParam = (unsigned char *)pAParam + y1 + x1;
 
 
 
+   pCParam = (unsigned char *)pCParam + y3 + x3;
 
-   //   ::u8 dwA;
+
+
+
+   //   unsigned char dwA;
    for(i = 0; i < cy; i++)
    {
-      ::u8 * pA = (::u8 *)pAParam + (w1 * i);
+      unsigned char * pA = (unsigned char *)pAParam + (w1 * i);
 
 
 
 
-      ::u8 * pC = (::u8 *)pCParam + (w3 * i);
+      unsigned char * pC = (unsigned char *)pCParam + (w3 * i);
 
 
 
 
       for(j = 0; j < cx; j++)
       {
-         pA[0] = (::u8)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)bB) * ((u32)pC[0])))) / 255);
+         pA[0] = (unsigned char)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)bB) * ((u32)pC[0])))) / 255);
 
 
 
@@ -4315,7 +4315,7 @@ i32 w3)
 
 
 
-         pA[1] = (::u8)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)bG) * ((u32)pC[1])))) / 255);
+         pA[1] = (unsigned char)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)bG) * ((u32)pC[1])))) / 255);
 
 
 
@@ -4324,7 +4324,7 @@ i32 w3)
 
 
 
-         pA[2] = (::u8)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)bR) * ((u32)pC[2])))) / 255);
+         pA[2] = (unsigned char)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)bR) * ((u32)pC[2])))) / 255);
 
 
 
@@ -4348,7 +4348,7 @@ i32 w3)
 
 
 
-//void imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,::u8 bMin)
+//void imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,unsigned char bMin)
 //{
 //   if(size.cx() <= 0 || size.cy() <= 0)
 //      return true;
@@ -4361,11 +4361,11 @@ i32 w3)
 //   ::rectangle_i32 rectangleTarget(pointDst, size);
 //   ::rectangle_i32 rectangleSource(pointSrc, size);
 //
-//   i32 iwDest;
+//   int iwDest;
 //
 //   BITMAPINFO bmiDst;
 //   BITMAP   bmDst;
-//   i32 iLimitYDst;
+//   int iLimitYDst;
 //
 //   ::draw2d::bitmap_pointer bitmapDst(this);
 //
@@ -4387,16 +4387,16 @@ i32 w3)
 //      return false;
 //   }
 //
-//   ::u8 * pDst = memstorageA.get_data();
+//   unsigned char * pDst = memstorageA.get_data();
 
 
 //
 //
-//   i32 iwSrc;
+//   int iwSrc;
 //
 //   BITMAPINFO bmiSrc;
 //   BITMAP   bmSrc;
-//   i32 iLimitYSrc;
+//   int iLimitYSrc;
 //
 //   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
@@ -4413,7 +4413,7 @@ i32 w3)
 //      return false;
 //   }
 //
-//   ::u8 * pSrc = memstorageB.get_data();
+//   unsigned char * pSrc = memstorageB.get_data();
 
 
 //
@@ -4421,10 +4421,10 @@ i32 w3)
 //   const ::point_i32 & pointContextDst = pdcDst->get_origin();
 //   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDst = pointDst.x() + pointContextDst.x();
-//   i32 xvpSrc = pointSrc.x() + pointContextSrc.x();
+//   int xvpDst = pointDst.x() + pointContextDst.x();
+//   int xvpSrc = pointSrc.x() + pointContextSrc.x();
 //
-//   i32 iLimitX = size.cx();
+//   int iLimitX = size.cx();
 //
 //   if(bmDst.bmWidth - xvpDst < iLimitX)
 //   {
@@ -4441,7 +4441,7 @@ i32 w3)
 //   if(xvpSrc < 0)
 //      return false;
 //
-//   i32 iLimitY = minimum(iLimitYDst,iLimitYSrc);
+//   int iLimitY = minimum(iLimitYDst,iLimitYSrc);
 //
 //   alpha_spread_R2_24CC(
 //      pDst,
@@ -4522,7 +4522,7 @@ i32 w3)
 //}
 
 
-//void imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,::u8 bMin,i32 iRadius)
+//void imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,unsigned char bMin,int iRadius)
 //{
 //
 //   if(size.cx() <= 0 || size.cy() <= 0)
@@ -4539,11 +4539,11 @@ i32 w3)
 //   ::rectangle_i32 rectangleDest(pointDst, size);
 //   ::rectangle_i32 rectangleSource(pointSrc, size);
 //
-//   i32 iwDest;
+//   int iwDest;
 //
 //   BITMAPINFO bmiDest;
 //   BITMAP   bmDest;
-//   i32 iLimitYDest;
+//   int iLimitYDest;
 //
 //
 //
@@ -4566,16 +4566,16 @@ i32 w3)
 //      return false;
 //   }
 //
-//   ::u8 * pDst = memstorageA.get_data();
+//   unsigned char * pDst = memstorageA.get_data();
 
 
 //
 //
-//   i32 iwSrc;
+//   int iwSrc;
 //
 //   BITMAPINFO bmiSrc;
 //   BITMAP   bmSrc;
-//   i32 iLimitYSrc;
+//   int iLimitYSrc;
 //
 //   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
@@ -4592,7 +4592,7 @@ i32 w3)
 //      return false;
 //   }
 //
-//   ::u8 * pSrc = memstorageB.get_data();
+//   unsigned char * pSrc = memstorageB.get_data();
 
 
 //
@@ -4600,10 +4600,10 @@ i32 w3)
 //   const ::point_i32 & pointContextDest = pdcDst->get_origin();
 //   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDest = pointDst.x() + pointContextDest.x();
-//   i32 xvpSrc = pointDst.y() + pointContextSrc.x();
+//   int xvpDest = pointDst.x() + pointContextDest.x();
+//   int xvpSrc = pointDst.y() + pointContextSrc.x();
 //
-//   i32 iLimitX = size.cx();
+//   int iLimitX = size.cx();
 //
 //   if(bmDest.bmWidth - xvpDest < iLimitX)
 //   {
@@ -4620,7 +4620,7 @@ i32 w3)
 //   if(xvpSrc < 0)
 //      return false;
 //
-//   i32 iLimitY = minimum(iLimitYDest,iLimitYSrc);
+//   int iLimitY = minimum(iLimitYDest,iLimitYSrc);
 //
 //   alpha_spread__24CC(
 //      pDst,
@@ -4701,7 +4701,7 @@ i32 w3)
 //}
 
 
-void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32 cx,i32 cy,::u8 * pSrc,i32 xSrc,i32 ySrc,i32 wSrc,::u8 bMin)
+void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int wDest,int cx,int cy,unsigned char * pSrc,int xSrc,int ySrc,int wSrc,unsigned char bMin)
 
 
 
@@ -4711,47 +4711,47 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    __UNREFERENCED_PARAMETER(yDest);
    __UNREFERENCED_PARAMETER(xSrc);
    __UNREFERENCED_PARAMETER(ySrc);
-   i32 iFilterWidth = 2 * 2 + 1;
-   i32 iFilterHeight = 2 * 2 + 1;
-   //i32 divisor = iFilterWidth * iFilterHeight;
-   ::u8 *pSource;
+   int iFilterWidth = 2 * 2 + 1;
+   int iFilterHeight = 2 * 2 + 1;
+   //int divisor = iFilterWidth * iFilterHeight;
+   unsigned char *pSource;
 
 
-   ::u8 *pSource1;
+   unsigned char *pSource1;
 
 
-   ::u8 *pSource2;
+   unsigned char *pSource2;
 
 
-   ::u8 *pDestination;
+   unsigned char *pDestination;
 
 
-   //::u8 *pFilter;
+   //unsigned char *pFilter;
 
-   ::u8 * pFilterData = __raw_new  ::u8[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - iFilterWidth;
-   //   i32 maxy3 = cy - iFilterWidth / 2;
-   i32 max3x1 = maxx1 * 3;
-   //   i32 max3x2 = (maxx1 - iFilterHeight) * 3;
-   //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 3;
-   //   i32 w = cx * 3;
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
+   int max3x1 = maxx1 * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //   int w = cx * 3;
    u32 dwR;
    u32 dwG;
    u32 dwB;
 
-   i32 iFilterXBegin;
-   i32 iFilterXEnd;
-   i32 iFilterYBegin;
-   i32 iFilterYEnd;
+   int iFilterXBegin;
+   int iFilterXEnd;
+   int iFilterYBegin;
+   int iFilterYEnd;
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    yLowerBound[0] = 0;
@@ -4782,19 +4782,19 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    iFilterXBegin = 0;
    iFilterXEnd = iFilterHeight;
 
-   i32 iFilterHalfWidth = iFilterWidth / 2;
-   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   int iFilterHalfWidth = iFilterWidth / 2;
+   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
-   i32 yL = iFilterHalfWidth;
-   i32 yU = maxy1 - iFilterHalfWidth;
-   i32 xL = iFilterHalfWidthBytes;
-   i32 xU = max3x1 - iFilterHalfWidthBytes;
+   int yL = iFilterHalfWidth;
+   int yU = maxy1 - iFilterHalfWidth;
+   int xL = iFilterHalfWidthBytes;
+   int xU = max3x1 - iFilterHalfWidthBytes;
 
 
-   i32 y1 = yL;
-   i32 y2 = yL - iFilterHalfWidth;
-   i32 x1;
-   i32 x2;
+   int y1 = yL;
+   int y2 = yL - iFilterHalfWidth;
+   int x1;
+   int x2;
 
    u32 bMin3 = bMin * 3;
 
@@ -4830,12 +4830,12 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
          dwG = 0;
          dwB = 0;
          bSpread = false;
-         for(i32 yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
+         for(int yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
          {
             pSource2 = pSource1 + (wSrc * yFilter);
 
 
-            for(i32 xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
             {
                dwB = pSource2[0];
 
@@ -4892,7 +4892,7 @@ const ::point_i32 & pointDst,
 const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
-i32 iChannel,i32 iRadius)
+int iChannel,int iRadius)
 {
 
    return channel_spread_set_color(
@@ -4914,7 +4914,7 @@ const ::point_i32 & pointDst,
 const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
-i32 iChannel,i32 iRadius,
+int iChannel,int iRadius,
 const ::color::color & color)
 {
 
@@ -4993,7 +4993,7 @@ const ::point_i32 & pointDst,
 const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
-i32 iRadius)
+int iRadius)
 {
 
    return spread_set_color(
@@ -5014,7 +5014,7 @@ const ::point_i32 & pointDst,
 const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
-i32 iRadius,
+int iRadius,
 const ::color::color & color)
 {
 
@@ -5082,7 +5082,7 @@ const ::color::color & color)
 }
 
 
-void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
+void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,int iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -5101,36 +5101,36 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    }
 
-   i32 iFilterW      = iRadius * 2 + 1;
-   i32 iFilterH      = iRadius * 2 + 1;
-   i32 iFilterHalfW  = iRadius;
-   i32 iFilterHalfH  = iRadius;
-   i32 iFilterArea   = iFilterW * iFilterH;
-   //i32 divisor       = iFilterW * iFilterH;
-   ::u8 *pSource;
+   int iFilterW      = iRadius * 2 + 1;
+   int iFilterH      = iRadius * 2 + 1;
+   int iFilterHalfW  = iRadius;
+   int iFilterHalfH  = iRadius;
+   int iFilterArea   = iFilterW * iFilterH;
+   //int divisor       = iFilterW * iFilterH;
+   unsigned char *pSource;
 
 
    image32_t imageSpreadSetColor(colorSpreadSetColor, pimageDst->color_indexes());
 
 
-   ::u8 *pSource1;
+   unsigned char *pSource1;
 
 
-   ::u8 *pSource2;
+   unsigned char *pSource2;
 
 
-   ::u8 *pDestination;
+   unsigned char *pDestination;
 
 
-   ::u8 *pFilter;
+   unsigned char *pFilter;
 
-   i32 i;
-   i32 x;
-   i32 y;
-   i32 x1;
-   i32 y1;
-   i32 x2;
-   i32 y2;
+   int i;
+   int x;
+   int y;
+   int x1;
+   int y1;
+   int x2;
+   int y2;
 
    pimageDst->map();
 
@@ -5143,8 +5143,8 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    //}
 
-   i32 iRadius2 = iRadius * iRadius;
-   i32 r2;
+   int iRadius2 = iRadius * iRadius;
+   int r2;
 
    auto psystem = system();
 
@@ -5161,7 +5161,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
       pmemory->set_size(iFilterArea);
 
-      ::u8 * pdata = pmemory->data();
+      unsigned char * pdata = pmemory->data();
 
       for(y = 0; y < iFilterHalfH; y++)
       {
@@ -5188,7 +5188,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
             }
 
-            pdata[x + y * iFilterW] = (::u8)i;
+            pdata[x + y * iFilterW] = (unsigned char)i;
 
          }
 
@@ -5198,11 +5198,11 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    synchronouslock.unlock();
 
-   ::u8 * pFilterData = pmemory->data();
+   unsigned char * pFilterData = pmemory->data();
 
-   i32 cx = pimageDst->width();
+   int cx = pimageDst->width();
 
-   i32 cy = pimageDst->height();
+   int cy = pimageDst->height();
 
    if (cx != pimageSrc->width() || cy != pimageSrc->height())
    {
@@ -5211,33 +5211,33 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    }
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
 
-   i32 wSrc = pimageSrc->scan_size();
+   int wSrc = pimageSrc->scan_size();
 
-   i32 wDst = pimageDst->scan_size();
+   int wDst = pimageDst->scan_size();
 
-   i32 maxx1 = cx;
+   int maxx1 = cx;
 
-   i32 maxy1 = cy;
+   int maxy1 = cy;
 
-   i32 max3x1 = maxx1 * 4;
+   int max3x1 = maxx1 * 4;
 
    ((::image32_t*)pDst)->copy(cx, cy, pimageDst->scan_size(), (::image32_t *)pSrc, pimageSrc->scan_size());
 
 
-   i32 iFilterXLowerBound;
-   i32 iFilterXUpperBound;
-   i32 iFilterYLowerBound;
-   i32 iFilterYUpperBound;
+   int iFilterXLowerBound;
+   int iFilterXUpperBound;
+   int iFilterYLowerBound;
+   int iFilterYUpperBound;
 
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    xLowerBound[0] = 0;
@@ -5275,26 +5275,26 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    yUpperBound[3] = cy - 1;
 
-   i32 xL;
+   int xL;
 
-   i32 xU;
+   int xU;
 
-   i32 yL;
+   int yL;
 
-   i32 yU;
+   int yU;
 
-   i32 xMax = cx - 1;
+   int xMax = cx - 1;
 
-   i32 yMax = cy - 1;
+   int yMax = cy - 1;
 
    // limits due the filter
-   i32 xMaxFilterBound = xMax - iFilterHalfW;
+   int xMaxFilterBound = xMax - iFilterHalfW;
 
-   i32 yMaxFilterBound = yMax - iFilterHalfH;
+   int yMaxFilterBound = yMax - iFilterHalfH;
 
-   i32 xFilterMax = iFilterW - 1;
+   int xFilterMax = iFilterW - 1;
 
-   i32 yFilterMax = iFilterH - 1;
+   int yFilterMax = iFilterH - 1;
 
    for(i = 0; i < 4; i++)
    {
@@ -5385,14 +5385,14 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
                if (*((u32 *)pDestination) != colorSpreadSetColor)
                {
 
-                  for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+                  for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                   {
 
                      pSource2 = pSource1 + (wSrc * yFilter);
 
                      pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
-                     for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+                     for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                      {
 
                         if (*pFilter >= 1)
@@ -5445,9 +5445,9 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    
    iFilterXUpperBound = iFilterH - 1;
 
-   i32 iFilterHalfWidth = iFilterW / 2;
+   int iFilterHalfWidth = iFilterW / 2;
 
-   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 4;
+   int iFilterHalfWidthBytes = iFilterHalfWidth * 4;
 
    yL = iFilterHalfWidth;
    
@@ -5484,14 +5484,14 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
          if(*((u32 *)pDestination) != 0xffffffff)
          {
 
-            for(i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+            for(int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
 
                pSource2 = pSource1 + (wSrc * yFilter);
 
                pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
-               for(i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+               for(int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
 
                   if(*pFilter >= 1)
@@ -5593,7 +5593,7 @@ breakFilter2:
 
 
 
-//void imaging::pixelate(::draw2d::graphics *pdcDst,i32 xDest,i32 yDest,i32 cx,i32 cy,::draw2d::graphics * pdcSrc,i32 xSrc,i32 ySrc,i32 iSize)
+//void imaging::pixelate(::draw2d::graphics *pdcDst,int xDest,int yDest,int cx,int cy,::draw2d::graphics * pdcSrc,int xSrc,int ySrc,int iSize)
 //{
 //
 //   /*::draw2d::graphics_pointer & imageA.get_graphics()  = pthreadsafedata->m_dcA;
@@ -5602,8 +5602,8 @@ breakFilter2:
 //   ::draw2d::bitmap & bitmapA  = pthreadsafedata->bitmapA;
 //   ::draw2d::bitmap & bitmapB  = pthreadsafedata->bitmapB;
 //
-//   i32 cxDest = cx / iSize;
-//   i32 cyDest = cy / iSize;
+//   int cxDest = cx / iSize;
+//   int cyDest = cy / iSize;
 //
 //   if(imageA.get_graphics()->get_os_data() == nullptr)
 //   {
@@ -5641,15 +5641,15 @@ breakFilter2:
 //   imageB.get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 //   imageB.get_graphics()->StretchBlt(0, 0, cxDest, cyDest, pdcSrc, xSrc, ySrc, cx, cy);
 //
-//   i32 x1 = xDest;
-//   i32 x2 = xDest + iSize;
-//   i32 y1;
-//   i32 y2;
-//   for(i32 x = 0; x < cxDest; x++)
+//   int x1 = xDest;
+//   int x2 = xDest + iSize;
+//   int y1;
+//   int y2;
+//   for(int x = 0; x < cxDest; x++)
 //   {
 //   y1 = yDest;
 //   y2 = yDest + iSize;
-//   for(i32 y = 0; y < cyDest; y++)
+//   for(int y = 0; y < cyDest; y++)
 //   {
 //   pdcDst->fill_rectangle(x1, y1, x2, y2, imageB.get_graphics()->GetPixel(x, y));
 //   y1 += iSize;
@@ -5688,11 +5688,11 @@ breakFilter2:
 //   rectangleSource.top() = ySrc;
 //   rectangleSource.bottom() = ySrc + cy;
 //
-//   i32 iwDest;
+//   int iwDest;
 //
 //   BITMAPINFO bmiDest;
 //   BITMAP   bmDest;
-//   i32 iLimitYDest;
+//   int iLimitYDest;
 //
 //   ::draw2d::bitmap_pointer bitmapDest(this);
 //
@@ -5711,16 +5711,16 @@ breakFilter2:
 //      return false;
 //   }
 //
-//   ::u8 * pDst = memstorageA.get_data();
+//   unsigned char * pDst = memstorageA.get_data();
 
 
 //
 //
-//   i32 iwSrc;
+//   int iwSrc;
 //
 //   BITMAPINFO bmiSrc;
 //   BITMAP   bmSrc;
-//   i32 iLimitYSrc;
+//   int iLimitYSrc;
 //
 //   ::draw2d::bitmap_pointer bitmapSrc(this);
 //
@@ -5737,22 +5737,22 @@ breakFilter2:
 //      return false;
 //   }
 //
-//   ::u8 * pSrc = memstorageB.get_data();
+//   unsigned char * pSrc = memstorageB.get_data();
 
 
 //
 //   memstorageC.set_size((cx + iSize) / iSize * (cy + iSize) / iSize);
-//   //   ::u8 * pc = memstorageC.get_data();
+//   //   unsigned char * pc = memstorageC.get_data();
 
 //
 //
 //   const ::point_i32 & pointContextDest = pdcDst->get_origin();
 //   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDest = xDest + pointContextDest.x();
-//   i32 xvpSrc = xSrc + pointContextSrc.x();
+//   int xvpDest = xDest + pointContextDest.x();
+//   int xvpSrc = xSrc + pointContextSrc.x();
 //
-//   i32 iLimitX = cx;
+//   int iLimitX = cx;
 //
 //   if(bmDest.bmWidth - xvpDest < iLimitX)
 //   {
@@ -5769,7 +5769,7 @@ breakFilter2:
 //   if(xvpSrc < 0)
 //      return false;
 //
-//   i32 iLimitY = minimum(iLimitYDest,iLimitYSrc);
+//   int iLimitY = minimum(iLimitYDest,iLimitYSrc);
 //
 //   pixelate_24CC(
 //      pDst + xvpDest * 3,
@@ -5854,70 +5854,70 @@ breakFilter2:
 
 
 void imaging::pixelate_24CC(
-::u8 *   pDst,
+unsigned char *   pDst,
 
 
-i32      xDest,
-i32      yDest,
-i32      wDest,
-i32      cx,
-i32      cy,
-::u8 *   pSrc,
+int      xDest,
+int      yDest,
+int      wDest,
+int      cx,
+int      cy,
+unsigned char *   pSrc,
 
 
-i32      xSrc,
-i32      ySrc,
-i32      wSrc,
-i32      iSize)
+int      xSrc,
+int      ySrc,
+int      wSrc,
+int      iSize)
 {
    __UNREFERENCED_PARAMETER(xDest);
    __UNREFERENCED_PARAMETER(yDest);
    __UNREFERENCED_PARAMETER(xSrc);
    __UNREFERENCED_PARAMETER(ySrc);
-   i32      divisor;
-   ::u8 *   pSource;
+   int      divisor;
+   unsigned char *   pSource;
 
 
-   ::u8 *   pDestination;
+   unsigned char *   pDestination;
 
 
-   ::u8 *   pDestination_1;
+   unsigned char *   pDestination_1;
 
 
-   ::u8 *   pDestination_2;
+   unsigned char *   pDestination_2;
 
 
-   ::u8 *   pSource1;
+   unsigned char *   pSource1;
 
 
-   ::u8 *   pSource2;
+   unsigned char *   pSource2;
 
 
 
-   i32 iFilterWidth = iSize;
-   i32 iFilterHeight = iSize;
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - iFilterWidth;
-   //   i32 maxy3 = cy - iFilterWidth / 2;
-   i32 max3x1 = maxx1 * 3;
-   //   i32 max3x2 = (maxx1 - iFilterHeight) * 3;
-   //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 3;
-   //i32 w = cx * 3;
+   int iFilterWidth = iSize;
+   int iFilterHeight = iSize;
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
+   int max3x1 = maxx1 * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //int w = cx * 3;
 
    u32 dwR;
    u32 dwG;
    u32 dwB;
 
-   i32 iFilterXBegin;
-   i32 iFilterXEnd;
-   i32 iFilterYBegin;
-   i32 iFilterYEnd;
+   int iFilterXBegin;
+   int iFilterXEnd;
+   int iFilterYBegin;
+   int iFilterYEnd;
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    yLowerBound[0] = 0;
@@ -5943,13 +5943,13 @@ i32      iSize)
    xLowerBound[3] = 0;
    xUpperBound[3] = max3x1;
 
-   /*   for(i32 i = 0; i < 4; i++)
+   /*   for(int i = 0; i < 4; i++)
    {
-   i32 yL = yLowerBound[i];
-   i32 yU = yUpperBound[i];
-   i32 xL = xLowerBound[i];
-   i32 xU = xUpperBound[i];
-   for(i32 y1 = yL; y1 < yU; y1++)
+   int yL = yLowerBound[i];
+   int yU = yUpperBound[i];
+   int xL = xLowerBound[i];
+   int xU = xUpperBound[i];
+   for(int y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
    {
@@ -5976,7 +5976,7 @@ i32      iSize)
 
 
 
-   for(i32 x1 = xL; x1 < xU; x1+=3)
+   for(int x1 = xL; x1 < xU; x1+=3)
    {
    if(x1 < iFilterHeight /2)
    {
@@ -6007,12 +6007,12 @@ i32      iSize)
    dwR = 0;
    dwG = 0;
    dwB = 0;
-   for(i32 y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
+   for(int y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
    {
    pSource2 = pSource1 + (wSrc * y2);
 
 
-   for(i32 x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
+   for(int x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
    {
    dwR += *pSource2++ * *lpFilter;
 
@@ -6064,30 +6064,30 @@ i32      iSize)
    iFilterXBegin = 0;
    iFilterXEnd = iFilterHeight;
 
-   i32 iFilterHalfWidth = iFilterWidth / 2;
-   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   int iFilterHalfWidth = iFilterWidth / 2;
+   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
-   i32 yL = iFilterHalfWidth;
-   i32 yU = maxy1 - iFilterHalfWidth;
-   i32 xL = iFilterHalfWidthBytes;
-   i32 xU = max3x1 - iFilterHalfWidthBytes;
+   int yL = iFilterHalfWidth;
+   int yU = maxy1 - iFilterHalfWidth;
+   int xL = iFilterHalfWidthBytes;
+   int xU = max3x1 - iFilterHalfWidthBytes;
 
 
-   i32 y1 = yL;
-   //i32 y2 = yL - iFilterHalfWidth;
-   i32 x1;
-   i32 x2;
+   int y1 = yL;
+   //int y2 = yL - iFilterHalfWidth;
+   int x1;
+   int x2;
 
    divisor = (iFilterYEnd - iFilterYBegin)
              * (iFilterXEnd - iFilterXBegin);
 
 
-   i32 cDest   = wDest - (iFilterWidth * 3);
-   i32 cSrc    = wSrc - (iFilterWidth * 3);
-   i32 iSize3  = iSize * 3;
+   int cDest   = wDest - (iFilterWidth * 3);
+   int cSrc    = wSrc - (iFilterWidth * 3);
+   int iSize3  = iSize * 3;
 
-   i32 cyDest  = wDest * iSize;
-   i32 cySrc   = wSrc  * iSize;
+   int cyDest  = wDest * iSize;
+   int cySrc   = wSrc  * iSize;
 
 
 
@@ -6118,10 +6118,10 @@ i32      iSize)
          pSource2 = pSource1;
 
 
-         i32 yFilter;
+         int yFilter;
          for(yFilter = iFilterYBegin; yFilter < iFilterYEnd; yFilter++)
          {
-            for(i32 xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = iFilterXBegin; xFilter < iFilterXEnd; xFilter++)
             {
                dwR += *pSource2++;
 
@@ -6152,15 +6152,15 @@ i32      iSize)
 
          for(yFilter = 0; yFilter < iFilterYEnd; yFilter++)
          {
-            for(i32 xFilter = 0; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = 0; xFilter < iFilterXEnd; xFilter++)
             {
-               pDestination_2[0] = (::u8)dwR;
+               pDestination_2[0] = (unsigned char)dwR;
 
 
-               pDestination_2[1] = (::u8)dwG;
+               pDestination_2[1] = (unsigned char)dwG;
 
 
-               pDestination_2[2] = (::u8)dwB;
+               pDestination_2[2] = (unsigned char)dwB;
 
 
                pDestination_2 += 3;
@@ -6191,18 +6191,18 @@ i32      iSize)
 
 //void imaging::alpha_pixelate(
 //   ::draw2d::graphics *pdcDst,
-//   i32 xDest,
-//   i32 yDest,
-//   i32 cx,
-//   i32 cy,
+//   int xDest,
+//   int yDest,
+//   int cx,
+//   int cy,
 //   ::draw2d::graphics * pdcSrc1,
-//   i32 xSrc1,
-//   i32 ySrc1,
+//   int xSrc1,
+//   int ySrc1,
 //   ::draw2d::graphics * pdcSrc2,
-//   i32 xSrc2,
-//   i32 ySrc2,
-//   i32 iSize,
-//   i32 iAlpha)
+//   int xSrc2,
+//   int ySrc2,
+//   int iSize,
+//   int iAlpha)
 //{
 //   if(cx <= 0 || cy <= 0)
 //      return true;
@@ -6235,11 +6235,11 @@ i32      iSize)
 //   rectangleSrc2.top() = ySrc2;
 //   rectangleSrc2.bottom() = ySrc2 + cy;
 //
-//   i32 iwDest;
+//   int iwDest;
 //
 //   BITMAPINFO bmiDest;
 //   BITMAP   bmDest;
-//   i32 iLimitYDest;
+//   int iLimitYDest;
 //
 //   ::draw2d::bitmap_pointer bitmapDest(this);
 //
@@ -6258,17 +6258,17 @@ i32      iSize)
 //      return false;
 //   }
 //
-//   ::u8 * pDst = memstorageA.get_data();
+//   unsigned char * pDst = memstorageA.get_data();
 
 
 //
 //
-//   i32 iwSrc1;
-//   i32 iwSrc2;
+//   int iwSrc1;
+//   int iwSrc2;
 //
 //   BITMAPINFO bmiSrc1;
 //   BITMAP   bmSrc1;
-//   i32 iLimitYSrc1;
+//   int iLimitYSrc1;
 //
 //   ::draw2d::bitmap_pointer bitmapSrc1(this);
 //
@@ -6285,13 +6285,13 @@ i32      iSize)
 //      return false;
 //   }
 //
-//   ::u8 * pSrc1 = memstorageB.get_data();
+//   unsigned char * pSrc1 = memstorageB.get_data();
 
 
 //
 //   BITMAPINFO bmiSrc2;
 //   BITMAP   bmSrc2;
-//   i32 iLimitYSrc2;
+//   int iLimitYSrc2;
 //
 //   ::draw2d::bitmap_pointer bitmapSrc2(this);
 //
@@ -6308,7 +6308,7 @@ i32      iSize)
 //      return false;
 //   }
 //
-//   ::u8 * pSrc2 = memstorageC.get_data();
+//   unsigned char * pSrc2 = memstorageC.get_data();
 
 
 //
@@ -6316,11 +6316,11 @@ i32      iSize)
 //   const ::point_i32 & pointContextSrc1 = pdcSrc1->get_origin();
 //   const ::point_i32 & pointContextSrc2 = pdcSrc2->get_origin();
 //
-//   i32 xvpDest = xDest + pointContextDest.x();
-//   i32 xvpSrc1 = xSrc1 + pointContextSrc1.x();
-//   i32 xvpSrc2 = xSrc2 + pointContextSrc2.x();
+//   int xvpDest = xDest + pointContextDest.x();
+//   int xvpSrc1 = xSrc1 + pointContextSrc1.x();
+//   int xvpSrc2 = xSrc2 + pointContextSrc2.x();
 //
-//   i32 iLimitX = cx;
+//   int iLimitX = cx;
 //
 //   if(bmDest.bmWidth - xvpDest < iLimitX)
 //   {
@@ -6343,7 +6343,7 @@ i32      iSize)
 //   if(xvpSrc2 < 0)
 //      return false;
 //
-//   i32 iLimitY = minimum(minimum(iLimitYDest,iLimitYSrc1),iLimitYSrc2);
+//   int iLimitY = minimum(minimum(iLimitYDest,iLimitYSrc1),iLimitYSrc2);
 //
 //   alpha_pixelate_24CC(
 //      pDst + xvpDest * 3,
@@ -6434,28 +6434,28 @@ i32      iSize)
 
 
 void imaging::alpha_pixelate_24CC(
-::u8 * pDst,
+unsigned char * pDst,
 
 
-i32 xDest,
-i32 yDest,
-i32 wDest,
-i32 cx,
-i32 cy,
-::u8 * pSrc1,
+int xDest,
+int yDest,
+int wDest,
+int cx,
+int cy,
+unsigned char * pSrc1,
 
 
-i32 xSrc1,
-i32 ySrc1,
-i32 wSrc1,
-::u8 * pSrc2,
+int xSrc1,
+int ySrc1,
+int wSrc1,
+unsigned char * pSrc2,
 
 
-i32 xSrc2,
-i32 ySrc2,
-i32 wSrc2,
-i32 iSize,
-i32 iAlpha)
+int xSrc2,
+int ySrc2,
+int wSrc2,
+int iSize,
+int iAlpha)
 {
    __UNREFERENCED_PARAMETER(xDest);
    __UNREFERENCED_PARAMETER(yDest);
@@ -6463,61 +6463,61 @@ i32 iAlpha)
    __UNREFERENCED_PARAMETER(ySrc1);
    __UNREFERENCED_PARAMETER(xSrc2);
    __UNREFERENCED_PARAMETER(ySrc2);
-   //   const i32 constFilterWidth = 3;
-   //   const i32 constFilterHeight = 3;
-   i32 divisor = iSize * iSize;
-   ::u8 *pSource1;
+   //   const int constFilterWidth = 3;
+   //   const int constFilterHeight = 3;
+   int divisor = iSize * iSize;
+   unsigned char *pSource1;
 
 
-   ::u8 *pSource2;
+   unsigned char *pSource2;
 
 
-   ::u8 *pDestination;
+   unsigned char *pDestination;
 
 
-   ::u8 *pDestination_1;
+   unsigned char *pDestination_1;
 
 
-   ::u8 *pDestination_2;
+   unsigned char *pDestination_2;
 
 
-   ::u8 *pSource1_1;
+   unsigned char *pSource1_1;
 
 
-   ::u8 *pSource1_2;
+   unsigned char *pSource1_2;
 
 
-   ::u8 *pSource2_1;
+   unsigned char *pSource2_1;
 
 
-   ::u8 *pSource2_2;
+   unsigned char *pSource2_2;
 
 
    //   ::u16 *pDestination_2;
 
 
-   //   ::u8 *pFilter;
+   //   unsigned char *pFilter;
 
    //u32 *pConv;
 
-   //   ::u8 pFilter[constFilterHeight *constFilterWidth];
+   //   unsigned char pFilter[constFilterHeight *constFilterWidth];
    //u32 pConv[constFilterHeight * constFilterWidth * 3];
    //   memory_set(pFilter, 1, constFilterHeight * constFilterWidth);
 
-   i32 iFilterWidth = iSize;
-   i32 iFilterHeight = iSize;
-   i32 maxx1 = cx;
-   i32 maxy1 = cy;
-   //   i32 maxy2 = cy - iFilterWidth;
-   //   i32 maxy3 = cy - iFilterWidth / 2;
-   i32 max3x1 = maxx1 * 3;
-   //   i32 max3x2 = (maxx1 - iFilterHeight) * 3;
-   //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 3;
-   //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
-   //   i32 w = cx * 3;
+   int iFilterWidth = iSize;
+   int iFilterHeight = iSize;
+   int maxx1 = cx;
+   int maxy1 = cy;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
+   int max3x1 = maxx1 * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //int bm3Width = (cy * 3 + 3) & ~0x3L;
+   //   int w = cx * 3;
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
-   /*for(i32 y = 0; y < cy; y++)
+   /*for(int y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;
 
@@ -6528,7 +6528,7 @@ i32 iAlpha)
 
 
 
-   for(i32 x = 0; x < w; x++)
+   for(int x = 0; x < w; x++)
    {
    *pDestination = *pSource;
 
@@ -6550,15 +6550,15 @@ i32 iAlpha)
    u32 dwG2;
    u32 dwB2;
 
-   i32 iFilterXBegin;
-   i32 iFilterXEnd;
-   i32 iFilterYBegin;
-   i32 iFilterYEnd;
+   int iFilterXBegin;
+   int iFilterXEnd;
+   int iFilterYBegin;
+   int iFilterYEnd;
 
-   i32 yLowerBound[4];
-   i32 yUpperBound[4];
-   i32 xLowerBound[4];
-   i32 xUpperBound[4];
+   int yLowerBound[4];
+   int yUpperBound[4];
+   int xLowerBound[4];
+   int xUpperBound[4];
 
    // top
    yLowerBound[0] = 0;
@@ -6584,13 +6584,13 @@ i32 iAlpha)
    xLowerBound[3] = 0;
    xUpperBound[3] = max3x1;
 
-   /*   for(i32 i = 0; i < 4; i++)
+   /*   for(int i = 0; i < 4; i++)
    {
-   i32 yL = yLowerBound[i];
-   i32 yU = yUpperBound[i];
-   i32 xL = xLowerBound[i];
-   i32 xU = xUpperBound[i];
-   for(i32 y1 = yL; y1 < yU; y1++)
+   int yL = yLowerBound[i];
+   int yU = yUpperBound[i];
+   int xL = xLowerBound[i];
+   int xU = xUpperBound[i];
+   for(int y1 = yL; y1 < yU; y1++)
    {
    if(y1 < iFilterWidth / 2)
    {
@@ -6617,7 +6617,7 @@ i32 iAlpha)
 
 
 
-   for(i32 x1 = xL; x1 < xU; x1+=3)
+   for(int x1 = xL; x1 < xU; x1+=3)
    {
    if(x1 < iFilterHeight /2)
    {
@@ -6648,12 +6648,12 @@ i32 iAlpha)
    dwR = 0;
    dwG = 0;
    dwB = 0;
-   for(i32 y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
+   for(int y2 = iFilterYBegin; y2 < iFilterYEnd; y2++)
    {
    pSource2 = pSource1 + (wSrc * y2);
 
 
-   for(i32 x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
+   for(int x2 = iFilterXBegin; x2 < iFilterXEnd; x2++)
    {
    dwR += *pSource2++ * *lpFilter;
 
@@ -6705,34 +6705,34 @@ i32 iAlpha)
    iFilterXBegin = 0;
    iFilterXEnd = iFilterHeight;
 
-   i32 iFilterHalfWidth = iFilterWidth / 2;
-   i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   int iFilterHalfWidth = iFilterWidth / 2;
+   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
-   i32 yL = iFilterHalfWidth;
-   i32 yU = maxy1 - iFilterHalfWidth;
-   i32 xL = iFilterHalfWidthBytes;
-   i32 xU = max3x1 - iFilterHalfWidthBytes;
+   int yL = iFilterHalfWidth;
+   int yU = maxy1 - iFilterHalfWidth;
+   int xL = iFilterHalfWidthBytes;
+   int xU = max3x1 - iFilterHalfWidthBytes;
 
 
-   i32 y1 = yL;
-   i32 y2 = yL - iFilterHalfWidth;
-   i32 x1;
-   i32 x2;
+   int y1 = yL;
+   int y2 = yL - iFilterHalfWidth;
+   int x1;
+   int x2;
 
    divisor = 255 * (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
 
-   i32 iRate1 = iAlpha;
-   i32 iRate2 = 255 - iAlpha;
+   int iRate1 = iAlpha;
+   int iRate2 = 255 - iAlpha;
 
    u32 dwR;
    u32 dwG;
    u32 dwB;
 
-   i32 cFilter  = wDest - iFilterWidth * 3;
-   i32 cFilter1 = wSrc1 - iFilterWidth * 3;
-   i32 cFilter2 = wSrc2 - iFilterWidth * 3;
+   int cFilter  = wDest - iFilterWidth * 3;
+   int cFilter1 = wSrc1 - iFilterWidth * 3;
+   int cFilter2 = wSrc2 - iFilterWidth * 3;
 
-   i32 iSize3 = iSize * 3;
+   int iSize3 = iSize * 3;
 
    for(; y1 < yU;)
    {
@@ -6785,10 +6785,10 @@ i32 iAlpha)
 
 
 
-         i32 yFilter;
+         int yFilter;
          for(yFilter = 0; yFilter < iFilterYEnd; yFilter++)
          {
-            for(i32 xFilter = 0; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = 0; xFilter < iFilterXEnd; xFilter++)
             {
                dwR1 += *pSource1_2++;
 
@@ -6831,15 +6831,15 @@ i32 iAlpha)
 
          for(yFilter = 0; yFilter < iFilterYEnd; yFilter++)
          {
-            for(i32 xFilter = 0; xFilter < iFilterXEnd; xFilter++)
+            for(int xFilter = 0; xFilter < iFilterXEnd; xFilter++)
             {
-               pDestination_2[0] = (::u8)dwR;
+               pDestination_2[0] = (unsigned char)dwR;
 
 
-               pDestination_2[1] = (::u8)dwG;
+               pDestination_2[1] = (unsigned char)dwG;
 
 
-               pDestination_2[2] = (::u8)dwB;
+               pDestination_2[2] = (unsigned char)dwB;
 
 
                pDestination_2 += 3;
@@ -6882,7 +6882,7 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompre
 
    ::color::color color;
 
-   for(i32 i = 0; i < 256; i++)
+   for(int i = 0; i < 256; i++)
    {
 
       color.set(crHue);
@@ -6893,7 +6893,7 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompre
 
    }
 
-   ::u8 * p = (::u8 *)pimage->get_data();
+   unsigned char * p = (unsigned char *)pimage->get_data();
 
    i64 area = pimage->area();
 
@@ -6948,7 +6948,7 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompre
 //}
 
 
-void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const ::scoped_string & scopedstr, const ::color::color & color,double dBlend)
+void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const ::scoped_string & scopedstr, const ::color::color & color,double dBlend)
 {
 
    string str(scopedstr);

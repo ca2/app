@@ -40,21 +40,22 @@ namespace factory
 
 #define MAXIMUM_SYNCHRONIZING_OBJECTS 64
 
-using hsync = ::subparticle *;
+using hsynchronization = ::subparticle *;
 
 
 #else
 
+#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
+
 #define CRITICAL_SECTION_FUNCTION_RETURN void
+using hsynchronization = void *;
+
 
 #endif
 
 
-#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
 
-using hsync = void *;
-
-#define INVALID_HSYNC_VALUE ((hsync)nullptr)
+#define INVALID_HSYNC_VALUE ((hsynchronization)nullptr)
 
 
 

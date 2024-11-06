@@ -16,8 +16,8 @@ int gdb_check();
 
 
 class ::time g_timeLastDebuggerAttachedCheck;
-::i32 g_iLastIsDebuggerAttached;
-::i32 g_iLastIsDebuggerAttachedOptimizedCount;
+int g_iLastIsDebuggerAttached;
+int g_iLastIsDebuggerAttachedOptimizedCount;
 
 
 i32 __node_is_debugger_attached()

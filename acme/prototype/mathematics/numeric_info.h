@@ -113,12 +113,12 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < u8 > :
+   class CLASS_DECL_ACME numeric_info < unsigned char > :
       public numeric_integer_base
    {
    public:
 
-      typedef u8 TYPE;
+      typedef unsigned char TYPE;
       typedef i8 OFFSET_TYPE;
 
       static consteval TYPE maximum()

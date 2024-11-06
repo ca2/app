@@ -11,8 +11,8 @@ namespace gpu
    class shader;
    class program;
 
-   using uniform = ::i32;
-   using element = ::i32;
+   using uniform = int;
+   using element = int;
 
 
 } // gpu

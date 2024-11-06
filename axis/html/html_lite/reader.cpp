@@ -145,7 +145,7 @@ strsize lite_html_reader::parseDocument()
    string   strT;               // temporary storage
    strsize   dwCharDataStart = 0L;   // starting position of character data
    strsize   dwCharDataLen = 0L;      // length of character data
-   ::i32   lTemp = 0L;            // temporary storage
+   int   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
 

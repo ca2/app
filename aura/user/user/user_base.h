@@ -93,7 +93,7 @@ namespace user
       virtual void from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);
 
 //
-//      virtual ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item * pmenuitem, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum = ::size_i32(), ::channel * pchannelNotify = nullptr);
+//      virtual ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item * pmenuitem, int iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum = ::size_i32(), ::channel * pchannelNotify = nullptr);
 //
 
       virtual void popup_from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);

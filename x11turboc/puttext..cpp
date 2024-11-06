@@ -38,9 +38,9 @@ int
 puttext (int left, int top, int right, int bottom, void *source)
 {
   chtype ch;
-  i32 TranslateTurboColor (int newattr);
-  u8 *TurboData;
-  i32 NcursesAttr;
+  int TranslateTurboColor (int newattr);
+  unsigned char *TurboData;
+  int NcursesAttr;
   int Row, Col, i, j;
   gint Char;
   int ReturnValue = 0;

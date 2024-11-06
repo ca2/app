@@ -491,9 +491,9 @@ started:
 
       strKey =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
+pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -509,7 +509,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #ifdef MACOS
 
-      strKey += "/" + as_string(idPid.i32());
+      strKey += "/" + as_string(idPid.int());
 
 #endif
 
@@ -517,9 +517,9 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       strKey =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
+pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 
 #endif
@@ -785,7 +785,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       ::file::path pathModule;
 
-      pathModule = pacmedirectory->system() / "inteprocess_channel";
+      pathModule = pdirectorysystem->system() / "inteprocess_channel";
 
       pathModule /= strApp + ".module_list";
 
@@ -875,7 +875,7 @@ repeat:
 
       m_straModule.erase_all();
 
-      pathModule = pacmedirectory->system() / "inteprocess_channel";
+      pathModule = pdirectorysystem->system() / "inteprocess_channel";
 
       pathModule /= m_strApp + ".module_list";
 

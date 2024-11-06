@@ -162,7 +162,7 @@
 //      virtual int run();
 //      virtual void pre_translate_message(::message::message * pmessage);
 //      virtual bool pump_message();     // low level message pump
-//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
+//      virtual bool on_idle(int lCount); // return true if more idle processing
 //      virtual bool is_idle_message(MSG* pMsg);  // checks for special messages
 //
 //      // thread termination

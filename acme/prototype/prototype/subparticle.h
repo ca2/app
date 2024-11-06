@@ -6,9 +6,15 @@
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
 #include "acme/prototype/time/time/time.h"
+
+#ifdef WINDOWS
 using hsynchronization = void*;
+#else
+using hsynchronization = ::subparticle *;
+#endif
 
 
+class sequence;
 
 
 //
@@ -43,11 +49,19 @@ public:
    //void * m_pAllocation = nullptr;
 
    ::interlocked_count                 m_countReference;
+   ::sequence *                        m_psequence;
+
 
 #if REFERENCING_DEBUGGING
    subparticle();
 #else
-   subparticle() : m_countReference(1) {}
+   subparticle() :
+      m_countReference(1),
+      m_psequence(nullptr)
+   {
+         
+         
+   }
 #endif
    ~subparticle() override;
 
@@ -66,6 +80,9 @@ public:
 
 
    ::platform::system* system() const;
+
+   virtual void on_sequence();
+   
 
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
@@ -134,7 +151,6 @@ public:
    bool                                m_bReferencingDebuggingEnabled : 1 = true;
    bool                                m_bIncludeCallStackTrace : 1 = false;
 
-
    void set_size_type(memsize s) { m_sType = s; }
 
    bool contains_object_in_address_space(::subparticle * psubparticle) const
@@ -143,9 +159,9 @@ public:
       return
          ::is_set(this->m_pType)
          && this->m_sType >= sizeof(::subparticle)
-         && ((::u8 *)psubparticle >= this->m_pType
-         && (((::u8 *)psubparticle) + psubparticle->m_sType)
-         <= (((::u8 *)this->m_pType) + this->m_sType));
+         && ((unsigned char *)psubparticle >= this->m_pType
+         && (((unsigned char *)psubparticle) + psubparticle->m_sType)
+         <= (((unsigned char *)this->m_pType) + this->m_sType));
 
    }
 
@@ -208,11 +224,7 @@ public:
 
    virtual void set_timeout(const class time & time);
 
-#ifdef WINDOWS
-
    virtual hsynchronization get_synchronization_handle();
-
-#endif
 
 
    // currently expected returned statuses:
@@ -234,7 +246,7 @@ public:
    virtual bool is_locked() const;
 
    virtual void unlock();
-   virtual void unlock(::i32 lCount, ::i32* pPrevCount=nullptr);
+   virtual void unlock(int lCount, int* pPrevCount=nullptr);
 
 
    virtual void init_wait();

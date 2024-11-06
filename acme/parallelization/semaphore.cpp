@@ -27,7 +27,7 @@
 #endif
 
 
-semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
+semaphore::semaphore(int lInitialCount, int lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -105,14 +105,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pdirectorysystem;
+      auto pdirectorysystem = psystem->m_pdirectorysystem;
 
       string strName(pstrName);
 
       if(strName.case_insensitive_begins("Local\\") || strName.case_insensitive_begins("Local\\"))
       {
 
-         strPath = pacmedirectory->home() / (".ca2/ftok/semaphore/" + strName);
+         strPath = pdirectorysystem->home() / (".ca2/ftok/semaphore/" + strName);
 
       }
       else
@@ -122,7 +122,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       }
 
-      pacmedirectory->create(::file::path(strPath).folder());
+      pdirectorysystem->create(::file::path(strPath).folder());
 
       m_hsync = semget(ftok(strPath.c_str(), 0), 1, 0666 | IPC_CREAT);
 
@@ -376,7 +376,7 @@ bool semaphore::_wait(const class time & timeWait)
 #endif
 
 
-void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
+void semaphore::unlock(int lCount, int * pPrevCount)
 {
 
 #ifdef WINDOWS

@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 
 
@@ -221,7 +221,7 @@ void ui_open_url(const char  *pszUrl)
    
    NSURL * url = [ NSURL URLWithString: strUrl ];
 
-   ns_main_async(^()
+   ns_main_post(^()
                  {
       
       [ [ UIApplication sharedApplication ] openURL: url options:@{} completionHandler:nil];

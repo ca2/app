@@ -56,10 +56,10 @@ namespace user
 
       bool                                      m_bHover;
       class ::time                              m_timeHoverStart;
-      ::i32                                     m_iHoverAlpha;
-      ::i32                                     m_iHoverAlphaInit;
+      int                                     m_iHoverAlpha;
+      int                                     m_iHoverAlphaInit;
       class ::time                              m_timeLeaveStart;
-      ::i32                                     m_iLeaveAlphaInit;
+      int                                     m_iLeaveAlphaInit;
 
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;

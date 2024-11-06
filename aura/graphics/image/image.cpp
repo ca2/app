@@ -272,7 +272,7 @@ void image::initialize(const ::size_i32 & size, ::image32_t * pimage32, int iSca
 //}
 
 
-//void     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//void     image::create(int width, int height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   return create(::size_i32(width, height), uidCreateImage);
@@ -820,13 +820,13 @@ void image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image::image* 
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
    image32_t* pdst2;
 
@@ -860,7 +860,7 @@ void image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image::image* 
 }
 
 
-void image::blend(const ::rectangle_i32& rectangleDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, ::u8 bA)
+void image::blend(const ::rectangle_i32& rectangleDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, unsigned char bA)
 {
 
    ::image::image* pimageDst = this;
@@ -951,17 +951,17 @@ void image::blend(const ::rectangle_i32& rectangleDstParam, ::image::image* pima
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
-   u8* psrc2;
+   unsigned char* psrc2;
 
    for (int y = 0; y < yEnd; y++)
    {
@@ -991,7 +991,7 @@ void image::blend(const ::rectangle_i32& rectangleDstParam, ::image::image* pima
 }
 
 
-void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
+void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, unsigned char bA)
 {
 
    ::image::image* pimageDst = this;
@@ -1065,17 +1065,17 @@ void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, 
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   ::u8 * pdst = ((::u8 *)pimageDst->image32()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(image32_t));
+   unsigned char * pdst = ((unsigned char *)pimageDst->image32()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(image32_t));
 
-   ::u8 * psrc = ((::u8 *)pimageSrc->image32()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(image32_t));
+   unsigned char * psrc = ((unsigned char *)pimageSrc->image32()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(image32_t));
 
-   ::u8 * pdst2;
+   unsigned char * pdst2;
 
-   ::u8 * psrc2;
+   unsigned char * psrc2;
 
    if (bA == 0)
    {
@@ -1156,12 +1156,12 @@ void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, 
             //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
             //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
             //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-            //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+            //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
             //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
             //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
             //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
             //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-            ::u8 acomplement = (~psrc2[3] * bA) >> 8;
+            unsigned char acomplement = (~psrc2[3] * bA) >> 8;
             pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
             pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
             pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1192,7 +1192,7 @@ void image::blend(const ::point_i32& pointDst, ::image::image* pimageSrc, const 
 }
 
 
-void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
+void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, unsigned char bA)
 {
 
    ::image::image* pimageDst = this;
@@ -1270,25 +1270,25 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
-   u8* psrc2;
+   unsigned char* psrc2;
 
 #ifdef __APPLE__
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * (pimageDst->height() - pointDst.y() - yEnd) + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * (pimageDst->height() - pointDst.y() - yEnd) + pointDst.x() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * (pimageSrc->height() - pointSrc.y() - yEnd) + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * (pimageSrc->height() - pointSrc.y() - yEnd) + pointSrc.x() * sizeof(image32_t)];
 
 #else
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
 #endif
 
@@ -1321,7 +1321,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-               ::u8 acomplement = ~psrc2[3];
+               unsigned char acomplement = ~psrc2[3];
                pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
                pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
@@ -1358,12 +1358,12 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-               //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+               //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
                //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
                //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-               ::u8 acomplement = (~psrc2[3] * bA) >> 8;
+               unsigned char acomplement = (~psrc2[3] * bA) >> 8;
                pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
                pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
                pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1416,8 +1416,8 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-               ::u8 a = pdst2[3];
-               ::u8 alpha = psrc2[3];
+               unsigned char a = pdst2[3];
+               unsigned char alpha = psrc2[3];
                if (a == 0)
                {
 
@@ -1490,12 +1490,12 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-               //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+               //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
                //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
                //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-               ::u8 acomplement = (~psrc2[3] * bA) >> 8;
+               unsigned char acomplement = (~psrc2[3] * bA) >> 8;
                pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
                pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
                pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1530,7 +1530,7 @@ void image::precision_blend(const ::point_i32& pointDst, ::image::image* pimageS
 }
 
 
-void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
+void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, unsigned char bA)
 {
 
    ::image::image* pimageDst = this;
@@ -1607,17 +1607,17 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pi
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
-   u8* psrc2;
+   unsigned char* psrc2;
 
    if (bA == 0)
    {
@@ -1643,7 +1643,7 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pi
             //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
             //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
             //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-            ::u8 acomplement = ~psrc2[3];
+            unsigned char acomplement = ~psrc2[3];
             pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) / 255);
             pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) / 255);
             pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) / 255);
@@ -1680,12 +1680,12 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pi
             //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
             //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
             //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-            //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+            //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
             //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
             //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
             //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
             //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-            ::u8 acomplement = (~psrc2[3] * bA) / 255;
+            unsigned char acomplement = (~psrc2[3] * bA) / 255;
             pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) / 255);
             pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) / 255);
             pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) / 255);
@@ -1720,7 +1720,7 @@ void image::fork_blend(const ::point_i32& pointDst, ::image::image* pimageSrc, c
 }
 
 
-void image::fork_blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
+void image::fork_blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, unsigned char bA)
 {
 
    if (bA == 0)
@@ -1810,19 +1810,19 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image::image* pimageS
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
-   //u8 * pdst5; // dst opacity map if available // opacity map does not make sense for images that machine
+   //unsigned char * pdst5; // dst opacity map if available // opacity map does not make sense for images that machine
 
-   u8* psrcOpacity; // src opacity map if available
+   unsigned char* psrcOpacity; // src opacity map if available
 
-   u8* psrcTransparency; // src transparency map if available
+   unsigned char* psrcTransparency; // src transparency map if available
 
    if (pimageSrc->m_memoryMap.size() == pimageSrc->area() * 2)
    {
@@ -1972,9 +1972,9 @@ void image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image::image* 
 
    }
 
-   i32 s1 = m_iScan / sizeof(image32_t);
+   int s1 = m_iScan / sizeof(image32_t);
 
-   i32 s2 = pimage->m_iScan / sizeof(image32_t);
+   int s2 = pimage->m_iScan / sizeof(image32_t);
 
    image32_t* pdst = &image32()[s1 * pointDst.y()] + pointDst.x();
 
@@ -2098,23 +2098,23 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
-   i32 scanAlf = pimageAlf->m_iScan;
+   int scanAlf = pimageAlf->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
-   u8* psrc = &((u8*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
+   unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
-   u8* palf = &((u8*)pimageAlf->image32())[-scanAlf * pointDstAlf.y() - pointDstAlf.x() * sizeof(image32_t)] + 3;
+   unsigned char* palf = &((unsigned char*)pimageAlf->image32())[-scanAlf * pointDstAlf.y() - pointDstAlf.x() * sizeof(image32_t)] + 3;
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
-   u8* psrc2;
+   unsigned char* psrc2;
 
-   //u8* palf2;
+   //unsigned char* palf2;
 
    //int x1;
    //int x2;
@@ -2132,11 +2132,11 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
    for (int y = 0; y < yEnd; y++)
    {
 
-      pdst2 = (u8*)&pdst[scanDst * y];
+      pdst2 = (unsigned char*)&pdst[scanDst * y];
 
-      psrc2 = (u8*)&psrc[scanSrc * y];
+      psrc2 = (unsigned char*)&psrc[scanSrc * y];
 
-      //palf2 = (u8*)&palf[scanAlf * y];
+      //palf2 = (unsigned char*)&palf[scanAlf * y];
 
       for (int x = 0; x < xEnd; x++)
       {
@@ -2148,17 +2148,17 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
             //
             //                  a = (*palf2 * psrc2[3]) / 255;
             //                  a = psrc2[3];
-            //                  //a = (int) (::u8) sqrt((float) (*palf2 * psrc2[3]));
-            //                  pdst2[3] = (::u8)maximum(a, pdst2[3]);
-            //                  //pdst2[3] = (::u8)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
-            //                  pdst2[3] = (::u8)(maximum(psrc2[3], pdst2[3]));
+            //                  //a = (int) (unsigned char) sqrt((float) (*palf2 * psrc2[3]));
+            //                  pdst2[3] = (unsigned char)maximum(a, pdst2[3]);
+            //                  //pdst2[3] = (unsigned char)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
+            //                  pdst2[3] = (unsigned char)(maximum(psrc2[3], pdst2[3]));
             //
             //                  //                  if (a > 0)
             //                  {
             //
-            //                     pdst2[0] = (::u8)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
-            //                     pdst2[1] = (::u8)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
-            //                     pdst2[2] = (::u8)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
+            //                     pdst2[0] = (unsigned char)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
+            //                     pdst2[1] = (unsigned char)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
+            //                     pdst2[2] = (unsigned char)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
             //
             //                  }
             //
@@ -2166,15 +2166,15 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
             //               else
             {
 
-               //pdst2[3] = (::u8)(maximum(psrc2[3], pdst2[3]));
-               //pdst2[3] = (::u8)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
-               //pdst2[0] = (::u8)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
-               //pdst2[1] = (::u8)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
-               //pdst2[2] = (::u8)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
-               pdst2[3] = (::u8)(maximum(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
-               pdst2[0] = (::u8)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
-               pdst2[1] = (::u8)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
-               pdst2[2] = (::u8)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+               //pdst2[3] = (unsigned char)(maximum(psrc2[3], pdst2[3]));
+               //pdst2[3] = (unsigned char)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
+               //pdst2[0] = (unsigned char)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+               //pdst2[1] = (unsigned char)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+               //pdst2[2] = (unsigned char)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
+               pdst2[3] = (unsigned char)(maximum(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
+               pdst2[0] = (unsigned char)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
+               pdst2[1] = (unsigned char)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
+               pdst2[2] = (unsigned char)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
 
             }
          }
@@ -2247,27 +2247,27 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
 
 
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
-   i32 scanSrc = pimageSrc->m_iScan;
+   int scanSrc = pimageSrc->m_iScan;
 
 #ifdef __APPLE__
 
-   u8 * pdst = &((u8 *)pimageDst->image32())[scanDst * (pimageDst->height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)] + 3;
+   unsigned char * pdst = &((unsigned char *)pimageDst->image32())[scanDst * (pimageDst->height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)] + 3;
 
-   u8 * psrc = &((u8 *)pimageSrc->image32())[scanSrc * (pimageSrc->height() - pointSrc.y() - 1) + pointSrc.x() * sizeof(image32_t)] + 3;
+   unsigned char * psrc = &((unsigned char *)pimageSrc->image32())[scanSrc * (pimageSrc->height() - pointSrc.y() - 1) + pointSrc.x() * sizeof(image32_t)] + 3;
 
 #else
 
-   u8 * pdst = &((u8 *)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)] + 3;
+   unsigned char * pdst = &((unsigned char *)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)] + 3;
 
-   u8 * psrc = &((u8 *)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)] + 3;
+   unsigned char * psrc = &((unsigned char *)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)] + 3;
 
 #endif
 
-   u8 * pdst2;
+   unsigned char * pdst2;
 
-   u8 * psrc2;
+   unsigned char * psrc2;
 
    pimageDst->div_alpha(pointDst, ::size_i32(xEnd, yEnd));
    pimageSrc->div_alpha(pointSrc, ::size_i32(xEnd, yEnd));
@@ -2278,15 +2278,15 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
 
 #ifdef __APPLE__
 
-      pdst2 = (u8 *) &pdst[scanDst * (-y)];
+      pdst2 = (unsigned char *) &pdst[scanDst * (-y)];
 
-      psrc2 = (u8 *) &psrc[scanSrc * (-y)];
+      psrc2 = (unsigned char *) &psrc[scanSrc * (-y)];
 
 #else
 
-      pdst2 = (u8 *) &pdst[scanDst * y];
+      pdst2 = (unsigned char *) &pdst[scanDst * y];
 
-      psrc2 = (u8 *) &psrc[scanSrc * y];
+      psrc2 = (unsigned char *) &psrc[scanSrc * y];
 
 #endif
 
@@ -2311,7 +2311,7 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
 */
 
 
-//void image::set_rgb(i32 R, i32 G, i32 B)
+//void image::set_rgb(int R, int G, int B)
 //{
 //
 //   i64 size = scan_area();
@@ -2329,12 +2329,12 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
 //
 //   sort_image_rgb(R, G, B);
 //
-//   for (i32 i = 0; i < size; i++)
+//   for (int i = 0; i < size; i++)
 //   {
 //
-//      ((u8*)pcr)[0] = R;
-//      ((u8*)pcr)[1] = G;
-//      ((u8*)pcr)[2] = B;
+//      ((unsigned char*)pcr)[0] = R;
+//      ((unsigned char*)pcr)[1] = G;
+//      ((unsigned char*)pcr)[2] = B;
 //
 //      pcr++;
 //
@@ -2345,7 +2345,7 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
 //}
 
 
-/*   void image::Fill ( i32 R, i32 G, i32 B )
+/*   void image::Fill ( int R, int G, int B )
    {
       image32_t color=rgb ( B, G, R );
       i64 size = area();
@@ -2353,7 +2353,7 @@ void image::blend(const ::point_i32 & pointDst,::image::image *pimageSrc, const 
       image32_t * pcr;
 
       i64 iSize32 = size / 32;
-      i32 i;
+      int i;
       for (i=0; i < iSize32; i+=32 )
       {
          pcr = &data()[i];
@@ -2603,9 +2603,9 @@ void image::flip_vertically()
 }
 
 
-void image::ToAlpha(i32 i)
+void image::ToAlpha(int i)
 {
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
@@ -2622,7 +2622,7 @@ void image::ToAlpha(i32 i)
 void image::from_alpha()
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
@@ -2644,7 +2644,7 @@ void image::mult_alpha(::image::image* pimage, bool bPreserveAlpha)
    __UNREFERENCED_PARAMETER(pimage);
    __UNREFERENCED_PARAMETER(bPreserveAlpha);
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
 
@@ -2653,46 +2653,46 @@ void image::mult_alpha(::image::image* pimage, bool bPreserveAlpha)
 
    while (size >= 8)
    {
-      dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
-      dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
-      dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
+      dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
+      dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
+      dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
 
-      dst[4 + 0] = lower_u8(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
-      dst[4 + 1] = lower_u8(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
-      dst[4 + 2] = lower_u8(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
+      dst[4 + 0] = lower_u8(((int)dst[4 + 0] * (int)dst[4 + 3]) >> 8);
+      dst[4 + 1] = lower_u8(((int)dst[4 + 1] * (int)dst[4 + 3]) >> 8);
+      dst[4 + 2] = lower_u8(((int)dst[4 + 2] * (int)dst[4 + 3]) >> 8);
 
-      dst[8 + 0] = lower_u8(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
-      dst[8 + 1] = lower_u8(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
-      dst[8 + 2] = lower_u8(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
+      dst[8 + 0] = lower_u8(((int)dst[8 + 0] * (int)dst[8 + 3]) >> 8);
+      dst[8 + 1] = lower_u8(((int)dst[8 + 1] * (int)dst[8 + 3]) >> 8);
+      dst[8 + 2] = lower_u8(((int)dst[8 + 2] * (int)dst[8 + 3]) >> 8);
 
-      dst[12 + 0] = lower_u8(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
-      dst[12 + 1] = lower_u8(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
-      dst[12 + 2] = lower_u8(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
+      dst[12 + 0] = lower_u8(((int)dst[12 + 0] * (int)dst[12 + 3]) >> 8);
+      dst[12 + 1] = lower_u8(((int)dst[12 + 1] * (int)dst[12 + 3]) >> 8);
+      dst[12 + 2] = lower_u8(((int)dst[12 + 2] * (int)dst[12 + 3]) >> 8);
 
-      dst[16 + 0] = lower_u8(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
-      dst[16 + 1] = lower_u8(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
-      dst[16 + 2] = lower_u8(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
+      dst[16 + 0] = lower_u8(((int)dst[16 + 0] * (int)dst[16 + 3]) >> 8);
+      dst[16 + 1] = lower_u8(((int)dst[16 + 1] * (int)dst[16 + 3]) >> 8);
+      dst[16 + 2] = lower_u8(((int)dst[16 + 2] * (int)dst[16 + 3]) >> 8);
 
-      dst[20 + 0] = lower_u8(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
-      dst[20 + 1] = lower_u8(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
-      dst[20 + 2] = lower_u8(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
+      dst[20 + 0] = lower_u8(((int)dst[20 + 0] * (int)dst[20 + 3]) >> 8);
+      dst[20 + 1] = lower_u8(((int)dst[20 + 1] * (int)dst[20 + 3]) >> 8);
+      dst[20 + 2] = lower_u8(((int)dst[20 + 2] * (int)dst[20 + 3]) >> 8);
 
-      dst[24 + 0] = lower_u8(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
-      dst[24 + 1] = lower_u8(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
-      dst[24 + 2] = lower_u8(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
+      dst[24 + 0] = lower_u8(((int)dst[24 + 0] * (int)dst[24 + 3]) >> 8);
+      dst[24 + 1] = lower_u8(((int)dst[24 + 1] * (int)dst[24 + 3]) >> 8);
+      dst[24 + 2] = lower_u8(((int)dst[24 + 2] * (int)dst[24 + 3]) >> 8);
 
-      dst[28 + 0] = lower_u8(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
-      dst[28 + 1] = lower_u8(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
-      dst[28 + 2] = lower_u8(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
+      dst[28 + 0] = lower_u8(((int)dst[28 + 0] * (int)dst[28 + 3]) >> 8);
+      dst[28 + 1] = lower_u8(((int)dst[28 + 1] * (int)dst[28 + 3]) >> 8);
+      dst[28 + 2] = lower_u8(((int)dst[28 + 2] * (int)dst[28 + 3]) >> 8);
 
       dst += 4 * 8;
       size -= 8;
    }
    while (size--)
    {
-      dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
-      dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
-      dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
+      dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
+      dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
+      dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
       dst += 4;
    }
 
@@ -2706,7 +2706,7 @@ void image::mult_alpha()
 {
    map();
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
 
@@ -2715,46 +2715,46 @@ void image::mult_alpha()
 
    while (size >= 8)
    {
-      dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) / 255);
-      dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) / 255);
-      dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) / 255);
+      dst[0] = byte_clip2(((int)dst[0] * (int)dst[3]) / 255);
+      dst[1] = byte_clip2(((int)dst[1] * (int)dst[3]) / 255);
+      dst[2] = byte_clip2(((int)dst[2] * (int)dst[3]) / 255);
 
-      dst[4 + 0] = byte_clip2(((i32)dst[4 + 0] * (i32)dst[4 + 3]) / 255);
-      dst[4 + 1] = byte_clip2(((i32)dst[4 + 1] * (i32)dst[4 + 3]) / 255);
-      dst[4 + 2] = byte_clip2(((i32)dst[4 + 2] * (i32)dst[4 + 3]) / 255);
+      dst[4 + 0] = byte_clip2(((int)dst[4 + 0] * (int)dst[4 + 3]) / 255);
+      dst[4 + 1] = byte_clip2(((int)dst[4 + 1] * (int)dst[4 + 3]) / 255);
+      dst[4 + 2] = byte_clip2(((int)dst[4 + 2] * (int)dst[4 + 3]) / 255);
 
-      dst[8 + 0] = byte_clip2(((i32)dst[8 + 0] * (i32)dst[8 + 3]) / 255);
-      dst[8 + 1] = byte_clip2(((i32)dst[8 + 1] * (i32)dst[8 + 3]) / 255);
-      dst[8 + 2] = byte_clip2(((i32)dst[8 + 2] * (i32)dst[8 + 3]) / 255);
+      dst[8 + 0] = byte_clip2(((int)dst[8 + 0] * (int)dst[8 + 3]) / 255);
+      dst[8 + 1] = byte_clip2(((int)dst[8 + 1] * (int)dst[8 + 3]) / 255);
+      dst[8 + 2] = byte_clip2(((int)dst[8 + 2] * (int)dst[8 + 3]) / 255);
 
-      dst[12 + 0] = byte_clip2(((i32)dst[12 + 0] * (i32)dst[12 + 3]) / 255);
-      dst[12 + 1] = byte_clip2(((i32)dst[12 + 1] * (i32)dst[12 + 3]) / 255);
-      dst[12 + 2] = byte_clip2(((i32)dst[12 + 2] * (i32)dst[12 + 3]) / 255);
+      dst[12 + 0] = byte_clip2(((int)dst[12 + 0] * (int)dst[12 + 3]) / 255);
+      dst[12 + 1] = byte_clip2(((int)dst[12 + 1] * (int)dst[12 + 3]) / 255);
+      dst[12 + 2] = byte_clip2(((int)dst[12 + 2] * (int)dst[12 + 3]) / 255);
 
-      dst[16 + 0] = byte_clip2(((i32)dst[16 + 0] * (i32)dst[16 + 3]) / 255);
-      dst[16 + 1] = byte_clip2(((i32)dst[16 + 1] * (i32)dst[16 + 3]) / 255);
-      dst[16 + 2] = byte_clip2(((i32)dst[16 + 2] * (i32)dst[16 + 3]) / 255);
+      dst[16 + 0] = byte_clip2(((int)dst[16 + 0] * (int)dst[16 + 3]) / 255);
+      dst[16 + 1] = byte_clip2(((int)dst[16 + 1] * (int)dst[16 + 3]) / 255);
+      dst[16 + 2] = byte_clip2(((int)dst[16 + 2] * (int)dst[16 + 3]) / 255);
 
-      dst[20 + 0] = byte_clip2(((i32)dst[20 + 0] * (i32)dst[20 + 3]) / 255);
-      dst[20 + 1] = byte_clip2(((i32)dst[20 + 1] * (i32)dst[20 + 3]) / 255);
-      dst[20 + 2] = byte_clip2(((i32)dst[20 + 2] * (i32)dst[20 + 3]) / 255);
+      dst[20 + 0] = byte_clip2(((int)dst[20 + 0] * (int)dst[20 + 3]) / 255);
+      dst[20 + 1] = byte_clip2(((int)dst[20 + 1] * (int)dst[20 + 3]) / 255);
+      dst[20 + 2] = byte_clip2(((int)dst[20 + 2] * (int)dst[20 + 3]) / 255);
 
-      dst[24 + 0] = byte_clip2(((i32)dst[24 + 0] * (i32)dst[24 + 3]) / 255);
-      dst[24 + 1] = byte_clip2(((i32)dst[24 + 1] * (i32)dst[24 + 3]) / 255);
-      dst[24 + 2] = byte_clip2(((i32)dst[24 + 2] * (i32)dst[24 + 3]) / 255);
+      dst[24 + 0] = byte_clip2(((int)dst[24 + 0] * (int)dst[24 + 3]) / 255);
+      dst[24 + 1] = byte_clip2(((int)dst[24 + 1] * (int)dst[24 + 3]) / 255);
+      dst[24 + 2] = byte_clip2(((int)dst[24 + 2] * (int)dst[24 + 3]) / 255);
 
-      dst[28 + 0] = byte_clip2(((i32)dst[28 + 0] * (i32)dst[28 + 3]) / 255);
-      dst[28 + 1] = byte_clip2(((i32)dst[28 + 1] * (i32)dst[28 + 3]) / 255);
-      dst[28 + 2] = byte_clip2(((i32)dst[28 + 2] * (i32)dst[28 + 3]) / 255);
+      dst[28 + 0] = byte_clip2(((int)dst[28 + 0] * (int)dst[28 + 3]) / 255);
+      dst[28 + 1] = byte_clip2(((int)dst[28 + 1] * (int)dst[28 + 3]) / 255);
+      dst[28 + 2] = byte_clip2(((int)dst[28 + 2] * (int)dst[28 + 3]) / 255);
 
       dst += 4 * 8;
       size -= 8;
    }
    while (size > 0)
    {
-      dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) / 255);
-      dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) / 255);
-      dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) / 255);
+      dst[0] = byte_clip2(((int)dst[0] * (int)dst[3]) / 255);
+      dst[1] = byte_clip2(((int)dst[1] * (int)dst[3]) / 255);
+      dst[2] = byte_clip2(((int)dst[2] * (int)dst[3]) / 255);
       dst += 4;
       size--;
    }
@@ -2768,7 +2768,7 @@ void image::mult_alpha_fast()
 {
    map();
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
 
@@ -2783,9 +2783,9 @@ void image::mult_alpha_fast()
       }
       else if (dst[3] != 255)
       {
-         dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) >> 8);
-         dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) >> 8);
-         dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) >> 8);
+         dst[0] = byte_clip2(((int)dst[0] * (int)dst[3]) >> 8);
+         dst[1] = byte_clip2(((int)dst[1] * (int)dst[3]) >> 8);
+         dst[2] = byte_clip2(((int)dst[2] * (int)dst[3]) >> 8);
       }
       dst += 4;
    }
@@ -2859,39 +2859,39 @@ void image::mult_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizeP
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
 #ifdef __APPLE__
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * (height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * (height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)];
 
 #else
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
 #endif
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
    for (int y = 0; y < yEnd; y++)
    {
 
 #ifdef __APPLE__
 
-      pdst2 = (u8*)&pdst[scanDst * (-y)];
+      pdst2 = (unsigned char*)&pdst[scanDst * (-y)];
 
 #else
 
-      pdst2 = (u8*)&pdst[scanDst * y];
+      pdst2 = (unsigned char*)&pdst[scanDst * y];
 
 #endif
 
       for (int x = 0; x < xEnd; x++)
       {
 
-         pdst2[0] = u8_clip(((i32)pdst2[0] * (i32)pdst2[3]) / 255);
-         pdst2[1] = u8_clip(((i32)pdst2[1] * (i32)pdst2[3]) / 255);
-         pdst2[2] = u8_clip(((i32)pdst2[2] * (i32)pdst2[3]) / 255);
+         pdst2[0] = u8_clip(((int)pdst2[0] * (int)pdst2[3]) / 255);
+         pdst2[1] = u8_clip(((int)pdst2[1] * (int)pdst2[3]) / 255);
+         pdst2[2] = u8_clip(((int)pdst2[2] * (int)pdst2[3]) / 255);
 
          pdst2 += 4;
 
@@ -2917,7 +2917,7 @@ void image::div_alpha()
 
    map();
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
 
@@ -2926,37 +2926,37 @@ void image::div_alpha()
 
    /*      while (size >= 8)
          {
-            dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3])>> 8);
-            dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3])>> 8);
-            dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3])>> 8);
+            dst[0] = lower_u8(((int)dst[0] * (int)dst[3])>> 8);
+            dst[1] = lower_u8(((int)dst[1] * (int)dst[3])>> 8);
+            dst[2] = lower_u8(((int)dst[2] * (int)dst[3])>> 8);
 
-            dst[4+0] = lower_u8(((i32)dst[4+0] * (i32)dst[4+3])>> 8);
-            dst[4+1] = lower_u8(((i32)dst[4+1] * (i32)dst[4+3])>> 8);
-            dst[4+2] = lower_u8(((i32)dst[4+2] * (i32)dst[4+3])>> 8);
+            dst[4+0] = lower_u8(((int)dst[4+0] * (int)dst[4+3])>> 8);
+            dst[4+1] = lower_u8(((int)dst[4+1] * (int)dst[4+3])>> 8);
+            dst[4+2] = lower_u8(((int)dst[4+2] * (int)dst[4+3])>> 8);
 
-            dst[8+0] = lower_u8(((i32)dst[8+0] * (i32)dst[8+3])>> 8);
-            dst[8+1] = lower_u8(((i32)dst[8+1] * (i32)dst[8+3])>> 8);
-            dst[8+2] = lower_u8(((i32)dst[8+2] * (i32)dst[8+3])>> 8);
+            dst[8+0] = lower_u8(((int)dst[8+0] * (int)dst[8+3])>> 8);
+            dst[8+1] = lower_u8(((int)dst[8+1] * (int)dst[8+3])>> 8);
+            dst[8+2] = lower_u8(((int)dst[8+2] * (int)dst[8+3])>> 8);
 
-            dst[12+0] = lower_u8(((i32)dst[12+0] * (i32)dst[12+3])>> 8);
-            dst[12+1] = lower_u8(((i32)dst[12+1] * (i32)dst[12+3])>> 8);
-            dst[12+2] = lower_u8(((i32)dst[12+2] * (i32)dst[12+3])>> 8);
+            dst[12+0] = lower_u8(((int)dst[12+0] * (int)dst[12+3])>> 8);
+            dst[12+1] = lower_u8(((int)dst[12+1] * (int)dst[12+3])>> 8);
+            dst[12+2] = lower_u8(((int)dst[12+2] * (int)dst[12+3])>> 8);
 
-            dst[16+0] = lower_u8(((i32)dst[16+0] * (i32)dst[16+3])>> 8);
-            dst[16+1] = lower_u8(((i32)dst[16+1] * (i32)dst[16+3])>> 8);
-            dst[16+2] = lower_u8(((i32)dst[16+2] * (i32)dst[16+3])>> 8);
+            dst[16+0] = lower_u8(((int)dst[16+0] * (int)dst[16+3])>> 8);
+            dst[16+1] = lower_u8(((int)dst[16+1] * (int)dst[16+3])>> 8);
+            dst[16+2] = lower_u8(((int)dst[16+2] * (int)dst[16+3])>> 8);
 
-            dst[20+0] = lower_u8(((i32)dst[20+0] * (i32)dst[20+3])>> 8);
-            dst[20+1] = lower_u8(((i32)dst[20+1] * (i32)dst[20+3])>> 8);
-            dst[20+2] = lower_u8(((i32)dst[20+2] * (i32)dst[20+3])>> 8);
+            dst[20+0] = lower_u8(((int)dst[20+0] * (int)dst[20+3])>> 8);
+            dst[20+1] = lower_u8(((int)dst[20+1] * (int)dst[20+3])>> 8);
+            dst[20+2] = lower_u8(((int)dst[20+2] * (int)dst[20+3])>> 8);
 
-            dst[24+0] = lower_u8(((i32)dst[24+0] * (i32)dst[24+3])>> 8);
-            dst[24+1] = lower_u8(((i32)dst[24+1] * (i32)dst[24+3])>> 8);
-            dst[24+2] = lower_u8(((i32)dst[24+2] * (i32)dst[24+3])>> 8);
+            dst[24+0] = lower_u8(((int)dst[24+0] * (int)dst[24+3])>> 8);
+            dst[24+1] = lower_u8(((int)dst[24+1] * (int)dst[24+3])>> 8);
+            dst[24+2] = lower_u8(((int)dst[24+2] * (int)dst[24+3])>> 8);
 
-            dst[28+0] = lower_u8(((i32)dst[28+0] * (i32)dst[28+3])>> 8);
-            dst[28+1] = lower_u8(((i32)dst[28+1] * (i32)dst[28+3])>> 8);
-            dst[28+2] = lower_u8(((i32)dst[28+2] * (i32)dst[28+3])>> 8);
+            dst[28+0] = lower_u8(((int)dst[28+0] * (int)dst[28+3])>> 8);
+            dst[28+1] = lower_u8(((int)dst[28+1] * (int)dst[28+3])>> 8);
+            dst[28+2] = lower_u8(((int)dst[28+2] * (int)dst[28+3])>> 8);
 
             dst += 4 * 8;
             size -= 8;
@@ -2971,9 +2971,9 @@ void image::div_alpha()
       }
       else
       {
-         dst[0] = u8_clip((i32)dst[0] * 255 / (i32)dst[3]);
-         dst[1] = u8_clip((i32)dst[1] * 255 / (i32)dst[3]);
-         dst[2] = u8_clip((i32)dst[2] * 255 / (i32)dst[3]);
+         dst[0] = u8_clip((int)dst[0] * 255 / (int)dst[3]);
+         dst[1] = u8_clip((int)dst[1] * 255 / (int)dst[3]);
+         dst[2] = u8_clip((int)dst[2] * 255 / (int)dst[3]);
       }
 
       dst += 4;
@@ -3042,30 +3042,30 @@ void image::div_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizePa
 
    }
 
-   i32 scanDst = pimageDst->m_iScan;
+   int scanDst = pimageDst->m_iScan;
 
 #ifdef __APPLE__
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * (height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * (height() - pointDst.y() - 1) + pointDst.x() * sizeof(image32_t)];
 
 #else
 
-   u8* pdst = &((u8*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * pointDst.y() + pointDst.x() * sizeof(image32_t)];
 
 #endif
 
-   u8* pdst2;
+   unsigned char* pdst2;
 
    for (int y = 0; y < yEnd; y++)
    {
 
 #ifdef __APPLE__
 
-      pdst2 = (u8*)&pdst[scanDst * (-y)];
+      pdst2 = (unsigned char*)&pdst[scanDst * (-y)];
 
 #else
 
-      pdst2 = (u8*)&pdst[scanDst * y];
+      pdst2 = (unsigned char*)&pdst[scanDst * y];
 
 #endif
 
@@ -3080,9 +3080,9 @@ void image::div_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizePa
          }
          else
          {
-            pdst2[0] = u8_clip((i32)pdst2[0] * 255 / (i32)pdst2[3]);
-            pdst2[1] = u8_clip((i32)pdst2[1] * 255 / (i32)pdst2[3]);
-            pdst2[2] = u8_clip((i32)pdst2[2] * 255 / (i32)pdst2[3]);
+            pdst2[0] = u8_clip((int)pdst2[0] * 255 / (int)pdst2[3]);
+            pdst2[1] = u8_clip((int)pdst2[1] * 255 / (int)pdst2[3]);
+            pdst2[2] = u8_clip((int)pdst2[2] * 255 / (int)pdst2[3]);
          }
 
          pdst2 += 4;
@@ -3096,17 +3096,17 @@ void image::div_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizePa
 }
 
 
-void image::Map(i32 ToRgb, i32 FromRgb)
+void image::Map(int ToRgb, int FromRgb)
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
    while (size--)
    {
 
-      *dst = (::u8)(*dst == FromRgb ? ToRgb : *dst);
+      *dst = (unsigned char)(*dst == FromRgb ? ToRgb : *dst);
 
       dst += 4;
 
@@ -3117,16 +3117,16 @@ void image::Map(i32 ToRgb, i32 FromRgb)
 }
 
 
-void image::ToAlphaAndFill(i32 i, ::color::color color)
+void image::ToAlphaAndFill(int i, ::color::color color)
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
-   ::u8 uchB = color.u8_blue();
-   ::u8 uchG = color.u8_green();
-   ::u8 uchR = color.u8_red();
+   unsigned char uchB = color.u8_blue();
+   unsigned char uchG = color.u8_green();
+   unsigned char uchR = color.u8_red();
 
    while (size--)
    {
@@ -3145,7 +3145,7 @@ void image::ToAlphaAndFill(i32 i, ::color::color color)
 void image::GrayToARGB(::color::color color)
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
@@ -3156,9 +3156,9 @@ void image::GrayToARGB(::color::color color)
    while (size-- > 0)
    {
       dst[3] = dst[0];
-      dst[0] = (::u8)(((dwB * dst[3]) / 256) & 0xff);
-      dst[1] = (::u8)(((dwG * dst[3]) / 256) & 0xff);
-      dst[2] = (::u8)(((dwR * dst[3]) / 256) & 0xff);
+      dst[0] = (unsigned char)(((dwB * dst[3]) / 256) & 0xff);
+      dst[1] = (unsigned char)(((dwG * dst[3]) / 256) & 0xff);
+      dst[2] = (unsigned char)(((dwR * dst[3]) / 256) & 0xff);
       dst += 4;
    }
 
@@ -3167,7 +3167,7 @@ void image::GrayToARGB(::color::color color)
 }
 
 
-void image::BitBlt(::image::image* pimage, i32 op)
+void image::BitBlt(::image::image* pimage, int op)
 {
 
    if (op == 123) // zero dest rgb, invert alpha, and OR src rgb
@@ -3183,7 +3183,7 @@ void image::BitBlt(::image::image* pimage, i32 op)
 }
 
 
-void image::BitBlt(int cxParam, int cyParam, ::image::image* pimage, i32 op)
+void image::BitBlt(int cxParam, int cyParam, ::image::image* pimage, int op)
 {
 
    map();
@@ -3289,9 +3289,9 @@ void image::invert()
    map();
 
    i64 size = scan_area();
-   ::u8* pb = (::u8*)data();
+   unsigned char* pb = (unsigned char*)data();
 
-   for (i32 i = 0; i < size; i++)
+   for (int i = 0; i < size; i++)
    {
       pb[0] = 255 - pb[0];
 
@@ -3314,13 +3314,13 @@ void image::channel_invert(::color::enum_channel echannel)
 
    i64 size = scan_area();
 
-   ::u8* pb = (::u8*)data();
+   unsigned char* pb = (unsigned char*)data();
 
 
-   pb += ((i32)echannel) % 4;
+   pb += ((int)echannel) % 4;
 
 
-   for (i32 i = 0; i < size; i++)
+   for (int i = 0; i < size; i++)
    {
 
       *pb = 255 - *pb;
@@ -3355,18 +3355,18 @@ void image::channel_multiply(double dRate, ::color::enum_channel echannel, bool 
    }
    //#endif
    i64 size = scan_area();
-   ::u8* pb = (::u8*)data();
+   unsigned char* pb = (unsigned char*)data();
 
-   pb += ((i32)echannel) % 4;
+   pb += ((int)echannel) % 4;
 
-   i32 iDiv = 256 * 256;
-   i32 iMul = (i32)(dRate * ((double)iDiv));
-   i32 iRes;
+   int iDiv = 256 * 256;
+   int iMul = (int)(dRate * ((double)iDiv));
+   int iRes;
    for (i64 i = 0; i < size; i++)
    {
       iRes = *pb * iMul / iDiv;
 
-      *pb = (::u8)(iRes > 255 ? 255 : iRes);
+      *pb = (unsigned char)(iRes > 255 ? 255 : iRes);
 
       pb += 4;
 
@@ -3396,31 +3396,31 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
       div_alpha();
    }
 
-   ::u8* pb1 = (::u8*)data();
+   unsigned char* pb1 = (unsigned char*)data();
 
 
-   ::u8* pb2 = (::u8*)pimage->data();
+   unsigned char* pb2 = (unsigned char*)pimage->data();
 
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
 
-   for (i32 y = 0; y < height(); y++)
+   for (int y = 0; y < height(); y++)
    {
 
-      ::u8* pb1_2 = pb1 + (m_iScan * y);
+      unsigned char* pb1_2 = pb1 + (m_iScan * y);
 
 
-      ::u8* pb2_2 = pb2 + (pimage->m_iScan * y);
+      unsigned char* pb2_2 = pb2 + (pimage->m_iScan * y);
 
 
-      for (i32 x = 0; x < width(); x++)
+      for (int x = 0; x < width(); x++)
       {
 
-         int i = (::u8)(((u32)*pb1_2 * (u32)*pb2_2) / 255);
+         int i = (unsigned char)(((u32)*pb1_2 * (u32)*pb2_2) / 255);
 
          *pb2 = i;
 
@@ -3452,13 +3452,13 @@ void image::channel_darken(::color::enum_channel echannel, ::image::image* pimag
 
    i64 size = scan_area();
 
-   ::u8* pb1 = (::u8*)data();
+   unsigned char* pb1 = (unsigned char*)data();
 
-   ::u8* pb2 = (::u8*)pimage->data();
+   unsigned char* pb2 = (unsigned char*)pimage->data();
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
    for (i64 i = 0; i < size; i++)
    {
@@ -3479,13 +3479,13 @@ void image::channel_lighten(::color::enum_channel echannel, ::image::image* pima
 {
 
    i64 size = scan_area();
-   ::u8* pb1 = (::u8*)data();
+   unsigned char* pb1 = (unsigned char*)data();
 
-   ::u8* pb2 = (::u8*)pimage->data();
+   unsigned char* pb2 = (unsigned char*)pimage->data();
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
    for (i64 i = 0; i < size; i++)
    {
@@ -3513,13 +3513,13 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage)
 
    i64 size_i64 = size / 64;
 
-   ::u8* pb1 = (::u8*)data();
+   unsigned char* pb1 = (unsigned char*)data();
 
-   ::u8* pb2 = (::u8*)pimage->data();
+   unsigned char* pb2 = (unsigned char*)pimage->data();
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
    i64 i = 0;
    for (; i < size_i64; i++)
@@ -3698,16 +3698,16 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage,
 
    }
 
-   ::u8* pb1 = ((::u8*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
 
 
-   ::u8* pb2 = ((::u8*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
 
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
 
    int h = rectangle.height();
@@ -3717,10 +3717,10 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage,
    for (int i = 0; i < h; i++)
    {
 
-      ::u8* pb1_2 = pb1;
+      unsigned char* pb1_2 = pb1;
 
 
-      ::u8* pb2_2 = pb2;
+      unsigned char* pb2_2 = pb2;
 
 
       for (int j = 0; j < w; j++)
@@ -3783,26 +3783,26 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
 
 #ifdef __APPLE__
 
-   ::u8* pb1 = ((::u8*)data()) + (rectangle.left() * sizeof(image32_t) + (height() - rectangle.top() - 1) * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + (height() - rectangle.top() - 1) * m_iScan);
 
 
-   ::u8* pb2 = ((::u8*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + (pimage->height() - rectangle.top() - 1) * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + (pimage->height() - rectangle.top() - 1) * pimage->m_iScan);
 
 
 #else
 
-   ::u8* pb1 = ((::u8*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
 
 
-   ::u8* pb2 = ((::u8*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
 
 
 #endif
 
-   pb1 += ((i32)echannel) % 4;
+   pb1 += ((int)echannel) % 4;
 
 
-   pb2 += ((i32)echannel) % 4;
+   pb2 += ((int)echannel) % 4;
 
 
    int h = rectangle.height();
@@ -3812,10 +3812,10 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
    for (int i = 0; i < h; i++)
    {
 
-      ::u8* pb1_2 = pb1;
+      unsigned char* pb1_2 = pb1;
 
 
-      ::u8* pb2_2 = pb2;
+      unsigned char* pb2_2 = pb2;
 
 
       for (int j = 0; j < w; j++)
@@ -3864,19 +3864,19 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
 }
 
 
-void image::fill_glass(i32 R, i32 G, i32 B, i32 A)
+void image::fill_glass(int R, int G, int B, int A)
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
    while (size--)
    {
 
-      dst[0] = (::u8)(((B - dst[0]) * A + (dst[0] << 8)) >> 8);
-      dst[1] = (::u8)(((G - dst[1]) * A + (dst[1] << 8)) >> 8);
-      dst[2] = (::u8)(((R - dst[2]) * A + (dst[2] << 8)) >> 8);
+      dst[0] = (unsigned char)(((B - dst[0]) * A + (dst[0] << 8)) >> 8);
+      dst[1] = (unsigned char)(((G - dst[1]) * A + (dst[1] << 8)) >> 8);
+      dst[2] = (unsigned char)(((R - dst[2]) * A + (dst[2] << 8)) >> 8);
       dst += 4;
 
    }
@@ -3886,16 +3886,16 @@ void image::fill_glass(i32 R, i32 G, i32 B, i32 A)
 }
 
 
-void image::fill_stippled_glass(i32 R, i32 G, i32 B)
+void image::fill_stippled_glass(int R, int G, int B)
 {
 
    image32_t color(rgb(B, G, R), color_indexes());
-   i32 w = width();
-   i32 h = height();
+   int w = width();
+   int h = height();
 
-   for (i32 j = 0; j < w; j++)
+   for (int j = 0; j < w; j++)
    {
-      for (i32 i = 0; i < h; i++)
+      for (int i = 0; i < h; i++)
       {
          data()[j * w + i] = ((i + j) & 0x1) ? data()[j * w + i] : color;
       }
@@ -3960,7 +3960,7 @@ void image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //      for (int i = 0; i < height(); i++)
 //      {
 //
-//         ::memory_copy(&((u8*)data())[m_iScan * i], &((u8*)pimage->data())[pimage->m_iScan * i], iScan);
+//         ::memory_copy(&((unsigned char*)data())[m_iScan * i], &((unsigned char*)pimage->data())[pimage->m_iScan * i], iScan);
 //
 //      }
 //
@@ -3983,10 +3983,10 @@ void image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //}
 
 
-void image::color_blend(::color::color color, ::u8 bAlpha)
+void image::color_blend(::color::color color, unsigned char bAlpha)
 {
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
@@ -4000,9 +4000,9 @@ void image::color_blend(::color::color color, ::u8 bAlpha)
 
    while (size--)
    {
-      dst[0] = (::u8)(((dst[0] - dwB) * bAlpha + dwB_) >> 8);
-      dst[1] = (::u8)(((dst[1] - dwG) * bAlpha + dwG_) >> 8);
-      dst[2] = (::u8)(((dst[2] - dwG) * bAlpha + dwR_) >> 8);
+      dst[0] = (unsigned char)(((dst[0] - dwB) * bAlpha + dwB_) >> 8);
+      dst[1] = (unsigned char)(((dst[1] - dwG) * bAlpha + dwG_) >> 8);
+      dst[2] = (unsigned char)(((dst[2] - dwG) * bAlpha + dwR_) >> 8);
       dst += 4;
    }
 
@@ -4040,7 +4040,7 @@ void image::op(string str)
 }
 
 
-void image::Blend(::image::image* pimage, i32 A)
+void image::Blend(::image::image* pimage, int A)
 {
 
    if (size() != pimage->size())
@@ -4050,15 +4050,15 @@ void image::Blend(::image::image* pimage, i32 A)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)(((src[0] - dst[0]) * A + (dst[0] << 8)) >> 8);
-      dst[1] = (::u8)(((src[1] - dst[1]) * A + (dst[1] << 8)) >> 8);
-      dst[2] = (::u8)(((src[2] - dst[2]) * A + (dst[2] << 8)) >> 8);
+      dst[0] = (unsigned char)(((src[0] - dst[0]) * A + (dst[0] << 8)) >> 8);
+      dst[1] = (unsigned char)(((src[1] - dst[1]) * A + (dst[1] << 8)) >> 8);
+      dst[2] = (unsigned char)(((src[2] - dst[2]) * A + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
    }
@@ -4068,24 +4068,24 @@ void image::Blend(::image::image* pimage, i32 A)
 }
 
 
-void image::Blend(::image::image* pDib, ::image::image* DibA, i32 A)
+void image::Blend(::image::image* pDib, ::image::image* DibA, int A)
 {
    if (size() != pDib->size() ||
       size() != DibA->size())
       throw ::exception(error_wrong_state);
 
-   u8* src = (u8*)pDib->data();
-   u8* dst = (u8*)data();
-   u8* alf = (u8*)DibA->data();
+   unsigned char* src = (unsigned char*)pDib->data();
+   unsigned char* dst = (unsigned char*)data();
+   unsigned char* alf = (unsigned char*)DibA->data();
    i64 size = scan_area();
 
    A = 2 - A;
 
    while (size--)
    {
-      dst[0] = (::u8)(((src[0] - dst[0]) * alf[A] + (dst[0] << 8)) >> 8);
-      dst[1] = (::u8)(((src[1] - dst[1]) * alf[A] + (dst[1] << 8)) >> 8);
-      dst[2] = (::u8)(((src[2] - dst[2]) * alf[A] + (dst[2] << 8)) >> 8);
+      dst[0] = (unsigned char)(((src[0] - dst[0]) * alf[A] + (dst[0] << 8)) >> 8);
+      dst[1] = (unsigned char)(((src[1] - dst[1]) * alf[A] + (dst[1] << 8)) >> 8);
+      dst[2] = (unsigned char)(((src[2] - dst[2]) * alf[A] + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
       alf += 4;
@@ -4106,16 +4106,16 @@ void image::Blend(::image::image* pDib, ::image::image* DibA)
    pDib->map();
    DibA->map();
 
-   u8* src = (u8*)pDib->data();
-   u8* dst = (u8*)data();
-   u8* alf = ((u8*)DibA->data()) + 3;
+   unsigned char* src = (unsigned char*)pDib->data();
+   unsigned char* dst = (unsigned char*)data();
+   unsigned char* alf = ((unsigned char*)DibA->data()) + 3;
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)(((src[0] - dst[0]) * (*alf) + (dst[0] << 8)) >> 8);
-      dst[1] = (::u8)(((src[1] - dst[1]) * (*alf) + (dst[1] << 8)) >> 8);
-      dst[2] = (::u8)(((src[2] - dst[2]) * (*alf) + (dst[2] << 8)) >> 8);
+      dst[0] = (unsigned char)(((src[0] - dst[0]) * (*alf) + (dst[0] << 8)) >> 8);
+      dst[1] = (unsigned char)(((src[1] - dst[1]) * (*alf) + (dst[1] << 8)) >> 8);
+      dst[2] = (unsigned char)(((src[2] - dst[2]) * (*alf) + (dst[2] << 8)) >> 8);
       dst += 4;
       src += 4;
       alf += 4;
@@ -4133,21 +4133,21 @@ void image::blend(::image::image* pimage, ::image::image* pimageRate)
       size() != pimageRate->size())
       throw ::exception(error_wrong_state);
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
-   u8* alf = (u8*)pimageRate->data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
+   unsigned char* alf = (unsigned char*)pimageRate->data();
    i64 size = scan_area();
 
    while (size >= 2)
    {
-      dst[00] = (::u8)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
-      dst[01] = (::u8)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
-      dst[02] = (::u8)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
-      dst[03] = (::u8)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
-      dst[04] = (::u8)(((((i32)src[04] - (i32)dst[04]) * (i32)alf[04]) + (i32)dst[04] * (i32)255) / 255);
-      dst[05] = (::u8)(((((i32)src[05] - (i32)dst[05]) * (i32)alf[05]) + (i32)dst[05] * (i32)255) / 255);
-      dst[06] = (::u8)(((((i32)src[06] - (i32)dst[06]) * (i32)alf[06]) + (i32)dst[06] * (i32)255) / 255);
-      dst[07] = (::u8)(((((i32)src[07] - (i32)dst[07]) * (i32)alf[07]) + (i32)dst[07] * (i32)255) / 255);
+      dst[00] = (unsigned char)(((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
+      dst[01] = (unsigned char)(((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
+      dst[02] = (unsigned char)(((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
+      dst[03] = (unsigned char)(((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
+      dst[04] = (unsigned char)(((((int)src[04] - (int)dst[04]) * (int)alf[04]) + (int)dst[04] * (int)255) / 255);
+      dst[05] = (unsigned char)(((((int)src[05] - (int)dst[05]) * (int)alf[05]) + (int)dst[05] * (int)255) / 255);
+      dst[06] = (unsigned char)(((((int)src[06] - (int)dst[06]) * (int)alf[06]) + (int)dst[06] * (int)255) / 255);
+      dst[07] = (unsigned char)(((((int)src[07] - (int)dst[07]) * (int)alf[07]) + (int)dst[07] * (int)255) / 255);
       dst += 4 * 2;
       src += 4 * 2;
       alf += 4 * 2;
@@ -4155,10 +4155,10 @@ void image::blend(::image::image* pimage, ::image::image* pimageRate)
    }
    while (size > 0)
    {
-      dst[00] = (::u8)(((((i32)src[00] - (i32)dst[00]) * (i32)alf[00]) + (i32)dst[00] * (i32)255) / 255);
-      dst[01] = (::u8)(((((i32)src[01] - (i32)dst[01]) * (i32)alf[01]) + (i32)dst[01] * (i32)255) / 255);
-      dst[02] = (::u8)(((((i32)src[02] - (i32)dst[02]) * (i32)alf[02]) + (i32)dst[02] * (i32)255) / 255);
-      dst[03] = (::u8)(((((i32)src[03] - (i32)dst[03]) * (i32)alf[03]) + (i32)dst[03] * (i32)255) / 255);
+      dst[00] = (unsigned char)(((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
+      dst[01] = (unsigned char)(((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
+      dst[02] = (unsigned char)(((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
+      dst[03] = (unsigned char)(((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
       dst += 4;
       src += 4;
       alf += 4;
@@ -4179,15 +4179,15 @@ void image::Darken(::image::image* pimage)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)((src[0] < dst[0]) ? src[0] : dst[0]);
-      dst[1] = (::u8)((src[1] < dst[1]) ? src[1] : dst[1]);
-      dst[2] = (::u8)((src[2] < dst[2]) ? src[2] : dst[2]);
+      dst[0] = (unsigned char)((src[0] < dst[0]) ? src[0] : dst[0]);
+      dst[1] = (unsigned char)((src[1] < dst[1]) ? src[1] : dst[1]);
+      dst[2] = (unsigned char)((src[2] < dst[2]) ? src[2] : dst[2]);
       dst += 4;
       src += 4;
    }
@@ -4207,19 +4207,19 @@ void image::Difference(::image::image* pimage)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      i32 Difference;
+      int Difference;
       Difference = src[0] - dst[0];
-      dst[0] = (::u8)((Difference < 0) ? -Difference : Difference);
+      dst[0] = (unsigned char)((Difference < 0) ? -Difference : Difference);
       Difference = src[1] - dst[1];
-      dst[1] = (::u8)((Difference < 0) ? -Difference : Difference);
+      dst[1] = (unsigned char)((Difference < 0) ? -Difference : Difference);
       Difference = src[2] - dst[2];
-      dst[2] = (::u8)((Difference < 0) ? -Difference : Difference);
+      dst[2] = (unsigned char)((Difference < 0) ? -Difference : Difference);
       dst += 4;
       src += 4;
    }
@@ -4239,15 +4239,15 @@ void image::Lighten(::image::image* pimage)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)((src[0] > dst[0]) ? src[0] : dst[0]);
-      dst[1] = (::u8)((src[1] > dst[1]) ? src[1] : dst[1]);
-      dst[2] = (::u8)((src[2] > dst[2]) ? src[2] : dst[2]);
+      dst[0] = (unsigned char)((src[0] > dst[0]) ? src[0] : dst[0]);
+      dst[1] = (unsigned char)((src[1] > dst[1]) ? src[1] : dst[1]);
+      dst[2] = (unsigned char)((src[2] > dst[2]) ? src[2] : dst[2]);
       dst += 4;
       src += 4;
    }
@@ -4262,14 +4262,14 @@ void image::Lighten(::image::image* pimage)
 /// < 0 darker (non safe)
 void image::lighten(double dRate)
 {
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] += (::u8)((dst[3] - dst[0]) * dRate);
-      dst[1] += (::u8)((dst[3] - dst[1]) * dRate);
-      dst[2] += (::u8)((dst[3] - dst[2]) * dRate);
+      dst[0] += (unsigned char)((dst[3] - dst[0]) * dRate);
+      dst[1] += (unsigned char)((dst[3] - dst[1]) * dRate);
+      dst[2] += (unsigned char)((dst[3] - dst[2]) * dRate);
       dst += 4;
    }
 
@@ -4288,15 +4288,15 @@ void image::Multiply(::image::image* pimage)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)(((src[0]) * (dst[0])) >> 8);
-      dst[1] = (::u8)(((src[1]) * (dst[1])) >> 8);
-      dst[2] = (::u8)(((src[2]) * (dst[2])) >> 8);
+      dst[0] = (unsigned char)(((src[0]) * (dst[0])) >> 8);
+      dst[1] = (unsigned char)(((src[1]) * (dst[1])) >> 8);
+      dst[2] = (unsigned char)(((src[2]) * (dst[2])) >> 8);
       dst += 4;
       src += 4;
    }
@@ -4316,15 +4316,15 @@ void image::Screen(::image::image* pimage)
 
    }
 
-   u8* src = (u8*)pimage->data();
-   u8* dst = (u8*)data();
+   unsigned char* src = (unsigned char*)pimage->data();
+   unsigned char* dst = (unsigned char*)data();
    i64 size = scan_area();
 
    while (size--)
    {
-      dst[0] = (::u8)(255 - (((255 - src[0]) * (255 - dst[0])) >> 8));
-      dst[1] = (::u8)(255 - (((255 - src[1]) * (255 - dst[1])) >> 8));
-      dst[2] = (::u8)(255 - (((255 - src[2]) * (255 - dst[2])) >> 8));
+      dst[0] = (unsigned char)(255 - (((255 - src[0]) * (255 - dst[0])) >> 8));
+      dst[1] = (unsigned char)(255 - (((255 - src[1]) * (255 - dst[1])) >> 8));
+      dst[2] = (unsigned char)(255 - (((255 - src[2]) * (255 - dst[2])) >> 8));
       dst += 4;
       src += 4;
    }
@@ -4416,22 +4416,22 @@ void image::copy_from(::image::image *pimage, enum_flag eflagCreate)
 //}
 
 
-void image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B)
+void image::fill_rectangle(const ::rectangle_i32& rectangle, int R, int G, int B)
 {
 
-   i32 x = rectangle.left();
+   int x = rectangle.left();
 
-   i32 y = rectangle.top();
+   int y = rectangle.top();
 
-   i32 w = rectangle.width();
+   int w = rectangle.width();
 
-   i32 h = rectangle.height();
+   int h = rectangle.height();
 
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + w) < width()) ? w : width() - x;
+   int Δy = ((y + h) < height()) ? h : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4450,12 +4450,12 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B
    while (Δy--)
    {
 
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
 
-         ((u8*)&dst[i])[0] = R;
-         ((u8*)&dst[i])[1] = G;
-         ((u8*)&dst[i])[2] = B;
+         ((unsigned char*)&dst[i])[0] = R;
+         ((unsigned char*)&dst[i])[1] = G;
+         ((unsigned char*)&dst[i])[2] = B;
 
       }
 
@@ -4474,18 +4474,18 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, ::color::color colo
    if (m_bMapped)
    {
 
-      i32 x = rectangle.left();
+      int x = rectangle.left();
 
-      i32 y = rectangle.top();
+      int y = rectangle.top();
 
-      i32 w = rectangle.width();
+      int w = rectangle.width();
 
-      i32 h = rectangle.height();
+      int h = rectangle.height();
 
       ::image32_t u32Color(color, color_indexes());
 
       // Clip Rect
-      i32 px = x;
+      int px = x;
       if (w < 0)
       {
          px += w;
@@ -4493,16 +4493,16 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, ::color::color colo
       }
 
       px = (px >= 0) ? px : 0;
-      i32 py = y;
+      int py = y;
       if (h < 0)
       {
          py += h;
          h = -h;
       }
       py = (py >= 0) ? py : 0;
-      i32 Δx;
+      int Δx;
       Δx = ((px + w) < width()) ? w : width() - px;
-      i32 Δy;
+      int Δy;
       Δy = ((py + h) < height()) ? h : height() - py;
       Δx = (px >= 0) ? Δx : Δx + x;
       Δy = (py >= 0) ? Δy : Δy + y;
@@ -4517,7 +4517,7 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, ::color::color colo
       while (Δy--)
       {
 
-         for (i32 i = 0; i < Δx; i++)
+         for (int i = 0; i < Δx; i++)
          {
 
             dst[i] = u32Color;
@@ -4557,24 +4557,24 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, ::color::color colo
 }
 
 
-void image::fill_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B, i32 A)
+void image::fill_glass_rect(const ::rectangle_i32& rectangle, int R, int G, int B, int A)
 
 {
 
-   i32 x = rectangle.left();
+   int x = rectangle.left();
 
-   i32 y = rectangle.top();
+   int y = rectangle.top();
 
-   i32 w = rectangle.width();
+   int w = rectangle.width();
 
-   i32 h = rectangle.height();
+   int h = rectangle.height();
 
 
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + w) < width()) ? w : width() - x;
+   int Δy = ((y + h) < height()) ? h : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4583,16 +4583,16 @@ void image::fill_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 
       return;
 
    // Prepare buffer Address
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do FillGlass
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)(((B - dst[0]) * A + (dst[0] << 8)) >> 8);
-         dst[1] = (::u8)(((G - dst[1]) * A + (dst[1] << 8)) >> 8);
-         dst[2] = (::u8)(((R - dst[2]) * A + (dst[2] << 8)) >> 8);
+         dst[0] = (unsigned char)(((B - dst[0]) * A + (dst[0] << 8)) >> 8);
+         dst[1] = (unsigned char)(((G - dst[1]) * A + (dst[1] << 8)) >> 8);
+         dst[2] = (unsigned char)(((R - dst[2]) * A + (dst[2] << 8)) >> 8);
          dst += 4;
       }
 
@@ -4605,24 +4605,24 @@ void image::fill_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 
 }
 
 
-void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B)
+void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, int R, int G, int B)
 
 {
 
-   i32 x = rectangle.left();
+   int x = rectangle.left();
 
-   i32 y = rectangle.top();
+   int y = rectangle.top();
 
-   i32 w = rectangle.width();
+   int w = rectangle.width();
 
-   i32 h = rectangle.height();
+   int h = rectangle.height();
 
 
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + w) < width()) ? w : width() - x;
-   i32 Δy = ((y + h) < height()) ? h : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + w) < width()) ? w : width() - x;
+   int Δy = ((y + h) < height()) ? h : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4635,9 +4635,9 @@ void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i3
    image32_t color(rgb(B, G, R), color_indexes());
 
    // Do FillStippledGlass
-   for (i32 j = 0; j < Δy; j++)
+   for (int j = 0; j < Δy; j++)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
          dst[i] = ((i + j) & 0x1) ? dst[i] : color;
       }
@@ -4649,13 +4649,13 @@ void image::fill_stippled_glass_rect(const ::rectangle_i32& rectangle, i32 R, i3
 }
 
 
-void image::BlendRect(::image::image* pimage, i32 x, i32 y, i32 A)
+void image::BlendRect(::image::image* pimage, int x, int y, int A)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4664,17 +4664,17 @@ void image::BlendRect(::image::image* pimage, i32 x, i32 y, i32 A)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Blend
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)(((src[0] - dst[0]) * A + (dst[0] << 8)) >> 8);
-         dst[1] = (::u8)(((src[1] - dst[1]) * A + (dst[1] << 8)) >> 8);
-         dst[2] = (::u8)(((src[2] - dst[2]) * A + (dst[2] << 8)) >> 8);
+         dst[0] = (unsigned char)(((src[0] - dst[0]) * A + (dst[0] << 8)) >> 8);
+         dst[1] = (unsigned char)(((src[1] - dst[1]) * A + (dst[1] << 8)) >> 8);
+         dst[2] = (unsigned char)(((src[2] - dst[2]) * A + (dst[2] << 8)) >> 8);
          dst += 4;
          src += 4;
       }
@@ -4687,13 +4687,13 @@ void image::BlendRect(::image::image* pimage, i32 x, i32 y, i32 A)
 }
 
 
-void image::DarkenRect(::image::image* pimage, i32 x, i32 y)
+void image::DarkenRect(::image::image* pimage, int x, int y)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4702,17 +4702,17 @@ void image::DarkenRect(::image::image* pimage, i32 x, i32 y)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Darken
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)((src[0] < dst[0]) ? src[0] : dst[0]);
-         dst[1] = (::u8)((src[1] < dst[1]) ? src[1] : dst[1]);
-         dst[2] = (::u8)((src[2] < dst[2]) ? src[2] : dst[2]);
+         dst[0] = (unsigned char)((src[0] < dst[0]) ? src[0] : dst[0]);
+         dst[1] = (unsigned char)((src[1] < dst[1]) ? src[1] : dst[1]);
+         dst[2] = (unsigned char)((src[2] < dst[2]) ? src[2] : dst[2]);
          dst += 4;
          src += 4;
       }
@@ -4725,13 +4725,13 @@ void image::DarkenRect(::image::image* pimage, i32 x, i32 y)
 }
 
 
-void image::DifferenceRect(::image::image* pimage, i32 x, i32 y)
+void image::DifferenceRect(::image::image* pimage, int x, int y)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4740,21 +4740,21 @@ void image::DifferenceRect(::image::image* pimage, i32 x, i32 y)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Difference
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         i32 Difference;
+         int Difference;
          Difference = src[0] - dst[0];
-         dst[0] = (::u8)((Difference < 0) ? -Difference : Difference);
+         dst[0] = (unsigned char)((Difference < 0) ? -Difference : Difference);
          Difference = src[1] - dst[1];
-         dst[1] = (::u8)((Difference < 0) ? -Difference : Difference);
+         dst[1] = (unsigned char)((Difference < 0) ? -Difference : Difference);
          Difference = src[2] - dst[2];
-         dst[2] = (::u8)((Difference < 0) ? -Difference : Difference);
+         dst[2] = (unsigned char)((Difference < 0) ? -Difference : Difference);
          dst += 4;
          src += 4;
       }
@@ -4767,13 +4767,13 @@ void image::DifferenceRect(::image::image* pimage, i32 x, i32 y)
 }
 
 
-void image::LightenRect(::image::image* pimage, i32 x, i32 y)
+void image::LightenRect(::image::image* pimage, int x, int y)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4782,17 +4782,17 @@ void image::LightenRect(::image::image* pimage, i32 x, i32 y)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Lighten
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)((src[0] > dst[0]) ? src[0] : dst[0]);
-         dst[1] = (::u8)((src[1] > dst[1]) ? src[1] : dst[1]);
-         dst[2] = (::u8)((src[2] > dst[2]) ? src[2] : dst[2]);
+         dst[0] = (unsigned char)((src[0] > dst[0]) ? src[0] : dst[0]);
+         dst[1] = (unsigned char)((src[1] > dst[1]) ? src[1] : dst[1]);
+         dst[2] = (unsigned char)((src[2] > dst[2]) ? src[2] : dst[2]);
          dst += 4;
          src += 4;
       }
@@ -4805,13 +4805,13 @@ void image::LightenRect(::image::image* pimage, i32 x, i32 y)
 }
 
 
-void image::MultiplyRect(::image::image* pimage, i32 x, i32 y)
+void image::MultiplyRect(::image::image* pimage, int x, int y)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4820,17 +4820,17 @@ void image::MultiplyRect(::image::image* pimage, i32 x, i32 y)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Multiply
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)(((src[0]) * (dst[0])) >> 8);
-         dst[1] = (::u8)(((src[1]) * (dst[1])) >> 8);
-         dst[2] = (::u8)(((src[2]) * (dst[2])) >> 8);
+         dst[0] = (unsigned char)(((src[0]) * (dst[0])) >> 8);
+         dst[1] = (unsigned char)(((src[1]) * (dst[1])) >> 8);
+         dst[2] = (unsigned char)(((src[2]) * (dst[2])) >> 8);
          dst += 4;
          src += 4;
       }
@@ -4843,13 +4843,13 @@ void image::MultiplyRect(::image::image* pimage, i32 x, i32 y)
 }
 
 
-void image::ScreenRect(::image::image* pimage, i32 x, i32 y)
+void image::ScreenRect(::image::image* pimage, int x, int y)
 {
    // Clip Rect
-   i32 px = (x >= 0) ? x : 0;
-   i32 py = (y >= 0) ? y : 0;
-   i32 Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
-   i32 Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
+   int px = (x >= 0) ? x : 0;
+   int py = (y >= 0) ? y : 0;
+   int Δx = ((x + pimage->width()) < width()) ? pimage->width() : width() - x;
+   int Δy = ((y + pimage->height()) < height()) ? pimage->height() : height() - y;
    Δx = (x >= 0) ? Δx : Δx + x;
    Δy = (y >= 0) ? Δy : Δy + y;
 
@@ -4858,17 +4858,17 @@ void image::ScreenRect(::image::image* pimage, i32 x, i32 y)
       return;
 
    // Prepare buffer Addresses
-   u8* src = (u8*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
-   u8* dst = (u8*)data() + ((py * width()) + px) * 4;
+   unsigned char* src = (unsigned char*)pimage->data() + (((py - y) * pimage->width()) + px - x) * 4;
+   unsigned char* dst = (unsigned char*)data() + ((py * width()) + px) * 4;
 
    // Do Screen
    while (Δy--)
    {
-      for (i32 i = 0; i < Δx; i++)
+      for (int i = 0; i < Δx; i++)
       {
-         dst[0] = (::u8)(255 - (((255 - src[0]) * (255 - dst[0])) >> 8));
-         dst[1] = (::u8)(255 - (((255 - src[1]) * (255 - dst[1])) >> 8));
-         dst[2] = (::u8)(255 - (((255 - src[2]) * (255 - dst[2])) >> 8));
+         dst[0] = (unsigned char)(255 - (((255 - src[0]) * (255 - dst[0])) >> 8));
+         dst[1] = (unsigned char)(255 - (((255 - src[1]) * (255 - dst[1])) >> 8));
+         dst[2] = (unsigned char)(255 - (((255 - src[2]) * (255 - dst[2])) >> 8));
          dst += 4;
          src += 4;
       }
@@ -4885,9 +4885,9 @@ void image::ScreenRect(::image::image* pimage, i32 x, i32 y)
 // Line Functions
 //////////////////////////////////////////////////////////////////////
 
-/*void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
+/*void image::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
 {
-i32 Δx, Δy, k1, k2, d, x, y;
+int Δx, Δy, k1, k2, d, x, y;
 image32_t color=rgb ( B, G, R );
 
 Δx=x2-x1;
@@ -4917,7 +4917,7 @@ data()[y*width()+x]=color;
 }*/
 
 
-void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
+void image::horizontal_line(int y, ::color::color color, int x1, int x2)
 {
    if (width() == 0)
       return;
@@ -4937,15 +4937,15 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
    
    auto yflipped = (h - y - 1);
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) +  yflipped * (m_iScan));
+   image32_t* pdata = (image32_t*)((unsigned char *) data() + x1 * sizeof(image32_t) +  yflipped * (m_iScan));
 
 #else
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) + y * (m_iScan));
+   image32_t* pdata = (image32_t*)((unsigned char *) data() + x1 * sizeof(image32_t) + y * (m_iScan));
 
 #endif
 
-   for (i32 x = x1; x <= x2; x++)
+   for (int x = x1; x <= x2; x++)
    {
 
       *pdata = u32ImageColor;
@@ -4959,7 +4959,7 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
 }
 
 
-void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
+void image::vertical_line(int x, ::color::color color, int y1, int y2)
 {
    if (height() == 0)
       return;
@@ -4978,20 +4978,20 @@ void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
 
 #ifdef __APPLE__
 
-   image32_t* pdata = (image32_t*)((::u8*)data() + x *sizeof(image32_t) + ((height() - y2 - 1) * m_iScan));
+   image32_t* pdata = (image32_t*)((unsigned char*)data() + x *sizeof(image32_t) + ((height() - y2 - 1) * m_iScan));
 
 #else
 
-   image32_t* pdata = (image32_t*)((::u8*)data() + x *sizeof(image32_t) + (y1 * m_iScan));
+   image32_t* pdata = (image32_t*)((unsigned char*)data() + x *sizeof(image32_t) + (y1 * m_iScan));
    
 #endif
 
-   for (i32 y = y1; y <= y2; y++)
+   for (int y = y1; y <= y2; y++)
    {
 
       *pdata = u32ImageColor;
 
-      ((::u8*&)pdata)+=m_iScan;
+      ((unsigned char*&)pdata)+=m_iScan;
 
    }
 
@@ -5047,9 +5047,9 @@ void image::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::co
 }
 
 
-void image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
+void image::Line(int x1, int y1, int x2, int y2, int R, int G, int B)
 {
-   i32 d, x, y, aura, ay, sx, sy, Δx, Δy;
+   int d, x, y, aura, ay, sx, sy, Δx, Δy;
    image32_t color(rgb(B, G, R), color_indexes());
 
    Δx = x2 - x1;
@@ -5097,11 +5097,11 @@ void image::Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)
 }
 
 
-void image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A)
+void image::LineGlass(int x1, int y1, int x2, int y2, int R, int G, int B, int A)
 {
-   i32 d, x, y, aura, ay, sx, sy, Δx, Δy;
+   int d, x, y, aura, ay, sx, sy, Δx, Δy;
    //      image32_t color=rgb ( B, G, R );
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    Δx = x2 - x1;
    aura = abs(Δx) << 1;
@@ -5117,9 +5117,9 @@ void image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
       d = ay - (aura >> 1);
       while (x != x2)
       {
-         dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] = (::u8)(((B - dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2]) * A + (dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] << 8)) >> 8);
-         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] = (::u8)(((G - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] << 8)) >> 8);
-         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] = (::u8)(((R - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] << 8)) >> 8);
+         dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] = (unsigned char)(((B - dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2]) * A + (dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] << 8)) >> 8);
+         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] = (unsigned char)(((G - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] << 8)) >> 8);
+         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] = (unsigned char)(((R - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] << 8)) >> 8);
          if (d >= 0)
          {
             y += sy;
@@ -5134,9 +5134,9 @@ void image::LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A
       d = aura - (ay >> 1);
       while (y != y2)
       {
-         dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] = (::u8)(((B - dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2]) * A + (dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] << 8)) >> 8);
-         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] = (::u8)(((G - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] << 8)) >> 8);
-         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] = (::u8)(((R - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] << 8)) >> 8);
+         dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] = (unsigned char)(((B - dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2]) * A + (dst[(y * (m_iScan / sizeof(image32_t)) + x) << 2] << 8)) >> 8);
+         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] = (unsigned char)(((G - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 1] << 8)) >> 8);
+         dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] = (unsigned char)(((R - dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2]) * A + (dst[((y * (m_iScan / sizeof(image32_t)) + x) << 2) + 2] << 8)) >> 8);
          if (d >= 0)
          {
             x += sx;
@@ -5160,7 +5160,7 @@ void image::Mask(::color::color colorMask, ::color::color colorInMask, ::color::
 
    i64 size = scan_area();
 
-   for (i32 i = 0; i < size; i++)
+   for (int i = 0; i < size; i++)
       if (data()[i] == crFind)
          data()[i] = crSet;
       else
@@ -5178,19 +5178,19 @@ void image::transparent_color(::color::color color)
 
    i64 iSize = scan_area();
 
-   for (i32 i = 0; i < iSize; i++)
+   for (int i = 0; i < iSize; i++)
    {
 
       if (data()[i].rgb(color_indexes()) == crFind.rgb(color_indexes()))
       {
 
-         ((::u8*)&data()[i])[3] = 255;
+         ((unsigned char*)&data()[i])[3] = 255;
 
       }
       else
       {
 
-         ((::u8*)&data()[i])[3] = 0;
+         ((unsigned char*)&data()[i])[3] = 0;
 
       }
 
@@ -5204,13 +5204,13 @@ void image::transparent_color(::color::color color)
 void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::enum_channel echannel)
 {
 
-   i32 size = (m_iScan / sizeof(image32_t)) * height();
+   int size = (m_iScan / sizeof(image32_t)) * height();
 
    uchar* puch = (uchar*)data();
 
-   puch += ((i32)echannel) % 4;
+   puch += ((int)echannel) % 4;
 
-   for (i32 i = 0; i < size; i++)
+   for (int i = 0; i < size; i++)
    {
 
       if (*puch == uchFind)
@@ -5235,14 +5235,14 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 }
 
 
-::color::color image::GetPixel(i32 x, i32 y)
+::color::color image::GetPixel(int x, int y)
 {
 
    map();
 
    ::u32 u32 = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_u32;
 
-   u8* p = (u8*)&u32;
+   unsigned char* p = (unsigned char*)&u32;
 
    int iOpacity = p[m_colorindexes.m_u8IndexOpacity];
 
@@ -5273,7 +5273,7 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 // The gradient can't have more then 256 levels of the most bright color
 // (white). So creating a radial fill of radius 256 and then using fasting
 // stretching algorithms is much faster than calculating radial fill.
-void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter, i32 yCenter, i32 iRadius)
+void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char green, unsigned char blue, int xCenter, int yCenter, int iRadius)
 {
 
    if (iRadius == 0)
@@ -5288,12 +5288,12 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
    /*if(version == 0)
    {
 
-   i32 iR = iRadius - 1;
+   int iR = iRadius - 1;
 
-   i32 xL = xCenter - iR;
-   i32 xU = xCenter + iR;
-   i32 yL = yCenter - iR;
-   i32 yU = yCenter + iR;
+   int xL = xCenter - iR;
+   int xU = xCenter + iR;
+   int yL = yCenter - iR;
+   int yU = yCenter + iR;
 
 
    if(xL < 0) xL = 0;
@@ -5302,28 +5302,28 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
    if(yU >= m_Size.height()) yU = m_Size.height() - 1;
 
 
-   u8 *dst = ((u8 *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
+   unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
    u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
-   i32 size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
+   int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
-   i32 Δx, Δy;
-   i32 dx0, dy0;
-   i32 dx1, dy1;
-   i32 dx2, dy2;
-   i32 dx3, dy3;
-   i32 dx4, dy4;
-   i32 dx5, dy5;
-   i32 dx6, dy6;
-   i32 dx7, dy7;
-   i32 dx8, dy8;
-   i32 dx9, dy9;
-   i32 dxA, dyA;
-   i32 dxB, dyB;
-   i32 dxC, dyC;
-   i32 dxD, dyD;
-   i32 dxE, dyE;
-   i32 dxF, dyF;
+   int Δx, Δy;
+   int dx0, dy0;
+   int dx1, dy1;
+   int dx2, dy2;
+   int dx3, dy3;
+   int dx4, dy4;
+   int dx5, dy5;
+   int dx6, dy6;
+   int dx7, dy7;
+   int dx8, dy8;
+   int dx9, dy9;
+   int dxA, dyA;
+   int dxB, dyB;
+   int dxC, dyC;
+   int dxD, dyD;
+   int dxE, dyE;
+   int dxF, dyF;
 
    unsigned long dr;
    unsigned long dq;
@@ -5343,7 +5343,7 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
    unsigned long drD, dqD;
    unsigned long drE, dqE;
    unsigned long drF, dqF;
-   i32 x, y;
+   int x, y;
 
    {
    for(y = yL; y <= yU; y++)
@@ -5369,42 +5369,42 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
    else if(version == 1)*/
    {
 
-      ::u8* pbAlloc = (::u8*)malloc(iRadius * iRadius);
+      unsigned char* pbAlloc = (unsigned char*)malloc(iRadius * iRadius);
 
-      ::u8* pb = pbAlloc;
+      unsigned char* pb = pbAlloc;
 
 
 
-      i32 x, y;
-      i32 b;
+      int x, y;
+      int b;
 
-      //         i32 r2 = iRadius * iRadius;
+      //         int r2 = iRadius * iRadius;
 
       for (y = 0; y < iRadius; y++)
       {
          for (x = y; x < iRadius; x++)
          {
-            b = (i32)(sqrt((double)(x * x) + (y * y)) * 255 / iRadius);
+            b = (int)(sqrt((double)(x * x) + (y * y)) * 255 / iRadius);
             if (b > 255)
                b = 0;
             else
                b = 255 - b;
 
 
-            pb[x + y * iRadius] = (::u8)b;
+            pb[x + y * iRadius] = (unsigned char)b;
 
-            pb[y + x * iRadius] = (::u8)b;
+            pb[y + x * iRadius] = (unsigned char)b;
 
          }
       }
 
 
-      i32 iR = iRadius - 1;
+      int iR = iRadius - 1;
 
-      i32 xL = xCenter - iR;
-      i32 xU = xCenter + iR;
-      i32 yL = yCenter - iR;
-      i32 yU = yCenter + iR;
+      int xL = xCenter - iR;
+      int xU = xCenter + iR;
+      int yL = yCenter - iR;
+      int yU = yCenter + iR;
 
 
       if (xL < 0) xL = 0;
@@ -5413,11 +5413,11 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
       if (yU >= height()) yU = height() - 1;
 
 
-      u8* dst = ((u8*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
+      unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
       u32 dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
       //         i64 size = area();
 
-      i32 Δx, Δy;
+      int Δx, Δy;
 
       // Top Left
 
@@ -5429,10 +5429,10 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
             Δy = abs(y - yCenter);
             b = pb[Δx + Δy * iRadius];
 
-            dst[0] = ::u8(blue * b / 255);
-            dst[1] = ::u8(green * b / 255);
-            dst[2] = ::u8(red * b / 255);
-            dst[3] = ::u8(alpha * b / 255);
+            dst[0] = unsigned char(blue * b / 255);
+            dst[1] = unsigned char(green * b / 255);
+            dst[2] = unsigned char(red * b / 255);
+            dst[3] = unsigned char(alpha * b / 255);
             dst += 4;
          }
          dst += dwAdd;
@@ -5448,9 +5448,9 @@ void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter,
 
 
 void image::RadialFill(
-   ::u8 alpha1, ::u8 red1, ::u8 green1, ::u8 blue1,
-   ::u8 alpha2, ::u8 red2, ::u8 green2, ::u8 blue2,
-   i32 xCenter, i32 yCenter, i32 iRadius)
+   unsigned char alpha1, unsigned char red1, unsigned char green1, unsigned char blue1,
+   unsigned char alpha2, unsigned char red2, unsigned char green2, unsigned char blue2,
+   int xCenter, int yCenter, int iRadius)
 {
    if (iRadius == 0)
       //return false;
@@ -5460,12 +5460,12 @@ void image::RadialFill(
    /*if(version == 0)
    {
 
-   i32 iR = iRadius - 1;
+   int iR = iRadius - 1;
 
-   i32 xL = xCenter - iR;
-   i32 xU = xCenter + iR;
-   i32 yL = yCenter - iR;
-   i32 yU = yCenter + iR;
+   int xL = xCenter - iR;
+   int xU = xCenter + iR;
+   int yL = yCenter - iR;
+   int yU = yCenter + iR;
 
 
    if(xL < 0) xL = 0;
@@ -5474,28 +5474,28 @@ void image::RadialFill(
    if(yU >= m_Size.height()) yU = m_Size.height() - 1;
 
 
-   u8 *dst = ((u8 *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
+   unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
    u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
-   i32 size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
+   int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
-   i32 Δx, Δy;
-   i32 dx0, dy0;
-   i32 dx1, dy1;
-   i32 dx2, dy2;
-   i32 dx3, dy3;
-   i32 dx4, dy4;
-   i32 dx5, dy5;
-   i32 dx6, dy6;
-   i32 dx7, dy7;
-   i32 dx8, dy8;
-   i32 dx9, dy9;
-   i32 dxA, dyA;
-   i32 dxB, dyB;
-   i32 dxC, dyC;
-   i32 dxD, dyD;
-   i32 dxE, dyE;
-   i32 dxF, dyF;
+   int Δx, Δy;
+   int dx0, dy0;
+   int dx1, dy1;
+   int dx2, dy2;
+   int dx3, dy3;
+   int dx4, dy4;
+   int dx5, dy5;
+   int dx6, dy6;
+   int dx7, dy7;
+   int dx8, dy8;
+   int dx9, dy9;
+   int dxA, dyA;
+   int dxB, dyB;
+   int dxC, dyC;
+   int dxD, dyD;
+   int dxE, dyE;
+   int dxF, dyF;
 
    unsigned long dr;
    unsigned long dq;
@@ -5515,7 +5515,7 @@ void image::RadialFill(
    unsigned long drD, dqD;
    unsigned long drE, dqE;
    unsigned long drF, dqF;
-   i32 x, y;
+   int x, y;
 
    {
    for(y = yL; y <= yU; y++)
@@ -5545,43 +5545,43 @@ void image::RadialFill(
       //
       //         mem.set_size((iRadius * iRadius) + 4);
       //
-      //         ::u8 * pbAlloc = mem.data();
+      //         unsigned char * pbAlloc = mem.data();
 
       //
-      //         ::u8 * pb = pbAlloc;
+      //         unsigned char * pb = pbAlloc;
 
       //
       //
-      //         i32 x, y;
-      //         i32 b;
+      //         int x, y;
+      //         int b;
       //
-      ////         i32 r2 = iRadius * iRadius;
+      ////         int r2 = iRadius * iRadius;
       //
       //         for(y = 0; y < iRadius; y++)
       //         {
       //            for(x = y; x < iRadius; x++)
       //            {
       //
-      //               b = (i32) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+      //               b = (int) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
       //
       //               if(b > 255)
       //                  b = 255;
       //
       //
-      //               pb[x + y * iRadius] = (::u8) b;
+      //               pb[x + y * iRadius] = (unsigned char) b;
 
-      //               pb[y + x * iRadius] = (::u8) b;
+      //               pb[y + x * iRadius] = (unsigned char) b;
 
       //            }
       //         }
 
 
-      i32 iR = iRadius;
+      int iR = iRadius;
 
-      i32 xL = xCenter - iR;
-      i32 xU = xCenter + iR;
-      i32 yL = yCenter - iR;
-      i32 yU = yCenter + iR;
+      int xL = xCenter - iR;
+      int xU = xCenter + iR;
+      int yL = yCenter - iR;
+      int yU = yCenter + iR;
 
 
       if (xL < 0) xL = 0;
@@ -5590,7 +5590,7 @@ void image::RadialFill(
       if (yU > height()) yU = height();
 
 
-      u8* dst = ((u8*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
+      unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
       u32 dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
       //         i64 size = area();
 
@@ -5598,7 +5598,7 @@ void image::RadialFill(
 
       double dRadius = 255.0 / (double)iRadius;
 
-      ::u8 bComp;
+      unsigned char bComp;
 
       int b;
 
@@ -5621,10 +5621,10 @@ void image::RadialFill(
             }
 
             bComp = 255 - b;
-            dst[0] = ::u8(((blue1 * bComp) + (blue2 * b)) / 255);
-            dst[1] = ::u8(((green1 * bComp) + (green2 * b)) / 255);
-            dst[2] = ::u8(((red1 * bComp) + (red2 * b)) / 255);
-            dst[3] = ::u8(((alpha1 * bComp) + (alpha2 * b)) / 255);
+            dst[0] = unsigned char(((blue1 * bComp) + (blue2 * b)) / 255);
+            dst[1] = unsigned char(((green1 * bComp) + (green2 * b)) / 255);
+            dst[2] = unsigned char(((red1 * bComp) + (red2 * b)) / 255);
+            dst[3] = unsigned char(((alpha1 * bComp) + (alpha2 * b)) / 255);
             dst += 4;
          }
          dst += dwAdd;
@@ -5638,7 +5638,7 @@ void image::RadialFill(
 
 
 
-void image::SetIconMask(::image::icon* picon, i32 cx, i32 cy)
+void image::SetIconMask(::image::icon* picon, int cx, int cy)
 {
 
    //      throw ::exception(todo);
@@ -5723,14 +5723,14 @@ void image::SetIconMask(::image::icon* picon, i32 cx, i32 cy)
    //
    //#endif
    //
-   //      u8 * r1 = (u8 *)pimage1->data();
-   //      u8 * r2 = (u8 *)pimage2->data();
-   //      u8 * srcM = (u8 *)imageM.data();
-   //      u8 * dest = (u8 *)data();
-   //      i32 iSize = width()*height();
+   //      unsigned char * r1 = (unsigned char *)pimage1->data();
+   //      unsigned char * r2 = (unsigned char *)pimage2->data();
+   //      unsigned char * srcM = (unsigned char *)imageM.data();
+   //      unsigned char * dest = (unsigned char *)data();
+   //      int iSize = width()*height();
    //
-   //      ::u8 b;
-   //      ::u8 bMax;
+   //      unsigned char b;
+   //      unsigned char bMax;
    //      while (iSize-- > 0)
    //      {
    //         if (srcM[0] == 255)
@@ -5740,11 +5740,11 @@ void image::SetIconMask(::image::icon* picon, i32 cx, i32 cy)
    //         else
    //         {
    //            bMax = 0;
-   //            b = (::u8)(r1[0] - r2[0]);
+   //            b = (unsigned char)(r1[0] - r2[0]);
    //            bMax = maximum(b, bMax);
-   //            b = (::u8)(r1[1] - r2[1]);
+   //            b = (unsigned char)(r1[1] - r2[1]);
    //            bMax = maximum(b, bMax);
-   //            b = (::u8)(r1[2] - r2[2]);
+   //            b = (unsigned char)(r1[2] - r2[2]);
    //            bMax = maximum(b, bMax);
    //            bMax = 255 - bMax;
    //         }
@@ -5795,18 +5795,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
          pimage->map();
 
-         i32 cx = pimage->width();
+         int cx = pimage->width();
 
-         i32 cy = pimage->height();
+         int cy = pimage->height();
 
          int s = m_iScan / sizeof(image32_t);
 
          int srcS = pimage->m_iScan / sizeof(image32_t);
 
-         for (i32 i = 0; i < cx; i++)
+         for (int i = 0; i < cx; i++)
          {
 
-            for (i32 j = 0; j < cy; j++)
+            for (int j = 0; j < cy; j++)
             {
 
                image32()[i * s + j] = pimage->image32()[(cy - j - 1) * srcS + i];
@@ -5829,18 +5829,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
          pimage->map();
 
-         i32 cx = width();
+         int cx = width();
 
-         i32 cy = height();
+         int cy = height();
 
          int s = m_iScan / sizeof(image32_t);
 
          int srcS = pimage->m_iScan / sizeof(image32_t);
 
-         for (i32 i = 0; i < cy; i++)
+         for (int i = 0; i < cy; i++)
          {
 
-            for (i32 j = 0; j < cx; j++)
+            for (int j = 0; j < cx; j++)
             {
 
                image32()[(cy - i - 1) * s + (cx - j - 1)] = pimage->image32()[i * srcS + j];
@@ -5861,18 +5861,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
          pimage->map();
 
-         i32 cx = pimage->width();
+         int cx = pimage->width();
 
-         i32 cy = pimage->height();
+         int cy = pimage->height();
 
          int s = m_iScan / sizeof(image32_t);
 
          int srcS = pimage->m_iScan / sizeof(image32_t);
 
-         for (i32 i = 0; i < cx; i++)
+         for (int i = 0; i < cx; i++)
          {
 
-            for (i32 j = 0; j < cy; j++)
+            for (int j = 0; j < cy; j++)
             {
 
                image32()[i * s + j] = pimage->image32()[j * srcS + (cx - i - 1)];
@@ -5924,15 +5924,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
    auto pdataTarget = image32();
 
-   i32 l = maximum(wTarget, hTarget);
+   int l = maximum(wTarget, hTarget);
 
-   i32 jmax = minimum(l, hTarget / 2);
+   int jmax = minimum(l, hTarget / 2);
 
-   i32 jmin = -jmax;
+   int jmin = -jmax;
 
-   i32 imax = minimum(l, wTarget / 2);
+   int imax = minimum(l, wTarget / 2);
 
-   i32 imin = -imax;
+   int imin = -imax;
 
    int xoff = wSource / 2;
 
@@ -5956,15 +5956,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
    int y;
 
-   for (i32 j = jmin; j < jmax; j++)
+   for (int j = jmin; j < jmax; j++)
    {
 
-      for (i32 i = imin; i < imax; i++)
+      for (int i = imin; i < imax; i++)
       {
 
-         x = (i32)fabs((dCos * i - dSin * j) + xoff);
+         x = (int)fabs((dCos * i - dSin * j) + xoff);
 
-         y = (i32)fabs((dSin * i + dCos * j) + yoff);
+         y = (int)fabs((dSin * i + dCos * j) + yoff);
 
          x %= wSource;
 
@@ -6001,18 +6001,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
             pimage->map();
 
-            i32 cx = width();
+            int cx = width();
 
-            i32 cy = height();
+            int cy = height();
 
             int s = m_iScan / sizeof(image32_t);
 
             int srcS = pimage->m_iScan / sizeof(image32_t);
 
-            for (i32 i = 0; i < cx; i++)
+            for (int i = 0; i < cx; i++)
             {
 
-               for (i32 j = 0; j < cy; j++)
+               for (int j = 0; j < cy; j++)
                {
 
                   pimage->image32()[i * s + j] = image32()[(cy - j - 1) * srcS + i];
@@ -6036,18 +6036,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
          pimage->map();
 
-         i32 cx = width();
+         int cx = width();
 
-         i32 cy = height();
+         int cy = height();
 
          int s = m_iScan / sizeof(image32_t);
 
          int srcS = pimage->m_iScan / sizeof(image32_t);
 
-         for (i32 i = 0; i < cy; i++)
+         for (int i = 0; i < cy; i++)
          {
 
-            for (i32 j = 0; j < cx; j++)
+            for (int j = 0; j < cx; j++)
             {
 
                pimage->image32()[(cy - i - 1) * s + (cx - j - 1)] = image32()[i * srcS + j];
@@ -6067,18 +6067,18 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
             pimage->map();
 
-            i32 cx = width();
+            int cx = width();
 
-            i32 cy = height();
+            int cy = height();
 
             int s = m_iScan / sizeof(image32_t);
 
             int srcS = pimage->m_iScan / sizeof(image32_t);
 
-            for (i32 i = 0; i < cx; i++)
+            for (int i = 0; i < cx; i++)
             {
 
-               for (i32 j = 0; j < cy; j++)
+               for (int j = 0; j < cy; j++)
                {
 
                   pimage->image32()[i * s + j] = image32()[j * srcS + (cx - i - 1)];
@@ -6128,15 +6128,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
    auto pdataTarget = pimage->image32();
 
-   i32 l = maximum(wTarget, hTarget);
+   int l = maximum(wTarget, hTarget);
 
-   i32 jmax = minimum(l, hTarget / 2);
+   int jmax = minimum(l, hTarget / 2);
 
-   i32 jmin = -jmax;
+   int jmin = -jmax;
 
-   i32 imax = minimum(l, wTarget / 2);
+   int imax = minimum(l, wTarget / 2);
 
-   i32 imin = -imax;
+   int imin = -imax;
 
    int xoff = wSource / 2;
 
@@ -6160,15 +6160,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 
    int y;
 
-   for (i32 j = jmin; j < jmax; j++)
+   for (int j = jmin; j < jmax; j++)
    {
 
-      for (i32 i = imin; i < imax; i++)
+      for (int i = imin; i < imax; i++)
       {
 
-         x = (i32)fabs((dCos * i - dSin * j) + xoff);
+         x = (int)fabs((dCos * i - dSin * j) + xoff);
 
-         y = (i32)fabs((dSin * i + dCos * j) + yoff);
+         y = (int)fabs((dSin * i + dCos * j) + yoff);
 
          x %= wSource;
 
@@ -6208,15 +6208,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 //
 //   if (wTarget < 2 || hTarget < 2 || ::is_null(pdataTarget)) return;
 //
-//   i32 l = maximum(wTarget, hTarget);
+//   int l = maximum(wTarget, hTarget);
 //
-//   i32 jmax = minimum(l, hTarget / 2);
+//   int jmax = minimum(l, hTarget / 2);
 //
-//   i32 jmin = -jmax;
+//   int jmin = -jmax;
 //
-//   i32 imax = minimum(l, wTarget / 2);
+//   int imax = minimum(l, wTarget / 2);
 //
-//   i32 imin = -imax;
+//   int imin = -imax;
 //
 //   int xoff = wSource / 2;
 //
@@ -6240,15 +6240,15 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 //
 //   int y;
 //
-//   for (i32 j = jmin; j < jmax; j++)
+//   for (int j = jmin; j < jmax; j++)
 //   {
 //
-//      for (i32 i = imin; i < imax; i++)
+//      for (int i = imin; i < imax; i++)
 //      {
 //
-//         x = (i32)fabs((dCos * i - dSin * j) + xoff);
+//         x = (int)fabs((dCos * i - dSin * j) + xoff);
 //
-//         y = (i32)fabs((dSin * i + dCos * j) + yoff);
+//         y = (int)fabs((dSin * i + dCos * j) + yoff);
 //
 //         x %= wSource;
 //
@@ -6294,19 +6294,19 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
    auto hdstmid = hdst / 2.0;
    auto wdstmid = wdst / 2.0;
 
-   i32 ihdstmid = (::i32)hdstmid;
+   int ihdstmid = (int)hdstmid;
 
    auto hsrcmid = hsrc / 2.0;
    auto wsrcmid = wsrc / 2.0;
 
-   //i32 l = maximum(w, h);
+   //int l = maximum(w, h);
 
-   i32 jdstmin = (::i32)-hdstmid;
-   i32 jdstmax = jdstmin + hdst;
-   i32 idstmin = (::i32)-wdstmid;
-   i32 idstmax = idstmin + wdst;
+   int jdstmin = (int)-hdstmid;
+   int jdstmax = jdstmin + hdst;
+   int idstmin = (int)-wdstmid;
+   int idstmax = idstmin + wdst;
 
-   i32 k = 0;
+   int k = 0;
 
    double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
 
@@ -6320,10 +6320,10 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 
    int strideDst = m_iScan / sizeof(image32_t);
 
-   for (i32 jdst = jdstmin; jdst < jdstmax; jdst++)
+   for (int jdst = jdstmin; jdst < jdstmax; jdst++)
    {
 
-      int lineDst = (i32)(jdst + ihdstmid);
+      int lineDst = (int)(jdst + ihdstmid);
 
       if (lineDst < 0)
       {
@@ -6334,16 +6334,16 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 
       image32_t* pline = pdataDst + (lineDst * strideDst);
 
-      for (i32 idst = idstmin; idst < idstmax; idst++)
+      for (int idst = idstmin; idst < idstmax; idst++)
       {
 
-         i32 xsrc, ysrc;
+         int xsrc, ysrc;
 
          double dj = jdst;
          double di = idst;
 
-         xsrc = (i32)((dCos * di - dSin * dj) + wsrcmid);
-         ysrc = (i32)((dSin * di + dCos * dj) + hsrcmid);
+         xsrc = (int)((dCos * di - dSin * dj) + wsrcmid);
+         ysrc = (int)((dSin * di + dCos * dj) + hsrcmid);
 
          image32_t colorSrc(::color::black, color_indexes());
 
@@ -6371,32 +6371,32 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 //
 //{
 //
-//   i32 l = maximum(width(), height());
+//   int l = maximum(width(), height());
 //
-//   i32 jmax = minimum(l, height() / 2);
-//   i32 jmin = -jmax;
-//   i32 imax = minimum(l, width() / 2);
-//   i32 imin = -imax;
+//   int jmax = minimum(l, height() / 2);
+//   int jmin = -jmax;
+//   int imax = minimum(l, width() / 2);
+//   int imin = -imax;
 //
-//   i32 joff = height() / 2 + rectangle.left();
+//   int joff = height() / 2 + rectangle.left();
 //
-//   i32 ioff = width() / 2 + rectangle.top();
+//   int ioff = width() / 2 + rectangle.top();
 //
 //   int stride_unit = m_iScan / sizeof(image32_t);
-//   //i32 iAngle = iStep % 360;
-//   //i32 iAngle = iStep;
-//   //i32 iAngle = 1;
-//   //i32 k = 0;
+//   //int iAngle = iStep % 360;
+//   //int iAngle = iStep;
+//   //int iAngle = 1;
+//   //int k = 0;
 //
-//   /*     for ( i32 j=jmin; j<jmax; j++ )
+//   /*     for ( int j=jmin; j<jmax; j++ )
 //   {
-//   for ( i32 i=imin; i<imax; i++ )
+//   for ( int i=imin; i<imax; i++ )
 //   {
-//   i32 x, y;
+//   int x, y;
 //
 //   // A Combination of a 2d Translation/rotation/Scale Matrix
-//   x=i32(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-//   y=i32(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+//   x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+//   y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
 //   data()[(j+joff)*width()+(i+ioff)]=
 //   pimage->data()[abs(y%height())*width()+abs(x%width())];
 //   //k++;
@@ -6404,23 +6404,23 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 //   (j+joff)*width()+(i+ioff)
 //   }*/
 //
-//   i32 k = 0;
+//   int k = 0;
 //   double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
 //   double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-//   i32 cx1 = width() - 1;
-//   i32 cy1 = height() - 1;
-//   for (i32 j = jmin; j < jmax; j++)
+//   int cx1 = width() - 1;
+//   int cy1 = height() - 1;
+//   for (int j = jmin; j < jmax; j++)
 //   {
-//      for (i32 i = imin; i < imax; i++)
+//      for (int i = imin; i < imax; i++)
 //      {
-//         i32 x, y;
+//         int x, y;
 //
 //         // A Combination of a 2d Translation/rotation/Scale Matrix
-//         //x=abs((i32(dCos * i - dSin * j) + ioff) % width());
-//         //y=abs((i32(dSin * i + dCos * j) + joff) % height());
+//         //x=abs((int(dCos * i - dSin * j) + ioff) % width());
+//         //y=abs((int(dSin * i + dCos * j) + joff) % height());
 //
-//         x = (i32)fabs((dCos * i - dSin * j) + ioff);
-//         y = (i32)fabs((dSin * i + dCos * j) + joff);
+//         x = (int)fabs((dCos * i - dSin * j) + ioff);
+//         y = (int)fabs((dSin * i + dCos * j) + joff);
 //
 //         if ((x / width()) % 2 == 0)
 //         {
@@ -6493,18 +6493,18 @@ void image::e_rotate_90_flip_horizontally(::image::image* pimage)
 
    pimage->map();
 
-   i32 cx = pimage->width();
+   int cx = pimage->width();
 
-   i32 cy = pimage->height();
+   int cy = pimage->height();
 
    int s = m_iScan / sizeof(image32_t);
 
    int srcS = pimage->m_iScan / sizeof(image32_t);
 
-   for (i32 i = 0; i < cx; i++)
+   for (int i = 0; i < cx; i++)
    {
 
-      for (i32 j = 0; j < cy; j++)
+      for (int j = 0; j < cy; j++)
       {
 
          image32()[i * s + j] = pimage->image32()[j * srcS + i];
@@ -6525,18 +6525,18 @@ void image::e_rotate_180_flip_horizontally(::image::image* pimage)
 
    pimage->map();
 
-   i32 cx = width();
+   int cx = width();
 
-   i32 cy = height();
+   int cy = height();
 
    int s = m_iScan / sizeof(image32_t);
 
    int srcS = pimage->m_iScan / sizeof(image32_t);
 
-   for (i32 i = 0; i < cy; i++)
+   for (int i = 0; i < cy; i++)
    {
 
-      for (i32 j = 0; j < cx; j++)
+      for (int j = 0; j < cx; j++)
       {
 
          image32()[i * s + j] = pimage->image32()[(cy - i - 1) * srcS + j];
@@ -6557,18 +6557,18 @@ void image::e_rotate_270_flip_horizontally(::image::image* pimage)
 
    pimage->map();
 
-   i32 cx = pimage->width();
+   int cx = pimage->width();
 
-   i32 cy = pimage->height();
+   int cy = pimage->height();
 
    int s = m_iScan / sizeof(image32_t);
 
    int srcS = pimage->m_iScan / sizeof(image32_t);
 
-   for (i32 i = 0; i < cx; i++)
+   for (int i = 0; i < cx; i++)
    {
 
-      for (i32 j = 0; j < cy; j++)
+      for (int j = 0; j < cy; j++)
       {
 
          image32()[i * s + j] = pimage->image32()[(cy - j - 1) * srcS + (cx - i - 1)];
@@ -6677,10 +6677,10 @@ void image::clear(::color::color color)
 
       i64 size = scan_area();
 
-      ::u8 a = color.u8_opacity();
-      ::u8 r = color.u8_red();
-      ::u8 g = color.u8_green();
-      ::u8 b = color.u8_blue();
+      unsigned char a = color.u8_opacity();
+      unsigned char r = color.u8_red();
+      unsigned char g = color.u8_green();
+      unsigned char b = color.u8_blue();
 
       r = r * a / 255;
 
@@ -6745,7 +6745,7 @@ void image::clear(::color::color color)
 //}
 
 
-void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
+void image::clear_argb(int a, int r, int g, int b)
 {
 
    if (a == r && a == g && a == b)
@@ -6790,13 +6790,13 @@ void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
 
       iBLine = 0;
 
-      for (i32 y = 0; y < height(); y++)
+      for (int y = 0; y < height(); y++)
       {
 
-         ::u8* pb = ((::u8*)data()) + m_iScan * y;
+         unsigned char* pb = ((unsigned char*)data()) + m_iScan * y;
 
 
-         for (i32 x = 0; x < width(); x++)
+         for (int x = 0; x < width(); x++)
          {
 
             iRLine += pb[2];
@@ -6815,11 +6815,11 @@ void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
 
       }
 
-      i32 iR = (i32)(iRLine / iDiv);
+      int iR = (int)(iRLine / iDiv);
 
-      i32 iG = (i32)(iGLine / iDiv);
+      int iG = (int)(iGLine / iDiv);
 
-      i32 iB = (i32)(iBLine / iDiv);
+      int iB = (int)(iBLine / iDiv);
 
       return rgb(iR, iG, iB);
 
@@ -6843,23 +6843,23 @@ void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
    double dG = 0.0;
    double dB = 0.0;
 
-   i32 iRLine;
-   i32 iGLine;
-   i32 iBLine;
+   int iRLine;
+   int iGLine;
+   int iBLine;
 
    double dDiv = width() * height();
 
    if (dDiv > 0)
    {
 
-      for (i32 y = 0; y < height(); y++)
+      for (int y = 0; y < height(); y++)
       {
          iRLine = 0;
          iGLine = 0;
          iBLine = 0;
-         ::u8* pb = ((::u8*)data()) + m_iScan * y;
+         unsigned char* pb = ((unsigned char*)data()) + m_iScan * y;
 
-         for (i32 x = 0; x < width(); x++)
+         for (int x = 0; x < width(); x++)
          {
             if (pb[3] == 255)
 
@@ -6880,9 +6880,9 @@ void image::clear_argb(i32 a, i32 r, i32 g, i32 b)
          dG += iGLine / dDiv;
          dB += iBLine / dDiv;
       }
-      i32 iR = (i32)dR;
-      i32 iG = (i32)dG;
-      i32 iB = (i32)dB;
+      int iR = (int)dR;
+      int iG = (int)dG;
+      int iB = (int)dB;
       return rgb(iR, iG, iB);
    }
    else
@@ -6908,12 +6908,12 @@ void image::do_xor(::image::image* pimage)
 
    }
 
-   i32 iCount = width() * height();
+   int iCount = width() * height();
    ::u32* pd1 = (::u32*)data();
 
    ::u32* pd2 = (::u32*)pimage->data();
 
-   for (i32 i = 0; i < iCount; i++)
+   for (int i = 0; i < iCount; i++)
    {
       *pd1 = *pd1 ^ *pd2;
 
@@ -6928,37 +6928,37 @@ void image::do_xor(::image::image* pimage)
 }
 
 
-void image::create_frame(const ::size_i32& size, i32 iFrameCount)
+void image::create_frame(const ::size_i32& size, int iFrameCount)
 {
 
-   i32 iSliceCount = (i32)sqrt((double)iFrameCount);
+   int iSliceCount = (int)sqrt((double)iFrameCount);
 
    return create(size / iSliceCount);
 
 }
 
 
-void image::set_frame1(void* pdata, i32 iFrame, i32 iFrameCount)
+void image::set_frame1(void* pdata, int iFrame, int iFrameCount)
 
 {
-   i32 iSliceCount = (i32)sqrt((double)iFrameCount);
+   int iSliceCount = (int)sqrt((double)iFrameCount);
    if (iSliceCount == 0)
       iSliceCount = 1;
-   i32 iFrameWidth = width() / iSliceCount;
-   i32 iFrameHeight = height() / iSliceCount;
-   i32 iX = iFrame % iSliceCount;
-   i32 iY = iFrame / iSliceCount;
+   int iFrameWidth = width() / iSliceCount;
+   int iFrameHeight = height() / iSliceCount;
+   int iX = iFrame % iSliceCount;
+   int iY = iFrame / iSliceCount;
    image32_t* pdst = &data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
    image32_t* psrc = (image32_t*)pdata;
 
    image32_t* pdstline;
 
-   for (i32 y = 0; y < iFrameHeight; y++)
+   for (int y = 0; y < iFrameHeight; y++)
    {
       pdstline = &pdst[y * width()];
 
-      for (i32 x = 0; x < iFrameWidth; x++)
+      for (int x = 0; x < iFrameWidth; x++)
       {
          *pdstline = *psrc;
 
@@ -6974,28 +6974,28 @@ void image::set_frame1(void* pdata, i32 iFrame, i32 iFrameCount)
 }
 
 
-void image::set_frame2(void* pdata, i32 iFrame, i32 iFrameCount)
+void image::set_frame2(void* pdata, int iFrame, int iFrameCount)
 
 {
 
-   i32 iSliceCount = (i32)sqrt((double)iFrameCount);
+   int iSliceCount = (int)sqrt((double)iFrameCount);
    if (iSliceCount == 0)
       iSliceCount = 1;
-   i32 iFrameWidth = width() / iSliceCount;
-   i32 iFrameHeight = height() / iSliceCount;
-   i32 iX = iFrame % iSliceCount;
-   i32 iY = iFrame / iSliceCount;
+   int iFrameWidth = width() / iSliceCount;
+   int iFrameHeight = height() / iSliceCount;
+   int iX = iFrame % iSliceCount;
+   int iY = iFrame / iSliceCount;
    image32_t* pdst = &data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
    image32_t* psrc = (image32_t*)pdata;
 
    image32_t* pdstline;
 
-   for (i32 y = iFrameHeight - 1; y >= 0; y--)
+   for (int y = iFrameHeight - 1; y >= 0; y--)
    {
       pdstline = &pdst[y * width()];
 
-      for (i32 x = 0; x < iFrameWidth; x++)
+      for (int x = 0; x < iFrameWidth; x++)
       {
          *pdstline = *psrc;
 
@@ -7011,27 +7011,27 @@ void image::set_frame2(void* pdata, i32 iFrame, i32 iFrameCount)
 }
 
 
-void image::xor_image_frame2(void* pdata, i32 iFrame, i32 iFrameCount)
+void image::xor_image_frame2(void* pdata, int iFrame, int iFrameCount)
 
 {
-   i32 iSliceCount = (i32)sqrt((double)iFrameCount);
+   int iSliceCount = (int)sqrt((double)iFrameCount);
    if (iSliceCount == 0)
       iSliceCount = 1;
-   i32 iFrameWidth = width() / iSliceCount;
-   i32 iFrameHeight = height() / iSliceCount;
-   i32 iX = iFrame % iSliceCount;
-   i32 iY = iFrame / iSliceCount;
+   int iFrameWidth = width() / iSliceCount;
+   int iFrameHeight = height() / iSliceCount;
+   int iX = iFrame % iSliceCount;
+   int iY = iFrame / iSliceCount;
    image32_t* pdst = &data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
    image32_t* psrc = (image32_t*)pdata;
 
    image32_t* pdstline;
 
-   for (i32 y = iFrameHeight - 1; y >= 0; y--)
+   for (int y = iFrameHeight - 1; y >= 0; y--)
    {
       pdstline = &pdst[y * width()];
 
-      for (i32 x = 0; x < iFrameWidth; x++)
+      for (int x = 0; x < iFrameWidth; x++)
       {
          pdstline->m_u32 ^= psrc->m_u32;
 
@@ -7047,25 +7047,25 @@ void image::xor_image_frame2(void* pdata, i32 iFrame, i32 iFrameCount)
 }
 
 
-void image::get_frame(void* pdata, i32 iFrame, i32 iFrameCount)
+void image::get_frame(void* pdata, int iFrame, int iFrameCount)
 
 {
-   i32 iSliceCount = (i32)sqrt((double)iFrameCount);
-   i32 iFrameWidth = width() / iSliceCount;
-   i32 iFrameHeight = height() / iSliceCount;
-   i32 iX = iFrame % iSliceCount;
-   i32 iY = iFrame / iSliceCount;
+   int iSliceCount = (int)sqrt((double)iFrameCount);
+   int iFrameWidth = width() / iSliceCount;
+   int iFrameHeight = height() / iSliceCount;
+   int iX = iFrame % iSliceCount;
+   int iY = iFrame / iSliceCount;
    image32_t* psrc = &data()[iFrameWidth * iX + iY * iFrameHeight * width()];
 
    image32_t* pdst = (image32_t*)pdata;
 
    image32_t* psrcline;
 
-   for (i32 y = 0; y < iFrameHeight; y++)
+   for (int y = 0; y < iFrameHeight; y++)
    {
       psrcline = &psrc[y * width()];
 
-      for (i32 x = 0; x < iFrameWidth; x++)
+      for (int x = 0; x < iFrameWidth; x++)
       {
          *pdst = *psrcline;
 
@@ -7084,11 +7084,11 @@ void image::get_frame(void* pdata, i32 iFrame, i32 iFrameCount)
 bool image::is_rgb_black()
 {
 
-   i32 iSize = width() * height();
+   int iSize = width() * height();
 
    image32_t* p = data();
 
-   for (i32 i = 0; i < iSize; i++)
+   for (int i = 0; i < iSize; i++)
    {
 
       if ((p->m_u32 & 0x00FFFFFF) != 0)
@@ -7107,7 +7107,7 @@ bool image::is_rgb_black()
 }
 
 
-void image::DivideRGB(i32 iDivide)
+void image::DivideRGB(int iDivide)
 {
 
    if (iDivide == 0)
@@ -7117,71 +7117,71 @@ void image::DivideRGB(i32 iDivide)
 
    }
 
-   i32 iCount = width() * height();
+   int iCount = width() * height();
 
-   ::u8* p = ((::u8*)data());
+   unsigned char* p = ((unsigned char*)data());
 
-   i32 i = 0;
+   int i = 0;
 
-   i32 iCount1 = iCount - iCount % 8;
+   int iCount1 = iCount - iCount % 8;
 
    for (; i < iCount1; i++)
    {
 
-      p[0] /= (::u8)iDivide;
+      p[0] /= (unsigned char)iDivide;
 
-      p[1] /= (::u8)iDivide;
+      p[1] /= (unsigned char)iDivide;
 
-      p[2] /= (::u8)iDivide;
-
-
-      p[4] /= (::u8)iDivide;
-
-      p[5] /= (::u8)iDivide;
-
-      p[6] /= (::u8)iDivide;
+      p[2] /= (unsigned char)iDivide;
 
 
-      p[8] /= (::u8)iDivide;
+      p[4] /= (unsigned char)iDivide;
 
-      p[9] /= (::u8)iDivide;
+      p[5] /= (unsigned char)iDivide;
 
-      p[10] /= (::u8)iDivide;
-
-
-      p[12] /= (::u8)iDivide;
-
-      p[13] /= (::u8)iDivide;
-
-      p[14] /= (::u8)iDivide;
+      p[6] /= (unsigned char)iDivide;
 
 
-      p[16] /= (::u8)iDivide;
+      p[8] /= (unsigned char)iDivide;
 
-      p[17] /= (::u8)iDivide;
+      p[9] /= (unsigned char)iDivide;
 
-      p[28] /= (::u8)iDivide;
-
-
-      p[20] /= (::u8)iDivide;
-
-      p[21] /= (::u8)iDivide;
-
-      p[22] /= (::u8)iDivide;
+      p[10] /= (unsigned char)iDivide;
 
 
-      p[24] /= (::u8)iDivide;
+      p[12] /= (unsigned char)iDivide;
 
-      p[25] /= (::u8)iDivide;
+      p[13] /= (unsigned char)iDivide;
 
-      p[26] /= (::u8)iDivide;
+      p[14] /= (unsigned char)iDivide;
 
 
-      p[28] /= (::u8)iDivide;
+      p[16] /= (unsigned char)iDivide;
 
-      p[29] /= (::u8)iDivide;
+      p[17] /= (unsigned char)iDivide;
 
-      p[30] /= (::u8)iDivide;
+      p[28] /= (unsigned char)iDivide;
+
+
+      p[20] /= (unsigned char)iDivide;
+
+      p[21] /= (unsigned char)iDivide;
+
+      p[22] /= (unsigned char)iDivide;
+
+
+      p[24] /= (unsigned char)iDivide;
+
+      p[25] /= (unsigned char)iDivide;
+
+      p[26] /= (unsigned char)iDivide;
+
+
+      p[28] /= (unsigned char)iDivide;
+
+      p[29] /= (unsigned char)iDivide;
+
+      p[30] /= (unsigned char)iDivide;
 
 
       p += 4 * 8;
@@ -7189,11 +7189,11 @@ void image::DivideRGB(i32 iDivide)
    }
    for (; i < iCount; i++)
    {
-      p[0] /= (::u8)iDivide;
+      p[0] /= (unsigned char)iDivide;
 
-      p[1] /= (::u8)iDivide;
+      p[1] /= (unsigned char)iDivide;
 
-      p[2] /= (::u8)iDivide;
+      p[2] /= (unsigned char)iDivide;
 
       p += 4;
 
@@ -7204,7 +7204,7 @@ void image::DivideRGB(i32 iDivide)
 }
 
 
-void image::DivideARGB(i32 iDivide)
+void image::DivideARGB(int iDivide)
 {
 
    if (iDivide == 0)
@@ -7214,19 +7214,19 @@ void image::DivideARGB(i32 iDivide)
 
    }
 
-   i32 iCount = width() * height();
+   int iCount = width() * height();
 
-   ::u8* p = ((::u8*)data());
+   unsigned char* p = ((unsigned char*)data());
 
-   for (i32 i = 0; i < iCount; i++)
+   for (int i = 0; i < iCount; i++)
    {
-      p[0] /= (::u8)iDivide;
+      p[0] /= (unsigned char)iDivide;
 
-      p[1] /= (::u8)iDivide;
+      p[1] /= (unsigned char)iDivide;
 
-      p[2] /= (::u8)iDivide;
+      p[2] /= (unsigned char)iDivide;
 
-      p[3] /= (::u8)iDivide;
+      p[3] /= (unsigned char)iDivide;
 
       p += 4;
 
@@ -7237,7 +7237,7 @@ void image::DivideARGB(i32 iDivide)
 }
 
 
-void image::DivideA(i32 iDivide)
+void image::DivideA(int iDivide)
 {
 
    if (iDivide == 0)
@@ -7249,13 +7249,13 @@ void image::DivideA(i32 iDivide)
 
    }
 
-   i32 iCount = width() * height();
+   int iCount = width() * height();
 
-   ::u8* p = ((::u8*)data());
+   unsigned char* p = ((unsigned char*)data());
 
-   for (i32 i = 0; i < iCount; i++)
+   for (int i = 0; i < iCount; i++)
    {
-      p[3] /= (::u8)iDivide;
+      p[3] /= (unsigned char)iDivide;
 
       p += 4;
 
@@ -7371,7 +7371,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
          else
          {
 
-            ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy));
+            ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, (int)cx, (int)cy));
 
             auto rectangle = rectangle_f64_dimension(x, y, cx, cy);
 
@@ -7383,7 +7383,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
          }
 
-         y += (i32)cy;
+         y += (int)cy;
 
       }
 
@@ -7397,9 +7397,9 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
       double newcy = cy * 2.0 - 1.0;
 
-      create({ (i32)newcx, (i32)newcy });
+      create({ (int)newcx, (int)newcy });
 
-      //if (!create({ (i32)newcx, (i32)newcy }))
+      //if (!create({ (int)newcx, (int)newcy }))
       //{
 
       //   throw ::exception(error_resource);
@@ -7418,13 +7418,13 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
       xPrevious = 0;
       cxPrevious = cxSource;
 
-      for (Δx = (i32)cx; Δx > 0; x += Δx, Δx /= 2)
+      for (Δx = (int)cx; Δx > 0; x += Δx, Δx /= 2)
       {
 
          yPrevious = 0;
          cyPrevious = pimage->height();
 
-         for (int y = 0, Δy = (i32)cy; Δy > 0; y += Δy, Δy /= 2)
+         for (int y = 0, Δy = (int)cy; Δy > 0; y += Δy, Δy /= 2)
          {
 
             if (::parallelization::get_priority() == ::e_priority_idle)
@@ -7540,7 +7540,7 @@ void image::_create_helper_map()
 
    ::collection::index jNextBoundary;
    ::collection::index jStart;
-   u8* pdata = (u8*)image32();
+   unsigned char* pdata = (unsigned char*)image32();
 
    if (pdata == nullptr || a <= 0)
    {
@@ -7560,7 +7560,7 @@ void image::_create_helper_map()
       m_memoryMap.set_size(a * 2);
 
       m_memoryMap.set(0);
-      u8* opacity = m_memoryMap.data();
+      unsigned char* opacity = m_memoryMap.data();
 
       for (::collection::index i = 0; i < height(); i++)
       {
@@ -7586,9 +7586,9 @@ void image::_create_helper_map()
 
                ::collection::index m = j >> 2;
 
-               ::u8 n = 1;
+               unsigned char n = 1;
 
-               u8* o = &opacity[(int)(i * w)];
+               unsigned char* o = &opacity[(int)(i * w)];
 
                while (c >= 0)
                {
@@ -7613,7 +7613,7 @@ void image::_create_helper_map()
 
    {
 
-      u8* transparency = m_memoryMap.data() + a;
+      unsigned char* transparency = m_memoryMap.data() + a;
 
       for (::collection::index i = 0; i < height(); i++)
       {
@@ -7646,9 +7646,9 @@ void image::_create_helper_map()
 
                ::collection::index m = j >> 2;
 
-               ::u8 n = 1;
+               unsigned char n = 1;
 
-               u8* t = &transparency[(int)(i * w)];
+               unsigned char* t = &transparency[(int)(i * w)];
 
                while (c >= 0)
                {
@@ -7710,7 +7710,7 @@ void image::set_font_factor(double dFactor)
 //}
 //
 
-//i32 image::cos(i32 i, i32 iAngle)
+//int image::cos(int i, int iAngle)
 //{
 //
 //   __UNREFERENCED_PARAMETER(i);
@@ -7723,7 +7723,7 @@ void image::set_font_factor(double dFactor)
 //}
 //
 //
-//i32 image::sin(i32 i, i32 iAngle)
+//int image::sin(int i, int iAngle)
 //{
 //
 //   __UNREFERENCED_PARAMETER(i);
@@ -7736,7 +7736,7 @@ void image::set_font_factor(double dFactor)
 //}
 //
 //
-//i32 image::cos10(i32 i, i32 iAngle)
+//int image::cos10(int i, int iAngle)
 //{
 //
 //   __UNREFERENCED_PARAMETER(i);
@@ -7749,7 +7749,7 @@ void image::set_font_factor(double dFactor)
 //}
 //
 //
-//i32 image::sin10(i32 i, i32 iAngle)
+//int image::sin10(int i, int iAngle)
 //{
 //
 //   __UNREFERENCED_PARAMETER(i);
@@ -7761,12 +7761,12 @@ void image::set_font_factor(double dFactor)
 //
 //}
 
-/*   i32 image::width()
+/*   int image::width()
    {
       throw ::interface_only();
    }
 
-   i32 image::height()
+   int image::height()
    {
       throw ::interface_only();
    }
@@ -7790,58 +7790,58 @@ double image::pi() const
 }
 
 
-void image::fill_channel(i32 intensity, ::color::enum_channel echannel)
+void image::fill_channel(int intensity, ::color::enum_channel echannel)
 {
    map();
-   i32 offset = ((i32)echannel) % 4;
+   int offset = ((int)echannel) % 4;
    i64 size = scan_area();
 
-   image32_t* pcr = (image32_t*)&((u8*)image32())[offset];
+   image32_t* pcr = (image32_t*)&((unsigned char*)image32())[offset];
 
-   u8* pb;
+   unsigned char* pb;
 
    i64 iSize32 = size / 32;
-   i32 i;
+   int i;
    for (i = 0; i < iSize32; i += 32)
    {
-      pb = (u8*)&pcr[i];
-      pb[0 * 4] = (::u8)intensity;
-      pb[1 * 4] = (::u8)intensity;
-      pb[2 * 4] = (::u8)intensity;
-      pb[3 * 4] = (::u8)intensity;
-      pb[4 * 4] = (::u8)intensity;
-      pb[5 * 4] = (::u8)intensity;
-      pb[6 * 4] = (::u8)intensity;
-      pb[7 * 4] = (::u8)intensity;
-      pb[8 * 4] = (::u8)intensity;
-      pb[9 * 4] = (::u8)intensity;
-      pb[10 * 4] = (::u8)intensity;
-      pb[11 * 4] = (::u8)intensity;
-      pb[12 * 4] = (::u8)intensity;
-      pb[13 * 4] = (::u8)intensity;
-      pb[14 * 4] = (::u8)intensity;
-      pb[15 * 4] = (::u8)intensity;
-      pb[16 * 4] = (::u8)intensity;
-      pb[17 * 4] = (::u8)intensity;
-      pb[18 * 4] = (::u8)intensity;
-      pb[19 * 4] = (::u8)intensity;
-      pb[20 * 4] = (::u8)intensity;
-      pb[21 * 4] = (::u8)intensity;
-      pb[22 * 4] = (::u8)intensity;
-      pb[23 * 4] = (::u8)intensity;
-      pb[24 * 4] = (::u8)intensity;
-      pb[25 * 4] = (::u8)intensity;
-      pb[26 * 4] = (::u8)intensity;
-      pb[27 * 4] = (::u8)intensity;
-      pb[28 * 4] = (::u8)intensity;
-      pb[29 * 4] = (::u8)intensity;
-      pb[30 * 4] = (::u8)intensity;
-      pb[31 * 4] = (::u8)intensity;
+      pb = (unsigned char*)&pcr[i];
+      pb[0 * 4] = (unsigned char)intensity;
+      pb[1 * 4] = (unsigned char)intensity;
+      pb[2 * 4] = (unsigned char)intensity;
+      pb[3 * 4] = (unsigned char)intensity;
+      pb[4 * 4] = (unsigned char)intensity;
+      pb[5 * 4] = (unsigned char)intensity;
+      pb[6 * 4] = (unsigned char)intensity;
+      pb[7 * 4] = (unsigned char)intensity;
+      pb[8 * 4] = (unsigned char)intensity;
+      pb[9 * 4] = (unsigned char)intensity;
+      pb[10 * 4] = (unsigned char)intensity;
+      pb[11 * 4] = (unsigned char)intensity;
+      pb[12 * 4] = (unsigned char)intensity;
+      pb[13 * 4] = (unsigned char)intensity;
+      pb[14 * 4] = (unsigned char)intensity;
+      pb[15 * 4] = (unsigned char)intensity;
+      pb[16 * 4] = (unsigned char)intensity;
+      pb[17 * 4] = (unsigned char)intensity;
+      pb[18 * 4] = (unsigned char)intensity;
+      pb[19 * 4] = (unsigned char)intensity;
+      pb[20 * 4] = (unsigned char)intensity;
+      pb[21 * 4] = (unsigned char)intensity;
+      pb[22 * 4] = (unsigned char)intensity;
+      pb[23 * 4] = (unsigned char)intensity;
+      pb[24 * 4] = (unsigned char)intensity;
+      pb[25 * 4] = (unsigned char)intensity;
+      pb[26 * 4] = (unsigned char)intensity;
+      pb[27 * 4] = (unsigned char)intensity;
+      pb[28 * 4] = (unsigned char)intensity;
+      pb[29 * 4] = (unsigned char)intensity;
+      pb[30 * 4] = (unsigned char)intensity;
+      pb[31 * 4] = (unsigned char)intensity;
    }
 
    for (i = 0; i < size; i++)
    {
-      *((u8*)&pcr[i]) = (::u8)intensity;
+      *((unsigned char*)&pcr[i]) = (unsigned char)intensity;
    }
 
    //return true;
@@ -7849,60 +7849,60 @@ void image::fill_channel(i32 intensity, ::color::enum_channel echannel)
 }
 
 
-void image::white_fill_channel(i32 intensity, ::color::enum_channel echannel)
+void image::white_fill_channel(int intensity, ::color::enum_channel echannel)
 {
    map();
-   i32 offset = ((i32)echannel) % 4;
+   int offset = ((int)echannel) % 4;
    i64 size = scan_area();
 
-   image32_t* pcr = (image32_t*)&((u8*)image32())[offset];
+   image32_t* pcr = (image32_t*)&((unsigned char*)image32())[offset];
 
-   //      u8 * pb;
+   //      unsigned char * pb;
 
    i64 iSize32 = size / 32;
-   i32 i;
+   int i;
    //      for (i=0; i < iSize32; i+=32 )
    //      {
-   //         pb = (u8 *) &pcr[i];
-   //         pb[0 * 4] = (::u8) intensity;
-   //         pb[1 * 4] = (::u8) intensity;
-   //         pb[2 * 4] = (::u8) intensity;
-   //         pb[3 * 4] = (::u8) intensity;
-   //         pb[4 * 4] = (::u8) intensity;
-   //         pb[5 * 4] = (::u8) intensity;
-   //         pb[6 * 4] = (::u8) intensity;
-   //         pb[7 * 4] = (::u8) intensity;
-   //         pb[8 * 4] = (::u8) intensity;
-   //         pb[9 * 4] = (::u8) intensity;
-   //         pb[10 * 4] = (::u8) intensity;
-   //         pb[11 * 4] = (::u8) intensity;
-   //         pb[12 * 4] = (::u8) intensity;
-   //         pb[13 * 4] = (::u8) intensity;
-   //         pb[14 * 4] = (::u8) intensity;
-   //         pb[15 * 4] = (::u8) intensity;
-   //         pb[16 * 4] = (::u8) intensity;
-   //         pb[17 * 4] = (::u8) intensity;
-   //         pb[18 * 4] = (::u8) intensity;
-   //         pb[19 * 4] = (::u8) intensity;
-   //         pb[20 * 4] = (::u8) intensity;
-   //         pb[21 * 4] = (::u8) intensity;
-   //         pb[22 * 4] = (::u8) intensity;
-   //         pb[23 * 4] = (::u8) intensity;
-   //         pb[24 * 4] = (::u8) intensity;
-   //         pb[25 * 4] = (::u8) intensity;
-   //         pb[26 * 4] = (::u8) intensity;
-   //         pb[27 * 4] = (::u8) intensity;
-   //         pb[28 * 4] = (::u8) intensity;
-   //         pb[29 * 4] = (::u8) intensity;
-   //         pb[30 * 4] = (::u8) intensity;
-   //         pb[31 * 4] = (::u8) intensity;
+   //         pb = (unsigned char *) &pcr[i];
+   //         pb[0 * 4] = (unsigned char) intensity;
+   //         pb[1 * 4] = (unsigned char) intensity;
+   //         pb[2 * 4] = (unsigned char) intensity;
+   //         pb[3 * 4] = (unsigned char) intensity;
+   //         pb[4 * 4] = (unsigned char) intensity;
+   //         pb[5 * 4] = (unsigned char) intensity;
+   //         pb[6 * 4] = (unsigned char) intensity;
+   //         pb[7 * 4] = (unsigned char) intensity;
+   //         pb[8 * 4] = (unsigned char) intensity;
+   //         pb[9 * 4] = (unsigned char) intensity;
+   //         pb[10 * 4] = (unsigned char) intensity;
+   //         pb[11 * 4] = (unsigned char) intensity;
+   //         pb[12 * 4] = (unsigned char) intensity;
+   //         pb[13 * 4] = (unsigned char) intensity;
+   //         pb[14 * 4] = (unsigned char) intensity;
+   //         pb[15 * 4] = (unsigned char) intensity;
+   //         pb[16 * 4] = (unsigned char) intensity;
+   //         pb[17 * 4] = (unsigned char) intensity;
+   //         pb[18 * 4] = (unsigned char) intensity;
+   //         pb[19 * 4] = (unsigned char) intensity;
+   //         pb[20 * 4] = (unsigned char) intensity;
+   //         pb[21 * 4] = (unsigned char) intensity;
+   //         pb[22 * 4] = (unsigned char) intensity;
+   //         pb[23 * 4] = (unsigned char) intensity;
+   //         pb[24 * 4] = (unsigned char) intensity;
+   //         pb[25 * 4] = (unsigned char) intensity;
+   //         pb[26 * 4] = (unsigned char) intensity;
+   //         pb[27 * 4] = (unsigned char) intensity;
+   //         pb[28 * 4] = (unsigned char) intensity;
+   //         pb[29 * 4] = (unsigned char) intensity;
+   //         pb[30 * 4] = (unsigned char) intensity;
+   //         pb[31 * 4] = (unsigned char) intensity;
    //      }
 
 
    for (i = 0; i < size; i++)
    {
 
-      *((u8*)&pcr) = (::u8)(((int)intensity * (int)*((u8*)&pcr)) / 255);
+      *((unsigned char*)&pcr) = (unsigned char)(((int)intensity * (int)*((unsigned char*)&pcr)) / 255);
 
       pcr++;
 
@@ -7918,8 +7918,8 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
    map();
 
-   echannelDst = (::color::enum_channel)(((i32)echannelDst) % 4);
-   echannelSrc = (::color::enum_channel)(((i32)echannelSrc) % 4);
+   echannelDst = (::color::enum_channel)(((int)echannelDst) % 4);
+   echannelSrc = (::color::enum_channel)(((int)echannelSrc) % 4);
 
    if (echannelDst == echannelSrc)
    {
@@ -7929,18 +7929,18 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
    }
 
-   u8* pdataDst = (u8*)data() + ((i32)echannelDst);
+   unsigned char* pdataDst = (unsigned char*)data() + ((int)echannelDst);
 
-   u8* pdataSrc = (u8*)data() + ((i32)echannelSrc);
+   unsigned char* pdataSrc = (unsigned char*)data() + ((int)echannelSrc);
 
-   for (i32 y = 0; y < height(); y++)
+   for (int y = 0; y < height(); y++)
    {
 
-      u8* pdst = &pdataDst[m_iScan * y];
+      unsigned char* pdst = &pdataDst[m_iScan * y];
 
-      u8* psrc = &pdataSrc[m_iScan * y];
+      unsigned char* psrc = &pdataSrc[m_iScan * y];
 
-      for (i32 x = 0; x < width(); x++)
+      for (int x = 0; x < width(); x++)
       {
 
          *pdst = *psrc;
@@ -7992,21 +7992,21 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
    }
 
-   echannelDst = (::color::enum_channel)(((i32)echannelDst) % 4);
-   echannelSrc = (::color::enum_channel)(((i32)echannelSrc) % 4);
+   echannelDst = (::color::enum_channel)(((int)echannelDst) % 4);
+   echannelSrc = (::color::enum_channel)(((int)echannelSrc) % 4);
 
-   u8* pdataDst = (u8*)data() + ((i32)echannelDst);
+   unsigned char* pdataDst = (unsigned char*)data() + ((int)echannelDst);
 
-   u8* pdataSrc = (u8*)pimage->data() + ((i32)echannelSrc);
+   unsigned char* pdataSrc = (unsigned char*)pimage->data() + ((int)echannelSrc);
 
-   for (i32 y = 0; y < height(); y++)
+   for (int y = 0; y < height(); y++)
    {
 
-      u8* pdst = &pdataDst[m_iScan * y];
+      unsigned char* pdst = &pdataDst[m_iScan * y];
 
-      u8* psrc = &pdataSrc[pimage->m_iScan * y];
+      unsigned char* psrc = &pdataSrc[pimage->m_iScan * y];
 
-      for (i32 x = 0; x < width(); x++)
+      for (int x = 0; x < width(); x++)
       {
 
          *pdst = *psrc;
@@ -8058,20 +8058,20 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 
    }
 
-   echannelSrc = (::color::enum_channel)(((i32)echannelSrc) % 4);
+   echannelSrc = (::color::enum_channel)(((int)echannelSrc) % 4);
 
-   u8 * pdataDst = (u8 *)data();
+   unsigned char * pdataDst = (unsigned char *)data();
 
-   u8 * pdataSrc = (u8 *)pimage->data() + ((i32)echannelSrc);
+   unsigned char * pdataSrc = (unsigned char *)pimage->data() + ((int)echannelSrc);
 
-   for (i32 y = 0; y < height(); y++)
+   for (int y = 0; y < height(); y++)
    {
 
-      u8 * pdst = &pdataDst[m_iScan * y];
+      unsigned char * pdst = &pdataDst[m_iScan * y];
 
-      u8 * psrc = &pdataSrc[pimage->m_iScan * y];
+      unsigned char * psrc = &pdataSrc[pimage->m_iScan * y];
 
-      for (i32 x = 0; x < width(); x++)
+      for (int x = 0; x < width(); x++)
       {
 
          pdst[0] = *psrc;
@@ -8106,15 +8106,15 @@ void image::tint(::image::image* pimage, ::color::color color)
 
    map();
 
-   u8* src = (u8*)pimage->image32();
-   u8* dst = (u8*)image32();
+   unsigned char* src = (unsigned char*)pimage->image32();
+   unsigned char* dst = (unsigned char*)image32();
    i64 size = scan_area();
 
-   ::u8 uchR = (::u8)color.u8_red();
-   ::u8 uchG = (::u8)color.u8_green();
-   ::u8 uchB = (::u8)color.u8_blue();
+   unsigned char uchR = (unsigned char)color.u8_red();
+   unsigned char uchG = (unsigned char)color.u8_green();
+   unsigned char uchB = (unsigned char)color.u8_blue();
 
-   //      i32 i = 0;;
+   //      int i = 0;;
 
 
    //while (size > 16)
@@ -8204,9 +8204,9 @@ void image::tint(::image::image* pimage, ::color::color color)
    //   src += 4 * 16;
    //   size -= 16;
    //}
-   //::u8 tableR[256];
-   //::u8 tableG[256];
-   //::u8 tableB[256];
+   //unsigned char tableR[256];
+   //unsigned char tableG[256];
+   //unsigned char tableB[256];
    //for (::collection::index i = 0; i < 255; i++)
    //{
    //   tableR[i] = (uchR * i) >> 8;
@@ -8228,7 +8228,7 @@ void image::tint(::image::image* pimage, ::color::color color)
    while (size > 0)
    {
 
-      ::u8 bA = src[3];
+      unsigned char bA = src[3];
 
       if (bA == 0)
       {
@@ -8265,7 +8265,7 @@ void image::saturation(double dRate)
 
    map();
 
-   u8* dst = (u8*)image32();
+   unsigned char* dst = (unsigned char*)image32();
 
    i64 size = scan_area();
 
@@ -8318,7 +8318,7 @@ void image::opacity(double dRate)
 
    try
    {
-      u8* puch = (u8*)data();
+      unsigned char* puch = (unsigned char*)data();
       i64 iArea = scan_area();
       while (iArea > 0)
       {
@@ -8340,19 +8340,19 @@ void image::opacity(double dRate)
 }
 
 
-void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
+void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 {
 
    map();
 
-   u8* dst = (u8*)image32();
+   unsigned char* dst = (unsigned char*)image32();
    i64 size = scan_area();
 
-   ::u8 uchB = (::u8)R;
-   ::u8 uchG = (::u8)G;
-   ::u8 uchR = (::u8)B;
+   unsigned char uchB = (unsigned char)R;
+   unsigned char uchG = (unsigned char)G;
+   unsigned char uchR = (unsigned char)B;
 
-   //      i32 i = 0;;
+   //      int i = 0;;
 
    while (size > 0)
    {
@@ -8465,7 +8465,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 //}
 
 
-//void image::set_rgb(i32 R, i32 G, i32 B)
+//void image::set_rgb(int R, int G, int B)
 //{
 //
 //   return set(R, G, B);
@@ -8616,7 +8616,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 
       auto ysq = (rTotal.bottom() - y);
 
-      auto pbyte = &((::u8*)p)[m_colorindexes.m_u8IndexOpacity];
+      auto pbyte = &((unsigned char*)p)[m_colorindexes.m_u8IndexOpacity];
 
       for (int x = r.left(); x < r.right(); x++)
       {
@@ -8657,14 +8657,14 @@ void image::multiply_rgb_by_source_alpha(::color::color color)
    auto u8Red = color.u8_red();
    auto u8Green = color.u8_green();
    auto u8Blue = color.u8_blue();
-   ::u8 u8Opacity;
+   unsigned char u8Opacity;
 
    auto u8IndexOpacity = m_colorindexes.m_u8IndexOpacity;
    auto u8IndexRed = m_colorindexes.m_u8IndexRed;
    auto u8IndexGreen = m_colorindexes.m_u8IndexGreen;
    auto u8IndexBlue = m_colorindexes.m_u8IndexBlue;
 
-   u8* puch = (u8*)data();
+   unsigned char* puch = (unsigned char*)data();
    i64 iArea = scan_area();
    while (iArea > 0)
    {
@@ -8700,8 +8700,8 @@ void image::rgb_from(::image::image* pimage)
    //try
    //{
 
-      u8* puchSrc = (u8*)data();
-      u8* puchDst = (u8*)pimage->data();
+      unsigned char* puchSrc = (unsigned char*)data();
+      unsigned char* puchDst = (unsigned char*)pimage->data();
       i64 iArea = pimage->scan_area();
       while (iArea > 0)
       {
@@ -8726,7 +8726,7 @@ void image::rgb_from(::image::image* pimage)
 }
 
 
-void image::pixelate(i32 iSize)
+void image::pixelate(int iSize)
 {
 
    if (iSize <= 1)
@@ -8740,32 +8740,32 @@ void image::pixelate(i32 iSize)
 
    map();
 
-   i32 w = width();
-   i32 h = height();
-   i32 s = m_iScan / sizeof(image32_t);
+   int w = width();
+   int h = height();
+   int s = m_iScan / sizeof(image32_t);
 
-   i32 xCount = w / iSize;
-   i32 yCount = h / iSize;
+   int xCount = w / iSize;
+   int yCount = h / iSize;
 
-   i32 iDiv;
-   i32 iDiv2;
+   int iDiv;
+   int iDiv2;
 
-   i32 a;
-   i32 r;
-   i32 g;
-   i32 b;
-   i32 a2;
-   i32 r2;
-   i32 g2;
-   i32 b2;
+   int a;
+   int r;
+   int g;
+   int b;
+   int a2;
+   int r2;
+   int g2;
+   int b2;
    //bool bFirst;
    image32_t* pdata = data();
-   i32 x1;
-   i32 y1;
-   for (i32 x = 0; x < xCount; x++)
+   int x1;
+   int y1;
+   for (int x = 0; x < xCount; x++)
    {
       x1 = x * iSize;
-      for (i32 y = 0; y < yCount; y++)
+      for (int y = 0; y < yCount; y++)
       {
          y1 = y * iSize;
          a = 0;
@@ -8779,9 +8779,9 @@ void image::pixelate(i32 iSize)
          iDiv = 0;
          iDiv2 = 0;
          //bFirst = true;
-         for (i32 i = 0; i < iSize; i++)
+         for (int i = 0; i < iSize; i++)
          {
-            for (i32 j = 0; j < iSize; j++)
+            for (int j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * s];
                a += cr.u8_opacity(color_indexes());
@@ -8812,9 +8812,9 @@ void image::pixelate(i32 iSize)
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
          image32_t cr(argb(a2, r2, g2, b2), color_indexes());
-         for (i32 i = 0; i < iSize; i++)
+         for (int i = 0; i < iSize; i++)
          {
-            for (i32 j = 0; j < iSize; j++)
+            for (int j = 0; j < iSize; j++)
             {
 
                pdata[x1 + i + (y1 + j) * s] = cr;
@@ -8829,10 +8829,10 @@ void image::pixelate(i32 iSize)
 
    if (w % iSize != 0)
    {
-      i32 x = xCount;
-      i32 x1 = x * iSize;
-      i32 iMax = w - xCount * iSize;
-      for (i32 y = 0; y < yCount; y++)
+      int x = xCount;
+      int x1 = x * iSize;
+      int iMax = w - xCount * iSize;
+      for (int y = 0; y < yCount; y++)
       {
          y1 = y * iSize;
          a = 0;
@@ -8846,9 +8846,9 @@ void image::pixelate(i32 iSize)
          iDiv = 0;
          iDiv2 = 0;
          //bFirst = true;
-         for (i32 i = 0; i < iMax; i++)
+         for (int i = 0; i < iMax; i++)
          {
-            for (i32 j = 0; j < iSize; j++)
+            for (int j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += cr.u8_opacity(color_indexes());
@@ -8879,9 +8879,9 @@ void image::pixelate(i32 iSize)
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
          image32_t cr(argb(a2, r2, g2, b2), color_indexes());
-         for (i32 i = 0; i < iMax; i++)
+         for (int i = 0; i < iMax; i++)
          {
-            for (i32 j = 0; j < iSize; j++)
+            for (int j = 0; j < iSize; j++)
             {
                pdata[x1 + i + (y1 + j) * w] = cr;
             }
@@ -8892,10 +8892,10 @@ void image::pixelate(i32 iSize)
 
    if (h % iSize != 0)
    {
-      i32 y = yCount;
-      i32 y1 = y * iSize;
-      i32 jMax = h - yCount * iSize;
-      for (i32 x = 0; x < xCount; x++)
+      int y = yCount;
+      int y1 = y * iSize;
+      int jMax = h - yCount * iSize;
+      for (int x = 0; x < xCount; x++)
       {
          x1 = x * iSize;
          a = 0;
@@ -8909,9 +8909,9 @@ void image::pixelate(i32 iSize)
          iDiv = 0;
          iDiv2 = 0;
          //bFirst = true;
-         for (i32 i = 0; i < iSize; i++)
+         for (int i = 0; i < iSize; i++)
          {
-            for (i32 j = 0; j < jMax; j++)
+            for (int j = 0; j < jMax; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += cr.u8_opacity(color_indexes());
@@ -8942,9 +8942,9 @@ void image::pixelate(i32 iSize)
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
          image32_t cr(argb(a2, r2, g2, b2), color_indexes());
-         for (i32 i = 0; i < iSize; i++)
+         for (int i = 0; i < iSize; i++)
          {
-            for (i32 j = 0; j < jMax; j++)
+            for (int j = 0; j < jMax; j++)
             {
                pdata[x1 + i + (y1 + j) * w] = cr;
             }
@@ -8955,12 +8955,12 @@ void image::pixelate(i32 iSize)
 
    if (w % iSize != 0)
    {
-      i32 x = xCount;
-      i32 x1 = x * iSize;
-      i32 iMax = w - xCount * iSize;
-      i32 y = yCount;
-      i32 y1 = y * iSize;
-      i32 jMax = h - yCount * iSize;
+      int x = xCount;
+      int x1 = x * iSize;
+      int iMax = w - xCount * iSize;
+      int y = yCount;
+      int y1 = y * iSize;
+      int jMax = h - yCount * iSize;
       x1 = x * iSize;
       a = 0;
       r = 0;
@@ -8973,9 +8973,9 @@ void image::pixelate(i32 iSize)
       iDiv = 0;
       iDiv2 = 0;
       //bFirst = true;
-      for (i32 i = 0; i < iMax; i++)
+      for (int i = 0; i < iMax; i++)
       {
-         for (i32 j = 0; j < jMax; j++)
+         for (int j = 0; j < jMax; j++)
          {
             image32_t cr = pdata[x1 + i + (y1 + j) * w];
             a += cr.u8_opacity(color_indexes());
@@ -9010,10 +9010,10 @@ void image::pixelate(i32 iSize)
 
       image32_t cr(argb(a2, r2, g2, b2), color_indexes());
 
-      for (i32 i = 0; i < iMax; i++)
+      for (int i = 0; i < iMax; i++)
       {
 
-         for (i32 j = 0; j < jMax; j++)
+         for (int j = 0; j < jMax; j++)
          {
 
             pdata[x1 + i + (y1 + j) * w] = cr;
@@ -9036,7 +9036,7 @@ void image::rate_rgb(int iMul, int iDiv)
 
    try
    {
-      u8* puch = (u8*)data();
+      unsigned char* puch = (unsigned char*)data();
       i64 iArea = scan_area();
       while (iArea > 0)
       {
@@ -9234,7 +9234,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
 
          //estatus = 
          
-         pimage->create({ (i32)(dim / sin), (i32)(dim / sin) });
+         pimage->create({ (int)(dim / sin), (int)(dim / sin) });
 
          //if (!estatus)
          //{
@@ -9265,7 +9265,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
          //}
 
          //estatus = 
-         pimage->create({ (i32)(dim / cos), (i32)(dim / cos) });
+         pimage->create({ (int)(dim / cos), (int)(dim / cos) });
 
          //if (!estatus)
          //{
@@ -9298,7 +9298,7 @@ void image::gradient_horizontal_fill(::color::color color1, ::color::color color
 
    end = minimum(end, height() - 1);
    image32_t clr(color1, color_indexes());
-   u8* pb = (u8*)image32();
+   unsigned char* pb = (unsigned char*)image32();
    image32_t* pdata;
    int line = 0;
    for (; line < start; line++)
@@ -9358,7 +9358,7 @@ void image::gradient_vertical_fill(::color::color color1, ::color::color color2,
 
    image32_t clr(color1, color_indexes());
    
-   u8* pb = (u8*)image32();
+   unsigned char* pb = (unsigned char*)image32();
    
    image32_t* pdata;
    
@@ -9479,7 +9479,7 @@ void image::invert_rgb(const ::rectangle_i32& rectangle)
    for (int y = top; y < bottom; y++, start += s)
    {
 
-      u8* pb = &((u8*)image32())[start];
+      unsigned char* pb = &((unsigned char*)image32())[start];
 
       for (int x = left; x < right; x++, pb += 4)
       {
@@ -9681,7 +9681,7 @@ void image::hue_offset(double dRadians)
    double W = ::sin(dRadians);
 
 
-   u8* dst = (u8*)data();
+   unsigned char* dst = (unsigned char*)data();
 
    i64 size = scan_area();
 
@@ -9828,7 +9828,7 @@ void image::on_exif_orientation()
 //   else
 //   {
 //
-//      m_iQuality = varOptions["quality"].i32();
+//      m_iQuality = varOptions["quality"].int();
 //
 //   }
 //
@@ -9969,7 +9969,7 @@ void image::defer_update_image()
 }
 
 
-::pointer<::image::image>image::get_image(::i32 cx, ::i32 cy)
+::pointer<::image::image>image::get_image(int cx, int cy)
 {
 
    auto pimageNew = get_image( ::size_i32( cx, cy ));
@@ -9982,7 +9982,7 @@ void image::defer_update_image()
 #if 0
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy, void* pftbitmap, int xParam, int yParam)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -10002,9 +10002,9 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
          if (i < 0 || j < 0 || i >= m_p->width() || j >= m_p->height())
             continue;
 
-         i32 a = bitmap->buffer[q * bitmap->width + point_i32];
+         int a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
+         *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -10012,7 +10012,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam, ::u8 aParam, ::u8 rectangle, ::u8 g, ::u8 b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy, void* pftbitmap, int xParam, int yParam, unsigned char aParam, unsigned char rectangle, unsigned char g, unsigned char b)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -10032,18 +10032,18 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
          if (i < 0 || j < 0 || i >= m_p->width() || j >= m_p->height())
             continue;
 
-         i32 a = bitmap->buffer[q * bitmap->width + point_i32];
+         int a = bitmap->buffer[q * bitmap->width + point_i32];
 
          if (a > 0)
          {
 
-            *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
+            *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else
          {
 
-            *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
+            *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
 
          }
 
@@ -10065,7 +10065,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 #if 0
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy, void* pftbitmap, int xParam, int yParam)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -10085,9 +10085,9 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
          if (i < 0 || j < 0 || i >= m_p->width() || j >= m_p->height())
             continue;
 
-         i32 a = bitmap->buffer[q * bitmap->width + point_i32];
+         int a = bitmap->buffer[q * bitmap->width + point_i32];
 
-         *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
+         *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a, 0, 0, 0);
 
       }
    }
@@ -10095,7 +10095,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 }
 
 
-CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy, void* pftbitmap, int xParam, int yParam, ::u8 aParam, ::u8 rectangle, ::u8 g, ::u8 b)
+CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy, void* pftbitmap, int xParam, int yParam, unsigned char aParam, unsigned char rectangle, unsigned char g, unsigned char b)
 {
 
    FT_Bitmap* bitmap = (FT_Bitmap*)pftbitmap;
@@ -10115,18 +10115,18 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
          if (i < 0 || j < 0 || i >= m_p->width() || j >= m_p->height())
             continue;
 
-         i32 a = bitmap->buffer[q * bitmap->width + point_i32];
+         int a = bitmap->buffer[q * bitmap->width + point_i32];
 
          if (a > 0)
          {
 
-            *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
+            *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = argb(a * aParam / 255, rectangle, g, b);
 
          }
          else
          {
 
-            *((image32_t*)&((u8*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
+            *((image32_t*)&((unsigned char*)m_p->data())[(Δy + j) * m_p->m_iScan + (Δx + i) * 4]) = 0;
 
          }
 
@@ -10151,21 +10151,21 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 iWidth = width();
+//   int iWidth = width();
 //
-//   stream << (::i32)iWidth;
+//   stream << (int)iWidth;
 //
-//   i32 iHeight = height();
+//   int iHeight = height();
 //
-//   stream << (::i32)iHeight;
+//   stream << (int)iHeight;
 //
-//   stream << (::i32)m_sizeAlloc.cx();
+//   stream << (int)m_sizeAlloc.cx();
 //
-//   stream << (::i32)m_sizeAlloc.cy();
+//   stream << (int)m_sizeAlloc.cy();
 //
-//   stream << (::i32)m_iScan;
+//   stream << (int)m_iScan;
 //
-//   stream << (::i32)m_emipmap;
+//   stream << (int)m_emipmap;
 //
 //   if (area() > 0)
 //   {
@@ -10199,7 +10199,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 width;
+//   int width;
 //
 //   stream >> width;
 //
@@ -10210,7 +10210,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 height;
+//   int height;
 //
 //   stream >> height;
 //
@@ -10221,7 +10221,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 widthAlloc;
+//   int widthAlloc;
 //   stream >> widthAlloc;
 //   //if (stream.fail())
 //   //{
@@ -10230,7 +10230,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 heightAlloc;
+//   int heightAlloc;
 //   stream >> heightAlloc;
 //   //if (stream.fail())
 //   //{
@@ -10239,7 +10239,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 iScan;
+//   int iScan;
 //   stream >> iScan;
 //   //if (stream.fail())
 //   //{
@@ -10248,7 +10248,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   //}
 //
-//   i32 iMipmap;
+//   int iMipmap;
 //   stream >> iMipmap;
 //   //if (stream.fail())
 //   //{
@@ -10321,7 +10321,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 //
 //   }
 //
-//   if (iScan < widthAlloc / (i32)sizeof(image32_t))
+//   if (iScan < widthAlloc / (int)sizeof(image32_t))
 //   {
 //      
 //      throw ::exception(::error_io);
@@ -10446,14 +10446,14 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 
 
 /*
-http://www.sparkhound.com/blog/detect-image-file-types-through-::u8-arrays
+http://www.sparkhound.com/blog/detect-image-file-types-through-unsigned char-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = __allocate_array< ::u8 >(){ 137, 80, 78, 71 }; // PNG
-::payload tiff = __allocate_array< ::u8 >(){ 73, 73, 42 }; // TIFF
-::payload tiff2 = __allocate_array< ::u8 >(){ 77, 80, 42 }; // TIFF
-::payload jpeg = __allocate_array< ::u8 >(){ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = __allocate_array< ::u8 >(){ 255, 216, 255, 225 }; // jpeg canon
+::payload png = __allocate_array< unsigned char >(){ 137, 80, 78, 71 }; // PNG
+::payload tiff = __allocate_array< unsigned char >(){ 73, 73, 42 }; // TIFF
+::payload tiff2 = __allocate_array< unsigned char >(){ 77, 80, 42 }; // TIFF
+::payload jpeg = __allocate_array< unsigned char >(){ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = __allocate_array< unsigned char >(){ 255, 216, 255, 225 }; // jpeg canon
 */
 
 
@@ -10514,7 +10514,7 @@ void image::_unmap()
 //   double dSin;
 //   double d32 = (1U << 31);
 //   dPi = atan(1.0) * 4.0;
-//   i32 i;
+//   int i;
 //   for (i = 0; i < 360; i++)
 //   {
 //      dCos = ::cos(i / 180.0 * dPi);
@@ -10664,7 +10664,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 ::image32_t * image::line_data(int iLine)
 {
 
-   return (::image32_t *) (((::u8*)data()) + (iLine * m_iScan));
+   return (::image32_t *) (((unsigned char*)data()) + (iLine * m_iScan));
 
 }
 

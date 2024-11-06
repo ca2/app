@@ -163,7 +163,7 @@ public:
    inline ::duration& operator %= (const ::duration & duration) { m_i %= ::duration.m_i; return *this; }
 
 
-   inline ::duration operator % (i32 i) const { return m_i % i; }
+   inline ::duration operator % (int i) const { return m_i % i; }
    inline ::duration operator % (i64 i) const { return m_i % i; }
    inline ::duration operator % (const ::duration & duration) const { return m_i % ::duration.m_i; }
 
@@ -216,11 +216,11 @@ inline auto __pr(const ::duration & duration) { return ::duration.m_i; }
 
 inline u32 __os(const ::duration & duration) { return ::duration.m_i > (i64) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (u32) ::duration.m_i; }
 
-inline ::i32 __i32(const ::duration & duration) { return (::i32) ::duration.m_i; }
+inline int __i32(const ::duration & duration) { return (int) ::duration.m_i; }
 
 inline ::i64 __i64(const ::duration & duration) { return (::i64) ::duration.m_i; }
 
-inline ::u8 as_byte(const ::duration & duration) { return (::u8) minimummax(::duration.m_i, 0, 255); }
+inline unsigned char as_byte(const ::duration & duration) { return (unsigned char) minimummax(::duration.m_i, 0, 255); }
 
 inline ::duration __tick(double d) { return (::i64) d; }
 

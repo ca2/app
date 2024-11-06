@@ -12,10 +12,10 @@ struct rgba_t
    ::u32 m_u32;
 
 
-   constexpr ::u8 u8_red()const { return lower_u8(m_u32); }
-   constexpr ::u8 u8_green()const { return lower_u8(m_u32 >> 8); }
-   constexpr ::u8 u8_blue()const { return lower_u8(m_u32 >> 16); }
-   constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
+   constexpr unsigned char u8_red()const { return lower_u8(m_u32); }
+   constexpr unsigned char u8_green()const { return lower_u8(m_u32 >> 8); }
+   constexpr unsigned char u8_blue()const { return lower_u8(m_u32 >> 16); }
+   constexpr unsigned char u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
    constexpr bool operator == (const rgba_t & rgba) const { return m_u32 == rgba.m_u32; }
@@ -30,10 +30,10 @@ struct bgra_t
    ::u32 m_u32;
 
 
-   constexpr ::u8 u8_blue() const { return lower_u8(m_u32); }
-   constexpr ::u8 u8_green()const { return lower_u8(m_u32 >> 8); }
-   constexpr ::u8 u8_red() const { return lower_u8(m_u32 >> 16); }
-   constexpr ::u8 u8_opacity()const { return lower_u8(m_u32 >> 24); }
+   constexpr unsigned char u8_blue() const { return lower_u8(m_u32); }
+   constexpr unsigned char u8_green()const { return lower_u8(m_u32 >> 8); }
+   constexpr unsigned char u8_red() const { return lower_u8(m_u32 >> 16); }
+   constexpr unsigned char u8_opacity()const { return lower_u8(m_u32 >> 24); }
 
 
    constexpr bool operator == (const bgra_t & rgba) const { return m_u32 == rgba.m_u32; }
@@ -55,17 +55,17 @@ constexpr ::color32_t argb32_color32(
 }
 
 
-//constexpr ::u8 color32_u8_red(::color32_t color32) { return lower_u8(color32.m_u32); }
-//constexpr ::u8 color32_u8_green(::color32_t color32) { return lower_u8(color32.m_u32 >> 8); }
-//constexpr ::u8 color32_u8_blue(::color32_t color32) { return lower_u8(color32.m_u32 >> 16); }
-//constexpr ::u8 color32_u8_opacity(::color32_t color32) { return lower_u8(color32.m_u32 >> 24); }
+//constexpr unsigned char color32_u8_red(::color32_t color32) { return lower_u8(color32.m_u32); }
+//constexpr unsigned char color32_u8_green(::color32_t color32) { return lower_u8(color32.m_u32 >> 8); }
+//constexpr unsigned char color32_u8_blue(::color32_t color32) { return lower_u8(color32.m_u32 >> 16); }
+//constexpr unsigned char color32_u8_opacity(::color32_t color32) { return lower_u8(color32.m_u32 >> 24); }
 
 
 
 //#define  HLSMAX   100.0 /* H,L, and S vary over 0-HLSMAX */
 //#define  RGBMAX   100.0   /* R,G, and B vary over 0-RGBMAX */
 /* HLSMAX BEST IF DIVISIBLE BY 6 */
-/* RGBMAX, HLSMAX must each fit in a ::u8. */
+/* RGBMAX, HLSMAX must each fit in a unsigned char. */
 /* Hue is undefined if Saturation is 0 (grey-scale) */
 /* This value determines where the Hue scrollbar is */
 /* initially set for achromatic colors */
@@ -74,10 +74,10 @@ constexpr ::color32_t argb32_color32(
 
 
 
-//auto inline red(::color32_t rgba) { return ((::u8)(rgba & 0xff)); }
-//auto inline green(::color32_t rgba) { return ((::u8)((rgba >> 8) & 0xff)); }
-//auto inline blue(::color32_t rgba) { return ((::u8)((rgba >> 16) & 0xff)); }
-//auto inline opacity(::color32_t rgba) { return ((::u8)((rgba >> 24) & 0xff)); }
+//auto inline red(::color32_t rgba) { return ((unsigned char)(rgba & 0xff)); }
+//auto inline green(::color32_t rgba) { return ((unsigned char)((rgba >> 8) & 0xff)); }
+//auto inline blue(::color32_t rgba) { return ((unsigned char)((rgba >> 16) & 0xff)); }
+//auto inline opacity(::color32_t rgba) { return ((unsigned char)((rgba >> 24) & 0xff)); }
 
 
 namespace color
@@ -147,16 +147,16 @@ namespace color
       //color() { m_flags = -1; }
 //color(const ::color::color & color) { this->m_u32 =h color.m_u32;  m_flags = color.m_flags; }
       constexpr color(enum_plain_color eplaincolor);
-      constexpr color(enum_plain_color eplaincolor, ::u8 u8Opacity) : color(eplaincolor) { m_u8Opacity = u8Opacity; }
-      color(const hls & hls, ::u8 A = 255);
+      constexpr color(enum_plain_color eplaincolor, unsigned char u8Opacity) : color(eplaincolor) { m_u8Opacity = u8Opacity; }
+      color(const hls & hls, unsigned char A = 255);
       //color(const COLOR32 & color32, int flags = 0) { this->m_u32 = color32.m_u32;  m_flags = flags; }
       //color(::color32_t color32, int flags = 0) { this->m_u32 = color32;  m_flags = flags; }
-      //color(::u8 R, ::u8 G, ::u8 B, ::u8 A = 255);
+      //color(unsigned char R, unsigned char G, unsigned char B, unsigned char A = 255);
 
-      constexpr ::u8 u8_red() const { return m_u8Red; }
-      constexpr ::u8 u8_green() const { return m_u8Green; }
-      constexpr ::u8 u8_blue() const { return m_u8Blue; }
-      constexpr ::u8 u8_opacity() const { return m_u8Opacity; }
+      constexpr unsigned char u8_red() const { return m_u8Red; }
+      constexpr unsigned char u8_green() const { return m_u8Green; }
+      constexpr unsigned char u8_blue() const { return m_u8Blue; }
+      constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
       constexpr ::f32 f32_red() const { return m_u8Red / 255.f; }
       constexpr ::f32 f32_green() const { return m_u8Green / 255.f; }
       constexpr ::f32 f32_blue() const { return m_u8Blue / 255.f; }
@@ -240,13 +240,13 @@ namespace color
       template < typename R, typename G, typename B, typename A >
       constexpr void set(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_opacity(a); }
 
-      constexpr ::u8 set_red(::u8 r) { return this->m_u8Red = r; }
+      constexpr unsigned char set_red(unsigned char r) { return this->m_u8Red = r; }
 
-      constexpr ::u8 set_green(::u8 g) { return this->m_u8Green = g; }
+      constexpr unsigned char set_green(unsigned char g) { return this->m_u8Green = g; }
 
-      constexpr ::u8 set_blue(::u8 b) { return this->m_u8Blue = b; }
+      constexpr unsigned char set_blue(unsigned char b) { return this->m_u8Blue = b; }
 
-      constexpr ::u8 set_opacity(::u8 a) { return this->m_u8Opacity = a; }
+      constexpr unsigned char set_opacity(unsigned char a) { return this->m_u8Opacity = a; }
 
       constexpr ::u16 set_red(::u16 r) { this->m_u8Red = r >> 8; return r; }
 
@@ -256,38 +256,38 @@ namespace color
 
       constexpr ::u16 set_opacity(::u16 a) { this->m_u8Opacity = a >> 8; return a;}
 
-      constexpr ::i32 set_red(::i32 r) { this->m_u8Red = r; return r; }
+      constexpr int set_red(int r) { this->m_u8Red = r; return r; }
 
-      constexpr ::i32 set_green(::i32 g) { this->m_u8Green = g; return g; }
+      constexpr int set_green(int g) { this->m_u8Green = g; return g; }
 
-      constexpr ::i32 set_blue(::i32 b) { this->m_u8Blue = b; return b;}
+      constexpr int set_blue(int b) { this->m_u8Blue = b; return b;}
 
-      constexpr ::i32 set_opacity(::i32 a) { this->m_u8Opacity = a; return a;}
+      constexpr int set_opacity(int a) { this->m_u8Opacity = a; return a;}
 
-      constexpr float set_red(float f) { this->m_u8Red = (::u8)(f * 255.0f); return f; }
+      constexpr float set_red(float f) { this->m_u8Red = (unsigned char)(f * 255.0f); return f; }
 
-      constexpr float set_green(float f) { this->m_u8Green = (::u8)(f * 255.0f); return f;  }
+      constexpr float set_green(float f) { this->m_u8Green = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr float set_blue(float f) { this->m_u8Blue = (::u8)(f * 255.0f); return f;  }
+      constexpr float set_blue(float f) { this->m_u8Blue = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr float set_opacity(float f) { this->m_u8Opacity = (::u8)(f * 255.0f); return f;  }
+      constexpr float set_opacity(float f) { this->m_u8Opacity = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr double set_red(double f) { this->m_u8Red = (::u8)(f * 255.0); return f; }
+      constexpr double set_red(double f) { this->m_u8Red = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_green(double f) { this->m_u8Green = (::u8)(f * 255.0); return f; }
+      constexpr double set_green(double f) { this->m_u8Green = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_blue(double f) { this->m_u8Blue = (::u8)(f * 255.0); return f; }
+      constexpr double set_blue(double f) { this->m_u8Blue = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_opacity(double f) { this->m_u8Opacity = (::u8)(f * 255.0); return f; }
+      constexpr double set_opacity(double f) { this->m_u8Opacity = (unsigned char)(f * 255.0); return f; }
 
-      constexpr void set_opacity(class ::opacity opacity) { this->m_u8Opacity = (::u8)(opacity.u8_opacity() * 255.0); }
+      constexpr void set_opacity(class ::opacity opacity) { this->m_u8Opacity = (unsigned char)(opacity.u8_opacity() * 255.0); }
 
       constexpr void set_opaque() { this->m_u8Opacity = 255; }
 
-      constexpr void set_u8(::u8 R, ::u8 G, ::u8 B) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = 255; }
-      constexpr void set_u8(::u8 R, ::u8 G, ::u8 B, ::u8 A) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = A; }
-      constexpr void set_f64(double R, double G, double B) { m_u8Red = (::u8) (R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = 255; }
-      constexpr void set_f64(double R, double G, double B, double A) { m_u8Red = (::u8)(R * 255.); m_u8Green = (::u8) (G * 255.); m_u8Blue = (::u8) (B * 255.); m_u8Opacity = (::u8) (A * 255.); }
+      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = 255; }
+      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B, unsigned char A) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = A; }
+      constexpr void set_f64(double R, double G, double B) { m_u8Red = (unsigned char) (R * 255.); m_u8Green = (unsigned char) (G * 255.); m_u8Blue = (unsigned char) (B * 255.); m_u8Opacity = 255; }
+      constexpr void set_f64(double R, double G, double B, double A) { m_u8Red = (unsigned char)(R * 255.); m_u8Green = (unsigned char) (G * 255.); m_u8Blue = (unsigned char) (B * 255.); m_u8Opacity = (unsigned char) (A * 255.); }
 
       void make_black_and_white();
 
@@ -352,10 +352,10 @@ namespace color
       }
 
 
-      constexpr void rate_red(double dRate) { m_u8Red = (::u8)(m_u8Red * dRate); }
-      constexpr void rate_green(double dRate) { m_u8Green = (::u8)(m_u8Green * dRate); }
-      constexpr void rate_blue(double dRate) { m_u8Blue = (::u8)(m_u8Blue * dRate); }
-      constexpr void rate_opacity(double dRate) { m_u8Opacity = (::u8)(m_u8Opacity * dRate); }
+      constexpr void rate_red(double dRate) { m_u8Red = (unsigned char)(m_u8Red * dRate); }
+      constexpr void rate_green(double dRate) { m_u8Green = (unsigned char)(m_u8Green * dRate); }
+      constexpr void rate_blue(double dRate) { m_u8Blue = (unsigned char)(m_u8Blue * dRate); }
+      constexpr void rate_opacity(double dRate) { m_u8Opacity = (unsigned char)(m_u8Opacity * dRate); }
 
 
       inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }
@@ -385,10 +385,10 @@ namespace color
 
          double dComplement = 1.0 - dRate;
 
-         m_u8Red = (::u8)(m_u8Red * dComplement + color.m_u8Red * dRate);
-         m_u8Green = (::u8)(m_u8Green * dComplement + color.m_u8Green * dRate);
-         m_u8Blue = (::u8)(m_u8Blue * dComplement + color.m_u8Blue * dRate);
-         m_u8Opacity = (::u8)(m_u8Opacity * dComplement + color.m_u8Opacity * dRate);
+         m_u8Red = (unsigned char)(m_u8Red * dComplement + color.m_u8Red * dRate);
+         m_u8Green = (unsigned char)(m_u8Green * dComplement + color.m_u8Green * dRate);
+         m_u8Blue = (unsigned char)(m_u8Blue * dComplement + color.m_u8Blue * dRate);
+         m_u8Opacity = (unsigned char)(m_u8Opacity * dComplement + color.m_u8Opacity * dRate);
 
       }
 
@@ -517,32 +517,32 @@ CLASS_DECL_ACME ::color::color HSLA_color(float h, float s, float l, unsigned ch
 } // namespace color
 
 
-constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color);
-constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor);
+constexpr ::color::color color_with_u8_opacity(unsigned char bAlpha, ::color32_t color);
+constexpr ::color::color color_with_u8_opacity(unsigned char bAlpha, enum_plain_color ecolor);
 constexpr ::color::color opaque_color(::color32_t color32);
 //constexpr ::color::color _color(enum_plain_color ecolor);
 constexpr ::color::color opaque_color(enum_plain_color ecolor);
 
 
 
-constexpr rgba_t argb_rgba(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+constexpr rgba_t argb_rgba(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 {
    return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
 }
 
-//constexpr ::u8 rgba_u8_red(::rgba_t rgba) { return lower_u8(rgba.m_u32); }
-//constexpr ::u8 rgba_u8_green(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 8); }
-//constexpr ::u8 rgba_u8_blue(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 16); }
-//constexpr ::u8 rgba_u8_opacity(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 24); }
+//constexpr unsigned char rgba_u8_red(::rgba_t rgba) { return lower_u8(rgba.m_u32); }
+//constexpr unsigned char rgba_u8_green(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 8); }
+//constexpr unsigned char rgba_u8_blue(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 16); }
+//constexpr unsigned char rgba_u8_opacity(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 24); }
 
 
-//constexpr ::u8 bgr_u8_blue(::u32 bgr) { return lower_u8(bgr); }
-//constexpr ::u8 bgr_u8_green(::u32 bgr) { return lower_u8((bgr) >> 8); }
-//constexpr ::u8 bgr_u8_red(::u32 bgr) { return lower_u8((bgr) >> 16); }
-//constexpr ::u8 bgr_u8_opacity(::u32 bgr) { return lower_u8((bgr) >> 24); }
+//constexpr unsigned char bgr_u8_blue(::u32 bgr) { return lower_u8(bgr); }
+//constexpr unsigned char bgr_u8_green(::u32 bgr) { return lower_u8((bgr) >> 8); }
+//constexpr unsigned char bgr_u8_red(::u32 bgr) { return lower_u8((bgr) >> 16); }
+//constexpr unsigned char bgr_u8_opacity(::u32 bgr) { return lower_u8((bgr) >> 24); }
 
 
-constexpr bgra_t argb_bgra(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+constexpr bgra_t argb_bgra(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 {
    return { make_u32(u8Blue, u8Green, u8Red, u8Opacity) };
 }
@@ -615,7 +615,7 @@ constexpr auto argb(OPACITY opacity, RED red, GREEN green, BLUE blue)
 CLASS_DECL_ACME::color::color _020GetColor(::collection::index i);
 
 
-//constexpr ::color::color argb(::i32 a, ::i32 r, ::i32 g, ::i32 b)
+//constexpr ::color::color argb(int a, int r, int g, int b)
 //{
 //
 //   return ::color::color(r, g, b, a);
@@ -792,7 +792,7 @@ namespace color
 } // namespace color
 
 
-constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color32)
+constexpr ::color::color color_with_u8_opacity(unsigned char bAlpha, ::color32_t color32)
 {
 
    ::color::color color;
@@ -804,7 +804,7 @@ constexpr ::color::color color_with_u8_opacity(::u8 bAlpha, ::color32_t color32)
 }
 
 
-constexpr::color::color color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor)
+constexpr::color::color color_with_u8_opacity(unsigned char bAlpha, enum_plain_color ecolor)
 {
 
    return color_with_u8_opacity(bAlpha, ::color::color(ecolor));
@@ -831,7 +831,7 @@ constexpr ::color::color opaque_color(enum_plain_color ecolor)
 
 
 
-constexpr ::color::color color32_color_with_u8_opacity(::u8 u8Opacity, ::color32_t color32)
+constexpr ::color::color color32_color_with_u8_opacity(unsigned char u8Opacity, ::color32_t color32)
 {
 
    return argb(u8Opacity, color32.u8_red(), color32.u8_green(), color32.u8_blue());

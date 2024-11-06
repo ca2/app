@@ -5,9 +5,9 @@
 struct CLASS_DECL_ACME plex     // warning ::payload length structure
 {
    plex*                            pNext;
-   // ::u8 data[maxNum*elementSize];
+   // unsigned char data[maxNum*elementSize];
 
-   void * data() { return ((::u8*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }
+   void * data() { return ((unsigned char*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }
 
    static plex* create(plex*& head, uptr nMax, uptr cbElement, ::heap::allocator * pallocator);
          // like 'calloc' but no zero fill

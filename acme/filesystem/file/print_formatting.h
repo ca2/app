@@ -33,7 +33,7 @@ public:
    ::file::fmtflags setf(::file::fmtflags flagsAdd)
    {
 
-      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((int)m_fmtflags)) | ((int)flagsAdd));
 
    }
 
@@ -43,7 +43,7 @@ public:
 
       setf(flagsAdd);
 
-      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((int)m_fmtflags)) & (~(int)flagsAdd));
 
    }
 

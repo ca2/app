@@ -102,7 +102,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateHatchBrush(i32 nIndex, ::color::color color)
+   bool brush::CreateHatchBrush(int nIndex, ::color::color color)
    {
 
       __UNREFERENCED_PARAMETER(nIndex);
@@ -166,7 +166,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateSysColorBrush(i32 nIndex)
+   bool brush::CreateSysColorBrush(int nIndex)
    {
 
       __UNREFERENCED_PARAMETER(nIndex);
@@ -178,7 +178,7 @@ namespace draw2d
    }
 
 
-//   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
+//   int brush::GetLogBrush(LOGBRUSH* pLogBrush)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pLogBrush);

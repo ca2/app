@@ -64,7 +64,7 @@ bool ::interprocess::call::is_auto_launch() const
 
 //node()->get_pid()
 
-void ::interprocess::call::exclude_pid(::i32 iPid)
+void ::interprocess::call::exclude_pid(int iPid)
 {
 
    m_iaExclude.add(iPid);

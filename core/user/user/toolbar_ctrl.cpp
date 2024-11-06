@@ -905,14 +905,14 @@ namespace user
    }
 
 
-   ::i32 toolbar_control::GetMaxTextRows()
+   int toolbar_control::GetMaxTextRows()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
 //      ASSERT(is_window()); 
 //      
-//      return (::i32) send_message(TB_GETTEXTROWS);
+//      return (int) send_message(TB_GETTEXTROWS);
 //
 //#else
 //

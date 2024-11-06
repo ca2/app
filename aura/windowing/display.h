@@ -40,7 +40,7 @@ namespace windowing
       void on_initialize_particle() override;
 
 
-      virtual void open_display();
+      virtual void open_display() override;
       virtual void finalize_display();
 
       virtual iptr get_os_data() const;

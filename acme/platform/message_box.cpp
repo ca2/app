@@ -186,14 +186,14 @@ message_box::~message_box()
 void message_box::run()
 {
 
-   auto psequence = ::sequence::current();
-
-   if (psequence)
-   {
-
-      psequence->m_pparticle = this;
-
-   }
+//   auto psequence = ::sequence::current();
+//
+//   if (psequence)
+//   {
+//
+//      psequence->m_pparticle = this;
+//
+//   }
 
    auto preified = defer_realize();
 

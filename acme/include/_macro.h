@@ -93,7 +93,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #define __EVALUATE_MACRO(name) name
 
 
-///#define lower_u8(w)              ((::u8)((w) & 0xff))
+///#define lower_u8(w)              ((unsigned char)((w) & 0xff))
 
 
 
@@ -106,7 +106,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 //#define __CONCAT3____(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-// #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+// #define __u16(a, b)                                   ((::u16)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((::u16)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
 // #define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 
@@ -133,8 +133,8 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 // #define __u32xy(u)                                    u32_x(u), u32_y(u)
 
-// #define u64_x(u)                                     ((::i32)lower_u32(u))
-// #define u64_y(u)                                     ((::i32)upper_u32(u))
+// #define u64_x(u)                                     ((int)lower_u32(u))
+// #define u64_y(u)                                     ((int)upper_u32(u))
 
 // #define __u64xy(u)                                    u64_x(u), u64_y(u)
 
@@ -145,13 +145,13 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 
-// #define make_i32(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+// #define make_i32(a, b)           ((int)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 // #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
 // #define make_u32(l, h)         ((::uptr)(::u32)make_i32(l, h))
 
-//#define lower_u8(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
+//#define lower_u8(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
 
 
 

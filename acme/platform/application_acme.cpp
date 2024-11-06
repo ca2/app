@@ -45,7 +45,7 @@ namespace platform
 
    //void acme_application_layer::application_main(){}
 
-   ::i32 acme_application_layer::application_main()
+   int acme_application_layer::application_main()
    {
       return 0;
    }

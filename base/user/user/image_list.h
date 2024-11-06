@@ -20,7 +20,7 @@ namespace user
       int                                 m_iTextHeight;
       int                                 m_iMargin;
       bool                                m_bLabel;
-      ::i32                               m_iLabelHeight;
+      int                               m_iLabelHeight;
       ::e_align                           m_ealign;
       string_to_string                    m_mapName;
 

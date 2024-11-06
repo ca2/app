@@ -8,7 +8,7 @@
 #include "acme/platform/uint64_muldiv.h"
 
 
-CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerator, ::i32 denominator)
+CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator)
 {
 
    rectangle.left()    = ::MulDiv32(rectangle.left()     , numerator, denominator);
@@ -25,10 +25,10 @@ CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerato
 CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator)
 {
 
-   rectangle.left()    = ::uint64_muldiv(rectangle.left()     , (::i32)numerator, denominator);
-   rectangle.top()     = ::uint64_muldiv(rectangle.top()      , (::i32)numerator, denominator);
-   rectangle.right()   = ::uint64_muldiv(rectangle.right()    , (::i32)numerator, denominator);
-   rectangle.bottom()  = ::uint64_muldiv(rectangle.bottom()   , (::i32)numerator, denominator);
+   rectangle.left()    = ::uint64_muldiv(rectangle.left()     , (int)numerator, denominator);
+   rectangle.top()     = ::uint64_muldiv(rectangle.top()      , (int)numerator, denominator);
+   rectangle.right()   = ::uint64_muldiv(rectangle.right()    , (int)numerator, denominator);
+   rectangle.bottom()  = ::uint64_muldiv(rectangle.bottom()   , (int)numerator, denominator);
 
    return rectangle;
 

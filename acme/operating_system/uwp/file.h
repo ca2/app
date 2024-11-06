@@ -91,9 +91,9 @@ namespace universal_windows
    //namespace WinFileException
    //{
 
-   //   void OsErrorToException(::i32 lOsError);
+   //   void OsErrorToException(int lOsError);
    //   void ErrnoToException(int nErrno);
-   //   void ThrowOsError(::particle * pparticle, ::i32 lOsError, const char * lpszFileName = nullptr);
+   //   void ThrowOsError(::particle * pparticle, int lOsError, const char * lpszFileName = nullptr);
    //   void ThrowErrno(::particle * pparticle, int nErrno, const char * lpszFileName = nullptr);
 
    //}

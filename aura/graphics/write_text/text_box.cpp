@@ -78,7 +78,7 @@ namespace write_text
 
       auto bDarkMode = plist->m_bDarkMode;
 
-      ::i32 iColorIndex = 0;
+      int iColorIndex = 0;
 
       if (bDarkMode)
       {

@@ -70,7 +70,7 @@ namespace micro
          void on_before_create_window(acme::windowing::window* pacmewindowingwindow) override;
 
 
-         virtual void create_window();
+         virtual void create_window() override;
 
 
          //void complete_step(sequencer & sequencer) override;
@@ -114,12 +114,12 @@ namespace micro
          //::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
 
 
-         virtual ::point_i32 origin();
+         virtual ::point_i32 origin() override;
 
          //virtual ::payload get_result();
 
 
-         virtual ::string get_title();
+         virtual ::string get_title() override;
 
          //void on_mouse_move(::user::mouse * pmouse) override;
          //void on_left_button_down(::user::mouse * pmouse) override;
@@ -269,7 +269,7 @@ namespace micro
 
          //virtual void message_loop();
 
-         virtual void implementation_message_loop_step();
+         virtual void implementation_message_loop_step() override;
 
          //virtual void draw(::nano::graphics::device * pnanodevice);
 
@@ -330,7 +330,7 @@ namespace micro
          //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
-         void display_temporary_file_with_text(const ::string & str);
+         void display_temporary_file_with_text(const ::string & str) override;
 
          //virtual void on_mouse_move(::user::mouse * pmouse);
          //virtual void on_left_button_down(::user::mouse * pmouse);
@@ -360,11 +360,11 @@ namespace micro
 
          void set_cursor(enum_cursor ecursor) override;
 
-         virtual void synchronize_composited_micro_window();
+         virtual void synchronize_composited_micro_window() override;
 
          //void run_modal_loop() override;
 
-         virtual bool is_popup_window() const;
+         virtual bool is_popup_window() const override;
 
 
          // Text Edit

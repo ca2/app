@@ -97,7 +97,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_polygon(const ::point_f64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //bool region::create_polygon(const ::point_f64 * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -127,12 +127,12 @@ namespace draw2d
    //bool region::create_polygon(const polygon& polygon, ::draw2d::enum_fill_mode efillmode)
    //{
 
-   //   return create_polygon(polygon.data(), (::i32) polygon.size(), efillmode);
+   //   return create_polygon(polygon.data(), (int) polygon.size(), efillmode);
 
    //}
 
 
-   //bool region::create_polygon(const ::point_i32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //bool region::create_polygon(const ::point_i32 * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -148,7 +148,7 @@ namespace draw2d
 
    //   pitem->m_polygon.set_size(nCount);
 
-   //   for (::i32 i = 0; i < nCount; i++)
+   //   for (int i = 0; i < nCount; i++)
    //   {
 
    //      auto& p = pitem->m_polygon[i];
@@ -166,7 +166,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_poly_polygon(const ::point_f64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   //bool region::create_poly_polygon(const ::point_f64 * ppoints, const int * ppolycounts, int nCount, ::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -210,7 +210,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_poly_polygon(const ::point_i32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
+   //bool region::create_poly_polygon(const ::point_i32 * ppoints, const int * ppolycounts,int nCount,::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -531,12 +531,12 @@ namespace draw2d
    //void region::max_bounding_box_poly_polygon(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   i32 n = 0;
+   //   int n = 0;
 
-   //   for(i32 i = 0; i < m_nCount; i++)
+   //   for(int i = 0; i < m_nCount; i++)
    //   {
 
-   //      i32 iCount = m_lppolycounts[i];
+   //      int iCount = m_lppolycounts[i];
 
    //      for(int j = 0; j < iCount; j++,n++)
    //      {
@@ -662,12 +662,12 @@ namespace draw2d
    //bool region::internal_poly_polygon_contains(const ::point_f64 & point)
    //{
 
-   //   i32 n = 0;
+   //   int n = 0;
 
-   //   for(i32 i = 0; i < m_nCount; i++)
+   //   for(int i = 0; i < m_nCount; i++)
    //   {
 
-   //      i32 iCount = m_lppolycounts[i];
+   //      int iCount = m_lppolycounts[i];
 
    //      if (::polygon_contains_point(&m_lppoints[n], iCount, point))
    //      {

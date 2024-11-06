@@ -16,7 +16,7 @@ namespace user
 {
 
 
-   void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, i32 ix, i32 iy);
+   void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, int ix, int iy);
 
 
    control_bar::control_bar()
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   void control_bar::SetBorders(i32 cxLeft, i32 cyTop, i32 cxRight, i32 cyBottom)
+   void control_bar::SetBorders(int cxLeft, int cyTop, int cxRight, int cyBottom)
    {
       ASSERT(cxLeft >= 0);
       ASSERT(cyTop >= 0);
@@ -152,7 +152,7 @@ namespace user
    }
 
    /*
-   bool control_bar::AllocElements(i32 nElements, i32 cbElement)
+   bool control_bar::AllocElements(int nElements, int cbElement)
    {
       ASSERT_VALID(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
@@ -227,7 +227,7 @@ namespace user
       return size;
    }
 
-   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32, u32 nMode)
+   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, u32 nMode)
    {
       return CalcFixedLayout(pgraphics, (nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -266,7 +266,7 @@ namespace user
    }
 
 
-   bool control_bar::SetStatusText(i32 nHit)
+   bool control_bar::SetStatusText(int nHit)
    {
 
       ::pointer<::user::interaction>pOwner = get_owner();
@@ -1081,7 +1081,7 @@ namespace user
 #define CX_BORDER_GRIPPER 2
 #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, i32 ix, i32 iy)
+   void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, int ix, int iy)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(ix);
@@ -1109,11 +1109,11 @@ namespace user
             //   rectangle.top()+m_rectangleBorder.top(),
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top()-m_rectangleBorder.bottom(),
             //   ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left() + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top() + m_rectangleBorder.top() + Δy / 2;
-            i32 cy = rectangle.bottom() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δy * 3;
+            int Δx = CX_GRIPPER / 2;
+            int Δy = CY_GRIPPER / 2;
+            int ix = rectangle.left() + CX_BORDER_GRIPPER;
+            int iy = rectangle.top() + m_rectangleBorder.top() + Δy / 2;
+            int cy = rectangle.bottom() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δy * 3;
 
             for(; iy < cy; iy += Δy)
             {
@@ -1129,11 +1129,11 @@ namespace user
             //            rectangle.top()+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top()-m_rectangleBorder.bottom(), CY_GRIPPER,
             //            ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
-            i32 Δx = CX_GRIPPER / 2;
-            i32 Δy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left() + m_rectangleBorder.top() + Δx / 2;
-            i32 iy = rectangle.top() + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δx * 3;
+            int Δx = CX_GRIPPER / 2;
+            int Δy = CY_GRIPPER / 2;
+            int ix = rectangle.left() + m_rectangleBorder.top() + Δx / 2;
+            int iy = rectangle.top() + CY_BORDER_GRIPPER;
+            int cx = rectangle.right() - m_rectangleBorder.top() - m_rectangleBorder.bottom() - Δx * 3;
 
             for(; ix < cx; ix += Δx)
             {

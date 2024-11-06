@@ -102,7 +102,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #else
 
-   pacme->initialize(argc, argv, envp);
+   system.initialize_system(argc, argv, envp);
 
 #endif
 

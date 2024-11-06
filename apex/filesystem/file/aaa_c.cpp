@@ -109,9 +109,9 @@ int dir_mk(const ::scoped_string & scopedstr)
 {
    return          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(psz) != 0;
+pdirectorysystem->create(psz) != 0;
 }
 
 int_bool is_absolute_path(const ::scoped_string & scopedstr)

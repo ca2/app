@@ -31,9 +31,9 @@ string vs_build(::particle * pparticle)
 
    ::file::path path;
 
-   auto pacmedirectory = pparticle->directory_system();
+   auto pdirectorysystem = pparticle->directory_system();
 
-   path = pacmedirectory->config() / "programming/vs_build.txt";
+   path = pdirectorysystem->config() / "programming/vs_build.txt";
 
    string strVsBuild = pparticle->file_system()->as_string(path);
 
@@ -92,9 +92,9 @@ namespace introjection
 //
 //         ::file::path path;
 //
-//         auto pacmedirectory = directory_system();
+//         auto pdirectorysystem = directory_system();
 //
-//         path = pacmedirectory->config() / "programming/vs.txt";
+//         path = pdirectorysystem->config() / "programming/vs.txt";
 //
 //         m_strVs = file()->as_string(path);
 //
@@ -201,9 +201,9 @@ namespace introjection
 //
 //      // auto pcontext = get_context();
 //
-//      auto pacmedirectory = directory_system();
+//      auto pdirectorysystem = directory_system();
 //
-//      directory()->create(pacmedirectory->system() / "introjection\\symbols");
+//      directory()->create(pdirectorysystem->system() / "introjection\\symbols");
 //
 //      ::file::path strVars;
 //
@@ -468,23 +468,23 @@ namespace introjection
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedirectory = directory_system();
+//      auto pdirectorysystem = directory_system();
 //
-//      pathEnvTxt = pacmedirectory->system() / "env.txt";
+//      pathEnvTxt = pdirectorysystem->system() / "env.txt";
 //
-//      file_system()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//      file_system()->put_contents(pdirectorysystem->system() / "env1.bat", pdirectorysystem->system() / "env.bat > \"" + pathEnvTxt + "\"");
 //
-//      file_system()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+//      file_system()->put_contents(pdirectorysystem->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 //
 //      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
-//      pnode->run_silent(pacmedirectory->system() / "env1.bat","");
+//      pnode->run_silent(pdirectorysystem->system() / "env1.bat","");
 //
 //      string strLog;
 //
-//      strLog = file_system()->as_string(pacmedirectory->system() / "env.txt");
+//      strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
 //
 //      string_array stra;
 //
@@ -704,9 +704,9 @@ namespace introjection
 
                auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create("/var/tmp/ca2/intermediate");
+pdirectorysystem->create("/var/tmp/ca2/intermediate");
 
 #else
 
@@ -1072,9 +1072,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       ///strRndTitle.release_buffer();
 
-      auto pacmedirectory = directory_system();
+      auto pdirectorysystem = directory_system();
 
-      strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->system() / "netnode_desktop\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");
       directory()->create(::file::path(strHmhLctvWildPdbPath).folder());
       str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);

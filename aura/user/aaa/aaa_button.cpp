@@ -197,8 +197,8 @@ namespace user
          const ::size & size = pgraphics->get_text_extent(str);
 
          ::rectangle_f64 rectangle(0, 0, 0, 0);
-         rectangle.right() = ::i32(size.cx() * 1.6);
-         rectangle.bottom() = ::i32(size.cy() * 1.4);
+         rectangle.right() = int(size.cx() * 1.6);
+         rectangle.bottom() = int(size.cy() * 1.4);
 
          set_size(rectangle.size());
 
@@ -216,9 +216,9 @@ namespace user
 
          ::size sizeTotal = calc_text_size();
 
-         sizeTotal.cx() = (::i32)(sizeTotal.cx() * 1.6);
+         sizeTotal.cx() = (int)(sizeTotal.cx() * 1.6);
 
-         sizeTotal.cy() = (::i32)(sizeTotal.cy() * 1.4);
+         sizeTotal.cy() = (int)(sizeTotal.cy() * 1.4);
 
          set_size(sizeTotal);
 
@@ -791,9 +791,9 @@ namespace user
 
          double dMin = minimum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (int) (pimage->width() * dMin);
 
-         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (int) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
@@ -855,9 +855,9 @@ namespace user
 
             double dMin = minimum(minimum(dW, dH), 1.0);
 
-            rectangleAspect.right() = (::i32) (pimage->width() * dMin);
+            rectangleAspect.right() = (int) (pimage->width() * dMin);
 
-           rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
+           rectangleAspect.bottom() = (int) (pimage->height() * dMin);
 
             rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
 
@@ -953,8 +953,8 @@ namespace user
       imaging.color_blend(pgraphics,rectangle.left(),rectangle.top(),rectangle.width(),rectangle.height(),color32,200);
       rectangle.deflate(1,1,1,1);
 
-      i32 x1 = rectangle.left();
-      i32 x2 = x1 + rectangle.width() / 3;
+      int x1 = rectangle.left();
+      int x2 = x1 + rectangle.width() / 3;
 
       rectangle.left() = x1;
       rectangle.right() = x2;
@@ -1122,10 +1122,10 @@ namespace user
 
    }
 
-   i32 button::BaseToolTipGetIndex()
+   int button::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
-      return (i32)GetDlgCtrlId();
+      return (int)GetDlgCtrlId();
    }
 
 

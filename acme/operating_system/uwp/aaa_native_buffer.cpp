@@ -206,11 +206,11 @@ namespace universal_windows
       VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      rStatus.m_attribute = (::u8)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
+      rStatus.m_attribute = (unsigned char)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
       // get just the low ::u32 of the native_buffer size_i32
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
-      rStatus.m_size = (::i32)findnative_bufferData.nnative_bufferSizeLow;
+      rStatus.m_size = (int)findnative_bufferData.nnative_bufferSizeLow;
 
       // convert times as appropriate
       rStatus.m_ctime = ::earth::time(findnative_bufferData.ftCreationTime);
@@ -308,9 +308,9 @@ namespace universal_windows
 
                   auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(path.folder());
+pdirectorysystem->create(path.folder());
 
       }
 
@@ -596,7 +596,7 @@ pacmedirectory->create(path.folder());
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
-      ////       WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
+      ////       WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
    }
 
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
@@ -605,7 +605,7 @@ pacmedirectory->create(path.folder());
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
-      ////   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
+      ////   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
    }
 
    void native_buffer::set_size(filesize dwNewLen)
@@ -613,10 +613,10 @@ pacmedirectory->create(path.folder());
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      //seek((::i32)dwNewLen,(::enum_seek)::e_seek_set);
+      //seek((int)dwNewLen,(::enum_seek)::e_seek_set);
 
       //if(!::SetEndOfnative_buffer((HANDLE)m_hnative_buffer))
-      //   WinFileException::ThrowOsError(get_app(),(::i32)::get_last_error());
+      //   WinFileException::ThrowOsError(get_app(),(int)::get_last_error());
    }
 
 
@@ -652,7 +652,7 @@ pacmedirectory->create(path.folder());
    {
    if (!::Movenative_buffer((char *)pszOldName, (char *)pszNewName))
 
-   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
    }
 
    void native_buffer::erase(const ::scoped_string & scopedstrfileName)
@@ -660,7 +660,7 @@ pacmedirectory->create(path.folder());
    {
    if (!::Deletenative_buffer((char *)pszfileName))
 
-   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
    }
    */
 

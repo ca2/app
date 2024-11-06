@@ -118,7 +118,7 @@ namespace helloworld
       // { synchronous_lock slText(m_pmutexText);  string str(m_strHelloWorld.c_str()); return str; }
 
 
-      virtual i32 run();
+      virtual int run();
 
       virtual bool initialize_render(string strId);
 

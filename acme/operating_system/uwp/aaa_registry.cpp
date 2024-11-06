@@ -193,7 +193,7 @@ namespace universal_windows
    {
       ::u32 dwMaxValueNameLen = 16384;
       char * pszBuf = (char *) malloc(dwMaxValueNameLen);
-      ::i32 l;
+      int l;
       ::u32 dwIndex = 0;
       ::u32 dwLen = dwMaxValueNameLen;
       while(ERROR_SUCCESS == (l = RegEnumValue(

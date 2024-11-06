@@ -61,7 +61,7 @@ namespace file
    memsize circular_file::read(void * pbuffer, memsize l)
    {
 
-      u8 * s = (u8 *) pbuffer;
+      unsigned char * s = (unsigned char *) pbuffer;
 
 
       if (l > m_q)

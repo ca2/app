@@ -38,12 +38,12 @@ namespace micro
       void run() override;
       //void complete_aggregation(::sequence * psequence) override;
 
-      virtual bool is_waiting_for_dialog_result();
-      virtual void set_dialog_result(const ::payload & payloadResult);
+      virtual bool is_waiting_for_dialog_result() override;
+      virtual void set_dialog_result(const ::payload & payloadResult) override;
       virtual void on_dialog_result_set();
-      virtual ::payload wait_for_dialog_result(const class ::time & timeTimeout = ::time::infinity());
+      virtual ::payload wait_for_dialog_result(const class ::time & timeTimeout = ::time::infinity()) override;
 
-      virtual ::payload get_dialog_result();
+      virtual ::payload get_dialog_result() override;
 
       virtual ::micro::dialog * micro_dialog();
 

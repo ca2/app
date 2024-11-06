@@ -51,7 +51,7 @@ void http::s_http_response(long http_status, const void * data, long size, void 
 
 
 
-void http::async(::nano::http::get * pget)
+void http::perform(::nano::http::get * pget)
 {
    
    //      pasynchronoushttpresponse->m_function = [](::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse)

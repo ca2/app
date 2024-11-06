@@ -52,7 +52,7 @@ public:
    iptr     m_iMaxSize;
    iptr     m_iSize;
    int         m_iCurPos;
-   ::u8        m_ba[1];
+   unsigned char        m_ba[1];
 
 
 
@@ -75,15 +75,15 @@ public:
 
       // TODO : better dynamically memory align
 
-      ::u8 * pb;
+      unsigned char * pb;
 
       if(((iptr)p) % iSize == 0)
       {
-         pb = (::u8 *)p;
+         pb = (unsigned char *)p;
       }
       else
       {
-         pb = (::u8 *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
+         pb = (unsigned char *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
       }
 
       x86_cache_oriented_memory_pool * ppool = (x86_cache_oriented_memory_pool *) pb;
@@ -104,7 +104,7 @@ public:
 
    void * alloc(::collection::count c)
    {
-      ::u8 * pb;
+      unsigned char * pb;
 
       if(m_iCurPos + c < m_iSize)
       {
@@ -114,7 +114,7 @@ public:
       }
       else
       {
-         pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
+         pb = (unsigned char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::platform::application * papp = get_app();
@@ -126,7 +126,7 @@ public:
    }
    void free(void * p)
    {
-      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((::u8 *)m_p) + m_iMaxSize))
+      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((unsigned char *)m_p) + m_iMaxSize))
       {
          // freeing memory in palace garden (not supposed to allocated memory in these places as they would cause a cache fault)
          throw_exception(error_bad_argument);

@@ -9,7 +9,7 @@
 //#include "acme/prototype/prototype/function.h"
 #import <UIKit/UIKit.h>
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 
 int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function)
@@ -230,7 +230,7 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
    
   // Get its rootViewController:
     
-   ns_main_async(^{
+   ns_main_post(^{
 
       UIViewController *rootViewController = window.rootViewController;
 [rootViewController presentViewController:alert animated:YES completion:^{

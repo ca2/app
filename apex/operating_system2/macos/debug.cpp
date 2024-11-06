@@ -200,7 +200,7 @@
 // //} // namespace user
 
 
-// ::i32
+// int
 // FormatMessage(
 // ::u32 dwFlags,
 // const void * pSource,

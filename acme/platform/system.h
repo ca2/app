@@ -46,13 +46,13 @@ namespace platform
       system();
       ~system() override;
 
-      virtual ::particle * matter_mutex();
-      virtual ::particle * http_download_mutex();
+      virtual ::particle * matter_mutex() override;
+      virtual ::particle * http_download_mutex() override;
 
-      virtual ::string_array & http_download_array();
-      virtual ::string_array & http_exists_array();
+      virtual ::string_array * http_download_array() override;
+      virtual ::string_array * http_exists_array() override;
 
-      virtual class ::time & file_listing_cache_time();
+      virtual class ::time * file_listing_cache_time() override;
 
       //void on_set_platform() override;
 
@@ -63,19 +63,20 @@ namespace platform
       void on_initialize_particle() override;
 
 
-      virtual void process_machine_event_data(machine_event_data * pdata);
+      virtual void process_machine_event_data(machine_event_data * pdata) override;
 
 
-      virtual void do_graphics_and_windowing_system_factory();
+      virtual void do_graphics_and_windowing_system_factory() override;
 
       virtual void application_main(::platform::application * papplication);
 
       virtual void initialize_layer();
 
-      virtual enum_trace_level get_trace_level();
+      virtual enum_trace_level get_trace_level() override;
       //void os_construct();
 
-      virtual void initialize_matter();
+      virtual void initialize_matter() override;
+      
 
 #ifdef _DEBUG
 
@@ -104,21 +105,21 @@ namespace platform
       virtual void set_task_off(itask_t atom);
 
 
-      virtual ::mathematics::mathematics * mathematics();
+      virtual ::mathematics::mathematics * mathematics() override;
 
-      virtual ::image::imaging * imaging();
+      virtual ::image::imaging * imaging() override;
 
       // #if defined(WITH_X11) || defined(WITH_XCB)
       //       virtual ::particle * x11_synchronization();
       // #endif
 
-      virtual ::networking::networking * networking();
+      virtual ::networking::networking * networking() override;
 
-      virtual ::pointer<::platform::node> & node();
+      virtual ::platform::node * node() override;
 
-      virtual class ::base64 * base64();
+      virtual class ::base64 * base64() override;
 
-      virtual ::xml::xml * xml();
+      virtual ::xml::xml * xml() override;
 
       virtual ::file_system * file_system() const;
 
@@ -126,74 +127,74 @@ namespace platform
 
       virtual ::path_system * path_system() const;
 
-      virtual ::platform::system_factory * system_factory();
+      virtual ::platform::system_factory * system_factory() override;
 
-      virtual ::xml::xml * _xml();
+      virtual ::xml::xml * _xml() override;
 
-      virtual geometry::geometry * geometry();
+      virtual geometry::geometry * geometry() override;
 
-      virtual ::datetime::datetime * datetime();
+      virtual ::datetime::datetime * datetime() override;
 
-      virtual ::text::table * texttable();
+      virtual ::text::table * texttable() override;
 
-      virtual ::internet::internet * internet();
-      virtual ::url::url_context * url();
+      virtual ::internet::internet * internet() override;
+      virtual ::url::url_context * url() override;
 
-      virtual::particle * ui_destroyed_synchronization();
+      virtual::particle * ui_destroyed_synchronization() override;
 
-      virtual ::nano::nano * nano();
+      virtual ::nano::nano * nano() override;
 
-      virtual ::micro::user * micro_user();
-      virtual ::acme::windowing::windowing * acme_windowing();
-      virtual ::windowing::windowing * windowing();
+      virtual ::micro::user * micro_user() override;
+      virtual ::acme::windowing::windowing * acme_windowing() override;
+      virtual ::windowing::windowing * windowing() override;
 
-      virtual void defer_innate_ui();
+      virtual void defer_innate_ui() override;
 
-      virtual ::innate_ui::innate_ui * innate_ui();
+      virtual ::innate_ui::innate_ui * innate_ui() override;
 
       //virtual nano::nano * nano()
 
-      virtual class ::manager_room * manager_room();
+      virtual class ::manager_room * manager_room() override;
 
-      virtual ::crypto::crypto * crypto();
+      virtual ::crypto::crypto * crypto() override;
 
      //virtual ::acme::acme * acme() const ;
 
-     virtual::prototype::prototype * prototype();
+     virtual::prototype::prototype * prototype() override;
 
-      virtual ::draw2d::draw2d * draw2d();
-      virtual ::write_text::write_text * write_text();
+      virtual ::draw2d::draw2d * draw2d() override;
+      virtual ::write_text::write_text * write_text() override;
 
       //virtual ::windowing::windowing_base * windowing_base();
 
       //virtual ::http_system * http_system();
 
-      virtual string get_system_platform();
-      virtual string get_system_configuration();
+      virtual string get_system_platform() override;
+      virtual string get_system_configuration() override;
 
 
 
 
 
-      virtual void defer_audio();
+      virtual void defer_audio() override;
 
-      virtual bool has_audio();
+      virtual bool has_audio() override;
 
-      virtual void init1();
+      virtual void init1() override;
 
-      virtual void init2();
+      virtual void init2() override;
 
       void set_current_handles() override;
 
-      virtual void TermSystem();
+      virtual void TermSystem() override;
 
 
-      virtual void erase_from_any_hook(::matter * pmatter);
+      virtual void erase_from_any_hook(::matter * pmatter) override;
 
 
-      virtual void create_os_node(::platform::application * papplication);
+      virtual void create_os_node(::platform::application * papplication) override;
 
-      virtual string os_get_user_theme();
+      virtual string os_get_user_theme() override;
 
 
       template < typename BASE_TYPE >
@@ -223,19 +224,19 @@ namespace platform
       }
 
 
-      virtual ::u32 crc32(::u32 uCrc, const ::block & block);
+      virtual ::u32 crc32(::u32 uCrc, const ::block & block) override;
 
 
-      virtual void create_session(::collection::index iEdge = 0);
+      virtual void create_session(::collection::index iEdge = 0) override;
 
-      virtual ::pointer<::platform::session>on_create_session(::collection::index iEdge);
+      virtual ::pointer<::platform::session>on_create_session(::collection::index iEdge) override;
 
-      virtual ::platform::session * session(::collection::index iEdge = 0);
+      virtual ::platform::session * session(::collection::index iEdge = 0) override;
 
 
-      virtual void add_session(::collection::index iEdge, ::platform::session * psession);
-      virtual void on_add_session(::platform::session * psession);
-      virtual void erase_session(::collection::index iEdge);
+      virtual void add_session(::collection::index iEdge, ::platform::session * psession) override;
+      virtual void on_add_session(::platform::session * psession) override;
+      virtual void erase_session(::collection::index iEdge) override;
 
 
       void on_request(::request * prequest) override;
@@ -244,16 +245,16 @@ namespace platform
       void process_exit_status(::particle * pparticle, const ::e_status & estatus);
 
 
-      virtual ::platform::application * get_main_app();
+      virtual ::platform::application * get_main_app() override;
 
 
-      virtual ::pointer<::factory::factory> & folder_factory();
+      virtual ::factory::factory * folder_factory() override;
 
 
       //using main::system_construct;
 
 
-      virtual void system_construct(::platform::application * pacmeapplicationStartup);
+      virtual void system_construct(::platform::application * pacmeapplicationStartup) override;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -269,63 +270,63 @@ namespace platform
 
 #endif
 
-      virtual void speak(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrLang = "en-us", enum_gender egender = e_gender_none);
+      virtual void speak(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrLang = "en-us", enum_gender egender = e_gender_none) override;
 
 
-      virtual ::pointer<::factory::factory> & node_factory();
+      virtual ::factory::factory * node_factory() override;
 
 
-      virtual void inline_init();
-      virtual void inline_term();
+      virtual void inline_init() override;
+      virtual void inline_term() override;
 
 
-      virtual void process_init();
+      virtual void process_init() override;
 
 
-      virtual void call_init_system();
+      virtual void call_init_system() override;
 
 
-      virtual void init_system();
+      virtual void init_system() override;
 
 
-      virtual void on_start_system();
+       virtual void on_start_system() override;
 
 
-      virtual void defer_post_initial_request();
+      virtual void defer_post_initial_request() override;
 
 
-      virtual void canonical_system_main();
+      virtual void canonical_system_main() override;
 
-      virtual void system_main();
+      virtual void system_main() override;
 
 
       void on_pre_run_task() override;
 
 
-      virtual void on_branch_system_from_main_thread_startup();
+      virtual void on_branch_system_from_main_thread_startup() override;
 
 
       void main() override;
 
 
-      virtual ::pointer<::platform::application> new_app(const ::scoped_string & scopedstrAppId);
+      virtual ::pointer<::platform::application> new_app(const ::scoped_string & scopedstrAppId) override;
 
 
-      virtual void end();
+      virtual void end() override;
 
 
-      virtual void on_end();
+      virtual void on_end() override;
 
 
-      virtual void report_system_instance();
+      virtual void report_system_instance() override;
 
       //using ::manager::on_subject;
       //virtual void on_subject(::topic * ptopic) override;
 
-      virtual class ::time get_update_poll_time(const ::atom & atom);
+      virtual class ::time get_update_poll_time(const ::atom & atom) override;
 
 
-      virtual ::acme::library * on_get_library(const ::string & pszLibrary);
+      virtual ::acme::library * on_get_library(const ::string & pszLibrary) override;
 
 
 
@@ -333,9 +334,9 @@ namespace platform
       //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
 
 
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
-      virtual void open_link(string strUrl, string strProfile, string strTarget);
-      virtual void open_url(string strUrl, string strProfile, string strTarget);
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
       //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
@@ -352,7 +353,7 @@ namespace platform
       void term_task() override;
 
 
-      virtual string __get_text(const string & str);
+      string __get_text(const string & str) override;
 
 #ifdef LINUX
 
@@ -450,36 +451,36 @@ namespace platform
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);
 
-      virtual void check_exit();
+      virtual void check_exit() override;
 
-      virtual ::regular_expression_pointer create_regular_expression(const ::string & pszStyle, const string & str);
+      virtual ::regular_expression_pointer create_regular_expression(const ::string & pszStyle, const string & str) override;
       //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
-      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::string & pszStyle);
+      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::string & pszStyle) override;
 
-      virtual ::regular_expression_pointer compile_pcre(const string & str);
-      virtual ::pointer<::regular_expression::context> get_pcre_context();
+      virtual ::regular_expression_pointer compile_pcre(const string & str) override;
+      virtual ::pointer<::regular_expression::context> get_pcre_context() override;
       //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
-      virtual void get_public_internet_domain_extension_list(string_array & stra);
-      virtual ::string fetch_public_internet_domain_extension_list_text();
+      virtual void get_public_internet_domain_extension_list(string_array & stra) override;
+      virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
-      virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
+      virtual void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
-      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
+      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal) override;
 
-      virtual void erase_signal_handler(::signal_handler::base * pbase);
+      virtual void erase_signal_handler(::signal_handler::base * pbase) override;
 
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
-      virtual void node_will_finish_launching();
+      virtual void node_will_finish_launching() override;
 
-      virtual void on_open_untitled_file();
+      virtual void on_open_untitled_file() override;
 
-      virtual void on_open_file(const ::string & pszFile);
+      virtual void on_open_file(const ::string & pszFile) override;
 
       //template < typename BASE_TYPE >
       //::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -514,13 +515,13 @@ namespace platform
       ::pointer < ::compress>    new_zlib_compress();
       ::pointer < ::uncompress>  new_zlib_uncompress();
 
-      virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
-      virtual void _uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction = {});
+      virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
+      virtual void _uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction = {}) override;
 
-      virtual void zlib_compress(const ::payload & payloadTarget, const ::payload & payloadSource);
-      virtual void zlib_uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, transfer_progress_function transferprogressfunction = {});
+      virtual void zlib_compress(const ::payload & payloadTarget, const ::payload & payloadSource) override;
+      virtual void zlib_uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, transfer_progress_function transferprogressfunction = {}) override;
 
-      virtual bool fast_is_decompressable_folder(const ::file::path & path);
+      virtual bool fast_is_decompressable_folder(const ::file::path & path) override;
 
       //virtual void windowing_send(const ::procedure & procedure);
       //virtual void windowing_post(const ::procedure & procedure);
@@ -534,7 +535,7 @@ namespace platform
 
       //virtual void windowing_post_quit();
 
-      virtual string get_latest_deployment_number(const ::string & strBranch);
+      virtual string get_latest_deployment_number(const ::string & strBranch) override;
 
 
       void destroy() override;
@@ -561,43 +562,43 @@ namespace platform
 //#define LIBCALL(library, entry)  (system()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
-      virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
-      virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
+      virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) override;
+      virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) override;
 
 
       //class ::crypto::crypto * crypto();
 
 
-      virtual ::file::path local_get_matter_cache_path();
-      virtual ::file::path local_get_matter_cache_path(string strMatter);
-      virtual ::file::path local_get_matter_path();
-      virtual ::file::path local_get_matter_path(string strMatter);
+      virtual ::file::path local_get_matter_cache_path() override;
+      virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      virtual ::file::path local_get_matter_path() override;
+      virtual ::file::path local_get_matter_path(string strMatter) override;
 
-      virtual void install_progress_add_up(int iAddUp = 1);
-
-
-      virtual ::string get_application_server_name();
+      virtual void install_progress_add_up(int iAddUp = 1) override;
 
 
-      virtual ::color::color background_color() const;
-
-      virtual double luminance() const;
-
-      virtual void background_color(const ::color::color & color);
+      virtual ::string get_application_server_name() override;
 
 
-      virtual bool dark_mode() const;
-      virtual void on_application_dark_mode_change();
+      virtual ::color::color background_color() const override;
+
+      virtual double luminance() const override;
+
+      virtual void background_color(const ::color::color & color) override;
+
+
+      virtual bool dark_mode() const override;
+      virtual void on_application_dark_mode_change() override;
 
       //      virtual int get_simple_ui_darkness();
 
       //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      virtual void set_dark_mode(bool bDark);
+      virtual void set_dark_mode(bool bDark) override;
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
 
-      virtual ::color::color get_default_color(::color::color color);
+      virtual ::color::color get_default_color(::color::color color) override;
 
 
       // #if defined(WITH_X11)
@@ -605,8 +606,8 @@ namespace platform
       //       virtual void x11_async(const ::procedure & procedure);
       // #endif
 
-      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
-      virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent) override;
+      virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent) override;
 
       //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 

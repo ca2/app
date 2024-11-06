@@ -233,18 +233,18 @@ constexpr auto minimum_maximum(T t, L l, H h)
 //
 //}
 //template <  > constexpr const auto minimum(const ::u64 & u, const ::i64 & i){  return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-//template <  > constexpr const auto minimum(const ::u64 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const int & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
 //template <  > constexpr const auto minimum(const ::u64 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
 //template <  > constexpr const auto minimum(const ::u64 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
 //template <  > constexpr const auto minimum(const ::u32 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
-//template <  > constexpr const auto minimum(const ::u32 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const int & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
 //template <  > constexpr const auto minimum(const ::u32 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
 //template <  > constexpr const auto minimum(const ::u32 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
 //template <  > constexpr const auto minimum(const ::u16 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-//template <  > constexpr const auto minimum(const ::u16 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
+//template <  > constexpr const auto minimum(const ::u16 & u, const int & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
 //template <  > constexpr const auto minimum(const ::u16 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
 //template <  > constexpr const auto minimum(const ::u16 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u16)i ? u : (::u16)i); }
-//template <  > constexpr const auto minimum(const ::u8 & u, const ::i64 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-//template <  > constexpr const auto minimum(const ::u8 & u, const ::i32 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-//template <  > constexpr const auto minimum(const ::u8 & u, const ::i16 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
-//template <  > constexpr const auto minimum(const ::u8 & u, const ::i8 & i) { return i < 0 ? 0 : (u < (::u8)i ? u : (::u8)i); }
+//template <  > constexpr const auto minimum(const unsigned char & u, const ::i64 & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
+//template <  > constexpr const auto minimum(const unsigned char & u, const int & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
+//template <  > constexpr const auto minimum(const unsigned char & u, const ::i16 & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
+//template <  > constexpr const auto minimum(const unsigned char & u, const ::i8 & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }

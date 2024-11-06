@@ -80,7 +80,7 @@ struct tagLOGRGN :
    public gdi_object
 {
 	::u32        m_uiSize;
-	::u8 *      m_puchData;
+	unsigned char *      m_puchData;
 };
 
 

@@ -15,7 +15,7 @@
 //inline void __string_exchange(text_stream & s, i16 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, i32 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, i64 & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, u8 & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, unsigned char & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, u16 & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, u32 & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, u64 & u) { s.number_exchange(u); }

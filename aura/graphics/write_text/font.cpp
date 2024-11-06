@@ -83,7 +83,7 @@ namespace write_text
    }
 
 
-//   bool font::create_point_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+//   bool font::create_point_font(const ::string & pszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
 //   {
 //
 //      m_strFontFamilyName = pszFacename;
@@ -345,14 +345,14 @@ namespace write_text
 //      //      glyph * pglyph;
 
 //      //      strsize iSize = str.length();
-//      //      for(i32 i = 0; i < iSize; i++)
+//      //      for(int i = 0; i < iSize; i++)
 //      //      {
 //      //         pglyph = GetGlyph(str[i]);
 
 //      //         if(pglyph != nullptr)
 
 //      //         {
-//      //            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
+//      //            pointOffset.x() = int(pgraphics->get_text_extent(str.left(i)).cx());
 //      //            pglyph->DrawGlyph(
 
 //      //               pgraphics,
@@ -381,7 +381,7 @@ namespace write_text
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
 
 //   {
 //
@@ -441,7 +441,7 @@ namespace write_text
 //
 //         rectangle clipRect;
 //
-//         i32 iOldMapMode = pgraphics->GetMapMode();
+//         int iOldMapMode = pgraphics->GetMapMode();
 //         pgraphics->SetMapMode(MM_TEXT);
 //         pgraphics->text_out(x, y, str);
 //         pgraphics->BeginPath();
@@ -454,7 +454,7 @@ namespace write_text
 //         ClearDC();*/
 //   }
 //
-//   void font::simple_text_out(::draw2d::graphics * pgraphics, i32 x, i32 y, string & str, LPINT piCharsPositions, i32 iCharsPositions)
+//   void font::simple_text_out(::draw2d::graphics * pgraphics, int x, int y, string & str, LPINT piCharsPositions, int iCharsPositions)
 
 //
 //   {
@@ -604,7 +604,7 @@ namespace write_text
 //   {
 //      char           ch;
 //      string         str;
-//      i32        i, j, k;
+//      int        i, j, k;
 //      bool           forceInsertion = FALSE;
 //
 //      SelectFont();
@@ -658,7 +658,7 @@ namespace write_text
 //      string str(pStr);
 
 //      SelectFont();
-//      for (i32 i = 0; i < str.length(); i++)
+//      for (int i = 0; i < str.length(); i++)
 //      {
 //         AddGlyph(str[i]);
 //      }
@@ -673,9 +673,9 @@ namespace write_text
 //   string                 &str,
 //   LPINT                piCharsPositions,
 
-//   i32                     iCharsPositions,
-//   i32                  iOffset,
-//   i32                     iEffect)
+//   int                     iCharsPositions,
+//   int                  iOffset,
+//   int                     iEffect)
 //   {
 //
 //      switch (iEffect)
@@ -704,7 +704,7 @@ namespace write_text
 //   }
 //
 //
-//   i32 font::GetMegaHeight()
+//   int font::GetMegaHeight()
 //   {
 //
 //      return m_tm.tmHeight +
@@ -844,7 +844,7 @@ namespace write_text
 } // namespace write_text
 
 
-//bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i32 ca)
+//bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::string & pString, int ca)
 //
 //{
 //
@@ -860,7 +860,7 @@ namespace write_text
 //   wstring wstr = utf8_to_unicode(pString, ca);
 //
 //
-//   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != FALSE;
+//   bool bRet = ::TextOutW(hdc, x, y, wstr, (int)wstr.get_length()) != FALSE;
 //
 //   return bRet;
 //
@@ -876,7 +876,7 @@ namespace write_text
 //         return ::text_out(hdc, x, y, nullptr, 0) != FALSE;
 //      }
 //
-//      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
+//      return ::text_out(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
 //   */
 //
 //#endif
@@ -884,7 +884,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i32 ca, LPSIZE32 psizl)
+//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, int ca, LPSIZE32 psizl)
 //
 //{
 //
@@ -901,7 +901,7 @@ namespace write_text
 //   wstring wstr = utf8_to_unicode(pString, ca);
 //
 //
-//   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != FALSE;
+//   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int)wstr.get_length(), psizl) != FALSE;
 //
 //   return bRet;
 //
@@ -914,7 +914,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, RECT32 * prect, ::u32 format)
+//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * prect, ::u32 format)
 //
 //{
 //
@@ -932,7 +932,7 @@ namespace write_text
 //   wstring wstr = utf8_to_unicode(pchText, cchText);
 //
 //
-//   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prect, format) != FALSE;
+//   bool bRet = ::DrawTextW(hdc, wstr, (int)wcslen(wstr), prect, format) != FALSE;
 //
 //
 //   return bRet;

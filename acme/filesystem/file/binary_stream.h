@@ -169,20 +169,20 @@ public:
       if (u < 255)
       {
 
-         operator <<((::u8)u);
+         operator <<((unsigned char)u);
 
       }
       else if (u < 65535)
       {
 
-         operator <<((::u8)255);
+         operator <<((unsigned char)255);
          operator <<((::u16)u);
 
       }
       else
       {
 
-         operator <<((::u8)255);
+         operator <<((unsigned char)255);
          operator <<((::u16)65535);
          operator <<((::u64)u);
 
@@ -194,7 +194,7 @@ public:
    inline void read_length(::u64 & u)
    {
 
-      ::u8 uRead;
+      unsigned char uRead;
 
       operator >>(uRead);
 
@@ -257,7 +257,7 @@ public:
       raw_write(wch);  return *this;
    }
 #endif
-   binary_stream & operator <<(bool b) { return operator <<((::u8)b ? 1 : 0); }
+   binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
    binary_stream & operator <<(i32 i) {
       raw_write(i);  return *this;
    }
@@ -312,7 +312,7 @@ public:
 
 
 
-   binary_stream & operator >>(bool & b) { ::u8 u8; raw_read(u8); b = u8 ? true : false; return *this; }
+   binary_stream & operator >>(bool & b) { unsigned char unsigned char; raw_read(unsigned char); b = unsigned char ? true : false; return *this; }
    binary_stream & operator >>(char & ch) {
       raw_read(ch); return *this;
    }
@@ -377,8 +377,8 @@ public:
    // void save_var_type(::enum_type etype);
 
    /* void getline(char * sz, strsize n);
-   ::u8 get_byte();
-   ::u8 peek_byte();*/
+   unsigned char get_byte();
+   unsigned char peek_byte();*/
 
    // filesize get_position();
    // filesize seek_from_begin(filesize position);
@@ -523,20 +523,20 @@ public:
       if (u < 255)
       {
 
-         operator <<((::u8)u);
+         operator <<((unsigned char)u);
 
       }
       else if (u < 65535)
       {
 
-         operator <<((::u8)255);
+         operator <<((unsigned char)255);
          operator <<((::u16)u);
 
       }
       else
       {
 
-         operator <<((::u8)255);
+         operator <<((unsigned char)255);
          operator <<((::u16)65535);
          operator <<((::u64)u);
 
@@ -575,9 +575,9 @@ public:
    inline ::u64 read_buffer_length_unbounded()
    {
 
-      ::u8 u8 = m_pfile->get_u8_unbounded();
+      unsigned char unsigned char = m_pfile->get_u8_unbounded();
 
-      return u8 < 255 ? u8 : read_buffer_length_unbounded_part2();
+      return unsigned char < 255 ? unsigned char : read_buffer_length_unbounded_part2();
 
    }
 
@@ -1178,9 +1178,9 @@ public:
    //}
 
 
-   ::u8 get_byte()
+   unsigned char get_byte()
    {
-      ::u8 b = 0;
+      unsigned char b = 0;
       if (m_pfile->read(&b, 1) != 1)
       {
 
@@ -1191,7 +1191,7 @@ public:
    }
 
 
-   ::u8 peek_byte()
+   unsigned char peek_byte()
    {
 
       return m_pfile->peek_byte();

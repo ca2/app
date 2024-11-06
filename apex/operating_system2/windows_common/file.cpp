@@ -122,9 +122,9 @@
 //
 //      if (         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->is(path))
+//pdirectorysystem->is(path))
 //      {
 //
 //         hfile = create_file(path,

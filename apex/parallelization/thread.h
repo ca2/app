@@ -289,8 +289,8 @@ public:
    //virtual void process_window_message(::user::message * pusermessage);
    virtual bool process_message();     // route message
    virtual bool raw_process_message();     // route message
-   // virtual bool on_idle(::i32 lCount); // return true if more idle processing
-   virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount);
+   // virtual bool on_idle(int lCount); // return true if more idle processing
+   virtual void on_thread_on_idle(::thread * pthread, int lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -299,7 +299,7 @@ public:
 
    virtual void run() override;
    virtual void main() override;
-   virtual bool on_idle();
+   virtual bool on_idle() override;
 
    virtual void on_pos_run_thread();
    void term_task() override;
@@ -449,7 +449,7 @@ public:
 protected:
 
 
-   virtual void __priority_and_affinity();
+   virtual void __priority_and_affinity() override;
    void __os_initialize() override;
 //   virtual void __os_thread_start();
    void __set_thread_on() override;

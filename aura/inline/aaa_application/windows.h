@@ -3,7 +3,7 @@
 #include "apex/inline/application/windows.h"
 
 
-// i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+// int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
 // {
 
 //    auto psystem = platform_create_system(hinstance);
@@ -18,7 +18,7 @@
 
 //    ::e_status estatus = psystem->__thread_procedure();
 
-//    ::i32 iErrorStatus = estatus.error_status();
+//    int iErrorStatus = estatus.error_status();
 
 //    return iErrorStatus;
 

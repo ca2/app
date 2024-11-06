@@ -8,7 +8,7 @@
 //
 //   synchronization_array      m_synchronizationa;
 ////#ifdef WINDOWS
-////   hsync_array                m_hsynca;
+////   hsynchronization_array                m_hsynchronizationa;
 ////#endif
 //   bool_array                 m_baLocked;
 //   duration                   m_durationLock;
@@ -25,7 +25,7 @@
 //
 //   synchronization_result lock(bool bWaitForAll = true, u32 dwWakeMask = 0);
 //   bool unlock();
-//   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+//   bool unlock(int lCount, int * lPrevCount = nullptr);
 //   bool IsLocked(::collection::index iItem);
 //
 //

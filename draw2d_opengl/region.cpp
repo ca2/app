@@ -216,7 +216,7 @@ namespace draw2d_opengl
    //   
    //   plusplus::GraphicsPath path;
 
-   //   path.AddEllipse((::i32) m_x1, (::i32) m_y1, (::i32) (m_x2 - m_x1), (::i32) (m_y2 - m_y1));
+   //   path.AddEllipse((int) m_x1, (int) m_y1, (int) (m_x2 - m_x1), (int) (m_y2 - m_y1));
 
    //   return ___new plusplus::Region (&path);
 

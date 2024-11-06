@@ -111,7 +111,7 @@ CLASS_DECL_APEX void apex_ref();
 #include "_forward_declaration.h"
 
 
-
+#include "apex/message/_.h"
 #include "apex/message/global.h"
 
 
@@ -195,7 +195,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //
 //
 //
-//#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+//#define __u16(a, b)                                   ((::u16)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((::u16)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
 //#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 //
 //
@@ -222,8 +222,8 @@ extern CLASS_DECL_APEX int g_bApex;
 //
 //#define __u32xy(u)                                    u32_x(u), u32_y(u)
 //
-//#define u64_x(u)                                     ((::i32)lower_u32(u))
-//#define u64_y(u)                                     ((::i32)upper_u32(u))
+//#define u64_x(u)                                     ((int)lower_u32(u))
+//#define u64_y(u)                                     ((int)upper_u32(u))
 //
 //#define __u64xy(u)                                    u64_x(u), u64_y(u)
 //
@@ -346,7 +346,7 @@ namespace core
 //enum e_message : ::i64;
 //enum enum_impact : ::i64;
 //enum ::enum_id : ::u64;
-//enum enum_check: ::i32;
+//enum enum_check: int;
 
 
 //template < typename CHAR_TYPE >
@@ -1232,6 +1232,11 @@ namespace mathematics
 
 
 #include "apex/networking/internet.h"
+
+
+
+#include "apex/platform/system.h"
+
 
 
 #include "apex/parallelization/_impl.h"

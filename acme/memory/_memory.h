@@ -27,9 +27,9 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 inline const void * _memory_find_u8(const void* l, int i, memsize len)
 {
 
-    auto u = (::u8) (*((::u32*)(&i)) & 0xff);
+    auto u = (unsigned char) (*((::u32*)(&i)) & 0xff);
 
-    auto p = (const ::u8*)l;
+    auto p = (const unsigned char*)l;
 
     while(len > 0)
     {
@@ -98,7 +98,7 @@ inline void * zero(void * p, memsize size) { memory_set(p, 0, size); return p; }
 inline bool is_zero(const void * p, memsize iSize)
 {
 
-   u8 * pb = (u8 *)p;
+   unsigned char * pb = (unsigned char *)p;
 
    while (*pb == '\0' && iSize > 0)
    {

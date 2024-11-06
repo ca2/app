@@ -433,7 +433,7 @@ string & property::get_network_arguments(::string & str) const
 ////}
 //
 //
-//::i32 property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
+//int property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
 //{
 //   return case_insensitive_order(psz);
 //}
@@ -477,7 +477,7 @@ string & property::get_network_arguments(::string & str) const
 //   return strict_equal(d);
 //}
 //
-//bool property::strict_equal(::i32 i) const
+//bool property::strict_equal(int i) const
 //{
 //   return strict_equal(i);
 //}
@@ -513,7 +513,7 @@ string & property::get_network_arguments(::string & str) const
 //   return strict_different(d);
 //}
 //
-//bool property::strict_different(::i32 i) const
+//bool property::strict_different(int i) const
 //{
 //   return strict_different(i);
 //}
@@ -544,7 +544,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() == str;
 //}
 //
-//bool property::operator == (::i32 i) const
+//bool property::operator == (int i) const
 //{
 //   return get_value() == i;
 //}
@@ -575,7 +575,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() != str;
 //}
 //
-//bool property::operator != (::i32 i) const
+//bool property::operator != (int i) const
 //{
 //   return get_value() != i;
 //}
@@ -628,7 +628,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() < str;
 //}
 //
-//bool property::operator < (::i32 i) const
+//bool property::operator < (int i) const
 //{
 //   return get_value() < i;
 //}
@@ -682,7 +682,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() <= str;
 //}
 //
-//bool property::operator <= (::i32 i) const
+//bool property::operator <= (int i) const
 //{
 //   return get_value() <= i;
 //}
@@ -735,7 +735,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() >= str;
 //}
 //
-//bool property::operator >= (::i32 i) const
+//bool property::operator >= (int i) const
 //{
 //   return get_value() >= i;
 //}
@@ -788,7 +788,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() > str;
 //}
 //
-//bool property::operator > (::i32 i) const
+//bool property::operator > (int i) const
 //{
 //   return get_value() > i;
 //}
@@ -852,7 +852,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload property::operator - (::i32 i) const
+//::payload property::operator - (int i) const
 //{
 //   return get_value() - i;
 //}
@@ -885,7 +885,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload property::operator + (::i32 i) const
+//::payload property::operator + (int i) const
 //{
 //   return get_value() + i;
 //}
@@ -961,7 +961,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload property::operator / (::i32 i) const
+//::payload property::operator / (int i) const
 //{
 //   return get_value() / i;
 //}
@@ -994,7 +994,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload property::operator * (::i32 i) const
+//::payload property::operator * (int i) const
 //{
 //   return get_value() * i;
 //}
@@ -1072,7 +1072,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//property & property::operator -= (::i32 i)
+//property & property::operator -= (int i)
 //{
 //   operator=(*this - i);
 //   return *this;
@@ -1168,7 +1168,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//property & property::operator += (::i32 i)
+//property & property::operator += (int i)
 //{
 //   operator=(*this + i);
 //   return *this;
@@ -1246,7 +1246,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//property & property::operator /= (::i32 i)
+//property & property::operator /= (int i)
 //{
 //   operator=(*this / i);
 //   return *this;
@@ -1312,7 +1312,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//property & property::operator *= (::i32 i)
+//property & property::operator *= (int i)
 //{
 //   operator=(*this * i);
 //   return *this;
@@ -1521,7 +1521,7 @@ string & property::get_network_arguments(::string & str) const
 
 //
 //
-//::payload  operator - (::i32 i, const property & prop)
+//::payload  operator - (int i, const property & prop)
 //{
 //   return i - (const ::payload &)prop;
 //}
@@ -1596,7 +1596,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator + (::i32 i, const property & prop)
+//::payload  operator + (int i, const property & prop)
 //{
 //   return i + prop;
 //}
@@ -1671,7 +1671,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator / (::i32 i, const property & prop)
+//::payload  operator / (int i, const property & prop)
 //{
 //   return i / prop;
 //}
@@ -1742,7 +1742,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//::payload  operator * (::i32 i, const property & prop)
+//::payload  operator * (int i, const property & prop)
 //{
 //   return i * prop;
 //}

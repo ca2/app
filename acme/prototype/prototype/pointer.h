@@ -1300,7 +1300,7 @@ return p;
  * Specialisation=SomeLibrary<A, B>). Also accepts classes
  * deriving from specialised TemplateClass.
  *
- * @tparam PartialSpecialisation optional partial specialisation
+ * tparam PartialSpecialisation optional partial specialisation
  * of the TemplateClass to be required
  */
 template<class specialization, template<typename> class template_class,

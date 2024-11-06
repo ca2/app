@@ -585,13 +585,13 @@
 ////inline void __io(::binary_stream & s, ::i16 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i32 & i) { s.io(i); }
+////inline void __io(::binary_stream & s, int & i) { s.io(i); }
 ////
 ////
 ////inline void __io(::binary_stream & s, ::i64 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u8 & u) { s.io(u); }
+////inline void __io(::binary_stream & s, unsigned char & u) { s.io(u); }
 ////
 ////
 ////inline void __io(::binary_stream & s, ::u16 & u) { s.io(u); }
@@ -810,7 +810,7 @@
 //#endif
 //
 //
-//inline void __exchange(::binary_stream & s, u8 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, unsigned char & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, u16 & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, u32 & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, u64 & u) { s.default_exchange(u); }

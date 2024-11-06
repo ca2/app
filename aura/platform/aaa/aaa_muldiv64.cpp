@@ -161,11 +161,11 @@
 //  */
 // inline u32 msb(u64 value)
 // {
-//     const i32 MAX_LOGLOG = 6;
+//     const int MAX_LOGLOG = 6;
 //     const u64 BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
 //     const u32 EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
 //     u32 r = 0;
-//     for (i32 i = MAX_LOGLOG-1; i >= 0; i--)  {
+//     for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
 //         if (value & BIT_LL[i])  {
 //             value >>= EXP_LL[i];
 //             r |= EXP_LL[i];
@@ -285,7 +285,7 @@
 
 //    _asmxxx{
 //       // Test rshift for >128
-//       mov      al, ::u8 ptr[rshift]
+//       mov      al, unsigned char ptr[rshift]
 //       cmp      al, 80
 //       jl      shiftOK
 //       popfd                           // cleanup stack
@@ -363,7 +363,7 @@
 //       // Divide: var128 = var128 / (2^rshift)
 //       //
 //       xor      eax, eax
-//       mov      al, ::u8 ptr[rshift]
+//       mov      al, unsigned char ptr[rshift]
 //       cmp      al, 0
 //       jz      applySign
 
@@ -401,7 +401,7 @@
 
 // bitShift:
 //       // Do multiple precision bitshift
-//       mov      cl, ::u8 ptr[rshift]
+//       mov      cl, unsigned char ptr[rshift]
 //       mov      eax, dword ptr[edi+4]
 //       shrd   dword ptr[edi], eax, cl
 //       mov      eax, dword ptr[edi+8]

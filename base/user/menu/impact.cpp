@@ -355,7 +355,7 @@ namespace user
 
       auto puseritem = user_item(pmenuitem);
 
-      puseritem->m_rectangle2.top() = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
+      puseritem->m_rectangle2.top() = (int)( y + (iMenuItemIndex + iSep) * iHeight);
 
       puseritem->m_rectangle2.bottom() = puseritem->m_rectangle2.top() + iHeight;
 

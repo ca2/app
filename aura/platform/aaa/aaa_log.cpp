@@ -46,9 +46,9 @@ namespace aura
 
       ::file::path pathTrace =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "trace.txt";
+pdirectorysystem->system() / "trace.txt";
 
 #ifdef __DEBUG
 
@@ -181,9 +181,9 @@ pacmedirectory->system() / "trace.txt";
 
       if (file_is_true_dup(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "log.txt"))
+pdirectorysystem->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -236,7 +236,7 @@ pacmedirectory->system() / "log.txt"))
 
 //   extern ::pointer<::aura::application>g_papp;
 
-   CLASS_DECL_AURA i32 SimpleDebugReport(i32 iReportType, const ::string & pszFileName,i32 iLine, const ::string &, const ::string & pszFormat, va_list list)
+   CLASS_DECL_AURA int SimpleDebugReport(int iReportType, const ::string & pszFileName,int iLine, const ::string &, const ::string & pszFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -306,7 +306,7 @@ pacmedirectory->system() / "log.txt"))
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & pszFormat, va_list args)
    //{
 
    //   string str;
@@ -318,7 +318,7 @@ pacmedirectory->system() / "log.txt"))
    //}
 
 
-   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
+   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
    {
 
       const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
@@ -464,7 +464,7 @@ pacmedirectory->system() / "log.txt"))
             fclose(m_pfile);
             m_pfile = nullptr;
          }
-         i32 iRetry = 0;
+         int iRetry = 0;
       retry:
 
          string strDatetime;
@@ -482,13 +482,13 @@ pacmedirectory->system() / "log.txt"))
 
                      auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(::file_path_folder(m_strLogPath));
+pdirectorysystem->create(::file_path_folder(m_strLogPath));
 
             if (!(m_pfile = fopen(m_strLogPath, "at")))
             {
-               i32 iError = errno;
+               int iError = errno;
                if (iError == ENOENT)
                {
                   goto skip_further_possible_recursive_impossible_logging_in_file;
@@ -559,9 +559,9 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   if (!path_system()->app_module().case_insensitive_contains("logviewer") && file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "logviewer.txt"))
+pdirectorysystem->system() / "logviewer.txt"))
                   {
 
                      call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_normal, false);
@@ -585,7 +585,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       }
 
-      for(i32 i = 0; i < stra.get_size(); i++)
+      for(int i = 0; i < stra.get_size(); i++)
       {
 
          string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";

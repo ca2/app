@@ -203,7 +203,7 @@ namespace user
       inline bool get_typed_child(CHILD *& pchild)
       {
 
-         for (i32 i = 0; i < this->interaction_count(); i++)
+         for (int i = 0; i < this->interaction_count(); i++)
          {
 
             pchild = this->interaction_at(i).cast < CHILD >();
@@ -217,7 +217,7 @@ namespace user
 
          }
 
-         for (i32 i = 0; i < this->interaction_count(); i++)
+         for (int i = 0; i < this->interaction_count(); i++)
          {
 
             if (this->interaction_at(i)->get_typed_child(pchild))

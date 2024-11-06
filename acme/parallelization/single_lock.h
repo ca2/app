@@ -21,7 +21,7 @@ public:
    void _lock();
    bool lock(const class ::time & wait = ::time::infinity());
    void unlock();
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   void unlock(int lCount, int * lPrevCount = nullptr);
    bool is_locked() const;
 
 
@@ -47,7 +47,7 @@ public:
    void _lock();
 //   bool lock();
    void unlock();
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   void unlock(int lCount, int * lPrevCount = nullptr);
    bool is_locked() const;
 
 

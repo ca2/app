@@ -27,7 +27,7 @@ inline i32 utf8_o(char cExtraBytes)
 }
 
 
-inline char utf8_e(::u8 c)
+inline char utf8_e(unsigned char c)
 {
 
    if (c < 192)
@@ -61,17 +61,17 @@ inline strsize wd32_to_ansi_char_len(::wd32_character wch)
    }
    else if (wch <= 0x07FF)
    {
-      // 2-::u8 unicode
+      // 2-unsigned char unicode
       return 2;
    }
    else if (wch <= 0xFFFF)
    {
-      // 3-::u8 unicode
+      // 3-unsigned char unicode
       return 3;
    }
    else if (wch <= 0x10FFFF)
    {
-      // 4-::u8 unicode
+      // 4-unsigned char unicode
       return 4;
    }
    else
@@ -153,7 +153,7 @@ inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, 
 
    ::wd32_character u32 = 0;
 
-   ::u8 c;
+   unsigned char c;
    char extraBytesToRead = utf8_e(*input);
    int len = extraBytesToRead + 1;
    if (srclen < len) return -1;
@@ -458,14 +458,14 @@ inline strsize wd32_to_ansi_char(char * psz, ::wd32_character wch)
    }
    else if (wch <= 0x07FF)
    {
-      // 2-::u8 unicode
+      // 2-unsigned char unicode
       psz[0] = (char)(((wch >> 6) & 0x1F) | 0xC0);
       psz[1] = (char)(((wch >> 0) & 0x3F) | 0x80);
       return 2;
    }
    else if (wch <= 0xFFFF)
    {
-      // 3-::u8 unicode
+      // 3-unsigned char unicode
       psz[0] = (char)(((wch >> 12) & 0x0F) | 0xE0);
       psz[1] = (char)(((wch >> 6) & 0x3F) | 0x80);
       psz[2] = (char)(((wch >> 0) & 0x3F) | 0x80);
@@ -473,7 +473,7 @@ inline strsize wd32_to_ansi_char(char * psz, ::wd32_character wch)
    }
    else if (wch <= 0x10FFFF)
    {
-      // 4-::u8 unicode
+      // 4-unsigned char unicode
       psz[0] = (char)(((wch >> 18) & 0x07) | 0xF0);
       psz[1] = (char)(((wch >> 12) & 0x3F) | 0x80);
       psz[2] = (char)(((wch >> 6) & 0x3F) | 0x80);

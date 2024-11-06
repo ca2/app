@@ -56,7 +56,7 @@ namespace helloworld
       //::user::plain_edit_impact *              m_peditFontSel;
 
       ::pointer < ::mutex >                                  m_pmutexAiFont;
-      i32                                m_iErrorAiFont;
+      int                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi; // FT_Face m_faceAi;
 
@@ -68,7 +68,7 @@ namespace helloworld
 
       virtual string preferred_experience() override;
       virtual void init_instance() override;
-      virtual i32  exit_application() override;
+      virtual int  exit_application() override;
 
       virtual void on_request(::request * prequest) override;
 

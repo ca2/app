@@ -55,7 +55,7 @@ namespace draw2d_opengl
       void SetIconMask(::image::icon * picon, i32 cx, i32 cy);
 
 
-      //bool color_blend(color32_t color32, ::u8 bAlpha);
+      //bool color_blend(color32_t color32, unsigned char bAlpha);
       //bool Blend(imagepimage, ::image::image *pimageA, i32 A);
       //void BitBlt(::image::image *pimage, i32 op);
       //color32_t GetAverageColor();
@@ -79,15 +79,15 @@ namespace draw2d_opengl
       //void rotate(::image::image *pimage, double dAngle, double dScale);
       //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 
-      //void RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
-      //   ::u8 a1, ::u8 r1, ::u8 g1, ::u8 b1, // center colors
-      //   ::u8 a2, ::u8 r2, ::u8 g2, ::u8 b2, // border colors
+      //   unsigned char a1, unsigned char r1, unsigned char g1, unsigned char b1, // center colors
+      //   unsigned char a2, unsigned char r2, unsigned char g2, unsigned char b2, // border colors
       //   i32 x, i32 y, i32 iRadius);
 
       //u32 GetPixel(i32 x, i32 y);
       //void Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
-      //void ::color::e_channel_mask(::u8 uchFind, ::u8 uchSet, ::u8 uchUnset, color::color::color::rgba::echannel echannel);
+      //void ::color::e_channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, color::color::color::rgba::echannel echannel);
       //void transparent_color(::color::color color);
       //void DivideRGB(i32 iDivide);
       //void DivideARGB(i32 iDivide);

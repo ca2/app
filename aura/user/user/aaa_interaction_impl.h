@@ -475,11 +475,11 @@ namespace user
       // Window size_i32 and position Functions
       virtual bool window_is_iconic();
       virtual bool window_is_zoomed();
-      //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
-      //virtual i32 GetWindowRgn(HRGN hRgn);
+      //virtual int SetWindowRgn(HRGN hRgn,bool bRedraw);
+      //virtual int GetWindowRgn(HRGN hRgn);
 
       //using ::user::interaction_base::set_window_position;
-      //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx,i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(class zorder zorder, int x, int y, int cx,int cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
       virtual ::u32 ArrangeIconicWindows() override;
       //virtual bool BringWindowToTop() override;
 
@@ -503,7 +503,7 @@ namespace user
       //void SetRedraw(bool bRedraw = true) override;
       ////virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
 
-      ////i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
+      ////int GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       //virtual void Invalidate(bool bErase = true) override;
       //void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
 
@@ -539,11 +539,11 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      virtual bool EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = ESB_ENABLE_BOTH);
+//      virtual bool EnableScrollBar(int nSBFlags,::u32 nArrowFlags = ESB_ENABLE_BOTH);
 //
 //#else
 
-      //virtual void EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 3);
+      //virtual void EnableScrollBar(int nSBFlags,::u32 nArrowFlags = 3);
 
 //#endif
 
@@ -573,14 +573,14 @@ namespace user
 
 //#if(_WIN32_WINNT >= 0x0500)
 //
-//      virtual bool SetLayeredWindowAttributes(::color::color crKey,::u8 bAlpha,u32 dwFlags);
+//      virtual bool SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,u32 dwFlags);
 //      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,::u8 *pbAlpha,u32 *pdwFlags) const;
+//      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,unsigned char *pbAlpha,u32 *pdwFlags) const;
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 //
@@ -593,61 +593,61 @@ namespace user
       
 
 
-      //virtual void CheckDlgButton(i32 nIDButton,::u32 nCheck);
-      //virtual void CheckRadioButton(i32 nIDFirstButton,i32 nIDLastButton,
-      //                              i32 nIDCheckButton);
-      //virtual i32 GetCheckedRadioButton(i32 nIDFirstButton,i32 nIDLastButton);
-      //virtual i32 DlgDirList(char * pPathSpec,i32 nIDListBox,
+      //virtual void CheckDlgButton(int nIDButton,::u32 nCheck);
+      //virtual void CheckRadioButton(int nIDFirstButton,int nIDLastButton,
+      //                              int nIDCheckButton);
+      //virtual int GetCheckedRadioButton(int nIDFirstButton,int nIDLastButton);
+      //virtual int DlgDirList(char * pPathSpec,int nIDListBox,
 
-      //                       i32 nIDStaticPath,::u32 nFileType);
-      //virtual i32 DlgDirListComboBox(char * pPathSpec,i32 nIDComboBox,
+      //                       int nIDStaticPath,::u32 nFileType);
+      //virtual int DlgDirListComboBox(char * pPathSpec,int nIDComboBox,
 
-      //                               i32 nIDStaticPath,::u32 nFileType);
-      //virtual bool DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox);
+      //                               int nIDStaticPath,::u32 nFileType);
+      //virtual bool DlgDirSelect(char * pString,int nSize,int nIDListBox);
 
-      //virtual bool DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox);
+      //virtual bool DlgDirSelectComboBox(char * pString,int nSize,int nIDComboBox);
 
 
-      //virtual ::u32 GetChildByIdInt(i32 nID,bool* pTrans = nullptr,bool bSigned = true) const;
+      //virtual ::u32 GetChildByIdInt(int nID,bool* pTrans = nullptr,bool bSigned = true) const;
 
-      //virtual i32 GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const;
+      //virtual int GetChildByIdText(int nID,char * pStr,int nMaxCount) const;
 
-      //virtual i32 GetChildByIdText(i32 nID,string & rString) const;
+      //virtual int GetChildByIdText(int nID,string & rString) const;
       //virtual ::windowing::window * GetNextDlgGroupItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual ::windowing::window * GetNextDlgTabItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
-      //virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
-      //virtual lresult SendDlgItemMessage(i32 nID,::u32 message,wparam wParam = 0,lparam lParam = 0);
-      //virtual void SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned = true);
-      //virtual void SetDlgItemText(i32 nID, const ::string & pszString);
+      //virtual ::u32 IsDlgButtonChecked(int nIDButton) const;
+      //virtual lresult SendDlgItemMessage(int nID,::u32 message,wparam wParam = 0,lparam lParam = 0);
+      //virtual void SetDlgItemInt(int nID,::u32 nValue,bool bSigned = true);
+      //virtual void SetDlgItemText(int nID, const ::string & pszString);
 
 
-      //virtual i32 GetScrollPos(i32 nBar) const;
-      //virtual void GetScrollRange(i32 nBar, int * pMinPos, int * lpMaxPos) const;
-      //virtual void ScrollWindow(i32 xAmount,i32 yAmount,
+      //virtual int GetScrollPos(int nBar) const;
+      //virtual void GetScrollRange(int nBar, int * pMinPos, int * lpMaxPos) const;
+      //virtual void ScrollWindow(int xAmount,int yAmount,
       //   const ::rectangle_i32 * rectangle = nullptr,
       //   const ::rectangle_i32 * pClipRect = nullptr);
 
-      //virtual i32 SetScrollPos(i32 nBar,i32 nPos,bool bRedraw = true);
-      //virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos, bool bRedraw = true);
+      //virtual int SetScrollPos(int nBar,int nPos,bool bRedraw = true);
+      //virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos, bool bRedraw = true);
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
-      //virtual void EnableScrollBarCtrl(i32 nBar,bool bEnable = true);
+      //virtual void EnableScrollBarCtrl(int nBar,bool bEnable = true);
 
-      //virtual i32 ScrollWindowEx(i32 Δx,i32 Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
+      //virtual int ScrollWindowEx(int Δx,int Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, bool bRedraw = true);
-//      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
+//      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO pScrollInfo, bool bRedraw = true);
+//      virtual bool GetScrollInfo(int nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
 //
 //#endif
 
 
-      //virtual i32 GetScrollLimit(i32 nBar);
+      //virtual int GetScrollLimit(int nBar);
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
 //
-//      virtual bool GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const;
+//      virtual bool GetScrollBarInfo(int idObject,PSCROLLBARINFO psbi) const;
 //
 //#endif   // WINVER >= 0x0500
 
@@ -668,7 +668,7 @@ namespace user
 
       //bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const ::string & pszText, const ::string & pszCaption = nullptr,::u32 nType = e_message_box_ok);
+      //virtual int message_box(const ::string & pszText, const ::string & pszCaption = nullptr,::u32 nType = e_message_box_ok);
 
 
 //#if(WINVER >= 0x0500)
@@ -762,10 +762,10 @@ namespace user
 
       virtual void _001OnDeferPaintLayeredWindowBackground(::image::image *pimage);
 
-      //virtual ::i32 get_window_long(i32 nIndex) const override;
-      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual int get_window_long(int nIndex) const override;
+      //virtual int set_window_long(int nIndex,int lValue) override;
+      //virtual iptr get_window_long_ptr(int nIndex) const override;
+      //virtual iptr set_window_long_ptr(int nIndex, iptr lValue) override;
 
       virtual interaction_impl * get_impl() const;
 
@@ -845,7 +845,7 @@ namespace user
 //virtual void clear_need_layout() override;
       virtual void set_need_layout() override;
 
-      //virtual bool window_move(i32 x, i32 y) override;
+      //virtual bool window_move(int x, int y) override;
 
       //virtual bool check_show_flags() override;
 

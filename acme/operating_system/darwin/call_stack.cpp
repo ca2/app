@@ -15,7 +15,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 
     auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-    return _ansi_stack_trace(stack, frames, scopedstrFormat);
+    return _ansi_stack_trace(pparticle, stack, frames, scopedstrFormat);
 
 //namespace linux
 //{

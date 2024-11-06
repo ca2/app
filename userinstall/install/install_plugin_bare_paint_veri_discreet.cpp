@@ -85,7 +85,7 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleProgress(rectangleBar);
 
-      rectangleProgress.right() = (::i32) (rectangleProgress.left() + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
+      rectangleProgress.right() = (int) (rectangleProgress.left() + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
       ::rectangle_i32 rectangleProgressComplement(rectangleBar);
 
@@ -95,7 +95,7 @@ namespace hotplugin
 
       {
 
-         ::u8 uchR,uchG,uchB;
+         unsigned char uchR,uchG,uchB;
          auto pbrush = __create < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
          pbrush->create_solid(argb(184,uchR,uchG,uchB));

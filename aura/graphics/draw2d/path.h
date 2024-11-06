@@ -132,7 +132,7 @@ namespace draw2d
       // Returns:     None
       //
 
-      //bool do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
+      //bool do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, int iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
       bool do_round_rectangle_corner(const ::rectangle_f64 & rectangleCorner, const ::rectangle_f64 & rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
 
       bool add_round_top_left(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);

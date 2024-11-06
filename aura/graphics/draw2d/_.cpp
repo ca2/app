@@ -24,7 +24,7 @@ namespace draw2d
       double dSin;
       double d32 = (1U << 31);
       dPi = atan(1.0) * 4.0;
-      i32 i;
+      int i;
       for (i = 0; i < 360; i++)
       {
          dCos = ::cos(i / 180.0 * dPi);
@@ -131,7 +131,7 @@ namespace draw2d
       double dSin;
       double d32 = (1U << 31);
       ::draw2d::dPi = atan(1.0) * 4.0;;
-      i32 i;
+      int i;
       for (i = 0; i < 360; i++)
       {
          dCos = ::cos(i / 180.0 * dPi);

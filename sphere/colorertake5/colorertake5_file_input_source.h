@@ -14,14 +14,14 @@ public:
 
   string get_location() const;
 
-  const ::u8 *openStream();
+  const unsigned char *openStream();
   void closeStream();
   filesize get_length() const;
 protected:
   stream & createRelative(string relPath);
 
   string *baseLocation;
-  ::u8 *stream;
+  unsigned char *stream;
   i32 len;
 };
 

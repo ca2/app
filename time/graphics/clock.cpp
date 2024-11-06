@@ -65,18 +65,18 @@ namespace datetime
          {
             double angle = π / 2.0 - i * π * 2.0 / (60.0);
             point_i32 pointInt;
-            point_i32 pointExt((::i32)(cos(angle) * dRExt), (::i32)(-sin(angle) * dRExt));
+            point_i32 pointExt((int)(cos(angle) * dRExt), (int)(-sin(angle) * dRExt));
             pointExt.offset(pointCenter);
             if (i % 5 == 0)
             {
-               pointInt.x() = (::i32)(cos(angle) * dRIntH);
-               pointInt.y() = (::i32)(-sin(angle) * dRIntH);
+               pointInt.x() = (int)(cos(angle) * dRIntH);
+               pointInt.y() = (int)(-sin(angle) * dRIntH);
                pgraphics->set(ppenHour);
             }
             else
             {
-               pointInt.x() = (::i32)(cos(angle) * dRIntM);
-               pointInt.y() = (::i32)(-sin(angle) * dRIntM);
+               pointInt.x() = (int)(cos(angle) * dRIntM);
+               pointInt.y() = (int)(-sin(angle) * dRIntM);
                pgraphics->set(ppenMinute);
             }
             pointInt.offset(pointCenter);
@@ -95,14 +95,14 @@ namespace datetime
          pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.hour() * π * 2.0 / (12.0);
-            point_i32 pointHour((::i32)(cos(angle) * dRHour), (::i32)(-sin(angle) * dRHour));
+            point_i32 pointHour((int)(cos(angle) * dRHour), (int)(-sin(angle) * dRHour));
             pointHour.offset(pointCenter);
             pgraphics->line_to(pointHour);
          }
          pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.minute() * π * 2.0 / (60.0);
-            point_i32 pointMinute((::i32)(cos(angle) * dRMinute), (::i32)(-sin(angle) * dRMinute));
+            point_i32 pointMinute((int)(cos(angle) * dRMinute), (int)(-sin(angle) * dRMinute));
             pointMinute.offset(pointCenter);
             pgraphics->line_to(pointMinute);
          }
@@ -112,7 +112,7 @@ namespace datetime
          pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.second() * π * 2.0 / (60.0);
-            point_i32 pointSecond((::i32)(cos(angle) * dRSecond), (::i32)(-sin(angle) * dRSecond));
+            point_i32 pointSecond((int)(cos(angle) * dRSecond), (int)(-sin(angle) * dRSecond));
             pointSecond.offset(pointCenter);
             pgraphics->line_to(pointSecond);
          }

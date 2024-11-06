@@ -36,7 +36,7 @@ namespace ftp
    }
 
 
-   void output_stream::implementation::OnPreBytesSend(u8 * pszBuffer, memsize bufferSize, memsize& bytesToSend)
+   void output_stream::implementation::OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
 
       for (bytesToSend = 0; m_iCurrentPos < m_vBuffer.length() && bytesToSend < bufferSize; ++m_iCurrentPos, ++bytesToSend)
@@ -106,7 +106,7 @@ namespace ftp
       m_pimpl->m_vBuffer +=  vBuffer.get_string(0, lReceivedBytes);
    }
 
-   void output_stream::OnPreBytesSend(u8 * pszBuffer, memsize bufferSize, memsize& bytesToSend)
+   void output_stream::OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
       m_pimpl->OnPreBytesSend(pszBuffer, bufferSize, bytesToSend);
    }

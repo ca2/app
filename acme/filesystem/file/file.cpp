@@ -149,9 +149,9 @@ namespace file
    int file::getc()
    {
 
-      ::u8 u8 = 0;
+      unsigned char unsigned char = 0;
 
-      auto iRead = read({ &u8, 1 });
+      auto iRead = read({ &unsigned char, 1 });
 
       if (iRead <= 0)
       {
@@ -160,7 +160,7 @@ namespace file
 
       }
 
-      return u8;
+      return unsigned char;
 
    }
 
@@ -431,12 +431,12 @@ namespace file
    bool file::read(char * pchar)
    {
 
-      return read((::u8 *)pchar);
+      return read((unsigned char *)pchar);
       
    }
 
 
-   bool file::read(::u8 * pbyte)
+   bool file::read(unsigned char * pbyte)
    {
 
       if (!read({ pbyte, 1 }))
@@ -456,12 +456,12 @@ namespace file
    bool file::peek(char * pchar)
    {
 
-      return peek((::u8 *)pchar);
+      return peek((unsigned char *)pchar);
 
    }
 
 
-   bool file::peek(::u8 * pbyte)
+   bool file::peek(unsigned char * pbyte)
    {
    
       if (!read({ pbyte, 1 }))
@@ -483,7 +483,7 @@ namespace file
    int file::peek_byte()
    {
 
-      ::u8 b = 0;
+      unsigned char b = 0;
 
       if (peek(&b) != 1)
       {
@@ -500,16 +500,16 @@ namespace file
    int file::get_u8()
    {
 
-      ::u8 u8 = 0;
+      unsigned char unsigned char = 0;
 
-      if (read(&u8) != 1)
+      if (read(&unsigned char) != 1)
       {
 
          return -1;
 
       }
 
-      return u8;
+      return unsigned char;
 
    }
 
@@ -546,7 +546,7 @@ namespace file
    }
 
 
-   void file::put_byte_back(::u8 u8)
+   void file::put_byte_back(unsigned char unsigned char)
    {
 
       throw ::exception(::error_unsupported_function, "Please use buffered_file for buffered operations.");
@@ -590,9 +590,9 @@ namespace file
 
       auto position = get_position();
 
-      ::u8 b;
+      unsigned char b;
 
-      ::u8 b1 = 0;
+      unsigned char b1 = 0;
 
       while (true)
       {
@@ -778,7 +778,7 @@ namespace file
    }
 
 
-   ::u8 * file::full_data_begin()
+   unsigned char * file::full_data_begin()
    {
 
       return nullptr;
@@ -786,7 +786,7 @@ namespace file
    }
 
 
-   ::u8 * file::full_data_end()
+   unsigned char * file::full_data_end()
    {
 
       return nullptr;
@@ -794,7 +794,7 @@ namespace file
    }
 
    
-   const ::u8 * file::full_data_begin() const
+   const unsigned char * file::full_data_begin() const
    {
 
       return nullptr;
@@ -802,7 +802,7 @@ namespace file
    }
 
 
-   const ::u8 * file::full_data_end() const
+   const unsigned char * file::full_data_end() const
    {
 
       return nullptr;
@@ -810,7 +810,7 @@ namespace file
    }
 
 
-   ::u8 * file::data_begin()
+   unsigned char * file::data_begin()
    {
 
       return nullptr;
@@ -818,7 +818,7 @@ namespace file
    }
 
 
-   ::u8 * file::data_end()
+   unsigned char * file::data_end()
    {
 
       return nullptr;
@@ -826,7 +826,7 @@ namespace file
    }
 
 
-   const ::u8 * file::data_begin() const
+   const unsigned char * file::data_begin() const
    {
 
       return nullptr;
@@ -834,7 +834,7 @@ namespace file
    }
 
 
-   const ::u8 * file::data_end() const
+   const unsigned char * file::data_end() const
    {
 
       return nullptr;
@@ -884,13 +884,13 @@ namespace file
 
       //const u32 kBufferSize = (1 << 16);
 
-      //u8 * pu8Find = (u8 *) pFind;
+      //unsigned char * pu8Find = (unsigned char *) pFind;
 
       //memory memory;
 
       //memory.set_size(kBufferSize);
 
-      //u8 * buffer = memory.data();
+      //unsigned char * buffer = memory.data();
 
       //memsize positionSearch = 0;
 
@@ -937,7 +937,7 @@ namespace file
       //   for (u32 pos = 0; pos < sizeSearch; pos++)
       //   {
 
-      //      ::u8 b = pu8Find[0];
+      //      unsigned char b = pu8Find[0];
 
       //      if(buffer[pos] != b && pos < sizeSearch; pos++);
 
@@ -997,9 +997,9 @@ namespace file
 
    //         }
 
-   //         memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + internal_data().size(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), pfileOut->internal_data().size() - internal_data().size());
+   //         memory_transfer(((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position() + internal_data().size(), ((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position(), pfileOut->internal_data().size() - internal_data().size());
 
-   //         ::memory_copy(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), internal_data().data(), internal_data().size());
+   //         ::memory_copy(((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position(), internal_data().data(), internal_data().size());
 
    //         pfileOut->position() += internal_data().size();
 
@@ -1024,7 +1024,7 @@ namespace file
 
    //   while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->internal_data().data() != nullptr)
    //   {
-   //      memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), uiBufInc);
+   //      memory_transfer(((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufInc, ((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position(), uiBufInc);
    //      uRead = read(pfileOut->internal_data()(pfileOut->get_position(), uiBufSize));
    //      pfileOut->position() += uRead;
    //      uiBufSize -= uRead;
@@ -1038,7 +1038,7 @@ namespace file
    //   if(uiBufSize > 0)
    //   {
 
-   //      memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
+   //      memory_transfer(((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position(), ((unsigned char *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
 
    //      pfileOut->increase_internal_data_size(-(memsize)uiBufSize);
 

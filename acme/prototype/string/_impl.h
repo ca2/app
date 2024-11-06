@@ -1109,7 +1109,7 @@ template < typename ITERATOR_TYPE >
    while (this->is_empty())
    {
 
-      ::i32 len;
+      int len;
       
       i64 i = unicode_index_length(this->m_begin, len);
 

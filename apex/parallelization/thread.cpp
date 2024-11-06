@@ -1265,7 +1265,7 @@ bool thread::handle_message()
 }
 
 
-void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
+void thread::on_thread_on_idle(thread* pimpl, int lCount)
 {
 
    //return ::success;

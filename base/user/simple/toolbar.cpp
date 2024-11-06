@@ -616,13 +616,13 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::coll
 
       puseritem->m_rectangle2.left() = cur.x();
 
-      puseritem->m_rectangle2.right() = (::i32) (cur.x() + buttonx);
+      puseritem->m_rectangle2.right() = (int) (cur.x() + buttonx);
 
-      cur.x() += (::i32) buttonx; //  +sPress.cx();
+      cur.x() += (int) buttonx; //  +sPress.cx();
 
       sizeResult.cx() = maximum(cur.x(), sizeResult.cx());
 
-      cur.y() = (::i32) maximum(cur.y(), buttony);
+      cur.y() = (int) maximum(cur.y(), buttony);
 
       if (ptoolitem->m_estate & e_tool_item_state_wrap)
       {
@@ -1810,12 +1810,12 @@ void simple_toolbar::_001OnImageListAttrib()
 //
 //   }
 //
-//   if (useritem.m_fsStyle != (::u8)LOWORD(nStyle) || useritem.m_fsState != (::u8)HIWORD(nStyle))
+//   if (useritem.m_fsStyle != (unsigned char)LOWORD(nStyle) || useritem.m_fsState != (unsigned char)HIWORD(nStyle))
 //   {
 //
-//      useritem.m_fsStyle = (::u8)LOWORD(nStyle);
+//      useritem.m_fsStyle = (unsigned char)LOWORD(nStyle);
 //
-//      useritem.m_fsState = (::u8)HIWORD(nStyle);
+//      useritem.m_fsState = (unsigned char)HIWORD(nStyle);
 //
 //      m_bDelayedButtonLayout = true;
 //
@@ -2568,7 +2568,7 @@ void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
 }
 
 
-size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 dwMode)
+size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, u32 dwMode)
 {
 
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -2633,28 +2633,28 @@ rectangle_i32 simple_toolbar::get_item_pad()
    if (rectangle.left() < 0)
    {
 
-      rectangle.left() = (::i32)(get_pixel_font_size() / 3);
+      rectangle.left() = (int)(get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.right() < 0)
    {
 
-      rectangle.right() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.right() = (int) (get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.top() < 0)
    {
 
-      rectangle.top() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.top() = (int) (get_pixel_font_size() / 3);
 
    }
 
    if (rectangle.bottom() < 0)
    {
 
-      rectangle.bottom() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.bottom() = (int) (get_pixel_font_size() / 3);
 
    }
 
@@ -2671,25 +2671,25 @@ rectangle_i32 simple_toolbar::get_bar_border()
    if (rectangle.left() < 0)
    {
 
-      rectangle.left() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.left() = (int) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.right() < 0)
    {
 
-      rectangle.right() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.right() = (int) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.top() < 0)
    {
 
-      rectangle.top() = (::i32) (get_pixel_font_size() / 3);
+      rectangle.top() = (int) (get_pixel_font_size() / 3);
 
    }
    if (rectangle.bottom() < 0)
    {
 
-      rectangle.bottom() = (::i32)(get_pixel_font_size() / 3);
+      rectangle.bottom() = (int)(get_pixel_font_size() / 3);
 
    }
 
@@ -2778,14 +2778,14 @@ size_i32 simple_toolbar::get_separator_size()
    if (s.cx() < 0)
    {
 
-      s.cx() = ::i32(get_pixel_font_size() * 2.0 / 3.0);
+      s.cx() = int(get_pixel_font_size() * 2.0 / 3.0);
 
    }
 
    if (s.cy() < 0)
    {
 
-      s.cy() = ::i32(get_pixel_font_size() * 2 / 3);
+      s.cy() = int(get_pixel_font_size() * 2 / 3);
 
    }
 

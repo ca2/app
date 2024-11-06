@@ -353,9 +353,9 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections",
 &hkey) == ERROR_SUCCESS)
 {
-::i32 l;
+int l;
 ::u32 dw;
-if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (::u8 *) &szPac, &lcbPac)) == ERROR_SUCCESS
+if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (unsigned char *) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {
 apop.dwAutoDetectFlags = WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A;
@@ -376,8 +376,8 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings",
 &hkey) == ERROR_SUCCESS)
 {
-::i32 l;
-if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (::u8 *) szPac, &lcbPac)) == ERROR_SUCCESS)
+int l;
+if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (unsigned char *) szPac, &lcbPac)) == ERROR_SUCCESS)
 {
 
 apop.dwAutoDetectFlags = 0;

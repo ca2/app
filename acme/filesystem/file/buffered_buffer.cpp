@@ -154,7 +154,7 @@ namespace file
    memsize buffered_file:: read(void * p, ::memsize s)
    {
 
-      auto data = (::u8 *) p;
+      auto data = (unsigned char *) p;
 
       if (::is_null(data) || s <= 0)
       {
@@ -276,7 +276,7 @@ namespace file
    void buffered_file::write(const void * p, ::memsize s)
    {
 
-      auto data = (const ::u8 *)p;
+      auto data = (const unsigned char *)p;
 
       memsize uiWrite = 0;
 
@@ -326,7 +326,7 @@ namespace file
    }
 
 
-   void buffered_file::put_byte_back(::u8 u8)
+   void buffered_file::put_byte_back(unsigned char unsigned char)
    {
 
       m_uiPosition--;
@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      m_storage.data()[m_uiPosition] = (::u8) u8;
+      m_storage.data()[m_uiPosition] = (unsigned char) unsigned char;
 
    }
 

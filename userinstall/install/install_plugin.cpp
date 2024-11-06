@@ -58,14 +58,14 @@ namespace install
 
       if(file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "config\\plugin\\version.txt"))
+pdirectorysystem->system() / "config\\plugin\\version.txt"))
          strVersion = file_system()->as_string(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "config\\plugin\\version.txt");
+pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       return strVersion;
 

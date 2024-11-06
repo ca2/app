@@ -23,7 +23,7 @@ virtual public ::nano::graphics::object{
 
    virtual void load_image_from_file(::file::file * pfile);
    virtual void load_image_file(const void *p, memsize size);
-
+   
 };
 
 } // graphics

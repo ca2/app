@@ -350,9 +350,9 @@ namespace draw3d
 //
 //            pimage->fill((int)(dA * (184.0 - r * 128.0)),colorA.red,colorA.green,colorA.blue);
 //
-//            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x(),(::i32)locationa[f[iMax][0]].y());
-//            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x(),(::i32)locationa[f[iMax][1]].y());
-//            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x(),(::i32)locationa[f[iMax][2]].y());
+//            point2da[0]=::point_i32((int)locationa[f[iMax][0]].x(),(int)locationa[f[iMax][0]].y());
+//            point2da[1]= ::point_i32((int)locationa[f[iMax][1]].x(),(int)locationa[f[iMax][1]].y());
+//            point2da[2]= ::point_i32((int)locationa[f[iMax][2]].x(),(int)locationa[f[iMax][2]].y());
 //
 //            throw ::exception(todo, "plgblt");
 //            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);

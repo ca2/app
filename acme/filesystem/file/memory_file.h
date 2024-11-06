@@ -6,13 +6,13 @@
 
 #pragma pack(push, custom__integers__, 1)
 
-struct u24 { ::u8 m_u[3]; };
+struct u24 { unsigned char m_u[3]; };
 
-struct u40 { ::u8 m_u[5]; };
+struct u40 { unsigned char m_u[5]; };
 
-struct u48 { ::u8 m_u[6]; };
+struct u48 { unsigned char m_u[6]; };
 
-struct u56 { ::u8 m_u[7]; };
+struct u56 { unsigned char m_u[7]; };
 
 #pragma pack(pop, custom__integers__)
 
@@ -22,7 +22,7 @@ class memory_file;
 typedef ::pointer<memory_file>memory_file_pointer;
 
 
-inline void inline_byte_array_copy(::u8 * target, const ::u8 * source, ::memsize s)
+inline void inline_byte_array_copy(unsigned char * target, const unsigned char * source, ::memsize s)
 {
 
    switch (s)
@@ -122,7 +122,7 @@ public:
 
    void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
-   void put_byte_back(::u8 u8) override;
+   void put_byte_back(unsigned char unsigned char) override;
 
    virtual void write_from_hex(const ::block & block) override;
 
@@ -135,14 +135,14 @@ public:
    bool is_in_memory_file() const override { return true; }
 
    using ::file::file::full_data;
-   ::u8 * full_data_begin() override;
-   ::u8 * full_data_end() override;
-   const ::u8 * full_data_begin() const override;
-   const ::u8 * full_data_end() const override;
-   ::u8 * data_begin() override;
-   ::u8 * data_end() override;
-   const ::u8 * data_begin() const override;
-   const ::u8 * data_end() const override;
+   unsigned char * full_data_begin() override;
+   unsigned char * full_data_end() override;
+   const unsigned char * full_data_begin() const override;
+   const unsigned char * full_data_end() const override;
+   unsigned char * data_begin() override;
+   unsigned char * data_end() override;
+   const unsigned char * data_begin() const override;
+   const unsigned char * data_end() const override;
 
    using ::file::file::data;
 
@@ -165,11 +165,11 @@ public:
    inline int _get_u8()
    {
 
-      return _get_left() < 1 ? -1 : ((u8 *)m_pmemory.m_p->data())[m_position++];
+      return _get_left() < 1 ? -1 : ((unsigned char *)m_pmemory.m_p->data())[m_position++];
 
    }
 
-   inline u8 get_u8_unbounded()
+   inline unsigned char get_u8_unbounded()
    {
 
       return m_pbyte[m_position++];
@@ -251,7 +251,7 @@ public:
    memsize read_inline(void * p, ::memsize s)
    {
 
-      auto target = (::u8 *)p;
+      auto target = (unsigned char *)p;
       
       if(::is_null(m_pmemory))
       {
@@ -290,7 +290,7 @@ public:
    void write_inline(const void * p, ::memsize s)
    {
 
-      auto source = (const ::u8 *)p;
+      auto source = (const unsigned char *)p;
 
       auto e = m_position + s;
 

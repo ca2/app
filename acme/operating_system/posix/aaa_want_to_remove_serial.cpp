@@ -569,7 +569,7 @@ serial::serial_impl::waitByteTimes(size_t count)
 }
 
 size_t
-serial::serial_impl::read(u8 * buf, size_t size)
+serial::serial_impl::read(unsigned char * buf, size_t size)
 {
    // If the port is not open, throw ::exception(aaa_primitive_new
    if (!m_bOpened)
@@ -601,13 +601,13 @@ serial::serial_impl::read(u8 * buf, size_t size)
          break;
       }
       // Timeout for the next select is whichever is less of the remaining
-      // total read timeout and the inter-::u8 timeout.
+      // total read timeout and the inter-unsigned char timeout.
       u32 timeout = minimum(static_cast<u32> (timeout_remaining_ms),
          m_timeout.inter_byte_timeout);
       // Wait for the device to be readable, and then attempt to read.
       if (waitReadable(timeout))
       {
-         // If it's a fixed-length multi-::u8 read, insert a wait here so that
+         // If it's a fixed-length multi-unsigned char read, insert a wait here so that
          // we can attempt to grab the whole thing in a single IO call. Skip
          // this wait if a non-maximum inter_byte_timeout is specified.
          if (size > 1 && m_timeout.inter_byte_timeout == Timeout::maximum())
@@ -656,7 +656,7 @@ serial::serial_impl::read(u8 * buf, size_t size)
 }
 
 size_t
-serial::serial_impl::write(const u8 * data, size_t length)
+serial::serial_impl::write(const unsigned char * data, size_t length)
 {
    if (m_bOpened == false)
    {

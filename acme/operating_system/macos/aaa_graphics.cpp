@@ -458,7 +458,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 //
 //   void *data = CGBitmapContextGetData (cgctx);
 //
-//   u8 * pdest = (u8 * ) pcr;
+//   unsigned char * pdest = (unsigned char * ) pcr;
 //
 //   if (data != nullptr)
 //   {
@@ -466,7 +466,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 //      for(int y = cy - 1; y >= 0; y--)
 //      {
 //
-//         u8 * pline = (u8 *) &((unsigned int*)data)[y * cx];
+//         unsigned char * pline = (unsigned char *) &((unsigned int*)data)[y * cx];
 //
 //         ::memory_copy(pdest, pline, cx* 4);
 //

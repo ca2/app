@@ -1524,16 +1524,16 @@ namespace linux
                ::rectangle_f64 rcMonitor;
                ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
                if(rectangleWindow.left() >= rcMonitor.left())
-                  pmouse->m_point.x() += (::i32) rectangleWindow.left();
+                  pmouse->m_point.x() += (int) rectangleWindow.left();
                if(rectangleWindow.top() >= rcMonitor.top())
-                  pmouse->m_point.y() += (::i32) rectangleWindow.top();
+                  pmouse->m_point.y() += (int) rectangleWindow.top();
             }
             else
             {
                if(rectangleWindow.left() >= 0)
-                  pmouse->m_point.x() += (::i32) rectangleWindow.left();
+                  pmouse->m_point.x() += (int) rectangleWindow.left();
                if(rectangleWindow.top() >= 0)
-                  pmouse->m_point.y() += (::i32) rectangleWindow.top();
+                  pmouse->m_point.y() += (int) rectangleWindow.top();
             }
          }
 
@@ -2629,13 +2629,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   += (::i32) rectangleWindow.left();
+//      prect->left()   += (int) rectangleWindow.left();
 
-//      prect->right()  += (::i32) rectangleWindow.left();
+//      prect->right()  += (int) rectangleWindow.left();
 
-//      prect->top()    += (::i32) rectangleWindow.top();
+//      prect->top()    += (int) rectangleWindow.top();
 
-//      prect->bottom() += (::i32) rectangleWindow.top();
+//      prect->bottom() += (int) rectangleWindow.top();
 
 //
 //      return true;
@@ -2656,9 +2656,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     += (::i32) rectangleWindow.left();
+//      ppoint->x     += (int) rectangleWindow.left();
 
-//      ppoint->y     += (::i32) rectangleWindow.top();
+//      ppoint->y     += (int) rectangleWindow.top();
 
 //
 //      return true;
@@ -2729,13 +2729,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   -= (::i32) rectangleWindow.left();
+//      prect->left()   -= (int) rectangleWindow.left();
 
-//      prect->right()  -= (::i32) rectangleWindow.left();
+//      prect->right()  -= (int) rectangleWindow.left();
 
-//      prect->top()    -= (::i32) rectangleWindow.top();
+//      prect->top()    -= (int) rectangleWindow.top();
 
-//      prect->bottom() -= (::i32) rectangleWindow.top();
+//      prect->bottom() -= (int) rectangleWindow.top();
 
 //
 //      return true;
@@ -2756,9 +2756,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     -= (::i32) rectangleWindow.left();
+//      ppoint->x     -= (int) rectangleWindow.left();
 
-//      ppoint->y     -= (::i32) rectangleWindow.top();
+//      ppoint->y     -= (int) rectangleWindow.top();
 
 //
 //      return true;

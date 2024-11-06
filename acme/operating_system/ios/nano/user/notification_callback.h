@@ -12,11 +12,11 @@
 
 
 
-@interface nano_notification_callback : NSObject
+@interface acme_notification_callback : NSObject
 {
 @public
 
-   void *               m_pApplication;
+   ::platform::application *               m_papplication;
    
 }
 

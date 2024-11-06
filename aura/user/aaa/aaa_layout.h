@@ -211,16 +211,16 @@ namespace user
       virtual void set_initial_dim(const ::point_i32 & p, const ::size & s);
       //inline void move_to(const ::point_i32& point) { m_pointRequest = point; visual_setup(); }
       //inline void set_size(const ::size & size) { m_sizeRequest = size; visual_setup(); }
-      //inline void move_to(i32 x, i32 y) { m_pointRequest.set(x, y); visual_setup(); }
-      //inline void set_size(i32 cx, i32 cy) { m_sizeRequest.set(cx, cy); visual_setup(); }
+      //inline void move_to(int x, int y) { m_pointRequest.set(x, y); visual_setup(); }
+      //inline void set_size(int cx, int cy) { m_sizeRequest.set(cx, cy); visual_setup(); }
       //inline void set_dim(const ::point_i32& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
       inline void move_to(const ::point_i32 & point) { request_state().m_point = point; m_bRequestReady = false; }
       inline void set_size(const ::size & size) { request_state().m_size = size; m_bRequestReady = false; }
-      inline void move_to(i32 x, i32 y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
-      inline void set_size(i32 cx, i32 cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
+      inline void move_to(int x, int y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
+      inline void set_size(int cx, int cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
       inline void set_dim(const ::point_i32 & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
       inline void place(const ::rectangle_f64 & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
-      inline void set_dim(i32 x, i32 y, i32 cx, i32 cy) { set_dim(::point_i32(x, y), ::size(cx, cy)); }
+      inline void set_dim(int x, int y, int cx, int cy) { set_dim(::point_i32(x, y), ::size(cx, cy)); }
       inline layout & operator =(const ::rectangle_f64& rectangle) { place(rectangle); return *this; }
 
 
@@ -262,7 +262,7 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
 
-      inline bool set_window_position(::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, int x, int y, int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          order(zorder); set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
@@ -270,12 +270,12 @@ namespace user
       {
          order(zorder); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      virtual bool window_move(i32 x, i32 y);
-      inline bool window_size(i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      virtual bool window_move(int x, int y);
+      inline bool window_size(int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          set_size(cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      inline bool window_place(i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(int x, int y, int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
@@ -327,7 +327,7 @@ namespace user
       inline ::point_i32 origin() { return top_left(); }
       inline ::point_i32 screen_top_left() { return ui_state().m_pointScreen; }
 
-      inline ::i32 area() { return size().area(); }
+      inline int area() { return size().area(); }
 
 
       template < typename SIZE_SHIFTABLE >

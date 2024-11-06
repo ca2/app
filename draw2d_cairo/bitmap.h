@@ -38,7 +38,7 @@ namespace draw2d_cairo
       bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap) override;
 
 
-      ::i32 stride_for_width(::i32 iWidth) override;
+      int stride_for_width(int iWidth) override;
 
       //i32 GetBitmap(BITMAP* pBitMap);
 

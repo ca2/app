@@ -105,7 +105,7 @@
 //CLASS_DECL_ACME void ace_memory_free(void * pParam)
 //{
 //
-//   u8 * pdata = (u8 *)pParam;
+//   unsigned char * pdata = (unsigned char *)pParam;
 //
 //   if (((iptr)pdata) < 1024 * 16)
 //   {
@@ -186,12 +186,12 @@ void operator delete(void * ptr, std::align_val_t) noexcept
 void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
 {
 
-   ::u8* pbyte = (::u8*)pheapmemory;
+   unsigned char* pbyte = (unsigned char*)pheapmemory;
 
    int iStructSize = sizeof(heap_memory);
 
    // Heap Memory
-   // 1 ::u8 + 1 ::u8 + 1 ::u8 + 1 ::u8 + 4 bytes
+   // 1 unsigned char + 1 unsigned char + 1 unsigned char + 1 unsigned char + 4 bytes
    // 8 bytes + padding
    // 16 bytes?
 

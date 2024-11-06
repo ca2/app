@@ -2,7 +2,7 @@
 
 
 
-enum enum_check : ::i32
+enum enum_check : int
 {
 
    e_check_undefined, // not set, unitialized

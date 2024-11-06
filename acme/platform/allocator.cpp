@@ -548,7 +548,7 @@ namespace allocator
    void on_construct_subparticle(::subparticle * pparticle)
    {
 
-      if (((::u8 *)pparticle) >= t_pStartConstruct && pparticle->m_sType <= t_sStartConstruct)
+      if (((unsigned char *)pparticle) >= t_pStartConstruct && pparticle->m_sType <= t_sStartConstruct)
       {
 
          pparticle->m_pType = t_pStartConstruct;

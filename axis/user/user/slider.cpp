@@ -203,7 +203,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
+      unsigned char bAlpha1 = (unsigned char) (128.0* get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
 
@@ -211,7 +211,7 @@ namespace user
 
       get_slider_rect(rectangle);
 
-      ::u8 bAlpha = (::u8) (220.0* get_alpha());
+      unsigned char bAlpha = (unsigned char) (220.0* get_alpha());
 
       pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
       rectangle.deflate(1,1);
@@ -239,8 +239,8 @@ namespace user
 
       rectangle.top() = rectangleX.top();
       rectangle.bottom() = rectangleX.bottom();
-      rectangle.left() = (::i32)minimum(rectangleX.right(),m_dRate * (rectangleX.width() - iWidth));
-      rectangle.right() = (::i32)minimum(rectangleX.right(),m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.left() = (int)minimum(rectangleX.right(),m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right() = (int)minimum(rectangleX.right(),m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

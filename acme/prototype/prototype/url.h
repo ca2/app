@@ -48,7 +48,7 @@ namespace url
 
       ::string                   m_strProtocol;
       ::string                   m_strHost;
-      ::i32                      m_iPort;
+      int                      m_iPort;
       ::logic::boolean           m_bSecure;
 
       connect_part();
@@ -56,7 +56,7 @@ namespace url
 
       connect_part& operator = (const::url::connect& connect);
 
-      void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort = -1, ::logic::boolean booleanSecure = {});
+      void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort = -1, ::logic::boolean booleanSecure = {});
 
       ::string as_string() const;
 
@@ -142,7 +142,7 @@ namespace url
       ::const_ansi_range      m_rangeProtocol{ nullptr };
       ::const_ansi_range      m_rangeHost{ nullptr };
       ::const_ansi_range      m_rangePort{ nullptr };
-      ::i32                   m_iPort = -1;
+      int                   m_iPort = -1;
       const char *            m_pszRequestStart{ nullptr };
 
       friend ::url::url;

@@ -39,7 +39,7 @@ public:
    * Returns currently opened stream.
    * Opens it, if not yet opened.
    */
-  const ::u8 *getStream(){
+  const unsigned char *getStream(){
     if (stream == nullptr){
       stream = openStream();
     }
@@ -50,7 +50,7 @@ public:
     return is->get_location();
   }
 
-  const ::u8 *openStream(){
+  const unsigned char *openStream(){
     return is->openStream();
   }
 
@@ -66,7 +66,7 @@ private:
   static Hashtable<SharedInputSource*> *isHash;
 
   stream & is;
-  const ::u8 *stream;
+  const unsigned char *stream;
   i32 ref_count;
 };
 

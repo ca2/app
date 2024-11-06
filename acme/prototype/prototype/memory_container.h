@@ -22,7 +22,7 @@ protected:
 public:
 
    
-   ::u8 *                                       m_pbyte;
+   unsigned char *                                       m_pbyte;
    //memsize                                      m_memsize;
 
 
@@ -70,17 +70,17 @@ public:
    //virtual stream & write(::stream & stream) const override;
    //virtual stream & read(::stream & stream) override;
 
-   ::u8 * data() { return ::is_set(m_pmemory)?m_pmemory->data():nullptr; }
-   const ::u8 * data() const { return ::is_set(m_pmemory) ? m_pmemory->data() : nullptr; }
+   unsigned char * data() { return ::is_set(m_pmemory)?m_pmemory->data():nullptr; }
+   const unsigned char * data() const { return ::is_set(m_pmemory) ? m_pmemory->data() : nullptr; }
 
-   ::u8 * begin() { return data(); }
-   const ::u8 * begin() const { return data(); }
+   unsigned char * begin() { return data(); }
+   const unsigned char * begin() const { return data(); }
 
-   ::u8 * end() { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
-   const ::u8 * end() const { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+   unsigned char * end() { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
+   const unsigned char * end() const { return ::is_set(m_pmemory) ? m_pmemory->end() : nullptr; }
 
-   //::u8 * get_data_raw();
-   //const ::u8 * get_data_raw() const;
+   //unsigned char * get_data_raw();
+   //const unsigned char * get_data_raw() const;
 
    virtual bool is_valid() const;
 
@@ -106,14 +106,14 @@ public:
 };
 
 
-//inline ::u8 * memory_container::get_data_raw()
+//inline unsigned char * memory_container::get_data_raw()
 //{
 //
 //   return m_pmemory->get_data();
 //
 //}
 //
-//inline const ::u8 * memory_container::get_data_raw() const
+//inline const unsigned char * memory_container::get_data_raw() const
 //{
 //
 //   return m_pmemory->get_data();
@@ -126,14 +126,14 @@ public:
 //}
 //
 //
-//inline ::u8 * memory_container ::get_data()
+//inline unsigned char * memory_container ::get_data()
 //{
 //
 //   return m_pmemory.is_null() ? 0 : get_data_raw();
 //
 //}
 //
-//inline const ::u8 * memory_container ::get_data() const
+//inline const unsigned char * memory_container ::get_data() const
 //{
 //
 //   return m_pmemory.is_null() ? 0 : get_data_raw();

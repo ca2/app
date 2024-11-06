@@ -175,8 +175,8 @@ namespace database
       virtual ::string get_data_key_modifier();
 
 
-      virtual ::string calculate_data_key();
-      virtual ::string calculate_data_key(const ::scoped_string & strKey);
+      virtual ::string calculate_data_key() override;
+      virtual ::string calculate_data_key(const ::scoped_string & strKey) override;
 
 
       virtual ::string calculate_parent_data_key();

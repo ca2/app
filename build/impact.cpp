@@ -132,21 +132,21 @@ namespace app_build
 
    //::file::path pathEnvTxt;
 
-   //auto pacmedirectory = directory_system();
+   //auto pdirectorysystem = directory_system();
 
-   //pathEnvTxt = pacmedirectory->system() / "env.txt";
+   //pathEnvTxt = pdirectorysystem->system() / "env.txt";
 
-   //file_system()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+   //file_system()->put_contents(pdirectorysystem->system() / "env1.bat", pdirectorysystem->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-   //file_system()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+   //file_system()->put_contents(pdirectorysystem->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
    //auto psystem = system();
 
    //auto pnode = psystem->node();
 
-   //pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
+   //pnode->run_silent(pdirectorysystem->system() / "env1.bat", "");
 
-   //string strLog = file_system()->as_string(pacmedirectory->system() / "env.txt");
+   //string strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
    //string_array stra;
    //stra.add_lines(strLog);
 

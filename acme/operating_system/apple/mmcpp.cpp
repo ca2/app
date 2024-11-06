@@ -34,7 +34,7 @@ CFDataRef get_os_cf_data(const ::memory_base & memory, memsize pos, memsize size
    {
       size = memory.size() - pos;
    }
-   return CFDataCreate(kCFAllocatorDefault, (const ::u8 *)&memory.data()[pos], (CFIndex)size);
+   return CFDataCreate(kCFAllocatorDefault, (const unsigned char *)&memory.data()[pos], (CFIndex)size);
 }
 
 
@@ -77,10 +77,10 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
 
 #endif
 
-void _ns_main_sync(dispatch_block_t block)
+void _ns_main_send(dispatch_block_t block)
 {
    
-   auto pevent = __allocate manual_reset_event ();
+   __block auto pevent = __allocate manual_reset_event ();
    
    pevent->ResetEvent();
    

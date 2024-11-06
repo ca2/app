@@ -76,7 +76,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrStream_Release(IStream* This)
 //{
-//	::i32 count;
+//	int count;
 //	CliprdrStream* instance = (CliprdrStream*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -249,7 +249,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return STG_E_INSUFFICIENTMEMORY;
 //}
 //
-//CliprdrStream* CliprdrStream_New(::i32 index, void* pData)
+//CliprdrStream* CliprdrStream_New(int index, void* pData)
 //{
 //	IStream* iStream;
 //	CliprdrStream* instance;
@@ -357,7 +357,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrDataObject_Release(IDataObject* This)
 //{
-//	::i32 count;
+//	int count;
 //	CliprdrDataObject* instance = (CliprdrDataObject*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -399,7 +399,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		pMedium->hGlobal = clipboard->hmem;   /* points to a FILEGROUPDESCRIPTOR structure */
 //
-//		/* GlobalLock returns a pointer to the first ::u8 of the memory block,
+//		/* GlobalLock returns a pointer to the first unsigned char of the memory block,
 //		* in which is a FILEGROUPDESCRIPTOR structure, whose first ::u32 member
 //		* is the number of FILEDESCRIPTOR's */
 //		instance->m_nStreams = *((P::u32) GlobalLock(clipboard->hmem));
@@ -704,7 +704,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //ULONG STDMETHODCALLTYPE CliprdrEnumFORMATETC_Release(IEnumFORMATETC* This)
 //{
-//	::i32 count;
+//	int count;
 //	CliprdrEnumFORMATETC* instance = (CliprdrEnumFORMATETC*) This;
 //
 //	count = InterlockedDecrement(&instance->m_lRefCount);
@@ -743,7 +743,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //{
 //	CliprdrEnumFORMATETC* instance = (CliprdrEnumFORMATETC*) This;
 //
-//	if (instance->m_nIndex + (::i32) celt > instance->m_nNumFormats)
+//	if (instance->m_nIndex + (int) celt > instance->m_nNumFormats)
 //		return E_FAIL;
 //
 //	instance->m_nIndex += celt;
@@ -1047,7 +1047,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return 0;
 //}
 //
-//int cliprdr_send_response_filecontents(wfClipboard* clipboard, ::u32 streamId, ::u32 size, ::u8* data)
+//int cliprdr_send_response_filecontents(wfClipboard* clipboard, ::u32 streamId, ::u32 size, unsigned char* data)
 //{
 //	CLIPRDR_FILE_CONTENTS_RESPONSE fileContentsResponse;
 //
@@ -1262,7 +1262,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	clipboard->nFiles = 0;
 //}
 //
-//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, ::u8* buffer,
+//static BOOL wf_cliprdr_get_file_contents(WCHAR* file_name, unsigned char* buffer,
 //	int positionLow, int positionHigh, int nRequested, unsigned int* puSize)
 //{
 //	HANDLE hFile;
@@ -1732,7 +1732,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	response.msgFlags = CB_RESPONSE_OK;
 //	response.dataLen = size;
-//	response.requestedFormatData = (::u8*) buff;
+//	response.requestedFormatData = (unsigned char*) buff;
 //
 //	clipboard->context->ClientFormatDataResponse(clipboard->context, &response);
 //
@@ -1743,12 +1743,12 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static int wf_cliprdr_server_format_data_response(CliprdrClientContext* context, CLIPRDR_FORMAT_DATA_RESPONSE* formatDataResponse)
 //{
-//	::u8* data;
+//	unsigned char* data;
 //	HANDLE hMem;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
 //	hMem = GlobalAlloc(GMEM_FIXED, formatDataResponse->dataLen);
-//	data = (::u8*) GlobalLock(hMem);
+//	data = (unsigned char*) GlobalLock(hMem);
 //	CopyMemory(data, formatDataResponse->requestedFormatData, formatDataResponse->dataLen);
 //	GlobalUnlock(hMem);
 //
@@ -1761,7 +1761,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //int wf_cliprdr_server_file_contents_request(CliprdrClientContext* context, CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest)
 //{
 //	::u32 uSize = 0;
-//	::u8* pData = nullptr;
+//	unsigned char* pData = nullptr;
 //	HRESULT	hRet = S_OK;
 //	FORMATETC vFormatEtc;
 //	LPDATAOBJECT pDataObj = nullptr;
@@ -1775,7 +1775,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	if (fileContentsRequest->dwFlags == FILECONTENTS_SIZE)
 //		fileContentsRequest->cbRequested = sizeof(::u3264);
 //
-//	pData = (::u8*) calloc(1, fileContentsRequest->cbRequested);
+//	pData = (unsigned char*) calloc(1, fileContentsRequest->cbRequested);
 //	
 //	if (!pData)
 //		goto error;

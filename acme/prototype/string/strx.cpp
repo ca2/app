@@ -6,7 +6,7 @@
 /* --------------------------------------------------------------------- */
 
 /*
-* Index into the table below with the first ::u8 of a UTF-8 sequence to
+* Index into the table below with the first unsigned char of a UTF-8 sequence to
 * get the number of trailing bytes that are supposed to follow it.
 * Note that *legal* UTF-8 values can't have 4 or 5-bytes. The table is
 * left as-is for anyone who may want to do such conversion, which was
@@ -164,7 +164,7 @@ void ansi_to_wd16(::wd16_character * pwsz, const ::ansi_character * psz)
    while(true)
    {
 
-      ::i32 len;
+      int len;
 
       auto iWd32 = unicode_index_length(psz, len);
 
@@ -201,7 +201,7 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, str
    while(srclen > 0 && psz != nullptr && *psz != '\0')
    {
 
-      ::i32 len;
+      int len;
 
       auto iWd32 = unicode_index_length(psz, len);
 

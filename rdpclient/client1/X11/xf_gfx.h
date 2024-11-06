@@ -31,8 +31,8 @@ struct xf_gfx_surface
 	::u32 width;
 	::u32 height;
 	BOOL alpha;
-	::u8* data;
-	::u8* stage;
+	unsigned char* data;
+	unsigned char* stage;
 /*	XImage* pimage;
 	int scanline;
 	int stageStep;
@@ -50,7 +50,7 @@ struct xf_gfx_cache_entry
 	::u32 width;
 	::u32 height;
 	BOOL alpha;
-	::u8* data;
+	unsigned char* data;
 	int scanline;
 	::u32 format;
 };

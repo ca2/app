@@ -86,9 +86,9 @@ int_bool file_system()->put_contents(const ::file::path & path, const char * con
 
             auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(::file_path_folder(path));
+pdirectorysystem->create(::file_path_folder(path));
 
    wstring wstr(path);
 

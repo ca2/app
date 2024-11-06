@@ -444,7 +444,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 //
 //   if (m_eorientation == e_orientation_horizontal)
 //   {
-//      //      i32 iWidth = rectangleX.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
+//      //      int iWidth = rectangleX.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
 //      //rectangleTrackClient.bottom() = rectangle.bottom() - 1;
 //
 //      //rectangleTrackClient.top() = rectangle.top() + 1;
@@ -456,7 +456,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 //   }
 //   else if (m_eorientation == e_orientation_vertical)
 //   {
-//      //      i32 iWidth = rectangleX.width() - GetSystemMetrics(SM_CYVSCROLL) * 2;
+//      //      int iWidth = rectangleX.width() - GetSystemMetrics(SM_CYVSCROLL) * 2;
 //      rectangleTrackClient.top() = rectangle.top() + dScrollBarThickness;
 //
 //      rectangleTrackClient.bottom() = rectangle.bottom() - dScrollBarThickness;
@@ -604,7 +604,7 @@ void simple_scroll_bar::set_scroll_tracking_position(const ::point_f64 & point, 
 
       dRate = minimum_maximum(dRate, 0.0, 1.0);
 
-      dPos = (i32)(dRate * (m_pscrolllayout->m_scrollstatea[elayout].range()));
+      dPos = (int)(dRate * (m_pscrolllayout->m_scrollstatea[elayout].range()));
 
       dPos += m_pscrolllayout->m_scrollstatea[elayout].m_dMinimum;
 
@@ -659,7 +659,7 @@ void simple_scroll_bar::on_message_scroll_x(::message::message * pmessage)
 }
 
 
-//i32 simple_scroll_bar::_001GetScrollPos()
+//int simple_scroll_bar::_001GetScrollPos()
 //{
 //
 //   if (m_bTracking)
@@ -1050,7 +1050,7 @@ return;
 }
 
 ::pointer<::user::interaction>puiParent = get_parent();
-i32 nPos = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition;
+int nPos = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition;
 nPos+=m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPage;
 if(nPos > m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iMaximum - m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPage)
 nPos = m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iMaximum - m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPage;
@@ -1384,7 +1384,7 @@ void simple_scroll_bar::UpdateBitmaps()
 }
 
 
-//i32 simple_scroll_bar::_001SetScrollPos(i32 iPos)
+//int simple_scroll_bar::_001SetScrollPos(int iPos)
 //{
 //
 //   m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition = iPos;
@@ -1679,7 +1679,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::u32 tickFadeOut = 300;
 
-   //   ::u8 uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
+   //   unsigned char uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
 
    //   if (m_bTracking)
    //   {
@@ -1697,7 +1697,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //         prop("tracking_type") = random(1, 2);
 
-   //         if (prop("tracking_simple").i32() == 2)
+   //         if (prop("tracking_simple").int() == 2)
    //         {
 
    //            int iDeflate = rectangleTrack.size().get_normal(m_eorientation);
@@ -1751,7 +1751,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeIn)
    //      {
 
-   //         uchAlpha = (::u8)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
+   //         uchAlpha = (unsigned char)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
 
    //      }
    //      else
@@ -1772,7 +1772,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      if (dwFade < tickFadeOut)
    //      {
 
-   //         uchAlpha = (::u8)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
+   //         uchAlpha = (unsigned char)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
 
    //      }
    //      else
@@ -1794,7 +1794,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::rectangle_i32 rectangleMachineThumb;
 
-   //   i32 iType = prop("tracking_type").i32();
+   //   int iType = prop("tracking_type").int();
 
    //   if (iType == 1)
    //   {
@@ -1809,7 +1809,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //      rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-   //      i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
+   //      int iArea = (int)(maximum(1, rectangleIntersect.area()));
 
    //      rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -1955,7 +1955,7 @@ void simple_scroll_bar::on_message_destroy(::message::message * pmessage)
 }
 
 
-void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip, ::u8 uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip, unsigned char uchAlpha)
 {
 
    ::draw2d::save_context savecontext(pgraphics);
@@ -1989,7 +1989,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 }
 
 
-void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip, ::u8 uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip, unsigned char uchAlpha)
 {
 
    ::rectangle_f64 rectangleDraw(rectangleDrawParam);
@@ -2016,7 +2016,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //estatus =
 
-      ::size_i32 size((::i32)(rectangleDraw.width() * iDiv), (::i32)(rectangleDraw.height() * iDiv));
+      ::size_i32 size((int)(rectangleDraw.width() * iDiv), (int)(rectangleDraw.height() * iDiv));
 
       if (size.has_area())
       {
@@ -2641,7 +2641,7 @@ bool simple_scroll_bar::on_drag_start(::point_i32 & point, ::user::mouse * pmous
 }
 
 
-//::i32 simple_scroll_bar::scroll_bar_thickness()
+//int simple_scroll_bar::scroll_bar_thickness()
 //{
 //
 //   return m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_dThickness;

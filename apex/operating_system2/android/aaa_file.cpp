@@ -70,13 +70,13 @@ namespace android
       //VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      //rStatus.m_attribute = (::u8) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+      //rStatus.m_attribute = (unsigned char) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 
       rStatus.m_attribute = 0;
 
       // get just the low ::u32 of the file size
       //ASSERT(findFileData.nFileSizeHigh == 0);
-      //rStatus.m_size = (::i32)findFileData.nFileSizeLow;
+      //rStatus.m_size = (int)findFileData.nFileSizeLow;
 
       rStatus.m_size = st.st_size;
 
@@ -392,7 +392,7 @@ namespace android
       while(nCount > 0)
       {
          readNow = (size_t) minimum(I32_MAXIMUM, nCount);
-         i32 iRead = ::read(m_iFile, &((::u8 *)lpBuf)[pos], readNow);
+         i32 iRead = ::read(m_iFile, &((unsigned char *)lpBuf)[pos], readNow);
          if(iRead < 0)
          {
             i32 iError = errno;
@@ -429,9 +429,9 @@ namespace android
       memsize pos = 0;
       while(nCount > 0)
       {
-         i32 iWrite = ::write(m_iFile, &((const ::u8 *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
+         i32 iWrite = ::write(m_iFile, &((const unsigned char *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
          if(iWrite < 0)
-            ::file::throw_os_error( (::i32)::get_last_error(), m_strFileName);
+            ::file::throw_os_error( (int)::get_last_error(), m_strFileName);
          nCount -= iWrite;
          pos += iWrite;
       }
@@ -456,13 +456,13 @@ namespace android
       ASSERT(nFrom == ::e_seek_set || nFrom == ::e_seek_end || nFrom == ::e_seek_current);
       ASSERT(::e_seek_set == SEEK_SET && ::e_seek_end == SEEK_END && ::e_seek_current == SEEK_CUR);
 
-      ::i32 lLoOffset = lOff & 0xffffffff;
-      //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
+      int lLoOffset = lOff & 0xffffffff;
+      //int lHiOffset = (lOff >> 32) & 0xffffffff;
 
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         ::file::throw_os_error(::os_error_to_status((::i32)::get_last_error()));
+         ::file::throw_os_error(::os_error_to_status((int)::get_last_error()));
 
       return posNew;
    }
@@ -472,13 +472,13 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      ::i32 lLoOffset = 0;
-//      ::i32 lHiOffset = 0;
+      int lLoOffset = 0;
+//      int lHiOffset = 0;
 
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (int)::get_last_error());
 
       return pos;
    }
@@ -490,7 +490,7 @@ namespace android
             ::read
             ::write
 
-            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single ::u8 writes
+            access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single unsigned char writes
 
             */
 
@@ -500,7 +500,7 @@ namespace android
          return;
 
       if (!::FlushFileBuffers((HANDLE)m_iFile))
-         ::file::throw_os_error( (::i32)::get_last_error());*/
+         ::file::throw_os_error( (int)::get_last_error());*/
    }
 
    void file::close()
@@ -516,7 +516,7 @@ namespace android
       m_strFileName.empty();
 
       if (bError)
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (int)::get_last_error());
    }
 
 
@@ -538,7 +538,7 @@ namespace android
       ASSERT(m_iFile != hFileNull);
 
       /*if (!::LockFile((HANDLE)m_iFile, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
-         ::file::throw_os_error( (::i32)::get_last_error());*/
+         ::file::throw_os_error( (int)::get_last_error());*/
    }
 
    void file::unlock(filesize dwPos, filesize dwCount)
@@ -547,7 +547,7 @@ namespace android
       ASSERT(m_iFile != hFileNull);
 
       /*      if (!::UnlockFile((HANDLE)m_iFile,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
-               ::file::throw_os_error( (::i32)::get_last_error());*/
+               ::file::throw_os_error( (int)::get_last_error());*/
    }
 
    void file::set_size(filesize dwNewLen)
@@ -555,16 +555,16 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      seek((::i32)dwNewLen, (::enum_seek)::e_seek_set);
+      seek((int)dwNewLen, (::enum_seek)::e_seek_set);
 
 #ifdef __LP64
       int iError = ::ftruncate64(m_iFile, dwNewLen);
       if (iError == -1)
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (int)::get_last_error());
 #else
       int iError = ::ftruncate(m_iFile, dwNewLen);
       if (iError == -1)
-         ::file::throw_os_error( (::i32)::get_last_error());
+         ::file::throw_os_error( (int)::get_last_error());
 #endif
    }
 
@@ -597,13 +597,13 @@ namespace android
    void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
    {
    if (!::MoveFile((char *)lpszOldName, (char *)lpszNewName))
-   ::win::file::throw_os_error( (::i32)::get_last_error());
+   ::win::file::throw_os_error( (int)::get_last_error());
    }
 
    void PASCAL file::erase(const char * lpszFileName)
    {
    if (!::DeleteFile((char *)lpszFileName))
-   ::win::file::throw_os_error( (::i32)::get_last_error());
+   ::win::file::throw_os_error( (int)::get_last_error());
    }
    */
 
@@ -674,7 +674,7 @@ namespace android
 
 
 
-   //void PASCAL ::file::throw_os_error(::particle * pparticle, ::i32 lOsError, const char * lpszFileName /* = nullptr */)
+   //void PASCAL ::file::throw_os_error(::particle * pparticle, int lOsError, const char * lpszFileName /* = nullptr */)
    //{
    //   if (lOsError != 0)
    //      vfxThrowFileexception(file_exception::os_error_to_exception(lOsError), lOsError, lpszFileName);
@@ -792,7 +792,7 @@ bool CLASS_DECL_APEX windows_full_path(wstring & wstrFullPath, const wstring & w
 }
 
 //
-//void CLASS_DECL_APEX vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_APEX vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   throw ::exception(::file::exception(ecause, lOsError, lpszFileName));

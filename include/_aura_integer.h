@@ -4,20 +4,20 @@
 #include <limits.h>
 
 
-using i8 = int8_t;
-using i16 = int16_t;
-using i32 = int32_t;
+//using i8 = int8_t;
+//using i16 = int16_t;
+//using i32 = int32_t;
 using i64 = int64_t;
 
 
-using u8 = uint8_t;
-using u16 = uint16_t;
-using u32 = uint32_t;
+//using unsigned char = uint8_t;
+//using u16 = uint16_t;
+//using u32 = uint32_t;
 using u64 = uint64_t;
 
 
-using f32 = float;
-using f64 = double;
+//using f32 = float;
+//using f64 = double;
 
 
 #ifdef __cplusplus
@@ -50,14 +50,14 @@ TARGET throw_cast(SOURCE src)
 #define I64_MINIMUM	(-9223372036854775807L - 1)
 #define U64_MAXIMUM	(18446744073709551615UL)
 
-#define F32_MOST_NEGATIVE	(-FLT_MAX)
-#define F32_MAXIMUM  (FLT_MAX)
+#define FLOAT_MOST_NEGATIVE	(-FLT_MAX)
+#define FLOAT_MAXIMUM  (FLT_MAX)
 
-#define F64_MOST_NEGATIVE	(-DBL_MAX)
-#define F64_MAXIMUM  (DBL_MAX)
+#define DOUBLE_MOST_NEGATIVE	(-DBL_MAX)
+#define DOUBLE_MAXIMUM  (DBL_MAX)
 
 
-using i32_bool = ::i32;
+using i32_bool = int;
 
 
 

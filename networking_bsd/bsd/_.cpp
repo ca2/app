@@ -8,7 +8,7 @@
 #include "acme/operating_system/shared_posix/c_error_number.h"
 
 
-::i32 networking_last_error()
+int networking_last_error()
 {
 
    return c_error_number().m_iErrorNumber;

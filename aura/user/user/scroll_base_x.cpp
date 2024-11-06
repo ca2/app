@@ -90,7 +90,7 @@ namespace user
    void scroll_base_x::set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (::i32)elayout;
+      auto iLayout = (int)elayout;
 
       while(iLayout >= 0)
       {
@@ -203,25 +203,25 @@ namespace user
       //      if (pscroll->m_ecommand == e_scroll_command_line_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x() - m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() - m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x() - m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() - m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x() + m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() + m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_line_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (::i32)(get_context_offset().x() + m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() + m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -328,7 +328,7 @@ namespace user
       //   if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
       //   {
 
-      //      point.x() = (::i32)maximum(0, sizeTotal.cx() - sizePage.cx());
+      //      point.x() = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
 
       //   }
 
@@ -360,15 +360,15 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::i32 iTotalHeight = (::i32)sizeTotal.cy();
+      int iTotalHeight = (int)sizeTotal.cy();
 
-      ::i32 iTotalWidth = (::i32)sizeTotal.cx();
+      int iTotalWidth = (int)sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleX.height();
+      int iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleX.width();
+      int iClientWidth = rectangleX.width();
 
-      ::i32 iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_thickness);;
+      int iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_thickness);;
 
       scrollstatex.m_bHasScroll = false;
 
@@ -413,7 +413,7 @@ namespace user
 
       //return m_pscrollstateHorizontal->m_bScroll && m_pscrollstateHorizontal->m_bScrollEnable ? m_pscrollstateHorizontal->m_iWidth : 0;
 
-      return (::i32) m_pscrolllayoutX->m_scrollstatea[elayout].m_dThickness;
+      return (int) m_pscrolllayoutX->m_scrollstatea[elayout].m_dThickness;
 
    }
 
@@ -435,7 +435,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (i32)get_context_offset().x();
+      //   pscroll->m_nPos = (int)get_context_offset().x();
 
       //}
 

@@ -21,7 +21,7 @@ typedef struct
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
 
-typedef int_bool (*ProgressAnbAbortCallBack)(::u8 bPercentComplete);
+typedef int_bool (*ProgressAnbAbortCallBack)(unsigned char bPercentComplete);
 
 template <class FilterClass>
 class C2PassScale
@@ -246,18 +246,18 @@ ScaleRow (::image32_t*pSrc,
    for (::u32 x = 0; x < uResWidth; x++)
    {
       // Loop through row
-      ::u8 r = 0;
-      ::u8 g = 0;
-      ::u8 b = 0;
+      unsigned char r = 0;
+      unsigned char g = 0;
+      unsigned char b = 0;
       int iLeft = Contrib->ContribRow[x].Left;    // Retrieve left boundries
       int iRight = Contrib->ContribRow[x].Right;  // Retrieve right boundries
       for (int i = iLeft; i <= iRight; i++)
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red(indexes)));
-         g += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green(indexes)));
-         b += (::u8)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue(indexes)));
+         r += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red(indexes)));
+         g += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green(indexes)));
+         b += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue(indexes)));
       }
       pDstRow[x].assign(rgb(r, g, b), indexes); // Place result in destination pixel
    }
@@ -290,7 +290,7 @@ HorizScale (::image32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (::u8(double(u) / double (uResHeight) * 50.0)))
+         if (!m_Callback (unsigned char(double(u) / double (uResHeight) * 50.0)))
          {
             //
             // User wished to abort now
@@ -327,9 +327,9 @@ ScaleCol (::image32_t*pSrc,
    for (::u32 y = 0; y < uResHeight; y++)
    {
       // Loop through column
-      ::u8 r = 0;
-      ::u8 g = 0;
-      ::u8 b = 0;
+      unsigned char r = 0;
+      unsigned char g = 0;
+      unsigned char b = 0;
       int iLeft = Contrib->ContribRow[y].Left;    // Retrieve left boundries
       int iRight = Contrib->ContribRow[y].Right;  // Retrieve right boundries
       for (int i = iLeft; i <= iRight; i++)
@@ -337,9 +337,9 @@ ScaleCol (::image32_t*pSrc,
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
          ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol].color(indexes);
-         r += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_red()));
-         g += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_green()));
-         b += ::u8(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_blue()));
+         r += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_red()));
+         g += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_green()));
+         b += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_blue()));
       }
       pRes[y * uResWidth + uCol].assign(rgb(r, g, b), indexes);   // Place result in destination pixel
    }
@@ -374,7 +374,7 @@ VertScale (::image32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (::u8(double(u) / double (uResWidth) * 50.0) + 50))
+         if (!m_Callback (unsigned char(double(u) / double (uResWidth) * 50.0) + 50))
          {
             //
             // User wished to abort now

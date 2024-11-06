@@ -274,7 +274,7 @@ void single_lock::unlock()
 }
 
 
-void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
+void single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
 {
 
    ASSERT(m_psubparticleSynchronization != nullptr);
@@ -492,7 +492,7 @@ void _single_lock::unlock()
 }
 
 
-void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
+void _single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
 {
 
    //ASSERT(m_psync != nullptr);

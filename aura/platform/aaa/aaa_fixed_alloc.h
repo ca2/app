@@ -49,12 +49,12 @@ inline void * fixed_alloc_no_sync::Alloc()
    // erase the first available node from the free list
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
-   return (void *) (((u8 *)pNode) + 16);
+   return (void *) (((unsigned char *)pNode) + 16);
 }
 
 inline void fixed_alloc_no_sync::Free(void * p)
 {
-   p = (void *) (((u8 *)p) - 16);
+   p = (void *) (((unsigned char *)p) - 16);
    if (p != nullptr)
    {
       // simply return the node to the free list
@@ -71,13 +71,13 @@ class CLASS_DECL_AURA fixed_alloc_sync
 public:
 
 
-   i32                                      m_i;
-   i32                                      m_iShareCount;
+   int                                      m_i;
+   int                                      m_iShareCount;
    address_array < critical_section *  >        m_protectptra;
    address_array < fixed_alloc_no_sync * >      m_allocptra;
 
 
-   fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize = 64, i32 iShareCount = 2);
+   fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize = 64, int iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -96,8 +96,8 @@ class CLASS_DECL_AURA fixed_alloc
 public:
 
 
-   i32                                         m_i;
-   i32                                         m_iShareCount;
+   int                                         m_i;
+   int                                         m_iShareCount;
    address_array < fixed_alloc_sync * >            m_allocptra;
 
 
@@ -142,8 +142,8 @@ public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const ::string &, i32) { return s_palloc->Alloc(); } \
-   void operator delete(void * p, const ::string &, i32) { s_palloc->Free(p); } \
+   void * operator new(size_t, const ::string &, int) { return s_palloc->Alloc(); } \
+   void operator delete(void * p, const ::string &, int) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
 

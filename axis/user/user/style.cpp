@@ -740,7 +740,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, u64 u)
    //{
 
    //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
@@ -1351,7 +1351,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, ::u8 bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, u64 u)
    //{
 
    //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))

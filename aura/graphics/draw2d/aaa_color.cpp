@@ -401,7 +401,7 @@ double dS)
 
    dH *= 6.0;
 
-   double dA = dH - (double)((i32)dH);
+   double dA = dH - (double)((int)dH);
 
    if (dH >= 3.0)
    {
@@ -483,9 +483,9 @@ double dS)
    double dFinalG = (dCMin + dG * dCAdd);
    double dFinalB = (dCMin + dB * dCAdd);
 
-   m_iR = (::u8)primitive_color_round(dFinalR * 255.0);
-   m_iG = (::u8)primitive_color_round(dFinalG * 255.0);
-   m_iB = (::u8)primitive_color_round(dFinalB * 255.0);
+   m_iR = (unsigned char)primitive_color_round(dFinalR * 255.0);
+   m_iG = (unsigned char)primitive_color_round(dFinalG * 255.0);
+   m_iB = (unsigned char)primitive_color_round(dFinalB * 255.0);
 
    /*   double H = dH * 360.0;
 
@@ -502,9 +502,9 @@ double dS)
       m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
       m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-      m_iR      = (::u8)primitive_color_round(m_dR * 255.0);
-      m_iG      = (::u8)primitive_color_round(m_dG * 255.0);
-      m_iB      = (::u8)primitive_color_round(m_dB * 255.0);*/
+      m_iR      = (unsigned char)primitive_color_round(m_dR * 255.0);
+      m_iG      = (unsigned char)primitive_color_round(m_dG * 255.0);
+      m_iB      = (unsigned char)primitive_color_round(m_dB * 255.0);*/
 
 }
 
@@ -726,7 +726,7 @@ const hls & hls)
 
 
 /*
-void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
+void CColor::get_hls(unsigned char * H, unsigned char * L, unsigned char * S)
 {
    double dHue, dLightness, dSaturation;
    // input rgb values
@@ -740,7 +740,7 @@ void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
    // calculate lightness
    dMax = maximum(maximum(dRed, dGreen), dBlue);
    dMin = minimum(minimum(dRed, dGreen), dBlue);
-   dLightness = (::u8) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
+   dLightness = (unsigned char) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
       // rectangle=g=b --> achromatic case
@@ -774,9 +774,9 @@ void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
       if (dHue > HLSMAX)
          dHue -= HLSMAX;
    }
-   *H = (::u8) dHue;
-   *L = (::u8) dLightness;
-   *S = (::u8) dSaturation;
+   *H = (unsigned char) dHue;
+   *L = (unsigned char) dLightness;
+   *S = (unsigned char) dSaturation;
 }*/
 
 /*
@@ -837,9 +837,9 @@ void CColor::set_hls(
       dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
          (HLSMAX/2))/HLSMAX;
    }
-   m_bBlue      = (::u8) dBlue;
-   m_bGreen   = (::u8) dGreen;
-   m_bRed      = (::u8) dRed;
+   m_bBlue      = (unsigned char) dBlue;
+   m_bGreen   = (unsigned char) dGreen;
+   m_bRed      = (unsigned char) dRed;
 
 
 }
@@ -920,14 +920,14 @@ bool color::parse_color(const ::string & psz)
    {
       if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
       {
-         i32 iA, iR, iG, iB;
+         int iA, iR, iG, iB;
          sscanf(str, "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
          set_COLORREF(argb(iA, iR, iG, iB));
          return true;
       }
       else if (!ishexdigit(str[7]))
       {
-         i32 iR, iG, iB;
+         int iR, iG, iB;
          sscanf(str, "#%02x%02x%02x", &iR, &iG, &iB);
          set_COLORREF(argb(255, iR, iG, iB));
          return true;
@@ -937,7 +937,7 @@ bool color::parse_color(const ::string & psz)
    {
       if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
       {
-         i32 iA, iR, iG, iB;
+         int iA, iR, iG, iB;
          sscanf(str, "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
          set_COLORREF(argb(
                       duplicate_color_nible(iA),
@@ -988,14 +988,14 @@ bool color::parse_color(const ::string & psz)
 }
 
 
-CLASS_DECL_AURA color32_t color_with_u8_opacity(::u8 bAlpha, color32_t color32)
+CLASS_DECL_AURA color32_t color_with_u8_opacity(unsigned char bAlpha, color32_t color32)
 {
 
    return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_AURA color32_t color_with_u8_opacity(::u8 bAlpha, enum_plain_color ecolor)
+CLASS_DECL_AURA color32_t color_with_u8_opacity(unsigned char bAlpha, enum_plain_color ecolor)
 {
 
    return color_with_u8_opacity(bAlpha, pure_color(ecolor));

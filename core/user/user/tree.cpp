@@ -301,7 +301,7 @@ namespace user
          //      if (m_uchHoverAlphaInit + dwCurve > 255)
          //         m_uchHoverAlpha = 255;
          //      else
-         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit + dwCurve);
+         //         m_uchHoverAlpha = (unsigned char)(m_uchHoverAlphaInit + dwCurve);
          //   }
          //}
          //else
@@ -329,7 +329,7 @@ namespace user
          //      if (m_uchHoverAlphaInit < dwCurve)
          //         m_uchHoverAlpha = 0;
          //      else
-         //         m_uchHoverAlpha = (::u8)(m_uchHoverAlphaInit - dwCurve);
+         //         m_uchHoverAlpha = (unsigned char)(m_uchHoverAlphaInit - dwCurve);
          //   }
          //}
 
@@ -362,11 +362,11 @@ namespace user
 
             drawitemdata.m_rectangle = drawitemdata.m_rectangleX;
 
-            drawitemdata.m_rectangle.left() = (::i32)(drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left() = (int)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rectangle.top() = (::i32)(iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top() = (int)(iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.bottom() = (::i32)(drawitemdata.m_rectangle.top() + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom() = (int)(drawitemdata.m_rectangle.top() + drawitemdata.m_dItemHeight);
 
             drawitemdata.m_rectangle.right() = m_iCurrentImpactWidth;
 
@@ -458,7 +458,7 @@ namespace user
       if (m_bHover)
       {
 
-         auto iAlpha = (::i32)(m_iHoverAlphaInit + m_timeHoverStart.elapsed().floating_second() * 255.f/ dTime);
+         auto iAlpha = (int)(m_iHoverAlphaInit + m_timeHoverStart.elapsed().floating_second() * 255.f/ dTime);
 
          m_iHoverAlpha = constrained(iAlpha, 0, 255);
 
@@ -474,7 +474,7 @@ namespace user
       else
       {
 
-         auto iAlpha = (::i32)(m_iLeaveAlphaInit - m_timeLeaveStart.elapsed().floating_second() * 255.f/dTime);
+         auto iAlpha = (int)(m_iLeaveAlphaInit - m_timeLeaveStart.elapsed().floating_second() * 255.f/dTime);
 
          m_iHoverAlpha = constrained(iAlpha, 0, 255);
 
@@ -1083,46 +1083,46 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prectangle->left() = (::i32)(drawitem.m_rectangle.left());
+         prectangle->left() = (int)(drawitem.m_rectangle.left());
 
-         prectangle->right() = (::i32)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
 
-         prectangle->top() = (::i32)(drawitem.m_rectangle.top());
+         prectangle->top() = (int)(drawitem.m_rectangle.top());
 
-         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom());
+         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
 
       }
       break;
       case e_tree_element_image:
       {
-         prectangle->left() = (::i32)(drawitem.m_rectangle.left() + 18);
+         prectangle->left() = (int)(drawitem.m_rectangle.left() + 18);
 
-         prectangle->right() = (::i32)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
 
          int iHDiff = 0;
 
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
+            iHDiff = (int)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
 
          }
 
-         prectangle->top() = (::i32)(drawitem.m_rectangle.top() + iHDiff / 2);
+         prectangle->top() = (int)(drawitem.m_rectangle.top() + iHDiff / 2);
 
-         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom() - iHDiff / 2);
+         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom() - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prectangle->left() = (::i32)(drawitem.m_rectangle.left() + 38);
+         prectangle->left() = (int)(drawitem.m_rectangle.left() + 38);
 
-         prectangle->right() = (::i32)(drawitem.m_rectangle.right());
+         prectangle->right() = (int)(drawitem.m_rectangle.right());
 
-         prectangle->top() = (::i32)(drawitem.m_rectangle.top());
+         prectangle->top() = (int)(drawitem.m_rectangle.top());
 
-         prectangle->bottom() = (::i32)(drawitem.m_rectangle.bottom());
+         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
 
       }
       break;
@@ -1891,7 +1891,7 @@ namespace user
    i32 tree::get_wheel_scroll_delta()
    {
 
-      return (::i32)(3.0 * m_dItemHeight);
+      return (int)(3.0 * m_dItemHeight);
 
    }
 

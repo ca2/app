@@ -349,17 +349,17 @@ namespace user
 
       }
 
-      ::i32 iTotalCX = (::i32)sizeTotal.cx();
+      int iTotalCX = (int)sizeTotal.cx();
 
-      ::i32 iTotalCY = (::i32)sizeTotal.cy();
+      int iTotalCY = (int)sizeTotal.cy();
 
-      ::i32 iClientCX = rectangleX.width();
+      int iClientCX = rectangleX.width();
 
-      ::i32 iClientCY = rectangleX.height();
+      int iClientCY = rectangleX.height();
 
-      ::i32 iScrollCX = iClientCX - get_int(pstyle, e_int_scroll_bar_thickness);
+      int iScrollCX = iClientCX - get_int(pstyle, e_int_scroll_bar_thickness);
 
-      ::i32 iScrollCY = iClientCY - get_int(pstyle, e_int_scroll_bar_thickness);
+      int iScrollCY = iClientCY - get_int(pstyle, e_int_scroll_bar_thickness);
 
       if (iTotalCX > iClientCX)
       {
@@ -450,9 +450,9 @@ namespace user
 
       rectangle.bottom() -= get_final_scroll_bar_y_thickness(elayout);
 
-      //rectangle.right() -= (::i32)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
+      //rectangle.right() -= (int)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
 
-      //rectangle.bottom() -= (::i32)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
+      //rectangle.bottom() -= (int)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
 
       return rectangle;
 
@@ -507,9 +507,9 @@ namespace user
 
       auto scrollstatey = get_scroll_state_y(elayout);
 
-      scrollstatex.set_dimension((::i32)size.cx());
+      scrollstatex.set_dimension((int)size.cx());
 
-      scrollstatey.set_dimension((::i32)size.cy());
+      scrollstatey.set_dimension((int)size.cy());
 
       set_scroll_state_x(scrollstatex, elayout);
 
@@ -545,8 +545,8 @@ namespace user
 
          rectangle.top() = rectangleX.bottom();
          rectangle.left() = rectangleX.right();
-         rectangle.right() = (::i32)(rectangle.left() + m_pscrollbarY->const_layout().design().size().cx());
-         rectangle.bottom() = (::i32)(rectangle.top() + m_pscrollbarX->const_layout().design().size().cy());
+         rectangle.right() = (int)(rectangle.left() + m_pscrollbarY->const_layout().design().size().cx());
+         rectangle.bottom() = (int)(rectangle.top() + m_pscrollbarX->const_layout().design().size().cy());
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
@@ -629,14 +629,14 @@ namespace user
          if (scroll_bar_x_visible())
          {
 
-            rectangle.bottom() -= (::i32)m_pscrollbarX->scroll_bar_thickness();
+            rectangle.bottom() -= (int)m_pscrollbarX->scroll_bar_thickness();
 
          }
 
          if (scroll_bar_y_visible())
          {
 
-            rectangle.right() -= (::i32)m_pscrollbarY->scroll_bar_thickness();
+            rectangle.right() -= (int)m_pscrollbarY->scroll_bar_thickness();
 
          }
 

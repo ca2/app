@@ -952,7 +952,7 @@ struct heap_test_struct :
    virtual public object
 {
 
-   ::u8 m_ucha[1024];
+   unsigned char m_ucha[1024];
 
 };
 

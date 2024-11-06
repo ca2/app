@@ -177,7 +177,7 @@
 ////      iLength = strlen(lpszN);
 ////#endif
 ////
-////      lpszN = (char *)((::u8 *)lpszN) + iLength + sizeof(char);
+////      lpszN = (char *)((unsigned char *)lpszN) + iLength + sizeof(char);
 ////
 ////   }
 ////

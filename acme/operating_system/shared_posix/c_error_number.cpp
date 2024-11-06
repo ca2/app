@@ -30,7 +30,7 @@ c_error_number::c_error_number(errno_t iErrNo) :
 
 #endif
 
-c_error_number::c_error_number(c_error_number_t, ::i32 iErrorNumber) :
+c_error_number::c_error_number(c_error_number_t, int iErrorNumber) :
    m_iErrorNumber(iErrorNumber)
 {
 

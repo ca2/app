@@ -93,7 +93,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
    while (true)
    {
 
-      for (i32 i = 0; i < m_messagea.get_count();)
+      for (int i = 0; i < m_messagea.get_count();)
       {
 
          MESSAGE & msg = m_messagea[i];
@@ -179,7 +179,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    ::collection::count count = m_messagea.get_count();
 
-   for(i32 i = 0; i < count; i++)
+   for(int i = 0; i < count; i++)
    {
 
       MESSAGE & msg = m_messagea[i];

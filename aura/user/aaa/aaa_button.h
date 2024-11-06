@@ -43,9 +43,9 @@ namespace user
          ::image::image_list_pointer            m_pimagelistNormal;
          ::image::image_list_pointer            m_pimagelistItemHover;
          ::image::image_list_pointer            m_pimagelistSubItemHover;
-         i32                              m_iImageNormal;
-         i32                              m_iImageItemHover;
-         i32                              m_iImageSubItemHover;
+         int                              m_iImageNormal;
+         int                              m_iImageItemHover;
+         int                              m_iImageSubItemHover;
 
       };
 
@@ -128,7 +128,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(RECT32 * prect);
 
-      virtual i32 BaseToolTipGetIndex();
+      virtual int BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

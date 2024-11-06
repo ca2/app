@@ -36,7 +36,7 @@ namespace user
 //   {
 //
 //      m_pparent = pparent;
-////      i32 nClassStyle = 0;
+////      int nClassStyle = 0;
 ////      const char * pClassName = psystem->RegisterWndClass(
 //
 //      //nClassStyle,
@@ -211,7 +211,7 @@ namespace user
 
       if((m_pparent->m_iState == split_layout::stateDragging) && (m_iIndex == m_pparent->m_iIndex))
       {
-         i32 nPos;
+         int nPos;
          bool bMove;
          nPos = m_pparent->GetPos(point.x(), point.y());
          if(m_iIndex <= 0)
@@ -220,7 +220,7 @@ namespace user
          }
          else
          {
-            bMove = nPos > (i32) m_pparent->m_splitbara[m_iIndex - 1]->m_dwPosition;
+            bMove = nPos > (int) m_pparent->m_splitbara[m_iIndex - 1]->m_dwPosition;
          }
          if(m_pparent->get_pane_count() >= m_iIndex )
          {
@@ -228,7 +228,7 @@ namespace user
          }
          else
          {
-            bMove = bMove && nPos < (i32) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
+            bMove = bMove && nPos < (int) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
          }
          if(bMove)
          {
@@ -241,14 +241,14 @@ namespace user
             if(dRate < m_dMinimumRate)
             {
                dRate = m_dMinimumRate;
-               nPos = (i32) (m_pparent->get_normal_dimension() * dRate);
+               nPos = (int) (m_pparent->get_normal_dimension() * dRate);
             }
             else if(dRate > m_dMaximumRate)
             {
 
                dRate = m_dMaximumRate;
 
-               nPos = (i32) (m_pparent->get_normal_dimension() * dRate);
+               nPos = (int) (m_pparent->get_normal_dimension() * dRate);
 
             }
 
@@ -257,7 +257,7 @@ namespace user
          if(bMove)
          {
 
-            bMove = nPos != (i32) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
+            bMove = nPos != (int) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
 
          }
 

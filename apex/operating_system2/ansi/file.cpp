@@ -61,7 +61,7 @@
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
-//               ::i32 lDistanceToMove,
+//               int lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
 //               ::u32 dwMoveMethod

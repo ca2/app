@@ -209,9 +209,9 @@ auto m_timeRoll = ::time::now();
 
       //d.save_to_file(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "obs.png");
+pdirectorysystem->system() / "obs.png");
 
 
       //pdcParam->set_font(m_pfontDrawStatus);
@@ -291,7 +291,7 @@ pacmedirectory->system() / "obs.png");
 
             color32_t color32;
 
-            ::u8 a, r, g, b, rm, gm, bm;
+            unsigned char a, r, g, b, rm, gm, bm;
 
 /*            ::image::image_pointer pimage = pgraphics->m_pimage;
 

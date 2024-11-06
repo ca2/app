@@ -15,10 +15,10 @@ namespace user
    public:
 
 
-      //::i32          m_iPage;
-      //::i32          m_iLine;
-      //::i32          m_iWheel;
-      //i32            m_iWidth;
+      //int          m_iPage;
+      //int          m_iLine;
+      //int          m_iWheel;
+      //int            m_iWidth;
       //bool           m_bHasScroll;
       //bool           m_bScrollEnable;
       ////bool           m_bShowScroll;
@@ -28,7 +28,7 @@ namespace user
 
       ///// @brief  if m_iPage is zero, 
       ///// units in this struct_data are expressed in pixels.
-      //i32            m_iPage;
+      //int            m_iPage;
       ::f64          m_dPosition;
       ::f64          m_dTrackingPosition;
       //bool           m_bHasScroll;

@@ -60,9 +60,9 @@ namespace geometry
 
          double y = ppoint[i].y() - yParam;
 
-         ppoint[i].x() = (::i32)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (::i32)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -91,9 +91,9 @@ namespace geometry
 
          double y = ppoint[i].y() - yParam;
 
-         ppoint[i].x() = (::i32)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (::i32)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -102,9 +102,9 @@ namespace geometry
    //void geometry::RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle)
    //{
 
-   //   ppoint->x = (::i32)Sy(rectangle.left(),rectangle.right());
+   //   ppoint->x = (int)Sy(rectangle.left(),rectangle.right());
 
-   //   ppoint->y = (::i32)random(rectangle.top(),rectangle.bottom());
+   //   ppoint->y = (int)random(rectangle.top(),rectangle.bottom());
 
    //}
 
@@ -154,9 +154,9 @@ namespace geometry
 
          long y = ppoint[i].y() - m_iYCenter;
 
-         ppoint[i].x() = ((::i32)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+         ppoint[i].x() = ((int)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
 
-         ppoint[i].y() = ((::i32)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+         ppoint[i].y() = ((int)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
 
       }
    }

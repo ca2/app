@@ -36,7 +36,7 @@
 //
 //}
 //
-//inline atom & atom::operator = (::i32 i)
+//inline atom & atom::operator = (int i)
 //{
 //   
 //   m_etype     = type_integer;

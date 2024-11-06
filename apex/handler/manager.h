@@ -2,7 +2,7 @@
 #pragma once
 
 
-
+#include "apex/handler/_.h"
 
 /// manager is originator of signals
 class CLASS_DECL_APEX manager :

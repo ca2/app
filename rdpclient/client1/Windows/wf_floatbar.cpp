@@ -71,8 +71,8 @@ struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
 	::rectangle_i32 rectangle_i32;
-	::i32 width;
-	::i32 height;
+	int width;
+	int height;
 	wfContext* wfc;
 	Button* buttons[BTN_MAX];
 	BOOL shown;

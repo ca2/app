@@ -2,7 +2,7 @@
 
 //#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 
-//CLASS_DECL_ACME bool __end_defer_register_class(::i32 fToRegister, const char ** ppszClass);
+//CLASS_DECL_ACME bool __end_defer_register_class(int fToRegister, const char ** ppszClass);
 
 
 // Temporary ::map management (locks temp ::map on current thread)

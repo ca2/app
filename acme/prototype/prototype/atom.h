@@ -235,7 +235,7 @@ public:
 
    using PRIMITIVE_ATOM_TAG = PRIMITIVE_ATOM_TAG_TYPE;
 
-   enum enum_type : ::i32
+   enum enum_type : int
    {
 
       e_type_empty = -2,
@@ -678,7 +678,7 @@ public:
    
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
-   inline ::i32 as_i32() const { return (::i32) as_i64(); }
+   inline int as_i32() const { return (int) as_i64(); }
    inline ::u32 as_u32() const { return (::u32) as_i64(); }
    inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
    inline ::u32 as_umessage() const { return u32(); }

@@ -877,7 +877,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      if (!window_id) continue;
 //
-//      ::i32 iWindowId = -1;
+//      int iWindowId = -1;
 //
 //      CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
 //
@@ -1135,7 +1135,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      if (!window_id) continue;
 //
-//      ::i32 iWindowId = -1;
+//      int iWindowId = -1;
 //
 //      CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
 //

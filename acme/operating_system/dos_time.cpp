@@ -113,7 +113,7 @@ dostime_t maximum_dos_time()
  *
  * This function returns the Unix posix_time value (GMT/UTC time) from
  * the DOS format (local) time dostime, where dostime is a four
- * ::u8 value (date in most significant word, time in least
+ * unsigned char value (date in most significant word, time in least
  * significant word), see dostime() function.
  *
  * If the input DOS time is invalid, then the function returns -1.
@@ -163,7 +163,7 @@ posix_time dos_time_unix_time(dostime_t dostime)
 
 /* \brief Convert a broken up date to a DOS date.
  *
- * Convert the date y/n/d and time h:m:s to a four ::u8 DOS date and
+ * Convert the date y/n/d and time h:m:s to a four unsigned char DOS date and
  * time (date in high two bytes, time in low two bytes allowing magnitude
  * comparison).
  *

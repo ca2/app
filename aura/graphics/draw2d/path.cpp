@@ -773,7 +773,7 @@ namespace draw2d
    //
    
    
-   //bool path::do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
+   //bool path::do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, int iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
    //{
 
    //   switch (iCorner % 4)
@@ -1134,7 +1134,7 @@ namespace draw2d
    }
 
 
-   //bool path::clock_corner(const ::rectangle_i32& rectangleCorner, i32 iRadius, const ::e_border & eborder)
+   //bool path::clock_corner(const ::rectangle_i32& rectangleCorner, int iRadius, const ::e_border & eborder)
    //{
 
    //   int iDiameter = iRadius * 2;
@@ -1167,7 +1167,7 @@ namespace draw2d
    //}
 
 
-   //bool path::counter_corner(const ::rectangle_i32& rectangleCorner, i32 iRadius, const ::e_border & eborder)
+   //bool path::counter_corner(const ::rectangle_i32& rectangleCorner, int iRadius, const ::e_border & eborder)
    //{
 
    //   int iDiameter = iRadius * 2;
@@ -1504,14 +1504,14 @@ namespace draw2d
    }
 
 
-   //bool path::add_round_rect(const ::rectangle_i32 & rectangle, i32 iRadius, const ::e_border & eborder)
+   //bool path::add_round_rect(const ::rectangle_i32 & rectangle, int iRadius, const ::e_border & eborder)
    //{
 
    //   int iDiameter = iRadius * 2;
 
    //   // diameter can't exceed width or height
-   //   if (iDiameter > rectangle.width())	iDiameter = (i32)rectangle.width();
-   //   if (iDiameter > rectangle.height())	iDiameter = (i32)rectangle.height();
+   //   if (iDiameter > rectangle.width())	iDiameter = (int)rectangle.width();
+   //   if (iDiameter > rectangle.height())	iDiameter = (int)rectangle.height();
 
    //   ::rectangle_i32 rectangleRect(rectangle);
 

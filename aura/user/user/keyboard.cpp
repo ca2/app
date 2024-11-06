@@ -288,9 +288,9 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      //i32 iCode;
+      //int iCode;
 
-      //i32 iScan;
+      //int iScan;
 
       //::user::enum_key ekey;
 
@@ -335,7 +335,7 @@ namespace user
       //   return false;
       //}
 
-      //for(i32 i = 0; i < doc.root()->get_children_count(); i++)
+      //for(int i = 0; i < doc.root()->get_children_count(); i++)
       //{
 
       //   ::pointer<::xml::node>pnode = doc.root()->child_at(i);
@@ -535,7 +535,7 @@ namespace user
 //
 //      directory()->matter_ls_file("keyboard layout", patha);
 //
-//      for(i32 i = 0; i < patha.get_count(); i++)
+//      for(int i = 0; i < patha.get_count(); i++)
 //      {
 //
 //         keyboard_layout_id layoutid;
@@ -558,9 +558,9 @@ namespace user
 //
 //      string strOverride = file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->system() / "config\\system\\keyboard_layout.txt");
+//pdirectorysystem->system() / "config\\system\\keyboard_layout.txt");
 //
 //      if(strOverride.has_char())
 //      {
@@ -586,7 +586,7 @@ namespace user
 //
 //      HKL hkl = ::GetKeyboardLayout(0);
 //
-//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      for(int i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_hkla.contains(hkl))
 //         {
@@ -594,7 +594,7 @@ namespace user
 //         }
 //      }
 //      hkl = (HKL) (((uptr) hkl) & 0xffff);
-//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      for(int i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_hkla.contains(hkl))
 //         {
@@ -606,7 +606,7 @@ namespace user
 //
 //      string strSymbol = x11_keyboard_get_current_group_symbol();
 //
-//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      for(int i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_countrycode.case_insensitive_contains(strSymbol))
 //         {
@@ -618,7 +618,7 @@ namespace user
 //
 //      string strSymbol = keyboard_input_source();
 //
-//      for(i32 i = 0; i < layoutida.get_count(); i++)
+//      for(int i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_keylayout.has_char() && strSymbol.contains(layoutida[i].m_keylayout))
 //         {
@@ -691,7 +691,7 @@ namespace user
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////      for(i32 i = 0; i < straHkl.get_count(); i++)
+////      for(int i = 0; i < straHkl.get_count(); i++)
 ////      {
 ////         string strHkl = straHkl[i];
 ////         HKL hkl;

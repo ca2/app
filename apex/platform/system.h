@@ -119,7 +119,7 @@ namespace apex
       virtual ::platform::application * get_main_app() override;
 
 
-      virtual void init();
+      virtual void init() override;
 
       void inline_init() override;
       void inline_term() override;
@@ -134,7 +134,7 @@ namespace apex
 
       void system_main() override;
 
-      virtual void term();
+      virtual void term() override;
 
       //DECLARE_MESSAGE_HANDLER(on_message_erase_session);
 
@@ -148,10 +148,10 @@ namespace apex
 
       ::file::watcher * file_watcher() override;
 
-      virtual ::input::input * input();
+      virtual ::input::input * input() override;
 
 
-      virtual ::pointer<::factory::factory>& node_factory() override;
+      virtual ::factory::factory * node_factory() override;
 
       virtual void process_init() override;
 
@@ -166,15 +166,18 @@ namespace apex
       //virtual void initialize_context() override;
 
 
-      virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
+      virtual ::pointer<::data::node>load_xml(const ::string & pszXml) override;
 
       //virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
 
       //virtual bool is_system() const override;
 
+      
+      void initialize_crypto() override;
+      
 
-      virtual string crypto_md5_text(const ::string & str);
+      virtual string crypto_md5_text(const ::string & str) override;
 
 
 
@@ -183,10 +186,10 @@ namespace apex
       void destroy() override;
 
 
-      virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
+      virtual void process_exit_status(::object* pparticle, const ::e_status & estatus) override;
 
 
-      virtual void hist_hist(const ::string & psz);
+      virtual void hist_hist(const ::string & psz) override;
 
 
 
@@ -196,16 +199,16 @@ namespace apex
       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       //virtual string get_locale_schema_dir() override;
 
-      ::operating_system::department                        &  operating_system();
+      ::operating_system::department * operating_system() override;
 
-      class ::machine_event_central                &  machine_event_central();
-      inline ::parallelization::threading           *  threading() { return m_pthreading; }
-
-
-      virtual ::networking::networking * networking();
+      class ::machine_event_central * machine_event_central() override;
+       ::parallelization::threading           *  threading() override;
 
 
-      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
+      virtual ::networking::networking * networking() override;
+
+
+      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes) override;
 
 
 
@@ -219,7 +222,7 @@ namespace apex
       }
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
+      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
@@ -231,14 +234,14 @@ namespace apex
       //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
 
 
-      virtual void initialize_networking();
+      virtual void initialize_networking() override;
 
 
       virtual bool on_get_task_name(string& strTaskName) override;
 
 
 
-      virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0) override;
 
 
 
@@ -255,44 +258,44 @@ namespace apex
       //virtual void post_pending_requests();
 
 
-      virtual void term2();
+      virtual void term2() override;
 
-      virtual void term1();
+      virtual void term1() override;
 
 
       virtual void TermSystem() override;
 
 
-      virtual void process_term();
+      virtual void process_term() override;
 
 
 
 
 
 
-      virtual i32 _001OnDebugReport(i32 i1,const ::string & psz1,i32 i2,const ::string & psz2,const ::string & psz3,va_list args);
-      virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine);
+      virtual i32 _001OnDebugReport(i32 i1,const ::string & psz1,i32 i2,const ::string & psz2,const ::string & psz3,va_list args) override;
+      virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list) override;
+       virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine) override;
 
-      virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine);
-
-
+      virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine) override;
 
 
 
 
-      virtual void initialize_log(const ::string & pszId);
 
 
-      virtual void appa_load_string_table();
-      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context);
-      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context);
-
-      virtual bool assert_running_global(const ::string & pszAppName,const ::string & pszId = nullptr);
-      virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr);
+      virtual void initialize_log(const ::string & pszId) override;
 
 
-      virtual ::collection::count get_application_count();
+      virtual void appa_load_string_table() override;
+      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context) override;
+      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context) override;
+
+      virtual bool assert_running_global(const ::string & pszAppName,const ::string & pszId = nullptr) override;
+      virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr) override;
+
+
+      virtual ::collection::count get_application_count() override;
 
 
 
@@ -307,12 +310,12 @@ namespace apex
 
 
 
-      virtual void on_start_find_applications_from_cache();
+      virtual void on_start_find_applications_from_cache() override;
       //virtual void on_end_find_applications_from_cache(stream & is);
 
       //virtual void on_end_find_applications_to_cache(stream & os);
 
-      virtual void on_map_application_library(::acme::library & library);
+      virtual void on_map_application_library(::acme::library & library) override;
 
 
       //void request(::request * prequest) override;
@@ -325,58 +328,58 @@ namespace apex
 
 #endif
 
-      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra);
+      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
 
       //virtual bool merge_accumulated_on_open_file(::request * prequest);
 
-      virtual bool on_open_file(::payload payloadFile, string strExtra);
+      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
       
       void on_open_file(const ::string & pszFile) override;
 
 
-      virtual void on_os_text(enum_os_text etext, string strText);
+      virtual void on_os_text(enum_os_text etext, string strText) override;
 
 
 
-      virtual void on_extra(string str);
+      virtual void on_extra(string str) override;
 
-      virtual string standalone_setting(string str);
-      virtual void set_standalone_setting(string str, string strSetting);
-
-
-      virtual void process_machine_event_data(machine_event_data * pdata);
-
-      virtual string get_user_language();
-      virtual void set_user_language(::apex::application * papp, ::collection::index iSel);
-      virtual void set_user_language(::apex::application * papp, string strLang);
-
-      void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+      virtual string standalone_setting(string str) override;
+      virtual void set_standalone_setting(string str, string strSetting) override;
 
 
-      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+      virtual void process_machine_event_data(machine_event_data * pdata) override;
 
-      void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+      virtual string get_user_language() override;
+      virtual void set_user_language(::apex::application * papp, ::collection::index iSel) override;
+      virtual void set_user_language(::apex::application * papp, string strLang) override;
+
+      void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam) override;
+
+
+      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile) override;
+
+      void     firefox(string strUrl, string strBrowser, string strProfile, string strParam) override;
 
 
 
 
-      virtual void discard_to_factory(::pointer<object>pca);
+      virtual void discard_to_factory(::pointer<object>pca) override;
 
 
 
       //DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
-      void set_history(::apex::history* phistory);
+      void set_history(::apex::history* phistory) override;
 
 
 
 
-      ::apex::history& hist();
+      ::apex::history* hist() override;
 
 
 
-      bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr);
+      bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr) override;
 
 
 
@@ -395,7 +398,7 @@ namespace apex
 
 
 
-      virtual string get_host_location_url();
+      virtual string get_host_location_url() override;
 
       virtual bool is_thread() const override;
 
@@ -410,11 +413,11 @@ namespace apex
       //bool do_tasks() override;
 
 
-      void post_quit_to_all_threads();
-      void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
+      void post_quit_to_all_threads() override;
+      void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam) override;
 
 
-      void dump_command_line_and_environment_variables_to_file();
+      void dump_command_line_and_environment_variables_to_file() override;
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
@@ -432,9 +435,9 @@ namespace apex
 
       bool _handle_uri(const ::string & str) override;
 
-      virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
+      virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine) override;
 
-      virtual int console_end(::e_status estatus);
+      virtual int console_end(::e_status estatus) override;
 
 
       //virtual void get_public_internet_domain_extension_list(string_array& stra) override;

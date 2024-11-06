@@ -1,12 +1,12 @@
 #include "framework.h"
 
 //
-//void os_alloc_check_bounds(u8 * point_i32)
+//void os_alloc_check_bounds(unsigned char * point_i32)
 //{
 //
 //	uptr * pinteraction = (uptr *)point_i32;
 //
-//	::u8 a[256];
+//	unsigned char a[256];
 //
 //	zero(a);
 //
@@ -31,7 +31,7 @@
 //
 //	critical_section_lock synchronouslock(critical_section_system_heap());
 //
-//	u8 * point = (u8 *)operating_system_memory_allocate(size + 512 + sizeof(uptr));
+//	unsigned char * point = (unsigned char *)operating_system_memory_allocate(size + 512 + sizeof(uptr));
 //
 //	memory_set(&point[sizeof(uptr)], 0, 256);
 //
@@ -51,11 +51,11 @@
 //
 //	critical_section_lock synchronouslock(critical_section_system_heap());
 //
-//	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
+//	unsigned char * point = &((unsigned char *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 //
 //	os_alloc_check_bounds(point);
 //
-//	point = (u8 *)operating_system_memory_reallocate(point, size + 512 + sizeof(uptr));
+//	point = (unsigned char *)operating_system_memory_reallocate(point, size + 512 + sizeof(uptr));
 //
 //	memory_set(&point[sizeof(uptr)], 0, 256);
 //
@@ -75,7 +75,7 @@
 //
 //	critical_section_lock synchronouslock(critical_section_system_heap());
 //
-//	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
+//	unsigned char * point = &((unsigned char *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 //
 //	os_alloc_check_bounds(point);
 //

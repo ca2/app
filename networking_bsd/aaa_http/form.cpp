@@ -167,7 +167,7 @@ namespace http
 
                                  strsize x = 0;
 
-                                 for (i32 i = 0; i < current_filename.get_length(); i++)
+                                 for (int i = 0; i < current_filename.get_length(); i++)
                                  {
 
                                     if (current_filename[i] == '/' || current_filename[i] == '\\')
@@ -239,7 +239,7 @@ namespace http
                      // read until m_strBoundary...
 //                     FILE *fil;
 
-                     i32 out = 0;
+                     int out = 0;
 
                      char ca;
 

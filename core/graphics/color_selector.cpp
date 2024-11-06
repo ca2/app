@@ -49,7 +49,7 @@ namespace graphics
 {
 
 
-   void image_color_with_shade_of_grey(::u8 & r, ::u8 & g, ::u8 & b, double i, double j, double w, double h)
+   void image_color_with_shade_of_grey(unsigned char & r, unsigned char & g, unsigned char & b, double i, double j, double w, double h)
    {
 
       double dR, dG, dB;
@@ -146,9 +146,9 @@ namespace graphics
       double _dG = (dCMin + dG * dCAdd);
       double _dB = (dCMin + dB * dCAdd);
 
-      r = ::u8(_dR * 255.0);
-      g = ::u8(_dG * 255.0);
-      b = ::u8(_dB * 255.0);
+      r = unsigned char(_dR * 255.0);
+      g = unsigned char(_dG * 255.0);
+      b = unsigned char(_dB * 255.0);
 
    }
 
@@ -188,7 +188,7 @@ namespace graphics
 
       ::u32 uScan = pimage->scan_size();
 
-      ::u8 * pline;
+      unsigned char * pline;
 
       auto a = pimage->m_colorindexes.m_u8IndexOpacity;
       auto r = pimage->m_colorindexes.m_u8IndexRed;
@@ -198,7 +198,7 @@ namespace graphics
       for (::collection::index i = 0; i < w; i++)
       {
 
-         pline = (::u8 *)(pimage->get_data() + i);
+         pline = (unsigned char *)(pimage->get_data() + i);
 
          for (::collection::index j = 0; j < h; j++)
          {
@@ -337,9 +337,9 @@ namespace graphics
          double _dG = (dCMin + dG * dCAdd);
          double _dB = (dCMin + dB * dCAdd);
 
-         //::u8 uchR = (::u8)primitive_color_round(m_dR * 255.0);
-         //m_uchG = (::u8)primitive_color_round(m_dG * 255.0);
-         //m_uchB = (::u8)primitive_color_round(m_dB * 255.0);
+         //unsigned char uchR = (unsigned char)primitive_color_round(m_dR * 255.0);
+         //m_uchG = (unsigned char)primitive_color_round(m_dG * 255.0);
+         //m_uchB = (unsigned char)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
          image32_t color32(argb(255, _dR, _dG, _dB), pimage->color_indexes());
@@ -830,9 +830,9 @@ namespace graphics
       else
       {
 
-         point.x() = (::i32)(rTarget.left() + rTarget.width() * m_hls.m_dH);
+         point.x() = (int)(rTarget.left() + rTarget.width() * m_hls.m_dH);
 
-         point.y() = (::i32)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
+         point.y() = (int)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
 
       }
 

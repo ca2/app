@@ -213,11 +213,11 @@
 //
 //   }
 //
-//   ::u8 blockuse = pheapmemory->m_blockuse;
+//   unsigned char blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   ::u8 align = pheapmemory->m_align;
+//   unsigned char align = pheapmemory->m_align;
 //
 //   void * p = heap_memory_base_get(pmemory);
 //

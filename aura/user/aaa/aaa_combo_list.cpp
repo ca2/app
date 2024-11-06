@@ -364,7 +364,7 @@ namespace user
 
       }
 
-      psize->cy() = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      psize->cy() = (int)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
       psize->cx() += m_iBorder * 2;
 
@@ -381,7 +381,7 @@ namespace user
    }
 
 
-   i32 list_box::_001GetItemHeight() const
+   int list_box::_001GetItemHeight() const
    {
 
       return m_iItemHeight + m_iPadding * 2;
@@ -397,7 +397,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y() = (::i32) (iItem * _001GetItemHeight());
+         m_pointScroll.y() = (int) (iItem * _001GetItemHeight());
 
       }
       else

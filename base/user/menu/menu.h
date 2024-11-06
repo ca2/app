@@ -37,7 +37,7 @@ namespace user
       ::pointer<::menu::item>                m_pitemClose;
       //atom                                 m_atomSubMenu;
       //::pointer<::menu::item>              m_pitemSubMenu;
-      i32                                    m_iHoverSubMenu;
+      int                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
       ::pointer<menu>                        m_pmenuSubMenu;
       //atom                                 m_atomTimerMenu;
@@ -81,13 +81,13 @@ namespace user
 
       virtual ::channel * get_notify_channel();
 
-      ::menu::item * GetSubMenu(i32 i);
+      ::menu::item * GetSubMenu(int i);
 
       virtual void defer_initialize_user_menu();
       virtual void initialize_user_menu();
       
       
-      virtual void set_minimum_width(::i32 iWidth);
+      virtual void set_minimum_width(int iWidth);
 
       //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
@@ -158,8 +158,8 @@ namespace user
 
       virtual void update_command(::menu::item * pitemParent);
 
-      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
-      void layout_buttons(::menu::item * pitem, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
+      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
+      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 
 
 

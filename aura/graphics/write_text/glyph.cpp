@@ -49,9 +49,9 @@ namespace write_text
 //
 //   /****************************************************************************
 //   *  FUNCTION   : IntFromFixed
-//   *  RETURNS    : i32 value approximating the FIXED value.
+//   *  RETURNS    : int value approximating the FIXED value.
 //   ****************************************************************************/
-//   i32 IntFromFixed(FIXED f)
+//   int IntFromFixed(FIXED f)
 //   {
 //      if (f.fract >= 0x8000)
 //         return(f.value + 1);
@@ -175,7 +175,7 @@ namespace write_text
 //
 //   ::u32         cTotal )
 //   {
-//      i32     i;
+//      int     i;
 //      //    ::u32    cTotal = 0;
 //      ::point_i32   endpt;
 //      ::point_i32   startpt;
@@ -355,7 +355,7 @@ namespace write_text
 //   *
 //   *  RETURNS    : none.
 //   ****************************************************************************/
-//   void glyph::Initialize(LPTTPOLYGONHEADER pHeader, u32 size, i32 iFontHiHeight)
+//   void glyph::Initialize(LPTTPOLYGONHEADER pHeader, u32 size, int iFontHiHeight)
 //
 //   {
 //
@@ -397,7 +397,7 @@ namespace write_text
 //            //         pPoints->m_lpPoints = point;
 //
 //            //point = (::point_i32 *)malloc( dwBuffSize );
-//            //         point = (::point_i32 *) ___new ::u8 (dwBuffSize);
+//            //         point = (::point_i32 *) ___new unsigned char (dwBuffSize);
 //            // Convert the starting point. It is an on curve point.
 //            // All other points are continuous from the "last"
 //            // point_i32 of the contour. Thus the start point_i32 the next
@@ -416,7 +416,7 @@ namespace write_text
 //
 //
 //            // get to first curve of contour -
-//            // it starts at the next ::u8 beyond header
+//            // it starts at the next unsigned char beyond header
 //            pCurve = (LPTTPOLYCURVE) (pHeader + 1);
 //
 //
@@ -536,7 +536,7 @@ namespace write_text
    }
 
 
-   void glyph::GetGlyphRect(i32 x, i32 y, ::rectangle_i32 * prectangle)
+   void glyph::GetGlyphRect(int x, int y, ::rectangle_i32 * prectangle)
 
    {
 

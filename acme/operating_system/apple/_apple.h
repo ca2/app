@@ -38,9 +38,9 @@ void screen_coordinates_aware_copy(::rectangle_i32 & rectTarget, const CGRect & 
 
 CGRect mm_get_screen_cgrect();
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
-void ns_main_sync(dispatch_block_t block);
+void ns_main_send(dispatch_block_t block);
 
 posix_time _mkgmtime(struct tm * const);
 

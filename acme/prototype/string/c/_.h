@@ -29,9 +29,9 @@ template < primitive_character CHARACTER >
 inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
-   ::i32 len1;
+   int len1;
 
-   ::i32 len2;
+   int len2;
 
    while (*psz)
    {
@@ -90,7 +90,7 @@ template < primitive_character CHARACTER >
 const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
-   //::i32 len1;
+   //int len1;
 
    while (*psz)
    {
@@ -149,9 +149,9 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //
-//   ::i32 len1;
+//   int len1;
 //
-//   ::i32 len2;
+//   int len2;
 //
 //   while (*psz)
 //   {
@@ -212,7 +212,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //
 //   a
 //
-//   ::i32 len1;
+//   int len1;
 //
 //   while (*psz)
 //   {

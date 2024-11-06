@@ -27,17 +27,25 @@ sequence_continuation & sequence_continuation::operator << (const ::procedure & 
    {
 
       m_pparticleTarget->__construct_new(m_psequence);
+      
+      __refdbg_add_referer
+      
+      m_psequence->increment_reference_count();
 
       if (m_procedure)
       {
+         
+         m_procedure.m_pbase->m_psequence = m_psequence;
 
-         m_psequence->add(m_procedure);
+         m_psequence->add(m_procedure.m_pbase);
 
       }
 
    }
+   
+   procedure.m_pbase->m_psequence = m_psequence;
 
-   m_psequence->add(procedure);
+   m_psequence->add(procedure.m_pbase);
 
    return *this;
 

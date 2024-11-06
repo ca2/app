@@ -137,6 +137,20 @@
 			remoteGlobalIDString = 9AC09A2C274DFC67008B042E;
 			remoteInfo = folder_zip;
 		};
+		9A8DE07C2CD37B4700992618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA827872CAF789900DA11E9 /* app_just_aura_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070B8EEA1B6E53F900D26137;
+			remoteInfo = app_just_aura_message_box;
+		};
+		9A8DE07E2CD37B4700992618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA827872CAF789900DA11E9 /* app_just_aura_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070B8EFD1B6E53FA00D26137;
+			remoteInfo = "Hello Multiverse!!Tests";
+		};
 		9AA3F9872A95606F004283CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1FB51A28713B2E0042849A /* crypto_openssl.xcodeproj */;
@@ -360,6 +374,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8DE0782CD37B4700992618 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A8DE07D2CD37B4700992618 /* app_message_box.app */,
+				9A8DE07F2CD37B4700992618 /* Hello Multiverse!!Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A8FCA842651A7FE00C0D8A1 /* __implement */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +528,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A8DE0782CD37B4700992618 /* Products */;
+					ProjectRef = 9AA827872CAF789900DA11E9 /* app_just_aura_message_box.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A1FB51B28713B2E0042849A /* Products */;
 					ProjectRef = 9A1FB51A28713B2E0042849A /* crypto_openssl.xcodeproj */;
 				},
@@ -581,6 +608,20 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libwrite_text_quartz2d.dylib;
 			remoteRef = 9A6A48232661155F004ED97A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8DE07D2CD37B4700992618 /* app_message_box.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = app_message_box.app;
+			remoteRef = 9A8DE07C2CD37B4700992618 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8DE07F2CD37B4700992618 /* Hello Multiverse!!Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Hello Multiverse!!Tests.xctest";
+			remoteRef = 9A8DE07E2CD37B4700992618 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AA3F9882A95606F004283CA /* libstatic_crypto_openssl.dylib */ = {

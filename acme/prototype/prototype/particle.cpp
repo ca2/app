@@ -571,6 +571,10 @@ class ::user::user * particle::user() const
 }
 
 
+
+
+
+
 void particle::operator()(::topic * ptopic, ::context * pcontext)
 {
 
@@ -701,11 +705,11 @@ void particle::delete_this()
 
 
 
-void particle::on_sequence()
-{
-
-
-}
+//void particle::on_sequence()
+//{
+//
+//
+//}
 
 
 ::payload particle::get_result_payload()
@@ -1439,7 +1443,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //#ifdef WINDOWS
 //
 //
-//particle::particle(HSYNC hsyncobject, const char * lpszName) :
+//particle::particle(hsynchronization hsyncobject, const char * lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -1514,7 +1518,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //}
 
 
-//HSYNC particle::hsync() const
+//hsynchronization particle::hsynchronization() const
 //{
 //
 //#ifdef WINDOWS
@@ -1530,7 +1534,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //}
 
 
-//bool particle::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool particle::unlock(int /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //

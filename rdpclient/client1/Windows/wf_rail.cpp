@@ -555,8 +555,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		railWindow->dwExStyle = windowState->extendedStyle;
 //		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
 //
-//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (::i32) railWindow->dwStyle);
-//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (::i32) railWindow->dwExStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (int) railWindow->dwStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (int) railWindow->dwExStyle);
 //	}
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_SHOW)

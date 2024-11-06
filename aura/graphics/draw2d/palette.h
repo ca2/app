@@ -23,7 +23,7 @@ namespace draw2d
       //virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual i32 GetEntryCount();
+      virtual int GetEntryCount();
       //virtual ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors) const;
 
       //virtual ::u32 SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);

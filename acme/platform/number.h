@@ -6,18 +6,18 @@
 
 /* Definition of minimum-width integer types
 *
-* u8   -> u32 integer type, at least 8 bits, equivalent to uchar
+* unsigned char   -> u32 integer type, at least 8 bits, equivalent to uchar
 * u16  -> u32 integer type, at least 16 bits
 * u32  -> u32 integer type, at least 32 bits
 *
-* s8, s16, s32  -> signed counterparts of u8, u16, u32
+* s8, s16, s32  -> signed counterparts of unsigned char, u16, u32
 *
 * Always use macro's T8(), T16() or T32() to obtain exact-width results,
 * i.e., to specify the size_i32 of the result of each expression.
 */
 
 /*typedef signed char s8;
-typedef uchar u8;
+typedef uchar unsigned char;
 
 #if UINT_MAX >= 4294967295UL
 
@@ -94,13 +94,13 @@ typedef u32 long u32;
 * U8TO32_BIG(c, v) stores the 32-bit-value v in big-endian convention
 * into the uchar array pointed to by c.
 */
-#define U32TO8_BIG(c, v)    do { u32 x = (v); u8 *d = (c); d[0] = CLIP8(x >> 24); d[1] = CLIP8(x >> 16); d[2] = CLIP8(x >> 8); d[3] = CLIP8(x); } while (0)
+#define U32TO8_BIG(c, v)    do { u32 x = (v); unsigned char *d = (c); d[0] = CLIP8(x >> 24); d[1] = CLIP8(x >> 16); d[2] = CLIP8(x >> 8); d[3] = CLIP8(x); } while (0)
 
 /*
 * U8TO32_LITTLE(c, v) stores the 32-bit-value v in little-endian convention
 * into the uchar array pointed to by c.
 */
-#define U32TO8_LITTLE(c, v)    do { u32 x = (v); u8 *d = (c); d[0] = CLIP8(x); d[1] = CLIP8(x >> 8); d[2] = CLIP8(x >> 16); d[3] = CLIP8(x >> 24); } while (0)
+#define U32TO8_LITTLE(c, v)    do { u32 x = (v); unsigned char *d = (c); d[0] = CLIP8(x); d[1] = CLIP8(x >> 8); d[2] = CLIP8(x >> 16); d[3] = CLIP8(x >> 24); } while (0)
 
 /*
 * ROTL32(v, n) returns the value of the 32-bit u32 value v after

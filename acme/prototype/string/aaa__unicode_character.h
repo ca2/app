@@ -27,15 +27,15 @@ inline i32 unicode_to_title_case(i32 i);
 inline i32 unicode_to_numeric_value(i32 i, float * f);
 
 
-inline bool unicode_is_lower_case(::i32 iUniIndex);
-inline bool unicode_is_upper_case(::i32 iUniIndex);
-inline bool unicode_is_title_case(::i32 iUniIndex);
-inline bool unicode_is_letter(::i32 iUniIndex);
-inline bool unicode_is_letter_or_digit(::i32 iUniIndex);
-inline bool unicode_is_digit(::i32 iUniIndex);
-inline bool unicode_is_number(::i32 iUniIndex);
-inline bool unicode_is_assigned(::i32 iUniIndex);
-inline bool unicode_is_space_char(::i32 iUniIndex);
+inline bool unicode_is_lower_case(int iUniIndex);
+inline bool unicode_is_upper_case(int iUniIndex);
+inline bool unicode_is_title_case(int iUniIndex);
+inline bool unicode_is_letter(int iUniIndex);
+inline bool unicode_is_letter_or_digit(int iUniIndex);
+inline bool unicode_is_digit(int iUniIndex);
+inline bool unicode_is_number(int iUniIndex);
+inline bool unicode_is_assigned(int iUniIndex);
+inline bool unicode_is_space_char(int iUniIndex);
 
 
 // bool is_whitespace(const ::scoped_string & scopedstrUtf8Char, const ::ansi_character * pszEnd);

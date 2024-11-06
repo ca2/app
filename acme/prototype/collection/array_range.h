@@ -79,7 +79,7 @@
 //   //template <std::size_t c>
 //   //array_range(const ITEM(&begin)[c]) : range(begin, begin + c, false) {}
 //
-//   memsize length_in_bytes() const { return ::is_set(this->begin()) ? maximum(0, (const ::u8 *)(const ITEM * )this->end() - (const ::u8 *)(const ITEM *)this->begin()) : 0; }
+//   memsize length_in_bytes() const { return ::is_set(this->begin()) ? maximum(0, (const unsigned char *)(const ITEM * )this->end() - (const unsigned char *)(const ITEM *)this->begin()) : 0; }
 //
 //
 //
@@ -91,7 +91,7 @@
 //
 //      this->m_begin = (iterator)block.begin();
 //
-//      this->m_end = (iterator)((::u8 *)this->begin() + block.length_in_bytes() / this->item_size());
+//      this->m_end = (iterator)((unsigned char *)this->begin() + block.length_in_bytes() / this->item_size());
 //
 //
 //   }
@@ -277,9 +277,9 @@
 //
 //   auto pSeparatorsEndExclusive = pSeparators + blockSeparators.size();
 //
-//   ::i32 len1;
+//   int len1;
 //
-//   ::i32 len2;
+//   int len2;
 //
 //   while (p < pEndExclusive)
 //   {

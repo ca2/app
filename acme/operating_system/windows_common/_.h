@@ -52,7 +52,7 @@ namespace windows
 }
 
 //template < >
-//inline bool gt(DWORD dw, ::i32 i)
+//inline bool gt(DWORD dw, int i)
 //{
 //   return i < 0 ? true : dw >((DWORD)i);
 //}

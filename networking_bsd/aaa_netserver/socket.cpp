@@ -30,7 +30,7 @@ namespace netserver
 
       on_send_response();
 
-      i32 iStatusCode;
+      int iStatusCode;
 
       string strStatus;
 
@@ -181,7 +181,7 @@ namespace netserver
             
             stra.explode(",", straItem[1]);
 
-            for (i32 i = 0; i < stra.get_count(); i++)
+            for (int i = 0; i < stra.get_count(); i++)
             {
                
                string_array straRange;
@@ -253,7 +253,7 @@ namespace netserver
 
    //      ::image::image_pointer pimage;
 
-   //      pimage = create_image({(i32)(pimage->width() * dRate),  (i32)(pimage->height() * dRate)});
+   //      pimage = create_image({(int)(pimage->width() * dRate),  (int)(pimage->height() * dRate)});
 
    //      pimage->stretch_image(pimage);
 

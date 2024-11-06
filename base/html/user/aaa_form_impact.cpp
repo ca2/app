@@ -113,7 +113,7 @@ string html_form_impact::GetLocationURL()
 
 }
 
-bool html_form_impact::Refresh2(i32 i)
+bool html_form_impact::Refresh2(int i)
 {
    __UNREFERENCED_PARAMETER(i);
    get_document()->on_open_document(GetLocationURL());

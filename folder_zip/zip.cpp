@@ -97,7 +97,7 @@ typedef struct
 {
    z_stream stream;            /* zLib stream structure for inflate */
    i32  stream_initialised;    /* 1 is stream is initialised */
-   uptr pos_in_buffered_data;  /* last written ::u8 in buffered_data */
+   uptr pos_in_buffered_data;  /* last written unsigned char in buffered_data */
 
    uptr pos_local_header;     /* offset of the static header of the file
                                      currenty writing */
@@ -107,7 +107,7 @@ typedef struct
 
    i32  method;                /* compression method of file currenty wr.*/
    i32  raw;                   /* 1 for directly writing raw data */
-   ::u8 buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
+   unsigned char buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
    uptr dosDate;
    u32 crc32;
    i32  encrypt;
@@ -246,7 +246,7 @@ uptr len)
 #ifndef NO_ADDFILEINEXISTINGZIP
 /* ===========================================================================
    Inputs a long in LSB order to the given file
-   nbByte == 1, 2 or 4 (::u8, i16 or long)
+   nbByte == 1, 2 or 4 (unsigned char, i16 or long)
 */
 
 static i32 ziplocal_putValue OF((const zlib_filefunc_def* pzlib_filefunc_def,
@@ -513,7 +513,7 @@ void * fstream)
 #    ifndef NO_ADDFILEINEXISTINGZIP
    if (append == APPEND_STATUS_ADDINZIP)
    {
-      uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
+      uptr byte_before_the_zipfile;/* unsigned char before the zipfile, (>0 for sfx)*/
 
       uptr size_central_dir;     /* size_i32 of the central directory  */
       uptr offset_central_dir;   /* offset of start of central directory */
@@ -922,9 +922,9 @@ u32 len)
    if (zi->in_opened_file_inzip == 0)
       return ZIP_PARAMERROR;
 
-   zi->ci.stream.next_in = (u8 *)buf;
+   zi->ci.stream.next_in = (unsigned char *)buf;
    zi->ci.stream.avail_in = len;
-   zi->ci.crc32 = (u32) crc32(zi->ci.crc32, (const u8 *) buf,len);
+   zi->ci.crc32 = (u32) crc32(zi->ci.crc32, (const unsigned char *) buf,len);
 
    while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
    {

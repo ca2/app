@@ -5,7 +5,7 @@
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, i16 & i) { s.default_exchange(atom, i); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, i32 & i) { s.default_exchange(atom, i); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, i64 & i) { s.default_exchange(atom, i); }
-//inline void __var_exchange(payload_stream & s, const ::atom & atom, u8 & u) { s.default_exchange(atom, u); }
+//inline void __var_exchange(payload_stream & s, const ::atom & atom, unsigned char & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, u16 & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, u32 & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, u64 & u) { s.default_exchange(atom, u); }
@@ -32,7 +32,7 @@
 //#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //inline void __exchange(::payload_stream& s, long& l) { s.default_exchange(l); }
 //#endif
-//inline void __exchange(::payload_stream& s, u8& u) { s.default_exchange(u); }
+//inline void __exchange(::payload_stream& s, unsigned char& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, u16& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, u32& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, u64& u) { s.default_exchange(u); }

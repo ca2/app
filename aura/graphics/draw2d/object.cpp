@@ -96,7 +96,7 @@ namespace draw2d
    }
 
 
-//   bool object::CreateStockObject(i32 nIndex)
+//   bool object::CreateStockObject(int nIndex)
 //   {
 //
 //      throw ::interface_only();

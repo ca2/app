@@ -77,7 +77,7 @@ namespace nano2d
 
       pointer_array < state >           m_statea;
       ::pointer<state>                m_pstate;
-      ::i32                            m_iPaintImageSeed;
+      int                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
 

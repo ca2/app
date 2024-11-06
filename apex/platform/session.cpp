@@ -564,6 +564,11 @@ namespace apex
       //initialize_context();
 
    }
+class ::fs::data * session::fs()
+{
+    return m_pfsdata;
+    
+}
 
 
 

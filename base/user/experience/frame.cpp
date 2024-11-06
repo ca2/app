@@ -901,7 +901,7 @@ namespace experience
    }
 
 
-   //bool frame::on_message_size(u32 nType,i32 cx,i32 cy)
+   //bool frame::on_message_size(u32 nType,int cx,int cy)
    //{
 
    //   __UNREFERENCED_PARAMETER(cx);
@@ -912,7 +912,7 @@ namespace experience
    //}
 
 
-/*       bool frame::on_message_move(i32 x, i32 y)
+/*       bool frame::on_message_move(int x, int y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -923,7 +923,7 @@ namespace experience
    }*/
 
 
-   i32 frame::get_caption_height()
+   int frame::get_caption_height()
    {
 
       return m_iCaptionHeight;
@@ -1020,13 +1020,13 @@ namespace experience
 
       rectangle_i32 rectangleCaptionTextPadding = get_caption_text_padding();
 
-      i32 iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
+      int iControlBoxWidth = m_pcontrolbox->calculate_control_box_width(pgraphics);
 
       //information() << "experience::frame_window::title_bar_layout iControlBoxWidth: " << iControlBoxWidth;
 
       //calculate_caption_height(pgraphics);
 
-      //i32 iCaptionHeight = m_iCap;
+      //int iCaptionHeight = m_iCap;
 
       m_rectangleCaption.left() = rectangleRaw.left() + rectangleMargin.left();
       m_rectangleCaption.top() = rectangleRaw.top() + rectangleMargin.top();

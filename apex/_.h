@@ -59,6 +59,5 @@ namespace apex
 
 #include "apex/include/_include.h"
 
-#include "apex/platform/system.h"
 
 

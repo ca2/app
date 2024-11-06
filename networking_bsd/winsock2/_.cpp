@@ -13,9 +13,9 @@ namespace networking_bsd
    bool networking::defer_initialize_operating_system_networking()
    {
 
-      ::u8 byteHi = 2;
+      unsigned char byteHi = 2;
 
-      ::u8 byteLo = 2;
+      unsigned char byteLo = 2;
 
       if (!g_bWsaStartup)
       {
@@ -79,7 +79,7 @@ namespace networking_bsd
 
 
 
-i32 networking_last_error()
+int networking_last_error()
 {
 
    return WSAGetLastError();

@@ -194,10 +194,10 @@ namespace platform
       virtual ::particle * matter_mutex();
       virtual ::particle * http_download_mutex();
 
-      virtual ::string_array & http_download_array();
-      virtual ::string_array & http_exists_array();
+      virtual ::string_array * http_download_array();
+      virtual ::string_array * http_exists_array();
 
-      virtual class ::time & file_listing_cache_time();
+      virtual class ::time * file_listing_cache_time();
 
       //void on_set_platform() override;
 
@@ -240,7 +240,7 @@ namespace platform
 
       virtual ::networking::networking * networking();
 
-      virtual ::pointer<::platform::node> & node();
+      virtual ::platform::node * node();
 
       virtual class ::base64 * base64();
 
@@ -315,7 +315,7 @@ namespace platform
       virtual void erase_from_any_hook(::matter * pmatter);
 
 
-      virtual void create_os_node();
+      virtual void create_os_node(::platform::application * papplication);
 
       virtual string os_get_user_theme();
 
@@ -371,7 +371,7 @@ namespace platform
       virtual ::platform::application * get_main_app();
 
 
-      virtual ::pointer<::factory::factory> & folder_factory();
+      virtual ::factory::factory * folder_factory();
 
 
       //using main::system_construct;
@@ -396,7 +396,7 @@ namespace platform
       virtual void speak(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrLang = "en-us", enum_gender egender = e_gender_none);
 
 
-      virtual ::pointer<::factory::factory> & node_factory();
+      virtual ::factory::factory * node_factory();
 
 
       virtual void inline_init();

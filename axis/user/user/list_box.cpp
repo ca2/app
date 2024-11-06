@@ -663,14 +663,14 @@ namespace user
          if (size.cx() > psize->cx())
          {
 
-            psize->cx() = (::i32)size.cx();
+            psize->cx() = (int)size.cx();
 
          }
 
          if (size.cy() > m_dItemHeight)
          {
 
-            m_dItemHeight = (::i32)size.cy();
+            m_dItemHeight = (int)size.cy();
 
             if (size.cy() != 18)
             {
@@ -708,7 +708,7 @@ namespace user
 
       }
 
-      psize->cy() = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy() = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
       int iScrollBarWidth = 20;
 
@@ -731,7 +731,7 @@ namespace user
    i32 list_box::_001GetItemHeight() const
    {
 
-      return (::i32)(m_dItemHeight + m_iPadding * 2);
+      return (int)(m_dItemHeight + m_iPadding * 2);
 
    }
 

@@ -9,8 +9,8 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & pszFormat, va_list args);
 
 
 //CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -23,7 +23,7 @@ pmessagebox->sync();
 //}
 
 
-//CLASS_DECL_AURA void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags, const ::function_arg& function)
+//CLASS_DECL_AURA void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags, const ::function_arg& function)
 //{
 //
 //   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -127,9 +127,9 @@ CLASS_DECL_AURA bool memory_counter_on()
 
       g_iMemoryCounters = file_system()->exists(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
+pdirectorysystem->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -160,9 +160,9 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
       string strBasePath =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "memory_counters";
+pdirectorysystem->system() / "memory_counters";
 
 #else
 
@@ -170,9 +170,9 @@ pacmedirectory->system() / "memory_counters";
 
       string strBasePath =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "memory_counters" / strModule.title() / as_string(getpid());
+pdirectorysystem->system() / "memory_counters" / strModule.title() / as_string(getpid());
 
 #endif
 
@@ -210,7 +210,7 @@ void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, con
 {
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
-   //printf("%d %c %s %d %s", (i32)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
+   //printf("%d %c %s %d %s", (int)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
 
 }
 

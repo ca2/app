@@ -110,7 +110,7 @@ void payload::_set_element(::subparticle * pelement)
       return;
 
    }
-
+   
    if(pelement->is_referencing_debugging_enabled())
    {
 

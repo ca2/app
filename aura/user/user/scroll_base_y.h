@@ -49,7 +49,7 @@ namespace user
 
       virtual void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
-      virtual i32 get_wheel_scroll_delta() override;
+      virtual int get_wheel_scroll_delta() override;
       virtual bool create_scroll_bar_y();
       //virtual void layout_scroll_bar_x(::draw2d::graphics_pointer & pgraphics) override;
       virtual void layout_scroll_bar_y(::user::enum_layout elayout = ::user::e_layout_sketch);

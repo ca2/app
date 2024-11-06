@@ -2,8 +2,8 @@
 #pragma once
 
 
-enum enum_method : ::i32;
-enum enum_future : ::i32;
+enum enum_method : int;
+enum enum_future : int;
 
 
 class CLASS_DECL_APEX object :

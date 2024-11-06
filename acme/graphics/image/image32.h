@@ -18,7 +18,7 @@ struct CLASS_DECL_ACME image32_t
    {
 
       ::u32    m_u32;
-      ::u8     m_ua[4];
+      unsigned char     m_ua[4];
 
    };
 
@@ -28,16 +28,16 @@ struct CLASS_DECL_ACME image32_t
    constexpr image32_t(const ::image32_t & image32) : m_u32(image32.m_u32) {}
 
 
-   constexpr ::u8 u8_red(color_indexes indexes) const { return m_ua[indexes.red()]; }
-   constexpr ::u8 u8_green(color_indexes indexes) const { return m_ua[indexes.green()]; }
-   constexpr ::u8 u8_blue(color_indexes indexes) const { return m_ua[indexes.blue()]; }
-   constexpr ::u8 u8_opacity(color_indexes indexes) const { return m_ua[indexes.opacity()]; }
+   constexpr unsigned char u8_red(color_indexes indexes) const { return m_ua[indexes.red()]; }
+   constexpr unsigned char u8_green(color_indexes indexes) const { return m_ua[indexes.green()]; }
+   constexpr unsigned char u8_blue(color_indexes indexes) const { return m_ua[indexes.blue()]; }
+   constexpr unsigned char u8_opacity(color_indexes indexes) const { return m_ua[indexes.opacity()]; }
 
 
-   constexpr ::u8 & u8_red(color_indexes indexes) { return m_ua[indexes.red()]; }
-   constexpr ::u8 & u8_green(color_indexes indexes) { return m_ua[indexes.green()]; }
-   constexpr ::u8 & u8_blue(color_indexes indexes) { return m_ua[indexes.blue()]; }
-   constexpr ::u8 & u8_opacity(color_indexes indexes) { return m_ua[indexes.opacity()]; }
+   constexpr unsigned char & u8_red(color_indexes indexes) { return m_ua[indexes.red()]; }
+   constexpr unsigned char & u8_green(color_indexes indexes) { return m_ua[indexes.green()]; }
+   constexpr unsigned char & u8_blue(color_indexes indexes) { return m_ua[indexes.blue()]; }
+   constexpr unsigned char & u8_opacity(color_indexes indexes) { return m_ua[indexes.opacity()]; }
 
 
    constexpr ::color::color color(color_indexes indexes) const;
@@ -57,7 +57,7 @@ struct CLASS_DECL_ACME image32_t
    }
    ::image32_t * offset(int x, int y, int iStrideDst)
    {
-      return (::image32_t *)((::u8 *)this + x * sizeof(::image32_t) + y * iStrideDst);
+      return (::image32_t *)((unsigned char *)this + x * sizeof(::image32_t) + y * iStrideDst);
 
    }
    void copy(int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
@@ -100,7 +100,7 @@ struct CLASS_DECL_ACME image32_t
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//constexpr ::u32 argb_image32_u32(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+//constexpr ::u32 argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Blue
@@ -111,16 +111,16 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 //
-////constexpr ::u8 image32_t::u8_red() const { return lower_u8(m_u32 >> 16); }
-////constexpr ::u8 image32_t::u8_green() const { return lower_u8(m_u32 >> 8); }
-////constexpr ::u8 image32_t::u8_blue()  const { return lower_u8(m_u32); }
-////constexpr ::u8 image32_t::u8_opacity() const { return lower_u8(m_u32 >> 24); }
+////constexpr unsigned char image32_t::u8_red() const { return lower_u8(m_u32 >> 16); }
+////constexpr unsigned char image32_t::u8_green() const { return lower_u8(m_u32 >> 8); }
+////constexpr unsigned char image32_t::u8_blue()  const { return lower_u8(m_u32); }
+////constexpr unsigned char image32_t::u8_opacity() const { return lower_u8(m_u32 >> 24); }
 ////
 //
 //#else
 //
 //
-//constexpr ::u32 argb_image32_u32(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)
+//constexpr ::u32 argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Red
@@ -131,10 +131,10 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 ////
-////constexpr ::u8 image32_t::u8_red() const { return lower_u8(m_u32); }
-////constexpr ::u8 image32_t::u8_green() const { return lower_u8(m_u32>>8)); }
-////constexpr ::u8 image32_t::u8_blue()  const { return lower_u8(m_u32>>16)); }
-////constexpr ::u8 image32_t::u8_opacity() const { return lower_u8(m_u32>>24)); }
+////constexpr unsigned char image32_t::u8_red() const { return lower_u8(m_u32); }
+////constexpr unsigned char image32_t::u8_green() const { return lower_u8(m_u32>>8)); }
+////constexpr unsigned char image32_t::u8_blue()  const { return lower_u8(m_u32>>16)); }
+////constexpr unsigned char image32_t::u8_opacity() const { return lower_u8(m_u32>>24)); }
 //
 //
 //#endif
@@ -206,11 +206,11 @@ inline ::color::color image32_get_pixel(const ::image32_t * pdata, color_indexes
 
    //#ifdef __APPLE__
    //
-   //      color = ((::image32_t*)&((u8*)pdata)[iScan * (iHeight - y - 1)])[x];
+   //      color = ((::image32_t*)&((unsigned char*)pdata)[iScan * (iHeight - y - 1)])[x];
    //
    //#else
    //
-   color = ((::image32_t *)&((u8 *)pdata)[iScan * y])[x].color(indexes);
+   color = ((::image32_t *)&((unsigned char *)pdata)[iScan * y])[x].color(indexes);
    //
    //#endif
 

@@ -5,7 +5,7 @@
 struct axisrdp_bitmap
 {
    rdpBitmap _bitmap;
-   ::u8* pdata;
+   unsigned char* pdata;
 };
 
 
@@ -27,7 +27,7 @@ struct axisrdp_context:
    int client_width;
    int client_height;
    ::u32 bitmap_size;
-   ::u8* bitmap_buffer;
+   unsigned char* bitmap_buffer;
 
    //axisrdp_bitmap* primary;
    //axisrdp_bitmap* drawing;

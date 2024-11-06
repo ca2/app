@@ -13,7 +13,7 @@ public:
 
    lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
-   lparam(i32 i) { m_lparam = (LPARAM) i; }
+   lparam(int i) { m_lparam = (LPARAM) i; }
 
    lparam(i64 i) { m_lparam = (LPARAM) i; }
 

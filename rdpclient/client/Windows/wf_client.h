@@ -60,7 +60,7 @@ struct wf_bitmap
 	HDC hdc;
 	HBITMAP bitmap;
 	HBITMAP org_bitmap;
-	::u8* pdata;
+	unsigned char* pdata;
 };
 typedef struct wf_bitmap wfBitmap;
 

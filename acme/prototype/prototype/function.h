@@ -404,6 +404,8 @@ public:
          base_implementation(timeTimeout)
       {
 
+         set_flag(e_flag_automatic_result_just_after_running);
+         
       }
 
 

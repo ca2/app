@@ -42,7 +42,7 @@ namespace networking_bsd
       memsize         m_header_size;
       memsize         m_iN;
       int         m_i;
-      ::u8        m_maskingkey[4];
+      unsigned char        m_maskingkey[4];
       int         m_iLastPos;
       ::pointer < ::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
@@ -72,7 +72,7 @@ namespace networking_bsd
 
       virtual void OnRawData(char *buf, memsize len) override;
 
-      virtual void on_websocket_data(u8 * pdata, int len);
+      virtual void on_websocket_data(unsigned char * pdata, int len);
       virtual void on_websocket_data(string str);
 
       virtual bool client_ping_pong_ok();

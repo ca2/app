@@ -787,9 +787,9 @@ sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const 
 //};
 
 // Import some common Enoki types
-using sequence2_i32 = sequence_type<::i32, 2>;
-using sequence3_i32 = sequence_type<::i32, 3>;
-using sequence4_i32 = sequence_type<::i32, 4>;
+using sequence2_i32 = sequence_type<int, 2>;
+using sequence3_i32 = sequence_type<int, 3>;
+using sequence4_i32 = sequence_type<int, 4>;
 
 using sequence2_i64 = sequence_type<::i64, 2>;
 using sequence3_i64 = sequence_type<::i64, 3>;

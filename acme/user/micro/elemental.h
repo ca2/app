@@ -138,8 +138,6 @@ namespace micro
       ::rectangle_i32 get_client_rectangle() override;
 
 
-      /// @brief  Child
-      /// @param pnanodevice 
       virtual void on_draw(::nano::graphics::device * pnanodevice);
       //virtual void on_char(int iChar);
       void set_focus() override;
@@ -362,7 +360,7 @@ namespace micro
 
       //void run_modal_loop() override;
 
-      virtual bool is_popup_window() const;
+      virtual bool is_popup_window() const override;
 
 
       //// Text Edit

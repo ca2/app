@@ -7,6 +7,7 @@
 // see http://create.stephan-brumme.com/disclaimer.html
 //
 //#include "header.h"
+#include "framework.h"
 #include "sha256.h"
 #include "byte_order.h"
 
@@ -20,7 +21,7 @@ SHA256::SHA256()
 /// restart
 void SHA256::reset()
 {
-   std::fill(std::begin(m_buffer), std::end(m_buffer), 0);
+   ::memset(m_buffer, 0, sizeof(m_buffer));
    m_numBytes = 0;
    m_bufferSize = 0;
 

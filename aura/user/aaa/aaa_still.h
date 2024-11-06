@@ -83,7 +83,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(RECT32 * prect);
 
-      virtual i32 BaseToolTipGetIndex();
+      virtual int BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

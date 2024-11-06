@@ -14,7 +14,7 @@ typedef i32 int_bool;
 typedef unsigned char         uchar;
 
 
-//typedef unsigned char         u8;
+//typedef unsigned char         unsigned char;
 
 
 
@@ -58,8 +58,8 @@ inline float __rate(float f)
 }
 
 
-inline ::u8 as_byte(double d) { return (::u8) minimummax(d, 0, 255); }
-inline ::u8 as_byte(::i64 i) { return (::u8)minimummax(i, 0, 255); }
+inline unsigned char as_byte(double d) { return (unsigned char) minimummax(d, 0, 255); }
+inline unsigned char as_byte(::i64 i) { return (unsigned char)minimummax(i, 0, 255); }
 
 #endif
 

@@ -298,7 +298,7 @@ namespace base
 //   //virtual bool _001OnTabLayout(::user::tab * ptab) override;
 //   //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX, ::enum_check echeck) override;
 
-//   //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar) override;
+//   //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar) override;
 //   //virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, simple_scroll_bar * pbar) override;
 //   //virtual bool _001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
 //

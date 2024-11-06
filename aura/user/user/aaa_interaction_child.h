@@ -36,7 +36,7 @@ namespace user
       virtual void message_handler(::message::message * pusermessage) override;
 
       //using ::user::interaction_base::set_window_position;
-      //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect
@@ -88,8 +88,8 @@ namespace user
       //virtual bool create_interaction() override;
 
 
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(int nIndex) const override;
+      //virtual void set_window_long_ptr(int nIndex, iptr lValue) override;
 
       //virtual bool is_this_visible(enum_layout elayout) override;
 

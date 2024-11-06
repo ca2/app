@@ -371,9 +371,9 @@ namespace nanoui
 
       sequence2_i32 size(
          2 * m_iMargin + grid[0].get_sum()
-         + ::maximum((::i32) grid[0].size() - 1, 0) * m_sizeSpacing[0],
+         + ::maximum((int) grid[0].size() - 1, 0) * m_sizeSpacing[0],
          2 * m_iMargin + grid[1].get_sum()
-         + ::maximum((::i32) grid[1].size() - 1, 0) * m_sizeSpacing[1]
+         + ::maximum((int) grid[1].size() - 1, 0) * m_sizeSpacing[1]
       );
 
       const Window* window = dynamic_cast<const Window*>(pwidget);
@@ -412,7 +412,7 @@ namespace nanoui
 
       dim[iAxisIndex1] = m_resolution;
 
-      dim[iAxisIndex2] = (::i32)((iVisibleChildrenCount + m_resolution - 1) / m_resolution);
+      dim[iAxisIndex2] = (int)((iVisibleChildrenCount + m_resolution - 1) / m_resolution);
 
       grid[iAxisIndex1].clear(); grid[iAxisIndex1].resize(dim[iAxisIndex1], 0);
 
@@ -672,7 +672,7 @@ namespace nanoui
 
             int cell_size = grid[iAxisIndex][anchor.pos[iAxisIndex] + anchor.size[iAxisIndex]] - item_pos;
 
-            ::i32 sizeTarget;
+            int sizeTarget;
 
             auto sizeFixed = pwidgetChild->fixed_size()[iAxisIndex];
 
@@ -755,7 +755,7 @@ namespace nanoui
                if ((anchor.size[iAxisIndex] == 1) != (phase == 0))
                   continue;
 
-               i32 sizeTarget;
+               int sizeTarget;
 
                auto sizeFixed = pwidgetChild->fixed_size()[iAxisIndex];
 

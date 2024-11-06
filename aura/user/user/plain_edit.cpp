@@ -890,7 +890,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLine = ::str::block('*', i32(strLine.length()));
+               strLine = ::str::block('*', int(strLine.length()));
 
             }
 
@@ -914,7 +914,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLineGraphics = ::str::block('*', i32(strLineGraphics.length()));
+               strLineGraphics = ::str::block('*', int(strLineGraphics.length()));
 
             }
 
@@ -1029,7 +1029,7 @@ namespace user
 
                auto ppen = __create < ::draw2d::pen >();
 
-               ppen->create_solid(1.0, argb((::u8)iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((unsigned char)iErrorA, 255, 0, 0));
 
                pgraphics->set(ppen);
 
@@ -1545,19 +1545,19 @@ namespace user
 
    //   bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-   //   if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
+   //   if (key.m_nChar < 256 && isalpha((int)key.m_nChar))
    //   {
 
    //      if (bShift)
    //      {
 
-   //         key.m_nChar = toupper((i32)key.m_nChar);
+   //         key.m_nChar = toupper((int)key.m_nChar);
 
    //      }
    //      else
    //      {
 
-   //         key.m_nChar = tolower((i32)key.m_nChar);
+   //         key.m_nChar = tolower((int)key.m_nChar);
 
    //      }
 
@@ -2885,7 +2885,7 @@ namespace user
 
       //strsize iAddUp;
 
-      //for (i32 i = 0; i < straLines.get_size(); i++)
+      //for (int i = 0; i < straLines.get_size(); i++)
       //{
 
       //   strLine = straLines[i];
@@ -2964,7 +2964,7 @@ namespace user
       //      if (size.cx() > m_sizeTotal.cx())
       //      {
 
-      //         m_sizeTotal.cx() = (i32)size.cx();
+      //         m_sizeTotal.cx() = (int)size.cx();
 
       //      }
 
@@ -2976,7 +2976,7 @@ namespace user
       ////if (iLineUpdate < 0)
       ////{
 
-      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       ////   const ::size_i32 & sizePage;
 
@@ -3134,7 +3134,7 @@ namespace user
       //
       //      m_dLineHeight = metric.get_line_spacing();
       //
-      //      m_pscrollstateVertical->m_iLine = (::i32) m_dLineHeight;
+      //      m_pscrollstateVertical->m_iLine = (int) m_dLineHeight;
       //
       //      if (m_dLineHeight <= 0)
       //      {
@@ -3347,7 +3347,7 @@ namespace user
       //      strsize iAddUp;
       //
       //
-      //      for (i32 i = 0; i < straLines.get_size(); i++)
+      //      for (int i = 0; i < straLines.get_size(); i++)
       //      {
       //
       //         strLine = straLines[i];
@@ -3428,7 +3428,7 @@ namespace user
       //
       //               }
       //
-      //               sizeLast.cx() = (::i32) size.cx();
+      //               sizeLast.cx() = (int) size.cx();
       //
       //               for (int j = 0; j < iLen; j++)
       //               {
@@ -3453,7 +3453,7 @@ namespace user
       //            if (size.cx() > m_sizeTotal.cx())
       //            {
       //
-      //               m_sizeTotal.cx() = (i32)size.cx();
+      //               m_sizeTotal.cx() = (int)size.cx();
       //
       //            }
       //
@@ -3465,7 +3465,7 @@ namespace user
       //      if (iLineUpdate < 0)
       //      {
       //
-      //         m_sizeTotal.cy() = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+      //         m_sizeTotal.cy() = (int) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
       //
       //         ::size_f64 sizePage;
       //
@@ -3569,7 +3569,7 @@ namespace user
 
       m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
- //     m_pscrollstateVertical->m_iLine = (::i32)m_dLineHeight;
+ //     m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
 
       if (m_dLineHeight <= 0)
       {
@@ -3778,7 +3778,7 @@ namespace user
 
       strsize iAddUp;
 
-      for (i32 i = 0; i < straLines.get_size(); i++)
+      for (int i = 0; i < straLines.get_size(); i++)
       {
 
          strLine = straLines[i];
@@ -3859,7 +3859,7 @@ namespace user
 
                }
 
-               sizeLast.cx() = (::i32)size.cx();
+               sizeLast.cx() = (int)size.cx();
 
                for (int j = 0; j < iLen; j++)
                {
@@ -3902,7 +3902,7 @@ namespace user
       if (iOnlyLineToUpdate < 0)
       {
 
-         sizeTotal.cy() = (::i32)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+         sizeTotal.cy() = (int)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
 
          ::size_f64 sizePage;
 
@@ -4147,7 +4147,7 @@ namespace user
 //
 //      //strsize iAddUp;
 //
-//      //for (i32 i = 0; i < straLines.get_size(); i++)
+//      //for (int i = 0; i < straLines.get_size(); i++)
 //      //{
 //
 //      //   strLine = straLines[i];
@@ -4226,7 +4226,7 @@ namespace user
 //      //      if (size.cx() > m_sizeTotal.cx())
 //      //      {
 //
-//      //         m_sizeTotal.cx() = (i32)size.cx();
+//      //         m_sizeTotal.cx() = (int)size.cx();
 //
 //      //      }
 //
@@ -4238,7 +4238,7 @@ namespace user
 //      ////if (iLineUpdate < 0)
 //      ////{
 //
-//      ////   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 //
 //      ////   const ::size_i32 & sizePage;
 //
@@ -4557,7 +4557,7 @@ namespace user
 //
 //      strsize iAddUp;
 //
-//      for (i32 i = 0; i < m_straLines.get_size(); i++)
+//      for (int i = 0; i < m_straLines.get_size(); i++)
 //      {
 //
 //         string strLine = m_straLines[i];
@@ -4651,7 +4651,7 @@ namespace user
 //      //if (iLineUpdate < 0)
 //      //{
 //
-//      //   m_sizeTotal.cy() = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//      //   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 //
 //      //   const ::size_i32 & sizePage;
 //
@@ -4770,9 +4770,9 @@ namespace user
 
       }
 
-      lprect->top() = (::i32)(iLine * m_dItemHeight);
+      lprect->top() = (int)(iLine * m_dItemHeight);
 
-      lprect->bottom() = (::i32)(lprect->top() + m_dItemHeight);
+      lprect->bottom() = (int)(lprect->top() + m_dItemHeight);
 
       return true;
 
@@ -4829,7 +4829,7 @@ namespace user
 
       string strLine = plain_edit_get_expanded_line(pgraphics, iLine, { &iChar });
 
-      size_f64 size = pgraphics->get_text_extent(strLine, (i32)iChar);
+      size_f64 size = pgraphics->get_text_extent(strLine, (int)iChar);
 
       return size.cx();
 
@@ -4837,7 +4837,7 @@ namespace user
    }
 
 
-   ::collection::index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
    {
 
       //_synchronous_lock synchronouslock(this->synchronization());
@@ -4862,7 +4862,7 @@ namespace user
 
             strsize iRel = iSel - i1;
 
-            x = (i32)plain_edit_get_line_extent(pgraphics, iLine, iRel);
+            x = (int)plain_edit_get_line_extent(pgraphics, iLine, iRel);
 
             return iLine;
 
@@ -4911,7 +4911,7 @@ namespace user
 
       strsize iLineOffset = -1;
 
-      for (i32 i = 0; i < iLine; i++)
+      for (int i = 0; i < iLine; i++)
       {
 
          auto iNext = iOffset + m_iaLineLength[i];
@@ -4981,7 +4981,7 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
+   strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4999,7 +4999,7 @@ namespace user
    }
 
 
-   ::collection::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5169,7 +5169,7 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 px, ::collection::index iLine)
+   strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, ::collection::index iLine)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5180,7 +5180,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (::i32)(rectangleX.left() - pointOffset.x());
+      px -= (int)(rectangleX.left() - pointOffset.x());
 
       if (px <= 0)
       {
@@ -5189,15 +5189,15 @@ namespace user
 
       }
 
-      //i32 lim = 0;
+      //int lim = 0;
 
       //bool bFound = false;
 
       string strLine = plain_edit_get_line(pgraphics, iLine);
 
-      i32 lim2 = 0;
+      int lim2 = 0;
 
-      i32 lim1;
+      int lim1;
 
       const ::ansi_character * psz = strLine;
 
@@ -5452,7 +5452,7 @@ namespace user
 
       }
 
-      i32 iLineSize = 0;
+      int iLineSize = 0;
 
       m_iaLineLength.erase_all();
 
@@ -5626,7 +5626,7 @@ namespace user
 
       }
 
-      i32 iLineSize = 0;
+      int iLineSize = 0;
 
       memsize uiPos;
 
@@ -6812,7 +6812,7 @@ namespace user
 
                      on_reset_focus_start_tick();
 
-                     i32 x;
+                     int x;
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
@@ -6858,7 +6858,7 @@ namespace user
 
                      on_reset_focus_start_tick();
 
-                     i32 x;
+                     int x;
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
@@ -7067,7 +7067,7 @@ namespace user
 
                      on_reset_focus_start_tick();
 
-                     i32 x;
+                     int x;
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
@@ -7118,7 +7118,7 @@ namespace user
 
                      on_reset_focus_start_tick();
 
-                     i32 x;
+                     int x;
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
@@ -7320,7 +7320,7 @@ namespace user
 
                         ::collection::index iLine = m_iaLineStart.get_upper_bound();
 
-                        m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, i32(m_iaLineLength[iLine]));
+                        m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, int(m_iaLineLength[iLine]));
 
                         _001EnsureVisibleLine(pgraphics, iLine);
 
@@ -7426,14 +7426,14 @@ namespace user
                //                     ch = (char)pkey->m_nChar;
                //                     if (ch == '\r')
                //                        ch = '\n';
-               //                     i32 iChar = (i32)pkey->m_nChar;
+               //                     int iChar = (int)pkey->m_nChar;
                //                     if (iChar == '\r')
                //                        iChar = '\n';
                //                     if (bShift)
                //                     {
                //                        iChar |= I32_MINIMUM;
                //                     }
-               //                     i32 iCode = pkey->m_nFlags & 0xff;
+               //                     int iCode = pkey->m_nFlags & 0xff;
                //                     if (bShift)
                //                     {
                //                        iCode |= I32_MINIMUM;
@@ -7580,27 +7580,27 @@ namespace user
 
       get_text_selection(iBeg, iEnd);
 
-      // i32 x;
+      // int x;
 
       //auto pgraphics = ::draw2d::create_memory_graphics();
 
       //auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      i32 x = m_iLastSelectionEndX;
+      int x = m_iLastSelectionEndX;
 
       double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y();
 
       double y2 = y + m_dLineHeight;
 
-      ::point_i32 point((::i32)x, (::i32)y);
+      ::point_i32 point((int)x, (int)y);
 
       rectangle = this->rectangle();
 
-      rectangle.left() = (::i32)x;
+      rectangle.left() = (int)x;
 
-      rectangle.top() = (::i32)y;
+      rectangle.top() = (int)y;
 
-      rectangle.bottom() = (::i32)y2;
+      rectangle.bottom() = (int)y2;
 
       client_to_screen()(rectangle);
 
@@ -8337,15 +8337,15 @@ namespace user
       //m_peditor->modifyEvent(0);
       /*   char flag;
          m_iImpactOffset = 0;
-         i32 iLineSize;
+         int iLineSize;
          ::u32 uRead;
-         i32 iPos = 0;
-         i32 iLineStart = -1;
-         i32 iLineEnd = -1;
-         i32 iLineStartRemain = -1;
-         i32 iLineEndRemain = -1;
-         i32 iLine = 0;
-         i32 i = 0;
+         int iPos = 0;
+         int iLineStart = -1;
+         int iLineEnd = -1;
+         int iLineStartRemain = -1;
+         int iLineEndRemain = -1;
+         int iLine = 0;
+         int i = 0;
          while(i < m_iaLineLength.get_size())
          {
          iLineSize = m_iaLineLength[i];
@@ -9204,10 +9204,10 @@ namespace user
    }
 
 
-   i32 plain_edit::get_wheel_scroll_delta()
+   int plain_edit::get_wheel_scroll_delta()
    {
 
-      return (::i32)(m_dLineHeight * 3.0);
+      return (int)(m_dLineHeight * 3.0);
 
    }
 
@@ -10038,7 +10038,7 @@ namespace user
 
 
 
-   void plain_edit::on_updata_data(::data::simple_data * pdata, i32 iHint)
+   void plain_edit::on_updata_data(::data::simple_data * pdata, int iHint)
    {
 
       //if (pdata == m_ptree)

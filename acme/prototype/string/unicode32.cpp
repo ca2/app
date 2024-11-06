@@ -172,9 +172,9 @@ strsize ansi_to_wd32_len(const ::ansi_character * psz, strsize srclen)
 strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen)
 {
 
-   ::i32 dstlen = 0;
+   int dstlen = 0;
 
-   ::i32 len = 0;
+   int len = 0;
 
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {

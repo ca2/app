@@ -96,7 +96,7 @@ namespace networking_bsd
 
 
 
-   CLASS_DECL_NETWORKING_BSD i32 family_len(i32 family);
+   CLASS_DECL_NETWORKING_BSD int family_len(int family);
 
 
 } // namespace networking_bsd
@@ -115,16 +115,16 @@ namespace networking_bsd
    ((::networking_bsd::networking *)((psystem)->networking()))
 
 
-CLASS_DECL_NETWORKING_BSD ::i32 networking_last_error();
+CLASS_DECL_NETWORKING_BSD int networking_last_error();
 
 
 //inline void __exchange(::binary_stream & s, ::networking::address & address);
 
 
 //CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src);
-//CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char * src, void * dst);
-//CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af, const void * src, char * dst, i32 cnt);
-//CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af, const void * src);
+//CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const char * src, void * dst);
+//CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(int af, const void * src, char * dst, int cnt);
+//CLASS_DECL_NETWORKING_BSD string c_inet_ntop(int af, const void * src);
 
 
 

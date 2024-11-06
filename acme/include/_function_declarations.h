@@ -18,7 +18,7 @@ CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_chara
 CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
-CLASS_DECL_ACME::i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACMEint ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
 
 
 CLASS_DECL_ACME::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
@@ -111,10 +111,10 @@ inline void assign(unsigned long& l, const ::payload& r);
 
 inline void assign(bool& l, const ::payload& r);
 inline void assign(::i8& i8, const ::payload& r);
-inline void assign(::u8& u8, const ::payload& r);
+inline void assign(unsigned char& unsigned char, const ::payload& r);
 inline void assign(::i16& i16, const ::payload& r);
 inline void assign(::u16& u16, const ::payload& r);
-inline void assign(::i32& i32, const ::payload& r);
+inline void assign(int& i32, const ::payload& r);
 inline void assign(::u32& u32, const ::payload& r);
 inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
@@ -244,7 +244,7 @@ inline const ::particle * trace_object(const ::particle* pparticle);
 
 
 
-inline int read_char(u8*& pdata, memsize& s, char* pch);
+inline int read_char(unsigned char*& pdata, memsize& s, char* pch);
 
 
 

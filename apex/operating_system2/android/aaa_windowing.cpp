@@ -963,24 +963,24 @@ int_bool GetCursorPos(POINT32 * lppt)
 //
 
 
-//::i32 GetWindowLongA(oswindow window, int nIndex)
+//int GetWindowLongA(oswindow window, int nIndex)
 //{
 //
 //   if (!IsWindow(window))
 //      return false;
 //
-//   return (::i32) window->get_window_long_ptr(nIndex);
+//   return (int) window->get_window_long_ptr(nIndex);
 //
 //}
 //
 //
-//::i32 SetWindowLongA(oswindow window, int nIndex, ::i32 lValue)
+//int SetWindowLongA(oswindow window, int nIndex, int lValue)
 //{
 //
 //   if (!IsWindow(window))
 //      return false;
 //
-//   return (::i32) window->set_window_long_ptr(nIndex, lValue);
+//   return (int) window->set_window_long_ptr(nIndex, lValue);
 //
 //}
 

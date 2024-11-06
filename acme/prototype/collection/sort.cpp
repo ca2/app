@@ -18,7 +18,7 @@ namespace  sort
    //                  void * pVoidSwapArg);
    //
    //
-   //   void BubbleSort(::i32 * pint, i32 size);
+   //   void BubbleSort(int * pint, i32 size);
    //
 
    //   void quick_sort(
@@ -105,7 +105,7 @@ namespace  sort
    //
    //   }
 
-   //   void BubbleSort(::i32 * pint, i32 size)
+   //   void BubbleSort(int * pint, i32 size)
    //
    //   {
    //      for(i32 i = 0; i < size; i++)
@@ -114,7 +114,7 @@ namespace  sort
    //            if(pint[i] > pint[j])
    //
    //            {
-   //               ::i32 __swap = pint[j];
+   //               int __swap = pint[j];
    //
    //               pint[j] = pint[i];
    //

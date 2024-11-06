@@ -85,7 +85,7 @@
 //}
 //
 //
-//inline ::i32 property_object::find_i32(const ::atom & atom, ::i32 iDefault) const
+//inline int property_object::find_i32(const ::atom & atom, int iDefault) const
 //{
 //
 //   if (!m_ppropertyset)

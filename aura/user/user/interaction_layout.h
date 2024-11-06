@@ -270,7 +270,7 @@ namespace user
 
       inline ::point_i32 origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
 
-      inline ::i32 area(enum_layout elayout = e_layout_design) const { return this->size(elayout).area(); }
+      inline int area(enum_layout elayout = e_layout_design) const { return this->size(elayout).area(); }
 
 
       //inline void raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).raw_rectangle(rectangle); }

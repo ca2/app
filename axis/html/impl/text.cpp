@@ -706,7 +706,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (::u8)(d * 255))));
+                  maximum(0, minimum(255, (unsigned char)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
@@ -714,7 +714,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (::u8)(d * 255))));
+                  maximum(0, minimum(255, (unsigned char)(d * 255))));
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
@@ -722,7 +722,7 @@ namespace html
                   pgraphics,
                   rectangle,
                   color32,
-                  maximum(0, minimum(255, (::u8)(d * 255))));
+                  maximum(0, minimum(255, (unsigned char)(d * 255))));
                }
             }
             else

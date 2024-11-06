@@ -11,7 +11,7 @@ CLASS_DECL_ACME void set_last_status(const ::e_status & estatus);
 //public:
 //   
 //   
-//   ::i32          m_iErrorNumber;
+//   int          m_iErrorNumber;
 //
 //   inline static ::u32 get_last_error()
 //   {

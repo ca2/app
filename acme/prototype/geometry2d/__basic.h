@@ -43,7 +43,7 @@ class point_array_base;
 
 
 
-inline ::i32 area(::i32 cx, ::i32 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
+inline int area(int cx, int cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 inline i64 area(i64 cx, i64 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.) * cx * cy; }
 
@@ -62,7 +62,7 @@ struct ::rectangle_i64;
 //::rectangle_i64;
 //::rectangle_f64;
 
-typedef uchar      ::u8;
+typedef uchar      unsigned char;
 
 struct ::point_i64;
 struct ::size_i64;
@@ -150,20 +150,20 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline bool contains(const ::rectangle_i32 &rectangle, const ::point_i32 & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
 //inline ::rectangle_i32 & null(::rectangle_i32 & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::rect_equals(rect1, rect2); }
-//inline ::rectangle_i32 & inflate(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::rect_inflate_point(rectangle, x, y); }
-//inline ::rectangle_i32 & deflate(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::rect_deflate_point(rectangle, x, y); }
-//inline ::rectangle_i32 & offset(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::offset_rect(rectangle, x, y); }
+//inline ::rectangle_i32 & inflate(::rectangle_i32 & rectangle, int x, int y) { return ::rect_inflate_point(rectangle, x, y); }
+//inline ::rectangle_i32 & deflate(::rectangle_i32 & rectangle, int x, int y) { return ::rect_deflate_point(rectangle, x, y); }
+//inline ::rectangle_i32 & offset(::rectangle_i32 & rectangle, int x, int y) { return ::offset_rect(rectangle, x, y); }
 //inline bool intersect(::rectangle_i32 & rectangle, const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 //inline ::rectangle_i32 & unite(::rectangle_i32 & rectangle, const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::union_rect(rectangle, rect1, rect2); }
-//inline ::i32 width(const ::rectangle_i32 &rectangle) { return ::rect_width(rectangle); }
-//inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::rect_height(rectangle); }
-//inline ::i32 area(const ::rectangle_i32 &rectangle) { return ::rect_area(rectangle); }
+//inline int width(const ::rectangle_i32 &rectangle) { return ::rect_width(rectangle); }
+//inline int height(const ::rectangle_i32 &rectangle) { return ::rect_height(rectangle); }
+//inline int area(const ::rectangle_i32 &rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::rectangle_i32 &rectangle) { return ::is_rect_empty(rectangle); }
 //inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 
-//inline ::i32 width(const ::rectangle_i32 &rectangle) { return ::width(&rectangle); }
-//inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::height(&rectangle); }
-//inline ::i32 area(const ::rectangle_i32 &rectangle) { return ::area(&rectangle); }
+//inline int width(const ::rectangle_i32 &rectangle) { return ::width(&rectangle); }
+//inline int height(const ::rectangle_i32 &rectangle) { return ::height(&rectangle); }
+//inline int area(const ::rectangle_i32 &rectangle) { return ::area(&rectangle); }
 //inline bool is_empty(const ::rectangle_i32 &rectangle) { return ::is_empty(&rectangle); }
 //inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::swap_left_right(&rectangle); }
 
@@ -327,10 +327,10 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //
 //inline void copy(rectangle_i32 & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 //{
-//   rectDst->left() = (::i32) prectSrc->X;
-//   rectDst->top() = (::i32)prectSrc->Y;
-//   rectDst->right() = (::i32) (prectSrc->X + prectSrc->Width);
-//   rectDst->bottom() = (::i32) (prectSrc->Y + prectSrc->Height);
+//   rectDst->left() = (int) prectSrc->X;
+//   rectDst->top() = (int)prectSrc->Y;
+//   rectDst->right() = (int) (prectSrc->X + prectSrc->Width);
+//   rectDst->bottom() = (int) (prectSrc->Y + prectSrc->Height);
 //}
 //
 //inline void copy(::winrt::Windows::Foundation::Rect& rectDst, rectangle_i32* prectSrc)

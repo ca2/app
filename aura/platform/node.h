@@ -45,7 +45,7 @@ namespace aura
 
       virtual void on_initialize_particle() override;
 
-      virtual void dpi_os_initialize();
+      virtual void dpi_os_initialize() override;
 
       //virtual void message_box_factory();
 
@@ -62,11 +62,11 @@ namespace aura
 //#endif
 
 
-      virtual ::image::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier);
+      virtual ::image::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier) override;
 
-      virtual ::image::image_pointer get_file_image(int iSize, const ::file::path & path);
+      virtual ::image::image_pointer get_file_image(int iSize, const ::file::path & path) override;
       
-      virtual void defer_dock_application(bool bDock);
+      virtual void defer_dock_application(bool bDock) override;
 
 //      void set_application_menu(::application_menu * pmenu, ::apex::application * papp) override;
 
@@ -82,9 +82,9 @@ namespace aura
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
 
 
-      void BeginWaitCursor();
-      void EndWaitCursor();
-      void RestoreWaitCursor();
+      void BeginWaitCursor() override;
+      void EndWaitCursor() override;
+      void RestoreWaitCursor() override;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -102,10 +102,10 @@ namespace aura
       //pointer< ::sequence < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override;
 
 
-      virtual bool defer_windowing_post(const ::procedure & procedure);
+      virtual bool defer_windowing_post(const ::procedure & procedure) override;
 
 
-      virtual ::pointer < ::aqua::media_item > create_media_item_from_platform_media_item(platform_media_item_t * pplatformmediaitem);
+      virtual ::pointer < ::aqua::media_item > create_media_item_from_platform_media_item(platform_media_item_t * pplatformmediaitem) override;
 
 
    };

@@ -7,12 +7,12 @@ namespace c
 {
 
 
-   CLASS_DECL_ACME char * strdup(const char * psz)
-   {
-
-      return ::strdup(psz);
-
-   }
+//   CLASS_DECL_ACME char * strdup(const char * psz)
+//   {
+//
+//      return ::strdup(psz);
+//
+//   }
 
 
    CLASS_DECL_ACME char* strdup2(const char* psz1, const char* psz2)

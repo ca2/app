@@ -405,7 +405,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 //template < primitive_payload PAYLOAD >
 //inline bool strictly_equal(double d, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
-//inline bool strictly_equal(::i32 i, const PAYLOAD & payload);
+//inline bool strictly_equal(int i, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
 //inline bool strictly_equal(bool b, const PAYLOAD & payload);
 
@@ -417,7 +417,7 @@ inline bool strictly_different(const ::string & str, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
 inline bool strictly_different(double d, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
-inline bool strictly_different(::i32 i, const PAYLOAD & payload);
+inline bool strictly_different(int i, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
 

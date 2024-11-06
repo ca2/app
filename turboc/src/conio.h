@@ -135,17 +135,17 @@
 struct text_info
 {
   u32 currmode;		// Is only a char in conio.
-  u8 winleft;
-  u8 wintop;
-  u8 winright;
-  u8 winbottom;
-  u8 attribute;
-  u8 normattr;
-  //u8 currmode;
-  u8 screenheight;
-  u8 screenwidth;
-  u8 curx;
-  u8 cury;
+  unsigned char winleft;
+  unsigned char wintop;
+  unsigned char winright;
+  unsigned char winbottom;
+  unsigned char attribute;
+  unsigned char normattr;
+  //unsigned char currmode;
+  unsigned char screenheight;
+  unsigned char screenwidth;
+  unsigned char curx;
+  unsigned char cury;
 };
 
 //----------------------------------------------------------------------------

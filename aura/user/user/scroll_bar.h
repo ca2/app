@@ -27,8 +27,8 @@ namespace user
       ~scroll_bar() override;
 
 
-      //virtual i32 _001GetScrollPos() = 0;
-      //virtual i32 _001SetScrollPos(i32 iPos) = 0;
+      //virtual int _001GetScrollPos() = 0;
+      //virtual int _001SetScrollPos(int iPos) = 0;
       //virtual bool _001GetScrollState(scroll_state * pscrollstate) = 0;
       //virtual bool _001SetScrollState(scroll_state * pscrollstate, bool bRedraw = true) = 0;
 

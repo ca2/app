@@ -889,7 +889,7 @@ namespace core
 
          
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (int &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
 
       }
 

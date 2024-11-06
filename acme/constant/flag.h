@@ -60,6 +60,7 @@ enum enum_flag : u64
    e_flag_carriage_return = 1ll << 43,
    //e_flag_realized = 1 << 44,
    e_flag_initialized = 1ll << 47,
+   e_flag_automatic_result_just_after_running = 1ll << 48,
 
 };
 

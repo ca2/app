@@ -55,7 +55,7 @@ namespace acme
 
 #else
 
-      void initialize(int argc, platform_char ** argv, platform_char ** envp);
+      virtual void initialize_system(int argc, platform_char ** argv, platform_char ** envp);
 
 #endif
 

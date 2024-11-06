@@ -128,25 +128,25 @@ namespace image
 //   virtual ::color::color GetAverageColor()= 0;
 //   virtual ::color::color GetAverageOpaqueColor()= 0;
 //   virtual bool blend(::image::image *pimage, ::image::image *pimageRate)= 0;
-//   virtual bool Blend(::image::image *pimage, ::image::image *pimageA, i32 A)= 0;
+//   virtual bool Blend(::image::image *pimage, ::image::image *pimageA, int A)= 0;
 //   virtual bool Blend(::image::image *pimage, ::image::image *pimageA)= 0;
 //   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageSrc, const ::point_i32 & pointSrc, ::image::image *pimageAlf, const ::point_i32 & pointDstAlf, const ::size_i32 & size)= 0;
 //   virtual bool precision_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, unsigned char bA)= 0;
 //   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
-//   virtual bool blend2(const ::point_i32 & pointDst, ::image::image *pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, unsigned char bA)= 0;
+//   virtual bool blend2(const ::point_i32 & pointDst, ::image::image *pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, unsigned char bA)= 0;
 //   virtual bool fork_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, unsigned char bA)= 0;
 //   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)= 0;
 //
-//   virtual bool color_blend(::color32_t color32, ::u8 bAlpha)= 0;
-//   virtual bool BitBlt(::image::image *pimage, i32 op)= 0;
-//   virtual bool BitBlt(int cxParam, int cyParam, ::image::image *pimage, i32 op)= 0;
-//   virtual i32 cos(i32 i, i32 iAngle)= 0;
-//   virtual i32 sin(i32 i, i32 iAngle)= 0;
-//   virtual i32 cos10(i32 i, i32 iAngle)= 0;
-//   virtual i32 sin10(i32 i, i32 iAngle)= 0;
+//   virtual bool color_blend(::color32_t color32, unsigned char bAlpha)= 0;
+//   virtual bool BitBlt(::image::image *pimage, int op)= 0;
+//   virtual bool BitBlt(int cxParam, int cyParam, ::image::image *pimage, int op)= 0;
+//   virtual int cos(int i, int iAngle)= 0;
+//   virtual int sin(int i, int iAngle)= 0;
+//   virtual int cos10(int i, int iAngle)= 0;
+//   virtual int sin10(int i, int iAngle)= 0;
 //
 //   virtual bool hue_offset(double dRate)= 0;
 //
@@ -164,8 +164,8 @@ namespace image
 //   virtual bool is_rgb_black()= 0;
 //   virtual bool do_xor(::image::image *pimage)= 0;
 //
-//   virtual bool ToAlpha(i32 i)= 0;
-//   virtual bool ToAlphaAndFill(i32 i, ::color32_t color32)= 0;
+//   virtual bool ToAlpha(int i)= 0;
+//   virtual bool ToAlphaAndFill(int i, ::color32_t color32)= 0;
 //   virtual bool GrayToARGB(::color32_t color32)= 0;
 //
 //   virtual bool from_alpha()= 0;
@@ -199,9 +199,9 @@ namespace image
 //
 //
 //   virtual bool set_rgb(::color32_t color32)= 0;
-//   virtual bool set_rgb(i32 R, i32 G, i32 B)= 0;
+//   virtual bool set_rgb(int R, int G, int B)= 0;
 //   virtual bool tint(::image::image *pimage, const rgb & rgb)= 0;
-//   virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)= 0;
+//   virtual bool set_rgb_pre_alpha(int R, int G, int B, int A)= 0;
 //   virtual bool rgb_from(::image::image *pimage)= 0;
 //   virtual bool paint_rgb(::color::color color)= 0;
 //
@@ -211,12 +211,12 @@ namespace image
 //   virtual bool opacity(double dRate) = 0;
 //
 //
-//   virtual bool SetIconMask(::image::icon * picon, i32 cx, i32 cy)= 0;
-//   virtual bool RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius)= 0;
+//   virtual bool SetIconMask(::image::icon * picon, int cx, int cy)= 0;
+//   virtual bool RadialFill(unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b, int x, int y, int iRadius)= 0;
 //   virtual bool RadialFill(
-//   ::u8 a1, ::u8 r1, ::u8 g1, ::u8 b1, // center colors
-//   ::u8 a2, ::u8 r2, ::u8 g2, ::u8 b2, // border colors
-//   i32 x, i32 y, i32 iRadius)= 0;
+//   unsigned char a1, unsigned char r1, unsigned char g1, unsigned char b1, // center colors
+//   unsigned char a2, unsigned char r2, unsigned char g2, unsigned char b2, // border colors
+//   int x, int y, int iRadius)= 0;
 //
 //   virtual bool gradient_fill(::color::color clr1, ::color::color clr2, const point_i32 & point1, const point_i32 & point2)= 0;
 //   virtual bool gradient_horizontal_fill(::color::color clr1, ::color::color clr2, int start, int end)= 0;
@@ -225,15 +225,15 @@ namespace image
 //   virtual bool gradient_vertical_fill(::color::color clr1, ::color::color clr2)= 0;
 //
 //
-//   virtual u32 GetPixel(i32 x, i32 y)= 0;
+//   virtual u32 GetPixel(int x, int y)= 0;
 //   virtual bool Mask(::color::color crMask, ::color::color crInMask, ::color::color crOutMask)= 0;
-//   virtual bool channel_mask(::u8 uchFind, ::u8 uchSet, ::u8 uchUnset, ::color::enum_channel echannel)= 0;
+//   virtual bool channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel)= 0;
 //   virtual bool transparent_color(::color::color color)= 0;
 //
 //   virtual bool create_thumbnail(const ::string & pszPath) = 0;
 //
 //   virtual bool create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
-//   virtual bool create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
+//   virtual bool create(int iWidth, int iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
 //   virtual bool host(const pixmap* ppixmap)= 0;
 //   virtual bool on_host_read_pixels(const pixmap* ppixmap) = 0;
 //   virtual bool create(::draw2d::graphics_pointer & pgraphics)= 0;
@@ -249,9 +249,9 @@ namespace image
 //   virtual bool is_realized() const= 0;
 //   virtual bool defer_realize(::draw2d::graphics_pointer & pgraphics) const= 0;
 //
-//   virtual bool DivideRGB(i32 iDivide)= 0;
-//   virtual bool DivideARGB(i32 iDivide)= 0;
-//   virtual bool DivideA(i32 iDivide)= 0;
+//   virtual bool DivideRGB(int iDivide)= 0;
+//   virtual bool DivideARGB(int iDivide)= 0;
+//   virtual bool DivideA(int iDivide)= 0;
 //
 //
 //   virtual bool stretch_image(::image::image *pimage) = 0;
@@ -262,7 +262,7 @@ namespace image
 //   virtual bool from(::draw2d::graphics_pointer & pgraphics)= 0;
 //   virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 //   virtual bool from(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
-//   virtual bool from(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool from(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, unsigned char bA)= 0;
 //   //virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 //   virtual bool from_ignore_alpha(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 //
@@ -275,19 +275,19 @@ namespace image
 //   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc)= 0;
 //
 //
-//   virtual bool pixelate(i32 iSize)= 0;
+//   virtual bool pixelate(int iSize)= 0;
 //
 //
 //
-//   virtual bool fill_channel(i32 C, ::color::enum_channel echannel)= 0;
-//   virtual bool white_fill_channel(i32 C, ::color::enum_channel echannel)= 0;
+//   virtual bool fill_channel(int C, ::color::enum_channel echannel)= 0;
+//   virtual bool white_fill_channel(int C, ::color::enum_channel echannel)= 0;
 //   virtual bool fill_byte(uchar uch)= 0;
 //   virtual bool fill(::color::color level)= 0;
-//   virtual bool fill(i32 A, i32 R, i32 G, i32 B)= 0;
-//   //      virtual bool Fill(i32 R, i32 G, i32 B)= 0;
-//   //virtual bool set(i32 R, i32 G, i32 B)= 0;
-//   virtual bool fill_glass(i32 R, i32 G, i32 B, i32 A)= 0;
-//   virtual bool fill_stippled_glass(i32 R, i32 G, i32 B)= 0;
+//   virtual bool fill(int A, int R, int G, int B)= 0;
+//   //      virtual bool Fill(int R, int G, int B)= 0;
+//   //virtual bool set(int R, int G, int B)= 0;
+//   virtual bool fill_glass(int R, int G, int B, int A)= 0;
+//   virtual bool fill_stippled_glass(int R, int G, int B)= 0;
 //   virtual bool invert()= 0;
 //   virtual bool channel_invert(::color::enum_channel echannel)= 0;
 //   virtual bool channel_multiply(double dRate, ::color::enum_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
@@ -302,7 +302,7 @@ namespace image
 //   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc)= 0;
 //   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image::image *pimage)= 0;
 //
-//   virtual bool Map(i32 ToRgb, i32 FromRgb)= 0;
+//   virtual bool Map(int ToRgb, int FromRgb)= 0;
 //
 //   virtual bool create_nanosvg(char * pszXml, double dDpi = 0.0) = 0;
 //   virtual bool nanosvg(char * pszXml, double dDpi = 0.0)= 0;
@@ -311,7 +311,7 @@ namespace image
 //
 //   //virtual bool from( ::image::image *pimage)= 0;
 //
-//   virtual bool Blend(::image::image *pimage, i32 A)= 0;
+//   virtual bool Blend(::image::image *pimage, int A)= 0;
 //   virtual bool Darken(::image::image *pimage)= 0;
 //   virtual bool Difference(::image::image *pimage)= 0;
 //   virtual bool Lighten(::image::image *pimage)= 0;
@@ -320,38 +320,38 @@ namespace image
 //
 //   virtual bool lighten(double dRate)= 0;
 //
-//   virtual bool copy(::image::image *pimage, i32 x, i32 y)= 0;
-//   virtual bool PasteRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool copy(::image::image *pimage, int x, int y)= 0;
+//   virtual bool PasteRect(::image::image *pimage, int x, int y)= 0;
 //
 //   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32)= 0;
 //
-//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
+//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, int R, int G, int B)= 0;
 //
 //
-//   virtual bool fill_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B, i32 A)= 0;
+//   virtual bool fill_glass_rect(const ::rectangle_i32 & rectangle, int R, int G, int B, int A)= 0;
 //
-//   virtual bool fill_stippled_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
+//   virtual bool fill_stippled_glass_rect(const ::rectangle_i32 & rectangle, int R, int G, int B)= 0;
 //
 //
-//   virtual bool BlendRect(::image::image *pimage, i32 x, i32 y, i32 A)= 0;
-//   virtual bool DarkenRect(::image::image *pimage, i32 x, i32 y)= 0;
-//   virtual bool DifferenceRect(::image::image *pimage, i32 x, i32 y)= 0;
-//   virtual bool LightenRect(::image::image *pimage, i32 x, i32 y)= 0;
-//   virtual bool MultiplyRect(::image::image *pimage, i32 x, i32 y)= 0;
-//   virtual bool ScreenRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool BlendRect(::image::image *pimage, int x, int y, int A)= 0;
+//   virtual bool DarkenRect(::image::image *pimage, int x, int y)= 0;
+//   virtual bool DifferenceRect(::image::image *pimage, int x, int y)= 0;
+//   virtual bool LightenRect(::image::image *pimage, int x, int y)= 0;
+//   virtual bool MultiplyRect(::image::image *pimage, int x, int y)= 0;
+//   virtual bool ScreenRect(::image::image *pimage, int x, int y)= 0;
 //
-//   virtual bool horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A = 0, i32 x1 = 0, i32 x2 = -1)= 0;
-//   virtual bool Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)= 0;
-//   virtual bool LineGlass(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A)= 0;
+//   virtual bool horizontal_line(int y, int R, int G, int B, int A = 0, int x1 = 0, int x2 = -1)= 0;
+//   virtual bool Line(int x1, int y1, int x2, int y2, int R, int G, int B)= 0;
+//   virtual bool LineGlass(int x1, int y1, int x2, int y2, int R, int G, int B, int A)= 0;
 //
-//   virtual bool create_frame(const ::size_i32 & size, i32 iFrameCount)= 0;
-//   virtual bool set_frame2(void * pdata, i32 iFrame, i32 iFrameCount)= 0;
+//   virtual bool create_frame(const ::size_i32 & size, int iFrameCount)= 0;
+//   virtual bool set_frame2(void * pdata, int iFrame, int iFrameCount)= 0;
 //
-//   virtual bool set_frame1(void * pdata, i32 iFrame, i32 iFrameCount)= 0;
+//   virtual bool set_frame1(void * pdata, int iFrame, int iFrameCount)= 0;
 //
-//   virtual bool get_frame(void * pdata, i32 iFrame, i32 iFrameCount)= 0;
+//   virtual bool get_frame(void * pdata, int iFrame, int iFrameCount)= 0;
 //
-//   virtual bool xor_image_frame2(void * pdata, i32 iFrame, i32 iFrameCount)= 0;
+//   virtual bool xor_image_frame2(void * pdata, int iFrame, int iFrameCount)= 0;
 //
 //
 //   virtual bool create_circle(::image::image *pimage, int diameter)= 0;
@@ -363,14 +363,14 @@ namespace image
 //
 //
 //
-//   virtual ::i32 scan_area()= 0;
+//   virtual int scan_area()= 0;
 //
 //
 //
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, ::color32_t color32) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), color32); }
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), R, G, B); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, ::color32_t color32) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), color32); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
+//   inline bool fill_rect_dim(int x, int y, int w, int h, ::color32_t color32) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), color32); }
+//   inline bool fill_rect_dim(int x, int y, int w, int h, int R, int G, int B) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), R, G, B); }
+//   inline bool fill_rect_coord(int x1, int y1, int x2, int y2, ::color32_t color32) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), color32); }
+//   inline bool fill_rect_coord(int x1, int y1, int x2, int y2, int R, int G, int B) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
 //
 //
 //   //virtual void defer_save_to_cache()= 0;

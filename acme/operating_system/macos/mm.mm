@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-void ns_main_sync(dispatch_block_t block);
+void ns_main_send(dispatch_block_t block);
 
 void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 
@@ -21,7 +21,7 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 //{
 //   CFURLRef url = CFURLCreateWithBytes(
 //                  nullptr,                        // allocator
-//                  (const ::u8*)psz,     // URLBytes
+//                  (const unsigned char*)psz,     // URLBytes
 //                  strlen(psz),            // length
 //                  kCFStringEncodingASCII,      // encoding
 //                  nullptr                         // baseURL
@@ -122,7 +122,7 @@ void ns_launch_bundle(const char * pszBundle, const char ** argv)
 void os_post_quit()
 {
    
-   ns_main_sync(^()
+   ns_main_send(^()
    {
    
       [NSApp terminate:nil];

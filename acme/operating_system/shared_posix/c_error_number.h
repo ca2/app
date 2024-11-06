@@ -17,18 +17,18 @@ class CLASS_DECL_ACME c_error_number
 public:
 
 
-   ::i32          m_iErrorNumber;
+   int          m_iErrorNumber;
 
 
    c_error_number();
 #ifdef WINDOWS
    c_error_number(errno_t iErrNo);
 #endif
-   c_error_number(c_error_number_t, ::i32 iErrorNumber);
+   c_error_number(c_error_number_t, int iErrorNumber);
    c_error_number(const c_error_number & cerrornumber);
 
 
-   ::i32 i32() const {return m_iErrorNumber;}
+   int i32() const {return m_iErrorNumber;}
 
 
    ::string get_error_description() const;
@@ -52,7 +52,7 @@ public:
    static void s_throw_exception(c_error_number cerrornumber);
 
 
-   bool operator == (::i32 iErrorNumber) const {return m_iErrorNumber == iErrorNumber; }
+   bool operator == (int iErrorNumber) const {return m_iErrorNumber == iErrorNumber; }
 
 
 };

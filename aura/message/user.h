@@ -377,7 +377,7 @@ namespace message
       notify() { }
 
 
-      i32 get_ctrl_id();
+      int get_ctrl_id();
 
 
    };
@@ -457,7 +457,7 @@ namespace message
    public:
 
 
-      i32 m_i;
+      int m_i;
       void * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }

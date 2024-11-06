@@ -39,7 +39,7 @@ namespace nano2d
 //      {
 //      public:
 //
-//         ::i32                         m_iSavedContext;
+//         int                         m_iSavedContext;
 //
 //         string                        m_strFontFace;
 //         float                         m_fFontSize;

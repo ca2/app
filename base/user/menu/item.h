@@ -18,18 +18,18 @@ namespace menu
       atom                             m_atom;
       ::pointer<::menu::item_ptra>     m_pmenuitema;
       ::pointer<::menu::item>          m_pmenuitemParent;
-      //i32                            m_iFullHeightItemCount;
-      //i32                            m_iSeparatorCount;
+      //int                            m_iFullHeightItemCount;
+      //int                            m_iSeparatorCount;
       ::pointer<::user::interaction>   m_puserinteraction;
       ::pointer<::user::interaction>   m_puserinteractionHost;
       bool                             m_bPopup;
       bool                             m_bBreak;
-      i32                              m_iLevel;
+      int                              m_iLevel;
       ::pointer<::user::menu>          m_pmenu;
       string                           m_strTitle;
       ::rectangle_i32                  m_rectangleUi;
-      ::i32                            m_iColumn;
-      ::i32                            m_iRow;
+      int                            m_iColumn;
+      int                            m_iRow;
       ::pointer<::image::image>        m_pimage;
       //::pointer<::item_array>        m_pmenuitema;
 
@@ -48,7 +48,7 @@ namespace menu
       ::menu::item * separator();
       bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
       bool load_menu(::xml::node * pxmlnode);
-      bool load_menu(::xml::node * pxmlnode, i32 iLevel);
+      bool load_menu(::xml::node * pxmlnode, int iLevel);
 
       //virtual void OnAddRef();
       //virtual void OnRelease();

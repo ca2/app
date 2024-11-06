@@ -12,7 +12,7 @@ public:
    tiny_array < void* >   m_osdata;
 
 
-   void set_os_data(::i32 i, void* p)
+   void set_os_data(int i, void* p)
    {
 
       m_osdata.set_at_grow(i, p);
@@ -20,7 +20,7 @@ public:
    }
 
 
-   inline void* get_os_data(::i32 i = 0) const
+   inline void* get_os_data(int i = 0) const
    {
       
       if(i >= m_osdata.m_iCount)

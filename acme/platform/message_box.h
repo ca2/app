@@ -26,7 +26,10 @@
 //
 ////#include "acme/user/user/conversation.h"
 
+
 #include "acme/prototype/prototype/realizable.h"
+#include "acme/handler/sequenceable.h"
+
 
 class CLASS_DECL_ACME message_box :
    virtual public ::realizable < message_box >

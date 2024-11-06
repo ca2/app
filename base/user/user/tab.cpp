@@ -139,7 +139,7 @@ namespace user
    }
 
 
-   /*bool tab::add_tab(::u32 uIdTitle, i32 iId)
+   /*bool tab::add_tab(::u32 uIdTitle, int iId)
    {
       get_pane get_pane;
       ppane->m_uiId = uiIdTitle;
@@ -336,7 +336,7 @@ namespace user
 
       //bool bRestorableMatch = false;
 
-      for (i32 i = 0; i < get_data()->m_tabpanea.get_count(); i++)
+      for (int i = 0; i < get_data()->m_tabpanea.get_count(); i++)
       {
 
          if (get_data()->m_tabpanea[i]->m_atom == atom)
@@ -394,7 +394,7 @@ namespace user
       if (bVisible)
       {
 
-         for (i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanea.get_count(); i++)
+         for (int i = 0; iIndex >= 0 && i < get_data()->m_tabpanea.get_count(); i++)
          {
 
             if (get_data()->m_tabpanea[i]->m_bTabPaneVisible)
@@ -792,7 +792,7 @@ namespace user
    }
 
 
-   ::i32 tab::auto_hide_threshold_height()
+   int tab::auto_hide_threshold_height()
    {
 
       auto pdata = get_data();
@@ -863,7 +863,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.bottom() = rectangle.top() + (::i32)(8.0f * fDensity);
+                  rectangle.bottom() = rectangle.top() + (int)(8.0f * fDensity);
 
                }
                else
@@ -877,7 +877,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right() = rectangle.left() + (::i32)(16.0f * fDensity);
+                  rectangle.right() = rectangle.left() + (int)(16.0f * fDensity);
 
                   rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
 
@@ -922,7 +922,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top() = rectangleTab.bottom() - (::i32)(8.0f * fDensity);
+                  rectangle.top() = rectangleTab.bottom() - (int)(8.0f * fDensity);
 
                   rectangle.right() = rectangleTab.right();
 
@@ -936,7 +936,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left() = rectangleTab.right() - (::i32)(16.0f * fDensity);
+                  rectangle.left() = rectangleTab.right() - (int)(16.0f * fDensity);
 
                   rectangle.top() = rectangleTab.top()
                   +ptabdata->m_rectangleBorder.top();
@@ -1119,7 +1119,7 @@ namespace user
 
          rectangle.left() = rectangleTab.left();
 
-         rectangle.top() = (::i32)(rectangleTab.top() + iIndex * ptabdata->m_iTabHeight);
+         rectangle.top() = (int)(rectangleTab.top() + iIndex * ptabdata->m_iTabHeight);
 
          rectangle.right() = rectangleTab.right();
 
@@ -1311,7 +1311,7 @@ namespace user
 
          ::rectangle_i32 rectangle;
 
-         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+         for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -1330,9 +1330,9 @@ namespace user
                      for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                      {
 
-                        rectangleText.left() += (::i32)(ppane->m_sizeaText[iTitle].cx());
+                        rectangleText.left() += (int)(ppane->m_sizeaText[iTitle].cx());
 
-                        rectangleText.right() = (::i32)(rectangleText.left() + get_data()->m_sizeSep.cx());
+                        rectangleText.right() = (int)(rectangleText.left() + get_data()->m_sizeSep.cx());
 
                         if (rectangleText.contains(point))
                         {
@@ -1341,7 +1341,7 @@ namespace user
 
                         }
 
-                        rectangleText.left() += (::i32)(get_data()->m_sizeSep.cx());
+                        rectangleText.left() += (int)(get_data()->m_sizeSep.cx());
 
                      }
 
@@ -1986,7 +1986,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
 
          auto ptabpane = panea[i].get();
@@ -2019,7 +2019,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
 
          auto ptabpane = panea[i].get();
@@ -2468,7 +2468,7 @@ namespace user
    //atom tab::index_id(::collection::index iIndex)
    //{
 
-   //   for(i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
+   //   for(int iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
    //   {
 
    //      if(get_data()->m_tabpanea[iIndex]->m_bTabPaneVisible)
@@ -3111,7 +3111,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
@@ -3162,7 +3162,7 @@ namespace user
 
       tab_pane_array & panea = get_data()->m_tabpanea;
 
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
@@ -3223,7 +3223,7 @@ namespace user
 
       tab_pane_array & panea = get_data()->m_tabpanea;
 
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
 
          varId = panea[i]->m_atom;
@@ -3261,7 +3261,7 @@ namespace user
          return false;
       ::payload varId;
       tab_pane_array & panea = get_data()->m_tabpanea;
-      for (i32 i = 0; i < panea.get_count(); i++)
+      for (int i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_atom;
          if (matchany.matches(varId))
@@ -3282,7 +3282,7 @@ namespace user
 
       string_array stra;
 
-      for (i32 i = 0; i < payloada.get_count(); i++)
+      for (int i = 0; i < payloada.get_count(); i++)
       {
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.

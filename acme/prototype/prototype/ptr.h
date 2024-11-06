@@ -369,7 +369,7 @@ public:
 
          auto prefererOld = m_preferer;
 
-         auto prefererNew = p.m_preferer;
+         auto prefererNew = p->m_preferer;
 
 #endif
 

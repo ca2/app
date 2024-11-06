@@ -383,7 +383,7 @@ bool  stream_base::is_version(int i)
 //
 //   enum_type etype = payload.get_type();
 //
-//   ::i32 i = etype;
+//   int i = etype;
 //
 //   *this << i;
 //
@@ -908,7 +908,7 @@ bool  stream_base::is_version(int i)
 //void stream::save_var_type(enum_type etype)
 //{
 //
-//   ::i32 i((::i32) etype);
+//   int i((int) etype);
 //
 //   *this << i;
 //

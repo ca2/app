@@ -518,12 +518,12 @@ namespace user
    }
 
 
-   i32 place_holder_ptra::place_hold(::user::interaction * pinteraction)
+   int place_holder_ptra::place_hold(::user::interaction * pinteraction)
    {
 
-      i32 count = 0;
+      int count = 0;
 
-      for(i32 i = 0; i < this->get_count(); i++)
+      for(int i = 0; i < this->get_count(); i++)
       {
 
          try
@@ -549,12 +549,12 @@ namespace user
    }
 
 
-   i32 place_holder_ptra::unplace(::user::interaction * pinteraction)
+   int place_holder_ptra::unplace(::user::interaction * pinteraction)
    {
 
-      i32 count = 0;
+      int count = 0;
 
-      for(i32 i = 0; i < this->get_count(); i++)
+      for(int i = 0; i < this->get_count(); i++)
       {
          
          try

@@ -695,9 +695,9 @@ strsize ansi_to_wd16_len(const ::ansi_character * psz, strsize srclen)
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      ::i32 len;
+      int len;
 
-      ::i32 iChar = unicode_index_length(psz, len);
+      int iChar = unicode_index_length(psz, len);
 
       if (iChar < 0)
       {

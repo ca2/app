@@ -355,7 +355,7 @@ namespace networking
    }
 
 
-   address_pointer networking::create_ip4_address(::i32 iIp, port_t port)
+   address_pointer networking::create_ip4_address(int iIp, port_t port)
    {
 
       return nullptr;
@@ -379,10 +379,10 @@ namespace networking
 //         }
 //         //         ::time tick2= ::time::now();
 //         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         (u32)((::u8*)&pitem->m_ipaddr)[0],
-//         (u32)((::u8*)&pitem->m_ipaddr)[1],
-//         (u32)((::u8*)&pitem->m_ipaddr)[2],
-//         (u32)((::u8*)&pitem->m_ipaddr)[3],
+//         (u32)((unsigned char*)&pitem->m_ipaddr)[0],
+//         (u32)((unsigned char*)&pitem->m_ipaddr)[1],
+//         (u32)((unsigned char*)&pitem->m_ipaddr)[2],
+//         (u32)((unsigned char*)&pitem->m_ipaddr)[3],
 //         (tick2 - tick1));*/
 //         return item.m_bOk;
 //      }
@@ -497,10 +497,10 @@ namespace networking
 //
 //      //      ::time tick2= ::time::now();
 //      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         //       (u32)((::u8*)&pitem->m_ipaddr)[0],
-//         //     (u32)((::u8*)&pitem->m_ipaddr)[1],
-//         //   (u32)((::u8*)&pitem->m_ipaddr)[2],
-//         // (u32)((::u8*)&pitem->m_ipaddr)[3],
+//         //       (u32)((unsigned char*)&pitem->m_ipaddr)[0],
+//         //     (u32)((unsigned char*)&pitem->m_ipaddr)[1],
+//         //   (u32)((unsigned char*)&pitem->m_ipaddr)[2],
+//         // (u32)((unsigned char*)&pitem->m_ipaddr)[3],
 //         //(tick2 - tick1));
 //      l = item.m_ipaddr;
 //
@@ -919,7 +919,7 @@ namespace networking
 //               x = i + 1;
 //            }
 //         }
-//         index sz = vec.get_length(); // number of ::u8 pairs
+//         index sz = vec.get_length(); // number of unsigned char pairs
 //         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 //         u16 addr16[8];
 //         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

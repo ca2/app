@@ -102,10 +102,10 @@ inline void assign(unsigned long& l, const ::payload& r);
 
 inline void assign(bool& l, const ::payload& r);
 inline void assign(::i8& i8, const ::payload& r);
-inline void assign(::u8& u8, const ::payload& r);
+inline void assign(unsigned char& unsigned char, const ::payload& r);
 inline void assign(::i16& i16, const ::payload& r);
 inline void assign(::u16& u16, const ::payload& r);
-inline void assign(::i32& i32, const ::payload& r);
+inline void assign(int& i32, const ::payload& r);
 inline void assign(::u32& u32, const ::payload& r);
 inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
@@ -217,7 +217,7 @@ inline const ::particle * trace_object(const ::particle* pparticle);
 
 
 
-inline int read_char(u8*& pdata, memsize& s, char* pch);
+inline int read_char(unsigned char*& pdata, memsize& s, char* pch);
 
 
 

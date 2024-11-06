@@ -49,7 +49,7 @@ RunBeforeMain go;
 //
 //   ::e_status estatus = psystem->start();
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //
@@ -91,7 +91,7 @@ RunBeforeMain go;
 //   //   if (!estatus)
 //   //   {
 //   //    
-//   //      ::i32 iErrorStatus = estatus.error_status();
+//   //      int iErrorStatus = estatus.error_status();
 //   //
 //   //      return iErrorStatus;
 //   //
@@ -112,7 +112,7 @@ RunBeforeMain go;
 //
 //   auto estatusEnd = psystem->end();
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

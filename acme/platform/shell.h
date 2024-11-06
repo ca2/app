@@ -56,11 +56,11 @@ namespace acme
 
       virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
-      virtual ::i32 get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual int get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
       virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
 
-      virtual ::i32 get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
+      virtual int get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
 
 
 

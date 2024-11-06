@@ -59,7 +59,7 @@ namespace sockets_bsd
       if (GetSocketId() != INVALID_SOCKET)
       {
 
-         close_socket((::i32) GetSocketId());
+         close_socket((int) GetSocketId());
 
       }
 

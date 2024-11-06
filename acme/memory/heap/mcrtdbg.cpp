@@ -106,7 +106,7 @@
 //      for(int i = 0; i < m_iPaddingAfter; i++)
 //      {
 //
-//         if(((::u8 *)&m_paddingBefore[16])[m_size + i] != 0)
+//         if(((unsigned char *)&m_paddingBefore[16])[m_size + i] != 0)
 //         {
 //
 ////            informationf("*&!@");
@@ -345,7 +345,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   if(g_pheap == nullptr)
 //   {
 //
@@ -413,7 +413,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   void * pusermessage = g_pheap->alloc_debug(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 //
 //   if (pusermessage == nullptr)
@@ -628,7 +628,7 @@
 //
 //   }
 //
-//   ::u8 blockuse = heap_memory::heap_get_block_use(pmemory);
+//   unsigned char blockuse = heap_memory::heap_get_block_use(pmemory);
 //
 //   memsize sizeOld = heap_memory::heap_get_size(pmemory);
 //

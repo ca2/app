@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_range : ::i32
+enum enum_range : int
 {
 
    e_range_none = 0,

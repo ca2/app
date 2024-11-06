@@ -400,10 +400,10 @@ namespace platform
 
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
-      virtual ::pointer<::factory::factory> & draw2d_factory();
+      virtual ::factory::factory * draw2d_factory();
       virtual ::string draw2d_get_default_implementation_name();
 
-      virtual ::pointer<::factory::factory> & imaging_factory();
+      virtual ::factory::factory * imaging_factory();
       virtual ::string imaging_get_default_implementation_name();
 
       //virtual void init_task() override;

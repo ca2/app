@@ -10,6 +10,8 @@
 #include <wincrypt.h>
 #endif
 #include "mathematics.h"
+#undef __construct
+#undef __create
 #include "random_number_generator.h"
 
 namespace mathematics
@@ -125,7 +127,7 @@ namespace mathematics
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (::u8*)& dwMode,
+//            (unsigned char*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -239,7 +241,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (::u8*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (unsigned char*)p);
 //
 //      }
 //
@@ -353,14 +355,14 @@ namespace mathematics
    }
 
 
-   u8 mathematics::random_u8()
+   unsigned char mathematics::random_u8()
    {
       //#if defined(UNIVERSAL_WINDOWS)
       //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      //u8 u = 0;
+      //unsigned char u = 0;
       //random({ e_as_block,u });
 
       return m_posdata->m_randomnumbergenerator.get_u8();
@@ -697,7 +699,7 @@ namespace mathematics
    void mathematics::transform_alphanumeric(void * p, memsize s)
    {
 
-      u8 * pchar = (u8 *)p;
+      unsigned char * pchar = (unsigned char *)p;
 
       while (s > 0)
       {

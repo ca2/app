@@ -110,6 +110,9 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 #include "aura/platform/_.h"
 
 
+#include "aura/platform/system.h"
+
+
 //
 //
 ////#include "aura/primitive/primitive/estatus.h"
@@ -123,11 +126,11 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
+////typedef int WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow);
 ////
 ////#else
 ////
-////typedef i32 __MAIN_DEFERRED_RUN(int argc, char ** argv);
+////typedef int __MAIN_DEFERRED_RUN(int argc, char ** argv);
 ////
 ////#endif
 ////
@@ -277,7 +280,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////#define lower_u8(w)              ((::u8)((w) & 0xff))
+////#define lower_u8(w)              ((unsigned char)((w) & 0xff))
 ////
 ////
 ////#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
@@ -342,7 +345,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////inline int trailingBytesForUTF8(char ch)
 ////{
 ////
-////   return ::g_trailingBytesForUTF8[(::u8)ch];
+////   return ::g_trailingBytesForUTF8[(unsigned char)ch];
 ////
 ////}
 ////
@@ -420,7 +423,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////
-////#define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+////#define __u16(a, b)                                   ((::u16)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((::u16)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
 ////#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 ////
 ////
@@ -446,23 +449,23 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#define __u32xy(u)                                    u32_x(u), u32_y(u)
 ////
-////#define u64_x(u)                                     ((::i32)lower_u32(u))
-////#define u64_y(u)                                     ((::i32)upper_u32(u))
+////#define u64_x(u)                                     ((int)lower_u32(u))
+////#define u64_y(u)                                     ((int)upper_u32(u))
 ////
 ////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
 ////#ifndef i32_x
-////#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
+////#define i32_x(lparam)                          ((int)(i16)LOWORD(lparam))
 ////#endif
 ////
 ////
 ////#ifndef i32_y
-////#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
+////#define i32_y(lparam)                          ((int)(i16)HIWORD(lparam))
 ////#endif
 ////
-////#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
-////#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
+////#define GET_X_LPARAM64(lparam)                        ((int)(i16)lower_u32(lparam))
+////#define GET_Y_LPARAM64(lparam)                        ((int)(i16)upper_u32(lparam))
 ////
 ////
 //////CLASS_DECL_AURA int get_aura_init();
@@ -487,10 +490,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA i32     ansi_open(const ::string & psz,i32 i);
+////CLASS_DECL_AURA int     ansi_open(const ::string & psz,int i);
 ////CLASS_DECL_AURA FILE *  ansi_fopen(const ::string & psz, const ::string & pszMode);
 ////CLASS_DECL_AURA int     ansi_file_flag(int iFlag);
-////CLASS_DECL_AURA void    ansi_get_errno(i32 * perrno);
+////CLASS_DECL_AURA void    ansi_get_errno(int * perrno);
 ////CLASS_DECL_AURA void    ansi_unlink(const ::string & psz);
 ////
 ////
@@ -499,8 +502,8 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////typedef char ::ansi_character;
 ////
-////i32 CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character * pMultByteStr, i32 cbMultiByte, ::wide_character * pWideCharStr, i32 cchWideChar);
-////i32 CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, i32 cchWideChar, ::ansi_character * pMultByteStr, i32 cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character * pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -536,10 +539,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA i32 get_os_thread_priority(::enum_priority epriority);
-////CLASS_DECL_AURA i32 get_os_priority_class(::enum_priority epriority);
-////CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
-////CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
+////CLASS_DECL_AURA int get_os_thread_priority(::enum_priority epriority);
+////CLASS_DECL_AURA int get_os_priority_class(::enum_priority epriority);
+////CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(int iCa2Priority);
+////CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(int iCa2Priority);
 ////
 ////
 ////
@@ -674,7 +677,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////enum e_message : ::i64;
 ////enum enum_impact : ::i64;
 ////enum ::enum_id : ::u64;
-////enum enum_check: ::i32;
+////enum enum_check: int;
 ////
 ////template <typename TYPE>
 ////struct erase_const_struct { // erase top-level const qualifier
@@ -864,7 +867,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////class synchronization;
 ////
 ////
-//////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
+//////CLASS_DECL_AURA int aura_run_system(::aura::system* psystem);
 ////
 ////
 //////CLASS_DECL_AURA void aura_run_system_init(::aura::system * psystem);

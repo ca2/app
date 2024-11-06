@@ -74,7 +74,7 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    ::u32 uArea;
 
-   ::u8 * pData;
+   unsigned char * pData;
 
    hr = piLock->GetDataPointer(&uiArea, &pData);
 
@@ -627,7 +627,7 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
          if (SUCCEEDED(hr))
          {
 
-            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (::u8 *)pcr);
+            hr = piBitmapFrame->WritePixels(uiHeight, pimage->scan_size(), uiHeight*pimage->scan_size(), (unsigned char *)pcr);
 
          }
 
@@ -646,7 +646,7 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
                  GUID_WICPixelFormat32bppBGRA,
                  pimage->scan_size(),
                  pimage->scan_size() * pimage->height(),
-                 (::u8 *)pcr,
+                 (unsigned char *)pcr,
                  &pbitmap
                  );
 

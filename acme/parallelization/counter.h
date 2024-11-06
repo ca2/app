@@ -85,13 +85,13 @@ namespace parallelization
 //   interlocked_i32      m_interlocked;
 //
 //
-//   counter32(::i32 lCount) : m_interlocked(lCount) {}
+//   counter32(int lCount) : m_interlocked(lCount) {}
 //
 //
-//   ::i32 operator ++()
+//   int operator ++()
 //   {
 //
-//      ::i32 i = --m_interlocked;
+//      int i = --m_interlocked;
 //
 //      if (i <= 0)
 //      {
@@ -105,10 +105,10 @@ namespace parallelization
 //   }
 //
 //
-//   ::i32 operator ++(int)
+//   int operator ++(int)
 //   {
 //
-//      ::i32 i = m_interlocked;
+//      int i = m_interlocked;
 //
 //      ++(*this);
 //

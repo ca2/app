@@ -593,17 +593,17 @@ namespace draw2d
       long R;
       long G;
       long B;
-      ::u8 ir;
-      ::u8 ig;
-      ::u8 ib;
+      unsigned char ir;
+      unsigned char ig;
+      unsigned char ib;
 
       R = color.u8_red(color_indexes()) - shift;
       G = color.u8_green(color_indexes()) - shift;
       B = color.u8_blue(color_indexes()) - shift;
 
-      ir = (::u8) ((R < 0) ? 0 : (R > 255) ? 255 : R);
-      ig = (::u8) ((G < 0) ? 0 : (G > 255) ? 255 : G);
-      ib = (::u8) ((B < 0) ? 0 : (B > 255) ? 255 : B);
+      ir = (unsigned char) ((R < 0) ? 0 : (R > 255) ? 255 : R);
+      ig = (unsigned char) ((G < 0) ? 0 : (G > 255) ? 255 : G);
+      ib = (unsigned char) ((B < 0) ? 0 : (B > 255) ? 255 : B);
 
       return { rgba(ir, ig, ib, 255), m_colorindexes };
 

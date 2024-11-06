@@ -798,7 +798,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//string::string(Array <::u8 > ^ a):
+//string::string(Array <unsigned char > ^ a):
 //   string(::str::GetDefaultManager())
 //{
 //   //      if( !CheckImplicitLoad( pszSrc ) )

@@ -100,9 +100,9 @@ namespace platform
    }
 
 
-   void acme_node_layer::acme_application_main(::platform::system* psystem)
-   {
-   }
+   // void acme_node_layer::acme_application_main(::platform::system* psystem)
+   // {
+   // }
 
 
    void acme_node_layer::_will_finish_launching()
@@ -952,7 +952,7 @@ namespace platform
    }
 
 
-   ::u64  acme_node_layer::translate_processor_affinity(::i32 i)
+   ::u64  acme_node_layer::translate_processor_affinity(int i)
    {
       return   0;
    }
@@ -1605,8 +1605,20 @@ namespace platform
 #endif
 
 #if !defined(WINDOWS)
-      virtual string_array cmdline_from_pid(::process_identifier processidentifier){}
-      virtual atom_array app_get_pid(const ::string & pszModuleName){}
+      string_array acme_node_layer::cmdline_from_pid(::process_identifier processidentifier)
+{
+         
+         return {};
+         
+      }
+
+
+      atom_array acme_node_layer::app_get_pid(const ::string & pszModuleName)
+   {
+         
+         return {};
+         
+      }
 
 #endif
 

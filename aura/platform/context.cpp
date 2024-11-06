@@ -58,7 +58,7 @@ namespace aura
       if (application()->m_bImaging)
       {
 
-         auto & pfactory = system()->imaging_factory();
+         auto pfactory = system()->imaging_factory();
 
          pfactory->merge_to_global_factory();
 

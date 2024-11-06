@@ -587,8 +587,13 @@ namespace acme
 
          void interaction::destroy_window()
          {
-
-            acme_windowing_window()->destroy_window();
+            
+            if(m_pacmewindowingwindow)
+            {
+               
+               m_pacmewindowingwindow->destroy_window();
+               
+            }
 
             auto pchildren = m_pacmeuserinteractionaChildren;
 

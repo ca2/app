@@ -22,7 +22,7 @@ typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
 
-//static const i32 gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
+//static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
 
 
 namespace compress_zlib
@@ -81,7 +81,7 @@ namespace compress_zlib
 
       }
 
-      i32 status;
+      int status;
 
       class memory memIn;
 
@@ -93,7 +93,7 @@ namespace compress_zlib
 
       zero(zstream);
 
-      zstream.next_in = (u8*)memIn.data();
+      zstream.next_in = (unsigned char*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
@@ -175,7 +175,7 @@ namespace compress_zlib
 
             iFlush = Z_FINISH;
 
-            zstream.next_in = (u8*) nullptr;
+            zstream.next_in = (unsigned char*) nullptr;
 
             zstream.avail_in = (u32)0;
 
@@ -183,7 +183,7 @@ namespace compress_zlib
          else
          {
 
-            zstream.next_in = (u8*)memIn.data();
+            zstream.next_in = (unsigned char*)memIn.data();
 
             zstream.avail_in = (u32)uRead;
 

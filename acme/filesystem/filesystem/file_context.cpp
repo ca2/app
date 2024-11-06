@@ -1430,7 +1430,7 @@ void file_context::calculate_main_resource_memory()
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pfactory = system()->folder_factory();
+      auto pfactory = system()->folder_factory();
 
       if (m_bFolderResourceCalculated)
       {
@@ -3278,7 +3278,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen)
 {
 
-   auto & pfactory = system()->folder_factory();
+   auto pfactory = system()->folder_factory();
 
    if (!pfactory)
    {
@@ -3409,7 +3409,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
       _synchronous_lock synchronouslock(system()->http_download_mutex());
 
-      return system()->http_download_array().contains(url.as_string()) || system()->http_exists_array().contains(url.as_string());
+      return system()->http_download_array()->contains(url.as_string()) || system()->http_exists_array()->contains(url.as_string());
 
       });/* .failed())
    {
@@ -3446,7 +3446,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
       _synchronous_lock synchronouslock(system()->http_download_mutex());
 
-      system()->http_download_array().add(url.as_string());
+      system()->http_download_array()->add(url.as_string());
 
    }
 
@@ -3500,7 +3500,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       try
       {
 
-         system()->http_download_array().erase(url.as_string());
+         system()->http_download_array()->erase(url.as_string());
 
       }
       catch (...)

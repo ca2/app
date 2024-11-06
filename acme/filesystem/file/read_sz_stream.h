@@ -171,7 +171,7 @@ public:
     read_sz_stream& operator >>(unichar& wch);
 //   {
 //
-//      ::i32 len = 0;
+//      int len = 0;
 //
 //      auto iIndex = unicode_index_length(m_psz, len);
 //
@@ -267,7 +267,7 @@ public:
 //
 //       }
 //
-//       i = (::i32)iRead;
+//       i = (int)iRead;
 //
 //       return *this;
 //

@@ -25,17 +25,17 @@ namespace draw2d
             int xEnd1 = m_xEnd - 7;
             int ySkip = m_ySkip;
 
-            u8 * pdst = m_pdst2;
-            u8 * psrc = m_psrc2;
-            u8 * pdst2;
-            u8 * psrc2;
-            u8 * pdst3;
-            u8 * psrc3;
-            u8 * src_opacity; // xmetrix, xmxstudio contribution
-            u8 * src_transparency; // unicorn, zjrosen contribution
+            unsigned char * pdst = m_pdst2;
+            unsigned char * psrc = m_psrc2;
+            unsigned char * pdst2;
+            unsigned char * psrc2;
+            unsigned char * pdst3;
+            unsigned char * psrc3;
+            unsigned char * src_opacity; // xmetrix, xmxstudio contribution
+            unsigned char * src_transparency; // unicorn, zjrosen contribution
             int w = m_w;
-            u8 * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
-            u8 * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
+            unsigned char * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            unsigned char * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 #define DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH 64
 #define DIB_BLEND_ZERO_BLOCK_SIZE 256
             ::color::color craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
@@ -110,7 +110,7 @@ namespace draw2d
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           ::u8 bA2 = (::u8)~(::u8)psrc2[3];
+                           unsigned char bA2 = (unsigned char)~(unsigned char)psrc2[3];
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -138,10 +138,10 @@ namespace draw2d
             else
             {
 
-               //u8 * pBound1;
-               //u8 * pBound8;
-               //u8 * pBound;
-               //u8 * pEnd8;
+               //unsigned char * pBound1;
+               //unsigned char * pBound8;
+               //unsigned char * pBound;
+               //unsigned char * pEnd8;
                for (; y < yEnd; y += ySkip)
                {
 
@@ -164,7 +164,7 @@ namespace draw2d
 restart:
                      ;
 
-                     ::u8 bA2 = psrc2[3];
+                     unsigned char bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                         if (x1 >= 0)
@@ -494,7 +494,7 @@ restart:
                               ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
-                           bA2 = (::u8)~bA2;
+                           bA2 = (unsigned char)~bA2;
                            pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
                            pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
                            pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
@@ -525,25 +525,25 @@ restart:
          else
          {
             //return;
-            ::u8 bA = m_bA;
+            unsigned char bA = m_bA;
             int y = m_y;
             int yEnd = m_yEnd;
             int x = m_x;
             int xEnd = m_xEnd;
             int xEnd1 = m_xEnd - 7;
             int ySkip = m_ySkip;
-            //u8 * src_opacity; // xmetrix, xmxstudio contribution
-            u8 * src_transparency; // unicorn, zjrosen contribution
+            //unsigned char * src_opacity; // xmetrix, xmxstudio contribution
+            unsigned char * src_transparency; // unicorn, zjrosen contribution
             int w = m_w;
-            u8 * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
-            u8 * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
+            unsigned char * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            unsigned char * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 
-            u8 * pdst = m_pdst2;
-            u8 * psrc = m_psrc2;
-            u8 * pdst2;
-            u8 * psrc2;
-            u8 * pdst3;
-            u8 * psrc3;
+            unsigned char * pdst = m_pdst2;
+            unsigned char * psrc = m_psrc2;
+            unsigned char * pdst2;
+            unsigned char * psrc2;
+            unsigned char * pdst3;
+            unsigned char * psrc3;
 
             int scanDst = m_scanDst;
             int scanSrc = m_scanSrc;
@@ -569,7 +569,7 @@ restart:
                   for (; x < xEnd; x++)
                   {
 
-                     ::u8 bA2 = psrc2[3];
+                     unsigned char bA2 = psrc2[3];
                      if (src_transparency[x])
                      {
                         x += src_transparency[x] - 1;
@@ -586,7 +586,7 @@ restart:
                      else
                      {
 
-                        ::u8 bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        unsigned char bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
@@ -621,7 +621,7 @@ restart:
                   for (; x < xEnd; x++)
                   {
 
-                     ::u8 bA2 = psrc2[3];
+                     unsigned char bA2 = psrc2[3];
                      if (bA2 == 0)
                      {
                      }
@@ -635,7 +635,7 @@ restart:
                      else
                      {
 
-                        ::u8 bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        unsigned char bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;

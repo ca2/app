@@ -30,7 +30,7 @@ namespace user
       ::rectangle_i32                        m_rectangleMargin;
       bool                                   m_bEnsureVisible;
       bool                                   m_bFirstShown;
-      ::i32                                  m_iLayoutSerial;
+      int                                  m_iLayoutSerial;
       ::string                               m_strFontBranch;
 
 

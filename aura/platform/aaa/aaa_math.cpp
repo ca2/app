@@ -4,16 +4,16 @@
 //#include <math.h>
 #endif
 
-static i32 lastrand;
+static int lastrand;
 
 #ifdef WINDOWS
-//extern "C" i32 _fltused = 0;
+//extern "C" int _fltused = 0;
 #else
-i32 _fltused = 0;
+int _fltused = 0;
 #endif
 
 
-CLASS_DECL_AURA i32 abs_dup(i32 i)
+CLASS_DECL_AURA int abs_dup(int i)
 {
    if(i < 0)
       return -i;
@@ -163,7 +163,7 @@ CLASS_DECL_AURA void srand_dup(u32 seed)
 	lastrand = seed;
 }
 
-CLASS_DECL_AURA  i32 rand_dup()
+CLASS_DECL_AURA  int rand_dup()
 {
 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 }
@@ -190,13 +190,13 @@ CLASS_DECL_AURA  i32 rand_dup()
    }
 }*/
 
-i32 ftol(double d)
+int ftol(double d)
 {
-   i32 u = I32_MAXIMUM;
-   i32 l = I32_MINIMUM;
+   int u = I32_MAXIMUM;
+   int l = I32_MINIMUM;
    double m;
    double delta;
-   i32 i = 0;
+   int i = 0;
    while(i < 128)
    {
       if(u <= l)

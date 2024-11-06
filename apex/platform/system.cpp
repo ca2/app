@@ -261,7 +261,7 @@ namespace apex
    //
    //    apex::context::on_set_platform();
    //
-   //    acme::system::on_set_platform();
+   //    platform::system::on_set_platform();
    //
    //
    // }
@@ -321,7 +321,7 @@ namespace apex
    }
 
 
-   ::pointer<::factory::factory> & system::node_factory()
+   ::factory::factory * system::node_factory()
    {
 
       auto & pfactory = factory("apex", OPERATING_SYSTEM_NAME);
@@ -812,9 +812,9 @@ namespace apex
 
                            auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create("/ca2core");
+pdirectorysystem->create("/ca2core");
 
                   file_system()->put_contents("/ca2core/teste.txt", str, str.length());
                   */
@@ -962,26 +962,26 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      if (application()->m_bCrypto)
-      {
-
-         auto & pfactoryCrypto = factory("crypto", "openssl");
-
-         //if (!pfactoryCrypto)
-         //{
-
-         //   WARNING("Could not open crypto openssl plugin.");
-
-         //   //return pfactoryCrypto;
-
-         //}
-
-         pfactoryCrypto->merge_to_global_factory();
-
-         //estatus =
-         pfactoryCrypto->__construct(this, m_pcrypto);
-
-      }
+//      if (application()->m_bCrypto)
+//      {
+//
+//         auto & pfactoryCrypto = factory("crypto", "openssl");
+//
+//         //if (!pfactoryCrypto)
+//         //{
+//
+//         //   WARNING("Could not open crypto openssl plugin.");
+//
+//         //   //return pfactoryCrypto;
+//
+//         //}
+//
+//         pfactoryCrypto->merge_to_global_factory();
+//
+//         //estatus =
+//         pfactoryCrypto->__construct(this, m_pcrypto);
+//
+//      }
 
       //if(!estatus)
       //{
@@ -2252,9 +2252,11 @@ pacmedirectory->create("/ca2core");
 
 
 
-   machine_event_central & system::machine_event_central()
+   machine_event_central * system::machine_event_central()
    {
-      return *m_pmachineeventcentral;
+      
+      return m_pmachineeventcentral;
+      
    }
 
 
@@ -2279,10 +2281,10 @@ pacmedirectory->create("/ca2core");
 //}
 
 
-   ::operating_system::department & system::operating_system()
+   ::operating_system::department * system::operating_system()
    {
 
-      return *m_poperatingsystem;
+      return m_poperatingsystem;
 
    }
 
@@ -3935,7 +3937,7 @@ pmessagebox->sync();
 
       auto pnode = node();
 
-      ::i32 iExitCode = 0;
+      int iExitCode = 0;
 
       pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set, &iExitCode);
 
@@ -4168,6 +4170,16 @@ pmessagebox->sync();
    // }
 
 
+   void system::initialize_crypto()
+   {
+
+      auto & pfactoryCrypto = factory("crypto", "openssl");
+
+      __construct(m_pcrypto, pfactoryCrypto);
+      
+   }
+
+
    string system::crypto_md5_text(const ::string & str)
    {
 
@@ -4317,10 +4329,10 @@ namespace apex
 #endif
 
 
-   ::apex::history & system::hist()
+   ::apex::history * system::hist()
    {
 
-      return *m_phistory;
+      return m_phistory;
 
    }
 
@@ -4413,6 +4425,9 @@ namespace apex
    //   }
 
    //}
+
+::parallelization::threading           *  system::threading()  { return m_pthreading; }
+
 
    networking::networking* system::networking()
    {
@@ -4754,7 +4769,7 @@ namespace apex
    void system::hist_hist(const ::string & psz)
    {
 
-      hist().hist(psz);
+      hist()->hist(psz);
 
    }
 

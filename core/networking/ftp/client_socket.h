@@ -383,7 +383,7 @@ header has the following defined fields:
 
 - Header Length\n
 The number of logical bytes in the page header
-including this ::u8.  The minimum header length is 4.
+including this unsigned char.  The minimum header length is 4.
 
 - Page Index\n
 The logical page number of this section of the file.
@@ -423,7 +423,7 @@ Further header fields may be used to supply per page
 control information, for example, per page access
 control.
 
-All fields are one logical ::u8 in length.  The logical ::u8
+All fields are one logical unsigned char in length.  The logical unsigned char
 size_i32 is specified by the TYPE command.  See Appendix I for
 further details and a specific case at the page structure.
 
@@ -443,7 +443,7 @@ compresses the data for efficient transfer; and one which passes
 the data with little or no processing.  In this last case the mode
 interacts with the structure attribute to determine the type of
 processing.  In the compressed mode, the representation type
-determines the filler ::u8.
+determines the filler unsigned char.
 
 All data transfers must be completed with an end-of-file (EOF)
 which may be explicitly stated or implied by the closing of the
@@ -452,7 +452,7 @@ end-of-record markers (EOR) are explicit, including the final one.
 For files transmitted in page structure a "last-page" page type is
 used.
 
-NOTE:  In the rest of this section, ::u8 means "transfer ::u8"
+NOTE:  In the rest of this section, unsigned char means "transfer unsigned char"
 except where explicitly stated otherwise.
 
 For the purpose of standardized transfer, the sending host will
@@ -461,7 +461,7 @@ into the representation prescribed by the transfer mode and file
 structure, and the receiving host will perform the inverse
 translation to its internal denotation.  An IBM Mainframe record
 count field may not be recognized at another host, so the
-end-of-record information may be transferred as a two ::u8 control
+end-of-record information may be transferred as a two unsigned char control
 code in Stream mode or as a flagged bit in a Block or Compressed
 mode descriptor.  End-of-line in an ASCII or EBCDIC file with no
 record structure should be indicated by <CRLF> or <NL>,
@@ -477,15 +477,15 @@ restriction on the representation type used; record structures
 are allowed.
 
 In a record structured file EOR and EOF will each be indicated
-by a two-::u8 control code.  The first ::u8 of the control code
-will be all ones, the escape character.  The second ::u8 will
+by a two-unsigned char control code.  The first unsigned char of the control code
+will be all ones, the escape character.  The second unsigned char will
 have the low order bit on and zeros elsewhere for EOR and the
-second low order bit on for EOF; that is, the ::u8 will have
+second low order bit on for EOF; that is, the unsigned char will have
 value 1 for EOR and value 2 for EOF.  EOR and EOF may be
-indicated together on the last ::u8 transmitted by turning both
-low order bits on (i.e., the value 3).  If a ::u8 of all ones
+indicated together on the last unsigned char transmitted by turning both
+low order bits on (i.e., the value 3).  If a unsigned char of all ones
 was intended to be sent as data, it should be repeated in the
-second ::u8 of the control code.
+second unsigned char of the control code.
 
 If the structure is a file structure, the EOF is indicated by
 the sending host closing the data connection and all bytes are
@@ -511,7 +511,7 @@ portions are suspect).  Record structures are allowed in this
 mode, and any representation type may be used.
 
 The header consists of the three bytes.  Of the 24 bits of
-header information, the 16 low order bits shall represent ::u8
+header information, the 16 low order bits shall represent unsigned char
 count, and the 8 high order bits shall represent descriptor
 codes as shown below.
 
@@ -523,9 +523,9 @@ Block Header
 +----------------+----------------+----------------+
 </PRE>
 The descriptor codes are indicated by bit flags in the
-descriptor ::u8.  Four codes have been assigned, where each
+descriptor unsigned char.  Four codes have been assigned, where each
 code number is the decimal value of the corresponding bit in
-the ::u8.
+the unsigned char.
 <PRE>
 Code     Meaning
 
@@ -566,10 +566,10 @@ would be sent:
 
 /** \fn static const transfer_mode nsFTP::transfer_mode::Compressed()
 There are three kinds of information to be sent:  regular data,
-sent in a ::u8 string; compressed data, consisting of
+sent in a unsigned char string; compressed data, consisting of
 replications or filler; and control information, sent in a
-two-::u8 escape sequence.  If n>0 bytes (up to 127) of regular
-data are sent, these n bytes are preceded by a ::u8 with the
+two-unsigned char escape sequence.  If n>0 bytes (up to 127) of regular
+data are sent, these n bytes are preceded by a unsigned char with the
 left-most bit set to 0 and the right-most 7 bits containing the
 number n.
 
@@ -586,7 +586,7 @@ of data
 String of n data bytes d(1),..., d(n)
 Count n must be positive.
 
-To compress a string of n replications of the data ::u8 d, the
+To compress a string of n replications of the data unsigned char d, the
 following 2 bytes are sent:
 
 Replicated Byte:
@@ -597,10 +597,10 @@ Replicated Byte:
 +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
 </PRE>
 A string of n filler bytes can be compressed into a single
-::u8, where the filler ::u8 varies with the representation
-type.  If the type is ASCII or EBCDIC the filler ::u8 is <SP>
+unsigned char, where the filler unsigned char varies with the representation
+type.  If the type is ASCII or EBCDIC the filler unsigned char is <SP>
 (Space, ASCII code 32, EBCDIC code 64).  If the type is Image
-or Local ::u8 the filler is a zero ::u8.
+or Local unsigned char the filler is a zero unsigned char.
 
 Filler String:
 <PRE>
@@ -609,8 +609,8 @@ Filler String:
 |1 1|     n     |
 +-+-+-+-+-+-+-+-+
 </PRE>
-The escape sequence is a double ::u8, the first of which is the
-escape ::u8 (all zeros) and the second of which contains
+The escape sequence is a double unsigned char, the first of which is the
+escape unsigned char (all zeros) and the second of which contains
 descriptor codes as defined in Block mode.  The descriptor
 codes have the same meaning as in Block mode and apply to the
 succeeding string of bytes.
@@ -657,7 +657,7 @@ performed by the user directly.
 Several types take a second parameter. The first parameter is
 denoted by a single Telnet character, as is the second
 Format parameter for ASCII and EBCDIC; the second parameter
-for local ::u8 is a decimal integer to indicate Bytesize.
+for local unsigned char is a decimal integer to indicate Bytesize.
 The parameters are separated by a <SP> (Space, ASCII code
 32).
 
@@ -670,7 +670,7 @@ E - EBCDIC|    | C - Carriage Control (ASA)
 /    \
 I - Image
 
-L <::u8 size_i32> - Local ::u8 Byte size_i32
+L <unsigned char size_i32> - Local unsigned char Byte size_i32
 </PRE>
 The default representation type is ASCII Non-print.  If the
 Format parameter is changed, and later just the first
@@ -685,14 +685,14 @@ DATA TYPES
 
 Data representations are handled in FTP by a user specifying a
 representation type.  This type may implicitly (as in ASCII or
-EBCDIC) or explicitly (as in Local ::u8) define a ::u8 size_i32 for
-interpretation which is referred to as the "logical ::u8 size."
-Note that this has nothing to do with the ::u8 size_i32 used for
+EBCDIC) or explicitly (as in Local unsigned char) define a unsigned char size_i32 for
+interpretation which is referred to as the "logical unsigned char size."
+Note that this has nothing to do with the unsigned char size_i32 used for
 transmission over the data connection, called the "transfer
-::u8 size_i32", and the two should not be confused.  For example,
-NVT-ASCII has a logical ::u8 size_i32 of 8 bits.  If the type is
-Local ::u8, then the TYPE command has an obligatory second
-parameter specifying the logical ::u8 size.  The transfer ::u8
+unsigned char size_i32", and the two should not be confused.  For example,
+NVT-ASCII has a logical unsigned char size_i32 of 8 bits.  If the type is
+Local unsigned char, then the TYPE command has an obligatory second
+parameter specifying the logical unsigned char size.  The transfer unsigned char
 size_i32 is always 8 bits.
 */
 
@@ -742,7 +742,7 @@ are packed into the 8-bit transfer bytes.  The receiving
 site must store the data as contiguous bits.  The structure
 of the storage system might necessitate the padding of the
 file (or of each record, for a record-structured file) to
-some convenient boundary (::u8, word or block).  This
+some convenient boundary (unsigned char, word or block).  This
 padding, which must be all zeros, may occur only at the end
 of the file (or at the end of each record) and there must be
 a way of identifying the padding bits so that they may be
@@ -760,22 +760,22 @@ implementations.
 The data is transferred in logical bytes of the size_i32
 specified by the obligatory second parameter, Byte size.
 The value of Byte size_i32 must be a decimal integer; there is
-no default value.  The logical ::u8 size_i32 is not necessarily
-the same as the transfer ::u8 size.  If there is a
-difference in ::u8 sizes, then the logical bytes should be
-packed contiguously, disregarding transfer ::u8 boundaries
+no default value.  The logical unsigned char size_i32 is not necessarily
+the same as the transfer unsigned char size.  If there is a
+difference in unsigned char sizes, then the logical bytes should be
+packed contiguously, disregarding transfer unsigned char boundaries
 and with any necessary padding at the end.
 
 When the data reaches the receiving host, it will be
-transformed in a manner dependent on the logical ::u8 size_i32
+transformed in a manner dependent on the logical unsigned char size_i32
 and the particular host.  This transformation must be
 invertible (i.e., an identical file can be retrieved if the
 same parameters are used) and should be well publicized by
 the FTP implementors.
 
 For example, a user sending 36-bit floating-point_i32 numbers to
-a host with a 32-bit word could send that data as Local ::u8
-with a logical ::u8 size_i32 of 36.  The receiving host would
+a host with a 32-bit word could send that data as Local unsigned char
+with a logical unsigned char size_i32 of 36.  The receiving host would
 then be expected to store the logical bytes so that they
 could be easily manipulated; in this example putting the
 36-bit logical bytes into 64-bit double words should

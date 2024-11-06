@@ -77,10 +77,10 @@ namespace draw2d_gdiplus
       return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != false;
    }
 
-   i32 palette::GetEntryCount()
+   int palette::GetEntryCount()
    {
       ASSERT(get_os_data() != nullptr); WORD nEntries;
-      ::GetObject((HANDLE) get_os_data(), sizeof(WORD), &nEntries); return (i32)nEntries;
+      ::GetObject((HANDLE) get_os_data(), sizeof(WORD), &nEntries); return (int)nEntries;
    }
 
 } // namespace draw2d_gdiplus

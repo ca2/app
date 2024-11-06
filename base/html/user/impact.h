@@ -30,7 +30,7 @@ public:
 
 
    string GetLocationURL();
-   bool Refresh2(i32 i);
+   bool Refresh2(int i);
    virtual bool browse(const ::string & pszUrl) override;
 
    virtual void on_document_complete(const ::string & strUrl);

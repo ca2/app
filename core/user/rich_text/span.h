@@ -31,7 +31,7 @@ namespace user
          string                           m_str;
 
          // Common thing among indexes:
-         // A single character is accounted for the same as the UTF8-::u8-count.
+         // A single character is accounted for the same as the UTF8-unsigned char-count.
          //
          // Sel* -> Selection
          // (selection index:

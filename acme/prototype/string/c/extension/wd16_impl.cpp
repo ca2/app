@@ -1097,7 +1097,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //
 //#ifdef WINDOWS
 //
-//   for (const ::u8 * p = (const ::u8 *)src; srclen >= findlen; p++, srclen--)
+//   for (const unsigned char * p = (const unsigned char *)src; srclen >= findlen; p++, srclen--)
 //   {
 //
 //      if (!memcmp(p, find, findlen))

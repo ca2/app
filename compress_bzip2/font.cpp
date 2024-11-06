@@ -96,26 +96,26 @@ namespace draw2d_gdiplus
 
       }
 
-      i32 iStyle = 0;
+      int iStyle = 0;
 
       if(m_iFontWeight >= 600)
       {
-         iStyle |= (i32) Gdiplus::FontStyleBold;
+         iStyle |= (int) Gdiplus::FontStyleBold;
       }
 
       if(m_bItalic)
       {
-         iStyle |= (i32) Gdiplus::FontStyleItalic;
+         iStyle |= (int) Gdiplus::FontStyleItalic;
       }
 
       if(m_bUnderline)
       {
-         iStyle |= (i32) Gdiplus::FontStyleUnderline;
+         iStyle |= (int) Gdiplus::FontStyleUnderline;
       }
 
       if(m_bStrikeout)
       {
-         iStyle |= (i32) Gdiplus::FontStyleStrikeout;
+         iStyle |= (int) Gdiplus::FontStyleStrikeout;
       }
 
       Gdiplus::Unit unit;

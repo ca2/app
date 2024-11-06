@@ -48,7 +48,7 @@
 ////   void write(i64 i)  override;
 ////   void write(u64 u)  override;
 ////   void hex_dump(i8 i);
-////   void hex_dump(u8 i);
+////   void hex_dump(unsigned char i);
 ////   void hex_dump(i16 i);
 ////   void hex_dump(u16 i);
 ////   void hex_dump(i32 i);
@@ -67,7 +67,7 @@
 //////
 //////#endif
 //////
-////   void hex_dump(const ::scoped_string & scopedstrLine, ::u8* pby, i32 nBytes, i32 nWidth);
+////   void hex_dump(const ::scoped_string & scopedstrLine, unsigned char* pby, i32 nBytes, i32 nWidth);
 ////
 ////   void flush() override;
 ////

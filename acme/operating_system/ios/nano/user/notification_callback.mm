@@ -10,19 +10,19 @@
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"
 
-void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload);
+void system_id_update(platform::system * psystem, ::i64 iUpdate, ::i64 iPayload);
 
-void * application_system(void * pApplication);
+::platform::system * application_system(::platform::application * papplication);
 
 //#import <Foundation/Foundation.h>
-void ns_main_async(dispatch_block_t block);
-@implementation nano_notification_callback
+void ns_main_post(dispatch_block_t block);
+@implementation acme_notification_callback
 
 
 - (id)init
 {
 
-////   ns_main_async(^{
+////   ns_main_post(^{
 //      
 //   [ [ NSDistributedNotificationCenter defaultCenter ] addObserver:self selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
 //   //});
@@ -64,7 +64,7 @@ void ns_main_async(dispatch_block_t block);
       
    }
     
-   system_id_update(application_system(m_pApplication), id_get_operating_system_dark_mode_reply, iDarkMode);
+   system_id_update(application_system(m_papplication), id_get_operating_system_dark_mode_reply, iDarkMode);
 
 }
 

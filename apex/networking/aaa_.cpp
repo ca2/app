@@ -338,10 +338,10 @@ struct c_in_addr
    {
       struct
       {
-         u8	s_b1;
-         u8	s_b2;
-         u8	s_b3;
-         u8	s_b4;
+         unsigned char	s_b1;
+         unsigned char	s_b2;
+         unsigned char	s_b3;
+         unsigned char	s_b4;
       } S_un_b;
 
       u32 S_addr;
@@ -400,7 +400,7 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
 
 //} // namespace str
 
-inline string ip_to_string(::u8 b1, ::u8 b2, ::u8 b3, ::u8 b4)
+inline string ip_to_string(unsigned char b1, unsigned char b2, unsigned char b3, unsigned char b4)
 {
 
    string str;
@@ -648,7 +648,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b1 = (::u8) ul;
+//         addr.S_un.S_un_b.s_b1 = (unsigned char) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //
@@ -670,14 +670,14 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b1 = (::u8) ul;
+//         addr.S_un.S_un_b.s_b1 = (unsigned char) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //
 //         if(ul > 255)
 //            return C_INADDR_NONE;
 //
-//         addr.S_un.S_un_b.s_b2 = (::u8) ul;
+//         addr.S_un.S_un_b.s_b2 = (unsigned char) ul;
 //
 //         ul = c_inet_to_ui(stra[1]);
 //

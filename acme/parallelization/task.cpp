@@ -37,6 +37,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 
 
+
 extern bool g_bIntermediateThreadReferencingDebugging;
 
 
@@ -829,7 +830,7 @@ bool task::task_run(const class ::time & time)
 
    }
 
-   auto timeStart = class ::time(now_t{});
+   class ::time timeStart(now_t{});
 
    auto remaining = time;
 
@@ -2662,7 +2663,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
    }
 
-   auto iTenths = (::i32)(timeWait.integral_millisecond() / 100);
+   auto iTenths = (int)(timeWait.integral_millisecond() / 100);
 
    try
    {

@@ -39,7 +39,7 @@ plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsi
 
    }
 
-   m_nAllocSize = (::i32)nAllocSize;
+   m_nAllocSize = (int)nAllocSize;
 
    m_nBlockSize = nBlockSize;
 
@@ -161,7 +161,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       }
 
    }
-   if ((::u8 *)0x0000000020000218 == ((::u8 *)pParam))
+   if ((unsigned char *)0x0000000020000218 == ((unsigned char *)pParam))
    {
 
       debug_break();
@@ -297,11 +297,11 @@ void plex_heap_alloc_sync::NewBlock()
 
       pnodeNext = pnode;
 
-      pnode = (node *)&((::u8 *)pnode)[nAllocSize];
+      pnode = (node *)&((unsigned char *)pnode)[nAllocSize];
 
    }
 
-   if ((::u8 *)0x0000000200000020 == ((::u8 *)pnodeNext))
+   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pnodeNext))
    {
 
       debug_break();

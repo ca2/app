@@ -48,7 +48,7 @@ namespace http
    CLASS_DECL_APEX string conn_status(property_set & set)
    {
 
-      ::e_status      estatus = (::e_status)set["get_status"].i32();
+      ::e_status      estatus = (::e_status)set["get_status"].int();
 
       string str;
 

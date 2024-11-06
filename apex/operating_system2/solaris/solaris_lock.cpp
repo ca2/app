@@ -92,9 +92,9 @@ vsstring _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, 
 
             auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(::file_path_folder(str));
+pdirectorysystem->create(::file_path_folder(str));
 
    if(bCreate)
    {

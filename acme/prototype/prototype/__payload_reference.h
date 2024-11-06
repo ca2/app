@@ -20,7 +20,7 @@ public:
 
    operator bool & () { return m_payload.bool_reference(); }
    operator i8 & () { return m_payload.i8_reference(); }
-   operator u8 & () { return m_payload.u8_reference(); }
+   operator unsigned char & () { return m_payload.u8_reference(); }
    operator i16 & () { return m_payload.i16_reference(); }
    operator u16 & () { return m_payload.u16_reference(); }
    operator i32 & () { return m_payload.i32_reference(); }

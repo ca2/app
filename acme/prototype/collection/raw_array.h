@@ -454,7 +454,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //   {
 //      for( i32 i = 0; i < m_nSize; i++ )
 //         destruct_element(m_begin + i)->~TYPE();
-//      delete[] (::u8*)m_begin;
+//      delete[] (unsigned char*)m_begin;
 //      m_begin     = nullptr;
 //      m_nSize     = 0;
 //      m_countAllocation  = 0;
@@ -510,7 +510,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      {
 ////         for( i32 i = 0; i < m_nSize; i++ )
 ////            (m_begin + i)->~TYPE();
-//         delete[] (::u8*)m_begin;
+//         delete[] (unsigned char*)m_begin;
 //         m_begin = nullptr;
 //      }
 //      m_nSize = m_countAllocation = 0;
@@ -526,7 +526,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //#endif
 //      ::collection::count nAllocSize = maximum(nNewSize, m_countAddUp);
 ////
-//      m_begin = (TYPE*) __allocate< ::u8[(size_t)nAllocSize * sizeof >(TYPE)];
+//      m_begin = (TYPE*) __allocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
 //      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::collection::index i = 0; i < nNewSize; i++ )
 //  //       ::__allocate< ( (void *) >( m_begin + i ) ) TYPE;
@@ -580,7 +580,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
 //
-//      TYPE* pNewData = (TYPE*) __allocate< ::u8[(size_t)nNewMax * sizeof >(TYPE)];
+//      TYPE* pNewData = (TYPE*) __allocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
 //
 //
 //      // copy ___new data from old
@@ -595,7 +595,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 ////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 ////
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (::u8*)m_begin;
+//      delete[] (unsigned char*)m_begin;
 //      m_begin = pNewData;
 //      m_nSize = nNewSize;
 //      m_countAllocation = nNewMax;
@@ -619,14 +619,14 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) __allocate< ::u8[m_nSize * sizeof >(TYPE)];
+//         pNewData = (TYPE*) __allocate< unsigned char[m_nSize * sizeof >(TYPE)];
 //         // copy ___new data from old
 //         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_begin, m_nSize * sizeof(TYPE));
 //      }
 //
 //      // get rid of old stuff (note: no destructors called)
-//      delete[] (::u8*)m_begin;
+//      delete[] (unsigned char*)m_begin;
 //      m_begin = pNewData;
 //      m_countAllocation = m_nSize;
 //   }
@@ -1175,7 +1175,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////   {
 ////      for( i32 i = 0; i < m_nSize; i++ )
 ////         destruct_element(m_begin + i)->~TYPE();
-////      delete[] (::u8*)m_begin;
+////      delete[] (unsigned char*)m_begin;
 ////      m_begin     = nullptr;
 ////      m_nSize     = 0;
 ////      m_countAllocation  = 0;
@@ -1231,7 +1231,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      {
 //////         for( i32 i = 0; i < m_nSize; i++ )
 //////            (m_begin + i)->~TYPE();
-////         delete[] (::u8*)m_begin;
+////         delete[] (unsigned char*)m_begin;
 ////         m_begin = nullptr;
 ////      }
 ////      m_nSize = m_countAllocation = 0;
@@ -1247,7 +1247,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////#endif
 ////      ::collection::count nAllocSize = maximum(nNewSize, m_countAddUp);
 //////
-////      m_begin = (TYPE*) __allocate< ::u8[(size_t)nAllocSize * sizeof >(TYPE)];
+////      m_begin = (TYPE*) __allocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
 ////      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 //////      for( ::collection::index i = 0; i < nNewSize; i++ )
 ////  //       ::__allocate< ( (void *) >( m_begin + i ) ) TYPE;
@@ -1301,7 +1301,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 ////#endif
 ////
-////      TYPE* pNewData = (TYPE*) __allocate< ::u8[(size_t)nNewMax * sizeof >(TYPE)];
+////      TYPE* pNewData = (TYPE*) __allocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
 ////
 ////
 ////      // copy ___new data from old
@@ -1316,7 +1316,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 //////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 //////
 ////      // get rid of old stuff (note: no destructors called)
-////      delete[] (::u8*)m_begin;
+////      delete[] (unsigned char*)m_begin;
 ////      m_begin = pNewData;
 ////      m_nSize = nNewSize;
 ////      m_countAllocation = nNewMax;
@@ -1340,14 +1340,14 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      TYPE* pNewData = nullptr;
 ////      if (m_nSize != 0)
 ////      {
-////         pNewData = (TYPE*) __allocate< ::u8[m_nSize * sizeof >(TYPE)];
+////         pNewData = (TYPE*) __allocate< unsigned char[m_nSize * sizeof >(TYPE)];
 ////         // copy ___new data from old
 ////         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 ////            m_begin, m_nSize * sizeof(TYPE));
 ////      }
 ////
 ////      // get rid of old stuff (note: no destructors called)
-////      delete[] (::u8*)m_begin;
+////      delete[] (unsigned char*)m_begin;
 ////      m_begin = pNewData;
 ////      m_countAllocation = m_nSize;
 ////   }

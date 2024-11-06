@@ -29,9 +29,9 @@
 //
 //            auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->create(::file_path_folder(path));
+//pdirectorysystem->create(::file_path_folder(path));
 //
 //   wstring wstr(path);
 //
@@ -413,7 +413,7 @@ string file_module_path_dup()
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
-// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)___new ::u8[MAX_PATH * 8];
+// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)___new unsigned char[MAX_PATH * 8];
 
 // //    GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 // //    for(g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;)
@@ -450,7 +450,7 @@ string file_module_path_dup()
 // //       SetEvent(pThreadParam->hFinishedEvent);
 
 // //    }
-// //    delete[](::u8 *) pinfo;
+// //    delete[](unsigned char *) pinfo;
 // //    return 0;
 // // }
 
@@ -502,7 +502,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new ::u8[size_i32];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new unsigned char[size_i32];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -691,7 +691,7 @@ string file_module_path_dup()
 // //    }
 
 // //    u32 dwsize = 300;
-// //    PDWORD pDwId = (PDWORD)___new ::u8[dwsize];
+// //    PDWORD pDwId = (PDWORD)___new unsigned char[dwsize];
 // //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
@@ -703,7 +703,7 @@ string file_module_path_dup()
 // //       }
 // //       delete pDwId;
 // //       dwsize += 50;
-// //       pDwId = (PDWORD)___new ::u8[dwsize];
+// //       pDwId = (PDWORD)___new unsigned char[dwsize];
 // //    }
 // //    i32 nCount = dwReturned / sizeof(u32);
 // //    i32 nItemCount = -1;
@@ -1112,7 +1112,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      meth = FILE_CURRENT;
 //   else if(origin == SEEK_END)
 //      meth = FILE_END;
-//   ::i32 offsetHigh = (offset >> 32) & 0xffffffffLL;
+//   int offsetHigh = (offset >> 32) & 0xffffffffLL;
 //   u32 dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
 //   ((FILE*)fp)->_flag &= ~_FILE_EOF;
 //   return (u64)dw | (((u64)offsetHigh) << 32);
@@ -1179,7 +1179,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //         }
 //         else if(br > 1)
 //         {
-//            // This is the hard part: must peek ahead one ::u8
+//            // This is the hard part: must peek ahead one unsigned char
 //            ::u32 pbrush2 = 0;
 //            char peekChar = 0;
 //            ReadFile(hFile,&peekChar,1,&pbrush2,0);
@@ -1437,7 +1437,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 
-::u32 WinSetFilePointer(HANDLE h, ::i32 lMove, PLONG plHi, ::u32 dwMeth)
+::u32 WinSetFilePointer(HANDLE h, int lMove, PLONG plHi, ::u32 dwMeth)
 {
 
    LARGE_INTEGER liMove;
@@ -1769,9 +1769,9 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 ////
 ////            auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->create(::file_path_folder(path));
+//pdirectorysystem->create(::file_path_folder(path));
 ////
 ////   wstring wstr(path);
 ////

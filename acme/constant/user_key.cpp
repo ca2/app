@@ -23,7 +23,7 @@
       case ::user::e_key_page_down:     str = "user::e_key_page_down"; break;
       case ::user::e_key_page_up:     str = "user::e_key_page_up"; break;
       default:
-         str.formatf("%d", (::i32)ekey);
+         str.formatf("%d", (int)ekey);
 
    }
 

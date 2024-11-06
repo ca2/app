@@ -394,7 +394,7 @@ public:
    constexpr double floating_nanosecond() const { return (::f64)integral_nanosecond(); }
 
 
-   ::i32 millisecond() const { return (::i32) (m_iNanosecond / 1'000'000); }
+   int millisecond() const { return (int) (m_iNanosecond / 1'000'000); }
 
 
    constexpr  bool operator == (const class time & time) const { return m_iSecond == time.m_iSecond && m_iNanosecond == time.m_iNanosecond; }

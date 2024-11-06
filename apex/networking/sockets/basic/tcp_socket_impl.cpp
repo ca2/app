@@ -1013,7 +1013,7 @@
 //   void tcp_socket_impl::write(const void * pdata,memsize len)
 //   {
 //
-//      //const u8 * buf = (const u8 *)pdata;
+//      //const unsigned char * buf = (const unsigned char *)pdata;
 //
 //      //if(!Ready() && !is_connecting())
 //      //{

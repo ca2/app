@@ -14,7 +14,7 @@
 //CLASS_DECL_ACME i32 process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //
-//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pwaitableptra, ::u32 dwTimeout, ::u32 UNUSED(dwWakeMask), ::u32 dwFlags)
+//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, ::u32 dwTimeout, ::u32 UNUSED(dwWakeMask), ::u32 dwFlags)
 //{
 //
 //   ::u32 start = 0;
@@ -97,7 +97,7 @@
 //
 //}
 //
-//::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
+//::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -105,7 +105,7 @@
 //}
 //
 //
-//::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, int_bool bAlertable)
+//::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout, int_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -113,7 +113,7 @@
 //}
 //
 //
-//::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout)
+//::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout)
 //{
 //
 //   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, false);
@@ -121,7 +121,7 @@
 //}
 //
 //
-//::u32 WaitForSingleObjectEx(HSYNC  pwaitable, ::u32 dwTimeout, int_bool bAlertable)
+//::u32 WaitForSingleObjectEx(hsynchronization  pwaitable, ::u32 dwTimeout, int_bool bAlertable)
 //{
 //
 //   return WaitForMultipleObjectsEx(1, &pwaitable, true, dwTimeout, bAlertable);
@@ -129,7 +129,7 @@
 //}
 //
 //
-//::u32 WaitForSingleObject(HSYNC  pwaitable, ::u32 dwTimeout)
+//::u32 WaitForSingleObject(hsynchronization  pwaitable, ::u32 dwTimeout)
 //{
 //
 //   return WaitForSingleObjectEx(pwaitable, dwTimeout, false);

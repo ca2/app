@@ -82,7 +82,7 @@ namespace datetime
 
       float_time_span(double dblSpanSrc) RELEASENOTHROW;
       float_time_span(
-      ::i32 lDays,
+      int lDays,
       int32_t nHours,
       int32_t nMins,
       int32_t nSecs) RELEASENOTHROW;
@@ -99,10 +99,10 @@ namespace datetime
       double GetTotalMinutes() const RELEASENOTHROW; // span in minutes (about -5.26e9 to 5.26e9)
       double GetTotalSeconds() const RELEASENOTHROW; // span in seconds (about -3.16e11 to 3.16e11)
 
-      ::i32 GetDays() const RELEASENOTHROW;       // component days in span
-      ::i32 GetHours() const RELEASENOTHROW;      // component hours in span (-23 to 23)
-      ::i32 GetMinutes() const RELEASENOTHROW;    // component minutes in span (-59 to 59)
-      ::i32 GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
+      int GetDays() const RELEASENOTHROW;       // component days in span
+      int GetHours() const RELEASENOTHROW;      // component hours in span (-23 to 23)
+      int GetMinutes() const RELEASENOTHROW;    // component minutes in span (-59 to 59)
+      int GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
 
       
       float_time_span& operator=(double dblSpanSrc) RELEASENOTHROW;
@@ -124,7 +124,7 @@ namespace datetime
       operator double() const RELEASENOTHROW;
 
       void SetDateTimeSpan(
-      ::i32 lDays,
+      int lDays,
       int32_t nHours,
       int32_t nMins,
       int32_t nSecs) RELEASENOTHROW;
@@ -272,7 +272,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    }
 
    inline float_time_span::float_time_span(
-   ::i32 lDays,
+   int lDays,
    int32_t nHours,
    int32_t nMins,
    int32_t nSecs) RELEASENOTHROW
@@ -318,28 +318,28 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60 * 60));
    }
 
-   inline ::i32 float_time_span::GetDays() const RELEASENOTHROW
+   inline int float_time_span::GetDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return ::i32(GetTotalDays());
+      return int(GetTotalDays());
    }
 
-   inline ::i32 float_time_span::GetHours() const RELEASENOTHROW
+   inline int float_time_span::GetHours() const RELEASENOTHROW
    {
       double dPartialDayHours = GetTotalHours() - (GetTotalDays() * 24);
-      return ::i32(dPartialDayHours) % 24;
+      return int(dPartialDayHours) % 24;
    }
 
-   inline ::i32 float_time_span::GetMinutes() const RELEASENOTHROW
+   inline int float_time_span::GetMinutes() const RELEASENOTHROW
    {
       double dPartialHourMinutes = GetTotalMinutes() - (GetTotalHours() * 60);
-      return ::i32(dPartialHourMinutes) % 60;
+      return int(dPartialHourMinutes) % 60;
    }
 
-   inline ::i32 float_time_span::GetSeconds() const RELEASENOTHROW
+   inline int float_time_span::GetSeconds() const RELEASENOTHROW
    {
       double dPartialMinuteSeconds = GetTotalSeconds() - (GetTotalMinutes() * 60);
-      return ::i32(dPartialMinuteSeconds) % 60;
+      return int(dPartialMinuteSeconds) % 60;
    }
 
    inline float_time_span& float_time_span::operator=(double dblSpanSrc) RELEASENOTHROW
@@ -495,7 +495,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    }
 
    inline void float_time_span::SetDateTimeSpan(
-   ::i32 lDays,
+   int lDays,
    int32_t nHours,
    int32_t nMins,
    int32_t nSecs) RELEASENOTHROW

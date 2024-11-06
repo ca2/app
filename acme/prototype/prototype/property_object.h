@@ -134,7 +134,7 @@ public:
 
    string find_string(const ::atom & atom, const ::ansi_character * pszDefault = nullptr) const;
 
-   ::i32 find_i32(const ::atom & atom, ::i32 iDefault = 0) const;
+   int find_i32(const ::atom & atom, int iDefault = 0) const;
 
    ::u32 find_u32(const ::atom & atom, ::u32 iDefault = 0) const;
 

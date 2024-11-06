@@ -470,9 +470,9 @@ namespace user
    //   else
    //   {
 
-   //      point.x() = (::i32)(rTarget.left() + rTarget.width() * m_hls.m_dH);
+   //      point.x() = (int)(rTarget.left() + rTarget.width() * m_hls.m_dH);
 
-   //      point.y() = (::i32)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
+   //      point.y() = (int)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
 
    //   }
 

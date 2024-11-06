@@ -112,7 +112,7 @@ namespace sockets_bsd
       memsize m_output_length;
 
       bool     m_bReuseSession;
-      i32 m_socks4_state; ///< socks4 support
+      int m_socks4_state; ///< socks4 support
       char m_socks4_vn; ///< socks4 support, temporary ::payload
       char m_socks4_cd; ///< socks4 support, temporary ::payload
       u16 m_socks4_dstport; ///< socks4 support
@@ -121,7 +121,7 @@ namespace sockets_bsd
       string m_strConnectHost;
       ::networking::port_t m_iConnectPort;
 
-      i32 m_resolver_id; ///< Resolver atom (if any) for current open call
+      int m_resolver_id; ///< Resolver atom (if any) for current open call
 
       bool m_bReconnect; ///< Reconnect on lost connection flag
       bool m_bTryingReconnect; ///< Trying to reconnect
@@ -229,7 +229,7 @@ namespace sockets_bsd
 #endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      //void OnResolved(i32 atom, ::networking::address * addr) override;
+      //void OnResolved(int atom, ::networking::address * addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

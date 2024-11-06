@@ -20,7 +20,7 @@
 
 #include <dispatch/dispatch.h>
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 // /// Tags: proc_count, core_count, processor_count, cpu_count
 // int get_processor_count()
 // {
@@ -97,11 +97,11 @@ string task_get_name()
 
 void main_asynchronous(const ::procedure & procedure);
 
-namespace acme
+namespace platform
 {
 
 
-   void node::user_post(const ::procedure & procedure)
+   void node::_user_post(const ::procedure & procedure)
    {
 
       main_asynchronous(procedure);
@@ -129,7 +129,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    auto procedureLocal = procedure;
 
-   ns_main_async(^{
+   ns_main_post(^{
 
       procedureLocal();
 

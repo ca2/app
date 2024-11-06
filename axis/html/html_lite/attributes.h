@@ -187,13 +187,13 @@ public:
    }
 
    /**
-    * Converts attribute value to ::u8 (uchar)
+    * Converts attribute value to unsigned char (uchar)
     * @return the left-most character of attribute value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator ::u8() const
-   { return ((::u8)(m_strValue.length() ? m_strValue[0] : 0)); }
+   operator unsigned char() const
+   { return ((unsigned char)(m_strValue.length() ? m_strValue[0] : 0)); }
 
    /**
     * Converts attribute value to double

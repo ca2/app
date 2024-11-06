@@ -135,7 +135,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //#ifdef DEEP_DEBUG
 //
-//   ::u8* pbyte = (::u8*)p;
+//   unsigned char* pbyte = (unsigned char*)p;
 //
 //   if (bReadWrite)
 //   {
@@ -143,9 +143,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::collection::index i = 0; i < size; i++)
 //      {
 //
-//         ::u8& b = *pbyte;
+//         unsigned char& b = *pbyte;
 //
-//         b++; // tests read/write of ::u8 b
+//         b++; // tests read/write of unsigned char b
 //
 //         b--; // restablish it
 //
@@ -155,14 +155,14 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //   else
 //   {
 //
-//      ::i32 sum = 0;
+//      int sum = 0;
 //
 //      for (::collection::index i = 0; i < size; i++)
 //      {
 //
-//         ::u8& b = *pbyte;
+//         unsigned char& b = *pbyte;
 //
-//         sum += b; // tests read of ::u8 b
+//         sum += b; // tests read of unsigned char b
 //
 //      }
 //
@@ -195,8 +195,8 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen)
 //{
 //
-//   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
-//      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
+//   return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))
+//      || (((unsigned char*)pszDst) <= ((unsigned char*)pszSrc) && ((unsigned char*)pszDst) + srclen > ((unsigned char*)pszSrc));
 //
 //}
 //
@@ -270,7 +270,7 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 //
 //
 //
-//inline int read_char(u8*& pdata, memsize& s, char* pch)
+//inline int read_char(unsigned char*& pdata, memsize& s, char* pch)
 //{
 //
 //   if (s < 1)
@@ -423,7 +423,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //   }
 //
-//   return (::i32) l;
+//   return (int) l;
 //
 //#endif
 //

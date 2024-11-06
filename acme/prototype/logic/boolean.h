@@ -16,8 +16,8 @@ namespace logic
    public:
 
 
-      ::u8     m_uOn;
-      ::u8     m_uSet;
+      unsigned char     m_uOn;
+      unsigned char     m_uSet;
 
 
       //inline boolean(no_initialize_t) { m_uSet = false; }

@@ -427,7 +427,7 @@ namespace user
 
          }
          
-         ::i32 iRedrawMessageCount = 0;
+         int iRedrawMessageCount = 0;
          
          if (m_message.m_atom == e_message_redraw)
          {
@@ -894,11 +894,11 @@ namespace user
 //                  if (timeToWaitForNextFrame >= 50_ms)
 //                  {
 //
-//                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
+//                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (int) (msToWaitForNextFrame - 1));
 //
 //                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
 //
-//                     //printf("Actually waited %dms\n", (::i32) ::time.elapsed().m_i);
+//                     //printf("Actually waited %dms\n", (int) ::time.elapsed().m_i);
 //
 //                  }
 //                  else
@@ -942,7 +942,7 @@ namespace user
 
             //   i64 nanosDeltaPostRedraw = (i64)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (i64)get_nanos();
 
-            //   i32 msDeltaPostRedraw = (::i32)(nanosDeltaPostRedraw / 1'000'000);
+            //   int msDeltaPostRedraw = (int)(nanosDeltaPostRedraw / 1'000'000);
 
             //   if (msDeltaPostRedraw >= 1)
             //   {

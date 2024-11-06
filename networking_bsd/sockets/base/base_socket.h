@@ -260,7 +260,7 @@ namespace sockets_bsd
       bool is_end() const override;
 
 
-      virtual i32 close_socket(SOCKET s);
+      virtual int close_socket(SOCKET s);
 
 
       bool is_connecting() override;
@@ -786,7 +786,7 @@ namespace sockets_bsd
       //bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, int err, const ::string & strMessage);
 
       string get_short_description() override;
 

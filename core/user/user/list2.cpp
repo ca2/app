@@ -956,7 +956,7 @@ namespace user
          puseritem->m_rectangle2.left() = 0;
          puseritem->m_rectangle2.right() = rectangleX.width();
          puseritem->m_rectangle2.top() = y;
-         puseritem->m_rectangle2.bottom() = (::i32) (y + iLineHeight);
+         puseritem->m_rectangle2.bottom() = (int) (y + iLineHeight);
 
          ::user::enum_state estate = ::user::e_state_none;
 
@@ -971,9 +971,9 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (::i32) y, pitem->get_item_text());
+         pgraphics->text_out(x, (int) y, pitem->get_item_text());
 
-         y = (::i32) (y + iLineHeight);
+         y = (int) (y + iLineHeight);
 
       }
 

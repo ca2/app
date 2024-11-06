@@ -8,8 +8,8 @@
 //#include "acme/prototype/prototype/function.h"
 
 
-enum enum_method : ::i32;
-enum enum_future : ::i32;
+enum enum_method : int;
+enum enum_future : int;
 
 
 // namespace acme
@@ -643,7 +643,7 @@ public:
    //::task_pointer defer_fork(string strThread = "");
 
 //#ifdef __APPLE__
-//   virtual void ns_main_async(dispatch_block_t block);
+//   virtual void ns_main_post(dispatch_block_t block);
 //#endif
 
 
@@ -1210,7 +1210,7 @@ public:
    //::task_pointer defer_fork(string strThread = "");
 
 //#ifdef __APPLE__
-//   virtual void ns_main_async(dispatch_block_t block);
+//   virtual void ns_main_post(dispatch_block_t block);
 //#endif
 
    //inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());

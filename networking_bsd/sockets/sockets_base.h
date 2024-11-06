@@ -13,7 +13,7 @@ namespace networking_bsd
 
       interlocked_i32                              m_lHttpGetSerial;
 
-      i32                                          m_iErrorCode;
+      int                                          m_iErrorCode;
 
       sockets_base();
       virtual ~sockets_base();

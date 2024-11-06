@@ -22,14 +22,14 @@
 namespace image
 {
 
-   bool draw2d_gif_detect_8bit_borders(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_detect_8bit_borders(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
 
-   bool draw2d_gif_antialias_8bit(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_antialias_8bit(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
 
-   bool draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+   bool draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & cra, int transparentIndex);
 
 
-   //CLASS_DECL_AURA bool draw2d_gif_load_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
+   //CLASS_DECL_AURA bool draw2d_gif_load_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, colorref_array & cra, int transparentIndex)
    //{
    //
    //   if (::is_null(pimageCanvas))
@@ -75,7 +75,7 @@ namespace image
    //
    //   //      ::color::color crBack = pframea->m_colorBack;
    //
-   //   //      ::u8 bAlpha = color32_u8_opacity(crBack);
+   //   //      unsigned char bAlpha = color32_u8_opacity(crBack);
    //
    //   //      if (bAlpha == 0)
    //   //      {
@@ -241,7 +241,7 @@ namespace image
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
-   //         ::u8 bAlpha = color32_u8_opacity(crBack);
+   //         unsigned char bAlpha = color32_u8_opacity(crBack);
    //
    //         if (bAlpha == 0)
    //         {
@@ -290,7 +290,7 @@ namespace image
    //}
    //
 
-   bool imaging::draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
+   bool imaging::draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & colora, int transparentIndex)
    {
 
       auto pimage32 = pframe->m_pimage->image32();
@@ -325,25 +325,25 @@ namespace image
 
             auto color = colora[iIndex];
 
-            ::u8 bA = color.u8_opacity();
+            unsigned char bA = color.u8_opacity();
 
             //#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
             //#if defined(__APPLE__) || defined(ANDROID)
             // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
             //#if defined(__APPLE__) || defined(ANDROID)
             //
-            //         //::u8 bR = color32_u8_red(color32);
-            //         //::u8 bG = color32_u8_green(color32);
-            //         //::u8 bB = color32_u8_blue(color32);
+            //         //unsigned char bR = color32_u8_red(color32);
+            //         //unsigned char bG = color32_u8_green(color32);
+            //         //unsigned char bB = color32_u8_blue(color32);
             //
             //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
             //
             //         pframe->m_pimage->m_pcolorref[y*w + x] = ((color32 << 16) & 0xff0000) | ((color32 >> 16) & 0xff) | (color32 & 0xff00ff00);
             //
             //#else
-            ::u8 bR = color.u8_red();
-            ::u8 bG = color.u8_green();
-            ::u8 bB = color.u8_blue();
+            unsigned char bR = color.u8_red();
+            unsigned char bG = color.u8_green();
+            unsigned char bB = color.u8_blue();
             if (bA != 255)
             {
 

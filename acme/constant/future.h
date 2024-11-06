@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_process : ::i32
+enum enum_process : int
 {
 
 

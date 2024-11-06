@@ -47,6 +47,7 @@ public:
 
 
    [[nodiscard]] inline bool has_finishing_flag() const { return has_flag(e_flag_finishing); }
+   //inline void set_finishing_flag() { set_flag(e_flag_finishing); };
    void set_finishing_flag();
    inline void clear_finishing_flag() { clear_flag(e_flag_finishing); }
 

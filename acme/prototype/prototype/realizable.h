@@ -55,6 +55,9 @@ public:
 
 
    void destroy() override;
+   
+   
+   void on_sequence() override;
 
 
 };
@@ -166,6 +169,13 @@ void reified<REALIZABLE>::realize(::realizable < REALIZABLE > * p)
 {
 
    m_prealizable = p;
+   
+   if(p->m_psequence)
+   {
+    
+      m_psequence = p->m_psequence;
+      
+   }
 
    on_realize(m_prealizable);
 
@@ -196,6 +206,20 @@ void reified < REALIZABLE >::destroy()
    }
 
    m_prealizable.release();
+
+}
+
+
+template < typename REALIZABLE >
+void reified < REALIZABLE >::on_sequence()
+{
+
+   if (m_prealizable)
+   {
+
+      m_prealizable->on_sequence();
+
+   }
 
 }
 

@@ -36,7 +36,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_lower_case_from(::u8 b)
+   constexpr CLASS_DECL_ACME char nibble_lower_case_from(unsigned char b)
    {
 
       if(b >= 10)
@@ -51,7 +51,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_upper_case_from(::u8 b)
+   constexpr CLASS_DECL_ACME char nibble_upper_case_from(unsigned char b)
    {
 
       if(b >= 10)
@@ -66,7 +66,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, ::u8 b)
+   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, unsigned char b)
    {
 
       sz[0] = nibble_lower_case_from((b >> 4) & (char) 0x0f);
@@ -75,7 +75,7 @@ namespace hex
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, ::u8 b)
+   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, unsigned char b)
    {
 
       sz[0] = nibble_upper_case_from((b >> 4) & (char) 0x0f);
@@ -87,7 +87,7 @@ namespace hex
    // sz buffer should have twice size_i32 of s (p)
    constexpr CLASS_DECL_ACME void lower_case_from(char * sz, const void * p, memsize s)
    {
-       const u8 * pb = (const u8 *) p;
+       const unsigned char * pb = (const unsigned char *) p;
        while(s)
        {
            lower_case_from(sz, *pb);
@@ -100,7 +100,7 @@ namespace hex
    
    constexpr CLASS_DECL_ACME void upper_case_from(char * sz, const void * p, memsize s)
    {
-       const u8 * pb = (const u8 *) p;
+       const unsigned char * pb = (const unsigned char *) p;
        while(s)
        {
            upper_case_from(sz, *pb);

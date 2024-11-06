@@ -157,7 +157,7 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, ::u8 bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, unsigned char bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());

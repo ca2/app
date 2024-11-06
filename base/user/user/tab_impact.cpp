@@ -501,7 +501,7 @@ namespace user
 
       m_pdroptargetwindow = __allocate tab_drop_target_window();
 
-      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
+      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (int)pchannel->get_data()->m_iClickTab);
 
       auto rectangle = pchannel->get_data()->m_rectangleHosting;
 
@@ -862,7 +862,7 @@ namespace user
 
             ::user::tab_pane_array & panecompositea = get_data()->m_tabpanea;
 
-            for (i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
+            for (int iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
 
                auto pimpactdataPane = panecompositea[iTab]->m_pimpactdata;
@@ -1499,7 +1499,7 @@ namespace user
 
          }
 
-         pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
+         pgraphics->offset_origin((int)pointOffset.x(), (int)pointOffset.y());
 
       }
 

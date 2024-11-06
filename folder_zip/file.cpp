@@ -197,7 +197,7 @@ memsize file::read(void * p, ::memsize s)
    //   ASSERT_VALID(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
 
-   auto data = (::u8 *) p;
+   auto data = (unsigned char *) p;
 
    if (s == 0)
       return 0;   // avoid Win32 "nullptr-read"
@@ -219,7 +219,7 @@ void file::write(const void * p, ::memsize s)
 {
 
    return;
-     /* ::u8 buf[1024];
+     /* unsigned char buf[1024];
       i32 iRead;
       if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
@@ -246,7 +246,7 @@ void file::write(const void * p, ::memsize s)
    //   str.replace("\\", "/");
    //   if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
    //      return;
-   //   ::u8 buf[1024];
+   //   unsigned char buf[1024];
    //   i32 iRead;
    //   if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
    //      return;
@@ -358,7 +358,7 @@ void file::write(const void * p, ::memsize s)
 
          i32 iRead;
 
-         ::u8 pbBuf[1024];
+         unsigned char pbBuf[1024];
 
          while (iRemain > 0)
          {

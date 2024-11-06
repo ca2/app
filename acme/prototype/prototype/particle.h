@@ -95,7 +95,15 @@ public:
    mutable ::particle_pointer                   m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
-   particle() : m_papplication(nullptr) {}
+   particle() :
+      m_papplication(nullptr),
+      m_pparticleSynchronization(nullptr)
+   {
+         
+         
+   }
+   
+   
 //#else
 //   particle() : m_countReference(1) {}
 //#endif
@@ -130,8 +138,6 @@ public:
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization.m_p : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
-
-
 
    void operator()(::topic* ptopic, ::context* pcontext) override;
    //void operator()(::sequencer & sequencer) override;
@@ -234,7 +240,7 @@ public:
 
 
 //   virtual bool particle_step();
-   virtual void on_sequence();
+   //void on_sequence() override;
 
 
    virtual void set_finish();

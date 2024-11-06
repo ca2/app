@@ -55,9 +55,9 @@ namespace imaging_freeimage
       for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
-         u8 * pbDst = ((u8 *)pimage->get_data()) + ((pimage->height() - y - 1) * pimage->scan_size());
+         unsigned char * pbDst = ((unsigned char *)pimage->get_data()) + ((pimage->height() - y - 1) * pimage->scan_size());
 
-         u8 * pbSrc = (u8 *)pdata + (y * iSrcScan);
+         unsigned char * pbSrc = (unsigned char *)pdata + (y * iSrcScan);
 
          for (::collection::index x = 0; x < pimage->width(); x++)
          {
@@ -80,9 +80,9 @@ namespace imaging_freeimage
 
 #elif defined(APPLEOS)
 
-      u8 * pbDst = (u8 *)pimage->get_data();
+      unsigned char * pbDst = (unsigned char *)pimage->get_data();
 
-      u8 * pbSrc = (u8 *)pdata;
+      unsigned char * pbSrc = (unsigned char *)pdata;
 
       ::collection::count c = (count)pimage->area();
 
@@ -109,8 +109,8 @@ namespace imaging_freeimage
       for (int i = 0; i < pimage->height(); i++)
       {
          ::memory_copy(
-            &((u8 *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
-            &((u8 *)pdata)[iSrcScan * i],
+            &((unsigned char *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
+            &((unsigned char *)pdata)[iSrcScan * i],
             iLineSize);
       }
 

@@ -47,28 +47,28 @@ namespace aqua
       void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none) override;
 
 
-      virtual void create_audio();
+      virtual void create_audio() override;
 
       void defer_audio() override;
 
-      virtual void defer_multimedia();
+      virtual void defer_multimedia() override;
 
-      virtual void defer_audio_mixer();
+      virtual void defer_audio_mixer() override;
 
-      virtual ::factory::factory_pointer audio_mixer_factory();
+      virtual ::factory::factory_pointer audio_mixer_factory() override;
 
       bool has_audio() override;
 
-      virtual ::aqua::multimedia* defer_get_multimedia();
+      virtual ::aqua::multimedia* defer_get_multimedia() override;
 
-      virtual ::aqua::audio_mixer * get_audio_mixer();
+      virtual ::aqua::audio_mixer * get_audio_mixer() override;
 
 
-      inline ::aqua::audio * audio() { return m_paudio; }
+    ::aqua::audio * audio()  override;
 
-      inline bool has_audio() const { return ::is_set(m_paudio); }
+       virtual bool has_audio() const; 
 
-      inline ::aqua::multimedia * multimedia() { return m_pmultimedia; }
+       ::aqua::multimedia * multimedia() override;
 
 
    };

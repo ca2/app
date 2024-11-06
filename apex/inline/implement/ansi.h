@@ -29,7 +29,7 @@
 //   if (!estatus)
 //   {
 //
-//      ::i32 iErrorStatus = estatus.error_status();
+//      int iErrorStatus = estatus.error_status();
 //
 //      return iErrorStatus;
 //
@@ -40,7 +40,7 @@
 //   if (!estatus)
 //   {
 //
-//      ::i32 iErrorStatus = estatus.error_status();
+//      int iErrorStatus = estatus.error_status();
 //
 //      return iErrorStatus;
 //
@@ -50,7 +50,7 @@
 //
 //   auto estatusEnd = psystem->end();
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

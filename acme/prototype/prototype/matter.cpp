@@ -376,10 +376,10 @@ void matter::notify_on_destroy(::property_object * pparticle)
 
 
 
-void matter::on_sequence(const ::payload & payload)
-{
-
-}
+//void matter::on_sequence(const ::payload & payload)
+//{
+//
+//}
 
 
 //::task* matter::defer_branch(const ::atom& atom, const ::procedure & procedure)

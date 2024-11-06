@@ -36,7 +36,7 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
       int cw = cxParam * sizeof(::image32_t);
 
       auto * psrc = pimage32Src;
-      auto * pdst = (::image32_t *)((u8 *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      auto * pdst = (::image32_t *)((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
       for (int i = 0; i < cyParam; i++)
       {
@@ -81,14 +81,14 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
       int cw = cxParam * sizeof(::image32_t);
 
       auto * psrc = pimage32Src;
-      auto * pdst = (::image32_t *)((u8 *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      auto * pdst = (::image32_t *)((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
       for (int i = 0; i < cyParam; i++)
       {
 
-         u8 * ps = (u8 *)psrc;
+         unsigned char * ps = (unsigned char *)psrc;
 
-         u8 * pd = (u8 *)pdst;
+         unsigned char * pd = (unsigned char *)pdst;
 
          for (int j = 0; j < cxParam; j++)
          {
@@ -162,9 +162,9 @@ void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int 
 //
 //         int cw = cxParam * sizeof(::image32_t);
 //
-//         auto psrc = (::u8 *)pimage32Src;
+//         auto psrc = (unsigned char *)pimage32Src;
 //
-//         auto pdst = (::u8 *)pimage32Dst;
+//         auto pdst = (unsigned char *)pimage32Dst;
 //
 //         for (int i = 0; i < cyParam; i++)
 //         {
@@ -229,9 +229,9 @@ void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, co
       for (int i = 0; i < cyParam; i++)
       {
 
-         u8 * ps = (u8 *)psrc;
+         unsigned char * ps = (unsigned char *)psrc;
 
-         u8 * pd = (u8 *)pdst;
+         unsigned char * pd = (unsigned char *)pdst;
 
          for (int j = 0; j < cxParam; j++)
          {

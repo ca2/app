@@ -1042,7 +1042,7 @@ namespace user
    }
 
 
-   i32 frame_window::OnCreateHelper(::user::system * pusersystem)
+   int frame_window::OnCreateHelper(::user::system * pusersystem)
    {
 
       if (!on_create_client(pusersystem))
@@ -1777,7 +1777,7 @@ namespace user
 
          auto ptopic = create_topic(id_on_activate);
 
-         ptopic->payload("eactivate") = (::i32)pactivate->m_eactivate;
+         ptopic->payload("eactivate") = (int)pactivate->m_eactivate;
 
          route(ptopic);
 
@@ -2626,7 +2626,7 @@ namespace user
    }
 
 
-   void frame_window::OnSize(::u32 nType, i32 cx, i32 cy)
+   void frame_window::OnSize(::u32 nType, int cx, int cy)
    {
 
    }

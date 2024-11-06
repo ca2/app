@@ -92,7 +92,7 @@ typedef struct
    char  *read_buffer;         /* internal buffer for compressed data */
    z_stream stream;            /* zLib stream structure for inflate */
 
-   uptr pos_in_zipfile;       /* position in ::u8 on the zipfile, for fseek*/
+   uptr pos_in_zipfile;       /* position in unsigned char on the zipfile, for fseek*/
    uptr stream_initialised;   /* flag set if stream structure is initialised*/
 
    uptr offset_local_extrafield;/* offset of the static extra field */
@@ -101,13 +101,13 @@ typedef struct
 
    u32 crc32;                /* crc32 of all data uncompressed */
    uptr crc32_wait;           /* crc32 we must obtain after decompress all */
-   uptr rest_read_compressed; /* number of ::u8 to be decompressed */
-   uptr rest_read_uncompressed;/*number of ::u8 to be obtained after decomp*/
+   uptr rest_read_compressed; /* number of unsigned char to be decompressed */
+   uptr rest_read_uncompressed;/*number of unsigned char to be obtained after decomp*/
    zlib_filefunc_def z_filefunc;
    voidpf filestream;        /* io structore of the zipfile */
    uptr compression_method;   /* compression method (0==store) */
-   uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
-   i32   raw;
+   uptr byte_before_the_zipfile;/* unsigned char before the zipfile, (>0 for sfx)*/
+   int   raw;
 } file_in_zip_read_info_s;
 
 
@@ -118,7 +118,7 @@ typedef struct
    zlib_filefunc_def z_filefunc;
    voidpf filestream;        /* io structore of the zipfile */
    unz_global_info gi;       /* public global information */
-   uptr byte_before_the_zipfile;/* ::u8 before the zipfile, (>0 for sfx)*/
+   uptr byte_before_the_zipfile;/* unsigned char before the zipfile, (>0 for sfx)*/
    uptr num_file;             /* number of the current file in the zipfile*/
    uptr pos_in_central_dir;   /* pos of the current file in the central dir*/
    uptr current_file_ok;      /* flag about the usability of the current file*/
@@ -132,7 +132,7 @@ typedef struct
    unz_file_info_internal cur_file_info_internal; /* private info about it*/
    file_in_zip_read_info_s* pfile_in_zip_read; /* structure about the current
                                         file if we are decompressing it */
-   i32 encrypted;
+   int encrypted;
 #    ifndef NOUNCRYPT
    u32 keys[3];     /* keys defining the pseudo-random sequence */
 #if defined(WINDOWS) || defined(LINUX)
@@ -149,24 +149,24 @@ typedef struct
 #endif
 
 /* ===========================================================================
-     read a ::u8 from a gz_stream; update next_in and avail_in. Return EOF
+     read a unsigned char from a gz_stream; update next_in and avail_in. Return EOF
    for end of spfile->
    IN assertion: the stream s has been sucessfully opened for reading.
 */
 
 
-static i32 unzlocal_getByte OF((
+static int unzlocal_getByte OF((
                                   const zlib_filefunc_def* pzlib_filefunc_def,
                                   voidpf filestream,
-                                  i32 *pi));
+                                  int *pi));
 
-static i32 unzlocal_getByte(const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, i32 * pi)
+static int unzlocal_getByte(const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, int * pi)
 {
    uchar ca;
-   i32 err = (i32)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
+   int err = (int)ZREAD(*pzlib_filefunc_def,filestream,&ca,1);
    if (err==1)
    {
-      *pi = (i32)ca;
+      *pi = (int)ca;
       return UNZ_OK;
    }
    else
@@ -182,16 +182,16 @@ static i32 unzlocal_getByte(const zlib_filefunc_def * pzlib_filefunc_def, voidpf
 /* ===========================================================================
    Reads a long in LSB order from the given gz_stream. Sets
 */
-static i32 unzlocal_getShort OF((
+static int unzlocal_getShort OF((
                                    const zlib_filefunc_def* pzlib_filefunc_def,
                                    voidpf filestream,
                                    uptr *pX));
 
-static i32 unzlocal_getShort (const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, uptr * pX)
+static int unzlocal_getShort (const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, uptr * pX)
 {
    uptr x ;
-   i32 i = 0;
-   i32 err;
+   int i = 0;
+   int err;
 
    err = unzlocal_getByte(pzlib_filefunc_def,filestream,&i);
    x = (uptr)i;
@@ -207,19 +207,19 @@ static i32 unzlocal_getShort (const zlib_filefunc_def * pzlib_filefunc_def, void
    return err;
 }
 
-static i32 unzlocal_getLong OF((
+static int unzlocal_getLong OF((
                                   const zlib_filefunc_def* pzlib_filefunc_def,
                                   voidpf filestream,
                                   uptr *pX));
 
-static i32 unzlocal_getLong (
+static int unzlocal_getLong (
 const zlib_filefunc_def* pzlib_filefunc_def,
 voidpf filestream,
 uptr *pX)
 {
    uptr x ;
-   i32 i;
-   i32 err;
+   int i;
+   int err;
 
    err = unzlocal_getByte(pzlib_filefunc_def,filestream,&i);
    x = (uptr)i;
@@ -245,7 +245,7 @@ uptr *pX)
 
 
 /* My own _strcmpi / strcasecmp */
-static i32 strcmpcasenosensitive_internal (const char * fileName1, const char * fileName2)
+static int strcmpcasenosensitive_internal (const char * fileName1, const char * fileName2)
 {
    for (;;)
    {
@@ -286,10 +286,10 @@ static i32 strcmpcasenosensitive_internal (const char * fileName1, const char * 
         (like 1 on Unix, 2 on Windows)
 
 */
-extern i32 CLASS_DECL_ACME unzStringFileNameCompare (
+extern int CLASS_DECL_ACME unzStringFileNameCompare (
 const char* fileName1,
 const char* fileName2,
-i32 iCaseSensitivity)
+int iCaseSensitivity)
 {
    if (iCaseSensitivity==0)
       iCaseSensitivity=CASESENSITIVITYDEFAULTVALUE;
@@ -311,9 +311,9 @@ i32 iCaseSensitivity)
 static uptr unzlocal_SearchCentralDir OF((
       const zlib_filefunc_def* pzlib_filefunc_def,
       voidpf filestream));
-i32 isEndOfCentralDir(uchar * buf);
+int isEndOfCentralDir(uchar * buf);
 
-i32 isEndOfCentralDir(uchar * buf)
+int isEndOfCentralDir(uchar * buf)
 {
    long * pl = (long *) buf;
    if(*pl == 0x06054b50
@@ -352,7 +352,7 @@ voidpf filestream)
    while (uBackRead<uMaxBack)
    {
       uptr uReadSize,uReadPos ;
-      i32 i;
+      int i;
       if (uBackRead+BUFREADCOMMENT>uMaxBack)
          uBackRead = uMaxBack;
       else
@@ -367,7 +367,7 @@ voidpf filestream)
       if (ZREAD(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
          break;
 
-      for (i = (i32)uReadSize - 3; (i--) > 0;)
+      for (i = (int)uReadSize - 3; (i--) > 0;)
       {
          //if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
          //           ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
@@ -410,7 +410,7 @@ zlib_filefunc_def* pzlib_filefunc_def)
                                    the central dir
                                    (same than number_entry on nospan) */
 
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
 
    if (unz_copyright[0]!=' ')
       return nullptr;
@@ -507,7 +507,7 @@ extern unzFile CLASS_DECL_ACME unzOpen (const ::file::path & path)
   If there is files inside the .Zip opened with unzipOpenCurrentFile (see later),
     these files MUST be closed with unzipCloseCurrentFile before call unzipClose.
   return UNZ_OK if there is no problem. */
-extern i32 CLASS_DECL_ACME unzClose (unzFile file)
+extern int CLASS_DECL_ACME unzClose (unzFile file)
 {
    unz_s* s;
    if (file==nullptr)
@@ -527,7 +527,7 @@ extern i32 CLASS_DECL_ACME unzClose (unzFile file)
   write info about the ZipFile in the *pglobal_info structure.
   No preparation of the structure is needed
   return UNZ_OK if there is no problem. */
-extern i32 CLASS_DECL_ACME unzGetGlobalInfo (unzFile file,
+extern int CLASS_DECL_ACME unzGetGlobalInfo (unzFile file,
       unz_global_info *pglobal_info)
 {
    unz_s* s;
@@ -560,7 +560,7 @@ tm_unz* ptm)
 /*
   get Info about the current file in the zipfile, with internal only info
 */
-static i32 unzlocal_GetCurrentFileInfoInternal OF((unzFile file,
+static int unzlocal_GetCurrentFileInfoInternal OF((unzFile file,
       unz_file_info *pfile_info,
       unz_file_info_internal
       *pfile_info_internal,
@@ -571,7 +571,7 @@ static i32 unzlocal_GetCurrentFileInfoInternal OF((unzFile file,
       char *szComment,
       uptr commentBufferSize));
 
-static i32 unzlocal_GetCurrentFileInfoInternal (
+static int unzlocal_GetCurrentFileInfoInternal (
 unzFile file,
 unz_file_info *pfile_info,
 unz_file_info_internal *pfile_info_internal,
@@ -585,7 +585,7 @@ uptr commentBufferSize)
    unz_s* s;
    unz_file_info file_info;
    unz_file_info_internal file_info_internal;
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
    uptr uMagic;
    uptr lSeek=0;
 
@@ -753,7 +753,7 @@ uptr commentBufferSize)
   No preparation of the structure is needed
   return UNZ_OK if there is no problem.
 */
-extern i32 CLASS_DECL_ACME unzGetCurrentFileInfo (
+extern int CLASS_DECL_ACME unzGetCurrentFileInfo (
 unzFile file,
 unz_file_info *pfile_info,
 char *szFileName,
@@ -773,9 +773,9 @@ uptr commentBufferSize)
   set the current file of the zipfile to the first spfile->
   return UNZ_OK if there is no problem
 */
-extern i32 CLASS_DECL_ACME unzGoToFirstFile (unzFile file)
+extern int CLASS_DECL_ACME unzGoToFirstFile (unzFile file)
 {
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
    unz_s* s;
    if (file==nullptr)
       return UNZ_PARAMERROR;
@@ -794,10 +794,10 @@ extern i32 CLASS_DECL_ACME unzGoToFirstFile (unzFile file)
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
 */
-extern i32 CLASS_DECL_ACME unzGoToNextFile (unzFile file)
+extern int CLASS_DECL_ACME unzGoToNextFile (unzFile file)
 {
    unz_s* s;
-   i32 err;
+   int err;
 
    if (file==nullptr)
       return UNZ_PARAMERROR;
@@ -826,13 +826,13 @@ extern i32 CLASS_DECL_ACME unzGoToNextFile (unzFile file)
   UNZ_OK if the file is found. It becomes the current spfile->
   UNZ_END_OF_LIST_OF_FILE if the file is not found
 */
-extern i32 CLASS_DECL_ACME unzLocateFile (
+extern int CLASS_DECL_ACME unzLocateFile (
 unzFile file,
 const char *szFileName,
-i32 iCaseSensitivity)
+int iCaseSensitivity)
 {
    unz_s* s;
-   i32 err;
+   int err;
 
    /* We remember the 'current' position in the file so that we can jump
     * back there if we fail.
@@ -905,7 +905,7 @@ typedef struct unz_file_pos_s
 } unz_file_pos;
 */
 
-extern i32 CLASS_DECL_ACME unzGetFilePos(
+extern int CLASS_DECL_ACME unzGetFilePos(
 unzFile file,
 unz_file_pos* file_pos)
 {
@@ -923,12 +923,12 @@ unz_file_pos* file_pos)
    return UNZ_OK;
 }
 
-extern i32 CLASS_DECL_ACME unzGoToFilePos(
+extern int CLASS_DECL_ACME unzGoToFilePos(
 unzFile file,
 unz_file_pos* file_pos)
 {
    unz_s* s;
-   i32 err;
+   int err;
 
    if (file==nullptr || file_pos==nullptr)
       return UNZ_PARAMERROR;
@@ -959,7 +959,7 @@ unz_file_pos* file_pos)
   store in *piSizeVar the size_i32 of extra info in static header
         (filename and size_i32 of extra field data)
 */
-static i32 unzlocal_CheckCurrentFileCoherencyHeader (
+static int unzlocal_CheckCurrentFileCoherencyHeader (
 unz_s* s,
 u32* piSizeVar,
 uptr *poffset_local_extrafield,
@@ -968,7 +968,7 @@ u32  *psize_local_extrafield)
    uptr uMagic,uData,uFlags;
    uptr size_filename;
    uptr size_extra_field;
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
 
    *piSizeVar = 0;
    *poffset_local_extrafield = 0;
@@ -1055,9 +1055,9 @@ u32  *psize_local_extrafield)
   open for reading data the current file in the zipfile.
   If there is no error and the file is opened, the return value is UNZ_OK.
 */
-extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 * level, i32 raw, const char * password)
+extern int CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, int * method, int * level, int raw, const char * password)
 {
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
    u32 iSizeVar;
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
@@ -1103,7 +1103,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
    pfile_in_zip_read_info->stream_initialised=0;
 
    if (method!=nullptr)
-      *method = (i32)s->cur_file_info.compression_method;
+      *method = (int)s->cur_file_info.compression_method;
 
    if (level!=nullptr)
    {
@@ -1136,7 +1136,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
       pfile_in_zip_read_info->stream.zalloc = (alloc_func)0;
       pfile_in_zip_read_info->stream.zfree = (free_func)0;
       pfile_in_zip_read_info->stream.opaque = (voidpf)0;
-      pfile_in_zip_read_info->stream.next_in = (::u8* )0;
+      pfile_in_zip_read_info->stream.next_in = (unsigned char* )0;
       pfile_in_zip_read_info->stream.avail_in = 0;
 
       err=inflateInit2(&pfile_in_zip_read_info->stream, -MAX_WBITS);
@@ -1145,7 +1145,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
       else
          return err;
       /* windowBits is passed < 0 to tell that there is no zlib header.
-       * Note that in this case inflate *requires* an extra "dummy" ::u8
+       * Note that in this case inflate *requires* an extra "dummy" unsigned char
        * after the compressed stream in order to complete decompression and
        * return Z_STREAM_END.
        * In unzip, i don't wait absolutely Z_STREAM_END because I known the
@@ -1169,7 +1169,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
 #    ifndef NOUNCRYPT
    if (password != nullptr)
    {
-      i32 i;
+      int i;
       s->pcrc_32_tab = zip_get_crc_table();
       init_keys(password,s->keys,s->pcrc_32_tab);
       if (ZSEEK(s->z_filefunc, s->filestream,
@@ -1192,24 +1192,24 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
    return UNZ_OK;
 }
 
-extern i32 CLASS_DECL_ACME unzOpenCurrentFile (
+extern int CLASS_DECL_ACME unzOpenCurrentFile (
 unzFile file)
 {
    return unzOpenCurrentFile3(file, nullptr, nullptr, 0, nullptr);
 }
 
-extern i32 CLASS_DECL_ACME unzOpenCurrentFilePassword (
+extern int CLASS_DECL_ACME unzOpenCurrentFilePassword (
 unzFile file,
 const char* password)
 {
    return unzOpenCurrentFile3(file, nullptr, nullptr, 0, password);
 }
 
-extern i32 CLASS_DECL_ACME unzOpenCurrentFile2 (
+extern int CLASS_DECL_ACME unzOpenCurrentFile2 (
 unzFile file,
-i32* method,
-i32* level,
-i32 raw)
+int* method,
+int* level,
+int raw)
 {
    return unzOpenCurrentFile3(file, method, level, raw, nullptr);
 }
@@ -1219,17 +1219,17 @@ i32 raw)
   buf contain buffer where data must be copied
   len the size_i32 of buf.
 
-  return the number of ::u8 copied if somes bytes are copied
+  return the number of unsigned char copied if somes bytes are copied
   return 0 if the end of file was reached
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
-extern i32 CLASS_DECL_ACME unzReadCurrentFile  (
+extern int CLASS_DECL_ACME unzReadCurrentFile  (
 unzFile file,
 voidp buf,
 u32 len)
 {
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
    uptr iRead = 0;
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
@@ -1247,7 +1247,7 @@ u32 len)
    if (len==0)
       return 0;
 
-   pfile_in_zip_read_info->stream.next_out = (::u8*)buf;
+   pfile_in_zip_read_info->stream.next_out = (unsigned char*)buf;
 
    pfile_in_zip_read_info->stream.avail_out = (u32)len;
 
@@ -1295,7 +1295,7 @@ u32 len)
          pfile_in_zip_read_info->rest_read_compressed-=uReadThis;
 
          pfile_in_zip_read_info->stream.next_in =
-         (::u8*)pfile_in_zip_read_info->read_buffer;
+         (unsigned char*)pfile_in_zip_read_info->read_buffer;
          pfile_in_zip_read_info->stream.avail_in = (u32)uReadThis;
       }
 
@@ -1305,7 +1305,7 @@ u32 len)
 
          if ((pfile_in_zip_read_info->stream.avail_in == 0) &&
                (pfile_in_zip_read_info->rest_read_compressed == 0))
-            return (iRead==0) ? UNZ_EOF : (i32) iRead;
+            return (iRead==0) ? UNZ_EOF : (int) iRead;
 
          if (pfile_in_zip_read_info->stream.avail_out <
                pfile_in_zip_read_info->stream.avail_in)
@@ -1331,9 +1331,9 @@ u32 len)
       else
       {
          uptr uTotalOutBefore,uTotalOutAfter;
-         const u8 *bufBefore;
+         const unsigned char *bufBefore;
          uptr uOutThis;
-         i32 flush=Z_SYNC_FLUSH;
+         int flush=Z_SYNC_FLUSH;
 
          uTotalOutBefore = pfile_in_zip_read_info->stream.total_out;
          bufBefore = pfile_in_zip_read_info->stream.next_out;
@@ -1359,14 +1359,14 @@ u32 len)
          iRead += (u32)(uTotalOutAfter - uTotalOutBefore);
 
          if (err==Z_STREAM_END)
-            return (iRead==0) ? UNZ_EOF : (i32) iRead;
+            return (iRead==0) ? UNZ_EOF : (int) iRead;
          if (err!=Z_OK)
             break;
       }
    }
 
    if (err==Z_OK)
-      return (i32) iRead;
+      return (int) iRead;
    return err;
 }
 
@@ -1394,7 +1394,7 @@ unzFile file)
 /*
   return 1 if the end of file was reached, 0 elsewhere
 */
-extern i32 CLASS_DECL_ACME unzeof (
+extern int CLASS_DECL_ACME unzeof (
 unzFile file)
 {
    unz_s* s;
@@ -1427,7 +1427,7 @@ unzFile file)
   the return value is the number of bytes copied in buf, or (if <0)
     the error code
 */
-extern i32 CLASS_DECL_ACME unzGetLocalExtrafield (
+extern int CLASS_DECL_ACME unzGetLocalExtrafield (
 unzFile file,
 voidp buf,
 u32 len)
@@ -1449,7 +1449,7 @@ u32 len)
                    pfile_in_zip_read_info->pos_local_extrafield);
 
    if (buf==nullptr)
-      return (i32)size_to_read;
+      return (int)size_to_read;
 
    if (len>size_to_read)
       read_now = (u32)size_to_read;
@@ -1471,17 +1471,17 @@ u32 len)
              buf,size_to_read)!=size_to_read)
       return UNZ_ERRNO;
 
-   return (i32)read_now;
+   return (int)read_now;
 }
 
 /*
   close the file in zip opened with unzipOpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
 */
-extern i32 CLASS_DECL_ACME unzCloseCurrentFile (
+extern int CLASS_DECL_ACME unzCloseCurrentFile (
 unzFile file)
 {
-   i32 err=UNZ_OK;
+   int err=UNZ_OK;
 
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
@@ -1519,14 +1519,14 @@ unzFile file)
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the size_i32 of the szComment buffer.
-  return the number of ::u8 copied or an error code <0
+  return the number of unsigned char copied or an error code <0
 */
-extern i32 CLASS_DECL_ACME unzGetGlobalComment (
+extern int CLASS_DECL_ACME unzGetGlobalComment (
 unzFile file,
 char *szComment,
 uptr uSizeBuf)
 {
-//    i32 err=UNZ_OK;
+//    int err=UNZ_OK;
    unz_s* s;
    uptr uReadThis ;
    if (file==nullptr)
@@ -1549,5 +1549,5 @@ uptr uSizeBuf)
 
    if ((szComment != nullptr) && (uSizeBuf > s->gi.size_comment))
       *(szComment+s->gi.size_comment)='\0';
-   return (i32)uReadThis;
+   return (int)uReadThis;
 }

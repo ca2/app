@@ -49,7 +49,7 @@ namespace color
 
 
 
-   //color::color::color(::u8 r, ::u8 g, ::u8 b, ::u8 a)
+   //color::color::color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
    //{
 
    //   set(r, g, b, a);
@@ -57,7 +57,7 @@ namespace color
    //}
 
 
-   color::color::color(const hls & hls, ::u8 a)
+   color::color::color(const hls & hls, unsigned char a)
    {
 
       operator = (hls);
@@ -486,9 +486,9 @@ namespace color
       double dFinalG = (dCMin + dG * dCAdd);
       double dFinalB = (dCMin + dB * dCAdd);
 
-      m_u8Red   = (::u8)primitive_color_round(dFinalR * 255.0);
-      m_u8Green = (::u8)primitive_color_round(dFinalG * 255.0);
-      m_u8Blue  = (::u8)primitive_color_round(dFinalB * 255.0);
+      m_u8Red   = (unsigned char)primitive_color_round(dFinalR * 255.0);
+      m_u8Green = (unsigned char)primitive_color_round(dFinalG * 255.0);
+      m_u8Blue  = (unsigned char)primitive_color_round(dFinalB * 255.0);
 
       /*   double H = dH * 360.0;
 
@@ -505,9 +505,9 @@ namespace color
          m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
          m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-         m_iR      = (::u8)primitive_color_round(m_dR * 255.0);
-         m_iG      = (::u8)primitive_color_round(m_dG * 255.0);
-         m_iB      = (::u8)primitive_color_round(m_dB * 255.0);*/
+         m_iR      = (unsigned char)primitive_color_round(m_dR * 255.0);
+         m_iG      = (unsigned char)primitive_color_round(m_dG * 255.0);
+         m_iB      = (unsigned char)primitive_color_round(m_dB * 255.0);*/
 
    }
 
@@ -754,7 +754,7 @@ namespace color
 
 
    /*
-   void CColor::get_hls(::u8 * H, ::u8 * L, ::u8 * S)
+   void CColor::get_hls(unsigned char * H, unsigned char * L, unsigned char * S)
    {
       double dHue, dLightness, dSaturation;
       // input rgb values
@@ -768,7 +768,7 @@ namespace color
       // calculate lightness
       dMax = maximum(maximum(dRed, dGreen), dBlue);
       dMin = minimum(minimum(dRed, dGreen), dBlue);
-      dLightness = (::u8) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
+      dLightness = (unsigned char) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
       if(dMax == dMin)
       {
          // rectangle=g=b --> achromatic case
@@ -802,9 +802,9 @@ namespace color
          if (dHue > HLSMAX)
             dHue -= HLSMAX;
       }
-      *H = (::u8) dHue;
-      *L = (::u8) dLightness;
-      *S = (::u8) dSaturation;
+      *H = (unsigned char) dHue;
+      *L = (unsigned char) dLightness;
+      *S = (unsigned char) dSaturation;
    }*/
 
    /*
@@ -865,9 +865,9 @@ namespace color
          dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
             (HLSMAX/2))/HLSMAX;
       }
-      m_bBlue      = (::u8) dBlue;
-      m_bGreen   = (::u8) dGreen;
-      m_bRed      = (::u8) dRed;
+      m_bBlue      = (unsigned char) dBlue;
+      m_bGreen   = (unsigned char) dGreen;
+      m_bRed      = (unsigned char) dRed;
 
 
    }
@@ -979,7 +979,7 @@ namespace color
    }
 
 
-   //void color::set(::u8 r, ::u8 g, ::u8 b, ::u8 a)
+   //void color::set(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
    //{
 
    //   m_u8Red      = r;
@@ -1279,7 +1279,7 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string& scopedstr)
 
       sscanf(scopedstr, "%02x%02x%02x", &r, &g, &b);
 
-      return rgba((::u8)r, (::u8)g, (::u8)b, 255 );
+      return rgba((unsigned char)r, (unsigned char)g, (unsigned char)b, 255 );
 
    }
    else if (scopedstr.size() == 8)
@@ -1292,7 +1292,7 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string& scopedstr)
 
       sscanf(scopedstr, "%02x%02x%02x%02x", &r, &g, &b, &a);
 
-      return rgba( (::u8)r, (::u8)g, (::u8)b, (::u8)a);
+      return rgba( (unsigned char)r, (unsigned char)g, (unsigned char)b, (unsigned char)a);
 
    }
    else

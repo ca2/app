@@ -220,7 +220,7 @@ public:
    const CHARACTER * c_str() const { return this->null_terminated(); }
 
 
-   ::block as_block() const { return { (::u8 *)this->begin(), this->size() * sizeof(CHARACTER) }; }
+   ::block as_block() const { return { (unsigned char *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 
 
 };

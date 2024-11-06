@@ -751,7 +751,7 @@ namespace user
    }
 
 
-   void interaction::set_width(::i32 width, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_width(int width, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto size = this->size(elayout);
@@ -781,7 +781,7 @@ namespace user
    }
 
 
-   void interaction::set_height(::i32 height, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_height(int height, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto size = this->size(elayout);
@@ -811,7 +811,7 @@ namespace user
    }
 
 
-   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::shift_left(int left, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -855,7 +855,7 @@ namespace user
    }
 
 
-   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_right(int right, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -890,7 +890,7 @@ namespace user
    }
 
 
-   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_top(const int top, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = position(elayout);
@@ -2620,7 +2620,7 @@ namespace user
 
          string strName;
 
-         //i32 iStyle = get_window_long(GWL_STYLE);
+         //int iStyle = get_window_long(GWL_STYLE);
 
          //iStyle |= WS_CHILD;
 
@@ -5453,7 +5453,7 @@ namespace user
 
       //auto offset = pointOffset - pointContextOffset;
 
-      //pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
+      //pgraphics->offset_origin((int)offset.cx(), (int)offset.cy());
 
    }
 
@@ -5479,7 +5479,7 @@ namespace user
 
          }
 
-         pgraphics->offset_origin((::i32)pointOffset.x(), (::i32)pointOffset.y());
+         pgraphics->offset_origin((int)pointOffset.x(), (int)pointOffset.y());
 
       }
 
@@ -5489,7 +5489,7 @@ namespace user
 
          auto offset = -pointContextOffset;
 
-         pgraphics->offset_origin((::i32)offset.x(), (::i32)offset.y());
+         pgraphics->offset_origin((int)offset.x(), (int)offset.y());
 
       }
 
@@ -5519,7 +5519,7 @@ namespace user
 
    //   auto offset = pointOffset - pointContextOffset;
 
-   //   pgraphics->offset_origin((::i32)offset.cx(), (::i32)offset.cy());
+   //   pgraphics->offset_origin((int)offset.cx(), (int)offset.cy());
 
    //}
 
@@ -8223,7 +8223,7 @@ namespace user
       //
       //      ::pointer<::user::interaction>pinteraction = top_child();
       //
-      //      //      i32 iSize;
+      //      //      int iSize;
       //
       //      try
       //      {
@@ -8514,7 +8514,7 @@ namespace user
 
          ::user::interaction * pinteraction = top_child();
 
-         //         i32 iSize;
+         //         int iSize;
 
          try
          {
@@ -9394,7 +9394,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
    {
 
       ::pointer<interaction> pinteraction = top_child();
@@ -9455,7 +9455,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::collection::index iItem, int iLevel)
    {
 
       auto pwindow = this->window();
@@ -9524,7 +9524,7 @@ namespace user
    }
 
 
-   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
+   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::collection::index iItem, int iLevel)
    {
 
       auto pchild = get_child_by_id(atom, iItem, iLevel);
@@ -9541,7 +9541,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, ::i32 iLevel,
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, int iLevel,
                                                        const ::user::interaction_array * pinteractionaExclude)
    {
 
@@ -9877,7 +9877,7 @@ namespace user
    lresult interaction::message_call(::message::message * pmessage)
    {
 
-      message_call(pmessage);
+      message_handler(pmessage);
 
       return pmessage->m_lresult;
 
@@ -11011,7 +11011,7 @@ namespace user
    }
 
 
-   //::i32 interaction::get_window_long(i32 nIndex) const
+   //int interaction::get_window_long(int nIndex) const
    //{
 
    //   if (window() == nullptr)
@@ -11026,7 +11026,7 @@ namespace user
    //}
 
 
-   //::i32 interaction::set_window_long(i32 nIndex, ::i32 lValue)
+   //int interaction::set_window_long(int nIndex, int lValue)
    //{
 
    //   if (window() == nullptr)
@@ -11069,7 +11069,7 @@ namespace user
    }
 
 
-   //iptr interaction::get_window_long_ptr(i32 nIndex) const
+   //iptr interaction::get_window_long_ptr(int nIndex) const
    //{
 
    //   if (window() == nullptr)
@@ -11084,7 +11084,7 @@ namespace user
    //}
 
 
-   //void interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //void interaction::set_window_long_ptr(int nIndex, iptr lValue)
    //{
 
    //   if (window() == nullptr)
@@ -12716,7 +12716,7 @@ namespace user
 
       //}
 
-      viewport_screen_to_client(sequence);
+      _raw_screen_to_client((::point_i32 &) sequence);
 
    }
 
@@ -14371,7 +14371,7 @@ namespace user
    //}
 
 
-   //i32 interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
+   //int interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
    //{
 
    //   if (window() == nullptr)
@@ -18949,7 +18949,7 @@ namespace user
    }
 
 
-   i32 interaction::get_wheel_scroll_delta()
+   int interaction::get_wheel_scroll_delta()
    {
 
       return 0;
@@ -19146,10 +19146,10 @@ namespace user
 
 
    // returns -1 if not descendant
-   i32 interaction::get_descendant_level(::user::element * pinteraction)
+   int interaction::get_descendant_level(::user::element * pinteraction)
    {
 
-      i32 iLevel = 0;
+      int iLevel = 0;
 
       while (pinteraction != nullptr)
       {
@@ -20055,7 +20055,7 @@ namespace user
    //   }
 
 
-   //   void interaction::move_to(i32 x, i32 y)
+   //   void interaction::move_to(int x, int y)
    //   {
    //
    //      move_to({ x, y });
@@ -20063,7 +20063,7 @@ namespace user
    //   }
 
 
-   //   void interaction::set_size(i32 cx, i32 cy)
+   //   void interaction::set_size(int cx, int cy)
    //   {
    //
    //      set_size({ cx, cy });
@@ -20157,7 +20157,7 @@ namespace user
 
       }
 
-      auto iLayout = (::i32)elayout;
+      auto iLayout = (int)elayout;
 
       while (iLayout >= 0)
       {
@@ -20222,7 +20222,7 @@ namespace user
    }
 
 
-   void interaction::place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::place(int x, int y, int w, int h, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto rectangle = ::rectangle_f32_dimension(x, y, w, h);
@@ -20232,7 +20232,7 @@ namespace user
    }
 
 
-   //   void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
+   //   void interaction::set_dim(int x, int y, int cx, int cy)
    //   {
    //
    //      place(rectangle_i32_dimension(x, y, cx, cy));
@@ -20325,22 +20325,22 @@ namespace user
       return parent_client_rectangle(elayout).size();
    }
 
-   ::i32 interaction::top(enum_layout elayout)
+   int interaction::top(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).top();
    }
 
-   ::i32 interaction::left(enum_layout elayout)
+   int interaction::left(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).left();
    }
 
-   ::i32 interaction::right(enum_layout elayout)
+   int interaction::right(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).right();
    }
 
-   ::i32 interaction::bottom(enum_layout elayout)
+   int interaction::bottom(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).bottom();
    }
@@ -20753,7 +20753,7 @@ namespace user
       {
 
          information() << "interaction::bestmonitor (" << rectangleNew.left() << ", " << rectangleNew.top() << ", "
-            << rectangleNew.right() << ", " << rectangleNew.bottom() << ") activation " << (i32)eactivation;
+            << rectangleNew.right() << ", " << rectangleNew.bottom() << ") activation " << (int)eactivation;
 
          order(zorderParam);
 
@@ -22043,7 +22043,7 @@ namespace user
    //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    //{
 
-   //   set_context_offset(pgraphics, x, (::i32)get_context_offset().y());
+   //   set_context_offset(pgraphics, x, (int)get_context_offset().y());
 
    //}
 
@@ -22051,7 +22051,7 @@ namespace user
    //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    //{
 
-   //   set_context_offset(pgraphics, (::i32)get_context_offset().x(), y);
+   //   set_context_offset(pgraphics, (int)get_context_offset().x(), y);
 
    //}
 
@@ -28997,7 +28997,7 @@ namespace user
    }
 
 
-   void control_cmd_ui::SetCheck(i32 nCheck)
+   void control_cmd_ui::SetCheck(int nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
       /*::pointer<::user::interaction>puserinteraction = (::pointer<::user::interaction>_pOther;
@@ -29358,14 +29358,14 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         //i32 iMargin = rectangleX.height() / 8;
-         i32 iMargin = 0;
+         //int iMargin = rectangleX.height() / 8;
+         int iMargin = 0;
 
          ::rectangle_i32 rectangleDropDown;
 
          rectangleDropDown = rectangleX;
 
-         i32 iW = rectangleX.height() * 5 / 8;
+         int iW = rectangleX.height() * 5 / 8;
 
          rectangleDropDown.right() -= iMargin;
          rectangleDropDown.bottom() -= iMargin;
@@ -29565,9 +29565,9 @@ namespace user
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      i32 cx = rectangleDropDown.width() / 3;
+      int cx = rectangleDropDown.width() / 3;
 
-      i32 cy = cx * 2 / 3;
+      int cy = cx * 2 / 3;
 
       ::point_i32 pointCenter = rectangleDropDown.center();
 

@@ -18,7 +18,7 @@
 
 //    ::e_status estatus = psystem->__thread_procedure();
 
-//    ::i32 iErrorStatus = estatus.error_status();
+//    int iErrorStatus = estatus.error_status();
 
 //    return iErrorStatus;
 

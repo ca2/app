@@ -109,7 +109,7 @@ namespace opengl
 
       {
 
-         auto dst = (::u8 *)data;
+         auto dst = (unsigned char *)data;
          auto size = cx * cy;
 
          while (size > 0)

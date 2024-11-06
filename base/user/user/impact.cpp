@@ -277,7 +277,7 @@ namespace user
    //   u32 uStyle = GetStyle();
    //   if (uStyle & WS_VSCROLL)
    //   {
-   //   i32 nAdjust = ::windows_definition::Data.cxVScroll;
+   //   int nAdjust = ::windows_definition::Data.cxVScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CX_BORDER;
    //   pClientRect->right() += nAdjust;
@@ -285,7 +285,7 @@ namespace user
    //   }
    //   if (uStyle & WS_HSCROLL)
    //   {
-   //   i32 nAdjust = ::windows_definition::Data.cyHScroll;
+   //   int nAdjust = ::windows_definition::Data.cyHScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CY_BORDER;
    //   pClientRect->bottom() += nAdjust;
@@ -591,9 +591,9 @@ namespace user
 
 
    /* trans
-   i32 impact::OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
+   int impact::OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
    {
-   i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
+   int nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
    return nResult;   // frame does not want to activate
 
@@ -679,7 +679,7 @@ namespace user
    // ::user::impact splitting commands
 
 
-   /*   CScrollBar* impact::GetScrollBarCtrl(i32 nBar) const
+   /*   CScrollBar* impact::GetScrollBarCtrl(int nBar) const
       {
 
          ///ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
@@ -1121,7 +1121,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::context * pcontext)
+   int impact::get_total_page_count(::context * pcontext)
    {
 
       return 1;
@@ -1180,7 +1180,7 @@ namespace user
 
    //   on_draw_impact_nc(pgraphics);
 
-   //   i32 iTry = 0;
+   //   int iTry = 0;
 
    //   bool bOk;
 
@@ -1242,7 +1242,7 @@ namespace user
    {
       ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
       pmessage->previous();
-      //i32 nResult = pmouseactivate->get_lresult();
+      //int nResult = pmouseactivate->get_lresult();
 
       if (pmouseactivate->get_message() == e_mouse_activate
             || pmouseactivate->get_message() == e_mouse_activate_no_activate_and_eat)

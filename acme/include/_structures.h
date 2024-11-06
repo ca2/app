@@ -26,7 +26,7 @@ struct raw_type_t {};
 struct i32_sz
 {
 
-   ::i32                m_i;
+   int                m_i;
    const char *         m_psz;
 
 };

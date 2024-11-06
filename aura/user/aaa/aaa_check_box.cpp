@@ -6,9 +6,9 @@
 void scroll_x(RECT32 * prect, double dRateX, const ::rectangle_f64 & rectangle)
 {
 
-   ::i32 w = ::width(prect);
+   int w = ::width(prect);
 
-   prect->left() = (::i32) (rectangle.left() + (rectangle.width() - w) * dRateX);
+   prect->left() = (int) (rectangle.left() + (rectangle.width() - w) * dRateX);
 
    prect->right() = prect->left() + w;
 
@@ -377,7 +377,7 @@ namespace user
 
          }
 
-         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((::u8(255.0 * dRate)) << 24);
+         pbrush1->m_color = (pbrush1->m_color.operator color32_t() & 0xffffff) | ((unsigned char(255.0 * dRate)) << 24);
 
          pbrush1->set_modified();
 
@@ -391,9 +391,9 @@ namespace user
          pgraphics->path(point);
 
          pbrush->create_solid(argb(255,
-                               (::u8)((double) color32_u8_red(color32) * dRate),
-                               (::u8)((double) color32_u8_green(color32) * dRate),
-                               (::u8)((double) color32_u8_blue(color32) * dRate)));
+                               (unsigned char)((double) color32_u8_red(color32) * dRate),
+                               (unsigned char)((double) color32_u8_green(color32) * dRate),
+                               (unsigned char)((double) color32_u8_blue(color32) * dRate)));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 
@@ -403,7 +403,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
+         unsigned char bAlphaP1 = (unsigned char) (255.0 * (1.0 - dRate));
 
          color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
 

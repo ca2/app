@@ -39,11 +39,11 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      i32 iIndex;
+      int iIndex;
 
       atom atom;
 
-      for(i32 i = 0; i < pnode->children().get_count(); i++)
+      for(int i = 0; i < pnode->children().get_count(); i++)
       {
 
          ::pointer<::xml::node>pchild = pnode->child_at(i);

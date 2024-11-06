@@ -1705,7 +1705,7 @@ m_ibuf(isize)
    void tcp_socket::write(const void* p, ::memsize s)
    {
 
-      const u8* buf = (const u8*)p;
+      const unsigned char* buf = (const unsigned char*)p;
 
       if (!Ready() && !is_connecting())
       {

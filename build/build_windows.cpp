@@ -61,7 +61,7 @@ namespace windows
          strConfiguration.c_str(),
          strPlatform.c_str());
 
-      ::i32 iExitCode = 0;
+      int iExitCode = 0;
 
       node()->command_system(m_straLine, iExitCode, strCommand, e_command_system_inline_log);
 

@@ -10,7 +10,7 @@ namespace opengl
 
 
 
-   inline void color(::u8 u8Red, ::u8 u8Green, ::u8 u8Blue, ::u8 u8Opacity)
+   inline void color(unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue, unsigned char u8Opacity)
    {
 
       //auto fr = (float)r * (float)a / 65355.f;

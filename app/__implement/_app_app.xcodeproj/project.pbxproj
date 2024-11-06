@@ -33,6 +33,8 @@
 		9A4E9699278532DD00B74C76 /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E9679278532DC00B74C76 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B727853AA900B74C76 /* libcrypto_openssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4C02761556D00802DB8 /* libcrypto_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96BA27853AB400B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A52435C2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */; };
+		9A52435D2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A82E7D629A1407500EBCBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; };
 		9A8B170529A10A9C00D14979 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8B170329A10A9C00D14979 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8B170829A10AAE00D14979 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8B170629A10AAE00D14979 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -191,6 +193,7 @@
 				9A8B170529A10A9C00D14979 /* libacme_darwin.dylib in Embed Libraries */,
 				9A4E9695278532DD00B74C76 /* libidn.dylib in Embed Libraries */,
 				9A4E968D278532DD00B74C76 /* libaura_apple.dylib in Embed Libraries */,
+				9A52435D2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib in Embed Libraries */,
 				9A8B170C29A10B0600D14979 /* libaura_darwin.dylib in Embed Libraries */,
 				9A21A734276107DD001E14CC /* libcrypto.dylib in Embed Libraries */,
 				9A9A15762AFC230600FA9BEB /* libdarwin.dylib in Embed Libraries */,
@@ -250,6 +253,7 @@
 		9A4E9679278532DC00B74C76 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
+		9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_graphics_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app.xcodeproj; path = ../app_app.xcodeproj; sourceTree = "<group>"; };
 		9A8B170329A10A9C00D14979 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8B170629A10AAE00D14979 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +277,7 @@
 			files = (
 				9A82E7D629A1407500EBCBCC /* libapp_app.dylib in Frameworks */,
 				9A1CF4FF276161CB00802DB8 /* libapex.dylib in Frameworks */,
+				9A52435C2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib in Frameworks */,
 				9A1CF4FD276161C900802DB8 /* libacme.dylib in Frameworks */,
 				9A1CF501276161CB00802DB8 /* libaqua.dylib in Frameworks */,
 				9A4E9694278532DD00B74C76 /* libidn.dylib in Frameworks */,
@@ -379,6 +384,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */,
 				9A3275E42C6DA9EA00EB43C5 /* libnano_dynamic_library_dyld.dylib */,
 				9A90BA132B54958A002BFC9E /* libarchive.dylib */,
 				9A9A15742AFC230500FA9BEB /* libdarwin.dylib */,

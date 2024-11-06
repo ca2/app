@@ -426,7 +426,7 @@ namespace helloaxis
 //      psystem->imaging().bitmap_blend(pgraphics,
 //                                             point_i32((m_rectangleX.width() - m_pimageTemplate2->width()) / 2, (m_rectangleX->height() - m_pimageTemplate2->height()) / 2)
 //                                             , m_pimageTemplate2->m_size,
-//                                             m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
+//                                             m_pimageTemplate2->get_graphics(), ::point_i32(), unsigned char (128 + (255 - 128) * r));
 //
 //      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
 //
@@ -677,7 +677,7 @@ namespace helloaxis
 //
 //      pgraphics->text_out((m_rectangleX.width() - size.cx()) / 2, (m_rectangleX.height() - size.cy()) / 2, strHelloAXIS);
 //
-//      ::u8 a, R, g, b;
+//      unsigned char a, R, g, b;
 //
 //      if (m_bAlternate)
 //      {
@@ -890,7 +890,7 @@ namespace helloaxis
 //            if (t < border && m_strLast23 != m_strCurrent23)
 //            {
 //
-//               ::u8 uchAlpha = 255 * t / border;
+//               unsigned char uchAlpha = 255 * t / border;
 //
 //               if (m_strLast23.has_char())
 //               {
@@ -1098,9 +1098,9 @@ namespace helloaxis
       //if (m_timeLastOk.elapsed() < m_timeAnime)
       //{
 
-      //   ::u8 uchAlpha;
+      //   unsigned char uchAlpha;
 
-      //   uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
+      //   uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
 /*      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 

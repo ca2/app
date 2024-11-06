@@ -99,28 +99,38 @@ class procedure_array_with_context;
 //};
 
 class CLASS_DECL_ACME sequence :
-   virtual public task_context<sequence>,
-   virtual public procedure_array_with_context<sequence>,
-   virtual public property_object
+   virtual public ::subparticle_array
+   //virtual public procedure_array_with_context<sequence>,
+   //virtual public property_object
 {
 public:
 
-   ::particle_pointer m_pparticleLast;
-   ::particle_pointer m_pparticle;
-
+   //::particle_pointer m_pparticleLast;
+   //::particle_pointer m_pparticle;
+   
+   
    sequence();
    ~sequence() override;
-   static sequence * current();
-   [[noreturn]] inline static void cancel()
-   {
-
-      throw ::cancel_exception<sequence>();
-
-   }
+   
+   
+   virtual void on_subparticle_sequence(::subparticle * psubparticle);
+   
+//   static sequence * current();
+//   [[noreturn]] inline static void cancel()
+//   {
+//
+//      throw ::cancel_exception<sequence>();
+//
+//   }
    void run() override;
-   ::payload get_last_result();
-   void on_end_procedure() override;
+//   ::payload get_last_result();
+//   void on_end_procedure() override;
    void destroy() override;
+   
+   
+   virtual void on_end_of_sequence();
+   
+   
 };
 //
 //

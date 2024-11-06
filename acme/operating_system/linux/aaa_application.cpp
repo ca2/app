@@ -89,7 +89,7 @@ namespace acme
 
             if(dwResSize > 0)
             {
-               LPVOID pdata = aaa_primitive_new ::u8[dwResSize];
+               LPVOID pdata = aaa_primitive_new unsigned char[dwResSize];
 
                if(GetFileVersionInfo(
                   pszModuleFilePath,
@@ -155,7 +155,7 @@ namespace acme
                      return strVersion;
                   }
                }
-               delete [] (::u8 *) pdata;
+               delete [] (unsigned char *) pdata;
 
             }
       */

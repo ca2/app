@@ -256,7 +256,7 @@ namespace user
    }
 
 
-   bool shell::contains_image(const image_key & imagekey, i32 & iImage)
+   bool shell::contains_image(const image_key & imagekey, int & iImage)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -677,7 +677,7 @@ namespace user
    }
 
 
-   i32 shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
+   int shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -689,7 +689,7 @@ namespace user
    }
 
 
-   i32 shell::get_file_image(const image_key & imagekey)
+   int shell::get_file_image(const image_key & imagekey)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -701,7 +701,7 @@ namespace user
 
       }
 
-      i32 iImage;
+      int iImage;
 
       if (m_imagemap.lookup(imagekey, iImage))
       {
@@ -726,7 +726,7 @@ namespace user
    }
 
 
-   i32 shell::schedule_get_file_image(const image_key & imagekey)
+   int shell::schedule_get_file_image(const image_key & imagekey)
    {
 
       {
@@ -817,7 +817,7 @@ namespace user
 //
 ////         image_key imagekey(imagekeyParam);
 ////
-////         i32 iImage = I32_MINIMUM;
+////         int iImage = I32_MINIMUM;
 //
 //      if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
@@ -989,7 +989,7 @@ namespace user
 
 //         image_key imagekey(imagekeyParam);
 //
-//         i32 iImage = I32_MINIMUM;
+//         int iImage = I32_MINIMUM;
 
       if (strPath.case_insensitive_begins("uifs:"))
       {
@@ -1841,7 +1841,7 @@ namespace user
    }
 
 
-   i32 shell::create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage)
+   int shell::create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage)
    {
 
       int iReturn = -1;
@@ -1864,7 +1864,7 @@ namespace user
    }
 
 
-   i32 shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
+   int shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
    {
 
       getfileimage.m_imagekey.set_path(strIconParam, false);

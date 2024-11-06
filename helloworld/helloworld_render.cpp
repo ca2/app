@@ -194,7 +194,7 @@ namespace helloworld
    }
 
 
-   i32 render::run()
+   int render::run()
    {
 
       return ::hellobase::render::run();
@@ -405,7 +405,7 @@ namespace helloworld
 
       //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
-      //      i32 iCount = 30;
+      //      int iCount = 30;
 
       auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -573,7 +573,7 @@ namespace helloworld
       psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->m_size,
-                                         m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::point_i32(), unsigned char (128 + (255 - 128) * r));
 
       //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
 
@@ -653,7 +653,7 @@ namespace helloworld
       if (rectangleX.area() <= 0)
          return;
 
-      //      i32 iCount = 30;
+      //      int iCount = 30;
 
       auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -772,7 +772,7 @@ namespace helloworld
             else
             {
 
-               for (i32 i = 0; i < dBlur * 2; i++)
+               for (int i = 0; i < dBlur * 2; i++)
                {
 
 /*                  m_pimage->blur(m_cx, m_cy);
@@ -830,7 +830,7 @@ namespace helloworld
 
       pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloWorld);
 
-      ::u8 a, R, g, b;
+      unsigned char a, R, g, b;
 
       if (m_bAlternate)
       {
@@ -855,7 +855,7 @@ namespace helloworld
 
          FT_Face & face = (FT_Face &)papp->m_faceAi;
 
-         i32 error;
+         int error;
 
          error = FT_Set_Char_Size(face,        /* handle to face object */
                                   0,          /* char_width in 1/64th of points */
@@ -873,7 +873,7 @@ namespace helloworld
 
                i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 
-               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
+               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 
@@ -924,7 +924,7 @@ namespace helloworld
 
                i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 
-               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
+               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 
@@ -1039,7 +1039,7 @@ namespace helloworld
    //         if (t < border && m_strLast23 != m_strCurrent23)
    //         {
 
-   //            ::u8 uchAlpha = 255 * t / border;
+   //            unsigned char uchAlpha = 255 * t / border;
 
    //            if (m_strLast23.has_char())
    //            {
@@ -1244,9 +1244,9 @@ namespace helloworld
    //   if (m_timeLastOk.elapsed() < m_timeAnime)
    //   {
 
-   //      ::u8 uchAlpha;
+   //      unsigned char uchAlpha;
 
-   //      uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
+   //      uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
 /*   //      psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 

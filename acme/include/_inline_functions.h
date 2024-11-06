@@ -65,12 +65,12 @@ inline ::u64 make64_from32(::u32 l, ::u32 h)
 
 }
 
-CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i);
+CLASS_DECL_ACME void this_is_a_debugging_consumer(int & i);
 
 inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 {
 
-   auto p = (const ::u8 *)pMemory;
+   auto p = (const unsigned char *)pMemory;
 
    auto e = p + s;
 
@@ -79,12 +79,12 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 
 #ifdef DEEP_MEMORY_SEGMENT_CHECK
 
-      ::i32 sum = 0;
+      int sum = 0;
 
       while (p < e)
       {
 
-         sum += *b; // tests read of ::u8 *p
+         sum += *b; // tests read of unsigned char *p
 
          p++;
 
@@ -98,14 +98,14 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
       if (s >= 1)
       {
 
-         ::i32 sum = 0;
+         int sum = 0;
 
-         sum += p[0]; // tests read of ::u8 p[0]
+         sum += p[0]; // tests read of unsigned char p[0]
 
          if (s >= 2)
          {
 
-            sum += e[-1]; // tests read of ::u8 e[-1]
+            sum += e[-1]; // tests read of unsigned char e[-1]
 
          }
 
@@ -133,7 +133,7 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 inline bool is_memory_segment_ok(void * pMemory, memsize s)
 {
 
-   auto p = (::u8 *)pMemory;
+   auto p = (unsigned char *)pMemory;
 
    auto e = p + s;
 
@@ -145,9 +145,9 @@ inline bool is_memory_segment_ok(void * pMemory, memsize s)
       while (p < e)
       {
 
-         ::u8 & b = *p;
+         unsigned char & b = *p;
 
-         b++; // tests read/write of ::u8 b
+         b++; // tests read/write of unsigned char b
 
          b--; // restablish it
 
@@ -161,18 +161,18 @@ inline bool is_memory_segment_ok(void * pMemory, memsize s)
       if (s >= 1)
       {
 
-         ::u8 & b = p[0];
+         unsigned char & b = p[0];
 
-         b++; // tests read/write of ::u8 p[0]
+         b++; // tests read/write of unsigned char p[0]
 
          b--; // restablish it
 
          if (s >= 2)
          {
 
-            ::u8 & b = e[-1];
+            unsigned char & b = e[-1];
 
-            b++; // tests read/write of ::u8 e[-1]
+            b++; // tests read/write of unsigned char e[-1]
 
             b--; // restablish it
 
@@ -258,7 +258,7 @@ inline bool is_null_terminated_primitive_array_ok(TYPE * p)
 
          auto & item = *p;
 
-         item++; // tests read/write of ::u8 b
+         item++; // tests read/write of unsigned char b
 
          item--; // restablish it
 
@@ -345,8 +345,8 @@ inline bool is_string_ok(const ::ansi_character * p)
 inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsize srclen)
 {
 
-   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
-      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
+   return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))
+      || (((unsigned char*)pszDst) <= ((unsigned char*)pszSrc) && ((unsigned char*)pszDst) + srclen > ((unsigned char*)pszSrc));
 
 }
 
@@ -418,7 +418,7 @@ inline const ::particle* trace_object(const ::particle* pparticle) { return ppar
 //inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
 
 
-inline int read_char(u8*& pdata, memsize& s, char* pch)
+inline int read_char(unsigned char*& pdata, memsize& s, char* pch)
 {
 
    if (s < 1)

@@ -52,17 +52,17 @@ namespace image
 
 #ifdef UNIVERSAL_WINDOWS
 
-         u8 * pimage32 = (u8 *)pimage->image32();
+         unsigned char * pimage32 = (unsigned char *)pimage->image32();
 
          for (::collection::index iLine = 0; iLine < h; iLine++)
          {
 
-            u8 * pline = &pimage32[iLine * iScan];
+            unsigned char * pline = &pimage32[iLine * iScan];
 
             for (::collection::index x = 0; x < w; x++)
             {
 
-               ::u8 b = pline[0];
+               unsigned char b = pline[0];
 
                pline[0] = pline[2];
 

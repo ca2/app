@@ -85,9 +85,9 @@ namespace integration
 
       virtual void download_and_uncompress();
       virtual void git_clone();
-      virtual ::i32 git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout);
-      virtual ::i32 bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
-      virtual ::i32 zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
+      virtual int git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout);
+      virtual int bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
+      virtual int zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
 
       void untar(const ::file::path& pathFolder, const ::payload& payloadTar, int iStripComponent = 0, ::function<void(const ::scoped_string& scopedstr)> = {});
 

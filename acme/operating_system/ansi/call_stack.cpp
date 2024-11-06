@@ -150,7 +150,7 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 }
 
 
-namespace acme
+namespace platform
 {
 
 

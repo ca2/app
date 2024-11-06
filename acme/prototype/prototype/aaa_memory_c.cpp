@@ -83,9 +83,9 @@ CLASS_DECL_ACME void * memory_and(void * p, const void * p1, const void * p2, me
    if (is_null(p1)) return nullptr;
    if (is_null(p2)) return nullptr;
 
-   u8 * pb = (u8 *) p;
-   const u8 * pb1 = (const u8 *) p1;
-   const u8 * pb2 = (const u8 *) p2;
+   unsigned char * pb = (unsigned char *) p;
+   const unsigned char * pb1 = (const unsigned char *) p1;
+   const unsigned char * pb2 = (const unsigned char *) p2;
 
    while(iSize > 0)
    {
@@ -214,7 +214,7 @@ CLASS_DECL_ACME void * reverse_memory(void * p, memsize iLen)
 
    }
 
-   auto pleft = (::u8 *) p;
+   auto pleft = (unsigned char *) p;
 
    auto pright = pleft + iLen - 1;
 

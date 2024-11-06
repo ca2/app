@@ -9,7 +9,7 @@
 inline binary_stream & operator <<(binary_stream & s, const ::filehandler::item & item)
 {
 
-   s << (::i32)item.m_etopictype;
+   s << (int)item.m_etopictype;
    s << item.m_strTopic;
    s << item.m_straHandlerLibrary;
    s << item.m_straMenuLibrary;

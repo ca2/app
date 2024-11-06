@@ -28,7 +28,7 @@ namespace compress_zlib
    void uncompress::transfer(::file::file* pfileUncompressed, ::file::file* pfileGzFileCompressed, transfer_progress_function transferprogressfunction)
    {
 
-      i32 status;
+      int status;
 
       class memory memIn;
 
@@ -60,9 +60,9 @@ namespace compress_zlib
       z_stream zstream;
 
       zero(zstream);
-      //zstream.next_in = (u8*)memIn.data();
+      //zstream.next_in = (unsigned char*)memIn.data();
       //zstream.avail_in = (u32)uRead;
-      zstream.next_in = (u8*)memIn.data();
+      zstream.next_in = (unsigned char*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
@@ -132,7 +132,7 @@ namespace compress_zlib
 
          uRead = (u32)(pfileGzFileCompressed->read(memIn));
 
-         zstream.next_in = (u8*)memIn.data();
+         zstream.next_in = (unsigned char*)memIn.data();
 
          zstream.avail_in = (u32)uRead;
 

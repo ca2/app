@@ -215,7 +215,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
 
    enum_type etype = payload.get_type();
 
-   ::i32 i = etype;
+   int i = etype;
 
    stream << i;
 
@@ -491,7 +491,7 @@ binary_stream & operator >>(binary_stream & stream, ::payload & payload)
 void binary_stream::read_payload_type(enum_type & etype)
 {
 
-   ::i32 i;
+   int i;
 
    *this >> i;
 
@@ -509,7 +509,7 @@ void binary_stream::read_payload_type(enum_type & etype)
 void binary_stream::save_payload_type(enum_type etype)
 {
 
-   ::i32 i((::i32)etype);
+   int i((int)etype);
 
    *this << i;
 

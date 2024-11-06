@@ -29,8 +29,8 @@ namespace write_text
       bool           m_bItalic;
       bool           m_bUnderlined;
       bool           m_bStruckOut;
-      ::u8           m_uchPitchAndFamily;
-      ::u8           m_uchCharSet;
+      unsigned char           m_uchPitchAndFamily;
+      unsigned char           m_uchCharSet;
 
 
       double get_line_height() const

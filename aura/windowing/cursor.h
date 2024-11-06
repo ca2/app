@@ -41,7 +41,7 @@ namespace windowing
 
 //      virtual void load_system_default_cursor_hint();
 
-      virtual void set_image(::image::image *pimage, ::i32 xHotspot, ::i32 yHotspot);
+      virtual void set_image(::image::image *pimage, int xHotspot, int yHotspot);
 
       virtual void set_file_path(const ::file::path & path);
 

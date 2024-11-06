@@ -195,7 +195,7 @@
 ////}
 ////
 ////
-////void dump_context::write(u8 u)
+////void dump_context::write(unsigned char u)
 ////{
 ////
 ////   string str;
@@ -307,7 +307,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(u8 u)
+////void dump_context::hex_dump(unsigned char u)
 ////{
 ////
 ////   string str;
@@ -500,7 +500,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 ////// Formatted output
 ////
-////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, ::u8* pby, i32 nBytes, i32 nWidth)
+////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, unsigned char* pby, i32 nBytes, i32 nWidth)
 ////// do a simple hex-dump (8 per line) to a dump_context
 //////  the "pszLine" is a string to print at the start of each line
 //////    (%lx should be used to expand the current address)

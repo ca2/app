@@ -133,10 +133,10 @@ CLASS_DECL_ACME void from_string(i64 & i, i32 iBase, const ::ansi_character * ps
 }
 
 
-CLASS_DECL_ACME void from_string(u8 & u, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(unsigned char & u, const ::ansi_character * psz)
 {
 
-   u = (u8)ansi_to_u32(psz, nullptr, 10);
+   u = (unsigned char)ansi_to_u32(psz, nullptr, 10);
 
 }
 

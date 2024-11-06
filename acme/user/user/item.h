@@ -582,8 +582,8 @@ namespace user
       //bool operator < (::collection::index iItem)  const { return m_iItem < iItem; }
       //bool operator > (::collection::index iItem)  const { return m_iItem > iItem; }
 
-      //::collection::index operator + (::i32 iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
-      //::collection::index operator - (::i32 iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
+      //::collection::index operator + (int iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
+      //::collection::index operator - (int iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
       //::collection::index operator + (::i64 iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
       //::collection::index operator - (::i64 iItemSub) { return (::collection::index)(m_iItem - iItemSub); }

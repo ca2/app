@@ -48,14 +48,14 @@ public:
           mModel = sm;
         };
   nsSMState NextState(char c){
-    //for each ::u8 we get its class , if it is first ::u8, we also get ::u8 length
+    //for each unsigned char we get its class , if it is first unsigned char, we also get unsigned char length
     PR::u32 byteCls = GETCLASS(c);
     if (mCurrentState == eStart)
     { 
       mCurrentBytePos = 0; 
       mCurrentCharLen = mModel->charLenTable[byteCls];
     }
-    //from ::u8's class and stateTable, we get its next state
+    //from unsigned char's class and stateTable, we get its next state
     mCurrentState=(nsSMState)GETFROMPCK(mCurrentState*(mModel->classFactor)+byteCls,
                                        mModel->stateTable);
     mCurrentBytePos++;

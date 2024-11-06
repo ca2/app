@@ -205,7 +205,7 @@ void ns_create_alias(const ::scoped_string & scopedstrTarget, const ::scoped_str
 // //} // namespace user
 
 
-// ::i32
+// int
 // FormatMessage(
 // ::u32 dwFlags,
 // const void * pSource,
@@ -239,18 +239,18 @@ namespace apex
 
       path -= 3;
       
-      auto pacmedirectory = directory_system();
+      auto pdirectorysystem = directory_system();
 
-      if(pacmedirectory->is(path))
+      if(pdirectorysystem->is(path))
       {
 
          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
          
          string strName =path.name();
 
-         ::file::path path2 = pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strName;
+         ::file::path path2 = pdirectorysystem->localconfig() / "desk/monitor-0/2desk" / strName;
 
          if(file_system()->exists(path2))
          {
@@ -261,7 +261,7 @@ namespace apex
 
          auto pathFolder2 = path2.folder();
 
-         pacmedirectory->create(pathFolder2);
+         pdirectorysystem->create(pathFolder2);
 
          bool bFilePathIsLink = path_system()->is_symbolic_link(path2);
          
@@ -270,7 +270,7 @@ namespace apex
          if(!bFilePathIsLink ||  strDestination!= path)
          {
             
-            auto pacmefile = pacmedirectory->m_pfilesystem;
+            auto pacmefile = pdirectorysystem->m_pfilesystem;
             
             if(pacmefile->exists(path2))
             {
@@ -279,7 +279,7 @@ namespace apex
                
             }
             
-            auto pacmepath = pacmedirectory->m_ppathsystem;
+            auto pacmepath = pdirectorysystem->m_ppathsystem;
 
             pacmepath->create_symbolic_link(path2, path);
         //    ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

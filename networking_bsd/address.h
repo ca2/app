@@ -26,8 +26,8 @@ namespace networking_bsd
 
 #if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD)
 
-            u8 m_len;
-            u8 m_u8Family;
+            unsigned char m_len;
+            unsigned char m_u8Family;
 
 
 #else // !FREEBSD
@@ -58,14 +58,14 @@ namespace networking_bsd
 
             }
 
-            u8 get_family() const
+            unsigned char get_family() const
             {
 
                return m_u8Family;
 
             }
 
-            i32 get_family_len() const
+            int get_family_len() const
             {
 
                return m_len;
@@ -90,7 +90,7 @@ namespace networking_bsd
       }
 
 
-      i32 get_family_len() const
+      int get_family_len() const
       {
 
          return family_len(m_u16Family);
@@ -134,7 +134,7 @@ namespace networking_bsd
       //bool operator == (const address & address) const;
 
       void set_address(::networking::address * paddress);
-      void set_family(i32 family, ::networking::port_t port = 0);
+      void set_family(int family, ::networking::port_t port = 0);
       //void set_address(const ::string & strAddress, ::networking::port_t port = 0);
       //void set_address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
 #if defined(BSD_STYLE_SOCKETS)
@@ -169,14 +169,14 @@ namespace networking_bsd
       bool is_valid() const override;
 
 
-      inline i32 get_family() const;
+      inline int get_family() const;
 
 
 #if defined(BSD_STYLE_SOCKETS)
 
       inline sockaddr * sa();
       inline const sockaddr * sa() const;
-      i32 sa_len() const;
+      int sa_len() const;
 
       void * addr_data();
 
@@ -205,7 +205,7 @@ namespace networking_bsd
    };
 
 
-   inline i32 address::get_family() const
+   inline int address::get_family() const
    {
 
 #if defined(BSD_STYLE_SOCKETS)

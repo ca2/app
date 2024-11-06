@@ -366,7 +366,7 @@ namespace user
 //      return false;
 //   }
 //
-//   void interaction_impl::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
+//   void interaction_impl::GetScrollBarInfo(int idObject,PSCROLLBARINFO psbi) const
 //   {
 //      __UNREFERENCED_PARAMETER(idObject);
 //      __UNREFERENCED_PARAMETER(psbi);
@@ -415,7 +415,7 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::SetLayeredWindowAttributes(::color::color crKey,::u8 bAlpha,u32 dwFlags)
+   //void interaction_impl::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(crKey);
    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -441,7 +441,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,::u8 * pbAlpha,u32 * pdwFlags) const
+   //void interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,u32 * pdwFlags) const
    //{
    //   __UNREFERENCED_PARAMETER(pcrKey);
    //   __UNREFERENCED_PARAMETER(pbAlpha);
@@ -2189,7 +2189,7 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::GetChildByIdText(i32 nID,string & rectangleString) const
+   //int interaction_impl::GetChildByIdText(int nID,string & rectangleString) const
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -2684,15 +2684,15 @@ namespace user
       //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left();
+      //      //      pmouse->m_point.x() += (int)rcMonitor.left();
 
       //      //   }
 
       //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top();
-      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top();
+      //      //      //pmouse->m_point.y() += (int)rectWindow.top();
+      //      //      pmouse->m_point.y() += (int)rcMonitor.top();
 
       //      //   }
 
@@ -2703,14 +2703,14 @@ namespace user
       //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (::i32)rectWindow.left();
+      //            pmouse->m_point.x() += (int)rectWindow.left();
 
       //         }
 
       //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (::i32)rectWindow.top();
+      //            pmouse->m_point.y() += (int)rectWindow.top();
 
       //         }
 
@@ -3224,7 +3224,7 @@ namespace user
    }
 
 
-   //i32 interaction_impl::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
+   //int interaction_impl::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pszText);
@@ -3244,12 +3244,12 @@ namespace user
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   /*   CScrollBar* interaction_impl::GetScrollBarCtrl(i32) const
+   /*   CScrollBar* interaction_impl::GetScrollBarCtrl(int) const
    {
    throw ::interface_only();
    }*/
 
-   //i32 interaction_impl::SetScrollPos(i32 nBar,i32 nPos,bool bRedraw)
+   //int interaction_impl::SetScrollPos(int nBar,int nPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nPos);
@@ -3259,7 +3259,7 @@ namespace user
    //   return 0;
    //}
 
-   //i32 interaction_impl::GetScrollPos(i32 nBar) const
+   //int interaction_impl::GetScrollPos(int nBar) const
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   throw ::interface_only();
@@ -3267,7 +3267,7 @@ namespace user
    //   return 0;
    //}
 
-   //void interaction_impl::SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos,bool bRedraw)
+   //void interaction_impl::SetScrollRange(int nBar,int nMinPos,int nMaxPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nMinPos);
@@ -3279,7 +3279,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::GetScrollRange(i32 nBar,LPINT pMinPos,LPINT pMaxPos) const
+   //void interaction_impl::GetScrollRange(int nBar,LPINT pMinPos,LPINT pMaxPos) const
 
    //{
 
@@ -3295,7 +3295,7 @@ namespace user
    //// Turn on/off non-control scrollbars
    ////   for WS_?SCROLL scrollbars - show/hide them
    ////   for control scrollbar - enable/disable them
-   //void interaction_impl::EnableScrollBarCtrl(i32 nBar,bool bEnable)
+   //void interaction_impl::EnableScrollBarCtrl(int nBar,bool bEnable)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(bEnable);
@@ -3306,7 +3306,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   void interaction_impl::SetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
+//   void interaction_impl::SetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
 //
 //   {
 //
@@ -3321,7 +3321,7 @@ namespace user
 //   }
 //
 //
-//   void interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
+//   void interaction_impl::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 //
 //   {
 //
@@ -3338,7 +3338,7 @@ namespace user
 //#endif
 
 
-   //i32 interaction_impl::GetScrollLimit(i32 nBar)
+   //int interaction_impl::GetScrollLimit(int nBar)
    //{
    //   
    //   __UNREFERENCED_PARAMETER(nBar);
@@ -3350,7 +3350,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, const ::rectangle_i32 * pcrect, const ::rectangle_i32 * pcrectClip)
+   //void interaction_impl::ScrollWindow(int xAmount,int yAmount, const ::rectangle_i32 * pcrect, const ::rectangle_i32 * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -3717,39 +3717,39 @@ namespace user
    //}
 
 
-//   ::i32 interaction_impl::get_window_long(i32 nIndex) const
+//   int interaction_impl::get_window_long(int nIndex) const
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (::i32) ::GetWindowLongPtr(get_handle(), nIndex);
+//      return (int) ::GetWindowLongPtr(get_handle(), nIndex);
 //
 //#else
 //
-//      return (::i32) get_window_long_ptr(nIndex);
+//      return (int) get_window_long_ptr(nIndex);
 //
 //#endif
 //
 //   }
 
 
-//   ::i32 interaction_impl::set_window_long(i32 nIndex,::i32 lValue)
+//   int interaction_impl::set_window_long(int nIndex,int lValue)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (::i32) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
+//      return (int) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
 //
 //#else
 //
-//      return (::i32) set_window_long_ptr(nIndex, lValue);
+//      return (int) set_window_long_ptr(nIndex, lValue);
 //
 //#endif
 //
 //   }
 
 
-//   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
+//   iptr interaction_impl::get_window_long_ptr(int nIndex) const
 //   {
 //
 //      return m_pwindow->get_window_long_ptr(nIndex);
@@ -3757,7 +3757,7 @@ namespace user
 //   }
 //
 //
-//   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   iptr interaction_impl::set_window_long_ptr(int nIndex, iptr lValue)
 //   {
 //
 //      return m_pwindow->set_window_long_ptr(nIndex, lValue);
@@ -4096,7 +4096,7 @@ namespace user
    //   }
 
 
-   //strsize interaction_impl::GetWindowText(char * pszString,i32 nMaxCount)
+   //strsize interaction_impl::GetWindowText(char * pszString,int nMaxCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -4209,7 +4209,7 @@ namespace user
    //   return false;
    //}
 
-   //i32 interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
+   //int interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    //{
    //   __UNREFERENCED_PARAMETER(pRgn);
    //   __UNREFERENCED_PARAMETER(bErase);
@@ -4598,7 +4598,7 @@ namespace user
    }
 
 
-   //void interaction_impl::EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags)
+   //void interaction_impl::EnableScrollBar(int nSBFlags,::u32 nArrowFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(nSBFlags);
@@ -4745,14 +4745,14 @@ namespace user
    //}
 
 
-   //void interaction_impl::CheckDlgButton(i32 nIDButton,::u32 nCheck)
+   //void interaction_impl::CheckDlgButton(int nIDButton,::u32 nCheck)
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   __UNREFERENCED_PARAMETER(nCheck);
    //   throw ::interface_only();
    //}
 
-   //void interaction_impl::CheckRadioButton(i32 nIDFirstButton,i32 nIDLastButton,i32 nIDCheckButton)
+   //void interaction_impl::CheckRadioButton(int nIDFirstButton,int nIDLastButton,int nIDCheckButton)
    //{
    //   __UNREFERENCED_PARAMETER(nIDFirstButton);
    //   __UNREFERENCED_PARAMETER(nIDLastButton);
@@ -4760,7 +4760,7 @@ namespace user
    //   throw ::interface_only();
    //}
 
-   //i32 interaction_impl::DlgDirList(char * pPathSpec,i32 nIDListBox,i32 nIDStaticPath,::u32 nFileType)
+   //int interaction_impl::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -4772,7 +4772,7 @@ namespace user
    //   return 0;
    //}
 
-   //i32 interaction_impl::DlgDirListComboBox(char * pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,::u32 nFileType)
+   //int interaction_impl::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -4785,7 +4785,7 @@ namespace user
    //   return 0;
    //}
 
-   //void interaction_impl::DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox)
+   //void interaction_impl::DlgDirSelect(char * pString,int nSize,int nIDListBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -4797,7 +4797,7 @@ namespace user
    //   return false;
    //}
 
-   //void interaction_impl::DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox)
+   //void interaction_impl::DlgDirSelectComboBox(char * pString,int nSize,int nIDComboBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -4809,7 +4809,7 @@ namespace user
    //   return false;
    //}
 
-   //::u32 interaction_impl::GetChildByIdInt(i32 nID,bool* pTrans,bool bSigned) const
+   //::u32 interaction_impl::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -4821,7 +4821,7 @@ namespace user
    //   return 0;
    //}
 
-   //i32 interaction_impl::GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const
+   //int interaction_impl::GetChildByIdText(int nID,char * pStr,int nMaxCount) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -4860,7 +4860,7 @@ namespace user
    //}
 
 
-   //::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
+   //::u32 interaction_impl::IsDlgButtonChecked(int nIDButton) const
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   throw ::interface_only();
@@ -4869,7 +4869,7 @@ namespace user
    //}
 
 
-   //lparam interaction_impl::SendDlgItemMessage(i32 nID, ::u32 message, wparam wParam,lparam lParam)
+   //lparam interaction_impl::SendDlgItemMessage(int nID, ::u32 message, wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -4883,7 +4883,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned)
+   //void interaction_impl::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(nValue);
@@ -4891,7 +4891,7 @@ namespace user
    //   throw ::interface_only();
    //}
 
-   //void interaction_impl::SetDlgItemText(i32 nID, const ::string & pszString)
+   //void interaction_impl::SetDlgItemText(int nID, const ::string & pszString)
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -4901,7 +4901,7 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
+   //int interaction_impl::ScrollWindowEx(int Δx,int Δy,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
@@ -5569,7 +5569,7 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::GetCheckedRadioButton(i32 nIDFirstButton,i32 nIDLastButton)
+   //int interaction_impl::GetCheckedRadioButton(int nIDFirstButton,int nIDLastButton)
    //{
 
    //   __UNREFERENCED_PARAMETER(nIDFirstButton);

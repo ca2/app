@@ -137,7 +137,7 @@ namespace file
       }*/
 
 
-      //::i32 exception::get_os_error()
+      //int exception::get_os_error()
       //{
 
       //   return m_lOsError;
@@ -352,7 +352,7 @@ namespace file
 #define EDEADLOCK       EDEADLK
 #endif
 
-      //void throw_exception(const ::e_status & estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, ::file::e_open eopen)
+      //void throw_exception(const ::e_status & estatus, int lOsError, int iErrNo, const ::file::path& path, ::file::e_open eopen)
       //{
 
       //   throw ::exception(estatus, lOsError, iErrNo, path, eopen);
@@ -360,7 +360,7 @@ namespace file
       //}
 
 
-      //void throw ::exception(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
+      //void throw ::exception(const ::e_status & estatus, int lOsError, const ::file::path& path)
       //{
 
       //   throw ::exception(estatus, lOsError, -1, path, e_null);
@@ -368,7 +368,7 @@ namespace file
       //}
 
 
-      //void throw_stdio_exception(const ::e_status & estatus, ::i32 lDOSError, const ::file::path& path)
+      //void throw_stdio_exception(const ::e_status & estatus, int lDOSError, const ::file::path& path)
       //{
 
       //   throw ::exception(estatus,
@@ -411,14 +411,14 @@ namespace file
       }
 
 
-   //void throw_exception(::e_status estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, ::file::e_open eopen)
+   //void throw_exception(::e_status estatus, int lOsError, int iErrNo, const ::file::path & path, ::file::e_open eopen)
    //{
 
    //   throw ::exception(::file::exception(estatus, lOsError, iErrNo, path, eopen));
 
    //}
 
-//   void throw ::exception(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
+//   void throw ::exception(const ::e_status & estatus, int lOsError, const ::file::path& path)
 //   {
 //
 //#ifdef __DEBUG

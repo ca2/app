@@ -389,9 +389,11 @@ namespace platform
 
 
    //void aura_system_layer::initialize_write_text(){}
-   ::pointer<::factory::factory>&  aura_system_layer::draw2d_factory()
+   ::factory::factory * aura_system_layer::draw2d_factory()
    {
-      return *((::pointer <::factory::factory>*)0);
+      
+      return nullptr;
+      
    }
 
 
@@ -401,9 +403,11 @@ namespace platform
    }
 
 
-    ::pointer<::factory::factory>&  aura_system_layer::imaging_factory()
+    ::factory::factory * aura_system_layer::imaging_factory()
    {
-      return *((::pointer <::factory::factory>*)0);
+      
+       return nullptr;
+       
    }
 
 

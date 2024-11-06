@@ -316,7 +316,7 @@ namespace sockets_bsd
    }
 
 
-   i32 base_socket::close_socket(SOCKET s)
+   int base_socket::close_socket(SOCKET s)
    {
 
       __UNREFERENCED_PARAMETER(s);
@@ -709,7 +709,7 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s)
+   void base_socket::OnOptions(int family, int type, int protocol, SOCKET s)
    {
       
       

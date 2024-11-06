@@ -40,7 +40,7 @@
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * pparticle, const class ::time & timeWait, ::u32 dwWakeMask, ::u32 dwFlags)
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pparticle, const class ::time & timeWait, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    class ::time start;
@@ -93,7 +93,7 @@
                if (pmq->m_messagea.get_count() > 0)
                {
 
-                  return (::enum_status)(((::i32) signaled_base) + dwSize);
+                  return (::enum_status)(((int) signaled_base) + dwSize);
 
                }
 
@@ -151,7 +151,7 @@
             if (pmq->m_eventNewMessage._wait(0_s))
             {
 
-               return (enum_status)(((::i32) signaled_base) + dwSize);
+               return (enum_status)(((int) signaled_base) + dwSize);
 
             }
 
@@ -189,7 +189,7 @@
 }
 
 
-::e_status MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
+::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -197,7 +197,7 @@
 }
 
 
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -205,7 +205,7 @@
 }
 
 
-::e_status WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
+::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -213,18 +213,18 @@
 }
 
 
-::e_status WaitForSingleObjectEx(HSYNC hsync, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForSingleObjectEx(hsynchronization hsynchronization, const class ::time & tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &hsynchronization, true, tickTimeout, bAlertable);
 
 }
 
 
-::e_status WaitForSingleObject(HSYNC hsync, const class ::time & tickTimeout)
+::e_status WaitForSingleObject(hsynchronization hsynchronization, const class ::time & tickTimeout)
 {
 
-   return WaitForSingleObjectEx(hsync, tickTimeout, false);
+   return WaitForSingleObjectEx(hsynchronization, tickTimeout, false);
 
 }
 

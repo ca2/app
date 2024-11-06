@@ -28,7 +28,7 @@ namespace user
    ::user::interaction * interaction_ptra::find_first_typed(const ::type_atom & typeatom)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (int i = 0; i < this->get_size(); i++)
       {
 
          ::user::interaction * pinteraction = this->element_at(i);
@@ -50,7 +50,7 @@ namespace user
    ::user::interaction * interaction_ptra::find_first(oswindow oswindow)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (int i = 0; i < this->get_size(); i++)
       {
 
          if (this->element_at(i)->get_safe_oswindow() == oswindow)
@@ -190,7 +190,7 @@ namespace user
    //::user::interaction * interaction_pointer_array::find_first_typed(const ::type_atom & typeatom)
    //{
 
-   //   for (i32 i = 0; i < interaction_count(); i++)
+   //   for (int i = 0; i < interaction_count(); i++)
    //   {
 
    //      auto pprimitive = interaction_at(i).m_p;
@@ -212,7 +212,7 @@ namespace user
    //::user::interaction * interaction_pointer_array::find_first(oswindow oswindow)
    //{
 
-   //   for (i32 i = 0; i < interaction_count(); i++)
+   //   for (int i = 0; i < interaction_count(); i++)
    //   {
 
    //      ::pointer<::user::interaction>puserinteraction = interaction_at(i);
@@ -394,7 +394,7 @@ namespace user
    ::pointer<::user::interaction>interaction_array::find_first(oswindow oswindow)
    {
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
+      for (int i = 0; i < this->interaction_count(); i++)
       {
 
          if (this->interaction_at(i)->get_safe_oswindow() == oswindow)
@@ -434,7 +434,7 @@ namespace user
    void interaction_array::send_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
-      for (i32 i = 0; i < this->interaction_count(); i++)
+      for (int i = 0; i < this->interaction_count(); i++)
       {
 
          try
@@ -456,7 +456,7 @@ namespace user
    void interaction_array::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bRecursive)
    {
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
+      for (int i = 0; i < this->interaction_count(); i++)
       {
 
          try
@@ -592,7 +592,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      i32 iOrder = 0;
+//      int iOrder = 0;
 //      ::windowing::window * pwindowOrder = ::get_desktop_window();
 //      oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
 //      while (oswindowOrder != nullptr

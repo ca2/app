@@ -285,6 +285,13 @@ namespace acme
    
    void acme::on_system_before_destroy()
    {
+      
+      if(::system()->m_pmanualreseteventReadyToExit)
+      {
+         
+         ::system()->m_pmanualreseteventReadyToExit->set_event();
+         
+      }
 
       if (::system()->m_pmanualreseteventReadyToExit)
       {

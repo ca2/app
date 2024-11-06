@@ -71,11 +71,11 @@ public:
 
    //bool signaled() const { return ::signaled(*this); }
 
-   //::i32 signaled_index() const { return ::signaled_index(*this); }
+   //int signaled_index() const { return ::signaled_index(*this); }
 
    //bool abandoned() const { return ::abandoned(*this); }
 
-   //::i32 abandoned_index() const { return ::abandoned_index(*this); }
+   //int abandoned_index() const { return ::abandoned_index(*this); }
 
    //bool wait_timeout() const { return ::wait_timeout(*this); }
 
@@ -130,14 +130,14 @@ public:
 
 #ifdef WINDOWS
 
-      return (::i32)-(::i64)m_eenum;
+      return (int)-(::i64)m_eenum;
 
 #else
 
       if (this->m_eenum >= -125)
       {
 
-         return (::i32)-(::i64)(this->m_eenum);
+         return (int)-(::i64)(this->m_eenum);
 
       }
       else
@@ -155,10 +155,10 @@ public:
    
    /// @brief synchronization signaled index
    /// @return signaled index. For single synchronization object 0 if signaled or -1 if not signaled. For array of synchronization objects, the lowest? index of a signaled object or -1 if none of objects are signaled.
-   constexpr ::i32 signaled_index() const
+   constexpr int signaled_index() const
    {
 
-      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (::i32)((::i64)m_eenum - (::i64)signaled_base) : -1;
+      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (int)((::i64)m_eenum - (::i64)signaled_base) : -1;
 
    }
 
@@ -174,10 +174,10 @@ public:
 
    /// @brief synchronization abandoned index
    /// @return abandoned index
-   constexpr ::i32 abandoned_index()const
+   constexpr int abandoned_index()const
    {
 
-      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (::i32)((::i64)m_eenum - (::i64)abandoned_base) : -1;
+      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (int)((::i64)m_eenum - (::i64)abandoned_base) : -1;
 
    }
 

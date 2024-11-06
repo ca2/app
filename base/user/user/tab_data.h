@@ -23,7 +23,7 @@ namespace user
 
 
       ::size_f64                          m_sizeSep;
-      i32                                 m_iHeightAddUp;
+      int                                 m_iHeightAddUp;
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrushTextHover;
       ::draw2d::brush_pointer             m_pbrushTextSel;
@@ -35,8 +35,8 @@ namespace user
       ::draw2d::pen_pointer               m_ppenBorderSel;
       ::draw2d::pen_pointer               m_ppenBorderHover;
       bool                                m_bCreated;
-      i32                                 m_iTabHeight;
-      i32                                 m_iTabWidth;
+      int                                 m_iTabHeight;
+      int                                 m_iTabWidth;
       tab_pane_array                      m_tabpanea;
       ::rectangle_i32                     m_rectangleTab;
       ::rectangle_i32                     m_rectangleHosting;

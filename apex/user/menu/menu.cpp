@@ -1994,7 +1994,7 @@ menu::~menu()
 //
 //         ::collection::index iColumn = 0;
 //
-//         ::i32 iMaximumButtonHeight = 0;
+//         int iMaximumButtonHeight = 0;
 //
 //         // Calculate buttons sizes
 //
@@ -2033,9 +2033,9 @@ menu::~menu()
 //
 //         }
 //
-//         ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
+//         int iSeparatorHeight = iMaximumButtonHeight / 3;
 //
-//         ::i32 iRow = 0;
+//         int iRow = 0;
 //
 //         for (i32 i = 0; i < pmenuitema->get_size(); i++)
 //         {
@@ -2055,7 +2055,7 @@ menu::~menu()
 //
 //            }
 //
-//            pmenuitem->m_iColumn = (::i32) iColumn;
+//            pmenuitem->m_iColumn = (int) iColumn;
 //
 //            pmenuitem->m_iRow = iRow;
 //

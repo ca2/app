@@ -13,7 +13,67 @@
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+#ifndef WINDOWS
 
+/*
+ * Queue status flags for GetQueueStatus() and MsgWaitForMultipleObjects()
+ */
+#define QS_KEY              0x0001
+#define QS_MOUSEMOVE        0x0002
+#define QS_MOUSEBUTTON      0x0004
+#define QS_POSTMESSAGE      0x0008
+#define QS_TIMER            0x0010
+#define QS_PAINT            0x0020
+#define QS_SENDMESSAGE      0x0040
+#define QS_HOTKEY           0x0080
+#define QS_ALLPOSTMESSAGE   0x0100
+
+#if(_WIN32_WINNT >= 0x0501)
+#define QS_RAWINPUT         0x0400
+#endif /* _WIN32_WINNT >= 0x0501 */
+
+#if(_WIN32_WINNT >= 0x0602)
+#define QS_TOUCH            0x0800
+#define QS_POINTER          0x1000
+
+#endif /* _WIN32_WINNT >= 0x0602 */
+
+
+#define QS_MOUSE           (QS_MOUSEMOVE     | \
+                            QS_MOUSEBUTTON)
+
+#if (_WIN32_WINNT >= 0x602)
+#define QS_INPUT           (QS_MOUSE         | \
+                            QS_KEY           | \
+                            QS_RAWINPUT      | \
+                            QS_TOUCH         | \
+                            QS_POINTER)
+
+#else
+#if (_WIN32_WINNT >= 0x0501)
+#define QS_INPUT           (QS_MOUSE         | \
+                            QS_KEY           | \
+                            QS_RAWINPUT)
+#else
+#define QS_INPUT           (QS_MOUSE         | \
+                            QS_KEY)
+#endif // (_WIN32_WINNT >= 0x0501)
+#endif
+
+#define QS_ALLEVENTS       (QS_INPUT         | \
+                            QS_POSTMESSAGE   | \
+                            QS_TIMER         | \
+                            QS_PAINT         | \
+                            QS_HOTKEY)
+
+#define QS_ALLINPUT        (QS_INPUT         | \
+                            QS_POSTMESSAGE   | \
+                            QS_TIMER         | \
+                            QS_PAINT         | \
+                            QS_HOTKEY        | \
+                            QS_SENDMESSAGE)
+
+#endif
 
 DECLARE_ENUMERATION(e_happening, enum_happening);
 
@@ -101,7 +161,7 @@ public:
    class ::time                                    m_timeHeartBeat;
    ::procedure                                     m_procedureTaskEnded;
 
-::i32 m_iExitCode;
+int m_iExitCode;
 
    task();
    ~task() override;
@@ -143,7 +203,7 @@ public:
    virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
 
-   virtual void post_request(::request* prequest);
+   virtual void post_request(::request* prequest) override;
 
    virtual bool task_set_name(const ::scoped_string & scopedstrName);
 
@@ -261,7 +321,7 @@ public:
 
    void run() override;
 
-   virtual bool task_run(const class ::time & time);
+   virtual bool task_run(const class ::time & time = 0_s);
 
    virtual bool task_iteration();
 
@@ -424,7 +484,7 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 
 CLASS_DECL_ACME void task_release();
 CLASS_DECL_ACME void task_iteration();
-CLASS_DECL_ACME void task_run(const class ::time & time);
+CLASS_DECL_ACME void task_run(const class ::time & time = 0_s);
 
 
 

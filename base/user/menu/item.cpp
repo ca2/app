@@ -134,7 +134,7 @@ namespace menu
       if (straCommandTitle.get_size() < straCommand.get_size())
          return false;
 
-      for (i32 i = 0; i < iItemCount; i++)
+      for (int i = 0; i < iItemCount; i++)
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
@@ -203,7 +203,7 @@ namespace menu
 
 
 
-   bool item::load_menu(::xml::node * pnode, i32 iLevel)
+   bool item::load_menu(::xml::node * pnode, int iLevel)
    {
 
       ::collection::count iItemCount = pnode->get_children_count();
@@ -266,7 +266,7 @@ namespace menu
 
       }
 
-      for (i32 i = 0; i < iItemCount; i++)
+      for (int i = 0; i < iItemCount; i++)
       {
 
          auto pnodeChild = pnode->child_at(i);
@@ -453,7 +453,7 @@ namespace menu
 
       item * pitemFind;
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (int i = 0; i < this->get_size(); i++)
       {
 
          item * pitem = element_at(i);
@@ -486,7 +486,7 @@ namespace menu
 
       ::user::style_pointer pstyle;
 
-      for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
+      for (int iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
       {
 
          auto pitem = m_pmenuitema->element_at(iItem);

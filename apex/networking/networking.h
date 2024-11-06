@@ -129,7 +129,7 @@ namespace networking
 
 
       virtual address_pointer create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
-      virtual address_pointer create_ip4_address(::i32 iIp, port_t port = 0);
+      virtual address_pointer create_ip4_address(int iIp, port_t port = 0);
       //virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(string& str, const struct ::in_addr& ip);

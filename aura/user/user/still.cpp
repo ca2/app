@@ -504,8 +504,8 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
-         rectangle.right() = ::i32(size.cx() * 1.6);
-         rectangle.bottom() = ::i32(size.cy() * 1.4);
+         rectangle.right() = int(size.cx() * 1.6);
+         rectangle.bottom() = int(size.cy() * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -768,13 +768,13 @@ namespace user
 
          //::rectangle_i32 rectangle;
 
-         //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2);
+         //rectangle.left() = (int)(rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2);
 
-         //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2);
+         //rectangle.top() = (int)(rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2);
 
-         //rectangle.right() = (::i32)(rectangle.left() + sizeText.cx());
+         //rectangle.right() = (int)(rectangle.left() + sizeText.cx());
 
-         //rectangle.bottom() = (::i32)(rectangle.top() + sizeText.cy());
+         //rectangle.bottom() = (int)(rectangle.top() + sizeText.cy());
 
          //m_rectangleText = rectangle;
 
@@ -1118,9 +1118,9 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (int) (pimage->width() * dMin);
 
-         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (int) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
@@ -1293,7 +1293,7 @@ namespace user
    }
 
 
-   i32 still::BaseToolTipGetIndex()
+   int still::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
       return GetDlgCtrlId().as_i32();

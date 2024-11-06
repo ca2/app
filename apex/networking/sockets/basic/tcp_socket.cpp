@@ -1263,7 +1263,7 @@ return true;
 
       m_ptcpsocketImpl->write(p, s);
 
-      //const u8 * buf = (const u8 *)pdata;
+      //const unsigned char * buf = (const unsigned char *)pdata;
 
       //if(!Ready() && !is_connecting())
       //{
@@ -2441,7 +2441,7 @@ return true;
    }
 
 
-//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol, ::i32 iSocket)
+//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol, int iSocket)
 //   {
 //
 ////      __UNREFERENCED_PARAMETER(family);

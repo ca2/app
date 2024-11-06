@@ -25,6 +25,8 @@ namespace micro
       {
 
          m_iFontSize = 15;
+         
+         m_efont = e_font_sans;
 
       }
 

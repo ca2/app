@@ -474,7 +474,7 @@ namespace user
 
    
 
-   ::menu::item* menu::GetSubMenu(i32 i)
+   ::menu::item* menu::GetSubMenu(int i)
    {
 
       return get_menu_item()->m_pmenuitema->element_at(i);
@@ -579,7 +579,7 @@ namespace user
    }
 
 
-   void menu::set_minimum_width(::i32 iWidth)
+   void menu::set_minimum_width(int iWidth)
    {
 
       m_sizeMinimum.cx() = iWidth;
@@ -874,7 +874,7 @@ namespace user
 
    //   index iColumn = 0;
 
-   //   for (i32 i = 0; i < pmenuitema->get_size(); i++)
+   //   for (int i = 0; i < pmenuitema->get_size(); i++)
    //   {
 
    //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
@@ -935,7 +935,7 @@ namespace user
 
    //   ::pointer<::base::style>pbasestyle = pstyle;
 
-   //   for (i32 i = 0; i < iItemCount; i++)
+   //   for (int i = 0; i < iItemCount; i++)
    //   {
 
    //      ::menu::item * pitem = pmenuitema->element_at(i);
@@ -1539,7 +1539,7 @@ namespace user
          //{
          //   ::message::command commandui(this);
          //   commandui.m_pitema          = pmenuitema;
-         //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
+         //   for(int i = 0; i < pmenuitema->get_size(); i++)
          //   {
          //
          //      commandui.m_iIndex    = i;
@@ -1551,7 +1551,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1599,7 +1599,7 @@ namespace user
    //       {
    //          ::message::command commandui(this);
    //          commandui.m_pitema          = pmenuitema;
-   //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
+   //          for(int i = 0; i < pmenuitema->get_size(); i++)
    //          {
 
    //             commandui.m_iIndex    = i;
@@ -1611,7 +1611,7 @@ namespace user
    //             {
    //                /*
    //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -2192,11 +2192,11 @@ namespace user
 
       ::collection::index iColumn = 0;
 
-      ::i32 iMaximumButtonHeight = 0;
+      int iMaximumButtonHeight = 0;
 
       // Calculate buttons sizes
 
-      for (i32 i = 0; i < pmenuitema->get_size(); i++)
+      for (int i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2231,11 +2231,11 @@ namespace user
 
       }
 
-      ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
+      int iSeparatorHeight = iMaximumButtonHeight / 3;
 
-      ::i32 iRow = 0;
+      int iRow = 0;
 
-      for (i32 i = 0; i < pmenuitema->get_size(); i++)
+      for (int i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2253,7 +2253,7 @@ namespace user
 
          }
 
-         pmenuitem->m_iColumn = (::i32)iColumn;
+         pmenuitem->m_iColumn = (int)iColumn;
 
          pmenuitem->m_iRow = iRow;
 
@@ -2291,7 +2291,7 @@ namespace user
 
       }
 
-      for (i32 i = 0; i < pmenuitema->get_size(); i++)
+      for (int i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2307,7 +2307,7 @@ namespace user
 
       //::size_i32 sizeSeparator;
 
-      //for (i32 i = 0; i < pmenuitema->get_size(); i++)
+      //for (int i = 0; i < pmenuitema->get_size(); i++)
       //{
 
       //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
@@ -2392,7 +2392,7 @@ namespace user
 
       ::pointer<::base::style>pbasestyle = pstyle;
 
-      for (i32 i = 0; i < iItemCount; i++)
+      for (int i = 0; i < iItemCount; i++)
       {
 
          ::menu::item* pitem = pmenuitema->element_at(i);
@@ -2531,7 +2531,7 @@ namespace user
    //
    //      ::user::style_pointer pstyle;
    //
-   //      for (i32 iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
+   //      for (int iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
    //      {
    //
    //         auto pitem = m_pmenuitem->m_pmenuitema->element_at(iItem);

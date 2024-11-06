@@ -24,28 +24,28 @@ struct color32_t
       struct
       {
 
-         ::u8  m_u8Red;
-         ::u8  m_u8Green;
-         ::u8  m_u8Blue;
-         ::u8  m_u8Opacity;
+         unsigned char  m_u8Red;
+         unsigned char  m_u8Green;
+         unsigned char  m_u8Blue;
+         unsigned char  m_u8Opacity;
 
       };
 
-      ::u8 m_ua[4];
+      unsigned char m_ua[4];
 
    };
 
 
-   constexpr ::u8 u8_red() const { return m_u8Red; }
-   constexpr ::u8 u8_green() const { return m_u8Green; }
-   constexpr ::u8 u8_blue() const { return m_u8Blue; }
-   constexpr ::u8 u8_opacity() const { return m_u8Opacity; }
+   constexpr unsigned char u8_red() const { return m_u8Red; }
+   constexpr unsigned char u8_green() const { return m_u8Green; }
+   constexpr unsigned char u8_blue() const { return m_u8Blue; }
+   constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
 
 
-   constexpr ::u8 & u8_red() { return m_u8Red; }
-   constexpr ::u8 & u8_green() { return m_u8Green; }
-   constexpr ::u8 & u8_blue() { return m_u8Blue; }
-   constexpr ::u8 & u8_opacity() { return m_u8Opacity; }
+   constexpr unsigned char & u8_red() { return m_u8Red; }
+   constexpr unsigned char & u8_green() { return m_u8Green; }
+   constexpr unsigned char & u8_blue() { return m_u8Blue; }
+   constexpr unsigned char & u8_opacity() { return m_u8Opacity; }
 
 
    constexpr ::f32 f32_red() const { return m_u8Red / 255.f; }
@@ -74,10 +74,10 @@ public:
       struct
       {
 
-         ::u8           m_u8Red;
-         ::u8           m_u8Green;
-         ::u8           m_u8Blue;
-         ::u8           m_u8Opacity;
+         unsigned char           m_u8Red;
+         unsigned char           m_u8Green;
+         unsigned char           m_u8Blue;
+         unsigned char           m_u8Opacity;
 
       };
 
@@ -106,10 +106,10 @@ CLASS_DECL_ACME color32_t argb_swap_red_blue(color32_t color32);
 
 
 typedef struct tagWINRGBQUAD {
-   ::u8    rgbBlue;
-   ::u8    rgbGreen;
-   ::u8    rgbRed;
-   ::u8    rgbReserved;
+   unsigned char    rgbBlue;
+   unsigned char    rgbGreen;
+   unsigned char    rgbRed;
+   unsigned char    rgbReserved;
 } WINRGBQUAD, * LPWINRGBQUAD;
 
 

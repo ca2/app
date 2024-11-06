@@ -55,12 +55,12 @@ inline void * fixed_alloc_no_sync::Alloc()
    // erase the first available node from the free list
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
-   return (void *) (((u8 *)pNode) + 16);
+   return (void *) (((unsigned char *)pNode) + 16);
 }
 
 inline void fixed_alloc_no_sync::Free(void * p)
 {
-   p = (void *) (((u8 *)p) - 16);
+   p = (void *) (((unsigned char *)p) - 16);
    if (p != nullptr)
    {
       // simply return the node to the free list

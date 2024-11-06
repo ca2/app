@@ -44,7 +44,7 @@
 //
 //      ::u32 dwBytesReturned = 0;
 //      const ::u32 dwBuffLength = 4096;
-//      ::u8 buffer[dwBuffLength];
+//      unsigned char buffer[dwBuffLength];
 //      WCHAR wchFileName[dwBuffLength];
 //
 //

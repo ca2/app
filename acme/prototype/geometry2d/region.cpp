@@ -134,7 +134,7 @@ namespace geometry2d
    bool region::create_polygon(const polygon_f64 & polygon, ::draw2d::enum_fill_mode efillmode)
    {
 
-      return create_polygon(polygon.data(), (::i32)polygon.size(), efillmode);
+      return create_polygon(polygon.data(), (int)polygon.size(), efillmode);
 
    }
 
@@ -156,7 +156,7 @@ namespace geometry2d
 
       pitem->m_polygon.set_size(nCount);
 
-      for (::i32 i = 0; i < nCount; i++)
+      for (int i = 0; i < nCount; i++)
       {
 
          auto & p = pitem->m_polygon[i];

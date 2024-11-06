@@ -51,7 +51,7 @@ namespace compress_bzip2
 
       bool done = false;
 
-      i32 status;
+      int status;
 
       class memory memIn;
       memIn.set_size(1024 * 8);
@@ -140,12 +140,12 @@ namespace compress_bzip2
    }
 
 
-   //const i32 g_iGzUncompressLen = 1024 * 1024;
+   //const int g_iGzUncompressLen = 1024 * 1024;
    //char * g_pchGzUncompressBuffer = nullptr;
    //
    //
    //
-   //i32 bzuncompress(const ::string & pcszUncompressed, const ::string & lpcszGzFileCompressed)
+   //int bzuncompress(const ::string & pcszUncompressed, const ::string & lpcszGzFileCompressed)
 
    //{
    //   if (g_pchGzUncompressBuffer == nullptr)
@@ -168,7 +168,7 @@ namespace compress_bzip2
    //      BZ2_bzclose(file);
    //      return -1;
    //   }
-   //   i32 uncomprLen;
+   //   int uncomprLen;
    //   while ((uncomprLen = BZ2_bzread(file, g_pchGzUncompressBuffer, g_iGzUncompressLen)) > 0)
    //   {
    //      fwrite_dup(g_pchGzUncompressBuffer, 1, uncomprLen, fileUn);

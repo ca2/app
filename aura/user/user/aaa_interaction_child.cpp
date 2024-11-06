@@ -610,7 +610,7 @@ namespace user
    }
 
 
-   //iptr interaction_child::get_window_long_ptr(i32 nIndex) const
+   //iptr interaction_child::get_window_long_ptr(int nIndex) const
    //{
 
    //   return m_longptr[nIndex];
@@ -618,7 +618,7 @@ namespace user
    //}
 
 
-   //void interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //void interaction_child::set_window_long_ptr(int nIndex, iptr lValue)
    //{
 
    //   auto & l = m_longptr[nIndex];

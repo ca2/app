@@ -21,7 +21,7 @@
 //
 //
 
-//using polygon_i32 = polygon_base < ::i32 >;
+//using polygon_i32 = polygon_base < int >;
 //using polygon_i64 = polygon_base < ::i64 >;
 //using polygon_f32 = polygon_base < ::f32 >;
 //using polygon_f64 = polygon_base < ::f64 >;
@@ -43,7 +43,7 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-//using point_i32_array = point_array_base < ::i32 >;
+//using point_i32_array = point_array_base < int >;
 //using point_i64_array = point_array_base < ::i64 >;
 //using point_f32_array = point_array_base < ::f32 >;
 //using point_f64_array = point_array_base < ::f64 >;

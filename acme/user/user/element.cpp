@@ -1407,7 +1407,7 @@ namespace user
 
 
 
-   //::i32 element::get_window_long(i32 nIndex) const
+   //int element::get_window_long(i32 nIndex) const
    //{
 
    //   throw ::interface_only();
@@ -1417,7 +1417,7 @@ namespace user
    //}
 
 
-   //::i32 element::set_window_long(i32 nIndex,::i32 lValue)
+   //int element::set_window_long(i32 nIndex,int lValue)
    //{
 
    //   throw ::interface_only();

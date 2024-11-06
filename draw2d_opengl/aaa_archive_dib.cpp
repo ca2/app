@@ -306,21 +306,21 @@ namespace draw2d_opengl
    {
       i64 size = area();
 
-      ::u8 * pbyte = (::u8 *) m_pcolorref;
+      unsigned char * pbyte = (unsigned char *) m_pcolorref;
 
       i32 i;
       for (i=0; i<size; i++ )
       {
-         *pbyte++ = (::u8) R;
-         *pbyte++ = (::u8) G;
-         *pbyte++ = (::u8) B;
+         *pbyte++ = (unsigned char) R;
+         *pbyte++ = (unsigned char) G;
+         *pbyte++ = (unsigned char) B;
          pbyte++;
       }
    }
 
    void image::ToAlpha(i32 i)
    {
-      ::u8 *dst=(::u8*)m_pcolorref;
+      unsigned char *dst=(unsigned char*)m_pcolorref;
       i64 size = area();
 
       while ( size-- )
@@ -332,7 +332,7 @@ namespace draw2d_opengl
 
    void image::from_alpha()
    {
-      ::u8 *dst=(::u8*)m_pcolorref;
+      unsigned char *dst=(unsigned char*)m_pcolorref;
       i64 size = area();
 
       while ( size-- )
@@ -397,12 +397,12 @@ namespace draw2d_opengl
 
    //void image::Map(i32 ToRgb, i32 FromRgb)
    //{
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
 
    //   while ( size-- )
    //   {
-   //      *dst = (::u8) (*dst == FromRgb ? ToRgb : *dst);
+   //      *dst = (unsigned char) (*dst == FromRgb ? ToRgb : *dst);
    //      dst+=4;
    //   }
    //}
@@ -410,12 +410,12 @@ namespace draw2d_opengl
 
    //void image::ToAlphaAndFill(i32 i, color32_t color32)
    //{
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
 
-   //   ::u8 uchB = ::blue(color32);
-   //   ::u8 uchG = ::green(color32);
-   //   ::u8 uchR = ::red(color32);
+   //   unsigned char uchB = ::blue(color32);
+   //   unsigned char uchG = ::green(color32);
+   //   unsigned char uchR = ::red(color32);
 
    //   while ( size-- )
    //   {
@@ -429,7 +429,7 @@ namespace draw2d_opengl
 
    //void image::GrayToARGB(color32_t color32)
    //{
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
 
    //   ::u32 dwB = ::blue(color32);
@@ -439,9 +439,9 @@ namespace draw2d_opengl
    //   while (size-- > 0)
    //   {
    //      dst[3] = dst[0];
-   //      dst[0] = (::u8)(((dwB * dst[3]) / 256) & 0xff);
-   //      dst[1] = (::u8)(((dwG * dst[3]) / 256) & 0xff);
-   //      dst[2] = (::u8)(((dwR * dst[3]) / 256) & 0xff);
+   //      dst[0] = (unsigned char)(((dwB * dst[3]) / 256) & 0xff);
+   //      dst[1] = (unsigned char)(((dwG * dst[3]) / 256) & 0xff);
+   //      dst[2] = (unsigned char)(((dwR * dst[3]) / 256) & 0xff);
    //      dst+=4;
    //   }
    //}
@@ -580,21 +580,21 @@ namespace draw2d_opengl
    //   for(register i64 i = 0; i < size; i++)
    //   {
    //      iRes = *lpb * iMul / iDiv;
-   //      *lpb = (::u8) (iRes > 255 ? 255 : iRes);
+   //      *lpb = (unsigned char) (iRes > 255 ? 255 : iRes);
    //      lpb += 4;
    //   }
    //}
 
    //void image::FillGlass ( i32 R, i32 G, i32 B, i32 A )
    //{
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(::u8)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(::u8)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(unsigned char)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(unsigned char)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(unsigned char)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //   }
    //}
@@ -633,10 +633,10 @@ namespace draw2d_opengl
    //   ::memory_copy ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
    //}
 
-   //bool image::color_blend(color32_t color32, ::u8 bAlpha)
+   //bool image::color_blend(color32_t color32, unsigned char bAlpha)
    //{
 
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
 
    //   ::u32 dwB = ::blue(color32);
@@ -649,9 +649,9 @@ namespace draw2d_opengl
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
-   //      dst[1]=(::u8)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-   //      dst[2]=(::u8)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
+   //      dst[0]=(unsigned char)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
+   //      dst[1]=(unsigned char)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
+   //      dst[2]=(unsigned char)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
    //      dst+=4;
    //   }
    //   return true;
@@ -663,15 +663,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(::u8)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(::u8)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(unsigned char)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(unsigned char)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(unsigned char)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -683,18 +683,18 @@ namespace draw2d_opengl
    //      size() != imageA.size())
    //      return false;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
-   //   ::u8 *alf=(::u8*)imageA.m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
+   //   unsigned char *alf=(unsigned char*)imageA.m_pcolorref;
    //   i64 size = area();
 
    //   A = 2 - A;
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
-   //      dst[1]=(::u8)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
-   //      dst[2]=(::u8)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
+   //      dst[0]=(unsigned char)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
+   //      dst[1]=(unsigned char)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
+   //      dst[2]=(unsigned char)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //      alf+=4;
@@ -708,15 +708,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(::u8)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(::u8)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(unsigned char)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(unsigned char)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(unsigned char)((src[2]<dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -727,19 +727,19 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
    //      i32 Difference;
    //      Difference=src[0]-dst[0];
-   //      dst[0]=(::u8)((Difference<0) ? -Difference : Difference);
+   //      dst[0]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //      Difference=src[1]-dst[1];
-   //      dst[1]=(::u8)((Difference<0) ? -Difference : Difference);
+   //      dst[1]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //      Difference=src[2]-dst[2];
-   //      dst[2]=(::u8)((Difference<0) ? -Difference : Difference);
+   //      dst[2]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -750,15 +750,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(::u8)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(::u8)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(unsigned char)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(unsigned char)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(unsigned char)((src[2]>dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -770,15 +770,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(((src[0])*(dst[0]))>>8);
-   //      dst[1]=(::u8)(((src[1])*(dst[1]))>>8);
-   //      dst[2]=(::u8)(((src[2])*(dst[2]))>>8);
+   //      dst[0]=(unsigned char)(((src[0])*(dst[0]))>>8);
+   //      dst[1]=(unsigned char)(((src[1])*(dst[1]))>>8);
+   //      dst[2]=(unsigned char)(((src[2])*(dst[2]))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -789,15 +789,15 @@ namespace draw2d_opengl
    //   if(size() != pimage->size())
    //      return;
 
-   //   ::u8 *src=(::u8*)pimage->get_data();
-   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   unsigned char *src=(unsigned char*)pimage->get_data();
+   //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(::u8)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //      dst[1]=(::u8)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //      dst[2]=(::u8)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //      dst[0]=(unsigned char)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //      dst[1]=(unsigned char)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //      dst[2]=(unsigned char)(255-(((255-src[2])*(255-dst[2]))>>8));
    //      dst+=4;
    //      src+=4;
    //   }
@@ -910,16 +910,16 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Address
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*m_size.cx())+px)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*m_size.cx())+px)*4;
 
    //   // Do FillGlass
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(::u8)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(::u8)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(unsigned char)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(unsigned char)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(unsigned char)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
    //      dst+=(m_size.cx()-Δx)<<2;
@@ -970,17 +970,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*m_size.cx())+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*m_size.cx())+px)*4;
 
    //   // Do Blend
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(::u8)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(::u8)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(unsigned char)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(unsigned char)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(unsigned char)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1004,17 +1004,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Darken
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(::u8)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(::u8)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(unsigned char)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(unsigned char)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(unsigned char)((src[2]<dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1038,8 +1038,8 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Difference
    //   while ( Δy-- )
@@ -1048,11 +1048,11 @@ namespace draw2d_opengl
    //      {
    //         i32 Difference;
    //         Difference=src[0]-dst[0];
-   //         dst[0]=(::u8)((Difference<0) ? -Difference : Difference);
+   //         dst[0]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //         Difference=src[1]-dst[1];
-   //         dst[1]=(::u8)((Difference<0) ? -Difference : Difference);
+   //         dst[1]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //         Difference=src[2]-dst[2];
-   //         dst[2]=(::u8)((Difference<0) ? -Difference : Difference);
+   //         dst[2]=(unsigned char)((Difference<0) ? -Difference : Difference);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1076,17 +1076,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Lighten
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(::u8)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(::u8)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(unsigned char)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(unsigned char)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(unsigned char)((src[2]>dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1110,17 +1110,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Multiply
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)(((src[0])*(dst[0]))>>8);
-   //         dst[1]=(::u8)(((src[1])*(dst[1]))>>8);
-   //         dst[2]=(::u8)(((src[2])*(dst[2]))>>8);
+   //         dst[0]=(unsigned char)(((src[0])*(dst[0]))>>8);
+   //         dst[1]=(unsigned char)(((src[1])*(dst[1]))>>8);
+   //         dst[2]=(unsigned char)(((src[2])*(dst[2]))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1144,17 +1144,17 @@ namespace draw2d_opengl
    //      return;
 
    //   // Prepare buffer Addresses
-   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
-   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
+   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx())+px-x)*4;
+   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Screen
    //   while ( Δy-- )
    //   {
    //      for ( i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(::u8)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //         dst[1]=(::u8)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //         dst[2]=(::u8)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //         dst[0]=(unsigned char)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //         dst[1]=(unsigned char)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //         dst[2]=(unsigned char)(255-(((255-src[2])*(255-dst[2]))>>8));
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1248,7 +1248,7 @@ namespace draw2d_opengl
 //   {
 //      i32 d, x, y, ax, ay, sx, sy, Δx, Δy;
 ////      color32_t color=rgb ( B, G, R );
-//      ::u8 *dst=(::u8 *)m_pcolorref;
+//      unsigned char *dst=(unsigned char *)m_pcolorref;
 //
 //      Δx=x2-x1;
 //      ax=abs ( Δx )<<1;
@@ -1264,9 +1264,9 @@ namespace draw2d_opengl
 //         d=ay-(ax>>1);
 //         while ( x!=x2 )
 //         {
-//            dst[(y*cx+x)<<2]=(::u8)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(::u8)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(::u8)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(unsigned char)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(unsigned char)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(unsigned char)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               y+=sy;
@@ -1281,9 +1281,9 @@ namespace draw2d_opengl
 //         d=ax-(ay>>1);
 //         while ( y!=y2 )
 //         {
-//            dst[(y*cx+x)<<2]=(::u8)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(::u8)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(::u8)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(unsigned char)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(unsigned char)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(unsigned char)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               x+=sx;
@@ -1350,7 +1350,7 @@ namespace draw2d_opengl
    // The gradient cant have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
-//   void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, i32 xCenter, i32 yCenter, i32 iRadius)
+//   void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char green, unsigned char blue, i32 xCenter, i32 yCenter, i32 iRadius)
 //   {
 //      if (iRadius == 0)
 //         return;
@@ -1371,7 +1371,7 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
 //         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         i32 size=cx*cy;
 //         double iLevel;
@@ -1458,8 +1458,8 @@ namespace draw2d_opengl
 //                  b = 255 - b;
 //
 //
-//               lpb[x + y * iRadius] = (::u8) b;
-//               lpb[y + x * iRadius] = (::u8) b;
+//               lpb[x + y * iRadius] = (unsigned char) b;
+//               lpb[y + x * iRadius] = (unsigned char) b;
 //            }
 //         }
 //
@@ -1478,7 +1478,7 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
 //         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         i32 size=cx*cy;
 //
@@ -1493,10 +1493,10 @@ namespace draw2d_opengl
 //               Δx = abs(x - xCenter);
 //               Δy = abs(y - yCenter);
 //               b = lpb[Δx + Δy * iRadius];
-//               dst[0] = (::u8) (blue     * b / 255);
-//               dst[1] = (::u8) (green    * b / 255);
-//               dst[2] = (::u8) (red      * b / 255);
-//               dst[3] = (::u8) (alpha    * b / 255);
+//               dst[0] = (unsigned char) (blue     * b / 255);
+//               dst[1] = (unsigned char) (green    * b / 255);
+//               dst[2] = (unsigned char) (red      * b / 255);
+//               dst[3] = (unsigned char) (alpha    * b / 255);
 //               dst += 4;
 //            }
 //            dst += dwAdd;
@@ -1508,8 +1508,8 @@ namespace draw2d_opengl
 //
 //
 //   void image::RadialFill(
-//      ::u8 alpha1, ::u8 red1, ::u8 green1, ::u8 blue1,
-//      ::u8 alpha2, ::u8 red2, ::u8 green2, ::u8 blue2,
+//      unsigned char alpha1, unsigned char red1, unsigned char green1, unsigned char blue1,
+//      unsigned char alpha2, unsigned char red2, unsigned char green2, unsigned char blue2,
 //      i32 xCenter, i32 yCenter, i32 iRadius)
 //   {
 //      if (iRadius == 0)
@@ -1531,7 +1531,7 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
 //         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         i32 size=cx*cy;
 //         double iLevel;
@@ -1618,8 +1618,8 @@ namespace draw2d_opengl
 //                  b = ~b;
 //
 //
-//               lpb[x + y * iRadius] = (::u8) b;
-//               lpb[y + x * iRadius] = (::u8) b;
+//               lpb[x + y * iRadius] = (unsigned char) b;
+//               lpb[y + x * iRadius] = (unsigned char) b;
 //            }
 //         }
 //
@@ -1638,13 +1638,13 @@ namespace draw2d_opengl
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
 //         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         i32 size=cx*cy;
 //
 //         i32 Δx, Δy;
 //
-//         ::u8 bComp;
+//         unsigned char bComp;
 //
 //         // Top Left
 //
@@ -1655,11 +1655,11 @@ namespace draw2d_opengl
 //               Δx = abs(x - xCenter);
 //               Δy = abs(y - yCenter);
 //               b = lpb[Δx + Δy * iRadius];
-//               bComp = (::u8) ~b;
-//               dst[0] = (::u8) (((blue1  * b) + (blue2  * bComp)) / 255);
-//               dst[1] = (::u8) (((green1 * b) + (green2 * bComp)) / 255);
-//               dst[2] = (::u8) (((red1   * b) + (red2   * bComp)) / 255);
-//               dst[3] = (::u8) (((alpha1 * b) + (alpha2 * bComp)) / 255);
+//               bComp = (unsigned char) ~b;
+//               dst[0] = (unsigned char) (((blue1  * b) + (blue2  * bComp)) / 255);
+//               dst[1] = (unsigned char) (((green1 * b) + (green2 * bComp)) / 255);
+//               dst[2] = (unsigned char) (((red1   * b) + (red2   * bComp)) / 255);
+//               dst[3] = (unsigned char) (((alpha1 * b) + (alpha2 * bComp)) / 255);
 //               dst += 4;
 //            }
 //            dst += dwAdd;
@@ -1717,14 +1717,14 @@ namespace draw2d_opengl
       nullptr,
       DI_MASK);
 
-      ::u8 * r1=(::u8*)pimage1->m_pcolorref;
-      ::u8 * r2=(::u8*)pimage2->get_data();
-      ::u8 * srcM=(::u8*)imageM.m_pcolorref;
-      ::u8 * dest=(::u8*)m_pcolorref;
+      unsigned char * r1=(unsigned char*)pimage1->m_pcolorref;
+      unsigned char * r2=(unsigned char*)pimage2->get_data();
+      unsigned char * srcM=(unsigned char*)imageM.m_pcolorref;
+      unsigned char * dest=(unsigned char*)m_pcolorref;
       i32 iSize = cx*cy;
 
-      ::u8 b;
-      ::u8 bMax;
+      unsigned char b;
+      unsigned char bMax;
       while ( iSize-- > 0)
       {
          if(srcM[0] == 255)
@@ -1734,11 +1734,11 @@ namespace draw2d_opengl
          else
          {
             bMax = 0;
-            b =(::u8)(r1[0]  - r2[0]);
+            b =(unsigned char)(r1[0]  - r2[0]);
             bMax = maximum(b, bMax);
-            b =(::u8)(r1[1]  - r2[1]);
+            b =(unsigned char)(r1[1]  - r2[1]);
             bMax = maximum(b, bMax);
-            b =(::u8)(r1[2]  - r2[2]);
+            b =(unsigned char)(r1[2]  - r2[2]);
             bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
@@ -2261,45 +2261,45 @@ namespace draw2d_opengl
    //   i32 iCount1 = iCount - iCount % 8;
    //   for(; i < iCount1; i++)
    //   {
-   //      lp[0] /= (::u8) iDivide;
-   //      lp[1] /= (::u8) iDivide;
-   //      lp[2] /= (::u8) iDivide;
+   //      lp[0] /= (unsigned char) iDivide;
+   //      lp[1] /= (unsigned char) iDivide;
+   //      lp[2] /= (unsigned char) iDivide;
 
-   //      lp[4] /= (::u8) iDivide;
-   //      lp[5] /= (::u8) iDivide;
-   //      lp[6] /= (::u8) iDivide;
+   //      lp[4] /= (unsigned char) iDivide;
+   //      lp[5] /= (unsigned char) iDivide;
+   //      lp[6] /= (unsigned char) iDivide;
 
-   //      lp[8] /= (::u8) iDivide;
-   //      lp[9] /= (::u8) iDivide;
-   //      lp[10] /= (::u8) iDivide;
+   //      lp[8] /= (unsigned char) iDivide;
+   //      lp[9] /= (unsigned char) iDivide;
+   //      lp[10] /= (unsigned char) iDivide;
 
-   //      lp[12] /= (::u8) iDivide;
-   //      lp[13] /= (::u8) iDivide;
-   //      lp[14] /= (::u8) iDivide;
+   //      lp[12] /= (unsigned char) iDivide;
+   //      lp[13] /= (unsigned char) iDivide;
+   //      lp[14] /= (unsigned char) iDivide;
 
-   //      lp[16] /= (::u8) iDivide;
-   //      lp[17] /= (::u8) iDivide;
-   //      lp[28] /= (::u8) iDivide;
+   //      lp[16] /= (unsigned char) iDivide;
+   //      lp[17] /= (unsigned char) iDivide;
+   //      lp[28] /= (unsigned char) iDivide;
 
-   //      lp[20] /= (::u8) iDivide;
-   //      lp[21] /= (::u8) iDivide;
-   //      lp[22] /= (::u8) iDivide;
+   //      lp[20] /= (unsigned char) iDivide;
+   //      lp[21] /= (unsigned char) iDivide;
+   //      lp[22] /= (unsigned char) iDivide;
 
-   //      lp[24] /= (::u8) iDivide;
-   //      lp[25] /= (::u8) iDivide;
-   //      lp[26] /= (::u8) iDivide;
+   //      lp[24] /= (unsigned char) iDivide;
+   //      lp[25] /= (unsigned char) iDivide;
+   //      lp[26] /= (unsigned char) iDivide;
 
-   //      lp[28] /= (::u8) iDivide;
-   //      lp[29] /= (::u8) iDivide;
-   //      lp[30] /= (::u8) iDivide;
+   //      lp[28] /= (unsigned char) iDivide;
+   //      lp[29] /= (unsigned char) iDivide;
+   //      lp[30] /= (unsigned char) iDivide;
 
    //      lp += 4 * 8;
    //   }
    //   for(; i < iCount; i++)
    //   {
-   //      lp[0] /= (::u8) iDivide;
-   //      lp[1] /= (::u8) iDivide;
-   //      lp[2] /= (::u8) iDivide;
+   //      lp[0] /= (unsigned char) iDivide;
+   //      lp[1] /= (unsigned char) iDivide;
+   //      lp[2] /= (unsigned char) iDivide;
    //      lp +=4;
    //   }
    //}
@@ -2314,10 +2314,10 @@ namespace draw2d_opengl
    //   LPBYTE lp = ((LPBYTE) m_pcolorref);
    //   for(i32 i = 0; i < iCount; i++)
    //   {
-   //      lp[0] /= (::u8) iDivide;
-   //      lp[1] /= (::u8) iDivide;
-   //      lp[2] /= (::u8) iDivide;
-   //      lp[3] /= (::u8) iDivide;
+   //      lp[0] /= (unsigned char) iDivide;
+   //      lp[1] /= (unsigned char) iDivide;
+   //      lp[2] /= (unsigned char) iDivide;
+   //      lp[3] /= (unsigned char) iDivide;
    //      lp +=4;
    //   }
    //}
@@ -2332,7 +2332,7 @@ namespace draw2d_opengl
    //   LPBYTE lp = ((LPBYTE) m_pcolorref);
    //   for(i32 i = 0; i < iCount; i++)
    //   {
-   //      lp[3] /= (::u8) iDivide;
+   //      lp[3] /= (unsigned char) iDivide;
    //      lp +=4;
    //   }
    //}
@@ -2379,50 +2379,50 @@ namespace draw2d_opengl
    //     i32 offset = ((i32)echannel) % 4;
    //    i32 size=m_size.cx()*cy;
 
-   //    ::u8 * pb;
+   //    unsigned char * pb;
 
    //    i32 iSize32 = size;
    //    i32 i;
    //    for (i=0; i < iSize32; i+=32 )
    //    {
-   //       pb = ((::u8 * ) &m_pcolorref[i]) + offset;
-   //       pb[0 * 4] = (::u8) intensity;
-   //       pb[1 * 4] = (::u8) intensity;
-   //       pb[2 * 4] = (::u8) intensity;
-   //       pb[3 * 4] = (::u8) intensity;
-   //       pb[4 * 4] = (::u8) intensity;
-   //       pb[5 * 4] = (::u8) intensity;
-   //       pb[6 * 4] = (::u8) intensity;
-   //       pb[7 * 4] = (::u8) intensity;
-   //       pb[8 * 4] = (::u8) intensity;
-   //       pb[9 * 4] = (::u8) intensity;
-   //       pb[10 * 4] = (::u8) intensity;
-   //       pb[11 * 4] = (::u8) intensity;
-   //       pb[12 * 4] = (::u8) intensity;
-   //       pb[13 * 4] = (::u8) intensity;
-   //       pb[14 * 4] = (::u8) intensity;
-   //       pb[15 * 4] = (::u8) intensity;
-   //       pb[16 * 4] = (::u8) intensity;
-   //       pb[17 * 4] = (::u8) intensity;
-   //       pb[18 * 4] = (::u8) intensity;
-   //       pb[19 * 4] = (::u8) intensity;
-   //       pb[20 * 4] = (::u8) intensity;
-   //       pb[21 * 4] = (::u8) intensity;
-   //       pb[22 * 4] = (::u8) intensity;
-   //       pb[23 * 4] = (::u8) intensity;
-   //       pb[24 * 4] = (::u8) intensity;
-   //       pb[25 * 4] = (::u8) intensity;
-   //       pb[26 * 4] = (::u8) intensity;
-   //       pb[27 * 4] = (::u8) intensity;
-   //       pb[28 * 4] = (::u8) intensity;
-   //       pb[29 * 4] = (::u8) intensity;
-   //       pb[30 * 4] = (::u8) intensity;
-   //       pb[31 * 4] = (::u8) intensity;
+   //       pb = ((unsigned char * ) &m_pcolorref[i]) + offset;
+   //       pb[0 * 4] = (unsigned char) intensity;
+   //       pb[1 * 4] = (unsigned char) intensity;
+   //       pb[2 * 4] = (unsigned char) intensity;
+   //       pb[3 * 4] = (unsigned char) intensity;
+   //       pb[4 * 4] = (unsigned char) intensity;
+   //       pb[5 * 4] = (unsigned char) intensity;
+   //       pb[6 * 4] = (unsigned char) intensity;
+   //       pb[7 * 4] = (unsigned char) intensity;
+   //       pb[8 * 4] = (unsigned char) intensity;
+   //       pb[9 * 4] = (unsigned char) intensity;
+   //       pb[10 * 4] = (unsigned char) intensity;
+   //       pb[11 * 4] = (unsigned char) intensity;
+   //       pb[12 * 4] = (unsigned char) intensity;
+   //       pb[13 * 4] = (unsigned char) intensity;
+   //       pb[14 * 4] = (unsigned char) intensity;
+   //       pb[15 * 4] = (unsigned char) intensity;
+   //       pb[16 * 4] = (unsigned char) intensity;
+   //       pb[17 * 4] = (unsigned char) intensity;
+   //       pb[18 * 4] = (unsigned char) intensity;
+   //       pb[19 * 4] = (unsigned char) intensity;
+   //       pb[20 * 4] = (unsigned char) intensity;
+   //       pb[21 * 4] = (unsigned char) intensity;
+   //       pb[22 * 4] = (unsigned char) intensity;
+   //       pb[23 * 4] = (unsigned char) intensity;
+   //       pb[24 * 4] = (unsigned char) intensity;
+   //       pb[25 * 4] = (unsigned char) intensity;
+   //       pb[26 * 4] = (unsigned char) intensity;
+   //       pb[27 * 4] = (unsigned char) intensity;
+   //       pb[28 * 4] = (unsigned char) intensity;
+   //       pb[29 * 4] = (unsigned char) intensity;
+   //       pb[30 * 4] = (unsigned char) intensity;
+   //       pb[31 * 4] = (unsigned char) intensity;
    //    }
 
    //    for (; i<size; i++ )
    //    {
-   //       *(((::u8 * ) &m_pcolorref[i]) + offset) = (::u8) intensity;
+   //       *(((unsigned char * ) &m_pcolorref[i]) + offset) = (unsigned char) intensity;
    //    }
    //}
 
@@ -2481,10 +2481,10 @@ namespace draw2d_opengl
 ////
 ////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx(),m_size.cy(),m_size.cx() * 4);
 ////
-////         ::u8 *dstR=(::u8*)get_data();
-////         ::u8 *dstG=dstR + 1;
-////         ::u8 *dstB=dstR + 2;
-////         ::u8 *dstA=dstR + 3;
+////         unsigned char *dstR=(unsigned char*)get_data();
+////         unsigned char *dstG=dstR + 1;
+////         unsigned char *dstB=dstR + 2;
+////         unsigned char *dstA=dstR + 3;
 ////         i64 size = area() * 4;
 ////
 ////
@@ -2493,7 +2493,7 @@ namespace draw2d_opengl
 //////         #pragma omp parallel num_threads(3)
 //////                  {
 //////
-//////                     ::u8 *dst = dstR + omp_get_thread_num();
+//////                     unsigned char *dst = dstR + omp_get_thread_num();
 //////      #pragma omp parallel for
 //////                     for(::collection::index i = 0; i < size; i+=4)
 //////                     {
@@ -2518,7 +2518,7 @@ namespace draw2d_opengl
 ////////            }
 ////////            else
 ////////            {
-////////               ::u8 *dst = dstR + omp_get_thread_num();
+////////               unsigned char *dst = dstR + omp_get_thread_num();
 ////////#pragma omp parallel for
 ////////               for(::collection::index i = 0; i < size; i+=4)
 ////////               {
@@ -2564,12 +2564,12 @@ namespace draw2d_opengl
 //         // width is not a multiple of 4.
 //
 //         int totalBytes = b->m_sizeOut.cx() * b.m_sizeOut.cy() * 4;
-//         ::u8 * p = (::u8*)b->m_memOut.get_data();
+//         unsigned char * p = (unsigned char*)b->m_memOut.get_data();
 //         for (int i = 0; i < totalBytes; i += 4)
 //         {
-//            p[0] = (::u8)(p[0] * p[3] / 255);
-//            p[1] = (::u8)(p[1] * p[3] / 255);
-//            p[2] = (::u8)(p[2] * p[3] / 255);
+//            p[0] = (unsigned char)(p[0] * p[3] / 255);
+//            p[1] = (unsigned char)(p[1] * p[3] / 255);
+//            p[2] = (unsigned char)(p[2] * p[3] / 255);
 //            p+=4;
 //         }
 //      }

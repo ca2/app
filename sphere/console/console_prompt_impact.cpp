@@ -347,7 +347,7 @@ namespace console
 
          ::rectangle_i32 rectangleCaret;
 
-         rectangleCaret.left() = (::i32) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
+         rectangleCaret.left() = (int) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
          rectangleCaret.right() = rectangleCaret.left() + m_sizeChar.cx();
          rectangleCaret.top() = m_sizeChar.cy() - 3;
          rectangleCaret.bottom() = m_sizeChar.cy();

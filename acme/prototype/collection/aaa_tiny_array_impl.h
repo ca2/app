@@ -2,7 +2,7 @@
 
 
 template < typename TYPE >
-void tiny_array < TYPE > ::allocate(::i32 iCount)
+void tiny_array < TYPE > ::allocate(int iCount)
 {
 
    if (iCount < 0)
@@ -86,7 +86,7 @@ void tiny_array < TYPE > ::zero()
 
 
 template < typename TYPE >
-void tiny_array < TYPE > ::set_at_grow(::i32 iIndex, const TYPE& t)
+void tiny_array < TYPE > ::set_at_grow(int iIndex, const TYPE& t)
 {
 
    element_at_grow(iIndex) = t;
@@ -95,7 +95,7 @@ void tiny_array < TYPE > ::set_at_grow(::i32 iIndex, const TYPE& t)
 
 
 template < typename TYPE >
-TYPE & tiny_array < TYPE > ::element_at_grow(::i32 iIndex)
+TYPE & tiny_array < TYPE > ::element_at_grow(int iIndex)
 {
 
    if (iIndex < 0)

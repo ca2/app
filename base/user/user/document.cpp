@@ -1957,7 +1957,7 @@ namespace user
       }
 
       // now do it again counting the unique ones
-      i32 nFrames = 0;
+      int nFrames = 0;
 
       count = get_impact_count();
 
@@ -1989,7 +1989,7 @@ namespace user
 
       // lastly walk the frames and update titles (assume same order)
       // go through frames updating the appropriate one
-      i32 iFrame = 1;
+      int iFrame = 1;
 
       count = get_impact_count();
 

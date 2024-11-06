@@ -119,7 +119,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
+      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
@@ -183,9 +183,9 @@ namespace user
 
       double dWidth = ((double)rectangleX.width()) / (iMax - iMin);
 
-      prectangle->left() = (::i32) (dWidth * (iStep - iMin));
+      prectangle->left() = (int) (dWidth * (iStep - iMin));
 
-      prectangle->right() = (::i32) (dWidth * (iStep - iMin + 1));
+      prectangle->right() = (int) (dWidth * (iStep - iMin + 1));
 
 
 

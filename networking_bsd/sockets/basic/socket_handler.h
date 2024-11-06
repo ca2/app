@@ -28,7 +28,7 @@ namespace sockets_bsd
    {
    public:
 
-      ::i32 m_iMaxKeepAliveCount = 0;
+      int m_iMaxKeepAliveCount = 0;
       ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
       socket_map                 m_socketmap; ///< Active sockets map

@@ -144,12 +144,12 @@ namespace platform
 
 #endif
 
-      virtual ::release_time_for_project release_time();
+      virtual ::release_time_for_project release_time() override;
 
 
       //virtual void initialize_application(::platform::platform * pplatform);
 
-      virtual void initialize_application();
+      virtual void initialize_application() override;
 
 #if REFERENCING_DEBUGGING
 
@@ -157,17 +157,17 @@ namespace platform
 
 #endif
 
-      virtual void _001TryCloseApplication();
+      virtual void _001TryCloseApplication() override;
 
-      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
+      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr) override;
 
 
-      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
+      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr) override;
 
 
       //virtual void application_main();
 
-      virtual ::i32 application_main();
+      virtual int application_main() override;
 
 
       void on_set_platform() override;
@@ -180,11 +180,11 @@ namespace platform
       //void initialize(::particle * pparticle) override;
 
 
-      virtual void start_application(::request* prequest);
+      virtual void start_application(::request* prequest) override;
 
       //virtual void on_initialize_application();
 
-      virtual class ::application_menu * application_menu();
+      virtual class ::application_menu * application_menu() override;
 
 //      using ::platform::context::factory;
 
@@ -192,7 +192,7 @@ namespace platform
 
       //virtual void implement_application();
 
-      virtual void initialize_application_flags();
+      virtual void initialize_application_flags() override;
 
       //virtual bool is_application() const;
 
@@ -204,20 +204,20 @@ namespace platform
 
       virtual bool can_exit_application() override;
 
-      virtual ::file::path get_module_path();
-      virtual ::file::path get_module_folder();
+      virtual ::file::path get_module_path() override;
+      virtual ::file::path get_module_folder() override;
 
 
-      virtual ::string app_name();
+      virtual ::string app_name() override;
 
       //virtual ::string app_name();
 
-      virtual ::string app_root();
+      virtual ::string app_root() override;
 
-      virtual ::string application_title();
+      virtual ::string application_title() override;
 
 
-      virtual ::string application_name();
+      virtual ::string application_name() override;
 //
 //#ifdef WINDOWS
 //
@@ -235,10 +235,10 @@ namespace platform
 
       void main() override;
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
+      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate) override;
 
-      virtual void on_before_launching();
-      virtual void os_native_bergedge_start();
+      virtual void on_before_launching() override;
+      virtual void os_native_bergedge_start() override;
 
       virtual void init1();
       virtual void init2();
@@ -253,97 +253,97 @@ namespace platform
       virtual void term1();
 
 
-      virtual void do_install();
-      virtual void do_uninstall();
+      virtual void do_install() override;
+      virtual void do_uninstall() override;
 
 
-      virtual void on_install();
-      virtual void on_uninstall();
+      virtual void on_install() override;
+      virtual void on_uninstall() override;
 
 
-      virtual void init_instance();
-      virtual void term_instance();
+      virtual void init_instance() override;
+      virtual void term_instance() override;
 
       void init_task() override;
       void term_task() override;
 
 
-      virtual bool has_capability(enum_application_capability eapplicationcapability) const;
-      virtual void add_capability(enum_application_capability ecapability);
+      virtual bool has_capability(enum_application_capability eapplicationcapability) const override;
+      virtual void add_capability(enum_application_capability ecapability) override;
 
 
       bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
-      virtual bool handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset);
+      virtual bool handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset) override;
 
 
-      virtual ::file::path get_app_localconfig_folder();
-      virtual ::pointer<::handle::ini>get_ini();
+      virtual ::file::path get_app_localconfig_folder() override;
+      virtual ::pointer<::handle::ini>get_ini() override;
 
 
-      virtual ::string get_visual_studio_build();
+      virtual ::string get_visual_studio_build() override;
 
 
-      virtual ::string get_application_name();
+      virtual ::string get_application_name() override;
 
 
       void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
-      virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-      virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
+      virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override;
       string get_locale_schema_dir() override;
 
-      virtual void set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context);
+      virtual void set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context) override;
 
-      virtual void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context & action_context);
+      virtual void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context & action_context) override;
 
-      virtual void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context & action_context);
+      virtual void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context & action_context) override;
 
-      virtual void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context & action_context);
-
-
-
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context & action_context) override;
 
 
-      virtual void process_init();
-      virtual void process_term();
 
-      virtual void pre_run();
-      virtual void application_pre_run();
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
-      virtual void pos_run();
-      virtual void application_pos_run();
 
-      virtual void init_application();
+      virtual void process_init() override;
+      virtual void process_term() override;
 
-      virtual void term_application();
+      virtual void pre_run() override;
+      virtual void application_pre_run() override;
 
-      virtual ::string_array get_about_box_lines();
+      virtual void pos_run() override;
+      virtual void application_pos_run() override;
 
-      virtual void show_about_box();
+      virtual void init_application() override;
+
+      virtual void term_application() override;
+
+      virtual ::string_array get_about_box_lines() override;
+
+      virtual void show_about_box() override;
 
       bool on_application_menu_action(const ::atom & atom) override;
 
 
 
 
-      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
-      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+      virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
 
-      virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
+      virtual get_file_extension_mime_type * get_get_file_extension_mime_type() override;
 
-      virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
-      virtual void pick_media(const char * pszMediaType);
-      virtual void did_pick_document_at_url(const char * pszUrl);
-      virtual void did_pick_document_at_urls(const ::string_array & stra);
-      virtual void on_prompt_write_file(::user::controller * pusercontroller);
-      virtual void file_manager_save_as(::user::controller * pusercontroller);
+      virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback) override;
+      virtual void pick_media(const char * pszMediaType) override;
+      virtual void did_pick_document_at_url(const char * pszUrl) override;
+      virtual void did_pick_document_at_urls(const ::string_array & stra) override;
+      virtual void on_prompt_write_file(::user::controller * pusercontroller) override;
+          virtual void file_manager_save_as(::user::controller * pusercontroller) override;
 
 
-      virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu);
+      virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu) override;
 
 
    };

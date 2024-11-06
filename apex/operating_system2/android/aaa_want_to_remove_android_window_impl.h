@@ -34,7 +34,7 @@ struct CLASS_DECL_APEX oswindow_data
    htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
-   i32_map < ::i32 > *            m_plongmap;
+   i32_map < int > *            m_plongmap;
    bool                          m_bDestroying;
 
 
@@ -96,8 +96,8 @@ struct CLASS_DECL_APEX oswindow_data
    bool is_iconic();
    bool is_window_visible();
    bool ShowWindow(int nCmdShow);
-   ::i32 get_window_long(i32 nIndex);
-   ::i32 set_window_long(i32 nIndex, ::i32 l);
+   int get_window_long(i32 nIndex);
+   int set_window_long(i32 nIndex, int l);
    bool client_to_screen(POINT32 * lppoint);
    bool screen_to_client(POINT32 * lppoint);
 

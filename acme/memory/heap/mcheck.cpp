@@ -199,7 +199,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   if(g_pheap == nullptr)
 //   {
 //
@@ -267,7 +267,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   void * pusermessage = g_pheap->alloc_debug(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 //
 //   if (pusermessage == nullptr)
@@ -467,7 +467,7 @@
 //   if (pmemory == nullptr)
 //      return memory_allocate_debug(size, nBlockUse, szFileName, nLine);
 //
-//   ::u8 blockuse = heap_memory::heap_get_block_use(pmemory);
+//   unsigned char blockuse = heap_memory::heap_get_block_use(pmemory);
 //
 //   size_t sizeOld = heap_memory::heap_get_size(pmemory);
 //
@@ -906,11 +906,11 @@
 //
 //   }
 //
-//   ::u8 blockuse = pheapmemory->m_blockuse;
+//   unsigned char blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   ::u8 align = pheapmemory->m_align;
+//   unsigned char align = pheapmemory->m_align;
 //
 //   void * p = heap_memory_base_get(pmemory);
 //

@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   ::u8 *dynamic_buffered_writer::GetBufPtrForWriting(size_t addSize)
+   unsigned char *dynamic_buffered_writer::GetBufPtrForWriting(size_t addSize)
    {
 
       addSize += _size;
@@ -15,7 +15,7 @@ namespace file
 
       _buffer.EnsureCapacity(addSize);
 
-      return (::u8 *)_buffer + _size;
+      return (unsigned char *)_buffer + _size;
 
    }
 
@@ -36,7 +36,7 @@ namespace file
          *processedSize = 0;
       if (size == 0)
          return;
-      ::u8 *buf = GetBufPtrForWriting(size);
+      unsigned char *buf = GetBufPtrForWriting(size);
       if (!buf)
          throw ::exception(error_no_memory);
       ::memory_copy(buf, data, size);

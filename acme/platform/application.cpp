@@ -177,7 +177,7 @@ namespace platform
 
    }
 
-   //::i32 application::application_main()
+   //int application::application_main()
    //{
 
    //   implement_application();
@@ -360,7 +360,7 @@ namespace platform
    }
 
 
-   ::i32 application::application_main()
+   int application::application_main()
    {
 
       __check_refdbg
@@ -369,7 +369,7 @@ namespace platform
 
       __check_refdbg
 
-      //output_debug_string("acme::application implement_application\n");
+      //output_debug_string("platform::application implement_application\n");
 
       ::e_status estatus = error_failed;
 
@@ -500,12 +500,12 @@ namespace platform
 
       }
 
-      if (m_bCrypto.undefined())
-      {
-
-         m_bCrypto = !platform()->is_console();
-
-      }
+//      if (m_bCrypto.undefined())
+//      {
+//
+//         m_bCrypto = !platform()->is_console();
+//
+//      }
 
       if (m_bResource.undefined())
       {
@@ -2101,7 +2101,7 @@ namespace platform
 
       //      });
 
-      post(paboutbox);
+      paboutbox->async();
 
 
 
@@ -2111,6 +2111,19 @@ namespace platform
 
    bool application::on_application_menu_action(const ::atom& atom)
    {
+      
+      if(atom == "show_about_box")
+      {
+       
+         show_about_box();
+         
+      }
+      else if(atom == "try_close_application")
+      {
+       
+         _001TryCloseApplication();
+         
+      }
 
       return false;
 
@@ -2216,21 +2229,18 @@ namespace platform
 } // namespace platform
 
 
-void* application_system(void* pApplication)
+::platform::system * application_system(::platform::application * papplication)
 {
 
-   auto papp = (::platform::application*)pApplication;
-
-   return papp->system();
+   return papplication->system();
 
 }
 
-bool application_get_bool(void* pApplication, const char* pszItem)
+
+bool application_get_bool(::platform::application * papplication, const char* pszItem)
 {
 
-   auto papp = (::platform::application*)pApplication;
-
-   return papp->payload(pszItem).as_bool();
+   return papplication->payload(pszItem).as_bool();
 
 }
 
@@ -2239,6 +2249,14 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 {
 
    system()->application()->application_on_status(estatus, pparticle, ll, p);
+
+}
+
+
+void application_on_menu_action(::platform::application * papplication, const char * pszCommand)
+{
+
+   papplication->on_application_menu_action(pszCommand);
 
 }
 

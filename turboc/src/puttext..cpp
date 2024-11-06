@@ -40,7 +40,7 @@ puttext (int left, int top, int right, int bottom, void *source)
      int ReturnValue = 0;
    //  chtype ch;
 //  i32 TranslateTurboColor (int newattr);
-//  u8 *TurboData;
+//  unsigned char *TurboData;
 //  i32 NcursesAttr;
 //  int Row, Col, i, j;
 //  gint Char;

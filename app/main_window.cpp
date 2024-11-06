@@ -133,7 +133,7 @@ namespace app_app
 
       }
 
-      rectangleX.deflate((::i32)dBase);
+      rectangleX.deflate((int)dBase);
 
       ::color::color colorInset;
 

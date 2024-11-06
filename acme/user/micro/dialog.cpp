@@ -66,8 +66,10 @@ namespace micro
 
       hide();
 
-      destroy_window();
+      on_sequence();
 
+      destroy_window();
+      
    }
 
 
@@ -83,7 +85,7 @@ namespace micro
 
       });
 
-      m_manualreseteventFinished.wait(m_timeDialogTimeout);
+      //m_manualreseteventFinished.wait(m_timeDialogTimeout);
 
       //pdialogThis->wait_for_dialog_result(m_timeDialogTimeout);
 

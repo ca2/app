@@ -71,7 +71,7 @@ namespace platform
       virtual ::text::context* text_context();
 
 
-      virtual class ::user::user * user();
+      virtual class ::user::user * user() override;
 
 
       void on_request(::request* prequest) override;

@@ -56,13 +56,13 @@ namespace file
 
       virtual bool is_in_memory_file() const;
       
-      virtual ::u8 * full_data_begin();
+      virtual unsigned char * full_data_begin();
 
-      virtual ::u8 * full_data_end();
+      virtual unsigned char * full_data_end();
 
-      virtual const ::u8 * full_data_begin() const;
+      virtual const unsigned char * full_data_begin() const;
 
-      virtual const ::u8 * full_data_end() const;
+      virtual const unsigned char * full_data_end() const;
 
       
       inline ::block full_data(memsize start = 0, memsize count = -1)
@@ -86,13 +86,13 @@ namespace file
       inline bool full_data_is_set() const { return ::is_set(full_data_begin()); }
 
 
-      virtual ::u8 * data_begin();
+      virtual unsigned char * data_begin();
 
-      virtual ::u8 * data_end();
+      virtual unsigned char * data_end();
 
-      virtual const ::u8 * data_begin() const;
+      virtual const unsigned char * data_begin() const;
 
-      virtual const ::u8 * data_end() const;
+      virtual const unsigned char * data_end() const;
 
       
       inline ::block data(memsize start = 0, memsize count = -1)
@@ -190,17 +190,17 @@ namespace file
       //virtual int get();
       //virtual int peek();
       virtual bool read(char * pch);
-      virtual bool read(::u8 * puch);
+      virtual bool read(unsigned char * puch);
       virtual bool peek(char * pch);
-      virtual bool peek(::u8 * puch);
+      virtual bool peek(unsigned char * puch);
       //virtual int sgetc();
       //virtual int sbumpc();
 
       virtual int peek_byte(); // 0-255 - -1 if eof otherwise exception?
-      virtual void put_byte_back(::u8 b);
+      virtual void put_byte_back(unsigned char b);
 
       virtual int get_u8(); // 0-255 - -1 if eof otherwise exception?
-      inline u8 get_u8_unbounded() { return get_u8(); }
+      inline unsigned char get_u8_unbounded() { return get_u8(); }
 
       virtual int get_u16(); // 0-255 - -1 if eof otherwise exception?
       inline u16 get_u16_unbounded() { return get_u16(); }

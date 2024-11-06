@@ -2991,15 +2991,15 @@ namespace url
 ////
 ////   //strUsername = file_system()->as_string(         auto psystem = system();
 ////
-////         auto pacmedirectory = psystem->m_pdirectorysystem;
+////         auto pdirectorysystem = psystem->m_pdirectorysystem;
 ////
-////pacmedirectory->system() / "config\\user.txt");
+////pdirectorysystem->system() / "config\\user.txt");
 //////
 //////   //strPassword = file_system()->as_string(         auto psystem = system();
 ////
-////         auto pacmedirectory = psystem->m_pdirectorysystem;
+////         auto pdirectorysystem = psystem->m_pdirectorysystem;
 ////
-////pacmedirectory->system() / "config\\pass.txt");
+////pdirectorysystem->system() / "config\\pass.txt");
 //////
 ////   //if(strUsername.has_char() && strPassword.has_char())
 ////   //{
@@ -3359,7 +3359,7 @@ namespace url
 //
 //   auto pszEnd = scopedstr.m_end;
 //
-//   ::i32 len = 0;
+//   int len = 0;
 //
 //   while (psz < pszEnd)
 //   {
@@ -3395,7 +3395,7 @@ namespace url
 //         for (int i = 0; i < len; i++)
 //         {
 //
-//            ::i32 iChar = ((::i32)psz[i]) & 0x000000ff;
+//            int iChar = ((int)psz[i]) & 0x000000ff;
 //
 //            str.append_formatf("%%%02X", iChar);
 //
@@ -3582,15 +3582,15 @@ namespace url
 ////
 ////   //strUsername = file_system()->as_string(         auto psystem = system();
 //
-//   /*      auto pacmedirectory = psystem->m_pdirectorysystem;
+//   /*      auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->system() / "config\\user.txt")*/;
+//pdirectorysystem->system() / "config\\user.txt")*/;
 ////
 ////   //strPassword = file_system()->as_string(         auto psystem = system();
 ////
-////         auto pacmedirectory = psystem->m_pdirectorysystem;
+////         auto pdirectorysystem = psystem->m_pdirectorysystem;
 ////
-////pacmedirectory->system() / "config\\pass.txt");
+////pdirectorysystem->system() / "config\\pass.txt");
 ////
 ////   //if(strUsername.has_char() && strPassword.has_char())
 ////   //{

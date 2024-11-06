@@ -620,7 +620,7 @@ namespace earth
 //   #elif defined(__APPLE__)
 //
 //   #if __WORDSIZE != 64
-//   #pragma error "error: long should 8-::u8 on __APPLE__"
+//   #pragma error "error: long should 8-unsigned char on __APPLE__"
 //   #endif
 //
 //      char * szBuffer = str.get_buffer(maxTimeBufferSize);

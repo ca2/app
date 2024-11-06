@@ -697,9 +697,9 @@ namespace dir
 
             //informationf("         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
+pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
             ::LocalFree(pszError);
 
@@ -1476,9 +1476,9 @@ extern "C" int make_path(const ::scoped_string & scopedstr)
 
    return          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(psz) != false;
+pdirectorysystem->create(psz) != false;
 
 }
 

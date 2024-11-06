@@ -30,7 +30,7 @@
 struct xf_gfx_surface
 {
 	gdiGfxSurface gdi;
-	::u8* stage;
+	unsigned char* stage;
 	::u32 stageScanline;
 /*	XImage* pimage;
 };
@@ -41,7 +41,7 @@ struct xf_gfx_cache_entry
 	::u3264 cacheKey;
 	::u32 width;
 	::u32 height;
-	::u8* data;
+	unsigned char* data;
 	::u32 scanline;
 	::u32 format;
 };

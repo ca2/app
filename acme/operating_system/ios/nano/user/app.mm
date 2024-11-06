@@ -9,22 +9,22 @@
 #include "app.h"
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"
-void * get_acme_application();
+::platform::application * get_platform_application();
 
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 void os_system_start();
 
-void application_on_menu_action(void * pApplication, const char * pszCommand);
+void application_on_menu_action(::platform::application * papplication, const char * pszCommand);
 
-void * application_system(void * pApplication);
+::platform::system * application_system(::platform::application * papplication);
 
-void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload);
+void system_id_update(::platform::system * psystem, ::i64 iUpdate, ::i64 iPayload);
 
-void node_will_finish_launching(void * pSystem);
-void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void node_will_finish_launching(::platform::system * psystem);
+void system_on_open_untitled_file(::platform::system * psystem);
+void system_on_open_file(::platform::system * psystem, const char * pszFile);
 
 void ios_on_app_changed_occlusion_state();
 
@@ -117,7 +117,7 @@ void set_apex_system_as_thread();
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApplication, psz);
+//         application_on_menu_action(m_papplication, psz);
 //         
 //         return;
 //         
@@ -139,7 +139,7 @@ void set_apex_system_as_thread();
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApplication, psz);
+//         application_on_menu_action(m_papplication, psz);
 //         
 //         return;
 //         
@@ -156,22 +156,22 @@ void set_apex_system_as_thread();
 willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions
 {
    
-   if(!m_pApplication)
+   if(!m_papplication)
    {
       
-      m_pApplication = get_acme_application();
+      m_papplication = get_platform_application();
       
    }
    
    m_pnanonotificationcallback = [ [ nano_notification_callback alloc ]  init ];
    
-   m_pnanonotificationcallback->m_pApplication = m_pApplication;
+   m_pnanonotificationcallback->m_papplication = m_papplication;
   
    [m_pnanonotificationcallback fetch_dark_mode];
    
 
    
-   node_will_finish_launching(application_system(m_pApplication));
+   node_will_finish_launching(application_system(m_papplication));
 
 //   NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
 //
@@ -196,7 +196,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    
    //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
    
-   system_id_update(application_system(m_pApplication), id_app_activated, 0);
+   system_id_update(application_system(m_papplication), id_app_activated, 0);
 
    return NO;
    
@@ -215,7 +215,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    
    //file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
    
-   system_on_open_untitled_file(application_system(m_pApplication));
+   system_on_open_untitled_file(application_system(m_papplication));
    
    return YES;
    
@@ -229,7 +229,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    //file_put_contents("/eco/002.txt", "applicationOpenFile");
    //file_put_contents("/eco/003.txt", [filename UTF8String]);
 
-   system_on_open_file(application_system(m_pApplication), [filename UTF8String]);
+   system_on_open_file(application_system(m_papplication), [filename UTF8String]);
    
    return true;
    
@@ -256,7 +256,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
       
       const char * psz = [[filenames objectAtIndex:ul] UTF8String];
       
-      system_on_open_file(application_system(m_pApplication), psz);
+      system_on_open_file(application_system(m_papplication), psz);
       
       //psza[ul] = psz;
       
@@ -275,7 +275,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    
    //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
-   system_on_open_file(application_system(m_pApplication), [[url absoluteString] UTF8String]);
+   system_on_open_file(application_system(m_papplication), [[url absoluteString] UTF8String]);
    
 }
 
@@ -288,7 +288,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    
    //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
-   system_on_open_file(application_system(m_pApplication), [filename UTF8String]);
+   system_on_open_file(application_system(m_papplication), [filename UTF8String]);
    
    return TRUE;
    
@@ -315,7 +315,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
       
       //psza[ul] = psz;
       
-      system_on_open_file(application_system(m_pApplication), psz);
+      system_on_open_file(application_system(m_papplication), psz);
       
       //free
       
@@ -380,7 +380,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 //   // Extract the URL from the Apple event and handle it here.
 //   NSString* url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
 //   
-//   system_on_open_file(application_system(m_pApplication), [url UTF8String]);
+//   system_on_open_file(application_system(m_papplication), [url UTF8String]);
 //   
 //}
 
@@ -454,7 +454,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApplication, psz);
+//         application_on_menu_action(m_papplication, psz);
 //         
 //         return;
 //         
@@ -476,7 +476,7 @@ void os_menu_item_enable(void * pitem, bool bEnable)
 
    UIMenuItem * pmenuitem = (__bridge UIMenuItem *) pitem;
 
-   //ns_main_async(^()
+   //ns_main_post(^()
 //   {
 //
 //      [pmenuitem setEnabled: bEnable];
@@ -491,7 +491,7 @@ void os_menu_item_check(void * pitem, bool bCheck)
 
    UIMenuItem * pmenuitem = (__bridge UIMenuItem *) pitem;
 
-//   ns_main_async(^()
+//   ns_main_post(^()
 //   {
 //      
 //      if(bCheck)
@@ -522,7 +522,7 @@ void os_menu_item_check(void * pitem, bool bCheck)
 //
 //   }
 //
-//   ns_main_async(^{
+//   ns_main_post(^{
 //   id menuMain = [NSMenu alloc];
 //
 //   macOSApp * papp = (macOSApp *) [[NSApplication sharedApplication] delegate ];
@@ -603,18 +603,18 @@ void os_begin_system();
 
 
 
-void apple_set_application_delegate(void * pApplication, void * pDelegate);
+void apple_set_application_delegate(::platform::application * papplication, void * pDelegate);
 
-void ns_apple_set_application_delegate(void * pApplication, ios_app * pappdelegate)
+void ns_apple_set_application_delegate(::platform::application * papplication, ios_app * pappdelegate)
 {
    
    UIApplication * application = [UIApplication sharedApplication];
    
-   pappdelegate->m_pApplication = pApplication;
+   pappdelegate->m_papplication = papplication;
    
    [ application setDelegate: pappdelegate ];
    
-   apple_set_application_delegate(pApplication, (__bridge void *) pappdelegate);
+   apple_set_application_delegate(papplication, (__bridge void *) pappdelegate);
    
    [ pappdelegate continueInitialization ];
    
@@ -628,20 +628,20 @@ void ns_apple_set_application_delegate(void * pApplication, ios_app * pappdelega
 }
 
 
-void * apple_get_application_delegate(void * pApplication);
+void * apple_get_application_delegate(::platform::application * papplication);
 
 
-void defer_create_nano_application_delegate(void * pApplication)
+void defer_create_acme_application_delegate(::platform::application * papplication)
 {
    
-   ios_app * pappdelegate = (__bridge ios_app *) apple_get_application_delegate(pApplication);
+   ios_app * pappdelegate = (__bridge ios_app *) apple_get_application_delegate(papplication);
 
    if(pappdelegate == nullptr)
    {
       
       pappdelegate = [ [ ios_app alloc ] init ];
       
-      ns_apple_set_application_delegate(pApplication, pappdelegate);
+      ns_apple_set_application_delegate(papplication, pappdelegate);
       
    }
    
@@ -650,7 +650,7 @@ void defer_create_nano_application_delegate(void * pApplication)
 
 //
 //
-//void acme_ios_application_init(void * pApplication, int argc, char *argv[])
+//void acme_ios_application_init(::platform::application * papplication, int argc, char *argv[])
 //{
 //
 ////   auto argc = psystem->m_psubsystem->m_argc;
@@ -659,7 +659,7 @@ void defer_create_nano_application_delegate(void * pApplication)
 ////
 ////   auto papp = psystem->m_pacmeapplication;
 ////
-////   void * pApplication = (void *) (::acme::application *) papp;
+////   ::platform::application * papplication = (void *) (::acme::application *) papp;
 ////
 //////      acme_ios_application_main(pApplication, argc, argv);
 ////
@@ -669,18 +669,18 @@ void defer_create_nano_application_delegate(void * pApplication)
 //   ///
 //   ///
 //   ///
-//   defer_create_nano_application_delegate(pApplication);
+//   defer_create_acme_application_delegate(pApplication);
 //
 //
 //   ios_app * pappdelegate = (ios_app *) apple_get_application_delegate(pApplication);
 //
 //
-//   void apple_set_application_delegate(void * pApplication, void * pDelegate)
+//   void apple_set_application_delegate(::platform::application * papplication, void * pDelegate)
 //
 //
 //   NSApplication * application = [NSApplication sharedApplication];
 //
-//   piosapp->m_pApplication = pApplication;
+//   piosapp->m_papplication = pApplication;
 //
 //   [application setDelegate: piosapp];
 //
@@ -696,7 +696,7 @@ void defer_create_nano_application_delegate(void * pApplication)
 
 
 //
-//void acme_ios_application_init(void * pApplication, int argc, char *argv[])
+//void acme_ios_application_init(::platform::application * papplication, int argc, char *argv[])
 //{
 //
 //   //   auto argc = psystem->m_psubsystem->m_argc;
@@ -705,7 +705,7 @@ void defer_create_nano_application_delegate(void * pApplication)
 //   //
 //   //   auto papp = psystem->m_pacmeapplication;
 //   //
-//   //   void * pApplication = (void *) (::acme::application *) papp;
+//   //   ::platform::application * papplication = (void *) (::acme::application *) papp;
 //   //
 //   ////      acme_ios_application_main(pApplication, argc, argv);
 //   //
@@ -722,7 +722,7 @@ void defer_create_nano_application_delegate(void * pApplication)
 //}
 
 
-void acme_ios_application_main(void * pApplication, int argc, char *argv[])
+void acme_ios_application_main(::platform::application * papplication, int argc, char *argv[])
 {
    
 //

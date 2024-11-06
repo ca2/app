@@ -121,7 +121,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 //
 //   m_iSize = (iSize + 1) * 3 / 4;
 //
-//   m_pdata = (::u8 *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize);
+//   m_pdata = (unsigned char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize);
 //
 //   ::base64 base64;
 //
@@ -142,7 +142,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 
 
 
-block::block(const range < ::u8 * > & range) :
+block::block(const range < unsigned char * > & range) :
    block(range.begin(), range.end())
 {
 

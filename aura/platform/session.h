@@ -100,7 +100,7 @@ namespace aura
       //virtual void term_session() override;
       
 
-      inline class ::fs::data * fs() { return m_pfsdata; }
+       class ::fs::data * fs() override;
 
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
@@ -128,7 +128,7 @@ namespace aura
 
       //virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual bool on_create_frame_window();
+      virtual bool on_create_frame_window() override;
 
       //virtual string account_get_user_sessid(const ::string & str) override;
 
@@ -228,7 +228,7 @@ namespace aura
       //virtual void set_focus_guie(::user::interaction * pinteraction);
 
 
-      virtual void on_finally_focus_set(::user::interaction_base * pelementalFocus);
+      virtual void on_finally_focus_set(::user::interaction_base * pelementalFocus) override;
 
       //virtual ::user::interaction * get_capture();
 
@@ -238,7 +238,7 @@ namespace aura
       //virtual ::image::cursor * get_cursor();
       //virtual ::image::cursor * get_default_cursor();
 
-      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
+      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse) override;
 
       //virtual ::user::interaction_base * GetActiveWindow();
       //virtual ::user::interaction_base * GetFocus();
@@ -268,10 +268,10 @@ namespace aura
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
-      virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction);
-      virtual ::user::interaction_base * get_bound_ui(::atom idImpact);
+      virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction) override;
+      virtual ::user::interaction_base * get_bound_ui(::atom idImpact) override;
 
-      virtual void on_show_user_input_popup(::user::interaction * pinteraction);
+      virtual void on_show_user_input_popup(::user::interaction * pinteraction) override;
 
       //virtual void on_user_logon(::account::user * puser);
 
@@ -312,7 +312,7 @@ namespace aura
 
       //virtual void bergedge_start() override;
 
-      void _001OnFileNew();
+      void _001OnFileNew() override;
 
       //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
@@ -332,16 +332,16 @@ namespace aura
 
       //virtual void on_app_request_bergedge_callback(::particle * pparticle);
 
-      virtual ::write_text::font_list* get_single_column_font_list();
+      virtual ::write_text::font_list* get_single_column_font_list() override;
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
       //virtual void do_request(::request* prequest) override;
 
-      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::request * prequest);
+      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::request * prequest) override;
 
-      virtual bool place(::user::main_frame* pmainframe, ::request* prequest);
+      virtual bool place(::user::main_frame* pmainframe, ::request* prequest) override;
 
       //virtual void request_topic_file(::payload& varQuery) override;
 
@@ -395,7 +395,7 @@ namespace aura
 
       //virtual bool is_session() const override;
 
-      virtual bool is_mouse_button_pressed(::user::enum_mouse emouse);
+      virtual bool is_mouse_button_pressed(::user::enum_mouse emouse) override;
 
       virtual bool is_remote_session() override;
 

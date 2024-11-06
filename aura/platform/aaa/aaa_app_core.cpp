@@ -526,15 +526,15 @@ pmessagebox->sync();
 
    ::file::path pathOutputDebugString =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / strAppId / "information.txt" ;
+pdirectorysystem->system() / strAppId / "information.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->config() / "information.txt" ;
+pdirectorysystem->config() / "information.txt" ;
 
    ::aura::g_bOutputDebugString = file_system()->exists(pathOutputDebugString)||  file_system()->exists(pathGlobalOutputDebugString);
 
@@ -558,9 +558,9 @@ void app_core::set_command_line(const ::string & psz)
 
    ::file::path pathFolder =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->ca2roaming() / "program";
+pdirectorysystem->ca2roaming() / "program";
 
    string strAppId = get_command_line_parameter(psz, "app");
 
@@ -1020,7 +1020,7 @@ struct heap_test_struct :
    virtual public object
 {
 
-   ::u8 m_ucha[1024];
+   unsigned char m_ucha[1024];
 
 };
 

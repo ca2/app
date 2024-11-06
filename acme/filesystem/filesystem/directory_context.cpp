@@ -569,7 +569,7 @@ bool directory_context::_enumerate(::file::listing& listing)
    else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.case_insensitive_ends(".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
-      auto& pfactory = system()->folder_factory();
+      auto pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -1309,7 +1309,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
       bool bIsFile = true;
 
-      auto& pfactory = system()->folder_factory();
+      auto pfactory = system()->folder_factory();
 
       if (!pfactory)
       {
@@ -1399,7 +1399,7 @@ bool directory_context::name_is(const ::file::path& strPath)
    {
       bool bHasSubFolder;
 
-      auto& pfactory = system()->folder_factory();
+      auto pfactory = system()->folder_factory();
 
       if (!pfactory)
       {

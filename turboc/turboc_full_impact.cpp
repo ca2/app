@@ -273,7 +273,7 @@ namespace turboc
 
       pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
-      ::u8 a,R,g,b;
+      unsigned char a,R,g,b;
 
       if(m_bAlternate)
       {

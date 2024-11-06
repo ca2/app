@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//enum enum_routine : ::i32
+//enum enum_routine : int
 //{
 //
 //

@@ -343,7 +343,7 @@ namespace turboc
       if(m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         ::u8 uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
+         unsigned char uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
          ::rectangle_i32 rectangleX;
 
@@ -610,7 +610,7 @@ namespace turboc
 
          color32_t color32;
 
-         ::u8 a,r,g,b,rm,gm,bm;
+         unsigned char a,r,g,b,rm,gm,bm;
 
 /*         int h = (pimage->height() / 3) * 3;
 

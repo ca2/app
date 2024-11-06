@@ -1,7 +1,7 @@
 #pragma once
 
 //
-// enum enum_method : ::i32
+// enum enum_method : int
 // {
 //
 //    e_routine_none,

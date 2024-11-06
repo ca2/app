@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_posix_shell : ::i32
+enum enum_posix_shell : int
 {
 
    e_posix_shell_system_default,

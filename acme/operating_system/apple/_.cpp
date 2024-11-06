@@ -537,22 +537,18 @@ i64 oswindow_id(oswindow w)
 
 
 
-void * apple_get_application_delegate(void * pApplication)
+void * apple_get_application_delegate(::platform::application * papplication)
 {
 
-   auto papp = (::platform::application *)pApplication;
-
-   return papp->system()->m_pApplicationDelegate;
+   return papplication->system()->m_pApplicationDelegate;
 
 }
 
 
-void apple_set_application_delegate(void * pApplication, void * pDelegate)
+void apple_set_application_delegate(::platform::application * papplication, void * pDelegate)
 {
 
-   auto papp = (::platform::application *)pApplication;
-
-   papp->system()->m_pApplicationDelegate = pDelegate;
+   papplication->system()->m_pApplicationDelegate = pDelegate;
 
 }
 

@@ -281,9 +281,9 @@ namespace draw2d_opengl
       //i32 GetArcDirection() const;
       //i32 SetArcDirection(i32 nArcDirection);
 
-      //void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes,::collection::count nCount);
+      //void polydraw(const ::point_f64* lpPoints, const unsigned char* lpTypes,::collection::count nCount);
       void polyline_to(const ::point_f64 * lpPoints,::collection::count nCount);
-      void poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints,::collection::count nCount);
+      void poly_polyline(const ::point_f64 * lpPoints, const int * lpPolyPoints,::collection::count nCount);
 
       void poly_bezier(const ::point_f64 * lpPoints,::collection::count nCount);
       void poly_bezier_to(const ::point_f64 * lpPoints,::collection::count nCount);
@@ -492,7 +492,7 @@ namespace draw2d_opengl
       // MetaFile Functions
       //bool PlayMetaFile(HMETAFILE hMF);
       //bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_i32 & lpBounds);
-      //bool AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData);
+      //bool AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData);
       // can be used for enhanced metafiles only
 
       // Path Functions

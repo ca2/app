@@ -55,7 +55,7 @@ namespace image
    }
 
 
-   bool image_list::create(i32 cx, i32 cy)
+   bool image_list::create(int cx, int cy)
    {
 
       return create(cx, cy, 0, 0, 0);
@@ -63,7 +63,7 @@ namespace image
    }
 
 
-   bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
+   bool image_list::create(int cx, int cy, ::u32 nFlags, int nInitial, int nGrow)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);
@@ -131,7 +131,7 @@ namespace image
    }
 
 
-   i32 image_list::get_image_count() const
+   int image_list::get_image_count() const
    {
 
       return m_iSize;
@@ -139,7 +139,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -163,7 +163,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const class ::opacity & opacity)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag, const class ::opacity & opacity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -218,7 +218,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, int iFlag)
    {
 
       if (iImage < 0)
@@ -242,7 +242,7 @@ namespace image
    }
 
 
-   void image_list::_draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
+   void image_list::_draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, int iFlag)
    {
 
       ::point_f64 pointOffset(pointOffsetParam);
@@ -271,7 +271,7 @@ namespace image
    }
 
 
-   //i32 image_list::add_icon_os_data(void * p, int iItem)
+   //int image_list::add_icon_os_data(void * p, int iItem)
    //{
    //
    //   ::image::icon icon;
@@ -285,7 +285,7 @@ namespace image
    //}
 
 
-   i32 image_list::reserve_image(int iItem)
+   int image_list::reserve_image(int iItem)
    {
 
       ::draw2d::lock draw2dlock(this);
@@ -314,7 +314,7 @@ namespace image
    }
 
 
-   //i32 image_list::set(int iItem, ::image::icon * picon)
+   //int image_list::set(int iItem, ::image::icon * picon)
    //{
    //
    //   if (is_null(picon))
@@ -356,7 +356,7 @@ namespace image
    //}
 
    //
-   //i32 image_list::set(int iItem, ::windowing::icon * picon)
+   //int image_list::set(int iItem, ::windowing::icon * picon)
    //{
    //
    //   if (is_null(picon))
@@ -393,7 +393,7 @@ namespace image
    //}
 
 
-   //i32 image_list::add_icon(::payload payloadFile, int iItem)
+   //int image_list::add_icon(::payload payloadFile, int iItem)
    //{
    //
    //   auto picon = __create < ::windowing::icon >();
@@ -414,7 +414,7 @@ namespace image
    //
    ////#ifdef WINDOWS_DESKTOP
    ////
-   ////   i32 iSize = minimum(m_size.cx(), m_size.cy());
+   ////   int iSize = minimum(m_size.cx(), m_size.cy());
    ////
    ////   ::file::path path = payloadFile.get_file_path();
    ////
@@ -440,7 +440,7 @@ namespace image
    //}
    //
 
-   //i32 image_list::add_matter_icon(const ::string & pszMatter, int iItem)
+   //int image_list::add_matter_icon(const ::string & pszMatter, int iItem)
    //{
    //
    //   // auto pcontext = get_context();
@@ -450,7 +450,7 @@ namespace image
    //}
    //
 
-   //i32 image_list::add_file(::payload payloadFile, int iItem)
+   //int image_list::add_file(::payload payloadFile, int iItem)
    //{
    //
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -486,7 +486,7 @@ namespace image
    //}
 
 
-   i32 image_list::set(int iItem, const ::image::image_drawing & imagedrawing)
+   int image_list::set(int iItem, const ::image::image_drawing & imagedrawing)
    {
 
       ::draw2d::lock draw2dlock(this);
@@ -524,7 +524,7 @@ namespace image
    }
 
 
-   //i32 image_list::set_file(int iItem, ::file::file * pfile)
+   //int image_list::set_file(int iItem, ::file::file * pfile)
    //{
    //
    //   auto pimagecontext = pobjectContext->image();
@@ -546,14 +546,14 @@ namespace image
    //
    //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //   i32 iImage = this->set(iItem, imagedrawing);
+   //   int iImage = this->set(iItem, imagedrawing);
    //
    //   return iImage;
    //
    //}
    //
    //
-   //i32 image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
+   //int image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
    //{
    //
    //   auto pimagecontext = pobjectContext->image();
@@ -568,14 +568,14 @@ namespace image
    //
    //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //   i32 iImage = this->set(iItem, imagedrawing);
+   //   int iImage = this->set(iItem, imagedrawing);
    //
    //   return iImage;
    //
    //}
 
 
-   //i32 image_list::add_matter(const ::string & pcsz, ::particle * pparticle, int iItem)
+   //int image_list::add_matter(const ::string & pcsz, ::particle * pparticle, int iItem)
    //{
    //
    //   ::file::path path;
@@ -601,7 +601,7 @@ namespace image
    //
    //}
 
-   //i32 image_list::add_image(image_list * pil, int iImage, int iItem)
+   //int image_list::add_image(image_list * pil, int iImage, int iItem)
    //{
    //
    //   _synchronous_lock synchronouslock(pil->synchronization());
@@ -630,7 +630,7 @@ namespace image
    }
 
 
-   //i32 image_list::add_std_matter(const ::string & pcsz, int iItem)
+   //int image_list::add_std_matter(const ::string & pcsz, int iItem)
    //{
    //
    //   // auto pcontext = get_context();
@@ -640,7 +640,7 @@ namespace image
    //}
 
 
-   i32 image_list::_get_alloc_count()
+   int image_list::_get_alloc_count()
    {
 
       if (m_size.cx() <= 0)
@@ -660,9 +660,9 @@ namespace image
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      i32 cx = m_size.cx();
+      int cx = m_size.cx();
 
-      i32 cy = m_size.cy();
+      int cy = m_size.cy();
 
       int iGrow = m_iGrow;
 
@@ -673,7 +673,7 @@ namespace image
 
       }
 
-      i32 iAllocSize = _get_alloc_count() + iGrow;
+      int iAllocSize = _get_alloc_count() + iGrow;
 
       m_pimage->preserve(::size_i32(cx * iAllocSize, cy));
 
@@ -694,7 +694,7 @@ namespace image
    }
 
 
-   void image_list::get_image_info(i32 nImage, info * pinfo) const
+   void image_list::get_image_info(int nImage, info * pinfo) const
    {
 
       ASSERT(pinfo != nullptr);

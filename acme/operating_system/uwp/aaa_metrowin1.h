@@ -18,7 +18,7 @@ namespace universal_windows
    CLASS_DECL_ACME bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
    CLASS_DECL_ACME ::u32       GetCurrentDirectory(string & str);
    CLASS_DECL_ACME ::u32       GetTempPath(string & str);
-   CLASS_DECL_ACME ::i32        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
+   CLASS_DECL_ACME int        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
    CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, ::u32 nIconIndex);
    CLASS_DECL_ACME bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_ACME int         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
@@ -46,7 +46,7 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 
 
 
-CLASS_DECL_ACME ::i32 delete_registry_tree_helper(HKEY hParentKey, const ::string & strKeyName);
+CLASS_DECL_ACME int delete_registry_tree_helper(HKEY hParentKey, const ::string & strKeyName);
 
 
 

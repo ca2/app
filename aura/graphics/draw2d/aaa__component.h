@@ -58,8 +58,8 @@ namespace draw2d
 //
 //
 //
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y);
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y, ::u8 a, ::u8 rectangle, ::u8 g, ::u8 b);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, int Δx, int Δy, void * pftbitmap, int x, int y);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, int Δx, int Δy, void * pftbitmap, int x, int y, unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b);
 //
 //
 //

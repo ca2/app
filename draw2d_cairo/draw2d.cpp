@@ -325,9 +325,9 @@ return g_pdraw2dcairo;
 //   }
 //
 //   void draw2d::alpha_spread__24CC(
-//   ::u8 * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-//   ::u8 * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-//   ::u8 bMin, i32 iRadius)
+//   unsigned char * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
+//   unsigned char * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
+//   unsigned char bMin, i32 iRadius)
 //   {
 //      __UNREFERENCED_PARAMETER(xDest);
 //      __UNREFERENCED_PARAMETER(yDest);
@@ -339,12 +339,12 @@ return g_pdraw2dcairo;
 //      i32 iFilterHalfH = iFilterH / 2;
 //      i32 iFilterArea = iFilterW * iFilterH;
 //      i32 divisor;
-//      ::u8 *lpbSource;
-//      ::u8 *lpbSource_1;
-//      ::u8 *lpbSource_2;
-//      ::u8 *lpwDestination;
-//      ::u8 *lpFilter;
-//      ::u8 *pFilter;
+//      unsigned char *lpbSource;
+//      unsigned char *lpbSource_1;
+//      unsigned char *lpbSource_2;
+//      unsigned char *lpwDestination;
+//      unsigned char *lpFilter;
+//      unsigned char *pFilter;
 //
 //
 //      i32 i;
@@ -402,13 +402,13 @@ return g_pdraw2dcairo;
 //
 //               }
 //
-//               pFilter[x + y * iFilterW] = (::u8)i;
+//               pFilter[x + y * iFilterW] = (unsigned char)i;
 //
-//               pFilter[iFilterW - 1 - x + y * iFilterW] = (::u8)i;
+//               pFilter[iFilterW - 1 - x + y * iFilterW] = (unsigned char)i;
 //
-//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
+//               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
 //
-//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
+//               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
 //
 //            }
 //
@@ -654,12 +654,12 @@ return g_pdraw2dcairo;
 //      i32 iFilterHalfH = iRadius;
 //      i32 iFilterArea = iFilterW * iFilterH;
 //      i32 divisor = iFilterW * iFilterH;
-//      ::u8 *lpbSource;
-//      ::u8 *lpbSource_1;
-//      ::u8 *lpbSource_2;
-//      ::u8 *lpwDestination;
-//      ::u8 *lpFilter;
-//      ::u8 * pFilter;
+//      unsigned char *lpbSource;
+//      unsigned char *lpbSource_1;
+//      unsigned char *lpbSource_2;
+//      unsigned char *lpwDestination;
+//      unsigned char *lpFilter;
+//      unsigned char * pFilter;
 //
 //      i32 i;
 //      i32 x;
@@ -697,7 +697,7 @@ return g_pdraw2dcairo;
 //                  i = 1;
 //               else
 //                  i = 0;
-//               pFilter[x + y * iFilterW] = (::u8)i;
+//               pFilter[x + y * iFilterW] = (unsigned char)i;
 //            }
 //         }
 //      }
@@ -710,8 +710,8 @@ return g_pdraw2dcairo;
 //      if (cx != pimageSrc->width() || cy != pimageSrc->height())
 //         return false;
 //
-//      ::u8 * lpbDst = (::u8 *)pimageDst->get_data();
-//      ::u8 * lpbSrc = (::u8 *)pimageSrc->get_data();
+//      unsigned char * lpbDst = (unsigned char *)pimageDst->get_data();
+//      unsigned char * lpbSrc = (unsigned char *)pimageSrc->get_data();
 //
 //      //i32 wSrc = cx * 4;
 //      //i32 wDst = cx * 4;

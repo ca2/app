@@ -1030,7 +1030,7 @@ void edit_window::_GetDisplayAttributes(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        ::i32        acpEnd;
+        int        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1163,7 +1163,7 @@ void edit_window::_GetTextOwner(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        ::i32        acpEnd;
+        int        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1274,7 +1274,7 @@ void edit_window::_GetReadingText(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        ::i32        acpEnd;
+        int        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1383,7 +1383,7 @@ void edit_window::_GetComposing(void)
     if(SUCCEEDED(hr))
     {
         ITfRangeACP *pRangeAllText;
-        ::i32        acpEnd;
+        int        acpEnd;
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);

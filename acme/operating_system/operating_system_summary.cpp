@@ -2,6 +2,7 @@
 // Created by camilo on 07/04/23.
 //
 #include "framework.h"
+#if !defined(MACOS)
 #include "operating_system_summary.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
@@ -375,6 +376,10 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
 
 }
+
+
+
+#endif
 
 
 

@@ -18,7 +18,7 @@
 //{
 //public:
 //
-//   typedef ::u8 value_type;
+//   typedef unsigned char value_type;
 //
 //   value_type * m_puchData;
 //
@@ -150,7 +150,7 @@
 //   }
 //
 //
-//   u8 * get_data() const
+//   unsigned char * get_data() const
 //   {
 //
 //      return m_puchData;
@@ -169,7 +169,7 @@
 //   void set_bstring_data(bstring_data * pdata)
 //   {
 //
-//      m_puchData = (u8 *) &pdata[1];
+//      m_puchData = (unsigned char *) &pdata[1];
 //
 //   }
 //
@@ -216,10 +216,10 @@
 //   void ReleaseBuffer(strsize s = -1);
 //
 //
-//   u8 * data();
+//   unsigned char * data();
 //
 //
-//   const u8 * data() const;
+//   const unsigned char * data() const;
 //
 //
 //   bool empty() const;

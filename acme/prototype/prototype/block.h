@@ -14,16 +14,16 @@ CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept;
 CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcept;
 
 
-using BLOCK = ::range < ::u8 * >;
-//using BLOCK = array_range < ::range < ::u8 * > >;
+using BLOCK = ::range < unsigned char * >;
+//using BLOCK = array_range < ::range < unsigned char * > >;
 //struct CLASS_DECL_ACME BLOCK
 //{
 //
-//   ::u8 *                     m_pbegin;
+//   unsigned char *                     m_pbegin;
 //   ::collection::count                    m_iSize;
 //
 //
-//   memsize length_in_bytes() const { return sizeof(::u8) * m_iSize; }
+//   memsize length_in_bytes() const { return sizeof(unsigned char) * m_iSize; }
 //
 //};
 
@@ -59,7 +59,7 @@ struct CLASS_DECL_ACME block :
       this->m_begin = block.m_begin;
       this->m_end = block.m_end;
    }
-   block(const range < ::u8 * > & range);
+   block(const range < unsigned char * > & range);
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);
@@ -67,21 +67,21 @@ struct CLASS_DECL_ACME block :
    block(const char(&sz)[c])
    {
 
-      this->m_begin = (::u8 *)(sz);
-      this->m_end = (::u8 *)(this->m_begin + c);
+      this->m_begin = (unsigned char *)(sz);
+      this->m_end = (unsigned char *)(this->m_begin + c);
 
    }
    template < ::collection::count c >
-   block(const ::u8(&ba)[c])
+   block(const unsigned char(&ba)[c])
    {
 
-      this->m_begin = (::u8 *) ba;
-      this->m_end = (::u8 *) (this->m_begin + c);
+      this->m_begin = (unsigned char *) ba;
+      this->m_end = (unsigned char *) (this->m_begin + c);
 
    }
    block(const ::ansi_character * psz)
    {
-      this->m_begin = (::u8 *) psz;
+      this->m_begin = (unsigned char *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);
    }
    //block(const ::scoped_string  & scopedstr);
@@ -99,9 +99,9 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
-   block(const void * begin, const void * end) : BLOCK((::u8 *)begin, (::u8 *)end) {}
+   block(const void * begin, const void * end) : BLOCK((unsigned char *)begin, (unsigned char *)end) {}
    template < primitive_integral INTEGRAL >
-   block(const void * data, INTEGRAL count) : BLOCK((::u8 *) data, count) { }
+   block(const void * data, INTEGRAL count) : BLOCK((unsigned char *) data, count) { }
 
    //block & operator = (const block & block) 
    //{
@@ -123,8 +123,8 @@ struct CLASS_DECL_ACME block :
    //void * get_data() { return m_pbegin; }
    //const void * get_data() const { return m_pbegin; }
    //memsize get_size() const { return m_iSize; }
-   //const ::u8 * data () const { return (const  ::u8 *) m_pbegin;  }
-   //::u8 * data() { return (::u8 *)m_pbegin; }
+   //const unsigned char * data () const { return (const  unsigned char *) m_pbegin;  }
+   //unsigned char * data() { return (unsigned char *)m_pbegin; }
    //::collection::count size() const { return (::collection::count)m_iSize; }
 
 
@@ -164,7 +164,7 @@ struct CLASS_DECL_ACME block :
    }
 
    template < strsize c >
-   block & operator = (const ::u8(&ba)[c])
+   block & operator = (const unsigned char(&ba)[c])
    {
 
       if (this->size() < c)
@@ -198,7 +198,7 @@ struct CLASS_DECL_ACME block :
    }
 
    template < strsize c >
-   block & operator >>(::u8(&ba)[c])
+   block & operator >>(unsigned char(&ba)[c])
    {
 
       if (this->size() < c)
@@ -279,9 +279,9 @@ struct CLASS_DECL_ACME block :
 
    inline memsize _find(const ::block& blockFind, memsize start = 0) const
    {
-      return ((::u8*)_memory_find(
-         as_pointer<::u8>() + start, size() - start,
-         blockFind.begin(), blockFind.size())) - as_pointer <::u8>();
+      return ((unsigned char*)_memory_find(
+         as_pointer<unsigned char>() + start, size() - start,
+         blockFind.begin(), blockFind.size())) - as_pointer <unsigned char>();
 
    }
 
@@ -352,10 +352,10 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   ::u8 & first_byte(::collection::index i = 0){return this->m_begin[i];}
-   ::u8 first_byte(::collection::index i = 0)const{return this->m_begin[i];}
-   ::u8 & last_byte(::collection::index i = -1){return this->m_end[i];}
-   ::u8 last_byte(::collection::index i = -1)const{return this->m_end[i];}
+   unsigned char & first_byte(::collection::index i = 0){return this->m_begin[i];}
+   unsigned char first_byte(::collection::index i = 0)const{return this->m_begin[i];}
+   unsigned char & last_byte(::collection::index i = -1){return this->m_end[i];}
+   unsigned char last_byte(::collection::index i = -1)const{return this->m_end[i];}
 
 };
 
@@ -386,7 +386,7 @@ public:
 
 
 template <  >
-class GET_BLOCK_TYPE< ::u8 >
+class GET_BLOCK_TYPE< unsigned char >
 {
 public:
 

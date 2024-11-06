@@ -12,13 +12,13 @@
 //
 //      //::u32     cbSize;
 //      //::u32     fMask;
-//      i32            m_iMinimum;
-//      i32            m_iMaximum;
-//      i32            m_iPage;
-//      i32            m_iLine;
-//      i32            m_iWheel;
-//      i32            m_iPosition;
-//      i32            m_iTrackingPosition;
+//      int            m_iMinimum;
+//      int            m_iMaximum;
+//      int            m_iPage;
+//      int            m_iLine;
+//      int            m_iWheel;
+//      int            m_iPosition;
+//      int            m_iTrackingPosition;
 //      bool           m_bHasScroll;
 //      bool           m_bScrollEnable;
 //

@@ -68,7 +68,7 @@
 //* \return
 //*      Number of bytes written to `out`.
 //*/
-//static inline memsize u32_pack(u32 value, u8 *out)
+//static inline memsize u32_pack(u32 value, unsigned char *out)
 //{
 //   unsigned rv = 0;
 //
@@ -134,7 +134,7 @@
 //
 //   }
 //
-//   u8 masking_key[4];
+//   unsigned char masking_key[4];
 //
 //   if (useMask)
 //   {
@@ -147,7 +147,7 @@
 //
 //   m.set_size(length);
 //
-//   u8 * frame = (::u8*)m.data();
+//   unsigned char * frame = (unsigned char*)m.data();
 //
 //   frame[0] = 0x80 | fin;
 //
@@ -841,7 +841,7 @@ namespace sockets
             // From
             // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 
-            u8 * data = (u8 *)m_memResponse.data(); // peek, but don't consume
+            unsigned char * data = (unsigned char *)m_memResponse.data(); // peek, but don't consume
 
 
 #if DEEP_DATA_DEBUG
@@ -969,10 +969,10 @@ namespace sockets
             if (m_mask)
             {
 
-               m_maskingkey[0] = ((u8)data[m_i + 0]);
-               m_maskingkey[1] = ((u8)data[m_i + 1]);
-               m_maskingkey[2] = ((u8)data[m_i + 2]);
-               m_maskingkey[3] = ((u8)data[m_i + 3]);
+               m_maskingkey[0] = ((unsigned char)data[m_i + 0]);
+               m_maskingkey[1] = ((unsigned char)data[m_i + 1]);
+               m_maskingkey[2] = ((unsigned char)data[m_i + 2]);
+               m_maskingkey[3] = ((unsigned char)data[m_i + 3]);
 
             }
 
@@ -1095,7 +1095,7 @@ namespace sockets
    }
 
 
-   void websocket_client::on_websocket_data(u8 * pdata, int len)
+   void websocket_client::on_websocket_data(unsigned char * pdata, int len)
    {
 
       m_timeLastPong.Now();

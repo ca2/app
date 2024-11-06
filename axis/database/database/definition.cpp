@@ -73,7 +73,7 @@ namespace database
    //{
 
    //   stream.write(m_iIndex);
-   //   stream.write((::i32 &)m_edatatype);
+   //   stream.write((int &)m_edatatype);
    //   stream.write(m_strName);
    //   stream.write(m_strDisplayMame);
    //   stream.write(m_strFieldTable);
@@ -90,7 +90,7 @@ namespace database
    //{
 
    //   stream.read(m_iIndex);
-   //   stream.read((::i32 &)m_edatatype);
+   //   stream.read((int &)m_edatatype);
    //   stream.read(m_strName);
    //   stream.read(m_strDisplayMame);
    //   stream.read(m_strFieldTable);

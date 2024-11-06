@@ -9,7 +9,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //{
 //
 //   //char m_sz[8];
-//   //::i32 m_iLength;
+//   //int m_iLength;
 //
 //   using inline_string::inline_string;
 //   //utf8_character()
@@ -25,7 +25,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //
 //   //   auto len = string_safe_length(psz, 7);
 //
-//   //   ::i32 i = 0;
+//   //   int i = 0;
 //
 //   //   for (; i < len; i++)
 //   //   {

@@ -18,8 +18,8 @@
 
 //       m_memory.m_bOwn = false;
 //       m_memory.m_preadonlymemory = this;
-//       m_memory.m_pbStorage = (::u8 *) p;
-//       m_memory.m_pdata = (::u8 *) p;
+//       m_memory.m_pbStorage = (unsigned char *) p;
+//       m_memory.m_pdata = (unsigned char *) p;
 //       m_memory.m_cbStorage = size;
 //       m_memory.m_iSize = size;
 
@@ -45,7 +45,7 @@ public:
    template < primitive_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
-   memory(const u8 *, memsize size);
+   memory(const unsigned char *, memsize size);
    memory(void*, memsize size);
    memory(const void *, memsize size);
    memory(enum_copy_clone, const memory_base & memorybase);
@@ -58,15 +58,15 @@ public:
    memory(manager * pmanager);
    memory(const memory & memory, manager * pmanager);
    memory(const memory * pmemory, manager * pmanager);
-   memory(const u8 * pchSrc, strsize nLength, manager * pmanager);
+   memory(const unsigned char * pchSrc, strsize nLength, manager * pmanager);
    memory(memory && memory);
    memory(const ::string & str);
    ~memory() override;
 
 
-   virtual ::u8 * impl_alloc(memsize dwAllocation) override;
-   virtual ::u8 * impl_realloc(void * pdata, memsize dwAllocation) override;
-   virtual void impl_free(::u8 * pdata) override;
+   virtual unsigned char * impl_alloc(memsize dwAllocation) override;
+   virtual unsigned char * impl_realloc(void * pdata, memsize dwAllocation) override;
+   virtual void impl_free(unsigned char * pdata) override;
 
    using memory_base::operator =;
    using memory_base::operator +=;

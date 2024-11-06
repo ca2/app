@@ -173,7 +173,7 @@ namespace user
       ::user::split_layout::_001OnDraw(pgraphics);
 
 
-//      i32 i;
+//      int i;
 
       //::rectangle_i32 rectangle;
 

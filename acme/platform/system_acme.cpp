@@ -181,7 +181,7 @@ namespace platform
    // #if REFERENCING_DEBUGGING
    //       iAddUp += sizeof(payload.m_preferer);
    // #endif
-   //       int iComputed = (int) (((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+   //       int iComputed = (int) (((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
    //       int iColor = sizeof(payload.m_color);
    //       int iStr = sizeof(payload.m_str);
    //       int iHls = sizeof(payload.m_hls);
@@ -208,7 +208,7 @@ namespace platform
    //    system::~system()
    //    {
    //
-   //       print_line("acme::system::~system() (start)");
+   //       print_line("platform::system::~system() (start)");
    //
    //       trace_category_static_term();
    //
@@ -221,7 +221,7 @@ namespace platform
    //       // m_pbredsystem = nullptr;
    //       // m_pcoresystem = nullptr;
    //
-   //       print_line("acme::system::~system() (end)");
+   //       print_line("platform::system::~system() (end)");
    //
    //       //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
    //
@@ -590,7 +590,7 @@ namespace platform
    //
    //        }*/
    //
-   //        //      m_pdirectorysystem = pacmedirectory;
+   //        //      m_pdirectorysystem = pdirectorysystem;
    //
    //        //    m_pdirectorysystem->increment_reference_count();
    //
@@ -1870,7 +1870,7 @@ namespace platform
    //
    //       stra.erase_empty();
    //
-   //       information() << "acme::system::get_public_internet_domain_extension_list";
+   //       information() << "platform::system::get_public_internet_domain_extension_list";
    //
    //       for (auto& str : stra)
    //       {
@@ -3862,22 +3862,29 @@ namespace platform
    }
 
 
-   ::string_array& acme_system_layer::http_download_array()
+   ::string_array * acme_system_layer::http_download_array()
    {
-      return *((::string_array*)0);
+      
+      return nullptr;
+      
    }
 
 
-   ::string_array& acme_system_layer::http_exists_array()
+   ::string_array * acme_system_layer::http_exists_array()
    {
-      return *((::string_array*)0);
+      
+      return nullptr;
+      
    }
 
 
-   class ::time& acme_system_layer::file_listing_cache_time()
+   class ::time * acme_system_layer::file_listing_cache_time()
    {
-      return *((class ::time*)0);
+      
+      return nullptr;
+      
    }
+
 
    ::task_message_queue * acme_system_layer::task_message_queue()
    {
@@ -3953,22 +3960,27 @@ namespace platform
    }
 
 
-   ::pointer<::platform::node>& acme_system_layer::node()
+   ::platform::node * acme_system_layer::node()
    {
 
-      return *((::pointer<::platform::node> *)nullptr);
+      return nullptr;
+      
    }
 
 
    class ::base64* acme_system_layer::base64()
    {
+      
       return nullptr;
+      
    }
 
 
    ::xml::xml* acme_system_layer::xml()
    {
+      
       return nullptr;
+      
    }
 
 
@@ -4155,7 +4167,7 @@ return nullptr;
    }
 
 
-   void acme_system_layer::create_os_node()
+   void acme_system_layer::create_os_node(::platform::application * papplication)
    {
    }
 
@@ -4244,9 +4256,9 @@ return nullptr;
    }
 
 
-   ::pointer<::factory::factory>& acme_system_layer::folder_factory()
+   ::factory::factory* acme_system_layer::folder_factory()
    {
-      return *((::pointer<::factory::factory>*)0);
+      return nullptr;
    }
 
 
@@ -4279,9 +4291,11 @@ return nullptr;
    }
 
 
-   ::pointer<::factory::factory>& acme_system_layer::node_factory()
+   ::factory::factory * acme_system_layer::node_factory()
    {
-      return *((::pointer <::factory::factory>*)0);
+      
+      return nullptr;
+      
    }
 
 

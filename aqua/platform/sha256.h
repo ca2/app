@@ -7,18 +7,18 @@
 #pragma once
 #include "acme/prototype/string/hex.h"
 //#include "hash.h"
-#include <string>
-
-// define fixed size integer types
-#ifdef _MSC_VER
-    // Windows
-typedef unsigned __int8  uint8_t;
-typedef unsigned __int32 uint32_t;
-typedef unsigned __int64 uint64_t;
-#else
-    // GCC
-#include <stdint.h>
-#endif
+//#include <string>
+//
+//// define fixed size integer types
+//#ifdef _MSC_VER
+//    // Windows
+//typedef unsigned __int8  uint8_t;
+//typedef unsigned __int32 uint32_t;
+//typedef unsigned __int64 uint64_t;
+//#else
+//    // GCC
+//#include <stdint.h>
+//#endif
 
 
 /// compute SHA256 hash
@@ -94,13 +94,13 @@ private:
    void processBuffer();
 
    /// size of processed data in bytes
-   uint64_t m_numBytes;
+   ::u64 m_numBytes;
    /// valid bytes in m_buffer
    size_t   m_bufferSize;
    /// bytes not processed yet
-   uint8_t  m_buffer[BlockSize];
+   unsigned char  m_buffer[BlockSize];
 
    enum { HashValues = HashBytes / 4 };
    /// hash, stored as integers
-   uint32_t m_hash[HashValues];
+   ::u32 m_hash[HashValues];
 };

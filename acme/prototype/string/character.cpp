@@ -17,7 +17,7 @@
 //::wd32_character character::parse_utf8(const ::scoped_string & scopedstrUtf8)
 //{
 //
-//   ::i32 iLen;
+//   int iLen;
 //
 //   return unicode_index_length(pszUtf8, iLen);
 //

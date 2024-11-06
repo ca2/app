@@ -200,7 +200,7 @@ namespace write_text
 
                pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y() += (::i32)pgraphics->m_pfont->get_height(pgraphics);
+               point.y() += (int)pgraphics->m_pfont->get_height(pgraphics);
 
             }
 
@@ -698,7 +698,7 @@ namespace write_text
 
          pbox->set_text_box_init();
 
-         m_size.cx() = (::i32) maximum(m_size.cx(), s.cx());
+         m_size.cx() = (int) maximum(m_size.cx(), s.cx());
 
       }
 

@@ -454,7 +454,7 @@ namespace base
    }
 
 
-   i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
+   int application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
       
       auto puser = user();

@@ -17,7 +17,7 @@ namespace sockets
       string                                          m_data;
       bool                                            m_bServer;
       base_socket *                                   m_parent;
-      i32                                             m_resolv_id;
+      int                                             m_resolv_id;
       string                                          m_resolv_host;
       port_t                                          m_resolv_port;
       in_addr                                         m_resolv_address;
@@ -44,8 +44,8 @@ namespace sockets
       void OnDetached() override;
       void OnDelete() override;
 
-      void SetId(i32 x) { m_resolv_id = x; }
-      i32 GetId() { return m_resolv_id; }
+      void SetId(int x) { m_resolv_id = x; }
+      int GetId() { return m_resolv_id; }
 
       void OnConnect() override;
 

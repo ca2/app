@@ -1479,7 +1479,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //   virtual public object
 //{
 //
-//   ::u8 m_ucha[1024];
+//   unsigned char m_ucha[1024];
 //
 //};
 //

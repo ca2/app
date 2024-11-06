@@ -83,7 +83,7 @@ namespace graphics
          if(pparticle->is_referencing_debugging_enabled())
          {
 
-            m_preferer = __refdbg_add_referer(pparticle);
+            m_preferer = __refdbg_add_referer;
 
          }
 

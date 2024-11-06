@@ -21,7 +21,11 @@ namespace platform
 
 #else
 
-      void apex_system_layer::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none){}
+      void apex_system_layer::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+{
+         
+         
+      }
 
 #endif
 
@@ -87,9 +91,11 @@ namespace platform
    }
 
 
-   ::pointer<::factory::factory>& apex_system_layer::node_factory()
+   ::factory::factory * apex_system_layer::node_factory()
    {
-      return *((::pointer<::factory::factory> *)0);
+      
+      return nullptr;
+      
    }
 
 
@@ -132,6 +138,13 @@ namespace platform
    // void destroy(){}
    //
 
+
+   void apex_system_layer::initialize_crypto()
+   {
+      
+   }
+
+
    void apex_system_layer::process_exit_status(::object* pparticle, const ::e_status& estatus)
    {
    }
@@ -148,27 +161,35 @@ namespace platform
    //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
    //::string apex_system_layer::get_locale_schema_dir(){}
 
-   ::operating_system::department& apex_system_layer::operating_system()
+   ::operating_system::department * apex_system_layer::operating_system()
    {
-      return *(::operating_system::department *)0;
+      
+      return nullptr;
+      
    }
 
 
-   class ::machine_event_central& apex_system_layer::machine_event_central()
+   class ::machine_event_central * apex_system_layer::machine_event_central()
    {
-      return *(::machine_event_central *)0;
+      
+      return nullptr;
+      
    }
 
 
    ::parallelization::threading* apex_system_layer::threading()
    {
+      
       return nullptr;
+      
    }
 
 
    ::networking::networking* apex_system_layer::networking()
    {
+      
       return nullptr;
+      
    }
 
 
@@ -442,9 +463,9 @@ namespace platform
    }
 
 
-   ::apex::history& apex_system_layer::hist()
+   ::apex::history* apex_system_layer::hist()
    {
-      return *((::apex::history *)0);
+      return nullptr;
    }
 
 

@@ -19,7 +19,7 @@ namespace image
 
 
       i32_map < string > m_mapIntPath;
-      string_map < i32 > m_mapPathInt;
+      string_map < int > m_mapPathInt;
       string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
@@ -57,9 +57,9 @@ namespace image
       virtual ::image::image_pointer create_image(const ::size_i32& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
-      virtual i32 image_integer(const ::file::path & path);
-      virtual i32 create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
-      virtual ::image::image_pointer integer_image(i32 i);
+      virtual int image_integer(const ::file::path & path);
+      virtual int create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
+      virtual ::image::image_pointer integer_image(int i);
       virtual ::image::image_pointer path_image(const ::file::path & pathImage);
 
 

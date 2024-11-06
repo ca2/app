@@ -355,8 +355,8 @@ public:
 
 
 //inline auto u32_point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-inline auto u32_point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)u32_x(u), (::i32)u32_y(u)); }
-inline auto u64_point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)u64_x(u), (::i32)u64_y(u)); }
+inline auto u32_point_i32(const ::u32 u) noexcept { return ::point_i32((int)u32_x(u), (int)u32_y(u)); }
+inline auto u64_point_i32(const ::u64 u) noexcept { return ::point_i32((int)u64_x(u), (int)u64_y(u)); }
 
 
 //inline auto u32_point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }

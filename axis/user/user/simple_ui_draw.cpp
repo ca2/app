@@ -63,7 +63,7 @@ namespace simple_ui
       int iCount = rectangleDraw.width();
       int jCount = rectangleDraw.height();
 
-      ::u8 * point = (::u8 *)m_pimage->get_data();
+      unsigned char * point = (unsigned char *)m_pimage->get_data();
 
       for (i = 0; i < iCount; i++)
       {
@@ -160,10 +160,10 @@ namespace simple_ui
       {
          double dRate = (double)i / (double)iCount;
          dRate = 1.0 - dRate;
-         ::u8 a1 = __byte_rate(1.0 - dRate, 23, 90);
-         ::u8 r1 = __byte_rate(dRate, 23, 127);
-         ::u8 g1 = __byte_rate(dRate, 23, 127);
-         ::u8 b1 = __byte_rate(dRate, 23, 127);
+         unsigned char a1 = __byte_rate(1.0 - dRate, 23, 90);
+         unsigned char r1 = __byte_rate(dRate, 23, 127);
+         unsigned char g1 = __byte_rate(dRate, 23, 127);
+         unsigned char b1 = __byte_rate(dRate, 23, 127);
          ppen->create_solid(1.0, argb(a1, r1, g1, b1));
          pgraphics->set(ppen);
          pgraphics->draw_line(rectangleDraw.left(), i, rectangleDraw.right(), i);

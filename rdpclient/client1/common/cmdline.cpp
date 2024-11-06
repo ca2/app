@@ -1802,7 +1802,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		}
 		CommandLineSwitchCase(arg, "load-balance-info")
 		{
-			if (!(settings->LoadBalanceInfo = (::u8*) _strdup(arg->Value)))
+			if (!(settings->LoadBalanceInfo = (unsigned char*) _strdup(arg->Value)))
 				return COMMAND_LINE_ERROR_MEMORY;
 			settings->LoadBalanceInfoLength = (::u32) strlen((char*) settings->LoadBalanceInfo);
 		}
@@ -2232,7 +2232,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		}
 		CommandLineSwitchCase(arg, "reconnect-cookie")
 		{
-			::u8 *base64;
+			unsigned char *base64;
 			int length;
 			crypto_base64_decode((const ::string &) (arg->Value), (int) strlen(arg->Value),
 								&base64, &length);

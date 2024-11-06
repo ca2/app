@@ -27,7 +27,7 @@ namespace draw2d
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
       ::point_f64 *                    ppoints,
-      i32                           iCount,
+      int                           iCount,
       double                        dRateX,
       ::point_f64 *                    ppointOffset);
 
@@ -35,7 +35,7 @@ namespace draw2d
       void draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
       ::point_f64 *                    ppoints,
-      i32                           iCount,
+      int                           iCount,
       double                        dRateX,
       ::point_f64 *                    ppointOffset);
 
@@ -62,19 +62,19 @@ namespace draw2d
       double                        dHeight,
       const char *                  psz,
       int *                         piCharsPositions,
-      i32                           iCharsPositions,
-      i32                           iOffset);
+      int                           iCharsPositions,
+      int                           iOffset);
 
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
       const char *                  pcsz,
-      i32                           iLeft,
-      i32                           iTop,
-      i32                           iWidth,
+      int                           iLeft,
+      int                           iTop,
+      int                           iWidth,
       ::color::color                     crText,
       ::color::color                     crOutline,
-      i32                           iLen);
+      int                           iLen);
 
 
       void simple_text_out(
@@ -84,8 +84,8 @@ namespace draw2d
       double                        dHeight,
       const char *                  psz,
       int *                         piCharsPositions,
-      i32                           iCharsPositions,
-      i32                           iOffset);
+      int                           iCharsPositions,
+      int                           iOffset);
 
 
    };

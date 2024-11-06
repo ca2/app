@@ -41,26 +41,26 @@ struct _CliprdrStream
 {
 	IStream * iStream;
 
-	::i32 m_lRefCount;
-	::i32 m_lIndex;
+	int m_lRefCount;
+	int m_lIndex;
 	ULARGE_INTEGER m_lSize;
 	ULARGE_INTEGER m_lOffset;
 	void* m_pData;
 };
 typedef struct _CliprdrStream CliprdrStream;
 
-CliprdrStream* CliprdrStream_New(::i32 index, void* pData);
+CliprdrStream* CliprdrStream_New(int index, void* pData);
 void CliprdrStream_Delete(CliprdrStream* instance);
 
 struct _CliprdrDataObject
 {
 	IDataObject * iDataObject;
 
-	::i32 m_lRefCount;
+	int m_lRefCount;
 	FORMATETC* m_pFormatEtc;
 	STGMEDIUM* m_pStgMedium;
-	::i32 m_nNumFormats;
-	::i32 m_nStreams;
+	int m_nNumFormats;
+	int m_nStreams;
 	IStream** m_pStream;
 	void* m_pData;
 };
@@ -73,9 +73,9 @@ struct _CliprdrEnumFORMATETC
 {
 	IEnumFORMATETC * iEnumFORMATETC;
 
-	::i32 m_lRefCount;
-	::i32 m_nIndex;
-	::i32 m_nNumFormats;
+	int m_lRefCount;
+	int m_nIndex;
+	int m_nNumFormats;
 	FORMATETC* m_pFormatEtc;
 };
 typedef struct _CliprdrEnumFORMATETC CliprdrEnumFORMATETC;

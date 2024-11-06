@@ -74,7 +74,7 @@ auto m_timeSync = ::time::now();
 
       i32 iRate1 = 25;
 
-      ::u8 bA;
+      unsigned char bA;
 
       {
 
@@ -92,15 +92,15 @@ auto m_timeSync = ::time::now();
          else
          bA = 184 * 2 - iA;*/
 
-         bA = minimum(255, maximum(0, (::u8)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+         bA = minimum(255, maximum(0, (unsigned char)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
       }
 
-      ::u8 uchR;
-      ::u8 uchG;
-      ::u8 uchB;
+      unsigned char uchR;
+      unsigned char uchG;
+      unsigned char uchB;
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 

@@ -25,7 +25,7 @@ namespace graphics
       ::particle_pointer      m_pparticleData;
       manual_reset_event            m_manualresetevent;
       ::size_i32                    m_sizeInternal;
-      ::i32                         m_iScan;
+      int                         m_iScan;
 
 
       ::draw2d::graphics_pointer g();

@@ -269,7 +269,7 @@ namespace graphics
    void console::write(const void * p, ::memsize s)
    {
 
-      auto data = (::u8 *)p;
+      auto data = (unsigned char *)p;
 
       string str((const char *)data, minimum(ansi_nlen((const char *)data, (size_t)s), s));
 

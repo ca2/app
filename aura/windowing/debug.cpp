@@ -38,7 +38,7 @@ int g_iIgnoreXDisplayError = 0;
 //
 //
 //
-//i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+//int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 //{
 //
 //   const ::scoped_string & scopedstrError;

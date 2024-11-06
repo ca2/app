@@ -17,7 +17,7 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-color32_t SetAValue(::u8 a, color32_t color32)
+color32_t SetAValue(unsigned char a, color32_t color32)
 {
 
    return argb(a, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32));
@@ -478,8 +478,8 @@ SizingNone:;
             const ::rectangle_i32 &lpcrectClient,
             enum_grip egrip)
             {
-               //            const i32 size1 = 14;
-               //      const i32 size2 = 15;
+               //            const int size1 = 14;
+               //      const int size2 = 15;
 
                ::rectangle_i32 rectangleX(lpcrectClient);
                //            ::rectangle_i32 rectangleXB(rectangleX);

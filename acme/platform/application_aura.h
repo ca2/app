@@ -502,7 +502,7 @@ namespace platform
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      //virtual void on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      //virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
 
 
       //virtual bool app_set(string strPath, string strValue) override;
@@ -904,7 +904,7 @@ namespace platform
       //DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 
 
-      //virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
+      //virtual bool on_idle(int lCount) override; // return true if more idle processing
       //virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);

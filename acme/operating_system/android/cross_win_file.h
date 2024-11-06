@@ -136,13 +136,13 @@
 //
 //      typedef struct _ACCESS_MASK {
 //          ::u16   SpecificRights;
-//          ::u8  StandardRights;
-//          ::u8  AccessSystemAcl : 1;
-//          ::u8  Reserved : 3;
-//          ::u8  GenericAll : 1;
-//          ::u8  GenericExecute : 1;
-//          ::u8  GenericWrite : 1;
-//          ::u8  GenericRead : 1;
+//          unsigned char  StandardRights;
+//          unsigned char  AccessSystemAcl : 1;
+//          unsigned char  Reserved : 3;
+//          unsigned char  GenericAll : 1;
+//          unsigned char  GenericExecute : 1;
+//          unsigned char  GenericWrite : 1;
+//          unsigned char  GenericRead : 1;
 //      } ACCESS_MASK;
 //      typedef ACCESS_MASK *PACCESS_MASK;
 //

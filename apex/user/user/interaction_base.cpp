@@ -1520,7 +1520,7 @@ namespace user
 
 
 
-   //::i32 interaction_base::get_window_long(i32 nIndex) const
+   //int interaction_base::get_window_long(i32 nIndex) const
    //{
 
    //   throw ::interface_only();
@@ -1530,7 +1530,7 @@ namespace user
    //}
 
 
-   //::i32 interaction_base::set_window_long(i32 nIndex,::i32 lValue)
+   //int interaction_base::set_window_long(i32 nIndex,int lValue)
    //{
 
    //   throw ::interface_only();

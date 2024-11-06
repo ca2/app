@@ -98,20 +98,20 @@
 
 
 
-
-
-void defer_create_nano_application_delegate(void * pApplication);
-
-void apple_defer_nano_application_create(class ::platform::system * psystem)
-{
-   
-   auto papp = psystem->m_papplication;
-   
-   void * pApplication = (void *) (::platform::application *) papp;
-   
-   defer_create_nano_application_delegate(pApplication);
-   
-}
+//
+//
+//void defer_create_acme_application_delegate(::platform::application * papplication);
+//
+//void apple_defer_nano_application_create(class ::platform::system * psystem)
+//{
+//   
+//   auto papp = psystem->m_papplication;
+//   
+//   ::platform::application * papplication = (void *) (::platform::application *) papp;
+//   
+//   defer_create_acme_application_delegate(pApplication);
+//   
+//}
 
 //bool g_bAcmeMacosApplicationInit = false;
 //
@@ -129,16 +129,16 @@ void apple_defer_nano_application_create(class ::platform::system * psystem)
 //
 //}
 
-
-void macos_message_box_factory(::factory::factory * pfactory);
-
-
-void macos_factory(::factory::factory * pfactory)
-{
-
-   macos_message_box_factory(pfactory);
-
-}
+//
+//void macos_message_box_factory(::factory::factory * pfactory);
+//
+//
+//void macos_factory(::factory::factory * pfactory)
+//{
+//
+//   macos_message_box_factory(pfactory);
+//
+//}
 
 
 

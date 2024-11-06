@@ -238,7 +238,7 @@ namespace windows
 
       memsize totalRead = 0;
 
-      auto data = (::u8 *)p;
+      auto data = (unsigned char *)p;
 
       while (s > 0)
       {

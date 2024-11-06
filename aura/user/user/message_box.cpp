@@ -415,7 +415,7 @@ namespace user
 
       ::rectangle_i32 r;
 
-      r.set_dimension(0, 0, iWidth, (::i32) (300 * screen_scaler()));
+      r.set_dimension(0, 0, iWidth, (int) (300 * screen_scaler()));
 
       m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
 

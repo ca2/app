@@ -37,7 +37,7 @@
                         // it prolog/verbatim/epilog.
                         // So use the Windows function for now
         #if 0
-        INLINE ::i32 MulDiv32(::i32 a,::i32 b,::i32 ca)
+        INLINE int MulDiv32(int a,int b,int ca)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
@@ -106,7 +106,7 @@
         //  Use C9 i64 support for Daytona RISC platforms.
         //
 
-        INLINE ::i32 MulDiv32( ::i32 a, ::i32 b, ::i32 ca )
+        INLINE int MulDiv32( int a, int b, int ca )
         {
            return (i32)(((i64)a * (i64)b) / (i64)ca);
         }
@@ -171,7 +171,7 @@ inline u32 MulDivRU( u32 a, u32 b, u32 ca )
     //       to get 32-bit instructions.
     //
 
-    inline ::i32 MulDiv32(::i32 a,::i32 b,::i32 ca)
+    inline int MulDiv32(int a,int b,int ca)
     {
         _asm _emit 0x66 _asm    mov     ax,u16 ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,u16 ptr b   //  mov  ebx, b

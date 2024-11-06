@@ -40,28 +40,28 @@ public:
    virtual void initialize(::particle * pparticle) override;
 
 
-   virtual void pixelate_24CC(::u8 * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, ::u8 * pbSrc, i32 xSrc, i32 ySrc, i32 wSrc, i32 iSize);
+   virtual void pixelate_24CC(unsigned char * pbDest, int xDest, int yDest, int wDest, int cx, int cy, unsigned char * pbSrc, int xSrc, int ySrc, int wSrc, int iSize);
 
-   virtual void alpha_pixelate_24CC(::u8 * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, ::u8 * lpbSrc1, i32 xSrc1, i32 ySrc1, i32 wSrc1, ::u8 * lpbSrc2, i32 xSrc2, i32 ySrc2, i32 wSrc2, i32 iSize, i32 iAlpha);
+   virtual void alpha_pixelate_24CC(unsigned char * pbDest, int xDest, int yDest, int wDest, int cx, int cy, unsigned char * lpbSrc1, int xSrc1, int ySrc1, int wSrc1, unsigned char * lpbSrc2, int xSrc2, int ySrc2, int wSrc2, int iSize, int iAlpha);
 
-   virtual void blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, i32 iRadius);
+   virtual void blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, int iRadius);
 
    virtual void blur_32CC_r2(::image::image *ppimageDst, ::image::image *pimageSrc);
 
-   virtual void channel_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius);
-   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
-   virtual void channel_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iFilterWidth, i32 iFilterHeight,  ::u8 * pbFilter);
+   virtual void channel_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, int iChannel, int iRadius);
+   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, int iChannel, int iRadius);
+   virtual void channel_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, int iChannel, int iFilterWidth, int iFilterHeight,  unsigned char * pbFilter);
 
-   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, const ::size_i32 & sizeFilter,  ::u8 * pbFilter);
+   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, int iChannel, const ::size_i32 & sizeFilter,  unsigned char * pbFilter);
 
-   virtual void channel_alpha_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius);
-   virtual void channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
+   virtual void channel_alpha_gray_blur_32CC(::image::image *ppimageDst, ::image::image *pimageSrc, int iChannel, int iRadius);
+   virtual void channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, int iChannel, int iRadius);
 
-   void alpha_spread_R2_24CC(::u8 * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, ::u8 * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, ::u8 bMin);
+   void alpha_spread_R2_24CC(unsigned char * pbDest, int xDest, int yDest, int wDest, int cx, int cy, unsigned char * pbSrc, int ySrc, int xSrc, int wSrc, unsigned char bMin);
 
-   void alpha_spread__24CC(::u8 * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, ::u8 * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, ::u8 bMin, i32 iRadius);
+   void alpha_spread__24CC(unsigned char * pbDest, int xDest, int yDest, int wDest, int cx, int cy, unsigned char * pbSrc, int ySrc, int xSrc, int wSrc, unsigned char bMin, int iRadius);
 
-   void spread__32CC(::image::image *ppimageDst, ::image::image *pimageSrc, i32 iRadius, const ::color::color & colorSpreadSetColor);
+   void spread__32CC(::image::image *ppimageDst, ::image::image *pimageSrc, int iRadius, const ::color::color & colorSpreadSetColor);
 
 
    void channel_spread(
@@ -70,8 +70,8 @@ public:
    const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
    const ::point_i32 & pointSrc,
-   i32 iChannel,
-   i32 iRadius);
+   int iChannel,
+   int iRadius);
 
    void channel_spread_set_color(
    ::draw2d::graphics * pgraphics,
@@ -79,8 +79,8 @@ public:
    const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
    const ::point_i32 & pointSrc,
-   i32 iChannel,
-   i32 iRadius,
+   int iChannel,
+   int iRadius,
    const ::color::color & color);
 
    void spread(
@@ -89,7 +89,7 @@ public:
    const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
    const ::point_i32 & pointSrc,
-   i32 iRadius);
+   int iRadius);
 
    void spread_set_color(
    ::draw2d::graphics * pgraphics,
@@ -97,39 +97,39 @@ public:
    const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
    const ::point_i32 & pointSrc,
-   i32 iRadius,
+   int iRadius,
    const ::color::color & color);
 
    void true_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image::image *pimageWork = nullptr, ::image::image *pimageWork2 = nullptr, ::image::image *pimageWork3 = nullptr);
 
    void blur(::image::image *pimage, int iRadius);
 
-   void blur(::image::image *pimage, rectangle_i32 rectangle, i32 iRadius);
+   void blur(::image::image *pimage, rectangle_i32 rectangle, int iRadius);
 
    void color_blend_24CC(
-   ::u8 * pbA,
+   unsigned char * pbA,
 
-   i32 x1,
-   i32 y1,
-   i32 w1,
-   i32 cx,
-   i32 cy,
+   int x1,
+   int y1,
+   int w1,
+   int cx,
+   int cy,
    ::color32_t color32,
-   ::u8 * pbC,
+   unsigned char * pbC,
 
-   i32 x3,
-   i32 y3,
-   i32 w3);
-
-
+   int x3,
+   int y3,
+   int w3);
 
 
-   void clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::color::color & color, ::u8 alpha);
-   void clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, ::u8 alpha);
+
+
+   void clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::color::color & color, unsigned char alpha);
+   void clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, unsigned char alpha);
 
    /*
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, ::u8 alpha, ::draw2d::region * prgnClip);
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, ::u8 alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, unsigned char alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, unsigned char alpha, ::draw2d::region * prgnClip);
    */
 
    void trait(::image::image *pimage, ::i64 iTrait);
@@ -139,8 +139,8 @@ public:
 //   ::draw2d::bitmap * pbitmapOld,
 //   ::draw2d::bitmap * pbitmap,
 ////  BITMAP * pbmp,
-//   i32 cx,
-//   i32 cy);
+//   int cx,
+//   int cy);
 
    //static bool CreateBitmap(
    //   ::draw2d::graphics * pgraphics,
@@ -148,10 +148,10 @@ public:
    //::draw2d::bitmap * pbitmap,
    //::draw2d::bitmap * pbitmapOld,
    ////BITMAP * pbmp,
-   //i32 cx,
-   //i32 cy);
+   //int cx,
+   //int cy);
 
-   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const ::scoped_string & scopedstr, const ::color::color & color, double dBlend);
+   void AlphaTextOut(::draw2d::graphics * pgraphics, int left, int top, const ::scoped_string & scopedstr, const ::color::color & color, double dBlend);
 
 
    /*
@@ -195,10 +195,10 @@ public:
 //      memory & memomrystorage,
 //      ::draw2d::bitmap * pbitmap,
 //      const ::rectangle_i32 & rectangle,
-//      i32 & iWidth,
+//      int & iWidth,
 //      ::u32 & uiStartScanLine,
 //      ::u32 & uiScanLineCount,
-//      i32 & iLimitYParam);
+//      int & iLimitYParam);
 //
 //
 //
@@ -209,10 +209,10 @@ public:
 //      ::draw2d::graphics * pgraphics,
 //      ::draw2d::bitmap * pbitmap,
 //      ::draw2d::bitmap * pbitmapMask,
-//      i32 x,
-//      i32 y,
-//      i32 cx,
-//      i32 cy,
+//      int x,
+//      int y,
+//      int cx,
+//      int cy,
 //      ::color::color crTransparent);
 
    void HueVRCP(::image::image *pimage, ::color::color crHue, double dCompress);
@@ -226,10 +226,10 @@ public:
 //
 //   bool GrayVRCP(
 //      ::draw2d::graphics * pgraphics,
-//      i32 x,
-//      i32 y,
-//      i32 cx,
-//      i32 cy,
+//      int x,
+//      int y,
+//      int cx,
+//      int cy,
 //      ::color::color crAlpha);
 
    void change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
@@ -238,46 +238,46 @@ public:
                      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
                      const ::point_i32 & pointAlpha);
 
-   void BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, ::u8 bAlpha);
+   void BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, unsigned char bAlpha);
 
-   //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, ::u8 bAlpha);
+   //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, unsigned char bAlpha);
 
-//   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::image::image *pimage, const ::point_i32 & pointSrc, ::u8 bAlpha);
+//   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::image::image *pimage, const ::point_i32 & pointSrc, unsigned char bAlpha);
 
    void BitmapBlend24CC(
-   ::u8 * pbA,
+   unsigned char * pbA,
 
-   i32 x1,
-   i32 y1,
-   i32 w1,
-   i32 cx,
-   i32 cy,
-   ::u8 * pbB,
+   int x1,
+   int y1,
+   int w1,
+   int cx,
+   int cy,
+   unsigned char * pbB,
 
-   i32 x2,
-   i32 y2,
-   i32 w2,
-   ::u8 * pbC,
+   int x2,
+   int y2,
+   int w2,
+   unsigned char * pbC,
 
-   i32 x3,
-   i32 y3,
-   i32 w3);
+   int x3,
+   int y3,
+   int w3);
    void BitmapBlend24CC(
-   ::u8 * pbDest,
+   unsigned char * pbDest,
 
-   i32 xDest,
-   i32 yDest,
-   i32 wDest,
-   i32 cx,
-   i32 cy,
-   ::u8 * pbSrc,
+   int xDest,
+   int yDest,
+   int wDest,
+   int cx,
+   int cy,
+   unsigned char * pbSrc,
 
-   i32 xSrc,
-   i32 ySrc,
-   i32 wSrc,
-   ::u8 bAlpha);
+   int xSrc,
+   int ySrc,
+   int wSrc,
+   unsigned char bAlpha);
 
-   virtual void ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
+   virtual void ColorInvert(::draw2d::graphics * pgraphics, int x, int y, int cx, int cy);
 
 
    //inline void load_image(::image::image_pointer & pimage, ::memory_pointer pmemory)
@@ -316,15 +316,15 @@ public:
 
    void embossed_text_out(
    ::draw2d::graphics *        pdc,
-   i32                 x,
-   i32                 y,
+   int                 x,
+   int                 y,
    const char *            pcsz,
 
    size_t                  cb,
    ::color::color                crText,
    ::color::color                crShadow,
-   i32                 cx,
-   i32                 cy);
+   int                 cx,
+   int                 cy);
 
    //void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
 
@@ -335,7 +335,7 @@ public:
    void free_work_image(::image::image *pimage);
    
 
-   virtual bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex);
+   virtual bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, unsigned char * ba, int iScan, color_array & colora, int transparentIndex);
 
    virtual bool nanosvg(::image::image *pimage, void * pNSVGimage, int iRedLower);
 

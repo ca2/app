@@ -367,7 +367,7 @@ namespace windowing
 
       ::rectangle_i32 rectangleMonitor;
 
-      ::i32 iMaximumArea = -1;
+      int iMaximumArea = -1;
 
       ::collection::index iMainMonitor = -1;
 

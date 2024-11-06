@@ -230,7 +230,7 @@ namespace acme
 
 
 
-   ::i32 shell::get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   int shell::get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
    {
 
       status_pointer <::string> pstring;
@@ -274,7 +274,7 @@ namespace acme
    }
 
 
-   ::i32 shell::get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
+   int shell::get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
    {
 
       status_pointer <::string> pstring;
@@ -585,7 +585,7 @@ namespace acme
    }
 
 
-   //::i32 shell::_msys2_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   //int shell::_msys2_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
    //{
 
    //   status_pointer <::string> pstring;

@@ -100,7 +100,7 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-::i32 g_iEventSerialId = 1;
+int g_iEventSerialId = 1;
 
 event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
@@ -462,6 +462,19 @@ hsynchronization event::get_synchronization_handle()
    return m_handle;
 
 }
+
+
+#else
+
+
+
+hsynchronization event::get_synchronization_handle()
+{
+
+   return this;
+
+}
+
 
 
 #endif
@@ -971,7 +984,7 @@ bool event::_wait (const class time & timeWait)
 
          timespecFinal = timespecNow + timespecWait;
 
-         ::i32 error = 0;
+         int error = 0;
 
          //try { throw "event::_wait(FINite) mutex locked 2"; } catch(...){}
 
@@ -1375,7 +1388,7 @@ void event::unlock()
 }
 
 
-//HSYNC event::hsync() const
+//hsynchronization event::hsynchronization() const
 //{
 //
 //#ifdef WINDOWS_DESKTOP

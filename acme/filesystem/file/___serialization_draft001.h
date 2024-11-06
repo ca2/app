@@ -134,7 +134,7 @@ read(atom, i8) throw not_implemented;
 read(atom, i16) throw not_implemented;
 read(atom, i32) throw not_implemented;
 read(atom, i64) throw not_implemented;
-read(atom, u8) throw not_implemented;
+read(atom, unsigned char) throw not_implemented;
 read(atom, u16) throw not_implemented;
 read(atom, u32) throw not_implemented;
 read(atom, u64) throw not_implemented;
@@ -143,7 +143,7 @@ read(i8) throw not_implemented;
 read(i16) throw not_implemented;
 read(i32) throw not_implemented;
 read(i64) throw not_implemented;
-read(u8) throw not_implemented;
+read(unsigned char) throw not_implemented;
 read(u16) throw not_implemented;
 read(u32) throw not_implemented;
 read(u64) throw not_implemented;
@@ -152,7 +152,7 @@ write(atom, i8) throw not_implemented;
 write(atom, i16) throw not_implemented;
 write(atom, i32) throw not_implemented;
 write(atom, i64) throw not_implemented;
-write(atom, u8) throw not_implemented;
+write(atom, unsigned char) throw not_implemented;
 write(atom, u16) throw not_implemented;
 write(atom, u32) throw not_implemented;
 write(atom, u64) throw not_implemented;
@@ -161,7 +161,7 @@ write(i8) throw not_implemented;
 write(i16) throw not_implemented;
 write(i32) throw not_implemented;
 write(i64) throw not_implemented;
-write(u8) throw not_implemented;
+write(unsigned char) throw not_implemented;
 write(u16) throw not_implemented;
 write(u32) throw not_implemented;
 write(u64) throw not_implemented;
@@ -178,7 +178,7 @@ read(atom, i8) read(i8)
 read(atom, i16) read(i16)
 read(atom, i32) read(i32)
 read(atom, i64) read(i64)
-read(atom, u8) read(u8)
+read(atom, unsigned char) read(unsigned char)
 read(atom, u16) read(u16)
 read(atom, u32) read(u32)
 read(atom, u64) read(u64)
@@ -187,7 +187,7 @@ read(i8) m_pfile->read(i8)
 read(i16) m_pfile->read(i16)
 read(i32) m_pfile->read(i32)
 read(i64) m_pfile->read(i64)
-read(u8) m_pfile->read(u8)
+read(unsigned char) m_pfile->read(unsigned char)
 read(u16) m_pfile->read(u16)
 read(u32) m_pfile->read(u32)
 read(u64) m_pfile->read(u64)
@@ -196,7 +196,7 @@ write(atom, i8) write(i8)
 write(atom, i16) write(i16)
 write(atom, i32) write(i32)
 write(atom, i64) write(i64)
-write(atom, u8) write(u8)
+write(atom, unsigned char) write(unsigned char)
 write(atom, u16) write(u16)
 write(atom, u32) write(u32)
 write(atom, u64) write(u64)
@@ -205,7 +205,7 @@ write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)
 write(i32) m_pfile->write(i32)
 write(i64) m_pfile->write(i64)
-write(u8) m_pfile->write(u8)
+write(unsigned char) m_pfile->write(unsigned char)
 write(u16) m_pfile->write(u16)
 write(u32) m_pfile->write(u32)
 write(u64) m_pfile->write(u64)
@@ -221,7 +221,7 @@ write(atom, i8) write(i8)
 write(atom, i16) write(i16)
 write(atom, i32) write(i32)
 write(atom, i64) write(i64)
-write(atom, u8) write(u8)
+write(atom, unsigned char) write(unsigned char)
 write(atom, u16) write(u16)
 write(atom, u32) write(u32)
 write(atom, u64) write(u64)
@@ -230,7 +230,7 @@ write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)
 write(i32) m_pfile->write(i32)
 write(i64) m_pfile->write(i64)
-write(u8) m_pfile->write(u8)
+write(unsigned char) m_pfile->write(unsigned char)
 write(u16) m_pfile->write(u16)
 write(u32) m_pfile->write(u32)
 write(u64) m_pfile->write(u64)
@@ -248,7 +248,7 @@ read(atom, i8)i8 = m_ppayload->operator[](atom);
 read(atom, i16) i16= m_ppayload->operator[](atom);
 read(atom, i32) i32= m_ppayload->operator[](atom);
 read(atom, i64) i64= m_ppayload->operator[](atom);
-read(atom, u8) u8= m_ppayload->operator[](atom);
+read(atom, unsigned char) unsigned char= m_ppayload->operator[](atom);
 read(atom, u16) u16= m_ppayload->operator[](atom);
 read(atom, u32) u32= m_ppayload->operator[](atom);
 read(atom, u64) u64= m_ppayload->operator[](atom);
@@ -257,7 +257,7 @@ read(i8) i8 = *m_ppayload
 read(i16) i16 = *m_ppayload
 read(i32) i32 = *m_ppayload
 read(i64) i64 = *m_ppayload
-read(u8) u8 = *m_ppayload
+read(unsigned char) unsigned char = *m_ppayload
 read(u16) u16 = *m_ppayload
 read(u32) u32 = *m_ppayload
 read(u64) u64 = *m_ppayload
@@ -266,7 +266,7 @@ write(atom, i8) write(i8)
 write(atom, i16) write(i16)
 write(atom, i32) write(i32)
 write(atom, i64) write(i64)
-write(atom, u8) write(u8)
+write(atom, unsigned char) write(unsigned char)
 write(atom, u16) write(u16)
 write(atom, u32) write(u32)
 write(atom, u64) write(u64)
@@ -275,7 +275,7 @@ write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)
 write(i32) m_pfile->write(i32)
 write(i64) m_pfile->write(i64)
-write(u8) m_pfile->write(u8)
+write(unsigned char) m_pfile->write(unsigned char)
 write(u16) m_pfile->write(u16)
 write(u32) m_pfile->write(u32)
 write(u64) m_pfile->write(u64)

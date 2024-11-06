@@ -82,7 +82,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::par
 extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -328,6 +328,13 @@ namespace aura
    }
 
 
+::hardware::devices* system::hardware_devices()
+{
+    return m_phardwaredevices;
+    
+}
+
+
    void system::defer_initialize_hardware_devices()
    {
 
@@ -477,7 +484,7 @@ namespace aura
 
    //      auto applicationa = get_applicationa();
 
-   //      for (i32 i = 0; i < applicationa.get_size();)
+   //      for (int i = 0; i < applicationa.get_size();)
    //      {
 
    //         try
@@ -601,7 +608,7 @@ namespace aura
    //}
 
 
-   ::pointer<::factory::factory>& system::node_factory()
+   ::factory::factory * system::node_factory()
    {
 
       auto & pfactory = factory("node", OPERATING_SYSTEM_NAME);
@@ -901,9 +908,9 @@ namespace aura
 //
 //                           auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->create("/ca2core");
+//pdirectorysystem->create("/ca2core");
 //
 //                  file_system()->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
@@ -1134,7 +1141,7 @@ namespace aura
          try
          {
 
-            auto & pfactoryImaging = imaging_factory();
+            auto * pfactoryImaging = imaging_factory();
 
             if (pfactoryImaging)
             {
@@ -1245,7 +1252,7 @@ namespace aura
    }
 
 
-   ::pointer<::factory::factory>& system::draw2d_factory()
+   ::factory::factory * system::draw2d_factory()
    {
 
       ::string strImplementationName;
@@ -1376,7 +1383,7 @@ namespace aura
    }
 
 
-   ::pointer<::factory::factory>& system::imaging_factory()
+   ::factory::factory * system::imaging_factory()
    {
 
       string strImplementationName;
@@ -1736,13 +1743,13 @@ namespace aura
       //
       //         bool bFileSystemMatter =          auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->is(pathSide) ||          auto psystem = system();
+//pdirectorysystem->is(pathSide) ||          auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->is(pathLocal);
+//pdirectorysystem->is(pathLocal);
       //
       //         bMatterFromHttpCache = !bFileSystemMatter;
       //
@@ -2168,7 +2175,7 @@ namespace aura
    //}
 
 
-   //i32 system::_001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args)
+   //int system::_001OnDebugReport(int i1, const ::string & psz1,int i2, const ::string & psz2, const ::string & psz3,va_list args)
    //{
 
    //   return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
@@ -2176,7 +2183,7 @@ namespace aura
    //}
 
 
-//   i32 system::_debug_logging_report(i32 iReportType, const ::string & pszFileName, i32 iLineNumber, const ::string & pszModuleName, const ::string & pszFormat,va_list list)
+//   int system::_debug_logging_report(int iReportType, const ::string & pszFileName, int iLineNumber, const ::string & pszModuleName, const ::string & pszFormat,va_list list)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
@@ -2264,7 +2271,7 @@ namespace aura
 
 
 
-   //bool system::assert_failed_line(const ::string & pszFileName,i32 iLine)
+   //bool system::assert_failed_line(const ::string & pszFileName,int iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(pszFileName);
@@ -2274,7 +2281,7 @@ namespace aura
    //}
 
 
-   //bool system::on_assert_failed_line(const ::string & pszFileName,i32 iLine)
+   //bool system::on_assert_failed_line(const ::string & pszFileName,int iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(pszFileName);
@@ -2487,7 +2494,7 @@ namespace aura
 //
 //      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
-////      for(i32 i = 0; i < appptra().get_size(); i++)
+////      for(int i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //     ::aura::application * papp = appptra()(i);
 //      //   papp->load_string_table();
@@ -2505,7 +2512,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(i32 i = 0; i < appptra().get_size(); i++)
+////      for(int i = 0; i < appptra().get_size(); i++)
 ////     {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_locale(pszLocale,context);
@@ -2523,7 +2530,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(i32 i = 0; i < appptra().get_size(); i++)
+////      for(int i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_schema(pszStyle,context);
@@ -2953,7 +2960,7 @@ namespace aura
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
-////      for(i32 i = 0; i < straTitle.get_count(); i++)
+////      for(int i = 0; i < straTitle.get_count(); i++)
 ////      {
 ////
 ////         strLibraryId = straTitle[i];
@@ -3100,7 +3107,7 @@ namespace aura
 //
 //      strRoot += "/";
 //
-//      for(i32 i = 0; i < stra.get_count(); i++)
+//      for(int i = 0; i < stra.get_count(); i++)
 //      {
 //
 //         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
@@ -3853,7 +3860,7 @@ namespace aura
    //}
 
 
-   /*void system::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) const
+   /*void system::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) const
    {
 
       if (m_ptrace.is_null())
@@ -4249,9 +4256,9 @@ namespace aura
 //
 //            strParam += " " + file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+//pdirectorysystem->localconfig() / "app-core/commander/chrome.txt");
 //
 //            call_async(path, strParam, pathDir, e_display_default, false);
 //
@@ -4267,9 +4274,9 @@ namespace aura
 //
 //         string strChrome = file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+//pdirectorysystem->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string_array sa2 = get_c_args_for_c(strChrome);
 //
@@ -4296,9 +4303,9 @@ namespace aura
 //
 //         strParam += " " + file_system()->as_string(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
+//pdirectorysystem->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string strCmd = path + " " + strParam;
 //
@@ -4580,6 +4587,9 @@ namespace aura
 //      m_threadidmap.erase_key(pthread);
 //
 //   }
+::gpu::approach* system::get_gpu()
+{ if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
+::gpu::approach* system::gpu()  { return m_pgpu.get(); };
 
 
 //#ifdef _OPENGL
@@ -6189,7 +6199,7 @@ if(!m_pimaging)
 
    //   plibrary->get_create_impact_id_list(ida);
 
-   //   for (i32 i = 0; i < ida.get_count(); i++)
+   //   for (int i = 0; i < ida.get_count(); i++)
    //   {
 
    //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
@@ -6992,6 +7002,13 @@ if(!m_pimaging)
 
          if (strUserToolkit.has_char())
          {
+            
+            if(strUserToolkit == "appkit")
+            {
+             
+               strUserToolkit = "macos";
+               
+            }
 
             auto pfactory = factory("windowing", strUserToolkit);
 

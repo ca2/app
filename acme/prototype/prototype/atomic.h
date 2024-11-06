@@ -83,7 +83,7 @@ inline i64 atomic_increment64(i64 * pi)
 
 #else
    
-inline i32 atomic_assign32(i32* pi, ::i32 i)
+inline i32 atomic_assign32(i32* pi, int i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)

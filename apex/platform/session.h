@@ -187,7 +187,7 @@ namespace apex
 
       //DECLARE_MESSAGE_HANDLER(on_message_erase_application);
 
-      inline class ::fs::data * fs() { return m_pfsdata; }
+       class ::fs::data * fs() override;
 
 
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
@@ -212,7 +212,7 @@ namespace apex
 
       // Long PhRESSing time
       // time in ::times that a pressing is considered a double click
-      virtual ::u32 get_Long_PhRESSing_time();
+      virtual ::u32 get_Long_PhRESSing_time() override;
 
       //virtual void defer_initialize_user_presence();
 
@@ -275,29 +275,29 @@ namespace apex
       // apex commented
       //::user::keyboard& keyboard();
 
-      virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
+      virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr) override;
 
-      virtual bool open_by_file_extension(::request * prequest);
+      virtual bool open_by_file_extension(::request * prequest) override;
 
-      virtual ::color::color get_default_color(::color::color color);
+      virtual ::color::color get_default_color(::color::color color) override;
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
-      virtual void frame_pre_translate_message(::message::message * pmessage);
+      virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
-      virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
+      virtual bool is_licensed(const ::string & pszId, bool bInteractive = true) override;
 
-      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
 
       void on_instantiate_application(::platform::application* papp) override;
 
       //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
-      virtual ::user::e_key key_modifiers();
+      virtual ::user::e_key key_modifiers() override;
       
       bool is_key_pressed(::user::enum_key ekey) override;
 
-      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
+      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
 
       
       // apex commented
@@ -396,11 +396,11 @@ namespace apex
       
 
 
-      virtual bool InitializeLocalDataCentral();
+      virtual bool InitializeLocalDataCentral() override;
 
       //virtual void bergedge_start() override;
 
-      void _001OnFileNew();
+      void _001OnFileNew() override;
 
       //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
@@ -441,8 +441,8 @@ namespace apex
       //virtual void check_topic_file_change();
 
 
-      virtual void launch_app(const ::string & psz);
-      virtual void install_app(const ::string & psz);
+      virtual void launch_app(const ::string & psz) override;
+      virtual void install_app(const ::string & psz) override;
 
 
 
@@ -465,20 +465,20 @@ namespace apex
 
       virtual void on_request(::request * prequest) override;
 
-      virtual void defer_initialize_host_window(const ::rectangle_i32 * lpcrect = nullptr);
+      virtual void defer_initialize_host_window(const ::rectangle_i32 * lpcrect = nullptr) override;
 
       ::pointer<::apex::application>get_current_application();
 
-      virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
+      virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle) override;
 
-      virtual ::pointer<::apex::session>get_session();
+      virtual ::pointer<::apex::session>get_session() override;
 
-      virtual bool is_remote_session();
+      virtual bool is_remote_session() override;
 
-      virtual string_array get_user_wallpaper();
+      virtual string_array get_user_wallpaper() override;
 
-      virtual ::user::interaction_base * get_user_interaction_host();
-      virtual ::user::interaction_base * get_host_primitive();
+      virtual ::user::interaction_base * get_user_interaction_host() override;
+      virtual ::user::interaction_base * get_host_primitive() override;
 
 
    };

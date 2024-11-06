@@ -7,7 +7,7 @@
 #include "dialog.h"
 #include "operating_system/console.h"
 
-#ifdef __BSD__
+#if defined(__BSD__) || defined(__APPLE__)
 #include <stdio.h>
 #endif
 

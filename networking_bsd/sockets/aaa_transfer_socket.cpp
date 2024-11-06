@@ -293,7 +293,7 @@ namespace networking_bsd
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      u8 * pbuf = (u8 *) pdata;
+      unsigned char * pbuf = (unsigned char *) pdata;
 
       m_file.seek_to_end();
 
@@ -305,7 +305,7 @@ namespace networking_bsd
    //int transfer_socket::receive(void * pch, int nSize, int nSecs) // const
    //{
 
-   //   u8 * point = (u8 *)pch;
+   //   unsigned char * point = (unsigned char *)pch;
 
    //   int nBytesReceived = 0;
 

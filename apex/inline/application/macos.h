@@ -11,7 +11,7 @@ int main(int argc, char * argv[], char ** envp)
    
 #endif
    
-   ::i32 iErrorStatus = -1;
+   int iErrorStatus = -1;
    
    ::pointer<::platform::node>pacmenode;
    
@@ -39,7 +39,7 @@ int main(int argc, char * argv[], char ** envp)
    //   if (!estatus)
    //   {
    //
-   //      ::i32 iErrorStatus = estatus.error_status();
+   //      int iErrorStatus = estatus.error_status();
    //
    //      return iErrorStatus;
    //
@@ -87,7 +87,7 @@ int main(int argc, char * argv[], char ** envp)
 //
 //   auto estatus = os_application_system_run(psystem);
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 

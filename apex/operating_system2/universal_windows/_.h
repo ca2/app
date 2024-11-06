@@ -17,7 +17,7 @@
 //#endif
 
 /*#define GetAValue(rgb)      (lower_u8((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((::u8)(r)|((::u16)((::u8)(g))<<8))|(((::u32)(::u8)(b))<<16)|(((::u32)(::u8)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((::u16)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
 
 
 //CLASS_DECL_APEX int_bool os_initialize();

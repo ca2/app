@@ -522,7 +522,7 @@ namespace base
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").int();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
@@ -1237,7 +1237,7 @@ namespace base
    }
 
 
-   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
    //      ::pointer<::user::menu> pmenu = __create <  ::user::menu  >();
@@ -1249,7 +1249,7 @@ namespace base
    //   }
 
 
-   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, i32 iFlags, const ::point_i32 & pointCursor, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, int iFlags, const ::point_i32 & pointCursor, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //      
    //      ::string strXml;
@@ -1850,7 +1850,7 @@ namespace base
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").int();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 

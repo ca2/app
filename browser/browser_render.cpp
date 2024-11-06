@@ -612,7 +612,7 @@ namespace browser
       psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->get_size(),
-                                         m_pimageTemplate2->get_graphics(), ::point_i32(), ::u8 (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::point_i32(), unsigned char (128 + (255 - 128) * r));
 
       //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
 
@@ -871,7 +871,7 @@ namespace browser
 
       pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
-      ::u8 a, R, g, b;
+      unsigned char a, R, g, b;
 
       if (m_bAlternate)
       {
@@ -1205,9 +1205,9 @@ namespace browser
       if (m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         ::u8 uchAlpha;
+         unsigned char uchAlpha;
 
-         uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
+         uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
 /*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 

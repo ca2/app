@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include <acme/include/_forward_declaration.h>
+#include "acme/include/_forward_declaration.h"
 
 #include "acme/platform/platform.h"
 
@@ -288,13 +288,6 @@ template < class T >
 inline T & pointer < T > ::operator * ()
 {
 
-   if (is_null())
-   {
-
-      return *((T*)nullptr);
-
-   }
-
    return *m_p;
 
 }
@@ -303,13 +296,6 @@ inline T & pointer < T > ::operator * ()
 template < class T >
 inline T & pointer < T > ::operator * () const
 {
-
-   if (is_null())
-   {
-
-      return *((T *)nullptr);
-
-   }
 
    return *m_p;
 

@@ -74,7 +74,7 @@ public:
    typedef typename BASE_META_DATA::META                    META;
    typedef typename BASE_META_DATA::DATA                    DATA;
 
-   ::u8            m_data[sizeof(DATA)] = {};
+   unsigned char            m_data[sizeof(DATA)] = {};
 
 
    natural_meta_data() {}

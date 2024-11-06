@@ -122,7 +122,7 @@ namespace mathematics
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (::u8*)& dwMode,
+//            (unsigned char*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -238,7 +238,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (::u8*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (unsigned char*)p);
 //
 //      }
 //
@@ -636,7 +636,7 @@ CLASS_DECL_APEX void generate_random_alphanumeric(void * p, memsize s)
 CLASS_DECL_APEX void transform_alphanumeric(void * p, memsize s)
 {
 
-   u8 * pchar = (u8 *) p;
+   unsigned char * pchar = (unsigned char *) p;
 
    while(s > 0)
    {

@@ -92,7 +92,7 @@
 //
 //            if(dwResSize > 0)
 //            {
-//               LPVOID pdata = ___new ::u8[dwResSize];
+//               LPVOID pdata = ___new unsigned char[dwResSize];
 //
 //               if(GetFileVersionInfo(
 //                  pszModuleFilePath,
@@ -158,7 +158,7 @@
 //                     return strVersion;
 //                  }
 //               }
-//               delete [] (::u8 *) pdata;
+//               delete [] (unsigned char *) pdata;
 //
 //            }
 //      */

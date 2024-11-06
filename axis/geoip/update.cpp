@@ -725,8 +725,8 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //   uchar bufMd5[16];
 ////   ctx2.update(license_key,12);
 //   //ctx2.update(ipaddress, strlen(ipaddress));
-//   MD5_Update (&context2, (u8 *)license_key, 12);//add license key to the md5 sum
-//   MD5_Update (&context2, (u8 *)ipaddress, (u32) strlen(ipaddress));//add ip address to the md5 sum
+//   MD5_Update (&context2, (unsigned char *)license_key, 12);//add license key to the md5 sum
+//   MD5_Update (&context2, (unsigned char *)ipaddress, (u32) strlen(ipaddress));//add ip address to the md5 sum
 //   MD5_Final (bufMd5, &context2);
 //   ::memory_copy(digest2, bufMd5,16);
 //   for (i = 0; i < 16; i++)

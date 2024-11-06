@@ -511,7 +511,7 @@ namespace integration
    }
 
 
-   ::i32 context::git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout)
+   int context::git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout)
    {
 
       return bash(scopedstr, timeTimeout);
@@ -519,7 +519,7 @@ namespace integration
    }
 
 
-   ::i32 context::bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
+   int context::bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();
@@ -529,7 +529,7 @@ namespace integration
    }
 
 
-   ::i32 context::zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
+   int context::zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout)
    {
 
       throw interface_only();

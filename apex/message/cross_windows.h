@@ -15,7 +15,7 @@
 //   i32         cx;
 //   i32         y;
 //   i32         x;
-//   ::i32        style;
+//   int        style;
 //   const char *      lpszName;
 //
 //   const char *      lpszClass;
@@ -34,7 +34,7 @@
 //   i32         cx;
 //   i32         y;
 //   i32         x;
-//   ::i32        style;
+//   int        style;
 //   const ::wide_character *     lpszName;
 //
 //   const ::wide_character *     lpszClass;

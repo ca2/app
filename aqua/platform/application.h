@@ -43,13 +43,13 @@ namespace aqua
 
       void exit_application() override;
 
-      virtual void game_on_create(::aqua::game * pgame);
+      virtual void game_on_create(::aqua::game * pgame) override;
 
       bool load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
       void did_pick_media_item(::aqua::media_item * pmediaitem) override;
 
-      virtual ::aqua::media_player * assign_media_player_to_media_item(::aqua::media_item * pmediaitem);
+      virtual ::aqua::media_player * assign_media_player_to_media_item(::aqua::media_item * pmediaitem) override;
       
    };
 

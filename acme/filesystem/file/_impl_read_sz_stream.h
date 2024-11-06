@@ -171,7 +171,7 @@ inline  read_sz_stream& read_sz_stream::operator >>(uchar& uch)
 inline   read_sz_stream& read_sz_stream::operator >>(unichar& wch)
    {
 
-      ::i32 len = 0;
+      int len = 0;
 
       auto iIndex = unicode_index_length(m_psz, len);
 
@@ -267,7 +267,7 @@ inline    read_sz_stream& read_sz_stream::operator >>(i32& i)
 
        }
 
-       i = (::i32)iRead;
+       i = (int)iRead;
 
        return *this;
 

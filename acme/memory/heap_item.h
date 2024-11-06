@@ -6,8 +6,8 @@ class CLASS_DECL_ACME heap_item
 public:
 
 
-   u8 *      m_pbStart;
-   u8 *      m_pbEnd;
+   unsigned char *      m_pbStart;
+   unsigned char *      m_pbEnd;
 #ifdef UNIVERSAL_WINDOWS
    DWORD64     m_dwTickCount;
 #else
@@ -28,17 +28,17 @@ public:
    inline heap_item(void * p,memsize iSize,u32 class ::time)
 #endif
    {
-      m_pbStart = (u8 *)point_i32;
-      m_pbEnd = ((u8 *)point_i32) + maximum(iSize - 1,0);
+      m_pbStart = (unsigned char *)point_i32;
+      m_pbEnd = ((unsigned char *)point_i32) + maximum(iSize - 1,0);
       m_dwTickCount = class ::time;
    }
 
 
    inline char compare(void * p)
    {
-      if(((u8 *)point_i32) <= m_pbStart)
+      if(((unsigned char *)point_i32) <= m_pbStart)
          return 1;
-      else if(((u8 *)point_i32) >= m_pbEnd)
+      else if(((unsigned char *)point_i32) >= m_pbEnd)
          return -1;
       else
          return 0;
@@ -46,9 +46,9 @@ public:
 
    inline bool contains(void * p)
    {
-      if(((u8 *)point_i32) <= m_pbStart)
+      if(((unsigned char *)point_i32) <= m_pbStart)
          return false;
-      else if(((u8 *)point_i32) >= m_pbEnd)
+      else if(((unsigned char *)point_i32) >= m_pbEnd)
          return false;
       else
          return true;

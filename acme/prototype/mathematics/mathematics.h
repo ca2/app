@@ -33,7 +33,7 @@ namespace mathematics
       double         m_dPi;
       float          m_fPi;
       u32            dwMode;
-      ::u8           pbData[16];
+      unsigned char           pbData[16];
 
    public:
 
@@ -210,8 +210,8 @@ namespace mathematics
       //double random(double d1, double d2);
       //i64 random(i64 i1, i64 i2);
       //i32 random(i32 i1, i32 i2);
-      //template < typename ::i32 >
-      //::i32 __random_int(::i32 i1, ::i32 i2);
+      //template < typename int >
+      //int __random_int(int i1, int i2);
 
 
       //#include "acme/prototype/prototype/matter.h"
@@ -226,7 +226,7 @@ namespace mathematics
       string random_alphanumeric(strsize s);
 
       char random_char();
-      u8 random_u8();
+      unsigned char random_u8();
       u32 random_u32();
       u64 random_u64();
 

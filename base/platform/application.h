@@ -89,7 +89,7 @@ namespace base
       void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
-      i32 track_popup_menu(::menu::track_popup * ptrackpopup) override;
+      int track_popup_menu(::menu::track_popup * ptrackpopup) override;
 
 
    };

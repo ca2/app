@@ -25,7 +25,7 @@ public:
 
    ::e_status lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, u32 dwWakeMask = 0);
    void unlock();
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   void unlock(int lCount, int * lPrevCount = nullptr);
    bool is_locked(::collection::index iItem);
 
 

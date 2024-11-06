@@ -328,7 +328,7 @@ namespace zip
    {
       if(m_strFileName.is_empty())
          return false;
-      ::u8 buf[1024];
+      unsigned char buf[1024];
       memsize iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
@@ -341,7 +341,7 @@ namespace zip
    bool in_file::dump(memory & m)
    {
 
-      ::u8 buf[1024];
+      unsigned char buf[1024];
 
       memsize iRead;
 
@@ -450,7 +450,7 @@ namespace zip
 
          i32 iRead;
 
-         ::u8 pbBuf[1024];
+         unsigned char pbBuf[1024];
 
          while(iRemain > 0)
          {

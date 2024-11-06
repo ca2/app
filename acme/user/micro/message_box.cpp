@@ -101,6 +101,14 @@ namespace micro
    }
 
 
+//   void message_box::on_sequence()
+//   {
+//      
+//      ::reified<::message_box>::on_sequence();
+//      
+//   }
+
+
    void message_box::on_draw(::nano::graphics::device* pmicrodevice)
    {
 
@@ -275,15 +283,15 @@ namespace micro
 
       }
 
-      auto wButton = (::i32)(m_rectangle.width() * 0.2);
+      auto wButton = (int)(m_rectangle.width() * 0.2);
 
-      auto hButton = (::i32)(m_rectangle.height() * 0.2);
+      auto hButton = (int)(m_rectangle.height() * 0.2);
 
-      auto iRight = (::i32)(m_rectangle.width() - m_rectangle.width() * 0.025);
+      auto iRight = (int)(m_rectangle.width() - m_rectangle.width() * 0.025);
 
-      auto iBottom = (::i32)(m_rectangle.height() - m_rectangle.width() * 0.025);
+      auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
 
-      auto wSpacing = (::i32)(m_rectangle.width() * 0.025);
+      auto wSpacing = (int)(m_rectangle.width() * 0.025);
 
       auto countButton = micro_button_count();
 

@@ -60,7 +60,7 @@ namespace windowing
 
       bool is_branch_current() const override;
       
-      virtual void set_dark_mode(bool bDarkMode);
+      virtual void set_dark_mode(bool bDarkMode) override;
 
 
       //::aura::application* get_app();
@@ -83,13 +83,13 @@ namespace windowing
 
       virtual void defer_term_ui();
 
-      virtual void finalize_windowing();
+      virtual void finalize_windowing() override;
 
       void destroy() override;
 
       //virtual void windowing_main();
 
-      virtual void windowing_post_quit();
+      virtual void windowing_post_quit() override;
 
       virtual text_editor_interface * get_text_editor_interface();
       
@@ -261,7 +261,7 @@ namespace windowing
       virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
 
 
-      virtual void windowing_application_main_loop();
+      virtual void windowing_application_main_loop() override;
 
    };
 

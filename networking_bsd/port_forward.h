@@ -21,7 +21,7 @@ namespace net
       virtual ~port_forward_change_callbacks();
 
 
-      virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );
+      virtual HRESULT OnNewNumberOfEntries( int lNewNumberOfEntries );
       virtual HRESULT OnNewExternalIPAddress(const ::scoped_string & scopedstr );
 
 

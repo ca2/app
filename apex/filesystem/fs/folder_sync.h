@@ -22,7 +22,7 @@ namespace fs
       class ::time m_timeRestartTimeout;
       class ::time m_timeLastOperation;
       class ::time m_timeOperationThrottlingTime;
-      ::i32 m_iStableOkCount;
+      int m_iStableOkCount;
 
 
       folder_sync();

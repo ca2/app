@@ -126,7 +126,7 @@ namespace user
 
       virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
       ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 nMode) override;
+      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, u32 nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 

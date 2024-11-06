@@ -169,7 +169,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
    }
 
 
-   void fastblur::initialize(i32 cx,i32 cy,i32 radius)
+   void fastblur::initialize(int cx,int cy,int radius)
    {
 
       if (cx <= 0 || cy <= 0 || radius <= 0)
@@ -272,17 +272,17 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 
 //      m_p->m_iHeight = cy;
 
-      //      i32 h         = cy;
-      //    i32 scan      = m_p->scan;
-      i32 div       = radius + radius + 1;
+      //      int h         = cy;
+      //    int scan      = m_p->scan;
+      int div       = radius + radius + 1;
       m_iRadius         = radius;
       m_uchaDiv.set_size(256 * div);
-      u8 * dv         = m_uchaDiv.get_data();
+      unsigned char * dv         = m_uchaDiv.get_data();
 
       m_size.cx()         = cx;
       m_size.cy()         = cy;
 
-      for(i32 i = 0; i < m_uchaDiv.get_count(); i++)
+      for(int i = 0; i < m_uchaDiv.get_count(); i++)
       {
 
          dv[i]= minimum(255,i / div);
@@ -298,7 +298,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
    }
 
 
-   void fastblur::initialize(size_i32 sz,i32 iRadius)
+   void fastblur::initialize(size_i32 sz,int iRadius)
    {
 
       return initialize(sz.cx(),sz.cy(),iRadius);
@@ -359,7 +359,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 
       u32 * pimage32 = (u32 *) m_p->get_data();
 
-      u8 * point_i32;
+      unsigned char * point_i32;
       vector4 * t = timage;
 
       int w = m_size.cx();
@@ -374,7 +374,7 @@ auto tickA0 = ::time::now();
          {
             for(::collection::index x = 0; x < w; x++)
             {
-               p = (u8 *)&pimage32[y * s + x];
+               p = (unsigned char *)&pimage32[y * s + x];
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
@@ -437,12 +437,12 @@ auto tickC0 = ::time::now();
          {
             for(::collection::index x = 0; x < w; x++)
             {
-               p = (u8 *)&pimage32[y * s + x];
+               p = (unsigned char *)&pimage32[y * s + x];
                t = &timage[y * w + x];
-               point_i32[0] = (::u8)t->w;
-               point_i32[1] = (::u8)t->x;
-               point_i32[2] = (::u8)t->y;
-               point_i32[3] = (::u8)t->z;
+               point_i32[0] = (unsigned char)t->w;
+               point_i32[1] = (unsigned char)t->x;
+               point_i32[2] = (unsigned char)t->y;
+               point_i32[3] = (unsigned char)t->z;
             }
          }
 auto tickC1 = ::time::now();
@@ -468,7 +468,7 @@ auto tickC1 = ::time::now();
 
       int s = pimage->scan_size() / 4;
 
-      u8 * p;
+      unsigned char * p;
 
       {
          
@@ -480,7 +480,7 @@ auto tickC1 = ::time::now();
             for(::collection::index x = 0; x < wj; x++)
             {
 
-               p = (u8 *)&pimage32[y * s + x];
+               p = (unsigned char *)&pimage32[y * s + x];
 
                t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
 
@@ -560,12 +560,12 @@ auto tickC1 = ::time::now();
             for(::collection::index x = 0; x < w; x++)
             {
 
-               p = (u8 *)&pimage32[y * s + x];
+               p = (unsigned char *)&pimage32[y * s + x];
                t = &timage[y * wj + x];
-               p[0] = (::u8)t->w;
-               p[1] = (::u8)t->x;
-               p[2] = (::u8)t->y;
-               p[3] = (::u8)t->z;
+               p[0] = (unsigned char)t->w;
+               p[1] = (unsigned char)t->x;
+               p[2] = (unsigned char)t->y;
+               p[3] = (unsigned char)t->z;
 
             }
 
@@ -830,7 +830,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_fastblur(u32 * pimage32,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pimage32,int w,int h,int radius,u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       //int stride = 4 * cx;
@@ -1276,7 +1276,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_boxblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_boxblur(vector4 * pimage,int w,int h,int radius,u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       int dxLeft = 0;
@@ -1329,7 +1329,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_stackblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_stackblur(vector4 * pimage,int w,int h,int radius,u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       stackblur(pimage,w,h,radius, stride);
@@ -1343,7 +1343,7 @@ auto tick2 = ::time::now();
 
 
 
-   void fastblur::do_fastblur(image32_t * pimage32,i32 w,i32 h,rgba_t * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,int w,int h,rgba_t * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       int radius = m_iRadius;
@@ -1355,20 +1355,20 @@ auto tick2 = ::time::now();
 
       }
 
-      i32 rsum,gsum,bsum,asum;
-      i32 x;
-      i32 y;
-      i32 i;
-      i32 yp;
-      i32 yw;
-      u8 * pu8_1;
-      u8 * pu8_2;
-      i32 wm = w - 1;
-      //      i32 hm = h - 1;
-      i32 wr = minimum(w,cx) - 1 - radius;
-      i32 hr = minimum(h,cy) - 1 - radius;
-      //   i32 div        = radius + radius + 1;
-      u8 * p;
+      int rsum,gsum,bsum,asum;
+      int x;
+      int y;
+      int i;
+      int yp;
+      int yw;
+      unsigned char * pu8_1;
+      unsigned char * pu8_2;
+      int wm = w - 1;
+      //      int hm = h - 1;
+      int wr = minimum(w,cx) - 1 - radius;
+      int hr = minimum(h,cy) - 1 - radius;
+      //   int div        = radius + radius + 1;
+      unsigned char * p;
 
       yw = 0;
 
@@ -1379,9 +1379,9 @@ auto tick2 = ::time::now();
       if(bottomup)
       {
 
-         pimage32 = (image32_t *)(((u8 *)pimage32) + (stride * (cy - h)));
+         pimage32 = (image32_t *)(((unsigned char *)pimage32) + (stride * (cy - h)));
 
-         prgba = (rgba_t *)(((u8 *)prgba) + (stride * (cy - h)));
+         prgba = (rgba_t *)(((unsigned char *)prgba) + (stride * (cy - h)));
 
       }
 
@@ -1402,10 +1402,10 @@ auto tick2 = ::time::now();
 
       int workstride = w * sizeof(u32);
 
-      //i32 * pimage32 = (i32 *)pimage32;
-      u8 * pb = (u8 *)pimage32;
-      u8 * pwork = (u8 *)prgba;
-      u8 * pwk = (u8 *)prgba;
+      //int * pimage32 = (int *)pimage32;
+      unsigned char * pb = (unsigned char *)pimage32;
+      unsigned char * pwork = (unsigned char *)prgba;
+      unsigned char * pwk = (unsigned char *)prgba;
 
       for(y = 0; y < h; y++)
       {
@@ -1514,10 +1514,10 @@ auto tick2 = ::time::now();
             yp += stride;
          }
 
-         u8 * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
-         u8 * r2 = &pwk[(x * 4)];
+         unsigned char * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
+         unsigned char * r2 = &pwk[(x * 4)];
 
-         pu8_1 = (u8 *)&pimage32[x];
+         pu8_1 = (unsigned char *)&pimage32[x];
 
          for(y = 0; y < radius; y++)
          {
@@ -1585,7 +1585,7 @@ auto tick2 = ::time::now();
 
 #endif // VECTOR3_SSE
 
-   void fastblur::do_fastblur(image32_t * pimage32,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,int w,int h,unsigned char * rectangle,unsigned char * g,unsigned char * b,unsigned char * a,unsigned char * dv,int stride,int * vmin,int * vmax,int cx,int cy,int bottomup)
    {
 
       throw ::exception(error_wrong_state);
@@ -1599,14 +1599,14 @@ auto tick2 = ::time::now();
 
             }
 
-            i32 asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
-            i32 s = stride / sizeof(::color32_t);
-            i32 wm = w - 1;
-            i32 hm = h - 1;
-            i32 div = radius + radius + 1;
-            i32 point_i32;
-            i32 pu8_1;
-            i32 pu8_2;
+            int asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
+            int s = stride / sizeof(::color32_t);
+            int wm = w - 1;
+            int hm = h - 1;
+            int div = radius + radius + 1;
+            int point_i32;
+            int pu8_1;
+            int pu8_2;
 
             yw = yi = 0;
 

@@ -12,7 +12,7 @@ Author: Andrei Belogortseff [ http://www.winability.com ]
 
 TERMS OF USE: You are free to use this file in any way you like,
 for both the commercial and non-commercial purposes, royalty-free,
-AS ::i32 AS you agree with the warranty disclaimer above,
+AS int AS you agree with the warranty disclaimer above,
 EXCEPT that you may not remov or modify this or any of the
 preceeding paragraphs. If you make any changes, please document
 them in the MODIFICATIONS section below. If the changes are of general

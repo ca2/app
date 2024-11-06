@@ -61,7 +61,7 @@ namespace nano2d
       };
 
 
-      ::i32                            m_iPaintImageSeed;
+      int                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
 

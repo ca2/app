@@ -88,10 +88,10 @@ paged_memory::~paged_memory()
 }
 
 
-//::u8 * paged_memory::detach()
+//unsigned char * paged_memory::detach()
 //{
 
-//   ::u8 * point_i32          = storage_begin();
+//   unsigned char * point_i32          = storage_begin();
 
 //   if(m_iOffset > 0)
 //   {
@@ -118,23 +118,23 @@ paged_memory::~paged_memory()
 //}
 
 
-::u8 * paged_memory::impl_alloc(memsize dwAllocation)
+unsigned char * paged_memory::impl_alloc(memsize dwAllocation)
 {
 
-   return (::u8 *) ::paged_allocate((size_t)dwAllocation);
+   return (unsigned char *) ::paged_allocate((size_t)dwAllocation);
 
 }
 
 
-::u8 * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
+unsigned char * paged_memory::impl_realloc(void * pdata, memsize dwAllocation)
 {
 
-   return (::u8 *) ::paged_reallocate(pdata, (size_t)size(), (size_t)dwAllocation);
+   return (unsigned char *) ::paged_reallocate(pdata, (size_t)size(), (size_t)dwAllocation);
 
 }
 
 
-void paged_memory::impl_free(::u8 * pdata)
+void paged_memory::impl_free(unsigned char * pdata)
 {
 
    return ::paged_free(pdata);

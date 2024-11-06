@@ -25,17 +25,17 @@
 typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
-//static const i32 gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
+//static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 #define BZ_SETERR(err) m_z_err = err
 extern "C"
 {
-   typedef  void *(* bzalloc)(void *,i32,i32);
+   typedef  void *(* bzalloc)(void *,int,int);
    typedef  void(* bzfree)(void *,void *);
 
 }
 
-//u8 *                   m_outbuf; /* output buffer */
+//unsigned char *                   m_outbuf; /* output buffer */
 //uptr                   m_crc;     /* crc32 of uncompressed data */
 
 namespace compress_bzip2
@@ -90,9 +90,9 @@ namespace compress_bzip2
    {
 
       memory                     memory;
-      i32                    m_CurrentBufferSize;
+      int                    m_CurrentBufferSize;
       bz_stream                  zstream;
-      i32                    m_z_err;   /* error code for last stream operation */
+      int                    m_z_err;   /* error code for last stream operation */
       iptr                    ret;
 
       zero(zstream);
@@ -111,9 +111,9 @@ namespace compress_bzip2
       iWorkFactor = maximum(0, minimum(250, iWorkFactor));
 
       m_CurrentBufferSize = 1024 * 1024 * 8;
-      i32 blockSize100k = iBlockSize; // 900k
-      i32 workFactor = iWorkFactor;
-      i32 verbosity = iVerbosity;
+      int blockSize100k = iBlockSize; // 900k
+      int workFactor = iWorkFactor;
+      int verbosity = iVerbosity;
       memory.set_size(m_CurrentBufferSize);
 
       zstream.bzalloc = (bzalloc)0;
@@ -127,7 +127,7 @@ namespace compress_bzip2
 
       //   m_crc = crc32(0L,nullptr,0);
 
-      i32 err = BZ2_bzCompressInit(&zstream, blockSize100k, verbosity, workFactor);
+      int err = BZ2_bzCompressInit(&zstream, blockSize100k, verbosity, workFactor);
 
       if (err != BZ_OK || memory.data() == nullptr)
       {

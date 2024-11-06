@@ -18,7 +18,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-inline ::u8 clampAndConvert(double v)
+inline unsigned char clampAndConvert(double v)
 {
 
 
@@ -26,7 +26,7 @@ inline ::u8 clampAndConvert(double v)
       return 0;
    if (v > 255)
       return 255;
-   return (::u8)(v);
+   return (unsigned char)(v);
 
 
 }

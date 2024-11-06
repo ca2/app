@@ -81,9 +81,9 @@ namespace imaging_freeimage
       for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
-         u8 * pbDst = ((u8 *)pdst) + ((pimage->height() - y - 1) * iStrideDst);
+         unsigned char * pbDst = ((unsigned char *)pdst) + ((pimage->height() - y - 1) * iStrideDst);
 
-         u8 * pbSrc = (u8 *)psrc + (y * iStrideSrc);
+         unsigned char * pbSrc = (unsigned char *)psrc + (y * iStrideSrc);
 
          for (::collection::index x = 0; x < pimage->width(); x++)
          {
@@ -106,9 +106,9 @@ namespace imaging_freeimage
 
 #elif defined(APPLEOS)
 
-      u8 * pbDst = (u8 *)pdst;
+      unsigned char * pbDst = (unsigned char *)pdst;
 
-      u8 * pbSrc = (u8 *)psrc;
+      unsigned char * pbSrc = (unsigned char *)psrc;
 
       ::collection::count c = (count)pimage->area();
 
@@ -131,16 +131,16 @@ namespace imaging_freeimage
 
       /*
 
-      u8 * pbDst;
+      unsigned char * pbDst;
 
-      u8 * pbSrc;
+      unsigned char * pbSrc;
 
       for(int i = 0; i < pimage->height(); i++)
       {
 
-      pbDst = &((u8 *) pimage->get_data())[pimage->scan_size() * (pimage->height() - i - 1)];
+      pbDst = &((unsigned char *) pimage->get_data())[pimage->scan_size() * (pimage->height() - i - 1)];
 
-      pbSrc = &((u8 *) pdata)[pbi->bmiHeader.biWidth * sizeof(color32_t) * i];
+      pbSrc = &((unsigned char *) pdata)[pbi->bmiHeader.biWidth * sizeof(color32_t) * i];
 
       for(int j = 0; j < pimage->width(); j++)
       {
@@ -169,8 +169,8 @@ namespace imaging_freeimage
       {
 
          ::memory_copy(
-            &((u8 *)pdst)[iStrideDst * (pimage->height() - i - 1)],
-            &((u8 *)psrc)[iStrideSrc * i],
+            &((unsigned char *)pdst)[iStrideDst * (pimage->height() - i - 1)],
+            &((unsigned char *)psrc)[iStrideSrc * i],
             iStrideDst);
 
       }
@@ -283,7 +283,7 @@ namespace imaging_freeimage
 
       bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != false;
 
-      ::u8 * pbData = nullptr;
+      unsigned char * pbData = nullptr;
       DWORD dwSize = 0;
       if (bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != false;

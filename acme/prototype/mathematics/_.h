@@ -617,10 +617,10 @@ namespace degree
 
 
 
-inline ::u8 __byte_rate(double dRate, double dMin, double dMax)
+inline unsigned char __byte_rate(double dRate, double dMin, double dMax)
 {
 
-   return (::u8)(dRate * (dMax - dMin) + dMin);
+   return (unsigned char)(dRate * (dMax - dMin) + dMin);
 
 }
 

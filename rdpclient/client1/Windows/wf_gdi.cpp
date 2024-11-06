@@ -42,7 +42,7 @@
 
 #define TAG CLIENT_TAG("windows.gdi")
 
-const ::u8 wf_rop2_table[] =
+const unsigned char wf_rop2_table[] =
 {
 	R2_BLACK,       /* 0 */
 	R2_NOTMERGEPEN, /* DPon */
@@ -87,19 +87,19 @@ void wf_glyph_free(wfBitmap* glyph)
 	wf_image_free(glyph);
 }
 
-::u8* wf_glyph_convert(wfContext* wfc, int width, int height, ::u8* data)
+unsigned char* wf_glyph_convert(wfContext* wfc, int width, int height, unsigned char* data)
 {
 	int indexx;
 	int indexy;
-	::u8* src;
-	::u8* dst;
-	::u8* cdata;
+	unsigned char* src;
+	unsigned char* dst;
+	unsigned char* cdata;
 	int src_bytes_per_row;
 	int dst_bytes_per_row;
 
 	src_bytes_per_row = (width + 7) / 8;
 	dst_bytes_per_row = src_bytes_per_row + (src_bytes_per_row % 2);
-	cdata = (::u8 *) malloc(dst_bytes_per_row * height);
+	cdata = (unsigned char *) malloc(dst_bytes_per_row * height);
 
 	src = data;
 	for (indexy = 0; indexy < height; indexy++)
@@ -123,8 +123,8 @@ void wf_glyph_free(wfBitmap* glyph)
 //	int i;
 //	HBRUSH br;
 //	LOGBRUSH lbr;
-//	::u8* cdata;
-//	::u8 ipattern[8];
+//	unsigned char* cdata;
+//	unsigned char ipattern[8];
 //	HBITMAP pattern = nullptr;
 //
 //	lbr.lbStyle = brush->style;
@@ -354,8 +354,8 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //	int nHeight;
 //	HBITMAP dib;
 //	::u32 index;
-//	::u8* pSrcData;
-//	::u8* pDstData;
+//	unsigned char* pSrcData;
+//	unsigned char* pDstData;
 //	::u32 SrcSize;
 //	BOOL compressed;
 //	::u32 SrcFormat;
@@ -394,7 +394,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //		if (wfc->bitmap_size < (::u32) (nWidth * nHeight * 4))
 //		{
 //			wfc->bitmap_size = nWidth * nHeight * 4;
-//			wfc->bitmap_buffer = (::u8*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
+//			wfc->bitmap_buffer = (unsigned char*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
 //
 //			if (!wfc->bitmap_buffer)
 //				return false;

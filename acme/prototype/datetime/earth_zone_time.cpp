@@ -115,7 +115,7 @@ namespace earth
 //
 //         time_t t = m_iSecond;
 //
-//         t += (::i32) m_timeshift;
+//         t += (int) m_timeshift;
 //
 //         errno_t err = _gmtime64_s(&tmTemp, &t);
 //

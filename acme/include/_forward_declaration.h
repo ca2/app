@@ -1601,7 +1601,7 @@ namespace file
    class file;
 
 
-   enum enum_type : ::i32
+   enum enum_type : int
    {
 
       e_type_unknown = 0,

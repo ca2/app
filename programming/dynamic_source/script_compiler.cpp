@@ -111,9 +111,9 @@ namespace dynamic_source
    void script_compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedirectory = directory_system();
+      auto pdirectorysystem = directory_system();
 
-      directory()->create(pacmedirectory->system() / "netnode_desktop/symbols");
+      directory()->create(pdirectorysystem->system() / "netnode_desktop/symbols");
 
 
       ::programming::compiler::prepare_compile_and_link_environment();
@@ -959,9 +959,9 @@ namespace dynamic_source
 
          strSymbolName += strRndTitle;
 
-         auto pacmedirectory = directory_system();
+         auto pdirectorysystem = directory_system();
 
-         strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strSymbolName;
+         strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->system() / "netnode_desktop\\symbols") / strSymbolName;
 
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 

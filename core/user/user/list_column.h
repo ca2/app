@@ -58,8 +58,8 @@ namespace user
       ::image::icon_int_map                 m_mapIcon;
       ::size_i32                             m_sizeIcon;
       bool                                   m_bIcon;
-      ::i32                                  m_iPosition;
-      ::i32                                  m_iWidth;
+      int                                  m_iPosition;
+      int                                  m_iWidth;
       bool                                   m_bCustomDraw;
       ::image::image_pointer                        m_pimageHeader;
 

@@ -175,7 +175,7 @@ namespace platform
       virtual void start_application(::pointer<::platform::node>& pnode);
 
 
-      virtual void acme_application_main(::platform::system* psystem);
+      //virtual void acme_application_main(::platform::system* psystem);
 
 
       virtual void _will_finish_launching();
@@ -694,7 +694,7 @@ namespace platform
       virtual i32 get_current_process_affinity_order();
 
 
-      virtual ::u64 translate_processor_affinity(::i32 i);
+      virtual ::u64 translate_processor_affinity(int i);
 
 
       //CLASS_DECL_ACME string expand_env(string str);

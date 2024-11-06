@@ -47,11 +47,11 @@ namespace apex
 
       bool on_idle() override;
 
-      string get_store_server_base_url();
+      string get_store_server_base_url() override;
 
-      bool contains(::request * prequest) const;
+      bool contains(::request * prequest) const override;
 
-      string command_line_text() const;
+      string command_line_text() const override;
 
       virtual void destroy() override;
 
@@ -70,12 +70,12 @@ namespace apex
       void finalize_context() override;
 
 
-      void clear_cache();
+      void clear_cache() override;
 
 
       bool is_system() const override;
       bool is_session() const override;
-      virtual bool is_local_data() const;
+      virtual bool is_local_data() const override;
 
 
       //inline ::http::context& http() { return *m_phttp; }
@@ -88,9 +88,9 @@ namespace apex
       //::file_system * file_system() override;
 
 
-      ::handle::ini ini_from_path(::file::path& path);
+      ::handle::ini ini_from_path(::file::path& path) override;
 
-      ::handle::ini local_ini();
+      ::handle::ini local_ini() override;
 
 
 
@@ -98,10 +98,10 @@ namespace apex
       //virtual string http_get(const string& strUrl, ::property_set& set);
       //virtual string http_get(const ::scoped_string & scopedstrUrl);
 
-      string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
+      string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId) override;
 
-      virtual ::file::path defer_make_file_system_url(string str);
-      virtual string defer_get_file_title(string str);
+      virtual ::file::path defer_make_file_system_url(string str) override;
+      virtual string defer_get_file_title(string str) override;
 
 
       bool defer_process_media_library_path(::file::path& path) override;
@@ -111,10 +111,10 @@ namespace apex
       ::file::path _defer_process_path(::file::path path) override;
       ::file::path __defer_process_path(::file::path path) override;
 
-      virtual bool _001IsProtocol(::file::path & path, const ::string & strProtocol);
+      virtual bool _001IsProtocol(::file::path & path, const ::string & strProtocol) override;
 
       bool defer_process_known_folder_path(::file::path & path) override;
-      virtual ::file::path full_process_path(::file::path path);
+      virtual ::file::path full_process_path(::file::path path) override;
 
       bool defer_process_protocol_path(::file::path & path) override;
 
@@ -122,7 +122,7 @@ namespace apex
 
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual file_pointer friendly_get_file(::payload payloadFile, ::file::e_open eopen);
+      virtual file_pointer friendly_get_file(::payload payloadFile, ::file::e_open eopen) override;
 
 
       ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false) override;
@@ -133,12 +133,12 @@ namespace apex
 
       virtual bool os_is_alias(const ::file::path & path) override;
 
-      virtual ::file::path sys_path(const ::scoped_string & scopedstrPath);
-      virtual void sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue);
-      virtual string sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "");
+      virtual ::file::path sys_path(const ::scoped_string & scopedstrPath) override;
+      virtual void sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
+      virtual string sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override;
 
 
-      virtual string load_string(const ::scoped_string & scopedstr);
+      virtual string load_string(const ::scoped_string & scopedstr) override;
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing& listing) override;
@@ -185,14 +185,14 @@ namespace apex
       virtual void add_matter_locator(::apex::application* papp);*/
 
 
-      virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions);
-      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle);
+      virtual void _load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions) override;
+      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle) override;
 
 
-      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions);
-      inline void load_from_file(::particle * pparticle, const ::payload& payloadFile);
-      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle);
-      inline void save_to_file(const ::payload& payloadFile, const ::particle * pparticle);
+      void load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload* pvarOptions) override;
+      void load_from_file(::particle * pparticle, const ::payload& payloadFile) override;
+      void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::particle * pparticle) override;
+      void save_to_file(const ::payload& payloadFile, const ::particle * pparticle) override;
 
 
       //virtual void destroy() override;

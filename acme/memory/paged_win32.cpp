@@ -33,7 +33,7 @@ void * paged_reallocate(void * address, size_t sizeOld, size_t sizeNew)
 #endif
    if (address == 0)
       return ::paged_allocate(sizeNew);
-   u8 * pnew = (u8 *) ::paged_allocate(sizeNew);
+   unsigned char * pnew = (unsigned char *) ::paged_allocate(sizeNew);
    if(pnew == nullptr)
    {
       paged_free(address);

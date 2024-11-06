@@ -56,8 +56,8 @@ namespace experience
 
       ::pointer<control_box>              m_pcontrolbox;
 
-      i32                                    m_iCaptionHeight;
-      i32                                    m_iTitleBottom;
+      int                                    m_iCaptionHeight;
+      int                                    m_iTitleBottom;
 
       ::rectangle_i32                        m_rectangleMarginFullScreen;
       ::rectangle_i32                        m_rectangleMarginZoomed;
@@ -152,7 +152,7 @@ namespace experience
 
       virtual rectangle_i32 get_margin_rectangle();
       virtual rectangle_i32 get_caption_text_padding();
-      virtual i32 get_caption_height();
+      virtual int get_caption_height();
       virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
@@ -203,8 +203,8 @@ namespace experience
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
       virtual bool _001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest);
       virtual bool _001OnTimer(::u32 uEvent);
-      //virtual bool on_message_size(::u32 nType, i32 cx, i32 cy);
-      //virtual bool on_message_move(i32 x, i32 y);
+      //virtual bool on_message_size(::u32 nType, int cx, int cy);
+      //virtual bool on_message_move(int x, int y);
       //virtual bool _001OnCommand(wparam wparam, lparam lparam, lresult & lresult);
 
 

@@ -60,7 +60,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 //
 //i32 CLASS_DECL_APEX __linux_main(i32 argc, char * argv[]);
 //
-//CLASS_DECL_APEX void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const ::file::path & path = nullptr);
+//CLASS_DECL_APEX void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const ::file::path & path = nullptr);
 
 #include "internal.h"
 

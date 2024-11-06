@@ -38,7 +38,7 @@ synchronization_array::synchronization_array()
 
 synchronization_array::synchronization_array(const ::synchronization_array & array) :
    m_subparticlea(array.m_subparticlea),
-   m_hsynca(array.m_hsynca),
+   m_hsynchronizationa(array.m_hsynchronizationa),
    m_uaIndexes(array.m_uaIndexes)
 {
 
@@ -58,7 +58,7 @@ synchronization_array & synchronization_array::operator = (const synchronization
    {
 
       m_subparticlea = synca.m_subparticlea;
-      m_hsynca = synca.m_hsynca;
+      m_hsynchronizationa = synca.m_hsynchronizationa;
       m_uaIndexes =  synca.m_uaIndexes;
 
    }
@@ -72,7 +72,7 @@ void	synchronization_array::clear()
 {
 
    m_subparticlea.clear();
-   m_hsynca.clear();
+   m_hsynchronizationa.clear();
 
 }
 
@@ -108,9 +108,9 @@ bool synchronization_array::add_item(::subparticle * psubparticle)
    if (handle != nullptr)
    {
 
-      m_uaIndexes[m_hsynca.get_size()] = (::u8) m_subparticlea.get_size();
+      m_uaIndexes[m_hsynchronizationa.get_size()] = (unsigned char) m_subparticlea.get_size();
 
-      m_hsynca.add(handle);
+      m_hsynchronizationa.add(handle);
 
    }
 
@@ -126,7 +126,7 @@ bool synchronization_array::add(const synchronization_array& synca)
 
 #ifdef WINDOWS
 
-   if (m_hsynca.size() + synca.m_hsynca.get_size() > MAXIMUM_WAIT_OBJECTS)
+   if (m_hsynchronizationa.size() + synca.m_hsynchronizationa.get_size() > MAXIMUM_WAIT_OBJECTS)
    {
 
       return false;
@@ -157,9 +157,9 @@ void synchronization_array::erase(::subparticle * psubparticle)
    if (handle != nullptr)
    {
 
-      auto iIndex = m_hsynca.erase(handle);
+      auto iIndex = m_hsynchronizationa.erase(handle);
 
-      ::memory_transfer(&m_uaIndexes[iIndex], &m_uaIndexes[iIndex + 1], m_hsynca.get_count() - 1);
+      ::memory_transfer(&m_uaIndexes[iIndex], &m_uaIndexes[iIndex + 1], m_hsynchronizationa.get_count() - 1);
 
    }
 
@@ -179,7 +179,7 @@ void synchronization_array::erase(::collection::index index)
    auto sizeOld = (int) this->size();
 
    m_subparticlea.erase_at(index);
-   m_hsynca.erase_at(index);
+   m_hsynchronizationa.erase_at(index);
    m_uaIndexes.erase_at(index, sizeOld);
 
 }
@@ -207,14 +207,14 @@ void synchronization_array::erase(::collection::index index)
 
    u32 windowsWaitResult;
 
-   ::u32 uCount = (u32)m_hsynca.size();
+   ::u32 uCount = (u32)m_hsynchronizationa.size();
 
 #if !defined(UNIVERSAL_WINDOWS)
 
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)uCount, m_hsynca.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)uCount, m_hsynchronizationa.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -223,7 +223,7 @@ void synchronization_array::erase(::collection::index index)
 
    {
 
-      auto psynca = m_hsynca.get_data();
+      auto psynca = m_hsynchronizationa.get_data();
 
       windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, ::windows::wait(timeWait));
 
@@ -282,18 +282,18 @@ void synchronization_array::erase(::collection::index index)
          if (uWakeMask)
          {
             
-#if !defined(WINDOWS)
-#define QS_ALLEVENTS 0xffffffffu
-#endif
+//#if !defined(WINDOWS)
+//#define QS_ALLEVENTS 0xffffffffu
+//#endif
 
-            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) size(), m_hsynchronizationa.data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_count(), synchronization_data(), bWaitForAll, timeWait, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) m_hsynchronizationa.size(), m_hsynchronizationa.data(), bWaitForAll, timeWait, true);
 
          }
 
@@ -337,7 +337,7 @@ void synchronization_array::unlock_item(::collection::index index)
 }
 
 
-void synchronization_array::unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount)
+void synchronization_array::unlock_item(::collection::index index, int lCount, int * pPrevCount)
 {
 
    m_subparticlea[index]->unlock(lCount, pPrevCount);

@@ -61,7 +61,7 @@ public:
 
    int get_u8() override;
    int peek_byte() override;
-   void put_byte_back(::u8 b) override;
+   void put_byte_back(unsigned char b) override;
 
    using ::file::file::write;
    void write(const void * p, ::memsize s) override;

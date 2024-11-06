@@ -27,15 +27,15 @@ namespace draw2d
 //
 //      virtual bool create_ellipse(const ::rectangle_i32 & rectangle) override;
 //      
-//      virtual bool create_polygon(const ::point_i32 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
+//      virtual bool create_polygon(const ::point_i32 * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
-//      virtual bool create_polygon(const ::point_f64 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
+//      virtual bool create_polygon(const ::point_f64 * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
 //      virtual bool create_polygon(const polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
-//      virtual bool create_poly_polygon(const ::point_f64 * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::enum_fill_mode efillmode) override;
+//      virtual bool create_poly_polygon(const ::point_f64 * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode) override;
 //
-//      virtual bool create_poly_polygon(const ::point_i32 * pPoints, const i32 * lpPolyCounts, i32 nCount,::draw2d::enum_fill_mode efillmode) override;
+//      virtual bool create_poly_polygon(const ::point_i32 * pPoints, const int * lpPolyCounts, int nCount,::draw2d::enum_fill_mode efillmode) override;
 
       
       //virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics = nullptr);

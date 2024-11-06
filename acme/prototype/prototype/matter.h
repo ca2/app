@@ -252,7 +252,7 @@ public:
    virtual void trace_last_status();
 
 
-   virtual void on_sequence(const ::payload & payload);
+   //virtual void on_sequence(const ::payload & payload);
 
    virtual void clear_member() { }
 

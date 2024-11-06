@@ -255,7 +255,7 @@ public:
    }
 
 
-   ::collection::index find_nearest_vertice(::i32 x, ::i32 y)
+   ::collection::index find_nearest_vertice(int x, int y)
    {
 
       array < location_type < NUMBER > >  verts = vertices();
@@ -311,7 +311,7 @@ public:
    //array < array < location_type < NUMBER > > > faces_vertices();
    //location_type < NUMBER > get_nearest_vertice(location_type < NUMBER > point);
    //index find_nearest_vertice(location_type < NUMBER > point);
-   //index find_nearest_vertice(::i32 x,::i32 y);
+   //index find_nearest_vertice(int x,int y);
 
 
 

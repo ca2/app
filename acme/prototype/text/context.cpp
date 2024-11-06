@@ -563,9 +563,9 @@ namespace text
 
    //         }
 
-   //         if(newlen >= m_iMaxSize) // extra 1 ::u8
+   //         if(newlen >= m_iMaxSize) // extra 1 unsigned char
    //         {
-   //            m_iMaxSize = newlen + 1024; // extra 1 ::u8 plus 1023
+   //            m_iMaxSize = newlen + 1024; // extra 1 unsigned char plus 1023
    //            if (comparison::ge(m_iMaxSize, sizeof(m_szAlloca)))
    //            {
    //               if(m_szMerge == m_szAlloca || !m_bOwn)

@@ -66,7 +66,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //         return;
 //      if (pwsz == get_nil())
 //         return;
-//      wstring_data * pdata = (wstring_data *) (((u8 *) pwsz) - sizeof(count) - sizeof(count));
+//      wstring_data * pdata = (wstring_data *) (((unsigned char *) pwsz) - sizeof(count) - sizeof(count));
 //      if(pdata->m_iAllocation <= 0)
 //         return;
 //      ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdata);
@@ -110,12 +110,12 @@ public:
 //
 //   inline wstring_data * get_data()
 //   {
-//      return (wstring_data *)(((u8 *) m_pwsz) - sizeof(count) - sizeof(count));
+//      return (wstring_data *)(((unsigned char *) m_pwsz) - sizeof(count) - sizeof(count));
 //   }
 //
 //   inline const wstring_data * get_data() const
 //   {
-//      return (wstring_data *)(((u8 *) m_pwsz) - sizeof(count) - sizeof(count));
+//      return (wstring_data *)(((unsigned char *) m_pwsz) - sizeof(count) - sizeof(count));
 //   }
 //
 //public:
@@ -126,8 +126,8 @@ public:
    void construct(manager * pstringmanager = nullptr);
    wstring(const wstring & strSrc,manager * pstringmanager = nullptr);
    wstring(const ::scoped_string & scopedstrSrc,manager * pstringmanager = nullptr);
-   wstring(const u8 * pszSrc,manager * pstringmanager = nullptr);
-   wstring(const u8 * pszSrc, strsize nLength, manager * pstringmanager = nullptr);
+   wstring(const unsigned char * pszSrc,manager * pstringmanager = nullptr);
+   wstring(const unsigned char * pszSrc, strsize nLength, manager * pstringmanager = nullptr);
    wstring(const unichar * pchSrc, manager * pstringmanager = nullptr);
    wstring(const unichar * pchSrc, strsize nLength,manager * pstringmanager = nullptr);
    inline wstring(const wstring_data * pdata,manager * pstringmanager = nullptr)

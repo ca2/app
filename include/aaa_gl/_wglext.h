@@ -864,7 +864,7 @@ typedef BOOL (WINAPI * PFNWGLDELETEDCNVPROC) (HDC hdc);
 #define WGL_AMD_gpu_association 1
 #ifdef WGL_WGLEXT_PROTOTYPES
 extern ::u32 WINAPI wglGetGPUIDsAMD (::u32 maxCount, ::u32 *ids);
-extern ::i32 WINAPI wglGetGPUInfoAMD (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
+extern int WINAPI wglGetGPUInfoAMD (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
 extern ::u32 WINAPI wglGetContextGPUIDAMD (HGLRC hglrc);
 extern HGLRC WINAPI wglCreateAssociatedContextAMD (::u32 atom);
 extern HGLRC WINAPI wglCreateAssociatedContextAttribsAMD (::u32 atom, HGLRC hShareContext, const int *attribList);
@@ -874,7 +874,7 @@ extern HGLRC WINAPI wglGetCurrentAssociatedContextAMD (void);
 extern VOID WINAPI wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #endif /* WGL_WGLEXT_PROTOTYPES */
 typedef ::u32 (WINAPI * PFNWGLGETGPUIDSAMDPROC) (::u32 maxCount, ::u32 *ids);
-typedef ::i32 (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
+typedef int (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
 typedef ::u32 (WINAPI * PFNWGLGETCONTEXTGPUIDAMDPROC) (HGLRC hglrc);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) (::u32 atom);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) (::u32 atom, HGLRC hShareContext, const int *attribList);

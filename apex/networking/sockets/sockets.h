@@ -32,7 +32,7 @@ namespace sockets
 //
 //      ::pointer<SSLInitializer>       m_psslinit;
 //
-//      //::u8                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+//      //unsigned char                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 //
 ////#if defined(BSD_STYLE_SOCKETS)
 ////      ::pointer<ssl_client_context_map>          m_pclientcontextmap;

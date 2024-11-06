@@ -12,11 +12,11 @@ namespace sockets
    public:
 
 
-      i32                                      m_iErrorCode;
+      int                                      m_iErrorCode;
 
       SSLInitializer *                             m_psslinit;
 
-      ::u8                                         m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      unsigned char                                         m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
       ssl_client_context_map                       m_clientcontextmap;

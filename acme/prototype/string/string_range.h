@@ -138,7 +138,7 @@ public:
    //    //inline bool has_char() const noexcept { return !this->is_empty(); }
    //    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->size() + i; }
    //
-   //    operator ::block() const { return {(::u8 *) c_str(), this->length_in_bytes()}; }
+   //    operator ::block() const { return {(unsigned char *) c_str(), this->length_in_bytes()}; }
    //
    //    inline CHARACTER character_at(strsize i) const { return this->data()[i]; }
 
@@ -1637,7 +1637,7 @@ public:
    }
 
 
-   ::i32 defer_consume_digit(int iBase)
+   int defer_consume_digit(int iBase)
    {
 
       CHARACTER character;

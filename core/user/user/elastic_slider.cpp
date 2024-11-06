@@ -230,7 +230,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
+      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
@@ -275,9 +275,9 @@ namespace user
       
       rectangle.bottom() = rectangleX.bottom();
       
-      rectangle.left() = (::i32) minimum(rectangleX.right(), m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left() = (int) minimum(rectangleX.right(), m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right() = (::i32) minimum(rectangleX.right(), m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right() = (int) minimum(rectangleX.right(), m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

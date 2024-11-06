@@ -106,7 +106,7 @@ namespace constructor
 
             ::zero(p, sizeof(TYPE));
 
-            ((::u8 *&)p) += sizeof(TYPE);
+            ((unsigned char *&)p) += sizeof(TYPE);
 
             c--;
 

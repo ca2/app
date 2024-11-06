@@ -26,7 +26,7 @@ namespace experience
       size_i32                         m_sizeMinimumBorder;
       ::u32                            m_uiSWPFlags;
       enum_grip                        m_egripMask;
-      i32                              m_iPaintCount;
+      int                              m_iPaintCount;
 
 
       size_manager();

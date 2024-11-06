@@ -1053,9 +1053,9 @@ namespace crypto
 
       return          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / "user" / "databin.bin";
+pdirectorysystem->system() / "user" / "databin.bin";
 
    }
 

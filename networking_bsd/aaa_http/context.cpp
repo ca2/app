@@ -381,7 +381,7 @@ namespace http
 
       string str;
 
-      //      i32 iAttempt = 0;
+      //      int iAttempt = 0;
 
       string strUrl(pszUrl);
 
@@ -497,7 +497,7 @@ namespace http
    }
 
 
-   i32 context::auto_config_proxy_count()
+   int context::auto_config_proxy_count()
    {
 
       return 4;
@@ -505,7 +505,7 @@ namespace http
    }
 
 
-   void context::auto_config_proxy(i32 i)
+   void context::auto_config_proxy(int i)
    {
 
       return;
@@ -759,7 +759,7 @@ namespace http
 
       strHost = purl->get_server(pszUrl);
 
-      i32 port = purl->get_port(pszUrl);
+      int port = purl->get_port(pszUrl);
 
       ::networking::address ad(strHost, port);
 
@@ -897,10 +897,10 @@ namespace http
 
       //string strHost = purl->get_server(pszUrl);
 
-      //i32 iHostPort = purl->get_port(pszUrl);
+      //int iHostPort = purl->get_port(pszUrl);
 
       //::networking::address ipHost(strHost, iHostPort);
-      //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
+      //for (int iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
       //{
       //   ::pointer<::xml::node>pnode = doc.root()->child_at(iNode);
       //   if (pnode->get_name() == "proxy")
@@ -1081,7 +1081,7 @@ namespace http
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
-      i32 iPort;
+      int iPort;
 
       if (strProtocol == "https")
       {
@@ -1187,9 +1187,9 @@ namespace http
 
       bool bSeemsOk;
 
-      i32 iTry = 0;
+      int iTry = 0;
 
-      i32 iTryCount;
+      int iTryCount;
 
       if (set.has_property("try"))
       {
@@ -1440,7 +1440,7 @@ namespace http
 
          psession->m_psockethandler->restart_socket(psession->GetSocket());
 
-         i32 iIteration = 0;
+         int iIteration = 0;
 
          //::apex::live_signal keeplive;
 
@@ -1537,7 +1537,7 @@ namespace http
 
          set[__id(cookie)] = strCookie;
 
-         i32 iStatusCode;
+         int iStatusCode;
 
          psession->outattr("http_status_code").as(iStatusCode);
 
@@ -1822,7 +1822,7 @@ namespace http
 
       ::pointer<::apex::application>pappAgent = papp;
 
-      i32 iPort;
+      int iPort;
 
       if (strProtocol == "https")
       {
@@ -2152,7 +2152,7 @@ namespace http
 
       psockethandler->add2(psocket);
 
-      i32 iIteration = 1;
+      int iIteration = 1;
 
       //::apex::live_signal keeplive;
 
@@ -2166,7 +2166,7 @@ namespace http
       if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].i32());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].int());
 
       }
       //else
@@ -2222,7 +2222,7 @@ namespace http
 
          iContentLength = psocket->m_content_length;
 
-         psocket->m_psockethandler->select((i32)iSelectTimeoutSeconds, 0);
+         psocket->m_psockethandler->select((int)iSelectTimeoutSeconds, 0);
 
          set["http_content_length"] = iContentLength;
 
@@ -2329,7 +2329,7 @@ namespace http
 
       ::e_status estatus = error_failed;
 
-      i32 iStatusCode;
+      int iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 
@@ -2645,7 +2645,7 @@ namespace http
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 
-      i32 iStatusCode;
+      int iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 
@@ -2729,7 +2729,7 @@ namespace http
 
       single_lock synchronouslock(m_pmutexDownload, true);
 
-      i32 iStatusCode = 0;
+      int iStatusCode = 0;
 
       try
       {
@@ -2831,7 +2831,7 @@ namespace http
 
       }
 
-      i32 iStatusCode;
+      int iStatusCode;
 
       psocket->outattr("http_status_code").as(iStatusCode);
 

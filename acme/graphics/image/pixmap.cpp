@@ -21,7 +21,7 @@ int pixmap::g_iRedLowerDefault = 1;
 void pixmap::mult_alpha()
 {
 
-   u8 * dst = (u8 *)data();
+   unsigned char * dst = (unsigned char *)data();
    i64 size = m_size.area();
 
 
@@ -103,15 +103,15 @@ void pixmap::vertical_swap()
 
       auto pdata = ppixmap->image32();
 
-      u8 * pline1 = (u8 *)pdata;
+      unsigned char * pline1 = (unsigned char *)pdata;
 
-      u8 * pline2 = (u8 *)(pdata + (w - 1) * h);
+      unsigned char * pline2 = (unsigned char *)(pdata + (w - 1) * h);
 
       memory memory;
 
       memory.set_size(wBytes);
 
-      u8 * pstore = memory.data();
+      unsigned char * pstore = memory.data();
 
       int halfh = h / 2;
 

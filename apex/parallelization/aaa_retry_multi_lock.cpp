@@ -42,7 +42,7 @@
 //
 //#ifdef WINDOWS
 //
-//   if (m_hsynca.is_empty())
+//   if (m_hsynchronizationa.is_empty())
 //   {
 //
 //      return e_synchronization_result_error;
@@ -61,7 +61,7 @@
 //      if (dwWakeMask == 0)
 //      {
 //
-//         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
+//         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
 //
 //      }
 //#ifdef UNIVERSAL_WINDOWS
@@ -75,20 +75,20 @@
 //      else
 //      {
 //
-//         iResult = ::MsgWaitForMultipleObjects((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), dwWakeMask);
+//         iResult = ::MsgWaitForMultipleObjects((u32)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), dwWakeMask);
 //
 //      }
 //#endif
 //
 //      index iIndex = iResult - WAIT_OBJECT_0;
 //
-//      if (iResult >= WAIT_OBJECT_0 && iIndex < m_hsynca.get_count())
+//      if (iResult >= WAIT_OBJECT_0 && iIndex < m_hsynchronizationa.get_count())
 //      {
 //
 //         if (bWaitForAll)
 //         {
 //
-//            for (::collection::index i = 0; i < m_hsynca.get_count(); i++)
+//            for (::collection::index i = 0; i < m_hsynchronizationa.get_count(); i++)
 //            {
 //
 //               m_baLocked[i] = true;
@@ -130,7 +130,7 @@
 //bool retry_multi_lock::unlock()
 //{
 //
-//   for (::collection::index i=0; i < m_hsynca.get_count(); i++)
+//   for (::collection::index i=0; i < m_hsynchronizationa.get_count(); i++)
 //   {
 //
 //      if (m_baLocked[i])
@@ -147,12 +147,12 @@
 //}
 //
 //
-//bool retry_multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
+//bool retry_multi_lock::unlock(int lCount, int * pPrevCount /* =nullptr */)
 //{
 //
 //   bool bGotOne = false;
 //
-//   for (::collection::index i=0; i < m_hsynca.get_count(); i++)
+//   for (::collection::index i=0; i < m_hsynchronizationa.get_count(); i++)
 //   {
 //
 //      if (m_baLocked[i])
@@ -181,7 +181,7 @@
 //bool retry_multi_lock::IsLocked(::collection::index iObject)
 //{
 //
-//   ASSERT(dwObject < m_hsynca.get_count());
+//   ASSERT(dwObject < m_hsynchronizationa.get_count());
 //
 //   return m_baLocked[dwObject];
 //

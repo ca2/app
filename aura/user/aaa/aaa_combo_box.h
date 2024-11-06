@@ -141,8 +141,8 @@ namespace user
       ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
       void SetHorizontalExtent(::u32 nExtent);
       ::u32 GetHorizontalExtent();
-      i32 SetDroppedWidth(::u32 nWidth);
-      i32 GetDroppedWidth();
+      int SetDroppedWidth(::u32 nWidth);
+      int GetDroppedWidth();
 
 #if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
       bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -163,11 +163,11 @@ namespace user
       void GetLBText(index nIndex, string & rString);
       strsize GetLBTextLen(index nIndex);
 
-      i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
-      i32 GetItemHeight(index nIndex);
+      int SetItemHeight(index nIndex, ::u32 cyItemHeight);
+      int GetItemHeight(index nIndex);
       ::collection::index FindStringExact(index nIndexStart, const ::string & pszFind);
 
-      i32 SetExtendedUI(bool bExtended = true);
+      int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(RECT32 * prect);
 
@@ -203,7 +203,7 @@ namespace user
 
       virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
 
-      virtual i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+      virtual int CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
 
       virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
 

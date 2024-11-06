@@ -1026,7 +1026,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
-//inline ::i32 area(::i32 cx, ::i32 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
+//inline int area(int cx, int cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 //inline i64 area(i64 cx, i64 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 //inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.) * cx * cy; }
 //
@@ -1045,7 +1045,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////::rectangle_i64;
 ////::rectangle_f64;
 //
-//typedef uchar      ::u8;
+//typedef uchar      unsigned char;
 //
 //struct ::point_i64;
 //struct ::size_i64;
@@ -1159,20 +1159,20 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline bool contains(const ::rectangle_i32 &rectangle, const ::point_i32 & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
 ////inline ::rectangle_i32 & null(::rectangle_i32 & rectDst) { return ::null_rect(rectDst); }
 ////inline bool is_equal(const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::rect_equals(rect1, rect2); }
-////inline ::rectangle_i32 & inflate(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::rect_inflate_point(rectangle, x, y); }
-////inline ::rectangle_i32 & deflate(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::rect_deflate_point(rectangle, x, y); }
-////inline ::rectangle_i32 & offset(::rectangle_i32 & rectangle, ::i32 x, ::i32 y) { return ::offset_rect(rectangle, x, y); }
+////inline ::rectangle_i32 & inflate(::rectangle_i32 & rectangle, int x, int y) { return ::rect_inflate_point(rectangle, x, y); }
+////inline ::rectangle_i32 & deflate(::rectangle_i32 & rectangle, int x, int y) { return ::rect_deflate_point(rectangle, x, y); }
+////inline ::rectangle_i32 & offset(::rectangle_i32 & rectangle, int x, int y) { return ::offset_rect(rectangle, x, y); }
 ////inline bool intersect(::rectangle_i32 & rectangle, const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 ////inline ::rectangle_i32 & unite(::rectangle_i32 & rectangle, const ::rectangle_i32 &rect1, const ::rectangle_i32 &rect2) { return ::union_rect(rectangle, rect1, rect2); }
-////inline ::i32 width(const ::rectangle_i32 &rectangle) { return ::rect_width(rectangle); }
-////inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::rect_height(rectangle); }
-////inline ::i32 area(const ::rectangle_i32 &rectangle) { return ::rect_area(rectangle); }
+////inline int width(const ::rectangle_i32 &rectangle) { return ::rect_width(rectangle); }
+////inline int height(const ::rectangle_i32 &rectangle) { return ::rect_height(rectangle); }
+////inline int area(const ::rectangle_i32 &rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::rectangle_i32 &rectangle) { return ::is_rect_empty(rectangle); }
 ////inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
-////inline ::i32 width(const ::rectangle_i32 &rectangle) { return ::width(&rectangle); }
-////inline ::i32 height(const ::rectangle_i32 &rectangle) { return ::height(&rectangle); }
-////inline ::i32 area(const ::rectangle_i32 &rectangle) { return ::area(&rectangle); }
+////inline int width(const ::rectangle_i32 &rectangle) { return ::width(&rectangle); }
+////inline int height(const ::rectangle_i32 &rectangle) { return ::height(&rectangle); }
+////inline int area(const ::rectangle_i32 &rectangle) { return ::area(&rectangle); }
 ////inline bool is_empty(const ::rectangle_i32 &rectangle) { return ::is_empty(&rectangle); }
 ////inline void swap_left_right(::rectangle_i32 & rectangle) noexcept { ::swap_left_right(&rectangle); }
 //
@@ -1435,10 +1435,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////inline void copy(rectangle_i32 & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 ////{
-////   rectDst->left() = (::i32) prectSrc->X;
-////   rectDst->top() = (::i32)prectSrc->Y;
-////   rectDst->right() = (::i32) (prectSrc->X + prectSrc->Width);
-////   rectDst->bottom() = (::i32) (prectSrc->Y + prectSrc->Height);
+////   rectDst->left() = (int) prectSrc->X;
+////   rectDst->top() = (int)prectSrc->Y;
+////   rectDst->right() = (int) (prectSrc->X + prectSrc->Width);
+////   rectDst->bottom() = (int) (prectSrc->Y + prectSrc->Height);
 ////}
 ////
 ////inline void copy(::winrt::Windows::Foundation::Rect& rectDst, rectangle_i32* prectSrc)
@@ -1453,8 +1453,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)u32_x(u), (::i32)u32_y(u)); }
-////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)u64_x(u), (::i32)u64_y(u)); }
+////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((int)u32_x(u), (int)u32_y(u)); }
+////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((int)u64_x(u), (int)u64_y(u)); }
 ////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx(), size.cy()); }
 ////
 ////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
@@ -1645,10 +1645,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template <  >
-////inline ::i32 __conv<::i32>(const ::string & str)
+////inline int __conv<int>(const ::string & str)
 ////{
 ////
-////   return (::i32) ::atoi(str);
+////   return (int) ::atoi(str);
 ////
 ////}
 ////
@@ -1657,7 +1657,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline i64 __conv<i64>(const ::string & str)
 ////{
 ////
-////   return (::i32) ::atoi(str);
+////   return (int) ::atoi(str);
 ////
 ////}
 ////
@@ -1666,7 +1666,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline double __conv<double>(const ::string & str)
 ////{
 ////
-////   return (::i32) ::atoi(str);
+////   return (int) ::atoi(str);
 ////
 ////}
 ////
@@ -1681,7 +1681,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < >
-////inline string __xmlpri<::i32>()
+////inline string __xmlpri<int>()
 ////{
 ////
 ////   return "%" PRId32;
@@ -1833,79 +1833,79 @@ template < primitive_number NUMBER >
 class lines_base;
 
 
-using point_i32 = point_type < ::i32 >;
+using point_i32 = point_type < int >;
 using point_i64 = point_type < ::i64 >;
 using point_f32 = point_type < ::f32 >;
 using point_f64 = point_type < ::f64 >;
 
 
-using size_i32 = size_type < ::i32 >;
+using size_i32 = size_type < int >;
 using size_i64 = size_type < ::i64 >;
 using size_f32 = size_type < ::f32 >;
 using size_f64 = size_type < ::f64 >;
 
 
-using rectangle_i32 = rectangle_type < ::i32 >;
+using rectangle_i32 = rectangle_type < int >;
 using rectangle_i64 = rectangle_type < ::i64 >;
 using rectangle_f32 = rectangle_type < ::f32 >;
 using rectangle_f64 = rectangle_type < ::f64 >;
 
 
-using ellipse_i32 = ellipse_type < ::i32 >;
+using ellipse_i32 = ellipse_type < int >;
 using ellipse_i64 = ellipse_type < ::i64 >;
 using ellipse_f32 = ellipse_type < ::f32 >;
 using ellipse_f64 = ellipse_type < ::f64 >;
 
 
-using line_i32 = line_type < ::i32 >;
+using line_i32 = line_type < int >;
 using line_i64 = line_type < ::i64 >;
 using line_f32 = line_type < ::f32 >;
 using line_f64 = line_type < ::f64 >;
 
 
-using arc_i32 = arc_type < ::i32 >;
+using arc_i32 = arc_type < int >;
 using arc_i64 = arc_type < ::i64 >;
 using arc_f32 = arc_type < ::f32 >;
 using arc_f64 = arc_type < ::f64 >;
 
 
-using point_i32_array = point_array_base < ::i32 >;
+using point_i32_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
 using point_f32_array = point_array_base < ::f32 >;
 using point_f64_array = point_array_base < ::f64 >;
 
 
-using polygon_i32 = polygon_type < ::i32 >;
+using polygon_i32 = polygon_type < int >;
 using polygon_i64 = polygon_type < ::i64 >;
 using polygon_f32 = polygon_type < ::f32 >;
 using polygon_f64 = polygon_type < ::f64 >;
 
 
-using poly_polygon_i32 = poly_polygon_type < ::i32 >;
+using poly_polygon_i32 = poly_polygon_type < int >;
 using poly_polygon_i64 = poly_polygon_type < ::i64 >;
 using poly_polygon_f32 = poly_polygon_type < ::f32 >;
 using poly_polygon_f64 = poly_polygon_type < ::f64 >;
 
 
-using point_i32_array = point_array_base < ::i32 >;
+using point_i32_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
 using point_f32_array = point_array_base < ::f32 >;
 using point_f64_array = point_array_base < ::f64 >;
 
 
-using size_i32_array = size_array_base < ::i32 >;
+using size_i32_array = size_array_base < int >;
 using size_i64_array = size_array_base < ::i64 >;
 using size_f32_array = size_array_base < ::f32 >;
 using size_f64_array = size_array_base < ::f64 >;
 
 
-using rectangle_i32_array = rectangle_array_base < ::i32 >;
+using rectangle_i32_array = rectangle_array_base < int >;
 using rectangle_i64_array = rectangle_array_base < ::i64 >;
 using rectangle_f32_array = rectangle_array_base < ::f32 >;
 using rectangle_f64_array = rectangle_array_base < ::f64 >;
 
 
-using lines_i32 = lines_base < ::i32 >;
+using lines_i32 = lines_base < int >;
 using lines_i64 = lines_base < ::i64 >;
 using lines_f32 = lines_base < ::f32 >;
 using lines_f64 = lines_base < ::f64 >;

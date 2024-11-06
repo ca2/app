@@ -35,12 +35,12 @@ public:
    base_enum(const wparam & wparam) :m_evalue((EENUM)wparam.m_number){}
    base_enum(::i64 i) :m_evalue((EENUM)i) {}
    base_enum(EENUM evalue);
-   base_enum(i32 i);
+   base_enum(int i);
    virtual ~base_enum();
 
    void DefaultConstruct();
 
-   const base_enum <EENUM, edefault> & operator = (i32 i) { return operator =((EENUM)i); }
+   const base_enum <EENUM, edefault> & operator = (int i) { return operator =((EENUM)i); }
    const base_enum <EENUM, edefault> & operator = (::i64 i) { return operator =((EENUM)i); }
    const base_enum <EENUM, edefault> & operator = (const wparam & wparam) { return operator =((EENUM) wparam.m_number); }
 
@@ -83,7 +83,7 @@ base_enum<EENUM, edefault>::base_enum(EENUM evalue)
 }
 
 template <class EENUM, EENUM edefault>
-base_enum<EENUM, edefault>::base_enum(i32 i)
+base_enum<EENUM, edefault>::base_enum(int i)
 {
    m_evalue = (EENUM) i;
 }

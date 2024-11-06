@@ -101,7 +101,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   }
 //
-//   ::i32 i = *input;
+//   int i = *input;
 //
 //   ::wd32_character u32;
 //
@@ -133,7 +133,7 @@ inline i32 unicode_index_length(const ::wd32_character *& input, strsize * psrcl
 
    }
 
-   ::i32 i = *input;
+   int i = *input;
 
    input++;
 
@@ -144,7 +144,7 @@ inline i32 unicode_index_length(const ::wd32_character *& input, strsize * psrcl
 }
 
 
-inline i32 unicode_index_length(const ::ansi_character * pszUtf8, ::i32 & len)
+inline i32 unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 {
 
    if (is_empty(pszUtf8))
@@ -158,7 +158,7 @@ inline i32 unicode_index_length(const ::ansi_character * pszUtf8, ::i32 & len)
 
    i32 ch = 0;
 
-   ::u8 c;
+   unsigned char c;
 
    len = 0;
 
@@ -196,7 +196,7 @@ inline i32 unicode_index_length(const ::ansi_character * pszUtf8, ::i32 & len)
 inline i32 consume_unicode_index(const ::ansi_character *& pszUtf8)
 {
 
-   ::i32 len = 0;
+   int len = 0;
 
    auto i32 = unicode_index_length(pszUtf8, len);
 
@@ -277,7 +277,7 @@ inline bool is_legal_unicode_index(i32 iUnicodeIndex)
 }
 
 
-inline ::i32 unicode_to_lower_case(::i32 i)
+inline int unicode_to_lower_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
@@ -288,7 +288,7 @@ inline ::i32 unicode_to_lower_case(::i32 i)
 }
 
 
-inline ::i32 unicode_to_upper_case(::i32 i)
+inline int unicode_to_upper_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
@@ -352,7 +352,7 @@ inline const ::wd32_character * wd32_find_first_character_in(const ::const_wd32_
 }
 
 
-inline ::i32 unicode_to_title_case(::i32 i)
+inline int unicode_to_title_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
@@ -381,7 +381,7 @@ inline i32 unicode_to_numeric_value(i32 i, float * f)
 }
 
 
-inline bool unicode_is_lower_case(::i32 i)
+inline bool unicode_is_lower_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -389,7 +389,7 @@ inline bool unicode_is_lower_case(::i32 i)
 }
 
 
-inline bool unicode_is_upper_case(::i32 i)
+inline bool unicode_is_upper_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -397,7 +397,7 @@ inline bool unicode_is_upper_case(::i32 i)
 }
 
 
-inline bool unicode_is_title_case(::i32 i)
+inline bool unicode_is_title_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -405,7 +405,7 @@ inline bool unicode_is_title_case(::i32 i)
 }
 
 
-inline bool unicode_is_letter(::i32 i)
+inline bool unicode_is_letter(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -419,7 +419,7 @@ inline bool unicode_is_letter(::i32 i)
 }
 
 
-inline bool unicode_is_letter_or_digit(::i32 i)
+inline bool unicode_is_letter_or_digit(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -895,7 +895,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 //
 //   i32 ch = 0;
 //
-//   ::u8 c;
+//   unsigned char c;
 //
 //   char extraBytesToRead = utf8_e(*pszUtf8);
 //
@@ -1200,7 +1200,7 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 inline i32 unicode_len(const ::ansi_character * pszUtf8)
 {
 
-   ::i32 len;
+   int len;
 
    if (unicode_index_length(pszUtf8, len) < 0)
    {

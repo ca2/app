@@ -68,10 +68,10 @@
 //inline bool get_bounding_box(::rectangle_i32* prectangleBounding, const line * pline)
 //{
 //
-//   rectangleBounding.left() = (::i32)minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top() = (::i32)minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right() = (::i32)maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom() = (::i32)maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = (int)minimum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.top() = (int)minimum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.right() = (int)maximum(line.m_p1.x(), line.m_p2.x());
+//   rectangleBounding.bottom() = (int)maximum(line.m_p1.y(), line.m_p2.y());
 //
 //   return true;
 //

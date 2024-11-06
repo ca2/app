@@ -108,7 +108,7 @@ namespace write_text
       //virtual bool create_point_font(
       //const font_family_pointer & pfontfamily,
       //double dSize,
-      //i32 iWeight = 400,
+      //int iWeight = 400,
       //bool bItalic = false,
       //bool bUnderline = false,
       //bool bStrikeOut = false,

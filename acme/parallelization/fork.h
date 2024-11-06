@@ -570,7 +570,7 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = __allocate ::counter < ::i32 > (iScan);
+//   auto pcounter = __allocate ::counter < int > (iScan);
 //
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
@@ -602,7 +602,7 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = __allocate ::counter < ::i32 >  (iScan);
+//   auto pcounter = __allocate ::counter < int >  (iScan);
 //
 //   auto pobjectTaskEnd = __runnable(predEnd);
 //

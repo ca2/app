@@ -39,7 +39,7 @@ int
 getftime (int handle, struct ftime *ftimep)
 {
 #if 1
-  i32 ReturnValue;
+  int ReturnValue;
   struct stat buf;
   struct tm *ModTime;
   ReturnValue = fstat (handle, &buf);

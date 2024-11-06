@@ -10,22 +10,17 @@
 #include "framework.h"
 #include "acme/constant/user.h"
 
-
-namespace nano
-{
-
-   namespace user
-   {
-
-::user::enum_desktop calculate_edesktop()
-{
-   
-   return ::user::e_desktop_unknown;
-   
-}
-
-
-   } // namespace user
-
-
-} // namespace nano
+//
+//namespace windowing
+//{
+//
+//
+//::windowing::enum_desktop calculate_edesktop()
+//{
+//   
+//   return ::windowing::e_desktop_unknown;
+//   
+//}
+//
+//
+//} // namespace nano

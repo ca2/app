@@ -34,7 +34,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    auto psystem = system();
 
-   if(dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
+   if(dir.m_timeLast.elapsed() < *psystem->file_listing_cache_time())
    {
 
       return dir.get_count() > 0;
@@ -54,7 +54,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    auto psystem = system();
 
-   if (dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
+   if (dir.m_timeLast.elapsed() < *psystem->file_listing_cache_time())
    {
 
       return dir.get_count() > 0;
@@ -103,7 +103,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    auto psystem = system();
 
-   if (dir.m_timeLast.elapsed() < psystem->file_listing_cache_time())
+   if (dir.m_timeLast.elapsed() < *psystem->file_listing_cache_time())
    {
 
       listing = dir;

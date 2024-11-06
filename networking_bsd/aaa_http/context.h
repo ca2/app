@@ -41,7 +41,7 @@ namespace http
          string         m_strUrl;
          bool           m_bDirect;
          string         m_strProxy;
-         i32        m_iPort;
+         int        m_iPort;
          ::duration m_durationLastChecked;
 
 
@@ -103,8 +103,8 @@ namespace http
       virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set);
 
       virtual void defer_auto_initialize_proxy_configuration();
-      virtual void auto_config_proxy(i32 i);
-      virtual i32 auto_config_proxy_count();
+      virtual void auto_config_proxy(int i);
+      virtual int auto_config_proxy_count();
       virtual void config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket);
       virtual void config_proxy(const ::scoped_string & scopedstrUrl, proxy * pproxy);
       virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::scoped_string & scopedstrUrl, proxy * pproxy);

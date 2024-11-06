@@ -267,7 +267,7 @@ namespace user
    }
 
 
-   ::i32 auto_hide::auto_hide_threshold_height()
+   int auto_hide::auto_hide_threshold_height()
    {
 
       return this->height();

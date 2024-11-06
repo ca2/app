@@ -131,7 +131,7 @@
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((::u8 *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + as_string(message)+ "," + ::acmeacmesystem()->url_encode(::acmeacmesystem()->base64().encode((unsigned char *)pdata, len));
 
          Uri ^uri = ref aaa_primitive_new Uri(anotherappURI);
 

@@ -651,51 +651,112 @@ sequence::~sequence()
 
 
 
-sequence * sequence::current()
-{
-
-   return dynamic_cast <sequence *>(task_context<sequence>::current());
-}
-//inline [[noreturn]] static void cancel()
+//sequence * sequence::current()
 //{
 //
-//   throw ::cancel_exception<sequence>();
-//
+//   return dynamic_cast <sequence *>(task_context<sequence>::current());
 //}
+////inline [[noreturn]] static void cancel()
+////{
+////
+////   throw ::cancel_exception<sequence>();
+////
+////}
 
 
 void sequence::run()
 {
 
-   stack_task_context_base stack(this);
+   //stack_task_context_base stack(this);
 
-   procedure_array_with_context<sequence>::run();
-}
-
-
-void sequence::on_end_procedure()
-{
+   //procedure_array_with_context<sequence>::run();
    
-   m_pparticleLast = m_pparticle;
-
+   this->first()->call();
+   
 }
+
+
+//void sequence::on_end_procedure()
+//{
+//   
+//   m_pparticleLast = m_pparticle;
+//
+//}
 
 void sequence::destroy()
 {
 
-   task_context<sequence>::destroy();
-   procedure_array_with_context<sequence>::destroy();
-   property_object::destroy();
+   
+   subparticle_array::destroy();
+   
+   
+//   task_context<sequence>::destroy();
+//   procedure_array_with_context<sequence>::destroy();
+//   property_object::destroy();
+   
 }
-::payload sequence::get_last_result()
+
+
+//::payload sequence::get_last_result()
+//{
+//
+//   if (!m_pparticleLast)
+//   {
+//      return {};
+//
+//   }
+//   return m_pparticleLast->get_result_payload();
+//}
+//
+//::payload get_last_result();
+
+
+void sequence::on_subparticle_sequence(::subparticle * psubparticle)
+{
+ 
+   auto iFind = this->find_first(psubparticle);
+   
+   if(iFind < 0)
+   {
+    
+      throw ::exception(error_wrong_state);
+      
+   }
+   
+   auto iNext = iFind + 1;
+   
+   if(iNext >= this->size())
+   {
+      
+      on_end_of_sequence();
+      
+      return;
+      
+   }
+   
+   //m_payloadaResult.add(payload);
+   
+   auto p = this->element_at(iNext);
+   
+   if(p->m_psequence != this)
+   {
+      
+      throw ::exception(error_wrong_state);
+      
+   }
+   
+   p->call();
+   
+}
+
+
+void sequence::on_end_of_sequence()
 {
 
-   if (!m_pparticleLast)
-   {
-      return {};
-
-   }
-   return m_pparticleLast->get_result_payload();
+   ::subparticle_array::clear();
+ 
+   release();
+   
 }
 
-::payload get_last_result();
+

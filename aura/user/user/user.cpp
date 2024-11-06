@@ -838,6 +838,17 @@ namespace user
    }
 
 
+::html::html*user:: html()
+{
+    return m_phtml;
+    
+}
+
+
+::type_atom user::get_html_document_type() { return m_typeatomHtmlDocument; }
+::type_atom user::get_html_impact_type() { return m_typeatomHtmlImpact; }
+
+
 //   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
 //   {
 //

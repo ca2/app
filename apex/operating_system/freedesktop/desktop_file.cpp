@@ -186,9 +186,9 @@ namespace freedesktop
 
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pdirectorysystem;
+      auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-      path = pacmedirectory->localconfig() / "desk/monitor-0/2desk";
+      path = pdirectorysystem->localconfig() / "desk/monitor-0/2desk";
 
       auto papp = get_app();
 
@@ -308,17 +308,17 @@ namespace freedesktop
 
       strName.find_replace(".", "_");
 
-      //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
+      //pathLaunch = pdirectorysystem->home() / ".config/ca2/bin" / (strName + ".sh");
 
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pdirectorysystem;
+      auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-      pathUserBin = pacmedirectory->home() / "bin" / strName;
+      pathUserBin = pdirectorysystem->home() / "bin" / strName;
 
       //::file::path pathIcon = directory()->matter("main/icon-256.png");
 
-      ::file::path pathAppConfig = pacmedirectory->home() / ".config" / papp->m_strAppId;
+      ::file::path pathAppConfig = pdirectorysystem->home() / ".config" / papp->m_strAppId;
 
       ::file::path pathModuleIcon256 = pathAppConfig / "icon-256.png";
 

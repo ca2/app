@@ -531,12 +531,12 @@ namespace os
       string str;
       //unichar wsz[32];
 
-      ::u8 baState[256];
+      unsigned char baState[256];
 
       zero(baState);
       for (int i = 0; i < 256; i++)
       {
-//         baState[i] = (::u8)GetAsyncKeyState(i);
+//         baState[i] = (unsigned char)GetAsyncKeyState(i);
       }
 
       baState[uiKey & 0xff] = 0x80;
@@ -641,7 +641,7 @@ namespace os
 
          //m_pimage->Fill(255, 184, 184, 177);
 
-/*         ::u8 *dst = (::u8*) m_pimage->get_data();
+/*         unsigned char *dst = (unsigned char*) m_pimage->get_data();
 
          i64 size = m_size.cx() * m_size.cy();
 

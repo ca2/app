@@ -58,14 +58,14 @@ namespace draw2d
 //      glyph * pglyph;
 
 //      strsize iSize = str.length();
-//      for(i32 i = 0; i < iSize; i++)
+//      for(int i = 0; i < iSize; i++)
 //      {
 //         pglyph = GetGlyph(str[i]);
 
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x() = ::i32(pgraphics->get_text_extent(str.left(i)).cx());
+//            pointOffset.x() = int(pgraphics->get_text_extent(str.left(i)).cx());
 //            pglyph->DrawGlyph(
 
 //               pgraphics,
@@ -94,7 +94,7 @@ namespace draw2d
 
    }
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
 
    {
 
@@ -154,7 +154,7 @@ namespace draw2d
 
          ::rectangle_f64 clipRect;
 
-         i32 iOldMapMode = pgraphics->GetMapMode();
+         int iOldMapMode = pgraphics->GetMapMode();
          pgraphics->SetMapMode(MM_TEXT);
          pgraphics->text_out(x, y, str);
          pgraphics->BeginPath();
@@ -167,7 +167,7 @@ namespace draw2d
          ClearDC();*/
    }
 
-   void font::simple_text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, string & str, LPINT piCharsPositions, i32 iCharsPositions)
+   void font::simple_text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, string & str, LPINT piCharsPositions, int iCharsPositions)
 
 
    {
@@ -317,7 +317,7 @@ namespace draw2d
    {
       char           ch;
       string         str;
-      i32        i, j, k;
+      int        i, j, k;
       bool           forceInsertion = false;
 
       SelectFont();
@@ -371,7 +371,7 @@ namespace draw2d
       string str(pStr);
 
       SelectFont();
-      for(i32 i = 0; i < str.length(); i++)
+      for(int i = 0; i < str.length(); i++)
       {
          AddGlyph(str[i]);
       }
@@ -386,9 +386,9 @@ namespace draw2d
    string                 &str,
    LPINT                piCharsPositions,
 
-   i32                     iCharsPositions,
-   i32                  iOffset,
-   i32                     iEffect)
+   int                     iCharsPositions,
+   int                  iOffset,
+   int                     iEffect)
    {
 
       switch(iEffect)
@@ -417,7 +417,7 @@ namespace draw2d
    }
 
 
-   i32 font::GetMegaHeight()
+   int font::GetMegaHeight()
    {
 
       return m_tm.tmHeight +
@@ -455,7 +455,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i32 ca)
+bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::string & pString, int ca)
 
 {
 
@@ -471,7 +471,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i
    wstring wstr = utf8_to_unicode(pString, ca);
 
 
-   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
+   bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length()) != false;
 
    return bRet;
 
@@ -487,7 +487,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i
          return ::text_out(hdc, x, y, nullptr, 0) != false;
       }
 
-      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
+      return ::text_out(hdc, x, y, wstr, (int) wstr.get_length()) != false;
    */
 
 #endif
@@ -495,7 +495,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i
 }
 
 
-CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i32 ca, LPSIZE32 psizl)
+CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, int ca, LPSIZE32 psizl)
 
 {
 
@@ -512,7 +512,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i3
    wstring wstr = utf8_to_unicode(pString, ca);
 
 
-   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32) wstr.get_length(), psizl) != false;
+   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl) != false;
 
    return bRet;
 
@@ -525,7 +525,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i3
 }
 
 
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, RECT32 * lprc, ::u32 format)
+CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * lprc, ::u32 format)
 
 {
 
@@ -543,7 +543,7 @@ CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, R
    wstring wstr = utf8_to_unicode(pchText, cchText);
 
 
-   bool bRet = ::DrawTextW(hdc, wstr, (i32) wcslen(wstr), prc, format) != false;
+   bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), prc, format) != false;
 
 
    return bRet;

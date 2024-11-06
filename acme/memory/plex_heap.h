@@ -9,7 +9,7 @@ public:
 
 
    plex_heap *    m_pheapNext;
-   ::u8           m_data; // first data ::u8 of this ::payload length structure
+   unsigned char           m_data; // first data unsigned char of this ::payload length structure
 
 
    void * data() { return &m_data; }

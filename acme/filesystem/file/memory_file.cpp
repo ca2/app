@@ -140,7 +140,7 @@ void memory_file::write(const void * p, ::memsize s)
 }
 
 
-void memory_file::put_byte_back(::u8 u8)
+void memory_file::put_byte_back(unsigned char unsigned char)
 {
 
    if(m_position <= 0 || m_position >= size())
@@ -152,7 +152,7 @@ void memory_file::put_byte_back(::u8 u8)
 
    m_position--;
 
-   m_pmemory.m_p->data()[m_position] = u8;
+   m_pmemory.m_p->data()[m_position] = unsigned char;
 
 }
 
@@ -190,7 +190,7 @@ void memory_file::write_from_hex(const ::block & block)
 
    }
 
-   ::u8 * pb = full_data_begin();
+   unsigned char * pb = full_data_begin();
 
    auto nCount = block.size();
 
@@ -371,11 +371,11 @@ bool memory_file::read_string(memory_base & memory)
 
       // there are 258 bytes left;
 
-      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at ::u8 257
+      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at unsigned char 257
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
 
-      const ::u8 * p = (const ::u8 *) ansi_pbrk((const char*)(m_pbyte + m_position), "\r\n");
+      const unsigned char * p = (const unsigned char *) ansi_pbrk((const char*)(m_pbyte + m_position), "\r\n");
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
@@ -514,7 +514,7 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
    else
    {
 
-      m_pbyte = (::u8*)m_pmemory->begin();
+      m_pbyte = (unsigned char*)m_pmemory->begin();
 
    }
 
@@ -722,7 +722,7 @@ string memory_file::as_string() const
 //}
 
 
-::u8 * memory_file::full_data_begin()
+unsigned char * memory_file::full_data_begin()
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -730,7 +730,7 @@ string memory_file::as_string() const
 }
 
 
-::u8 * memory_file::full_data_end()
+unsigned char * memory_file::full_data_end()
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -738,7 +738,7 @@ string memory_file::as_string() const
 }
 
 
-const ::u8 * memory_file::full_data_begin() const
+const unsigned char * memory_file::full_data_begin() const
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -746,7 +746,7 @@ const ::u8 * memory_file::full_data_begin() const
 }
 
 
-const ::u8 * memory_file::full_data_end() const
+const unsigned char * memory_file::full_data_end() const
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -755,7 +755,7 @@ const ::u8 * memory_file::full_data_end() const
 
 
 
-::u8 * memory_file::data_begin()
+unsigned char * memory_file::data_begin()
 {
 
    auto pbegin = full_data_begin();
@@ -765,7 +765,7 @@ const ::u8 * memory_file::full_data_end() const
 }
 
 
-::u8 * memory_file::data_end()
+unsigned char * memory_file::data_end()
 {
 
    auto pend = full_data_end();
@@ -775,7 +775,7 @@ const ::u8 * memory_file::full_data_end() const
 }
 
 
-const ::u8 * memory_file::data_begin() const
+const unsigned char * memory_file::data_begin() const
 {
 
    auto pbegin = full_data_begin();
@@ -786,7 +786,7 @@ const ::u8 * memory_file::data_begin() const
 
 
 
-const ::u8 * memory_file::data_end() const
+const unsigned char * memory_file::data_end() const
 {
 
    auto pend = full_data_end();
@@ -849,9 +849,9 @@ void memory_file::write(::file::readable* preadable, memsize uiBufSize)
 //   if (pfileOut->increase_internal_data_size(uiSize) && pfileOut->get_internal_data() != nullptr)
 //   {
 //
-//      memory_transfer(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
+//      memory_transfer(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
 //
-//      ::memory_copy(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
+//      ::memory_copy(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
 //
 //      pfileOut->position() += get_internal_data_size();
 //

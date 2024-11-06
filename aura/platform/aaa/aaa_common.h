@@ -43,8 +43,8 @@ namespace aura
    }
 
 
-   CLASS_DECL_AURA i32 get_errno();
-   CLASS_DECL_AURA void set_errno(i32 _Value);
+   CLASS_DECL_AURA int get_errno();
+   CLASS_DECL_AURA void set_errno(int _Value);
 
 
 } // namespace aura

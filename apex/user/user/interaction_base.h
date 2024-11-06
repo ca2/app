@@ -115,8 +115,8 @@ namespace user
 
       bool _is_window() const override;
 
-      //virtual ::i32 get_window_long(i32 nIndex) const;
-      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
+      //virtual int get_window_long(i32 nIndex) const;
+      //virtual int set_window_long(i32 nIndex,int lValue);
 
       //virtual iptr get_window_long_ptr(i32 nIndex) const;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue);
@@ -295,18 +295,18 @@ namespace user
 
 
 
-      virtual bool is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf);
-      virtual bool is_parent(::user::element * puiIsParent);
-      virtual bool is_child(::user::element * puiIsChild);
-      virtual bool is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf);
+      virtual bool is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf) override;
+      virtual bool is_parent(::user::element * puiIsParent) override;
+      virtual bool is_child(::user::element * puiIsChild) override;
+      virtual bool is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf) override;
 
-      virtual bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf);
-      virtual bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf);
+      virtual bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf) override;
+      virtual bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf) override;
 
-      virtual bool is_ascendant_of(::user::element * puiIsDescendant, bool bIncludeSelf);
-      virtual bool is_parent_of(::user::element * puiIsChild);
-      virtual bool is_child_of(::user::element * puiIsParent);
-      virtual bool is_descendant_of(::user::element * puiIsAscendant, bool bIncludeSelf);
+      virtual bool is_ascendant_of(::user::element * puiIsDescendant, bool bIncludeSelf) override;
+      virtual bool is_parent_of(::user::element * puiIsChild) override;
+      virtual bool is_child_of(::user::element * puiIsParent) override;
+      virtual bool is_descendant_of(::user::element * puiIsAscendant, bool bIncludeSelf) override;
 
       atom GetDlgCtrlId() const override;
       atom SetDlgCtrlId(const ::atom & atom) override;

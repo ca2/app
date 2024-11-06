@@ -65,7 +65,7 @@ namespace aura
 
       void TermSystem() override;
 
-      virtual void on_finish_launching();
+      virtual void on_finish_launching() override;
 
 
 //#ifdef LINUX
@@ -92,20 +92,20 @@ namespace aura
       //void set_thread(itask_t itask, ::thread * pthread);
       //void unset_thread(itask_t itask, ::thread * pthread);
 
-      ::aura::estamira * estamira();
+      ::aura::estamira * estamira() override;
 
-      inline ::hardware::devices* hardware_devices() { return m_phardwaredevices; }
+       ::hardware::devices* hardware_devices() override;
 
-      virtual void defer_initialize_hardware_devices();
+      void defer_initialize_hardware_devices() override;
 
 
 
       //::aura::session* get_session();
       //::aura::node* node();
 
-      inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
-      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
-      virtual void create_gpu();
+       ::gpu::approach* get_gpu() override;
+       ::gpu::approach* gpu() override; 
+      void create_gpu() override;
 
       
       //virtual string install_get_platform() override;
@@ -113,8 +113,8 @@ namespace aura
       //virtual string install_get_version() override;
       //virtual void install_set_version(const ::string & pszVersion) override;
       //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
-      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
-      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
+      //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
+      //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
@@ -125,10 +125,10 @@ namespace aura
       //virtual string install_get_version() override;
       //virtual void install_set_version(const ::string & pszVersion) override;
       //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
-      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
-      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
+      //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
+      //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual ::pointer<::factory::factory>& node_factory() override;
+      virtual ::factory::factory * node_factory() override;
 
       virtual void process_init() override;
 
@@ -172,7 +172,7 @@ namespace aura
 
       //virtual bool initialize_application() override;
 
-      //virtual i32 exit_instance();
+      //virtual int exit_instance();
       //virtual bool destroy();
 
       virtual void destroy() override;
@@ -388,14 +388,14 @@ namespace aura
 
       //virtual void process_init();
 
-      virtual void initialize_draw2d();
+      virtual void initialize_draw2d() override;
          virtual void initialize_imaging();
       //virtual void initialize_write_text();
-      virtual ::pointer<::factory::factory>& draw2d_factory();
-      virtual ::string draw2d_get_default_implementation_name();
+      virtual ::factory::factory * draw2d_factory() override;
+      virtual ::string draw2d_get_default_implementation_name() override;
 
-      virtual ::pointer<::factory::factory>& imaging_factory();
-      virtual ::string imaging_get_default_implementation_name();
+      virtual ::factory::factory * imaging_factory() override;
+      virtual ::string imaging_get_default_implementation_name() override;
 
       virtual void init_task() override;
       virtual void term_task() override;
@@ -439,11 +439,11 @@ namespace aura
       inline ::atom atom(const property & prop);*/
 
 
-      //virtual i32 _001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args) override;
-      //virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override;
-      //virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine) override;
+      //virtual int _001OnDebugReport(int i1, const ::string & psz1,int i2, const ::string & psz2, const ::string & psz3,va_list args) override;
+      //virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override;
+      //virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override;
 
-      //virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine) override;
+      //virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override;
 
 
 
@@ -572,15 +572,15 @@ namespace aura
       //virtual void on_event(::u64 u, ::particle * pparticle) override;
 
 
-      virtual void on_initial_frame_position(::user::frame_interaction * pframe);
+      virtual void on_initial_frame_position(::user::frame_interaction * pframe) override;
 
-      virtual void on_graphics_ready();
+      virtual void on_graphics_ready() override;
 
       //virtual void process_machine_event_data(machine_event_data * pdata) override;
 
 
 
-      //virtual void __tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) const override;
+      //virtual void __tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) const override;
 
 
       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
@@ -609,7 +609,7 @@ namespace aura
       //virtual void term_system() override;
 
 
-      //virtual i32 main();
+      //virtual int main();
       ///virtual void InitApplication() override;
 
       //virtual void init() override;
@@ -650,7 +650,7 @@ namespace aura
 
 
 
-      //virtual i32 main();
+      //virtual int main();
 
       //virtual void on_allocation_error(const ::string& str, ::object* pobjectSometimes) override;
 
@@ -732,8 +732,8 @@ namespace aura
       //virtual void hist_hist(const ::string & psz) override;
 
 
-      virtual ::type_atom get_pane_tab_impact_type_info();
-      virtual ::type_atom get_simple_frame_window_type_info();
+      virtual ::type_atom get_pane_tab_impact_type_info() override;
+      virtual ::type_atom get_simple_frame_window_type_info() override;
       //virtual ::type_atom get_simple_child_frame_type_info();
 
       //virtual void on_start_find_applications_from_cache() override;
@@ -786,9 +786,9 @@ namespace aura
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void initialize_estamira();
+      virtual void initialize_estamira() override;
 
-      virtual void _001AddPacks(string_to_string& base64map, string& str);
+      virtual void _001AddPacks(string_to_string& base64map, string& str) override;
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 

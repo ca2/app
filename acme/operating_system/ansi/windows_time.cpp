@@ -140,7 +140,7 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 //#include <time.h>
 
 
-::i32 TIME_GetBias(void);
+int TIME_GetBias(void);
 
 
 /*#ifdef _WIN32
@@ -192,13 +192,13 @@ typedef struct _RTL_SYSTEM_TIME
 
 typedef struct _RTL_TIME_ZONE_INFORMATION
 {
-   ::i32 Bias;
+   int Bias;
    char StandardName[64];
    RTL_SYSTEM_TIME StandardDate;
-   ::i32 StandardBias;
+   int StandardBias;
    char DaylightName[64];
    RTL_SYSTEM_TIME DaylightDate;
-   ::i32 DaylightBias;
+   int DaylightBias;
 } RTL_TIME_ZONE_INFORMATION, *PRTL_TIME_ZONE_INFORMATION;
 
 
@@ -308,7 +308,7 @@ PTIME_FIELDS TimeFields)
       TimeFields->Year = (CSHORT) (years + 1525);
    }
    /* calculation of day of month is based on the wonderful
-    * sequence of ::i32( n * 30.6): it reproduces the
+    * sequence of int( n * 30.6): it reproduces the
     * 31-30-31-30-31-31 month lengths exactly for small n's */
    TimeFields->Day = (CSHORT) (yearday - (1959 * months) / 64);
    return;
@@ -391,11 +391,11 @@ PLARGE_INTEGER Time)
  * RETURNS
  *   The bias for the current timezone.
  */
-::i32 TIME_GetBias(void)
+int TIME_GetBias(void)
 {
    static time_t last_utc;
-   static ::i32 last_bias;
-   ::i32 ret;
+   static int last_bias;
+   int ret;
    time_t utc;
 
    utc = time( nullptr );
@@ -432,10 +432,10 @@ PLARGE_INTEGER Time)
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-::i32 RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
+int RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
       PLARGE_INTEGER SystemTime)
 {
-   ::i32 bias;
+   int bias;
 
 //xxx    informationf("(%point, %point_i32)\n", LocalTime, SystemTime);
 
@@ -460,7 +460,7 @@ PLARGE_INTEGER Time)
 NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
       PLARGE_INTEGER LocalTime )
 {
-   ::i32 bias;
+   int bias;
 
 //xxx    informationf("(%point, %point_i32)\n", SystemTime, LocalTime);
 
@@ -566,7 +566,7 @@ void RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 void RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
 {
    ::i64 time;
-   ::i32 rem;
+   int rem;
 
    time = Time->QuadPart / TICKSPERSEC;
    TimeFields->Millisecond = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
@@ -862,7 +862,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 //xxx    informationf("year_end: %s", ctime(&year_end));
 
    tm = gmtime(&year_start);
-   tzi->Bias = (::i32)(mktime(tm) - year_start) / 60;
+   tzi->Bias = (int)(mktime(tm) - year_start) / 60;
 //xxx    informationf("bias: %d\n", tzi->Bias);
 
    tmp = find_dst_change(year_start, year_end, &is_dst);

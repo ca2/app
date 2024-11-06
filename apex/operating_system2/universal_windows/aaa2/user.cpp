@@ -78,9 +78,9 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //
 //            ::winrt::Windows::UI::Input::PointerPoint ^ pointerPoint = ::winrt::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 //
-//            g_iMouseX = (::i32)pointerPoint->RawPosition.X;
+//            g_iMouseX = (int)pointerPoint->RawPosition.X;
 //
-//            g_iMouseY = (::i32)pointerPoint->RawPosition.Y;
+//            g_iMouseY = (int)pointerPoint->RawPosition.Y;
 //
 //         }
 //

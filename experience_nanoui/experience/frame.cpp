@@ -170,7 +170,7 @@ namespace experience_nanoui
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, ::u8 bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, unsigned char bAlpha)
    {
 
       pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));

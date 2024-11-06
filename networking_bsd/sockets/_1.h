@@ -121,7 +121,7 @@ in read operations - helps on ECOS */
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some psystem's will already have one or more of the type defined.
-typedef i32 SOCKET;
+typedef int SOCKET;
 //#define Errno errno
 //#define bsd_socket_error strerror
 
@@ -236,12 +236,12 @@ namespace sockets
 
 
 #define Errno WSAGetLastError()
-CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
+CLASS_DECL_APEX const char * bsd_socket_error(int x);
 
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
+CLASS_DECL_APEX const char * bsd_socket_error(int x);
 
 #define Errno get_last_error()
 

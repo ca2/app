@@ -34,7 +34,7 @@ namespace sockets
       //memory      m_memoryBody;
       //memory      m_memoryBuf;
       ::memory_file m_fileBody;
-      i32         m_iContentLength;
+      int         m_iContentLength;
       bool        m_bHeaders;
       bool        m_bDirect;
       string      m_strPasswordFile;

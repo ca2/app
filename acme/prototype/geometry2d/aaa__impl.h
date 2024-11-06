@@ -102,10 +102,10 @@
 //
 //
 //template <  >
-//inline ::i32 __conv<::i32>(const ::string & str)
+//inline int __conv<int>(const ::string & str)
 //{
 //
-//   return (::i32) ::atoi(str);
+//   return (int) ::atoi(str);
 //
 //}
 //
@@ -114,7 +114,7 @@
 //inline i64 __conv<i64>(const ::string & str)
 //{
 //
-//   return (::i32) ::atoi(str);
+//   return (int) ::atoi(str);
 //
 //}
 //
@@ -123,7 +123,7 @@
 //inline double __conv<double>(const ::string & str)
 //{
 //
-//   return (::i32) ::atoi(str);
+//   return (int) ::atoi(str);
 //
 //}
 //
@@ -138,7 +138,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<::i32>()
+//inline string __xmlpri<int>()
 //{
 //
 //   return "%" PRId32;

@@ -665,7 +665,7 @@ namespace platform
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      //virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
+      //virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
 
 
       virtual void app_set(string strPath, string strValue);
@@ -1175,7 +1175,7 @@ namespace platform
       //virtual void on_request(::create* pcreate) override;
 
       //for implementation
-      virtual bool on_idle(::i32 lCount); // return tr(ue if more idle processing
+      virtual bool on_idle(int lCount); // return tr(ue if more idle processing
       //virtual void process_window_procedure_exceptionconst ::exception& e, ::message::message* pmessage) override;
 
 

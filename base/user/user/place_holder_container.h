@@ -53,7 +53,7 @@ namespace user
 
       virtual place_holder_ptra place(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleCreate);
 
-      virtual i32 unplace(::user::interaction * pinteraction);
+      virtual int unplace(::user::interaction * pinteraction);
 
    };
 

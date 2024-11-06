@@ -52,10 +52,10 @@
 
 struct time
 {
-  u8 ti_min;
-  u8 ti_hour;
-  u8 ti_hund;
-  u8 ti_sec;
+  unsigned char ti_min;
+  unsigned char ti_hour;
+  unsigned char ti_hund;
+  unsigned char ti_sec;
 };
 
 //----------------------------------------------------------------------------

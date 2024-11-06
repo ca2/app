@@ -91,7 +91,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
    ASSERT(((p) == nullptr) || is_memory_segment_ok((p), sizeof(type), false))
 
 
-//using c_error_number = ::i32;
+//using c_error_number = int;
 
 //CLASS_DECL_ACME c_error_number c_runtime_error_check(c_error_number error);
 //CLASS_DECL_ACME void __clearerr_s(FILE *stream);

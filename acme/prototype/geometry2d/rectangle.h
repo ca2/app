@@ -1644,12 +1644,12 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 }
 
 //
-//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerator, ::i32 denominator);
+//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator);
 //CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //
 //
-//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, ::i32 numerator, ::i32 denominator);
+//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator);
 //CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >

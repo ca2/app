@@ -407,6 +407,7 @@ using exception_array = ::array < ::exception >;
 
 
 using particle_array = pointer_array < particle >;
+using subparticle_array = pointer_array < subparticle >;
 
 
 
@@ -500,7 +501,7 @@ using i16_array = numeric_array < i16 >;
 using i32_array = numeric_array < i32 >;
 using i64_array = numeric_array < i64 >;
 
-using u8_array = numeric_array < u8 >;
+using u8_array = numeric_array < unsigned char >;
 using u16_array = numeric_array < u16 >;
 using u32_array = numeric_array < u32 >;
 using u64_array = numeric_array < u64 >;
@@ -602,7 +603,7 @@ inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
 template < typename T >
-inline ::u8 u8_clip(const T & t) { return ((::u8)(((t) < (::u8)0) ? (::u8)0 : (((t) > (::u8)255) ? (::u8)255 : (::u8)t))); }
+inline unsigned char u8_clip(const T & t) { return ((unsigned char)(((t) < (unsigned char)0) ? (unsigned char)0 : (((t) > (unsigned char)255) ? (unsigned char)255 : (unsigned char)t))); }
 
 
 template < typename A, typename B >

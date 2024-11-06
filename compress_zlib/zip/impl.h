@@ -61,7 +61,7 @@ extern "C" {
 #if defined(STRICTZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void *) without cast */
-typedef struct TagzipFile__ { i32 unused; } zipFile__;
+typedef struct TagzipFile__ { int unused; } zipFile__;
 typedef zipFile__ *zipFile;
 #else
 typedef voidp zipFile;
@@ -111,7 +111,7 @@ typedef const char* zipcharpc;
 #define APPEND_STATUS_CREATEAFTER   (1)
 #define APPEND_STATUS_ADDINZIP      (2)
 
-extern zipFile CLASS_DECL_ACME zipOpen OF((const char *pathname, i32 append));
+extern zipFile CLASS_DECL_ACME zipOpen OF((const char *pathname, int append));
 /*
   create a zipfile.
      pathname contain on Windows XP a filename like "ca:\\zlib\\zlib113.zip" or on
@@ -132,11 +132,11 @@ extern zipFile CLASS_DECL_ACME zipOpen OF((const char *pathname, i32 append));
 */
 
 extern zipFile CLASS_DECL_ACME zipOpen2 OF((const char *pathname,
-      i32 append,
+      int append,
       zipcharpc* globalcomment,
       zlib_filefunc_def* pzlib_filefunc_def));
 
-extern i32 CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
+extern int CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
       const char* filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
@@ -144,8 +144,8 @@ extern i32 CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
       const void * extrafield_global,
       u32 size_extrafield_global,
       const char* comment,
-      i32 method,
-      i32 level));
+      int method,
+      int level));
 /*
   open a file in the ZIP for writing.
   filename : the filename in zip (if nullptr, '-' without quote will be used
@@ -160,7 +160,7 @@ extern i32 CLASS_DECL_ACME zipOpenNewFileInZip OF((zipFile file,
 */
 
 
-extern i32 CLASS_DECL_ACME zipOpenNewFileInZip2 OF((zipFile file,
+extern int CLASS_DECL_ACME zipOpenNewFileInZip2 OF((zipFile file,
       const char* filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
@@ -168,15 +168,15 @@ extern i32 CLASS_DECL_ACME zipOpenNewFileInZip2 OF((zipFile file,
       const void * extrafield_global,
       u32 size_extrafield_global,
       const char* comment,
-      i32 method,
-      i32 level,
-      i32 raw));
+      int method,
+      int level,
+      int raw));
 
 /*
   Same than zipOpenNewFileInZip, except if raw=1, we write raw file
  */
 
-extern i32 CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
+extern int CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
       const char* filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
@@ -184,12 +184,12 @@ extern i32 CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
       const void * extrafield_global,
       u32 size_extrafield_global,
       const char* comment,
-      i32 method,
-      i32 level,
-      i32 raw,
-      i32 windowBits,
-      i32 memLevel,
-      i32 strategy,
+      int method,
+      int level,
+      int raw,
+      int windowBits,
+      int memLevel,
+      int strategy,
       const char* password,
       u32  crcForCtypting));
 
@@ -201,20 +201,20 @@ extern i32 CLASS_DECL_ACME zipOpenNewFileInZip3 OF((zipFile file,
  */
 
 
-extern i32 CLASS_DECL_ACME zipWriteInFileInZip OF((zipFile file,
+extern int CLASS_DECL_ACME zipWriteInFileInZip OF((zipFile file,
       const void * buf,
       u32 len));
 /*
   write data in the zipfile
 */
 
-extern i32 CLASS_DECL_ACME zipCloseFileInZip OF((zipFile file));
+extern int CLASS_DECL_ACME zipCloseFileInZip OF((zipFile file));
 /*
   close the current file in the zipfile
 */
 
 
-extern i32 CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
+extern int CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
       uptr uncompressed_size,
       uptr crc32));
 /*
@@ -223,7 +223,7 @@ extern i32 CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
   uncompressed_size and crc32 are value for the uncompressed size_i32
 */
 
-extern i32 CLASS_DECL_ACME zipClose OF((zipFile file,
+extern int CLASS_DECL_ACME zipClose OF((zipFile file,
       const char* global_comment));
 /*
   close the zipfile

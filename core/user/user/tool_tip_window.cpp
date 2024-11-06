@@ -233,11 +233,11 @@ namespace user
       {
          prectangle->right() = m_point.x() - (m_point.x() - rectangleTool.left()) / 2;
 
-         prectangle->left() = (::i32) (prectangle->right() - size.cx() - m_sizeArrow.cx() - 4);
+         prectangle->left() = (int) (prectangle->right() - size.cx() - m_sizeArrow.cx() - 4);
 
          prectangle->bottom() = m_point.y() - (m_point.y() - rectangleTool.top()) / 2;
 
-         prectangle->top() = (::i32) (prectangle->bottom() - size.cy() - m_sizeArrow.cy() - 4);
+         prectangle->top() = (int) (prectangle->bottom() - size.cy() - m_sizeArrow.cy() - 4);
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
@@ -247,9 +247,9 @@ namespace user
 
          prectangle->bottom() = m_point.y() - (m_point.y() - rectangleTool.top()) / 2;
 
-         prectangle->right() = (::i32) (prectangle->left() + size.cx() + m_sizeArrow.cx() + 4);
+         prectangle->right() = (int) (prectangle->left() + size.cx() + m_sizeArrow.cx() + 4);
 
-         prectangle->top() = (::i32) (prectangle->bottom() - size.cy() - m_sizeArrow.cy() - 4);
+         prectangle->top() = (int) (prectangle->bottom() - size.cy() - m_sizeArrow.cy() - 4);
 
       }
       else
@@ -258,9 +258,9 @@ namespace user
 
          prectangle->top() = prectangle->bottom() + m_pointOffset.y();
 
-         prectangle->right() = (::i32)(prectangle->left() + size.cx() + m_sizeArrow.cx() + 4);
+         prectangle->right() = (int)(prectangle->left() + size.cx() + m_sizeArrow.cx() + 4);
 
-         prectangle->bottom() = (::i32) (prectangle->top() + size.cy() + m_sizeArrow.cy() + 4);
+         prectangle->bottom() = (int) (prectangle->top() + size.cy() + m_sizeArrow.cy() + 4);
 
       }
       return true;

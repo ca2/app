@@ -19,17 +19,17 @@ public:
 
 #elif defined(ANDROID)
 
-   ::i32              m_lMaxCount;
+   int              m_lMaxCount;
    sem_t *           m_psem;
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 
-   ::i32         m_lMaxCount;
+   int         m_lMaxCount;
    i32           m_hsync;
 
 #endif
 
-   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
+   semaphore(int lInitialCount = 1, int lMaxCount = 1, const char * pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
    ~semaphore() override;
 
 
@@ -39,7 +39,7 @@ public:
 //#endif
 
    void unlock() override;
-   void unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
+   void unlock(int lCount, int * prevCount = nullptr) override;
 
 
 };

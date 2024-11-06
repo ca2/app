@@ -28,7 +28,7 @@ template <  >
 inline iptr CompareElements<void *>(void * element1, void *  element2)
 {
 
-   return (u8 *)element2 - (u8 *)element1;
+   return (unsigned char *)element2 - (unsigned char *)element1;
 
 }
 

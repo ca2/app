@@ -870,7 +870,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
       
       if (!window_id) continue;
       
-      ::i32 iWindowId = -1;
+      int iWindowId = -1;
          
       CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
          
@@ -1127,7 +1127,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
       
       if (!window_id) continue;
       
-      ::i32 iWindowId = -1;
+      int iWindowId = -1;
       
       CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
       

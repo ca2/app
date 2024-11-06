@@ -191,7 +191,7 @@ public:
    inline millis& operator %= (const millis & millis) { m_i %= millis.m_i; return *this; }
 
 
-   inline millis operator % (::i32 i) const { return m_i % i; }
+   inline millis operator % (int i) const { return m_i % i; }
    inline millis operator % (::i64 i) const { return m_i % i; }
    inline millis operator % (const ::millis & millis) const { return m_i % millis.m_i; }
 
@@ -273,13 +273,13 @@ inline u32 __os(const ::millis & millis)
 
 }
 
-inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_i; }
+inline int __i32(const ::millis & millis) { return (int) millis.m_i; }
 
 
 inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_i; }
 
 
-inline ::u8 as_byte(const ::millis & millis) { return (::u8) minimummax(millis.m_i, 0, 255); }
+inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) minimummax(millis.m_i, 0, 255); }
 
 
 inline millis __tick(double d) { return (::i64) d; }

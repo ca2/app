@@ -5,7 +5,7 @@ enum enum_id : ::uptr
 {
 
 
-   id_invalid = -1,
+   id_invalid = (::uptr) -1,
 
 
    id_none = 0,
@@ -40,8 +40,8 @@ enum enum_id : ::uptr
    id_text,
    id_text_selection_begin,
    id_text_selection_end,
-   id_visible  ,
-
+   id_visible,
+   id_default,
 
 
 

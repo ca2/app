@@ -62,7 +62,7 @@ static inline memsize u32_size(u32 v)
 * \return
 *      Number of bytes written to `out`.
 */
-static inline memsize u32_pack(u32 value, u8 *out)
+static inline memsize u32_pack(u32 value, unsigned char *out)
 {
    unsigned rv = 0;
 
@@ -128,7 +128,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    }
 
-   u8 masking_key[4];
+   unsigned char masking_key[4];
 
    if (useMask)
    {
@@ -141,7 +141,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    m.set_size(length);
 
-   u8 * frame = (::u8*)m.get_data();
+   unsigned char * frame = (unsigned char*)m.get_data();
 
    frame[0] = 0x80 | fin;
 
@@ -827,7 +827,7 @@ namespace networking_bsd
             // From
             // https://github.com/dhbaird/easywsclient/blob/master/easywsclient.cpp
 
-            u8 * data = (u8 *)m_memResponse.get_data(); // peek, but don't consume
+            unsigned char * data = (unsigned char *)m_memResponse.get_data(); // peek, but don't consume
 
 
 #if DEEP_DATA_DEBUG
@@ -955,10 +955,10 @@ namespace networking_bsd
             if (m_mask)
             {
 
-               m_maskingkey[0] = ((u8)data[m_i + 0]);
-               m_maskingkey[1] = ((u8)data[m_i + 1]);
-               m_maskingkey[2] = ((u8)data[m_i + 2]);
-               m_maskingkey[3] = ((u8)data[m_i + 3]);
+               m_maskingkey[0] = ((unsigned char)data[m_i + 0]);
+               m_maskingkey[1] = ((unsigned char)data[m_i + 1]);
+               m_maskingkey[2] = ((unsigned char)data[m_i + 2]);
+               m_maskingkey[3] = ((unsigned char)data[m_i + 3]);
 
             }
 
@@ -1083,7 +1083,7 @@ namespace networking_bsd
    }
 
 
-   void websocket_client::on_websocket_data(u8 * pdata, int len)
+   void websocket_client::on_websocket_data(unsigned char * pdata, int len)
    {
 
       m_durationLastPong.Now();

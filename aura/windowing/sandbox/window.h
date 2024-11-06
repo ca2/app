@@ -77,15 +77,15 @@ namespace sandbox_windowing
       virtual bool is_iconic() override;
       virtual bool is_window_visible() override;
       bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay) override;
-      //virtual iptr get_window_long_ptr(i32 nIndex);
-      //virtual iptr set_window_long_ptr(i32 nIndex, iptr l);
+      //virtual iptr get_window_long_ptr(int nIndex);
+      //virtual iptr set_window_long_ptr(int nIndex, iptr l);
       virtual bool client_to_screen(::point_i32* ppoint) override;
 
       virtual bool screen_to_client(::point_i32* ppoint) override;
 
 
-      //virtual bool set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
-      //virtual bool _set_window_pos(class::zorder zorder, i32 x, i32 y, i32 cx, i32 cy,::u32 nFlags);
+      //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,::u32 nFlags);
+      //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,::u32 nFlags);
 
 
       virtual bool is_destroying() override;
@@ -120,7 +120,7 @@ namespace sandbox_windowing
 
 
 
-      //virtual Atom get_window_long_atom(i32 nIndex);
+      //virtual Atom get_window_long_atom(int nIndex);
       //virtual void mapped_net_state_raw(bool add, windowing_android_WINDOW_MEMBER int iScreen, Atom state1, Atom state2);
       //virtual void unmapped_net_state_raw( windowing_android_WINDOW_MEMBER ...);
       //virtual bool x11_get_window_rect(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
@@ -151,9 +151,9 @@ namespace sandbox_windowing
       void set_tool_window(bool bSet) override;
 
 
-      //bool set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
+      //bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
 
-      bool _set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0) override;
+      bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0) override;
 
 
       //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);
@@ -197,7 +197,7 @@ namespace sandbox_windowing
       //virtual ::e_status x11_post_message(MESSAGE & msg);
       //virtual ::e_status post_ui_message(const MESSAGE & message);
       ////virtual bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie);
-      ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+      ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, int x, int y, int cx, int cy, ::u32 nFlags);
       //virtual ::e_status window_rectangle(windowing_android_WINDOW_MEMBER ::rectangle_i32 * prectangle);
       //virtual ::e_status this->rectangle(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
       ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::rectangle_i32 & rectangle);

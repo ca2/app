@@ -67,10 +67,10 @@ namespace image
    public:
 
 
-      i32 m_iLimitCount;
+      int m_iLimitCount;
 
 
-      image_descriptor_map(i32 iLimitCount = 500)
+      image_descriptor_map(int iLimitCount = 500)
       {
 
          m_iLimitCount = iLimitCount;

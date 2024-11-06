@@ -66,7 +66,7 @@ namespace platform
       char **                                                  m_args = nullptr;
       char ** m_envp = nullptr;
       ::platform::system* m_psystem;
-      //::i32 m_iExitCode;
+      //int m_iExitCode;
 
 #ifdef WINDOWS
 
@@ -250,7 +250,7 @@ namespace platform
 
 #else
 
-      void initialize(int argc, platform_char ** args, platform_char ** envp);
+      void initialize_system(int argc, platform_char ** args, platform_char ** envp);
 
 #endif
 

@@ -23,9 +23,9 @@
 void scroll_x(::rectangle_i32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
 {
 
-   ::i32 w = ::width(rectangle);
+   int w = ::width(rectangle);
 
-   rectangleTarget.left() = (::i32) (rectangle.left() + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left() = (int) (rectangle.left() + (rectangle.width() - w) * dRateX);
 
    rectangleTarget.right() = rectangleTarget.left() + w;
 
@@ -487,7 +487,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
+         unsigned char bAlphaP1 = (unsigned char) (255.0 * (1.0 - dRate));
 
          ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 

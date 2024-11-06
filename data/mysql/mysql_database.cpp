@@ -179,7 +179,7 @@ namespace mysql
 
             /*
 
-            for(i32 i = 0; i < m_resultptra.get_count(); i++)
+            for(int i = 0; i < m_resultptra.get_count(); i++)
             {
                if(m_resultptra(i)->m_bAutoDelete)
                {

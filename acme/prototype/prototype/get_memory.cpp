@@ -25,7 +25,7 @@ get_memory::get_memory(const block & block) :
 
 // VOID * NOT const!!
 get_memory::get_memory(/* NOTTTT const!!!!! */ void * p, memsize s) : 
-   m_block((::u8 *)p, ((::u8 *)p) + s), m_pmemory(nullptr)
+   m_block((unsigned char *)p, ((unsigned char *)p) + s), m_pmemory(nullptr)
 { 
 
 }
@@ -159,7 +159,7 @@ bool get_memory::get(const block & block)
    return get(block.data(), (memsize)block.size());
 }
 
-u8 * get_memory::data() const
+unsigned char * get_memory::data() const
 {
    if (::is_set(m_pmemory))
    {
@@ -167,7 +167,7 @@ u8 * get_memory::data() const
    }
    else
    {
-      return (u8 *)m_block.data();
+      return (unsigned char *)m_block.data();
    }
 }
 

@@ -54,7 +54,7 @@ namespace net
          m_strDomain = m_strDomain.substr(1);
       m_strTop = m_strDomain;
       {
-         for (i32 i = 0; i < m_strDomain.length(); i++)
+         for (int i = 0; i < m_strDomain.length(); i++)
          {
             if (m_strDomain[i] == '.')
             {

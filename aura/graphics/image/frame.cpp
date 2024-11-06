@@ -63,7 +63,7 @@ namespace image
 
          //::color::color crBack = pframea->m_colorBack;
 
-         //::u8 bAlpha = color32_u8_opacity(crBack);
+         //unsigned char bAlpha = color32_u8_opacity(crBack);
 
          //if (bAlpha == 0)
          //{

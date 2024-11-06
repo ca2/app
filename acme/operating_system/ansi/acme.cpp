@@ -35,10 +35,10 @@ namespace acme
 //#else
 
 
-   void acme::initialize(int argc, char * argv[], char * envp[])
+   void acme::initialize_system(int argc, char * argv[], char * envp[])
    {
 
-      m_pplatform->initialize(argc, argv, envp);
+///      m_pplatform->initialize_system(argc, argv, envp);
 
    }
 

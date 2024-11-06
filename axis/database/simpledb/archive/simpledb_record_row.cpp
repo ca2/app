@@ -58,7 +58,7 @@ namespace simpledb
                {
                   if (item.m_iSize > 0)
                   {
-                     ::u8 uchLen;
+                     unsigned char uchLen;
                      stream >> uchLen;
                      string str;
                      stream.read(str.get_buffer(uchLen), uchLen);

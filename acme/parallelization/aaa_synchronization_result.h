@@ -1,10 +1,10 @@
 #pragma once
 
 
-inline ::i32 signaled_index(::enum_status estatus)
+inline int signaled_index(::enum_status estatus)
 {
 
-   return (estatus >= signaled_base && estatus < signaled_end) ? ((::i32)estatus - (::i32)signaled_base) : -1;
+   return (estatus >= signaled_base && estatus < signaled_end) ? ((int)estatus - (int)signaled_base) : -1;
 
 }
 
@@ -17,10 +17,10 @@ inline bool signaled(::enum_status estatus)
 }
 
 
-inline ::i32 abandoned_index(::enum_status estatus)
+inline int abandoned_index(::enum_status estatus)
 {
 
-   return (estatus >= abandoned_base && estatus < abandoned_end) ? ((::i32)estatus - (::i32)abandoned_base) : -1;
+   return (estatus >= abandoned_base && estatus < abandoned_end) ? ((int)estatus - (int)abandoned_base) : -1;
 
 }
 

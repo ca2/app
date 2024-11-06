@@ -368,7 +368,7 @@ namespace hotplugin
 
    }
 
-   void plugin::get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, double dRate, i32 iProfile)
+   void plugin::get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, i32 iProfile)
    {
       double dH = dRate; // blue ==> red => green
       double dL;
@@ -514,12 +514,12 @@ namespace hotplugin
          dG      = (dCMin + dG * dCAdd);
          dB      = (dCMin + dB * dCAdd);
 
-         /*uchR      = (::u8) ftol(dR * 255.0);
-         uchG      = (::u8) ftol(dG * 255.0);
-         uchB      = (::u8) ftol(dB * 255.0);*/
-         uchR      = (::u8) (dR * 255.0);
-         uchG      = (::u8) (dG * 255.0);
-         uchB      = (::u8) (dB * 255.0);
+         /*uchR      = (unsigned char) ftol(dR * 255.0);
+         uchG      = (unsigned char) ftol(dG * 255.0);
+         uchB      = (unsigned char) ftol(dB * 255.0);*/
+         uchR      = (unsigned char) (dR * 255.0);
+         uchG      = (unsigned char) (dG * 255.0);
+         uchB      = (unsigned char) (dB * 255.0);
 
       }
 
@@ -561,7 +561,7 @@ namespace hotplugin
    {
    }
 
-   /*void plugin::free_memory(u8 ** ppuchMemory)
+   /*void plugin::free_memory(unsigned char ** ppuchMemory)
    {
       host::free_memory(ppuchMemory);
    }*/
@@ -774,9 +774,9 @@ namespace hotplugin
 
                   auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(dir::appdata() / "time" / "aura");
+pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
          //i32 iOpen;
 

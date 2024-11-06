@@ -12,7 +12,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 
 
    ::logic::boolean                       m_bResource;
-   ::logic::boolean                       m_bCrypto;
+   //::logic::boolean                       m_bCrypto;
    ::logic::boolean                       m_bLocalization;
    ::logic::boolean                       m_bNetworking;
    //::logic::boolean                       m_bConsole;

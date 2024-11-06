@@ -287,7 +287,7 @@ namespace nano2d
 		int fontId;
    
    
-   ::i32                         m_iSavedContext;
+   int                         m_iSavedContext;
 
    string                        m_strFontFace;
    float                         m_fFontSize;

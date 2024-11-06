@@ -92,7 +92,7 @@ CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_chara
 
    }
 
-   return (::i32) l;
+   return (int) l;
 
 #endif
 
@@ -1539,7 +1539,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //#if defined(WINDOWS) || defined(__APPLE__)
 //
-//   for (const ::u8 * p = (const ::u8 *) src; srclen >= findlen;  p++, srclen--)
+//   for (const unsigned char * p = (const unsigned char *) src; srclen >= findlen;  p++, srclen--)
 //   {
 //
 //      if (!memcmp(p, find, findlen))

@@ -18,14 +18,14 @@ namespace platform
    {
 
 
-
-#ifndef WINDOWS
-
-
-      ::pointer<::exception_translator>                 m_pexceptiontranslator;
-
-
-#endif
+//
+//#ifndef WINDOWS
+//
+//
+//      ::pointer<::exception_translator>                 m_pexceptiontranslator;
+//
+//
+//#endif
 
       ::pointer < ::file::watcher >                         m_pfilewatcher;
       //::pointer<::dump_context>                           m_pdumpcontext;
@@ -130,7 +130,7 @@ namespace platform
       virtual ::input::input * input();
 
 
-      virtual ::pointer<::factory::factory>& node_factory();
+      virtual ::factory::factory * node_factory();
 
       // virtual void process_init();
       //
@@ -161,6 +161,9 @@ namespace platform
       //
       // void destroy();
       //
+      
+      virtual void initialize_crypto();
+      
 
       virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
 
@@ -175,10 +178,10 @@ namespace platform
       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       //virtual string get_locale_schema_dir();
 
-      virtual ::operating_system::department                        &  operating_system();
+      virtual ::operating_system::department * operating_system();
 
-      virtual class ::machine_event_central                &  machine_event_central();
-      virtual inline ::parallelization::threading           *  threading();
+      virtual class ::machine_event_central * machine_event_central();
+      virtual ::parallelization::threading           *  threading();
 
 
       virtual ::networking::networking * networking();
@@ -341,7 +344,7 @@ namespace platform
 
 
 
-      virtual ::apex::history& hist();
+      virtual ::apex::history * hist();
 
 
 

@@ -142,8 +142,8 @@ void point_array_base < NUMBER >::rotate(double dAngle)
    {
       x = this->element_at(i).x();
       y = this->element_at(i).y();
-      this->element_at(i).x() = (::i32)(x * dCos - y * dSin);
-      this->element_at(i).y() = (::i32)(x * dSin + y * dCos);
+      this->element_at(i).x() = (int)(x * dCos - y * dSin);
+      this->element_at(i).y() = (int)(x * dSin + y * dCos);
    }
 
 }
@@ -176,8 +176,8 @@ void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
       this->element_at(i) -= pointCenter;
       x = this->element_at(i).x();
       y = this->element_at(i).y();
-      this->element_at(i).x() = (::i32)(x * dCos - y * dSin);
-      this->element_at(i).y() = (::i32)(x * dSin + y * dCos);
+      this->element_at(i).x() = (int)(x * dCos - y * dSin);
+      this->element_at(i).y() = (int)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 

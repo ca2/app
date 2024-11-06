@@ -1029,7 +1029,7 @@ extern "C" {
    // the second string interpreted as big-endian utf16... useful for strings from next func
 
    STBTT_DEF const char * stbtt_GetFontNameString(const stbtt_fontinfo * font, int * length, int platformID, int encodingID, int languageID, int nameID);
-   // returns the string (which may be big-endian double ::u8, e.g. for unicode)
+   // returns the string (which may be big-endian double unsigned char, e.g. for unicode)
    // and puts the length in bytes in *length.
    //
    // some of the values for the IDs are below; for more see the truetype spec:
@@ -1497,7 +1497,7 @@ STBTT_DEF int stbtt_FindGlyphIndex(const stbtt_fontinfo * info, int unicode_code
    stbtt_uint32 index_map = info->index_map;
 
    stbtt_uint16 format = ttUSHORT(data + index_map + 0);
-   if (format == 0) { // apple ::u8 encoding
+   if (format == 0) { // apple unsigned char encoding
       stbtt_int32 bytes = ttUSHORT(data + index_map + 2);
       if (unicode_codepoint < bytes - 6)
          return ttBYTE(data + index_map + 6 + unicode_codepoint);
@@ -1511,7 +1511,7 @@ STBTT_DEF int stbtt_FindGlyphIndex(const stbtt_fontinfo * info, int unicode_code
       return 0;
    }
    else if (format == 2) {
-      STBTT_assert(0); // @TODO: high-::u8 mapping for japanese/chinese/korean
+      STBTT_assert(0); // @TODO: high-unsigned char mapping for japanese/chinese/korean
       return 0;
    }
    else if (format == 4) { // standard mapping for windows fonts: binary search collection of ranges
@@ -2180,7 +2180,7 @@ static int stbtt__run_charstring(const stbtt_fontinfo * info, int glyph_index, s
          stbtt__csctx_close_shape(c);
          return 1;
 
-      case 0x0C: { // two-::u8 escape
+      case 0x0C: { // two-unsigned char escape
          float dx1, dx2, dx3, dx4, dx5, dx6, dy1, dy2, dy3, dy4, dy5, dy6;
          float Δx, Δy;
          int b1 = stbtt__buf_get8(&b);
@@ -4824,7 +4824,7 @@ static int stbtt_CompareUTF8toUTF16_bigendian_internal(char * s1, int len1, char
    return len1 == stbtt__CompareUTF8toUTF16_bigendian_prefix((stbtt_uint8 *)s1, len1, (stbtt_uint8 *)s2, len2);
 }
 
-// returns results in whatever encoding you request... but note that 2-::u8 encodings
+// returns results in whatever encoding you request... but note that 2-unsigned char encodings
 // will be BIG-ENDIAN... use stbtt_CompareUTF8toUTF16_bigendian() to compare
 STBTT_DEF const char * stbtt_GetFontNameString(const stbtt_fontinfo * font, int * length, int platformID, int encodingID, int languageID, int nameID)
 {

@@ -110,12 +110,12 @@ namespace image
    }
 
 
-   i32 image_context::image_integer(const ::file::path & path)
+   int image_context::image_integer(const ::file::path & path)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());
 
-      ::i32 iImage = -1;
+      int iImage = -1;
 
       if (!m_mapPathInt.lookup(path, iImage))
       {
@@ -135,7 +135,7 @@ namespace image
    }
 
 
-   i32 image_context::create_image_integer(int w, int h, const image32_t * pimage32, int iScan)
+   int image_context::create_image_integer(int w, int h, const image32_t * pimage32, int iScan)
    {
 
       if (w <= 0 || h <= 0)
@@ -175,7 +175,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::integer_image(i32 iImage)
+   ::image::image_pointer image_context::integer_image(int iImage)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());

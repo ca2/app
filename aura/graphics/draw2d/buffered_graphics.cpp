@@ -36,7 +36,7 @@ namespace draw2d
       nullptr,
       rectangle.width() * sizeof(::color32_t));
 
-      /*#define argb(a, rectangle,g,b)          ((::color::color)(((::u8)(rectangle)|((::u16)((::u8)(g))<<8))|(((u32)(::u8)(b))<<16)|((u32)(::u8)(a))<<24)))
+      /*#define argb(a, rectangle,g,b)          ((::color::color)(((unsigned char)(rectangle)|((::u16)((unsigned char)(g))<<8))|(((u32)(unsigned char)(b))<<16)|((u32)(unsigned char)(a))<<24)))
          set(m_bitmapBlend);
          fill_rectangle(rectangle, argb(0, 0, 0, 0));*/
 

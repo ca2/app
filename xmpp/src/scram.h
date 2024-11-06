@@ -21,16 +21,16 @@
 
 #include "sha1.h"
 
-void SCRAM_SHA1_ClientKey(const u8 *password, size_t len,
-                          const u8 *salt, size_t salt_len, u32 i,
-                          u8 key[SHA1_DIGEST_SIZE]);
+void SCRAM_SHA1_ClientKey(const unsigned char *password, size_t len,
+                          const unsigned char *salt, size_t salt_len, u32 i,
+                          unsigned char key[SHA1_DIGEST_SIZE]);
 
-void SCRAM_SHA1_ClientSignature(const u8 ClientKey[SHA1_DIGEST_SIZE],
-                                const u8 *AuthMessage, size_t len,
-                                u8 sign[SHA1_DIGEST_SIZE]);
+void SCRAM_SHA1_ClientSignature(const unsigned char ClientKey[SHA1_DIGEST_SIZE],
+                                const unsigned char *AuthMessage, size_t len,
+                                unsigned char sign[SHA1_DIGEST_SIZE]);
 
-void SCRAM_SHA1_ClientProof(const u8 ClientKey[SHA1_DIGEST_SIZE],
-                            const u8 ClientSignature[SHA1_DIGEST_SIZE],
-                            u8 proof[SHA1_DIGEST_SIZE]);
+void SCRAM_SHA1_ClientProof(const unsigned char ClientKey[SHA1_DIGEST_SIZE],
+                            const unsigned char ClientSignature[SHA1_DIGEST_SIZE],
+                            unsigned char proof[SHA1_DIGEST_SIZE]);
 
 #endif /* __LIBSTROPHE_SCRAM_H__ */

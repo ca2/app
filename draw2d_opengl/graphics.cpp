@@ -1002,7 +1002,7 @@ namespace draw2d_opengl
    //   //      int area = cx * cy;
 
    //   //      color32_t * pc = pimage32;
-   //   //      ::u8 * pA = &((::u8 *) pimage32)[3];
+   //   //      unsigned char * pA = &((unsigned char *) pimage32)[3];
 
    //   //      for(int i = 0; i < area; i++)
    //   //      {
@@ -1023,7 +1023,7 @@ namespace draw2d_opengl
    //   //      {
 
    //   //         pc = pimage32;
-   //   //         pA = &((::u8 *)pimage32)[3];
+   //   //         pA = &((unsigned char *)pimage32)[3];
 
    //   //         for(int i = 0; i < area; i++)
    //   //         {
@@ -1041,7 +1041,7 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
+   //   //         plusplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (unsigned char *) pimage32);
 
    //   //         bOk = m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, plusplus::UnitPixel) == plusplus::Ok;
 
@@ -1553,7 +1553,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::poly_polygon(const ::point_f64* lpPoints, const ::i32 * lpPolyCounts,::collection::count nCount)
+   void graphics::poly_polygon(const ::point_f64* lpPoints, const int * lpPolyCounts,::collection::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2430,7 +2430,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, ::collection::count nCount)
+   void graphics::poly_polyline(const ::point_f64* lpPoints, const int * lpPolyPoints, ::collection::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2635,7 +2635,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::collection::count nCount)
+   //void graphics::GetPath(::point_f64 * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2733,7 +2733,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::AddMetaFileComment(::u32 nDataSize, const ::u8* pCommentData)
+   //void graphics::AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GdiComment(m_hdc, nDataSize, pCommentData) != false;
@@ -3655,7 +3655,7 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
    // Out-of-line routines
 
-   ::i32 graphics::StartDoc(const ::scoped_string & lpszDocName)
+   int graphics::StartDoc(const ::scoped_string & lpszDocName)
    {
       //DOCINFO di;
       //memory_set(&di, 0, sizeof(DOCINFO));
@@ -3666,7 +3666,7 @@ namespace draw2d_opengl
    }
 
    
-   ::i32 graphics::save_graphics_context()
+   int graphics::save_graphics_context()
    {
 //      return m_pgraphics->Save();
       return 0;
@@ -3674,7 +3674,7 @@ namespace draw2d_opengl
    }
 
    
-   void graphics::restore_graphics_context(::i32 iSavedContext)
+   void graphics::restore_graphics_context(int iSavedContext)
    {
 
       //return m_pgraphics->Restore(nSavedDC) != false;
@@ -3693,7 +3693,7 @@ namespace draw2d_opengl
 
    }
 
-   ::draw2d::object* graphics::SelectStockObject(::i32 nIndex)
+   ::draw2d::object* graphics::SelectStockObject(int nIndex)
    {
       /*      HGDIOBJ hObject = ::GetStockObject(nIndex);
             HGDIOBJ hOldObj = nullptr;
@@ -3771,7 +3771,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::SelectObject(::draw2d::region* pRgn)
+   int graphics::SelectObject(::draw2d::region* pRgn)
    {
       int nRetVal = GDI_ERROR;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
@@ -3790,7 +3790,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::SetPolyFillMode(::i32 nPolyFillMode)
+   int graphics::SetPolyFillMode(int nPolyFillMode)
    {
       int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
@@ -3802,7 +3802,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::SetROP2(::i32 nDrawMode)
+   int graphics::SetROP2(int nDrawMode)
    {
       int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
@@ -3814,7 +3814,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::set_interpolation_mode(::i32 nStretchMode)
+   int graphics::set_interpolation_mode(int nStretchMode)
    {
 
       //if(m_pgraphics == nullptr)
@@ -3849,7 +3849,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::SetGraphicsMode(::i32 iMode)
+   int graphics::SetGraphicsMode(int iMode)
    {
    
       int nRetVal = 0;
@@ -3906,7 +3906,7 @@ namespace draw2d_opengl
    }
 
 
-   ::i32 graphics::SetMapMode(::i32 nMapMode)
+   int graphics::SetMapMode(int nMapMode)
    {
       int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
@@ -3996,7 +3996,7 @@ namespace draw2d_opengl
    }
 
 
-   point_i32 graphics::set_origin(::i32 x, ::i32 y)
+   point_i32 graphics::set_origin(int x, int y)
    {
 
       return ::draw2d::graphics::set_origin(x, y);
@@ -4004,7 +4004,7 @@ namespace draw2d_opengl
    }
 
 
-   point_i32 graphics::offset_origin(::i32 nWidth, ::i32 nHeight)
+   point_i32 graphics::offset_origin(int nWidth, int nHeight)
    {
 
       return ::draw2d::graphics::offset_origin(nWidth, nHeight);
@@ -4013,7 +4013,7 @@ namespace draw2d_opengl
    }
 
 
-   //size_i32 graphics::set_context_extents(::i32 x, ::i32 y)
+   //size_i32 graphics::set_context_extents(int x, int y)
    //{
 
    //   return ::draw2d::graphics::set_context_extents(x, y);
@@ -4395,7 +4395,7 @@ namespace draw2d_opengl
    //   return nResult;
    //}
 
-   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::collection::count nCount)
+   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const unsigned char* lpTypes, ::collection::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -4966,7 +4966,7 @@ namespace draw2d_opengl
 //      //// Set size_i32 to load glyphs as
 //      //FT_Set_Pixel_Sizes(face, 0, 48);
 //
-//      //// Disable ::u8-alignment restriction
+//      //// Disable unsigned char-alignment restriction
 //      //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //
 //      //// Load first 128 characters of ASCII set

@@ -23,7 +23,7 @@ namespace draw2d
    void api::draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
       ::point_f64 *                    ppoints,
-      i32                           iCount,
+      int                           iCount,
       double                        dRateX,
       ::point_f64 *                    ppointOffset)
    {
@@ -36,7 +36,7 @@ namespace draw2d
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
 
-      pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
+      pgraphics->scale_extents((int)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -53,7 +53,7 @@ namespace draw2d
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
    ::point_f64 *             ppoints,
-   i32                  iCount,
+   int                  iCount,
    double               dRateX,
    ::point_f64 *               ppointOffset)
    {
@@ -66,7 +66,7 @@ namespace draw2d
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
 
-      pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
+      pgraphics->scale_extents((int)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -97,12 +97,12 @@ namespace draw2d
 
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
-      pgraphics->scale_extents((i32)(dRateX * 1000.0), 1, 1, 1);
+      pgraphics->scale_extents((int)(dRateX * 1000.0), 1, 1, 1);
 
-      for (i32 i = 0; i < pglyph->get_size(); i++)
+      for (int i = 0; i < pglyph->get_size(); i++)
 
       {
-         pgraphics->poly_bezier(pglyph->element_at(i).data(), (i32)pglyph->element_at(i).get_size());
+         pgraphics->poly_bezier(pglyph->element_at(i).data(), (int)pglyph->element_at(i).get_size());
 
       }
 
@@ -118,15 +118,15 @@ namespace draw2d
    double                           dHeight,
    const char *                     psz,
    int *                            piCharsPositions,
-   i32                              iCharsPositions,
-   i32                              iOffset)
+   int                              iCharsPositions,
+   int                              iOffset)
    {
 
       ::rectangle_i32 clipRect;
 
 
 
-      //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
+      //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
       //      point_i32 viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
@@ -163,16 +163,16 @@ namespace draw2d
    void api::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    const char *   psz,
-   i32            iLeft,
-   i32            iTop,
-   i32            iWidth,
+   int            iLeft,
+   int            iTop,
+   int            iWidth,
    ::color::color       crText,
    ::color::color       crOutline,
-   i32            iLen)
+   int            iLen)
    {
       ::rectangle_i32 clipRect;
 
-      //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
+      //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
       //      point_i32 viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
@@ -228,8 +228,8 @@ namespace draw2d
    double                        dHeight,
    const char *                  psz,
    int *                         piCharsPositions,
-   i32                           iCharsPositions,
-   i32                           iOffset)
+   int                           iCharsPositions,
+   int                           iOffset)
    {
       __UNREFERENCED_PARAMETER(dRateX);
       __UNREFERENCED_PARAMETER(dHeight);
@@ -244,7 +244,7 @@ namespace draw2d
 
 //      string str;
 //      str = utf8_to_unicode(psz);
-//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left(), pcrect.top(), str, (i32)str.length());
+//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left(), pcrect.top(), str, (int)str.length());
 
    }
 

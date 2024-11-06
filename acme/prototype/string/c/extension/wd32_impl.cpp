@@ -839,7 +839,7 @@ CLASS_DECL_ACME i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_chara
       
    }
 
-   return (::i32) l;
+   return (int) l;
    
 #endif
 }

@@ -48,10 +48,10 @@ public:
    ::matter *            m_pobject;
    const char * const         m_pszFunction;
    const char * const         m_pszFile;
-   const i32                  m_iLine;
+   const int                  m_iLine;
 
 
-   trace_logger(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::particle * pparticle) :
+   trace_logger(const ::string & pszFunction, const ::string & pszFile, int iLine, ::particle * pparticle) :
       m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pparticle)
    {
 
@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(e_log elog, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void __cdecl operator()(e_log elog, const ::string & strContext, int iError, const ::string & strMessage) const
    {
 
       ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -102,7 +102,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(::particle * pparticle, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void __cdecl operator()(::particle * pparticle, const ::string & strContext, int iError, const ::string & strMessage) const
    {
 
       ::__tracef(pparticle, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -122,7 +122,7 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const ::string & pszFunction, const ::string & pszFile, i32 iLine, ::particle * pparticle, enum_trace_level elevel) :
+   trace_logger_level(const ::string & pszFunction, const ::string & pszFile, int iLine, ::particle * pparticle, enum_trace_level elevel) :
       trace_logger(pszFunction, pszFile, iLine, pparticle),
       m_elevel(elevel)
    {
@@ -172,7 +172,7 @@ public:
    }
 
 
-   inline void operator()(e_log elog, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void operator()(e_log elog, const ::string & strContext, int iError, const ::string & strMessage) const
    {
 
       if (iError == 0)
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void operator()(::particle * pparticle, const ::string & strContext, i32 iError, const ::string & strMessage) const
+   inline void operator()(::particle * pparticle, const ::string & strContext, int iError, const ::string & strMessage) const
    {
 
       ::__tracef(pparticle, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -250,7 +250,7 @@ namespace aura
 {
 
 
-   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,i32 nLine,u32 dwCategory,u32 nLevel, const ::string & pszFmt,va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,u32 dwCategory,u32 nLevel, const ::string & pszFmt,va_list args);
 
 
    namespace trace
@@ -327,7 +327,7 @@ namespace aura
 
          }
 
-         void TraceV(const ::string &pszFileName,i32 nLine,e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFmt,va_list args) const;
+         void TraceV(const ::string &pszFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFmt,va_list args) const;
 
 
          /*bool LoadSettings(const ::string & pszFileName = nullptr) const

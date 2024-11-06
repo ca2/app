@@ -73,7 +73,7 @@ namespace acme
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = aaa_primitive_new ::u8[dwResSize];
+         LPVOID lpdata = aaa_primitive_new unsigned char[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,

@@ -115,7 +115,7 @@ namespace platform
 
       //virtual void application_main();
 
-      virtual ::i32 application_main();
+      virtual int application_main();
 
 
       //void on_set_platform() override;

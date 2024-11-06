@@ -600,12 +600,12 @@ public:
    pointer < T > & sp_at(::collection::index nIndex)
    {
 
-      if (nIndex < 0 || nIndex >= this->size())
-      {
-
-         return *((pointer < T > *)nullptr);
-
-      }
+//      if (nIndex < 0 || nIndex >= this->size())
+//      {
+//
+//         return *((pointer < T > *)nullptr);
+//
+//      }
 
       return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
 

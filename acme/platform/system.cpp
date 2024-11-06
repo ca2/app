@@ -29,6 +29,7 @@
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
+#include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
@@ -179,7 +180,7 @@ namespace platform
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iComputed = (int)(((::u8 *)pAll - (::u8 *)pType) + iAll + iAddUp);
+      int iComputed = (int)(((unsigned char *)pAll - (unsigned char *)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
@@ -214,7 +215,7 @@ namespace platform
    system::~system()
    {
 
-      print_line("acme::system::~system() (start)");
+      print_line("platform::system::~system() (start)");
 
       trace_category_static_term();
 
@@ -227,7 +228,7 @@ namespace platform
       // m_pbredsystem = nullptr;
       // m_pcoresystem = nullptr;
 
-      print_line("acme::system::~system() (end)");
+      print_line("platform::system::~system() (end)");
 
       //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
       on_system_before_destroy();
@@ -530,6 +531,10 @@ namespace platform
 
    void system::application_main(::platform::application * papplication)
    {
+      
+      
+      m_pdynamiclibrary->initialize(papplication);
+      
 
       create_os_node(papplication);
 
@@ -736,6 +741,13 @@ namespace platform
 
    ::crypto::crypto* system::crypto()
    {
+      
+      if(!m_pcrypto)
+      {
+         
+         initialize_crypto();
+         
+      }
 
       return m_pcrypto;
 
@@ -777,7 +789,7 @@ namespace platform
 
       //information() <<"::platform::system create_os_node";
 
-      auto& pfactory = node_factory();
+      auto pfactory = node_factory();
 
       if (!pfactory)
       {
@@ -846,7 +858,7 @@ namespace platform
    }
 
 
-   ::pointer<::factory::factory>& system::node_factory()
+   ::factory::factory * system::node_factory()
    {
 
       auto& pfactory = factory("acme", OPERATING_SYSTEM_NAME);
@@ -928,7 +940,7 @@ namespace platform
 
        }*/
 
-      //      m_pdirectorysystem = pacmedirectory;
+      //      m_pdirectorysystem = pdirectorysystem;
 
       //    m_pdirectorysystem->increment_reference_count();
 
@@ -1508,16 +1520,18 @@ namespace platform
    }
 
 
-   pointer<::platform::node>& system::node()
+   ::platform::node * system::node()
    {
 
       return m_pnode;
+      
    }
 
-   time& system::file_listing_cache_time()
+
+   class ::time * system::file_listing_cache_time()
    {
 
-      return m_timeFileListingCache;
+      return &m_timeFileListingCache;
    }
 
 
@@ -1527,17 +1541,17 @@ namespace platform
    }
 
 
-   string_array& system::http_download_array()
+   string_array * system::http_download_array()
    {
 
-      return m_straHttpDownloading;
+      return &m_straHttpDownloading;
    }
 
 
-   string_array& system::http_exists_array()
+   string_array * system::http_exists_array()
    {
 
-      return m_straHttpExists;
+      return &m_straHttpExists;
    }
 
 particle* system::matter_mutex()
@@ -2426,7 +2440,7 @@ particle* system::matter_mutex()
 
       stra.erase_empty();
 
-      information() << "acme::system::get_public_internet_domain_extension_list";
+      information() << "platform::system::get_public_internet_domain_extension_list";
 
       for (auto& str: stra)
       {
@@ -2999,7 +3013,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::pointer<::factory::factory>& system::folder_factory()
+   ::factory::factory * system::folder_factory()
    {
 
       if (m_pfactoryFolder)
@@ -4493,52 +4507,43 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
+void system_id_update(::platform::system * psystem, ::i64 iUpdate, ::i64 iParam)
 {
-
-   auto psystem = (::platform::system *)pSystem;
 
    psystem->system_id_update(iUpdate, iParam);
 
 }
 
 
-void node_will_finish_launching(void* pSystem);
+void node_will_finish_launching(::platform::system * psystem);
 
 
-void system_on_open_untitled_file(void* pSystem);
+void system_on_open_untitled_file(::platform::system * psystem);
 
 
-void system_on_open_file(void* pSystem, const char* pszFile);
+void system_on_open_file(::platform::system * psystem, const char* pszFile);
 
 
-void node_will_finish_launching(void* pSystem)
+void node_will_finish_launching(::platform::system * psystem)
 {
-
-   auto psystem = (::platform::system *)pSystem;
 
    psystem->node_will_finish_launching();
 
 }
 
 
-void system_on_open_untitled_file(void* pSystem)
+void system_on_open_untitled_file(::platform::system * psystem)
 {
-
-   auto psystem = (::platform::system *)pSystem;
 
    psystem->on_open_untitled_file();
 
 }
 
 
-void system_on_open_file(void* pSystem, const char* pszFile)
+void system_on_open_file(::platform::system * psystem, const char* pszFile)
 {
 
-   auto psystem = (::platform::system *)pSystem;
-
    psystem->on_open_file(pszFile);
-
 
 }
 

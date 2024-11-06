@@ -19,11 +19,11 @@ public:
 
    
    template < primitive_integral INTEGRAL >
-   inline bool is_set(INTEGRAL bit) const { return (m_natural >> (::u8) bit) & 1; }
+   inline bool is_set(INTEGRAL bit) const { return (m_natural >> (unsigned char) bit) & 1; }
    template < primitive_integral INTEGRAL >
-   inline void set(INTEGRAL bit) { m_natural = m_natural | (NATURAL)(1ull << (::u8)bit); }
+   inline void set(INTEGRAL bit) { m_natural = m_natural | (NATURAL)(1ull << (unsigned char)bit); }
    template < primitive_integral INTEGRAL >
-   inline void unset(INTEGRAL bit) { m_natural = m_natural & (NATURAL)(~(1ull << (::u8)bit)); }
+   inline void unset(INTEGRAL bit) { m_natural = m_natural & (NATURAL)(~(1ull << (unsigned char)bit)); }
    template < primitive_integral INTEGRAL >
    inline void set(INTEGRAL bit, bool bSet) { if (bSet) set(bit); else unset(bit); }
 

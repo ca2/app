@@ -68,7 +68,7 @@
 //////   if (!estatus)
 //////   {
 //////    
-//////      ::i32 iErrorStatus = estatus.error_status();
+//////      int iErrorStatus = estatus.error_status();
 //////
 //////      return iErrorStatus;
 //////
@@ -93,7 +93,7 @@
 //
 //   //return iExitCode;
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

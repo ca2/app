@@ -37,7 +37,7 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               auto pointDst = ::point_f64((::i32)left(), (::i32)top());
+               auto pointDst = ::point_f64((int)left(), (int)top());
 
                auto sizeDst = m_pimage->size();
 

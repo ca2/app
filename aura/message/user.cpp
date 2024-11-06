@@ -665,10 +665,10 @@ namespace message
    }
 
 
-   i32 notify::get_ctrl_id()
+   int notify::get_ctrl_id()
    {
 
-      return (i32)m_wparam;
+      return (int)m_wparam;
 
    }
 

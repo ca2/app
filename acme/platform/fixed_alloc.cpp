@@ -49,8 +49,8 @@ void fixed_alloc_no_sync::NewBlock()
    // chain them into _free list
    node* pNode = (node*)pNewBlock->data();
    // _free in reverse order to make it easier to debug
-   (::u8*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-   for (i32 i = m_nBlockSize-1; i >= 0; i--, (::u8*&)pNode -= nAllocSize)
+   (unsigned char*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
+   for (i32 i = m_nBlockSize-1; i >= 0; i--, (unsigned char*&)pNode -= nAllocSize)
    {
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;

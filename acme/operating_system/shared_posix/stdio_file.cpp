@@ -302,7 +302,7 @@ int stdio_file::get_u8()
 
    }
 
-   return (::u8)iChar;
+   return (unsigned char)iChar;
 
 }
 
@@ -323,15 +323,15 @@ int stdio_file::peek_byte()
 
    ::ungetc(iChar, m_pfile);
 
-   return (::u8)iChar;
+   return (unsigned char)iChar;
 
 }
 
 
-void stdio_file::put_byte_back(::u8 u8)
+void stdio_file::put_byte_back(unsigned char unsigned char)
 {
 
-   ::ungetc(u8, m_pfile);
+   ::ungetc(unsigned char, m_pfile);
 
 }
 
@@ -732,7 +732,7 @@ memsize file_system::as_memory(const ::file::path & pathParam, void * p, memsize
 
    auto iReadAtMostByteCount = s;
 
-   ::u8 * psz = (::u8 *)p;
+   unsigned char * psz = (unsigned char *)p;
 
    ::size_t iPos = 0;
 
@@ -844,12 +844,12 @@ void file_system::as_memory(memory_base & memory, const ::file::path & pathParam
 void file_system::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
 {
 
-   auto pacmedirectory = m_pdirectorysystem;
+   auto pdirectorysystem = m_pdirectorysystem;
 
-   pacmedirectory->create(::file_path_folder(pathFile));
+   pdirectorysystem->create(::file_path_folder(pathFile));
 
 
-   if (!pacmedirectory->is(::file_path_folder(pathFile)))
+   if (!pdirectorysystem->is(::file_path_folder(pathFile)))
    {
 
       throw ::exception(error_path_not_found);

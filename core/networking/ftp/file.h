@@ -41,7 +41,7 @@ namespace ftp
 
       virtual void OnBytesReceived(const memory & vBuffer, long lReceivedBytes) override;
 
-      virtual void OnPreBytesSend(::u8* pszBuffer, memsize bufferSize, memsize& bytesToSend) override;
+      virtual void OnPreBytesSend(unsigned char* pszBuffer, memsize bufferSize, memsize& bytesToSend) override;
 
    };
 

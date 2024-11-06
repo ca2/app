@@ -364,7 +364,7 @@ namespace linux
 
             key1.QueryValue("DefaultConnectionSettings", mem);
 
-            bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
+            bool bAutoDetect = (((unsigned char *) mem.get_data())[8] & 0x08) != 0;
 
             return bAutoDetect;
       */

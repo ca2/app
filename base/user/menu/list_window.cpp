@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   const i32 g_base_menu_indent = 11;
+   const int g_base_menu_indent = 11;
 
 
    menu_list_window::menu_list_window()
@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   void menu_list_window::calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight)
+   void menu_list_window::calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight)
    {
 
       if (!m_bMenuOk)
@@ -112,7 +112,7 @@ namespace user
 
       }
 
-      for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
+      for(int i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
       {
 
          ::menu::item * pitem = pitemParent->m_pmenuitema->element_at(i);
@@ -142,10 +142,10 @@ namespace user
             size.cx() += 12 + 16;
 
          if(size.cy() > iMaxHeight)
-            iMaxHeight = (i32) size.cy();
+            iMaxHeight = (int) size.cy();
 
          if(size.cx() > iMaxWidth)
-            iMaxWidth = (i32)size.cx();
+            iMaxWidth = (int)size.cx();
 
          calc_size(pitem, pgraphics, iMaxWidth, iMaxHeight);
 
@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(::menu::item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
+   void menu_list_window::layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -171,12 +171,12 @@ namespace user
 
       }
 
-      for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
+      for(int i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
       {
 
          ::menu::item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prectangle->bottom() = (::i32) (prectangle->top() + m_dItemHeight * 1.2 - 2);
+         prectangle->bottom() = (int) (prectangle->top() + m_dItemHeight * 1.2 - 2);
 
          if(prectangle->bottom() > rectangleBound.bottom())
          {
@@ -185,7 +185,7 @@ namespace user
 
             prectangle->top() = rectangleBound.top();
 
-            prectangle->bottom() = (::i32) (prectangle->top() + m_dItemHeight - 2);
+            prectangle->bottom() = (int) (prectangle->top() + m_dItemHeight - 2);
 
          }
 
@@ -260,9 +260,9 @@ namespace user
 
       const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
-      i32 iMaxHeight = size.cy();
+      int iMaxHeight = size.cy();
 
-      i32 iMaxWidth = size.cx();
+      int iMaxWidth = size.cx();
 
       m_dHeaderHeight = size.cy();
 
@@ -272,9 +272,9 @@ namespace user
 
       m_size.cx() = iMaxWidth * 7 / 4;
 
-      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
+      m_size.cy() = (int) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
 
-      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
+      ::rectangle_i32 rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
 
       string str;
 

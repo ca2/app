@@ -207,9 +207,9 @@
 //
 //               auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->create(::file::path(strName).folder());
+//pdirectorysystem->create(::file::path(strName).folder());
 //
 //      ::file_system()->put_contents(strName, strName);
 //
@@ -367,9 +367,9 @@
 //
 //               auto psystem = system();
 //
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->create(path.folder());
+//pdirectorysystem->create(path.folder());
 //
 //      ::file_system()->put_contents(path, m_pszName);
 //
@@ -1663,9 +1663,9 @@ mutex::~mutex()
 //
 //   path /= lpszName;
 //
-//   auto pacmedirectory = pmatter->directory_system();
+//   auto pdirectorysystem = pmatter->directory_system();
 //
-//   pacmedirectory->create(path.folder());
+//   pdirectorysystem->create(path.folder());
 //
 //   int iFd = open(path, O_RDWR, S_IRWXU);
 //

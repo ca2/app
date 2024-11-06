@@ -159,7 +159,7 @@ namespace user
 
       bool on_click(::item * pitem) override;
 
-      ::i32 auto_hide_threshold_height() override;
+      int auto_hide_threshold_height() override;
 
       virtual ::user::interaction_array place_holders();
       virtual tab_pane * place_holder_pane(::user::place_holder * pplaceholder);

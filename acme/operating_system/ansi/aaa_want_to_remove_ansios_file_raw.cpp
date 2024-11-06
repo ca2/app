@@ -223,9 +223,9 @@ bool file_set_line_dup(const ::file::path & path, ::collection::index iLine, con
 
             auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(path.folder());
+pdirectorysystem->create(path.folder());
 
    FILE * file = FILE_open(path, "a+", _SH_DENYWR);
 

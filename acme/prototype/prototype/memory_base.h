@@ -54,7 +54,7 @@ public:
 
    bool                    m_bOwner;
    bool                    m_bReadOnly;
-   ::u8 *                  m_beginStorage;
+   unsigned char *                  m_beginStorage;
    memsize                 m_sizeStorage;
    double                  m_dAllocationRateUp;
    ::u32                   m_dwAllocationAddUp;
@@ -94,11 +94,11 @@ public:
 
    }
 
-   ::u8 * storage_begin() { return m_beginStorage; }
-   const ::u8 * storage_begin() const { return m_beginStorage; }
+   unsigned char * storage_begin() { return m_beginStorage; }
+   const unsigned char * storage_begin() const { return m_beginStorage; }
    memsize storage_size() const { return maximum(0,m_sizeStorage); }
-   ::u8 * storage_end() { return storage_begin() + storage_size(); }
-   const ::u8 * storage_end() const { return storage_begin() + storage_size(); }
+   unsigned char * storage_end() { return storage_begin() + storage_size(); }
+   const unsigned char * storage_end() const { return storage_begin() + storage_size(); }
    memsize offset() const { return m_begin - m_beginStorage; }
    memsize max_offset() const { return storage_size(); }
 
@@ -117,7 +117,7 @@ public:
 
    typedef bstring_manager manager;
 
-   typedef ::u8 value_type;
+   typedef unsigned char value_type;
 
 
    //MEMORY      m_memory;
@@ -164,7 +164,7 @@ public:
    //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 
    virtual memory detach_as_primitive_memory();
-   //virtual ::u8 * detach_virtual_memory();
+   //virtual unsigned char * detach_virtual_memory();
    //virtual HGLOBAL detach_shared_memory();
 
    //bool is_enabled() const;
@@ -176,9 +176,9 @@ public:
 
    inline void truncate(memsize sizeSmaller) { if (sizeSmaller < size()) return set_size(sizeSmaller); }
 
-   virtual ::u8 * impl_alloc(memsize dwAllocation);
-   virtual ::u8 * impl_realloc(void * pdata,memsize dwAllocation);
-   virtual void impl_free(::u8 * pdata);
+   virtual unsigned char * impl_alloc(memsize dwAllocation);
+   virtual unsigned char * impl_realloc(void * pdata,memsize dwAllocation);
+   virtual void impl_free(unsigned char * pdata);
 
    virtual void reserve(memsize dwNewLength);
 
@@ -209,26 +209,26 @@ public:
    ::particle_pointer clone() override;
 
 
-//   inline ::u8 * storage_begin() { return m_memory.storage_begin(); }
-//   inline const ::u8 * storage_begin() const { return m_memory.storage_begin(); }
-//   inline ::u8 * storage_end() { return m_memory.storage_end(); }
-//   inline const ::u8 * storage_end() const { return m_memory.storage_end(); }
+//   inline unsigned char * storage_begin() { return m_memory.storage_begin(); }
+//   inline const unsigned char * storage_begin() const { return m_memory.storage_begin(); }
+//   inline unsigned char * storage_end() { return m_memory.storage_end(); }
+//   inline const unsigned char * storage_end() const { return m_memory.storage_end(); }
 //   inline memsize storage_size() const { return m_memory.storage_size(); }
 
 
    //inline memsize size() const { return m_memory.size(); }
-   //inline const ::u8 * data() const { return m_memory.data(); }
-   //inline ::u8 * data() { return m_memory.data(); }
+   //inline const unsigned char * data() const { return m_memory.data(); }
+   //inline unsigned char * data() { return m_memory.data(); }
 
    //inline memsize          size() const;
-   //inline ::u8 *           data() const;
-   //inline ::u8 *           data();
+   //inline unsigned char *           data() const;
+   //inline unsigned char *           data();
 
 //
-//   inline const ::u8 * begin() const { return data();  }
-//   inline ::u8 * begin() { return data(); }
-//   inline const ::u8 * end() const { return m_memory.end(); }
-//   inline ::u8 * end() { return m_memory.end(); }
+//   inline const unsigned char * begin() const { return data();  }
+//   inline unsigned char * begin() { return data(); }
+//   inline const unsigned char * end() const { return m_memory.end(); }
+//   inline unsigned char * end() { return m_memory.end(); }
 
    //inline const char * c_str() const { return (const char*)data(); }
    //inline char * sz() { return (char*)data(); }
@@ -240,11 +240,11 @@ public:
    inline bool is_empty() const { return MEMORY::is_empty(); }
    inline bool has_data() const { return this->size() > 0; }
 
-   inline ::u8 operator [] (::collection::index i) const { return data()[i]; }
-   inline ::u8 & operator [] (::collection::index i) { return data()[i]; }
+   inline unsigned char operator [] (::collection::index i) const { return data()[i]; }
+   inline unsigned char & operator [] (::collection::index i) { return data()[i]; }
 
-   inline operator const ::u8 * () const { return data(); }
-   inline operator ::u8 * () { return data(); }
+   inline operator const unsigned char * () const { return data(); }
+   inline operator unsigned char * () { return data(); }
 
    inline operator const void * () const { return data(); }
    inline operator void * () { return data(); }
@@ -281,7 +281,7 @@ public:
    void append_from_string(const ::scoped_string & scopedstr);
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
-   void append_byte(::u8 b){ append(&b, 1);}
+   void append_byte(unsigned char b){ append(&b, 1);}
    //::string as_string(memsize iStart = 0, memsize uiSize = -1) const;
    virtual string get_string() const;
    virtual string get_string(memsize iStart, memsize uiSize = -1) const;
@@ -292,7 +292,7 @@ public:
    void copy_from(const memory_base * pstorage);
    void copy_from(const void * pdata, memsize s);
    void copy_to(void * pdata, memsize s) const;
-   void set(::u8 b,memsize iStart = 0,memsize uiSize = -1);
+   void set(unsigned char b,memsize iStart = 0,memsize uiSize = -1);
    void zero(memsize iStart = 0, memsize uiSize = -1);
 
    
@@ -306,11 +306,11 @@ public:
    void append(const void * pdata, memsize iCount);
    void append(memsize iCount, uchar uch);
    void append(const memory_base & memory, memsize iStart = 0, memsize iCount = -1);
-   void append(::u8 b);
+   void append(unsigned char b);
 
    void clear();
 
-   void splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartDst = 0, memsize iCountDst = 0);
+   void splice(const unsigned char * pbMemory, memsize iCountSrc, memsize iStartDst = 0, memsize iCountDst = 0);
    void splice(const memory_base & memory, memsize iStartDst = 0, memsize iCountDst = 0, memsize iStartSrc = 0, memsize iCountSrc = -1);
 
    void move_and_grow(memsize offset);
@@ -350,15 +350,15 @@ public:
    inline void set_char_at_grow(strsize iChar, char ch);
 
 
-   ::u8 * find(const ::block& block, ::collection::index iStart = 0) const;
+   unsigned char * find(const ::block& block, ::collection::index iStart = 0) const;
    ::collection::index find_index(const ::block& block, ::collection::index iStart = 0) const;
    ::collection::index find_index(char ch, ::collection::index iStart = 0) const;
-   ::u8* rear_find(const ::block& block, ::collection::index iStart = 0) const;
+   unsigned char* rear_find(const ::block& block, ::collection::index iStart = 0) const;
    ::collection::index reverse_find_index(const ::block& block, ::collection::index iStart = 0) const;
-   ::u8* reverse_find_byte_not_in_block(const ::block& block, ::collection::index iStart = 0) const;
+   unsigned char* reverse_find_byte_not_in_block(const ::block& block, ::collection::index iStart = 0) const;
    ::collection::index reverse_find_index_of_byte_not_in_block(const ::block& block, ::collection::index iStart = 0) const;
 
-   ::u8 * find_line_prefix(const ::block& blockPrefix, ::collection::index iStart = 0);
+   unsigned char * find_line_prefix(const ::block& blockPrefix, ::collection::index iStart = 0);
    ::collection::index find_line_prefix_index(const ::block& blockPrefix, ::collection::index iStart = 0);
    void patch_line_suffix(const ::block & blockPrefix, const ::block& blockSuffix, ::collection::index iStart = 0);
 
@@ -391,27 +391,27 @@ public:
 };
 
 
-//inline ::u8 * memory_base::internal_get_data() const
+//inline unsigned char * memory_base::internal_get_data() const
 //{
-//   return (::u8 *) m_memory.begin();
+//   return (unsigned char *) m_memory.begin();
 //}
 //inline memsize memory_base::size() const
 //{
 //   return size();
 //}
-//inline ::u8 * memory_base::data() const
+//inline unsigned char * memory_base::data() const
 //{
-//   return (::u8*)m_memory.m_pbegin;
+//   return (unsigned char*)m_memory.m_pbegin;
 //}
-//inline ::u8 * memory_base::data()
+//inline unsigned char * memory_base::data()
 //{
-//   return (::u8*)m_memory.m_pbegin;
+//   return (unsigned char*)m_memory.m_pbegin;
 //}
-//inline ::u8 * memory_base::data() const
+//inline unsigned char * memory_base::data() const
 //{
 //   return data();
 //}
-//inline ::u8 * memory_base::data()
+//inline unsigned char * memory_base::data()
 //{
 //   return data();
 //}
@@ -435,11 +435,11 @@ public:
 //}
 
 
-//inline memory_base::operator const u8 *() const
+//inline memory_base::operator const unsigned char *() const
 //{
 //   return this->data();
 //}
-//inline memory_base::operator u8 *()
+//inline memory_base::operator unsigned char *()
 //{
 //   return this->data();
 //}

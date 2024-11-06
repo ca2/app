@@ -112,7 +112,7 @@ namespace url
    }
 
 
-   void connect_part::set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort, ::logic::boolean booleanSecure)
+   void connect_part::set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort, ::logic::boolean booleanSecure)
    {
 
       m_strProtocol = scopedstrProtocol;

@@ -39,13 +39,13 @@
 extern "C" {
 #endif
 
-typedef voidpf (ZCALLBACK *open_file_func) OF((voidpf opaque, const char* filename, i32 mode));
+typedef voidpf (ZCALLBACK *open_file_func) OF((voidpf opaque, const char* filename, int mode));
 typedef uptr  (ZCALLBACK *read_file_func) OF((voidpf opaque, voidpf stream, void * buf, uptr size));
 typedef uptr  (ZCALLBACK *write_file_func) OF((voidpf opaque, voidpf stream, const void * buf, uptr size));
 typedef long   (ZCALLBACK *tell_file_func) OF((voidpf opaque, voidpf stream));
-typedef long   (ZCALLBACK *seek_file_func) OF((voidpf opaque, voidpf stream, uptr offset, i32 origin));
-typedef i32    (ZCALLBACK *close_file_func) OF((voidpf opaque, voidpf stream));
-typedef i32    (ZCALLBACK *testerror_file_func) OF((voidpf opaque, voidpf stream));
+typedef long   (ZCALLBACK *seek_file_func) OF((voidpf opaque, voidpf stream, uptr offset, int origin));
+typedef int    (ZCALLBACK *close_file_func) OF((voidpf opaque, voidpf stream));
+typedef int    (ZCALLBACK *testerror_file_func) OF((voidpf opaque, voidpf stream));
 
 typedef struct zlib_filefunc_def_s
 {

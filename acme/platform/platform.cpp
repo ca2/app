@@ -310,7 +310,7 @@ namespace platform
 #else
 
 
-   void platform::initialize(int argc, platform_char ** args, platform_char ** envp)
+   void platform::initialize_system(int argc, platform_char ** args, platform_char ** envp)
    {
 
       m_argc = argc;

@@ -123,29 +123,29 @@ namespace geo
 
             //file()->to_array(m_straCity,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "weather-cit.bin");
+   //pdirectorysystem->system() / "weather-cit.bin");
             //file()->to_array(m_straCityLo,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "weather-cil.bin");
+   //pdirectorysystem->system() / "weather-cil.bin");
             //file()->to_array(m_iaIds,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "weather-ids.bin");
+   //pdirectorysystem->system() / "weather-ids.bin");
             //file()->to_array(m_daLon,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "weather-lon.bin");
+   //pdirectorysystem->system() / "weather-lon.bin");
             //file()->to_array(m_daLat,          auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "weather-lat.bin");
+   //pdirectorysystem->system() / "weather-lat.bin");
 
 
             bOk = m_straCityLo.get_size() == m_straCity.get_size()

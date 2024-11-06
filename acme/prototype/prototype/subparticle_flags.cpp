@@ -3,6 +3,7 @@
 
 void quantum::set_finishing_flag()
 {
+   
    set_flag(e_flag_finishing);
 
    ::string strType(typeid(*this).name());

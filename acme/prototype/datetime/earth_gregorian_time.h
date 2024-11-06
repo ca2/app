@@ -87,7 +87,7 @@ namespace earth
 
    };
 
-   constexpr int32_t is_leap_year(::i32 year)
+   constexpr int32_t is_leap_year(int year)
    {
       if (year % 400 == 0)
          return 1;
@@ -99,21 +99,21 @@ namespace earth
    }
 
 
-   constexpr ::i32 days_from_0(::i32 year)
+   constexpr int days_from_0(int year)
    {
       year--;
       return 365 * year + (year / 400) - (year / 100) + (year / 4);
    }
 
 
-   constexpr ::i32 days_from_1970(::i32 year)
+   constexpr int days_from_1970(int year)
    {
       const auto days_from_0_to_1970 = days_from_0(1970);
       return days_from_0(year) - days_from_0_to_1970;
    }
 
 
-   CLASS_DECL_ACME::i32 days_from_1jan(::i32 year, ::i32 month, ::i32 day);
+   CLASS_DECL_ACMEint days_from_1jan(int year, int month, int day);
 
 
 

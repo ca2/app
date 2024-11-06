@@ -46,7 +46,7 @@ namespace draw2d_opengl
       if(m_bHasPointInternal)
       {
 
-         //return point_f64((::i32) m_pointInternal.X, (::i32) m_pointInternal.Y);
+         //return point_f64((int) m_pointInternal.X, (int) m_pointInternal.Y);
 
          return point_f64(0, 0);
 

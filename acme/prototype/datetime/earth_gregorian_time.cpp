@@ -12,7 +12,7 @@ namespace earth
 {
 
 
-   inline int32_t days_from_1jan(::i32 year, ::i32 month, ::i32 day)
+   inline int32_t days_from_1jan(int year, int month, int day)
    {
       static const int32_t days[2][12] =
       {

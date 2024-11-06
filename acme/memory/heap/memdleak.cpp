@@ -273,7 +273,7 @@
 //   if (nAllocSize > pblock->m_size)
 //   {
 //
-//      zero(&((::u8*)pblock)[pblock->m_size], nAllocSize - pblock->m_size);
+//      zero(&((unsigned char*)pblock)[pblock->m_size], nAllocSize - pblock->m_size);
 //
 //   }
 //   //pblock->m_iBlockUse = nBlockUse;
@@ -509,11 +509,11 @@
 //
 //   }
 //
-//   ::u8 blockuse = pheapmemory->m_blockuse;
+//   unsigned char blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   ::u8 align = pheapmemory->m_align;
+//   unsigned char align = pheapmemory->m_align;
 //
 //   void* p = heap_memory_base_get(pmemory);
 //
@@ -922,9 +922,9 @@
 //   information(sz);
 //   informationf(" memory leaks.");
 //
-//   auto pacmedirectory = this->platform()->directory_system();
+//   auto pdirectorysystem = this->platform()->directory_system();
 //
-//   this->platform()->file_system()->put_contents(pacmedirectory->system() / "m.html", get_mem_info_report1());
+//   this->platform()->file_system()->put_contents(pdirectorysystem->system() / "m.html", get_mem_info_report1());
 //
 //}
 //

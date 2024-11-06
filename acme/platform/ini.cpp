@@ -88,9 +88,9 @@ namespace handle
 
    //   auto preader = Ctx(pparticle).file()->get_reader(         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->localconfig() / "this.ini");
+//pdirectorysystem->localconfig() / "this.ini");
 
    //   if (preader)
    //   {

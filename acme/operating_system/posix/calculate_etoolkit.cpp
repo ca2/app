@@ -21,7 +21,9 @@ namespace windowing
    ::windowing::enum_toolkit calculate_etoolkit()
    {
 
-#if defined(WINDOWS_DESKTOP)
+#if defined(MACOS)
+      return ::windowing::e_toolkit_appkit;
+#elif defined(WINDOWS_DESKTOP)
       return ::windowing::e_toolkit_win32;
 #elif defined(HAS_KDE5)
       return ::windowing::e_toolkit_kde5;

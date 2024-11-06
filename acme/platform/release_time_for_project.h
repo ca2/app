@@ -6,12 +6,12 @@ struct release_time_for_project
 {
 
    const char* m_pszStatic;
-   ::i32 m_iYear;
-   ::i32 m_iMonth;
-   ::i32 m_iDay;
-   ::i32 m_iHour;
-   ::i32 m_iMinute;
-   ::i32 m_iSecond;
+   int m_iYear;
+   int m_iMonth;
+   int m_iDay;
+   int m_iHour;
+   int m_iMinute;
+   int m_iSecond;
 
 
 };

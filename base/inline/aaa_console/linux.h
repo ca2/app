@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
    }
 
-   ::i32 iErrorStatus = estatus.error_status();
+   int iErrorStatus = estatus.error_status();
 
    psystem->inline_term();
 

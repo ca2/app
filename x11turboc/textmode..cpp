@@ -352,7 +352,7 @@ InitializeTranslatedChar (void)
 #define short i16
 #define int i16
 #define unsigned u16
-#define long i32
+#define long int
 #endif
 };
 
@@ -361,7 +361,7 @@ InitializeTranslatedChar (void)
 void
 textmode (int newmode)
 {
-  i32 Rows, Columns;
+  int Rows, Columns;
   // Parse the current and desired modes.
   if (ConioInitialized)
     {

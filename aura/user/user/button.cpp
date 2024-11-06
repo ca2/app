@@ -358,10 +358,10 @@ namespace user
          auto sizeControl = get_preferred_size(pgraphics);
 
          //::rectangle_i32 rectangle;
-         //rectangle.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
-         //rectangle.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
-         //rectangle.right() = (::i32)(rectangle.left() + sizeFitting.cx());
-         //rectangle.bottom() = (::i32)(rectangle.top() + sizeFitting.cy());
+         //rectangle.left() = (int)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
+         //rectangle.top() = (int)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
+         //rectangle.right() = (int)(rectangle.left() + sizeFitting.cx());
+         //rectangle.bottom() = (int)(rectangle.top() + sizeFitting.cy());
          //if (rectangle != m_rectangleText)
          //{
          //   m_rectangleText = rectangle;
@@ -478,13 +478,13 @@ namespace user
 
       auto sizeFitting = get_fitting_size(pgraphics);
 
-      rectangleText.left() = (::i32)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
+      rectangleText.left() = (int)(rectangleX.left() + (rectangleX.width() - sizeFitting.cx()) / 2);
 
-      rectangleText.top() = (::i32)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
+      rectangleText.top() = (int)(rectangleX.top() + (rectangleX.height() - sizeFitting.cy()) / 2);
 
-      rectangleText.right() = (::i32)(rectangleText.left() + sizeFitting.cx());
+      rectangleText.right() = (int)(rectangleText.left() + sizeFitting.cx());
 
-      rectangleText.bottom() = (::i32)(rectangleText.top() + sizeFitting.cy());
+      rectangleText.bottom() = (int)(rectangleText.top() + sizeFitting.cy());
 
       //::rectangle_i32 rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
@@ -966,9 +966,9 @@ namespace user
 
          double dMin = minimum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right() = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right() = (int) (pimage->width() * dMin);
 
-         rectangleAspect.bottom() = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom() = (int) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
@@ -1049,9 +1049,9 @@ namespace user
 
                double dMin = minimum(minimum(dW, dH), 1.0);
 
-               rectangleAspect.right() = (::i32)(pimage->width() * dMin);
+               rectangleAspect.right() = (int)(pimage->width() * dMin);
 
-               rectangleAspect.bottom() = (::i32)(pimage->height() * dMin);
+               rectangleAspect.bottom() = (int)(pimage->height() * dMin);
 
                rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
 
@@ -1159,8 +1159,8 @@ namespace user
       pgraphics->fill_rectangle(rectangle,color32 & ::opacity(200));
       rectangle.deflate(1,1,1,1);
 
-      i32 x1 = rectangle.left();
-      i32 x2 = x1 + rectangle.width() / 3;
+      int x1 = rectangle.left();
+      int x2 = x1 + rectangle.width() / 3;
 
       rectangle.left() = x1;
       rectangle.right() = x2;
@@ -1328,7 +1328,7 @@ namespace user
    }
 
 
-   i32 button::BaseToolTipGetIndex()
+   int button::BaseToolTipGetIndex()
    {
 
       // use window dialog control atom as the index

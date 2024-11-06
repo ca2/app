@@ -11,7 +11,7 @@ inline  void           from_string(i32 & i, const ::ansi_character * psz);
 inline  void           from_string(i64 & i, const ::ansi_character * psz);
 inline  void           from_string(i32 & i, i32 iBase, const ::ansi_character * psz);
 inline  void           from_string(i64 & i, i32 iBase, const ::ansi_character * psz);
-inline  void           from_string(u8 & i, const ::ansi_character * psz);
+inline  void           from_string(unsigned char & i, const ::ansi_character * psz);
 inline  void           from_string(u16 & i, const ::ansi_character * psz);
 inline  void           from_string(u32 & i, const ::ansi_character * psz);
 inline  void           from_string(u64 & i, const ::ansi_character * psz);

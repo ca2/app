@@ -39,8 +39,8 @@ rdpInput * input = (rdpInput *) vinput;
       ca2rdp_send_mouse_button_event(input,emessage, point);
    }
 }
-//static ::u8 keymap[256];
-//static ::u8 functionmap[128];
+//static unsigned char keymap[256];
+//static unsigned char functionmap[128];
 //
 //void ca2rdp_keyboard_init()
 //{

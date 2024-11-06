@@ -3,11 +3,11 @@
 
 //#include "GLOBAL_ID.h"
 
-enum enum_digit_case : ::i32
+enum enum_digit_case : int
 {
 
-   e_digit_case_lower = (::i32) 'a',
-   e_digit_case_upper = (::i32) 'A',
+   e_digit_case_lower = (int) 'a',
+   e_digit_case_upper = (int) 'A',
 
 };
 
@@ -49,7 +49,7 @@ enum enum_factory : ::iptr
 #define OLDOK OK
 #undef OK
 
-enum ENUM_I32 : ::i32
+enum ENUM_I32 : int
 {
 
    SUCCESS = 1,
@@ -1074,10 +1074,10 @@ namespace library
 
 
 enum enum_unit :
-   ::i32
+   int
 {
 
-   e_unit_rate = (::i32) - 1,
+   e_unit_rate = (int) - 1,
 
    e_unit_none = 0,
 

@@ -15,10 +15,10 @@
 //   public:
 //
 //
-//      i32            m_iPage;
-//      i32            m_iLine;
-//      i32            m_iWheel;
-//      i32            m_iThickness;
+//      int            m_iPage;
+//      int            m_iLine;
+//      int            m_iWheel;
+//      int            m_iThickness;
 //      bool           m_bHasScroll;
 //      bool           m_bScrollEnable;
 //

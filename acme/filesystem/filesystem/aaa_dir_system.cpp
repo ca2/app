@@ -78,11 +78,11 @@ void directory_system::init_system()
 
    //auto psystem = system();
 
-   auto pacmedirectory = directory_system();
+   auto pdirectorysystem = directory_system();
 
 #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
-   if ( pacmedirectory->is(application()->side_get_matter_path("app/_matter/main")))
+   if ( pdirectorysystem->is(application()->side_get_matter_path("app/_matter/main")))
    {
 
       m_pathLocalAppMatterFolder = application()->side_get_matter_path("");
@@ -102,7 +102,7 @@ void directory_system::init_system()
 
    //__construct(m_pfilewatcher);
 
-   pacmedirectory->create(directory_system()->bookmark());
+   pdirectorysystem->create(directory_system()->bookmark());
 
    //if (!update_module_path())
    //{

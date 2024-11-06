@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   //void interaction_layout::move_to(i32 x, i32 y)
+   //void interaction_layout::move_to(int x, int y)
    //{
    //
    //   layout().sketch().m_point.set(x, y);
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(i32 cx, i32 cy)
+   //void interaction_layout::set_size(int cx, int cy)
    //{
    //
    //   layout().sketch().m_size.set(cx, cy);
@@ -185,7 +185,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(i32 x, i32 y, i32 cx, i32 cy)
+   //void interaction_layout::set_dim(int x, int y, int cx, int cy)
    //{
    //
    //   set_dim(::point_i32(x, y), ::size_i32(cx, cy));
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   //bool interaction_layout::window_move(i32 x, i32 y)
+   //bool interaction_layout::window_move(int x, int y)
    //{
 
    //   layout().sketch().m_point = {x, y};

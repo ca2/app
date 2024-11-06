@@ -76,7 +76,7 @@ namespace filemanager
 
          auto preferredDensity = preferred_density();
 
-         set_position(0, (::i32) (24.0 * preferredDensity));
+         set_position(0, (int) (24.0 * preferredDensity));
 
          m_panea[0]->m_bFixedSize = true;
 

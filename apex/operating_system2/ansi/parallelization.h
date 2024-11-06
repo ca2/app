@@ -11,9 +11,9 @@
 ////#undef synchronization////class synchronization;
 ////
 ////#ifdef WINDOWS
-////using HSYNC = HANDLE;
+////using hsynchronization = HANDLE;
 ////#else
-////using HSYNC = synchronization *;
+////using hsynchronization = synchronization *;
 ////#endif
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -26,22 +26,22 @@
 //
 //#else
 //
-////::u32 WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+////::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
 ////
-////::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout);
+////::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout);
 ////
-////::u32 MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
+////::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 ////
-////::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+////::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 //
 //#endif
 //
 //
 //#ifndef UNIVERSAL_WINDOWS
 //
-//::u32 WaitForSingleObject(HSYNC hsync, ::u32 dw::times);
+//::u32 WaitForSingleObject(hsynchronization hsynchronization, ::u32 dw::times);
 //
-//::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 dw::times, int_bool bAlertable);
+//::u32 WaitForSingleObjectEx(hsynchronization hsynchronization, ::u32 dw::times, int_bool bAlertable);
 //
 //#endif
 //

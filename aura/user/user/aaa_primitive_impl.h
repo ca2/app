@@ -115,7 +115,7 @@ namespace user
 
       //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
 
-      virtual void window_move(i32 x, i32 y);
+      virtual void window_move(int x, int y);
 
 
       virtual void on_configure(const ::rectangle_i32 & rectangle);
@@ -293,7 +293,7 @@ namespace user
       virtual void hide_software_keyboard(::user::element * pelement);
 
       
-      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, int iLevel = -1);
 
 
       virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
@@ -302,7 +302,7 @@ namespace user
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
-      //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
       //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
 
@@ -345,11 +345,11 @@ namespace user
       //virtual void ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual void ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
 
-      //virtual ::i32 get_window_long(i32 nIndex) const;
-      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
+      //virtual int get_window_long(int nIndex) const;
+      //virtual int set_window_long(int nIndex,int lValue);
 
-      //virtual iptr get_window_long_ptr(i32 nIndex) const;
-      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue);
+      //virtual iptr get_window_long_ptr(int nIndex) const;
+      //virtual void set_window_long_ptr(int nIndex, iptr lValue);
 
       virtual atom GetDlgCtrlId() const;
       virtual atom SetDlgCtrlId(::atom atom);

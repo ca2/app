@@ -13,7 +13,7 @@ namespace draw2d_gdiplus
       //delete_object();
    }
 
-   i32 object::get_object(i32 nCount, LPVOID pObject) const
+   int object::get_object(int nCount, LPVOID pObject) const
 
    {
       //return ::GetObject(get_handle(), nCount, pObject);
@@ -21,7 +21,7 @@ namespace draw2d_gdiplus
       return 0;
    }
 
-   bool object::CreateStockObject(i32 nIndex)
+   bool object::CreateStockObject(int nIndex)
    {
       //return (set_handle(::GetStockObject(nIndex))) != nullptr;
       return 0;

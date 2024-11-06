@@ -43,6 +43,5 @@ namespace aura
 
 
 
-#include "aura/platform/system.h"
 
 

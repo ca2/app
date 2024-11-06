@@ -319,9 +319,9 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom() = (::i32)((cyHeight - m_sizeButton.cy()) / 2);
+      m_rectangleBorder.bottom() = (int)((cyHeight - m_sizeButton.cy()) / 2);
       // if there is an extra pixel, m_rectangleBorder.top() will get it
-      m_rectangleBorder.top() = (::i32)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom());
+      m_rectangleBorder.top() = (int)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom());
       if (m_rectangleBorder.top() < 0)
       {
          informationf("Warning: toolbar::SetHeight(%d) is smaller than button.",
@@ -769,7 +769,7 @@ namespace user
    //      //   {
    //      //      // a separator represents either a height or width
    //      //      if (pData[i].fsState & TBSTATE_WRAP)
-   //      //         sizeResult.cy() = (::i32) maximum(cur.y() + m_sizeButton.cy() + cySep, sizeResult.cy());
+   //      //         sizeResult.cy() = (int) maximum(cur.y() + m_sizeButton.cy() + cySep, sizeResult.cy());
    //      //      else
    //      //         sizeResult.cx() = maximum(cur.x() + pData[i].iBitmap, sizeResult.cx());
    //      //   }
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, i32 nLength, u32 dwMode)
+   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1285,8 +1285,8 @@ namespace user
    ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
-   ////      button.fsStyle = (::u8)LOWORD(nStyle);
-   ////      button.fsState = (::u8)HIWORD(nStyle);
+   ////      button.fsStyle = (unsigned char)LOWORD(nStyle);
+   ////      button.fsState = (unsigned char)HIWORD(nStyle);
    ////      if (__memcmp(&save, &button, sizeof(save)) != 0)
    ////      {
    ////         _SetButton(nIndex, &button);

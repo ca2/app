@@ -32,7 +32,7 @@ namespace filemanager
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (::u8)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (unsigned char)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iW,cy), color32);
       }
@@ -40,7 +40,7 @@ namespace filemanager
       {
          color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (::u8)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (unsigned char)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
          pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iRight - x,cy), color32);
       }
@@ -73,8 +73,8 @@ namespace filemanager
       rectangleProgress = rectangleX;
       //rectangleProgress.left() += 23;
       //rectangleProgress.right() -= 23;
-      rectangleProgress.top() += (::i32)dTop;
-      rectangleProgress.bottom() = (::i32)(dTop + dBarHeight);
+      rectangleProgress.top() += (int)dTop;
+      rectangleProgress.bottom() = (int)(dTop + dBarHeight);
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
@@ -100,8 +100,8 @@ namespace filemanager
                   rectangleBar.right() - rectangleBar.left(),rectangleBar.bottom() - rectangleBar.top(),m_dAnimation);
          }
          dTop += dBarHeight;
-         rectangleProgress.top() = (::i32)dTop;
-         rectangleProgress.bottom() = (::i32)(dTop + dBarHeight);
+         rectangleProgress.top() = (int)dTop;
+         rectangleProgress.bottom() = (int)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
       //::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress1);

@@ -20,7 +20,7 @@ namespace fs_folder_sync_dropbox
       //::file::path    m_pathProtocol;
       //::file::path    m_pathLocalFolder;
 
-       ::i32 m_iLastExitCode;
+       int m_iLastExitCode;
 
 
        folder_sync();

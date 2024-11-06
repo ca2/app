@@ -19,7 +19,7 @@
 #endif
 
 
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 @interface k4_callback:NSObject{
  
@@ -105,7 +105,7 @@ void ns_main_async(dispatch_block_t block);
             [buttonItems addObject: [NSString stringWithFormat: @"%s ( .%s )",filetypes[idx].second.c_str(),filetypes[idx].first.c_str() ]];
         }
         k4_callback* k4k=[[k4_callback alloc]init];
-       ns_main_async(^()
+       ns_main_post(^()
        {
 
         std::string res=[k4k launchDefaultSavePanelWithTypes:types buttonItems:buttonItems];
@@ -128,7 +128,7 @@ void ns_main_async(dispatch_block_t block);
        for (size_t idx = 0; idx < filetypes.size(); ++idx)
            [types addObject: [NSString stringWithUTF8String: filetypes[idx].first.c_str()]];
 
-       ns_main_async(^()
+       ns_main_post(^()
        {
         NSWindow * pnswindow = (__bridge NSWindow *) poswindow;
 

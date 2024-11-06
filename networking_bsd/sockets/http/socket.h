@@ -15,7 +15,7 @@ namespace sockets
 
 
       string               m_strProxy;
-      i32                  m_iProxyPort;
+      int                  m_iProxyPort;
 
 
       ::http::request      m_request;

@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-::string errno_error_message(::i32 iError)
+::string errno_error_message(int iError)
 {
 
    return strerror(iError);

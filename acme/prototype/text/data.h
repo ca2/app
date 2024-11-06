@@ -6,12 +6,12 @@
 #include "acme/memory/memory_allocate.h"
 
 
-namespace acme
+namespace platform
 {
 
    class context;
 
-} // namespace acme
+} // namespace platform
 
 namespace text
 {

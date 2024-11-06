@@ -992,7 +992,7 @@ namespace draw2d_cairo
 //            try
 //            {
 //
-//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
+//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (unsigned char *) pimage32);
 //
 //                ::draw2d::bitmap_pointer b(e_create);
 //
@@ -2091,11 +2091,11 @@ namespace draw2d_cairo
 
          lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
 
-         lpMetrics->m_dHeight = (::i32) iHeight;
+         lpMetrics->m_dHeight = (int) iHeight;
 
          lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
 
-         lpMetrics->m_dInternalLeading = (::i32) 0;
+         lpMetrics->m_dInternalLeading = (int) 0;
 
          pango_font_metrics_unref(pfontmetrics);
 
@@ -2618,7 +2618,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints, ::collection::count nCount)
+   void graphics::poly_polyline(const ::point_f64 * lpPoints, const int * lpPolyPoints, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -2778,7 +2778,7 @@ namespace draw2d_cairo
    }
 
 //
-//i32 graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::collection::count nCount)
+//i32 graphics::GetPath(::point_f64 * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
 //{
 //
 //    throw ::interface_only();
@@ -3691,7 +3691,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::polydraw(const ::point_f64 * lpPoints, const ::u8 * lpTypes, ::collection::count nCount)
+   void graphics::polydraw(const ::point_f64 * lpPoints, const unsigned char * lpTypes, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -4614,9 +4614,9 @@ namespace draw2d_cairo
 
          }
 
-         size.cx() = (::i32) (ex.x_advance * m_pfont->m_dFontWidth);
+         size.cx() = (int) (ex.x_advance * m_pfont->m_dFontWidth);
 
-         size.cy() = (::i32) e.height;
+         size.cy() = (int) e.height;
 
       }
 
@@ -4714,8 +4714,8 @@ namespace draw2d_cairo
 #else
 
       ::rectangle_i32 rectangle = rectangle_i32_dimension(
-                        ::i32(x),
-                        ::i32(y),
+                        int(x),
+                        int(y),
                         65535,
                         65535
                     );

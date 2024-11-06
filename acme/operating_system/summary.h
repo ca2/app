@@ -41,9 +41,9 @@ namespace operating_system
       ::string m_strSlashedIntegration;
       ::string m_strUnderscoreOperatingSystem;
 
-      ::i32       m_iMajor;
-      ::i32       m_iMinor;
-      ::i32       m_iPatch;
+      int       m_iMajor;
+      int       m_iMinor;
+      int       m_iPatch;
       
       ::string    m_strIntegrationRelease;
       ::string    m_strStoreRelease;

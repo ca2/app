@@ -26,7 +26,7 @@ inline void * zero(void * p, memsize size) { memory_set(p, 0, size); return p; }
 inline bool is_zero(const void * p, memsize iSize)
 {
 
-   u8 * pb = (u8 *) p;
+   unsigned char * pb = (unsigned char *) p;
 
    while(*pb == '\0' && iSize > 0)
    {

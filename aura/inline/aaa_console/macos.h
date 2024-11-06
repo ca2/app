@@ -73,7 +73,7 @@ public:
 
       m_estatus = papp->m_estatus;
 
-      ::i32 iErrorStatus = m_estatus.error_status();
+      int iErrorStatus = m_estatus.error_status();
 
       system()->inline_term();
 
@@ -147,7 +147,7 @@ public:
 //
 //   }
 //
-//   ::i32 iErrorStatus = estatus.error_status();
+//   int iErrorStatus = estatus.error_status();
 //
 //   psystem->inline_term();
 //

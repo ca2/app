@@ -38,7 +38,7 @@ namespace user
 
       //virtual void calculate_tab_visibility();
 
-      virtual ::i32 auto_hide_threshold_height();
+      virtual int auto_hide_threshold_height();
 
       bool should_draw() override;
 

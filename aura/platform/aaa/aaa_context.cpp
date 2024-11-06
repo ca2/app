@@ -433,9 +433,9 @@ string context::defer_get_file_title(string strParam)
 
       path =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->system() / path;
+pdirectorysystem->system() / path;
 
    }
    else if (path.case_insensitive_begins_eat("desktop://"))
@@ -832,9 +832,9 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
 
    ::file::path pathFolder =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->localconfig();
+pdirectorysystem->localconfig();
 
    return ini_from_path(pathFolder);
 
@@ -959,9 +959,9 @@ bool context::sys_set(string strPath, string strValue)
 
    return file()->put_text_utf8(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->config() / strPath, strValue);
+pdirectorysystem->config() / strPath, strValue);
 
 }
 
@@ -971,9 +971,9 @@ string context::sys_get(string strPath, string strDefault)
 
    string strValue = file()->as_string(         auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->config() / strPath);
+pdirectorysystem->config() / strPath);
 
    if (strValue.is_empty())
    {

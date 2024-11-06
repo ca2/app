@@ -87,38 +87,38 @@ namespace user
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void on_initialize_window_object();
-      virtual void _on_initialize_window_object();
+      virtual void on_initialize_window_object() override;
+      virtual void _on_initialize_window_object() override;
 
 
       //::windowing::windowing* windowing();
       // inline ::aura::application* get_app();
       // inline ::aura::session * get_session();
       //inline ::aura::system* system();
-      ::windowing::desktop_environment * desktop_environment();
+      ::windowing::desktop_environment * desktop_environment() override;
 
-      ::user::shell* shell();
-
-
+      ::user::shell* shell() override;
 
 
 
-      virtual ::user::interaction * interaction(oswindow oswindow);
-
-      virtual ::user::interaction * get_mouse_capture(::thread * pthread);
-
-      virtual ::user::interaction * get_keyboard_focus(::thread * pthread);
-
-      virtual ::user::interaction * get_active_window(::thread * pthread);
-
-      virtual void set_active_window(::user::interaction *);
 
 
-      virtual ::user::interaction * get_foreground_window();
-      virtual void set_foreground_window(::user::interaction *);
+      virtual ::user::interaction * interaction(oswindow oswindow) override;
+
+      virtual ::user::interaction * get_mouse_capture(::thread * pthread) override;
+
+      virtual ::user::interaction * get_keyboard_focus(::thread * pthread) override;
+
+      virtual ::user::interaction * get_active_window(::thread * pthread) override;
+
+      virtual void set_active_window(::user::interaction *) override;
 
 
-      virtual ::user::style* user_style();
+      virtual ::user::interaction * get_foreground_window() override;
+      virtual void set_foreground_window(::user::interaction *) override;
+
+
+      virtual ::user::style* user_style() override;
 
       //::user::style * get_user_style();
 
@@ -139,39 +139,39 @@ namespace user
 
 
 
-      inline ::html::html* html() { return m_phtml; } // defined in upper level
+       ::html::html* html() override ;//  defined in upper level
 
-      inline ::type_atom get_html_document_type() { return m_typeatomHtmlDocument; }
-      inline ::type_atom get_html_impact_type() { return m_typeatomHtmlImpact; }
+       ::type_atom get_html_document_type() override;
+       ::type_atom get_html_impact_type()  override;
 
-      virtual void create_user_shell();
+      virtual void create_user_shell() override;
 
-      virtual ::user::interaction_base * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
-      virtual void defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
-      virtual ::user::interaction_base * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus);
+      virtual ::user::interaction_base * get_mouse_focus_LButtonDown() override;
+      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus) override;
+      virtual void defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus) override;
+      virtual ::user::interaction_base * get_mouse_focus_RButtonDown() override;
+      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus) override;
 
-      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
+      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse) override;
 
-      virtual void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam);
+      virtual void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override;
 
       virtual void term() override;
 
-      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
 
 
-      virtual bool runnable_step();
+      virtual bool runnable_step() override;
 
-      virtual ::pointer<::user::plain_edit>create_calculator_edit();
+      virtual ::pointer<::user::plain_edit>create_calculator_edit() override;
 
-      virtual void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem);
+      virtual void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override;
 
-      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
-      virtual ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml);
+      virtual ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
    };
 

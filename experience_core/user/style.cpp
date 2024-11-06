@@ -1116,7 +1116,7 @@ namespace experience_core
 
             }
 
-            cx = (::i32) (size.cx() + 2);
+            cx = (int) (size.cx() + 2);
 
             if (!ppane->m_bPermanent)
             {
@@ -1132,7 +1132,7 @@ namespace experience_core
 
             }
 
-            cy = (::i32) ( size.cy() + 2);
+            cy = (int) ( size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1227,7 +1227,7 @@ namespace experience_core
 
             }
 
-            cy = (::i32)(size.cy() + 2);
+            cy = (int)(size.cy() + 2);
 
             if (cy > iTabHeight)
             {
@@ -1258,7 +1258,7 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx() = (::i32) (size.cx() + ixAdd
+            ppane->m_size.cx() = (int) (size.cx() + ixAdd
                + pdata->m_rectangleBorder.left() + pdata->m_rectangleBorder.right()
                + pdata->m_rectangleMargin.left() + pdata->m_rectangleMargin.right()
                + pdata->m_rectangleTextMargin.left() + pdata->m_rectangleTextMargin.right());
@@ -2056,7 +2056,7 @@ namespace experience_core
 
          //    prop("tracking_window").cast < trw >()->point2 = point;
 
-         ::u8 uchAlpha;
+         unsigned char uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {

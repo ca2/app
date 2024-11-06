@@ -23,16 +23,16 @@ enum enum_start_reference
 };
 
 
-enum enum_font_awesome : ::i32;
+enum enum_font_awesome : int;
 
 
-enum enum_character_set : ::i32;
+enum enum_character_set : int;
 
 
-enum enum_posix_shell : ::i32;
+enum enum_posix_shell : int;
 
 
-enum enum_integer_type : ::i32
+enum enum_integer_type : int
 {
 
    e_integer_type_i8 = 0,
@@ -49,12 +49,12 @@ enum enum_integer_type : ::i32
 class eimpact;
 
 
-enum enum_simple_command : ::i32;
-enum enum_message : ::i32;
+enum enum_simple_command : int;
+enum enum_message : int;
 enum enum_impact : ::iptr;
 enum enum_id : ::uptr;
-enum enum_check : ::i32;
-enum enum_happening : ::i32;
+enum enum_check : int;
+enum enum_happening : int;
 
 enum enum_platform_level
 {
@@ -119,7 +119,7 @@ enum enum_image_type
 
 
 
-enum enum_domain : ::i32
+enum enum_domain : int
 {
 
    e_domain_none = 0,

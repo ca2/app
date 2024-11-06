@@ -35,7 +35,7 @@ namespace draw2d
       m_iHeightField1 = nullptr;
       m_iHeightField2 = nullptr;
    }
-   void water_routine::create(i32 iWidth,i32 iHeight)
+   void water_routine::create(int iWidth,int iHeight)
    {
       if(m_iHeightField1 != nullptr)
          delete [] m_iHeightField1;
@@ -43,12 +43,12 @@ namespace draw2d
          delete [] m_iHeightField2;
 
       // create our height fields
-      m_iHeightField1 = aaa_primitive_new i32[(iWidth*iHeight)];
-      m_iHeightField2 = aaa_primitive_new i32[(iWidth*iHeight)];
+      m_iHeightField1 = aaa_primitive_new int[(iWidth*iHeight)];
+      m_iHeightField2 = aaa_primitive_new int[(iWidth*iHeight)];
 
       // clear our height fields
-      memory_set(m_iHeightField1,0,(iWidth*iHeight)*sizeof(i32));
-      memory_set(m_iHeightField2,0,(iWidth*iHeight)*sizeof(i32));
+      memory_set(m_iHeightField1,0,(iWidth*iHeight)*sizeof(int));
+      memory_set(m_iHeightField2,0,(iWidth*iHeight)*sizeof(int));
 
       m_iWidth = iWidth;
       m_iHeight = iHeight;
@@ -60,8 +60,8 @@ namespace draw2d
    void water_routine::FlattenWater()
    {
       // clear our height fields
-      memory_set(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(i32));
-      memory_set(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(i32));
+      memory_set(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(int));
+      memory_set(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(int));
    }
    void water_routine::to(color32_t * pSrcImage, color32_t * pTargetImage)
    {
@@ -80,12 +80,12 @@ namespace draw2d
       m_iHpage ^= 1;
 
    }
-   void water_routine::CalcWater(i32 npage, i32 density)
+   void water_routine::CalcWater(int npage, int density)
    {
-      i32 newh;
-      i32 count = m_iWidth + 1;
-      i32 *newptr;
-      i32 *oldptr;
+      int newh;
+      int count = m_iWidth + 1;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(npage == 0)
@@ -99,7 +99,7 @@ namespace draw2d
          oldptr = &m_iHeightField1[0];
       }
 
-      i32 x, y;
+      int x, y;
 
       // Sorry, this function might not be as readable as I'd like, because
       // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -141,13 +141,13 @@ namespace draw2d
          }
       }
    }
-   void water_routine::SmoothWater(i32 npage)
+   void water_routine::SmoothWater(int npage)
    {
-      i32 newh;
-      i32 count = m_iWidth + 1;
+      int newh;
+      int count = m_iWidth + 1;
 
-      i32 *newptr;
-      i32 *oldptr;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(npage == 0)
@@ -162,7 +162,7 @@ namespace draw2d
       }
 
 
-      i32 x, y;
+      int x, y;
 
       // Sorry, this function might not be as readable as I'd like, because
       // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -192,13 +192,13 @@ namespace draw2d
       }
    }
 
-   void water_routine::CalcWaterBigFilter(i32 npage, i32 density)
+   void water_routine::CalcWaterBigFilter(int npage, int density)
    {
-      i32 newh;
-      i32 count = (2*m_iWidth) + 2;
+      int newh;
+      int count = (2*m_iWidth) + 2;
 
-      i32 *newptr;
-      i32 *oldptr;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(npage == 0)
@@ -212,7 +212,7 @@ namespace draw2d
          oldptr = &m_iHeightField1[0];
       }
 
-      i32 x, y;
+      int x, y;
 
       // Sorry, this function might not be as readable as I'd like, because
       // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -263,14 +263,14 @@ namespace draw2d
       }
    }
 
-   void water_routine::HeightBlob(i32 x, i32 y, i32 radius, i32 height, i32 page)
+   void water_routine::HeightBlob(int x, int y, int radius, int height, int page)
    {
-      i32 rquad;
-      i32 cx, cy, cyq;
-      i32 left, top, right, bottom;
+      int rquad;
+      int cx, cy, cyq;
+      int left, top, right, bottom;
 
-      i32 *newptr;
-      i32 *oldptr;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(page == 0)
@@ -312,12 +312,12 @@ namespace draw2d
 
    }
 
-   void water_routine::HeightBox (i32 x, i32 y, i32 radius, i32 height, i32 page)
+   void water_routine::HeightBox (int x, int y, int radius, int height, int page)
    {
-      i32 cx, cy;
-      i32 left, top, right, bottom;
-      i32 *newptr;
-      i32 *oldptr;
+      int cx, cy;
+      int left, top, right, bottom;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(page == 0)
@@ -354,14 +354,14 @@ namespace draw2d
    }
 
 
-   void water_routine::WarpBlob(i32 x, i32 y, i32 radius, i32 height, i32 page)
+   void water_routine::WarpBlob(int x, int y, int radius, int height, int page)
    {
-      i32 cx, cy;
-      i32 left,top,right,bottom;
-      i32 square;
-      i32 radsquare = radius * radius;
-      i32 *newptr;
-      i32 *oldptr;
+      int cx, cy;
+      int left,top,right,bottom;
+      int square;
+      int radsquare = radius * radius;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(page == 0)
@@ -399,21 +399,21 @@ namespace draw2d
                //        height[page][WATERWID*(cy+y) + cx+x]
                //          += (sqrt(radsquare)-sqrt(square))*height;
                newptr[m_iWidth*(cy+y) + cx+x]
-               += i32((radius-sqrt((float)square))*(float)(height));
+               += int((radius-sqrt((float)square))*(float)(height));
             }
          }
       }
    }
 
-   void water_routine::SineBlob(i32 x, i32 y, i32 radius, i32 height, i32 page)
+   void water_routine::SineBlob(int x, int y, int radius, int height, int page)
    {
-      i32 cx, cy;
-      i32 left,top,right,bottom;
-      i32 square, dist;
-      i32 radsquare = radius * radius;
+      int cx, cy;
+      int left,top,right,bottom;
+      int square, dist;
+      int radsquare = radius * radius;
       float length = float((1024.0/(float)radius)*(1024.0/(float)radius));
-      i32 *newptr;
-      i32 *oldptr;
+      int *newptr;
+      int *oldptr;
 
       // set up the pointers
       if(page == 0)
@@ -453,25 +453,25 @@ namespace draw2d
             square = cy*cy + cx*cx;
             if(square < radsquare)
             {
-               dist = i32(sqrt(square*length));
+               dist = int(sqrt(square*length));
                newptr[m_iWidth*(cy+y) + cx+x]
-               += (i32)((cos((float) dist)+0xffff)*(height)) >> 19;
+               += (int)((cos((float) dist)+0xffff)*(height)) >> 19;
             }
          }
       }
    }
 
-   void water_routine::DrawWaterNoLight(i32 page, color32_t * pSrcImage, color32_t * pTargetImage)
+   void water_routine::DrawWaterNoLight(int page, color32_t * pSrcImage, color32_t * pTargetImage)
    {
       __UNREFERENCED_PARAMETER(page);
-      //  i32 ox, oy;
-      i32 Δx, Δy;
-      i32 x, y;
+      //  int ox, oy;
+      int Δx, Δy;
+      int x, y;
       u32 ca;
 
-      i32 offset=m_iWidth + 1;
+      int offset=m_iWidth + 1;
 
-      i32 *ptr = &m_iHeightField1[0];
+      int *ptr = &m_iHeightField1[0];
 
       for (y = (m_iHeight-1)*m_iWidth; offset < y; offset += 2)
       {
@@ -501,20 +501,20 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,color32_t * pSrcImage, color32_t * pTargetImage)
+   void water_routine::DrawWaterWithLight(int page, int LightModifier,color32_t * pSrcImage, color32_t * pTargetImage)
    {
       __UNREFERENCED_PARAMETER(page);
       __UNREFERENCED_PARAMETER(LightModifier);
-      //  i32 ox, oy;
-      i32 Δx, Δy;
-      i32 x, y;
+      //  int ox, oy;
+      int Δx, Δy;
+      int x, y;
       u32 ca;
 
-      i32 offset=m_iWidth + 1;
+      int offset=m_iWidth + 1;
       long lIndex;
       long lBreak = m_iWidth*m_iHeight;
 
-      i32 *ptr = &m_iHeightField1[0];
+      int *ptr = &m_iHeightField1[0];
 
 
       for (y = (m_iHeight-2)*m_iWidth; offset < y; )
@@ -554,14 +554,14 @@ namespace draw2d
    }
 
 
-   inline color32_t water_routine::GetShiftedColor(color32_t color,i32 shift)
+   inline color32_t water_routine::GetShiftedColor(color32_t color,int shift)
    {
-      ::i32 R;
-      ::i32 G;
-      ::i32 B;
-      ::i32 ir;
-      ::i32 ig;
-      ::i32 ib;
+      int R;
+      int G;
+      int B;
+      int ir;
+      int ig;
+      int ib;
 
       R = ::red(color)-shift;
       G = ::green(color)-shift;

@@ -1019,7 +1019,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           ::i32        acpEnd;
+           int        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1154,7 +1154,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           ::i32        acpEnd;
+           int        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1265,7 +1265,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           ::i32        acpEnd;
+           int        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1374,7 +1374,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            comptr <ITfRangeACP>pRangeAllText;
-           ::i32        acpEnd;
+           int        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);

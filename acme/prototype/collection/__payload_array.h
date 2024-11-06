@@ -35,7 +35,7 @@ public:
    inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
 
    inline ::collection::index add(i8 i) { return add((const ::payload &) i); }
-   inline ::collection::index add(u8 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(unsigned char u) { return add((const ::payload &) u); }
    inline ::collection::index add(i16 i) { return add((const ::payload &) i); }
    inline ::collection::index add(u16 u) { return add((const ::payload &) u); }
    inline ::collection::index add(i32 i) { return add((const ::payload &) i); }

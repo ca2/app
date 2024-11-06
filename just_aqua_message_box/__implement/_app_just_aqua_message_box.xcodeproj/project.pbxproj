@@ -381,7 +381,7 @@
 		9AA8278E2CAF790000DA11E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AA827922CAF790100DA11E9 /* libapp_just_message_box.dylib */,
+				9AA827922CAF790100DA11E9 /* libapp_just_aqua_message_box.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -616,10 +616,10 @@
 			remoteRef = 9AA3F98C2A95606F004283CA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AA827922CAF790100DA11E9 /* libapp_just_message_box.dylib */ = {
+		9AA827922CAF790100DA11E9 /* libapp_just_aqua_message_box.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libapp_just_message_box.dylib;
+			path = libapp_just_aqua_message_box.dylib;
 			remoteRef = 9AA827912CAF790100DA11E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

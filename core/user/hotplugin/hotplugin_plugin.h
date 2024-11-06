@@ -113,7 +113,7 @@ namespace hotplugin
       virtual ::collection::count get_memory_length();
       virtual ::collection::count read_memory(void * puchMemory, ::collection::count c);
       virtual void   free_memory();
-      //static  void   free_memory(u8 ** ppuchMemory);
+      //static  void   free_memory(unsigned char ** ppuchMemory);
 
 
       virtual bool is_ok();
@@ -180,7 +180,7 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      virtual void get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, double dRate, i32 iProfile);
+      virtual void get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, i32 iProfile);
 
       virtual void on_host_timer();
 

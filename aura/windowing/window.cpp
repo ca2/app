@@ -1485,7 +1485,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   i32 window::GetUpdateRgn(::draw2d::region * pRgn, bool bErase)
+   int window::GetUpdateRgn(::draw2d::region * pRgn, bool bErase)
    {
 
       return 0;
@@ -2233,7 +2233,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   bool window::on_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
+   bool window::on_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
                                        const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                        ::e_display edisplay)
    {
@@ -2243,7 +2243,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   bool window::set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
+   bool window::set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
                                     const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                     ::e_display edisplay)
    {
@@ -2255,7 +2255,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   bool window::_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
+   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
                                      const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                      ::e_display edisplay, ::u32 nOverrideFlags)
    {
@@ -2562,7 +2562,7 @@ bMove = false;
 
 
 
-   bool window::_set_window_position_unlocked(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy,
+   bool window::_set_window_position_unlocked(const class ::zorder & zorder, int x, int y, int cx, int cy,
                                               const ::e_activation & eactivation, bool bNoZorder, bool bNoMove,
                                               bool bNoSize, ::e_display edisplay)
    {
@@ -2588,7 +2588,7 @@ bMove = false;
    }
 
 
-   bool window::_strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize)
+   bool window::_strict_set_window_position_unlocked(int x, int y, int cx, int cy, bool bNoMove, bool bNoSize)
    {
 
       bool bMove = !bNoMove;
@@ -2665,7 +2665,7 @@ bMove = false;
       //}
 
 
-   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    //   {
    //
    //
@@ -3532,7 +3532,7 @@ bMove = false;
 //      return false;
 //   }
 //
-//   void window::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
+//   void window::GetScrollBarInfo(int idObject,PSCROLLBARINFO psbi) const
 //   {
 //      __UNREFERENCED_PARAMETER(idObject);
 //      __UNREFERENCED_PARAMETER(psbi);
@@ -3581,7 +3581,7 @@ bMove = false;
 //    //   return false;
 //    //}
 //
-//    //void window::SetLayeredWindowAttributes(::color::color crKey,::u8 bAlpha,u32 dwFlags)
+//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(crKey);
 //    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -3607,7 +3607,7 @@ bMove = false;
 //    //}
 //
 //
-//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,::u8 * pbAlpha,u32 * pdwFlags) const
+//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,u32 * pdwFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pcrKey);
 //    //   __UNREFERENCED_PARAMETER(pbAlpha);
@@ -5031,7 +5031,7 @@ bMove = false;
    void window::_task_transparent_mouse_event()
    {
 
-      _task_transparent_mouse_event();
+      //_task_transparent_mouse_event();
 
    }
 
@@ -5086,7 +5086,7 @@ bMove = false;
    void window::default_message_handler(::message::message * pmessage)
    {
 
-      default_message_handler(pmessage);
+      //default_message_handler(pmessage);
 
    }
 
@@ -5412,7 +5412,7 @@ bMove = false;
    //}
 
 
-   //i32 window::GetChildByIdText(i32 nID,string & rectangleString) const
+   //int window::GetChildByIdText(int nID,string & rectangleString) const
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -5919,15 +5919,15 @@ bMove = false;
       //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (::i32)rcMonitor.left();
+      //      //      pmouse->m_point.x() += (int)rcMonitor.left();
 
       //      //   }
 
       //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (::i32)rectWindow.top();
-      //      //      pmouse->m_point.y() += (::i32)rcMonitor.top();
+      //      //      //pmouse->m_point.y() += (int)rectWindow.top();
+      //      //      pmouse->m_point.y() += (int)rcMonitor.top();
 
       //      //   }
 
@@ -5938,14 +5938,14 @@ bMove = false;
       //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (::i32)rectWindow.left();
+      //            pmouse->m_point.x() += (int)rectWindow.left();
 
       //         }
 
       //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (::i32)rectWindow.top();
+      //            pmouse->m_point.y() += (int)rectWindow.top();
 
       //         }
 
@@ -6463,7 +6463,7 @@ bMove = false;
    }
 
 
-   //i32 window::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
+   //int window::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pszText);
@@ -6483,12 +6483,12 @@ bMove = false;
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   /*   CScrollBar* window::GetScrollBarCtrl(i32) const
+   /*   CScrollBar* window::GetScrollBarCtrl(int) const
    {
    throw ::interface_only();
    }*/
 
-   //i32 window::SetScrollPos(i32 nBar,i32 nPos,bool bRedraw)
+   //int window::SetScrollPos(int nBar,int nPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nPos);
@@ -6498,7 +6498,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //i32 window::GetScrollPos(i32 nBar) const
+   //int window::GetScrollPos(int nBar) const
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   throw ::interface_only();
@@ -6506,7 +6506,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //void window::SetScrollRange(i32 nBar,i32 nMinPos,i32 nMaxPos,bool bRedraw)
+   //void window::SetScrollRange(int nBar,int nMinPos,int nMaxPos,bool bRedraw)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(nMinPos);
@@ -6518,7 +6518,7 @@ bMove = false;
    //}
 
 
-   //void window::GetScrollRange(i32 nBar,LPINT pMinPos,LPINT pMaxPos) const
+   //void window::GetScrollRange(int nBar,LPINT pMinPos,LPINT pMaxPos) const
 
    //{
 
@@ -6534,7 +6534,7 @@ bMove = false;
    //// Turn on/off non-control scrollbars
    ////   for WS_?SCROLL scrollbars - show/hide them
    ////   for control scrollbar - enable/disable them
-   //void window::EnableScrollBarCtrl(i32 nBar,bool bEnable)
+   //void window::EnableScrollBarCtrl(int nBar,bool bEnable)
    //{
    //   __UNREFERENCED_PARAMETER(nBar);
    //   __UNREFERENCED_PARAMETER(bEnable);
@@ -6545,7 +6545,7 @@ bMove = false;
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   void window::SetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
+//   void window::SetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
 //
 //   {
 //
@@ -6560,7 +6560,7 @@ bMove = false;
 //   }
 //
 //
-//   void window::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
+//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 //
 //   {
 //
@@ -6577,7 +6577,7 @@ bMove = false;
 //#endif
 
 
-   //i32 window::GetScrollLimit(i32 nBar)
+   //int window::GetScrollLimit(int nBar)
    //{
    //   
    //   __UNREFERENCED_PARAMETER(nBar);
@@ -6589,7 +6589,7 @@ bMove = false;
    //}
 
 
-   //void window::ScrollWindow(i32 xAmount,i32 yAmount, const ::rectangle_i32 * pcrect, const ::rectangle_i32 * pcrectClip)
+   //void window::ScrollWindow(int xAmount,int yAmount, const ::rectangle_i32 * pcrect, const ::rectangle_i32 * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -6956,39 +6956,39 @@ bMove = false;
    //}
 
 
-//   ::i32 window::get_window_long(i32 nIndex) const
+//   int window::get_window_long(int nIndex) const
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (::i32) ::GetWindowLongPtr(get_handle(), nIndex);
+//      return (int) ::GetWindowLongPtr(get_handle(), nIndex);
 //
 //#else
 //
-//      return (::i32) get_window_long_ptr(nIndex);
+//      return (int) get_window_long_ptr(nIndex);
 //
 //#endif
 //
 //   }
 
 
-//   ::i32 window::set_window_long(i32 nIndex,::i32 lValue)
+//   int window::set_window_long(int nIndex,int lValue)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      return (::i32) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
+//      return (int) ::SetWindowLongPtr(get_handle(), nIndex, lValue);
 //
 //#else
 //
-//      return (::i32) set_window_long_ptr(nIndex, lValue);
+//      return (int) set_window_long_ptr(nIndex, lValue);
 //
 //#endif
 //
 //   }
 
 
-//   iptr window::get_window_long_ptr(i32 nIndex) const
+//   iptr window::get_window_long_ptr(int nIndex) const
 //   {
 //
 //      return get_window_long_ptr(nIndex);
@@ -6996,7 +6996,7 @@ bMove = false;
 //   }
 //
 //
-//   iptr window::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   iptr window::set_window_long_ptr(int nIndex, iptr lValue)
 //   {
 //
 //      return set_window_long_ptr(nIndex, lValue);
@@ -7335,7 +7335,7 @@ bMove = false;
    //   }
 
 
-   //strsize window::GetWindowText(char * pszString,i32 nMaxCount)
+   //strsize window::GetWindowText(char * pszString,int nMaxCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -7448,7 +7448,7 @@ bMove = false;
    //   return false;
    //}
 
-   //i32 window::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
+   //int window::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    //{
    //   __UNREFERENCED_PARAMETER(pRgn);
    //   __UNREFERENCED_PARAMETER(bErase);
@@ -7846,7 +7846,7 @@ bMove = false;
    }
 
 
-   //void window::EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags)
+   //void window::EnableScrollBar(int nSBFlags,::u32 nArrowFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(nSBFlags);
@@ -7994,14 +7994,14 @@ bMove = false;
    //}
 
 
-   //void window::CheckDlgButton(i32 nIDButton,::u32 nCheck)
+   //void window::CheckDlgButton(int nIDButton,::u32 nCheck)
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   __UNREFERENCED_PARAMETER(nCheck);
    //   throw ::interface_only();
    //}
 
-   //void window::CheckRadioButton(i32 nIDFirstButton,i32 nIDLastButton,i32 nIDCheckButton)
+   //void window::CheckRadioButton(int nIDFirstButton,int nIDLastButton,int nIDCheckButton)
    //{
    //   __UNREFERENCED_PARAMETER(nIDFirstButton);
    //   __UNREFERENCED_PARAMETER(nIDLastButton);
@@ -8009,7 +8009,7 @@ bMove = false;
    //   throw ::interface_only();
    //}
 
-   //i32 window::DlgDirList(char * pPathSpec,i32 nIDListBox,i32 nIDStaticPath,::u32 nFileType)
+   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8021,7 +8021,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //i32 window::DlgDirListComboBox(char * pPathSpec,i32 nIDComboBox,i32 nIDStaticPath,::u32 nFileType)
+   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8034,7 +8034,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //void window::DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox)
+   //void window::DlgDirSelect(char * pString,int nSize,int nIDListBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -8046,7 +8046,7 @@ bMove = false;
    //   return false;
    //}
 
-   //void window::DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox)
+   //void window::DlgDirSelectComboBox(char * pString,int nSize,int nIDComboBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -8058,7 +8058,7 @@ bMove = false;
    //   return false;
    //}
 
-   //::u32 window::GetChildByIdInt(i32 nID,bool* pTrans,bool bSigned) const
+   //::u32 window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8070,7 +8070,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //i32 window::GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const
+   //int window::GetChildByIdText(int nID,char * pStr,int nMaxCount) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8109,7 +8109,7 @@ bMove = false;
    //}
 
 
-   //::u32 window::IsDlgButtonChecked(i32 nIDButton) const
+   //::u32 window::IsDlgButtonChecked(int nIDButton) const
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   throw ::interface_only();
@@ -8118,7 +8118,7 @@ bMove = false;
    //}
 
 
-   //lparam window::SendDlgItemMessage(i32 nID, ::u32 message, wparam wParam,lparam lParam)
+   //lparam window::SendDlgItemMessage(int nID, ::u32 message, wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8132,7 +8132,7 @@ bMove = false;
    //}
 
 
-   //void window::SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned)
+   //void window::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(nValue);
@@ -8140,7 +8140,7 @@ bMove = false;
    //   throw ::interface_only();
    //}
 
-   //void window::SetDlgItemText(i32 nID, const ::string & pszString)
+   //void window::SetDlgItemText(int nID, const ::string & pszString)
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8150,7 +8150,7 @@ bMove = false;
    //}
 
 
-   //i32 window::ScrollWindowEx(i32 Δx,i32 Δy,
+   //int window::ScrollWindowEx(int Δx,int Δy,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
@@ -8874,7 +8874,7 @@ bMove = false;
    //}
 
 
-   //i32 window::GetCheckedRadioButton(i32 nIDFirstButton,i32 nIDLastButton)
+   //int window::GetCheckedRadioButton(int nIDFirstButton,int nIDLastButton)
    //{
 
    //   __UNREFERENCED_PARAMETER(nIDFirstButton);
@@ -12510,7 +12510,7 @@ bMove = false;
    void window::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
    {
 
-      non_top_most_upper_window_rects(recta);
+      //non_top_most_upper_window_rects(recta);
 
    }
 
@@ -13464,7 +13464,7 @@ bMove = false;
       //}
 
 
-   void window::window_move(i32 x, i32 y)
+   void window::window_move(int x, int y)
    {
 
       //return true;
@@ -14522,7 +14522,7 @@ bMove = false;
    //}
 
 
-   ::user::interaction * window::get_child_by_id(const ::atom & atom, ::collection::index iItem, i32 iLevel)
+   ::user::interaction * window::get_child_by_id(const ::atom & atom, ::collection::index iItem, int iLevel)
    {
 
       return nullptr;
@@ -14573,11 +14573,11 @@ bMove = false;
    //void window::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    //{
 
-   //   ::i32 l = GetStyle();
+   //   int l = GetStyle();
 
    //   l |= dwAdd;
 
-   //   ::i32 lRemove = ~dwRemove;
+   //   int lRemove = ~dwRemove;
 
    //   l &= lRemove;
 
@@ -14598,23 +14598,23 @@ bMove = false;
    //}
 
 
-   //   ::i32 window::get_window_long(i32 nIndex) const
+   //   int window::get_window_long(int nIndex) const
    //   {
    //
-   //      return (::i32)get_window_long_ptr(nIndex);
+   //      return (int)get_window_long_ptr(nIndex);
    //
    //   }
    //
    //
-   //   ::i32 window::set_window_long(i32 nIndex, ::i32 lValue)
+   //   int window::set_window_long(int nIndex, int lValue)
    //   {
    //
-   //      return (::i32)set_window_long_ptr(nIndex, lValue);
+   //      return (int)set_window_long_ptr(nIndex, lValue);
    //
    //   }
    //
    //
-   //   iptr window::get_window_long_ptr(i32 nIndex) const
+   //   iptr window::get_window_long_ptr(int nIndex) const
    //   {
    //
    ////      return 0;
@@ -14641,7 +14641,7 @@ bMove = false;
    //   }
    //
    //
-   //   void window::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //   void window::set_window_long_ptr(int nIndex, iptr lValue)
    //   {
    //
    ////      if (nIndex == GWL_STYLE)
@@ -14685,7 +14685,7 @@ bMove = false;
    }
 
 
-   atom window::SetDlgCtrlId(atom atom)
+   atom window::SetDlgCtrlId(const atom & atom)
    {
 
       if (!m_puserinteraction)
@@ -16045,7 +16045,7 @@ bMove = false;
       //}
 
 
-      //i32 window::GetUpdateRgn(class draw2d::region *,bool)
+      //int window::GetUpdateRgn(class draw2d::region *,bool)
       //{
 
       //   return 0;

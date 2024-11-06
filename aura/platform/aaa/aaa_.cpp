@@ -26,7 +26,7 @@ namespace aura
 
 
 
-   bool extract_sub_string(string& rString, const ::string & pszFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::string & pszFullString, int iSubString, char chSep)
    {
 
       if (pszFullString == nullptr)
@@ -53,7 +53,7 @@ namespace aura
       const char* pchEnd = strchr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
+      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -90,10 +90,10 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0
 #endif
 
 
-void gen_CrtErrorCheck(i32 i);
+void gen_CrtErrorCheck(int i);
 
 
-void gen_CrtErrorCheck(i32 i)
+void gen_CrtErrorCheck(int i)
 {
    __UNREFERENCED_PARAMETER(i);
 }
@@ -195,7 +195,7 @@ CLASS_DECL_AURA void debug_print(const ::string & pszFormat, ...)
 }
 
 
-void __post_quit_message(i32 nExitCode)
+void __post_quit_message(int nExitCode)
 {
 
 #ifdef WINDOWS_DESKTOP

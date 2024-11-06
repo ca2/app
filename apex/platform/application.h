@@ -180,7 +180,7 @@ namespace apex
       void on_set_platform() override;
 
 
-      virtual ::file::path cloud_protocol();
+      virtual ::file::path cloud_protocol() override;
 
 
       //void on_initialize_application(::main* pmain) override;
@@ -188,7 +188,7 @@ namespace apex
       //// void dump(dump_context & dumpcontext) const override;
       void main() override;
 
-      virtual string __get_text(string str);
+      virtual string __get_text(string str) override;
 
 
       ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr);
@@ -217,16 +217,16 @@ namespace apex
       virtual bool load_string(string& str, const ::atom& atom);
 
 
-      virtual void load_string_table();
+      virtual void load_string_table() override;
 
 
-      virtual bool load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable);
+      virtual bool load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
 
-      virtual bool load_cached_string_by_id(string& str, const ::atom& atom, bool bLoadStringTable);
+      virtual bool load_cached_string_by_id(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
 
-      virtual void load_string_table(const string& pszApp, const string& pszId);
+      virtual void load_string_table(const string& pszApp, const string& pszId) override;
 
 
       virtual bool is_application() const override;
@@ -244,14 +244,14 @@ namespace apex
       bool is_user_service() const override;
 
 
-      virtual ::pointer<::service> create_service();
+      virtual ::pointer<::service> create_service() override;
 
 
-      virtual void on_service_request(::request* prequest);
+      virtual void on_service_request(::request* prequest) override;
 
 
       //virtual ::simpledb::server * simpledb();
-      virtual ::database::server* dataserver();
+      virtual ::database::server* dataserver() override;
 
 
       //virtual void verb();
@@ -280,7 +280,7 @@ namespace apex
       void init_instance() override;
 
 
-      virtual void defer_interprocess_communication();
+      virtual void defer_interprocess_communication() override;
 
 
       virtual void run() override;
@@ -309,10 +309,10 @@ namespace apex
       void show_about_box() override;
 
 
-      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::size_i32& size);
+      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::size_i32& size) override;
 
 
-      virtual void init_fs_set(::fs::set* pfsset);
+      virtual void init_fs_set(::fs::set* pfsset) override;
 
 
       //virtual bool InitApplication();
@@ -330,19 +330,18 @@ namespace apex
       void on_uninstall() override;
 
 
-      virtual void enable_service();
+      virtual void enable_service() override;
 
 
-      virtual void disable_service();
-
-
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative);
+      virtual void disable_service() override;
 
 
       virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative, const ::string& strLocale, const ::string& strStyle);
+                                    const string& pszRelative) override;
 
+
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
+                                    const string& pszRelative, const ::string& strLocale, const ::string& strStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -354,15 +353,15 @@ namespace apex
 
       //virtual ::pointer<::apex::application>assert_running(const ::string & pszAppId) override;
 
-      virtual bool is_running();
+      virtual bool is_running() override;
 
 
       //bool pump_runnable() override;
 
-      virtual void add_activation_message(const ::string& strMessage);
+      virtual void add_activation_message(const ::string& strMessage) override;
 
 
-      virtual bool has_activation_message() const;
+      virtual bool has_activation_message() const override;
 
 
       virtual void handle_posted_activation_message();
@@ -375,10 +374,10 @@ namespace apex
       //virtual void on_request(::request * prequest) override;
 
 
-      virtual bool assert_user_logged_in();
+      virtual bool assert_user_logged_in() override;
 
 
-      virtual string matter_as_string(const ::string& pszMatter, const ::string& pszMatter2 = nullptr);
+      virtual string matter_as_string(const ::string& pszMatter, const ::string& pszMatter2 = nullptr) override;
 
 
       //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
@@ -389,41 +388,41 @@ namespace apex
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
 
 
-      virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       void _001TryCloseApplication() override;
 
 
-      virtual void _001CloseApplication();
+      virtual void _001CloseApplication() override;
 
 
-      virtual bool try_close_application();
+      virtual bool try_close_application() override;
 
 
-      virtual bool can_close_application();
+      virtual bool can_close_application() override;
 
 
-      virtual void close_application();
+      virtual void close_application() override;
 
 
-      virtual string get_license_id();
+      virtual string get_license_id() override;
 
 
       void process_init() override;
 
 
-      virtual string get_mutex_name_gen();
+      virtual string get_mutex_name_gen() override;
 
 
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
       virtual void hotplugin_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
-                                                     hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr);
+                                                     hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr) override;
 
 
       virtual void hotplugin_host_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
-                                                          hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr);
+                                                          hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr) override;
 
 
       //virtual bool is_local_data() override;
@@ -431,7 +430,7 @@ namespace apex
       class ::application_menu* application_menu() override;
 
 
-      virtual ::file::path appconfig_folder();
+      virtual ::file::path appconfig_folder() override;
 
 
       //// void assert_ok() const override;
@@ -441,19 +440,19 @@ namespace apex
       //virtual bool app_data_set(const ::atom & atom, stream & os);
       //virtual bool app_data_get(const ::atom & atom, stream & is);
 
-      virtual bool app_data_set(const ::atom& atom, ::object& obj);
+      virtual bool app_data_set(const ::atom& atom, ::object& obj) override;
 
 
-      virtual bool app_data_get(const ::atom& atom, ::object& obj);
+      virtual bool app_data_get(const ::atom& atom, ::object& obj) override;
 
 
       void install_message_routing(::channel* pchannel) override;
 
 
-      virtual string dialog_box(const ::string& pszMatter, property_set& propertyset);
+      virtual string dialog_box(const ::string& pszMatter, property_set& propertyset) override;
 
 
-      virtual void application_menu_update();
+      virtual void application_menu_update() override;
 
 
       //virtual string calc_data_key();
@@ -462,10 +461,10 @@ namespace apex
       //virtual void notify_changed(const ::atom & atom, const ::action_context & action_context);
 
 
-      virtual ::file::path local_application_path();
+      virtual ::file::path local_application_path() override;
 
 
-      virtual ::file::path local_application_home_path();
+      virtual ::file::path local_application_home_path() override;
 
 
       //virtual void destroy() override;
@@ -478,10 +477,10 @@ namespace apex
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme();
+      virtual void on_change_theme() override;
 
 
-      virtual string get_theme();
+      virtual string get_theme() override;
 
 
       //virtual bool start_application(::request * prequest);
@@ -516,25 +515,25 @@ namespace apex
       //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      virtual void on_file_new();
+      virtual void on_file_new() override;
 
 
-      virtual string title();
+      virtual string title() override;
 
 
-      virtual string_array get_categories();
+      virtual string_array get_categories() override;
 
 
-      virtual void defer_create_keyboard();
+      virtual void defer_create_keyboard() override;
 
 
       //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 
 
-      virtual bool enable_application_events(::particle* pparticle, bool bEnable);
+      virtual bool enable_application_events(::particle* pparticle, bool bEnable) override;
 
 
-      virtual bool is_equal_file_path(const ::file::path& path1, const ::file::path& path2);
+       virtual bool is_equal_file_path(const ::file::path& path1, const ::file::path& path2) override;
 
 
       //virtual bool process_exception(const ::exception & e) override;
@@ -552,13 +551,13 @@ namespace apex
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
 
 
-      virtual void app_set(string strPath, string strValue);
+      virtual void app_set(string strPath, string strValue) override;
 
 
-      virtual string app_get(string strPath, string strDefault = "");
+      virtual string app_get(string strPath, string strDefault = "") override;
 
 
       //virtual bool Ex2OnAppInstall();
@@ -569,7 +568,7 @@ namespace apex
 
       //virtual string get_license_id();
 
-      virtual string get_version();
+      virtual string get_version() override;
 
 
       //virtual ::pointer < ::interprocess::handler > create_interprocess_handler();
@@ -616,28 +615,28 @@ namespace apex
       //virtual void init();
       //virtual void term();
 
-      virtual void notify_process_init();
+      virtual void notify_process_init() override;
 
 
-      virtual void notify_init1();
+      virtual void notify_init1() override;
 
 
-      virtual void notify_init2();
+      virtual void notify_init2() override;
 
 
-      virtual void notify_init3();
+      virtual void notify_init3() override;
 
 
-      virtual void notify_term3();
+      virtual void notify_term3() override;
 
 
-      virtual void notify_term2();
+      virtual void notify_term2() override;
 
 
-      virtual void notify_term1();
+      virtual void notify_term1() override;
 
 
-      virtual void notify_process_term();
+      virtual void notify_process_term() override;
 
 
       // virtual bool is_installing();
@@ -667,7 +666,7 @@ namespace apex
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      virtual bool system_add_app_install(const ::string& pszId, const ::string& pszBuild);
+      virtual bool system_add_app_install(const ::string& pszId, const ::string& pszBuild) override;
 
 
       //virtual void TermThread(HINSTANCE hInstTerm);
@@ -678,20 +677,20 @@ namespace apex
       //virtual itask_t get_thread_id();
 
 
-      virtual bool _001OnDDECommand(const ::string& pcsz);
+      virtual bool _001OnDDECommand(const ::string& pcsz) override;
 
 
-      virtual void _001InitializeShellOpen();
+      virtual void _001InitializeShellOpen() override;
 
 
-      virtual void _001OnFileNew(::message::message* pmessage);
+      virtual void _001OnFileNew(::message::message* pmessage) override;
 
 
       virtual void get_temp_file_name_template(string& str, const ::string& lpszName, const ::string& pszExtension,
-                                               const ::string& pszTemplate);
+                                               const ::string& pszTemplate) override;
 
 
-      virtual void get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension);
+      virtual void get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension) override;
 
 
       inline ::service_handler* service_handler() const { return m_pservicehandler; }
@@ -709,64 +708,63 @@ namespace apex
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
       virtual void on_exclusive_instance_conflict(::request* prequest, bool& bHandled,
-                                                  enum_exclusive_instance eexclusive, string strId);
+                                                  enum_exclusive_instance eexclusive, string strId) override;
 
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      virtual void on_exclusive_instance_local_conflict(::request* prequest, bool& bHandled);
+      virtual void on_exclusive_instance_local_conflict(::request* prequest, bool& bHandled) override;
 
 
       /// return true if this instance might continue execution
 /// bHandled true if some action was done in response to this ___new additional instance creation
-      virtual void on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled, string strId);
+      virtual void on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled, string strId) override;
 
 
-      virtual void on_exclusive_instance_global_conflict(::request* prequest, bool& bHandled);
-
+       virtual void on_exclusive_instance_global_conflict(::request* prequest, bool& bHandled) override;
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      virtual void on_additional_local_instance(bool& bHandled, string strModule, int iPid, string strCommandLine);
+      virtual void on_additional_local_instance(bool& bHandled, string strModule, int iPid, string strCommandLine) override;
 
 
-      virtual void on_new_instance(string strModule, const ::atom& idPid);
+      virtual void on_new_instance(string strModule, const ::atom& idPid) override;
 
 
-      virtual string get_local_mutex_id();
+      virtual string get_local_mutex_id() override;
 
 
-      virtual string get_global_mutex_id();
+      virtual string get_global_mutex_id() override;
 
 
       //virtual ::pointer< ::mutex > get_local_mutex();
       //virtual ::pointer< ::mutex > get_global_mutex();
 
-      virtual string get_local_mutex_name();
+      virtual string get_local_mutex_name() override;
 
 
-      virtual string get_local_id_mutex_name();
+      virtual string get_local_id_mutex_name() override;
 
 
-      virtual string get_global_mutex_name();
+      virtual string get_global_mutex_name() override;
 
 
-      virtual string get_global_id_mutex_name();
+      virtual string get_global_id_mutex_name() override;
 
 
-      virtual bool check_exclusive(::request* prequest, bool& bHandled);
+      virtual bool check_exclusive(::request* prequest, bool& bHandled) override;
 
 
-      virtual bool erase_exclusive(const ::string& strId);
+      virtual bool erase_exclusive(const ::string& strId) override;
 
 
-      virtual bool exclusive_fails(const ::string& str, security_attributes* psecurityattributes = nullptr);
+      virtual bool exclusive_fails(const ::string& str, security_attributes* psecurityattributes = nullptr) override;
 
 
-      virtual bool exclusive_erase(const ::string& str);
+      virtual bool exclusive_erase(const ::string& str) override;
 
 
-      virtual void release_exclusive();
+      virtual void release_exclusive() override;
 
 
       bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override;
@@ -809,19 +807,19 @@ namespace apex
 
 
       virtual string http_get_locale_schema(const ::string& pszUrl, const ::string& pszLocale,
-                                            const ::string& pszSchema);
+                                            const ::string& pszSchema) override;
 
 
       //virtual void on_update_matter_locator() override;
 
       virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::string& pszPathName,
-                                                   ::request* prequest = nullptr);
+                                                   ::request* prequest = nullptr) override;
 
 
-      virtual bool platform_open_by_file_extension(::collection::index iEdge, ::request* prequest);
+      virtual bool platform_open_by_file_extension(::collection::index iEdge, ::request* prequest) override;
 
 
-      virtual bool on_start_application();
+      virtual bool on_start_application() override;
 
 
       //#if !defined(LINUX)
@@ -866,13 +864,13 @@ namespace apex
 
       //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
-      virtual void post_critical_error_message(const ::string& pszMessage, bool bShowLog = true);
+      virtual void post_critical_error_message(const ::string& pszMessage, bool bShowLog = true) override;
 
 
-      virtual void show_critical_error_log();
+      virtual void show_critical_error_log() override;
 
 
-      virtual string get_app_user_friendly_task_bar_name();
+      virtual string get_app_user_friendly_task_bar_name() override;
 
 
       //void signal(::signal * psignal) override;
@@ -884,42 +882,41 @@ namespace apex
 
       //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual ::file::path get_executable_path();
+      virtual ::file::path get_executable_path() override;
 
 
-      virtual string get_executable_extension();
+      virtual string get_executable_extension() override;
 
 
-      virtual string get_executable_title();
+      virtual string get_executable_title() override;
 
 
-      virtual string get_executable_appid();
+      virtual string get_executable_appid() override;
 
 
-      virtual bool on_open_document_file(::payload payloadFile);
+      virtual bool on_open_document_file(::payload payloadFile) override;
 
 
-      virtual string get_app_id(string wstr);
+      virtual string get_app_id(string wstr) override;
 
 
-      virtual void install_trace(const ::string& str);
+      virtual void install_trace(const ::string& str) override;
 
 
-      virtual void install_trace(double dRate);
+      virtual void install_trace(double dRate) override;
 
 
-      virtual void register_application_as_spa_file_type_handler();
-
+       virtual void register_application_as_spa_file_type_handler() override;
 
       //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
       //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
       // virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
 
 
-      virtual bool keyboard_focus_is_focusable(const ::user::interaction_base* pue);
+      virtual bool keyboard_focus_is_focusable(const ::user::interaction_base* pue) override;
 
 
-      virtual bool keyboard_focus_OnSetFocus(::user::interaction_base* pue);
+      virtual bool keyboard_focus_OnSetFocus(::user::interaction_base* pue) override;
 
 
       //virtual ::user::interaction * main_window();
@@ -931,19 +928,19 @@ namespace apex
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
-      virtual bool send_message_to_windows(const ::atom& atom, wparam wparam, lparam lparam); // with tbs in <3
+      virtual bool send_message_to_windows(const ::atom& atom, wparam wparam, lparam lparam) override; // with tbs in <3
 
-      virtual bool route_message_to_windows(::message::message* pmessage); // with tbs in <3
+      virtual bool route_message_to_windows(::message::message* pmessage) override; // with tbs in <3
 
 
-      virtual void send_language_change_message();
+      virtual void send_language_change_message() override;
 
 
       // apex commented
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
-      virtual string preferred_experience();
+      virtual string preferred_experience() override;
 
 
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
@@ -980,13 +977,13 @@ namespace apex
       //virtual void get_time(micro_time * pmicrotime);
 
 
-      virtual void close(::enum_exit eexit);
+      virtual void close(::enum_exit eexit) override;
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
-      virtual void HideApplication();
+      virtual void HideApplication() override;
 
 
       //virtual void initialize(::particle * pparticle) override;
@@ -1045,10 +1042,10 @@ namespace apex
 
       //virtual bool on_install() override;
       //virtual bool on_uninstall() override;
-      virtual bool on_run_install();
+      virtual bool on_run_install() override;
 
 
-      virtual bool on_run_uninstall();
+      virtual bool on_run_uninstall() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_application_signal);
@@ -1062,7 +1059,7 @@ namespace apex
       //virtual void on_request(::create* pcreate) override;
 
       //for implementation
-      virtual bool on_idle(::i32 lCount); // return true if more idle processing
+      virtual bool on_idle(int lCount) override; // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception& e, ::message::message* pmessage) override;
 
 
@@ -1159,7 +1156,7 @@ namespace apex
 
 
       // exiting
-      virtual bool save_all_modified(); // save before exit
+      virtual bool save_all_modified() override; // save before exit
       //virtual void HideApplication() override;
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
@@ -1170,28 +1167,28 @@ namespace apex
       // Advanced: process async DDE request
       //virtual bool OnDDECommand(LPWSTR pszCommand);
 
-      void _001OnFileNew();
+      void _001OnFileNew() override;
 
 
-      void on_file_open();
+      void on_file_open() override;
 
 
-      virtual bool does_launch_window_on_startup();
+      virtual bool does_launch_window_on_startup() override;
 
 
-      virtual bool activate_app();
+      virtual bool activate_app() override;
 
 
-      virtual void initialize_contextualized_theme();
+      virtual void initialize_contextualized_theme() override;
 
 
-      virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending);
+      virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(i64& i64Size, const ::string& pszPath, bool& bPending);
+      virtual bool get_fs_size(i64& i64Size, const ::string& pszPath, bool& bPending) override;
 
 
-      virtual void set_title(const ::string& pszTitle);
+      virtual void set_title(const ::string& pszTitle) override;
 
 
       void update_app_interest();
@@ -1204,38 +1201,38 @@ namespace apex
 
 
       virtual ::pointer<::progress::real> show_progress(::user::interaction* puiParent, const ::string& strTitle,
-                                                        ::collection::count iProgressCount);
+                                                        ::collection::count iProgressCount) override;
 
 
-      virtual void userfs_init1();
+      virtual void userfs_init1() override;
 
 
-      virtual void userfs_process_init();
+      virtual void userfs_process_init() override;
 
 
       void data_on_after_change(::database::client* pclient, const ::scoped_string& scopedstr,
                                 ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic);
+      virtual void report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic) override;
 
 
-      virtual void create_impact_system();
+      virtual void create_impact_system() override;
 
 
-      virtual void on_song_added(const string& str);
+      virtual void on_song_added(const string& str) override;
 
 
       //string get_visual_studio_build();
 
 
-      virtual string sound_path(const ::string& psz);
+      virtual string sound_path(const ::string& psz) override;
 
 
-      virtual string get_default_playlist_path();
+      virtual string get_default_playlist_path() override;
 
 
-      virtual string as_string(const ::payload& payload);
+      virtual string as_string(const ::payload& payload) override;
 
 #if defined(LINUX) || defined(__BSD__)
 
@@ -1244,20 +1241,19 @@ namespace apex
 #endif
 
 
-      virtual void on_create_app_shortcut();
+      virtual void on_create_app_shortcut() override;
 
 
-      virtual void create_app_shortcut();
+      virtual void create_app_shortcut() override;
 
 
       virtual class ::networking::application* networking_application(
-         ::networking::application_handler* papplicationhandlerCreateNetworkApplication = nullptr);
+         ::networking::application_handler* papplicationhandlerCreateNetworkApplication = nullptr) override;
 
 
       virtual void create_networking_application(const ::scoped_string& scopedstrHostName,
                                                  ::networking::application_handler*
-                                                    papplicationhandlerCreateNetworkApplication = nullptr);
-
+                                                 papplicationhandlerCreateNetworkApplication = nullptr) override;
 
       ::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::string& strUrl,
                                   const ::property_set& setPost) override;

@@ -32,7 +32,7 @@ namespace apple
             static void s_http_response(long lHttpStatus, const void * data, long size, void * userdata);
             
 
-            void async(::nano::http::get * pget) override;
+            void perform(::nano::http::get * pget) override;
             
             
          };

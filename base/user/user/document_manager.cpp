@@ -88,7 +88,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -146,8 +146,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      ::i32 lSize = _MAX_PATH * 2;
-      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      int lSize = _MAX_PATH * 2;
+      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -178,7 +178,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -301,8 +301,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      ::i32 lSize = _MAX_PATH * 2;
-      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      int lSize = _MAX_PATH * 2;
+      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -345,7 +345,7 @@ namespace user
    ASSERT(!filter.is_empty());  // must have a file type name
    filter += (char)'\0';  // next string please
 
-   i32 iStart = 0;
+   int iStart = 0;
    do
    {
    string strExtension = strFilterExt.Tokenize( _T( ";" ), iStart );
@@ -568,7 +568,7 @@ namespace user
       else
       return false; // not a command we handle
 
-      i32 i = strCommand.find('"');
+      int i = strCommand.find('"');
       if (i == -1)
       return false; // illegally terminated
 
@@ -673,7 +673,7 @@ namespace user
       }
 
       // get document ::collection::count before opening it
-      i32 nOldCount; nOldCount = get_document_count();
+      int nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
       pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);

@@ -6,7 +6,7 @@
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-void ns_main_async(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 char * __strdup(NSString * str);
 
@@ -75,9 +75,11 @@ NSString * nsstring_from_strdup(char * pszUtf8)
    
 }
 
-void _ns_main_sync(dispatch_block_t block);
 
-void ns_main_sync(dispatch_block_t block)
+void _ns_main_send(dispatch_block_t block);
+
+
+void ns_main_send(dispatch_block_t block)
 {
 
    if ([NSThread isMainThread])
@@ -89,7 +91,7 @@ void ns_main_sync(dispatch_block_t block)
    else
    {
       
-      _ns_main_sync(block);
+      _ns_main_send(block);
       
    }
 
@@ -98,32 +100,8 @@ void ns_main_sync(dispatch_block_t block)
 
 void ns_main_post(dispatch_block_t block)
 {
-   
+
    dispatch_async(dispatch_get_main_queue(), block);
-   
-}
-
-
-void ns_main_async(dispatch_block_t block)
-{
-
-   //   dispatch_block_t block = ^{
-   //      // Code for the method goes here
-   //   };
-   //
-
-   if ([NSThread isMainThread])
-   {
-
-      block();
-
-   }
-   else
-   {
-
-      ns_main_post(block);
-
-   }
 
 }
 

@@ -50,20 +50,20 @@ inline i32 consume_unicode_index_length(const ::wd16_character * & pszChar);
 inline i32 consume_unicode_index_length(const ::wd32_character * & pszChar) { return *pszChar++; }
 
 
-inline i32 unicode_index(const ::ansi_character * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }
-inline i32 unicode_index(const ::wd16_character * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }
-inline i32 unicode_index(const ::wd32_character * pszChar) { ::i32 len = 0; return unicode_index_length(pszChar, len); }
+inline i32 unicode_index(const ::ansi_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
+inline i32 unicode_index(const ::wd16_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
+inline i32 unicode_index(const ::wd32_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
 
 
 inline bool is_legal_unicode_index(i32 iUnicodeIndex);
 
 
-CLASS_DECL_ACME ::i32 unicode_to_lower_case(::i32 i);
-CLASS_DECL_ACME ::i32 unicode_to_upper_case(::i32 i);
+CLASS_DECL_ACME int unicode_to_lower_case(int i);
+CLASS_DECL_ACME int unicode_to_upper_case(int i);
 
 
 #define UNI_DECLARE_IS_FUNCTION(function) \
-inline bool function(::i32 i); \
+inline bool function(int i); \
 inline bool function(const ::ansi_character * psz); \
 inline bool function(const ::wd16_character * psz); \
 inline bool function(const ::wd32_character * psz);
@@ -100,15 +100,15 @@ UNI_IMPLEMENT_IS_FUNCTION(unicode_is_number);
 UNI_IMPLEMENT_IS_FUNCTION(unicode_is_mirrored);
 
 
-inline ::i32 unicode_to_title_case(::i32 i);
+inline int unicode_to_title_case(int i);
 inline i32 unicode_to_numeric_value(i32 i, float * f);
 inline ECharCategory unicode_get_category(i32 i);
 inline i32 unicode_get_combining_class(i32 i);
 inline i32 unicode_size_of_tables();
 
 
-CLASS_DECL_ACME ::i32 unicode_to_lower_case(::i32 i);
-CLASS_DECL_ACME ::i32 unicode_to_upper_case(::i32 i);
+CLASS_DECL_ACME int unicode_to_lower_case(int i);
+CLASS_DECL_ACME int unicode_to_upper_case(int i);
 
 
 //inline const ::ansi_character * _string_scan(::const_ansi_range range, ::const_ansi_range rangeCharacters) noexcept;
@@ -350,15 +350,15 @@ inline i32 unicode_to_title_case(i32 i);
 inline i32 unicode_to_numeric_value(i32 i, float * f);
 
 
-inline bool unicode_is_lower_case(::i32 iUniIndex);
-inline bool unicode_is_upper_case(::i32 iUniIndex);
-inline bool unicode_is_title_case(::i32 iUniIndex);
-inline bool unicode_is_letter(::i32 iUniIndex);
-inline bool unicode_is_letter_or_digit(::i32 iUniIndex);
-inline bool unicode_is_digit(::i32 iUniIndex);
-inline bool unicode_is_number(::i32 iUniIndex);
-inline bool unicode_is_assigned(::i32 iUniIndex);
-inline bool unicode_is_space_char(::i32 iUniIndex);
+inline bool unicode_is_lower_case(int iUniIndex);
+inline bool unicode_is_upper_case(int iUniIndex);
+inline bool unicode_is_title_case(int iUniIndex);
+inline bool unicode_is_letter(int iUniIndex);
+inline bool unicode_is_letter_or_digit(int iUniIndex);
+inline bool unicode_is_digit(int iUniIndex);
+inline bool unicode_is_number(int iUniIndex);
+inline bool unicode_is_assigned(int iUniIndex);
+inline bool unicode_is_space_char(int iUniIndex);
 
 
 // bool is_whitespace(const ::scoped_string & scopedstrUtf8Char, const ::ansi_character * pszEnd);

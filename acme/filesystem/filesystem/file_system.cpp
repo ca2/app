@@ -1424,7 +1424,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 //
 //      dwWrite = (::u32)minimum(nCount - uiWrittenTotal, 0xffffffffu);
 //
-//      dw = (::u32)(fwrite(&((u8 *)pdata)[pos], 1, dwWrite, file));
+//      dw = (::u32)(fwrite(&((unsigned char *)pdata)[pos], 1, dwWrite, file));
 //
 //      if (dw != dwWrite)
 //      {

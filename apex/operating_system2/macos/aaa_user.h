@@ -63,14 +63,14 @@ namespace macos
  
  typedef LPWINDOW oswindow;
  
- typedef int ::i32;
+ typedef int int;
  
  typedef struct tagRECT
  {
- ::i32    left;
- ::i32    top;
- ::i32    right;
- ::i32    bottom;
+ int    left;
+ int    top;
+ int    right;
+ int    bottom;
  } const rectangle_i32 &, *PRECT, *NPRECT, *::rectangle_i32 *;
  
  typedef const rectangle_i32 & * const rectangle_i32 &;

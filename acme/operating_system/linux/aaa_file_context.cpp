@@ -101,9 +101,9 @@ namespace linux
 
       pathNetworkPayload =          auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->home() / ".dropbox/info.network_payload";
+pdirectorysystem->home() / ".dropbox/info.network_payload";
 
       return pathNetworkPayload;
 

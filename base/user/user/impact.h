@@ -179,7 +179,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual i32  get_total_page_count(::context * ptopic) override;
+      virtual int  get_total_page_count(::context * ptopic) override;
 
 
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);

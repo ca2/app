@@ -16,10 +16,10 @@ read_only_memory::read_only_memory(const void * p, memsize size)
    this->m_bOwner = false;
    this->m_bReadOnly = true;
    this->m_preadonlymemory = this;
-   this->m_beginStorage = (::u8 *)p;
-   this->m_begin = (::u8 *)p;
+   this->m_beginStorage = (unsigned char *)p;
+   this->m_begin = (unsigned char *)p;
    this->m_sizeStorage = size;
-   this->m_end = ((::u8 *)p)+ size;
+   this->m_end = ((unsigned char *)p)+ size;
 
 }
 

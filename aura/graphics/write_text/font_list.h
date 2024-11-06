@@ -32,7 +32,7 @@ namespace write_text
       bool                                      m_bUpdatingFontList : 1;
       string                                    m_strFontFamily;
       string                                    m_strFontBranch;
-      ::i32                                     m_iLayoutSerial;
+      int                                     m_iLayoutSerial;
       ::pointer<font_enumeration>               m_pfontenumeration;
       ::pointer<font_enumeration>               m_pfontenumerationAddRedrawHandler;
       ::pointer<font_enumeration_item_array>    m_pfontenumerationitema;

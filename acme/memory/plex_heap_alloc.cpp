@@ -36,7 +36,7 @@ plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocS
 
    m_iShareBound = iShareCount - 1;
 
-   m_iAllocSize = (::i32)nAllocSize;
+   m_iAllocSize = (int)nAllocSize;
 
    m_iAlloc = 0;
 
@@ -158,14 +158,14 @@ void Alloc_check_pointer_in_cpp(void * p)
 void Free_check_pointer_in_cpp(void * p)
 {
 
-   //if((u8 *) p <  (u8 *)  g_pf1)
+   //if((unsigned char *) p <  (unsigned char *)  g_pf1)
    //{
 
    //   output_debug_string("hit g_pf1");
 
    //}
 
-   if ((::u8 *)0x0000000200000020 == ((::u8 *)p))
+   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)p))
    {
 
       output_debug_string("found it?!");
@@ -399,7 +399,7 @@ void Free_check_pointer_in_cpp(void * p)
 //      }
 //
 //   }
-//   if ((::u8 *)0x0000000200000020 == ((::u8 *)pParam))
+//   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pParam))
 //   {
 //
 //      debug_break();
@@ -535,11 +535,11 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //      pnodeNext = pnode;
 //
-//      pnode = (node *)&((::u8 *)pnode)[nAllocSize];
+//      pnode = (node *)&((unsigned char *)pnode)[nAllocSize];
 //
 //   }
 //
-//   if ((::u8 *)0x0000000200000020 == ((::u8 *)pnodeNext))
+//   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pnodeNext))
 //   {
 //
 //      debug_break();

@@ -31,10 +31,10 @@
 struct heap_memory_header
 {
 
-   ::u8                    m_back;
+   unsigned char                    m_back;
    ::heap::enum_memory     m_ememory;
-   ::u8                    m_blockuse;
-   ::u8                    m_align;
+   unsigned char                    m_blockuse;
+   unsigned char                    m_align;
 #if MEMORY_ANNOTATION
    const char *            m_pszAnnotation;
 #else
@@ -50,7 +50,7 @@ struct  heap_memory :
 
 #if HEAP_PADDING_SIZE > 0
 
-   ::u8                    m_padding[HEAP_PADDING_SIZE];
+   unsigned char                    m_padding[HEAP_PADDING_SIZE];
 
 #endif
 
@@ -150,7 +150,7 @@ inline static i32 heap_memory_get_block_use(void * pmemory)
 }
 
 
-inline static ::u8 heap_memory_get_align(void * pmemory)
+inline static unsigned char heap_memory_get_align(void * pmemory)
 {
 
    return heap_memory_get(pmemory)->m_align;

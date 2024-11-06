@@ -179,7 +179,7 @@ CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //
-//      ph[nCount] = (HANDLE)::get_message_queue(current_itask(), true)->m_eventNewMessage.hsync();
+//      ph[nCount] = (HANDLE)::get_message_queue(current_itask(), true)->m_eventNewMessage.hsynchronization();
 //
 //      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::durations, true);
 //

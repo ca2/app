@@ -111,9 +111,9 @@ namespace account
       
       auto psystem = system();
 
-      auto pacmedirectory = psystem->m_pdirectorysystem;
+      auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-      pacmedirectory->create(path);
+      pdirectorysystem->create(path);
 
       path /= psystem->crypto()->md5(strToken + strKey);
       

@@ -9,7 +9,7 @@ namespace aura
 {
 
 
-   bool strn::to(const ::string & psz, i32 iLen, i64 & i)
+   bool strn::to(const ::string & psz, int iLen, i64 & i)
    {
 
       const ::ansi_character * pszEnd;
@@ -25,7 +25,7 @@ namespace aura
 
    }
 
-   bool strn::to(const ::string & psz, i32 iLen, i32 & i)
+   bool strn::to(const ::string & psz, int iLen, int & i)
    {
 
       char * pszEnd;
@@ -35,17 +35,17 @@ namespace aura
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info< i32 >::maximum ())
+      if(iConversion > numeric_info< int >::maximum ())
          return false;
 
-      i = (i32) iConversion;
+      i = (int) iConversion;
 
       return true;
 
    }
 
 
-   bool strn::to(const ::string & psz, i32 iLen, i64 & i, i32 iBase)
+   bool strn::to(const ::string & psz, int iLen, i64 & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -64,7 +64,7 @@ namespace aura
 
    }
 
-   bool strn::to(const ::string & psz, i32 iLen, i32 & i, i32 iBase)
+   bool strn::to(const ::string & psz, int iLen, int & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -77,10 +77,10 @@ namespace aura
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info < i32 >::maximum ())
+      if(iConversion > numeric_info < int >::maximum ())
          return false;
 
-      i = (i32) iConversion;
+      i = (int) iConversion;
 
       return true;
 

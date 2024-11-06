@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626425258C4E0001CC7E /* libaqua.dylib */; };
+		9A52444E2CDAD457006ED868 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52444D2CDAD435006ED868 /* libapp_just_message_box.dylib */; };
 		9A6A481A26611437004ED97A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
 		9A6A481B26611437004ED97A /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9A6A481C26611437004ED97A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
@@ -16,6 +16,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A5244492CDAD435006ED868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A5243E82CD5BBE2006ED868;
+			remoteInfo = app_just_message_box;
+		};
+		9A52444C2CDAD435006ED868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
+			remoteInfo = app_just_message_box;
+		};
 		9AA828CF2CAF86CF00DA11E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */;
@@ -70,6 +84,8 @@
 /* Begin PBXFileReference section */
 		9A2E626425258C4E0001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A48898624EB48DE00119EC4 /* libapp_just_apex_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_just_apex_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5244312CDACF3A006ED868 /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = ../just_message_box/app_just_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_message_box/app_just_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9A5D09AE2B7F9BFF003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A5D09AF2B7F9BFF003239D4 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_impact_update_hint.h; sourceTree = "<group>"; };
@@ -93,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */,
+				9A52444E2CDAD457006ED868 /* libapp_just_message_box.dylib in Frameworks */,
 				9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */,
 				9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */,
 			);
@@ -106,10 +122,12 @@
 			isa = PBXGroup;
 			children = (
 				9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */,
+				9A5244312CDACF3A006ED868 /* app_just_message_box.xcodeproj */,
 				9A8FCADA2651A84D00C0D8A1 /* message_box */,
 				9A48898724EB48DE00119EC4 /* Products */,
 				9A488A5124EB4BAF00119EC4 /* Frameworks */,
 				9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */,
+				9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +147,14 @@
 				9AC3970525195DFA0036B92A /* libapex.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A5244472CDAD435006ED868 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A52444D2CDAD435006ED868 /* libapp_just_message_box.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A8FCADA2651A84D00C0D8A1 /* message_box */ = {
@@ -194,6 +220,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A52444A2CDAD435006ED868 /* PBXTargetDependency */,
 				9AA828D02CAF86CF00DA11E9 /* PBXTargetDependency */,
 			);
 			name = app_just_apex_message_box;
@@ -236,6 +263,10 @@
 					ProductGroup = 9AA828CD2CAF86CF00DA11E9 /* Products */;
 					ProjectRef = 9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A5244472CDAD435006ED868 /* Products */;
+					ProjectRef = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -245,6 +276,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A52444D2CDAD435006ED868 /* libapp_just_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_message_box.dylib;
+			remoteRef = 9A52444C2CDAD435006ED868 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AA828D52CAF86CF00DA11E9 /* libapex.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -303,6 +341,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A52444A2CDAD435006ED868 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = app_just_message_box;
+			targetProxy = 9A5244492CDAD435006ED868 /* PBXContainerItemProxy */;
+		};
 		9AA828D02CAF86CF00DA11E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = apex;

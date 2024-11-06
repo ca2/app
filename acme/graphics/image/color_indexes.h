@@ -11,7 +11,7 @@ struct color_indexes
    union
    {
 
-      ::u8 m_ba[4];
+      unsigned char m_ba[4];
 
       // m_ba[0] red index
       // m_ba[1] green index
@@ -22,10 +22,10 @@ struct color_indexes
       struct
       {
 
-         ::u8 m_u8IndexRed;
-         ::u8 m_u8IndexGreen;
-         ::u8 m_u8IndexBlue;
-         ::u8 m_u8IndexOpacity;
+         unsigned char m_u8IndexRed;
+         unsigned char m_u8IndexGreen;
+         unsigned char m_u8IndexBlue;
+         unsigned char m_u8IndexOpacity;
 
       };
 
@@ -48,10 +48,10 @@ struct color_indexes
 
 
    constexpr color_indexes(
-      ::u8 u8IndexRed,
-      ::u8 u8IndexGreen,
-      ::u8 u8IndexBlue,
-      ::u8 u8IndexOpacity) :
+      unsigned char u8IndexRed,
+      unsigned char u8IndexGreen,
+      unsigned char u8IndexBlue,
+      unsigned char u8IndexOpacity) :
       m_u8IndexRed(u8IndexRed),
       m_u8IndexGreen(u8IndexGreen),
       m_u8IndexBlue(u8IndexBlue),
@@ -61,13 +61,13 @@ struct color_indexes
    }
 
 
-   constexpr ::u8 red() const { return m_ba[0]; }
-   constexpr ::u8 green() const { return m_ba[1]; }
-   constexpr ::u8 blue() const { return m_ba[2]; }
-   constexpr ::u8 opacity() const { return m_ba[3]; }
+   constexpr unsigned char red() const { return m_ba[0]; }
+   constexpr unsigned char green() const { return m_ba[1]; }
+   constexpr unsigned char blue() const { return m_ba[2]; }
+   constexpr unsigned char opacity() const { return m_ba[3]; }
 
 
-   constexpr ::u8 operator[](::u8 u) const { return m_ba[u]; }
+   constexpr unsigned char operator[](unsigned char u) const { return m_ba[u]; }
 
 
 };

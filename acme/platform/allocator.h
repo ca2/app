@@ -282,7 +282,7 @@ namespace allocator
 //
 //         auto * data = pallocatorbase->allocate(s, pszAnnotation);
 //
-//         auto p = (::u8*)data;
+//         auto p = (unsigned char*)data;
 //
 //         for (::collection::index i = 0; i < c; i++)
 //         {
@@ -324,7 +324,7 @@ namespace allocator
       static ::pointer < T > __memory_allocate(::heap::enum_memory ememory, Args &&... args)
       {
 
-         auto pheapmanagement = ::system()->m_pheapmanagement;
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -341,7 +341,7 @@ namespace allocator
       inline static T * __memory_new(::heap::enum_memory ememory, Args &&... args)
       {
 
-         auto pheapmanagement = ::system()->m_pheapmanagement;
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -358,7 +358,7 @@ namespace allocator
       inline static T * __memory_new_array(::heap::enum_memory ememory, ::collection::count c)
       {
 
-         auto pheapmanagement = ::system()->m_pheapmanagement;
+         auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
          auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -375,7 +375,7 @@ namespace allocator
       static void __memory_delete(::heap::enum_memory ememory, T * p)
       {
 
-        auto pheapmanagement = ::system()->m_pheapmanagement;
+        auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
         auto & pmemory = pheapmanagement->m_memorya[ememory];
 
@@ -390,7 +390,7 @@ namespace allocator
       static void __memory_delete(::heap::enum_memory ememory, T* p, void * pAllocation)
       {
 
-        auto pheapmanagement = ::system()->m_pheapmanagement;
+        auto pheapmanagement = ::acme::get()->m_pheapmanagement;
 
         auto & pmemory = pheapmanagement->m_memorya[ememory];
 

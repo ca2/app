@@ -251,7 +251,7 @@ clockUnix (void)
 #define short i16
 #define int i16
 #define unsigned u16
-#define long i32
+#define long int
 
 #endif // Compiler32
 

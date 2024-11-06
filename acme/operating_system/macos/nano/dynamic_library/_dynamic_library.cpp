@@ -13,7 +13,7 @@
 IMPLEMENT_FACTORY(nano_dynamic_library)
 {
 
-   pfactory->add_factory_item<::macos::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library>();
+   pfactory->add_factory_item<::macos::operating_system::dynamic_library, ::operating_system::dynamic_library>();
 
 }
 

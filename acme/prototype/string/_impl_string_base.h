@@ -220,7 +220,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 //inline i32 string_compare(const CHARACTER * pszA, strsize sizeA, const ::ansi_character * pszB, strsize sizeB) noexcept
 //{
 //
-//   ::i32 iCompare;
+//   int iCompare;
 //
 //   if (string_compare_prefix(iCompare, pszA, pszB))
 //   {
@@ -238,7 +238,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 //inline i32 case_insensitive_string_order(const array_scopedstr<CHARACTER> & scopedstrA, ) noexcept
 //{
 //
-//   ::i32 iCompare;
+//   int iCompare;
 //
 //   if (string_compare_prefix(iCompare, pszA, pszB))
 //   {
@@ -3977,9 +3977,9 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       auto pszBlock2 = pszBlock;
 
-      ::i32 len1;
+      int len1;
 
-      ::i32 len2;
+      int len2;
 
       do
       {
@@ -4052,9 +4052,9 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       const CHARACTER * pszSub2 = scopedstr;
 
-      ::i32 len1;
+      int len1;
 
-      ::i32 len2;
+      int len2;
 
       while (*psz2 != '\0' && *pszSub2 != '\0') 
       {

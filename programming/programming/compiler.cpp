@@ -114,9 +114,9 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 //
-//      auto pacmedirectory = directory_system();
+//      auto pdirectorysystem = directory_system();
 //
-//      directory()->create(pacmedirectory->system() / "netnode_desktop/symbols");
+//      directory()->create(pdirectorysystem->system() / "netnode_desktop/symbols");
 //
 //      ::file::path strVars;
 //
@@ -347,21 +347,21 @@ namespace programming
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedirectory = directory_system();
+//      auto pdirectorysystem = directory_system();
 //
-//      pathEnvTxt = pacmedirectory->system() / "env.txt";
+//      pathEnvTxt = pdirectorysystem->system() / "env.txt";
 //
-//      file_system()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//      file_system()->put_contents(pdirectorysystem->system() / "env1.bat", pdirectorysystem->system() / "env.bat > \"" + pathEnvTxt + "\"");
 //
-//      file_system()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+//      file_system()->put_contents(pdirectorysystem->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 //
 //      auto psystem = system();
 //
 //      auto pnode = psystem->node();
 //
-//      pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
+//      pnode->run_silent(pdirectorysystem->system() / "env1.bat", "");
 //
-//      strLog = file_system()->as_string(pacmedirectory->system() / "env.txt");
+//      strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
 //
 //      stra.add_lines(strLog);
 //
@@ -444,16 +444,16 @@ namespace programming
       //   ::process::process_pointer process(e_create);
       //
       //
-      //   file_system()->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+      //   file_system()->put_contents(pdirectorysystem->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
       //
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
       //
       //   ::file::path pathCommand =          auto psystem = system();
 
-      //         auto pacmedirectory = psystem->m_pdirectorysystem;
+      //         auto pdirectorysystem = psystem->m_pdirectorysystem;
       //
-      //pacmedirectory->system() / "env.bat";
+      //pdirectorysystem->system() / "env.bat";
       //
       //   ::file::path pathFolder = ::file::path(m_strEnv).folder();
       //
@@ -570,9 +570,9 @@ namespace programming
 
       //string strEnv = file_system()->as_string(         auto psystem = system();
 
-   //         auto pacmedirectory = psystem->m_pdirectorysystem;
+   //         auto pdirectorysystem = psystem->m_pdirectorysystem;
    //
-   //pacmedirectory->system() / "env.txt");
+   //pdirectorysystem->system() / "env.txt");
 
       ::file::path strFolder;
       strFolder = m_pintegrationcontext->m_pathBuildFolder;

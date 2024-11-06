@@ -1,5 +1,7 @@
 #include "framework.h"
 #include <time.h>
+#undef __construct
+#undef __create
 #include "random_number_generator.h"
 #include <chrono>
 // defines for the random number generator
@@ -50,7 +52,7 @@ namespace mathematics
       return m_distributionU32(m_generator);
    }
 
-   u8 random_number_generator::get_u8()
+   unsigned char random_number_generator::get_u8()
    {
       return m_distributionU8(m_generator);
    }
@@ -86,7 +88,7 @@ namespace mathematics
 } // namespace random_number_generator
 
 
-   i64 random_context_entropy64(::u8 bLevel)
+   i64 random_context_entropy64(unsigned char bLevel)
    {
 
       bLevel = minimum(bLevel, 3);
@@ -140,6 +142,6 @@ namespace mathematics
 
       }
 
-      return (::i32) iValue;
+      return (int) iValue;
 
    }

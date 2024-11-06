@@ -20,7 +20,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const ::scoped_string & scopedstr, size_f64 & s)
+   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, const ::scoped_string & scopedstr, size_f64 & s)
    {
 
       s = pgraphics->get_text_extent(scopedstr);
@@ -46,7 +46,7 @@ namespace draw2d
       {
          sizea[0] = 0;
       }
-      for(i32 i = 1; i < iLen; i++)
+      for(int i = 1; i < iLen; i++)
       {
          ::GetTextExtentPoint32U(
          (HDC)pgraphics->get_os_data(),

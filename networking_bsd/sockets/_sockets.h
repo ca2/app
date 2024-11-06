@@ -25,7 +25,7 @@ inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_s
 #ifdef BSD_STYLE_SOCKETS
 
 
-CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(i32 x);
+CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
 
 
 #endif
@@ -35,7 +35,7 @@ namespace net
 {
 
 
-   CLASS_DECL_NETWORKING_BSD i32 family_len(i32 family);
+   CLASS_DECL_NETWORKING_BSD int family_len(int family);
 
 
 };

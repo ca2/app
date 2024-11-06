@@ -251,6 +251,15 @@ namespace aqua
    }
 
 
+::aqua::audio * system::audio()
+{
+    
+    return m_paudio;
+    
+}
+
+bool system::has_audio() const
+{ return ::is_set(m_paudio); }
    void system::defer_multimedia()
    {
 
@@ -356,6 +365,8 @@ namespace aqua
 
    }
 
+::aqua::multimedia * system::multimedia()
+{ return m_pmultimedia; }
 
    void system::defer_audio_mixer()
    {

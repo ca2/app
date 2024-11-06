@@ -6,9 +6,9 @@
 #include "acme/prototype/collection/address_array.h"
 
 
-#ifdef WINDOWS
-using hsync_array = ::address_array < hsync >;
-#endif
+//#ifdef WINDOWS
+using hsynchronization_array = ::address_array < hsynchronization >;
+//#endif
 
 
 template < typename T, ::collection::count t_iCount >
@@ -56,8 +56,8 @@ protected:
    
    ::pointer_array < subparticle >                             m_subparticlea;
 
-   hsync_array                                                 m_hsynca;
-   fixed_raw_array < ::u8, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
+   hsynchronization_array                                                 m_hsynchronizationa;
+   fixed_raw_array < unsigned char, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
 
 public:
 
@@ -88,14 +88,14 @@ public:
 
    virtual void unlock_item(::collection::index index);
 
-   virtual void unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount = nullptr);
+   virtual void unlock_item(::collection::index index, int lCount, int * pPrevCount = nullptr);
 
    virtual void contains(const ::e_status & result) const;
 
    synchronization_array & operator = (const synchronization_array & synca);
 
-   hsync * data() {return m_hsynca.data(); }
-   ::collection::count size() const { return m_hsynca.size(); }
+   hsynchronization * data() {return m_hsynchronizationa.data(); }
+   ::collection::count size() const { return m_hsynchronizationa.size(); }
    bool is_empty() const { return this->size() <= 0; }
    ::subparticle * at(::collection::index i) const { return m_subparticlea.ptr_at(i); }
 };

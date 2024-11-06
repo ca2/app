@@ -25,7 +25,7 @@ namespace h2n2h_helper
    {
    private:
       static constexpr ::u32 uint32_ = 0x01020304;
-      static constexpr ::u8 magic_ = (const ::u8&)uint32_;
+      static constexpr unsigned char magic_ = (const unsigned char&)uint32_;
    public:
       static constexpr bool little = magic_ == 0x04;
       static constexpr bool middle = magic_ == 0x02;

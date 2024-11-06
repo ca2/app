@@ -171,7 +171,7 @@ namespace platform
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iComputed = (int)(((::u8 *)pAll - (::u8 *)pType) + iAll + iAddUp);
+      int iComputed = (int)(((unsigned char *)pAll - (unsigned char *)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
@@ -198,7 +198,7 @@ namespace platform
    system::~system()
    {
 
-      print_line("acme::system::~system() (start)");
+      print_line("platform::system::~system() (start)");
 
       trace_category_static_term();
 
@@ -211,7 +211,7 @@ namespace platform
       m_pbredsystem = nullptr;
       m_pcoresystem = nullptr;
 
-      print_line("acme::system::~system() (end)");
+      print_line("platform::system::~system() (end)");
 
       //::system()->m_pmanualreseteventReadyToExit->SetEvent();
 
@@ -873,7 +873,7 @@ namespace platform
 
        }*/
 
-       //      m_pdirectorysystem = pacmedirectory;
+       //      m_pdirectorysystem = pdirectorysystem;
 
        //    m_pdirectorysystem->increment_reference_count();
 
@@ -2162,7 +2162,7 @@ namespace platform
 
       stra.erase_empty();
 
-      information() << "acme::system::get_public_internet_domain_extension_list";
+      information() << "platform::system::get_public_internet_domain_extension_list";
 
       for (auto & str : stra)
       {

@@ -119,7 +119,7 @@ void machine_event_data::read(::file::readable * preadable)
 
    }
 
-   ::i32 s = (::i32) m_memoryCommand.size();
+   int s = (int) m_memoryCommand.size();
 
    preadable->read(s);
 
@@ -142,7 +142,7 @@ void machine_event_data::write(::file::writable * pwritable)
 
    }
 
-   ::i32 s = (::i32) m_memoryCommand.size();
+   int s = (int) m_memoryCommand.size();
 
    pwritable->write(s);
 

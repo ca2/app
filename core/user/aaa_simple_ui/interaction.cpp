@@ -5,10 +5,10 @@ namespace simple_ui
 {
 
 
-//   ::u8 brate(double dRate, double dMin, double dMax)
+//   unsigned char brate(double dRate, double dMin, double dMax)
 //   {
 //
-//      return (::u8)(dRate * (dMax - dMin) + dMin);
+//      return (unsigned char)(dRate * (dMax - dMin) + dMin);
 //
 //   }
 //
@@ -616,7 +616,7 @@ namespace simple_ui
 //      int iCount = rectangleWindow.width();
 //      int jCount = rectangleWindow.height();
 //
-//      ::u8 * point = (::u8 *)m_pimage->get_data();
+//      unsigned char * point = (unsigned char *)m_pimage->get_data();
 //
 //      for (i = 0; i < iCount; i++)
 //      {
@@ -713,10 +713,10 @@ namespace simple_ui
 //      {
 //         double dRate = (double)i / (double)iCount;
 //         dRate = 1.0 - dRate;
-//         ::u8 a1 = brate(1.0 - dRate, 23, 90);
-//         ::u8 r1 = brate(dRate, 23, 127);
-//         ::u8 g1 = brate(dRate, 23, 127);
-//         ::u8 b1 = brate(dRate, 23, 127);
+//         unsigned char a1 = brate(1.0 - dRate, 23, 90);
+//         unsigned char r1 = brate(dRate, 23, 127);
+//         unsigned char g1 = brate(dRate, 23, 127);
+//         unsigned char b1 = brate(dRate, 23, 127);
 //         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
 //         pgraphics->draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i);

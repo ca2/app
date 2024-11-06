@@ -76,7 +76,7 @@ namespace draw2d_cairo
             for(i32 i = 0; i < cy; i++)
             {
 
-               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) pdata)[iStrideParam * i], iW);
+               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) pdata)[iStrideParam * i], iW);
 
             }
 
@@ -162,7 +162,7 @@ namespace draw2d_cairo
 
 #endif
 
-         ::i32 iScanWidth = -1;
+         int iScanWidth = -1;
 
          int iSourceStride = -1;
 
@@ -189,7 +189,7 @@ namespace draw2d_cairo
 
          }
 
-         ::i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
+         int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
 
 #ifdef MORE_LOG
 
@@ -218,7 +218,7 @@ namespace draw2d_cairo
                for(i32 i = 0; i < size.cy(); i++)
                {
 
-                  ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iSourceStride * i], iW);
+                  ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iSourceStride * i], iW);
 
                }
 
@@ -332,7 +332,7 @@ namespace draw2d_cairo
 
       destroy();
 
-      ::i32 iScanWidth = -1;
+      int iScanWidth = -1;
 //
 //      if(pstride)
 //      {
@@ -358,7 +358,7 @@ namespace draw2d_cairo
 
       //m_mem.m_bAligned = true;
 
-      m_mem.m_begin = (::u8*) ppixmap->m_pimage32Raw;
+      m_mem.m_begin = (unsigned char*) ppixmap->m_pimage32Raw;
       m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy());
       m_mem.m_bOwner = false;
 
@@ -373,7 +373,7 @@ namespace draw2d_cairo
 //            for(i32 i = 0; i < size.cy(); i++)
 //            {
 //
-//               ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iW * i], iW);
+//               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iW * i], iW);
 //
 //            }
 //
@@ -463,7 +463,7 @@ namespace draw2d_cairo
 
 
 
-   ::i32 bitmap::stride_for_width(::i32 iWidth)
+   int bitmap::stride_for_width(int iWidth)
    {
 
       return cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iWidth);
@@ -585,7 +585,7 @@ namespace draw2d_cairo
 //   }
 
 
-   void get_surface_size (cairo_surface_t * psurface, ::i32 * plongWidth, ::i32 * plongHeight)
+   void get_surface_size (cairo_surface_t * psurface, int * plongWidth, int * plongHeight)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex());
@@ -616,7 +616,7 @@ namespace draw2d_cairo
 
       m_psurface = (cairo_surface_t *) psurface;
 
-      get_surface_size((cairo_surface_t *) psurface, (::i32 *) &m_size.cx(), (::i32 *)&m_size.cy());
+      get_surface_size((cairo_surface_t *) psurface, (int *) &m_size.cx(), (int *)&m_size.cy());
 
       m_osdata[0] = m_psurface;
 

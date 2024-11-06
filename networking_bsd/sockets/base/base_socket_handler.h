@@ -110,7 +110,7 @@ namespace sockets_bsd
       /** Set read/write/exception file descriptor sets (fd_set). */
       //virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
-      virtual int select(i32 sec, i32 usec) override = 0;
+      virtual int select(int sec, int usec) override = 0;
       /** This method will not return until an event has been detected. */
       virtual int select() override = 0;
       /** Wait for events, generate callbacks. */
@@ -213,7 +213,7 @@ namespace sockets_bsd
       /** Indicates that the handler runs under socket_thread. */
       //virtual bool IsSlave() = 0;
 
-      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, int err, const ::string & strMessage);
 
 
    };

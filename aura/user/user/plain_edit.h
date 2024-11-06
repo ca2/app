@@ -199,9 +199,9 @@ namespace user
       //bool                              m_bLastSelectionWasAtEnd;
       
       ::collection::index                 m_iLastSelectionBeginLine;
-      ::i32                               m_iLastSelectionBeginX;
+      int                               m_iLastSelectionBeginX;
       ::collection::index                 m_iLastSelectionEndLine;
-      ::i32                               m_iLastSelectionEndX;
+      int                               m_iLastSelectionEndX;
       
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
@@ -237,7 +237,7 @@ namespace user
       strsize                             m_iImpactSize; // in bytes
       double                              m_dLineHeight;
       ::collection::index                               m_iColumn;
-      i32                                 m_iColumnX;
+      int                                 m_iColumnX;
       bool                                m_bMultiLine;
       bool                                m_bSendEnterKey;
       bool                                m_bReadOnly;
@@ -400,7 +400,7 @@ namespace user
       bool keyboard_focus_is_focusable() override;
 
 
-      virtual i32 get_wheel_scroll_delta() override;
+      virtual int get_wheel_scroll_delta() override;
 
       virtual void clipboard_copy();
       virtual void clipboard_paste();
@@ -434,14 +434,14 @@ namespace user
       virtual bool has_text_input() override;
 
 
-      virtual void on_updata_data(::data::simple_data * pdata, i32 iHint);
+      virtual void on_updata_data(::data::simple_data * pdata, int iHint);
 
 
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
       virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & point);
-      virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 x, ::collection::index iLine);
+      virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, int x, ::collection::index iLine);
 
       //colorertake5::file_type * colorer_select_type();
 
@@ -504,11 +504,11 @@ namespace user
       void plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
 
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x) override;
       strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, i32 x) override;
+      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
       bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);
       bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);

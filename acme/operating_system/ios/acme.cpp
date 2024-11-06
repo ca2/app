@@ -249,7 +249,7 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 //
 
 
-void * get_acme_application()
+void * get_platform_application()
 {
    
    return system()->application();

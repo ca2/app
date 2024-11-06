@@ -12,7 +12,7 @@
 //#if !defined(LINUX)
 //inline void __exchange(::payload_stream & s, long & l);
 //#endif
-//inline void __exchange(::payload_stream & s, u8 & u);
+//inline void __exchange(::payload_stream & s, unsigned char & u);
 //inline void __exchange(::payload_stream & s, u16 & u);
 //inline void __exchange(::payload_stream & s, u32 & u);
 //inline void __exchange(::payload_stream & s, u64 & u);

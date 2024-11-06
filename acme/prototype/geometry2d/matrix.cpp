@@ -103,8 +103,8 @@ namespace geometry2d
 
       ::sequence2_i32 s;
 
-      s.a() = (::i32) (sequence.a() * a1 + sequence.b() * b1 + c1);
-      s.b() = (::i32) (sequence.a() * a2 + sequence.b() * b2 + c2);
+      s.a() = (int) (sequence.a() * a1 + sequence.b() * b1 + c1);
+      s.b() = (int) (sequence.a() * a2 + sequence.b() * b2 + c2);
 
       sequence = s;
 

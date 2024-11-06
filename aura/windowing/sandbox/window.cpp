@@ -366,7 +366,7 @@ namespace sandbox_windowing
    //}
 
 
-   //i32 window::map_window()
+   //int window::map_window()
    //{
 
    //   int i = 0;
@@ -414,7 +414,7 @@ namespace sandbox_windowing
    //}
 
 
-   //i32 window::unmap_window(bool bWithdraw)
+   //int window::unmap_window(bool bWithdraw)
    //{
 
    //   synchronous_lock synchronouslock(user_synchronization());
@@ -451,7 +451,7 @@ namespace sandbox_windowing
    //   ::pointer< ::mutex >window::s_pmutex = nullptr;
 
 
-   //   i32 oswindow_find_message_only_window(::windowing::window *pimpl)
+   //   int oswindow_find_message_only_window(::windowing::window *pimpl)
    //   {
    //
    //      if (pimpl == nullptr)
@@ -463,7 +463,7 @@ namespace sandbox_windowing
    //
    //      single_lock slOsWindow(window::s_pmutex, true);
    //
-   //      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
+   //      for (int i = 0; i < ::window::s_pdataptra->get_count(); i++)
    //      {
    //
    //         if (::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
@@ -480,12 +480,12 @@ namespace sandbox_windowing
    //
    //   }
 
-   //   i32 oswindow_find(Display *Display(), Window window)
+   //   int oswindow_find(Display *Display(), Window window)
    //   {
    //
    //      single_lock slOsWindow(::window::s_pmutex, true);
    //
-   //      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
+   //      for (int i = 0; i < ::window::s_pdataptra->get_count(); i++)
    //      {
    //         if (!::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
    //             && ::window::s_pdataptra->element_at(i)->m_osdisplay->display() == Display()
@@ -499,12 +499,12 @@ namespace sandbox_windowing
    //
    //   }
 
-   //   i32 oswindow_find(Window window)
+   //   int oswindow_find(Window window)
    //   {
    //
    //      single_lock slOsWindow(::window::s_pmutex, true);
    //
-   //      for (i32 i = 0; i < ::window::s_pdataptra->get_count(); i++)
+   //      for (int i = 0; i < ::window::s_pdataptra->get_count(); i++)
    //      {
    //         if (!::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
    //             && ::window::s_pdataptra->element_at(i)->m_window == window)
@@ -988,7 +988,7 @@ namespace sandbox_windowing
 //   }
 
 
-   //i32 window::store_name(const ::scoped_string & scopedstr)
+   //int window::store_name(const ::scoped_string & scopedstr)
    //{
 
    //   windowing_output_debug_string("\nwindow::store_name");
@@ -1006,7 +1006,7 @@ namespace sandbox_windowing
    //}
 
 
-   //i32 window::select_input(i32 iInput)
+   //int window::select_input(int iInput)
    //{
 
    //   windowing_output_debug_string("\nwindow::select_input");
@@ -1024,7 +1024,7 @@ namespace sandbox_windowing
    //}
 
 
-   //i32 window::select_all_input()
+   //int window::select_all_input()
    //{
 
    //   windowing_output_debug_string("\nwindow::select_all_input");
@@ -1227,7 +1227,7 @@ namespace sandbox_windowing
    //}
 
 
-//   Atom get_window_long_atom(i32 nIndex);
+//   Atom get_window_long_atom(int nIndex);
 //
 //   // Change _NET_WM_STATE if Window is Mapped
 //   void window::mapped_net_state_raw(bool add, int iScreen, Atom state1, Atom state2)
@@ -1583,7 +1583,7 @@ namespace sandbox_windowing
    }
 
 
-   //   iptr window::get_window_long_ptr(i32 nIndex)
+   //   iptr window::get_window_long_ptr(int nIndex)
    //   {
    //
    //      return m_pwindow->get_window_long_ptr(nIndex);
@@ -1591,7 +1591,7 @@ namespace sandbox_windowing
    //   }
 
 
-   //   iptr window::set_window_long_ptr(i32 nIndex, iptr i)
+   //   iptr window::set_window_long_ptr(int nIndex, iptr i)
    //   {
    //
    //      return m_pwindow->set_window_long_ptr(nIndex, i);
@@ -1652,9 +1652,9 @@ namespace sandbox_windowing
 
    //   Atom actual_type = 0;
 
-   //   i32 actual_format = 0;
+   //   int actual_format = 0;
 
-   //   i32 status = 0;
+   //   int status = 0;
 
    //   unsigned char * point = nullptr;
 
@@ -1791,7 +1791,7 @@ namespace sandbox_windowing
 #undef SET_WINDOW_POS_LOG
 
 
-   //   bool window::set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   //   bool window::set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
    //   {
    //
    //      bool bOk = false;
@@ -2077,8 +2077,8 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::set_window_position(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
-   bool window::_set_window_position(const class ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags)
+   //bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags)
    {
 
       //synchronous_lock sl(user_synchronization());

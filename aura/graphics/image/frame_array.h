@@ -25,7 +25,7 @@ namespace image
       bool                 m_bTransparent;
       ::color::color       m_colorTransparent;
       ::color::color       m_colorBack;
-      ::u8                 m_backgroundIndex;
+      unsigned char                 m_backgroundIndex;
       ::size_i32           m_sizeLogical;
       ::size_i32           m_size;
       ::image::image_pointer      m_pimageCompose;

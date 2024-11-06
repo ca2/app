@@ -90,7 +90,7 @@ namespace zip
 
       string str;
 
-      i32 i;
+      int i;
 
       for(i = 1; i < m_straPath.get_size(); i++)
       {
@@ -169,7 +169,7 @@ namespace zip
 
       string str;
 
-      i32 i;
+      int i;
 
       for(i = 0; i < m_straPath.get_upper_bound(); i++)
       {
@@ -328,7 +328,7 @@ namespace zip
    {
       if(m_strFileName.is_empty())
          return false;
-      ::u8 buf[1024];
+      unsigned char buf[1024];
       memsize iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
@@ -341,7 +341,7 @@ namespace zip
    bool in_file::dump(memory & m)
    {
 
-      ::u8 buf[1024];
+      unsigned char buf[1024];
 
       memsize iRead;
 
@@ -448,9 +448,9 @@ namespace zip
 
          i64 iGet;
 
-         i32 iRead;
+         int iRead;
 
-         ::u8 pbBuf[1024];
+         unsigned char pbBuf[1024];
 
          while(iRemain > 0)
          {

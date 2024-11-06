@@ -90,7 +90,7 @@ namespace user
    void scroll_base_y::set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (::i32)elayout;
+      auto iLayout = (int)elayout;
 
       while (iLayout >= 0)
       {
@@ -112,7 +112,7 @@ namespace user
 
       //scroll_bar_get_client_rect(rectangleX);
 
-//      i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+//      int ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       defer_create_scroll_bar_y(elayout);
 
@@ -292,10 +292,10 @@ namespace user
 
 
 
-   i32 scroll_base_y::get_wheel_scroll_delta()
+   int scroll_base_y::get_wheel_scroll_delta()
    {
 
-      return (::i32)m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
+      return (int)m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
 
    }
 
@@ -417,7 +417,7 @@ namespace user
       //      else if (nPos > m_pscrollbarY->m_scrollinfo.nMax - m_pscrollbarY->m_scrollinfo.nPage)
       //         nPos = m_pscrollbarY->m_scrollinfo.nMax - m_pscrollbarY->m_scrollinfo.nPage;
       //
-      //      m_pscrollbarY->m_scrollinfo.nPos =  (i32) nPos;
+      //      m_pscrollbarY->m_scrollinfo.nPos =  (int) nPos;
 
 
       auto ekey = pkey->m_ekey;
@@ -465,7 +465,7 @@ namespace user
    //      if (point.y() > maximum(0, sizeTotal.cy() - sizePage.cy()))
    //      {
 
-   //         point.y() = (::i32)maximum(0, sizeTotal.cy() - sizePage.cy());
+   //         point.y() = (int)maximum(0, sizeTotal.cy() - sizePage.cy());
 
    //      }
 
@@ -543,7 +543,7 @@ namespace user
             //   if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
             //   {
 
-            //      point.x() = (::i32)maximum(0, sizeTotal.cx() - sizePage.cx());
+            //      point.x() = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
 
             //   }
 
@@ -577,17 +577,17 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::i32 iTotalHeight = (::i32)sizeTotal.cy();
+      int iTotalHeight = (int)sizeTotal.cy();
 
-      ::i32 iTotalWidth = (::i32)sizeTotal.cx();
+      int iTotalWidth = (int)sizeTotal.cx();
 
-      ::i32 iClientHeight = rectangleX.height();
+      int iClientHeight = rectangleX.height();
 
-      ::i32 iClientWidth = rectangleX.width();
+      int iClientWidth = rectangleX.width();
 
-      ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_thickness);
+      int iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_thickness);
 
-      //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      //int iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
 
@@ -634,7 +634,7 @@ namespace user
 
       //return m_pscrollstateVertical->m_bScroll && m_pscrollstateVertical->m_bScrollEnable ? m_pscrollstateVertical->m_iWidth : 0;
 
-      return (::i32)m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
+      return (int)m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
 
    }
 
@@ -656,7 +656,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (i32)get_context_offset().y();
+      //   pscroll->m_nPos = (int)get_context_offset().y();
 
       //}
 

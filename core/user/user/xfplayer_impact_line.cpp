@@ -472,8 +472,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    point_i32 iMargin;
    {
-      iMargin.x() = (::i32)(sppen->m_dWidth / 2.0);
-      iMargin.y() = (::i32)(sppen->m_dWidth / 2.0);
+      iMargin.x() = (int)(sppen->m_dWidth / 2.0);
+      iMargin.y() = (int)(sppen->m_dWidth / 2.0);
    }
 
    if (!IsVisible())
@@ -1470,9 +1470,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::point_i32 point;
 
-      point.x() = (::i32) (iLeft - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.x() = (int) (iLeft - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      point.y() = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.y() = (int) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       {
 
@@ -1601,9 +1601,9 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    m_pgraphicsextension->get_text_extent(pgraphics, scopedstr, size);
 
-   size.cx() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
+   size.cx() += (int)(2 * (maximum(2.0, m_floatRateX * 8.0)));
    
-   size.cy() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
+   size.cy() += (int)(2 * (maximum(2.0, m_floatRateX * 8.0)));
 
    pimageCache = image()->create_image(size);
 

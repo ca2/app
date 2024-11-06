@@ -531,10 +531,10 @@ void draw2d::emboss_predicate(
 
    ::rectangle_i32 rectangleEmboss = rectangle;
 
-   rectangleEmboss.left() -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.top() -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.right() += (::i32)(iR * g_dEmboss);
-   rectangleEmboss.bottom() += (::i32)(iR * g_dEmboss);
+   rectangleEmboss.left() -= (int)(iR * g_dEmboss);
+   rectangleEmboss.top() -= (int)(iR * g_dEmboss);
+   rectangleEmboss.right() += (int)(iR * g_dEmboss);
+   rectangleEmboss.bottom() += (int)(iR * g_dEmboss);
 
    if (bUpdate || !pimageBlur->is_ok())
    {
@@ -551,8 +551,8 @@ void draw2d::emboss_predicate(
 
       ::rectangle_i32 rectangleCache;
 
-      rectangleCache.left() = (::i32)(iR * g_dEmboss);
-      rectangleCache.top() = (::i32)(iR * g_dEmboss);
+      rectangleCache.left() = (int)(iR * g_dEmboss);
+      rectangleCache.top() = (int)(iR * g_dEmboss);
       rectangleCache.right() = rectangleCache.left() + rectangle.width();
 
       rectangleCache.bottom() = rectangleCache.top() + rectangle.height();
@@ -633,38 +633,38 @@ void draw2d::emboss_predicate(
 
 
    void draw2d::alpha_spread__24CC(
-      ::u8 * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-      ::u8 * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-      ::u8 bMin, i32 iRadius)
+      unsigned char * lpbDst, int xDest, int yDest, int wDest, int cx, int cy,
+      unsigned char * lpbSrc, int xSrc, int ySrc, int wSrc,
+      unsigned char bMin, int iRadius)
    {
       __UNREFERENCED_PARAMETER(xDest);
       __UNREFERENCED_PARAMETER(yDest);
       __UNREFERENCED_PARAMETER(xSrc);
       __UNREFERENCED_PARAMETER(ySrc);
-      i32 iFilterW = iRadius * 2 + 1;
-      i32 iFilterH = iRadius * 2 + 1;
-      i32 iFilterHalfW = iFilterW / 2;
-      i32 iFilterHalfH = iFilterH / 2;
-      i32 iFilterArea = iFilterW * iFilterH;
-      //i32 divisor;
-      ::u8 * lpbSource;
-      ::u8 * lpbSource_1;
-      ::u8 * lpbSource_2;
-      ::u8 * lpwDestination;
-      ::u8 * lpFilter;
-      ::u8 * pFilter;
+      int iFilterW = iRadius * 2 + 1;
+      int iFilterH = iRadius * 2 + 1;
+      int iFilterHalfW = iFilterW / 2;
+      int iFilterHalfH = iFilterH / 2;
+      int iFilterArea = iFilterW * iFilterH;
+      //int divisor;
+      unsigned char * lpbSource;
+      unsigned char * lpbSource_1;
+      unsigned char * lpbSource_2;
+      unsigned char * lpwDestination;
+      unsigned char * lpFilter;
+      unsigned char * pFilter;
 
 
-      i32 i;
-      i32 x;
-      i32 y;
-      i32 x1;
-      i32 y1;
-      i32 x2;
-      i32 y2;
+      int i;
+      int x;
+      int y;
+      int x1;
+      int y1;
+      int x2;
+      int y2;
 
-      i32 iRadius2 = iRadius * iRadius;
-      i32 r2;
+      int iRadius2 = iRadius * iRadius;
+      int r2;
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -710,13 +710,13 @@ void draw2d::emboss_predicate(
 
                }
 
-               pFilter[x + y * iFilterW] = (::u8)i;
+               pFilter[x + y * iFilterW] = (unsigned char)i;
 
-               pFilter[iFilterW - 1 - x + y * iFilterW] = (::u8)i;
+               pFilter[iFilterW - 1 - x + y * iFilterW] = (unsigned char)i;
 
-               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
+               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
 
-               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (::u8)i;
+               pFilter[x + (iFilterH - 1 - y) * iFilterW] = (unsigned char)i;
 
             }
 
@@ -726,9 +726,9 @@ void draw2d::emboss_predicate(
 
       synchronouslock.unlock();
 
-      i32 maxx1 = cx;
-      i32 maxy1 = cy;
-      i32 max3x1 = maxx1 * 3;
+      int maxx1 = cx;
+      int maxy1 = cy;
+      int max3x1 = maxx1 * 3;
 
 
       u32 dwR;
@@ -736,15 +736,15 @@ void draw2d::emboss_predicate(
       u32 dwB;
 
 
-      i32 iFilterXLowerBound;
-      i32 iFilterXUpperBound;
-      i32 iFilterYLowerBound;
-      i32 iFilterYUpperBound;
+      int iFilterXLowerBound;
+      int iFilterXUpperBound;
+      int iFilterYLowerBound;
+      int iFilterYUpperBound;
 
-      i32 yLowerBound[4];
-      i32 yUpperBound[4];
-      i32 xLowerBound[4];
-      i32 xUpperBound[4];
+      int yLowerBound[4];
+      int yUpperBound[4];
+      int xLowerBound[4];
+      int xUpperBound[4];
 
       // top
       xLowerBound[0] = 0;
@@ -770,10 +770,10 @@ void draw2d::emboss_predicate(
       yLowerBound[3] = cy - iFilterHalfW;
       yUpperBound[3] = cy - 1;
 
-      i32 xL;
-      i32 xU;
-      i32 yL;
-      i32 yU;
+      int xL;
+      int xU;
+      int yL;
+      int yU;
 
       bool bSpread;
       u32 bMin3 = bMin * 3;
@@ -838,11 +838,11 @@ void draw2d::emboss_predicate(
                dwG = 0;
                dwB = 0;
                bSpread = false;
-               for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+               for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                {
                   lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
                   lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-                  for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+                  for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                   {
                      if (*lpFilter >= 1)
                      {
@@ -875,8 +875,8 @@ void draw2d::emboss_predicate(
       iFilterXLowerBound = 0;
       iFilterXUpperBound = iFilterH - 1;
 
-      i32 iFilterHalfWidth = iFilterW / 2;
-      i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+      int iFilterHalfWidth = iFilterW / 2;
+      int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
       yL = iFilterHalfWidth;
       yU = maxy1 - iFilterHalfWidth;
@@ -907,11 +907,11 @@ void draw2d::emboss_predicate(
             dwG = 0;
             dwB = 0;
             bSpread = false;
-            for (i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+            for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
                lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
                lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-               for (i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+               for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
                   if (*lpFilter >= 1)
                   {
@@ -949,36 +949,36 @@ void draw2d::emboss_predicate(
    }
 
 
-   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius, const ::color::color & colorSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, const ::color::color & colorSpreadSetColor)
    {
 
       pimageDst->map();
 
       pimageSrc->map();
 
-      i32 iFilterW = iRadius * 2 + 1;
-      i32 iFilterH = iRadius * 2 + 1;
-      i32 iFilterHalfW = iRadius;
-      i32 iFilterHalfH = iRadius;
-      i32 iFilterArea = iFilterW * iFilterH;
-      //i32 divisor = iFilterW * iFilterH;
-      ::u8 * lpbSource;
-      ::u8 * lpbSource_1;
-      ::u8 * lpbSource_2;
-      ::u8 * lpwDestination;
-      ::u8 * lpFilter;
-      ::u8 * pFilter;
+      int iFilterW = iRadius * 2 + 1;
+      int iFilterH = iRadius * 2 + 1;
+      int iFilterHalfW = iRadius;
+      int iFilterHalfH = iRadius;
+      int iFilterArea = iFilterW * iFilterH;
+      //int divisor = iFilterW * iFilterH;
+      unsigned char * lpbSource;
+      unsigned char * lpbSource_1;
+      unsigned char * lpbSource_2;
+      unsigned char * lpwDestination;
+      unsigned char * lpFilter;
+      unsigned char * pFilter;
 
-      i32 i;
-      i32 x;
-      i32 y;
-      i32 x1;
-      i32 y1;
-      i32 x2;
-      i32 y2;
+      int i;
+      int x;
+      int y;
+      int x1;
+      int y1;
+      int x2;
+      int y2;
 
-      i32 iRadiusSquare = iRadius * iRadius;
-      i32 rSquare;
+      int iRadiusSquare = iRadius * iRadius;
+      int rSquare;
 
 
       image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
@@ -1008,49 +1008,49 @@ void draw2d::emboss_predicate(
                   i = 1;
                else
                   i = 0;
-               pFilter[x + y * iFilterW] = (::u8)i;
+               pFilter[x + y * iFilterW] = (unsigned char)i;
             }
          }
       }
 
       synchronouslock.unlock();
 
-      i32 cx = pimageDst->width();
-      i32 cy = pimageDst->height();
+      int cx = pimageDst->width();
+      int cy = pimageDst->height();
 
       if (cx != pimageSrc->width() || cy != pimageSrc->height())
          return false;
 
-      ::u8 * lpbDst = (::u8 *)pimageDst->data();
-      ::u8 * lpbSrc = (::u8 *)pimageSrc->data();
+      unsigned char * lpbDst = (unsigned char *)pimageDst->data();
+      unsigned char * lpbSrc = (unsigned char *)pimageSrc->data();
 
-      //i32 wSrc = cx * 4;
-      //i32 wDst = cx * 4;
-      i32 wSrc = pimageSrc->scan_size();
-      i32 wDst = pimageDst->scan_size();
+      //int wSrc = cx * 4;
+      //int wDst = cx * 4;
+      int wSrc = pimageSrc->scan_size();
+      int wDst = pimageDst->scan_size();
 
-      i32 maxx1 = cx;
-      i32 maxy1 = cy;
-      //   i32 maxy2 = cy - iFilterW;
-      //   i32 maxy3 = cy - iFilterW / 2;
-      i32 max3x1 = maxx1 * 4;
-      //   i32 max3x2 = (maxx1 - iFilterH) * 4;
-      //   i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
-      //i32 w = cx * 4;
+      int maxx1 = cx;
+      int maxy1 = cy;
+      //   int maxy2 = cy - iFilterW;
+      //   int maxy3 = cy - iFilterW / 2;
+      int max3x1 = maxx1 * 4;
+      //   int max3x2 = (maxx1 - iFilterH) * 4;
+      //   int max3x3 = (maxx1 - iFilterH / 2) * 4;
+      //int w = cx * 4;
 
       pimageDst->copy(pimageSrc);
       //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 
 
-      i32 iFilterXLowerBound;
-      i32 iFilterXUpperBound;
-      i32 iFilterYLowerBound;
-      i32 iFilterYUpperBound;
+      int iFilterXLowerBound;
+      int iFilterXUpperBound;
+      int iFilterYLowerBound;
+      int iFilterYUpperBound;
 
-      i32 yLowerBound[4];
-      i32 yUpperBound[4];
-      i32 xLowerBound[4];
-      i32 xUpperBound[4];
+      int yLowerBound[4];
+      int yUpperBound[4];
+      int xLowerBound[4];
+      int xUpperBound[4];
 
       // top
       xLowerBound[0] = 0;
@@ -1076,21 +1076,21 @@ void draw2d::emboss_predicate(
       yLowerBound[3] = cy - iFilterHalfH;
       yUpperBound[3] = cy - 1;
 
-      i32 xL;
-      i32 xU;
-      i32 yL;
-      i32 yU;
+      int xL;
+      int xU;
+      int yL;
+      int yU;
 
 
-      i32 xMax = cx - 1;
-      i32 yMax = cy - 1;
+      int xMax = cx - 1;
+      int yMax = cy - 1;
 
       // limits due the filter
-      i32 xMaxFilterBound = xMax - iFilterHalfW;
-      i32 yMaxFilterBound = yMax - iFilterHalfH;
+      int xMaxFilterBound = xMax - iFilterHalfW;
+      int yMaxFilterBound = yMax - iFilterHalfH;
 
-      i32 xFilterMax = iFilterW - 1;
-      i32 yFilterMax = iFilterH - 1;
+      int xFilterMax = iFilterW - 1;
+      int yFilterMax = iFilterH - 1;
 
       for (i = 0; i < 4; i++)
       {
@@ -1149,11 +1149,11 @@ void draw2d::emboss_predicate(
                   lpbSource_1 = lpbSource + maximum(x2, 0) + iChannel;
 
 
-                  for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+                  for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                   {
                      lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
                      lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-                     for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+                     for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                      {
                         if (*lpFilter >= 1)
                         {
@@ -1182,8 +1182,8 @@ void draw2d::emboss_predicate(
       iFilterXLowerBound = 0;
       iFilterXUpperBound = iFilterH - 1;
 
-      i32 iFilterHalfWidth = iFilterW / 2;
-      i32 iFilterHalfWidthBytes = iFilterHalfWidth * 4;
+      int iFilterHalfWidth = iFilterW / 2;
+      int iFilterHalfWidthBytes = iFilterHalfWidth * 4;
 
       yL = iFilterHalfWidth;
       yU = maxy1 - iFilterHalfWidth;
@@ -1212,11 +1212,11 @@ void draw2d::emboss_predicate(
 
             if (*((u32 *)lpwDestination) != 0xffffffff)
             {
-               for (i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+               for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
                {
                   lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
                   lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-                  for (i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+                  for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                   {
                      if (*lpFilter >= 1)
                      {

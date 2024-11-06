@@ -38,7 +38,7 @@ enum enum_scalar_flags
 };
 
 
-enum enum_number : ::u8
+enum enum_number : unsigned char
 {
 
    e_number_none,

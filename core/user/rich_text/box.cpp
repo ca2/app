@@ -117,7 +117,7 @@ namespace user
       string box::get_text() const
       {
 
-         return m_pspan->m_str.substr(get_beg(), (::i32)(get_pos_count()));
+         return m_pspan->m_str.substr(get_beg(), (int)(get_pos_count()));
 
       }
 

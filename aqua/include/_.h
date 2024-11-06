@@ -99,6 +99,10 @@ namespace multimedia
 #include "aqua/user/_.h"
 
 
+#include "aqua/platform/system.h"
+
+
+
 #include "aqua/platform/_impl.h"
 
 

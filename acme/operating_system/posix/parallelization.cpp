@@ -30,14 +30,14 @@ namespace ansios
 
 
 
-// void __end_thread_impl(acme::application*, unsigned int, bool)
+// void __end_thread_impl(platform::application*, unsigned int, bool)
 
 // {
 
 // }
 
 
-// void __term_thread_impl(acme::application*, HINSTANCE__*)
+// void __term_thread_impl(platform::application*, HINSTANCE__*)
 // {
 // }
 

@@ -39,7 +39,7 @@
 //}//namespace user
 //   }//namespace nano
 //
-::string errno_error_message(::i32 iError);
+::string errno_error_message(int iError);
 
 #if REFERENCING_DEBUGGING
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
@@ -52,7 +52,7 @@ CLASS_DECL_ACME ::string as_string(::windowing::enum_toolkit etoolkit);
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
-::i32 get_processor_count();
+int get_processor_count();
 
 
 namespace platform
@@ -502,12 +502,12 @@ namespace platform
    }
 
 
-   void node::acme_application_main(::platform::system * psystem)
-   {
+   // void node::acme_application_main(::platform::system * psystem)
+   // {
 
-      system_main();
+   //    system_main();
       
-   }
+   // }
 
 
    void node::_will_finish_launching()
@@ -2824,7 +2824,7 @@ return false;
    }
 
 
-   ::u64 node::translate_processor_affinity(::i32 i)
+   ::u64 node::translate_processor_affinity(int i)
    {
 
       return 0;
@@ -2832,7 +2832,7 @@ return false;
    }
 
 
-   ::i32 node::get_current_processor_index()
+   int node::get_current_processor_index()
    {
 
       return -1;
@@ -3609,7 +3609,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       if(errorcode.m_etype == e_error_code_type_errno)
       {
 
-         return errno_error_message((::i32) errorcode.m_iOsError);
+         return errno_error_message((int) errorcode.m_iOsError);
 
       }
 

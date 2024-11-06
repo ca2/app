@@ -35,7 +35,7 @@
 //#ifdef WINDOWS
 //
 //
-//synchronization::synchronization(HSYNC hsyncobject, const char * lpszName) :
+//synchronization::synchronization(hsynchronization hsyncobject, const char * lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -267,7 +267,7 @@ void synchronization::unlock()
 }
 
 
-void synchronization::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
+void synchronization::unlock(int /* lCount */, int * /* pPrevCount=nullptr */)
 {
 
    //return false;
@@ -402,7 +402,7 @@ void synchronization::acquire_ownership()
 //}
 
 
-//HSYNC synchronization::hsync() const
+//hsynchronization synchronization::hsynchronization() const
 //{
 //
 //#ifdef WINDOWS
@@ -418,7 +418,7 @@ void synchronization::acquire_ownership()
 //}
 
 
-//bool synchronization::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool synchronization::unlock(int /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //

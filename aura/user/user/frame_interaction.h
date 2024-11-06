@@ -50,7 +50,7 @@ namespace user
 
 
 
-      virtual void create_window();
+      virtual void create_window() override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;
@@ -79,7 +79,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
 
       
       //void this->rectangle(::rectangle_i32 * prectangle) override;
-      ::user::interaction_base * set_parent(::user::interaction_base * puserinteractionParent);
+      ::user::interaction_base * set_parent(::user::interaction_base * puserinteractionParent) override;
       
       
       void user_interaction_on_destroy() override;

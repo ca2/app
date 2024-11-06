@@ -80,7 +80,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeProvision) - (::u8 *)paligned;
+               *psizeAllocated = ((unsigned char *)p + sizeProvision) - (unsigned char *)paligned;
 
             }
 
@@ -104,7 +104,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8 *)paligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char *)paligned;
 
             }
 
@@ -147,7 +147,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeProvision) - (::u8 *)punaligned;
+               *psizeAllocated = ((unsigned char *)p + sizeProvision) - (unsigned char *)punaligned;
 
             }
 
@@ -172,7 +172,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8 *)punaligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char *)punaligned;
 
             }
 
@@ -199,7 +199,7 @@ namespace heap
          auto sizeProvision = heap_memory_aligned_provision_get_size(size, (int)align);
 
          //TODO: to do the dbg version
-         //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+         //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
          if (m_pallocarray == nullptr)
          {
 
@@ -221,7 +221,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8 *)paligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char *)paligned;
 
             }
 
@@ -247,7 +247,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8 *)paligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char *)paligned;
 
             }
 
@@ -291,7 +291,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8*) punaligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char*) punaligned;
 
             }
 
@@ -315,7 +315,7 @@ namespace heap
             if (psizeAllocated)
             {
 
-               *psizeAllocated = ((::u8 *)p + sizeAllocated) - (::u8 *)punaligned;
+               *psizeAllocated = ((unsigned char *)p + sizeAllocated) - (unsigned char *)punaligned;
 
             }
 
@@ -403,11 +403,11 @@ namespace heap
 
          }
 
-         ::u8 blockuse = pheapmemory->m_blockuse;
+         unsigned char blockuse = pheapmemory->m_blockuse;
 
          memsize sizeOld = pheapmemory->m_size;
 
-         ::u8 align = pheapmemory->m_align;
+         unsigned char align = pheapmemory->m_align;
 
          void * p = heap_memory_base_get(pmemory);
 

@@ -34,12 +34,12 @@ namespace write_text
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      void Initialize(LPTTPOLYGONHEADER pph, u32 cbSize, i32 iFontHiHeight);
+//      void Initialize(LPTTPOLYGONHEADER pph, u32 cbSize, int iFontHiHeight);
 //
 //
 //#endif
 
-      void GetGlyphRect(i32 x, i32 y, ::rectangle_i32 * prectangle);
+      void GetGlyphRect(int x, int y, ::rectangle_i32 * prectangle);
 
 
       void clear();

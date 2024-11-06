@@ -60,7 +60,7 @@ public:
    virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
    virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
-   virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 dwMode) override;
+   virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, u32 dwMode) override;
    virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
    virtual ::size_i32 CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);

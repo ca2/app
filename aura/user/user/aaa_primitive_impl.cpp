@@ -347,7 +347,7 @@ namespace user
    //}
 
 
-   void primitive_impl::window_move(i32 x, i32 y)
+   void primitive_impl::window_move(int x, int y)
    {
 
       //return true;
@@ -1399,7 +1399,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, i32 iLevel)
+   ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, int iLevel)
    {
 
       return nullptr;
@@ -1450,11 +1450,11 @@ namespace user
    //void primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    //{
 
-   //   ::i32 l = GetStyle();
+   //   int l = GetStyle();
 
    //   l |= dwAdd;
 
-   //   ::i32 lRemove = ~dwRemove;
+   //   int lRemove = ~dwRemove;
 
    //   l &= lRemove;
 
@@ -1475,23 +1475,23 @@ namespace user
    //}
 
 
-//   ::i32 primitive_impl::get_window_long(i32 nIndex) const
+//   int primitive_impl::get_window_long(int nIndex) const
 //   {
 //
-//      return (::i32)get_window_long_ptr(nIndex);
+//      return (int)get_window_long_ptr(nIndex);
 //
 //   }
 //
 //
-//   ::i32 primitive_impl::set_window_long(i32 nIndex, ::i32 lValue)
+//   int primitive_impl::set_window_long(int nIndex, int lValue)
 //   {
 //
-//      return (::i32)set_window_long_ptr(nIndex, lValue);
+//      return (int)set_window_long_ptr(nIndex, lValue);
 //
 //   }
 //
 //
-//   iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
+//   iptr primitive_impl::get_window_long_ptr(int nIndex) const
 //   {
 //
 ////      return 0;
@@ -1518,7 +1518,7 @@ namespace user
 //   }
 //
 //
-//   void primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   void primitive_impl::set_window_long_ptr(int nIndex, iptr lValue)
 //   {
 //
 ////      if (nIndex == GWL_STYLE)
@@ -2908,7 +2908,7 @@ namespace user
    }
 
 
-   //i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
+   //int primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
    //{
 
    //   return 0;

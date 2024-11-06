@@ -16,7 +16,7 @@ class CLASS_DECL_ACME event :
 public:
 
 
-   ::i32 m_iEventSerialId;
+   int m_iEventSerialId;
 
 #ifdef WINDOWS
 
@@ -53,17 +53,13 @@ public:
    //bool lock(const ::wait & wait = wait::infinite()) override;
 
 
-#ifdef WINDOWS
-
    hsynchronization get_synchronization_handle() override;
-
-#endif
 
 
    using subparticle::unlock;
    void unlock() override;
 
-   //virtual HSYNC hsync() const;
+   //virtual hsynchronization hsynchronization() const;
 
    bool SetEvent();
    bool set_event() {return SetEvent(); }

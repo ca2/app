@@ -6,7 +6,7 @@ namespace heap
 {
 
 
-   enum enum_memory : ::u8
+   enum enum_memory : unsigned char
    {
 
       e_memory_main,

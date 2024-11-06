@@ -90,9 +90,9 @@ bool machine_event::write(machine_event_data * pdata)
 
                auto psystem = system();
 
-         auto pacmedirectory = psystem->m_pdirectorysystem;
+         auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pacmedirectory->create(::file_path_folder(machine_event_file_path()));
+pdirectorysystem->create(::file_path_folder(machine_event_file_path()));
 
       pfile = FILE_open(machine_event_file_path(), "w", _SH_DENYWR);
 

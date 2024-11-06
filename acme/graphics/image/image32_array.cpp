@@ -20,7 +20,7 @@ image32_array::~image32_array()
 //   // Do nothing
 //   const u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
 //   const i32 STANDARD_COLOR_SIZE = 6;
-////   const ::i32 STANDARD_PALETTE_VAL_DIF = 51;
+////   const int STANDARD_PALETTE_VAL_DIF = 51;
 //   allocate(216);
 ////   u32 dwColorMapTable[216] = {0};
 //   i32 nColorMapIdx = 0;
@@ -30,9 +30,9 @@ image32_array::~image32_array()
 //      {
 //         for(i32 nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
 //         {
-//            this->element_at(nColorMapIdx) = argb(255, (::u8) STANDARD_PALETTE[nRedIdx],
-//             (::u8) STANDARD_PALETTE[nGreenIdx],
-//               (::u8) STANDARD_PALETTE[nBlueIdx]);
+//            this->element_at(nColorMapIdx) = argb(255, (unsigned char) STANDARD_PALETTE[nRedIdx],
+//             (unsigned char) STANDARD_PALETTE[nGreenIdx],
+//               (unsigned char) STANDARD_PALETTE[nBlueIdx]);
 //            ++nColorMapIdx;
 //
 //         }

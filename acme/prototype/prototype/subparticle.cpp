@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/sequence.h"
 #include "acme/memory/memory_allocate.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/referencing_debugging.h"
@@ -30,7 +31,8 @@ bool g_bDefaultEnableObjectReferenceCountDebug = false;
 
 
 subparticle::subparticle() :
-   m_countReference(1)
+   m_countReference(1),
+   m_psequence(nullptr)
 {
 
 #if REFERENCING_DEBUGGING
@@ -241,6 +243,13 @@ void subparticle::call()
    {
 
    }
+   
+   if(has_flag(e_flag_automatic_result_just_after_running))
+   {
+
+      on_sequence();
+      
+   }
 
    //m_eflagElement -= e_flag_running;
 
@@ -327,6 +336,25 @@ void subparticle::destroy_os_data()
 {
 
 
+}
+
+
+void subparticle::on_sequence()
+{
+ 
+   if(::is_null(m_psequence))
+   {
+      
+      // nothing to do sequence for?
+      
+      return;
+      
+      //throw ::exception(error_wrong_state);
+      
+   }
+   
+   m_psequence->on_subparticle_sequence(this);
+   
 }
 
 
@@ -439,18 +467,12 @@ void subparticle::set_timeout(const class time & timeTimeout)
 }
 
 
-#ifdef WINDOWS
-
-
 hsynchronization subparticle::get_synchronization_handle()
 {
 
    return nullptr;
 
 }
-
-
-#endif
 
 
 ::e_status subparticle::lock()
@@ -674,7 +696,7 @@ void subparticle::unlock()
 }
 
 
-void subparticle::unlock(::i32 /* lCount */, ::i32* /* pPrevCount=nullptr */)
+void subparticle::unlock(int /* lCount */, int* /* pPrevCount=nullptr */)
 {
 
    //return false;
@@ -822,7 +844,7 @@ void subparticle::acquire_ownership()
 
    ::earth::time_span span(elapsed.m_iSecond);
 
-   auto iHour = (::i32)span.hours();
+   auto iHour = (int)span.hours();
    auto iMinute = span.minute();
    auto iSecond = span.second();
 
@@ -835,13 +857,13 @@ void subparticle::acquire_ownership()
          if (iSecond <= 0)
          {
 
-            strTime.formatf("%dms", (::i32)elapsed.integral_millisecond());
+            strTime.formatf("%dms", (int)elapsed.integral_millisecond());
 
          }
          else
          {
 
-            strTime.formatf("%ds %03dms", iSecond, (::i32)elapsed.millisecond());
+            strTime.formatf("%ds %03dms", iSecond, (int)elapsed.millisecond());
 
          }
 
@@ -849,7 +871,7 @@ void subparticle::acquire_ownership()
       else
       {
 
-         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (::i32)elapsed.millisecond());
+         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (int)elapsed.millisecond());
 
       }
 
@@ -857,7 +879,7 @@ void subparticle::acquire_ownership()
    else
    {
 
-      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (::i32)elapsed.millisecond());
+      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (int)elapsed.millisecond());
 
    }
 

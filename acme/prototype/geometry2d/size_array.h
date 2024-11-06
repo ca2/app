@@ -32,7 +32,7 @@ public:
 };
 
 
-using size_i32_array = size_array_base < ::i32 >;
+using size_i32_array = size_array_base < int >;
 using size_i64_array = size_array_base < ::i64 >;
 using size_f32_array = size_array_base < ::f32 >;
 using size_f64_array = size_array_base < ::f64 >;

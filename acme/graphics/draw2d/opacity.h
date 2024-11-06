@@ -9,7 +9,7 @@ class CLASS_DECL_ACME opacity
 protected:
 
 
-   ::u8        m_u8Opacity;
+   unsigned char        m_u8Opacity;
 
 
 public:
@@ -26,14 +26,14 @@ public:
 
    constexpr ::f64 f64_opacity() const { return m_u8Opacity / 255.; }
    constexpr ::f32 f32_opacity() const { return m_u8Opacity / 255.f; }
-   constexpr ::u8 u8_opacity() const { return m_u8Opacity; }
+   constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
 
 
    constexpr bool is_opaque() const { return m_u8Opacity == 255; }
    constexpr bool is_translucent() const { return m_u8Opacity < 255; }
    constexpr bool is_transparent() const { return m_u8Opacity == 0; }
    constexpr bool non_transparent() const { return m_u8Opacity > 0; }
-   constexpr ::u8 complement() const { return 255 - m_u8Opacity; }
+   constexpr unsigned char complement() const { return 255 - m_u8Opacity; }
 
    template < primitive_floating FLOATING >
    constexpr opacity & operator = (FLOATING f) { m_u8Opacity = u8_clip(f * 255.); return *this; }
@@ -49,7 +49,7 @@ public:
 
 
 inline class ::opacity operator "" _opacity(long double d) { return d; }
-inline class ::opacity operator "" _opacity(unsigned long long ul) { return (::u8) ul; }
+inline class ::opacity operator "" _opacity(unsigned long long ul) { return (unsigned char) ul; }
 
 
 

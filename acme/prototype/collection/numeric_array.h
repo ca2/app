@@ -81,8 +81,8 @@ public:
    TYPE & get_minimum_value();
 
 
-   template < typename ::i32 >
-   ::i32 & mask(::i32 & i)
+   template < typename int >
+   int & mask(int & i)
    {
 
       i = 0;

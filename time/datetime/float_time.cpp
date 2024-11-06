@@ -30,7 +30,7 @@ namespace datetime
 /* Determine if a day is valid in a given month of a given year */
 static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 {
-  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
   if (day && month && month < 13)
   {
@@ -75,7 +75,7 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offse
  *  Success: true. *pDateOut contains the converted value.
  *  Failure: false, if lpSt cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
+CLASS_DECL_CA2_TIME int SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
 {
   UDATE ud;
 
@@ -104,7 +104,7 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
 *  Success: true. *lpSt contains the converted value.
 *  Failure: false, if dateIn is too large or small.
 */
-::i32 WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
+int WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
 {
   UDATE ud;
 
@@ -123,7 +123,7 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
 /* Roll a date forwards or backwards to correct it */
 static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
 {
-  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   int16_t iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */
@@ -352,7 +352,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
     LOCALE_S1159, LOCALE_S2359,
     LOCALE_SDATE
   };
-  static const ::u8 ParseDateMonths[] =
+  static const unsigned char ParseDateMonths[] =
   {
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
@@ -911,7 +911,7 @@ static inline void VARIANT_DMYFromJulian(int jd, u16 *year, u16 *month, u16 *day
 /* Roll a date forwards or backwards to correct it */
 static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 {
-  static const ::u8 days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   short iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */

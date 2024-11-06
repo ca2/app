@@ -39,7 +39,7 @@
 #if defined(_WIN32) && !defined(__MINGW32__)
 
 typedef signed char i8;
-typedef unsigned char u8;
+typedef unsigned char unsigned char;
 typedef short i16;  // NOLINT
 typedef unsigned short u16;  // NOLINT
 typedef int i32;

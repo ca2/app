@@ -126,9 +126,9 @@ _unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   ::i32 len1;
+   int len1;
 
-   ::i32 len2;
+   int len2;
 
    while (p < pEnd) {
 
@@ -186,9 +186,9 @@ _unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::r
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   //::i32 len1;
+   //int len1;
 
-   ::i32 len2;
+   int len2;
 
    while (pEnd < p) {
 

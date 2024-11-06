@@ -530,7 +530,7 @@ namespace platform
 
    //void apex_application_layer::process_message_filter(i32 code,::message::message * pmessage) override{}
 
-   //void apex_application_layer::on_thread_on_idle(::thread * pthread, ::i32 lCount) override{}
+   //void apex_application_layer::on_thread_on_idle(::thread * pthread, int lCount) override{}
 
 
    void apex_application_layer::app_set(string strPath, string strValue)
@@ -1204,7 +1204,7 @@ namespace platform
    //void apex_application_layer::on_request(::create* pcreate) override{}
 
    //for implementation
-   bool apex_application_layer::on_idle(::i32 lCount)
+   bool apex_application_layer::on_idle(int lCount)
    {
       return false;
    } // return tr(ue if more idle processing

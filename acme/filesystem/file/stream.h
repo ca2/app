@@ -44,7 +44,7 @@
  inline void __exchange(::binary_stream & s, i16 & i);
  inline void __exchange(::binary_stream & s, i32 & i);
  inline void __exchange(::binary_stream & s, i64 & i);
- inline void __exchange(::binary_stream & s, u8 & u);
+ inline void __exchange(::binary_stream & s, unsigned char & u);
  inline void __exchange(::binary_stream & s, u16 & u);
  inline void __exchange(::binary_stream & s, u32 & u);
  inline void __exchange(::binary_stream & s, u64 & u);
@@ -383,20 +383,20 @@ public:
 //      if (u < 255)
 //      {
 //
-//         write((::u8) u);
+//         write((unsigned char) u);
 //
 //      }
 //      else if (u < 65535)
 //      {
 //
-//         write((::u8)255);
+//         write((unsigned char)255);
 //         write((::u16)u);
 //
 //      }
 //      else
 //      {
 //
-//         write((::u8)255);
+//         write((unsigned char)255);
 //         write((::u16)65535);
 //         write((::u64)u);
 //
@@ -407,7 +407,7 @@ public:
 //   inline void read_buffer_length(::u64 & u)
 //   {
 //
-//      ::u8 uRead;
+//      unsigned char uRead;
 //
 //      read(uRead);
 //
@@ -450,7 +450,7 @@ public:
 //#ifdef WINDOWS
 //   virtual void write(unichar wch) { raw_write(wch); }
 //#endif
-//   virtual void write(bool b) { write((::u8)b?1: 0); }
+//   virtual void write(bool b) { write((unsigned char)b?1: 0); }
 //   virtual void write(i32 i) { raw_write(i); }
 //   virtual void write(u32 u) { raw_write(u); }
 //   virtual void write(i64 i) { raw_write(i); }

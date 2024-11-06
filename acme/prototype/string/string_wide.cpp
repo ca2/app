@@ -36,14 +36,14 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //}
 //
 //
-//wstring::wstring(const u8* psz)
+//wstring::wstring(const unsigned char* psz)
 //{
 //
 //   operator = ((const char*)psz);
 //
 //}
 //
-//wstring::wstring(const u8* psz, strsize iSize)
+//wstring::wstring(const unsigned char* psz, strsize iSize)
 //{
 //
 //   operator = ((const char*)string(psz, iSize));

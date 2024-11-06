@@ -24,7 +24,7 @@ namespace user
       ::pointer<document>             m_pdocument;
       atom                             m_atomSplit;
       bool                             m_bTabSplitSwap;
-      i32                              m_iExtendOnParent;
+      int                              m_iExtendOnParent;
       e_flag                           m_eflag;
       ::string                         m_strTitle;
       void *                           m_pimpactdata;

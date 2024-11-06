@@ -123,7 +123,7 @@ void * plex_heap_alloc_array::alloc_debug(memsize size, memsize * psizeAllocated
 
    ansi_count_copy((char *)&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
-   return ((u8 *)&psize[1]) + 128;
+   return ((unsigned char *)&psize[1]) + 128;
 
 #else
 
@@ -139,7 +139,7 @@ void plex_heap_alloc_array::free_debug(void * p, memsize size)
 
 #if LAST_MEM_FILE_AND_LINE
 
-   memsize * psize = &((memsize *)((u8 *)pvoid) - 128))[-1];
+   memsize * psize = &((memsize *)((unsigned char *)pvoid) - 128))[-1];
 
    if (*psize == 0)
    {
@@ -181,13 +181,13 @@ void * plex_heap_alloc_array::realloc_debug(void * p, memsize size, memsize size
 
    str.formatf("%s(%d)", szFileName, iLine);
 
-   memsize * psize = (memsize *)realloc(&((memsize *)(((u8 *)pvoidOld) - 128))[-1], ((memsize *)(((u8 *)pvoidOld) - 128))[-1], size + sizeof(memsize) + 128);
+   memsize * psize = (memsize *)realloc(&((memsize *)(((unsigned char *)pvoidOld) - 128))[-1], ((memsize *)(((unsigned char *)pvoidOld) - 128))[-1], size + sizeof(memsize) + 128);
 
    psize[0] = size + sizeof(memsize) + 128;
 
    ansi_count_copy((char *)&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
-   return ((u8 *)&psize[1]) + 128;
+   return ((unsigned char *)&psize[1]) + 128;
 
 #else
 

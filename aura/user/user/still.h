@@ -107,7 +107,7 @@ namespace user
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(::rectangle_i32 & rectangle);
 
-      virtual i32 BaseToolTipGetIndex();
+      virtual int BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

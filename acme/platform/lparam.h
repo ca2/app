@@ -18,10 +18,10 @@ public:
    template < primitive_integral INTEGRAL >
    lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
-   lparam(const SIZE & size):lparam((::i32)size.cx(), (::i32) size.cy()) {}
+   lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
    template < primitive_point POINT >
-   lparam(const POINT & point) : lparam((::i32)point.x(), (::i32)point.y()) {}
-   lparam(::i32 x, ::i32 y) { m_lparam = make_u32(x, y); }
+   lparam(const POINT & point) : lparam((int)point.x(), (int)point.y()) {}
+   lparam(int x, int y) { m_lparam = make_u32(x, y); }
 
 
    /// catching/receiving subparticle
@@ -136,7 +136,7 @@ public:
    ::point_i32 point() const
    {
       
-      return {(::i32) this->x(), (::i32) this->y()};
+      return {(int) this->x(), (int) this->y()};
       
    }
 

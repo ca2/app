@@ -18,7 +18,7 @@ namespace hex
 
    inline CLASS_DECL_APEX void upper_case_pad_from(char* sz, const void* p, memsize s)
    {
-      const u8* pb = (const u8*)p;
+      const unsigned char* pb = (const unsigned char*)p;
       sz += s * 2;
       while (s)
       {
@@ -40,7 +40,7 @@ string dump_hex(::file::file* pfile)
 
    char* psz = strBuffer.get_buffer((strsize)(pfile->size() / 16 + 1) * 80);
 
-   ::u8 buf[16];
+   unsigned char buf[16];
 
    memsize iPos = 0;
 

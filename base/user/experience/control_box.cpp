@@ -549,7 +549,7 @@ namespace experience
    }
 
 
-   ::i32 control_box::auto_hide_threshold_height()
+   int control_box::auto_hide_threshold_height()
    {
 
       return this->height();
@@ -1058,12 +1058,12 @@ namespace experience
    }
 
 
-   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
 
-      i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
+      int iButtonSize = (int) (dFontHeight + m_iDefaultButtonMargin * 3);
 
       m_sizeButtonDefault = ::size_i32(iButtonSize, iButtonSize);
 
@@ -1096,7 +1096,7 @@ namespace experience
    }
 
 
-   i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   int control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_iDefaultButtonSize = calculate_button_size(pgraphics);

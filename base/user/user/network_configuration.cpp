@@ -51,7 +51,7 @@ namespace user
       if(node.load(psystem->file_system()->as_string(System, directory()->appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
-         i32 iProxyPort = node.attr("port");
+         int iProxyPort = node.attr("port");
          ::pointer<::user::interaction>pinteraction = m_pimpact->get_child_by_name("server");
          ::pointer<::user::interaction_base>ptext =  (pinteraction);
          ptext->set_text(strProxy, false);

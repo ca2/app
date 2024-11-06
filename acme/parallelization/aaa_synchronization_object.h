@@ -2,7 +2,7 @@
 
 //
 //#ifdef WINDOWS
-//using hsync = void *;
+//using hsynchronization = void *;
 //#endif
 
 
@@ -13,13 +13,13 @@
 //
 //
 //#ifdef WINDOWS
-//   hsync                   m_hsync;
+//   hsynchronization                   m_hsync;
 //#endif
 //   bool                    m_bOwner;
 //
 //#ifdef WINDOWS
 //   synchronization_object() { m_hsync = nullptr; m_bOwner = true; }
-//   synchronization_object(hsync hsync) : m_hsync(hsync) { m_bOwner = true; }
+//   synchronization_object(hsynchronization hsynchronization) : m_hsync(hsynchronization) { m_bOwner = true; }
 //#else
 //   synchronization_object() { m_bOwner = true; }
 //#endif
@@ -45,7 +45,7 @@
 //   virtual bool is_locked() const;
 //
 //   virtual void unlock();
-//   virtual void unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
+//   virtual void unlock(int /* lCount */, int * /* pPrevCount=nullptr */);
 //
 //
 //   virtual void init_wait();
@@ -56,7 +56,7 @@
 //   virtual void release_ownership();
 //
 //#ifdef WINDOWS
-//   inline ::hsync hsync() const { return m_hsync; }
+//   inline ::hsynchronization hsynchronization() const { return m_hsync; }
 //#endif
 //
 //

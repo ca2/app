@@ -59,7 +59,7 @@ namespace windowing
 //   }
 
    
-   void cursor::set_image(::image::image *pimage, ::i32 xHotspot, ::i32 yHotspot)
+   void cursor::set_image(::image::image *pimage, int xHotspot, int yHotspot)
    {
 
       m_pimage = pimage;

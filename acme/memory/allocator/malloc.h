@@ -35,7 +35,7 @@ namespace heap
       bool has_size() const override;
 
 
-      void check_bounds(u8 * p);
+      void check_bounds(unsigned char * p);
 
 
    };

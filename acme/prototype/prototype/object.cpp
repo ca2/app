@@ -1599,12 +1599,12 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
 //#ifdef __APPLE__
 //
-//void object::ns_main_async(dispatch_block_t block)
+//void object::ns_main_post(dispatch_block_t block)
 //{
 //
 //   atomic_increment(&m_countTasksPending);
 //
-//   ::ns_main_async(^
+//   ::ns_main_post(^
 //   {
 //
 //      block();
@@ -2354,9 +2354,9 @@ void object::install_message_routing(::channel* pchannel)
 //
 //   return __allocate ::handle::ini (         auto psystem = system();
 
-//         auto pacmedirectory = psystem->m_pdirectorysystem;
+//         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
-//pacmedirectory->localconfig()));
+//pdirectorysystem->localconfig()));
 //
 //}
 
@@ -2387,7 +2387,7 @@ struct context_object_test_struct :
 
    }
 
-   ::u8 m_ucha[1024];
+   unsigned char m_ucha[1024];
 
 };
 
@@ -3638,7 +3638,7 @@ bool object::IsSerializable() const
    //::thread_pointer defer_fork(string strThread = "");
 
 //#ifdef __APPLE__
-//    void ns_main_async(dispatch_block_t block);
+//    void ns_main_post(dispatch_block_t block);
 //#endif
 
    //inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());

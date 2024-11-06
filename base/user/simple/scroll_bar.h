@@ -24,7 +24,7 @@ public:
    ::draw2d::region_pointer         m_pregionA; // regiao da primeira seta
    ::draw2d::region_pointer         m_pregionB; // regiao da segunda seta
    ::u32                            m_uiTimer;
-   ::i32                            m_iaScrollBarWidth[::user::e_layout_maximum_count];
+   int                            m_iaScrollBarWidth[::user::e_layout_maximum_count];
 
 
    simple_scroll_bar();
@@ -74,10 +74,10 @@ public:
    //virtual void update_rectangles(::draw2d::graphics_pointer & pgraphics);
    virtual void update_rectangles(::user::enum_layout elayout);
    void UpdateBitmaps();
-   //void OnDisplayChange(i32 iBitsPerPixel, ::size_i32 sizeScreen);
+   //void OnDisplayChange(int iBitsPerPixel, ::size_i32 sizeScreen);
    //virtual void OnDraw(::image::image *pimage);
-   //virtual i32 _001GetScrollPos() override;
-   //virtual i32 _001SetScrollPos(i32 iPos) override;
+   //virtual int _001GetScrollPos() override;
+   //virtual int _001SetScrollPos(int iPos) override;
    //virtual bool _001GetScrollState(::user::scroll_state * pscrollstate) override;
    //virtual bool set_scroll_state(::user::scroll_state * pscrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
@@ -85,8 +85,8 @@ public:
    bool on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem) override;
    //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
-   //i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
-   //i32 GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);
+   //int SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
+   //int GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);
    //bool GetTrackClientRect(::rectangle_i32 * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
    //::status < ::rectangle_i32 > get_track_rectangle(::draw2d::graphics_pointer & pgraphics) override;
@@ -107,9 +107,9 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,unsigned char uchAlpha);
 
-   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,::u8 uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,unsigned char uchAlpha);
 
 
 

@@ -93,7 +93,7 @@ multiple_lock::~multiple_lock()
 
    //}
 
-   //::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.synchronization_count();
+   //int iUpperBound = WAIT_OBJECT_0 + (int) m_synchronizationa.synchronization_count();
 
    //auto iSignaled = estatus.signaled_index();
 
@@ -111,7 +111,7 @@ multiple_lock::~multiple_lock()
    //   if (bWaitForAll)
    //   {
 
-   //      for (::u8 j = 0, i = 0; j < m_synchronizationa.size(); j++)
+   //      for (unsigned char j = 0, i = 0; j < m_synchronizationa.size(); j++)
    //      {
 
    //         m_bitsLocked.set(i);
@@ -159,7 +159,7 @@ void multiple_lock::unlock()
 }
 
 
-void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
+void multiple_lock::unlock(int lCount, int * pPrevCount /* =nullptr */)
 {
 
    //bool bGotOne = false;

@@ -106,7 +106,7 @@ namespace aura
 //
 //       //string                                          m_strLicense;
 //
-//       //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+//       //int                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 //
 //       //::pointer<::simpledb::server>                  m_psimpledb;
 //
@@ -140,7 +140,7 @@ namespace aura
 // //
 // //      string                                          m_strId;
 //
-// //      i32                                             m_iResourceId;
+// //      int                                             m_iResourceId;
 //
 //       //::pointer<::experience::department>          m_pexperience;
 //       ::pointer<::aura::theme>                       m_ptheme;
@@ -149,7 +149,7 @@ namespace aura
 //       //string_array                                    m_straAppInterest;
 //       //string_map < oswindow, oswindow >               m_mapAppInterest;
 //
-//       //i32                                             m_iGcomBackgroundUpdateMillis;
+//       //int                                             m_iGcomBackgroundUpdateMillis;
 //
 //
       application();
@@ -169,7 +169,7 @@ namespace aura
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void enumerate_composite(matter_array& a);
+      virtual void enumerate_composite(matter_array& a) override;
 
       ::aura::game* game();
 
@@ -203,7 +203,7 @@ namespace aura
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
       //virtual bool is_serviceable() const override;
-      virtual string get_window_class_name(::user::enum_control_type econtroltype);
+      virtual string get_window_class_name(::user::enum_control_type econtroltype) override;
 
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
@@ -306,11 +306,11 @@ namespace aura
       //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
+      virtual void process_message_filter(int code, ::message::message * pmessage) override;
 
 
 
-      virtual void DoWaitCursor(i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       // virtual void _001TryCloseApplication() override;
 
@@ -332,12 +332,12 @@ namespace aura
       //virtual void set_env_var(const string & payload, const string & value) override;
 
 
-      virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName);
+      virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName) override;
 
 
-      virtual ::image::icon * set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon);
+      virtual ::image::icon * set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon) override;
 
-      virtual ::image::icon * get_icon(::object * pobject, bool bBigIcon) const;
+      virtual ::image::icon * get_icon(::object * pobject, bool bBigIcon) const override;
 
       //virtual void on_service_request(::request * prequest) override;
 
@@ -346,8 +346,8 @@ namespace aura
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -509,14 +509,14 @@ namespace aura
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true) override;
 
 
 
-      //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
+      //virtual void process_message_filter(int code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
 
 
       //virtual bool app_set(string strPath, string strValue) override;
@@ -804,18 +804,18 @@ namespace aura
       virtual bool keyboard_focus_is_focusable(const ::user::interaction_base * pue) override;
       virtual bool keyboard_focus_OnSetFocus(::user::interaction_base * pue) override;
 
-      virtual ::user::interaction * main_window();
+      virtual ::user::interaction * main_window() override;
 
 
-      virtual bool is_sandboxed();
+      virtual bool is_sandboxed() override;
 
 
 
       ///virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg);
 
-      virtual bool get_frame(::pointer<::user::interaction>& pinteraction);
-      virtual void add_user_interaction(::user::interaction * puserinteraction);
-      virtual void erase_user_interaction(::user::interaction * puserinteraction);
+      virtual bool get_frame(::pointer<::user::interaction>& pinteraction) override;
+      virtual void add_user_interaction(::user::interaction * puserinteraction) override;
+      virtual void erase_user_interaction(::user::interaction * puserinteraction) override;
 
       virtual bool send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) override; // with tbs in <3
 
@@ -850,12 +850,12 @@ void initialize_context() override;
 //
 //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
-      virtual void on_initial_frame_position(::user::frame_interaction * pframe);
+      virtual void on_initial_frame_position(::user::frame_interaction * pframe) override;
 
-      virtual void on_graphics_ready();
+      virtual void on_graphics_ready() override;
 
       //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-      virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
+      virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype) override;
 
 
       //virtual ::atom translate_property_id(const ::atom & atom) override;
@@ -898,7 +898,7 @@ void initialize_context() override;
 
       //virtual u32 guess_code_page(const string& str) override;
 
-      //virtual i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -919,7 +919,7 @@ void initialize_context() override;
       DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 
 
-      virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
+      virtual bool on_idle(int lCount) override; // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
@@ -942,12 +942,12 @@ void initialize_context() override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      virtual void SetRegistryKey(const ::string & pszRegistryKey);
+      virtual void SetRegistryKey(const ::string & pszRegistryKey) override;
 
-      virtual void SetRegistryKey(::u32 nIDRegistryKey);
+      virtual void SetRegistryKey(::u32 nIDRegistryKey) override;
 
 
-      virtual void RegisterShellFileTypes(bool bCompat = false);
+      virtual void RegisterShellFileTypes(bool bCompat = false) override;
 
       // call after all doc templates are registered
       void UnregisterShellFileTypes();
@@ -961,8 +961,8 @@ void initialize_context() override;
       // exiting
       bool save_all_modified() override; // save before exit
     
-      virtual void _001OnFileNew();
-      virtual void on_file_open();
+      virtual void _001OnFileNew() override;
+       virtual void on_file_open() override;
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
@@ -983,19 +983,19 @@ void initialize_context() override;
 
 
 
-      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem);
+      virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem) override;
 
 
 
 
-      inline ::aura::theme* theme() { return m_ptheme.get(); }
+       virtual ::aura::theme* theme()  override;
       
 
       virtual void initialize_contextualized_theme() override;
 
 
 
-      virtual i32 track_popup_menu(::menu::track_popup* ptrackpopup);
+      virtual int track_popup_menu(::menu::track_popup* ptrackpopup) override;
 
       virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
       virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;
@@ -1003,7 +1003,7 @@ void initialize_context() override;
       virtual void set_title(const ::string & pszTitle) override;
 
 
-      virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept);
+      virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept) override;
 
       void update_app_interest();
       void ensure_app_interest();
@@ -1017,10 +1017,10 @@ void initialize_context() override;
       void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);
-      virtual i32 GetVisibleFrameCount();
+      virtual int GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept) override;
+      virtual int GetVisibleFrameCount() override;
 
-      virtual void prepare_form(atom atom, ::form_document* pformdocument);
+      virtual void prepare_form(atom atom, ::form_document* pformdocument) override;
 
 
       void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
@@ -1029,12 +1029,12 @@ void initialize_context() override;
       bool can_close_application() override;
 
 
-      virtual bool on_close_frame_window(::user::frame_interaction* pframe);
+      virtual bool on_close_frame_window(::user::frame_interaction* pframe) override;
 
 
       void create_impact_system() override;
 
-      virtual ::user::interaction* create_menu_interaction();
+      virtual ::user::interaction* create_menu_interaction() override;
 
       void on_song_added(const string& str) override;
 
@@ -1052,7 +1052,7 @@ void initialize_context() override;
 //
 //#endif
 
-      virtual string draw2d_get_default_implementation_name();
+      virtual string draw2d_get_default_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;

@@ -31,11 +31,11 @@
 {
 @public
 
-   void *               m_pApplication;
+   ::platform::application *               m_papplication;
    
    NSMutableArray *     m_windowcontrollera;
    
-   nano_notification_callback *      m_pnanonotificationcallback;
+   acme_notification_callback *      m_pnanonotificationcallback;
 
 }
 

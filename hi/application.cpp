@@ -1089,7 +1089,7 @@ namespace console_hello
       while (true)
       {
 
-         auto pmessagebox = message_box((const char *) u8"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+         auto pmessagebox = message_box((const char *) unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
 
          auto result = pmessagebox->sync();
 

@@ -57,7 +57,7 @@ namespace user
          string                                 m_strShellThemePrefix;
          enumeration < enum_file_attribute >    m_eattribute;
          enumeration < enum_icon >              m_eicon;
-         i32                                    m_iIcon;
+         int                                    m_iIcon;
          string                                 m_strExtension;
 
 
@@ -153,7 +153,7 @@ namespace user
    public:
 
 
-      image_key_map < i32 >                              m_imagemap;
+      image_key_map < int >                              m_imagemap;
       image_key_map < image_key >                        m_imagekeymap;
 
       string                                             m_strShellThemePrefix;
@@ -202,9 +202,9 @@ namespace user
       void add_size_interest(::i32_array iaSize);
       void set_size_interest(::i32_array iaSize);
 
-      i32 _reserve_image(const image_key & key);
+      int _reserve_image(const image_key & key);
 
-      bool contains_image(const image_key & imagekey, i32 & iImage);
+      bool contains_image(const image_key & imagekey, int & iImage);
       bool reserve_image(_get_file_image_ & getfileimage);
 
 
@@ -216,14 +216,14 @@ namespace user
       
 
       virtual void get_file_extension_image(_get_file_image_ & getfileimage);
-      virtual i32 create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
-      virtual i32 _create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
+      virtual int create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
+      virtual int _create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
 
 
 
-      virtual i32 get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
-      virtual i32 get_file_image(const image_key & imagekey);
-      virtual i32 schedule_get_file_image(const image_key & imagekey);
+      virtual int get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
+      virtual int get_file_image(const image_key & imagekey);
+      virtual int schedule_get_file_image(const image_key & imagekey);
 
       virtual void warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested);
 
@@ -245,7 +245,7 @@ namespace user
 
 
 
-      //virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
+      //virtual int impl_get_file_image(const image_key & imagekey) = 0;
 
 
       ::image::image_list * GetImageList(int iSize);

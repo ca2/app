@@ -1,10 +1,10 @@
 #pragma once
 
 
-#pragma pack(push, geometry2d_i32, 1)
+#pragma pack(push, geometry2d_int, 1)
 
 
-struct SIZE_I32
+struct INT_SIZE
 {
 
    int cx;
@@ -15,9 +15,9 @@ struct SIZE_I32
 };
 
 
-typedef const SIZE_I32 * LPCSIZE_I32;
+typedef const INT_SIZE * LPCINT_SIZE;
 
-struct POINT_I32
+struct INT_POINT
 {
 
    int x;
@@ -26,10 +26,10 @@ struct POINT_I32
 };
 
 
-typedef const POINT_I32 * LPCPOINT_I32;
+typedef const INT_POINT * LPCINT_POINT;
 
 
-struct RECTANGLE_I32
+struct INT_RECTANGLE
 {
 
    int left;
@@ -42,5 +42,5 @@ struct RECTANGLE_I32
  
 
 
-#pragma pack(pop, geometry2d_i32)
+#pragma pack(pop, geometry2d_int)
 

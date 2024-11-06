@@ -578,7 +578,7 @@ namespace user
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rectangle = ::rectangle_f64_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
+      auto rectangle = ::rectangle_double_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
 
       pgraphics->fill_rectangle(rectangle, argb(128, 192, 192, 187));
 
@@ -978,11 +978,11 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rectangle.top() + 7, CX_BORDER, rectangle.height() - 7), clr);
+            pgraphics->fill_rectangle(::rectangle_double_dimension(0, rectangle.top() + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_rectangle(::rectangle_f64_dimension(0, rect2.top(), CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_double_dimension(0, rect2.top(), CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)

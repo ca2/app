@@ -310,7 +310,7 @@ namespace user
 
       ::rectangle_f64 rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = rectangle_int_dimension(h-2, 1, h-2, h-2);
 
       point->add_arc(rectangleL, -90_degree, -180_degree);
 
@@ -391,9 +391,9 @@ namespace user
          pgraphics->path(point);
 
          pbrush->create_solid(argb(255,
-                               (unsigned char)((double) color32_u8_red(color32) * dRate),
-                               (unsigned char)((double) color32_u8_green(color32) * dRate),
-                               (unsigned char)((double) color32_u8_blue(color32) * dRate)));
+                               (unsigned char)((double) color32_byte_red(color32) * dRate),
+                               (unsigned char)((double) color32_byte_green(color32) * dRate),
+                               (unsigned char)((double) color32_byte_blue(color32) * dRate)));
 
          ::scroll_x(rectangleEllipse, dRate, rectangle);
 

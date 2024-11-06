@@ -63,7 +63,7 @@ namespace platform
       ::pointer < manual_reset_event >                m_pmanualreseteventReadyToExit;
       ::pointer < manual_reset_event >                m_pmanualreseteventMainLoopEnd;
 
-      ::i32_sz *                                      m_pintstringLanguageResourceMap;
+      ::int_sz *                                      m_pintstringLanguageResourceMap;
       int                                             m_iMatterFromHttpCache;
 
       const char* m_pszMain;

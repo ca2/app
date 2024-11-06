@@ -9,9 +9,9 @@ inline write_text_stream & operator << (write_text_stream & s, const ::color::co
    {
 
       s.append_format("rgb(%3x,%3x,%3x,%0.2f)",
-         color.u8_red(),
-         color.u8_green(),
-         color.u8_blue(),
+         color.byte_red(),
+         color.byte_green(),
+         color.byte_blue(),
          color.f32_opacity());
 
    }
@@ -19,9 +19,9 @@ inline write_text_stream & operator << (write_text_stream & s, const ::color::co
    {
 
       s.append_format("rgb(%3d,%3d,%3d,%0.2f)",
-                      color.u8_red(),
-                      color.u8_green(),
-                      color.u8_blue(),
+                      color.byte_red(),
+                      color.byte_green(),
+                      color.byte_blue(),
                       color.f32_opacity());
 
    }

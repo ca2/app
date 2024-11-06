@@ -311,7 +311,7 @@ namespace draw2d
 //
 //      //pitem->m_rectangle = rectangle;
 //
-//      //auto parc = __allocate arc_f64_shape< path > ();
+//      //auto parc = __allocate arc_double_shape< path > ();
 //
 //      auto & arc = pitem->m_item;
 //
@@ -595,7 +595,7 @@ namespace draw2d
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      //auto pline = __allocate line_f64_shape< path> ();
+      //auto pline = __allocate line_double_shape< path> ();
 
       auto pitem = __create_new < ::geometry2d::line_item >();
 
@@ -630,7 +630,7 @@ namespace draw2d
    bool path::add_line(const point_f64 & point)
    {
 
-      //auto pline = __allocate line_f64_shape < path > ();
+      //auto pline = __allocate line_double_shape < path > ();
 
       auto pitem = __create_new < ::geometry2d::line_item >();
 
@@ -693,7 +693,7 @@ namespace draw2d
    bool path::add_lines(const ::point_f64 * ppoint, ::collection::count nCount)
    {
 
-      //auto plines = __allocate lines_f64_shape < path > ();
+      //auto plines = __allocate lines_double_shape < path > ();
 
       auto pitem = __create_new < ::geometry2d::lines_item >();
 
@@ -1685,7 +1685,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = rectangle_f64_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto Corner = rectangle_double_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1747,7 +1747,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = rectangle_f64_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto Corner = rectangle_double_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();

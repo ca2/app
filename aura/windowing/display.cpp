@@ -727,7 +727,7 @@ namespace windowing
 
 
 
-   void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
+   void display::get_monitor(rectangle_int_array & rectaMonitor, rectangle_int_array & rectaIntersect, const rectangle_i32 & rectangleParam)
    {
 
       for (::collection::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -1381,9 +1381,9 @@ namespace windowing
       if (bMove)
       {
 
-         rectangle_i32_array rectaMonitor;
+         rectangle_int_array rectaMonitor;
 
-         rectangle_i32_array rectaIntersect;
+         rectangle_int_array rectaIntersect;
 
          get_monitor(rectaMonitor, rectaIntersect, rectangleParam);
 

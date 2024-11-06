@@ -49,10 +49,10 @@ inline void opengl_color(::color::color color)
 {
 
    ::opengl::color(
-      color.u8_red(),
-      color.u8_green(),
-      color.u8_blue(),
-      color.u8_opacity());
+      color.byte_red(),
+      color.byte_green(),
+      color.byte_blue(),
+      color.byte_opacity());
 
 }
 

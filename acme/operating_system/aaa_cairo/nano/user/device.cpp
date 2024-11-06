@@ -250,7 +250,7 @@ namespace cairo
          void device::_set_source(const ::color::color & color)
          {
 
-            cairo_set_source_rgba(m_pdc, __expand_f64_rgba(color));
+            cairo_set_source_rgba(m_pdc, __expand_double_rgba(color));
 
          }
 

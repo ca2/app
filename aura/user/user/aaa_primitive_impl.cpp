@@ -907,9 +907,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = i32_x(lparam);
+         pmessage->m_point.x() = int_x(lparam);
 
-         pmessage->m_point.y() = i32_y(lparam);
+         pmessage->m_point.y() = int_y(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -1025,7 +1025,7 @@ namespace user
 
          pmessage->m_nType = static_cast <unsigned int> (wparam);
 
-         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
+         pmessage->m_size = ::size_i32(int_x(lparam), int_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -1407,7 +1407,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void primitive_impl::set_need_redraw(const ::rectangle_int_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 

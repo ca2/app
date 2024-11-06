@@ -974,10 +974,10 @@ namespace acme
             }
 
          }
-         else if (payload.get_type() == ::e_type_i32_array)
+         else if (payload.get_type() == ::e_type_int_array)
          {
 
-            array.copy(payload.as_i32_array());
+            array.copy(payload.as_int_array());
 
          }
          else if (payload.get_type() == ::e_type_property_set)

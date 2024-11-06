@@ -328,7 +328,7 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::rectangle_double_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
    //   
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
@@ -370,7 +370,7 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::rectangle_double_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
    //
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //

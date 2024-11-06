@@ -28,16 +28,16 @@ struct CLASS_DECL_ACME image32_t
    constexpr image32_t(const ::image32_t & image32) : m_u32(image32.m_u32) {}
 
 
-   constexpr unsigned char u8_red(color_indexes indexes) const { return m_ua[indexes.red()]; }
-   constexpr unsigned char u8_green(color_indexes indexes) const { return m_ua[indexes.green()]; }
-   constexpr unsigned char u8_blue(color_indexes indexes) const { return m_ua[indexes.blue()]; }
-   constexpr unsigned char u8_opacity(color_indexes indexes) const { return m_ua[indexes.opacity()]; }
+   constexpr unsigned char byte_red(color_indexes indexes) const { return m_ua[indexes.red()]; }
+   constexpr unsigned char byte_green(color_indexes indexes) const { return m_ua[indexes.green()]; }
+   constexpr unsigned char byte_blue(color_indexes indexes) const { return m_ua[indexes.blue()]; }
+   constexpr unsigned char byte_opacity(color_indexes indexes) const { return m_ua[indexes.opacity()]; }
 
 
-   constexpr unsigned char & u8_red(color_indexes indexes) { return m_ua[indexes.red()]; }
-   constexpr unsigned char & u8_green(color_indexes indexes) { return m_ua[indexes.green()]; }
-   constexpr unsigned char & u8_blue(color_indexes indexes) { return m_ua[indexes.blue()]; }
-   constexpr unsigned char & u8_opacity(color_indexes indexes) { return m_ua[indexes.opacity()]; }
+   constexpr unsigned char & byte_red(color_indexes indexes) { return m_ua[indexes.red()]; }
+   constexpr unsigned char & byte_green(color_indexes indexes) { return m_ua[indexes.green()]; }
+   constexpr unsigned char & byte_blue(color_indexes indexes) { return m_ua[indexes.blue()]; }
+   constexpr unsigned char & byte_opacity(color_indexes indexes) { return m_ua[indexes.opacity()]; }
 
 
    constexpr ::color::color color(color_indexes indexes) const;
@@ -45,7 +45,7 @@ struct CLASS_DECL_ACME image32_t
 
    constexpr bool operator == (const image32_t & image) const { return m_u32 == image.m_u32; }
 
-   constexpr rgba_t rgb(color_indexes indexes) const { return { make_u32(u8_red(indexes), u8_green(indexes), u8_blue(indexes), 0) }; }
+   constexpr rgba_t rgb(color_indexes indexes) const { return { make_u32(byte_red(indexes), byte_green(indexes), byte_blue(indexes), 0) }; }
 
 
 
@@ -111,10 +111,10 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 //
-////constexpr unsigned char image32_t::u8_red() const { return lower_u8(m_u32 >> 16); }
-////constexpr unsigned char image32_t::u8_green() const { return lower_u8(m_u32 >> 8); }
-////constexpr unsigned char image32_t::u8_blue()  const { return lower_u8(m_u32); }
-////constexpr unsigned char image32_t::u8_opacity() const { return lower_u8(m_u32 >> 24); }
+////constexpr unsigned char image32_t::byte_red() const { return lower_u8(m_u32 >> 16); }
+////constexpr unsigned char image32_t::byte_green() const { return lower_u8(m_u32 >> 8); }
+////constexpr unsigned char image32_t::byte_blue()  const { return lower_u8(m_u32); }
+////constexpr unsigned char image32_t::byte_opacity() const { return lower_u8(m_u32 >> 24); }
 ////
 //
 //#else
@@ -131,10 +131,10 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 ////
-////constexpr unsigned char image32_t::u8_red() const { return lower_u8(m_u32); }
-////constexpr unsigned char image32_t::u8_green() const { return lower_u8(m_u32>>8)); }
-////constexpr unsigned char image32_t::u8_blue()  const { return lower_u8(m_u32>>16)); }
-////constexpr unsigned char image32_t::u8_opacity() const { return lower_u8(m_u32>>24)); }
+////constexpr unsigned char image32_t::byte_red() const { return lower_u8(m_u32); }
+////constexpr unsigned char image32_t::byte_green() const { return lower_u8(m_u32>>8)); }
+////constexpr unsigned char image32_t::byte_blue()  const { return lower_u8(m_u32>>16)); }
+////constexpr unsigned char image32_t::byte_opacity() const { return lower_u8(m_u32>>24)); }
 //
 //
 //#endif
@@ -151,7 +151,7 @@ constexpr image32_t::image32_t(::color::color color, color_indexes indexes)
 constexpr ::color::color image32_t::color(color_indexes indexes) const
 {
 
-   return u8_opacity(indexes) == 0 ? ::color::transparent : rgba(u8_red(indexes) * 255 / u8_opacity(indexes), u8_green(indexes) * 255 / u8_opacity(indexes), u8_blue(indexes) * 255 / u8_opacity(indexes), u8_opacity(indexes));
+   return byte_opacity(indexes) == 0 ? ::color::transparent : rgba(byte_red(indexes) * 255 / byte_opacity(indexes), byte_green(indexes) * 255 / byte_opacity(indexes), byte_blue(indexes) * 255 / byte_opacity(indexes), byte_opacity(indexes));
 
 }
 
@@ -159,10 +159,10 @@ constexpr ::color::color image32_t::color(color_indexes indexes) const
 constexpr void image32_t::assign(::color::color color, color_indexes indexes)
 {
 
-   u8_red(indexes) = color.m_u8Red * color.m_u8Opacity / 255;
-   u8_green(indexes) = color.m_u8Green * color.m_u8Opacity / 255;
-   u8_blue(indexes) = color.m_u8Blue * color.m_u8Opacity / 255;
-   u8_opacity(indexes) = color.m_u8Opacity;
+   byte_red(indexes) = color.m_u8Red * color.m_u8Opacity / 255;
+   byte_green(indexes) = color.m_u8Green * color.m_u8Opacity / 255;
+   byte_blue(indexes) = color.m_u8Blue * color.m_u8Opacity / 255;
+   byte_opacity(indexes) = color.m_u8Opacity;
 
 }
 

@@ -170,7 +170,7 @@ namespace draw3d
 
             }
 
-            ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),colorA.u8_red(), colorA.u8_green(), colorA.u8_blue()));
+            ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),colorA.byte_red(), colorA.byte_green(), colorA.byte_blue()));
             if(i < 6)
             {
                ppen->m_epen = ::draw2d::e_pen_dot;

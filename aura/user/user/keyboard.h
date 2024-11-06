@@ -16,9 +16,9 @@ namespace user
    public:
 
 
-      ::i32_map < ::user::enum_key >              m_mapExt;
-      ::i32_map < ::user::enum_key >              m_mapScan;
-      ::i32_map < ::user::enum_key >              m_mapKey;
+      ::int_map < ::user::enum_key >              m_mapExt;
+      ::int_map < ::user::enum_key >              m_mapScan;
+      ::int_map < ::user::enum_key >              m_mapKey;
 
       
       keyboard();

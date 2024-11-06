@@ -413,7 +413,7 @@ payload::payload(const string_array & stra) :
 
 
 payload::payload(const ::int_array & ia) :
-   m_etype(e_type_i32_array),
+   m_etype(e_type_int_array),
    m_pia(__new__prefix(&m_preferer) new ::int_array(ia))
 {
 
@@ -692,7 +692,7 @@ class ::payload & payload::operator ++(int)
    case e_type_new:
    case e_type_null:
    case e_type_string_array:
-   case e_type_i32_array:
+   case e_type_int_array:
    case e_type_empty:
    case e_type_element:
    case e_type_path:
@@ -1560,7 +1560,7 @@ void payload::payload_increment_reference_count()
       case e_type_string_array:
          if (m_pstra) m_pstra->increment_reference_count();
          break;
-      case e_type_i32_array:
+      case e_type_int_array:
          if (m_pia) m_pia->increment_reference_count();
          break;
       case e_type_payload_array:
@@ -1648,7 +1648,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
          m_ppropertyset = __new__prefix(&m_preferer) new ::property_set(*payload.m_ppropertyset);
 
       }
-      else if (etypeSource == e_type_i32_array)
+      else if (etypeSource == e_type_int_array)
       {
 
          m_pia = __new__prefix(&m_preferer) new ::int_array(*payload.m_pia);
@@ -1790,10 +1790,10 @@ class ::payload & payload::operator = (const ::int_array & ia)
    //else
    {
 
-      if (m_etype != e_type_i32_array)
+      if (m_etype != e_type_int_array)
       {
 
-         set_type(e_type_i32_array, false);
+         set_type(e_type_int_array, false);
 
       }
 
@@ -2309,7 +2309,7 @@ bool payload::is_empty() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -2367,7 +2367,7 @@ bool payload::has_char() const
       return !is_element_null();
    case e_type_string_array:
       return ::is_set(m_pstra) && m_pstra->has_element();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_set(m_pia) && m_pia->has_element();
    case e_type_payload_array:
       return ::is_set(m_ppayloada) && m_ppayloada->has_element();
@@ -2436,13 +2436,13 @@ bool payload::is_new_or_null() const
 ::std::strong_ordering payload::case_insensitive_order(const class ::payload & payload) const
 {
 
-   if (has_reference_of_type(::e_type_i32_array))
+   if (has_reference_of_type(::e_type_int_array))
    {
 
-      if (payload.has_reference_of_type(::e_type_i32_array))
+      if (payload.has_reference_of_type(::e_type_int_array))
       {
 
-         return i32_array_reference() <=> payload.i32_array_reference();
+         return int_array_reference() <=> payload.int_array_reference();
 
       }
       else
@@ -2552,13 +2552,13 @@ bool payload::case_insensitive_equals(const payload & payload) const
 ::std::strong_ordering payload::order_payload(const class ::payload & payload) const
 {
 
-   if(has_reference_of_type(::e_type_i32_array))
+   if(has_reference_of_type(::e_type_int_array))
    {
       
-      if(payload.has_reference_of_type(::e_type_i32_array))
+      if(payload.has_reference_of_type(::e_type_int_array))
       {
 
-         return i32_array_reference() <=> payload.i32_array_reference();
+         return int_array_reference() <=> payload.int_array_reference();
 
       }
       else
@@ -4649,22 +4649,22 @@ string_array & payload::string_array_reference()
 }
 
 
-::int_array payload::as_i32_array() const
+::int_array payload::as_int_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
    {
 
-      return ::transfer(m_ppayload->as_i32_array());
+      return ::transfer(m_ppayload->as_int_array());
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return ::transfer(m_pproperty->as_i32_array());
+      return ::transfer(m_pproperty->as_int_array());
 
    }
-   else*/ if (m_etype != e_type_i32_array)
+   else*/ if (m_etype != e_type_int_array)
    {
 
       ::int_array ia;
@@ -4702,22 +4702,22 @@ string_array & payload::string_array_reference()
 }
 
 
-int_array & payload::i32_array_reference()
+int_array & payload::int_array_reference()
 {
 
 /*   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->i32_array_reference();
+      return m_ppayload->int_array_reference();
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->i32_array_reference();
+      return m_pproperty->int_array_reference();
 
    }
-   else*/ if(m_etype != e_type_i32_array)
+   else*/ if(m_etype != e_type_int_array)
    {
 
       auto pia = __new__prefix(&m_preferer) new ::int_array();
@@ -4740,7 +4740,7 @@ int_array & payload::i32_array_reference()
 
       }
 
-      set_type(e_type_i32_array, false);
+      set_type(e_type_int_array, false);
 
       m_pia = pia;
 
@@ -5508,7 +5508,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //
 //   switch(m_etype)
 //   {
-//   case e_type_i32_array:
+//   case e_type_int_array:
 //      return &m_pia->element_at(i);
 //   case e_type_string_array:
 //      return &m_pstra->element_at(i);
@@ -5851,7 +5851,7 @@ property & payload::get_property(const ::atom & atom)
 {
    switch(m_etype)
    {
-   case e_type_i32_array:
+   case e_type_int_array:
       return &m_pia->element_at(i);
    case e_type_string_array:
       return &m_pstra->element_at(i);
@@ -5887,8 +5887,8 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
 
    switch(m_etype)
    {
-   case e_type_i32_array:
-      return as_i32_array().contains(atoi(scopedstr), find, count);
+   case e_type_int_array:
+      return as_int_array().contains(atoi(scopedstr), find, count);
    case e_type_string_array:
       return as_string_array().contains(scopedstr, find, count);
    case e_type_payload_array:
@@ -5916,8 +5916,8 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
    {
    case e_type_bool:
       return false;
-   case e_type_i32_array:
-      return as_i32_array().contains(atoi(scopedstr), find, last);
+   case e_type_int_array:
+      return as_int_array().contains(atoi(scopedstr), find, last);
    case e_type_string_array:
       return as_string_array().case_insensitive_contains(scopedstr, find, last);
    case e_type_payload_array:
@@ -6540,7 +6540,7 @@ bool payload::is_scalar() const
       return true;
    }
    else if(m_etype == e_type_string_array
-           || m_etype == e_type_i32_array
+           || m_etype == e_type_int_array
            || m_etype == e_type_payload_array
            || m_etype == e_type_property_set)
    {
@@ -7001,7 +7001,7 @@ bool payload::has_string_reference() const
 //      return m_patom != nullptr && ((m_patom->is_text() && ::acme::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
 //
 //   }
-//   else if (m_etype == e_type_i32_array)
+//   else if (m_etype == e_type_int_array)
 //   {
 //
 //      return m_pia != nullptr && (m_pia->get_count() >= 2 || (m_pia->get_count() == 1 && !m_pia->element_at(0)));
@@ -8077,7 +8077,7 @@ bool payload::is_numeric() const
       return true;
 
    case e_type_string_array:
-   case e_type_i32_array:
+   case e_type_int_array:
    case e_type_payload_array:
    case e_type_property_set:
    case e_type_memory:
@@ -8177,10 +8177,10 @@ const ::string_array & payload::string_array_reference() const
 }
 
 
-const ::int_array & payload::i32_array_reference() const
+const ::int_array & payload::int_array_reference() const
 {
 
-   if(m_etype == e_type_i32_array)
+   if(m_etype == e_type_int_array)
    {
 
       return *m_pia;
@@ -8189,13 +8189,13 @@ const ::int_array & payload::i32_array_reference() const
    //else if(m_etype == e_type_payload_pointer)
    //{
 
-   //   return m_ppayload->i32_array_reference();
+   //   return m_ppayload->int_array_reference();
 
    //}
    //else if(m_etype == e_type_property)
    //{
 
-   //   return m_pproperty->i32_array_reference();
+   //   return m_pproperty->int_array_reference();
 
    //}
    //else
@@ -8573,7 +8573,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
       return string_array_reference().get_network_payload(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_i32_array)
+   else if (get_type() == ::e_type_int_array)
    {
 
       return ::get_network_payload(str, *m_pia, bNewLine);
@@ -8892,7 +8892,7 @@ bool payload::is_false() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -9079,7 +9079,7 @@ bool payload::is_set_false() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -9780,7 +9780,7 @@ case e_type_element:
 return m_p;
 case e_type_string_array:
 return m_pstra;
-case e_type_i32_array:
+case e_type_int_array:
 return m_pia;
 case e_type_payload_array:
 return m_ppayloada;
@@ -9997,7 +9997,7 @@ CLASS_DECL_ACME ::u64 & copy(::u64 & u, const payload & payload)
    {
       case e_type_bool:
          return 1;
-      case e_type_i32_array:
+      case e_type_int_array:
          return ::is_null(m_pia) ? 0 : m_pia->get_count();
       case e_type_string_array:
          return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
@@ -10055,7 +10055,7 @@ bool payload::is_array() const
 {
 
    if (m_etype == e_type_string_array
-       || m_etype == e_type_i32_array
+       || m_etype == e_type_int_array
        || m_etype == e_type_payload_array
        || m_etype == e_type_property_set)
    {
@@ -10124,10 +10124,10 @@ bool payload::is_array() const
 //
 //   ::payload payload;
 //
-//   if (m_etype == ::e_type_i32_array)
+//   if (m_etype == ::e_type_int_array)
 //   {
 //
-//      if (payload2.m_etype == ::e_type_i32_array)
+//      if (payload2.m_etype == ::e_type_int_array)
 //      {
 //
 //         payload = ia() - payload2.ia();
@@ -10205,13 +10205,13 @@ bool payload::is_array() const
 //
 //   ::payload payload;
 //
-//   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+//   if (m_etype == ::e_type_int_array || m_etype == ::e_type_int_array)
 //   {
 //
-//      if (m_etype == ::e_type_i32_array)
+//      if (m_etype == ::e_type_int_array)
 //      {
 //
-//         if (payload2.m_etype == ::e_type_i32_array)
+//         if (payload2.m_etype == ::e_type_int_array)
 //         {
 //
 //            payload = ia() + payload2.ia();
@@ -10340,9 +10340,9 @@ bool payload::is_array() const
 //
 //   ::payload payload;
 //
-//   if (m_etype == ::e_type_i32_array)
+//   if (m_etype == ::e_type_int_array)
 //   {
-//      if (payload2.m_etype == ::e_type_i32_array)
+//      if (payload2.m_etype == ::e_type_int_array)
 //      {
 //         payload = *this;
 //         payload.ia().intersect(payload2.ia());
@@ -10404,7 +10404,7 @@ bool payload::is_array() const
 //
 //   ::payload payload;
 //
-//   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+//   if (m_etype == ::e_type_int_array || m_etype == ::e_type_int_array)
 //   {
 //
 //      ::acme::array::intersection(payload.ia(), ia(), payload2.ia());
@@ -10663,7 +10663,7 @@ enum_type payload::integer_type() const
       case e_type_new:
       case e_type_null:
       case e_type_string_array:
-      case e_type_i32_array:
+      case e_type_int_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10728,7 +10728,7 @@ enum_type payload::left_hand_integer_type() const
       case e_type_new:
       case e_type_null:
       case e_type_string_array:
-      case e_type_i32_array:
+      case e_type_int_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10793,7 +10793,7 @@ enum_type payload::floating_type() const
       case e_type_new:
       case e_type_null:
       case e_type_string_array:
-      case e_type_i32_array:
+      case e_type_int_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10859,7 +10859,7 @@ enum_type payload::left_hand_floating_type() const
       case e_type_new:
       case e_type_null:
       case e_type_string_array:
-      case e_type_i32_array:
+      case e_type_int_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10920,26 +10920,26 @@ enum_type payload::left_hand_floating_type() const
 payload & payload::add(const ::payload & payload)
 {
 
-   if(get_type() == e_type_i32_array)
+   if(get_type() == e_type_int_array)
    {
 
-      if(payload.get_type() == e_type_i32_array)
+      if(payload.get_type() == e_type_int_array)
       {
 
-         i32_array_reference().append(payload.i32_array_reference());
+         int_array_reference().append(payload.int_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
       {
 
-         ::generic::container::append(i32_array_reference(), payload.i64_array_reference());
+         ::generic::container::append(int_array_reference(), payload.i64_array_reference());
 
       }
       else
       {
 
          // simple implementation
-         i32_array_reference().add(payload.as_i32());
+         int_array_reference().add(payload.as_i32());
 
       }
 
@@ -10953,10 +10953,10 @@ payload & payload::add(const ::payload & payload)
          i64_array_reference().add(payload.i64_array_reference());
 
       }
-      else if(payload.get_type() == e_type_i32_array)
+      else if(payload.get_type() == e_type_int_array)
       {
 
-         ::generic::container::append(i64_array_reference(), payload.i32_array_reference());
+         ::generic::container::append(i64_array_reference(), payload.int_array_reference());
 
       }
       else
@@ -10977,10 +10977,10 @@ payload & payload::add(const ::payload & payload)
          string_array_reference().append(payload.string_array_reference());
 
       }
-      else if(payload.get_type() == e_type_i32_array)
+      else if(payload.get_type() == e_type_int_array)
       {
 
-          ::generic::container::append(string_array_reference(), payload.i32_array_reference());
+          ::generic::container::append(string_array_reference(), payload.int_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
@@ -11013,10 +11013,10 @@ payload & payload::add(const ::payload & payload)
          payload_array_reference().append(payload.payload_array_reference());
 
       }
-      else if(payload.get_type() == e_type_i32_array)
+      else if(payload.get_type() == e_type_int_array)
       {
 
-          ::generic::container::append(payload_array_reference(), payload.i32_array_reference());
+          ::generic::container::append(payload_array_reference(), payload.int_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)

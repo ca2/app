@@ -43,7 +43,7 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-//using point_i32_array = point_array_base < int >;
+//using point_int_array = point_array_base < int >;
 //using point_i64_array = point_array_base < ::i64 >;
 //using point_float_array = point_array_base < float >;
 //using point_double_array = point_array_base < double >;

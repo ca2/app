@@ -14,7 +14,7 @@ namespace user
 
       bool                                   m_bCaching;
       int                                    m_iCacheNextIndex;
-      ::i32_map < ::i32_map < CELL > >       m_map;
+      ::int_map < ::int_map < CELL > >       m_map;
 
 
       mesh_cache();

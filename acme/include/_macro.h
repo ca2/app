@@ -362,13 +362,13 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 
-// #ifndef i32_x
-// #define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
+// #ifndef int_x
+// #define int_x(lparam)                          ((int)(short)LOWORD(lparam))
 // #endif
 
 
-// #ifndef i32_y
-// #define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
+// #ifndef int_y
+// #define int_y(lparam)                          ((int)(short)HIWORD(lparam))
 // #endif
 
 

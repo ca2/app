@@ -222,7 +222,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 
 
 
-//void wide_from_i32_base(unichar * sz, int i, int iBase)
+//void wide_from_int_base(unichar * sz, int i, int iBase)
 //{
 //   if(i == 0)
 //   {

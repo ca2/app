@@ -929,12 +929,12 @@ namespace user
                   if (!bStrongSelection)
                   {
 
-                     colorBk.set_opacity(colorBk.u8_opacity() / 2);
+                     colorBk.set_opacity(colorBk.byte_opacity() / 2);
 
                   }
 
                   pgraphics->fill_rectangle(
-                     ::rectangle_f64_dimension((double)((double)left + x1),
+                     ::rectangle_double_dimension((double)((double)left + x1),
                         (double)y,
                         (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
                         (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
@@ -965,14 +965,14 @@ namespace user
             {
 
                //pgraphics->fill_rectangle(
-               //   ::rectangle_f64_dimension((double)((double)left + compose1),
+               //   ::rectangle_double_dimension((double)((double)left + compose1),
                //      (double)y,
                //      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
                //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
                //   colorComposeBk);
 
                pgraphics->fill_rectangle(
-                  ::rectangle_f64_dimension((double)((double)left + compose1),
+                  ::rectangle_double_dimension((double)((double)left + compose1),
                      ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
                      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
                      bComposing ? 1.0 : 0.5 ));

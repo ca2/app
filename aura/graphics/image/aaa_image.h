@@ -366,8 +366,8 @@
 ////
 ////
 ////
-////   inline bool fill_rect_dim(int x, int y, int w, int h, ::color32_t color32) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), color32); }
-////   inline bool fill_rect_dim(int x, int y, int w, int h, int R, int G, int B) { return fill_rectangle(rectangle_i32_dimension(x, y, w, h), R, G, B); }
+////   inline bool fill_rect_dim(int x, int y, int w, int h, ::color32_t color32) { return fill_rectangle(rectangle_int_dimension(x, y, w, h), color32); }
+////   inline bool fill_rect_dim(int x, int y, int w, int h, int R, int G, int B) { return fill_rectangle(rectangle_int_dimension(x, y, w, h), R, G, B); }
 ////   inline bool fill_rect_coord(int x1, int y1, int x2, int y2, ::color32_t color32) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), color32); }
 ////   inline bool fill_rect_coord(int x1, int y1, int x2, int y2, int R, int G, int B) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
 ////

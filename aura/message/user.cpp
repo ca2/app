@@ -660,7 +660,7 @@ namespace message
    point_i32 mouse_wheel::GetPoint()
    {
 
-      return point_i32(i32_x(m_lparam), i32_y(m_lparam));
+      return point_i32(int_x(m_lparam), int_y(m_lparam));
 
    }
 

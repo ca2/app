@@ -28,7 +28,7 @@ namespace experience
       ::e_display                         m_edisplayOrigin;
       ::size_i32                          m_sizeOrigin;
       ::point_i32                         m_pointMove;
-      ::i32_map < rectangle_i32 >         m_mapWorkspaceRect;
+      ::int_map < rectangle_i32 >         m_mapWorkspaceRect;
       bool                                m_bPendingCursorPos;
       int                                 m_iDockMove;
       int                                 m_iConsiderDockMove;

@@ -16,7 +16,7 @@ namespace write_text
 
       unsigned int   m_ui;
 
-      array <point_i32_array, point_i32_array &> m_pointsets;
+      array <point_int_array, point_int_array &> m_pointsets;
 //
 //#ifdef WINDOWS_DESKTOP
 //

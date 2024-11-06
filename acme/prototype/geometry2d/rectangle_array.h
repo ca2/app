@@ -199,7 +199,7 @@ void rectangle_array_base < NUMBER >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TY
 template < primitive_number NUMBER >
 void rectangle_array_base < NUMBER >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
-   add(rectangle_i32_dimension(x, y, cx, cy));
+   add(rectangle_int_dimension(x, y, cx, cy));
 }
 
 
@@ -257,7 +257,7 @@ template < primitive_number NUMBER >
 }
 
 
-CLASS_DECL_ACME rectangle_i32_array get_top_left_oriented_damaged_areas_by_resizing(const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld, bool bOnlyGrowing = true);
+CLASS_DECL_ACME rectangle_int_array get_top_left_oriented_damaged_areas_by_resizing(const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld, bool bOnlyGrowing = true);
 
 
 

@@ -643,7 +643,7 @@ namespace aura
 //
 //      g_pcsFont = aaa_primitive_new critical_section();
 //
-//      g_pmapFontFaceName = aaa_primitive_new string_map < i32_map < string > >();
+//      g_pmapFontFaceName = aaa_primitive_new string_map < int_map < string > >();
 //
 //      g_pmutexWindowing = aaa_primitive_new mutex();
 //

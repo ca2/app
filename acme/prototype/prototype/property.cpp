@@ -344,7 +344,7 @@ string & property::get_network_arguments(::string & str) const
 //   {
 //   case ::e_type_string_array:
 //      return const_cast<property *>(this)->stra().operator [](iIndex);
-//   case ::e_type_i32_array:
+//   case ::e_type_int_array:
 //      return const_cast<property *>(this)->inta().operator [](iIndex);
 //   case ::type_vara:
 //      return const_cast<property *>(this)->payloada().operator [](iIndex);

@@ -228,13 +228,13 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define __u64xy(u)                                    u64_x(u), u64_y(u)
 //
 //
-//#ifndef i32_x
-//#define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
+//#ifndef int_x
+//#define int_x(lparam)                          ((int)(short)LOWORD(lparam))
 //#endif
 //
 //
-//#ifndef i32_y
-//#define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
+//#ifndef int_y
+//#define int_y(lparam)                          ((int)(short)HIWORD(lparam))
 //#endif
 //
 //#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))

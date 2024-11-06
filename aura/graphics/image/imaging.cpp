@@ -4278,9 +4278,9 @@ int w3)
    y1 *= w1;
    y3 *= w3;
 
-   unsigned char bR = color32.u8_red();
-   unsigned char bG = color32.u8_green();
-   unsigned char bB = color32.u8_blue();
+   unsigned char bR = color32.byte_red();
+   unsigned char bG = color32.byte_green();
+   unsigned char bB = color32.byte_blue();
 
    pAParam = (unsigned char *)pAParam + y1 + x1;
 

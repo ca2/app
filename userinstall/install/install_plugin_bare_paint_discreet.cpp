@@ -268,19 +268,19 @@ auto m_timeSync = ::time::now();
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_i32_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
+         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_i32_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_i32_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
          pgraphics->FillRect(r, br);
       }
 

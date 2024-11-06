@@ -829,7 +829,7 @@ namespace draw2d
    void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      arc(rectangle_f64_dimension(x, y, w, h), start, extends);
+      arc(rectangle_double_dimension(x, y, w, h), start, extends);
 
    }
 
@@ -2363,14 +2363,14 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         fill_rectangle(rectangle_f64_dimension(rectangle.left(), rectangle.top(), rectangle.width(), 1.0), colorTopLeft);
+         fill_rectangle(rectangle_double_dimension(rectangle.left(), rectangle.top(), rectangle.width(), 1.0), colorTopLeft);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         fill_rectangle(rectangle_f64_dimension(
+         fill_rectangle(rectangle_double_dimension(
             rectangle.left(),
             rectangle.top() + (eborder & e_border_top ? 1.0 : 0),
             1.0,
@@ -2386,7 +2386,7 @@ namespace draw2d
       if (eborder & e_border_bottom)
       {
 
-         fill_rectangle(rectangle_f64_dimension(
+         fill_rectangle(rectangle_double_dimension(
             rectangle.left() + (eborder & e_border_left ? 1.0 : 0),
             rectangle.bottom() - 1.0,
             rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
@@ -2404,7 +2404,7 @@ namespace draw2d
 
          //if (!
          fill_rectangle(
-            ::rectangle_f64_dimension(
+            ::rectangle_double_dimension(
                rectangle.right() - 1.0,
                rectangle.top() + (eborder & e_border_top ? 1.0 : 0),
                1.0,

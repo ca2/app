@@ -529,7 +529,7 @@ namespace experience_tranquillum
       if(eborder & e_border_top)
       {
 
-         rectangleDraw = rectangle_i32_dimension(x, y, cx, 1);
+         rectangleDraw = rectangle_int_dimension(x, y, cx, 1);
 
          if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
@@ -548,7 +548,7 @@ namespace experience_tranquillum
       if(eborder & e_border_left)
       {
 
-         rectangleDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
+         rectangleDraw = rectangle_int_dimension(x, y + 1, 1, cy - 2);
 
          if(session()->savings()->is_trying_to_save(::e_resource_processing))
          {
@@ -568,7 +568,7 @@ namespace experience_tranquillum
       if(eborder & e_border_right)
       {
 
-         rectangleDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
+         rectangleDraw = rectangle_int_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
          if(session()->savings()->is_trying_to_save(e_resource_processing))
          {
@@ -588,7 +588,7 @@ namespace experience_tranquillum
       if(eborder & e_border_bottom)
       {
 
-         rectangleDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
+         rectangleDraw = rectangle_int_dimension(x, y + cy - 1, cx, 1);
 
          if(session()->savings()->is_trying_to_save(e_resource_processing))
          {

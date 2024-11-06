@@ -101,7 +101,7 @@ void spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::erase_all()
 
 #if OSBIT == 32
 
-using iptr_spreadset = i32_spreadset;
+using iptr_spreadset = int_spreadset;
 
 #else
 

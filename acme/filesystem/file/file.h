@@ -200,7 +200,7 @@ namespace file
       virtual void put_byte_back(unsigned char b);
 
       virtual int get_u8(); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned char get_u8_unbounded() { return get_u8(); }
+      inline unsigned char get_byte_unbounded() { return get_u8(); }
 
       virtual int get_u16(); // 0-255 - -1 if eof otherwise exception?
       inline unsigned short get_u16_unbounded() { return get_u16(); }

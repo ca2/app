@@ -575,7 +575,7 @@ public:
    inline ::u64 read_buffer_length_unbounded()
    {
 
-      unsigned char unsigned char = m_pfile->get_u8_unbounded();
+      unsigned char unsigned char = m_pfile->get_byte_unbounded();
 
       return unsigned char < 255 ? unsigned char : read_buffer_length_unbounded_part2();
 

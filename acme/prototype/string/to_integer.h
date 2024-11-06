@@ -13,9 +13,9 @@
 //CLASS_DECL_ACME int ansi_count_to_i64(const char * sz, size_t iLen);
 
 
-//#define atoi32_dup(...) ansi_to_i32(__VA_ARGS__)
-//#define atoui32_dup(...) ansi_to_u32(__VA_ARGS__)
-//#define ntoui32_dup(...) ntoui_dup(__VA_ARGS__)
+//#define atoint_dup(...) ansi_to_i32(__VA_ARGS__)
+//#define atouint_dup(...) ansi_to_u32(__VA_ARGS__)
+//#define ntouint_dup(...) ntoui_dup(__VA_ARGS__)
 
 
 

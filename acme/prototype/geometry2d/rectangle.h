@@ -1609,7 +1609,7 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_i32 rectangle_i32_dimension(X x, Y y, W w, H h)
+inline rectangle_i32 rectangle_int_dimension(X x, Y y, W w, H h)
 {
 
    return rectangle_i32(x, y, x + w, y + h);
@@ -1627,7 +1627,7 @@ inline rectangle_i64 rectangle_i64_dimension(X x, Y y, W w, H h)
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_f32 rectangle_f32_dimension(X x, Y y, W w, H h)
+inline rectangle_f32 rectangle_float_dimension(X x, Y y, W w, H h)
 {
 
    return rectangle_f32(x, y, x + w, y + h);
@@ -1636,7 +1636,7 @@ inline rectangle_f32 rectangle_f32_dimension(X x, Y y, W w, H h)
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
+inline rectangle_f64 rectangle_double_dimension(X x, Y y, W w, H h)
 {
 
    return rectangle_f64(x, y, x + w, y + h);

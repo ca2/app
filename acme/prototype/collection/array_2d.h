@@ -124,7 +124,7 @@ public:
 };
 
 
-using i32_array_2d = ::array_2d < int, int >;
+using int_array_2d = ::array_2d < int, int >;
 
 
 using float_array_2d = ::array_2d < float, float >;

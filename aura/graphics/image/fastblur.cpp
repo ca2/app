@@ -87,9 +87,9 @@ inline float32x4_t loadRGBA8AsFloat(unsigned int* source)
 
    temporary1 = vset_lane_u32(*source,temporary1,0);
 
-   ::u3216x4_t temporary2 = vget_low_u16(vmovl_u8(vreinterpret_u8_u32(temporary1)));
+   ::u3216x4_t temporary2 = vget_low_u16(vmovl_u8(vreinterpret_byte_u32(temporary1)));
 
-   return vcvtq_f32_u32(vmovl_u16(temporary2));
+   return vcvtq_float_u32(vmovl_u16(temporary2));
 
 }
 
@@ -1361,8 +1361,8 @@ auto tick2 = ::time::now();
       int i;
       int yp;
       int yw;
-      unsigned char * pu8_1;
-      unsigned char * pu8_2;
+      unsigned char * pbyte_1;
+      unsigned char * pbyte_2;
       int wm = w - 1;
       //      int hm = h - 1;
       int wr = minimum(w,cx) - 1 - radius;
@@ -1428,8 +1428,8 @@ auto tick2 = ::time::now();
 
          }
 
-         pu8_1 = &pb[yw + (radius + 1) * 4];
-         pu8_2 = &pb[yw];
+         pbyte_1 = &pb[yw + (radius + 1) * 4];
+         pbyte_2 = &pb[yw];
 
          for(x = 0; x < radius; x++)
          {
@@ -1439,13 +1439,13 @@ auto tick2 = ::time::now();
             pwork[2] = dv[bsum];
             pwork[3] = dv[asum];
 
-            rsum += pu8_1[0] - pu8_2[0];
-            gsum += pu8_1[1] - pu8_2[1];
-            bsum += pu8_1[2] - pu8_2[2];
-            asum += pu8_1[3] - pu8_2[3];
+            rsum += pbyte_1[0] - pbyte_2[0];
+            gsum += pbyte_1[1] - pbyte_2[1];
+            bsum += pbyte_1[2] - pbyte_2[2];
+            asum += pbyte_1[3] - pbyte_2[3];
 
             pwork += 4;
-            pu8_1 += 4;
+            pbyte_1 += 4;
 
          }
 
@@ -1458,18 +1458,18 @@ auto tick2 = ::time::now();
             pwork[3] = dv[asum];
 
 
-            rsum += pu8_1[0] - pu8_2[0];
-            gsum += pu8_1[1] - pu8_2[1];
-            bsum += pu8_1[2] - pu8_2[2];
-            asum += pu8_1[3] - pu8_2[3];
+            rsum += pbyte_1[0] - pbyte_2[0];
+            gsum += pbyte_1[1] - pbyte_2[1];
+            bsum += pbyte_1[2] - pbyte_2[2];
+            asum += pbyte_1[3] - pbyte_2[3];
 
-            pu8_1 += 4;
-            pu8_2 += 4;
+            pbyte_1 += 4;
+            pbyte_2 += 4;
             pwork += 4;
 
          }
 
-         pu8_1 -= 4;
+         pbyte_1 -= 4;
 
          for(; x < w; x++)
          {
@@ -1480,12 +1480,12 @@ auto tick2 = ::time::now();
             pwork[3] = dv[asum];
 
 
-            rsum += pu8_1[0] - pu8_2[0];
-            gsum += pu8_1[1] - pu8_2[1];
-            bsum += pu8_1[2] - pu8_2[2];
-            asum += pu8_1[3] - pu8_2[3];
+            rsum += pbyte_1[0] - pbyte_2[0];
+            gsum += pbyte_1[1] - pbyte_2[1];
+            bsum += pbyte_1[2] - pbyte_2[2];
+            asum += pbyte_1[3] - pbyte_2[3];
 
-            pu8_2 += 4;
+            pbyte_2 += 4;
             pwork += 4;
 
          }
@@ -1517,22 +1517,22 @@ auto tick2 = ::time::now();
          unsigned char * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
          unsigned char * r2 = &pwk[(x * 4)];
 
-         pu8_1 = (unsigned char *)&pimage32[x];
+         pbyte_1 = (unsigned char *)&pimage32[x];
 
          for(y = 0; y < radius; y++)
          {
 
-            pu8_1[0] = dv[rsum];
-            pu8_1[1] = dv[gsum];
-            pu8_1[2] = dv[bsum];
-            pu8_1[3] = dv[asum];
+            pbyte_1[0] = dv[rsum];
+            pbyte_1[1] = dv[gsum];
+            pbyte_1[2] = dv[bsum];
+            pbyte_1[3] = dv[asum];
 
             rsum += r1[0] - r2[0];
             gsum += r1[1] - r2[1];
             bsum += r1[2] - r2[2];
             asum += r1[3] - r2[3];
 
-            pu8_1 += stride;
+            pbyte_1 += stride;
             r1 += workstride;
 
          }
@@ -1540,39 +1540,39 @@ auto tick2 = ::time::now();
          for(; y < hr; y++)
          {
 
-            pu8_1[0] = dv[rsum];
-            pu8_1[1] = dv[gsum];
-            pu8_1[2] = dv[bsum];
-            pu8_1[3] = dv[asum];
+            pbyte_1[0] = dv[rsum];
+            pbyte_1[1] = dv[gsum];
+            pbyte_1[2] = dv[bsum];
+            pbyte_1[3] = dv[asum];
 
             rsum += r1[0] - r2[0];
             gsum += r1[1] - r2[1];
             bsum += r1[2] - r2[2];
             asum += r1[3] - r2[3];
 
-            pu8_1 += stride;
+            pbyte_1 += stride;
             r1 += workstride;
             r2 += workstride;
 
          }
 
-         pu8_1 -= stride;
+         pbyte_1 -= stride;
          r1 -= workstride;
 
          for(; y < h; y++)
          {
 
-            pu8_1[0] = dv[rsum];
-            pu8_1[1] = dv[gsum];
-            pu8_1[2] = dv[bsum];
-            pu8_1[3] = dv[asum];
+            pbyte_1[0] = dv[rsum];
+            pbyte_1[1] = dv[gsum];
+            pbyte_1[2] = dv[bsum];
+            pbyte_1[3] = dv[asum];
 
             rsum += r1[0] - r2[0];
             gsum += r1[1] - r2[1];
             bsum += r1[2] - r2[2];
             asum += r1[3] - r2[3];
 
-            pu8_1 += stride;
+            pbyte_1 += stride;
             r2 += workstride;
 
          }
@@ -1605,8 +1605,8 @@ auto tick2 = ::time::now();
             int hm = h - 1;
             int div = radius + radius + 1;
             int point_i32;
-            int pu8_1;
-            int pu8_2;
+            int pbyte_1;
+            int pbyte_2;
 
             yw = yi = 0;
 
@@ -1635,13 +1635,13 @@ auto tick2 = ::time::now();
                   g[yi] = dv[gsum];
                   b[yi] = dv[bsum];
 
-                  pu8_1 = pimage32[yw + vmin[x]];
-                  pu8_2 = pimage32[yw + vmax[x]];
+                  pbyte_1 = pimage32[yw + vmin[x]];
+                  pbyte_2 = pimage32[yw + vmax[x]];
 
-                  asum += ((pu8_1 >> 24) & 0xff) - ((pu8_2 >> 24) & 0xff);
-                  rsum += ((pu8_1 & 0x00ff0000) - (pu8_2 & 0x00ff0000)) >> 16;
-                  gsum += ((pu8_1 & 0x0000ff00) - (pu8_2 & 0x0000ff00)) >> 8;
-                  bsum += ((pu8_1 & 0x000000ff) - (pu8_2 & 0x000000ff));
+                  asum += ((pbyte_1 >> 24) & 0xff) - ((pbyte_2 >> 24) & 0xff);
+                  rsum += ((pbyte_1 & 0x00ff0000) - (pbyte_2 & 0x00ff0000)) >> 16;
+                  gsum += ((pbyte_1 & 0x0000ff00) - (pbyte_2 & 0x0000ff00)) >> 8;
+                  bsum += ((pbyte_1 & 0x000000ff) - (pbyte_2 & 0x000000ff));
                   yi++;
                }
                yw += s;
@@ -1670,13 +1670,13 @@ auto tick2 = ::time::now();
                {
                   pimage32[yi] = (dv[asum] << 24) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
 
-                  pu8_1 = x + vmin[y];
-                  pu8_2 = x + vmax[y];
+                  pbyte_1 = x + vmin[y];
+                  pbyte_2 = x + vmax[y];
 
-                  rsum += rectangle[pu8_1] - rectangle[pu8_2];
-                  gsum += g[pu8_1] - g[pu8_2];
-                  bsum += b[pu8_1] - b[pu8_2];
-                  asum += a[pu8_1] - a[pu8_2];
+                  rsum += rectangle[pbyte_1] - rectangle[pbyte_2];
+                  gsum += g[pbyte_1] - g[pbyte_2];
+                  bsum += b[pbyte_1] - b[pbyte_2];
+                  asum += a[pbyte_1] - a[pbyte_2];
 
                   yi += s;
 

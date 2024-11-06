@@ -50,10 +50,10 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { color32_u8_red(color32) / 255.0,
-//                            color32_u8_green(color32) / 255.0,
-//                            color32_u8_blue(color32) / 255.0,
-//                            color32_u8_opacity(color32) / 255.0
+//   CGFloat components[] = { color32_byte_red(color32) / 255.0,
+//                            color32_byte_green(color32) / 255.0,
+//                            color32_byte_blue(color32) / 255.0,
+//                            color32_byte_opacity(color32) / 255.0
 //                          };
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
@@ -615,10 +615,10 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { color32_u8_red(color32) / 255.0,
-//      color32_u8_green(color32) / 255.0,
-//      color32_u8_blue(color32) / 255.0,
-//      color32_u8_opacity(color32) / 255.0};
+//   CGFloat components[] = { color32_byte_red(color32) / 255.0,
+//      color32_byte_green(color32) / 255.0,
+//      color32_byte_blue(color32) / 255.0,
+//      color32_byte_opacity(color32) / 255.0};
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
 //
@@ -788,7 +788,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
  rectangle.size.height  = prc->bottom() - lprc->top();
 
 
- CGContextSetRGBFillColor(hdc->m_cgcontext, color32_u8_red(hbr->lbColor), color32_u8_green(hbr->lbColor), color32_u8_blue(hbr->lbColor), color32_u8_opacity(hbr->lbColor));
+ CGContextSetRGBFillColor(hdc->m_cgcontext, color32_byte_red(hbr->lbColor), color32_byte_green(hbr->lbColor), color32_byte_blue(hbr->lbColor), color32_byte_opacity(hbr->lbColor));
 
  CGContextFillRect(hdc->m_cgcontext, rectangle);
 

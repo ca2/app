@@ -593,7 +593,7 @@ namespace nano2d
    void draw2d_context::scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_f64_dimension(x, y, w, h);
+      auto r = rectangle_double_dimension(x, y, w, h);
 
       m_pgraphics->reset_clip();
 
@@ -605,7 +605,7 @@ namespace nano2d
    void draw2d_context::intersect_scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_f64_dimension(x, y, w, h);
+      auto r = rectangle_double_dimension(x, y, w, h);
 
       m_pgraphics->intersect_clip(r);
 
@@ -912,13 +912,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_rectangle(rectangle_f64_dimension(x, y, w, h));
+         m_pstate->m_ppath->add_rectangle(rectangle_double_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(rectangle_f64_dimension(x, y, w, h));
+         m_pgraphics->rectangle(rectangle_double_dimension(x, y, w, h));
 
       }
 
@@ -931,13 +931,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
+         m_pstate->m_ppath->add_ellipse(rectangle_double_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
 
       }
       else
       {
 
-         m_pgraphics->ellipse(rectangle_f64_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
+         m_pgraphics->ellipse(rectangle_double_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
 
       }
 
@@ -950,13 +950,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pstate->m_ppath->add_arc(rectangle_double_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
       {
 
-         m_pgraphics->arc(rectangle_f64_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pgraphics->arc(rectangle_double_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
 
       }
 

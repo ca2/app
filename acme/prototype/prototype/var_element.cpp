@@ -6,7 +6,7 @@
 /*
 e_type_element = 8000,
 e_type_string_array,
-e_type_i32_array,
+e_type_int_array,
 type_vara,
 e_type_property_set,
 type_int64a,
@@ -19,7 +19,7 @@ switch(m_etype)
 {
 case e_type_element:
 case e_type_string_array:
-case e_type_i32_array:
+case e_type_int_array:
 case type_vara:
 case e_type_property_set:
 case e_type_memory:
@@ -58,7 +58,7 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
       case ::e_type_string_array:
          payload.m_pstra = dynamic_cast <::string_array*>(pelement);
          break;
-      case ::e_type_i32_array:
+      case ::e_type_int_array:
          payload.m_pia = dynamic_cast <::int_array*>(pelement);
          break;
       case ::e_type_payload_array:
@@ -230,7 +230,7 @@ void payload::_set_element(::subparticle * pelement)
                iRelease = ::release(m_pstra);
             }
             break;
-            case e_type_i32_array:
+            case e_type_int_array:
             {
 #if REFERENCING_DEBUGGING
 

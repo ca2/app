@@ -743,7 +743,7 @@ namespace axis
    //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -876,7 +876,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::i32_map();
+   //      userstyle()->m_mapInt = __allocate ::user::int_map();
 
    //   }
 
@@ -1354,7 +1354,7 @@ namespace axis
    //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, u64 u)
    //{
 
-   //   if (!create_color(eusercolor, color_with_u8_opacity(bAlpha, psession->get_default_color(u))))
+   //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
    //   {
 
    //      return false;
@@ -1487,7 +1487,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::i32_map();
+   //      userstyle()->m_mapInt = __allocate ::user::int_map();
 
    //   }
 

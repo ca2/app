@@ -547,9 +547,9 @@ color::operator color32_t() const
 void color::set_rgb(color32_t color32)
 {
 
-   m_iR = color32_u8_red(color32);
-   m_iG = color32_u8_green(color32);
-   m_iB = color32_u8_blue(color32);
+   m_iR = color32_byte_red(color32);
+   m_iG = color32_byte_green(color32);
+   m_iB = color32_byte_blue(color32);
 
 }
 
@@ -557,10 +557,10 @@ void color::set_rgb(color32_t color32)
 void color::set_argb(color32_t color32)
 {
 
-   m_iR = color32_u8_red(color32);
-   m_iG = color32_u8_green(color32);
-   m_iB = color32_u8_blue(color32);
-   m_iA = color32_u8_opacity(color32);
+   m_iR = color32_byte_red(color32);
+   m_iG = color32_byte_green(color32);
+   m_iB = color32_byte_blue(color32);
+   m_iA = color32_byte_opacity(color32);
 
 }
 
@@ -612,10 +612,10 @@ void color::hue_offset(double dRadians)
 
 void color::set_bgr(unsigned int bgr)
 {
-   m_iR = bgr_u8_red(bgr);
-   m_iG = bgr_u8_green(bgr);
-   m_iB = bgr_u8_blue(bgr);
-   m_iA = bgr_u8_opacity(bgr);
+   m_iR = bgr_byte_red(bgr);
+   m_iG = bgr_byte_green(bgr);
+   m_iB = bgr_byte_blue(bgr);
+   m_iA = bgr_byte_opacity(bgr);
 }
 
 
@@ -988,17 +988,17 @@ bool color::parse_color(const ::string & psz)
 }
 
 
-CLASS_DECL_AURA color32_t color_with_u8_opacity(unsigned char bAlpha, color32_t color32)
+CLASS_DECL_AURA color32_t color_with_byte_opacity(unsigned char bAlpha, color32_t color32)
 {
 
    return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_AURA color32_t color_with_u8_opacity(unsigned char bAlpha, enum_plain_color ecolor)
+CLASS_DECL_AURA color32_t color_with_byte_opacity(unsigned char bAlpha, enum_plain_color ecolor)
 {
 
-   return color_with_u8_opacity(bAlpha, pure_color(ecolor));
+   return color_with_byte_opacity(bAlpha, pure_color(ecolor));
 
 }
 
@@ -1048,7 +1048,7 @@ CLASS_DECL_AURA color32_t pure_color(enum_plain_color ecolor)
 CLASS_DECL_AURA color32_t opaque_color(color32_t color32)
 {
 
-   return color_with_u8_opacity(255, color32);
+   return color_with_byte_opacity(255, color32);
 
 }
 

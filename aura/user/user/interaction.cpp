@@ -1851,7 +1851,7 @@ namespace user
 
 
    void interaction::set_need_redraw(
-      const ::rectangle_i32_array & rectangleaNeedRedraw,
+      const ::rectangle_int_array & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function,
       bool bAscendants)
@@ -7168,7 +7168,7 @@ namespace user
 
          //}
 
-         //if (colorBackground.u8_red() == 255)
+         //if (colorBackground.byte_red() == 255)
          //{
 
          //   informationf("full red");
@@ -7194,7 +7194,7 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         //if (color32_u8_red(crBackground) != 255)
+         //if (color32_byte_red(crBackground) != 255)
          //{
 
          //   informationf("no full red");
@@ -7208,7 +7208,7 @@ namespace user
 //         if (colorBackground.m_u8Opacity != 127)
 //         {
 //
-//            information() << "Opacity: " << (unsigned int) colorBackground.u8_opacity();
+//            information() << "Opacity: " << (unsigned int) colorBackground.byte_opacity();
 //
 //         }
 
@@ -7220,9 +7220,9 @@ namespace user
 
          auto phostwindow = get_host_user_interaction();
 
-         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").i32_reference();
+         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").int_reference();
 
-         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").i32_reference();
+         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").int_reference();
 
          iDrawControlBackgroundCounter++;
 
@@ -9189,7 +9189,7 @@ namespace user
 
    //   auto rectangle = layout().sketch().raw_rectangle();
 
-   //   ::rectangle_i32_array rectanglea;
+   //   ::rectangle_int_array rectanglea;
 
    //   if (rectangle.right() > rectanglePrevious.right())
    //   {
@@ -16471,7 +16471,7 @@ namespace user
    //   else
    //   {
 
-   //      //place(rectangle_i32_dimension(10, 10, 800, 300));
+   //      //place(rectangle_int_dimension(10, 10, 800, 300));
 
    //      ::rectangle_i32 rectanglePlace(rectangleRequest);
 
@@ -17905,9 +17905,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = i32_x(lparam);
+         pmessage->m_point.x() = int_x(lparam);
 
-         pmessage->m_point.y() = i32_y(lparam);
+         pmessage->m_point.y() = int_y(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -18023,7 +18023,7 @@ namespace user
 
          pmessage->m_nType = static_cast <unsigned int> (wparam);
 
-         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
+         pmessage->m_size = ::size_i32(int_x(lparam), int_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -20112,7 +20112,7 @@ namespace user
 
       }
 
-      ::rectangle_i32_array rectangleaCertainlyDamaged;
+      ::rectangle_int_array rectangleaCertainlyDamaged;
 
       ::rectangle_i32 rectangleBefore;
 
@@ -20225,7 +20225,7 @@ namespace user
    void interaction::place(int x, int y, int w, int h, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
-      auto rectangle = ::rectangle_f32_dimension(x, y, w, h);
+      auto rectangle = ::rectangle_float_dimension(x, y, w, h);
 
       place(rectangle, elayout, pgraphics);
 
@@ -20235,7 +20235,7 @@ namespace user
    //   void interaction::set_dim(int x, int y, int cx, int cy)
    //   {
    //
-   //      place(rectangle_i32_dimension(x, y, cx, cy));
+   //      place(rectangle_int_dimension(x, y, cx, cy));
    //
    //   }
 
@@ -26978,7 +26978,7 @@ namespace user
 
          }
 
-         ::rectangle_i32_array rectanglea;
+         ::rectangle_int_array rectanglea;
 
          if (::is_item_set(pitemOldHover))
          {
@@ -27767,7 +27767,7 @@ namespace user
       //         if (windowing_window()->is_composite())
       //         {
 
-      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
+      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").int_reference();
 
       //            iNcDraw0FillCounter++;
 

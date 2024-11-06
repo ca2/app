@@ -205,7 +205,7 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
          add((Type) payload.payloada()[i].get_string());
       }
    }
-   else if (payload.get_type() == ::e_type_i32_array)
+   else if (payload.get_type() == ::e_type_int_array)
    {
       for (int i = 0; i < payload.inta().get_count(); i++)
       {

@@ -597,9 +597,9 @@ namespace draw2d
       unsigned char ig;
       unsigned char ib;
 
-      R = color.u8_red(color_indexes()) - shift;
-      G = color.u8_green(color_indexes()) - shift;
-      B = color.u8_blue(color_indexes()) - shift;
+      R = color.byte_red(color_indexes()) - shift;
+      G = color.byte_green(color_indexes()) - shift;
+      B = color.byte_blue(color_indexes()) - shift;
 
       ir = (unsigned char) ((R < 0) ? 0 : (R > 255) ? 255 : R);
       ig = (unsigned char) ((G < 0) ? 0 : (G > 255) ? 255 : G);

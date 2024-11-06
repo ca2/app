@@ -38,9 +38,9 @@ getpixel (int x, int y)
 
     gint i, maxi, ClosestS, s;
 
-    int r = color32_u8_red(color32);
-    int g = color32_u8_green(color32);
-    int b = color32_u8_blue(color32);
+    int r = color32_byte_red(color32);
+    int g = color32_byte_green(color32);
+    int b = color32_byte_blue(color32);
 
         ClosestS = 1000000;
         maxi = getmaxcolor ();

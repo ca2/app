@@ -64,7 +64,7 @@
 //   {
 //   case e_type_bool:
 //      return 1;
-//   case e_type_i32_array:
+//   case e_type_int_array:
 //      return ::is_null(m_pia) ? 0 : m_pia->get_count();
 //   case e_type_string_array:
 //      return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
@@ -120,7 +120,7 @@
 //{
 //
 //   if(m_etype == e_type_string_array
-//         || m_etype == e_type_i32_array
+//         || m_etype == e_type_int_array
 //         || m_etype == type_vara
 //         || m_etype == e_type_property_set)
 //   {

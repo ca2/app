@@ -34,7 +34,7 @@ struct CLASS_DECL_ACME oswindow_data
    htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
-   i32_map < int > *            m_plongmap;
+   int_map < int > *            m_plongmap;
    bool                          m_bDestroying;
 
 

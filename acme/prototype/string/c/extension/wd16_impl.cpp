@@ -1141,7 +1141,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME ::wd16_character * wd16_find_string_case_insensitive(const unichar * src, const unichar * find);
 
 //CLASS_DECL_ACME void wd16_from_u64_base(unichar * sz, u64 i, int iBase);
-//CLASS_DECL_ACME void wd16_from_i32_base(unichar * sz, i64 i, int iBase);
+//CLASS_DECL_ACME void wd16_from_int_base(unichar * sz, i64 i, int iBase);
 
 
 //CLASS_DECL_ACME void l64toa_dup(::wd16_character * sz, i64 i, i64 iBase);

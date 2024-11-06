@@ -555,7 +555,7 @@ namespace draw2d_cairo
       bool _set(::write_text::font * pfont);
       bool _set(::draw2d::path * ppath);
 
-      bool _set(const ::point_i32_array & pointa);
+      bool _set(const ::point_int_array & pointa);
       bool _set(const ::point_double_array & pointa);
 
       //bool _set(___shape<::draw2d::region> * pshape);

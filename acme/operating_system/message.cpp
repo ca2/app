@@ -10,7 +10,7 @@
 #define __message_entry(wm)  { wm, #wm }
 
 
-static const i32_sz g_iszaMessageName[] =
+static const int_sz g_iszaMessageName[] =
 {
    __message_entry(e_message_create),
    __message_entry(e_message_destroy),

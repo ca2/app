@@ -1262,10 +1262,10 @@ namespace draw2d_cairo
 
                   unsigned char acomplement = (~psrc2[3] * bA) >> 8;
 
-                  pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-                  pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-                  pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-                  pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
                   pdst2 += 4;
 
@@ -1455,10 +1455,10 @@ namespace draw2d_cairo
 //               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 //               unsigned char acomplement = (~psrc2[3] * bA) >> 8;
-//               pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-//               pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-//               pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-//               pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 //
 //               pdst2 += 4;
 //
@@ -1779,10 +1779,10 @@ namespace draw2d_cairo
 //
 //                  unsigned char acomplement = (~psrc2[3] * bA) >> 8;
 //
-//                  pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-//                  pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-//                  pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-//                  pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 //
 //                  pdst2 += 4;
 //

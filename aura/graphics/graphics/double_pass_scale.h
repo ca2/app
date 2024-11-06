@@ -255,9 +255,9 @@ ScaleRow (::image32_t*pSrc,
       {
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
-         r += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_red(indexes)));
-         g += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_green(indexes)));
-         b += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].u8_blue(indexes)));
+         r += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].byte_red(indexes)));
+         g += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].byte_green(indexes)));
+         b += (unsigned char)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(pSrcRow[i].byte_blue(indexes)));
       }
       pDstRow[x].assign(rgb(r, g, b), indexes); // Place result in destination pixel
    }
@@ -337,9 +337,9 @@ ScaleCol (::image32_t*pSrc,
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
          ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol].color(indexes);
-         r += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_red()));
-         g += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_green()));
-         b += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.u8_blue()));
+         r += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_red()));
+         g += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_green()));
+         b += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_blue()));
       }
       pRes[y * uResWidth + uCol].assign(rgb(r, g, b), indexes);   // Place result in destination pixel
    }

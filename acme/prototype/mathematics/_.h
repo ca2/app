@@ -739,12 +739,12 @@ inline int maximum_digits(int iBase)
 
 
 //CLASS_DECL_ACME int i8_maximum_digits(int iBase);
-//CLASS_DECL_ACME int u8_maximum_digits(int iBase);
+//CLASS_DECL_ACME int byte_maximum_digits(int iBase);
 //
 //CLASS_DECL_ACME int i16_maximum_digits(int iBase);
 //CLASS_DECL_ACME int u16_maximum_digits(int iBase);
 //
-//CLASS_DECL_ACME int i32_maximum_digits(int iBase);
+//CLASS_DECL_ACME int int_maximum_digits(int iBase);
 //CLASS_DECL_ACME int u32_maximum_digits(int iBase);
 //
 //CLASS_DECL_ACME int i64_maximum_digits(int iBase);

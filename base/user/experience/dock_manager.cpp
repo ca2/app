@@ -233,7 +233,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_top;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
@@ -241,7 +241,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_bottom;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left(), rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left(), rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
 
          }
 
@@ -254,7 +254,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_left;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height());
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height());
 
          }
          else if (pointCursor.x() > rectangleWorkspaceCenter.right())
@@ -262,7 +262,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_right;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height());
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height());
 
          }
 
@@ -275,7 +275,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_left;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
@@ -283,7 +283,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_left;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left(), rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left(), rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
 
@@ -296,7 +296,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_right;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
@@ -304,7 +304,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_right;
 
-            rectangleDock = rectangle_i32_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = rectangle_int_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top() + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
 

@@ -2895,7 +2895,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+   //pgraphics->fill_solid_rectangle(::rectangle_double_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
 
    //return;
 
@@ -3008,7 +3008,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
 
-//   pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+//   pgraphics->fill_solid_rectangle(::rectangle_double_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
    //return;
 

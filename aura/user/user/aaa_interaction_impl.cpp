@@ -976,7 +976,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->place(rectangle_i32_dimension(
+      //m_puserinteraction->place(rectangle_int_dimension(
       //                      pusersystem->m_createstruct.x(),
       //                      pusersystem->m_createstruct.y(),
       //                      pusersystem->m_createstruct.cx(),
@@ -4314,7 +4314,7 @@ namespace user
 
 
    void
-   interaction_impl::set_need_redraw(const ::rectangle_i32_array &rectangleaHostNeedRedraw, function<void()> function,
+   interaction_impl::set_need_redraw(const ::rectangle_int_array &rectangleaHostNeedRedraw, function<void()> function,
                                      bool bAscendants)
    {
 
@@ -4363,7 +4363,7 @@ namespace user
 
          bool bContainsAll = true;
 
-         //rectangle_i32_array rectangleaUnion;
+         //rectangle_int_array rectangleaUnion;
 
          for (auto &rectangle: rectangleaHostNeedRedraw)
          {
@@ -9183,7 +9183,7 @@ namespace user
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array &recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_int_array &recta)
    {
 
       m_pwindow->non_top_most_upper_window_rects(recta);
@@ -9194,7 +9194,7 @@ namespace user
    bool interaction_impl::is_occluded()
    {
 
-      ::rectangle_i32_array recta;
+      ::rectangle_int_array recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -9221,12 +9221,12 @@ namespace user
    }
 
 
-   void interaction_impl::approximate_occlusion_rects(rectangle_i32_array &raTest)
+   void interaction_impl::approximate_occlusion_rects(rectangle_int_array &raTest)
    {
 
       raTest.erase_all();
 
-      ::rectangle_i32_array ra;
+      ::rectangle_int_array ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -9340,7 +9340,7 @@ namespace user
    i64 interaction_impl::approximate_occlusion_area()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -9426,7 +9426,7 @@ namespace user
 
       }
 
-      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.u8_opacity());
+      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.byte_opacity());
 
    }
 
@@ -9434,7 +9434,7 @@ namespace user
    i64 interaction_impl::approximate_occlusion_area_except_self_transparent()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -9463,7 +9463,7 @@ namespace user
    i64 interaction_impl::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 

@@ -1333,7 +1333,7 @@ namespace acme
 //}
 
 
-// using i32_2a = array < int_array >;
+// using int_2a = array < int_array >;
 
 
 // using f32_2a = array < float_array >;

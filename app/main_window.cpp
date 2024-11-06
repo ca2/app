@@ -120,11 +120,11 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb(127, 255, 110, 150));
 
       if (m_dDrawOnlyMainRectangles)
       {

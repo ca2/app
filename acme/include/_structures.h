@@ -23,7 +23,7 @@ struct enum_type_t {};
 struct raw_type_t {};
 
 
-struct i32_sz
+struct int_sz
 {
 
    int                m_i;

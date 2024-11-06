@@ -1913,7 +1913,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   //void window::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
+   //void window::non_top_most_upper_window_rects(::rectangle_int_array & recta)
    //{
 
    //   throw ::interface_only();
@@ -4146,7 +4146,7 @@ bMove = false;
    //
    //       }
    //
-   //       //m_puserinteraction->place(rectangle_i32_dimension(
+   //       //m_puserinteraction->place(rectangle_int_dimension(
    //       //                      pusersystem->m_createstruct.x(),
    //       //                      pusersystem->m_createstruct.y(),
    //       //                      pusersystem->m_createstruct.cx(),
@@ -7553,7 +7553,7 @@ bMove = false;
 
 
    void
-      window::set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw, function<void()> function,
+      window::set_need_redraw(const ::rectangle_int_array & rectangleaHostNeedRedraw, function<void()> function,
                                         bool bAscendants)
    {
 
@@ -7602,7 +7602,7 @@ bMove = false;
 
          bool bContainsAll = true;
 
-         //rectangle_i32_array rectangleaUnion;
+         //rectangle_int_array rectangleaUnion;
 
          for (auto & rectangle : rectangleaHostNeedRedraw)
          {
@@ -12507,7 +12507,7 @@ bMove = false;
    }
 
 
-   void window::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
+   void window::non_top_most_upper_window_rects(::rectangle_int_array & recta)
    {
 
       //non_top_most_upper_window_rects(recta);
@@ -12518,7 +12518,7 @@ bMove = false;
    bool window::is_occluded()
    {
 
-      ::rectangle_i32_array recta;
+      ::rectangle_int_array recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -12545,12 +12545,12 @@ bMove = false;
    }
 
 
-   void window::approximate_occlusion_rects(rectangle_i32_array & raTest)
+   void window::approximate_occlusion_rects(rectangle_int_array & raTest)
    {
 
       raTest.erase_all();
 
-      ::rectangle_i32_array ra;
+      ::rectangle_int_array ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -12666,7 +12666,7 @@ bMove = false;
    i64 window::approximate_occlusion_area()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -12752,7 +12752,7 @@ bMove = false;
 
       }
 
-      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.u8_opacity());
+      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.byte_opacity());
 
    }
 
@@ -12760,7 +12760,7 @@ bMove = false;
    i64 window::approximate_occlusion_area_except_self_transparent()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -12789,7 +12789,7 @@ bMove = false;
    i64 window::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      rectangle_i32_array ra;
+      rectangle_int_array ra;
 
       approximate_occlusion_rects(ra);
 
@@ -14030,9 +14030,9 @@ bMove = false;
 //      case ::message::e_prototype_non_client_hit_test:
 //      {
 //         _NEW_MESSAGE(::message::nc_hit_test);
-//         pmessage->m_point.x() = i32_x(lparam);
+//         pmessage->m_point.x() = int_x(lparam);
 //
-//         pmessage->m_point.y() = i32_y(lparam);
+//         pmessage->m_point.y() = int_y(lparam);
 //      }
 //      break;
 //      case ::message::e_prototype_move:
@@ -14148,7 +14148,7 @@ bMove = false;
 //
 //         pmessage->m_nType = static_cast <unsigned int> (wparam);
 //
-//         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
+//         pmessage->m_size = ::size_i32(int_x(lparam), int_y(lparam));
 //      }
 //      break;
 //      case ::message::e_prototype_activate:
@@ -14530,7 +14530,7 @@ bMove = false;
    }
 
 
-   //void window::set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   //void window::set_need_redraw(const ::rectangle_int_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    //{
 
 

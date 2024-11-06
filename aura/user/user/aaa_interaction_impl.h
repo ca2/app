@@ -169,7 +169,7 @@ namespace user
 
       ::size_i32                                m_sizeDrawnBuffer;
 
-//      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+//      ::rectangle_int_array                     m_rectangleaNeedRedraw;
       ::pointer_array < redraw_item >           m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -851,7 +851,7 @@ namespace user
 
       //virtual void on_visual_applied();
 
-      void set_need_redraw(const ::rectangle_i32_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_int_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
       //virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
@@ -875,12 +875,12 @@ namespace user
       virtual i64 _001GetRectTopLeftWeightedArea(const ::rectangle_i32 &rect);
 
       virtual i64 opaque_area(const ::rectangle_i32 &rect);
-      virtual void approximate_occlusion_rects(rectangle_i32_array& raTest);
+      virtual void approximate_occlusion_rects(rectangle_int_array& raTest);
 
       virtual i64 opaque_area();
 
       /// from top to bottom
-      virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta);
+      virtual void non_top_most_upper_window_rects(::rectangle_int_array& recta);
 
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);

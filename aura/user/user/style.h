@@ -36,7 +36,7 @@ namespace user
       //::pointer<translucency_map>         m_mapTranslucency;
       //::pointer<flag_map>                 m_mapFlag;
       //::pointer<rect_map>                 m_mapRect;
-      //::pointer<::user::i32_map>          m_mapInt;
+      //::pointer<::user::int_map>          m_mapInt;
       //::pointer<::user::double_map>       m_mapDouble;
 
       ::pointer<::user::style>              m_puserstyleComposite;

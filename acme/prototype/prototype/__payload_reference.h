@@ -20,10 +20,10 @@ public:
 
    operator bool & () { return m_payload.bool_reference(); }
    operator char & () { return m_payload.i8_reference(); }
-   operator unsigned char & () { return m_payload.u8_reference(); }
+   operator unsigned char & () { return m_payload.byte_reference(); }
    operator short & () { return m_payload.i16_reference(); }
    operator unsigned short & () { return m_payload.u16_reference(); }
-   operator int & () { return m_payload.i32_reference(); }
+   operator int & () { return m_payload.int_reference(); }
    operator unsigned int & () { return m_payload.u32_reference(); }
    operator i64 & () { return m_payload.i64_reference(); }
    operator u64 & () { return m_payload.u64_reference(); }
@@ -54,7 +54,7 @@ public:
    //operator property & () { return m_payload.property_reference(); }
 
 
-   operator int_array & () { return m_payload.i32_array_reference(); }
+   operator int_array & () { return m_payload.int_array_reference(); }
    operator i64_array & () { return m_payload.i64_array_reference(); }
    operator string_array & () { return m_payload.string_array_reference(); }
    operator payload_array & () { return m_payload.payload_array_reference(); }

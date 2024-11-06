@@ -51,7 +51,7 @@ namespace user
       };
 
       class CToolMap :
-         public i32_map < ::pointer < tool_tip_tool > >
+         public int_map < ::pointer < tool_tip_tool > >
       {
       public:
           void AddTool(tool_tip_tool * ptool);

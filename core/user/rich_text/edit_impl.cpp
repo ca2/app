@@ -769,7 +769,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
-         //   //if (color32_u8_red(crBackground) != 255)
+         //   //if (color32_byte_red(crBackground) != 255)
          //   //{
 
          //   //   informationf("no full red");
@@ -793,7 +793,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
-         //   //if (color32_u8_red(crBackground) != 255)
+         //   //if (color32_byte_red(crBackground) != 255)
          //   //{
 
          //   //   informationf("no full red");

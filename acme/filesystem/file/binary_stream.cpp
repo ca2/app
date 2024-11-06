@@ -293,7 +293,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_bool:
       stream << payload.m_b;
       break;
-   case e_type_i32_array:
+   case e_type_int_array:
       throw ::exception(todo);
       //*this << payload.ia();
       break;
@@ -614,7 +614,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_i32_array:
+   case e_type_int_array:
    {
 
       throw ::exception(todo);

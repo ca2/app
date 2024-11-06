@@ -19,14 +19,14 @@ public:
    constexpr opacity(const class ::opacity & opacity) : m_u8Opacity(opacity.m_u8Opacity) { }
 
    template < primitive_floating FLOATING >
-   constexpr opacity(FLOATING f) { m_u8Opacity = u8_clip(f * 255.); }
+   constexpr opacity(FLOATING f) { m_u8Opacity = byte_clip(f * 255.); }
    template < primitive_integral INTEGRAL >
-   constexpr opacity(INTEGRAL i) { m_u8Opacity = u8_clip(i); }
+   constexpr opacity(INTEGRAL i) { m_u8Opacity = byte_clip(i); }
 
 
    constexpr double f64_opacity() const { return m_u8Opacity / 255.; }
    constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
-   constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
+   constexpr unsigned char byte_opacity() const { return m_u8Opacity; }
 
 
    constexpr bool is_opaque() const { return m_u8Opacity == 255; }
@@ -36,14 +36,14 @@ public:
    constexpr unsigned char complement() const { return 255 - m_u8Opacity; }
 
    template < primitive_floating FLOATING >
-   constexpr opacity & operator = (FLOATING f) { m_u8Opacity = u8_clip(f * 255.); return *this; }
+   constexpr opacity & operator = (FLOATING f) { m_u8Opacity = byte_clip(f * 255.); return *this; }
    template < primitive_integral INTEGRAL >
-   constexpr opacity & operator = (INTEGRAL i) { m_u8Opacity = u8_clip(i); return *this; }
+   constexpr opacity & operator = (INTEGRAL i) { m_u8Opacity = byte_clip(i); return *this; }
 
    template < primitive_integral INTEGRAL >
-   constexpr opacity operator + (INTEGRAL i) { return u8_clip(m_u8Opacity + i); }
+   constexpr opacity operator + (INTEGRAL i) { return byte_clip(m_u8Opacity + i); }
    template < primitive_integral INTEGRAL >
-   constexpr opacity operator - (INTEGRAL i) { return u8_clip(m_u8Opacity - i); }
+   constexpr opacity operator - (INTEGRAL i) { return byte_clip(m_u8Opacity - i); }
 
 };
 

@@ -75,7 +75,7 @@ namespace image
    //
    //   //      ::color::color crBack = pframea->m_colorBack;
    //
-   //   //      unsigned char bAlpha = color32_u8_opacity(crBack);
+   //   //      unsigned char bAlpha = color32_byte_opacity(crBack);
    //
    //   //      if (bAlpha == 0)
    //   //      {
@@ -241,7 +241,7 @@ namespace image
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
-   //         unsigned char bAlpha = color32_u8_opacity(crBack);
+   //         unsigned char bAlpha = color32_byte_opacity(crBack);
    //
    //         if (bAlpha == 0)
    //         {
@@ -325,25 +325,25 @@ namespace image
 
             auto color = colora[iIndex];
 
-            unsigned char bA = color.u8_opacity();
+            unsigned char bA = color.byte_opacity();
 
             //#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
             //#if defined(__APPLE__) || defined(ANDROID)
             // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
             //#if defined(__APPLE__) || defined(ANDROID)
             //
-            //         //unsigned char bR = color32_u8_red(color32);
-            //         //unsigned char bG = color32_u8_green(color32);
-            //         //unsigned char bB = color32_u8_blue(color32);
+            //         //unsigned char bR = color32_byte_red(color32);
+            //         //unsigned char bG = color32_byte_green(color32);
+            //         //unsigned char bB = color32_byte_blue(color32);
             //
             //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
             //
             //         pframe->m_pimage->m_pcolorref[y*w + x] = ((color32 << 16) & 0xff0000) | ((color32 >> 16) & 0xff) | (color32 & 0xff00ff00);
             //
             //#else
-            unsigned char bR = color.u8_red();
-            unsigned char bG = color.u8_green();
-            unsigned char bB = color.u8_blue();
+            unsigned char bR = color.byte_red();
+            unsigned char bG = color.byte_green();
+            unsigned char bB = color.byte_blue();
             if (bA != 255)
             {
 

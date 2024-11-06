@@ -16,10 +16,10 @@
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { color32_u8_red(color32) / 255.0,
-//                            color32_u8_green(color32) / 255.0,
-//                            color32_u8_blue(color32) / 255.0,
-//                            color32_u8_opacity(color32) / 255.0
+//   CGFloat components[] = { color32_byte_red(color32) / 255.0,
+//                            color32_byte_green(color32) / 255.0,
+//                            color32_byte_blue(color32) / 255.0,
+//                            color32_byte_opacity(color32) / 255.0
 //                          };
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);

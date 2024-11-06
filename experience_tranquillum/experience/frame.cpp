@@ -151,7 +151,7 @@ namespace experience_tranquillum
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_byte_red(color32), color32_byte_green(color32), color32_byte_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());*/
 
 
@@ -523,7 +523,7 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->fill_solid_rectangle(::rectangle_f64_dimension(0, 0, 16, 16), ::color::red);
+      //pgraphics->fill_solid_rectangle(::rectangle_double_dimension(0, 0, 16, 16), ::color::red);
 
       //return;
 
@@ -604,7 +604,7 @@ namespace experience_tranquillum
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               auto rect3d = ::rectangle_f64_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
+               auto rect3d = ::rectangle_double_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 

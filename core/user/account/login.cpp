@@ -176,17 +176,17 @@ namespace account
 
       int y = (int) ((49 + 86) * ry);
 
-      m_pstillUser->place(::rectangle_i32_dimension(x1,y,w2,h1));
+      m_pstillUser->place(::rectangle_int_dimension(x1,y,w2,h1));
       m_pstillUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_peditUser->place(::rectangle_i32_dimension(x1,y,w2, h1));
+      m_peditUser->place(::rectangle_int_dimension(x1,y,w2, h1));
       m_peditUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_pstillPassword->place(::rectangle_i32_dimension(x1,y,w2, h1));
+      m_pstillPassword->place(::rectangle_int_dimension(x1,y,w2, h1));
       m_pstillPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
@@ -303,11 +303,11 @@ namespace account
 
          double r = (double)(64) / (double)m_pimage->height();
 
-         auto rectangleSource = rectangle_f64_dimension(0, 0, m_pimage->width(), m_pimage->height());
+         auto rectangleSource = rectangle_double_dimension(0, 0, m_pimage->width(), m_pimage->height());
 
          ::image::image_source imagesource(m_pimage);
 
-         auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
+         auto rectangleTarget = rectangle_double_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
                                                         int (m_pimage->width() * r), int (m_pimage->height() * r));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
@@ -348,7 +348,7 @@ namespace account
 
          ::image::image_source imagesource(m_picon95);
 
-         auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry));
+         auto rectangleTarget = rectangle_double_dimension((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 

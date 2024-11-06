@@ -991,13 +991,13 @@ namespace nanoui
 
             ////   yOffset = pscrollPanel->get_y_offset();
 
-            ////   rectangleThis = ::rectangle_i32_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
+            ////   rectangleThis = ::rectangle_int_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
 
             ////}
             ////else
             ////{
 
-            //rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.cx(), m_size.cy());
+            //rectangleThis = ::rectangle_int_dimension(0, 0, m_size.cx(), m_size.cy());
 
             //}
 
@@ -1034,7 +1034,7 @@ namespace nanoui
 
       }
 
-      rectangleThis = ::rectangle_i32_dimension(-offsetScroll.cx(), -offsetScroll.cy(), m_size.cx(), m_size.cy());
+      rectangleThis = ::rectangle_int_dimension(-offsetScroll.cx(), -offsetScroll.cy(), m_size.cx(), m_size.cy());
 
       pcontext->translate((float)m_pos.x(), (float)m_pos.y());
 
@@ -1060,7 +1060,7 @@ namespace nanoui
 
          auto childH = pchild->m_size.cy();
 
-         auto rectangleChild = ::rectangle_i32_dimension(childX, childY, childW, childH);
+         auto rectangleChild = ::rectangle_int_dimension(childX, childY, childW, childH);
 
          if (rectangleChild.intersects(rectangleThis))
          {

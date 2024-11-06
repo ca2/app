@@ -1074,7 +1074,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //using rectangle_f64 = rectangle_type < ::rectangle_f64, ::point_f64, ::size_f64 >;
 //
 //
-//using point_i32_array = point_array_base < point_i32 >;
+//using point_int_array = point_array_base < point_i32 >;
 //using point_i64_array = point_array_base < point_i64 >;
 //using point_float_array = point_array_base < point_f32 >;
 //using point_double_array = point_array_base < point_f64 >;
@@ -1395,7 +1395,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename X, typename Y, typename W, typename H >
-////inline rectangle_i32 rectangle_i32_dimension(X x, Y y, W w, H h)
+////inline rectangle_i32 rectangle_int_dimension(X x, Y y, W w, H h)
 ////{
 ////
 ////   return rectangle_i32((int)(x), (int)(y), (int)(x + w), (int)(y + h));
@@ -1413,7 +1413,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename X, typename Y, typename W, typename H >
-////inline rectangle_f32 rectangle_f32_dimension(X x, Y y, W w, H h)
+////inline rectangle_f32 rectangle_float_dimension(X x, Y y, W w, H h)
 ////{
 ////
 ////   return rectangle_f32((f32)x, (f32)y, (f32)(x + w), (f32)(y + h));
@@ -1422,7 +1422,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename X, typename Y, typename W, typename H >
-////inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
+////inline rectangle_f64 rectangle_double_dimension(X x, Y y, W w, H h)
 ////{
 ////
 ////   return rectangle_f64((f64)x, (f64)y, (f64)(x + w), (f64)(y + h));
@@ -1869,7 +1869,7 @@ using arc_f32 = arc_type < float >;
 using arc_f64 = arc_type < double >;
 
 
-using point_i32_array = point_array_base < int >;
+using point_int_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
 using point_float_array = point_array_base < float >;
 using point_double_array = point_array_base < double >;
@@ -1887,19 +1887,19 @@ using poly_polygon_f32 = poly_polygon_type < float >;
 using poly_polygon_f64 = poly_polygon_type < double >;
 
 
-using point_i32_array = point_array_base < int >;
+using point_int_array = point_array_base < int >;
 using point_i64_array = point_array_base < ::i64 >;
 using point_float_array = point_array_base < float >;
 using point_double_array = point_array_base < double >;
 
 
-using size_i32_array = size_array_base < int >;
+using size_int_array = size_array_base < int >;
 using size_i64_array = size_array_base < ::i64 >;
 using size_float_array = size_array_base < float >;
 using size_double_array = size_array_base < double >;
 
 
-using rectangle_i32_array = rectangle_array_base < int >;
+using rectangle_int_array = rectangle_array_base < int >;
 using rectangle_i64_array = rectangle_array_base < ::i64 >;
 using rectangle_float_array = rectangle_array_base < float >;
 using rectangle_double_array = rectangle_array_base < double >;

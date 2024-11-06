@@ -62,7 +62,7 @@ namespace nano2d
 
 
       int                            m_iPaintImageSeed;
-      i32_map < paint_image >          m_mapPaintImage;
+      int_map < paint_image >          m_mapPaintImage;
 
 
       draw2d_context();

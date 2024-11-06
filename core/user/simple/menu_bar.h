@@ -26,7 +26,7 @@ public:
 
    ::image::image_list_pointer              m_pimagelist;
    ::image::image_list_pointer              m_pimagelistDisabled;
-   i32_spreadset *                     m_prel;
+   int_spreadset *                     m_prel;
    bool                                m_bTracking;
    ::collection::index                               m_iTracking;
    unsigned int                               m_uResourceId;
@@ -84,7 +84,7 @@ protected:
    bool Initialize(
    ::image::image_list_pointer imagelist,
    ::image::image_list_pointer imagelistDisabled,
-   ::i32_spreadset * prel,
+   ::int_spreadset * prel,
    ::write_text::font * pfont);
 
    //size_i32 CalcLayout(unsigned int dwMode, ::collection::index nLength);

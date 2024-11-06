@@ -545,7 +545,7 @@ class ::payload & payload::operator ++(int)
    case e_type_new:
    case e_type_null:
    case e_type_string_array:
-   case e_type_i32_array:
+   case e_type_int_array:
    case e_type_empty:
    case e_type_element:
    case e_type_path:
@@ -1182,7 +1182,7 @@ void payload::increment_reference_count()
       case e_type_string_array:
          if (m_pstra) m_pstra->increment_reference_count();
          break;
-      case e_type_i32_array:
+      case e_type_int_array:
          if (m_pia) m_pia->increment_reference_count();
          break;
       case e_type_payload_array:
@@ -1689,7 +1689,7 @@ bool payload::is_empty() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -1767,9 +1767,9 @@ bool payload::is_new_or_null() const
 
 int payload::case_insensitive_order(const class ::payload & payload) const
 {
-   if(m_etype == ::e_type_i32_array)
+   if(m_etype == ::e_type_int_array)
    {
-      if(payload.m_etype == ::e_type_i32_array)
+      if(payload.m_etype == ::e_type_int_array)
       {
          //payload = var1.ia() - payload2.ia();
       }
@@ -1837,9 +1837,9 @@ int payload::case_insensitive_order(const ::scoped_string & scopedstr) const
 
 int payload::compare(const class ::payload & payload) const
 {
-   if(m_etype == ::e_type_i32_array)
+   if(m_etype == ::e_type_int_array)
    {
-      if(payload.m_etype == ::e_type_i32_array)
+      if(payload.m_etype == ::e_type_int_array)
       {
          //payload = var1.ia() - payload2.ia();
       }
@@ -3673,7 +3673,7 @@ string_array & payload::stra_reference()
       return m_pproperty->ia();
 
    }
-   else if (m_etype != e_type_i32_array)
+   else if (m_etype != e_type_int_array)
    {
 
       ::int_array ia;
@@ -3726,7 +3726,7 @@ string_array & payload::stra_reference()
       return m_pproperty->ia_reference();
 
    }
-   else if(m_etype != e_type_i32_array)
+   else if(m_etype != e_type_int_array)
    {
 
       auto pia = ___new ::int_array ();
@@ -3749,7 +3749,7 @@ string_array & payload::stra_reference()
 
       }
 
-      set_type(e_type_i32_array, false);
+      set_type(e_type_int_array, false);
 
       m_pia = pia;
 
@@ -4393,7 +4393,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //
 //   switch(m_etype)
 //   {
-//   case e_type_i32_array:
+//   case e_type_int_array:
 //      return &m_pia->element_at(i);
 //   case e_type_string_array:
 //      return &m_pstra->element_at(i);
@@ -4420,7 +4420,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 {
    switch(m_etype)
    {
-   case e_type_i32_array:
+   case e_type_int_array:
       return &m_pia->element_at(i);
    case e_type_string_array:
       return &m_pstra->element_at(i);
@@ -4456,7 +4456,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
 
    switch(m_etype)
    {
-   case e_type_i32_array:
+   case e_type_int_array:
       return ia().contains(atoi(psz), find, count);
    case e_type_string_array:
       return stra().contains(psz, find, count);
@@ -4485,7 +4485,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
    {
    case e_type_bool:
       return false;
-   case e_type_i32_array:
+   case e_type_int_array:
       return ia().contains(atoi(psz), find, last);
    case e_type_string_array:
       return stra().case_insensitive_contains(psz, find, last);
@@ -5108,7 +5108,7 @@ bool payload::is_scalar() const
       return true;
    }
    else if(m_etype == e_type_string_array
-           || m_etype == e_type_i32_array
+           || m_etype == e_type_int_array
            || m_etype == e_type_payload_array
            || m_etype == e_type_property_set)
    {
@@ -5575,7 +5575,7 @@ bool payload::is_natural() const
 //      return m_pid != nullptr && ((m_pid->is_text() && ::papaya::is_true(m_pid->m_psz)) || (m_pid->is_integer() && m_pid->m_i != 0));
 //
 //   }
-//   else if (m_etype == e_type_i32_array)
+//   else if (m_etype == e_type_int_array)
 //   {
 //
 //      return m_pia != nullptr && (m_pia->get_count() >= 2 || (m_pia->get_count() == 1 && !m_pia->element_at(0)));
@@ -6524,7 +6524,7 @@ bool payload::is_numeric() const
       return true;
 
    case e_type_string_array:
-   case e_type_i32_array:
+   case e_type_int_array:
    case e_type_payload_array:
    case e_type_property_set:
    case e_type_memory:
@@ -6622,7 +6622,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
       return stra().get_network_payload(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_i32_array)
+   else if (get_type() == ::e_type_int_array)
    {
 
       return ia().get_network_payload(str, bNewLine);
@@ -6932,7 +6932,7 @@ bool payload::is_false() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
@@ -7118,7 +7118,7 @@ bool payload::is_set_false() const
       return is_element_null();
    case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_i32_array:
+   case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();

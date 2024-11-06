@@ -243,7 +243,7 @@ namespace simple_ui
          if(iEnd > iStart)
          {
 
-            auto rectangleFill = ::rectangle_f64_dimension((int)(left + size1.cx()), (int)y, (int)size2.cx(), (int)size2.cy());
+            auto rectangleFill = ::rectangle_double_dimension((int)(left + size1.cx()), (int)y, (int)size2.cx(), (int)size2.cy());
             pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
             pbrushText->create_solid(crSel);
             pgraphics->set(pbrushText);

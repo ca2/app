@@ -461,7 +461,7 @@ bool  stream_base::is_version(int i)
 //   case e_type_bool:
 //      *this << payload.m_b;
 //      break;
-//   case e_type_i32_array:
+//   case e_type_int_array:
 //      *this << payload.ia();
 //      break;
 //   case e_type_memory:

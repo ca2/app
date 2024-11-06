@@ -621,10 +621,10 @@ namespace turboc
             for(int j = 0; j < w; j+=3)
             {
 /*               color32 = pimage->get_data()[i * pimage->width() + j];
-               a = color32_u8_opacity(color32);
-               r = color32_u8_red(color32);
-               g = color32_u8_green(color32);
-               b = color32_u8_blue(color32);
+               a = color32_byte_opacity(color32);
+               r = color32_byte_red(color32);
+               g = color32_byte_green(color32);
+               b = color32_byte_blue(color32);
                rm = (g + b) / 4;
                gm = (r + b) / 4;
                bm = (r + g) / 4;

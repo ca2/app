@@ -504,7 +504,7 @@ public:
 
    ::memory as_memory() const;
    ::string_array as_string_array() const;
-   ::int_array as_i32_array() const;
+   ::int_array as_int_array() const;
    ::i64_array as_i64_array() const;
    ::payload_array as_payload_array()  const;
    ::property_set as_property_set() const;
@@ -659,7 +659,7 @@ public:
 
 
    ::string_array & string_array_reference();
-   ::int_array & i32_array_reference();
+   ::int_array & int_array_reference();
    ::i64_array & i64_array_reference();
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
@@ -674,7 +674,7 @@ public:
    ::color::hls & color_hls_reference();
 
    const ::string_array & string_array_reference() const;
-   const ::int_array & i32_array_reference() const;
+   const ::int_array & int_array_reference() const;
    const ::i64_array & i64_array_reference() const;
    const ::payload_array & payload_array_reference() const;
    const class time & time_reference() const;
@@ -700,10 +700,10 @@ public:
    unsigned long & unsigned_long_reference();
 #endif
    char & i8_reference();
-   unsigned char & u8_reference();
+   unsigned char & byte_reference();
    short & i16_reference();
    unsigned short & u16_reference();
-   int & i32_reference();
+   int & int_reference();
    unsigned int & u32_reference();
    ::i64 & i64_reference();
    ::u64 & u64_reference();
@@ -724,7 +724,7 @@ public:
       else if constexpr(sizeof(SIGNED) == 4)
       {
 
-         return (SIGNED&) this->i32_reference();
+         return (SIGNED&) this->int_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 2)
@@ -775,7 +775,7 @@ public:
       else if constexpr(sizeof(UNSIGNED) == 1)
       {
 
-         return (UNSIGNED&) this->u8_reference();
+         return (UNSIGNED&) this->byte_reference();
 
       }
       else

@@ -30,15 +30,15 @@ namespace app_core_flag
 
       double Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 
@@ -491,7 +491,7 @@ namespace graphics
 
    //   //m_pimageBeam->g()->set(ppen);
 
-   //   //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
+   //   //m_pimageBeam->g()->DrawEllipse(rectangle_int_dimension(0, 0, 32, 32));
 
 
 

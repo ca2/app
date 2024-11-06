@@ -30,7 +30,7 @@ namespace image
 
       ::pointer<::windowing::icon>              m_pwindowingicon;
       ::pointer<size_image>                     m_pimagemap;
-      ::size_i32_array                          m_sizea;
+      ::size_int_array                          m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;
@@ -85,7 +85,7 @@ namespace image
 
 
    class CLASS_DECL_AURA icon_int_map :
-      virtual public i32_map < icon * >
+      virtual public int_map < icon * >
    {
    public:
 

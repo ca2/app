@@ -95,7 +95,7 @@ struct CLASS_DECL_ACME main_struct :
 
    ::logic::boolean                    m_bExperienceMainFrame;
 
-   ::i32_sz *                  m_pintstringLanguageResourceMap;
+   ::int_sz *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 
    const char *                  m_pszMain;

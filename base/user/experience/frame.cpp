@@ -20,10 +20,10 @@
 #include "base/platform/session.h"
 
 
-CLASS_DECL_BASE ::rectangle_i32_array get_borders(const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
+CLASS_DECL_BASE ::rectangle_int_array get_borders(const ::rectangle_i32 & rectangleOuter, const ::rectangle_i32 & rectangleInner)
 {
 
-   rectangle_i32_array rectanglea;
+   rectangle_int_array rectanglea;
 
    ::rectangle_i32 rectangle;
    

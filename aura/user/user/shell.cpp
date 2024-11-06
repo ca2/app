@@ -2041,7 +2041,7 @@ namespace user
 
    //         ::image::image_pointer pimage(this);
    //         pimage->create({ iSize, iSize });
-   //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
+   //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //         m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, nullptr, 0);
@@ -2056,10 +2056,10 @@ namespace user
    //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
-   //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
+   //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
-   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx(), d->size().cy(), argb(123, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk)));
+   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx(), d->size().cy(), argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
    //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
    //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

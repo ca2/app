@@ -79,7 +79,7 @@ namespace image
 
             auto rectangleTarget = pimage->rectangle();
 
-            auto rectangleSource = ::rectangle_i32_dimension(sizeSource.cx() * col, sizeSource.cy() * row, sizeSource.cx(), sizeSource.cy());
+            auto rectangleSource = ::rectangle_int_dimension(sizeSource.cx() * col, sizeSource.cy() * row, sizeSource.cx(), sizeSource.cy());
 
             ::image::image_source imagesource(pimageSource, rectangleSource);
 

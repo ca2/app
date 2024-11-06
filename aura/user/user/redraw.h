@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      ::rectangle_i32_array               m_rectanglea;
+      ::rectangle_int_array               m_rectanglea;
       ::array < ::function <void() > >    m_functiona;
 
 
@@ -40,7 +40,7 @@ namespace user
 
       bool                             m_bEnabled = true;
       ::draw2d::graphics_pointer       m_pgraphics;
-      ::rectangle_i32_array            m_rectangleaNeedRedraw;
+      ::rectangle_int_array            m_rectangleaNeedRedraw;
 
 
       void initialize(::particle * pparticle) override;
@@ -48,7 +48,7 @@ namespace user
       void clear();
       void initialize_and_transfer(pointer_array < redraw_item > & redrawitema);
       void set_need_redraw(const ::rectangle_i32 & rectangle);
-      void set_need_redraw(const ::rectangle_i32_array & rectanglea);
+      void set_need_redraw(const ::rectangle_int_array & rectanglea);
       bool needs_to_draw(const ::rectangle_i32 & rectangle);
       void apply_clip(shift_i32 ΔHostToClient);
 

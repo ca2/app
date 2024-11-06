@@ -36,16 +36,16 @@ struct color32_t
    };
 
 
-   constexpr unsigned char u8_red() const { return m_u8Red; }
-   constexpr unsigned char u8_green() const { return m_u8Green; }
-   constexpr unsigned char u8_blue() const { return m_u8Blue; }
-   constexpr unsigned char u8_opacity() const { return m_u8Opacity; }
+   constexpr unsigned char byte_red() const { return m_u8Red; }
+   constexpr unsigned char byte_green() const { return m_u8Green; }
+   constexpr unsigned char byte_blue() const { return m_u8Blue; }
+   constexpr unsigned char byte_opacity() const { return m_u8Opacity; }
 
 
-   constexpr unsigned char & u8_red() { return m_u8Red; }
-   constexpr unsigned char & u8_green() { return m_u8Green; }
-   constexpr unsigned char & u8_blue() { return m_u8Blue; }
-   constexpr unsigned char & u8_opacity() { return m_u8Opacity; }
+   constexpr unsigned char & byte_red() { return m_u8Red; }
+   constexpr unsigned char & byte_green() { return m_u8Green; }
+   constexpr unsigned char & byte_blue() { return m_u8Blue; }
+   constexpr unsigned char & byte_opacity() { return m_u8Opacity; }
 
 
    constexpr float f32_red() const { return m_u8Red / 255.f; }

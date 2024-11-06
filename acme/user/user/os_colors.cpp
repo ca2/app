@@ -6,7 +6,7 @@
 ::color32_t argb_swap_red_blue(::color32_t color32)
 {
 
-   return argb(color32.u8_opacity(), color32.u8_blue(), color32.u8_green(), color32.u8_red());
+   return argb(color32.byte_opacity(), color32.byte_blue(), color32.byte_green(), color32.byte_red());
 
 }
 

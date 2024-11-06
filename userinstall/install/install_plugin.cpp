@@ -15,11 +15,11 @@
 #endif
 
 
-// #ifndef i32_x
-// #define i32_x(lp)                        ((int)(short)LOWORD(lp))
+// #ifndef int_x
+// #define int_x(lp)                        ((int)(short)LOWORD(lp))
 // #endif
-// #ifndef i32_y
-// #define i32_y(lp)                        ((int)(short)HIWORD(lp))
+// #ifndef int_y
+// #define int_y(lp)                        ((int)(short)HIWORD(lp))
 // #endif
 
 

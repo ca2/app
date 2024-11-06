@@ -33,7 +33,7 @@ namespace user
    struct set_need_redraw
    {
 
-      ::rectangle_i32_array      m_rectangleaNeedRedraw;
+      ::rectangle_int_array      m_rectangleaNeedRedraw;
       function<void()>           m_function;
       bool                       m_bAscendants;
 
@@ -903,7 +903,7 @@ namespace user
       virtual void set_need_layout();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::rectangle_i32_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_int_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -2093,7 +2093,7 @@ namespace user
       //inline void set_placement(int x, int y, int cx, int cy, enum_layout elayout = e_layout_sketch)
       //{
       //   
-      //   place(::rectangle_i32_dimension(x, y, cx, cy));
+      //   place(::rectangle_int_dimension(x, y, cx, cy));
       //   
       //}
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
@@ -2108,7 +2108,7 @@ namespace user
       inline void display_child(int x, int y, int cx, int cy, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr)
       {
 
-         display_child(rectangle_i32_dimension(x, y, cx, cy), elayout, pgraphics);
+         display_child(rectangle_int_dimension(x, y, cx, cy), elayout, pgraphics);
 
       }
 

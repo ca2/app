@@ -169,7 +169,7 @@ public:
 
    }
 
-   inline unsigned char get_u8_unbounded()
+   inline unsigned char get_byte_unbounded()
    {
 
       return m_pbyte[m_position++];

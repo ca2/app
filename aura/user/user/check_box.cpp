@@ -395,7 +395,7 @@ namespace user
 
       ::rectangle_i32 rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = rectangle_int_dimension(h-2, 1, h-2, h-2);
 
       ppath->add_arc(rectangleL, -90_degree, -180_degree);
 

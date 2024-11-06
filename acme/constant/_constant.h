@@ -241,7 +241,7 @@ enum enum_type
    // matter classes
    e_type_element = 8000,
    e_type_string_array,
-   e_type_i32_array,
+   e_type_int_array,
    e_type_payload_array,
    e_type_property_set,
    e_type_i64_array,

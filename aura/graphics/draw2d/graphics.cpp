@@ -918,7 +918,7 @@ namespace draw2d
    void graphics::arc(double x, double y, double w, double h, ::angle_f64 start, ::angle_f64 extends)
    {
 
-      arc(rectangle_f64_dimension(x, y, w, h), start, extends);
+      arc(rectangle_double_dimension(x, y, w, h), start, extends);
 
    }
 
@@ -2569,14 +2569,14 @@ namespace draw2d
          if (eborder & e_border_top)
          {
 
-            fill_rectangle(rectangle_f64_dimension(floor(rectangle.left(), pixelsize), floor(rectangle.top(), pixelsize), ceil(rectangle.width(), pixelsize), ceil(dWidth, pixelsize)), colorTopLeft);
+            fill_rectangle(rectangle_double_dimension(floor(rectangle.left(), pixelsize), floor(rectangle.top(), pixelsize), ceil(rectangle.width(), pixelsize), ceil(dWidth, pixelsize)), colorTopLeft);
 
          }
 
          if (eborder & e_border_left)
          {
 
-            fill_rectangle(rectangle_f64_dimension(
+            fill_rectangle(rectangle_double_dimension(
                floor(rectangle.left(), pixelsize),
                floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
                ceil(dWidth, pixelsize),
@@ -2593,7 +2593,7 @@ namespace draw2d
          if (eborder & e_border_bottom)
          {
 
-            fill_rectangle(rectangle_f64_dimension(
+            fill_rectangle(rectangle_double_dimension(
                floor(rectangle.left(), pixelsize) + ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
                ceil(rectangle.bottom(), pixelsize) - ceil(dWidth, pixelsize),
                ceil(rectangle.width(), pixelsize) - ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
@@ -2612,7 +2612,7 @@ namespace draw2d
 
             //if (!
             fill_rectangle(
-               ::rectangle_f64_dimension(
+               ::rectangle_double_dimension(
                   ceil(rectangle.right(), pixelsize) - ceil(dWidth, pixelsize),
                   floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
                   ceil(dWidth, pixelsize),
@@ -5394,10 +5394,10 @@ namespace draw2d
    void graphics::draw_error_line(double x1, double h, double x2, int iStyle)
    {
 
-      int u8Red = m_ppen->m_color.u8_red();
-      int u8Green = m_ppen->m_color.u8_green();
-      int u8Blue = m_ppen->m_color.u8_blue();
-      int u8Opacity = m_ppen->m_color.u8_opacity();
+      int u8Red = m_ppen->m_color.byte_red();
+      int u8Green = m_ppen->m_color.byte_green();
+      int u8Blue = m_ppen->m_color.byte_blue();
+      int u8Opacity = m_ppen->m_color.byte_opacity();
 
       if (iStyle == 0)
       {
@@ -5474,7 +5474,7 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
+                  int opacity = pimage32[x + wscan * y].byte_opacity(pimage->m_colorindexes);
                   double fy = 1.0 - fmod(fabs(Δy), 1.0);
                   double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
@@ -5493,7 +5493,7 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
+                  int opacity = pimage32[x + wscan * y].byte_opacity(pimage->color_indexes());
                   double fy = 1.0 - fmod(fabs(Δy), 1.0);
                   double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
@@ -5515,7 +5515,7 @@ namespace draw2d
                }
                else
                {
-                  int opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
+                  int opacity = pimage32[x + wscan].byte_opacity(pimage->color_indexes());
                   double fy = 1.0 - fmod(fabs(Δy), 1.0);
                   double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   opacity = (int)(opacity + ((fx * fy) * 255.0 * dStep * dTint));

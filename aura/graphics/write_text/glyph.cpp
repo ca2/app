@@ -169,7 +169,7 @@ namespace write_text
 //   //unsigned int AppendPolyLineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   unsigned int AppendPolyLineToBezier(
-//   point_i32_array      &pointsset,
+//   point_int_array      &pointsset,
 //   POINTFX         start,
 //   LPTTPOLYCURVE   pCurve,
 //
@@ -229,7 +229,7 @@ namespace write_text
 //   //unsigned int AppendQuadBSplineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   unsigned int AppendQuadBSplineToBezier(
-//   point_i32_array & pointset,
+//   point_int_array & pointset,
 //   POINTFX start,
 //   LPTTPOLYCURVE pCurve,
 //
@@ -309,7 +309,7 @@ namespace write_text
 //   ****************************************************************************/
 //   //unsigned int CloseContour( ::point_i32 * point, unsigned int cTotal )
 //   unsigned int CloseContour(
-//   point_i32_array & pointset,
+//   point_int_array & pointset,
 //   unsigned int cTotal )
 //   {
 //      ::point_i32               endpt;
@@ -392,7 +392,7 @@ namespace write_text
 //            // draw each coutour, currently this is the only valid
 //            // type of contour.
 //         {
-//            point_i32_array pointset;
+//            point_int_array pointset;
 //            //pPoints = ___new CPoints();
 //            //         pPoints->m_lpPoints = point;
 //

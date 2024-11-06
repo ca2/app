@@ -83,7 +83,7 @@ namespace acme
 //
 //       bool                                            m_bGraphicsAndWindowingSystemInitialized;
 //
-//       ::i32_sz* m_pintstringLanguageResourceMap;
+//       ::int_sz* m_pintstringLanguageResourceMap;
 //       int                              m_iMatterFromHttpCache;
 //
 //       const char* m_pszMain;

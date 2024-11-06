@@ -11,7 +11,7 @@
 
 void x11_store_name(oswindow oswindow, const ::scoped_string & scopedstrName);
 void x11_defer_check_configuration(oswindow oswindow);
-void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra);
+void upper_window_rects(oswindow oswindow, rectangle_int_array & ra);
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
@@ -4876,7 +4876,7 @@ pmessagebox->sync();
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_int_array& recta)
    {
 
       upper_window_rects(get_safe_handle(), recta);

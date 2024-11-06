@@ -573,10 +573,10 @@ namespace color
    //void color::set_bgr(unsigned int bgr)
    //{
 
-   //   m_u8Red   = bgr_u8_red(bgr);
-   //   m_u8Green = bgr_u8_green(bgr);
-   //   m_u8Blue  = bgr_u8_blue(bgr);
-   //   m_u8Opacity = bgr_u8_opacity(bgr);
+   //   m_u8Red   = bgr_byte_red(bgr);
+   //   m_u8Green = bgr_byte_green(bgr);
+   //   m_u8Blue  = bgr_byte_blue(bgr);
+   //   m_u8Opacity = bgr_byte_opacity(bgr);
 
    //}
 
@@ -959,7 +959,7 @@ namespace color
                str.trim();
                ::payload a;
                a.as_string_array().explode(",", str);
-               auto & ia = a.i32_array_reference();
+               auto & ia = a.int_array_reference();
                if (ia.get_count() == 3)
                {
                   set(argb(255, ia[0], ia[1], ia[2]));

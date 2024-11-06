@@ -26,7 +26,7 @@
 //color32_t SetAValue(unsigned char a, color32_t color32)
 //{
 //
-//   return argb(a, color32), color32_u8_green(color32), color32_u8_blue(color32));
+//   return argb(a, color32), color32_byte_green(color32), color32_byte_blue(color32));
 //
 //}
 

@@ -107,7 +107,7 @@ namespace experience_anthill
          ::image::image_source imagesource(pgraphics,
             rectangle_f64(::point_i32(rectangleX.left() - iInflate, rectangleX.top() - iInflate), ::size_f64(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-         auto rectangle = rectangle_f64_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
+         auto rectangle = rectangle_double_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -175,7 +175,7 @@ namespace experience_anthill
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_byte_red(color32), color32_byte_green(color32), color32_byte_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
@@ -588,7 +588,7 @@ namespace experience_anthill
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangle_i32_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pgraphics->draw_inset_3d_rectangle(rectangle_int_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 

@@ -56,7 +56,7 @@ namespace user
    }
 
 
-   bool language_map::set_language_resource_map(::i32_sz * pintstringLanguageResourceMap)
+   bool language_map::set_language_resource_map(::int_sz * pintstringLanguageResourceMap)
    {
 
       m_pintstring = pintstringLanguageResourceMap;

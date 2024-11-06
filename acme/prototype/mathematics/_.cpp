@@ -105,12 +105,12 @@ int type_maximum_digits(enum_integer_type etype, int iBase)
 }
 
 //int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i8, iBase); }
-//int u8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u8, iBase); }
+//int byte_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u8, iBase); }
 //
 //int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i16, iBase); }
 //int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u16, iBase); }
 //
-//int i32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i32, iBase); }
+//int int_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i32, iBase); }
 //int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
 //
 //int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }

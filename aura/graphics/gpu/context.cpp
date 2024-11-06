@@ -506,10 +506,10 @@ namespace gpu
             for (auto x = 0; x < pimage->width(); x++)
             {
 
-               *p++ = psource->u8_red(pimage->color_indexes());
-               *p++ = psource->u8_green(pimage->color_indexes());
-               *p++ = psource->u8_blue(pimage->color_indexes());
-               *p++ = psource->u8_opacity(pimage->color_indexes());
+               *p++ = psource->byte_red(pimage->color_indexes());
+               *p++ = psource->byte_green(pimage->color_indexes());
+               *p++ = psource->byte_blue(pimage->color_indexes());
+               *p++ = psource->byte_opacity(pimage->color_indexes());
 
                psource++;
 
@@ -549,9 +549,9 @@ namespace gpu
             for (auto x = 0; x < pimage->width(); x++)
             {
 
-               *p++ = psource->u8_red(pimage->color_indexes());
-               *p++ = psource->u8_green(pimage->color_indexes());
-               *p++ = psource->u8_blue(pimage->color_indexes());
+               *p++ = psource->byte_red(pimage->color_indexes());
+               *p++ = psource->byte_green(pimage->color_indexes());
+               *p++ = psource->byte_blue(pimage->color_indexes());
 
                psource++;
 

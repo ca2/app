@@ -500,9 +500,9 @@ void image::create_isotropic(::image::image* pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::image::image_source imagesource(get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
+      ::image::image_source imagesource(get_graphics(), ::rectangle_int_dimension(0, 0, width(), height()));
 
-      ::image::image_drawing_options imagedrawingoptions(::rectangle_i32_dimension(0, 0, cx, cy));
+      ::image::image_drawing_options imagedrawingoptions(::rectangle_int_dimension(0, 0, cx, cy));
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -616,11 +616,11 @@ void image::destroy_os_data()
 //
 //   //}
 //
-//   return get_graphics()->draw(rectangle_i32_dimension(0, 0,
+//   return get_graphics()->draw(rectangle_int_dimension(0, 0,
 //                                     width(),
 //                                     height()),
 //                                     pimage->g(),
-//                                     rectangle_i32_dimension(0, 0,
+//                                     rectangle_int_dimension(0, 0,
 //                                     pimage->width(),
 //                                     pimage->height()));
 //
@@ -1162,10 +1162,10 @@ void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, 
             //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
             //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
             unsigned char acomplement = (~psrc2[3] * bA) >> 8;
-            pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-            pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-            pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-            pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+            pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+            pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+            pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+            pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
             pdst2 += 4;
 
@@ -1364,10 +1364,10 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
                unsigned char acomplement = (~psrc2[3] * bA) >> 8;
-               pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-               pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-               pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-               pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
 
 
@@ -1496,10 +1496,10 @@ void image::blend(const ::point_i32& pointDstParam, ::image::image* pimageSrc, c
                //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
                unsigned char acomplement = (~psrc2[3] * bA) >> 8;
-               pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-               pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-               pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-               pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 
 
 
@@ -1686,10 +1686,10 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image::image* pi
             //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
             //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
             unsigned char acomplement = (~psrc2[3] * bA) / 255;
-            pdst2[0] = u8_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) / 255);
-            pdst2[1] = u8_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) / 255);
-            pdst2[2] = u8_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) / 255);
-            pdst2[3] = u8_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) / 255);
+            pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) / 255);
+            pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) / 255);
+            pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) / 255);
+            pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) / 255);
 
 
 
@@ -1996,7 +1996,7 @@ void image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image::image* 
       for (int x = 0; x < xEnd; x++)
       {
 
-         if (psrc2->u8_opacity(pimage->color_indexes()) == 0)
+         if (psrc2->byte_opacity(pimage->color_indexes()) == 0)
          {
             i++;
          }
@@ -2889,9 +2889,9 @@ void image::mult_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizeP
       for (int x = 0; x < xEnd; x++)
       {
 
-         pdst2[0] = u8_clip(((int)pdst2[0] * (int)pdst2[3]) / 255);
-         pdst2[1] = u8_clip(((int)pdst2[1] * (int)pdst2[3]) / 255);
-         pdst2[2] = u8_clip(((int)pdst2[2] * (int)pdst2[3]) / 255);
+         pdst2[0] = byte_clip(((int)pdst2[0] * (int)pdst2[3]) / 255);
+         pdst2[1] = byte_clip(((int)pdst2[1] * (int)pdst2[3]) / 255);
+         pdst2[2] = byte_clip(((int)pdst2[2] * (int)pdst2[3]) / 255);
 
          pdst2 += 4;
 
@@ -2971,9 +2971,9 @@ void image::div_alpha()
       }
       else
       {
-         dst[0] = u8_clip((int)dst[0] * 255 / (int)dst[3]);
-         dst[1] = u8_clip((int)dst[1] * 255 / (int)dst[3]);
-         dst[2] = u8_clip((int)dst[2] * 255 / (int)dst[3]);
+         dst[0] = byte_clip((int)dst[0] * 255 / (int)dst[3]);
+         dst[1] = byte_clip((int)dst[1] * 255 / (int)dst[3]);
+         dst[2] = byte_clip((int)dst[2] * 255 / (int)dst[3]);
       }
 
       dst += 4;
@@ -3080,9 +3080,9 @@ void image::div_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizePa
          }
          else
          {
-            pdst2[0] = u8_clip((int)pdst2[0] * 255 / (int)pdst2[3]);
-            pdst2[1] = u8_clip((int)pdst2[1] * 255 / (int)pdst2[3]);
-            pdst2[2] = u8_clip((int)pdst2[2] * 255 / (int)pdst2[3]);
+            pdst2[0] = byte_clip((int)pdst2[0] * 255 / (int)pdst2[3]);
+            pdst2[1] = byte_clip((int)pdst2[1] * 255 / (int)pdst2[3]);
+            pdst2[2] = byte_clip((int)pdst2[2] * 255 / (int)pdst2[3]);
          }
 
          pdst2 += 4;
@@ -3124,9 +3124,9 @@ void image::ToAlphaAndFill(int i, ::color::color color)
 
    i64 size = scan_area();
 
-   unsigned char uchB = color.u8_blue();
-   unsigned char uchG = color.u8_green();
-   unsigned char uchR = color.u8_red();
+   unsigned char uchB = color.byte_blue();
+   unsigned char uchG = color.byte_green();
+   unsigned char uchR = color.byte_red();
 
    while (size--)
    {
@@ -3149,9 +3149,9 @@ void image::GrayToARGB(::color::color color)
 
    i64 size = scan_area();
 
-   unsigned int dwB = color.u8_blue();
-   unsigned int dwG = color.u8_green();
-   unsigned int dwR = color.u8_red();
+   unsigned int dwB = color.byte_blue();
+   unsigned int dwG = color.byte_green();
+   unsigned int dwR = color.byte_red();
 
    while (size-- > 0)
    {
@@ -3990,9 +3990,9 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 
    i64 size = scan_area();
 
-   unsigned int dwB = color.u8_blue();
-   unsigned int dwG = color.u8_green();
-   unsigned int dwR = color.u8_red();
+   unsigned int dwB = color.byte_blue();
+   unsigned int dwG = color.byte_green();
+   unsigned int dwR = color.byte_red();
 
    unsigned int dwB_ = dwB << 8;
    unsigned int dwG_ = dwG << 8;
@@ -6677,10 +6677,10 @@ void image::clear(::color::color color)
 
       i64 size = scan_area();
 
-      unsigned char a = color.u8_opacity();
-      unsigned char r = color.u8_red();
-      unsigned char g = color.u8_green();
-      unsigned char b = color.u8_blue();
+      unsigned char a = color.byte_opacity();
+      unsigned char r = color.byte_red();
+      unsigned char g = color.byte_green();
+      unsigned char b = color.byte_blue();
 
       r = r * a / 255;
 
@@ -7371,9 +7371,9 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
          else
          {
 
-            ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, (int)cx, (int)cy));
+            ::image::image_source imagesource(pimage, ::rectangle_int_dimension(0, 0, (int)cx, (int)cy));
 
-            auto rectangle = rectangle_f64_dimension(x, y, cx, cy);
+            auto rectangle = rectangle_double_dimension(x, y, cx, cy);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -7454,9 +7454,9 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
             else
             {
 
-               ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+               ::image::image_source imagesource(pimage, ::rectangle_int_dimension(0, 0, pimage->width(), pimage->height()));
 
-               auto rectangle = rectangle_f64_dimension(x, y, Δx, Δy);
+               auto rectangle = rectangle_double_dimension(x, y, Δx, Δy);
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -8110,9 +8110,9 @@ void image::tint(::image::image* pimage, ::color::color color)
    unsigned char* dst = (unsigned char*)image32();
    i64 size = scan_area();
 
-   unsigned char uchR = (unsigned char)color.u8_red();
-   unsigned char uchG = (unsigned char)color.u8_green();
-   unsigned char uchB = (unsigned char)color.u8_blue();
+   unsigned char uchR = (unsigned char)color.byte_red();
+   unsigned char uchG = (unsigned char)color.byte_green();
+   unsigned char uchB = (unsigned char)color.byte_blue();
 
    //      int i = 0;;
 
@@ -8460,7 +8460,7 @@ void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 //void image::set_rgb(image32_t cr)
 //{
 //
-//   return set_rgb(color32_u8_red(cr), color32_u8_green(cr), color32_u8_blue(cr));
+//   return set_rgb(color32_byte_red(cr), color32_byte_green(cr), color32_byte_blue(cr));
 //
 //}
 
@@ -8654,9 +8654,9 @@ void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 void image::multiply_rgb_by_source_alpha(::color::color color)
 {
 
-   auto u8Red = color.u8_red();
-   auto u8Green = color.u8_green();
-   auto u8Blue = color.u8_blue();
+   auto u8Red = color.byte_red();
+   auto u8Green = color.byte_green();
+   auto u8Blue = color.byte_blue();
    unsigned char u8Opacity;
 
    auto u8IndexOpacity = m_colorindexes.m_u8IndexOpacity;
@@ -8784,10 +8784,10 @@ void image::pixelate(int iSize)
             for (int j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * s];
-               a += cr.u8_opacity(color_indexes());
-               r += cr.u8_red(color_indexes());
-               g += cr.u8_green(color_indexes());
-               b += cr.u8_blue(color_indexes());
+               a += cr.byte_opacity(color_indexes());
+               r += cr.byte_red(color_indexes());
+               g += cr.byte_green(color_indexes());
+               b += cr.byte_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8851,10 +8851,10 @@ void image::pixelate(int iSize)
             for (int j = 0; j < iSize; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
-               a += cr.u8_opacity(color_indexes());
-               r += cr.u8_red(color_indexes());
-               g += cr.u8_green(color_indexes());
-               b += cr.u8_blue(color_indexes());
+               a += cr.byte_opacity(color_indexes());
+               r += cr.byte_red(color_indexes());
+               g += cr.byte_green(color_indexes());
+               b += cr.byte_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8914,10 +8914,10 @@ void image::pixelate(int iSize)
             for (int j = 0; j < jMax; j++)
             {
                image32_t cr = pdata[x1 + i + (y1 + j) * w];
-               a += cr.u8_opacity(color_indexes());
-               r += cr.u8_red(color_indexes());
-               g += cr.u8_green(color_indexes());
-               b += cr.u8_blue(color_indexes());
+               a += cr.byte_opacity(color_indexes());
+               r += cr.byte_red(color_indexes());
+               g += cr.byte_green(color_indexes());
+               b += cr.byte_blue(color_indexes());
                iDiv++;
                if (iDiv >= 64)
                {
@@ -8978,10 +8978,10 @@ void image::pixelate(int iSize)
          for (int j = 0; j < jMax; j++)
          {
             image32_t cr = pdata[x1 + i + (y1 + j) * w];
-            a += cr.u8_opacity(color_indexes());
-            r += cr.u8_red(color_indexes());
-            g += cr.u8_green(color_indexes());
-            b += cr.u8_blue(color_indexes());
+            a += cr.byte_opacity(color_indexes());
+            r += cr.byte_red(color_indexes());
+            g += cr.byte_green(color_indexes());
+            b += cr.byte_blue(color_indexes());
             iDiv++;
             if (iDiv >= 64)
             {
@@ -9171,10 +9171,10 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const po
    {
 
       clear_argb(
-         u8_clip(color1.u8_opacity() * 0.5 + color2.u8_opacity() * 0.5),
-         u8_clip(color1.u8_red() * 0.5 + color2.u8_red() * 0.5),
-         u8_clip(color1.u8_green() * 0.5 + color2.u8_green() * 0.5),
-         u8_clip(color1.u8_blue() * 0.5 + color2.u8_blue() * 0.5));
+         byte_clip(color1.byte_opacity() * 0.5 + color2.byte_opacity() * 0.5),
+         byte_clip(color1.byte_red() * 0.5 + color2.byte_red() * 0.5),
+         byte_clip(color1.byte_green() * 0.5 + color2.byte_green() * 0.5),
+         byte_clip(color1.byte_blue() * 0.5 + color2.byte_blue() * 0.5));
 
    }
    else if (Δx == 0.0)
@@ -9317,10 +9317,10 @@ void image::gradient_horizontal_fill(::color::color color1, ::color::color color
       d = ((double)(line - start)) / ((double)(end - start));
 
       clr.assign(argb(
-         u8_clip(color1.u8_opacity() * (1.0 - d) + color2.u8_opacity() * d),
-         u8_clip(color1.u8_red() * (1.0 - d) + color2.u8_red() * d),
-         u8_clip(color1.u8_green() * (1.0 - d) + color2.u8_green() * d),
-         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d)), color_indexes());
+         byte_clip(color1.byte_opacity() * (1.0 - d) + color2.byte_opacity() * d),
+         byte_clip(color1.byte_red() * (1.0 - d) + color2.byte_red() * d),
+         byte_clip(color1.byte_green() * (1.0 - d) + color2.byte_green() * d),
+         byte_clip(color1.byte_blue() * (1.0 - d) + color2.byte_blue() * d)), color_indexes());
 
       pdata = (image32_t*)&pb[m_iScan * line];
       for (int row = 0; row < width(); row++)
@@ -9382,10 +9382,10 @@ void image::gradient_vertical_fill(::color::color color1, ::color::color color2,
       d = ((double)(row - start)) / ((double)(end - start));
 
       clr.assign(argb(
-         u8_clip(color1.u8_opacity() * (1.0 - d) + color2.u8_opacity() * d),
-         u8_clip(color1.u8_red() * (1.0 - d) + color2.u8_red() * d),
-         u8_clip(color1.u8_green() * (1.0 - d) + color2.u8_green() * d),
-         u8_clip(color1.u8_blue() * (1.0 - d) + color2.u8_blue() * d)), 
+         byte_clip(color1.byte_opacity() * (1.0 - d) + color2.byte_opacity() * d),
+         byte_clip(color1.byte_red() * (1.0 - d) + color2.byte_red() * d),
+         byte_clip(color1.byte_green() * (1.0 - d) + color2.byte_green() * d),
+         byte_clip(color1.byte_blue() * (1.0 - d) + color2.byte_blue() * d)), 
          color_indexes());
 
       pdata = (image32_t*)&pb[sizeof(image32_t) * row];
@@ -9520,9 +9520,9 @@ void image::create_circle(::image::image* pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+      ::image::image_source imagesource(pimage, ::rectangle_int_dimension(0, 0, pimage->width(), pimage->height()));
 
-      auto rectangle = rectangle_f64_dimension(0, 0, diameter, diameter);
+      auto rectangle = rectangle_double_dimension(0, 0, diameter, diameter);
 
       ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -9597,9 +9597,9 @@ void image::create_framed_square(::image::image* pimage, int inner, int outer, :
 
    clear(color);
 
-   ::image::image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+   ::image::image_source imagesource(pimage, ::rectangle_int_dimension(0, 0, pimage->width(), pimage->height()));
 
-   auto rectangle = rectangle_f64_dimension(outer, outer, inner, inner);
+   auto rectangle = rectangle_double_dimension(outer, outer, inner, inner);
 
    ::image::image_drawing_options imagedrawingoptions(rectangle);
 

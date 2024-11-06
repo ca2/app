@@ -38,8 +38,8 @@ namespace draw2d
       static double g_dEmboss;
       void * m_pimpl;
 
-      i32_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
-      i32_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
+      int_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
+      int_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
 
 
       ::pointer<class ::draw2d::api>                           m_papi;

@@ -128,7 +128,7 @@ namespace user
 
       //m_pimageBeam->g()->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
+      //m_pimageBeam->g()->DrawEllipse(rectangle_int_dimension(0, 0, 32, 32));
 
 
 

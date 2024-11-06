@@ -216,7 +216,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////} // namespace opengl
 ////
 ////
-////struct ::i32_sz
+////struct ::int_sz
 ////{
 ////
 ////   int            m_i;
@@ -325,10 +325,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
-////#define color32_u8_red(rgb)    (lower_u8(rgb))
-////#define color32_u8_green(rgb)    (lower_u8((rgb)>>8))
-////#define color32_u8_blue(rgb)    (lower_u8((rgb)>>16))
-////#define color32_u8_opacity(rgb)    (lower_u8((rgb)>>24))
+////#define color32_byte_red(rgb)    (lower_u8(rgb))
+////#define color32_byte_green(rgb)    (lower_u8((rgb)>>8))
+////#define color32_byte_blue(rgb)    (lower_u8((rgb)>>16))
+////#define color32_byte_opacity(rgb)    (lower_u8((rgb)>>24))
 ////#define RGBA(r, g, b, a)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
@@ -455,13 +455,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
-////#ifndef i32_x
-////#define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
+////#ifndef int_x
+////#define int_x(lparam)                          ((int)(short)LOWORD(lparam))
 ////#endif
 ////
 ////
-////#ifndef i32_y
-////#define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
+////#ifndef int_y
+////#define int_y(lparam)                          ((int)(short)HIWORD(lparam))
 ////#endif
 ////
 ////#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))
@@ -1122,7 +1122,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////   using eflag = flags < enum_flag >;
 //////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 //////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-//////   //using i32_map = ::map < e_int, e_int, int, int >;
+//////   //using int_map = ::map < e_int, e_int, int, int >;
 //////   //using double_map = ::map < e_double, e_double, double, double >;
 //////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;

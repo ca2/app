@@ -4147,7 +4147,7 @@ namespace apex
             property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
-            set["oh_my_god2"].i32_array_reference() = ::int_array({ 1, 2, 3 });
+            set["oh_my_god2"].int_array_reference() = ::int_array({ 1, 2, 3 });
 
             int a1 = 1;
             int a2 = 2;
@@ -4171,7 +4171,7 @@ namespace apex
             string str2 = set2["oh_my_god"].as_string_array()[0];
 
 
-            int i1 = set2["oh_my_god2"].as_i32_array()[0];
+            int i1 = set2["oh_my_god2"].as_int_array()[0];
             int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
             int i3 = set2["oh_my_god2"][2].as_i32();
 

@@ -624,7 +624,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_f64_dimension(x, y, w, h);
+      auto r = rectangle_double_dimension(x, y, w, h);
 
       m_pgraphics->reset_clip();
 
@@ -636,7 +636,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::intersect_scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_f64_dimension(x, y, w, h);
+      auto r = rectangle_double_dimension(x, y, w, h);
 
       m_pgraphics->intersect_clip(r);
 
@@ -993,13 +993,13 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->add_rectangle(rectangle_f64_dimension(x, y, w, h));
+         pstate->m_ppath->add_rectangle(rectangle_double_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(rectangle_f64_dimension(x, y, w, h));
+         m_pgraphics->rectangle(rectangle_double_dimension(x, y, w, h));
 
       }
 

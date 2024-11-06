@@ -1567,7 +1567,7 @@ end:
    /*void XFV001Expand()
    {
    ITERABLE  strArray;
-   u32_array dwa;
+   unsigned_int_array dwa;
    for(int i = 0; i < iterable.m_nSize; i++)
    {
    strArray.add_tokens(get_at(i), "/", false);

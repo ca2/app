@@ -840,7 +840,7 @@ CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, unsigned int u, int iBa
 }
 
 
-CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;

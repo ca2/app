@@ -77,9 +77,9 @@ namespace experience_core
       {
 
          crBackground = argb(90, 
-            m_colorBackground.m_u8Red, 
-            m_colorBackground.m_u8Green, 
-            m_colorBackground.m_u8Blue);
+            m_colorBackground.m_uchRed, 
+            m_colorBackground.m_uchGreen, 
+            m_colorBackground.m_uchBlue);
 
       }
       else

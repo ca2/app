@@ -17,7 +17,7 @@ using u64 = uint64_t;
 
 
 //using float = float;
-//using double = double;
+//using d = double;
 
 
 #ifdef __cplusplus

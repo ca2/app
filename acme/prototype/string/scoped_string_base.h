@@ -11,7 +11,7 @@ public:
 
 //   union
 //   {
-//       ::ansi_character    m_i8aTempuStock[8];
+//       ::ansi_character    m_chaTempuStock[8];
 //       ::wd16_character    m_shaTempoStore[4];
 //       ::wd32_character    m_iaTempiWarehouse[2];
 //       ::i64               m_i64TempeMart;
@@ -50,14 +50,14 @@ public:
 //   {
 //      if constexpr(sizeof(CHARACTER2) == 1 && sizeof(CHARACTER) == 1)
 //      {
-//         m_i8aTempuStock[0] =character;
-//         this->m_begin = m_i8aTempuStock;
+//         m_chaTempuStock[0] =character;
+//         this->m_begin = m_chaTempuStock;
 //         this->m_end = this->m_begin + 1;
 //
 //      } else {
-//         auto len = utf_to_utf_length(m_i8aTempuStock, &character, 1);
-//         utf_to_utf(m_i8aTempuStock, &character, 1);
-//         this->m_begin = m_i8aTempuStock;
+//         auto len = utf_to_utf_length(m_chaTempuStock, &character, 1);
+//         utf_to_utf(m_chaTempuStock, &character, 1);
+//         this->m_begin = m_chaTempuStock;
 //         this->m_end = this->m_begin + len;
 //      }
 //   }

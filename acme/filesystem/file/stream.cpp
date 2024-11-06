@@ -408,19 +408,19 @@ bool  stream_base::is_version(int i)
 //   }
 //   break;
 //   case e_type_i8:
-//      *this << payload.m_i8;
+//      *this << payload.m_ch;
 //      break;
 //   case e_type_i16:
-//      *this << payload.m_i16;
+//      *this << payload.m_sh;
 //      break;
 //   case e_type_u8:
-//      *this << payload.m_u8;
+//      *this << payload.m_uch;
 //      break;
 //   case e_type_u16:
-//      *this << payload.m_u16;
+//      *this << payload.m_ush;
 //      break;
 //   case e_type_i32:
-//      *this << payload.m_i32;
+//      *this << payload.m_i;
 //      break;
 //   case e_type_i64:
 //      *this << payload.m_i64;
@@ -456,7 +456,7 @@ bool  stream_base::is_version(int i)
 //      *this << *payload.m_pu64;
 //      break;
 //   case e_type_f64:
-//      *this << payload.m_f64;
+//      *this << payload.m_d;
 //      break;
 //   case e_type_bool:
 //      *this << payload.m_b;

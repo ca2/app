@@ -26,7 +26,7 @@ namespace linux
 
       virtual bool get_pid_by_path(const char * lpszName, unsigned int & dwPid) override;
       virtual bool get_pid_by_title(const char * lpszName, unsigned int & dwPid) override;
-      virtual void get_all_processes(u32_array & dwa) override;
+      virtual void get_all_processes(unsigned_int_array & dwa) override;
       virtual ::file::path get_process_path(unsigned int dwPid) override;
       virtual int get_pid() override;
 
@@ -70,7 +70,7 @@ namespace linux
 
       virtual bool file_open(::file::path strSrc, string strParams, string strFolder) override;
 
-      virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
+      virtual void list_process(::file::path_array & patha, unsigned_int_array & iaPid) override;
 
 
    };

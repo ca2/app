@@ -22,10 +22,10 @@ struct color_indexes
       struct
       {
 
-         unsigned char m_u8IndexRed;
-         unsigned char m_u8IndexGreen;
-         unsigned char m_u8IndexBlue;
-         unsigned char m_u8IndexOpacity;
+         unsigned char m_uchIndexRed;
+         unsigned char m_uchIndexGreen;
+         unsigned char m_uchIndexBlue;
+         unsigned char m_uchIndexOpacity;
 
       };
 
@@ -39,10 +39,10 @@ struct color_indexes
    constexpr color_indexes(const color_indexes & indexes) = default;
    //{
 
-   //   m_u8IndexOpacity = indexes.m_u8IndexOpacity;
-   //   m_u8IndexRed = indexes.m_u8IndexRed;
-   //   m_u8IndexGreen = indexes.m_u8IndexGreen;
-   //   m_u8IndexBlue = indexes.m_u8IndexBlue;
+   //   m_uchIndexOpacity = indexes.m_uchIndexOpacity;
+   //   m_uchIndexRed = indexes.m_uchIndexRed;
+   //   m_uchIndexGreen = indexes.m_uchIndexGreen;
+   //   m_uchIndexBlue = indexes.m_uchIndexBlue;
 
    //}
 
@@ -52,10 +52,10 @@ struct color_indexes
       unsigned char u8IndexGreen,
       unsigned char u8IndexBlue,
       unsigned char u8IndexOpacity) :
-      m_u8IndexRed(u8IndexRed),
-      m_u8IndexGreen(u8IndexGreen),
-      m_u8IndexBlue(u8IndexBlue),
-      m_u8IndexOpacity(u8IndexOpacity)
+      m_uchIndexRed(u8IndexRed),
+      m_uchIndexGreen(u8IndexGreen),
+      m_uchIndexBlue(u8IndexBlue),
+      m_uchIndexOpacity(u8IndexOpacity)
    {
 
    }

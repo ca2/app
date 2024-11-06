@@ -7205,7 +7205,7 @@ namespace user
 
 
 
-//         if (colorBackground.m_u8Opacity != 127)
+//         if (colorBackground.m_uchOpacity != 127)
 //         {
 //
 //            information() << "Opacity: " << (unsigned int) colorBackground.byte_opacity();

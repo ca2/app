@@ -34,10 +34,10 @@ namespace opengl
    {
 
       ::opengl::color(
-         color.m_u8Red,
-         color.m_u8Green,
-         color.m_u8Blue,
-         color.m_u8Opacity);
+         color.m_uchRed,
+         color.m_uchGreen,
+         color.m_uchBlue,
+         color.m_uchOpacity);
 
    }
 

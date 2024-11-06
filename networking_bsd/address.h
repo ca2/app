@@ -27,12 +27,12 @@ namespace networking_bsd
 #if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD)
 
             unsigned char m_len;
-            unsigned char m_u8Family;
+            unsigned char m_uchFamily;
 
 
 #else // !FREEBSD
 
-            unsigned short m_u16Family;
+            unsigned short m_ushFamily;
 
 #endif // !FREEBSD
 
@@ -46,7 +46,7 @@ namespace networking_bsd
 
                m_len = len;
 
-               m_u8Family = family;
+               m_uchFamily = family;
 
             }
 
@@ -61,7 +61,7 @@ namespace networking_bsd
             unsigned char get_family() const
             {
 
-               return m_u8Family;
+               return m_uchFamily;
 
             }
 
@@ -78,14 +78,14 @@ namespace networking_bsd
       void set_family(int family)
       {
 
-         m_u16Family = family;
+         m_ushFamily = family;
 
       }
 
       unsigned short get_family() const
       {
 
-         return m_u16Family;
+         return m_ushFamily;
 
       }
 
@@ -93,7 +93,7 @@ namespace networking_bsd
       int get_family_len() const
       {
 
-         return family_len(m_u16Family);
+         return family_len(m_ushFamily);
 
       }
 

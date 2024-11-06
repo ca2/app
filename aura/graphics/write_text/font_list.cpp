@@ -480,7 +480,7 @@ namespace write_text
 
             auto color = puserinteraction->get_color(pgraphics->m_puserstyleGraphics, ::e_element_background, ::user::e_state_hover);
 
-            //auto u8Opacity = color.m_u8Opacity;
+            //auto u8Opacity = color.m_uchOpacity;
 
             pgraphics->fill_rectangle(rectangle, color);
 

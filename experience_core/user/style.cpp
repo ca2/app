@@ -1956,7 +1956,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleX = pscrollbar->rectangle();
 
-      if (colorBackground.m_u8Opacity != 0)
+      if (colorBackground.m_uchOpacity != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1966,7 +1966,7 @@ namespace experience_core
          if (session()->savings()->is_trying_to_save(::e_resource_processing))
          {
 
-            colorBackground.m_u8Opacity = 255;
+            colorBackground.m_uchOpacity = 255;
 
          }
 

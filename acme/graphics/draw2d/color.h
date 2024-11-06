@@ -131,7 +131,7 @@ namespace color
    public:
 
 
-      constexpr color() { m_u8Red = m_u8Green = m_u8Blue = m_u8Opacity = 0; }
+      constexpr color() { m_uchRed = m_uchGreen = m_uchBlue = m_uchOpacity = 0; }
       constexpr color(no_initialize_t) { }
       template < primitive_number GRAY, primitive_number ALPHA >
       constexpr color(GRAY gray, ALPHA u8Opacity) { set_red(gray); set_green(gray); set_blue(gray); set_opacity(u8Opacity); }
@@ -143,28 +143,28 @@ namespace color
       constexpr color(const ::rgba_t & rgba) { set(rgba); }
       constexpr color(const ::bgra_t & bgra) { set(bgra); }
       constexpr color(const ::color::color & color) { m_ui = color.m_ui; }
-      constexpr color(const ::color::color & color, const class ::opacity& opacity) { m_ui = color.m_ui; m_u8Opacity = opacity.byte_opacity(); }
+      constexpr color(const ::color::color & color, const class ::opacity& opacity) { m_ui = color.m_ui; m_uchOpacity = opacity.byte_opacity(); }
       //color() { m_flags = -1; }
 //color(const ::color::color & color) { this->m_ui =h color.m_ui;  m_flags = color.m_flags; }
       constexpr color(enum_plain_color eplaincolor);
-      constexpr color(enum_plain_color eplaincolor, unsigned char u8Opacity) : color(eplaincolor) { m_u8Opacity = u8Opacity; }
+      constexpr color(enum_plain_color eplaincolor, unsigned char u8Opacity) : color(eplaincolor) { m_uchOpacity = u8Opacity; }
       color(const hls & hls, unsigned char A = 255);
       //color(const COLOR32 & color32, int flags = 0) { this->m_ui = color32.m_ui;  m_flags = flags; }
       //color(::color32_t color32, int flags = 0) { this->m_ui = color32;  m_flags = flags; }
       //color(unsigned char R, unsigned char G, unsigned char B, unsigned char A = 255);
 
-      constexpr unsigned char byte_red() const { return m_u8Red; }
-      constexpr unsigned char byte_green() const { return m_u8Green; }
-      constexpr unsigned char byte_blue() const { return m_u8Blue; }
-      constexpr unsigned char byte_opacity() const { return m_u8Opacity; }
-      constexpr float f32_red() const { return m_u8Red / 255.f; }
-      constexpr float f32_green() const { return m_u8Green / 255.f; }
-      constexpr float f32_blue() const { return m_u8Blue / 255.f; }
-      constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
-      constexpr double f64_red() const { return m_u8Red / 255.; }
-      constexpr double f64_green() const { return m_u8Green / 255.; }
-      constexpr double f64_blue() const { return m_u8Blue / 255.; }
-      constexpr double f64_opacity() const { return m_u8Opacity / 255.; }
+      constexpr unsigned char byte_red() const { return m_uchRed; }
+      constexpr unsigned char byte_green() const { return m_uchGreen; }
+      constexpr unsigned char byte_blue() const { return m_uchBlue; }
+      constexpr unsigned char byte_opacity() const { return m_uchOpacity; }
+      constexpr float f32_red() const { return m_uchRed / 255.f; }
+      constexpr float f32_green() const { return m_uchGreen / 255.f; }
+      constexpr float f32_blue() const { return m_uchBlue / 255.f; }
+      constexpr float f32_opacity() const { return m_uchOpacity / 255.f; }
+      constexpr double f64_red() const { return m_uchRed / 255.; }
+      constexpr double f64_green() const { return m_uchGreen / 255.; }
+      constexpr double f64_blue() const { return m_uchBlue / 255.; }
+      constexpr double f64_opacity() const { return m_uchOpacity / 255.; }
 
       constexpr color contrasting_color() const {
          float luminance = 0.299f * f32_red() + 0.587f * f32_green() + 0.144f * f32_blue();
@@ -186,10 +186,10 @@ namespace color
       ///bool is_set() const { return m_flags >= 0; }
 
 
-      constexpr bool is_opaque() const { return m_u8Opacity == 255; }
-      constexpr bool is_translucent() const { return  m_u8Opacity > 0 && m_u8Opacity < 255; }
-      constexpr bool is_transparent() const { return  m_u8Opacity == 0; }
-      constexpr bool non_transparent() const { return  m_u8Opacity > 0; }
+      constexpr bool is_opaque() const { return m_uchOpacity == 255; }
+      constexpr bool is_translucent() const { return  m_uchOpacity > 0 && m_uchOpacity < 255; }
+      constexpr bool is_transparent() const { return  m_uchOpacity == 0; }
+      constexpr bool non_transparent() const { return  m_uchOpacity > 0; }
       constexpr bool has_opacity() const { return non_transparent(); }
 
 
@@ -222,10 +222,10 @@ namespace color
       {
 
          return argb32_color32(
-         m_u8Opacity,
-         m_u8Red,
-         m_u8Green,
-         m_u8Blue);
+         m_uchOpacity,
+         m_uchRed,
+         m_uchGreen,
+         m_uchBlue);
 
       }
 
@@ -240,54 +240,54 @@ namespace color
       template < typename R, typename G, typename B, typename A >
       constexpr void set(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_opacity(a); }
 
-      constexpr unsigned char set_red(unsigned char r) { return this->m_u8Red = r; }
+      constexpr unsigned char set_red(unsigned char r) { return this->m_uchRed = r; }
 
-      constexpr unsigned char set_green(unsigned char g) { return this->m_u8Green = g; }
+      constexpr unsigned char set_green(unsigned char g) { return this->m_uchGreen = g; }
 
-      constexpr unsigned char set_blue(unsigned char b) { return this->m_u8Blue = b; }
+      constexpr unsigned char set_blue(unsigned char b) { return this->m_uchBlue = b; }
 
-      constexpr unsigned char set_opacity(unsigned char a) { return this->m_u8Opacity = a; }
+      constexpr unsigned char set_opacity(unsigned char a) { return this->m_uchOpacity = a; }
 
-      constexpr unsigned short set_red(unsigned short r) { this->m_u8Red = r >> 8; return r; }
+      constexpr unsigned short set_red(unsigned short r) { this->m_uchRed = r >> 8; return r; }
 
-      constexpr unsigned short set_green(unsigned short g) { this->m_u8Green = g >> 8; return g;}
+      constexpr unsigned short set_green(unsigned short g) { this->m_uchGreen = g >> 8; return g;}
 
-      constexpr unsigned short set_blue(unsigned short b) { this->m_u8Blue = b >> 8; return b;}
+      constexpr unsigned short set_blue(unsigned short b) { this->m_uchBlue = b >> 8; return b;}
 
-      constexpr unsigned short set_opacity(unsigned short a) { this->m_u8Opacity = a >> 8; return a;}
+      constexpr unsigned short set_opacity(unsigned short a) { this->m_uchOpacity = a >> 8; return a;}
 
-      constexpr int set_red(int r) { this->m_u8Red = r; return r; }
+      constexpr int set_red(int r) { this->m_uchRed = r; return r; }
 
-      constexpr int set_green(int g) { this->m_u8Green = g; return g; }
+      constexpr int set_green(int g) { this->m_uchGreen = g; return g; }
 
-      constexpr int set_blue(int b) { this->m_u8Blue = b; return b;}
+      constexpr int set_blue(int b) { this->m_uchBlue = b; return b;}
 
-      constexpr int set_opacity(int a) { this->m_u8Opacity = a; return a;}
+      constexpr int set_opacity(int a) { this->m_uchOpacity = a; return a;}
 
-      constexpr float set_red(float f) { this->m_u8Red = (unsigned char)(f * 255.0f); return f; }
+      constexpr float set_red(float f) { this->m_uchRed = (unsigned char)(f * 255.0f); return f; }
 
-      constexpr float set_green(float f) { this->m_u8Green = (unsigned char)(f * 255.0f); return f;  }
+      constexpr float set_green(float f) { this->m_uchGreen = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr float set_blue(float f) { this->m_u8Blue = (unsigned char)(f * 255.0f); return f;  }
+      constexpr float set_blue(float f) { this->m_uchBlue = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr float set_opacity(float f) { this->m_u8Opacity = (unsigned char)(f * 255.0f); return f;  }
+      constexpr float set_opacity(float f) { this->m_uchOpacity = (unsigned char)(f * 255.0f); return f;  }
 
-      constexpr double set_red(double f) { this->m_u8Red = (unsigned char)(f * 255.0); return f; }
+      constexpr double set_red(double f) { this->m_uchRed = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_green(double f) { this->m_u8Green = (unsigned char)(f * 255.0); return f; }
+      constexpr double set_green(double f) { this->m_uchGreen = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_blue(double f) { this->m_u8Blue = (unsigned char)(f * 255.0); return f; }
+      constexpr double set_blue(double f) { this->m_uchBlue = (unsigned char)(f * 255.0); return f; }
 
-      constexpr double set_opacity(double f) { this->m_u8Opacity = (unsigned char)(f * 255.0); return f; }
+      constexpr double set_opacity(double f) { this->m_uchOpacity = (unsigned char)(f * 255.0); return f; }
 
-      constexpr void set_opacity(class ::opacity opacity) { this->m_u8Opacity = (unsigned char)(opacity.byte_opacity() * 255.0); }
+      constexpr void set_opacity(class ::opacity opacity) { this->m_uchOpacity = (unsigned char)(opacity.byte_opacity() * 255.0); }
 
-      constexpr void set_opaque() { this->m_u8Opacity = 255; }
+      constexpr void set_opaque() { this->m_uchOpacity = 255; }
 
-      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = 255; }
-      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B, unsigned char A) { m_u8Red = R; m_u8Green = G; m_u8Blue = B; m_u8Opacity = A; }
-      constexpr void set_f64(double R, double G, double B) { m_u8Red = (unsigned char) (R * 255.); m_u8Green = (unsigned char) (G * 255.); m_u8Blue = (unsigned char) (B * 255.); m_u8Opacity = 255; }
-      constexpr void set_f64(double R, double G, double B, double A) { m_u8Red = (unsigned char)(R * 255.); m_u8Green = (unsigned char) (G * 255.); m_u8Blue = (unsigned char) (B * 255.); m_u8Opacity = (unsigned char) (A * 255.); }
+      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = 255; }
+      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B, unsigned char A) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = A; }
+      constexpr void set_f64(double R, double G, double B) { m_uchRed = (unsigned char) (R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = 255; }
+      constexpr void set_f64(double R, double G, double B, double A) { m_uchRed = (unsigned char)(R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = (unsigned char) (A * 255.); }
 
       void make_black_and_white();
 
@@ -302,10 +302,10 @@ namespace color
       constexpr void set(::color32_t color32)
       {
 
-         m_u8Red = color32.byte_red();
-         m_u8Green = color32.byte_green();
-         m_u8Blue = color32.byte_blue();
-         m_u8Opacity = color32.byte_opacity();
+         m_uchRed = color32.byte_red();
+         m_uchGreen = color32.byte_green();
+         m_uchBlue = color32.byte_blue();
+         m_uchOpacity = color32.byte_opacity();
 
       }
 
@@ -352,10 +352,10 @@ namespace color
       }
 
 
-      constexpr void rate_red(double dRate) { m_u8Red = (unsigned char)(m_u8Red * dRate); }
-      constexpr void rate_green(double dRate) { m_u8Green = (unsigned char)(m_u8Green * dRate); }
-      constexpr void rate_blue(double dRate) { m_u8Blue = (unsigned char)(m_u8Blue * dRate); }
-      constexpr void rate_opacity(double dRate) { m_u8Opacity = (unsigned char)(m_u8Opacity * dRate); }
+      constexpr void rate_red(double dRate) { m_uchRed = (unsigned char)(m_uchRed * dRate); }
+      constexpr void rate_green(double dRate) { m_uchGreen = (unsigned char)(m_uchGreen * dRate); }
+      constexpr void rate_blue(double dRate) { m_uchBlue = (unsigned char)(m_uchBlue * dRate); }
+      constexpr void rate_opacity(double dRate) { m_uchOpacity = (unsigned char)(m_uchOpacity * dRate); }
 
 
       inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }
@@ -385,10 +385,10 @@ namespace color
 
          double dComplement = 1.0 - dRate;
 
-         m_u8Red = (unsigned char)(m_u8Red * dComplement + color.m_u8Red * dRate);
-         m_u8Green = (unsigned char)(m_u8Green * dComplement + color.m_u8Green * dRate);
-         m_u8Blue = (unsigned char)(m_u8Blue * dComplement + color.m_u8Blue * dRate);
-         m_u8Opacity = (unsigned char)(m_u8Opacity * dComplement + color.m_u8Opacity * dRate);
+         m_uchRed = (unsigned char)(m_uchRed * dComplement + color.m_uchRed * dRate);
+         m_uchGreen = (unsigned char)(m_uchGreen * dComplement + color.m_uchGreen * dRate);
+         m_uchBlue = (unsigned char)(m_uchBlue * dComplement + color.m_uchBlue * dRate);
+         m_uchOpacity = (unsigned char)(m_uchOpacity * dComplement + color.m_uchOpacity * dRate);
 
       }
 
@@ -408,7 +408,7 @@ namespace color
       //double get_green_rate() const { return f64_green(); }
       //double get_blue_rate() const { return f64_blue(); }
 
-      constexpr double get_luminance() const { return (m_u8Red + m_u8Green + m_u8Blue) / (255.0 * 3.0); }
+      constexpr double get_luminance() const { return (m_uchRed + m_uchGreen + m_uchBlue) / (255.0 * 3.0); }
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
 
@@ -418,7 +418,7 @@ namespace color
       constexpr color & operator &=(const class ::opacity & opacity)
       {
 
-         this->m_u8Opacity = opacity.byte_opacity();
+         this->m_uchOpacity = opacity.byte_opacity();
 
          return *this;
 
@@ -490,10 +490,10 @@ namespace color
 // Returns a color value from red, green, blue values. Alpha will be set to 1.0f.
 //CLASS_DECL_ACME ::color::color RGBf_color(float r, float g, float b);
 
-// Returns a color value from red, green, blue and m_u8Opacity values.
+// Returns a color value from red, green, blue and m_uchOpacity values.
 //CLASS_DECL_ACME ::color::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 
-// Returns a color value from red, green, blue and m_u8Opacity values.
+// Returns a color value from red, green, blue and m_uchOpacity values.
 //CLASS_DECL_ACME::color::color RGBAf_color(float r, float g, float b, float a);
 
 // Linearly interpolates from color c0 to c1, and returns resulting color value.
@@ -506,11 +506,11 @@ CLASS_DECL_ACME::color::color TransRGBA_color(color c0, unsigned char a);
 CLASS_DECL_ACME::color::color TransRGBAf(color c0, float a);
 
 // Returns color value specified by hue, saturation and lightness.
-// HSL values are all in range [0..1], m_u8Opacity will be set to 255.
+// HSL values are all in range [0..1], m_uchOpacity will be set to 255.
 CLASS_DECL_ACME::color::color HSL_color(float h, float s, float l);
 
-// Returns color value specified by hue, saturation and lightness and m_u8Opacity.
-// HSL values are all in range [0..1], m_u8Opacity in range [0..255]
+// Returns color value specified by hue, saturation and lightness and m_uchOpacity.
+// HSL values are all in range [0..1], m_uchOpacity in range [0..255]
 CLASS_DECL_ACME ::color::color HSLA_color(float h, float s, float l, unsigned char a);
 
 
@@ -560,10 +560,10 @@ CLASS_DECL_ACME ::payload & assign(::payload & payload, const ::color::hls & hls
 
 //struct image_argb_type {};
 
-//constexpr auto red(const ::color::color & color) { return color.m_u8Red; }
-//constexpr auto green(const ::color::color & color) { return color.m_u8Green; }
-//constexpr auto blue(const ::color::color & color) { return color.m_u8Blue; }
-//constexpr auto opacity(const ::color::color & color) { return color.m_u8Opacity; }
+//constexpr auto red(const ::color::color & color) { return color.m_uchRed; }
+//constexpr auto green(const ::color::color & color) { return color.m_uchGreen; }
+//constexpr auto blue(const ::color::color & color) { return color.m_uchBlue; }
+//constexpr auto opacity(const ::color::color & color) { return color.m_uchOpacity; }
 
 template < typename RED, typename GREEN, typename BLUE, typename OPACITY >
 constexpr auto rgba(RED red, GREEN green, BLUE blue, OPACITY opacity)
@@ -684,10 +684,10 @@ namespace color
       if (&color != this)
       {
 
-         m_u8Red = color.m_u8Red;
-         m_u8Green = color.m_u8Green;
-         m_u8Blue = color.m_u8Blue;
-         m_u8Opacity = color.m_u8Opacity;
+         m_uchRed = color.m_uchRed;
+         m_uchGreen = color.m_uchGreen;
+         m_uchBlue = color.m_uchBlue;
+         m_uchOpacity = color.m_uchOpacity;
 
       }
 
@@ -717,7 +717,7 @@ namespace color
    constexpr rgba_t color::rgba() const
    {
 
-      return argb_rgba(m_u8Opacity, m_u8Red, m_u8Green, m_u8Blue);
+      return argb_rgba(m_uchOpacity, m_uchRed, m_uchGreen, m_uchBlue);
 
    }
 
@@ -725,7 +725,7 @@ namespace color
    constexpr bgra_t color::bgra() const
    {
 
-      return argb_bgra(m_u8Opacity, m_u8Red, m_u8Green, m_u8Blue);
+      return argb_bgra(m_uchOpacity, m_uchRed, m_uchGreen, m_uchBlue);
 
    }
 
@@ -749,10 +749,10 @@ namespace color
    constexpr void color::set(::rgba_t rgba)
    {
 
-      m_u8Red = rgba.byte_red();
-      m_u8Green = rgba.byte_green();
-      m_u8Blue = rgba.byte_blue();
-      m_u8Opacity = rgba.byte_opacity();
+      m_uchRed = rgba.byte_red();
+      m_uchGreen = rgba.byte_green();
+      m_uchBlue = rgba.byte_blue();
+      m_uchOpacity = rgba.byte_opacity();
 
    }
 
@@ -760,10 +760,10 @@ namespace color
    constexpr void color::set(bgra_t bgra)
    {
 
-      m_u8Red = bgra.byte_red();
-      m_u8Green = bgra.byte_green();
-      m_u8Blue = bgra.byte_blue();
-      m_u8Opacity = bgra.byte_opacity();
+      m_uchRed = bgra.byte_red();
+      m_uchGreen = bgra.byte_green();
+      m_uchBlue = bgra.byte_blue();
+      m_uchOpacity = bgra.byte_opacity();
 
    }
 
@@ -771,10 +771,10 @@ namespace color
    //constexpr void color::set_bgr(unsigned int ui)
    //{
 
-   //   m_u8Red = bgr_byte_red(ui);
-   //   m_u8Green = bgr_byte_green(ui);
-   //   m_u8Blue = bgr_byte_blue(ui);
-   //   m_u8Opacity = bgr_byte_opacity(ui);
+   //   m_uchRed = bgr_byte_red(ui);
+   //   m_uchGreen = bgr_byte_green(ui);
+   //   m_uchBlue = bgr_byte_blue(ui);
+   //   m_uchOpacity = bgr_byte_opacity(ui);
 
    //}
 
@@ -782,10 +782,10 @@ namespace color
    //constexpr void color::set_bgra(unsigned int ui)
    //{
 
-   //   m_u8Red = bgra_byte_red(ui);
-   //   m_u8Green = bgra_byte_green(ui);
-   //   m_u8Blue = bgra_byte_blue(ui);
-   //   m_u8Opacity = bgra_byte_opacity(ui);
+   //   m_uchRed = bgra_byte_red(ui);
+   //   m_uchGreen = bgra_byte_green(ui);
+   //   m_uchBlue = bgra_byte_blue(ui);
+   //   m_uchOpacity = bgra_byte_opacity(ui);
 
    //}
 
@@ -844,10 +844,10 @@ constexpr ::color::color color32_color_with_byte_opacity(unsigned char u8Opacity
 //
 //   ::color::color color;
 //
-//   color.m_u8Red = color32_byte_red(color32);
-//   color.m_u8Green = color32_byte_green(color32);
-//   color.m_u8Blue = color32_byte_blue(color32);
-//   color.m_u8Opacity = color32_byte_opacity(color32);
+//   color.m_uchRed = color32_byte_red(color32);
+//   color.m_uchGreen = color32_byte_green(color32);
+//   color.m_uchBlue = color32_byte_blue(color32);
+//   color.m_uchOpacity = color32_byte_opacity(color32);
 //
 //   return color;
 //

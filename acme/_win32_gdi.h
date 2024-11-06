@@ -9,7 +9,7 @@
 constexpr COLORREF win32_COLORREF(const ::color::color & color)
 {
 
-   return RGB(color.m_u8Red, color.m_u8Green, color.m_u8Blue);
+   return RGB(color.m_uchRed, color.m_uchGreen, color.m_uchBlue);
 
 }
 

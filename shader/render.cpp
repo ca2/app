@@ -373,7 +373,7 @@ namespace app_shader
          if (strLabel.has_char())
          {
 
-            colorBackground.m_u8Opacity = 128;
+            colorBackground.m_uchOpacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 
@@ -509,7 +509,7 @@ namespace app_shader
 
             }
 
-            colorBackground.m_u8Opacity = 128;
+            colorBackground.m_uchOpacity = 128;
 
             ::draw2d::brush_pointer pbrush;
 

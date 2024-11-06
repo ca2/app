@@ -28,7 +28,7 @@ namespace universal_windows
       virtual ::file::path get_module_path(HMODULE hmodule) override;
       virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
       virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
-      virtual void get_all_processes(u32_array & dwa) override;
+      virtual void get_all_processes(unsigned_int_array & dwa) override;
       virtual ::file::path get_process_path(unsigned int dwPid) override;
 
 

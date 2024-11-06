@@ -113,7 +113,7 @@ namespace earth
    }
 
 
-   CLASS_DECL_ACMEint days_from_1jan(int year, int month, int day);
+   CLASS_DECL_ACME int days_from_1jan(int year, int month, int day);
 
 
 

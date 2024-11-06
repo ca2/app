@@ -1373,7 +1373,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.m_u8Opacity > 0)
+      if (colorBackground.m_uchOpacity > 0)
       {
 
          auto rectangleX = this->rectangle();

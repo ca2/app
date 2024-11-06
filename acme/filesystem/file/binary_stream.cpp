@@ -240,19 +240,19 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    }
    break;
    case e_type_i8:
-      stream << payload.m_i8;
+      stream << payload.m_ch;
       break;
    case e_type_i16:
-      stream << payload.m_i16;
+      stream << payload.m_sh;
       break;
    case e_type_u8:
-      stream << payload.m_u8;
+      stream << payload.m_uch;
       break;
    case e_type_u16:
-      stream << payload.m_u16;
+      stream << payload.m_ush;
       break;
    case e_type_i32:
-      stream << payload.m_i32;
+      stream << payload.m_i;
       break;
    case e_type_i64:
       stream << payload.m_i64;
@@ -288,7 +288,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream << *payload.m_pu64;
       break;
    case e_type_f64:
-      stream << payload.m_f64;
+      stream << payload.m_d;
       break;
    case e_type_bool:
       stream << payload.m_b;
@@ -553,7 +553,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(e_type_i32, false);
 
-      *this >> payload.m_i32;
+      *this >> payload.m_i;
 
    }
    break;
@@ -601,7 +601,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_f64, false);
 
-      *this >> payload.m_f64;
+      *this >> payload.m_d;
 
    }
    break;
@@ -610,7 +610,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_f32, false);
 
-      *this >> payload.m_f64;
+      *this >> payload.m_d;
 
    }
    break;

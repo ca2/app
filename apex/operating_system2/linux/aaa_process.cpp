@@ -12,7 +12,7 @@
 
 int create_process6(const char * _cmd_line, int * pprocessId);
 
-CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
+CLASS_DECL_APEX void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 {
 
    __UNREFERENCED_PARAMETER(dwa);

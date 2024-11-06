@@ -1178,7 +1178,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;

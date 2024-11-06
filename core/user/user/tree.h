@@ -39,7 +39,7 @@ namespace user
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
-      u32_array                                 m_dwaItemState;
+      unsigned_int_array                                 m_dwaItemState;
       ::image::image_list_pointer                    m_pimagelist;
       ::collection::index                                     m_iImageCollapse;
       ::collection::index                                     m_iImageExpand;

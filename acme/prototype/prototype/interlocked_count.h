@@ -55,7 +55,7 @@ protected:
 
    //char                 m_sz[8];
    //int *              m_plong;
-   int                   m_i32;
+   int                   m_i;
 
 
 public:
@@ -78,7 +78,7 @@ public:
    inline interlocked_i32& operator-=(int l);
 
 
-   inline int as_integer() const { return m_i32;}
+   inline int as_integer() const { return m_i;}
 
 
 };
@@ -199,7 +199,7 @@ inline interlocked_i64& interlocked_i64::operator-=(::i64 i)
 
 
 inline interlocked_i32::interlocked_i32(int i) :
-   m_i32(i)
+   m_i(i)
 {
 
    //construct(l);
@@ -210,7 +210,7 @@ inline interlocked_i32::interlocked_i32(int i) :
 inline interlocked_i32& interlocked_i32::operator = (int i)
 {
 
-   atomic_assign32(&m_i32, i);
+   atomic_assign32(&m_i, i);
 
    return *this;
 
@@ -220,7 +220,7 @@ inline interlocked_i32& interlocked_i32::operator = (int i)
 inline interlocked_i32::operator int() const
 {
 
-   return m_i32;
+   return m_i;
 
 }
 
@@ -228,7 +228,7 @@ inline interlocked_i32::operator int() const
 inline interlocked_i32& interlocked_i32::operator++()
 {
 
-   atomic_increment32(&m_i32);
+   atomic_increment32(&m_i);
 
    return *this;
 
@@ -238,7 +238,7 @@ inline interlocked_i32& interlocked_i32::operator++()
 inline interlocked_i32& interlocked_i32::operator--()
 {
 
-   atomic_decrement32(&m_i32);
+   atomic_decrement32(&m_i);
 
    return *this;
 
@@ -248,9 +248,9 @@ inline interlocked_i32& interlocked_i32::operator--()
 inline int interlocked_i32::operator++(int)
 {
 
-   auto i = m_i32;
+   auto i = m_i;
 
-   atomic_increment32(&m_i32);
+   atomic_increment32(&m_i);
 
    return i;
 
@@ -260,9 +260,9 @@ inline int interlocked_i32::operator++(int)
 inline int interlocked_i32::operator--(int)
 {
 
-   auto i = m_i32;
+   auto i = m_i;
 
-   atomic_decrement32(&m_i32);
+   atomic_decrement32(&m_i);
 
    return i;
 
@@ -272,7 +272,7 @@ inline int interlocked_i32::operator--(int)
 inline interlocked_i32& interlocked_i32::operator+=(int i)
 {
 
-   atomic_add32(&m_i32, i);
+   atomic_add32(&m_i, i);
 
    return *this;
 
@@ -282,7 +282,7 @@ inline interlocked_i32& interlocked_i32::operator+=(int i)
 inline interlocked_i32& interlocked_i32::operator-=(int l)
 {
 
-   atomic_subtract32(&m_i32, l);
+   atomic_subtract32(&m_i, l);
 
    return *this;
 

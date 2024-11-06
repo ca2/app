@@ -70,27 +70,27 @@ public:
       type_atom                              m_typeatom;
       bool                                   m_b;
       bool * m_pb;
-      char                                   m_i8;
-      unsigned char                                   m_u8;
-      short                                  m_i16;
-      unsigned short                                  m_u16;
-      int                                  m_i32;
-      unsigned int                                  m_ui;
+      char                                   m_ch;
+      unsigned char                          m_uch;
+      short                                  m_sh;
+      unsigned short                         m_ush;
+      int                                    m_i;
+      unsigned int                           m_ui;
       ::i64                                  m_i64;
       ::u64                                  m_u64;
-      char * m_pi8;
-      unsigned char * m_pu8;
-      short * m_pi16;
-      unsigned short * m_pu16;
-      int * m_pi32;
-      unsigned int * m_pu32;
+      char *                                 m_pich;
+      unsigned char * m_puch;
+      short * m_psh;
+      unsigned short * m_push;
+      int * m_pi;
+      unsigned int * m_pui;
       ::i64 * m_pi64;
       ::u64 * m_pu64;
       ::string * m_pstr;
-      float                                  m_f32;
-      float * m_pf32;
-      double                                  m_f64;
-      double * m_pf64;
+      float                                  m_f;
+      float * m_pf;
+      double                                  m_d;
+      double * m_pd;
       //payload * m_ppayload;
       ::earth::time                          m_earthtime;
       file_time                              m_filetime;
@@ -176,17 +176,17 @@ public:
       payload.m_payloadall = {};
    }
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
-   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
-   template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
-   template < same_as < unsigned char > U8 > payload(U8 u) : m_etype(e_type_u8) {m_u8 = u;}
-   template < same_as < short > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}
-   template < same_as < unsigned short > U16 > payload(U16 u) : m_etype(e_type_u16) {m_u16 = u;}
-   template < same_as < int > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i32 = i;}
+   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_ch = c;}
+   template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_ch = i;}
+   template < same_as < unsigned char > U8 > payload(U8 u) : m_etype(e_type_u8) {m_uch = u;}
+   template < same_as < short > I16 > payload(I16 i) : m_etype(e_type_i16) {m_sh = i;}
+   template < same_as < unsigned short > U16 > payload(U16 u) : m_etype(e_type_u16) {m_ush = u;}
+   template < same_as < int > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i = i;}
    template < same_as < unsigned int > U32 > payload(U32 u) : m_etype(e_type_u32) {m_ui = u;}
    template < same_as < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
    template < same_as < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
-   template < same_as < float > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
-   template < same_as < double > F64 > payload(F64 f) : m_etype(e_type_f64) {m_f64 = f;}
+   template < same_as < float > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f = f;}
+   template < same_as < double > F64 > payload(F64 f) : m_etype(e_type_f64) {m_d = f;}
 #ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
@@ -699,16 +699,16 @@ public:
    long & long_reference();
    unsigned long & unsigned_long_reference();
 #endif
-   char & i8_reference();
-   unsigned char & byte_reference();
-   short & i16_reference();
-   unsigned short & u16_reference();
+   char & char_reference();
+   unsigned char & unsigned_char_reference();
+   short & short_reference();
+   unsigned short & unsigned_short_reference();
    int & int_reference();
-   unsigned int & u32_reference();
+   unsigned int & unsigned_int_reference();
    ::i64 & i64_reference();
    ::u64 & u64_reference();
-   float & f32_reference();
-   double & f64_reference();
+   float & float_reference();
+   double & double_reference();
 
 
    template < primitive_signed SIGNED >
@@ -730,13 +730,13 @@ public:
       else if constexpr(sizeof(SIGNED) == 2)
       {
 
-         return (SIGNED&) this->i16_reference();
+         return (SIGNED&) this->short_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 1)
       {
 
-         return (SIGNED&) this->i8_reference();
+         return (SIGNED&) this->char_reference();
 
       }
       else
@@ -763,19 +763,19 @@ public:
       else if constexpr(sizeof(UNSIGNED) == 4)
       {
 
-         return (UNSIGNED&) this->u32_reference();
+         return (UNSIGNED&) this->unsigned_int_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 2)
       {
 
-         return (UNSIGNED&) this->u16_reference();
+         return (UNSIGNED&) this->unsigned_short_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 1)
       {
 
-         return (UNSIGNED&) this->byte_reference();
+         return (UNSIGNED&) this->unsigned_char_reference();
 
       }
       else
@@ -908,16 +908,16 @@ public:
 
 
    payload & assign_bool   (bool     b)   { return __assign_primitive(m_b   , e_type_bool  , b ); }
-   payload & assign_i8     (char     i)   { return __assign_primitive(m_i8  , e_type_i8    , i ); }
-   payload & assign_u8     (unsigned char     u)   { return __assign_primitive(m_u8  , e_type_u8    , u ); }
-   payload & assign_i16    (short    i)   { return __assign_primitive(m_i16 , e_type_i16   , i ); }
-   payload & assign_u16    (unsigned short    u)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
-   payload & assign_i32    (int    i)   { return __assign_primitive(m_i32 , e_type_i32   , i ); }
+   payload & assign_i8     (char     i)   { return __assign_primitive(m_ch  , e_type_i8    , i ); }
+   payload & assign_u8     (unsigned char     u)   { return __assign_primitive(m_uch  , e_type_u8    , u ); }
+   payload & assign_i16    (short    i)   { return __assign_primitive(m_sh , e_type_i16   , i ); }
+   payload & assign_u16    (unsigned short    u)   { return __assign_primitive(m_ush , e_type_u16   , u ); }
+   payload & assign_i32    (int    i)   { return __assign_primitive(m_i , e_type_i32   , i ); }
    payload & assign_u32    (unsigned int    u)   { return __assign_primitive(m_ui , e_type_u32   , u ); }
    payload & assign_i64    (::i64    i)   { return __assign_primitive(m_i64 , e_type_i64   , i ); }
    payload & assign_u64    (::u64    u)   { return __assign_primitive(m_u64 , e_type_u64   , u ); }
-   payload & assign_f32    (float    f)   { return __assign_primitive(m_f32 , e_type_f32   , f ); }
-   payload & assign_f64    (double    f)   { return __assign_primitive(m_f64 , e_type_f64   , f ); }
+   payload & assign_f32    (float    f)   { return __assign_primitive(m_f , e_type_f32   , f ); }
+   payload & assign_f64    (double    f)   { return __assign_primitive(m_d , e_type_f64   , f ); }
 
 
    payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }

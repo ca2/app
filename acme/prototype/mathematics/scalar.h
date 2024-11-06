@@ -16,33 +16,33 @@ public:
    union
    {
 
-      char        m_i8;
-      unsigned char        m_u8;
-      short       m_i16;
-      unsigned short       m_u16;
-      int       m_i32;
+      char        m_ch;
+      unsigned char        m_uch;
+      short       m_sh;
+      unsigned short       m_ush;
+      int       m_i;
       unsigned int       m_ui;
       ::i64       m_i64;
       ::u64       m_u64;
 
-      float       m_f32;
-      double       m_f64;
+      float       m_f;
+      double       m_d;
 
    };
 
    enum_number    m_enumber;
 
    number(enum_number enumber = e_number_none) { m_i64 = 0; m_enumber = enumber; }
-   number(char i) { m_i8 = i; m_enumber = e_number_i8; }
-   number(unsigned char u) { m_u8 = u; m_enumber = e_number_u8; }
-   number(short i) { m_i16 = i; m_enumber = e_number_i16; }
-   number(unsigned short u) { m_u16 = u; m_enumber = e_number_u16; }
-   number(int i) { m_i32 = i; m_enumber = e_number_i32; }
+   number(char i) { m_ch = i; m_enumber = e_number_i8; }
+   number(unsigned char u) { m_uch = u; m_enumber = e_number_u8; }
+   number(short i) { m_sh = i; m_enumber = e_number_i16; }
+   number(unsigned short u) { m_ush = u; m_enumber = e_number_u16; }
+   number(int i) { m_i = i; m_enumber = e_number_i32; }
    number(unsigned int u) { m_ui = u; m_enumber = e_number_u32; }
    number(i64 i) { m_i64 = i; m_enumber = e_number_i64; }
    number(u64 u) { m_u64 = u; m_enumber = e_number_u64; }
-   number(float f) { m_f32 = f; m_enumber = e_number_f32; }
-   number(double d) { m_f64 = d; m_enumber = e_number_f64; }
+   number(float f) { m_f = f; m_enumber = e_number_f32; }
+   number(double d) { m_d = d; m_enumber = e_number_f64; }
 //#ifdef __clang__
 //   number(long l) { m_i64 = l; m_enumber = e_number_i64; }
 //#endif
@@ -63,15 +63,15 @@ public:
       case e_number_none:
          return (T)0;
       case e_number_i8:
-         return (T)m_i8;
+         return (T)m_ch;
       case e_number_u8:
-         return(T)m_u8;
+         return(T)m_uch;
       case e_number_i16:
-         return(T)m_i16;
+         return(T)m_sh;
       case e_number_u16:
-         return (T)m_u16;
+         return (T)m_ush;
       case e_number_i32:
-         return(T)m_i32;
+         return(T)m_i;
       case e_number_u32:
          return (T)m_ui;
       case e_number_i64:
@@ -79,9 +79,9 @@ public:
       case e_number_u64:
          return (T)m_u64;
       case e_number_f32:
-         return (T)m_f32;
+         return (T)m_f;
       case e_number_f64:
-         return(T)m_f64;
+         return(T)m_d;
       };
       return (T)0;
    }
@@ -95,19 +95,19 @@ public:
       case e_number_none:
          break;
       case e_number_i8:
-         m_i8 = (char) t;
+         m_ch = (char) t;
          break;
       case e_number_u8:
-         m_u8 = (unsigned char) t;
+         m_uch = (unsigned char) t;
          break;
       case e_number_i16:
-         m_i16 = (short) t;
+         m_sh = (short) t;
          break;
       case e_number_u16:
-         m_u16 = (unsigned short)t;
+         m_ush = (unsigned short)t;
          break;
       case e_number_i32:
-         m_i32 = (int)t;
+         m_i = (int)t;
          break;
       case e_number_u32:
          m_ui = (unsigned int)t;
@@ -119,10 +119,10 @@ public:
          m_u64 = (::u64)t;
          break;
       case e_number_f32:
-         m_f32 = (float)t;
+         m_f = (float)t;
          break;
       case e_number_f64:
-         m_f64 = (double)t;
+         m_d = (double)t;
          break;
       };
 

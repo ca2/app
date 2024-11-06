@@ -35,10 +35,10 @@ inline binary_stream & operator >> (binary_stream & s, ::color::HLS & hls)
 inline binary_stream & operator << (binary_stream & s, const ::color::color & color)
 {
 
-   s << color.m_u8Red;
-   s << color.m_u8Green;
-   s << color.m_u8Blue;
-   s << color.m_u8Opacity;
+   s << color.m_uchRed;
+   s << color.m_uchGreen;
+   s << color.m_uchBlue;
+   s << color.m_uchOpacity;
 
    return s;
 
@@ -49,10 +49,10 @@ inline binary_stream & operator << (binary_stream & s, const ::color::color & co
 inline binary_stream & operator >> (binary_stream & s, ::color::color & color)
 {
 
-   s >> color.m_u8Red;
-   s >> color.m_u8Green;
-   s >> color.m_u8Blue;
-   s >> color.m_u8Opacity;
+   s >> color.m_uchRed;
+   s >> color.m_uchGreen;
+   s >> color.m_uchBlue;
+   s >> color.m_uchOpacity;
 
    return s;
 

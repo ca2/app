@@ -386,7 +386,7 @@ payload::payload(::u64 * pu) :
 //}
 //
 //
-//payload::payload(double double)
+//payload::payload(double d)
 //{
 //
 //   m_etype = e_type_new;
@@ -610,7 +610,7 @@ bool payload::target_constrained_assign(const ::payload & payload)
    else if(m_etype == e_type_i8)
    {
 
-      m_i8 = payload.as_char();
+      m_ch = payload.as_char();
 
    }
 //   else if(m_etype == e_type_enum_check)
@@ -697,40 +697,40 @@ class ::payload & payload::operator ++(int)
    case e_type_element:
    case e_type_path:
       set_type(e_type_i32);
-      m_i32 = 1;
+      m_i = 1;
       break;
    case e_type_bool:
       if(!m_b)
       {
          set_type(e_type_i32);
-         m_i32 = 1;
+         m_i = 1;
       }
       else
       {
          set_type(e_type_i32);
-         m_i32 = 2;
+         m_i = 2;
       }
       break;
    case e_type_string:
    {
       auto i = atoi(m_str) + 1;
       set_type(e_type_i32);
-      m_i32 = i;
+      m_i = i;
 
    }
       break;
    case e_type_f64:
-      m_f64 += 1.0;
+      m_d += 1.0;
       break;
    case e_type_i32:
-      m_i32++;
+      m_i++;
       break;
    case e_type_u32:
       m_ui++;
       break;
    default:
       set_type(e_type_i32, false);
-      m_i32 = 1;
+      m_i = 1;
       break;
    }
    return *this;
@@ -790,19 +790,19 @@ void payload::set_type(enum_type etype, bool bConvert)
          switch (etype)
          {
          case e_type_i8:
-            m_i32 = this->as_char();
+            m_i = this->as_char();
             break;
          case e_type_u8:
             m_ui = this->as_unsigned_char();
             break;
          case e_type_i16:
-            m_i32 = this->as_short();
+            m_i = this->as_short();
             break;
          case e_type_u16:
             m_ui = this->as_unsigned_short();
             break;
          case e_type_i32:
-            m_i32 = this->as_int();
+            m_i = this->as_int();
             break;
          case e_type_u32:
             m_ui = this->as_unsigned_int();
@@ -814,7 +814,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_u64 = this->as_u64();
             break;
          case e_type_f64:
-            m_f64 = this->as_f64();
+            m_d = this->as_f64();
             break;
          case e_type_string:
             m_str = ::transfer(this->as_string());
@@ -1124,7 +1124,7 @@ class ::payload & payload::operator = (para_return & eret)
 //
 //       set_type(e_type_i32, false);
 //
-//      m_i32 = i;
+//      m_i = i;
 //
 //   }
 //
@@ -1296,7 +1296,7 @@ class ::payload & payload::operator = (long l)
 
    set_type(e_type_i32,false);
 
-   m_i32 = l;
+   m_i = l;
 
    return *this;
 
@@ -1319,7 +1319,7 @@ class ::payload & payload::operator = (long l)
    class ::payload & payload::operator = (long l)
    {
       set_type(e_type_i32,false);
-      m_i32 = l;
+      m_i = l;
       return *this;
    }
 #endif
@@ -1385,7 +1385,7 @@ class ::payload & payload::operator = (long l)
 //
 //      }
 //
-//      m_f32 = float;
+//      m_f = float;
 //
 //   }
 //
@@ -1394,7 +1394,7 @@ class ::payload & payload::operator = (long l)
 //}
 //
 //
-//class ::payload & payload::operator = (double double)
+//class ::payload & payload::operator = (double d)
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -1412,37 +1412,37 @@ class ::payload & payload::operator = (long l)
 //   else if (m_etype == e_type_pf64)
 //   {
 //
-//      *m_pf64 = double;
+//      *m_pf64 = d;
 //
 //   }
 //   else if (m_etype == e_type_pf32)
 //   {
 //
-//      *m_pf32 = (float) double;
+//      *m_pf32 = (float) d;
 //
 //   }
 //   else if (m_etype == e_type_pi8)
 //   {
 //
-//      *m_pi8 = (char) double;
+//      *m_pi8 = (char) d;
 //
 //   }
 //   else if (m_etype == e_type_pi16)
 //   {
 //
-//      *m_pi16 = (short)double;
+//      *m_pi16 = (short)d;
 //
 //   }
 //   else if (m_etype == e_type_pi32)
 //   {
 //
-//      *m_pi32 = (int)double;
+//      *m_pi32 = (int)d;
 //
 //   }
 //   else if (m_etype == e_type_pi64)
 //   {
 //
-//      *m_pi64 = (::i64)double;
+//      *m_pi64 = (::i64)d;
 //
 //   }
 //   else
@@ -1452,7 +1452,7 @@ class ::payload & payload::operator = (long l)
 //         set_type(e_type_f64, false);
 //
 //      }
-//      m_f64 = double;
+//      m_d = d;
 //
 //   }
 //
@@ -1699,19 +1699,19 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_b = payload.m_b;
             break;
          case e_type_i8:
-            m_i8 = payload.m_i8;
+            m_ch = payload.m_ch;
             break;
          case e_type_u8:
-            m_u8 = payload.m_u8;
+            m_uch = payload.m_uch;
             break;
          case e_type_i16:
-            m_i16 = payload.m_i16;
+            m_sh = payload.m_sh;
             break;
          case e_type_u16:
-            m_u16 = payload.m_u16;
+            m_ush = payload.m_ush;
             break;
          case e_type_i32:
-            m_i32 = payload.m_i32;
+            m_i = payload.m_i;
             break;
          case e_type_u32:
             m_ui = payload.m_ui;
@@ -1747,10 +1747,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_pu64 = payload.m_pu64;
             break;
          case e_type_f32:
-            m_f32 = payload.m_f32;
+            m_f = payload.m_f;
             break;
          case e_type_f64:
-            m_f64 = payload.m_f64;
+            m_d = payload.m_d;
             break;
          case e_type_string:
             m_str = payload.m_str;
@@ -2238,7 +2238,7 @@ bool payload::is_true() const
       case e_type_pstring:
          return m_pstr && !m_pstr->is_empty() && m_pstr->case_insensitive_order("no") != 0 && m_pstr->case_insensitive_order("false") != 0 && m_pstr->order("0") != 0;
       case e_type_i32:
-         return m_i32 != 0;
+         return m_i != 0;
       case e_type_u32:
          return m_ui != 0;
       case e_type_i64:
@@ -2246,7 +2246,7 @@ bool payload::is_true() const
       case e_type_u64:
          return m_u64 != 0;
       case e_type_f64:
-         return m_f64 != 0;
+         return m_d != 0;
       case e_type_bool:
          return m_b;
       //case e_type_payload_pointer:
@@ -2929,14 +2929,14 @@ bool payload::equals_unsigned(::u64 u) const
 //   return m_etype == e_type_string && m_str == str;
 //}
 //
-//bool payload::strictly_equal(double double) const
+//bool payload::strictly_equal(double d) const
 //{
-//   return m_etype == e_type_f64 && m_f64 == double;
+//   return m_etype == e_type_f64 && m_d == d;
 //}
 //
 //bool payload::strictly_equal(int i) const
 //{
-//   return m_etype == e_type_i32 && m_i32 == i;
+//   return m_etype == e_type_i32 && m_i == i;
 //}
 //
 //bool payload::strictly_equal(bool b) const
@@ -2959,14 +2959,14 @@ bool payload::equals_unsigned(::u64 u) const
 //   return m_etype != e_type_string || m_str != str;
 //}
 //
-//bool payload::strictly_different(double double) const
+//bool payload::strictly_different(double d) const
 //{
-//   return m_etype != e_type_f64 || m_f64 != double;
+//   return m_etype != e_type_f64 || m_d != d;
 //}
 //
 //bool payload::strictly_different(int i) const
 //{
-//   return m_etype != e_type_i32 || m_i32 != i;
+//   return m_etype != e_type_i32 || m_i != i;
 //}
 //
 //bool payload::strictly_different(bool b) const
@@ -3112,7 +3112,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if(m_etype == ::e_type_i32)
       {
 
-         str = ::as_string(m_i32);
+         str = ::as_string(m_i);
 
       }
       else if(m_etype == ::e_type_u32)
@@ -3136,7 +3136,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if(m_etype == ::e_type_f64)
       {
 
-         str = ::as_string(m_f64);
+         str = ::as_string(m_d);
 
       }
       else if(m_etype == ::e_type_atom)
@@ -3294,31 +3294,31 @@ string & payload::string_reference()
       if (m_etype == ::e_type_i8)
       {
 
-         atom = (::collection::index) m_i8;
+         atom = (::collection::index) m_ch;
 
       }
       else if (m_etype == ::e_type_u8)
       {
 
-         atom = (::collection::index)m_u8;
+         atom = (::collection::index)m_uch;
 
       }
       else if (m_etype == ::e_type_i16)
       {
 
-         atom = (::collection::index)m_i8;
+         atom = (::collection::index)m_ch;
 
       }
       else if (m_etype == ::e_type_u16)
       {
 
-         atom = (::collection::index)m_u8;
+         atom = (::collection::index)m_uch;
 
       }
       else if(m_etype == ::e_type_i32)
       {
          
-         atom = m_i32;
+         atom = m_i;
 
       }
       else if (m_etype == ::e_type_u32)
@@ -3344,7 +3344,7 @@ string & payload::string_reference()
 
          ::string str;
 
-         str.formatf("%f", m_f32);
+         str.formatf("%f", m_f);
 
          atom = str;
 
@@ -3354,7 +3354,7 @@ string & payload::string_reference()
 
          ::string str;
 
-         str.formatf("%f", m_f64);
+         str.formatf("%f", m_d);
 
          atom = str;
 
@@ -3440,7 +3440,7 @@ int payload::as_int(int iDefault) const
    case e_type_string:
       return atoi(m_str);
    case e_type_f64:
-      return (int) m_f64;
+      return (int) m_d;
    case e_type_pi8:
       return (int)*m_pi8;
    case e_type_pi16:
@@ -3458,17 +3458,17 @@ int payload::as_int(int iDefault) const
    case e_type_pu64:
       return (int)*m_pu64;
    case e_type_i8:
-      return (int) m_i8;
+      return (int) m_ch;
    case e_type_i16:
-      return (int) m_i32;
+      return (int) m_i;
    case e_type_i32:
       return m_ui;
    case e_type_i64:
       return (int) m_i64;
    case e_type_u8:
-      return (int)m_u8;
+      return (int)m_uch;
    case e_type_u16:
-      return (int)m_u16;
+      return (int)m_ush;
    case e_type_u32:
       return (int)m_ui;
    case e_type_u64:
@@ -3524,11 +3524,11 @@ int payload::as_int(int iDefault) const
 //
 //      set_type(e_type_i32, false);
 //
-//      m_i32 = i;
+//      m_i = i;
 //
 //   }
 //
-//   return m_i32;
+//   return m_i;
 //
 //}
 //
@@ -3545,7 +3545,7 @@ unsigned int payload::as_unsigned_int(unsigned int uiDefault) const
    case e_type_string:
       return atoi(m_str);
    case e_type_i32:
-      return m_i32;
+      return m_i;
    case e_type_u32:
       return (unsigned int) m_ui;
    case e_type_element:
@@ -3612,15 +3612,15 @@ unsigned int payload::as_unsigned_int(unsigned int uiDefault) const
       case e_type_string:
          return ansi_to_i64(m_str);
       case e_type_i8:
-         return m_i8;
+         return m_ch;
       case e_type_u8:
-         return m_u8;
+         return m_uch;
       case e_type_i16:
-         return m_i16;
+         return m_sh;
       case e_type_u16:
-         return m_u16;
+         return m_ush;
       case e_type_i32:
-         return m_i32;
+         return m_i;
       case e_type_u32:
          return m_ui;
       case e_type_i64:
@@ -3749,7 +3749,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
    case e_type_string:
       return atol(m_str);
    case e_type_i32:
-      return m_i32;
+      return m_i;
    case e_type_u32:
       return m_ui;
    case e_type_i64:
@@ -3757,9 +3757,9 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
    case e_type_u64:
       return m_u64;
    case e_type_f32:
-      return (::u64) m_f32;
+      return (::u64) m_f;
    case e_type_f64:
-      return (::u64) m_f64;
+      return (::u64) m_d;
    case e_type_element:
    case e_type_path:
       return uiDefault;
@@ -3893,7 +3893,7 @@ char payload::as_char(char iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (char)m_i32;
+      return (char)m_i;
    case e_type_u32:
       return (char)m_ui;
    case e_type_i64:
@@ -3901,9 +3901,9 @@ char payload::as_char(char iDefault) const
    case e_type_u64:
       return (char)m_u64;
    case e_type_f32:
-      return (char) m_f32;
+      return (char) m_f;
    case e_type_f64:
-      return (char)m_f64;
+      return (char)m_d;
    case e_type_string:
 #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
       return (char)atof(m_str);
@@ -3935,7 +3935,7 @@ unsigned char payload::as_unsigned_char(unsigned char uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned char)m_i32;
+      return (unsigned char)m_i;
    case e_type_u32:
       return (unsigned char)m_ui;
    case e_type_i64:
@@ -3943,9 +3943,9 @@ unsigned char payload::as_unsigned_char(unsigned char uDefault) const
    case e_type_u64:
       return (unsigned char)m_u64;
    case e_type_f32:
-      return (unsigned char)m_f32;
+      return (unsigned char)m_f;
    case e_type_f64:
-      return (unsigned char)m_f64;
+      return (unsigned char)m_d;
    case e_type_string:
 #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
       return (unsigned char)atof(m_str);
@@ -3985,11 +3985,11 @@ unsigned char payload::as_unsigned_char(unsigned char uDefault) const
 //
 //      set_type(e_type_u8, false);
 //
-//      m_u8 = i;
+//      m_uch = i;
 //
 //   }
 //
-//   return m_u8;
+//   return m_uch;
 //
 //}
 
@@ -4004,7 +4004,7 @@ short payload::as_short(short iDefault) const
    case e_type_empty:
       return iDefault;
    case e_type_i32:
-      return (short)m_i32;
+      return (short)m_i;
    case e_type_u32:
       return (short)m_ui;
    case e_type_i64:
@@ -4012,9 +4012,9 @@ short payload::as_short(short iDefault) const
    case e_type_u64:
       return (short)m_u64;
    case e_type_f32:
-      return (short)m_f32;
+      return (short)m_f;
    case e_type_f64:
-      return (short)m_f64;
+      return (short)m_d;
    case e_type_string:
 #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
       return (short)atof(m_str);
@@ -4055,11 +4055,11 @@ short payload::as_short(short iDefault) const
 //
 //      set_type(e_type_i16, false);
 //
-//      m_i16 = i;
+//      m_sh = i;
 //
 //   }
 //
-//   return m_i16;
+//   return m_sh;
 //
 //}
 
@@ -4074,7 +4074,7 @@ unsigned short payload::as_unsigned_short(unsigned short uDefault) const
    case e_type_empty:
       return uDefault;
    case e_type_i32:
-      return (unsigned short)m_i32;
+      return (unsigned short)m_i;
    case e_type_u32:
       return (unsigned short)m_ui;
    case e_type_i64:
@@ -4082,9 +4082,9 @@ unsigned short payload::as_unsigned_short(unsigned short uDefault) const
    case e_type_u64:
       return (unsigned short)m_u64;
    case e_type_f32:
-      return (unsigned short)m_f32;
+      return (unsigned short)m_f;
    case e_type_f64:
-      return (unsigned short)m_f64;
+      return (unsigned short)m_d;
    case e_type_string:
 #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
       return (unsigned short)atof(m_str);
@@ -4125,11 +4125,11 @@ unsigned short payload::as_unsigned_short(unsigned short uDefault) const
 //
 //      set_type(e_type_u16, false);
 //
-//      m_u16 = i;
+//      m_ush = i;
 //
 //   }
 //
-//   return m_u16;
+//   return m_ush;
 //
 //}
 //
@@ -4144,7 +4144,7 @@ float payload::as_f32(float fDefault) const
    case e_type_empty:
       return fDefault;
    case e_type_i32:
-      return (float) m_i32;
+      return (float) m_i;
    case e_type_u32:
       return (float) m_ui;
    case e_type_i64:
@@ -4152,9 +4152,9 @@ float payload::as_f32(float fDefault) const
    case e_type_u64:
       return (float) m_u64;
    case e_type_f32:
-      return m_f32;
+      return m_f;
    case e_type_f64:
-      return (float) m_f64;
+      return (float) m_d;
    case e_type_string:
    #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
       return (float) atof(m_str);
@@ -4193,11 +4193,11 @@ float payload::as_f32(float fDefault) const
 //
 //      set_type(e_type_f32, false);
 //
-//      m_f32 = i;
+//      m_f = i;
 //
 //   }
 //
-//   return m_f32;
+//   return m_f;
 //
 //}
 //
@@ -4221,7 +4221,7 @@ float payload::as_f32(float fDefault) const
 
 double payload::as_f64(double dDefault) const
 {
-   double double;
+   double d;
    if(m_etype == e_type_null)
    {
       return dDefault;
@@ -4232,36 +4232,36 @@ double payload::as_f64(double dDefault) const
    }
    else if(m_etype == ::e_type_i32)
    {
-      double = (double) m_i32;
+      d = (double) m_i;
    }
    else if(m_etype == ::e_type_u32)
    {
 
-      double = (double) m_ui;
+      d = (double) m_ui;
 
    }
    else if(m_etype == ::e_type_i64)
    {
 
-      double = (double) m_i64;
+      d = (double) m_i64;
 
    }
    else if(m_etype == ::e_type_u64)
    {
 
-      double = (double) m_u64;
+      d = (double) m_u64;
 
    }
    else if(m_etype == ::e_type_f32)
    {
 
-      double = (double) m_f32;
+      d = (double) m_f;
 
    }
    else if(m_etype == ::e_type_f64)
    {
 
-      double = m_f64;
+      d = m_d;
 
    }
    else if(m_etype == ::e_type_string)
@@ -4269,7 +4269,7 @@ double payload::as_f64(double dDefault) const
 
 #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
 
-      double = atof(m_str);
+      d = atof(m_str);
 
 #else
       
@@ -4287,13 +4287,13 @@ double payload::as_f64(double dDefault) const
       if(plocale)
       {
          
-         double = _atof_l(m_str, plocale->m_locale);
+         d = _atof_l(m_str, plocale->m_locale);
          
       }
       else
       {
          
-         double = atof(m_str);
+         d = atof(m_str);
       
       }
 
@@ -4303,13 +4303,13 @@ double payload::as_f64(double dDefault) const
    //else if(m_etype == ::e_type_payload_pointer)
    //{
 
-   //   double = m_ppayload->as_f64(dDefault);
+   //   d = m_ppayload->as_f64(dDefault);
 
    //}
    //else if (m_etype == ::e_type_property)
    //{
 
-   //   double = m_pproperty->as_f64(dDefault);
+   //   d = m_pproperty->as_f64(dDefault);
 
    //}
    else
@@ -4319,7 +4319,7 @@ double payload::as_f64(double dDefault) const
 
    }
 
-   return double;
+   return d;
 
 }
 
@@ -4346,11 +4346,11 @@ double payload::as_f64(double dDefault) const
 //
 //      set_type(e_type_f64, false);
 //
-//      m_f64 = i;
+//      m_d = i;
 //
 //   }
 //
-//   return m_f64;
+//   return m_d;
 //
 //}
 //
@@ -6065,7 +6065,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_empty:
 //      return 0.0 / ul; // throws division by zero exception if ul stream zero
 //   case ::e_type_i32:
-//      return m_i32 / (::collection::index) ul;
+//      return m_i / (::collection::index) ul;
 //   case ::e_type_u32:
 //      return m_ui / (::uptr) ul;
 //   case ::e_type_i64:
@@ -6073,9 +6073,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_u64:
 //      return m_u64 / (::u64) ul;
 //   case ::e_type_f32:
-//      return m_f32 / (float) ul;
+//      return m_f / (float) ul;
 //   case ::e_type_f64:
-//      return m_f64 / (double) ul;
+//      return m_d / (double) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(ANDROID)
 //      return atof(m_str) / (double) ul;
@@ -6092,9 +6092,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator / (double double) const
+//::payload payload::operator / (double d) const
 //{
-//   return as_f64() / double;
+//   return as_f64() / d;
 //}
 //
 //::payload operator / (int i, const class ::payload & payload)
@@ -6122,7 +6122,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_empty:
 //      throw ::exception(::exception("division by zero"));
 //   case ::e_type_i32:
-//      return (iptr) ul / payload.m_i32;
+//      return (iptr) ul / payload.m_i;
 //   case ::e_type_u32:
 //      return (uptr) ul / payload.m_ui;
 //   case ::e_type_i64:
@@ -6130,9 +6130,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_u64:
 //      return (::u64) ul / payload.m_u64;
 //   case ::e_type_f32:
-//      return (float) ul / payload.m_f32;
+//      return (float) ul / payload.m_f;
 //   case ::e_type_f64:
-//      return (double) ul / payload.m_f64;
+//      return (double) ul / payload.m_d;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(ANDROID)
 //      return (double) ul / atof(payload.m_str);
@@ -6152,7 +6152,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //
 //
-//::payload operator / (double double, const class ::payload & payload)
+//::payload operator / (double d, const class ::payload & payload)
 //{
 //   return double / payload.as_f64();
 //}
@@ -6182,7 +6182,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_empty:
 //      return 0.0;
 //   case ::e_type_i32:
-//      return m_i32 * (::collection::index) ul;
+//      return m_i * (::collection::index) ul;
 //   case ::e_type_u32:
 //      return m_ui * (::uptr) ul;
 //   case ::e_type_i64:
@@ -6190,9 +6190,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_u64:
 //      return m_u64 * (::u64) ul;
 //   case ::e_type_f32:
-//      return m_f32 * (float) ul;
+//      return m_f * (float) ul;
 //   case ::e_type_f64:
-//      return m_f64 * (double) ul;
+//      return m_d * (double) ul;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(ANDROID)
 //
@@ -6210,9 +6210,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //}
 //
-//::payload payload::operator * (double double) const
+//::payload payload::operator * (double d) const
 //{
-//   return as_f64() * double;
+//   return as_f64() * d;
 //}
 //
 //::payload operator * (int i, const class ::payload & payload)
@@ -6240,7 +6240,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_empty:
 //      return 0;
 //   case ::e_type_i32:
-//      return (iptr) ul * payload.m_i32;
+//      return (iptr) ul * payload.m_i;
 //   case ::e_type_u32:
 //      return (uptr) ul * payload.m_ui;
 //   case ::e_type_i64:
@@ -6248,9 +6248,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_u64:
 //      return (::u64) ul * payload.m_u64;
 //   case ::e_type_f32:
-//      return (float) ul * payload.m_f32;
+//      return (float) ul * payload.m_f;
 //   case ::e_type_f64:
-//      return (double) ul * payload.m_f64;
+//      return (double) ul * payload.m_d;
 //   case ::e_type_string:
 //#if defined(LINUX) || defined(ANDROID)
 //      return (double) ul * atof(payload.m_str);
@@ -6268,7 +6268,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //}
 //
 //
-//::payload operator * (double double, const class ::payload & payload)
+//::payload operator * (double d, const class ::payload & payload)
 //{
 //   return double * payload.as_f64();
 //}
@@ -6318,7 +6318,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator -= (double double)
+//class ::payload & payload::operator -= (double d)
 //{
 //   operator =(*this - double);
 //   return *this;
@@ -6363,7 +6363,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator += (double double)
+//class ::payload & payload::operator += (double d)
 //{
 //   operator =(*this + double);
 //   return *this;
@@ -6422,7 +6422,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator /= (double double)
+//class ::payload & payload::operator /= (double d)
 //{
 //   operator =(*this / double);
 //   return *this;
@@ -6481,7 +6481,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator *= (double double)
+//class ::payload & payload::operator *= (double d)
 //{
 //   operator =(*this * double);
 //   return *this;
@@ -6956,7 +6956,7 @@ bool payload::has_string_reference() const
 //   else if(m_etype == e_type_i32 || m_etype == e_type_u32)
 //   {
 //
-//      return m_i32 != 0;
+//      return m_i != 0;
 //
 //   }
 //   else if (m_etype == e_type_i64 || m_etype == e_type_u64)
@@ -7022,13 +7022,13 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_f32)
 //   {
 //
-//      return m_f32 != 0.0f;
+//      return m_f != 0.0f;
 //
 //   }
 //   else if (m_etype == e_type_f64)
 //   {
 //
-//      return m_f64 != 0.0;
+//      return m_d != 0.0;
 //
 //   }
 //   else if (m_etype == e_type_payload_pointer)
@@ -7077,13 +7077,13 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_i8)
 //   {
 //
-//      return m_i8 != '\0';
+//      return m_ch != '\0';
 //
 //   }
 //   else if (m_etype == e_type_u8)
 //   {
 //
-//      return m_u8 != 0;
+//      return m_uch != 0;
 //
 //   }
 //   else
@@ -7457,22 +7457,22 @@ end:
 
 //#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
-      double double = atof(strNumber);
+      double d = atof(strNumber);
 
       //if (bSigned)
       //{
 
-      //   double = -double;
+      //   d = -d;
 
       //}
 
 //#else
 
-      //double double = _atof_l(strNumber, ::get_task()->locale()->m_locale);
+      //double d = _atof_l(strNumber, ::get_task()->locale()->m_locale);
 
 //#endif
 
-      operator = (double);
+      operator = (d);
 
    }
    else
@@ -8817,23 +8817,23 @@ bool payload::is_false() const
    case e_type_pbool:
       return !*m_pb;
    case e_type_i8:
-      return !m_i8;
+      return !m_ch;
    case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_byte:
-      return !m_u8;
+      return !m_uch;
    case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
-      return !m_i16;
+      return !m_sh;
    case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
-      return !m_u16;
+      return !m_ush;
    case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
-      return !m_i32;
+      return !m_i;
    case e_type_pi32:
       return !m_pi32 || !*m_pi32;
    case e_type_u32:
@@ -8853,11 +8853,11 @@ bool payload::is_false() const
    case e_type_pf32:
       return !*m_pf32;
    case e_type_f32:
-      return !m_f32;
+      return !m_f;
    case e_type_pf64:
       return !*m_pf64;
    case e_type_f64:
-      return !m_f64;
+      return !m_d;
 
    // simple classes
    case e_type_string:
@@ -9006,23 +9006,23 @@ bool payload::is_set_false() const
    case e_type_pbool:
       return !*m_pb;
    case e_type_i8:
-      return !m_i8;
+      return !m_ch;
    case e_type_pi8:
       return !m_pi8 || !*m_pi8;
    case e_type_byte:
-      return !m_u8;
+      return !m_uch;
    case e_type_pu8:
       return !m_pu8 || !*m_pu8;
    case e_type_i16:
-      return !m_i16;
+      return !m_sh;
    case e_type_pi16:
       return !m_pi16 || !*m_pi16;
    case e_type_u16:
-      return !m_u16;
+      return !m_ush;
    case e_type_pu16:
       return !m_pu16 || !*m_pu16;
    case e_type_i32:
-      return !m_i32;
+      return !m_i;
    case e_type_pi32:
       return !m_pi32 || !*m_pi32;
    case e_type_u32:
@@ -9041,11 +9041,11 @@ bool payload::is_set_false() const
    case e_type_pf32:
       return !*m_pf32;
    case e_type_f32:
-      return !m_f32;
+      return !m_f;
    case e_type_pf64:
       return !*m_pf64;
    case e_type_f64:
-      return !m_f64;
+      return !m_d;
    // simple classes
    case e_type_string:
       return m_str.is_empty() || m_str.case_insensitive_order("false") == 0 || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
@@ -9460,17 +9460,28 @@ void unit_test_primitive_var_acme_block()
 //
 //      set_type(e_type_i8, false);
 //
-//      m_i8 = i;
+//      m_ch = i;
 //
 //   }
 //
-//   return m_i8;
+//   return m_ch;
 //
 //}
+#define DO_FOR_NUMBER_TYPES(DO) \
+DO(char, char, ch); \
+DO(unsigned char, unsigned_char, uch); \
+DO(short, short, sh); \
+DO(unsigned short, unsigned_short, ush); \
+DO(int, int, i); \
+DO(unsigned int, unsigned_int, ui); \
+DO(i64, i64, i64); \
+DO(u64, u64, u64); \
+DO(float, float, f); \
+DO(double, double, d);
 
 
-#define IMPLEMENT_PAYLOAD_NUMBER(NUMBERTYPE)             \
-NUMBERTYPE & payload::NUMBERTYPE ## _reference()         \
+#define IMPLEMENT_PAYLOAD_NUMBER(NUMBERTYPE, NUMBERNAME, NUMBERSHORTNAME)             \
+NUMBERTYPE & payload::NUMBERNAME ## _reference()         \
 {                                                        \
                                                          \
 /*   if (m_etype == e_type_payload_pointer && m_ppayload != this)                \
@@ -9485,30 +9496,21 @@ NUMBERTYPE & payload::NUMBERTYPE ## _reference()         \
       return m_pproperty->NUMBERTYPE ## _reference();       \
                                                          \
    }                                                     \
-   else*/ if (m_etype != e_type_ ## NUMBERTYPE)            \
+   else*/ if (m_etype != e_type_ ## NUMBERNAME)            \
    {                                                     \
                                                          \
-      auto number = this->as_ ## NUMBERTYPE();                       \
+      auto number = this->as_ ## NUMBERNAME();                       \
                                                          \
-      set_type(e_type_ ## NUMBERTYPE, false);            \
+      set_type(e_type_ ## NUMBERNAME, false);            \
                                                          \
-      m_## NUMBERTYPE = number;                          \
+      m_## NUMBERSHORTNAME = number;                          \
                                                          \
    }                                                     \
                                                          \
-   return m_ ## NUMBERTYPE;                              \
+   return m_ ## NUMBERSHORTNAME;                              \
                                                          \
-}                                                
-IMPLEMENT_PAYLOAD_NUMBER(char);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned char);
-IMPLEMENT_PAYLOAD_NUMBER(short);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned short);
-IMPLEMENT_PAYLOAD_NUMBER(int);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned int);
-IMPLEMENT_PAYLOAD_NUMBER(i64);
-IMPLEMENT_PAYLOAD_NUMBER(u64);
-IMPLEMENT_PAYLOAD_NUMBER(float);
-IMPLEMENT_PAYLOAD_NUMBER(double);
+}    
+DO_FOR_NUMBER_TYPES(IMPLEMENT_PAYLOAD_NUMBER)
 #undef IMPLEMENT_PAYLOAD_NUMBER
 
 
@@ -9871,12 +9873,12 @@ return nullptr;
 //
 //bool strictly_equal(double d, const class ::payload & payload)
 //{
-//   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
+//   return payload.m_etype == ::e_type_f64 && d == payload.m_d;
 //}
 //
 //bool strictly_equal(int i, const class ::payload & payload)
 //{
-//   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
+//   return payload.m_etype == ::e_type_i32 && i == payload.m_i;
 //}
 //
 //bool strictly_equal(bool b, const class ::payload & payload)
@@ -11058,47 +11060,47 @@ payload & payload::add(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((unsigned short) m_u8 + (unsigned short) payload.as_unsigned_char() >= 256)
+               if((unsigned short) m_uch + (unsigned short) payload.as_unsigned_char() >= 256)
                {
                   set_type(e_type_u16);
-                  m_u16 += payload.as_unsigned_char();
+                  m_ush += payload.as_unsigned_char();
                }
                else
                {
-                  m_u8 += payload.as_unsigned_char();
+                  m_uch += payload.as_unsigned_char();
                }
                break;
             case e_type_i8:
-               if(((short) m_i8 + (short) payload.as_char() >= 129 )|| ((short) m_i8 + (short) payload.as_char() < -128))
+               if(((short) m_ch + (short) payload.as_char() >= 129 )|| ((short) m_ch + (short) payload.as_char() < -128))
                {
                   set_type(e_type_i16);
-                  m_i16 += payload.as_char();
+                  m_sh += payload.as_char();
                }
                else
                {
-                  m_i8 += payload.as_char();
+                  m_ch += payload.as_char();
                }
                break;
             case e_type_u16:
-               if((unsigned int) m_u16 + (unsigned int) payload.as_unsigned_short() >= 65536)
+               if((unsigned int) m_ush + (unsigned int) payload.as_unsigned_short() >= 65536)
                {
                   set_type(e_type_u32);
                   m_ui += payload.as_unsigned_short();
                }
                else
                {
-                  m_u16 += payload.as_unsigned_short();
+                  m_ush += payload.as_unsigned_short();
                }
                break;
             case e_type_i16:
-               if(((int) m_i16 + (int) payload.as_short() >= 32769) || ((int) m_i16 + (int) payload.as_short() < -32768))
+               if(((int) m_sh + (int) payload.as_short() >= 32769) || ((int) m_sh + (int) payload.as_short() < -32768))
                {
                   set_type(e_type_i32);
-                  m_i32 += payload.as_short();
+                  m_i += payload.as_short();
                }
                else
                {
-                  m_i16 += payload.as_short();
+                  m_sh += payload.as_short();
                }
                break;
             case e_type_u32:
@@ -11113,14 +11115,14 @@ payload & payload::add(const ::payload & payload)
                }
                break;
             case e_type_i32:
-               if(((::i64) m_i32 + (::i64) payload.as_int() > (::i64) INT_MAX) || ((::i64) m_i32 + (::i64) payload.as_int() < (::i64) INT_MIN))
+               if(((::i64) m_i + (::i64) payload.as_int() > (::i64) INT_MAX) || ((::i64) m_i + (::i64) payload.as_int() < (::i64) INT_MIN))
                {
                   set_type(e_type_i64);
                   m_i64 += payload.as_int();
                }
                else
                {
-                  m_i32 += payload.as_int();
+                  m_i += payload.as_int();
                }
                break;
             case e_type_u64:
@@ -11173,10 +11175,10 @@ payload & payload::add(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 += payload.as_unsigned_int();
+               m_f += payload.as_unsigned_int();
                break;
             case e_type_f64:
-               m_f64 += payload.as_f64();
+               m_d += payload.as_f64();
                break;
             case e_type_pu8:
                *m_pu8 += payload.as_unsigned_char();
@@ -11240,10 +11242,10 @@ payload & payload::add(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 += payload.as_f32();
+               m_f += payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 += payload.as_f64();
+               m_d += payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 += payload.as_f32();
@@ -11271,10 +11273,10 @@ payload & payload::add(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 += payload.as_f32();
+               m_f += payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 += payload.as_f64();
+               m_d += payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 += payload.as_f32();
@@ -11341,47 +11343,47 @@ payload & payload::subtract(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((short) m_u8 - (short) payload.as_short() < 0)
+               if((short) m_uch - (short) payload.as_short() < 0)
                {
                   set_type(e_type_i16);
-                  m_i16 -= payload.as_unsigned_char();
+                  m_sh -= payload.as_unsigned_char();
                }
                else
                {
-                  m_u8 -= payload.as_unsigned_char();
+                  m_uch -= payload.as_unsigned_char();
                }
                break;
             case e_type_i8:
-               if(((short) m_i8 - (short) payload.as_char() >= 129) || ((short) m_i8 - (short) payload.as_char() <=  -128))
+               if(((short) m_ch - (short) payload.as_char() >= 129) || ((short) m_ch - (short) payload.as_char() <=  -128))
                {
                   set_type(e_type_i16);
-                  m_i16 -= payload.as_char();
+                  m_sh -= payload.as_char();
                }
                else
                {
-                  m_i8 -= payload.as_char();
+                  m_ch -= payload.as_char();
                }
                break;
             case e_type_u16:
-               if((int) m_u16 - (int) payload.as_int() < 0)
+               if((int) m_ush - (int) payload.as_int() < 0)
                {
                   set_type(e_type_i32);
-                  m_i32 -= payload.as_unsigned_int();
+                  m_i -= payload.as_unsigned_int();
                }
                else
                {
-                  m_u16 -= payload.as_unsigned_short();
+                  m_ush -= payload.as_unsigned_short();
                }
                break;
             case e_type_i16:
-               if(((int) m_i16 - (int) payload.as_short() >= 32769) || ((int) m_i16 - (int) payload.as_short() < -32768))
+               if(((int) m_sh - (int) payload.as_short() >= 32769) || ((int) m_sh - (int) payload.as_short() < -32768))
                {
                   set_type(e_type_i32);
-                  m_i32 -= payload.as_short();
+                  m_i -= payload.as_short();
                }
                else
                {
-                  m_i16 -= payload.as_short();
+                  m_sh -= payload.as_short();
                }
                break;
             case e_type_u32:
@@ -11396,14 +11398,14 @@ payload & payload::subtract(const ::payload & payload)
                }
                break;
             case e_type_i32:
-               if(((::i64) m_i32 + (::i64) payload.as_int() >= (::i64) INT_MAX) || ((::i64) m_i32 - (::i64) payload.as_int() < (::i64) INT_MIN))
+               if(((::i64) m_i + (::i64) payload.as_int() >= (::i64) INT_MAX) || ((::i64) m_i - (::i64) payload.as_int() < (::i64) INT_MIN))
                {
                   set_type(e_type_i64);
                   m_i64 -= payload.as_int();
                }
                else
                {
-                  m_i32 -= payload.as_int();
+                  m_i -= payload.as_int();
                }
                break;
             case e_type_u64:
@@ -11456,10 +11458,10 @@ payload & payload::subtract(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 -= payload.as_unsigned_int();
+               m_f -= payload.as_unsigned_int();
                break;
             case e_type_f64:
-               m_f64 -= payload.as_f64();
+               m_d -= payload.as_f64();
                break;
             case e_type_pu8:
                *m_pu8 -= payload.as_unsigned_char();
@@ -11523,10 +11525,10 @@ payload & payload::subtract(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 -= payload.as_f32();
+               m_f -= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 -= payload.as_f64();
+               m_d -= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 -= payload.as_f32();
@@ -11554,10 +11556,10 @@ payload & payload::subtract(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 -= payload.as_f32();
+               m_f -= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 -= payload.as_f64();
+               m_d -= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 -= payload.as_f32();
@@ -11623,43 +11625,43 @@ payload &  payload::multiply(const ::payload & payload)
          switch (etype)
          {
             case e_type_u8:
-               if ((unsigned short) m_u8 + (unsigned short) payload.as_unsigned_char() >= 256)
+               if ((unsigned short) m_uch + (unsigned short) payload.as_unsigned_char() >= 256)
                {
                   set_type(e_type_u16);
-                  m_u16 *= payload.as_unsigned_char();
+                  m_ush *= payload.as_unsigned_char();
                } else
                {
-                  m_u8 *= payload.as_unsigned_char();
+                  m_uch *= payload.as_unsigned_char();
                }
                break;
             case e_type_i8:
-               if ((short) m_i8 + (short) payload.as_char() >= 129)
+               if ((short) m_ch + (short) payload.as_char() >= 129)
                {
                   set_type(e_type_i16);
-                  m_i16 *= payload.as_char();
+                  m_sh *= payload.as_char();
                } else
                {
-                  m_i8 *= payload.as_char();
+                  m_ch *= payload.as_char();
                }
                break;
             case e_type_u16:
-               if ((unsigned int) m_u16 + (unsigned int) payload.as_unsigned_short() >= 65536)
+               if ((unsigned int) m_ush + (unsigned int) payload.as_unsigned_short() >= 65536)
                {
                   set_type(e_type_u32);
                   m_ui *= payload.as_unsigned_short();
                } else
                {
-                  m_u16 *= payload.as_unsigned_short();
+                  m_ush *= payload.as_unsigned_short();
                }
                break;
             case e_type_i16:
-               if ((int) m_i16 + (int) payload.as_short() >= 32769)
+               if ((int) m_sh + (int) payload.as_short() >= 32769)
                {
                   set_type(e_type_i32);
-                  m_i32 *= payload.as_short();
+                  m_i *= payload.as_short();
                } else
                {
-                  m_i16 *= payload.as_short();
+                  m_sh *= payload.as_short();
                }
                break;
             case e_type_u32:
@@ -11673,13 +11675,13 @@ payload &  payload::multiply(const ::payload & payload)
                }
                break;
             case e_type_i32:
-               if ((::i64) m_i32 + (::i64) payload.as_int() >= 64769)
+               if ((::i64) m_i + (::i64) payload.as_int() >= 64769)
                {
                   set_type(e_type_i64);
                   m_i64 *= payload.as_int();
                } else
                {
-                  m_i32 *= payload.as_int();
+                  m_i *= payload.as_int();
                }
                break;
             case e_type_u64:
@@ -11732,10 +11734,10 @@ payload &  payload::multiply(const ::payload & payload)
          switch (etype)
          {
             case e_type_f32:
-               m_f32 *= payload.as_unsigned_int();
+               m_f *= payload.as_unsigned_int();
                break;
             case e_type_f64:
-               m_f64 *= payload.as_f64();
+               m_d *= payload.as_f64();
                break;
             case e_type_pu8:
                *m_pu8 *= payload.as_unsigned_char();
@@ -11797,10 +11799,10 @@ payload &  payload::multiply(const ::payload & payload)
          switch (etype)
          {
             case e_type_f32:
-               m_f32 *= payload.as_f32();
+               m_f *= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 *= payload.as_f64();
+               m_d *= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 *= payload.as_f32();
@@ -11827,10 +11829,10 @@ payload &  payload::multiply(const ::payload & payload)
          switch (etype)
          {
             case e_type_f32:
-               m_f32 *= payload.as_f32();
+               m_f *= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 *= payload.as_f64();
+               m_d *= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 *= payload.as_f32();
@@ -11897,47 +11899,47 @@ payload &  payload::divide(const ::payload & payload)
          switch(etype)
          {
             case e_type_u8:
-               if((unsigned short) m_u8 + (unsigned short) payload.as_unsigned_char() >= 256)
+               if((unsigned short) m_uch + (unsigned short) payload.as_unsigned_char() >= 256)
                {
                   set_type(e_type_u16);
-                  m_u16 /= payload.as_unsigned_char();
+                  m_ush /= payload.as_unsigned_char();
                }
                else
                {
-                  m_u8 /= payload.as_unsigned_char();
+                  m_uch /= payload.as_unsigned_char();
                }
                break;
             case e_type_i8:
-               if((short) m_i8 + (short) payload.as_char() >= 129)
+               if((short) m_ch + (short) payload.as_char() >= 129)
                {
                   set_type(e_type_i16);
-                  m_i16 /= payload.as_char();
+                  m_sh /= payload.as_char();
                }
                else
                {
-                  m_i8 /= payload.as_char();
+                  m_ch /= payload.as_char();
                }
                break;
             case e_type_u16:
-               if((unsigned int) m_u16 + (unsigned int) payload.as_unsigned_short() >= 65536)
+               if((unsigned int) m_ush + (unsigned int) payload.as_unsigned_short() >= 65536)
                {
                   set_type(e_type_u32);
                   m_ui /= payload.as_unsigned_short();
                }
                else
                {
-                  m_u16 /= payload.as_unsigned_short();
+                  m_ush /= payload.as_unsigned_short();
                }
                break;
             case e_type_i16:
-               if((int) m_i16 + (int) payload.as_short() >= 32769)
+               if((int) m_sh + (int) payload.as_short() >= 32769)
                {
                   set_type(e_type_i32);
-                  m_i32 /= payload.as_short();
+                  m_i /= payload.as_short();
                }
                else
                {
-                  m_i16 /= payload.as_short();
+                  m_sh /= payload.as_short();
                }
                break;
             case e_type_u32:
@@ -11952,14 +11954,14 @@ payload &  payload::divide(const ::payload & payload)
                }
                break;
             case e_type_i32:
-               if((::i64) m_i32 + (::i64) payload.as_int() >= 64769)
+               if((::i64) m_i + (::i64) payload.as_int() >= 64769)
                {
                   set_type(e_type_i64);
                   m_i64 /= payload.as_int();
                }
                else
                {
-                  m_i32 /= payload.as_int();
+                  m_i /= payload.as_int();
                }
                break;
             case e_type_u64:
@@ -12012,10 +12014,10 @@ payload &  payload::divide(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 /= payload.as_unsigned_int();
+               m_f /= payload.as_unsigned_int();
                break;
             case e_type_f64:
-               m_f64 /= payload.as_f64();
+               m_d /= payload.as_f64();
                break;
             case e_type_pu8:
                *m_pu8 /= payload.as_unsigned_char();
@@ -12079,10 +12081,10 @@ payload &  payload::divide(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 /= payload.as_f32();
+               m_f /= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 /= payload.as_f64();
+               m_d /= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 /= payload.as_f32();
@@ -12110,10 +12112,10 @@ payload &  payload::divide(const ::payload & payload)
          switch(etype)
          {
             case e_type_f32:
-               m_f32 /= payload.as_f32();
+               m_f /= payload.as_f32();
                break;
             case e_type_f64:
-               m_f64 /= payload.as_f64();
+               m_d /= payload.as_f64();
                break;
             case e_type_pf32:
                *m_pf32 /= payload.as_f32();

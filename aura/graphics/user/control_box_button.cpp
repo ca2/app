@@ -36,15 +36,15 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
       {
 
-         color.m_u8Opacity = 189;
-         colorPen.m_u8Opacity = 189;
+         color.m_uchOpacity = 189;
+         colorPen.m_uchOpacity = 189;
 
       }
       else
       {
 
-         color.m_u8Opacity = 51;
-         colorPen.m_u8Opacity = 51;
+         color.m_uchOpacity = 51;
+         colorPen.m_uchOpacity = 51;
 
       }
 
@@ -106,14 +106,14 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_u8Opacity = 189;
+         color.m_uchOpacity = 189;
          //colorPen.alpha = 189;
 
       }
       else
       {
 
-         color.m_u8Opacity = 51;
+         color.m_uchOpacity = 51;
          //colorPen.alpha = 51;
 
       }
@@ -151,15 +151,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_u8Opacity = 189;
-         colorPen.m_u8Opacity = 189;
+         color.m_uchOpacity = 189;
+         colorPen.m_uchOpacity = 189;
 
       }
       else
       {
 
-         color.m_u8Opacity = 51;
-         colorPen.m_u8Opacity = 51;
+         color.m_uchOpacity = 51;
+         colorPen.m_uchOpacity = 51;
 
       }
 
@@ -224,15 +224,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.m_u8Opacity = 189;
-         colorPen.m_u8Opacity = 189;
+         color.m_uchOpacity = 189;
+         colorPen.m_uchOpacity = 189;
 
       }
       else
       {
 
-         color.m_u8Opacity = 51;
-         colorPen.m_u8Opacity = 51;
+         color.m_uchOpacity = 51;
+         colorPen.m_uchOpacity = 51;
 
       }
 

@@ -46,7 +46,7 @@ namespace hellobase
       render *                m_prender;
 
 
-      u32_array            m_dwaFrame;
+      unsigned_int_array            m_dwaFrame;
 
 
 

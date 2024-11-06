@@ -75,7 +75,7 @@
       return "";
    }
 
-   void os_context::get_all_processes(u32_array & dwa )
+   void os_context::get_all_processes(unsigned_int_array & dwa )
    {
       __UNREFERENCED_PARAMETER(dwa);
       throw ::interface_only("this is an interface");
@@ -667,7 +667,7 @@
    }
 
 
-   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, unsigned_int_array & uaPid)
    {
 
 
@@ -679,7 +679,7 @@
 
       ::file::path_array patha;
 
-      u32_array uaPid;
+      unsigned_int_array uaPid;
 
       list_process(patha, uaPid);
 

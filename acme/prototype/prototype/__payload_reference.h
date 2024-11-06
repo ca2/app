@@ -19,12 +19,12 @@ public:
    operator e_check & () { return m_payload.echeck_reference(); }
 
    operator bool & () { return m_payload.bool_reference(); }
-   operator char & () { return m_payload.i8_reference(); }
-   operator unsigned char & () { return m_payload.byte_reference(); }
-   operator short & () { return m_payload.i16_reference(); }
-   operator unsigned short & () { return m_payload.u16_reference(); }
+   operator char & () { return m_payload.char_reference(); }
+   operator unsigned char & () { return m_payload.unsigned_char_reference(); }
+   operator short & () { return m_payload.short_reference(); }
+   operator unsigned short & () { return m_payload.unsigned_short_reference(); }
    operator int & () { return m_payload.int_reference(); }
-   operator unsigned int & () { return m_payload.u32_reference(); }
+   operator unsigned int & () { return m_payload.unsigned_int_reference(); }
    operator i64 & () { return m_payload.i64_reference(); }
    operator u64 & () { return m_payload.u64_reference(); }
 
@@ -37,8 +37,8 @@ public:
 #endif
 
 
-   operator float & () { return m_payload.f32_reference(); }
-   operator double & () { return m_payload.f64_reference(); }
+   operator float & () { return m_payload.float_reference(); }
+   operator double & () { return m_payload.double_reference(); }
 
 
    //operator second & () { return m_payload.secs(); }

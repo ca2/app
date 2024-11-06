@@ -159,17 +159,17 @@ namespace graphics
 #ifdef __APPLE__
 
       image_color_with_shade_of_grey(
-         color.m_u8Red,
-         color.m_u8Green,
-         color.m_u8Blue,
+         color.m_uchRed,
+         color.m_uchGreen,
+         color.m_uchBlue,
          i, dh - j - 1, dw, dh);
 
 #else
 
       image_color_with_shade_of_grey(
-         color.m_u8Red,
-         color.m_u8Green,
-         color.m_u8Blue,
+         color.m_uchRed,
+         color.m_uchGreen,
+         color.m_uchBlue,
          i, j, dw, dh);
 
 #endif
@@ -190,10 +190,10 @@ namespace graphics
 
       unsigned char * pline;
 
-      auto a = pimage->m_colorindexes.m_u8IndexOpacity;
-      auto r = pimage->m_colorindexes.m_u8IndexRed;
-      auto g = pimage->m_colorindexes.m_u8IndexGreen;
-      auto b = pimage->m_colorindexes.m_u8IndexBlue;
+      auto a = pimage->m_colorindexes.m_uchIndexOpacity;
+      auto r = pimage->m_colorindexes.m_uchIndexRed;
+      auto g = pimage->m_colorindexes.m_uchIndexGreen;
+      auto b = pimage->m_colorindexes.m_uchIndexBlue;
 
       for (::collection::index i = 0; i < w; i++)
       {
@@ -529,7 +529,7 @@ namespace graphics
 
       color.set_hls(m_hls);
 
-      color.m_u8Opacity = 255;
+      color.m_uchOpacity = 255;
 
       return color;
 

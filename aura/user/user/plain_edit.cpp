@@ -625,7 +625,7 @@ namespace user
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
-      colorComposeBk.m_u8Opacity = 127;
+      colorComposeBk.m_uchOpacity = 127;
 
       __check_refdbg
 

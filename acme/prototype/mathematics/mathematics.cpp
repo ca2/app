@@ -349,13 +349,13 @@ namespace mathematics
 //      char ch = 0;
 //      random({ e_as_block,ch });
 //
-      return random_u8();
+      return random_uch();
       //#endif
       //
    }
 
 
-   unsigned char mathematics::random_u8()
+   unsigned char mathematics::random_uch()
    {
       //#if defined(UNIVERSAL_WINDOWS)
       //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();

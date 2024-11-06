@@ -24,10 +24,10 @@ struct color32_t
       struct
       {
 
-         unsigned char  m_u8Red;
-         unsigned char  m_u8Green;
-         unsigned char  m_u8Blue;
-         unsigned char  m_u8Opacity;
+         unsigned char  m_uchRed;
+         unsigned char  m_uchGreen;
+         unsigned char  m_uchBlue;
+         unsigned char  m_uchOpacity;
 
       };
 
@@ -36,22 +36,22 @@ struct color32_t
    };
 
 
-   constexpr unsigned char byte_red() const { return m_u8Red; }
-   constexpr unsigned char byte_green() const { return m_u8Green; }
-   constexpr unsigned char byte_blue() const { return m_u8Blue; }
-   constexpr unsigned char byte_opacity() const { return m_u8Opacity; }
+   constexpr unsigned char byte_red() const { return m_uchRed; }
+   constexpr unsigned char byte_green() const { return m_uchGreen; }
+   constexpr unsigned char byte_blue() const { return m_uchBlue; }
+   constexpr unsigned char byte_opacity() const { return m_uchOpacity; }
 
 
-   constexpr unsigned char & byte_red() { return m_u8Red; }
-   constexpr unsigned char & byte_green() { return m_u8Green; }
-   constexpr unsigned char & byte_blue() { return m_u8Blue; }
-   constexpr unsigned char & byte_opacity() { return m_u8Opacity; }
+   constexpr unsigned char & byte_red() { return m_uchRed; }
+   constexpr unsigned char & byte_green() { return m_uchGreen; }
+   constexpr unsigned char & byte_blue() { return m_uchBlue; }
+   constexpr unsigned char & byte_opacity() { return m_uchOpacity; }
 
 
-   constexpr float f32_red() const { return m_u8Red / 255.f; }
-   constexpr float f32_green() const { return m_u8Green / 255.f; }
-   constexpr float f32_blue() const { return m_u8Blue / 255.f; }
-   constexpr float f32_opacity() const { return m_u8Opacity / 255.f; }
+   constexpr float f32_red() const { return m_uchRed / 255.f; }
+   constexpr float f32_green() const { return m_uchGreen / 255.f; }
+   constexpr float f32_blue() const { return m_uchBlue / 255.f; }
+   constexpr float f32_opacity() const { return m_uchOpacity / 255.f; }
 
 
 };
@@ -74,10 +74,10 @@ public:
       struct
       {
 
-         unsigned char           m_u8Red;
-         unsigned char           m_u8Green;
-         unsigned char           m_u8Blue;
-         unsigned char           m_u8Opacity;
+         unsigned char           m_uchRed;
+         unsigned char           m_uchGreen;
+         unsigned char           m_uchBlue;
+         unsigned char           m_uchOpacity;
 
       };
 

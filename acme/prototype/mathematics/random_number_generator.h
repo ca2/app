@@ -40,7 +40,7 @@ namespace mathematics
    private:
       unsigned int _get();
       int m_value;
-      u32_array m_uinta;
+      unsigned_int_array m_uinta;
       ::i64 m_iAccess = 0;
    };
 

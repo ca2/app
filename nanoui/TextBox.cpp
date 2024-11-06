@@ -136,7 +136,7 @@ namespace nanoui
 
       Widget::draw(pcontext);
 
-      if (m_colorDeepBackground.m_u8Opacity > 0)
+      if (m_colorDeepBackground.m_uchOpacity > 0)
       {
 
          pcontext->begin_path();

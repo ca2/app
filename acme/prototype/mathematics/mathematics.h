@@ -226,7 +226,7 @@ namespace mathematics
       string random_alphanumeric(strsize s);
 
       char random_char();
-      unsigned char random_u8();
+      unsigned char random_uch();
       unsigned int random_ui();
       u64 random_u64();
 

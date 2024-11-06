@@ -157,7 +157,7 @@ namespace ios
 
    bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
    {
-      u32_array dwa;
+      unsigned_int_array dwa;
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
@@ -173,7 +173,7 @@ namespace ios
 
    bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
    {
-      u32_array dwa;
+      unsigned_int_array dwa;
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
@@ -226,7 +226,7 @@ namespace ios
    }
 
 
-   void os_context::get_all_processes(u32_array & dwa )
+   void os_context::get_all_processes(unsigned_int_array & dwa )
    {
 
       //  throw ::not_implemented();

@@ -916,7 +916,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            color.m_u8Opacity = 90;
+            color.m_uchOpacity = 90;
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleItem, color);
 

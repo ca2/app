@@ -197,7 +197,7 @@ public:
    //}
 
 #endif
-    read_sz_stream& operator >>(char& i);
+    //read_sz_stream& operator >>(char& ch);
 //    {
 //
 //       return operator >>((char&)i);

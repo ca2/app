@@ -159,10 +159,10 @@ constexpr ::color::color image32_t::color(color_indexes indexes) const
 constexpr void image32_t::assign(::color::color color, color_indexes indexes)
 {
 
-   byte_red(indexes) = color.m_u8Red * color.m_u8Opacity / 255;
-   byte_green(indexes) = color.m_u8Green * color.m_u8Opacity / 255;
-   byte_blue(indexes) = color.m_u8Blue * color.m_u8Opacity / 255;
-   byte_opacity(indexes) = color.m_u8Opacity;
+   byte_red(indexes) = color.m_uchRed * color.m_uchOpacity / 255;
+   byte_green(indexes) = color.m_uchGreen * color.m_uchOpacity / 255;
+   byte_blue(indexes) = color.m_uchBlue * color.m_uchOpacity / 255;
+   byte_opacity(indexes) = color.m_uchOpacity;
 
 }
 

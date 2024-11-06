@@ -50,7 +50,7 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase, enum_digit_case
 }
 
 
-inline string ansi_string_from_i32(int i, int iBase, enum_digit_case edigitcase)
+inline string ansi_string_from_i(int i, int iBase, enum_digit_case edigitcase)
 {
    char sz[16];
 //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)

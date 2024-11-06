@@ -119,10 +119,10 @@ namespace write_text
          string str;
 
          str.formatf("item:ARGB(%d,%d,%d,%d):%d, %d, %s",
-            uForegroundColor.m_u8Opacity,
-            uForegroundColor.m_u8Red,
-            uForegroundColor.m_u8Green,
-            uForegroundColor.m_u8Blue,
+            uForegroundColor.m_uchOpacity,
+            uForegroundColor.m_uchRed,
+            uForegroundColor.m_uchGreen,
+            uForegroundColor.m_uchBlue,
             plist->m_rectangleMargin.left(), 
             plist->m_rectangleMargin.top(), strText.c_str());
          

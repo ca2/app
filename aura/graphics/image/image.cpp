@@ -5244,24 +5244,24 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 
    unsigned char* p = (unsigned char*)&unsigned int;
 
-   int iOpacity = p[m_colorindexes.m_u8IndexOpacity];
+   int iOpacity = p[m_colorindexes.m_uchIndexOpacity];
 
    if (iOpacity == 0)
    {
 
       return rgb(
-         p[m_colorindexes.m_u8IndexRed], 
-         p[m_colorindexes.m_u8IndexGreen], 
-         p[m_colorindexes.m_u8IndexBlue]);
+         p[m_colorindexes.m_uchIndexRed], 
+         p[m_colorindexes.m_uchIndexGreen], 
+         p[m_colorindexes.m_uchIndexBlue]);
                             
    }
    else
    {
 
       return argb(iOpacity,
-         p[m_colorindexes.m_u8IndexRed] * 255 / iOpacity,
-         p[m_colorindexes.m_u8IndexGreen] * 255 / iOpacity,
-         p[m_colorindexes.m_u8IndexBlue] * 255 / iOpacity);
+         p[m_colorindexes.m_uchIndexRed] * 255 / iOpacity,
+         p[m_colorindexes.m_uchIndexGreen] * 255 / iOpacity,
+         p[m_colorindexes.m_uchIndexBlue] * 255 / iOpacity);
 
    }
 
@@ -8616,7 +8616,7 @@ void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 
       auto ysq = (rTotal.bottom() - y);
 
-      auto pbyte = &((unsigned char*)p)[m_colorindexes.m_u8IndexOpacity];
+      auto pbyte = &((unsigned char*)p)[m_colorindexes.m_uchIndexOpacity];
 
       for (int x = r.left(); x < r.right(); x++)
       {
@@ -8659,10 +8659,10 @@ void image::multiply_rgb_by_source_alpha(::color::color color)
    auto u8Blue = color.byte_blue();
    unsigned char u8Opacity;
 
-   auto u8IndexOpacity = m_colorindexes.m_u8IndexOpacity;
-   auto u8IndexRed = m_colorindexes.m_u8IndexRed;
-   auto u8IndexGreen = m_colorindexes.m_u8IndexGreen;
-   auto u8IndexBlue = m_colorindexes.m_u8IndexBlue;
+   auto u8IndexOpacity = m_colorindexes.m_uchIndexOpacity;
+   auto u8IndexRed = m_colorindexes.m_uchIndexRed;
+   auto u8IndexGreen = m_colorindexes.m_uchIndexGreen;
+   auto u8IndexBlue = m_colorindexes.m_uchIndexBlue;
 
    unsigned char* puch = (unsigned char*)data();
    i64 iArea = scan_area();

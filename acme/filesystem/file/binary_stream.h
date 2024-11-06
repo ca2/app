@@ -312,7 +312,7 @@ public:
 
 
 
-   binary_stream & operator >>(bool & b) { unsigned char unsigned char; raw_read(unsigned char); b = unsigned char ? true : false; return *this; }
+   binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(unsigned char); b = unsigned char ? true : false; return *this; }
    binary_stream & operator >>(char & ch) {
       raw_read(ch); return *this;
    }
@@ -575,7 +575,7 @@ public:
    inline ::u64 read_buffer_length_unbounded()
    {
 
-      unsigned char unsigned char = m_pfile->get_byte_unbounded();
+      unsigned char uch = m_pfile->get_byte_unbounded();
 
       return unsigned char < 255 ? unsigned char : read_buffer_length_unbounded_part2();
 

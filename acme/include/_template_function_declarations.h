@@ -101,12 +101,12 @@ inline void assign(unsigned long& l, const ::payload& r);
 
 
 inline void assign(bool& l, const ::payload& r);
-inline void assign(char& char, const ::payload& r);
-inline void assign(unsigned char& unsigned char, const ::payload& r);
-inline void assign(short& short, const ::payload& r);
-inline void assign(unsigned short& unsigned short, const ::payload& r);
-inline void assign(int& int, const ::payload& r);
-inline void assign(unsigned int& unsigned int, const ::payload& r);
+inline void assign(char & ch, const ::payload& r);
+inline void assign(unsigned char & uch, const ::payload& r);
+inline void assign(short & sh, const ::payload& r);
+inline void assign(unsigned short & ush, const ::payload& r);
+inline void assign(int & i, const ::payload& r);
+inline void assign(unsigned int & ui, const ::payload& r);
 inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
 
@@ -201,7 +201,7 @@ inline ::u64 make64_from32(unsigned int l, unsigned int h);
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
 
 
-CLASS_DECL_ACMEunsigned int __u32_hash(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr);
 
 
 template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p);

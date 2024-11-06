@@ -510,7 +510,7 @@ namespace interprocess
 
 #ifdef MACOS
 
-      strKey += "." + ::as_string(idPid.as_i32());
+      strKey += "." + ::as_string(idPid.as_int());
 
 #endif
 
@@ -819,7 +819,7 @@ namespace interprocess
             papp->on_additional_local_instance(
                payload["handled"].bool_reference(),
                strModule,
-               propertyset["pid"].as_i32(),
+               propertyset["pid"].as_int(),
                strCommandLine);
 
             propertyset["continue"] = true;

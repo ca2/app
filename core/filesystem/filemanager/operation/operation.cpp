@@ -636,9 +636,9 @@ namespace filemanager
             else
             {
 
-               m_dSize += varLen.as_u32();
+               m_dSize += varLen.as_unsigned_int();
 
-               m_daSize.add((double)varLen.as_u32());
+               m_daSize.add((double)varLen.as_unsigned_int());
 
                m_daRead.add(0.0);
 

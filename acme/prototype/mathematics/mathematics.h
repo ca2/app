@@ -227,7 +227,7 @@ namespace mathematics
 
       char random_char();
       unsigned char random_u8();
-      unsigned int random_u32();
+      unsigned int random_ui();
       u64 random_u64();
 
       int rand_max();

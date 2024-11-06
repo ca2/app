@@ -258,7 +258,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream << payload.m_i64;
       break;
    case e_type_u32:
-      stream << payload.m_u32;
+      stream << payload.m_ui;
       break;
    case e_type_u64:
       stream << payload.m_u64;
@@ -573,7 +573,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_u32, false);
 
-      *this >> payload.m_u32;
+      *this >> payload.m_ui;
 
    }
    break;

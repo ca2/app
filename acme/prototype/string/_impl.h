@@ -61,19 +61,19 @@ class fixed_alloc_array;
 
 
 template < >
-inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
+inline ::u32hash unsigned_int_hash < const ansi_string & >(const ansi_string & ansistr)
 {
 
-   return u32_hash(ansistr.c_str());
+   return unsigned_int_hash(ansistr.c_str());
 
 }
 
 
 template < >
-inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
+inline ::u32hash unsigned_int_hash < const wide_string & >(const wide_string & widestr)
 {
 
-   return u32_hash(widestr.c_str());
+   return unsigned_int_hash(widestr.c_str());
 
 }
 
@@ -296,25 +296,25 @@ payload::payload(const CHARACTER_RANGE & range) :
 
 
 template < >
-inline ::u32hash u32_hash < scoped_ansi_string >(const scoped_ansi_string & scopedstr) {
+inline ::u32hash unsigned_int_hash < scoped_ansi_string >(const scoped_ansi_string & scopedstr) {
 
-   return _scoped_string_u32_hash((const ::scoped_string_base<const ::ansi_character *> &) scopedstr);
-
-}
-
-
-template < >
-inline ::u32hash u32_hash < scoped_wd16_string >(const scoped_wd16_string & scopedstr) {
-
-   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
+   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::ansi_character *> &) scopedstr);
 
 }
 
 
 template < >
-inline ::u32hash u32_hash < scoped_wd32_string >(const scoped_wd32_string & scopedstr) {
+inline ::u32hash unsigned_int_hash < scoped_wd16_string >(const scoped_wd16_string & scopedstr) {
 
-   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
+   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
+
+}
+
+
+template < >
+inline ::u32hash unsigned_int_hash < scoped_wd32_string >(const scoped_wd32_string & scopedstr) {
+
+   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
 
 }
 
@@ -725,19 +725,19 @@ template < typename ITERATOR_TYPE >
 
 
 template < >
-inline ::u32hash u32_hash < ansi_string >(const ansi_string & ansistr)
+inline ::u32hash unsigned_int_hash < ansi_string >(const ansi_string & ansistr)
 {
 
-   return u32_hash < const ansi_string & >(ansistr);
+   return unsigned_int_hash < const ansi_string & >(ansistr);
 
 }
 
 
 template < >
-inline ::u32hash u32_hash < wide_string >(const wide_string & widestr)
+inline ::u32hash unsigned_int_hash < wide_string >(const wide_string & widestr)
 {
 
-   return u32_hash < const wide_string & >(widestr);
+   return unsigned_int_hash < const wide_string & >(widestr);
 
 }
 
@@ -1011,7 +1011,7 @@ u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
 
    }
 
-   u = ::as_u32({ pszStart, this->m_begin - pszStart });
+   u = ::as_unsigned_int({ pszStart, this->m_begin - pszStart });
 
    if (u < uMin)
    {

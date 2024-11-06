@@ -125,7 +125,7 @@ constexpr posix_time operator * (INTEGRAL i, const ::posix_time & time)
 
 
 constexpr posix_time operator "" _posix_time(unsigned long long int u) {
-   return { posix_time_t{}, unsigned short(u) };
+   return { posix_time_t{}, u };
 }
 
 

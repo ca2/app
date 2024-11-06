@@ -4172,12 +4172,12 @@ namespace apex
 
 
             int i1 = set2["oh_my_god2"].as_int_array()[0];
-            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
-            int i3 = set2["oh_my_god2"][2].as_i32();
+            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_int() : -1;
+            int i3 = set2["oh_my_god2"][2].as_int();
 
-            int b1 = set["d1"].as_i32();
+            int b1 = set["d1"].as_int();
             string b2 = set["d2"];
-            int b3 = set["d3"].as_i32();
+            int b3 = set["d3"].as_int();
 
             ASSERT(str1 == str2);
             ASSERT(i1 == 1);

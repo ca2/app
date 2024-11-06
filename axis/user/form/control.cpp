@@ -824,7 +824,7 @@ namespace user
 
       //}
 
-      bData = (payload.as_i32() != 0) ? 1 : 0;
+      bData = (payload.as_int() != 0) ? 1 : 0;
 
       return true;
 

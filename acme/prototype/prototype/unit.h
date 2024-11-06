@@ -11,7 +11,7 @@ protected:
    union
    {
 
-      double m_f64;
+      double m_d;
 
       ::i64 m_i64;
 
@@ -43,7 +43,7 @@ public:
    template < primitive_floating FLOATING >
    constexpr unit_base(FLOATING f, ENUM eunit)
    {
-      m_f64 = (double)f; 
+      m_d = (double)f; 
       m_eunit = eunit; 
       set_floating(); 
    }
@@ -51,7 +51,7 @@ public:
    template < primitive_floating FLOATING >
    constexpr unit_base(FLOATING f) 
    {
-      m_f64 = (double)f;
+      m_d = (double)f;
       m_eunit = rate_unit(); 
       set_floating();
    }
@@ -68,19 +68,19 @@ public:
    constexpr void set_floating() {  m_bFloating = true; }
    constexpr void clear_floating() { m_bFloating = false; }
 
-   constexpr ::i64 i64() const { return is_floating() ? (::i64)m_f64 : m_i64; }
-   constexpr double f64() const { return is_floating() ? m_f64 : (double)m_i64; }
-   constexpr int int() const { return (int) this->i64(); }
-   constexpr float f32() const { return (float) this->f64(); }
+   constexpr ::i64 as_i64() const { return is_floating() ? (::i64)m_d : m_i64; }
+   constexpr double as_double() const { return is_floating() ? m_d : (double)m_i64; }
+   constexpr int as_int() const { return (int) this->as_i64(); }
+   constexpr float as_float() const { return (float) this->as_double(); }
    constexpr ENUM eunit() const { return m_eunit; }
 
-   constexpr bool is_null_or_negative() { return is_floating() ? m_f64 <= 0.0 : m_i64 <= 0; }
-   constexpr bool is_negative() { return is_floating() ? m_f64 < 0.0 : m_i64 < 0; }
-   constexpr bool is_null_or_positive() { return is_floating() ? m_f64 >= 0.0 : m_i64 >= 0; }
-   constexpr bool is_positive() { return is_floating() ? m_f64 > 0.0 : m_i64 > 0; }
+   constexpr bool is_null_or_negative() { return is_floating() ? m_d <= 0.0 : m_i64 <= 0; }
+   constexpr bool is_negative() { return is_floating() ? m_d < 0.0 : m_i64 < 0; }
+   constexpr bool is_null_or_positive() { return is_floating() ? m_d >= 0.0 : m_i64 >= 0; }
+   constexpr bool is_positive() { return is_floating() ? m_d > 0.0 : m_i64 > 0; }
 
 //   constexpr operator ::i64() const { return i64(); }
-//   constexpr operator double() const { return f64(); }
+//   constexpr operator double() const { return double(); }
 //   constexpr operator ENUM() const { return eunit(); }
 
    //template < primitive_integral INTEGRAL >
@@ -98,7 +98,7 @@ public:
    constexpr unit_base & operator = (FLOATING f)
    { 
       
-      m_f64 = (double)f; 
+      m_d = (double)f; 
       
       m_eunit = rate_unit(); 
 
@@ -137,7 +137,7 @@ public:
    unit_base & operator *= (FLOATING f)
    {
 
-      m_f64 = this->f64() * f;
+      m_d = this->double() * f;
 
       set_floating();
 
@@ -150,7 +150,7 @@ public:
    unit_base & operator /= (FLOATING f)
    {
 
-      m_f64 = this->f64() / f;
+      m_d = this->as_double() / f;
 
       set_floating();
 
@@ -163,7 +163,7 @@ public:
    unit_base operator * (FLOATING f) const
    {
 
-      unit_base < ENUM > unitResult(this->f64() * f, this->eunit());
+      unit_base < ENUM > unitResult(this->as_double() * f, this->eunit());
 
       return unitResult;
 
@@ -174,7 +174,7 @@ public:
    unit_base operator / (FLOATING f) const
    {
 
-      unit_base < ENUM > unitResult(this->f64() / f, this->eunit());
+      unit_base < ENUM > unitResult(this->as_double() / f, this->eunit());
 
       return *this;
 
@@ -188,7 +188,7 @@ template < primitive_floating FLOATING, typename ENUM >
 inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & unit)
 {
 
-   unit_base < ENUM > unitResult(unit.f64() * f, unit.eunit());
+   unit_base < ENUM > unitResult(unit.as_double() * f, unit.eunit());
 
    return unitResult;
 

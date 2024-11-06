@@ -17,15 +17,15 @@ struct CLASS_DECL_ACME image32_t
    union
    {
 
-      unsigned int    m_u32;
+      unsigned int    m_ui;
       unsigned char     m_ua[4];
 
    };
 
 
-   constexpr image32_t() { m_u32 = 0; }
+   constexpr image32_t() { m_ui = 0; }
    constexpr image32_t(::color::color color, color_indexes indexes);
-   constexpr image32_t(const ::image32_t & image32) : m_u32(image32.m_u32) {}
+   constexpr image32_t(const ::image32_t & image32) : m_ui(image32.m_ui) {}
 
 
    constexpr unsigned char byte_red(color_indexes indexes) const { return m_ua[indexes.red()]; }
@@ -43,7 +43,7 @@ struct CLASS_DECL_ACME image32_t
    constexpr ::color::color color(color_indexes indexes) const;
    constexpr void assign(::color::color color, color_indexes indexes);
 
-   constexpr bool operator == (const image32_t & image) const { return m_u32 == image.m_u32; }
+   constexpr bool operator == (const image32_t & image) const { return m_ui == image.m_ui; }
 
    constexpr rgba_t rgb(color_indexes indexes) const { return { make_u32(byte_red(indexes), byte_green(indexes), byte_blue(indexes), 0) }; }
 
@@ -111,10 +111,10 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 //
-////constexpr unsigned char image32_t::byte_red() const { return lower_u8(m_u32 >> 16); }
-////constexpr unsigned char image32_t::byte_green() const { return lower_u8(m_u32 >> 8); }
-////constexpr unsigned char image32_t::byte_blue()  const { return lower_u8(m_u32); }
-////constexpr unsigned char image32_t::byte_opacity() const { return lower_u8(m_u32 >> 24); }
+////constexpr unsigned char image32_t::byte_red() const { return lower_byte(m_ui >> 16); }
+////constexpr unsigned char image32_t::byte_green() const { return lower_byte(m_ui >> 8); }
+////constexpr unsigned char image32_t::byte_blue()  const { return lower_byte(m_ui); }
+////constexpr unsigned char image32_t::byte_opacity() const { return lower_byte(m_ui >> 24); }
 ////
 //
 //#else
@@ -131,10 +131,10 @@ struct CLASS_DECL_ACME image32_t
 //}
 //
 ////
-////constexpr unsigned char image32_t::byte_red() const { return lower_u8(m_u32); }
-////constexpr unsigned char image32_t::byte_green() const { return lower_u8(m_u32>>8)); }
-////constexpr unsigned char image32_t::byte_blue()  const { return lower_u8(m_u32>>16)); }
-////constexpr unsigned char image32_t::byte_opacity() const { return lower_u8(m_u32>>24)); }
+////constexpr unsigned char image32_t::byte_red() const { return lower_byte(m_ui); }
+////constexpr unsigned char image32_t::byte_green() const { return lower_byte(m_ui>>8)); }
+////constexpr unsigned char image32_t::byte_blue()  const { return lower_byte(m_ui>>16)); }
+////constexpr unsigned char image32_t::byte_opacity() const { return lower_byte(m_ui>>24)); }
 //
 //
 //#endif

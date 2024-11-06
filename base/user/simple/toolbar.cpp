@@ -2704,7 +2704,7 @@ double simple_toolbar::get_pixel_font_size() const
    if (m_fontsize.eunit() == e_unit_pixel)
    {
 
-      return m_fontsize.f64();
+      return m_fontsize.double();
 
    }
    else if (m_fontsize.eunit() == e_unit_point)
@@ -2712,7 +2712,7 @@ double simple_toolbar::get_pixel_font_size() const
 
       // TODO
 
-      return m_fontsize.f64();
+      return m_fontsize.double();
 
    }
    else if (m_fontsize.eunit() == e_unit_rate)
@@ -2720,7 +2720,7 @@ double simple_toolbar::get_pixel_font_size() const
 
       // TODO
 
-      return m_fontsize.f64() * 12.0;
+      return m_fontsize.double() * 12.0;
 
    }
    else

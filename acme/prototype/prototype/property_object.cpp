@@ -837,7 +837,7 @@ int property_object::find_i32(const ::atom & atom, int iDefault) const
 
    }
 
-   return pproperty->as_i32(iDefault);
+   return pproperty->as_int(iDefault);
 
 }
 
@@ -861,7 +861,7 @@ unsigned int property_object::find_u32(const ::atom & atom, unsigned int iDefaul
 
    }
 
-   return pproperty->as_u32(iDefault);
+   return pproperty->as_unsigned_int(iDefault);
 
 }
 

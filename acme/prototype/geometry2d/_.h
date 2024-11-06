@@ -1416,7 +1416,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline rectangle_f32 rectangle_float_dimension(X x, Y y, W w, H h)
 ////{
 ////
-////   return rectangle_f32((f32)x, (f32)y, (f32)(x + w), (f32)(y + h));
+////   return rectangle_f32((float)x, (float)y, (float)(x + w), (float)(y + h));
 ////
 ////}
 ////
@@ -1425,7 +1425,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline rectangle_f64 rectangle_double_dimension(X x, Y y, W w, H h)
 ////{
 ////
-////   return rectangle_f64((f64)x, (f64)y, (f64)(x + w), (f64)(y + h));
+////   return rectangle_f64((double)x, (double)y, (double)(x + w), (double)(y + h));
 ////
 ////}
 //

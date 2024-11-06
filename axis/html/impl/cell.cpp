@@ -574,7 +574,7 @@ namespace html
                   if(!pelement->m_propertyset.is_new_or_null("colspan"))
                   {
 
-                     iMinCol += pelement->m_propertyset["colspan"].as_i32();
+                     iMinCol += pelement->m_propertyset["colspan"].as_int();
 
                   }
                   else

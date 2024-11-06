@@ -408,7 +408,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       //}
 
-      auto iHttpStatusCode = set["http_status_code"].as_i32();
+      auto iHttpStatusCode = set["http_status_code"].as_int();
 
       if (!is_http_status_ok(scopedstrUrl, scopedstr, payload, set, iHttpStatusCode))
       {

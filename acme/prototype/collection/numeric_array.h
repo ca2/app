@@ -81,8 +81,8 @@ public:
    TYPE & get_minimum_value();
 
 
-   template < typename int >
-   int & mask(int & i)
+   template < primitive_integral INTEGRAL >
+   INTEGRAL & mask(INTEGRAL & i)
    {
 
       i = 0;

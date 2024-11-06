@@ -326,7 +326,7 @@ namespace file
    }
 
 
-   void buffered_file::put_byte_back(unsigned char unsigned char)
+   void buffered_file::put_byte_back(unsigned char uch)
    {
 
       m_uiPosition--;

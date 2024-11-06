@@ -2574,7 +2574,7 @@ namespace draw2d_opengl
 //////      #pragma omp parallel for
 //////                     for(::collection::index i = 0; i < size; i+=4)
 //////                     {
-//////                           dst[i] = lower_u8(((int)dst[i] * (int)dstA[i]) >> 8);
+//////                           dst[i] = lower_byte(((int)dst[i] * (int)dstA[i]) >> 8);
 //////                     }
 //////                  }
 //////
@@ -2601,7 +2601,7 @@ namespace draw2d_opengl
 ////////               {
 ////////                  if(dstA[i] > 3)
 ////////                  {
-////////                     dst[i] = lower_u8(((int)dst[i] * (int)dstA[i]) >> 8);
+////////                     dst[i] = lower_byte(((int)dst[i] * (int)dstA[i]) >> 8);
 ////////                  }
 ////////               }
 ////////            }
@@ -2609,9 +2609,9 @@ namespace draw2d_opengl
 //////#else
 //////         for(::collection::index i = 0; i < size; i+=4)
 //////         {
-//////            dstR[i] = lower_u8(((int)dstR[i] * (int)dstA[i]) >> 8);
-//////            dstG[i] = lower_u8(((int)dstG[i] * (int)dstA[i]) >> 8);
-//////            dstB[i] = lower_u8(((int)dstB[i] * (int)dstA[i]) >> 8);
+//////            dstR[i] = lower_byte(((int)dstR[i] * (int)dstA[i]) >> 8);
+//////            dstG[i] = lower_byte(((int)dstG[i] * (int)dstA[i]) >> 8);
+//////            dstB[i] = lower_byte(((int)dstB[i] * (int)dstA[i]) >> 8);
 //////         }
 //////#endif
 //////

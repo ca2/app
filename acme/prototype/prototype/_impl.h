@@ -979,8 +979,8 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 
 //#define IMPL_VAR_REF3(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-//IMPL_VAR_REF3(float, f32);
-//IMPL_VAR_REF3(double, f64);
+//IMPL_VAR_REF3(float, float);
+//IMPL_VAR_REF3(double, double);
 //#undef IMPL_VAR_REF3
 
 

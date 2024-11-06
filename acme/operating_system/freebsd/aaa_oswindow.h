@@ -3,7 +3,7 @@
 
 // define portable types for 32-bit / 64-bit OS
 //typedef int int_bool;
-typedef unsigned char unsigned char;
+typedef unsigned char uch;
 //typedef unsigned short unsigned short;
 typedef unsigned int unsigned int;
 //typedef int int;

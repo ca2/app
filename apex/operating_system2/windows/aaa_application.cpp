@@ -755,7 +755,7 @@
 //////
 //////
 //////   const SHORT Vk = VkKeyScanExW(ch, hkl);
-//////   //const unsigned int VKey = ::MapVirtualKey(lower_u8(Vk), 0);
+//////   //const unsigned int VKey = ::MapVirtualKey(lower_byte(Vk), 0);
 //////
 //////   if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 //////   {
@@ -816,7 +816,7 @@
 //////   sleep(iSleep);
 //////
 //////   //const SHORT Vk = VkKeyScanExW(ch, hkl);
-//////   ////const unsigned int VKey = ::MapVirtualKey(lower_u8(Vk), 0);
+//////   ////const unsigned int VKey = ::MapVirtualKey(lower_byte(Vk), 0);
 //////
 //////   //if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 //////   //{

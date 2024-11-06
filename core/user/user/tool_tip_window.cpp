@@ -38,7 +38,7 @@ namespace user
       
       ::pointer<::user::message>pusermessage(pmessage);
 
-      switch(pusermessage->m_atom.as_i32())
+      switch(pusermessage->m_atom.as_int())
       {
       case e_message_mouse_move:
       {

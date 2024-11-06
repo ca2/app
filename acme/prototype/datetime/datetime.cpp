@@ -430,12 +430,12 @@ namespace datetime
 
       parse_text(str, set);
 
-      auto year = set["year"].as_i32();
-      auto month = set["month"].as_i32();
-      auto day = set["day"].as_i32();
-      auto hour = set["hour"].as_i32();
-      auto minute = set["minute"].as_i32();
-      auto second = set["second"].as_i32();
+      auto year = set["year"].as_int();
+      auto month = set["month"].as_int();
+      auto day = set["day"].as_int();
+      auto hour = set["hour"].as_int();
+      auto minute = set["minute"].as_int();
+      auto second = set["second"].as_int();
 
       if (year <= 0
          && month <= 0
@@ -1584,36 +1584,36 @@ namespace datetime
 
 //               struct tm atm;
 //
-//               atm.tm_sec = set["second"].as_i32();
-//               atm.tm_min = set["minute"].as_i32();
-//               atm.tm_hour = set["hour"].as_i32();
-//               atm.tm_mday = set["day"].as_i32();
-//               atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
-//               atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
+//               atm.tm_sec = set["second"].as_int();
+//               atm.tm_min = set["minute"].as_int();
+//               atm.tm_hour = set["hour"].as_int();
+//               atm.tm_mday = set["day"].as_int();
+//               atm.tm_mon = set["month"].as_int() - 1;        // tm_mon is 0 based
+//               atm.tm_year = set["year"].as_int() - 1900;     // tm_year is 1900 based
 //               atm.tm_isdst = -1;
 //               /*posix_time now = _time64(nullptr);
 //               posix_time nowUtc = mktime(gmtime(&now));
 //               posix_time tDiff = difftime(nowUtc, now);*/
 //               time = ::earth::time(::earth::make_utc_time(&atm));
                 time = ::earth::time(
-                        set["year"].as_i32(),
-                        set["month"].as_i32(),
-                        set["day"].as_i32(),
-                        set["hour"].as_i32(),
-                        set["minute"].as_i32(),
-                        set["second"].as_i32());
+                        set["year"].as_int(),
+                        set["month"].as_int(),
+                        set["day"].as_int(),
+                        set["hour"].as_int(),
+                        set["minute"].as_int(),
+                        set["second"].as_int());
 
             }
             else
             {
 
                time = ::earth::time(
-                  set["year"].as_i32(),
-                  set["month"].as_i32(),
-                  set["day"].as_i32(),
-                  set["hour"].as_i32(),
-                  set["minute"].as_i32(),
-                  set["second"].as_i32(), ::time::local());
+                  set["year"].as_int(),
+                  set["month"].as_int(),
+                  set["day"].as_int(),
+                  set["hour"].as_int(),
+                  set["minute"].as_int(),
+                  set["second"].as_int(), ::time::local());
 
             }
 
@@ -1632,12 +1632,12 @@ namespace datetime
             parse_text(str, set);
 
             time = ::earth::time(
-               set["year"].as_i32(),
-               set["month"].as_i32(),
-               set["day"].as_i32(),
-               set["hour"].as_i32(),
-               set["minute"].as_i32(),
-               set["second"].as_i32());
+               set["year"].as_int(),
+               set["month"].as_int(),
+               set["day"].as_int(),
+               set["hour"].as_int(),
+               set["minute"].as_int(),
+               set["second"].as_int());
             iStart = 11;
          }
       }
@@ -1651,12 +1651,12 @@ namespace datetime
             parse_br_str(str, set);
 
             time = ::earth::time(
-               set["year"].as_i32(),
-               set["month"].as_i32(),
-               set["day"].as_i32(),
-               set["hour"].as_i32(),
-               set["minute"].as_i32(),
-               set["second"].as_i32());
+               set["year"].as_int(),
+               set["month"].as_int(),
+               set["day"].as_int(),
+               set["hour"].as_int(),
+               set["minute"].as_int(),
+               set["second"].as_int());
             iStart = 11;
          }
       }

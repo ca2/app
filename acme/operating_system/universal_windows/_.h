@@ -100,7 +100,7 @@ namespace user
 //
 //#endif
 
-/*#define GetAValue(rgb)      (lower_u8((rgb)>>24))
+/*#define GetAValue(rgb)      (lower_byte((rgb)>>24))
 #define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|(((unsigned int)(unsigned char)(a))<<24)))*/
 
 

@@ -9,16 +9,16 @@
 struct rgba_t
 {
 
-   unsigned int m_u32;
+   unsigned int m_ui;
 
 
-   constexpr unsigned char byte_red()const { return lower_u8(m_u32); }
-   constexpr unsigned char byte_green()const { return lower_u8(m_u32 >> 8); }
-   constexpr unsigned char byte_blue()const { return lower_u8(m_u32 >> 16); }
-   constexpr unsigned char byte_opacity()const { return lower_u8(m_u32 >> 24); }
+   constexpr unsigned char byte_red()const { return lower_byte(m_ui); }
+   constexpr unsigned char byte_green()const { return lower_byte(m_ui >> 8); }
+   constexpr unsigned char byte_blue()const { return lower_byte(m_ui >> 16); }
+   constexpr unsigned char byte_opacity()const { return lower_byte(m_ui >> 24); }
 
 
-   constexpr bool operator == (const rgba_t & rgba) const { return m_u32 == rgba.m_u32; }
+   constexpr bool operator == (const rgba_t & rgba) const { return m_ui == rgba.m_ui; }
 
 
 };
@@ -27,16 +27,16 @@ struct rgba_t
 struct bgra_t
 {
 
-   unsigned int m_u32;
+   unsigned int m_ui;
 
 
-   constexpr unsigned char byte_blue() const { return lower_u8(m_u32); }
-   constexpr unsigned char byte_green()const { return lower_u8(m_u32 >> 8); }
-   constexpr unsigned char byte_red() const { return lower_u8(m_u32 >> 16); }
-   constexpr unsigned char byte_opacity()const { return lower_u8(m_u32 >> 24); }
+   constexpr unsigned char byte_blue() const { return lower_byte(m_ui); }
+   constexpr unsigned char byte_green()const { return lower_byte(m_ui >> 8); }
+   constexpr unsigned char byte_red() const { return lower_byte(m_ui >> 16); }
+   constexpr unsigned char byte_opacity()const { return lower_byte(m_ui >> 24); }
 
 
-   constexpr bool operator == (const bgra_t & rgba) const { return m_u32 == rgba.m_u32; }
+   constexpr bool operator == (const bgra_t & rgba) const { return m_ui == rgba.m_ui; }
 
 
 };
@@ -55,10 +55,10 @@ constexpr ::color32_t argb32_color32(
 }
 
 
-//constexpr unsigned char color32_byte_red(::color32_t color32) { return lower_u8(color32.m_u32); }
-//constexpr unsigned char color32_byte_green(::color32_t color32) { return lower_u8(color32.m_u32 >> 8); }
-//constexpr unsigned char color32_byte_blue(::color32_t color32) { return lower_u8(color32.m_u32 >> 16); }
-//constexpr unsigned char color32_byte_opacity(::color32_t color32) { return lower_u8(color32.m_u32 >> 24); }
+//constexpr unsigned char color32_byte_red(::color32_t color32) { return lower_byte(color32.m_ui); }
+//constexpr unsigned char color32_byte_green(::color32_t color32) { return lower_byte(color32.m_ui >> 8); }
+//constexpr unsigned char color32_byte_blue(::color32_t color32) { return lower_byte(color32.m_ui >> 16); }
+//constexpr unsigned char color32_byte_opacity(::color32_t color32) { return lower_byte(color32.m_ui >> 24); }
 
 
 
@@ -142,15 +142,15 @@ namespace color
       constexpr color(const ::color32_t & color32) { set(color32); }
       constexpr color(const ::rgba_t & rgba) { set(rgba); }
       constexpr color(const ::bgra_t & bgra) { set(bgra); }
-      constexpr color(const ::color::color & color) { m_u32 = color.m_u32; }
-      constexpr color(const ::color::color & color, const class ::opacity& opacity) { m_u32 = color.m_u32; m_u8Opacity = opacity.byte_opacity(); }
+      constexpr color(const ::color::color & color) { m_ui = color.m_ui; }
+      constexpr color(const ::color::color & color, const class ::opacity& opacity) { m_ui = color.m_ui; m_u8Opacity = opacity.byte_opacity(); }
       //color() { m_flags = -1; }
-//color(const ::color::color & color) { this->m_u32 =h color.m_u32;  m_flags = color.m_flags; }
+//color(const ::color::color & color) { this->m_ui =h color.m_ui;  m_flags = color.m_flags; }
       constexpr color(enum_plain_color eplaincolor);
       constexpr color(enum_plain_color eplaincolor, unsigned char u8Opacity) : color(eplaincolor) { m_u8Opacity = u8Opacity; }
       color(const hls & hls, unsigned char A = 255);
-      //color(const COLOR32 & color32, int flags = 0) { this->m_u32 = color32.m_u32;  m_flags = flags; }
-      //color(::color32_t color32, int flags = 0) { this->m_u32 = color32;  m_flags = flags; }
+      //color(const COLOR32 & color32, int flags = 0) { this->m_ui = color32.m_ui;  m_flags = flags; }
+      //color(::color32_t color32, int flags = 0) { this->m_ui = color32;  m_flags = flags; }
       //color(unsigned char R, unsigned char G, unsigned char B, unsigned char A = 255);
 
       constexpr unsigned char byte_red() const { return m_u8Red; }
@@ -313,7 +313,7 @@ namespace color
       constexpr void set(const ::color::color & color)
       {
 
-         m_u32 = color.m_u32;
+         m_ui = color.m_ui;
 
       }
 
@@ -360,9 +360,9 @@ namespace color
 
       inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }
 
-      constexpr bool operator == (const ::color::color& color) const { return m_u32 == color.m_u32; }
-      constexpr bool operator == (::color32_t color32) const { return this->operator color32_t().m_u32 == color32.m_u32; }
-      constexpr bool operator == (enum_plain_color ecolor) const { return m_u32 == ::color::color(ecolor).m_u32; }
+      constexpr bool operator == (const ::color::color& color) const { return m_ui == color.m_ui; }
+      constexpr bool operator == (::color32_t color32) const { return this->operator color32_t().m_ui == color32.m_ui; }
+      constexpr bool operator == (enum_plain_color ecolor) const { return m_ui == ::color::color(ecolor).m_ui; }
       bool operator == (const hls & hls) const
       {
 
@@ -428,7 +428,7 @@ namespace color
       //constexpr color& operator &=(color32_t color32)
       //{
 
-      //   m_u32 &= color32;
+      //   m_ui &= color32;
 
       //   return *this;
 
@@ -451,7 +451,7 @@ namespace color
 
       //   color color(*this);
 
-      //   color.m_u32 &= color32;
+      //   color.m_ui &= color32;
 
       //   return color;
 
@@ -530,16 +530,16 @@ constexpr rgba_t argb_rgba(unsigned char u8Opacity, unsigned char u8Red, unsigne
    return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
 }
 
-//constexpr unsigned char rgba_byte_red(::rgba_t rgba) { return lower_u8(rgba.m_u32); }
-//constexpr unsigned char rgba_byte_green(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 8); }
-//constexpr unsigned char rgba_byte_blue(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 16); }
-//constexpr unsigned char rgba_byte_opacity(::rgba_t rgba) { return lower_u8(rgba.m_u32 >> 24); }
+//constexpr unsigned char rgba_byte_red(::rgba_t rgba) { return lower_byte(rgba.m_ui); }
+//constexpr unsigned char rgba_byte_green(::rgba_t rgba) { return lower_byte(rgba.m_ui >> 8); }
+//constexpr unsigned char rgba_byte_blue(::rgba_t rgba) { return lower_byte(rgba.m_ui >> 16); }
+//constexpr unsigned char rgba_byte_opacity(::rgba_t rgba) { return lower_byte(rgba.m_ui >> 24); }
 
 
-//constexpr unsigned char bgr_byte_blue(unsigned int bgr) { return lower_u8(bgr); }
-//constexpr unsigned char bgr_byte_green(unsigned int bgr) { return lower_u8((bgr) >> 8); }
-//constexpr unsigned char bgr_byte_red(unsigned int bgr) { return lower_u8((bgr) >> 16); }
-//constexpr unsigned char bgr_byte_opacity(unsigned int bgr) { return lower_u8((bgr) >> 24); }
+//constexpr unsigned char bgr_byte_blue(unsigned int bgr) { return lower_byte(bgr); }
+//constexpr unsigned char bgr_byte_green(unsigned int bgr) { return lower_byte((bgr) >> 8); }
+//constexpr unsigned char bgr_byte_red(unsigned int bgr) { return lower_byte((bgr) >> 16); }
+//constexpr unsigned char bgr_byte_opacity(unsigned int bgr) { return lower_byte((bgr) >> 24); }
 
 
 constexpr bgra_t argb_bgra(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
@@ -638,42 +638,42 @@ namespace color
    constexpr color::color(enum_plain_color eplaincolor)
    {
 
-      unsigned int unsigned int;
+      unsigned int ui;
 
       switch (eplaincolor)
       {
       case e_plain_color_black:
-         unsigned int = ::rgb(0, 0, 0).m_u32;
+         ui = ::rgb(0, 0, 0).m_ui;
          break;
       case e_plain_color_red:
-         unsigned int = ::rgb(255, 0, 0).m_u32;
+         ui = ::rgb(255, 0, 0).m_ui;
          break;
       case e_plain_color_green:
-         unsigned int = ::rgb(0, 255, 0).m_u32;
+         ui = ::rgb(0, 255, 0).m_ui;
          break;
       case e_plain_color_blue:
-         unsigned int = ::rgb(0, 0, 255).m_u32;
+         ui = ::rgb(0, 0, 255).m_ui;
          break;
       case e_plain_color_white:
-         unsigned int = ::rgb(255, 255, 255).m_u32;
+         ui = ::rgb(255, 255, 255).m_ui;
          break;
       case e_plain_color_yellow:
-         unsigned int = ::rgb(255, 255, 0).m_u32;
+         ui = ::rgb(255, 255, 0).m_ui;
          break;
       case e_plain_color_magenta:
-         unsigned int = ::rgb(255, 0, 255).m_u32;
+         ui = ::rgb(255, 0, 255).m_ui;
          break;
       case e_plain_color_cyan:
-         unsigned int = ::rgb(0, 255, 255).m_u32;
+         ui = ::rgb(0, 255, 255).m_ui;
          break;
       case e_plain_color_gray:
-         unsigned int = ::rgb(127, 127, 127).m_u32;
+         ui = ::rgb(127, 127, 127).m_ui;
       default:
-         unsigned int = 0;
+         ui = 0;
          break;
       };
 
-      m_u32 = unsigned int;
+      m_ui = ui;
 
    }
 
@@ -768,24 +768,24 @@ namespace color
    }
 
 
-   //constexpr void color::set_bgr(unsigned int unsigned int)
+   //constexpr void color::set_bgr(unsigned int ui)
    //{
 
-   //   m_u8Red = bgr_byte_red(unsigned int);
-   //   m_u8Green = bgr_byte_green(unsigned int);
-   //   m_u8Blue = bgr_byte_blue(unsigned int);
-   //   m_u8Opacity = bgr_byte_opacity(unsigned int);
+   //   m_u8Red = bgr_byte_red(ui);
+   //   m_u8Green = bgr_byte_green(ui);
+   //   m_u8Blue = bgr_byte_blue(ui);
+   //   m_u8Opacity = bgr_byte_opacity(ui);
 
    //}
 
 
-   //constexpr void color::set_bgra(unsigned int unsigned int)
+   //constexpr void color::set_bgra(unsigned int ui)
    //{
 
-   //   m_u8Red = bgra_byte_red(unsigned int);
-   //   m_u8Green = bgra_byte_green(unsigned int);
-   //   m_u8Blue = bgra_byte_blue(unsigned int);
-   //   m_u8Opacity = bgra_byte_opacity(unsigned int);
+   //   m_u8Red = bgra_byte_red(ui);
+   //   m_u8Green = bgra_byte_green(ui);
+   //   m_u8Blue = bgra_byte_blue(ui);
+   //   m_u8Opacity = bgra_byte_opacity(ui);
 
    //}
 
@@ -797,7 +797,7 @@ constexpr ::color::color color_with_byte_opacity(unsigned char bAlpha, ::color32
 
    ::color::color color;
 
-   color.m_u32  = (color32.m_u32 & 0xffffff) | ((bAlpha & 0xff) << 24);
+   color.m_ui  = (color32.m_ui & 0xffffff) | ((bAlpha & 0xff) << 24);
 
    return color;
 

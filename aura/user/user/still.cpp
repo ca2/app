@@ -1296,7 +1296,7 @@ namespace user
    int still::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
-      return GetDlgCtrlId().as_i32();
+      return GetDlgCtrlId().as_int();
    }
 
 

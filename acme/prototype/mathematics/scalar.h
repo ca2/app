@@ -21,7 +21,7 @@ public:
       short       m_i16;
       unsigned short       m_u16;
       int       m_i32;
-      unsigned int       m_u32;
+      unsigned int       m_ui;
       ::i64       m_i64;
       ::u64       m_u64;
 
@@ -38,11 +38,11 @@ public:
    number(short i) { m_i16 = i; m_enumber = e_number_i16; }
    number(unsigned short u) { m_u16 = u; m_enumber = e_number_u16; }
    number(int i) { m_i32 = i; m_enumber = e_number_i32; }
-   number(unsigned int u) { m_u32 = u; m_enumber = e_number_u32; }
+   number(unsigned int u) { m_ui = u; m_enumber = e_number_u32; }
    number(i64 i) { m_i64 = i; m_enumber = e_number_i64; }
    number(u64 u) { m_u64 = u; m_enumber = e_number_u64; }
-   number(f32 f) { m_f32 = f; m_enumber = e_number_f32; }
-   number(f64 d) { m_f64 = d; m_enumber = e_number_f64; }
+   number(float f) { m_f32 = f; m_enumber = e_number_f32; }
+   number(double d) { m_f64 = d; m_enumber = e_number_f64; }
 //#ifdef __clang__
 //   number(long l) { m_i64 = l; m_enumber = e_number_i64; }
 //#endif
@@ -73,7 +73,7 @@ public:
       case e_number_i32:
          return(T)m_i32;
       case e_number_u32:
-         return (T)m_u32;
+         return (T)m_ui;
       case e_number_i64:
          return(T)m_i64;
       case e_number_u64:
@@ -110,7 +110,7 @@ public:
          m_i32 = (int)t;
          break;
       case e_number_u32:
-         m_u32 = (unsigned int)t;
+         m_ui = (unsigned int)t;
          break;
       case e_number_i64:
          m_i64 = (::i64)t;

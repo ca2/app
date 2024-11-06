@@ -37,8 +37,8 @@ public:
 #endif
 
 
-   operator f32 & () { return m_payload.f32_reference(); }
-   operator f64 & () { return m_payload.f64_reference(); }
+   operator float & () { return m_payload.f32_reference(); }
+   operator double & () { return m_payload.f64_reference(); }
 
 
    //operator second & () { return m_payload.secs(); }

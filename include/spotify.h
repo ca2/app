@@ -56,7 +56,7 @@ typedef uint64_t sp_::u3264;
 typedef unsigned char bool;
 #endif
 
-typedef unsigned char unsigned char;
+typedef unsigned char uch;
 
 /**
  * @defgroup types Spotify types & structs

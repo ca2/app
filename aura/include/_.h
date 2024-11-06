@@ -280,7 +280,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////#define lower_u8(w)              ((unsigned char)((w) & 0xff))
+////#define lower_byte(w)              ((unsigned char)((w) & 0xff))
 ////
 ////
 ////#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
@@ -292,13 +292,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 0
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(r))<<16)|(((unsigned int)lower_u8(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(r))<<16)|(((unsigned int)lower_byte(a))<<24)))
 ////
 ////
-////#define image_r_value(rgb)    (lower_u8((rgb)>>16))
-////#define image_g_value(rgb)    (lower_u8((rgb)>>8))
-////#define image_b_value(rgb)    (lower_u8((rgb)))
-////#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+////#define image_r_value(rgb)    (lower_byte((rgb)>>16))
+////#define image_g_value(rgb)    (lower_byte((rgb)>>8))
+////#define image_b_value(rgb)    (lower_byte((rgb)))
+////#define image_a_value(rgb)    (lower_byte((rgb)>>24))
 ////
 ////
 ////#else
@@ -310,13 +310,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 2
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
 ////
 ////
-////#define image_r_value(rgb)    (lower_u8((rgb)))
-////#define image_g_value(rgb)    (lower_u8((rgb)>>8))
-////#define image_b_value(rgb)    (lower_u8((rgb)>>16))
-////#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+////#define image_r_value(rgb)    (lower_byte((rgb)))
+////#define image_g_value(rgb)    (lower_byte((rgb)>>8))
+////#define image_b_value(rgb)    (lower_byte((rgb)>>16))
+////#define image_a_value(rgb)    (lower_byte((rgb)>>24))
 ////
 ////
 ////#endif
@@ -325,11 +325,11 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
-////#define color32_byte_red(rgb)    (lower_u8(rgb))
-////#define color32_byte_green(rgb)    (lower_u8((rgb)>>8))
-////#define color32_byte_blue(rgb)    (lower_u8((rgb)>>16))
-////#define color32_byte_opacity(rgb)    (lower_u8((rgb)>>24))
-////#define RGBA(r, g, b, a)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
+////#define color32_byte_red(rgb)    (lower_byte(rgb))
+////#define color32_byte_green(rgb)    (lower_byte((rgb)>>8))
+////#define color32_byte_blue(rgb)    (lower_byte((rgb)>>16))
+////#define color32_byte_opacity(rgb)    (lower_byte((rgb)>>24))
+////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////

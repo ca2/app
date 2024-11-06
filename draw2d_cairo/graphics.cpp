@@ -5474,7 +5474,7 @@ namespace draw2d_cairo
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fDensity);
 
-         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.f64() * fDensity);
+         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.double() * fDensity);
 
       }
       else
@@ -5482,7 +5482,7 @@ namespace draw2d_cairo
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fPreferredDpiX / fDenominatorDpi);
 
-         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.f64() * fPreferredDpiX / fDenominatorDpi);
+         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.double() * fPreferredDpiX / fDenominatorDpi);
 
       }
 

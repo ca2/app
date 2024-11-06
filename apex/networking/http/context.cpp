@@ -1780,7 +1780,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"].as_i32();
+         iTryCount = set["try"].as_int();
 
          if (iTryCount > 5)
          {
@@ -2227,7 +2227,7 @@ namespace http
       if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_i32());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_int());
 
       }
       //else
@@ -2401,7 +2401,7 @@ namespace http
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_i32();
+      iStatusCode = psocket->outattr("http_status_code").as_int();
 
       set["http_status_code"] = iStatusCode;
 
@@ -2745,7 +2745,7 @@ namespace http
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_i32();
+      iStatusCode = psocket->outattr("http_status_code").as_int();
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2875,7 +2875,7 @@ namespace http
 
          }
 
-         iStatusCode = psocket->outattr("http_status_code").as_i32();
+         iStatusCode = psocket->outattr("http_status_code").as_int();
 
          synchronouslock.lock();
 
@@ -2923,7 +2923,7 @@ namespace http
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_i32();
+      iStatusCode = psocket->outattr("http_status_code").as_int();
 
       if (iStatusCode == 200)
       {

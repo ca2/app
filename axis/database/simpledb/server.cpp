@@ -240,7 +240,7 @@ namespace simpledb
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
-         if (item.as_i32() <= 0)
+         if (item.as_int() <= 0)
          {
 
             pdatabase->exec("create table '" + strTable + "' (id TEXT primary key, value BLOB)");

@@ -3022,7 +3022,7 @@ namespace xml
 
          auto pcol = pheader->m_nodea.element_at(iCol);
 
-         straa[iCol].set_size(pcol->attribute("row_count").as_i32());
+         straa[iCol].set_size(pcol->attribute("row_count").as_int());
 
       }
 

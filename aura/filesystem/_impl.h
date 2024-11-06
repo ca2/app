@@ -730,10 +730,10 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
 
 
 template < >
-inline ::u32hash u32_hash < const ::file::path & >(const ::file::path & key)
+inline ::u32hash unsigned_int_hash < const ::file::path & >(const ::file::path & key)
 {
 
-   return u32_hash < const string & >(key);
+   return unsigned_int_hash < const string & >(key);
 
 }
 

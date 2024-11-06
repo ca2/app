@@ -21,7 +21,7 @@
 #define IS_HONEYWELL_ENDIAN   (SERIAL_ENDIANESS == SERIAL_HONEYWELL_ENDIAN)
 
 
-constexpr unsigned char lower_u8(::iptr i) { return (unsigned char)((::uptr)(i) & 0xff); }
+constexpr unsigned char lower_byte(::iptr i) { return (unsigned char)((::uptr)(i) & 0xff); }
 constexpr unsigned char upper_u8(::iptr i) { return (unsigned char)(((::uptr)(i) >> 8) & 0xff); }
 constexpr unsigned short lower_u16(::iptr i) { return (unsigned short)((::uptr)(i) & 0xffff); }
 constexpr unsigned short upper_u16(::iptr i) { return (unsigned short)(((::uptr)(i) >> 16) & 0xffff); }
@@ -45,7 +45,7 @@ constexpr unsigned int make_u32(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return
 constexpr ::u64 make_u64(unsigned int a, unsigned int b) { return ((::u64)a) | (((::u64)b) << 32ull); }
 
 
-constexpr unsigned short swap_u16(unsigned short u) { return make_u16(upper_u8(u), lower_u8(u)); }
+constexpr unsigned short swap_u16(unsigned short u) { return make_u16(upper_u8(u), lower_byte(u)); }
 constexpr unsigned int swap_u32(unsigned int u) { return make_u32(swap_u16(upper_u16(u)), swap_u16(lower_u16(u))); }
 
 

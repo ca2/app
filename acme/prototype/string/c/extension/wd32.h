@@ -54,7 +54,7 @@ CLASS_DECL_ACME const ::wd32_character *       wd32_concatenate_and_duplicate(co
 CLASS_DECL_ACME void                   wd32_from_u64(::wd32_character * psz, u64 u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   wd32_from_i64(::wd32_character * psz, i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   wd32_from_u32(::wd32_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   wd32_from_ui(::wd32_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   wd32_from_i32(::wd32_character * psz, int i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 CLASS_DECL_ACME i64                    wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd = nullptr, int iBase = 10);

@@ -93,7 +93,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #define __EVALUATE_MACRO(name) name
 
 
-///#define lower_u8(w)              ((unsigned char)((w) & 0xff))
+///#define lower_byte(w)              ((unsigned char)((w) & 0xff))
 
 
 
@@ -151,7 +151,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 // #define make_u32(l, h)         ((::uptr)(unsigned int)make_i32(l, h))
 
-//#define lower_u8(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
+//#define lower_byte(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
 
 
 

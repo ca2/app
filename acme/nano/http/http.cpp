@@ -157,7 +157,7 @@ namespace nano
 
          pget->send();
 
-         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_int();
 
          return iHttpStatusCode == 200;
 
@@ -178,7 +178,7 @@ namespace nano
 
          pget->send();
 
-         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_int();
 
          ::string strOutput;
 
@@ -202,7 +202,7 @@ namespace nano
 
          pget->send();
 
-         auto iHttpStatusCode = pget->payload("http_status_code").as_i32();
+         auto iHttpStatusCode = pget->payload("http_status_code").as_int();
 
          file_system()->put_block(path, *pget->get_memory_response());
 

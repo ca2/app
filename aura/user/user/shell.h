@@ -75,12 +75,12 @@ namespace user
          {
             // default identity hash - works for most primitive values
             return
-               u32_hash(m_strPath) +
-               u32_hash(m_strShellThemePrefix) +
-               u32_hash(m_strExtension) +
-               u32_hash(((int)m_eicon)) +
-               u32_hash(((int)m_eattribute)) +
-               u32_hash(((int)m_iIcon));
+               unsigned_int_hash(m_strPath) +
+               unsigned_int_hash(m_strShellThemePrefix) +
+               unsigned_int_hash(m_strExtension) +
+               unsigned_int_hash(((int)m_eicon)) +
+               unsigned_int_hash(((int)m_eattribute)) +
+               unsigned_int_hash(((int)m_iIcon));
          }
 
 

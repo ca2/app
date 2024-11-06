@@ -1221,7 +1221,7 @@ namespace image
       else if (payloadSaveOptions["quality"].is_integer())
       {
 
-         saveoptions.m_iQuality = payloadSaveOptions["quality"].as_i32();
+         saveoptions.m_iQuality = payloadSaveOptions["quality"].as_int();
 
       }
 
@@ -1232,7 +1232,7 @@ namespace image
 
       }
 
-      saveoptions.m_iDpi = payloadSaveOptions["dpi"].as_i32();
+      saveoptions.m_iDpi = payloadSaveOptions["dpi"].as_int();
 
       if (saveoptions.m_iDpi <= 0)
       {

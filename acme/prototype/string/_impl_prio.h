@@ -46,37 +46,37 @@ class fixed_alloc_array;
 ////
 ////
 ////template < >
-////inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
+////inline ::u32hash unsigned_int_hash < const ansi_string & >(const ansi_string & ansistr)
 ////{
 ////
-////   return u32_hash < const ::ansi_character * >(ansistr.c_str());
+////   return unsigned_int_hash < const ::ansi_character * >(ansistr.c_str());
 ////
 ////}
 ////
 ////
 ////template < >
-////inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
+////inline ::u32hash unsigned_int_hash < const wide_string & >(const wide_string & widestr)
 ////{
 ////
-////   return u32_hash < const ::wide_character * >(widestr.c_str());
+////   return unsigned_int_hash < const ::wide_character * >(widestr.c_str());
 ////
 ////}
 ////
 ////
 ////template < >
-////inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr)
+////inline ::u32hash unsigned_int_hash < ansi_string >(ansi_string ansistr)
 ////{
 ////
-////   return u32_hash < const ansi_string & >(ansistr);
+////   return unsigned_int_hash < const ansi_string & >(ansistr);
 ////
 ////}
 ////
 ////
 ////template < >
-////inline ::u32hash u32_hash < wide_string >(wide_string widestr)
+////inline ::u32hash unsigned_int_hash < wide_string >(wide_string widestr)
 ////{
 ////
-////   return u32_hash < const wide_string & >(widestr);
+////   return unsigned_int_hash < const wide_string & >(widestr);
 ////
 ////}
 

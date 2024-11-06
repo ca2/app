@@ -122,7 +122,7 @@ public:
 
    void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
-   void put_byte_back(unsigned char unsigned char) override;
+   void put_byte_back(unsigned char uch) override;
 
    virtual void write_from_hex(const ::block & block) override;
 

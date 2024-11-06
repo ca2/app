@@ -2653,46 +2653,46 @@ void image::mult_alpha(::image::image* pimage, bool bPreserveAlpha)
 
    while (size >= 8)
    {
-      dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
-      dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
-      dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
+      dst[0] = lower_byte(((int)dst[0] * (int)dst[3]) >> 8);
+      dst[1] = lower_byte(((int)dst[1] * (int)dst[3]) >> 8);
+      dst[2] = lower_byte(((int)dst[2] * (int)dst[3]) >> 8);
 
-      dst[4 + 0] = lower_u8(((int)dst[4 + 0] * (int)dst[4 + 3]) >> 8);
-      dst[4 + 1] = lower_u8(((int)dst[4 + 1] * (int)dst[4 + 3]) >> 8);
-      dst[4 + 2] = lower_u8(((int)dst[4 + 2] * (int)dst[4 + 3]) >> 8);
+      dst[4 + 0] = lower_byte(((int)dst[4 + 0] * (int)dst[4 + 3]) >> 8);
+      dst[4 + 1] = lower_byte(((int)dst[4 + 1] * (int)dst[4 + 3]) >> 8);
+      dst[4 + 2] = lower_byte(((int)dst[4 + 2] * (int)dst[4 + 3]) >> 8);
 
-      dst[8 + 0] = lower_u8(((int)dst[8 + 0] * (int)dst[8 + 3]) >> 8);
-      dst[8 + 1] = lower_u8(((int)dst[8 + 1] * (int)dst[8 + 3]) >> 8);
-      dst[8 + 2] = lower_u8(((int)dst[8 + 2] * (int)dst[8 + 3]) >> 8);
+      dst[8 + 0] = lower_byte(((int)dst[8 + 0] * (int)dst[8 + 3]) >> 8);
+      dst[8 + 1] = lower_byte(((int)dst[8 + 1] * (int)dst[8 + 3]) >> 8);
+      dst[8 + 2] = lower_byte(((int)dst[8 + 2] * (int)dst[8 + 3]) >> 8);
 
-      dst[12 + 0] = lower_u8(((int)dst[12 + 0] * (int)dst[12 + 3]) >> 8);
-      dst[12 + 1] = lower_u8(((int)dst[12 + 1] * (int)dst[12 + 3]) >> 8);
-      dst[12 + 2] = lower_u8(((int)dst[12 + 2] * (int)dst[12 + 3]) >> 8);
+      dst[12 + 0] = lower_byte(((int)dst[12 + 0] * (int)dst[12 + 3]) >> 8);
+      dst[12 + 1] = lower_byte(((int)dst[12 + 1] * (int)dst[12 + 3]) >> 8);
+      dst[12 + 2] = lower_byte(((int)dst[12 + 2] * (int)dst[12 + 3]) >> 8);
 
-      dst[16 + 0] = lower_u8(((int)dst[16 + 0] * (int)dst[16 + 3]) >> 8);
-      dst[16 + 1] = lower_u8(((int)dst[16 + 1] * (int)dst[16 + 3]) >> 8);
-      dst[16 + 2] = lower_u8(((int)dst[16 + 2] * (int)dst[16 + 3]) >> 8);
+      dst[16 + 0] = lower_byte(((int)dst[16 + 0] * (int)dst[16 + 3]) >> 8);
+      dst[16 + 1] = lower_byte(((int)dst[16 + 1] * (int)dst[16 + 3]) >> 8);
+      dst[16 + 2] = lower_byte(((int)dst[16 + 2] * (int)dst[16 + 3]) >> 8);
 
-      dst[20 + 0] = lower_u8(((int)dst[20 + 0] * (int)dst[20 + 3]) >> 8);
-      dst[20 + 1] = lower_u8(((int)dst[20 + 1] * (int)dst[20 + 3]) >> 8);
-      dst[20 + 2] = lower_u8(((int)dst[20 + 2] * (int)dst[20 + 3]) >> 8);
+      dst[20 + 0] = lower_byte(((int)dst[20 + 0] * (int)dst[20 + 3]) >> 8);
+      dst[20 + 1] = lower_byte(((int)dst[20 + 1] * (int)dst[20 + 3]) >> 8);
+      dst[20 + 2] = lower_byte(((int)dst[20 + 2] * (int)dst[20 + 3]) >> 8);
 
-      dst[24 + 0] = lower_u8(((int)dst[24 + 0] * (int)dst[24 + 3]) >> 8);
-      dst[24 + 1] = lower_u8(((int)dst[24 + 1] * (int)dst[24 + 3]) >> 8);
-      dst[24 + 2] = lower_u8(((int)dst[24 + 2] * (int)dst[24 + 3]) >> 8);
+      dst[24 + 0] = lower_byte(((int)dst[24 + 0] * (int)dst[24 + 3]) >> 8);
+      dst[24 + 1] = lower_byte(((int)dst[24 + 1] * (int)dst[24 + 3]) >> 8);
+      dst[24 + 2] = lower_byte(((int)dst[24 + 2] * (int)dst[24 + 3]) >> 8);
 
-      dst[28 + 0] = lower_u8(((int)dst[28 + 0] * (int)dst[28 + 3]) >> 8);
-      dst[28 + 1] = lower_u8(((int)dst[28 + 1] * (int)dst[28 + 3]) >> 8);
-      dst[28 + 2] = lower_u8(((int)dst[28 + 2] * (int)dst[28 + 3]) >> 8);
+      dst[28 + 0] = lower_byte(((int)dst[28 + 0] * (int)dst[28 + 3]) >> 8);
+      dst[28 + 1] = lower_byte(((int)dst[28 + 1] * (int)dst[28 + 3]) >> 8);
+      dst[28 + 2] = lower_byte(((int)dst[28 + 2] * (int)dst[28 + 3]) >> 8);
 
       dst += 4 * 8;
       size -= 8;
    }
    while (size--)
    {
-      dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
-      dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
-      dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
+      dst[0] = lower_byte(((int)dst[0] * (int)dst[3]) >> 8);
+      dst[1] = lower_byte(((int)dst[1] * (int)dst[3]) >> 8);
+      dst[2] = lower_byte(((int)dst[2] * (int)dst[3]) >> 8);
       dst += 4;
    }
 
@@ -2926,37 +2926,37 @@ void image::div_alpha()
 
    /*      while (size >= 8)
          {
-            dst[0] = lower_u8(((int)dst[0] * (int)dst[3])>> 8);
-            dst[1] = lower_u8(((int)dst[1] * (int)dst[3])>> 8);
-            dst[2] = lower_u8(((int)dst[2] * (int)dst[3])>> 8);
+            dst[0] = lower_byte(((int)dst[0] * (int)dst[3])>> 8);
+            dst[1] = lower_byte(((int)dst[1] * (int)dst[3])>> 8);
+            dst[2] = lower_byte(((int)dst[2] * (int)dst[3])>> 8);
 
-            dst[4+0] = lower_u8(((int)dst[4+0] * (int)dst[4+3])>> 8);
-            dst[4+1] = lower_u8(((int)dst[4+1] * (int)dst[4+3])>> 8);
-            dst[4+2] = lower_u8(((int)dst[4+2] * (int)dst[4+3])>> 8);
+            dst[4+0] = lower_byte(((int)dst[4+0] * (int)dst[4+3])>> 8);
+            dst[4+1] = lower_byte(((int)dst[4+1] * (int)dst[4+3])>> 8);
+            dst[4+2] = lower_byte(((int)dst[4+2] * (int)dst[4+3])>> 8);
 
-            dst[8+0] = lower_u8(((int)dst[8+0] * (int)dst[8+3])>> 8);
-            dst[8+1] = lower_u8(((int)dst[8+1] * (int)dst[8+3])>> 8);
-            dst[8+2] = lower_u8(((int)dst[8+2] * (int)dst[8+3])>> 8);
+            dst[8+0] = lower_byte(((int)dst[8+0] * (int)dst[8+3])>> 8);
+            dst[8+1] = lower_byte(((int)dst[8+1] * (int)dst[8+3])>> 8);
+            dst[8+2] = lower_byte(((int)dst[8+2] * (int)dst[8+3])>> 8);
 
-            dst[12+0] = lower_u8(((int)dst[12+0] * (int)dst[12+3])>> 8);
-            dst[12+1] = lower_u8(((int)dst[12+1] * (int)dst[12+3])>> 8);
-            dst[12+2] = lower_u8(((int)dst[12+2] * (int)dst[12+3])>> 8);
+            dst[12+0] = lower_byte(((int)dst[12+0] * (int)dst[12+3])>> 8);
+            dst[12+1] = lower_byte(((int)dst[12+1] * (int)dst[12+3])>> 8);
+            dst[12+2] = lower_byte(((int)dst[12+2] * (int)dst[12+3])>> 8);
 
-            dst[16+0] = lower_u8(((int)dst[16+0] * (int)dst[16+3])>> 8);
-            dst[16+1] = lower_u8(((int)dst[16+1] * (int)dst[16+3])>> 8);
-            dst[16+2] = lower_u8(((int)dst[16+2] * (int)dst[16+3])>> 8);
+            dst[16+0] = lower_byte(((int)dst[16+0] * (int)dst[16+3])>> 8);
+            dst[16+1] = lower_byte(((int)dst[16+1] * (int)dst[16+3])>> 8);
+            dst[16+2] = lower_byte(((int)dst[16+2] * (int)dst[16+3])>> 8);
 
-            dst[20+0] = lower_u8(((int)dst[20+0] * (int)dst[20+3])>> 8);
-            dst[20+1] = lower_u8(((int)dst[20+1] * (int)dst[20+3])>> 8);
-            dst[20+2] = lower_u8(((int)dst[20+2] * (int)dst[20+3])>> 8);
+            dst[20+0] = lower_byte(((int)dst[20+0] * (int)dst[20+3])>> 8);
+            dst[20+1] = lower_byte(((int)dst[20+1] * (int)dst[20+3])>> 8);
+            dst[20+2] = lower_byte(((int)dst[20+2] * (int)dst[20+3])>> 8);
 
-            dst[24+0] = lower_u8(((int)dst[24+0] * (int)dst[24+3])>> 8);
-            dst[24+1] = lower_u8(((int)dst[24+1] * (int)dst[24+3])>> 8);
-            dst[24+2] = lower_u8(((int)dst[24+2] * (int)dst[24+3])>> 8);
+            dst[24+0] = lower_byte(((int)dst[24+0] * (int)dst[24+3])>> 8);
+            dst[24+1] = lower_byte(((int)dst[24+1] * (int)dst[24+3])>> 8);
+            dst[24+2] = lower_byte(((int)dst[24+2] * (int)dst[24+3])>> 8);
 
-            dst[28+0] = lower_u8(((int)dst[28+0] * (int)dst[28+3])>> 8);
-            dst[28+1] = lower_u8(((int)dst[28+1] * (int)dst[28+3])>> 8);
-            dst[28+2] = lower_u8(((int)dst[28+2] * (int)dst[28+3])>> 8);
+            dst[28+0] = lower_byte(((int)dst[28+0] * (int)dst[28+3])>> 8);
+            dst[28+1] = lower_byte(((int)dst[28+1] * (int)dst[28+3])>> 8);
+            dst[28+2] = lower_byte(((int)dst[28+2] * (int)dst[28+3])>> 8);
 
             dst += 4 * 8;
             size -= 8;
@@ -5240,7 +5240,7 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 
    map();
 
-   unsigned int unsigned int = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_u32;
+   unsigned int unsigned int = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_ui;
 
    unsigned char* p = (unsigned char*)&unsigned int;
 
@@ -7033,7 +7033,7 @@ void image::xor_image_frame2(void* pdata, int iFrame, int iFrameCount)
 
       for (int x = 0; x < iFrameWidth; x++)
       {
-         pdstline->m_u32 ^= psrc->m_u32;
+         pdstline->m_ui ^= psrc->m_ui;
 
          pdstline++;
 
@@ -7091,7 +7091,7 @@ bool image::is_rgb_black()
    for (int i = 0; i < iSize; i++)
    {
 
-      if ((p->m_u32 & 0x00FFFFFF) != 0)
+      if ((p->m_ui & 0x00FFFFFF) != 0)
       {
 
          return false;
@@ -9570,7 +9570,7 @@ void image::create_circle(::image::image* pimage, int diameter)
 
          crA = maximum(minimum(crA, 255), 0);
 
-         pimage322->m_u32 = (pimage322->m_u32 & 0x00ffffff) | (crA << 24);
+         pimage322->m_ui = (pimage322->m_ui & 0x00ffffff) | (crA << 24);
 
          pimage322++;
 

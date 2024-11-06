@@ -830,7 +830,7 @@ CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, int iBase, enum
 }
 
 
-CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;

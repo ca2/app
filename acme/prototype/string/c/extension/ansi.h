@@ -56,7 +56,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 CLASS_DECL_ACME void                   ansi_from_u64(::ansi_character * psz, u64 u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   ansi_from_i64(::ansi_character * psz, i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   ansi_from_u32(::ansi_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_ui(::ansi_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   ansi_from_i32(::ansi_character * psz, int i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 CLASS_DECL_ACME i64                    ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);

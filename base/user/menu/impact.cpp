@@ -292,7 +292,7 @@ namespace user
 
       //::status < ::rectangle_i32 > rectangleMenuItem;
 
-      int iHeight = (int) ( m_pfontTitle->m_fontsize.f64() * 1.25 + 20);
+      int iHeight = (int) ( m_pfontTitle->m_fontsize.double() * 1.25 + 20);
 
       int x = 10;
 

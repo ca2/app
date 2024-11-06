@@ -3920,7 +3920,7 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
    if (m_htask && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(__hwnd(oswindow), atom.as_u32(), wparam, lparam))
+      if (::PostMessage(__hwnd(oswindow), atom.as_unsigned_int(), wparam, lparam))
       {
 
          return;

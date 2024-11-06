@@ -41,7 +41,7 @@ struct u32hash
 
 
 template < typename T >
-::u32hash u32_hash(const T & t) { return (::u32hash)t; }
+::u32hash unsigned_int_hash(const T & t) { return (::u32hash)t; }
 
 
 //#include "acme/include/_numeric_concepts.h"

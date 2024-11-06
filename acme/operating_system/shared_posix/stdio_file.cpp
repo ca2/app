@@ -328,7 +328,7 @@ int stdio_file::peek_byte()
 }
 
 
-void stdio_file::put_byte_back(unsigned char unsigned char)
+void stdio_file::put_byte_back(unsigned char uch)
 {
 
    ::ungetc(unsigned char, m_pfile);

@@ -45,7 +45,7 @@ namespace file
       void write(const void * p, ::memsize s) override;
 
 
-      void put_byte_back(unsigned char unsigned char) override;
+      void put_byte_back(unsigned char uch) override;
 
       void flush() override;
       bool buffer(memsize uiGrow = 0);

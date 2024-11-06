@@ -8,7 +8,7 @@
 
 
 //template < >
-//inline u32hash u32_hash < const ::size_i32 & >(const ::size_i32 & size) 
+//inline u32hash unsigned_int_hash < const ::size_i32 & >(const ::size_i32 & size) 
 //{ 
 //   
 //   return (u32hash)(size.cx() | size.cy() << 16); 
@@ -17,19 +17,19 @@
 
 
 //template < >
-//inline u32hash u32_hash < ::size_i32 >(::size_i32 size)
+//inline u32hash unsigned_int_hash < ::size_i32 >(::size_i32 size)
 //{
 //
-//   return u32_hash<const ::size_i32& >((const ::size_i32 &) size);
+//   return unsigned_int_hash<const ::size_i32& >((const ::size_i32 &) size);
 //
 //}
 
 
 //template < >
-//inline u32hash u32_hash < const concrete < ::size_i32 > & >(const concrete < ::size_i32 > & size)
+//inline u32hash unsigned_int_hash < const concrete < ::size_i32 > & >(const concrete < ::size_i32 > & size)
 //{
 //
-//   return u32_hash((const ::size_i32 &) size);
+//   return unsigned_int_hash((const ::size_i32 &) size);
 //
 //}
 

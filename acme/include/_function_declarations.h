@@ -18,11 +18,10 @@ CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_chara
 CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACMEint ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACMEunsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
 CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
@@ -109,13 +108,13 @@ inline void assign(long& l, const ::payload& r);
 inline void assign(unsigned long& l, const ::payload& r);
 
 
-inline void assign(bool& l, const ::payload& r);
-inline void assign(char& char, const ::payload& r);
-inline void assign(unsigned char& unsigned char, const ::payload& r);
-inline void assign(short& short, const ::payload& r);
-inline void assign(unsigned short& unsigned short, const ::payload& r);
-inline void assign(int& int, const ::payload& r);
-inline void assign(unsigned int& unsigned int, const ::payload& r);
+inline void assign(bool& b, const ::payload& r);
+inline void assign(char& ch, const ::payload& r);
+inline void assign(unsigned char & uch, const ::payload& r);
+inline void assign(short & sh, const ::payload& r);
+inline void assign(unsigned short & ush, const ::payload& r);
+inline void assign(int& i, const ::payload& r);
+inline void assign(unsigned int& ui, const ::payload& r);
 inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
 
@@ -231,7 +230,7 @@ inline bool is_string_ok(::ansi_character * p, ::strsize s);
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
 
 
-CLASS_DECL_ACMEunsigned int __u32_hash(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr);
 
 
 template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p);

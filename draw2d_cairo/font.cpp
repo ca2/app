@@ -190,7 +190,7 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      int iPangoSize = (int) (m_fontsize.f64() * PANGO_SCALE);
+      int iPangoSize = (int) (m_fontsize.double() * PANGO_SCALE);
 
       if(iPangoSize <= 0)
       {
@@ -231,13 +231,13 @@ namespace draw2d_cairo
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.f64() * PANGO_SCALE);
+         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.double() * PANGO_SCALE);
 
       }
       else
       {
 
-         pango_font_description_set_size(m_pdesc, m_fontsize.f64() * PANGO_SCALE);
+         pango_font_description_set_size(m_pdesc, m_fontsize.double() * PANGO_SCALE);
 
       }
 

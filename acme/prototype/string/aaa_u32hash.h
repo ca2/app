@@ -5,7 +5,7 @@
 
 
 template < >
-inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * psz)
+inline ::u32hash unsigned_int_hash < const ::ansi_character * >(const ::ansi_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -48,7 +48,7 @@ inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * 
 
 
 template < >
-inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * psz)
+inline ::u32hash unsigned_int_hash < const ::wd16_character * >(const ::wd16_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -91,7 +91,7 @@ inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * 
 
 
 template < >
-inline ::u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * psz)
+inline ::u32hash unsigned_int_hash < const ::wd32_character * >(const ::wd32_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)

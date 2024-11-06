@@ -149,7 +149,7 @@ namespace file
    int file::getc()
    {
 
-      unsigned char unsigned char = 0;
+      unsigned char uch = 0;
 
       auto iRead = read({ &unsigned char, 1 });
 
@@ -500,7 +500,7 @@ namespace file
    int file::get_u8()
    {
 
-      unsigned char unsigned char = 0;
+      unsigned char uch = 0;
 
       if (read(&unsigned char) != 1)
       {
@@ -546,7 +546,7 @@ namespace file
    }
 
 
-   void file::put_byte_back(unsigned char unsigned char)
+   void file::put_byte_back(unsigned char uch)
    {
 
       throw ::exception(::error_unsupported_function, "Please use buffered_file for buffered operations.");

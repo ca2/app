@@ -82,7 +82,7 @@ struct image_header
       unsigned int u = (unsigned int)m_etype;
       if(m_etype == ::e_image_type_plain_color)
       {
-         u |= m_color.m_u32;
+         u |= m_color.m_ui;
       }
       u |= m_size.cx() << 16;
       u |= m_size.cy() << 24;

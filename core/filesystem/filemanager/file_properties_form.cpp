@@ -149,7 +149,7 @@ namespace filemanager
    void file_properties_form::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_atom.as_i32())
+      switch(pimpactdata->m_atom.as_int())
       {
       case 1:
       {
@@ -193,7 +193,7 @@ namespace filemanager
    void file_properties_form::on_change_cur_sel()
    {
 
-      switch(get_impact_id().as_i32())
+      switch(get_impact_id().as_int())
       {
       case 1:
       {

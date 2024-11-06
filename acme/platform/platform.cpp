@@ -1360,9 +1360,9 @@ g_bWindowingOutputDebugString = true;
          )
       {
 
-         releasetimeforproject.m_iYear = ::as_i32(scoped_ansi_string(pszStaticText + 0, 4));
-         releasetimeforproject.m_iMonth = ::as_i32(scoped_ansi_string(pszStaticText + 5, 2));
-         releasetimeforproject.m_iDay = ::as_i32(scoped_ansi_string(pszStaticText + 8, 2));
+         releasetimeforproject.m_iYear = ::as_int(scoped_ansi_string(pszStaticText + 0, 4));
+         releasetimeforproject.m_iMonth = ::as_int(scoped_ansi_string(pszStaticText + 5, 2));
+         releasetimeforproject.m_iDay = ::as_int(scoped_ansi_string(pszStaticText + 8, 2));
 
          if (len >= 19
             && !::character_isalnum(pszStaticText[10])
@@ -1377,9 +1377,9 @@ g_bWindowingOutputDebugString = true;
             )
          {
 
-            releasetimeforproject.m_iHour = ::as_i32(scoped_ansi_string(pszStaticText + 11, 2));
-            releasetimeforproject.m_iMinute = ::as_i32(scoped_ansi_string(pszStaticText + 14, 2));
-            releasetimeforproject.m_iSecond = ::as_i32(scoped_ansi_string(pszStaticText + 17, 2));
+            releasetimeforproject.m_iHour = ::as_int(scoped_ansi_string(pszStaticText + 11, 2));
+            releasetimeforproject.m_iMinute = ::as_int(scoped_ansi_string(pszStaticText + 14, 2));
+            releasetimeforproject.m_iSecond = ::as_int(scoped_ansi_string(pszStaticText + 17, 2));
 
          }
 

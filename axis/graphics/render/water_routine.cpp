@@ -515,18 +515,18 @@ namespace draw2d
             //Shading = Δx;?
             // Water draw method?
             //      ca = BkGdImage[offset + WATERWID*(Δy>>3) + (Δx>>3)];
-            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_u32;
+            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_ui;
 
             // If anyone knows a better/faster way to do this, please tell me...
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
-            pTargetImage[offset].m_u32 = ca;
+            pTargetImage[offset].m_ui = ca;
 
             offset++;
             Δx = ptr[offset] - ptr[offset+1];
             Δy = ptr[offset] - ptr[offset+m_iWidth];
             //    ca = BkGdImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)];
-            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_u32;
-            pTargetImage[offset].m_u32 = ca;
+            ca = pSrcImage[offset + m_iWidth*(Δy>>3) + (Δx>>3)].m_ui;
+            pTargetImage[offset].m_ui = ca;
             //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
 
          }

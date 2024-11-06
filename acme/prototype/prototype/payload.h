@@ -75,7 +75,7 @@ public:
       short                                  m_i16;
       unsigned short                                  m_u16;
       int                                  m_i32;
-      unsigned int                                  m_u32;
+      unsigned int                                  m_ui;
       ::i64                                  m_i64;
       ::u64                                  m_u64;
       char * m_pi8;
@@ -182,7 +182,7 @@ public:
    template < same_as < short > I16 > payload(I16 i) : m_etype(e_type_i16) {m_i16 = i;}
    template < same_as < unsigned short > U16 > payload(U16 u) : m_etype(e_type_u16) {m_u16 = u;}
    template < same_as < int > I32 > payload(I32 i) : m_etype(e_type_i32) {m_i32 = i;}
-   template < same_as < unsigned int > U32 > payload(U32 u) : m_etype(e_type_u32) {m_u32 = u;}
+   template < same_as < unsigned int > U32 > payload(U32 u) : m_etype(e_type_u32) {m_ui = u;}
    template < same_as < ::i64 > I64 > payload(I64 i) : m_etype(e_type_i64) {m_i64 = i;}
    template < same_as < ::u64 > U64 > payload(U64 u) : m_etype(e_type_u64) {m_u64 = u;}
    template < same_as < float > F32 > payload(F32 f) : m_etype(e_type_f32) {m_f32 = f;}
@@ -447,24 +447,24 @@ public:
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
 
-   char & as(char & i) const { return i = as_i8(); }
-   unsigned char & as(unsigned char & u) const { return u = as_u8(); }
-   short & as(short & i) const { return i = as_i16(); }
-   unsigned short & as(unsigned short & u) const { return u = as_u16(); }
-   int & as(int & i)  const { return i = as_i32(); }
-   unsigned int & as(unsigned int & u)  const { return u = as_u32(); }
+   char & as(char & i) const { return i = as_char(); }
+   unsigned char & as(unsigned char & u) const { return u = as_unsigned_char(); }
+   short & as(short & i) const { return i = as_short(); }
+   unsigned short & as(unsigned short & u) const { return u = as_unsigned_short(); }
+   int & as(int & i)  const { return i = as_int(); }
+   unsigned int & as(unsigned int & u)  const { return u = as_unsigned_int(); }
    ::i64 & as(::i64 & i)  const { return i = as_i64(); }
    ::u64 & as(::u64 & u)  const { return u = as_u64(); }
    float & as(float & f) const { return f = as_f32(); }
    double & as(double & f) const { return f = as_f64(); }
 
 
-   char as_i8(char iDefault = 0) const;
-   unsigned char as_u8(unsigned char uDefault = 0) const;
-   short as_i16(short iDefault = 0) const;
-   unsigned short as_u16(unsigned short uDefault = 0) const;
-   int as_i32(int iDefault = 0)  const;
-   unsigned int as_u32(unsigned int uiDefault = 0)  const;
+   char as_char(char iDefault = 0) const;
+   unsigned char as_unsigned_char(unsigned char uDefault = 0) const;
+   short as_short(short iDefault = 0) const;
+   unsigned short as_unsigned_short(unsigned short uDefault = 0) const;
+   int as_int(int iDefault = 0)  const;
+   unsigned int as_unsigned_int(unsigned int uiDefault = 0)  const;
    ::i64 as_i64(::i64 iDefault = 0)  const;
    ::u64 as_u64(::u64 uiDefault = 0)  const;
    float as_f32(float fDefault = 0) const;
@@ -623,12 +623,12 @@ public:
 
    operator bool() const { return this->as_bool(); }
 
-   operator char() const { return this->as_i8(); }
-   operator unsigned char() const { return this->as_u8(); }
-   operator short() const { return this->as_i16(); }
-   operator unsigned short() const { return this->as_u16(); }
-   operator int() const { return this->as_i32(); }
-   operator unsigned int() const { return this->as_u32(); }
+   operator char() const { return this->as_char(); }
+   operator unsigned char() const { return this->as_unsigned_char(); }
+   operator short() const { return this->as_short(); }
+   operator unsigned short() const { return this->as_unsigned_short(); }
+   operator int() const { return this->as_int(); }
+   operator unsigned int() const { return this->as_unsigned_int(); }
    operator ::i64() const { return this->as_i64(); }
    operator ::u64() const { return this->as_u64(); }
 
@@ -913,7 +913,7 @@ public:
    payload & assign_i16    (short    i)   { return __assign_primitive(m_i16 , e_type_i16   , i ); }
    payload & assign_u16    (unsigned short    u)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
    payload & assign_i32    (int    i)   { return __assign_primitive(m_i32 , e_type_i32   , i ); }
-   payload & assign_u32    (unsigned int    u)   { return __assign_primitive(m_u32 , e_type_u32   , u ); }
+   payload & assign_u32    (unsigned int    u)   { return __assign_primitive(m_ui , e_type_u32   , u ); }
    payload & assign_i64    (::i64    i)   { return __assign_primitive(m_i64 , e_type_i64   , i ); }
    payload & assign_u64    (::u64    u)   { return __assign_primitive(m_u64 , e_type_u64   , u ); }
    payload & assign_f32    (float    f)   { return __assign_primitive(m_f32 , e_type_f32   , f ); }
@@ -1057,8 +1057,8 @@ public:
    payload & operator=(unsigned int * pu) { return assign_pu32(pu); }
    payload & operator=(i64 * pi) { return assign_pi64(pi); }
    payload & operator=(u64 * pu) { return assign_pu64(pu); }
-   payload & operator=(f32 * pf) { return assign_pf32(pf); }
-   payload & operator=(f64 * pf) { return assign_pf64(pf); }
+   payload & operator=(float * pf) { return assign_pf32(pf); }
+   payload & operator=(double * pf) { return assign_pf64(pf); }
 
 #ifdef WINDOWS
    payload & operator = (long l);
@@ -1695,7 +1695,7 @@ inline iptr payload::as_iptr(::iptr iDefault) const
 
 #else
 
-   return as_i32(iDefault);
+   return as_int(iDefault);
 
 #endif
 
@@ -1711,7 +1711,7 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 
 #else
 
-   return as_u32(uiDefault);
+   return as_unsigned_int(uiDefault);
 
 #endif
 
@@ -1736,7 +1736,7 @@ inline payload::operator long() const
 inline payload::operator unsigned long() const
 {
 #if LONG_IS_32BIT
-   return as_u32();
+   return as_unsigned_int();
 #else
    return as_u64();
 #endif

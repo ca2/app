@@ -75,7 +75,7 @@ namespace app_message_box
          << [this, pmessagebox]()
          {
 
-            if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_yes)
             {
 
                auto papp = get_app();
@@ -83,7 +83,7 @@ namespace app_message_box
                papp->_001TryCloseApplication();
 
             }
-            else if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_cancel)
             {
 
                show_message_box();

@@ -371,7 +371,7 @@ namespace mathematics
    }
 
 
-   unsigned int mathematics::random_u32()
+   unsigned int mathematics::random_ui()
    {
       //#if defined(UNIVERSAL_WINDOWS)
       //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();

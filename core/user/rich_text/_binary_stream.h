@@ -18,8 +18,8 @@
    stream << format.m_bUnderline;
    stream << format.m_strFontFamily;
    stream << format.m_dFontSize;
-   stream << format.m_colorForeground.m_u32;
-   stream << format.m_colorBackground.m_u32;
+   stream << format.m_colorForeground.m_ui;
+   stream << format.m_colorBackground.m_ui;
    stream << (int)format.m_escript;
    stream << (int)format.m_elineheight;
 
@@ -36,8 +36,8 @@
    stream >> format.m_bUnderline;
    stream >> format.m_strFontFamily;
    stream >> format.m_dFontSize;
-   stream >> format.m_colorForeground.m_u32;
-   stream >> format.m_colorBackground.m_u32;
+   stream >> format.m_colorForeground.m_ui;
+   stream >> format.m_colorBackground.m_ui;
    stream >> (int &)format.m_escript;
    stream >> (int &)format.m_elineheight;
 

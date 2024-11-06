@@ -23,7 +23,7 @@ typedef short int short;
 typedef int int;
 typedef ::i64 i64;
 
-typedef unsigned char unsigned char;
+typedef unsigned char uch;
 typedef unsigned short int unsigned short;
 typedef unsigned int unsigned int;
 typedef ::u64 u64;

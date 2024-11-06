@@ -5,7 +5,7 @@
 
 
 template < >
-inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * const & p)
+inline ::u32hash unsigned_int_hash < const ::ansi_character * >(const ::ansi_character * const & p)
 {
 
    auto psz = p;
@@ -50,7 +50,7 @@ inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * 
 
 
 template < >
-inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * const & p)
+inline ::u32hash unsigned_int_hash < const ::wd16_character * >(const ::wd16_character * const & p)
 {
 
    auto psz = p;
@@ -95,7 +95,7 @@ inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * 
 
 
 template < >
-inline ::u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * const & p)
+inline ::u32hash unsigned_int_hash < const ::wd32_character * >(const ::wd32_character * const & p)
 {
 
    auto psz = p;

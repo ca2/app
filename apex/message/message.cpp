@@ -136,7 +136,7 @@ namespace message
    unsigned int translate_to_os_message(const ::atom& atom)
    {
 
-      return atom.as_u32();
+      return atom.as_unsigned_int();
 
    }
 

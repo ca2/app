@@ -405,7 +405,7 @@ inline ::block as_block(const TYPE & type)
 
 
 template < >
-inline ::u32hash u32_hash < const ::block & >(const ::block & b)
+inline ::u32hash unsigned_int_hash < const ::block & >(const ::block & b)
 {
 
    if (!b)

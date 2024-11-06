@@ -1741,7 +1741,7 @@ namespace filemanager
 
          pbutton->set_button_style(::user::button::e_style_list);
 
-         pcallback->InitializeActionButton(pinteraction->m_atom.as_i32() - 1000, pbutton);
+         pcallback->InitializeActionButton(pinteraction->m_atom.as_int() - 1000, pbutton);
 
       }
 

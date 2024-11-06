@@ -160,4 +160,4 @@ inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, 
 inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen);
 
 
-inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character unsigned int);
+inline strsize wd32_to_wd16_char(::wd16_character * pwd16sz, ::wd32_character wd32ch);

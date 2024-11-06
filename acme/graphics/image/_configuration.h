@@ -8,25 +8,25 @@
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(r))<<16)|(((unsigned int)lower_u8(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(r))<<16)|(((unsigned int)lower_byte(a))<<24)))
 //
 //
-//#define image_r_value(rgb)    (lower_u8((rgb)>>16))
-//#define image_g_value(rgb)    (lower_u8((rgb)>>8))
-//#define image_b_value(rgb)    (lower_u8((rgb)))
-//#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+//#define image_r_value(rgb)    (lower_byte((rgb)>>16))
+//#define image_g_value(rgb)    (lower_byte((rgb)>>8))
+//#define image_b_value(rgb)    (lower_byte((rgb)))
+//#define image_a_value(rgb)    (lower_byte((rgb)>>24))
 //
 //
 //#else
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
 //
 //
-//#define image_r_value(rgb)    (lower_u8((rgb)))
-//#define image_g_value(rgb)    (lower_u8((rgb)>>8))
-//#define image_b_value(rgb)    (lower_u8((rgb)>>16))
-//#define image_a_value(rgb)    (lower_u8((rgb)>>24))
+//#define image_r_value(rgb)    (lower_byte((rgb)))
+//#define image_g_value(rgb)    (lower_byte((rgb)>>8))
+//#define image_b_value(rgb)    (lower_byte((rgb)>>16))
+//#define image_a_value(rgb)    (lower_byte((rgb)>>24))
 //
 //
 //#endif

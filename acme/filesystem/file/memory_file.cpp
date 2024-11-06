@@ -140,7 +140,7 @@ void memory_file::write(const void * p, ::memsize s)
 }
 
 
-void memory_file::put_byte_back(unsigned char unsigned char)
+void memory_file::put_byte_back(unsigned char uch)
 {
 
    if(m_position <= 0 || m_position >= size())

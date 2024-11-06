@@ -117,7 +117,7 @@ namespace message
 
 
       enum_scroll_command    m_ecommand;
-      f64                    m_dPosition;
+      double                    m_dPosition;
 #ifdef WINDOWS_DESKTOP
       ::oswindow              m_oswindowScrollBar;
 #endif

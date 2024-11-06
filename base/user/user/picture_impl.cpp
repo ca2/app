@@ -24,9 +24,9 @@
 //{
 //
 //   property["left"].as(rectangle.left());
-//   rectangle.top() = property["top"].f64();
-//   rectangle.right() = property["right"].f64();
-//   rectangle.bottom() = property["bottom"].f64();
+//   rectangle.top() = property["top"].double();
+//   rectangle.right() = property["right"].double();
+//   rectangle.bottom() = property["bottom"].double();
 //
 //   return property;
 //

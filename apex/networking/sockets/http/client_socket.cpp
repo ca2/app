@@ -384,7 +384,7 @@ namespace sockets
 
       }
 
-      int iStatusCode = m_response.attr("http_status_code").as_i32();
+      int iStatusCode = m_response.attr("http_status_code").as_int();
 
 //      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
 //      {
@@ -432,7 +432,7 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,memsize len)
    {
 
-      if(m_response.attr("http_status_code").as_i32() >= 300 && m_response.attr("http_status_code").as_i32() <= 399)
+      if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
       {
 
          return;

@@ -426,7 +426,7 @@ bool  stream_base::is_version(int i)
 //      *this << payload.m_i64;
 //      break;
 //   case e_type_u32:
-//      *this << payload.m_u32;
+//      *this << payload.m_ui;
 //      break;
 //   case e_type_u64:
 //      *this << payload.m_u64;

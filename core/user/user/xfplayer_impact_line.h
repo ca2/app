@@ -59,7 +59,7 @@ public:
    ::color::color                         m_cr;
    ::color::color                         m_colorOutline;
    ::rectangle_i32                           m_rectangleX;
-   double                           m_floatRateX;
+   double                           m_fRateX;
    //LOGFONTW                          m_logfont;
 
 

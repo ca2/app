@@ -6977,31 +6977,31 @@ bool payload::is_false() const
       case e_type_pintegral_day:
          return !m_pintegralday || !m_pintegralday->m_i;
       case e_type_floating_nanosecond:
-         return !m_floatingnanosecond.m_d;
+         return !m_fingnanosecond.m_d;
       case e_type_pfloating_nanosecond:
          return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
          case e_type_floating_microsecond:
-            return !m_floatingmicrosecond.m_d;
+            return !m_fingmicrosecond.m_d;
          case e_type_pfloating_microsecond:
             return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
          case e_type_floating_millisecond:
-            return !m_floatingmillisecond.m_d;
+            return !m_fingmillisecond.m_d;
          case e_type_pfloating_millisecond:
             return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
          case e_type_floating_second:
-            return !m_floatingsecond.m_d;
+            return !m_fingsecond.m_d;
          case e_type_pfloating_second:
             return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
          case e_type_floating_minute:
-            return !m_floatingminute.m_d;
+            return !m_fingminute.m_d;
          case e_type_pfloating_minute:
             return !m_pfloatingminute || !m_pfloatingminute->m_d;
          case e_type_floating_hour:
-            return !m_floatinghour.m_d;
+            return !m_finghour.m_d;
          case e_type_pfloating_hour:
             return !m_pfloatinghour || !m_pfloatinghour->m_d;
          case e_type_floating_day:
-            return !m_floatingday.m_d;
+            return !m_fingday.m_d;
          case e_type_pfloating_day:
             return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
@@ -7163,31 +7163,31 @@ bool payload::is_set_false() const
          case e_type_pintegral_day:
             return !m_pintegralday || !m_pintegralday->m_i;
          case e_type_floating_nanosecond:
-            return !m_floatingnanosecond.m_d;
+            return !m_fingnanosecond.m_d;
          case e_type_pfloating_nanosecond:
             return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
             case e_type_floating_microsecond:
-               return !m_floatingmicrosecond.m_d;
+               return !m_fingmicrosecond.m_d;
             case e_type_pfloating_microsecond:
                return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
             case e_type_floating_millisecond:
-               return !m_floatingmillisecond.m_d;
+               return !m_fingmillisecond.m_d;
             case e_type_pfloating_millisecond:
                return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
             case e_type_floating_second:
-               return !m_floatingsecond.m_d;
+               return !m_fingsecond.m_d;
             case e_type_pfloating_second:
                return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
             case e_type_floating_minute:
-               return !m_floatingminute.m_d;
+               return !m_fingminute.m_d;
             case e_type_pfloating_minute:
                return !m_pfloatingminute || !m_pfloatingminute->m_d;
             case e_type_floating_hour:
-               return !m_floatinghour.m_d;
+               return !m_finghour.m_d;
             case e_type_pfloating_hour:
                return !m_pfloatinghour || !m_pfloatinghour->m_d;
             case e_type_floating_day:
-               return !m_floatingday.m_d;
+               return !m_fingday.m_d;
             case e_type_pfloating_day:
                return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:

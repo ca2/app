@@ -240,7 +240,7 @@ public:
 
 
    binary_stream & operator <<(char ch) { raw_write(ch); return *this; }
-   binary_stream & operator <<(unsigned uch) { raw_write(uch);  return *this; }
+   binary_stream & operator <<(unsigned char uch) { raw_write(uch);  return *this; }
    binary_stream & operator <<(short sh) { raw_write(sh);  return *this; }
    binary_stream & operator <<(unsigned short ush) { raw_write(ush); return *this; }
 #ifdef WINDOWS
@@ -287,38 +287,17 @@ public:
 
 
    binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(uch); b = uch ? true : false; return *this; }
-   binary_stream & operator >>(char & ch) {
-      raw_read(ch); return *this;
-   }
-   binary_stream & operator >>(uchar & uch) {
-      raw_read(uch); return *this;
-   }
+   binary_stream & operator >>(char & ch) { raw_read(ch); return *this; }
+   binary_stream & operator >>(unsigned char & uch) { raw_read(uch); return *this; }
 #ifdef WINDOWS
-   binary_stream & operator >>(unichar & wch) {
-      raw_read(wch); return *this;
-   }
+   binary_stream & operator >>(unichar & wch) { raw_read(wch); return *this; }
 #endif
-   binary_stream & operator >>(char & i) {
-      raw_read(i); return *this;
-   }
-   binary_stream & operator >>(short & i) {
-      raw_read(i); return *this;
-   }
-   binary_stream & operator >>(unsigned short & u) {
-      raw_read(u); return *this;
-   }
-   binary_stream & operator >>(int & i) {
-      raw_read(i); return *this;
-   }
-   binary_stream & operator >>(unsigned int & u) {
-      raw_read(u); return *this;
-   }
-   binary_stream & operator >>(i64 & i) {
-      raw_read(i); return *this;
-   }
-   binary_stream & operator >>(u64 & u) {
-      raw_read(u); return *this;
-   }
+   binary_stream & operator >>(short & sh) { raw_read(sh); return *this; }
+   binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
+   binary_stream & operator >>(int & i) { raw_read(i); return *this; }
+   binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
+   binary_stream & operator >>(i64 & i64) { raw_read(i64); return *this; }
+   binary_stream & operator >>(u64 & u64) { raw_read(u64); return *this; }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    binary_stream & operator >>(unsigned long & u) {
       raw_read(u); return *this;

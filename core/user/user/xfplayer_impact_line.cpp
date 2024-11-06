@@ -809,13 +809,13 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if ((size.cx() * 1.2) > rectangleX.width())
    {
 
-      m_floatRateX = (double) rectangleX.width() / ((double) size.cx() * 1.2);
+      m_fRateX = (double) rectangleX.width() / ((double) size.cx() * 1.2);
 
    }
    else
    {
 
-      m_floatRateX = 1.0;
+      m_fRateX = 1.0;
 
    }
 
@@ -823,7 +823,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
    pgraphics->get_text_metrics(&tm);
 
-   m_pfont->m_dFontWidth = m_floatRateX;
+   m_pfont->m_dFontWidth = m_fRateX;
 
    m_pfont->set_modified();
 
@@ -1003,14 +1003,14 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    pgraphics->set(pfont->GetFont());
    if(size.cx() > rectangleX.width())
    {
-      m_floatRateX =
+      m_fRateX =
          (float)
          rectangleX.width()/
          size.cx();
    }
    else
    {
-      m_floatRateX = 1.0;
+      m_fRateX = 1.0;
    }
 
    m_pfont->delete_object();
@@ -1019,7 +1019,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    pgraphics->set(pfont->GetFont());
    TEXTMETRICW tm;
    pgraphics->GetTextMetrics(&tm);
-   lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
+   lf.lfWidth = (long) (tm.tmAveCharWidth * m_fRateX - 1);
    m_pfont->CreateFontIndirect(&lf);
 
 
@@ -1470,9 +1470,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::point_i32 point;
 
-      point.x() = (int) (iLeft - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.x() = (int) (iLeft - ((maximum(2.0, m_fRateX * 8.0)) / 2));
 
-      point.y() = (int) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      point.y() = (int) (iTop - ((maximum(2.0, m_fRateX * 8.0)) / 2));
 
       {
 
@@ -1601,9 +1601,9 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    m_pgraphicsextension->get_text_extent(pgraphics, scopedstr, size);
 
-   size.cx() += (int)(2 * (maximum(2.0, m_floatRateX * 8.0)));
+   size.cx() += (int)(2 * (maximum(2.0, m_fRateX * 8.0)));
    
-   size.cy() += (int)(2 * (maximum(2.0, m_floatRateX * 8.0)));
+   size.cy() += (int)(2 * (maximum(2.0, m_fRateX * 8.0)));
 
    pimageCache = image()->create_image(size);
 
@@ -1639,13 +1639,13 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
       
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
       
-      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_floatRateX * 4.0)) / 2), (int)1 * (int)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
+      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_fRateX * 4.0)) / 2), (int)1 * (int)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
       
       pdcCache->set(m_pfont);
 
-      int x = (int) (s.cx() + (s.cx() / m_strPrefix.length()) + (int)(int)((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      int x = (int) (s.cx() + (s.cx() / m_strPrefix.length()) + (int)(int)((maximum(2.0, m_fRateX * 8.0)) / 2));
 
-      int y = (int) (1 * (int)((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      int y = (int) (1 * (int)((maximum(2.0, m_fRateX * 8.0)) / 2));
 
       m_pgraphicsextension->text_out(pdcCache, x, y, m_strRoot, s);
 
@@ -1653,17 +1653,17 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
    else
    {
 
-      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_floatRateX * 8.0)) / 2), (int)1 * (int)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
+      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_fRateX * 8.0)) / 2), (int)1 * (int)((maximum(2.0, m_fRateX * 8.0)) / 2), scopedstr, s);
 
    }
 
    auto psystem = system();
 
-   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_fRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.5)));
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_fRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_fRateX * 2.5)));
 
    pimageCache->clear(::color::transparent);
 

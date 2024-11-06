@@ -500,13 +500,13 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    }
 
 
-   i64 base64::decode(const ::block & block, ::file::file * pfileInput)
+   huge_integer base64::decode(const ::block & block, ::file::file * pfileInput)
    {
       int i;
       unsigned char a[4],b[4],o[3];
       uchar uch;
       unsigned char * pdata = (unsigned char *)block.begin();
-      i64 iDecode = 0;
+      huge_integer iDecode = 0;
       memsize rem = block.size();
       while(rem > 0)
       {
@@ -630,7 +630,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    }
 
 
-   i64 base64::decode(const ::block & block, const ::scoped_string & scopedstrBase64)
+   huge_integer base64::decode(const ::block & block, const ::scoped_string & scopedstrBase64)
    {
 
       ::memory_file fileIn(scopedstrBase64);

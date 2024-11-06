@@ -242,7 +242,7 @@ namespace account
    }
 
 
-   void dialog::do_modal(::rectangle_i32 rectangle)
+   void dialog::do_modal(::int_rectangle rectangle)
    {
 
       m_iDelay = 0;
@@ -255,7 +255,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
-      ::rectangle_i32 rectangleDesktop;
+      ::int_rectangle rectangleDesktop;
 
       if(puiParent != nullptr)
       {
@@ -280,7 +280,7 @@ namespace account
 
       }
 
-      ::rectangle_i32 rectangleLogin;
+      ::int_rectangle rectangleLogin;
 
       int stdw = 800;
 
@@ -304,7 +304,7 @@ namespace account
 
       }
 
-      ::rectangle_i32 rectangleFontopus;
+      ::int_rectangle rectangleFontopus;
 
       rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
 
@@ -416,8 +416,8 @@ namespace account
 
          m_pcredentials->m_iPasswordOriginalLength = m_plogin->m_iPasswordOriginalLength;
 
-         if(m_pcredentials->m_puser->m_strLogin.has_char()
-               && m_pcredentials->m_strPassword.has_char()
+         if(m_pcredentials->m_puser->m_strLogin.has_character()
+               && m_pcredentials->m_strPassword.has_character()
                && m_pcredentials->m_iPasswordOriginalLength > 0)
          {
 
@@ -596,7 +596,7 @@ namespace account
 
             host_to_client()(pointNow);
 
-            ::point_i32 point;
+            ::int_point point;
 
             point.x() = pointNow.x() - m_pointLButtonDownPos.x();
 

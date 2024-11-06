@@ -28,7 +28,7 @@ namespace file
      unsigned char *_bufferLimit;
      unsigned char *_bufferBase;
      reader * _stream;
-     u64 _processedSize;
+     huge_natural _processedSize;
      unsigned int _bufferSize;
      bool _wasFinished;
 
@@ -65,9 +65,9 @@ namespace file
          return ReadBlock2();
        return *_buffer++;
      }
-     unsigned int ReadBytes(unsigned char *buf, unsigned int size_i32)
+     unsigned int ReadBytes(unsigned char *buf, unsigned int int_size)
      {
-       if ((unsigned int)(_bufferLimit - _buffer) >= size_i32)
+       if ((unsigned int)(_bufferLimit - _buffer) >= int_size)
        {
          for (unsigned int i = 0; i < size; i++)
            buf[i] = _buffer[i];
@@ -83,7 +83,7 @@ namespace file
        }
        return size;
      }
-     u64 GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
+     huge_natural GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
      bool WasFinished() const { return _wasFinished; }
    };
 

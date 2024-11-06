@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(unsigned int uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom)
+   //bool toolbar_control::create_window(unsigned int uStyle,const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom)
    //{
    //   
    //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, atom);
@@ -149,8 +149,8 @@ namespace user
    if (bResult)
    {
    // set ___new sizes of the buttons
-   size_i32 sizeImage(pData->wWidth, pData->wHeight);
-   size_i32 sizeButton(pData->wWidth + 7, pData->wHeight + 7);
+   int_size sizeImage(pData->wWidth, pData->wHeight);
+   int_size sizeButton(pData->wWidth + 7, pData->wHeight + 7);
    //      SetSizes(sizeButton, sizeImage);
 
    // load bitmap now that sizes are known by the toolbar control
@@ -541,7 +541,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetItemRect(int nIndex, ::rectangle_i32 * prectangle)
+   bool toolbar_control::GetItemRect(int nIndex, ::int_rectangle * prectangle)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -577,7 +577,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetButtonSize(const ::size_i32 & size)
+   bool toolbar_control::SetButtonSize(const ::int_size & size)
    {
 
       return false;
@@ -595,7 +595,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetBitmapSize(const ::size_i32 & size)
+   bool toolbar_control::SetBitmapSize(const ::int_size & size)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -650,7 +650,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetRows(int nRows, bool bLarger, ::rectangle_i32 * prectangle)
+   void toolbar_control::SetRows(int nRows, bool bLarger, ::int_rectangle * prectangle)
 
    {
 
@@ -723,7 +723,7 @@ namespace user
    }
 
 
-   int toolbar_control::hit_test(::point_i32 * ppt)
+   int toolbar_control::hit_test(::int_point * ppt)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -925,7 +925,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetRect(int nID, ::rectangle_i32 * prectangle)
+   bool toolbar_control::GetRect(int nID, ::int_rectangle * prectangle)
 
    {
 
@@ -1271,7 +1271,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::GetMaxSize(::size_i32 * pSize)
+   bool toolbar_control::GetMaxSize(::int_size * pSize)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1290,7 +1290,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::InsertMarkHitTest(::point_i32 * ppt, LPTBINSERTMARK ptbim)
+//   bool toolbar_control::InsertMarkHitTest(::int_point * ppt, LPTBINSERTMARK ptbim)
 //   {
 //
 //   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != false;

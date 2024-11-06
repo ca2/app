@@ -45,7 +45,7 @@ namespace ftp
 
       const string mc_strEolCharacterSequence;
       string      m_vBuffer;
-      strsize     m_iCurrentPos;
+      character_count     m_iCurrentPos;
       string      m_strStreamName;
 
 

@@ -82,7 +82,7 @@ namespace message
    public:
 
 
-      point_i32 m_point;
+      int_point m_point;
 
       reposition() { }
 
@@ -100,7 +100,7 @@ namespace message
 
 
       unsigned int          m_nType;
-      ::size_i32     m_size;
+      ::int_size     m_size;
 
       size() { }
 
@@ -169,7 +169,7 @@ namespace message
 
       virtual unsigned int get_message() override
       {
-         return (unsigned int)m_atom.as_i64();
+         return (unsigned int)m_atom.as_huge_integer();
       }
 
 
@@ -192,7 +192,7 @@ namespace message
 
       //short GetDelta();
 
-      point_i32 GetPoint();
+      int_point GetPoint();
 
       // using ::user::message::set;
 
@@ -246,7 +246,7 @@ namespace message
 
       context_menu();
 
-      point_i32 GetPoint();
+      int_point GetPoint();
 
 
    };
@@ -326,7 +326,7 @@ namespace message
    public:
 
 
-      point_i32 m_point;
+      int_point m_point;
 
       nc_hit_test() { }
 
@@ -511,7 +511,7 @@ namespace message
       //#ifdef WINDOWS
       //
       //      IDataObject *  pDataObj;// [in] DragEnter, Drop
-      //      POINTL         point_i32; // [in] DragEnter, DragOver, Drop
+      //      POINTL         int_point; // [in] DragEnter, DragOver, Drop
       //      unsigned int          grfKeyState; // [in] DragEnter, DragOver, Drop
       //      unsigned int          dwEffect; // [in][out] DragEnter, DragOver, Drop
       //

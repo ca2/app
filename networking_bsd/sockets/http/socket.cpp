@@ -125,7 +125,7 @@ namespace sockets
 
                      string size_str = pa.getword();
 
-                     m_chunk_size = ::hex::to_u32(size_str);
+                     m_chunk_size = ::hex::to_unsigned_int(size_str);
 
                      if (!m_chunk_size)
                      {
@@ -346,7 +346,7 @@ namespace sockets
          {
             iFind++;
          }
-         strsize iLen = line.get_length();
+         character_count iLen = line.get_length();
          while(iLen >= iFind && character_isspace((unsigned char ) line[iLen - 1]))
          {
             iLen--;
@@ -455,7 +455,7 @@ namespace sockets
       
       strHost = m_response.header("host");
 
-      if(strHost.has_char())
+      if(strHost.has_character())
       {
          
          msg += "Host: " + strHost + "\r\n";
@@ -539,7 +539,7 @@ namespace sockets
    void http_socket::SendResponseBody()
    {
 
-      if (response().m_strFile.has_char())
+      if (response().m_strFile.has_character())
       {
 
          string strFile = response().m_strFile;
@@ -594,7 +594,7 @@ namespace sockets
 
       msg = m_request.attr("http_method").string() + " " + m_request.attr("request_uri").string() + " " + m_request.attr("http_version").string() + "\r\n";
 
-      if (m_request.m_propertysetHeader["host"].string().has_char())
+      if (m_request.m_propertysetHeader["host"].string().has_character())
       {
 
          strLine = "Host: " + m_request.m_propertysetHeader["host"].get_string();
@@ -662,7 +662,7 @@ namespace sockets
    {
       string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 veriview/10.0";
 
-      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; point_i32-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; int_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
 #ifdef _VERSION
       version += _VERSION;

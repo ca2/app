@@ -92,7 +92,7 @@ namespace simple_ui
    int message_box::show()
    {
 
-      ::rectangle_i32 rectangleDesktop;
+      ::int_rectangle rectangleDesktop;
 
       string_array stra;
 
@@ -133,7 +133,7 @@ namespace simple_ui
 
       set_window_text(strTitle);
 
-      ::rectangle_i32 rectangleFontopus;
+      ::int_rectangle rectangleFontopus;
 
       int stdw = 800;
 
@@ -234,7 +234,7 @@ namespace simple_ui
    void message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -260,7 +260,7 @@ namespace simple_ui
 
       string strMessage = m_stra.implode("\n");
 
-      ::rectangle_i32 rectangle(rectangleX);
+      ::int_rectangle rectangle(rectangleX);
 
       rectangle.deflate(10, 10);
 
@@ -446,7 +446,7 @@ namespace simple_ui
    }
 
 
-   //i64 message_box::increment_reference_count()
+   //huge_integer message_box::increment_reference_count()
    //{
 
    //   return simple_ui::top::increment_reference_count();
@@ -454,7 +454,7 @@ namespace simple_ui
    //}
 
 
-   //i64 message_box::decrement_reference_count()
+   //huge_integer message_box::decrement_reference_count()
    //{
 
    //   return simple_ui::top::decrement_reference_count();

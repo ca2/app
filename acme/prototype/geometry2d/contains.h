@@ -7,7 +7,7 @@
 //
 //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 //
-//   ::rectangle_i32 rectangle;
+//   ::int_rectangle rectangle;
 //
 //   if (!get_bounding_box(rectangle, arc))
 //   {

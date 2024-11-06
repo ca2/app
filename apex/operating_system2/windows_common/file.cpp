@@ -198,7 +198,7 @@
 //
 //   ::file::path pathFull2 = get_final_path(path2);
 //
-//   return pathFull1.has_char() && pathFull1.case_insensitive_order(pathFull2) == 0;
+//   return pathFull1.has_character() && pathFull1.case_insensitive_order(pathFull2) == 0;
 //
 //}
 

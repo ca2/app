@@ -71,7 +71,7 @@ namespace axis
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe) override;
 
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
 
 
@@ -85,7 +85,7 @@ namespace axis
 
       //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
 
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText) override;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText) override;
 
 
       //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
@@ -121,7 +121,7 @@ namespace axis
       //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
-      //virtual ::rectangle_i32             _001GetRect(::user::e_rect erect, ::rectangle_i32 rectangleDefault = nullptr);
+      //virtual ::int_rectangle             _001GetRect(::user::e_rect erect, ::int_rectangle rectangleDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
 

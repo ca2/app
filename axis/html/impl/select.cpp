@@ -108,7 +108,7 @@ namespace html
                }
                string strValue = pelement->m_phtmlbase->get_tag()->get_attr_value("value");
 
-               if (strValue.has_char())
+               if (strValue.has_character())
                {
 
                   m_pcombo->set_text(pelement->m_phtmlbase->get_tag()->get_attr_value("value"), ::action_context(::e_source_data) +  ::e_source_load);
@@ -169,11 +169,11 @@ namespace html
 
          }
 
-         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("size_i32");
+         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("int_size");
 
          int iSize = 20;
 
-         if (strSize.has_char())
+         if (strSize.has_character())
             iSize = maximum(1, atoi(strSize));
 
          m_box.set_size(iSize * 10.f, 23.f);
@@ -214,7 +214,7 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectangleWindow;
+         //::int_rectangle rectangleWindow;
 
          //m_pcombo->window_rectangle(rectangleWindow);
 

@@ -40,11 +40,11 @@ namespace turboc
 
    }
 
-   i64 lite_impact::increment_reference_count()
+   huge_integer lite_impact::increment_reference_count()
    {
       return ::root::increment_reference_count();
    }
-   i64 lite_impact::decrement_reference_count()
+   huge_integer lite_impact::decrement_reference_count()
    {
       return ::root::decrement_reference_count();
    }
@@ -105,7 +105,7 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX.left() = 0;
 
@@ -164,7 +164,7 @@ namespace turboc
 
       pgraphics->set_font(m_pfont);
 
-      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
 
       if(!m_bFirstDone)
@@ -193,7 +193,7 @@ namespace turboc
 
 /*            m_pimage->g()->SelectObject(pbrushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2,(m_cyCache1 - size_i32->cy()) / 2,strHelloMultiverse);
+/*            m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2,(m_cyCache1 - int_size->cy()) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 
@@ -261,7 +261,7 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectangleX.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),rectangleX.size(),m_pimageTemplate->get_graphics(),::int_point(),140 + 220 * r);
 
       //pgraphics->BitBlt(rectangleX,m_pimageTemplate->get_graphics());
 

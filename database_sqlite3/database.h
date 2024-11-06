@@ -69,7 +69,7 @@ namespace sqlite
          const ::string & user = nullptr,
          const ::string & pass = nullptr,
          const ::string & sckt = nullptr,
-         u64 uConnectionFlags = 0) override;
+         huge_natural uConnectionFlags = 0) override;
 
 
       void reset() override;

@@ -47,7 +47,7 @@ namespace platform
       union
       {
 
-         ::u64 m_uNodeFlags;
+         huge_natural m_uNodeFlags;
 
          bool m_bHasNodePostedSystemInitialRequest: 1;
 
@@ -149,7 +149,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, long long ll = 0);
+      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, huge_integer hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
@@ -694,7 +694,7 @@ namespace platform
       virtual int get_current_process_affinity_order();
 
 
-      virtual ::u64 translate_processor_affinity(int i);
+      virtual huge_natural translate_processor_affinity(int i);
 
 
       //CLASS_DECL_ACME string expand_env(string str);
@@ -884,7 +884,7 @@ namespace platform
       virtual ::string operating_system_application_version();
 
 
-      virtual void application_handle(long long l, void* p);
+      virtual void application_handle(huge_integer l, void* p);
 
 
       virtual bool is_application_running_good_effort(const ::scoped_string& scopedstrRepos,
@@ -1288,10 +1288,10 @@ namespace platform
       //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
 
-      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32& rectangle);
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle& rectangle);
 
 
-      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32& rectangle);
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle& rectangle);
 
 
       virtual void realize(::particle_pointer pparticle);

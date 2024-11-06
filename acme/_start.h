@@ -108,8 +108,8 @@ typedef iptr memsize_storage;
 typedef iptr strsize_storage;
 
 typedef iptr memsize;
-typedef iptr strsize;
-typedef i64 filesize;
+typedef iptr character_count;
+typedef huge_integer filesize;
 
 
 #if WCHAR_T_SIZE == 16

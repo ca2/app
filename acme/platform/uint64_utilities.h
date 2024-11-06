@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ACME i64 muldiv64(i64 operant, i64 multiplier, i64 divider);
+CLASS_DECL_ACME huge_integer muldiv64(huge_integer operant, huge_integer multiplier, huge_integer divider);
 
 
 /*
@@ -33,22 +33,22 @@ CLASS_DECL_ACME i64 muldiv64(i64 operant, i64 multiplier, i64 divider);
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ACME i64 mulshr64(i64 operant, i64 multiplier, unsigned char rshift);
+CLASS_DECL_ACME huge_integer mulshr64(huge_integer operant, huge_integer multiplier, unsigned char rshift);
 
 
-CLASS_DECL_ACME void mul64(u64 v1, u64 v2, u64 & hi, u64 & lo);
+CLASS_DECL_ACME void mul64(huge_natural v1, huge_natural v2, huge_natural & hi, huge_natural & lo);
 
 
-CLASS_DECL_ACME void mul64(i64 v1, i64 v2, i64 & hi, u64 & lo);
+CLASS_DECL_ACME void mul64(huge_integer v1, huge_integer v2, huge_integer & hi, huge_natural & lo);
 
 
-CLASS_DECL_ACME u64 div128_64(u64 hi, u64 lo, u64 div, u64 & remainder);
+CLASS_DECL_ACME huge_natural div128_64(huge_natural hi, huge_natural lo, huge_natural div, huge_natural & remainder);
 
 
-CLASS_DECL_ACME i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder);
+CLASS_DECL_ACME huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder);
 
 
-CLASS_DECL_ACME i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder);
+CLASS_DECL_ACME huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder);
 
 
 #endif //__FULL_MULDIV64_

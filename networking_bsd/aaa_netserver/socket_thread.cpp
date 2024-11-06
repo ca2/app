@@ -43,7 +43,7 @@ namespace netserver
 
       m_plistensocket->m_bDetach = true;
 
-      if (m_plistensocket->m_strCat.has_char())
+      if (m_plistensocket->m_strCat.has_character())
       {
 
          m_plistensocket->EnableSSL();

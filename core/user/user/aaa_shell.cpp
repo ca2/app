@@ -98,13 +98,13 @@ namespace user
       void shell::image_key::set_extension(const ::string & strPath)
       {
 
-         strsize iFind1 = strPath.rear_find('/');
+         character_count iFind1 = strPath.rear_find('/');
 
-         strsize iFind2 = strPath.rear_find('\\');
+         character_count iFind2 = strPath.rear_find('\\');
 
          auto pFind = maximum(iFind1, iFind2) + 1;
 
-         strsize iDot = strPath.find('.', iFind);
+         character_count iDot = strPath.find('.', iFind);
 
          if (iDot < 0)
          {
@@ -816,7 +816,7 @@ namespace user
 
    //      {
    //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-   //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
+   //         int_size s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
@@ -870,7 +870,7 @@ namespace user
             m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
             m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            auto rectangleDraw = ::rectangle_f64(::point_f64(iImage * 48,0),::size_f64( 48, 48));
+            auto rectangleDraw = ::double_rectangle(::double_point(iImage * 48,0),::double_size( 48, 48));
             m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 
             m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -879,7 +879,7 @@ namespace user
 
          {
             ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-            //size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
+            //int_size s = m_pimagelist[iSize]->m_pimage->get_size();
             ::image::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));

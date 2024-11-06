@@ -76,11 +76,11 @@ public:
    
    explicit mutable_string_range(ITERATOR_TYPE psz) : STRING_RANGE(psz, 0, string_safe_length(psz)) {}
    
-   mutable_string_range(ITERATOR_TYPE psz, strsize len) : STRING_RANGE(psz, 0, len) {}
+   mutable_string_range(ITERATOR_TYPE psz, character_count len) : STRING_RANGE(psz, 0, len) {}
    
    //string_range(const CHARACTER * start, const CHARACTER * end) : BASE_RANGE(start, end) {}
    
-   mutable_string_range(ITERATOR_TYPE psz, strsize start, strsize count) : STRING_RANGE(
+   mutable_string_range(ITERATOR_TYPE psz, character_count start, character_count count) : STRING_RANGE(
                                                                                    ::_start_count_string_range(psz, start, count)) {}
    
    
@@ -308,14 +308,14 @@ _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(strsize start, strsize count) const {
+inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(character_count start, character_count count) const {
 
    return ::_start_count_range(STRING_RANGE(*this), start, count);
 
 }
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(strsize start, const_iterator end) const {
+inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(character_count start, const_iterator end) const {
 
    return ::_start_end_range(STRING_RANGE(*this), start, end);
 

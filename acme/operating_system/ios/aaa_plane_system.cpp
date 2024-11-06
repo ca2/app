@@ -40,7 +40,7 @@
 //}
 
 
-//ui_window_ptr plane_system::plane_system_initialize(CGRect rectangle_i32)
+//ui_window_ptr plane_system::plane_system_initialize(CGRect int_rectangle)
 //{
 //
 //   ::user::native_window_initialize initialize;
@@ -113,7 +113,7 @@
 //
 //   pimpl->send_message(e_message_create, 0, (LPARAM) &cs);
 //
-//   ::rectangle_i32 rectangleMainScreen;
+//   ::int_rectangle rectangleMainScreen;
 //
 //   get_main_screen_rectangle(rectangleMainScreen);
 //

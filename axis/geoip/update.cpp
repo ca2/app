@@ -828,7 +828,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   size = fwrite(compr, 1, comprLen, comp_fh);
 //   fclose(comp_fh);
 //   free(buf);
-//        if ( size_i32 != comprLen ) {
+//        if ( int_size != comprLen ) {
 //      return GEOIP_GZIP_IO_ERR;
 //   }
 //

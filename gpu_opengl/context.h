@@ -26,7 +26,7 @@ namespace opengl
 
       GLuint                           m_gluTextureBitmap1;
       int                              m_iLastBitmap1Scan;
-      ::size_i32                       m_sizeBitmap1;
+      ::int_size                       m_sizeBitmap1;
 
       memory                           m_memorySwap;
 
@@ -47,10 +47,10 @@ namespace opengl
 
       void swap_buffers() override;
 
-      //virtual void create_offscreen_buffer(const ::size_i32& size);
-      //virtual void _create_offscreen_buffer(const ::size_i32& size);
+      //virtual void create_offscreen_buffer(const ::int_size& size);
+      //virtual void _create_offscreen_buffer(const ::int_size& size);
 
-      //virtual void resize_offscreen_buffer(const ::size_i32& size);
+      //virtual void resize_offscreen_buffer(const ::int_size& size);
       //virtual void destroy_offscreen_buffer();
 
    /*   virtual void translate_shader(string & str);

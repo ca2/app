@@ -1460,10 +1460,10 @@ int_bool is_window(oswindow oswindow)
 }
 
 
-i64 oswindow_id(oswindow w)
+huge_integer oswindow_id(oswindow w)
 {
 
-   return (i64)(w);
+   return (huge_integer)(w);
 
 }
 
@@ -1603,7 +1603,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 
 
 
-int get_main_screen_rectangle(::rectangle_i32 * lprect)
+int get_main_screen_rectangle(::int_rectangle * lprect)
 {
 
    *lprect = ::apexacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::windowing::window >()->m_rectangleWindowScreen;

@@ -60,7 +60,7 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //
 //      string strReplace;
 //
-//      if(get_command_line_parameter(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
+//      if(get_command_line_parameter(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_character())
 //      {
 //
 //         strValue = strReplace;

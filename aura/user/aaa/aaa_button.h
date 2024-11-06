@@ -57,10 +57,10 @@ namespace user
       ealign                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
-      ::rectangle_f64                              m_rectangleText;
+      ::double_rectangle                              m_rectangleText;
       ::collection::index                               m_iClick;
       e_stock_icon                        m_estockicon;
-      ::rectangle_f64                              m_rectangleCheckBox;
+      ::double_rectangle                              m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -106,7 +106,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -53,7 +53,7 @@ namespace nanoui
       ::float_array & values() { return m_values; }
       void set_values(const ::float_array & values) { m_values = values; }
 
-      virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       ::string m_strCaption, m_header, m_footer;

@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void interaction_scaler::on_display_change(const ::size_i32 & size)
+   void interaction_scaler::on_display_change(const ::int_size & size)
    {
 
       double dW = (double) size.cx() / 1920.0;
@@ -46,7 +46,7 @@ namespace user
    void interaction_scaler::on_display_change(::user::interaction * puserinteraction)
    {
 
-      ::rectangle_i32 rectangleMonitor;
+      ::int_rectangle rectangleMonitor;
 
       puserinteraction->best_monitor(&rectangleMonitor);
 

@@ -39,10 +39,10 @@ namespace hex
 {
 
 
-   i64 to_i64(const ::scoped_string & scopedstr)
+   huge_integer to_huge_integer(const ::scoped_string & scopedstr)
    {
 
-      i64 r = 0, num = 0;
+      huge_integer r = 0, num = 0;
       if (scopedstr.is_empty())
       {
 
@@ -50,10 +50,10 @@ namespace hex
 
       }
       auto pcsz = scopedstr.begin();
-      for(i64 i = ansi_len(pcsz)-1; i >= 0; i--)
+      for(huge_integer i = ansi_len(pcsz)-1; i >= 0; i--)
       {
 
-         i64 d = alphadigit_weight(pcsz[i]);
+         huge_integer d = alphadigit_weight(pcsz[i]);
 
          if(d == -1)
             return -1;
@@ -63,7 +63,7 @@ namespace hex
       return num;
    }
 
-   unsigned int to_u32(const ::string & str)
+   unsigned int to_unsigned_int(const ::string & str)
    {
       unsigned int r = 0;
       for (int i = 0; i < str.length(); i++)
@@ -73,9 +73,9 @@ namespace hex
       return r;
    }
 
-   u64 to_u64(const ::string & str)
+   huge_natural to_huge_natural(const ::string & str)
    {
-      u64 r = 0;
+      huge_natural r = 0;
       for(int i = 0; i < str.length(); i++)
       {
          r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
@@ -144,7 +144,7 @@ namespace hex
 
       }
 
-      return ::hex::to_u32(strUni);
+      return ::hex::to_unsigned_int(strUni);
 
    }
 

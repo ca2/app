@@ -24,17 +24,17 @@
 void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & propertyset);
 
 
-void screen_coordinates_aware_copy(CGRect & rectTarget, const ::rectangle_i32 & rectSource);
-void screen_coordinates_aware_copy(::rectangle_i32 & rectTarget, const CGRect & rectSource);
+void screen_coordinates_aware_copy(CGRect & rectTarget, const ::int_rectangle & rectSource);
+void screen_coordinates_aware_copy(::int_rectangle & rectTarget, const CGRect & rectSource);
 
-//void copy(CGRect & rectTarget, const ::rectangle_i32 & rectSource);
-//void copy(::rectangle_i32 & rectTarget, const CGRect & rectSource);
+//void copy(CGRect & rectTarget, const ::int_rectangle & rectSource);
+//void copy(::int_rectangle & rectTarget, const CGRect & rectSource);
 
 
-//void copy(CGPoint & pointTarget, const ::point_i32 & pointSource);
-//void copy(::point_i32 & pointTarget, const CGPoint & pointSource);
-//void copy(CGPoint & pointTarget, const ::point_f64 & pointSource);
-//void copy(::point_f64 & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::int_point & pointSource);
+//void copy(::int_point & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::double_point & pointSource);
+//void copy(::double_point & pointTarget, const CGPoint & pointSource);
 
 CGRect mm_get_screen_cgrect();
 

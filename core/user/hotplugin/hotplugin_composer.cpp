@@ -346,7 +346,7 @@ namespace hotplugin
    bool composer::windows_on_paint(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if((!m_bOk || !m_bResponsive) || m_paxishost == nullptr || !m_paxishost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
+      if((!m_bOk || !m_bResponsive) || m_paxishost == nullptr || !m_paxishost->hotplugin_host_is_initialized() || m_strEntryHallText.has_character())
       {
 
          if(!m_bEntryHallTextStarted)
@@ -380,11 +380,11 @@ namespace hotplugin
 
          g->Attach((HDC)hdc);
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          m_paxishost->window_rectangle(rectangle);
 
-         m_paxishost->on_paint(g,rectangle_i32);
+         m_paxishost->on_paint(g,int_rectangle);
 
          g->Detach();
 

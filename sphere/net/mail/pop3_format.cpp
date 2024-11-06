@@ -88,7 +88,7 @@ int* list2array(char* poplist){
 /* array[0] holds atom of the array's matter */
 /* should only be called on data received by a pop3_list() request */
 int* array=nullptr;
-int len,size_i32;
+int len,int_size;
 int atom=0;
 char* cur;
 
@@ -108,7 +108,7 @@ char* cur;
 		array=(int*)malloc((atom+1)*sizeof(int));
 		memory_set(array,0,(atom+1)*sizeof(int));
 		array[0]=atom;
-		array[atom]=size_i32;
+		array[atom]=int_size;
 		return(array);
 	}
 	/* else this is a true list */
@@ -125,7 +125,7 @@ char* cur;
 		}
 		len++;
 		array=(int*)realloc(array,len*sizeof(int));
-		array[atom]=size_i32;
+		array[atom]=int_size;
 		cur=nextline(cur);
 	}
 	if(atom){
@@ -147,7 +147,7 @@ void freelistarray(int* array){
 }
 
 int listi2size(char* resp){
-/* grep the given size_i32 (in bytes) in resp after a pop3_list(sock,ID) request */
+/* grep the given int_size (in bytes) in resp after a pop3_list(sock,ID) request */
 int i;
 int r;
 

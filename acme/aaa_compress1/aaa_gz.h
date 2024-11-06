@@ -82,5 +82,5 @@ public:
 
 
 
-int z_compress(void * dest, u64 * destLen, const void * source, u64 sourceLen);
-int z_uncompress(void * dest, u64 * destLen, const void * source, u64 sourceLen);
+int z_compress(void * dest, huge_natural * destLen, const void * source, huge_natural sourceLen);
+int z_uncompress(void * dest, huge_natural * destLen, const void * source, huge_natural sourceLen);

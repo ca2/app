@@ -90,14 +90,14 @@ extern thread_data_index g_tlsindexLastError;
 string apex_get_task_name(::task* ptask)
 {
 
-   if (ptask->m_strTaskName.has_char())
+   if (ptask->m_strTaskName.has_character())
    {
 
       return ptask->m_strTaskName;
 
    }
 
-   if (ptask->m_strTaskTag.has_char())
+   if (ptask->m_strTaskTag.has_character())
    {
 
       return ptask->m_strTaskTag;

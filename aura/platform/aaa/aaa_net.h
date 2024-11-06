@@ -5,7 +5,7 @@ CLASS_DECL_AURA string url_encode(const ::string & psz);
 
 
 CLASS_DECL_AURA string url_decode(const ::string & psz);
-CLASS_DECL_AURA string url_decode(const ::string & pszUrl,strsize iLen);
+CLASS_DECL_AURA string url_decode(const ::string & pszUrl,character_count iLen);
 
 
 

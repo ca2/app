@@ -16,7 +16,7 @@ window_android::~window_android()
 }
 
 
-void window_android::create(oswindow interaction_impl, i64 cxParam, i64 cyParam, int iStrideParam)
+void window_android::create(oswindow interaction_impl, huge_integer cxParam, huge_integer cyParam, int iStrideParam)
 {
 
    destroy();
@@ -64,7 +64,7 @@ void window_android::destroy()
 }
 
 
-void window_android::update_window(oswindow interaction_impl, color32_t * pOsBitmapData, const ::rectangle_f64 & rectangle, int iStride)
+void window_android::update_window(oswindow interaction_impl, color32_t * pOsBitmapData, const ::double_rectangle & rectangle, int iStride)
 {
 
 

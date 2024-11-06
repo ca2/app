@@ -85,22 +85,22 @@ inline float32x4_t loadRGBA8AsFloat(unsigned int* source)
 
    ::u32x2_t temporary1 = {0, 0};
 
-   temporary1 = vset_lane_u32(*source,temporary1,0);
+   temporary1 = vset_lane_unsigned_int(*source,temporary1,0);
 
-   ::u3216x4_t temporary2 = vget_low_u16(vmovl_u8(vreinterpret_byte_u32(temporary1)));
+   ::u3216x4_t temporary2 = vget_low_unsigned_short(vmovl_unsigned_char(vreinterpret_byte_unsigned_int(temporary1)));
 
-   return vcvtq_float_u32(vmovl_u16(temporary2));
+   return vcvtq_float_unsigned_int(vmovl_unsigned_short(temporary2));
 
 }
 
 inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
 {
 
-   ::u3216x4_t temporary1 = vmovn_u32(vcvtq_u32_f32(data));
+   ::u3216x4_t temporary1 = vmovn_unsigned_int(vcvtq_u32_float(data));
 
-   ::u328x8_t temporary2 = vmovn_u16(vcombine_u16(temporary1,temporary1));
+   ::u328x8_t temporary2 = vmovn_unsigned_short(vcombine_unsigned_short(temporary1,temporary1));
 
-   *destination = vget_lane_u32(vreinterpret_u32_u8(temporary2),0);
+   *destination = vget_lane_unsigned_int(vreinterpret_u32_unsigned_char(temporary2),0);
 
 }
 
@@ -179,7 +179,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
 
       }
 
-      if (m_size == ::size_i32(cx, cy) && m_iRadius == radius)
+      if (m_size == ::int_size(cx, cy) && m_iRadius == radius)
       {
 
          return;
@@ -298,7 +298,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
    }
 
 
-   void fastblur::initialize(size_i32 sz,int iRadius)
+   void fastblur::initialize(int_size sz,int iRadius)
    {
 
       return initialize(sz.cx(),sz.cy(),iRadius);
@@ -306,7 +306,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
    }
 
 
-   void fastblur::blur(::image::image *pimage, const ::rectangle_i32 & rectangle)
+   void fastblur::blur(::image::image *pimage, const ::int_rectangle & rectangle)
    {
 
       pixmap_lock lock(pimage, rectangle);
@@ -359,7 +359,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
 
       unsigned int * pimage32 = (unsigned int *) m_p->get_data();
 
-      unsigned char * point_i32;
+      unsigned char * int_point;
       vector4 * t = timage;
 
       int w = m_size.cx();
@@ -375,7 +375,7 @@ auto tickA0 = ::time::now();
             for(::collection::index x = 0; x < w; x++)
             {
                p = (unsigned char *)&pimage32[y * s + x];
-               t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
+               t[y * w + x] = vector4(int_point[0],int_point[1],int_point[2],int_point[3]);
             }
          }
 auto tickA1 = ::time::now();
@@ -439,10 +439,10 @@ auto tickC0 = ::time::now();
             {
                p = (unsigned char *)&pimage32[y * s + x];
                t = &timage[y * w + x];
-               point_i32[0] = (unsigned char)t->w;
-               point_i32[1] = (unsigned char)t->x;
-               point_i32[2] = (unsigned char)t->y;
-               point_i32[3] = (unsigned char)t->z;
+               int_point[0] = (unsigned char)t->w;
+               int_point[1] = (unsigned char)t->x;
+               int_point[2] = (unsigned char)t->y;
+               int_point[3] = (unsigned char)t->z;
             }
          }
 auto tickC1 = ::time::now();
@@ -658,7 +658,7 @@ auto tick2 = ::time::now();
                            unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_f32(1.0 / Δx);
+      float32x4_t deltaX = vdupq_n_float(1.0 / Δx);
 
       int pixelLine = strideLine / 4;
 
@@ -682,7 +682,7 @@ auto tick2 = ::time::now();
 
             int line = y * pixelLine;
 
-            float32x4_t sum = vdupq_n_f32(0);
+            float32x4_t sum = vdupq_n_float(0);
 
             // Fill the kernel
             int maxKernelSize = minimum(dxRight,effectWidth);
@@ -692,7 +692,7 @@ auto tick2 = ::time::now();
 
                float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
 
-               sum = vaddq_f32(sum,sourcePixelAsFloat);
+               sum = vaddq_float(sum,sourcePixelAsFloat);
 
             }
 
@@ -703,7 +703,7 @@ auto tick2 = ::time::now();
 
                pixelOffset = line + x * pixelStride;
 
-               float32x4_t result = vmulq_f32(sum,deltaX);
+               float32x4_t result = vmulq_float(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
@@ -712,7 +712,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_f32(sum,sourcePixelAsFloat);
+                  sum = vsubq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -721,7 +721,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_f32(sum,sourcePixelAsFloat);
+                  sum = vaddq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -738,7 +738,7 @@ auto tick2 = ::time::now();
 
             int line = y * pixelLine;
 
-            float32x4_t sum = vdupq_n_f32(0);
+            float32x4_t sum = vdupq_n_float(0);
 
             // Fill the kernel
             int maxKernelSize = minimum(dxRight,effectWidth);
@@ -748,7 +748,7 @@ auto tick2 = ::time::now();
 
                float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + line + i * pixelStride);
 
-               sum = vaddq_f32(sum,sourcePixelAsFloat);
+               sum = vaddq_float(sum,sourcePixelAsFloat);
 
             }
 
@@ -760,7 +760,7 @@ auto tick2 = ::time::now();
             for(; x < dxLeft; x++)
             {
 
-               float32x4_t result = vmulq_f32(sum,deltaX);
+               float32x4_t result = vmulq_float(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
@@ -768,7 +768,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_f32(sum,sourcePixelAsFloat);
+                  sum = vaddq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -779,7 +779,7 @@ auto tick2 = ::time::now();
             for(; x <= dxW; x++)
             {
 
-               float32x4_t result = vmulq_f32(sum,deltaX);
+               float32x4_t result = vmulq_float(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
@@ -787,7 +787,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_f32(sum,sourcePixelAsFloat);
+                  sum = vsubq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -795,7 +795,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset + strideRight);
 
-                  sum = vaddq_f32(sum,sourcePixelAsFloat);
+                  sum = vaddq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -807,7 +807,7 @@ auto tick2 = ::time::now();
             for(; x < effectWidth; x++)
             {
 
-               float32x4_t result = vmulq_f32(sum,deltaX);
+               float32x4_t result = vmulq_float(sum,deltaX);
 
                storeFloatAsRGBA8(result,destinationPixel + pixelOffset);
 
@@ -815,7 +815,7 @@ auto tick2 = ::time::now();
 
                   float32x4_t sourcePixelAsFloat = loadRGBA8AsFloat(sourcePixel + pixelOffset - strideLeft);
 
-                  sum = vsubq_f32(sum,sourcePixelAsFloat);
+                  sum = vsubq_float(sum,sourcePixelAsFloat);
 
                }
 
@@ -1604,7 +1604,7 @@ auto tick2 = ::time::now();
             int wm = w - 1;
             int hm = h - 1;
             int div = radius + radius + 1;
-            int point_i32;
+            int int_point;
             int pbyte_1;
             int pbyte_2;
 
@@ -1623,10 +1623,10 @@ auto tick2 = ::time::now();
                for (i = -radius; i <= radius; i++)
                {
                   p = pimage32[yi + minimum(wm, maximum(i, 0))];
-                  asum += ((point_i32 & 0xff000000) >> 24);
-                  rsum += ((point_i32 & 0xff0000) >> 16);
-                  gsum += ((point_i32 & 0x00ff00) >> 8);
-                  bsum += (point_i32 & 0x0000ff);
+                  asum += ((int_point & 0xff000000) >> 24);
+                  rsum += ((int_point & 0xff0000) >> 16);
+                  gsum += ((int_point & 0x00ff00) >> 8);
+                  bsum += (int_point & 0x0000ff);
                }
                for (x = 0; x < w; x++)
                {

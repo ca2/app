@@ -28,8 +28,8 @@
 
 #define TAG CLIENT_TAG("windows")
 
-// #define int_x(lParam) ((::u3216) (lParam & 0xFFFF))
-// #define int_y(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
+// #define lparam_int_x(lParam) ((::u3216) (lParam & 0xFFFF))
+// #define lparam_int_y(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
 /* RemoteApp Core Protocol Extension */
 
@@ -222,7 +222,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 	{
 		unsigned int index;
-		RECTANGLE_16* rectangle_i32;
+		RECTANGLE_16* int_rectangle;
 
 		WLog_INFO(TAG, "\tnumWindowRects: %d", windowState->numWindowRects);
 
@@ -231,7 +231,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->windowRects[index];
 
 			WLog_INFO(TAG, "\twindowRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
+				index, int_rectangle->left(), int_rectangle->top(), int_rectangle->right(), int_rectangle->bottom());
 		}
 	}
 
@@ -244,7 +244,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
 	{
 		unsigned int index;
-		RECTANGLE_16* rectangle_i32;
+		RECTANGLE_16* int_rectangle;
 
 		WLog_INFO(TAG, "\tnumVisibilityRects: %d", windowState->numVisibilityRects);
 
@@ -253,7 +253,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->visibilityRects[index];
 
 			WLog_INFO(TAG, "\tvisibilityRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
+				index, int_rectangle->left(), int_rectangle->top(), int_rectangle->right(), int_rectangle->bottom());
 		}
 	}
 
@@ -333,8 +333,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = int_x(lParam) + railWindow->x;
-//				yPos = int_y(lParam) + railWindow->y;
+//				xPos = lparam_int_x(lParam) + railWindow->x;
+//				yPos = lparam_int_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
 //
 //				if (input)
@@ -347,8 +347,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = int_x(lParam) + railWindow->x;
-//				yPos = int_y(lParam) + railWindow->y;
+//				xPos = lparam_int_x(lParam) + railWindow->x;
+//				yPos = lparam_int_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_BUTTON1;
 //
 //				if (input)
@@ -361,8 +361,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = int_x(lParam) + railWindow->x;
-//				yPos = int_y(lParam) + railWindow->y;
+//				xPos = lparam_int_x(lParam) + railWindow->x;
+//				yPos = lparam_int_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
 //
 //				if (input)
@@ -375,8 +375,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = int_x(lParam) + railWindow->x;
-//				yPos = int_y(lParam) + railWindow->y;
+//				xPos = lparam_int_x(lParam) + railWindow->x;
+//				yPos = lparam_int_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_BUTTON2;
 //
 //				if (input)
@@ -389,8 +389,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				if (!railWindow || !input)
 //					return 0;
 //
-//				xPos = int_x(lParam) + railWindow->x;
-//				yPos = int_y(lParam) + railWindow->y;
+//				xPos = lparam_int_x(lParam) + railWindow->x;
+//				yPos = lparam_int_y(lParam) + railWindow->y;
 //				inputFlags = PTR_FLAGS_MOVE;
 //
 //				if (input)
@@ -612,17 +612,17 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		unsigned int index;
 //		HRGN hWndRect;
 //		HRGN hWndRects;
-//		RECTANGLE_16* rectangle_i32;
+//		RECTANGLE_16* int_rectangle;
 //
 //		if (windowState->numWindowRects > 0)
 //		{
 //			rectangle = &(windowState->windowRects[0]);
-//			hWndRects = CreateRectRgn(rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
+//			hWndRects = CreateRectRgn(int_rectangle->left(), int_rectangle->top(), int_rectangle->right(), int_rectangle->bottom());
 //
 //			for (index = 1; index < windowState->numWindowRects; index++)
 //			{
 //				rectangle = &(windowState->windowRects[index]);
-//				hWndRect = CreateRectRgn(rectangle_i32->left(), rectangle_i32->top(), rectangle_i32->right(), rectangle_i32->bottom());
+//				hWndRect = CreateRectRgn(int_rectangle->left(), int_rectangle->top(), int_rectangle->right(), int_rectangle->bottom());
 //				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
 //				DeleteObject(hWndRect);
 //			}
@@ -965,7 +965,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 {
 	int index;
 	int count;
-	::rectangle_i32 updateRect;
+	::int_rectangle updateRect;
 	RECTANGLE_16 windowRect;
 	ULONG_PTR* pKeys = nullptr;
 	wfRailWindow* railWindow;

@@ -59,7 +59,7 @@ inline float __rate(float f)
 
 
 inline unsigned char as_byte(double d) { return (unsigned char) minimummax(d, 0, 255); }
-inline unsigned char as_byte(::i64 i) { return (unsigned char)minimummax(i, 0, 255); }
+inline unsigned char as_byte(huge_integer i) { return (unsigned char)minimummax(i, 0, 255); }
 
 #endif
 

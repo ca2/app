@@ -57,7 +57,7 @@ namespace bred
 //      //bool                                       m_bProgrammerMode;
 //
 //      //bool                                       m_bSystemSynchronizedCursor;
-//      //point_i32                                      m_pointCursor;
+//      //int_point                                      m_pointCursor;
 //
 //      //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 //
@@ -97,8 +97,8 @@ namespace bred
 //
 //
 //      //bool                                                  m_bSystemSynchronizedScreen;
-//      //rectangle_int_array                                            m_rectangleaMonitor;
-//      //rectangle_int_array                                            m_rectangleaWorkspace;
+//      //int_rectangle_array                                            m_rectangleaMonitor;
+//      //int_rectangle_array                                            m_rectangleaWorkspace;
 //      //index                                                 m_iMainMonitor;
 //      //index                                                 m_iMainWorkspace;
 //
@@ -164,11 +164,11 @@ namespace bred
 //
 //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 //
-//      int track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie) override;
+//      int track_popup_menu(const ::string & pszMatter, const ::int_point & point, ::pointer<::user::interaction>puie) override;
 //
 //
 //      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-//      virtual bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
+//      virtual bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending);
 //
 //      virtual void data_on_after_change(::message::message * pmessage);
 //
@@ -267,10 +267,10 @@ namespace bred
 //      ////inline ::sockets::sockets & sockets() { return *m_psockets; }
 //
 //
-//      //virtual size_i32 get_window_minimum_size();
+//      //virtual int_size get_window_minimum_size();
 //
 //
-//      ////virtual void  get_cursor_position(::point_i32 * ppoint);
+//      ////virtual void  get_cursor_position(::int_point * ppoint);
 //
 //      //virtual bool on_get_thread_name(string& strThreadName) override;
 //
@@ -353,9 +353,9 @@ namespace bred
 //
 //      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 //
-//      //virtual ::color::color get_default_color(u64 u);
+//      //virtual ::color::color get_default_color(huge_natural u);
 //
-//      ////virtual ::size_i32 get_window_minimum_size();
+//      ////virtual ::int_size get_window_minimum_size();
 //
 //      //virtual void frame_pre_translate_message(::message::message * pmessage);
 //
@@ -417,58 +417,58 @@ namespace bred
 //      ////virtual void translate_os_key_message(::user::key * pkey);
 //      ////virtual bool on_create_frame_window();
 //
-//      //virtual void get_cursor_position(::point_i32 * ppoint);
-//      //inline ::point_i32 get_cursor_position() {::point_i32 point; get_cursor_position(&point); return point;}
+//      //virtual void get_cursor_position(::int_point * ppoint);
+//      //inline ::int_point get_cursor_position() {::int_point point; get_cursor_position(&point); return point;}
 //
-//      //virtual void set_cursor_pos(const ::point_i32 & point);
+//      //virtual void set_cursor_pos(const ::int_point & point);
 //
-//      //virtual ::collection::index get_main_monitor(::rectangle_i32 * prectangle = nullptr);
+//      //virtual ::collection::index get_main_monitor(::int_rectangle * prectangle = nullptr);
 //
 //      //virtual bool set_main_monitor(::collection::index iMonitor);
 //      //virtual ::collection::count get_monitor_count();
-//      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle);
+//      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle);
 //
-//      //virtual ::collection::index get_main_workspace(::rectangle_i32 * prectangle = nullptr);
+//      //virtual ::collection::index get_main_workspace(::int_rectangle * prectangle = nullptr);
 //
 //      //virtual bool set_main_workspace(::collection::index iWorkspace);
 //      //virtual ::collection::count get_workspace_count();
-//      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 * prectangle);
+//      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle);
 //
-//      //virtual bool workspace_to_monitor(::rectangle_i32 * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
+//      //virtual bool workspace_to_monitor(::int_rectangle * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
 //
-//      //virtual bool monitor_to_workspace(::rectangle_i32 * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
+//      //virtual bool monitor_to_workspace(::int_rectangle * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
 //
-//      //virtual bool workspace_to_monitor(::rectangle_i32 * prectangle);
+//      //virtual bool workspace_to_monitor(::int_rectangle * prectangle);
 //
-//      //virtual bool monitor_to_workspace(::rectangle_i32 * prectangle);
+//      //virtual bool monitor_to_workspace(::int_rectangle * prectangle);
 //
 //      //virtual ::collection::count get_desk_monitor_count();
-//      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 * prectangle);
+//      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle);
 //
-//      //virtual void  get_monitor(rectangle_int_array & rectaMonitor, rectangle_int_array & rectaIntersect, const ::rectangle_i32 & rectangle);
+//      //virtual void  get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const ::int_rectangle & rectangle);
 //
-//      //virtual ::collection::index initial_frame_position(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
+//      //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);
 //
-//      //virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
+//      //virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bPreserveSize = false);
 //
-//      //virtual ::collection::index get_best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default);
+//      //virtual ::collection::index get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::e_activation eactivation = e_activation_default);
 //
-//      //virtual ::collection::index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+//      //virtual ::collection::index get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle& rectangle, ::e_activation eactivation = e_activation_default);
 //
-//      //virtual ::collection::index get_good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle);
+//      //virtual ::collection::index get_good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle);
 //
-//      //virtual ::collection::index get_window_restore_1(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
+//      //virtual ::collection::index get_window_restore_1(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 //
-//      //virtual ::collection::index get_window_restore_2(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
+//      //virtual ::collection::index get_window_restore_2(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
 //
-//      //virtual ::collection::index get_good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
+//      //virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction);
 //
 //      //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 //
 //
 //
 //
-//      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
+//      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 //
 //
 //      //virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction);
@@ -579,7 +579,7 @@ namespace bred
 //
 //      //virtual void     main() override;
 //
-//      //virtual void defer_initialize_host_window(const ::rectangle_i32 * lprect = nullptr);
+//      //virtual void defer_initialize_host_window(const ::int_rectangle * lprect = nullptr);
 //
 //      ////virtual service_base * allocate_new_service() override;
 //
@@ -608,13 +608,13 @@ namespace bred
 //      ////virtual ::image::cursor* get_default_cursor() override;
 //
 //      ////virtual ::collection::count   get_monitor_count() override;
-//      ////virtual bool      get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
+//      ////virtual bool      get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
 //
 //
 //      ////virtual void on_user_logon(::account::user* puser) override;
 //
 //
-//      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
+//      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 //
 //
 //      //virtual string_array get_user_wallpaper();
@@ -655,7 +655,7 @@ namespace bred
 //      ////virtual oswindow get_capture() override;
 //
 //
-//      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
+//      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 //
 //
 //      //virtual bool prepare_menu_button(::menu::item* pitem) override;

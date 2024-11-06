@@ -113,7 +113,7 @@ namespace filemanager
 
       //#ifdef WINDOWS_DESKTOP
       //      oswindow oswindowDesktop = ::get_desktop_window();
-      //      ::rectangle_i32 rectangleOpen;
+      //      ::int_rectangle rectangleOpen;
       //      ::GetWindowRect(oswindowDesktop, rectangleOpen);
       //      int iWidth = rectangleOpen.width();
       //      int iHeight = rectangleOpen.width();
@@ -550,7 +550,7 @@ namespace filemanager
    //    
    //    auto puser = psession->m_puser;
 
-   //    if(puser->m_pathFilemanagerProject.has_char())
+   //    if(puser->m_pathFilemanagerProject.has_character())
    //    {
 
    //       if (!is_valid_manager_id(m_strManagerId) || is_valid_manager_id(strManagerId))
@@ -1290,7 +1290,7 @@ namespace filemanager
 ////            }
 //
 //         //}
-//         //else if (pfilemanagerdata->m_pathDefault.has_char())
+//         //else if (pfilemanagerdata->m_pathDefault.has_character())
 //         //{
 //
 //         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);

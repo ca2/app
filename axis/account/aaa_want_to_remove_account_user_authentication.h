@@ -19,7 +19,7 @@ public:
       return m_str;
    }
 
-   strsize get_length()
+   character_count get_length()
    {
       return m_str.length();
    }

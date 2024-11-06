@@ -7,10 +7,10 @@
 CLASS_DECL_APEX int g_iMouse = -1;
 
 
-//CLASS_DECL_APEX int_bool GetCursorPos(::point_i32 * lppoint);
+//CLASS_DECL_APEX int_bool GetCursorPos(::int_point * lppoint);
 
 //
-//CLASS_DECL_APEX int_bool ui_get_cursor_pos(::point_i32 * ppt)
+//CLASS_DECL_APEX int_bool ui_get_cursor_pos(::int_point * ppt)
 //{
 //
 //   if (ppt == nullptr)
@@ -18,7 +18,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //
 //   int_bool iRet = false;
 //
-//   ::point_i32 pointCursor;
+//   ::int_point pointCursor;
 //
 //   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet] >()
 //   {
@@ -52,7 +52,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //int g_iMouseY = 0;
 //
 
-//CLASS_DECL_APEX int_bool GetCursorPos(::point_i32 * lppoint)
+//CLASS_DECL_APEX int_bool GetCursorPos(::int_point * lppoint)
 //{
 //
 //   lppoint->x = g_iMouseX;

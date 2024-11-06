@@ -170,7 +170,7 @@ namespace calculator
             if(e.m_iStart < 0)
             {
 
-               if(strSource.has_char())
+               if(strSource.has_character())
                {
                   if(strSource != strFormat)
                   {
@@ -257,7 +257,7 @@ namespace calculator
             if(m_pcallback != nullptr)
             {
 
-               if(m_strFormat.has_char())
+               if(m_strFormat.has_character())
                {
 
                   m_pcallback->set_expression(str + " " + m_strFormat);
@@ -322,11 +322,11 @@ namespace calculator
    }
 
 
-   i64 plain_edit_impact::increment_reference_count()
+   huge_integer plain_edit_impact::increment_reference_count()
    {
       return ::object::increment_reference_count();
    }
-   i64 plain_edit_impact::decrement_reference_count()
+   huge_integer plain_edit_impact::decrement_reference_count()
    {
       return ::object::decrement_reference_count();
    }

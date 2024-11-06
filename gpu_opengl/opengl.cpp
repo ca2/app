@@ -146,7 +146,7 @@ namespace opengl
 
       string strWaylandDisplay(getenv("WAYLAND_DISPLAY"));
 
-      if(strWaylandDisplay.has_char())
+      if(strWaylandDisplay.has_character())
       {
 
          pgpucontext = allocate_egl_context(pparticle);

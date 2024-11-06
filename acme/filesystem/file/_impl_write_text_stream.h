@@ -81,7 +81,7 @@
 //
 //    //   const char endptr = nullptr;
 //
-//    //   auto ull = strtoull(m_str, &endptr, 10);
+//    //   auto hn = strtoull(m_str, &endptr, 10);
 //
 //    //   if (!endptr)
 //    //   {
@@ -401,7 +401,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(i64 i)
+// //write_text_stream& operator <<(huge_integer i)
 // //{
 //
 // //   write_integer(i);
@@ -413,7 +413,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(u64 u)
+// //write_text_stream& operator <<(huge_natural u)
 // //{
 //
 // //   write_natural(u);
@@ -480,9 +480,9 @@
 ////   }
 ////
 //
-//    // void write(const ::point_i32 & point) ;
-//    // void write(const ::size_i32 & size) ;
-//    // void write(const ::rectangle_i32 &rectangle) ;
+//    // void write(const ::int_point & point) ;
+//    // void write(const ::int_size & size) ;
+//    // void write(const ::int_rectangle &rectangle) ;
 //
 //
 //// template < typename FILE >
@@ -559,7 +559,7 @@
 //
 //
 //    // template < typename FILE >
-//    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+//    template < primitive_character CHARACTER2, character_count sizeMaximumLength >
 //    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //    {
 //
@@ -626,7 +626,7 @@
 //
 //    //::filesize get_position() const ;
 //    // template < typename FILE >
-//    void write_text_stream < FILE >::write(const void* psz, strsize s)
+//    void write_text_stream < FILE >::write(const void* psz, character_count s)
 //    {
 //
 //       m_pfile->write({ psz, s });
@@ -646,8 +646,8 @@
 ////   text_stream& operator >>(unsigned short& u);
 ////   text_stream& operator >>(int& i);
 ////   text_stream& operator >>(unsigned int& u);
-////   text_stream& operator >>(i64& i);
-////   text_stream& operator >>(u64& u);
+////   text_stream& operator >>(huge_integer& i);
+////   text_stream& operator >>(huge_natural& u);
 ////   text_stream& operator >>(float& f);
 ////   text_stream& operator >>(double& d);
 ////   text_stream& operator >>(string& str);
@@ -744,7 +744,7 @@
 ////
 ////
 ////// template < typename FILE >
-////template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+////template < primitive_character CHARACTER2, character_count sizeMaximumLength >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 ////{
 ////

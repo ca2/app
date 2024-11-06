@@ -22,7 +22,7 @@
 
 
 //template < primitive_rectangle RECTANGLE >
-//inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::collection::count c)
+//inline void expand_bounding_box(RECTANGLE & rectangle, ::double_point * p, ::collection::count c)
 //{
 //
 //   for (::collection::index i = 0; i < c; i++)
@@ -38,7 +38,7 @@
 
 
 
-//inline bool get_bounding_box(::rectangle_f64 * prectangleBounding, const ::arc * parc)
+//inline bool get_bounding_box(::double_rectangle * prectangleBounding, const ::arc * parc)
 //{
 //
 //   rectangleBounding.left() = arc.m_pointCenter.x() - arc.m_sizeRadius.cx();
@@ -52,7 +52,7 @@
 
 
 
-//inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const line* pline)
+//inline bool get_bounding_box(::double_rectangle* prectangleBounding, const line* pline)
 //{
 //
 //   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
@@ -65,7 +65,7 @@
 //}
 
 
-//inline bool get_bounding_box(::rectangle_i32* prectangleBounding, const line * pline)
+//inline bool get_bounding_box(::int_rectangle* prectangleBounding, const line * pline)
 //{
 //
 //   rectangleBounding.left() = (int)minimum(line.m_p1.x(), line.m_p2.x());
@@ -78,7 +78,7 @@
 //}
 
 
-//inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const line * pline)
+//inline bool get_bounding_box(::double_rectangle* prectangleBounding, const line * pline)
 //{
 //
 //   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
@@ -102,7 +102,7 @@
 //}
 
 
-//inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const ellipse * pellipse)
+//inline bool get_bounding_box(::double_rectangle* prectangleBounding, const ellipse * pellipse)
 //{
 //
 //   copy(prectangleBounding, pellipse);
@@ -112,7 +112,7 @@
 //}
 
 
-//inline bool get_bounding_box(::rectangle_i32* prectangleBounding, const ellipse* poval)
+//inline bool get_bounding_box(::int_rectangle* prectangleBounding, const ellipse* poval)
 //{
 //
 //   copy(prectangleBounding, poval);
@@ -122,7 +122,7 @@
 //}
 
 
-//inline bool get_bounding_box(::rectangle_f64* prectangleBounding, const ellipse* prectangle)
+//inline bool get_bounding_box(::double_rectangle* prectangleBounding, const ellipse* prectangle)
 //{
 //
 //   copy(prectangleBounding, prectangle);

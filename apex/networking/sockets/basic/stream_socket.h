@@ -85,7 +85,7 @@ namespace sockets
       virtual void SetCallOnConnect(bool x = true);
 
       /** Check call on connect flag.
-      \return true if OnConnect() should be called a.s.a.point_i32 */
+      \return true if OnConnect() should be called a.s.a.int_point */
       virtual bool CallOnConnect();
 
       // e_list_retry

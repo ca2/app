@@ -27,7 +27,7 @@
 //////const char * thread_name(void)
 //////{
 //////   /* Try obtaining the thread name.
-//////    * If this fails, we'll return a pointer to an empty string. */
+//////    * If this fails, we'hi return a pointer to an empty string. */
 //////   if (!thread_name_buffer[0])
 //////      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 ////
@@ -625,7 +625,7 @@
 //string task_get_name()
 //{
 //   /* Try obtaining the thread name.
-//    * If this fails, we'll return a pointer to an empty string. */
+//    * If this fails, we'hi return a pointer to an empty string. */
 //   //if (!thread_name_buffer[0])
 //   char thread_name_buffer[17] = { 0 };
 //   prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);

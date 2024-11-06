@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    //bool bDup = false;
 
-   strsize iLen = str.length();
+   character_count iLen = str.length();
 
    char * psz = str.get_buffer(iLen);
 
@@ -143,11 +143,11 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    char * pend = psz + iLen;
 
-   strsize iNewPosition;
+   character_count iNewPosition;
 
    bool bDynIa = false;
 
-   //strsize * iaSlash = *iaSlash;
+   //character_count * iaSlash = *iaSlash;
 
    iaSlash.set_size(0);
 
@@ -722,9 +722,9 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //string file_path_name(const ::file::path & path)
 //{
 //   string str(path);
-//   strsize iPos;
-//   strsize iPos1 = str.rear_find('\\');
-//   strsize iPos2 = str.rear_find('/');
+//   character_count iPos;
+//   character_count iPos1 = str.rear_find('\\');
+//   character_count iPos2 = str.rear_find('/');
 //   if (iPos1 != -1 && iPos2 != -1)
 //   {
 //      if (iPos1 > iPos2)
@@ -992,7 +992,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 //      }
 //      else
 //#endif
-         if (strPath.has_char())
+         if (strPath.has_character())
          {
 
             char * psz = strPath.get_buffer();

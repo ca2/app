@@ -393,7 +393,7 @@ namespace acme
 //
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      u64 tt;
+//      huge_natural tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      point->tv_sec = (long)tt / 1000000;
@@ -507,7 +507,7 @@ namespace acme
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
-         if(path.has_char() && !file_system()->exists(path))
+         if(path.has_character() && !file_system()->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

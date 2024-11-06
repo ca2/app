@@ -52,7 +52,7 @@ namespace database
       const ::string & user = nullptr,
       const ::string & pass = nullptr,
       const ::string & sckt = nullptr,
-      u64 uConnectionFlags = 0) = 0;
+      huge_natural uConnectionFlags = 0) = 0;
 
       virtual void     _connect() = 0;
 

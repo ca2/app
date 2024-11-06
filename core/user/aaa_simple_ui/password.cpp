@@ -46,7 +46,7 @@ namespace simple_ui
          pprinttask = nullptr;*/
 
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
       this->rectangle(rectangleX);
 
  /*     if(pprinttask != nullptr)
@@ -74,7 +74,7 @@ namespace simple_ui
 
       pgraphics->blur(true, 4, rectangleX);
       //class imaging & imaging = psystem->imaging();
-      //::rectangle_i32 rectangleX;
+      //::int_rectangle rectangleX;
       //         window_rectangle(rectangleX);
       //       rectangleX.offset(rectangleX.top_left());
       if(rectangleX.size() != m_pimage->size())
@@ -155,9 +155,9 @@ namespace simple_ui
          bFocus = false;
       }
 
-      strsize iSelStart;
-      strsize iSelEnd;
-      strsize lim = 0;
+      character_count iSelStart;
+      character_count iSelEnd;
+      character_count lim = 0;
 
       auto ppenCaret = __create < ::draw2d::pen > ();
 
@@ -176,10 +176,10 @@ namespace simple_ui
 
       double y = rectangleX.top();
       get_text_selection(iSelStart,iSelEnd);
-      strsize iCursor = iSelEnd;
+      character_count iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
-      //size_i32 size3;
+      //int_size size3;
       ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();
@@ -209,11 +209,11 @@ namespace simple_ui
             strLine.empty();
          }
          string_array stra;
-         strsize i1 = iSelStart - lim;
-         strsize i2 = iSelEnd - lim;
-         strsize i3 = iCursor - lim;
-         strsize iStart = maximum(0,i1);
-         strsize iEnd = minimum(i2,strLine.length());
+         character_count i1 = iSelStart - lim;
+         character_count i2 = iSelEnd - lim;
+         character_count i3 = iCursor - lim;
+         character_count iStart = maximum(0,i1);
+         character_count iEnd = minimum(i2,strLine.length());
          ::str::fill(strLine,'*');
          str1 = strLine.substr(0,iStart);
          str2 = strLine.substr(iStart,iEnd - iStart);
@@ -232,18 +232,18 @@ namespace simple_ui
          pgraphics->set(pbrushText);
          pgraphics->text_out(left,y,strExtent1);
 
-         size_f64 size1(0.0,0.0);
+         double_size size1(0.0,0.0);
          pgraphics->get_text_extent(size1,strLine,(int)strLine.length(),(int)iStart);
-         size_f64 sizeb(0.0,0.0);
+         double_size sizeb(0.0,0.0);
          pgraphics->get_text_extent(sizeb,strLine,iEnd);
-         size_f64 size2(0.0,0.0);
+         double_size size2(0.0,0.0);
          pgraphics->get_text_extent(size2,strLine,(int)strLine.length(),(int)iEnd);
          size2.cx() -= size1.cx();
 
          if(iEnd > iStart)
          {
 
-            auto rectangleFill = ::rectangle_double_dimension((int)(left + size1.cx()), (int)y, (int)size2.cx(), (int)size2.cy());
+            auto rectangleFill = ::double_rectangle_dimension((int)(left + size1.cx()), (int)y, (int)size2.cx(), (int)size2.cy());
             pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
             pbrushText->create_solid(crSel);
             pgraphics->set(pbrushText);

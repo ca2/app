@@ -385,7 +385,7 @@
 //// cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 //// slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 //template < class T >
-//inline i64 pointer <T>::release()
+//inline huge_integer pointer <T>::release()
 //{
 //
 //   m_p = nullptr;

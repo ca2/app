@@ -95,20 +95,20 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, i64 iSize, e_type etype, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, huge_integer iSize, e_type etype, huge_integer iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
    {
 
       m_epath = epath;
       m_iSize = iSize;
       m_etype = etype;
-      m_iName = (strsize)iName;
+      m_iName = (character_count)iName;
       m_iBasePathLength = iBasePathLength;
       m_flags = eflag;
 
    }
 
 
-   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       string(str)
    {
 
@@ -156,7 +156,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       path(::string(wd16str), epath, etype, bNormalizePath, iSize)
    {
 
@@ -164,7 +164,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       path(::string(wd32str), epath, etype, bNormalizePath, iSize)
    {
 
@@ -172,7 +172,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -180,7 +180,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       path(::wd16_string(pwd16sz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -188,7 +188,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
       path(::wd32_string(pwd32sz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -263,7 +263,7 @@ namespace file
    //
 
 
-   //   path::path(const unichar * pwsz, strsize iCount, e_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
    //      string(pwsz, iCount),
    //      path_meta(epath, iSize, iDir)
    //   {
@@ -472,9 +472,9 @@ namespace file
 
    //   }
 
-   //   strsize iFirstColon = find(':');
-   //   strsize iFirstSlash = find('/');
-   //   strsize iSecondSlash = find('/', iFirstSlash + 1);
+   //   character_count iFirstColon = find(':');
+   //   character_count iFirstSlash = find('/');
+   //   character_count iSecondSlash = find('/', iFirstSlash + 1);
 
    //   if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1)
    //   {
@@ -1229,7 +1229,7 @@ namespace file
    }
 
 
-   inline bool path::has_char() const
+   inline bool path::has_character() const
    {
 
       return !is_empty();
@@ -1337,7 +1337,7 @@ namespace file
 
 
 
-//template < strsize m_sizeMaximumLength >
+//template < character_count m_sizeMaximumLength >
 //inline ::file::path operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 //{
 //
@@ -1346,7 +1346,7 @@ namespace file
 //}
 //
 //
-//template < strsize c >
+//template < character_count c >
 //inline ::file::path operator +(const ::file::path & path, const ::ansi_character(&cha)[c])
 //{
 //

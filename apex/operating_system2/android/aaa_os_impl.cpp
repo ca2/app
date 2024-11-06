@@ -196,7 +196,7 @@ void android_apex_main()
 
    }
 
-   ::rectangle_f64 rectangle;
+   ::double_rectangle rectangle;
 
    rectangle.left() = 0;
    rectangle.top() = 0;
@@ -273,7 +273,7 @@ void android_exchange()
 
    }
 
-   if (plocal->m_strOpenUrl.has_char())
+   if (plocal->m_strOpenUrl.has_character())
    {
 
       premote->setOpenUrl(plocal->m_strOpenUrl);
@@ -301,7 +301,7 @@ void android_exchange()
       if (plocal->m_bMessageBox)
       {
 
-         if (plocal->m_strMessageBox.has_char())
+         if (plocal->m_strMessageBox.has_character())
          {
 
             premote->setMessageBox(plocal->m_strMessageBox);
@@ -331,7 +331,7 @@ void android_exchange()
 
    }
 
-   if (plocal->m_strSetUserWallpaper.has_char())
+   if (plocal->m_strSetUserWallpaper.has_character())
    {
 
       premote->setUserWallpaper(plocal->m_strSetUserWallpaper);

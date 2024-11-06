@@ -28,11 +28,11 @@ namespace opengl
       //HGLRC                         m_hrc;
       //HDC                           m_hdc;
       //HWND                          m_hwnd;
-      //::size_i32                        m_sizeNew;
-      //::size_i32                        m_size;
+      //::int_size                        m_sizeNew;
+      //::int_size                        m_size;
       //HDC                           m_hdcGraphics;
       //float                         m_z;
-      //point_i32                         m_pointTranslate;
+      //int_point                         m_pointTranslate;
       //::pointer<::opengl::buffer>  m_pbuffer;
       //::pointer<::opengl::program> m_pprogram;
       //unsigned int                  VAO;
@@ -56,7 +56,7 @@ namespace opengl
       //virtual void start();
       //virtual void render();
 
-      //virtual bool create_offscreen_buffer(const ::size_i32& size);
+      //virtual bool create_offscreen_buffer(const ::int_size& size);
       //virtual bool destroy_offscreen_buffer();
 
 

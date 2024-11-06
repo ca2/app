@@ -25,16 +25,16 @@ class CLASS_DECL_ACME strsize_range
 public:
 
 
-   strsize_range(strsize iBegin = -1, strsize iEnd = -1) : m_iBegin(iBegin), m_iEnd(iEnd) { }
+   strsize_range(character_count iBegin = -1, character_count iEnd = -1) : m_iBegin(iBegin), m_iEnd(iEnd) { }
 
 
-   strsize     m_iBegin;
-   strsize     m_iEnd;
+   character_count     m_iBegin;
+   character_count     m_iEnd;
 
-   strsize begin() const { return m_iBegin; }
-   strsize end() const { return m_iEnd; }
-   strsize count() const { return m_iEnd - m_iBegin; }
-   strsize upper_bound() const { return m_iEnd - 1; }
+   character_count begin() const { return m_iBegin; }
+   character_count end() const { return m_iEnd; }
+   character_count count() const { return m_iEnd - m_iBegin; }
+   character_count upper_bound() const { return m_iEnd - 1; }
 
 };
 
@@ -476,7 +476,7 @@ public:
 
    //string_array_base & operator =(const ::payload & payload);
    //   string_array_base & operator =(const string_array_base & stra);
-   //string_array_base & operator =(const i64_array & ia);
+   //string_array_base & operator =(const huge_integer_array & ia);
    //   string_array_base & operator =(const string_array_base & stra);
    //string_array_base & operator -=(const string_array_base & stra);
    //string_array_base & operator +=(const string_array_base & stra);

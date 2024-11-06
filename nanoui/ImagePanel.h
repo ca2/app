@@ -53,16 +53,16 @@ namespace nanoui
       ::function<void(::collection::index)> callback() const { return m_callback; }
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
-      bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;
 
       void _defer_load_image_directory(::nano2d::context* pcontext);
 
-      size_i32 grid_size() const;
+      int_size grid_size() const;
       
-      int index_for_position(const point_i32& p) const;
+      int index_for_position(const int_point& p) const;
       
       
    };

@@ -39,7 +39,7 @@
 //
 //}
 
-int get_main_screen_rectangle(::rectangle_i32 * lprect);
+int get_main_screen_rectangle(::int_rectangle * lprect);
 
 
 namespace draw2d
@@ -798,7 +798,7 @@ namespace aura
 //
 //            strLine.trim();
 //
-//            strsize i = strLine.find('=');
+//            character_count i = strLine.find('=');
 //
 //            if(i > 0)
 //            {
@@ -1075,16 +1075,16 @@ namespace aura
    }
 
 //
-//   void system::get_time(struct timeval * point_i32)
+//   void system::get_time(struct timeval * int_point)
 //   {
 //#ifdef _WIN32
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      u64 tt;
+//      huge_natural tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
-//      point_i32->tv_sec = (long)tt / 1000000;
-//      point_i32->tv_usec = (long)tt % 1000000;
+//      int_point->tv_sec = (long)tt / 1000000;
+//      int_point->tv_usec = (long)tt % 1000000;
 //#else
 //      gettimeofday(point, nullptr);
 //#endif
@@ -1202,7 +1202,7 @@ namespace aura
 
       strImplementationName = application()->draw2d_get_default_implementation_name();
 
-      if (strImplementationName.has_char())
+      if (strImplementationName.has_character())
       {
 
          return strImplementationName;
@@ -1213,7 +1213,7 @@ namespace aura
 
       strImplementationName = file_system()->safe_get_string(path);
 
-      if(strImplementationName.has_char())
+      if(strImplementationName.has_character())
       {
 
          return implementation_name("draw2d", strImplementationName);
@@ -1224,7 +1224,7 @@ namespace aura
 
       strImplementationName = file_system()->as_string(path);
 
-      if(strImplementationName.has_char())
+      if(strImplementationName.has_character())
       {
 
          return implementation_name("draw2d", strImplementationName);
@@ -1266,7 +1266,7 @@ namespace aura
 
       ::e_status estatus;
 
-      if (strImplementationName.has_char())
+      if (strImplementationName.has_character())
       {
 
          auto & pfactoryDraw2d = factory("draw2d", strImplementationName);
@@ -1399,7 +1399,7 @@ namespace aura
 
       ::e_status estatus = ::error_failed;
 
-      if (strImplementationName.has_char())
+      if (strImplementationName.has_character())
       {
 
          auto & pfactoryImaging = factory("imaging", strImplementationName);
@@ -2542,7 +2542,7 @@ namespace aura
 
 //   bool system::assert_running_global(const ::string & pszAppName, const ::string & pszId)
 //   {
-//      if(string(pszId).has_char())
+//      if(string(pszId).has_character())
 //      {
 //         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
 //         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
@@ -2618,7 +2618,7 @@ namespace aura
 //   {
 //      string strAppName(pszAppName);
 //      string strId(pszId);
-//      if(strId.has_char())
+//      if(strId.has_character())
 //      {
 //         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
 //         ::pointer< ::mutex > pmutex = ::pointer < ::mutex >::open_mutex(get_local_id_mutex_name(pszAppName,strId));
@@ -3399,7 +3399,7 @@ namespace aura
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::rectangle_i32 & rectangle)
+//    void * system::initialize_native_window2(const ::int_rectangle & rectangle)
 
 //    {
 
@@ -3422,7 +3422,7 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::rectangle_f64 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::double_rectangle * prectangle)
 //
 //   {
 //
@@ -3441,12 +3441,12 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::rectangle_i32 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::int_rectangle * prectangle)
 //   {
 //
-//      ::rectangle_f64 rectangle;
+//      ::double_rectangle rectangle;
 //
-//      if (!window_rectangle(pwindow, (::rectangle_f64*)rectangle_i32))
+//      if (!window_rectangle(pwindow, (::double_rectangle*)int_rectangle))
 //      {
 //
 //         return false;
@@ -3501,7 +3501,7 @@ namespace aura
    //}
 
 
-//   index system::get_main_monitor(::rectangle_i32 * prectangle)
+//   index system::get_main_monitor(::int_rectangle * prectangle)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3567,7 +3567,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3639,7 +3639,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle)
 //
 //   {
 //
@@ -3649,7 +3649,7 @@ namespace aura
 //   }
 //
 //
-//   index system::get_main_workspace(::rectangle_i32 * prectangle)
+//   index system::get_main_workspace(::int_rectangle * prectangle)
 //
 //   {
 //
@@ -3706,7 +3706,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 * prectangle)
+//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3783,7 +3783,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 * prectangle)
+//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle * prectangle)
 //
 //   {
 //
@@ -3964,7 +3964,7 @@ namespace aura
 //
 //      strProfile = strProfile + "." + strWeather;
 //
-//      if (strUrl.has_char())
+//      if (strUrl.has_character())
 //      {
 //
 //         if (strBrowser == "firefox")
@@ -4079,7 +4079,7 @@ namespace aura
 //
 //#else
 //
-//         if (strUrl.has_char())
+//         if (strUrl.has_character())
 //         {
 //
 //            strParam = "\"" + strUrl + "\"";
@@ -4209,7 +4209,7 @@ namespace aura
 //         if (!bFound)
 //         {
 //
-//            if (strUrl.has_char())
+//            if (strUrl.has_character())
 //            {
 //
 //               auto pFind = strParam.find("%1");
@@ -4424,7 +4424,7 @@ namespace aura
 //
 //      strParam = "-P \"" + strProfile + "\"";
 //
-//      if (strUrl.has_char())
+//      if (strUrl.has_character())
 //      {
 //
 //         strParam += " -___new-tab \"" + strUrl + "\"";
@@ -4466,7 +4466,7 @@ namespace aura
 //
 //      }
 //
-//      if (strBrowser.has_char())
+//      if (strBrowser.has_character())
 //      {
 //
 //         file()->put_text_utf8(directory_system()->system() / "browser.txt", strBrowser);
@@ -4988,7 +4988,7 @@ namespace aura
 //
 //   strBuild = file_system()->as_string(path);
 //
-//   return strBuild.has_char();
+//   return strBuild.has_character();
 //
 //}
 //
@@ -5807,7 +5807,7 @@ if(!m_pimaging)
    //   set_enum_name(::type_unsigned int     , "ulong");
    //   set_enum_name(::e_type_element       , "ca2");
    //   set_enum_name(::e_type_bool      , "bool");
-   //   set_enum_name(::e_type_f64    , "double");*/
+   //   set_enum_name(::e_type_double    , "double");*/
 
    //   //if (!::aura::application::init_application())
    //   //{
@@ -5854,7 +5854,7 @@ if(!m_pimaging)
 ////      if(f != nullptr)
 ////      {
 ////
-////         informationf("linux_g_direct_term entry point_i32 not found at basecore library");
+////         informationf("linux_g_direct_term entry int_point not found at basecore library");
 ////
 ////         (*f)();
 ////
@@ -6070,7 +6070,7 @@ if(!m_pimaging)
    //   
    //   strLocation = set["get_headers"]["Location"];
 
-   //   if (strLocation.has_char())
+   //   if (strLocation.has_character())
    //   {
 
    //      property_set set;
@@ -6243,7 +6243,7 @@ if(!m_pimaging)
 //#ifdef UNIVERSAL_WINDOWS
 //
 //
-//   bool system::window_rectangle(::rectangle_i32* prectangle)
+//   bool system::window_rectangle(::int_rectangle* prectangle)
 //   {
 //
 //      if (::is_null(get_session()))
@@ -7000,7 +7000,7 @@ if(!m_pimaging)
 
          ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
-         if (strUserToolkit.has_char())
+         if (strUserToolkit.has_character())
          {
             
             if(strUserToolkit == "appkit")

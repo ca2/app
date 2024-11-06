@@ -3,7 +3,7 @@
 //
 
 
-inline void copy(::rectangle_i32 * prectTarget, const cairo_rectangle_int_t * prectSource)
+inline void copy(::int_rectangle * prectTarget, const cairo_rectangle_int_t * prectSource)
 {
 
    prectTarget->left() = prectSource->x;
@@ -14,7 +14,7 @@ inline void copy(::rectangle_i32 * prectTarget, const cairo_rectangle_int_t * pr
 }
 
 
-inline void copy(cairo_rectangle_int_t * prectTarget, const ::rectangle_i32 * prectSource)
+inline void copy(cairo_rectangle_int_t * prectTarget, const ::int_rectangle * prectSource)
 {
 
    prectTarget->x = prectSource->left();

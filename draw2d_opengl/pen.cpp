@@ -275,7 +275,7 @@ namespace draw2d_opengl
                {
                   cr1 = graphicsDest->SetTextColor(cr1);
                   cr2 = graphicsDest->SetBkColor(cr2);
-                  graphicsDest->FillRect(rectangle_i32(0, 0, bm.bmWidth, bm.bmHeight), &pbrushChecker);
+                  graphicsDest->FillRect(int_rectangle(0, 0, bm.bmWidth, bm.bmHeight), &pbrushChecker);
                   graphicsDest->SetTextColor(cr1);
                   graphicsDest->SetBkColor(cr2);
 
@@ -335,7 +335,7 @@ namespace draw2d_opengl
          // Checker the background with white and crBackground
          cr1 = pgraphics->SetTextColor(cr1);
          cr2 = pgraphics->SetBkColor(cr2);
-         pgraphics->FillRect(rectangle_i32(x, y, x + bm.bmWidth, y + bm.bmHeight), &pbrushChecker);
+         pgraphics->FillRect(int_rectangle(x, y, x + bm.bmWidth, y + bm.bmHeight), &pbrushChecker);
          pgraphics->SetTextColor(cr1);
          pgraphics->SetBkColor(cr2);
 

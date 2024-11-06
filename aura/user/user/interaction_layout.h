@@ -49,27 +49,27 @@ namespace user
 
       enumeration < enum_flag >                    m_eflag;
       bool                                         m_bFillParent;
-      ::rectangle_i32                              m_rectangleHint;
-      ::rectangle_i32                              m_rectanglePadding;
+      ::int_rectangle                              m_rectangleHint;
+      ::int_rectangle                              m_rectanglePadding;
       int                                          m_iCellPadding;
-      ::size_i32                                   m_sizeSpan;
-      ::size_f64                                   m_sizeWeight;
+      ::int_size                                   m_sizeSpan;
+      ::double_size                                   m_sizeWeight;
 
 
       class ::time                                 m_timeLastLadingToLayout;
       enum_layout_experience                       m_elayoutexperience;
 
 
-      //mutable size_i32                            m_sizeClient;
-      //mutable size_i32                            m_sizeScreen;
+      //mutable int_size                            m_sizeClient;
+      //mutable int_size                            m_sizeScreen;
 
-      //mutable point_i32                           m_pointParentWindow; // window position in parent window coordinates
-      //mutable point_i32                           m_pointParentClient; // client position in parent window coordinates
-      //mutable point_i32                           m_pointScreenWindow; // window position in screen coordinates
-      //mutable point_i32                           m_pointScreenClient; // client position in screen coordinates
+      //mutable int_point                           m_pointParentWindow; // window position in parent window coordinates
+      //mutable int_point                           m_pointParentClient; // client position in parent window coordinates
+      //mutable int_point                           m_pointScreenWindow; // window position in screen coordinates
+      //mutable int_point                           m_pointScreenClient; // client position in screen coordinates
 
       //// in ca2 code until 2019 and maybe until much later always null
-      //mutable point_i32                           m_pointClient; // client position in window non-client coordinates
+      //mutable int_point                           m_pointClient; // client position in window non-client coordinates
 
 
 
@@ -84,24 +84,24 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual bool _get_client_rect(::rectangle_i32 * prectangle) = 0;
-      //virtual bool _get_window_rect(::rectangle_i32 * prectangle) = 0;
+      //virtual bool _get_client_rect(::int_rectangle * prectangle) = 0;
+      //virtual bool _get_window_rect(::int_rectangle * prectangle) = 0;
 
-      //virtual ::point_i32 _client_parent_top_left() = 0;
-      //virtual ::point_i32 _client_screen_top_left() = 0;
-
-
-      //mutable size_i32      m_sizeClient;
-      //mutable size_i32      m_sizeScreen;
-
-      //mutable point_i32     m_pointClient;
-      //mutable point_i32     m_pointScreen;
-      //mutable point_i32     m_pointParentWindow;
-      //mutable point_i32     m_pointParentClient;
+      //virtual ::int_point _client_parent_top_left() = 0;
+      //virtual ::int_point _client_screen_top_left() = 0;
 
 
-      //inline auto get_client_rect64() { ::rectangle_i64 rectangle_i32; this->rectangle(rectangle); return rectangle; }
-      //inline auto get_window_rect64() { ::rectangle_i64 rectangle_i32; window_rectangle(rectangle); return rectangle; }
+      //mutable int_size      m_sizeClient;
+      //mutable int_size      m_sizeScreen;
+
+      //mutable int_point     m_pointClient;
+      //mutable int_point     m_pointScreen;
+      //mutable int_point     m_pointParentWindow;
+      //mutable int_point     m_pointParentClient;
+
+
+      //inline auto get_client_rect64() { ::i64_rectangle int_rectangle; this->rectangle(rectangle); return rectangle; }
+      //inline auto get_window_rect64() { ::i64_rectangle int_rectangle; window_rectangle(rectangle); return rectangle; }
 
       //virtual ::window_graphics* get_window_graphics();
       //virtual oswindow get_handle() const;
@@ -141,29 +141,29 @@ namespace user
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool window_rectangle(::rectangle_i32 * prectangle);
+      //virtual bool window_rectangle(::int_rectangle * prectangle);
 
 
 
-      //inline ::point_i32 window_parent_top_left() { return m_pointParentWindow; }
-      //inline ::point_i32 window_screen_top_left() { return m_pointScreenWindow; }
-      //inline ::point_i32 client_parent_top_left() { return m_pointParentClient; }
-      //inline ::point_i32 client_screen_top_left() { return m_pointScreenClient; }
-      //inline ::point_i32 client_top_left() { return m_pointClient; }
+      //inline ::int_point window_parent_top_left() { return m_pointParentWindow; }
+      //inline ::int_point window_screen_top_left() { return m_pointScreenWindow; }
+      //inline ::int_point client_parent_top_left() { return m_pointParentClient; }
+      //inline ::int_point client_screen_top_left() { return m_pointScreenClient; }
+      //inline ::int_point client_top_left() { return m_pointClient; }
 
-      //inline ::size_i32 client_size() { return m_sizeClient; }
-      //inline ::size_i32 window_size() { return m_sizeScreen; }
+      //inline ::int_size client_size() { return m_sizeClient; }
+      //inline ::int_size window_size() { return m_sizeScreen; }
 
-      //inline void screen_to_client(::rectangle_i32* prectangle) { ::rect_sub(prectangle, client_screen_top_left()); }
-      //inline void client_to_screen(::rectangle_i32* prectangle) { ::rect_add(prectangle, client_screen_top_left()); }
+      //inline void screen_to_client(::int_rectangle* prectangle) { ::rect_sub(prectangle, client_screen_top_left()); }
+      //inline void client_to_screen(::int_rectangle* prectangle) { ::rect_add(prectangle, client_screen_top_left()); }
 
-      //inline void this->rectangle(::rectangle_i32* prectangle) { ::set_rect_point_size(prectangle, m_pointClient, client_size()); }
-      //inline void window_rectangle(::rectangle_i32* prectangle) { ::set_rect_point_size(prectangle, m_pointScreenWindow, window_size()); }
+      //inline void this->rectangle(::int_rectangle* prectangle) { ::set_rect_point_size(prectangle, m_pointClient, client_size()); }
+      //inline void window_rectangle(::int_rectangle* prectangle) { ::set_rect_point_size(prectangle, m_pointScreenWindow, window_size()); }
 
-      //inline auto this->rectangle() { ::rectangle_i32 rectangle; this->rectangle(rectangle); return rectangle; }
-      //inline auto window_rectangle() { ::rectangle_i32 rectangle; window_rectangle(rectangle); return rectangle; }
+      //inline auto this->rectangle() { ::int_rectangle rectangle; this->rectangle(rectangle); return rectangle; }
+      //inline auto window_rectangle() { ::int_rectangle rectangle; window_rectangle(rectangle); return rectangle; }
 
-      //virtual void set_placement(const ::rectangle_i32 & rectangle);
+      //virtual void set_placement(const ::int_rectangle & rectangle);
 
 
       inline bool is_iconic(enum_layout elayout = e_layout_design) const { return ::is_iconic(state(elayout).display()); }
@@ -186,7 +186,7 @@ namespace user
       inline class layout_state& normal() { return state(e_layout_normal); }
       inline class layout_state& output() { return state(e_layout_output); }
       inline class layout_state& window() { return state(e_layout_window); }
-      virtual void set_initial_dim(const ::point_i32 & p, const ::size_i32 & s);
+      virtual void set_initial_dim(const ::int_point & p, const ::int_size & s);
 
       inline void set_appearance(e_appearance eappearance) { sketch() = eappearance; }
       inline void add_appearance(e_appearance eappearance) { sketch() |= eappearance; }
@@ -261,24 +261,24 @@ namespace user
 
 
 
-      virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
+      virtual ::int_point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
 
       virtual void on_add_layout(::user::interaction_layout * playout);
 
 
-      inline ::size_i32 size(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
+      inline ::int_size size(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
 
-      inline ::point_i32 origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
+      inline ::int_point origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
 
       inline int area(enum_layout elayout = e_layout_design) const { return this->size(elayout).area(); }
 
 
-      //inline void raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).raw_rectangle(rectangle); }
-      //inline void parent_raw_rectangle(::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_raw_rectangle(rectangle); }
+      //inline void raw_rectangle(::int_rectangle & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).raw_rectangle(rectangle); }
+      //inline void parent_raw_rectangle(::int_rectangle & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_raw_rectangle(rectangle); }
 
 
-      inline ::rectangle_i32 raw_rectangle(enum_layout elayout = e_layout_design) const { return state(elayout).raw_rectangle(); }
-      inline ::rectangle_i32 parent_raw_rectangle(enum_layout elayout = e_layout_design) const { return state(elayout).parent_raw_rectangle(); }
+      inline ::int_rectangle raw_rectangle(enum_layout elayout = e_layout_design) const { return state(elayout).raw_rectangle(); }
+      inline ::int_rectangle parent_raw_rectangle(enum_layout elayout = e_layout_design) const { return state(elayout).parent_raw_rectangle(); }
 
 
    };

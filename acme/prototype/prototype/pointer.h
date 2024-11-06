@@ -29,7 +29,7 @@ struct place_t {};
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca);
+inline huge_integer increment_reference_count(c_derived * pca);
 
 class subparticle;
 
@@ -407,9 +407,9 @@ public:
 
    inline bool defer_destroy();
 
-   inline i64 release();
+   inline huge_integer release();
 
-   //inline i64 global_release();
+   //inline huge_integer global_release();
 
    inline ::pointer < T > detach() { return ::transfer(*this); }
    //inline ::subparticle * detach_particle();

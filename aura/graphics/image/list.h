@@ -20,13 +20,13 @@ namespace image
       public:
 
 
-         ::rectangle_i32         m_rectangle;
+         ::int_rectangle         m_rectangle;
          ::image::image_pointer         m_pimage;
 
       };
 
 
-      size_i32                         m_size;
+      int_size                         m_size;
       int                              m_iSize;
       int                              m_iGrow;
       ::pointer<::image::image>               m_pimage;
@@ -56,7 +56,7 @@ namespace image
       //   virtual int set_icon(int iItem, ::file::file * pfile);
 
       //template < image_list_source_pointer IMAGE_LIST_SOURCE_POINTER >
-      //int add(IMAGE_LIST_SOURCE_POINTER psource, const ::rectangle_i32 & rectangleSource = ::rectangle_i32())
+      //int add(IMAGE_LIST_SOURCE_POINTER psource, const ::int_rectangle & rectangleSource = ::int_rectangle())
       //{
 
       //   return _add(psource);
@@ -96,10 +96,10 @@ namespace image
       virtual void color_blend(image_list* pimagelistSource, const ::color::color& color, const class ::opacity& opacity);
 
 
-      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag);
-      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag, const class ::opacity& opacity);
-      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, int iFlag);
-      virtual void _draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, int iFlag);
+      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag);
+      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag, const class ::opacity& opacity);
+      virtual void draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffset, int iFlag);
+      virtual void _draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffset, int iFlag);
       virtual int get_image_count() const;
 
       virtual void copy_from(const image_list * plist);

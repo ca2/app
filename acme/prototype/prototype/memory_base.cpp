@@ -814,7 +814,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount) const
+//bool memory_base::case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (::is_null(psz) || *psz == '\0')
@@ -852,7 +852,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::begins(const ::string & str, strsize iCount) const
+//bool memory_base::begins(const ::string & str, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -874,7 +874,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_begins(const ::string & str, strsize iCount) const
+//bool memory_base::case_insensitive_begins(const ::string & str, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -896,7 +896,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::ends(const ::scoped_string & scopedstr, strsize iCount) const
+//bool memory_base::ends(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -918,7 +918,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_ends(const ::scoped_string & scopedstr, strsize iCount) const
+//bool memory_base::case_insensitive_ends(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (::is_null(psz) || *psz == '\0')
@@ -956,7 +956,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::ends(const ::string & str, strsize iCount) const
+//bool memory_base::ends(const ::string & str, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -978,7 +978,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_ends(const ::string & str, strsize iCount) const
+//bool memory_base::case_insensitive_ends(const ::string & str, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -1183,9 +1183,9 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    char * pchDst = str.get_buffer(count * 2);
 
-   u64 tickEnd = pos + count;
+   huge_natural tickEnd = pos + count;
 
-   for (u64 dw = pos; dw < tickEnd; dw++)
+   for (huge_natural dw = pos; dw < tickEnd; dw++)
    {
 
       if (((pchSrc[dw] & 0xf0) >> 4) < 10)
@@ -1237,14 +1237,14 @@ string memory_base::to_hex(memsize pos, memsize size)
 }
 
 
-strsize memory_base::from_hex(const ::scoped_string & scopedstr)
+character_count memory_base::from_hex(const ::scoped_string & scopedstr)
 {
 
    char ch;
 
    bool bOdd = false;
 
-   strsize iLen = scopedstr.size();
+   character_count iLen = scopedstr.size();
 
    bOdd = (iLen % 2) != 0;
 
@@ -1261,7 +1261,7 @@ strsize memory_base::from_hex(const ::scoped_string & scopedstr)
 
    char * pch = (char *)data();
 
-   strsize i = 0;
+   character_count i = 0;
 
    char ch2;
 

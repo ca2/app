@@ -335,7 +335,7 @@ void app_core::system_init()
 
    get_command_line_parameter(strUid, strCommandLine, "uid");
 
-   if (strUid.has_char())
+   if (strUid.has_character())
    {
 
       uid_t uid = atoi(strUid);
@@ -389,13 +389,13 @@ pmessagebox->sync();
 
    get_command_line_parameter(strAppId, strCommandLine, "app");
 
-   if (strAppId.has_char())
+   if (strAppId.has_character())
    {
 
       m_strAppId = strAppId;
 
    }
-   else if(m_strAppId.has_char())
+   else if(m_strAppId.has_character())
    {
 
       strCommandLine += " app=" +m_strAppId;
@@ -564,7 +564,7 @@ pdirectorysystem->ca2roaming() / "program";
 
    string strAppId = get_command_line_parameter(psz, "app");
 
-   if (strAppId.has_char())
+   if (strAppId.has_character())
    {
 
       pathFolder /= strAppId;
@@ -594,7 +594,7 @@ pdirectorysystem->ca2roaming() / "program";
 //void app_core::defer_load_backbone_libraries(string strAppId)
 //{
 //
-//   if (strAppId.has_char())
+//   if (strAppId.has_character())
 //   {
 //
 //      void * hmodule = nullptr;

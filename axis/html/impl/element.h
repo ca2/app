@@ -25,11 +25,11 @@ namespace html
 
 
          ::html::element *     m_pelemental;
-         ::rectangle_f32                 m_box;
-         ::rectangle_f32                 m_bound;
-         ::rectangle_f32                 m_padding;
+         ::float_rectangle                 m_box;
+         ::float_rectangle                 m_bound;
+         ::float_rectangle                 m_padding;
          border                  m_border;
-         ::rectangle_f32                 m_margin;
+         ::float_rectangle                 m_margin;
          int                        m_iLayoutChildLineStartIndex;
          int                        m_iLayoutChildIndex;
 
@@ -69,8 +69,8 @@ namespace html
          virtual element * get_first_sibling();
          virtual element * get_previous_sibling();
 
-         bool hit_test(html_data * pdata, const ::point_f32 & point);
-         double bound_hit_test(html_data * pdata, const ::point_f32 & point);
+         bool hit_test(html_data * pdata, const ::float_point & point);
+         double bound_hit_test(html_data * pdata, const ::float_point & point);
 
 
          virtual float left();
@@ -80,12 +80,12 @@ namespace html
          virtual float width();
          virtual float height();
 
-         virtual ::point_f32 top_left();
-         virtual ::size_f32 size();
+         virtual ::float_point top_left();
+         virtual ::float_size size();
 
 
-         virtual ::size_f32 get_content_size();
-         virtual ::point_f32 get_content_top_left();
+         virtual ::float_size get_content_size();
+         virtual ::float_point get_content_top_left();
 
          virtual float get_table_border();
          virtual float get_cell_spacing();
@@ -93,10 +93,10 @@ namespace html
 
          virtual float get_first_line_height();
          virtual float get_last_line_height();
-         virtual ::size_f32 get_bound_size();
-         virtual void set_bound_size(html_data * pdocument, const ::size_f32 & size);
-         virtual ::point_f32 get_bound_top_left();
-         virtual void move_bound_to(html_data * pdocument, const ::point_f32 & point);
+         virtual ::float_size get_bound_size();
+         virtual void set_bound_size(html_data * pdocument, const ::float_size & size);
+         virtual ::float_point get_bound_top_left();
+         virtual void move_bound_to(html_data * pdocument, const ::float_point & point);
          virtual void move_left_to(html_data * pdocument, float l);
          virtual void move_top_to(html_data * pdocument, float t);
          virtual void set_width(html_data * pdocument, float w);

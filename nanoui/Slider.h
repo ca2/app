@@ -58,9 +58,9 @@ namespace nanoui
       ::function<void(float)> final_callback() const { return m_final_callback; }
       void set_final_callback(const ::function<void(float)> & callback) { m_final_callback = callback; }
 
-      virtual size_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      virtual bool mouse_motion_event(const point_i32 & p, const size_i32 & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual bool mouse_motion_event(const int_point & p, const int_size & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       virtual void draw(::nano2d::context * pcontext) override;
 
    };

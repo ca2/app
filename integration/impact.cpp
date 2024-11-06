@@ -315,7 +315,7 @@ namespace app_integration
       if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
       {
 
-         ::rectangle_i32 rectangle = this->rectangle();
+         ::int_rectangle rectangle = this->rectangle();
 
          for (::collection::index i = 0; i < 11; i++)
          {

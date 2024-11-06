@@ -129,7 +129,7 @@
 //         m_strDataKey = key.m_strDataKey;
 //
 //      }
-//      else if (key.m_strDataKey.has_char())
+//      else if (key.m_strDataKey.has_character())
 //      {
 //
 //         m_strDataKey += "/" + key.m_strDataKey;
@@ -164,7 +164,7 @@
 //         m_strDataKey = strDataKey;
 //
 //      }
-//      else if (strDataKey.has_char())
+//      else if (strDataKey.has_character())
 //      {
 //
 //         m_strDataKey += "/" + strDataKey;

@@ -16,7 +16,7 @@ namespace user
 
       string               m_str;
       ::write_text::font_pointer    m_pfont;
-      ::size_i32               m_size;
+      ::int_size               m_size;
       bool                 m_bError;
 
 
@@ -30,7 +30,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::size_i32 CalcSize();
+      ::int_size CalcSize();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;

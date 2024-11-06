@@ -105,7 +105,7 @@ NAMESPACE_END(detail)
  *    FormHelper* h = ___new FormHelper(pscreen);
  *
  *    // Add a ___new windows pwidget
- *    h->add_window(sequence2_i32(10,10),"Menu");
+ *    h->add_window(sequence2_int(10,10),"Menu");
  *
  *    // Start a ___new group
  *    h->add_group("Group 1");
@@ -131,7 +131,7 @@ NAMESPACE_END(detail)
 
       
       /// Add a ___new top-level window
-      Window * add_window(const sequence2_i32 & pos,
+      Window * add_window(const sequence2_int & pos,
          const ::scoped_string & title = "Untitled")
       {
          ASSERT(m_pscreen);
@@ -176,7 +176,7 @@ NAMESPACE_END(detail)
          pwidget->set_callback(setter);
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
-         sequence2_i32 sizeFixed = pwidget->fixed_size();
+         sequence2_int sizeFixed = pwidget->fixed_size();
          pwidget->set_fixed_size(sizeFixed.prefer_self_coordinate_if_set(m_fixed_size));
          m_refresh_callbacks.add(refresh);
          if (m_playout->row_count() > 0)
@@ -245,10 +245,10 @@ NAMESPACE_END(detail)
       }
 
       /// Specify a fixed size for newly added widgets
-      void set_fixed_size(const ::size_i32 & fw) { m_fixed_size = fw; }
+      void set_fixed_size(const ::int_size & fw) { m_fixed_size = fw; }
 
       /// The current fixed size being used for newly added widgets.
-      ::size_i32 fixed_size() { return m_fixed_size; }
+      ::int_size fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
       ::string group_font_name() const { return m_group_font_name; }
@@ -294,7 +294,7 @@ NAMESPACE_END(detail)
       /// The label font name.
       ::string m_label_font_name = "sans";
       /// The fixed size for newly added widgets.
-      ::size_i32 m_fixed_size = size_i32(0, 20);
+      ::int_size m_fixed_size = int_size(0, 20);
       /// The font size for group headers.
       int m_group_font_size = 20;
       /// The font size for labels.

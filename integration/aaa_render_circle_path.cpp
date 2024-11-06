@@ -23,7 +23,7 @@ namespace app_integration
 
       pgraphics->text_out(100, 50, "Circle Path (300, 300) - (800, 800) r = 250");
 
-      ::rectangle_f64 r(300, 300, 800, 800);
+      ::double_rectangle r(300, 300, 800, 800);
 
       double Δx = m_rectangle.width() / 1000.0;
 

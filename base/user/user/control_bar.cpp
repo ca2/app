@@ -219,15 +219,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    
 
-   size_i32 control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
+   int_size control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
-      ::size_i32 size;
+      ::int_size size;
       size.cx() = (bStretch && bHorz ? 32767 : 0);
       size.cy() = (bStretch && !bHorz ? 32767 : 0);
       return size;
    }
 
-   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, unsigned int nMode)
+   int_size control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, unsigned int nMode)
    {
       return CalcFixedLayout(pgraphics, (nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -536,7 +536,7 @@ namespace user
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
          auto rectangleX = this->rectangle();
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
          screen_to_client(rectangleWindow);
          rectangleX.offset(-rectangleWindow.left(), -rectangleWindow.top());
@@ -558,9 +558,9 @@ namespace user
    {
 
       // get interaction_impl DC that is clipped to the non-client area
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
       rectangleX = this->rectangle();
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
       window_rectangle(rectangleWindow);
       screen_to_client()(rectangleWindow);
       rectangleX.offset(-rectangleWindow.left(), -rectangleWindow.top());
@@ -578,7 +578,7 @@ namespace user
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rectangle = ::rectangle_double_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
+      auto rectangle = ::double_rectangle_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
 
       pgraphics->fill_rectangle(rectangle, argb(128, 192, 192, 187));
 
@@ -763,13 +763,13 @@ namespace user
       {
          
          // align the control bar
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          rectangle = playout->m_rectangle;
 
-         ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
+         ::int_size sizeAvail = rectangle.size();  // maximum int_size available
 
-         // get maximum requested size_i32
+         // get maximum requested int_size
          unsigned int dwMode = playout->m_bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
@@ -799,7 +799,7 @@ namespace user
 
          //pgraphics->m_puserinteraction = this;
 
-         ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
+         ::int_size size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
          size.cx() = minimum(size.cx(), sizeAvail.cx());
          size.cy() = minimum(size.cy(), sizeAvail.cy());
@@ -861,7 +861,7 @@ namespace user
 
          rectangle.bottom() = rectangle.top() + size.cy();
 
-         // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
+         // only resize the interaction_impl if doing on_layout and not just int_rectangle query
          //if (playout->hDWP != nullptr)
 
          //::user::__reposition_window(playout, this, &rectangle);
@@ -872,7 +872,7 @@ namespace user
 
          ASSERT(puiParent != nullptr);
 
-         ::rectangle_i32 rectangleOld;
+         ::int_rectangle rectangleOld;
 
          window_rectangle(rectangleOld);
 
@@ -922,7 +922,7 @@ namespace user
       //ASSERT_VALID(pgraphics);
 
       // paint inside client area
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32& rectangle)
+   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle)
    {
 
       ASSERT_VALID(this);
@@ -946,7 +946,7 @@ namespace user
 
       // prepare for dark lines
       ASSERT(rectangle.top() == 0 && rectangle.left() == 0);
-      ::rectangle_i32 rect1, rect2;
+      ::int_rectangle rect1, rect2;
       rect1 = rectangle;
       rect2 = rectangle;
       //   ::color::color clr = ::windows_definition::Data.bWin4 ? ::windows_definition::Data.clrBtnShadow : ::windows_definition::Data.clrWindowFrame;
@@ -978,11 +978,11 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rectangle(::rectangle_double_dimension(0, rectangle.top() + 7, CX_BORDER, rectangle.height() - 7), clr);
+            pgraphics->fill_rectangle(::double_rectangle_dimension(0, rectangle.top() + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_rectangle(::rectangle_double_dimension(0, rect2.top(), CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::double_rectangle_dimension(0, rect2.top(), CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
@@ -990,7 +990,7 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
             pgraphics->fill_rectangle(
-            ::rectangle_f64(rectangle.left() + 7,
+            ::double_rectangle(rectangle.left() + 7,
             rectangle.top(),
             rectangle.right() - 7,
             1),
@@ -999,7 +999,7 @@ namespace user
          else
          {
             pgraphics->fill_rectangle(
-            ::rectangle_f64(rectangle.left(),
+            ::double_rectangle(rectangle.left(),
             rectangle.top(),
             rectangle.right(),
             1),
@@ -1026,9 +1026,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_rectangle(::rectangle_f64(rect1.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
+         pgraphics->fill_rectangle(::double_rectangle(rect1.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_rectangle(::rectangle_f64(0, rect1.bottom(), rectangle.right(), -CY_BORDER), clr);
+         pgraphics->fill_rectangle(::double_rectangle(0, rect1.bottom(), rectangle.right(), -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -1038,21 +1038,21 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_rectangle(::rectangle_f64(1, rect2.top(), CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::double_rectangle(1, rect2.top(), CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left() + 7, rectangle.top() + 1, rectangle.width() - 7, 1), clr);
+               pgraphics->fill_rectangle(::double_rectangle(rectangle.left() + 7, rectangle.top() + 1, rectangle.width() - 7, 1), clr);
             else
-               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left(), rectangle.top() + 1, rectangle.width(), 1), clr);
+               pgraphics->fill_rectangle(::double_rectangle(rectangle.left(), rectangle.top() + 1, rectangle.width(), 1), clr);
             //pgraphics->fill_rectangle(0, 1, rectangle.right(), CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_rectangle(::rectangle_f64(rectangle.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::double_rectangle(rectangle.right(), rect2.top(), -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_rectangle(::rectangle_f64(0, rectangle.bottom(), rectangle.right(), -CY_BORDER), clr);
+            pgraphics->fill_rectangle(::double_rectangle(0, rectangle.bottom(), rectangle.right(), -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
@@ -1096,7 +1096,7 @@ namespace user
    }
 
 
-   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle)
+   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle)
    {
 
       // only draw the gripper if not floating and gripper is specified
@@ -1146,8 +1146,8 @@ namespace user
       }
    }
 
-   // input rectangle_i32 should be client rectangle_i32 size_i32
-   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const
+   // input int_rectangle should be client int_rectangle int_size
+   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz) const
    {
       ASSERT_VALID(this);
       unsigned int uStyle = m_dwStyle;
@@ -1245,7 +1245,7 @@ namespace user
    }
 
 
-   void control_bar::SetBorders(const ::rectangle_i32 & rectangle)
+   void control_bar::SetBorders(const ::int_rectangle & rectangle)
    {
 
       SetBorders(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
@@ -1253,7 +1253,7 @@ namespace user
    }
 
 
-   ::rectangle_i32 control_bar::GetBorders()
+   ::int_rectangle control_bar::GetBorders()
    {
 
       return m_rectangleBorder;

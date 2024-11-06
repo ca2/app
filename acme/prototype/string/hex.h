@@ -15,11 +15,11 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const string& strAsc);
 
 
-   CLASS_DECL_ACME i64 to_i64(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME huge_integer to_huge_integer(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME u64 to_u64(const string & pcsz);
+   CLASS_DECL_ACME huge_natural to_huge_natural(const string & pcsz);
 
-   CLASS_DECL_ACME unsigned int to_u32(const ::string & str);
+   CLASS_DECL_ACME unsigned int to_unsigned_int(const ::string & str);
 
    inline CLASS_DECL_ACME int to_nibble(char ch)
    {
@@ -84,7 +84,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice size_i32 of s (p)
+   // sz buffer should have twice int_size of s (p)
    constexpr CLASS_DECL_ACME void lower_case_from(char * sz, const void * p, memsize s)
    {
        const unsigned char * pb = (const unsigned char *) p;
@@ -111,7 +111,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice size_i32 of s (p)
+   // sz buffer should have twice int_size of s (p)
    inline string lower_case_from(const void * p, memsize s)
    {
       string str;
@@ -156,8 +156,8 @@ namespace hex
    }
 
 
-   template < strsize s_iWidth >
-   inline auto padded_from(::u64 u, enum_digit_case edigitcase)
+   template < character_count s_iWidth >
+   inline auto padded_from(huge_natural u, enum_digit_case edigitcase)
    {
 
       ::inline_string < char, s_iWidth > numberstring;
@@ -185,8 +185,8 @@ namespace hex
    }
 
 
-   template < strsize s_iWidth >
-   inline auto lower_case_padded_from(::u64 u)
+   template < character_count s_iWidth >
+   inline auto lower_case_padded_from(huge_natural u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_lower);
@@ -194,8 +194,8 @@ namespace hex
    }
 
 
-   template < strsize s_iWidth >
-   inline auto upper_case_padded_from(::u64 u)
+   template < character_count s_iWidth >
+   inline auto upper_case_padded_from(huge_natural u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_upper);
@@ -203,10 +203,10 @@ namespace hex
    }
 
 
-   inline void to(unsigned int & u,const ::string & str) { u = to_u32(str); }
-   inline void to(u64 & u,const ::string & str) { u = to_u64(str); }
+   inline void to(unsigned int & u,const ::string & str) { u = to_unsigned_int(str); }
+   inline void to(huge_natural & u,const ::string & str) { u = to_huge_natural(str); }
 #ifdef __APPLE__
-   inline void to(unsigned long & u,const ::string & str) { u = to_u64(str); }
+   inline void to(unsigned long & u,const ::string & str) { u = to_huge_natural(str); }
 #endif
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 

@@ -16,7 +16,7 @@ namespace innate_ui
 
 
       ::memory       m_memory;
-      ::size_i32     m_size;
+      ::int_size     m_size;
 
 
       icon();
@@ -24,7 +24,7 @@ namespace innate_ui
 
 
       virtual void _create();
-      virtual void create(const ::payload & payloadFile, const ::size_i32 & size);
+      virtual void create(const ::payload & payloadFile, const ::int_size & size);
 
 
    };

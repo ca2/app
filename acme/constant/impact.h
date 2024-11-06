@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_impact : ::i64
+enum enum_impact : huge_integer
 {
 
    e_impact_none,

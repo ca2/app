@@ -79,7 +79,7 @@ class plex_heap_alloc_array;
 
 #if OBJECT_TYPE_COUNTER
 
-extern map < const char *, const char *, ::i64, ::i64 > * g_pmapObjTypCtr;
+extern map < const char *, const char *, huge_integer, huge_integer > * g_pmapObjTypCtr;
 
 #endif
 
@@ -356,7 +356,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
+   map < const char*, const char*, huge_integer, huge_integer >* g_pmapObjTypCtr;
 
 #endif
 
@@ -929,7 +929,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = memory_new map < const char*, const char*, ::i64, ::i64 >;
+      g_pmapObjTypCtr = memory_new map < const char*, const char*, huge_integer, huge_integer >;
 
       {
 

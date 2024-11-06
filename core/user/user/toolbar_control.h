@@ -28,7 +28,7 @@ namespace user
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom);
+      //bool create_window(unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
       //bool create_child(::user::interaction * puserinteraction);
 
 
@@ -44,16 +44,16 @@ namespace user
 //
 //#endif
       int GetButtonCount();
-      bool GetItemRect(int nIndex, ::rectangle_i32 * prectangle);
+      bool GetItemRect(int nIndex, ::int_rectangle * prectangle);
 
-      bool GetRect(int nID, ::rectangle_i32 * prectangle);
+      bool GetRect(int nID, ::int_rectangle * prectangle);
 
       void SetButtonStructSize(int nSize);
       unsigned int get_button_size();
-      bool SetButtonSize(const ::size_i32 & size);
-      bool SetBitmapSize(const ::size_i32 & size);
+      bool SetButtonSize(const ::int_size & size);
+      bool SetBitmapSize(const ::int_size & size);
       ::pointer<::user::interaction> set_owner(::pointer<::user::interaction>window);
-      void SetRows(int nRows, bool bLarger, ::rectangle_i32 * prectangle);
+      void SetRows(int nRows, bool bLarger, ::int_rectangle * prectangle);
 
       int GetRows();
       bool SetCmdID(int nIndex, unsigned int nID);
@@ -95,9 +95,9 @@ namespace user
 //      void GetInsertMark(TBINSERTMARK* ptbim);
 //      void SetInsertMark(TBINSERTMARK* ptbim);
 //#endif
-      bool GetMaxSize(::size_i32 * pSize);
+      bool GetMaxSize(::int_size * pSize);
 //#ifdef WINDOWS_DESKTOP
-//      bool InsertMarkHitTest(::point_i32 * ppt, LPTBINSERTMARK ptbim);
+//      bool InsertMarkHitTest(::int_point * ppt, LPTBINSERTMARK ptbim);
 //#endif
       unsigned int GetExtendedStyle();
       unsigned int SetExtendedStyle(unsigned int dwExStyle);
@@ -139,7 +139,7 @@ namespace user
       bool MapAccelerator(char chAccel, unsigned int* pIDBtn);
       bool MarkButton(int nID, bool fHighlight = true);
       bool MoveButton(unsigned int nOldPos, unsigned int nNewPos);
-      int hit_test(::point_i32 * ppt);
+      int hit_test(::int_point * ppt);
 
       void Customize();
       int AddStrings(const ::string & pszStrings);

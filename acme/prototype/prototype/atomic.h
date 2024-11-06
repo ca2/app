@@ -27,11 +27,11 @@
 
 #ifdef WINDOWS
 
-#define atomic_assign64(pi, i) _interlockedexchange64((::i64 *) (pi), i)
+#define atomic_assign64(pi, i) _interlockedexchange64((huge_integer *) (pi), i)
 
 #else
 
-inline i64 atomic_assign64(i64 * pi, i64 i)
+inline huge_integer atomic_assign64(huge_integer * pi, huge_integer i)
 {
 
 
@@ -53,11 +53,11 @@ inline i64 atomic_assign64(i64 * pi, i64 i)
 
 #ifdef WINDOWS
 
-#define atomic_increment64(pi) _interlockedincrement64((::i64 *) (pi))
+#define atomic_increment64(pi) _interlockedincrement64((huge_integer *) (pi))
   
 #else
 
-inline i64 atomic_increment64(i64 * pi)
+inline huge_integer atomic_increment64(huge_integer * pi)
 {
 
 
@@ -128,11 +128,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_decrement64(pi) _interlockeddecrement64((::i64 *)(pi))
+   #define atomic_decrement64(pi) _interlockeddecrement64((huge_integer *)(pi))
   
 #else
    
-   inline i64 atomic_decrement64(i64 * pi)
+   inline huge_integer atomic_decrement64(huge_integer * pi)
    {
    
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -177,11 +177,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_add64(pi, i) _interlockedadd64((::i64 *)(pi),(::i64) (i))
+   #define atomic_add64(pi, i) _interlockedadd64((huge_integer *)(pi),(huge_integer) (i))
 
 #else
    
-inline i64 atomic_add64(i64* pi, i64 i)
+inline huge_integer atomic_add64(huge_integer* pi, huge_integer i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -227,11 +227,11 @@ inline int atomic_add32(int* pi, int i)
 
 #ifdef WINDOWS
 
-#define atomic_subtract64(pi, i) _interlockedadd64((::i64 *)(pi), (::i64) (-(i)))
+#define atomic_subtract64(pi, i) _interlockedadd64((huge_integer *)(pi), (huge_integer) (-(i)))
 
 #else
    
-   inline i64 atomic_subtract64(i64* pi, i64 i)
+   inline huge_integer atomic_subtract64(huge_integer* pi, huge_integer i)
    {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)

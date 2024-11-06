@@ -56,7 +56,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //::rectangle_i32 rectangle;
+      //::int_rectangle rectangle;
 
       //get_slider_rect(rectangle);
 
@@ -207,7 +207,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       get_slider_rect(rectangle);
 
@@ -230,7 +230,7 @@ namespace user
    }
 
 
-   void slider::get_slider_rect(::rectangle_i32 & rectangle)
+   void slider::get_slider_rect(::int_rectangle & rectangle)
    {
 
       auto rectangleX = this->rectangle();

@@ -870,7 +870,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////   get_command_line_parameter(strUid, strCommandLine, "uid");
 ////
-////   if (strUid.has_char())
+////   if (strUid.has_character())
 ////   {
 ////
 ////      uid_t uid = atoi(strUid);
@@ -919,13 +919,13 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //get_command_line_parameter(strAppId, strCommandLine, "app");
 //
-//   //if (strAppId.has_char())
+//   //if (strAppId.has_character())
 //   //{
 //
 //   //   m_strAppId = strAppId;
 //
 //   //}
-//   //else if(m_strAppId.has_char())
+//   //else if(m_strAppId.has_character())
 //   //{
 //
 //   //   strCommandLine += " app=" +m_strAppId;
@@ -1075,7 +1075,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //void app_core::defer_load_backbone_libraries(string strAppId)
 //{
 //
-//   if (strAppId.has_char())
+//   if (strAppId.has_character())
 //   {
 //
 //      void * hmodule = nullptr;
@@ -1945,7 +1945,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //   for(int i = 0; i < g_argc; i++)
 //   {
 //
-//      if (str.has_char())
+//      if (str.has_character())
 //      {
 //
 //         str += " ";

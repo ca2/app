@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
 
    {
 
@@ -22,11 +22,11 @@ namespace hotplugin
 
       }
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
       int cx = rectangleWindow.right() - rectangleWindow.left();
       int cy = rectangleWindow.bottom() - rectangleWindow.top();
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
       rectangle.left() = 0;
       rectangle.top() = 0;
       rectangle.bottom() = cy;
@@ -63,7 +63,7 @@ namespace hotplugin
 
       }
 
-      auto iStep = __i32(iPhase);
+      auto iStep = __int(iPhase);
 
       if (iStep > iRadius)
          iStep = iRadius * 2 - iStep;
@@ -115,7 +115,7 @@ namespace hotplugin
 
       auto ppathClip1 = __create < ::draw2d::path >();
 
-      ::rectangle_i32 rectangleClip1;
+      ::int_rectangle rectangleClip1;
 
       rectangleClip1.left() = rectangleParam.left() + iBorder1;
 
@@ -143,11 +143,11 @@ namespace hotplugin
 
          stringtow strProgress(wstrProgress);
 
-         string strDecimal = ansi_string_from_i64(iRatePercentMillis);
+         string strDecimal = ansi_string_from_huge_integer(iRatePercentMillis);
 
          ansi_zero_pad(strDecimal, 3);
 
-         strProgress = ansi_string_from_i64(iRatePercent) + "." + strDecimal + "%";
+         strProgress = ansi_string_from_huge_integer(iRatePercent) + "." + strDecimal + "%";
 
       }
 
@@ -159,7 +159,7 @@ namespace hotplugin
 
       auto ppathClip = __create < ::draw2d::path >();
 
-      ::rectangle_i32 rectangleClip;
+      ::int_rectangle rectangleClip;
 
       rectangleClip.left() = rectangleParam.left() + cx / iRate - iBorder;
 
@@ -178,7 +178,7 @@ namespace hotplugin
       //pgraphics->exclude_clip(pathClip);
 
 
-      ::point_i32 pa[4];
+      ::int_point pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.fill_rectangle(pbr, rectangleParam.left() , rectangleParam.top(), rectangleParam.left() + cx, rectangleParam.top() + cy);
@@ -252,7 +252,7 @@ namespace hotplugin
 
       pbrush->create_solid(argb(90, 90, 90, 80));
 
-      ::rectangle_i32 rect1;
+      ::int_rectangle rect1;
 
       rect1.left() = rectangleParam.left() + cx / iRate - 1;
 
@@ -287,25 +287,25 @@ namespace hotplugin
       delete pbr;
       }
       }*/
-      ::rectangle_i32 rect2;
+      ::int_rectangle rect2;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_int_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
+         rect2 = int_rectangle_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_int_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         rect2 = int_rectangle_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_int_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         rect2 = int_rectangle_dimension(rectangleParam.left() + cx / iRate, rectangleParam.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rectangle(rect2, br);
       }

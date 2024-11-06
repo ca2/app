@@ -33,7 +33,7 @@ namespace datetime
       }
 
 
-      void clock::GetRect(::rectangle_i32 * lprect, enum_element eelement)
+      void clock::GetRect(::int_rectangle * lprect, enum_element eelement)
       {
          __UNREFERENCED_PARAMETER(lprect);
          __UNREFERENCED_PARAMETER(eelement);
@@ -73,7 +73,7 @@ namespace datetime
       }
 
 
-      enum_element clock::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
+      enum_element clock::hit_test(const int_point & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -93,10 +93,10 @@ namespace datetime
       }
 
 
-      bool clock::hit_test(enum_element eelement, const point_i32& pt)
+      bool clock::hit_test(enum_element eelement, const int_point& pt)
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          GetRect(&rectangle, eelement);
 

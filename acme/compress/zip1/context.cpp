@@ -145,7 +145,7 @@ namespace str
 
       strRemain.begins_eat("/");
 
-      if(strRemain.has_char())
+      if(strRemain.has_character())
       {
 
          if(!string_ends(strRemain,"/"))
@@ -185,7 +185,7 @@ namespace str
 
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                                           (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.length() - 1)))
-                                         || (strRemain.has_char() && strTitle.case_insensitive_begins_eat(strRemain))))
+                                         || (strRemain.has_character() && strTitle.case_insensitive_begins_eat(strRemain))))
             {
 
                if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))

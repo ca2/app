@@ -17,4 +17,4 @@ struct main_param
    
 };
 
-unsigned int __run_system_main_param(struct main_param * point_i32);
+unsigned int __run_system_main_param(struct main_param * int_point);

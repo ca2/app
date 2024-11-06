@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
+void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,huge_integer int_size);
 #endif
 
 
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
+   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
 
    {
 
@@ -465,7 +465,7 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
+   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle.size(), false);
@@ -509,7 +509,7 @@ namespace hotplugin
    }
 
 
-   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
+   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle, false);
@@ -548,7 +548,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleOut)
+   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleOut)
    {
 
       auto rectangle = window_rectangle();
@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const ::point_i32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const ::int_point *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 
 
    }
@@ -587,7 +587,7 @@ namespace hotplugin
    }
 
 
-   //bool host::window_rectangle(::rectangle_i64 * prectangle)
+   //bool host::window_rectangle(::i64_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::this->rectangle(::rectangle_i64 * prectangle)
+   //bool host::this->rectangle(::i64_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleX);

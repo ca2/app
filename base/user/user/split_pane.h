@@ -17,9 +17,9 @@ namespace user
 
 
       atom                                   m_atom;
-      ::rectangle_i32                        m_rectanglePane;
-      ::rectangle_i32                        m_rectangleHosting;
-      ::size_i32                             m_sizeFixed;
+      ::int_rectangle                        m_rectanglePane;
+      ::int_rectangle                        m_rectangleHosting;
+      ::int_size                             m_sizeFixed;
       bool                                   m_bFixedSize;
       ::pointer<::user::place_holder>        m_pplaceholder;
       ::pointer<::user::impact_data>         m_pimpactdata;

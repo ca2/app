@@ -31,7 +31,7 @@ namespace simpledb
                   {
                      if (item.m_iSize > 0)
                      {
-                        strsize iLen = minimum(255, payload.get_string().get_length());
+                        character_count iLen = minimum(255, payload.get_string().get_length());
                         stream << (char)iLen;
                         stream.write(payload.get_string().left(iLen), iLen);
                         if (iLen < item.m_iSize)

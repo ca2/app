@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/constant/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, ::rectangle_i32 rectangle_i32);
+int cef_main(HINSTANCE hInstance, HWND hwnd, ::int_rectangle int_rectangle);
 
 namespace browser
 {
@@ -289,7 +289,7 @@ namespace browser
 
          auto rectangleX = this->rectangle();
 
-         pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
+         pgraphics->draw(::int_rectangle(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
       }
 
@@ -321,7 +321,7 @@ namespace browser
 
       CefMouseEvent event;
 
-      ::point_i32 point = pmouse->m_point;
+      ::int_point point = pmouse->m_point;
 
       screen_to_client()(point);
 
@@ -368,7 +368,7 @@ namespace browser
          return;
 
 
-      ::rectangle_i32 rectangle = this->rectangle();
+      ::int_rectangle rectangle = this->rectangle();
 
       client_to_screen(rectangle);
 
@@ -409,7 +409,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rectangle = ::rectangle_i32{ 0 };
+               //auto rectangle = ::int_rectangle{ 0 };
                //this->rectangle(&rectangle);
 
                //auto hwnd2 = get_handle();
@@ -495,7 +495,7 @@ namespace browser
 
          bool bData = str.substr(iFind + strlen("image:")).case_insensitive_begins("data:");
 
-         strsize iFindEnd = str.find(",", iFind + 1);
+         character_count iFindEnd = str.find(",", iFind + 1);
 
          if (iFindEnd < 0)
          {
@@ -517,7 +517,7 @@ namespace browser
 
          }
 
-         strsize iFindImage = iFind + 6;
+         character_count iFindImage = iFind + 6;
 
          string strImage = str.substr(iFindImage, iFindEnd - iFindImage);
 
@@ -544,7 +544,7 @@ namespace browser
 
          }
 
-         strsize iLeft = iFind > 0 ? iFind - 1 : iFind;
+         character_count iLeft = iFind > 0 ? iFind - 1 : iFind;
 
          str = str.left(iLeft) + str.substr(iFindEnd);
 
@@ -688,9 +688,9 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::rectangle_i32 rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx(), m_prender->m_pimageWork->get_size()->cy());
+         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx(), m_prender->m_pimageWork->get_size()->cy());
 
-         ::rectangle_i32 rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx(), m_prender->m_pimageImage->get_size()->cy());
+         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx(), m_prender->m_pimageImage->get_size()->cy());
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
@@ -701,7 +701,7 @@ namespace browser
                || m_prender->m_bImageChanged)
          {
 
-            ::size_i32 size = rectangleImage.size();
+            ::int_size size = rectangleImage.size();
 
             m_prender->m_pimageImageStretched->release();
             {
@@ -834,7 +834,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rectangle = ::rectangle_i32{ 0 };
+   //         auto rectangle = ::int_rectangle{ 0 };
    //         this->rectangle(&rectangle);
 
    //         ::set_window_position(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
@@ -871,7 +871,7 @@ namespace browser
    bool impact::GetImpactRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::rectangle_i32 rectangleX = this->rectangle();
+      ::int_rectangle rectangleX = this->rectangle();
 
       client_to_screen(rectangleX);
 
@@ -894,9 +894,9 @@ namespace browser
 
       pixmap p;
 
-      p.init(::size_i32(width, height), (color32_t *) buffer, width * sizeof(color32_t));
+      p.init(::int_size(width, height), (color32_t *) buffer, width * sizeof(color32_t));
 
-/*      m_pimageBrowser->create_image(this, ::size_i32(width, height));
+/*      m_pimageBrowser->create_image(this, ::int_size(width, height));
 
       //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 

@@ -103,7 +103,7 @@ auto m_timeRoll = ::time::now();
    void impact_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //u64 startTime = get_nanos();
+      //huge_natural startTime = get_nanos();
 
       defer_check_on_draw_layout();
 
@@ -160,8 +160,8 @@ auto m_timeRoll = ::time::now();
 
          }
 
-         m_pimageTime->from(point_i32(xOffset, 0), m_pimagePost, ::point_i32(), ::size_i32(m_pimagePost->width() - xOffset, m_pimagePost->height()));
-         m_pimageTime->from(::point_i32(), m_pimagePost, point_i32(m_pimagePost->width() - xOffset, 0), ::size_i32(xOffset, m_pimagePost->height()));
+         m_pimageTime->from(int_point(xOffset, 0), m_pimagePost, ::int_point(), ::int_size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
+         m_pimageTime->from(::int_point(), m_pimagePost, int_point(m_pimagePost->width() - xOffset, 0), ::int_size(xOffset, m_pimagePost->height()));
 
          //m_pimagePost->from(m_pimageTime);
          _001OnPostProcess(m_pimageTime->get_graphics());
@@ -201,7 +201,7 @@ auto m_timeRoll = ::time::now();
          pdcParam->TextOutA(0, 0, as_string(m_dwaFrame.get_size()));*/
 
 
-         ::size_i32 size = m_pimageTime->get_size();
+         ::int_size size = m_pimageTime->get_size();
 
          ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
@@ -213,14 +213,14 @@ auto m_timeRoll = ::time::now();
       //pdcScreen->FillSolidRect(10,10,100,100,argb(184,49,184,60));
 
       //pdcScreen->Draw3dRect(200,200,100,100,argb(255,0,255,0),argb(255,0,0,255));
-      //u64 endTime = get_nanos();
+      //huge_natural endTime = get_nanos();
 
-      //u64 microsecond = (endTime - startTime) / 1000;
+      //huge_natural microsecond = (endTime - startTime) / 1000;
 
       //char sz[512];
 
       //informationf("impact:");
-      //::ansi_from_u64(sz, microsecond, 10);
+      //::ansi_from_huge_natural(sz, microsecond, 10);
       //::information(sz);
       //informationf(", ");
 
@@ -300,15 +300,15 @@ pdirectorysystem->system() / "obs.png");
 
          auto rectangleX = this->rectangle();
 
-         ::size_i32 size = rectangleX.size();
+         ::int_size size = rectangleX.size();
 
-         ::size_i32 size2(size.cx() / iMult, size.cy() / iMult);
+         ::int_size size2(size.cx() / iMult, size.cy() / iMult);
 
 /*         m_pimage1->create_image({this,  size2});
 
          m_pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx(), size2->cy(), pgraphics, 0, 0, size_i32->cx(), size_i32->cy());
+         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx(), size2->cy(), pgraphics, 0, 0, int_size->cx(), int_size->cy());
 
          //if (0)
          {
@@ -324,7 +324,7 @@ pdirectorysystem->system() / "obs.png");
             else
             {
 
-/*               m_pimage2->create_image({this,  size_i32});
+/*               m_pimage2->create_image({this,  int_size});
 
                m_pimage2->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

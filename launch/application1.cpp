@@ -220,7 +220,7 @@ application::~application()
 void application::calculate_distro__branch_and_release()
 {
 
-   if(m_strDistro.has_char())
+   if(m_strDistro.has_character())
    {
 
 return;
@@ -605,7 +605,7 @@ m_iExitCode = -1;
 
 fprintf(stderr, "Server seems not to have build for this release %s %s", m_pszDistro, m_pszVersion);
 
-if(m_strBranch.has_char())
+if(m_strBranch.has_character())
 {
 
    fprintf(stderr, " %s", m_strBranch.c_str());

@@ -402,7 +402,7 @@ namespace xml
 
       }
 
-      if(ent.has_char())
+      if(ent.has_character())
       {
 
          bExt = false;
@@ -413,7 +413,7 @@ namespace xml
 
       }
 
-      if(extEnt.has_char())
+      if(extEnt.has_character())
       {
 
          bExt = true;
@@ -452,12 +452,12 @@ namespace xml
    char * document::patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::platform::context * pacmecontext)
    {
 
-      // pszXml must be a valid portion of and point_i32 to an entity ref in:
+      // pszXml must be a valid portion of and int_point to an entity ref in:
       // m_strData of this document
 
       const ::ansi_character * pszOldData = (const char *) m_memoryData.data();
 
-      strsize iPos = rangeXml.m_begin - pszOldData;
+      character_count iPos = rangeXml.m_begin - pszOldData;
 
       ASSERT(iPos < m_memoryData.size() - 1 && iPos >= 0);
 

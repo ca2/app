@@ -20,7 +20,7 @@ namespace html
 
          ::pointer<::user::plain_edit>       m_pedit;
 
-         array < ::size_f32 >             m_sizea;
+         array < ::float_size >             m_sizea;
          string_array                       m_straLines;
          string_array                       m_straWordSpace;
          bool                          m_bLink;
@@ -51,9 +51,9 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         virtual int hit_test(html_data * pdocument, const ::point_f32 & point);
+         virtual int hit_test(html_data * pdocument, const ::float_point & point);
 
-         virtual strsize char_hit_test(::draw2d::graphics_pointer & pgraphics, int x, int y);
+         virtual character_count char_hit_test(::draw2d::graphics_pointer & pgraphics, int x, int y);
 
          virtual float get_first_line_height();
          virtual float get_last_line_height();

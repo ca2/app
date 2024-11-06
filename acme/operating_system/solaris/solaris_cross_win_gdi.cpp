@@ -59,7 +59,7 @@
 // }
 
 
-// int_bool this->rectangle(oswindow hwnd, ::rectangle_i32 * lprect)
+// int_bool this->rectangle(oswindow hwnd, ::int_rectangle * lprect)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -85,7 +85,7 @@
 // }
 
 
-// int_bool window_rectangle(oswindow hwnd, ::rectangle_i32 * lprect)
+// int_bool window_rectangle(oswindow hwnd, ::int_rectangle * lprect)
 // {
 
 
@@ -136,7 +136,7 @@
 
 
 
-// int FillRect(HDC hdc, const ::rectangle_i32 * lprc, HBRUSH hbr)
+// int FillRect(HDC hdc, const ::int_rectangle * lprc, HBRUSH hbr)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -167,7 +167,7 @@
 // }
 
 
-// int_bool GetCursorPos(::point_i32 * lppointCursor)
+// int_bool GetCursorPos(::int_point * lppointCursor)
 // {
 
 //    //mutex_lock synchronouslock(user_synchronization(), true);

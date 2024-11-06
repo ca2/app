@@ -66,12 +66,12 @@ namespace nanoui
       bool                                            m_bValidFormat;
       ::string                                        m_strValueEdit;
       ::string                                        m_strPlaceHolder;
-      ::strsize                                       m_iSelectionEnd;
-      ::strsize                                       m_iSelectionStart;
-      point_i32                                        m_mouse_pos;
+      ::character_count                                       m_iSelectionEnd;
+      ::character_count                                       m_iSelectionStart;
+      int_point                                        m_mouse_pos;
       //bool                                            m_bMouseDown;
-      point_i32                                        m_pointMouseDown;
-      point_i32                                        m_pointMouseDrag;
+      int_point                                        m_pointMouseDown;
+      int_point                                        m_pointMouseDrag;
       ::user::e_key                                   m_ekeyMouseDownModifier;
       float                                           m_fTextOffset;
       //class ::time m_timeLast;
@@ -126,10 +126,10 @@ namespace nanoui
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const ::scoped_string& str)>& callback) { m_callback = callback; }
 
-      bool mouse_enter_event(const point_i32& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool mouse_drag_event(const sequence2_i32 & p, const sequence2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      //bool mouse_drag_event(const sequence2_int & p, const sequence2_int & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
@@ -147,7 +147,7 @@ namespace nanoui
       bool end_in_place_edit() override;
 
 
-      size_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;
    protected:
       bool check_format(const ::scoped_string& input, const ::scoped_string& format);
@@ -156,16 +156,16 @@ namespace nanoui
       bool delete_selection();
 
       void update_cursor(::nano2d::context* pcontext, float lastx,
-         const ::nano2d::glyphPosition* glyphs, ::strsize size);
-      float cursor_index_to_position(::strsize iIndex, float lastx,
-         const ::nano2d::glyphPosition* glyphs, ::strsize size);
-      ::strsize position_to_cursor_index(float posx, float lastx,
-         const ::nano2d::glyphPosition* glyphs, ::strsize size);
+         const ::nano2d::glyphPosition* glyphs, ::character_count size);
+      float cursor_index_to_position(::character_count iIndex, float lastx,
+         const ::nano2d::glyphPosition* glyphs, ::character_count size);
+      ::character_count position_to_cursor_index(float posx, float lastx,
+         const ::nano2d::glyphPosition* glyphs, ::character_count size);
 
       /// The location (if any) for the spin area.
       enum class SpinArea { None, Top, Bottom };
       
-      SpinArea spin_area(const point_i32 & pos);
+      SpinArea spin_area(const int_point & pos);
       
 
    };

@@ -28,10 +28,10 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
-CLASS_DECL_ACME void preempt_second(::i64 i);
-CLASS_DECL_ACME void preempt_millisecond(::i64 i);
-CLASS_DECL_ACME void preempt_microsecond(::i64 i);
-CLASS_DECL_ACME void preempt_nanosecond(::i64 i);
+CLASS_DECL_ACME void preempt_second(huge_integer i);
+CLASS_DECL_ACME void preempt_millisecond(huge_integer i);
+CLASS_DECL_ACME void preempt_microsecond(huge_integer i);
+CLASS_DECL_ACME void preempt_nanosecond(huge_integer i);
 
 
 CLASS_DECL_ACME void preempt(const class time & time)
@@ -271,7 +271,7 @@ void copy(system_time * psystemtime, const tm * ptm)
 //CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
 //{
 //
-//   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
+//   huge_natural nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
 //
 //   nanoseconds += EPOCH_DIFFERENCE_NANOS;
 //

@@ -27,7 +27,7 @@ namespace windowing
    }
 
 
-   bool desktop_environment::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
+   bool desktop_environment::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
    {
 
       return false;
@@ -35,7 +35,7 @@ namespace windowing
    }
 
 
-   bool desktop_environment::get_workspace_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
+   bool desktop_environment::get_workspace_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
    {
 
       return false;

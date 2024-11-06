@@ -50,9 +50,9 @@ namespace user
 
       //}
 
-      //point_i32 pointContextOffset = pgraphics->get_origin();
+      //int_point pointContextOffset = pgraphics->get_origin();
 
-      ::rectangle_f64 rClip;
+      ::double_rectangle rClip;
 
       pgraphics->get_clip_box(rClip);
 
@@ -101,12 +101,12 @@ namespace user
    void tab::_001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangle;
-      ::rectangle_i32 rectangleBorder;
-      ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleX;
-      ::rectangle_i32 rectangleIcon;
-      ::rectangle_i32 rectangleClose;
+      ::int_rectangle rectangle;
+      ::int_rectangle rectangleBorder;
+      ::int_rectangle rectangleText;
+      ::int_rectangle rectangleX;
+      ::int_rectangle rectangleIcon;
+      ::int_rectangle rectangleClose;
 
       get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 
@@ -446,12 +446,12 @@ namespace user
    void tab::_001OnDrawStandard(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangle;
-      ::rectangle_i32 rectangleBorder;
-      ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleX;
-      ::rectangle_i32 rectangleIcon;
-      ::rectangle_i32 rectangleClose;
+      ::int_rectangle rectangle;
+      ::int_rectangle rectangleBorder;
+      ::int_rectangle rectangleText;
+      ::int_rectangle rectangleX;
+      ::int_rectangle rectangleIcon;
+      ::int_rectangle rectangleClose;
 
       auto pstyle = get_style(pgraphics);
 
@@ -825,7 +825,7 @@ namespace user
 
             ppane->do_split_layout(m_pgraphicsextension, pgraphics);
 
-            ::size_f64 size;
+            ::double_size size;
 
             m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -886,7 +886,7 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         //::rectangle_i32 rectangleX;
+         //::int_rectangle rectangleX;
 
          //this->rectangle(rectangleX);
 
@@ -910,7 +910,7 @@ namespace user
 
          pgraphics->set(get_font(pstyle, e_state_selected));
 
-         //         ::rectangle_i32 rectangleX;
+         //         ::int_rectangle rectangleX;
 
          //         this->rectangle(rectangleX);
 
@@ -934,7 +934,7 @@ namespace user
 
             ppane->do_split_layout(m_pgraphicsextension, pgraphics);
 
-            ::size_f64 size;
+            ::double_size size;
 
             m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1008,7 +1008,7 @@ namespace user
          get_data()->m_rectangleTab.right() = rectangleX.right();
          get_data()->m_rectangleTab.bottom() = get_data()->m_rectangleTab.top() + get_data()->m_iTabHeight;
 
-         ::rectangle_i32 & rectangleHosting = get_data()->m_rectangleHosting;
+         ::int_rectangle & rectangleHosting = get_data()->m_rectangleHosting;
 
          rectangleHosting.left() = get_data()->m_rectangleTab.left();
          rectangleHosting.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();

@@ -45,7 +45,7 @@ namespace user
    }
 
 
-   strsize text::get_text_length() const
+   character_count text::get_text_length() const
    {
 
       string str;
@@ -57,7 +57,7 @@ namespace user
    }
 
 
-   void text::get_text(char * psz, strsize len) const
+   void text::get_text(char * psz, character_count len) const
    {
 
       string str;
@@ -69,7 +69,7 @@ namespace user
    }
 
 
-   void text::get_text(string & str, strsize iBeg, strsize iEnd) const
+   void text::get_text(string & str, character_count iBeg, character_count iEnd) const
    {
 
       // default implementation, probably inefficient
@@ -87,7 +87,7 @@ namespace user
    }
 
 
-   void text::set_text(const ::string & psz, strsize iLen, const ::action_context & context)
+   void text::set_text(const ::string & psz, character_count iLen, const ::action_context & context)
    {
 
       set_text(string(psz, iLen),context);
@@ -95,7 +95,7 @@ namespace user
    }
 
 
-   void text::_001GetSel(strsize & iBeg, strsize & iEnd) const
+   void text::_001GetSel(character_count & iBeg, character_count & iEnd) const
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   void text::set_text_selection(strsize iBeg, strsize iEnd)
+   void text::set_text_selection(character_count iBeg, character_count iEnd)
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void text::get_text_selection(strsize & iBeg, strsize & iEnd) const
+   void text::get_text_selection(character_count & iBeg, character_count & iEnd) const
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void text::_001SetSelEnd(strsize iEnd)
+   void text::_001SetSelEnd(character_count iEnd)
    {
 
       __UNREFERENCED_PARAMETER(iEnd);

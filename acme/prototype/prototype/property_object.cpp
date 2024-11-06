@@ -183,7 +183,7 @@ CLASS_DECL_ACME void debug_debug_reference()
    informationf("-");
 
 }
-//void property_object::add_trait(::i64 i)
+//void property_object::add_trait(huge_integer i)
 //{
 //
 //   if (!m_ptraits)
@@ -263,7 +263,7 @@ bool property_object::is_alive()
 //}
 
 
-//void property_object::notify(::u64 uId)
+//void property_object::notify(huge_natural uId)
 //{
 //
 //   m_uid |= uId;
@@ -649,7 +649,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //string property_object::get_text(const ::payload & payload, const ::atom & atom)
 //{
 //
-//   if (payload.has_property(atom) && payload[atom].has_char())
+//   if (payload.has_property(atom) && payload[atom].has_character())
 //   {
 //
 //      return { payload[atom] };
@@ -697,7 +697,7 @@ void property_object::defer_run_property(const ::atom& atom)
 //}
 
 
-//strsize property_object::sz_len() const
+//character_count property_object::sz_len() const
 //{
 //
 //   string str;
@@ -709,7 +709,7 @@ void property_object::defer_run_property(const ::atom& atom)
 //}
 //
 //
-//void property_object::to_sz(char * sz, strsize len) const
+//void property_object::to_sz(char * sz, character_count len) const
 //{
 //
 //   string str;
@@ -818,7 +818,7 @@ string property_object::find_string(const ::atom & atom, const ::ansi_character 
 }
 
 
-int property_object::find_i32(const ::atom & atom, int iDefault) const
+int property_object::find_int(const ::atom & atom, int iDefault) const
 {
 
    if (!m_ppropertyset)
@@ -842,7 +842,7 @@ int property_object::find_i32(const ::atom & atom, int iDefault) const
 }
 
 
-unsigned int property_object::find_u32(const ::atom & atom, unsigned int iDefault) const
+unsigned int property_object::find_unsigned_int(const ::atom & atom, unsigned int iDefault) const
 {
 
    if (!m_ppropertyset)

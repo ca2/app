@@ -65,7 +65,7 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const ::scoped_string 
       bDefault = true;
    }
 
-   if(str.has_char())
+   if(str.has_character())
    {
 
       strLine += " : (" + str + ") ? ";

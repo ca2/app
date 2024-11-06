@@ -108,7 +108,7 @@ void interchange::draw(::nano::graphics::device * pnanodevice)
       
    }
    
-   ::rectangle_i32 rectangleX;
+   ::int_rectangle rectangleX;
    
    get_client_rectangle(rectangleX);
    
@@ -120,7 +120,7 @@ void interchange::draw(::nano::graphics::device * pnanodevice)
    
 }
 
-   ::rectangle_i32 interchange::get_window_rectangle()
+   ::int_rectangle interchange::get_window_rectangle()
 {
 
 return m_rectangle;
@@ -397,7 +397,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
    }
 
 
-::point_i32 interchange::try_absolute_mouse_position(const ::point_i32 & point)
+::int_point interchange::try_absolute_mouse_position(const ::int_point & point)
 {
    
    return m_pwindowbase->try_absolute_mouse_position(point);
@@ -405,7 +405,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 }
 
 
-::point_i32 interchange::origin()
+::int_point interchange::origin()
 {
    
    return m_rectangle.origin();
@@ -426,7 +426,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 
 
 
-::micro::child * interchange::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+::micro::child * interchange::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
 {
    
    for (auto & pchild: m_childa)
@@ -706,7 +706,7 @@ void interchange::on_right_click(const ::payload& payload, ::user::mouse * pmous
 }
 
 
-void interchange::set_position(const ::point_i32 & point)
+void interchange::set_position(const ::int_point & point)
 {
    
    m_pwindowbase->set_position(point);
@@ -722,7 +722,7 @@ void interchange::redraw()
 }
 
 
-void interchange::get_client_rectangle(::rectangle_i32 & rectangle)
+void interchange::get_client_rectangle(::int_rectangle & rectangle)
 {
    
    rectangle.left() = 0;
@@ -733,7 +733,7 @@ void interchange::get_client_rectangle(::rectangle_i32 & rectangle)
 }
 
 
-// ::rectangle_i32 interchange::get_window_rectangle()
+// ::int_rectangle interchange::get_window_rectangle()
 // {
 //
 //    return m_rectangle;

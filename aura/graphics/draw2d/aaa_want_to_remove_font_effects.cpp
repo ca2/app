@@ -39,7 +39,7 @@ namespace draw2d
    }
 
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dRateX, double dHeight, string & str)
    {
 
 
@@ -52,12 +52,12 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      ::rectangle_f64 rectangleOffset(rectangle);
-//      const ::point_i32 & pointOffset(rectangleOffset.top_left());
+//      ::double_rectangle rectangleOffset(rectangle);
+//      const ::int_point & pointOffset(rectangleOffset.top_left());
 //
 //      glyph * pglyph;
 
-//      strsize iSize = str.length();
+//      character_count iSize = str.length();
 //      for(int i = 0; i < iSize; i++)
 //      {
 //         pglyph = GetGlyph(str[i]);
@@ -94,7 +94,7 @@ namespace draw2d
 
    }
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
 
    {
 
@@ -108,14 +108,14 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      const ::rectangle_f64 rectangleOffset(rectangle);
-//      const ::point_i32 & pointOffset;
+//      const ::double_rectangle rectangleOffset(rectangle);
+//      const ::int_point & pointOffset;
 //
 //
 //      glyph * pglyph;
 
-//      strsize iSize = str.length();
-//      for(strsize i = 0; i < iSize; i++)
+//      character_count iSize = str.length();
+//      for(character_count i = 0; i < iSize; i++)
 //      {
 //         pglyph = GetGlyph(str[i]);
 
@@ -152,7 +152,7 @@ namespace draw2d
       /*   SetDC(pgraphics);
          SelectFont();
 
-         ::rectangle_f64 clipRect;
+         ::double_rectangle clipRect;
 
          int iOldMapMode = pgraphics->GetMapMode();
          pgraphics->SetMapMode(MM_TEXT);
@@ -179,7 +179,7 @@ namespace draw2d
       SetDC(pgraphics);
       SelectFont();
 
-      ::rectangle_f64 clipRect;
+      ::double_rectangle clipRect;
 
       pgraphics->text_out(x, y, str);
 

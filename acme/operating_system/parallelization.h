@@ -5,7 +5,7 @@
 //typedef unsigned int unsigned int;
 
 
-//CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
+//CLASS_DECL_ACME huge_natural translate_processor_affinity(int iOrder);
 
 
 // CLASS_DECL_ACME unsigned int thread_alloc(void);

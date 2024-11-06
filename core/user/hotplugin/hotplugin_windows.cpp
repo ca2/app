@@ -35,7 +35,7 @@ namespace hotplugin
 
    //HPEN hpenOld = (HPEN) ::SelectObject(hdc,hpen);
 
-   ////::rectangle_i32(hdc,rectangle.left(),rectangle.top(),rectangle.right(),rectangle.bottom());
+   ////::int_rectangle(hdc,rectangle.left(),rectangle.top(),rectangle.right(),rectangle.bottom());
 
    //::SelectObject(hdc,hbrushDark);
 
@@ -43,7 +43,7 @@ namespace hotplugin
 
    //
 
-   ////::rectangle_i32(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   ////::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
 
    ////rectangleBar.deflate(2,2);
 
@@ -65,18 +65,18 @@ namespace hotplugin
 
    //
 
-   //::rectangle_i32(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   //::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
 
    //::SetTextColor(hdc,rgb(184,184,177));
 
-   //::rectangle_i32(hdc,rectangleBar.left()-1,rectangleBar.top()-1,rectangleBar.right() + 1,rectangleBar.top());
-   //::rectangle_i32(hdc,rectangleBar.left() - 1,rectangleBar.bottom(),rectangleBar.right() + 1,rectangleBar.bottom()+1);
-   //::rectangle_i32(hdc,rectangleBar.left() - 1,rectangleBar.top() - 1,rectangleBar.left(),rectangleBar.bottom()+1);
-   //::rectangle_i32(hdc,rectangleBar.right(),rectangleBar.top() - 1,rectangleBar.right()+1,rectangleBar.bottom() + 1);
+   //::int_rectangle(hdc,rectangleBar.left()-1,rectangleBar.top()-1,rectangleBar.right() + 1,rectangleBar.top());
+   //::int_rectangle(hdc,rectangleBar.left() - 1,rectangleBar.bottom(),rectangleBar.right() + 1,rectangleBar.bottom()+1);
+   //::int_rectangle(hdc,rectangleBar.left() - 1,rectangleBar.top() - 1,rectangleBar.left(),rectangleBar.bottom()+1);
+   //::int_rectangle(hdc,rectangleBar.right(),rectangleBar.top() - 1,rectangleBar.right()+1,rectangleBar.bottom() + 1);
 
    //SetROP2(hdc,old);
 
-   ////::rectangle_i32(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   ////::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
 
    //
 
@@ -92,13 +92,13 @@ namespace hotplugin
 
    //int x = v % rectangleBar.width();
 
-   //::rectangle_i32 rectangleBrick(left + x,rectangleBar.top(),left + x + w,rectangleBar.bottom());
-   //::rectangle_i32 rectangleDraw;
+   //::int_rectangle rectangleBrick(left + x,rectangleBar.top(),left + x + w,rectangleBar.bottom());
+   //::int_rectangle rectangleDraw;
 
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
 
    //}
 
@@ -107,7 +107,7 @@ namespace hotplugin
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
 
    //}
 
@@ -116,7 +116,7 @@ namespace hotplugin
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
 
    //}
 
@@ -171,7 +171,7 @@ namespace hotplugin
    //::DeleteObject(hbrushGren);
    //::DeleteObject(hpenLite);
 
-//      const ::rectangle_i32 & rectangle;
+//      const ::int_rectangle & rectangle;
 
 //int h = 33;
 //int m = 49 * 2;
@@ -205,7 +205,7 @@ namespace hotplugin
 
 //}
 
-//::rectangle_i32 rectangleBar(left,top,right,bottom);
+//::int_rectangle rectangleBar(left,top,right,bottom);
 
 
 } // namespace hotplugin

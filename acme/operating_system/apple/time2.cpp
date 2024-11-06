@@ -23,7 +23,7 @@ extern double g_machtime_conversion_factor;
 void ns_Sleep(unsigned int uiMillis);
 
 
-CLASS_DECL_ACME ::i64 _get_nanosecond()
+CLASS_DECL_ACME huge_integer _get_nanosecond()
 {
    
    return mach_absolute_time() * ::acme::g_machtime_conversion_factor;
@@ -32,13 +32,13 @@ CLASS_DECL_ACME ::i64 _get_nanosecond()
    //
    //   clock_get_time(g_cclock, &mts);
    //
-   //   return ((u64) mts.tv_sec * (u64)1000 * (u64)1000 * (u64)1000 )+ ((u64) mts.tv_nsec);
+   //   return ((huge_natural) mts.tv_sec * (huge_natural)1000 * (huge_natural)1000 * (huge_natural)1000 )+ ((huge_natural) mts.tv_nsec);
    
 }
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME ::i64 i64_nanosecond()
+CLASS_DECL_ACME huge_integer i64_nanosecond()
 {
    
    struct timespec timespec;

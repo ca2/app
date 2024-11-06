@@ -22,8 +22,8 @@ namespace database
       string            m_strDisplayMame;
       string            m_strFieldTable;
       bool              m_bReadOnly;
-      strsize           m_iLength;
-      u64               m_ulFlag;
+      character_count           m_iLength;
+      huge_natural               m_ulFlag;
 
 
       field();

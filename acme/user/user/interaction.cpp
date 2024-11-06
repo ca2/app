@@ -183,7 +183,7 @@ namespace acme
 
       //   }
 
-      //   ::rectangle_i32 rectangleX;
+      //   ::int_rectangle rectangleX;
 
       //   rectangleX = get_client_rectangle();
 
@@ -798,7 +798,7 @@ namespace acme
 
 
 
-         //::acme::user::interaction * interaction::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+         //::acme::user::interaction * interaction::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
          //{
 
          //   for (auto & pchild : m_nanouserinteractionaChildren)
@@ -1129,7 +1129,7 @@ namespace acme
          //}
 
 
-         //::point_i32 interaction::origin()
+         //::int_point interaction::origin()
          //{
 
          //   throw ::exception(error_wrong_state);
@@ -1139,7 +1139,7 @@ namespace acme
          //}
 
 
-         ::shift_i32 interaction::host_to_client()
+         ::shift_int interaction::host_to_client()
          {
 
             return -client_to_host();
@@ -1147,7 +1147,7 @@ namespace acme
          }
 
 
-         ::shift_i32 interaction::client_to_host()
+         ::shift_int interaction::client_to_host()
          {
 
             return {};
@@ -1155,7 +1155,7 @@ namespace acme
          }
 
 
-         ::shift_i32 interaction::absolute_to_client()
+         ::shift_int interaction::absolute_to_client()
          {
 
             return -client_to_host();
@@ -1163,7 +1163,7 @@ namespace acme
          }
 
 
-         ::shift_i32 interaction::client_to_absolute()
+         ::shift_int interaction::client_to_absolute()
          {
 
             if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
@@ -1180,7 +1180,7 @@ namespace acme
          }
 
 
-         ::point_i32 interaction::origin()
+         ::int_point interaction::origin()
          {
             auto r = get_window_rectangle();
 
@@ -1190,7 +1190,7 @@ namespace acme
 
 
 
-         ::rectangle_i32 interaction::get_client_rectangle()
+         ::int_rectangle interaction::get_client_rectangle()
          {
             auto r = get_window_rectangle();
 
@@ -1263,7 +1263,7 @@ namespace acme
 
 
 
-         //::point_i32 interaction::try_absolute_mouse_position(const ::point_i32 & point)
+         //::int_point interaction::try_absolute_mouse_position(const ::int_point & point)
          //{
          //acme_windowing_window()
          //   auto p = point;
@@ -1283,7 +1283,7 @@ namespace acme
          }
 
 
-         bool interaction::on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem)
+         bool interaction::on_drag_start(::int_point & point, ::user::mouse * pmouse, ::item * pitem)
          {
 
             if (pitem->m_item.m_eelement == e_element_client)
@@ -1309,7 +1309,7 @@ namespace acme
          }
 
 
-         ::point_i32 interaction::drag_mouse_cursor_position(::item * pitem, const ::point_i32 & point)
+         ::int_point interaction::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
          {
 
             //auto p = try_absolute_mouse_position(point);
@@ -1440,7 +1440,7 @@ namespace acme
          //}
 
 
-         void interaction::set_position(const ::point_i32 & point)
+         void interaction::set_position(const ::int_point & point)
          {
 
             acme_windowing_window()->set_position(point);
@@ -1507,14 +1507,14 @@ namespace acme
          }
 
 
-         //void interaction::get_client_rectangle(::rectangle_i32 & rectangle)
+         //void interaction::get_client_rectangle(::int_rectangle & rectangle)
          //{
 
 
          //}
 
 
-         rectangle_i32 interaction::get_window_rectangle()
+         int_rectangle interaction::get_window_rectangle()
          {
 
             return {};
@@ -1522,7 +1522,7 @@ namespace acme
          }
 
 
-         rectangle_i32 interaction::get_rectangle()
+         int_rectangle interaction::get_rectangle()
          {
 
             return {};
@@ -1727,29 +1727,21 @@ namespace acme
          }
 
 
-         void interaction::get_text_selection(strsize & iBeg, strsize & iEnd) const
+         void interaction::get_text_selection(character_count & iBeg, character_count & iEnd) const
          {
 
 
          }
 
 
-         void interaction::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+         void interaction::get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const
          {
 
 
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-         {
-
-            return -1;
-
-         }
-
-
-         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
+         ::collection::index interaction::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
          {
 
             return -1;
@@ -1757,7 +1749,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
          {
 
             return -1;
@@ -1765,7 +1757,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
+         ::collection::index interaction::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
          {
 
             return -1;
@@ -1773,7 +1765,7 @@ namespace acme
          }
 
 
-         strsize interaction::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
          {
 
             return -1;
@@ -1781,7 +1773,7 @@ namespace acme
          }
 
 
-         strsize interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+         character_count interaction::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
          {
 
             return -1;
@@ -1789,7 +1781,15 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+         character_count interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+         {
+
+            return -1;
+
+         }
+
+
+         ::collection::index interaction::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
          {
 
             return -1;
@@ -1806,7 +1806,7 @@ namespace acme
 
             ::string strAtom = m_atom.as_string();
 
-            if (strAtom.has_char() && strAtom != strType)
+            if (strAtom.has_character() && strAtom != strType)
             {
                statement << "=" << strAtom;
             }

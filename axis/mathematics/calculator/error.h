@@ -13,8 +13,8 @@ namespace calculator
 
 
       ::string       m_strMessage;
-      ::strsize      m_iStart;
-      ::strsize      m_iEnd;
+      ::character_count      m_iStart;
+      ::character_count      m_iEnd;
 
 
    };

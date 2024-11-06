@@ -13,17 +13,17 @@ public:
 
 
    const char *   m_pszRadix;
-   strsize        m_iLenRadix;
+   character_count        m_iLenRadix;
    const char *   m_pszSuffix;
-   strsize        m_iLenSuffix;
+   character_count        m_iLenSuffix;
    const char *   m_pszDomain;
-   strsize        m_iLenDomain;
+   character_count        m_iLenDomain;
    const char *   m_pszPrefix;
-   strsize        m_iLenPrefix;
+   character_count        m_iLenPrefix;
    const char *   m_pszTopLevel;
-   strsize        m_iLenTopLevel;
+   character_count        m_iLenTopLevel;
    const char *   m_pszName;
-   strsize        m_iLenName;
+   character_count        m_iLenName;
 
    ::collection::count        m_iCount;
    bool           m_bHasWww;
@@ -68,7 +68,7 @@ public:
 
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize iLen1, const char * pszTop2, strsize iLen2);
+bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count iLen1, const char * pszTop2, character_count iLen2);
 
 inline bool CLASS_DECL_ACME server_is_top_domain(string strTop1, string strTop2)
 {

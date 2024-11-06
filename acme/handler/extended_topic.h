@@ -17,7 +17,7 @@ public:
 
 
    ::user::interaction *                  m_ptab;
-   u64                                    m_uiEvent;
+   huge_natural                                    m_uiEvent;
    enum_timer                             m_etimer;
    unsigned int                                    m_uiVKey;
    unsigned int                                    m_uiFlags;
@@ -28,7 +28,7 @@ public:
 
 
    ::payload                              m_payload;
-   ::i64                                  m_iUpdateSerial;
+   huge_integer                                  m_iUpdateSerial;
    bool                                   m_bModified;
    class ::time                             m_timeSleep;
 
@@ -42,9 +42,9 @@ public:
 
 #ifdef _DEBUG
 
-   virtual i64 increment_reference_count() override;
-   virtual i64 decrement_reference_count() override;
-   virtual i64 release() override;
+   virtual huge_integer increment_reference_count() override;
+   virtual huge_integer decrement_reference_count() override;
+   virtual huge_integer release() override;
 
 #endif
 

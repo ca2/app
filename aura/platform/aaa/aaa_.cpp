@@ -53,7 +53,7 @@ namespace aura
       const char* pchEnd = strchr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -481,7 +481,7 @@ CLASS_DECL_AURA int is_ptr_null(const void* p, size_t s)
 }
 
 
-void c_post_system_event(::u64 u, void* pparam)
+void c_post_system_event(huge_natural u, void* pparam)
 {
 
    LPARAM lparam = (LPARAM)pparam;

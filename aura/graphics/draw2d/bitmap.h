@@ -17,7 +17,7 @@ namespace draw2d
    public:
 
 
-      ::size_i32               m_size;
+      ::int_size               m_size;
       int                  m_iStride;
 
 //#ifdef WINDOWS_DESKTOP
@@ -52,14 +52,14 @@ namespace draw2d
       }
 
 
-      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, unsigned int nPlanes, unsigned int nBitcount, const void * pBits, int stride);
+      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::int_size & size, unsigned int nPlanes, unsigned int nBitcount, const void * pBits, int stride);
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
       virtual void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
       virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
 
-      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan);
+      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, unsigned int iUsage);
 
@@ -68,12 +68,12 @@ namespace draw2d
       virtual void attach(void * posdata);
       virtual void * detach();
 
-      //virtual ::size_i32 SetBitmapDimension(int nWidth, int nHeight);
-      //virtual ::size_i32 set_size(const ::size_i32 & size);
+      //virtual ::int_size SetBitmapDimension(int nWidth, int nHeight);
+      //virtual ::int_size set_size(const ::int_size & size);
 
-      virtual ::size_i32 GetBitmapDimension() const;
-      virtual ::size_i32 get_size() const;
-      virtual ::size_i32 size() const;
+      virtual ::int_size GetBitmapDimension() const;
+      virtual ::int_size get_size() const;
+      virtual ::int_size size() const;
 
       
       virtual unsigned int SetBitmapBits(unsigned int dwCount, const void * pBits);

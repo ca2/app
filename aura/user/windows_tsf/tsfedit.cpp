@@ -671,10 +671,10 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 //LRESULT edit_window::_OnSize(WPARAM wParam, LPARAM lParam)
 //{
-//    //adjust the size_i32 and location of the status bar
+//    //adjust the int_size and location of the status bar
 //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
 //
-//    ::rectangle_i32    rc;
+//    ::int_rectangle    rc;
 //
 //    //GetWindowRect(m_hwndStatus, &rc);
 //    
@@ -816,9 +816,9 @@ BOOL edit_window::_GetCurrentSelection(void)
    
    ///::SendMessage(m_hwndEdit, EM_GETSEL, (WPARAM)&m_acpStart, (LPARAM)&m_acpEnd);
 
-   strsize iSelStart = 0;
+   character_count iSelStart = 0;
 
-   strsize iSelEnd = 0;
+   character_count iSelEnd = 0;
 
    m_puserinteraction->_001GetSel(iSelStart, iSelEnd);
 
@@ -855,7 +855,7 @@ void edit_window::_UpdateStatusBar(void)
     int     nParts[2];
     HDC     hdc;
     //HFONT   hFont;
-    ::size_i32    size;
+    ::int_size    size;
     TCHAR   szComposition[MAX_PATH];
 
     //hdc = GetDC(m_hwndStatus);

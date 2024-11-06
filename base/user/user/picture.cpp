@@ -11,7 +11,7 @@
 #include "acme/prototype/collection/_array_binary_stream.h"
 
 
-property & operator << (property & property, const ::rectangle_f64 & rectangle)
+property & operator << (property & property, const ::double_rectangle & rectangle)
 {
 
    property["left"] = rectangle.left();
@@ -23,13 +23,13 @@ property & operator << (property & property, const ::rectangle_f64 & rectangle)
 
 }
 
-property & operator >> (property & property, ::rectangle_f64 & rectangle)
+property & operator >> (property & property, ::double_rectangle & rectangle)
 {
 
-   rectangle.left() = property["left"].as_f64();
-   rectangle.top() = property["top"].as_f64();
-   rectangle.right() = property["right"].as_f64();
-   rectangle.bottom() = property["bottom"].as_f64();
+   rectangle.left() = property["left"].as_double();
+   rectangle.top() = property["top"].as_double();
+   rectangle.right() = property["right"].as_double();
+   rectangle.bottom() = property["bottom"].as_double();
 
    return property;
 
@@ -149,7 +149,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::parent_client_on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer picture::parent_client_on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       ASSERT(is_picture_enabled());
@@ -170,10 +170,10 @@ namespace user
    }
 
 
-//   point_f64 picture::_transform(const point_f64 & pointParam) const
+//   double_point picture::_transform(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      _transform_point(point);
 //
@@ -182,10 +182,10 @@ namespace user
 //   }
 
 
-//   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
+//   double_point picture::_transform_drawing(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      _transform_point_drawing(point);
 //
@@ -194,7 +194,7 @@ namespace user
 //   }
 
 
-   void picture::_transform_sequence(sequence2_f64 & sequence) const
+   void picture::_transform_sequence(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -217,7 +217,7 @@ namespace user
    }
 
 
-   void picture::_transform_sequence_drawing(sequence2_f64 & sequence) const
+   void picture::_transform_sequence_drawing(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -240,10 +240,10 @@ namespace user
    }
 
 
-//   point_f64 picture::_rtransform(const point_f64 & pointParam) const
+//   double_point picture::_rtransform(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      _rtransform_point(point);
 //
@@ -252,10 +252,10 @@ namespace user
 //   }
 
 
-//   point_f64 picture::_rtransform_drawing(const point_f64 & pointParam) const
+//   double_point picture::_rtransform_drawing(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      _rtransform_point_drawing(point);
 //
@@ -264,7 +264,7 @@ namespace user
 //   }
 
 
-   void picture::_rtransform_sequence(sequence2_f64 & sequence) const
+   void picture::_rtransform_sequence(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -287,7 +287,7 @@ namespace user
    }
 
 
-   void picture::_rtransform_sequence_drawing(sequence2_f64 & sequence) const
+   void picture::_rtransform_sequence_drawing(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -310,10 +310,10 @@ namespace user
    }
 
 
-//   point_f64 picture::drag_transform(const point_f64 & pointParam) const
+//   double_point picture::drag_transform(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      drag_transform_point(point);
 //
@@ -322,10 +322,10 @@ namespace user
 //   }
 
 
-//   point_f64 picture::drag_transform_drawing(const point_f64 & pointParam) const
+//   double_point picture::drag_transform_drawing(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      drag_transform_point_drawing(point);
 //
@@ -334,7 +334,7 @@ namespace user
 //   }
 
 
-   void picture::drag_transform_sequence(sequence2_f64 & sequence) const
+   void picture::drag_transform_sequence(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -359,7 +359,7 @@ namespace user
    }
 
 
-   void picture::drag_transform_sequence_drawing(sequence2_f64 & sequence) const
+   void picture::drag_transform_sequence_drawing(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -384,10 +384,10 @@ namespace user
    }
 
 
-//   point_f64 picture::drag_rtransform(const point_f64 & pointParam) const
+//   double_point picture::drag_rtransform(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      drag_rtransform_point(point);
 //
@@ -396,10 +396,10 @@ namespace user
 //   }
 //
 //
-//   point_f64 picture::drag_rtransform_drawing(const point_f64 & pointParam) const
+//   double_point picture::drag_rtransform_drawing(const double_point & pointParam) const
 //   {
 //
-//      point_f64 point(pointParam);
+//      double_point point(pointParam);
 //
 //      drag_rtransform_point_drawing(point);
 //
@@ -408,7 +408,7 @@ namespace user
 //   }
 
 
-   void picture::drag_rtransform_sequence(sequence2_f64 & sequence) const
+   void picture::drag_rtransform_sequence(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -434,7 +434,7 @@ namespace user
 
 
 
-   void picture::set_drag_point(const ::point_f64 & point)
+   void picture::set_drag_point(const ::double_point & point)
    {
 
       auto size = get_size();
@@ -445,10 +445,10 @@ namespace user
 
    }
 
-   ::point_f64 picture::get_drag_point()
+   ::double_point picture::get_drag_point()
    {
 
-      ::point_f64 point;
+      ::double_point point;
 
       auto size = get_size();
 
@@ -461,7 +461,7 @@ namespace user
    }
 
 
-   void picture::drag_rtransform_sequence_drawing(sequence2_f64 & sequence) const
+   void picture::drag_rtransform_sequence_drawing(sequence2_double & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -492,7 +492,7 @@ namespace user
    }
 
 
-   void picture::update_drawing_rect(::size_f64 sizePage, ::size_f64 sizeClient)
+   void picture::update_drawing_rect(::double_size sizePage, ::double_size sizeClient)
    {
 
       ASSERT(is_picture_enabled());
@@ -516,7 +516,7 @@ namespace user
    }
 
 
-   void picture::update_screen_rect(::size_f64 sizePage, ::size_f64 sizeClient)
+   void picture::update_screen_rect(::double_size sizePage, ::double_size sizeClient)
    {
 
       ASSERT(is_picture_enabled());
@@ -593,25 +593,25 @@ namespace user
    }
 
 
-   bool picture::intersects(const ::rectangle_f64 & rectangleParam) const
+   bool picture::intersects(const ::double_rectangle & rectangleParam) const
    {
 
-      rectangle_f64 rectangle(rectangleParam);
+      double_rectangle rectangle(rectangleParam);
 
-      polygon_f64 polygon_i32;
+      double_polygon int_polygon;
 
-      polygon_i32.set_size(4);
+      int_polygon.set_size(4);
 
-      polygon_i32[0] = rectangle.top_left();
-      polygon_i32[1] = rectangle.top_right();
-      polygon_i32[2] = rectangle.bottom_right();
-      polygon_i32[3] = rectangle.bottom_left();
+      int_polygon[0] = rectangle.top_left();
+      int_polygon[1] = rectangle.top_right();
+      int_polygon[2] = rectangle.bottom_right();
+      int_polygon[3] = rectangle.bottom_left();
 
-      polygon_i32.m_bDirty = false;
+      int_polygon.m_bDirty = false;
 
-      polygon_i32.m_bDirtyBoundingRect = false;
+      int_polygon.m_bDirtyBoundingRect = false;
 
-      polygon_i32.m_rectangleBounding = rectangle;
+      int_polygon.m_rectangleBounding = rectangle;
 
       if (m_ppictureimpl->m_polygon.get_size() <= 0)
       {
@@ -620,15 +620,15 @@ namespace user
 
       }
 
-      return polygon_i32.overlaps(m_ppictureimpl->m_polygon);
+      return int_polygon.overlaps(m_ppictureimpl->m_polygon);
 
    }
 
 
-   rectangle_f64 picture::drawing_bounds() const
+   double_rectangle picture::drawing_bounds() const
    {
 
-      rectangle_f64 rectangle(0.0, 0.0, 0.0, 0.0);
+      double_rectangle rectangle(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -681,10 +681,10 @@ namespace user
 
    }
 
-   point_double_array & picture::drawing_polygon() const
+   double_point_array & picture::drawing_polygon() const
    {
 
-      rectangle_f64 rectangle(0.0, 0.0, 0.0, 0.0);
+      double_rectangle rectangle(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -698,7 +698,7 @@ namespace user
    }
 
 
-   bool picture::intersects_drawing(const polygon_f64 & polygon_i32) const
+   bool picture::intersects_drawing(const double_polygon & int_polygon) const
    {
 
       ASSERT(is_picture_enabled());
@@ -710,17 +710,17 @@ namespace user
 
       }
 
-      return polygon_i32.overlaps( m_ppictureimpl->m_polygonDrawing);
+      return int_polygon.overlaps( m_ppictureimpl->m_polygonDrawing);
 
    }
 
 
-   bool picture::intersects_drawing(const ::rectangle_f64 & rectangleParam) const
+   bool picture::intersects_drawing(const ::double_rectangle & rectangleParam) const
    {
 
       ASSERT(is_picture_enabled());
 
-      polygon_f64 polygon;
+      double_polygon polygon;
 
       polygon = rectangleParam;
 
@@ -744,15 +744,15 @@ namespace user
    }
 
 
-   ::size_f64 picture::get_size()
+   ::double_size picture::get_size()
    {
 
-      return ::size_f64(128, 128);
+      return ::double_size(128, 128);
 
    }
 
 
-   ::size_f64 picture::get_request_size()
+   ::double_size picture::get_request_size()
    {
 
       return get_size();
@@ -821,7 +821,7 @@ namespace user
    }
 
 
-   //int picture::on_hit_test_cursor(point_f64 point)
+   //int picture::on_hit_test_cursor(double_point point)
    //{
 
    //   if (!is_valid())
@@ -845,7 +845,7 @@ namespace user
    //}
 
 
-   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
+   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(int_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -855,7 +855,7 @@ namespace user
 
          int iBlur = (int) ceil(dBlur);
 
-         ::rectangle_i32 rectangleDib(pimage->get_size());
+         ::int_rectangle rectangleDib(pimage->get_size());
 
          int iShift = iBlur * 2;
 
@@ -893,13 +893,13 @@ namespace user
    }
 
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
       {
 
-         ::rectangle_i32 rectangleDropShadow(rectangle);
+         ::int_rectangle rectangleDropShadow(rectangle);
 
          rectangleDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
@@ -931,7 +931,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer picture::parent_client_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
       //item.m_pointScreen = point;
@@ -946,31 +946,31 @@ namespace user
 
 
 
-   ::rectangle_f64 picture::get_rect_for_picture2()
+   ::double_rectangle picture::get_rect_for_picture2()
    {
 
       auto size = m_ppictureimpl->m_rectangleDrawing.size() / 2.0;
 
       auto pointDrag = get_drag_point();
 
-      size = ::size_f64(pointDrag.x() * m_ppictureimpl->m_rectangleDrawing.width(),
+      size = ::double_size(pointDrag.x() * m_ppictureimpl->m_rectangleDrawing.width(),
          pointDrag.y() * m_ppictureimpl->m_rectangleDrawing.height()) - size;
 
-      rectangle_f64 rectangle(::point_f64(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
+      double_rectangle rectangle(::double_point(size), ::double_size(m_ppictureimpl->m_rectangleDrawing.size()));
 
       return rectangle;
 
    }
 
 
-   ::point_f64 picture::get_point_transform()
+   ::double_point picture::get_point_transform()
    {
 
       auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
 
       return pointD;
 
-      //      auto pointD = ::point_f64(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+      //      auto pointD = ::double_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
 
    }
 
@@ -989,18 +989,18 @@ namespace user
 
       ::geometry2d::matrix mRot;
 
-      ::rectangle_f64 rectangleClip(m_ppictureimpl->m_rectangleDrawing);
+      ::double_rectangle rectangleClip(m_ppictureimpl->m_rectangleDrawing);
 
-      ::polygon_f64 polygon_i32;
+      ::double_polygon int_polygon;
 
-      polygon_i32.set_size(4);
+      int_polygon.set_size(4);
 
-      polygon_i32[0] = _transform_drawing(rectangleClip.top_left());
-      polygon_i32[1] = _transform_drawing(rectangleClip.top_right());
-      polygon_i32[2] = _transform_drawing(rectangleClip.bottom_right());
-      polygon_i32[3] = _transform_drawing(rectangleClip.bottom_left());
+      int_polygon[0] = _transform_drawing(rectangleClip.top_left());
+      int_polygon[1] = _transform_drawing(rectangleClip.top_right());
+      int_polygon[2] = _transform_drawing(rectangleClip.bottom_right());
+      int_polygon[3] = _transform_drawing(rectangleClip.bottom_left());
 
-      //pgraphics->intersect_clip(polygon_i32);
+      //pgraphics->intersect_clip(int_polygon);
 
       mRot.append(::geometry2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 
@@ -1040,7 +1040,7 @@ namespace user
 
 
 
-   void picture::move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin)
+   void picture::move_to(double_point point, ::double_size sizePage, ::double_size sizeClient, const ::double_rectangle & rectangleMargin)
    {
 
       m_ppictureimpl->m_rectangle.move_to(point);

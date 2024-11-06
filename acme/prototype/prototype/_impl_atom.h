@@ -329,7 +329,7 @@ inline atom::atom(enum_property eproperty) :
 
 inline atom::atom(enum_factory efactory) :
         m_etype(e_type_factory),
-        m_iLargest((::i64)efactory) // used m_iLargest to reset 64-bit field
+        m_iLargest((huge_integer)efactory) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -520,7 +520,7 @@ inline atom::atom(ENUM e)
 
    m_etype = e_type_integer;
 
-   m_iLargest = ::as_i64(e);
+   m_iLargest = ::as_huge_integer(e);
 
 }
 
@@ -1313,7 +1313,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 //}
 
 
-inline ::i64 atom::as_i64() const
+inline huge_integer atom::as_huge_integer() const
 {
 
    return primitive_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;
@@ -1369,10 +1369,10 @@ inline bool atom::is_null() const
 }
 
 
-inline bool atom::has_char() const
+inline bool atom::has_character() const
 {
 
-   return is_text() && m_str.has_char();
+   return is_text() && m_str.has_character();
 
 }
 
@@ -1731,7 +1731,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//template < primitive_character CHARACTER, strsize sizeMaximumLength >
+//template < primitive_character CHARACTER, character_count sizeMaximumLength >
 //inline ::string_base < const CHARACTER * > operator+(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
 //{
 //

@@ -292,7 +292,7 @@ pdirectorysystem->is(strPath))
       // then should show icon by extension or if is folder
       auto pFind = imagekey.m_strPath.is_empty() ? -1 : ::str::case_insensitive_find("://", imagekey.m_strPath);
 
-      strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str::case_insensitive_find(":", imagekey.m_strPath);
+      character_count iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str::case_insensitive_find(":", imagekey.m_strPath);
 
       if (::is_set(pFind) || iFind2 >= 2)
       {

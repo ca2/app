@@ -28,7 +28,7 @@ namespace sockets
 
       virtual void destroy() override;
 
-//      interlocked_i32                  m_lListenSocket;
+//      interlocked_int                  m_lListenSocket;
 //
 //      ::pointer<SSLInitializer>       m_psslinit;
 //

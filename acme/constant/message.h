@@ -147,7 +147,7 @@ enum enum_message : int
 // lParam = dwContext
 //#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
    e_message_help_hit_test,
-// lParam = make_i32(x,y)
+// lParam = make_int(x,y)
 //#define WM_EXITHELPMODE     0x0367  // (params unused)
    e_message_exit_help_mode,
 //#define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl
@@ -155,7 +155,7 @@ enum enum_message : int
    e_message_recalc_parent,
 //#define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (aaa_memory_new position/size_i32)
+// lParam = pRectNew (aaa_memory_new position/int_size)
    e_message_size_child,
 //#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
    e_message_kick_idle,

@@ -31,9 +31,9 @@
 
 #define STATUS_FAILURE (I32_MINIMUM)
 
-#define INT_FAILURE_STATUS(iStatusRange) (((::i64)STATUS_FAILURE + (iStatusRange)))
+#define INT_FAILURE_STATUS(iStatusRange) (((huge_integer)STATUS_FAILURE + (iStatusRange)))
 
-#define INT_SUCCESS_STATUS(iStatusRange) ((::i64)(iStatusRange))
+#define INT_SUCCESS_STATUS(iStatusRange) ((huge_integer)(iStatusRange))
 
 #define FAILURE_STATUS(iStatusRange) ((::e_status    )(::enum_status)INT_FAILURE_STATUS(iStatusRange))
 

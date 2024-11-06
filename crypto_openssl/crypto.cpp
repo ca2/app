@@ -927,7 +927,7 @@ namespace crypto_openssl
    //   string strFormat;
    //   for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
    //   {
-   //      i64 iDigit = random<char>();
+   //      huge_integer iDigit = random<char>();
    //      strFormat.formatf("%02x", iDigit);
    //      strSalt += strFormat;
    //   }
@@ -1031,7 +1031,7 @@ namespace crypto_openssl
 
       //   string str = file()->as_string(strPath);
 
-      //   if (str.has_char())
+      //   if (str.has_character())
       //   {
 
       //      return str;
@@ -1170,15 +1170,15 @@ namespace crypto_openssl
       {
          string strOthers = file()->as_string(strOthersPath);
          address_array < X509* > xptra;
-         strsize iStart = 0;
-         strsize iFind;
+         character_count iStart = 0;
+         character_count iFind;
          string strEnd = "-----END CERTIFICATE-----";
          string strCertificate;
-         strsize iEndLen = strEnd.length();
+         character_count iEndLen = strEnd.length();
          ::collection::count iCount = 0;
          while ((iFind = strOthers.find_index("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
-            strsize iEnd = strOthers.find_index(strEnd, iFind);
+            character_count iEnd = strOthers.find_index(strEnd, iFind);
             if (iEnd < 0)
                break;
             strCertificate = strOthers.substr(iFind, iEnd + iEndLen - iFind);

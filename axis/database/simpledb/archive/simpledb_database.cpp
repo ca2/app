@@ -128,7 +128,7 @@ namespace simpledb
    }
 
 
-   string database::escape(void * p,strsize iLen)
+   string database::escape(void * p,character_count iLen)
    {
 
       return "";

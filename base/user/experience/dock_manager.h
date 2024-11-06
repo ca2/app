@@ -21,20 +21,20 @@ namespace experience
       ::experience::frame_window *        m_pframewindow;
       e_border                            m_eborder;
       e_dock                              m_edockMask;
-      point_i32                           m_pointCursorDockOrigin;
-      size_i32                            m_sizeDockRightOrigin;
-      point_i32                           m_pointWindowOrigin;
+      int_point                           m_pointCursorDockOrigin;
+      int_size                            m_sizeDockRightOrigin;
+      int_point                           m_pointWindowOrigin;
       bool                                m_bDocking;
       ::e_display                         m_edisplayOrigin;
-      ::size_i32                          m_sizeOrigin;
-      ::point_i32                         m_pointMove;
-      ::int_map < rectangle_i32 >         m_mapWorkspaceRect;
+      ::int_size                          m_sizeOrigin;
+      ::int_point                         m_pointMove;
+      ::int_map < int_rectangle >         m_mapWorkspaceRect;
       bool                                m_bPendingCursorPos;
       int                                 m_iDockMove;
       int                                 m_iConsiderDockMove;
-      ::rectangle_i32                     m_rectangleOnDockStart;
-      ::point_i32                         m_pointLastRepositionCursorOrigin;
-      ::point_i32                         m_pointLastRepositionWindowOrigin;
+      ::int_rectangle                     m_rectangleOnDockStart;
+      ::int_point                         m_pointLastRepositionCursorOrigin;
+      ::int_point                         m_pointLastRepositionWindowOrigin;
 
 
       dock_manager();
@@ -68,7 +68,7 @@ namespace experience
       //void defer_cursor_pos();
 
       ::user::button * dock_button();
-      ::size_i32 dock_button_right_origin();
+      ::int_size dock_button_right_origin();
 
 
    };

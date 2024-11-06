@@ -54,7 +54,7 @@ namespace database
    }
 
 
-   void composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
+   void composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, huge_natural uConnectionFlags)
    {
 
       return m_pdatabase->connect(name, host, port, user, pass, sckt, uConnectionFlags);

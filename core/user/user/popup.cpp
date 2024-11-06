@@ -61,10 +61,10 @@ namespace user
    }
 
 
-   void popup::show_popup(const ::point_i32 & point)
+   void popup::show_popup(const ::int_point & point)
    {
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -132,7 +132,7 @@ namespace user
             //if (bNew)
             //{
 
-            //   ::rectangle_i32 rectangleWindow;
+            //   ::int_rectangle rectangleWindow;
 
             //   window_rectangle(rectangleWindow);
 

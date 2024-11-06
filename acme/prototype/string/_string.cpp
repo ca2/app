@@ -5,7 +5,7 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < strsize * > intptra)
+void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < character_count * > intptra)
 {
 
    auto psz = strParam.c_str();
@@ -88,7 +88,7 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
 }
 
 
-void replace_tab(strsize iOffset, string & strParam, int iWidth, ::array < strsize * > iaTab)
+void replace_tab(character_count iOffset, string & strParam, int iWidth, ::array < character_count * > iaTab)
 {
 
    return replace_tab(iOffset, strParam, iWidth, nullptr, iaTab);

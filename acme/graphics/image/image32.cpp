@@ -7,7 +7,7 @@
 
 
 
-//void image32_t::copy(const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 //{
 //
 //   return copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
@@ -337,7 +337,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 }
 
 //
-//void image32_t::copy(const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 //{
 //
 //   copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
@@ -375,7 +375,7 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 }
 
 
-//void image32_t::copy(const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+//void image32_t::copy(const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
 //{
 //
 //   copy(size, iStrideDst, ppixmapSrc->image32(), ppixmapSrc->scan_size());

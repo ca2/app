@@ -82,9 +82,9 @@ namespace universal_windows
 
             //void redraw() override;
 
-            //void get_client_rectangle(::rectangle_i32 & rectangle) override;
+            //void get_client_rectangle(::int_rectangle & rectangle) override;
 
-            //void get_window_rectangle(::rectangle_i32 & rectangle) override;
+            //void get_window_rectangle(::int_rectangle & rectangle) override;
 
             //void set_capture() override;
 

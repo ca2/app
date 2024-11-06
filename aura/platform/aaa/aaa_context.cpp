@@ -202,31 +202,31 @@ void context::clear_cache()
 
    auto & dir = this->dir();
 
-   if (dir.image().has_char() && ::file::case_insensitive_begins_eat(str, dir.image()))
+   if (dir.image().has_character() && ::file::case_insensitive_begins_eat(str, dir.image()))
    {
 
       return ::file::path("image://") / str;
 
    }
-   else if (dir.music().has_char() && ::file::case_insensitive_begins_eat(str, dir.music()))
+   else if (dir.music().has_character() && ::file::case_insensitive_begins_eat(str, dir.music()))
    {
 
       return ::file::path("music://") / str;
 
    }
-   else if (dir.video().has_char() && ::file::case_insensitive_begins_eat(str, dir.video()))
+   else if (dir.video().has_character() && ::file::case_insensitive_begins_eat(str, dir.video()))
    {
 
       return ::file::path("video://") / str;
 
    }
-   else if (dir.document().has_char() && ::file::case_insensitive_begins_eat(str, dir.document()))
+   else if (dir.document().has_character() && ::file::case_insensitive_begins_eat(str, dir.document()))
    {
 
       return ::file::path("document://") / str;
 
    }
-   else if (dir.download().has_char() && ::file::case_insensitive_begins_eat(str, dir.download()))
+   else if (dir.download().has_character() && ::file::case_insensitive_begins_eat(str, dir.download()))
    {
 
       return ::file::path("download://") / str;
@@ -256,43 +256,43 @@ string context::defer_get_file_title(string strParam)
 
    auto & dir = this->dir();
 
-   if (dir.image().has_char() && path.case_insensitive_order(dir.image()) == 0)
+   if (dir.image().has_character() && path.case_insensitive_order(dir.image()) == 0)
    {
 
       return "Image";
 
    }
-   else if (dir.music().has_char() && path.case_insensitive_order(dir.music()) == 0)
+   else if (dir.music().has_character() && path.case_insensitive_order(dir.music()) == 0)
    {
 
       return "Music";
 
    }
-   else if (dir.video().has_char() && path.case_insensitive_order(dir.video()) == 0)
+   else if (dir.video().has_character() && path.case_insensitive_order(dir.video()) == 0)
    {
 
       return "Video";
 
    }
-   else if (dir.document().has_char() && path.case_insensitive_order(dir.document()) == 0)
+   else if (dir.document().has_character() && path.case_insensitive_order(dir.document()) == 0)
    {
 
       return "Document";
 
    }
-   else if (dir.download().has_char() && path.case_insensitive_order(dir.download()) == 0)
+   else if (dir.download().has_character() && path.case_insensitive_order(dir.download()) == 0)
    {
 
       return "Download";
 
    }
-   else if (dir.desktop().has_char() && path.case_insensitive_order(dir.desktop()) == 0)
+   else if (dir.desktop().has_character() && path.case_insensitive_order(dir.desktop()) == 0)
    {
 
       return "Desktop";
 
    }
-   else if (dir.bookmark().has_char() && path.case_insensitive_order(dir.bookmark()) == 0)
+   else if (dir.bookmark().has_character() && path.case_insensitive_order(dir.bookmark()) == 0)
    {
 
       return "Bookmark";
@@ -637,7 +637,7 @@ pdirectorysystem->system() / path;
 
             string strFsType = set["get_headers"]["x-fstype"];
 
-            if (strFsType.has_char())
+            if (strFsType.has_character())
             {
                if (strFsType == "directory")
                {

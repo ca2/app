@@ -50,7 +50,7 @@ namespace dynamic_source
 
    string escape(const ::string & pcsz);
 
-   void add_var_id(string & strResult, strsize & iArroba, string_array & straId, bool bMakeKeyLower = true);
+   void add_var_id(string & strResult, character_count & iArroba, string_array & straId, bool bMakeKeyLower = true);
 
 
    script_compiler::script_compiler()
@@ -187,7 +187,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         informationf("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
+//         informationf("failed to setup visual studio environment " + as_string((huge_integer)estatus.m_estatus));
 //
 //      }
 //
@@ -840,7 +840,7 @@ namespace dynamic_source
 
       }
 
-      if(!bTimeout && strLog.has_char())
+      if(!bTimeout && strLog.has_character())
       {
 
 #ifdef LINUX
@@ -853,7 +853,7 @@ namespace dynamic_source
 
          str.trim();
 
-         if(str.has_char())
+         if(str.has_character())
          {
 
             file()->put_text_utf8(strClog, strLog);
@@ -1014,7 +1014,7 @@ namespace dynamic_source
 
          strLog += process->read();
 
-         if(!bTimeout && strLog.has_char())
+         if(!bTimeout && strLog.has_character())
          {
 
 #ifdef LINUX
@@ -1027,7 +1027,7 @@ namespace dynamic_source
 
             str.trim();
 
-            if(str.has_char())
+            if(str.has_character())
             {
 
                file()->put_text_utf8(strLlog,strLog);
@@ -1157,7 +1157,7 @@ namespace dynamic_source
 
       pscript->m_strClassName = pscript->m_strClassNamePrefix + "_dynamic_source_script";
 
-      strsize iPosId = -1;
+      character_count iPosId = -1;
       string_array straId;
       string strDest;
       strDest = "";
@@ -1170,9 +1170,9 @@ namespace dynamic_source
       //   str.case_insensitive_ends_eat(".ds");
       //   strDest += "#include \""+str+".h\"\r\n";
       //}
-      strsize iStart = 0;
-      strsize iPos = 0;
-      strsize iLastEnd = 0;
+      character_count iStart = 0;
+      character_count iPos = 0;
+      character_count iLastEnd = 0;
       if(strSource.substr(0, 4) == "<?ss")
       {
          iLastEnd = strSource.find_index("?>", iPos);
@@ -1199,7 +1199,7 @@ namespace dynamic_source
          iStart +=4;
          while(true)
          {
-            strsize iMid = strSource.find_index("?>", iStart);
+            character_count iMid = strSource.find_index("?>", iStart);
             iLastEnd = strSource.find_index("ds?>", iStart);
             if(iMid > 0 && iMid < iLastEnd)
             {
@@ -1659,7 +1659,7 @@ namespace dynamic_source
          ::file::path pathCompiler = m_pathTime / strLibRel / strRel + "-compile-log.txt";
 
 
-         if(!bTimeout && strLog.has_char())
+         if(!bTimeout && strLog.has_character())
          {
 
 #ifdef LINUX
@@ -1675,7 +1675,7 @@ namespace dynamic_source
             str.trim();
 
 
-            if(str.has_char())
+            if(str.has_character())
             {
 
                file()->put_text_utf8(strClog,strLog);
@@ -1806,7 +1806,7 @@ auto tickStart = ::time::now();
 
       strLlog = m_pathTime / strLibRel / "link-log.txt";
 
-      if(!bTimeout && strLog.has_char())
+      if(!bTimeout && strLog.has_character())
       {
 
 #ifdef LINUX
@@ -1819,7 +1819,7 @@ auto tickStart = ::time::now();
 
          str.trim();
 
-         if(str.has_char())
+         if(str.has_character())
          {
 
             file()->put_text_utf8(strLlog,strLog);
@@ -1878,13 +1878,13 @@ auto tickStart = ::time::now();
 
       strDest += "\r\n";
       strDest += "\r\n";
-      strsize iPosId = strDest.length();
+      character_count iPosId = strDest.length();
       strDest += "\r\n";
       strDest += "\r\n";
 
-      strsize iStart = 0;
-      strsize iPos = 0;
-      strsize iLastEnd = 0;
+      character_count iStart = 0;
+      character_count iPos = 0;
+      character_count iLastEnd = 0;
       string_array straId;
       while((iPos = strSource.find_index("<?", iStart)) >= 0)
       {
@@ -1924,7 +1924,7 @@ auto tickStart = ::time::now();
    }
 
 
-   void add_var_id(string & strResult, strsize & iArroba, string_array & straId, bool bMakeKeyLower)
+   void add_var_id(string & strResult, character_count & iArroba, string_array & straId, bool bMakeKeyLower)
    {
       string strKey = strResult.substr(iArroba);
       if(bMakeKeyLower)
@@ -1948,8 +1948,8 @@ auto tickStart = ::time::now();
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
-      strsize iSimpleQuote = 0;
-      strsize iArroba = -1;
+      character_count iSimpleQuote = 0;
+      character_count iArroba = -1;
       bool bInVar = false;
       bool bInSlash = false;
       bool bInRet = false;
@@ -1958,19 +1958,19 @@ auto tickStart = ::time::now();
       bool bInSpec2 = false;
       bool bInSpec2Close = false;
       bool bServer = false;
-      strsize iServer = -1;
-      strsize iBracket = 0;
+      character_count iServer = -1;
+      character_count iBracket = 0;
       bool bInBrace = false;
-      strsize iVar = -1;
-      strsize iIdLen = 0;
+      character_count iVar = -1;
+      character_count iIdLen = 0;
       char ch;
       char chNext;
       string strResult;
-      strsize iLen = str.length();
-      strsize i = 0;
+      character_count iLen = str.length();
+      character_count i = 0;
       bool bInitial = true;
       string strSpec1;
-      strsize iOpenParen = 1; // open Parenthesis Count
+      character_count iOpenParen = 1; // open Parenthesis Count
       string_array straFunction;
       index_array iaFunctionParen; // index of the parenthesis of the function
       bool bInserted = false;
@@ -2568,7 +2568,7 @@ ch_else:
    }
 
 
-   bool script_compiler::is_id(const ::string & psz, strsize iLen, const ::string & pszId, strsize iIdLen, strsize & iIdLenRet)
+   bool script_compiler::is_id(const ::string & psz, character_count iLen, const ::string & pszId, character_count iIdLen, character_count & iIdLenRet)
    {
       if(iLen < iIdLen)
          return false;
@@ -2879,7 +2879,7 @@ ch_else:
       string strDest;
       while(strSource.length() > 0)
       {
-         strsize iLen = minimum(4 * 1024, strSource.length());
+         character_count iLen = minimum(4 * 1024, strSource.length());
          if(strSource.length() > iLen)
          {
             if(strSource[iLen] == '\n')
@@ -2949,7 +2949,7 @@ ch_else:
                catch(...)
                {
                }
-               if(strExtra.has_char())
+               if(strExtra.has_character())
                {
                   pstr_set(strId + "." + strExtra,strLocale,strSchema,strValue);
                }

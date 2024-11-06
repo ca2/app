@@ -157,7 +157,7 @@ posix_time dos_time_unix_time(dos_time_t dostime)
     // as is (without worry about the current timezone) because the DOS
     // format makes use of localdate() and that's 1 to 1 compatible with
     // mktime() which expects a local date too.
-    return { posix_time_t{}, (::i64)mktime(&t) };
+    return { posix_time_t{}, (huge_integer)mktime(&t) };
 }
 
 

@@ -49,7 +49,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::double_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

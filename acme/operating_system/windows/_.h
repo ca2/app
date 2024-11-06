@@ -73,7 +73,7 @@ inline void copy(MSG & msg, const MESSAGE & message)
 {
 
    msg.hwnd = (HWND)(message.oswindow);
-   msg.message = (UINT)message.m_atom.as_i64();
+   msg.message = (UINT)message.m_atom.as_huge_integer();
    msg.wParam = message.wParam;
    msg.lParam = message.lParam;
    msg.pt.x = message.pt.x();
@@ -100,9 +100,9 @@ inline int width(RECT & r) { return r.right - r.left; }
 inline int height(RECT & r) { return r.bottom - r.top; }
 
 
-inline ::point_i32 lparam_as_point(LPARAM lparam)
+inline ::int_point lparam_as_point(LPARAM lparam)
 {
 
-   return ::point_i32(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+   return ::int_point(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
 
 }

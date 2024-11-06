@@ -137,7 +137,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
+   bool style::get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::float_rectangle & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -438,28 +438,28 @@ namespace html
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeft, iLeft, fLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeftW, iLeftW, fLeftW);
-      rectangle.left()          = (float) payloadCurrent.as_f64();
+      rectangle.left()          = (float) payloadCurrent.as_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTop, iTop, fTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTopW, iTopW, fTopW);
-      rectangle.top()           = (float)payloadCurrent.as_f64();
+      rectangle.top()           = (float)payloadCurrent.as_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRight, iRight, fRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRightW, iRightW, fRightW);
-      rectangle.right()         = (float)payloadCurrent.as_f64();
+      rectangle.right()         = (float)payloadCurrent.as_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       payloadCurrent            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottom, iBottom, fBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottomW, iBottomW, fBottomW);
-      rectangle.bottom()        = (float)payloadCurrent.as_f64();
+      rectangle.bottom()        = (float)payloadCurrent.as_double();
 
       return true;
 
@@ -865,7 +865,7 @@ namespace html
 
       }
 
-      d = m_propertyset["opacity"].as_f64();
+      d = m_propertyset["opacity"].as_double();
 
       return true;
 
@@ -923,10 +923,10 @@ namespace html
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
             return false;
-      if(m_strName.has_char())
+      if(m_strName.has_character())
          if(m_strName != strClass)
             return false;
-      if(m_strSubClass.has_char())
+      if(m_strSubClass.has_character())
          if(m_strSubClass != strSubClass)
             return false;
       if(!rangeName.is_empty())
@@ -941,10 +941,10 @@ namespace html
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
             return false;
-      if(m_strName.has_char())
+      if(m_strName.has_character())
          if(m_strName != strClass)
             return false;
-      if(m_strSubClass.has_char())
+      if(m_strSubClass.has_character())
          if(m_strSubClass != strSubClass)
             return false;
       if(rangeName.is_empty())
@@ -973,7 +973,7 @@ namespace html
 
       }
 
-      if (m_strName.has_char())
+      if (m_strName.has_character())
       {
 
          if (m_strName != strClass)
@@ -985,7 +985,7 @@ namespace html
 
       }
 
-      if (m_strSubClass.has_char())
+      if (m_strSubClass.has_character())
       {
 
          if (m_strSubClass != strSubClass)
@@ -1035,7 +1035,7 @@ namespace html
          str.trim();
          return (float) strtod(str, nullptr);
       }
-      else if(str.case_insensitive_ends_eat("::point_f32"))
+      else if(str.case_insensitive_ends_eat("::float_point"))
       {
          str.trim();
          return (float) (strtod(str, nullptr) * 96.0 / 72.0);
@@ -1081,10 +1081,10 @@ namespace html
          return true;
       }
 
-      strsize iFindRgb = str.case_insensitive_find_index("rgb");
-      strsize iFindSharp = str.case_insensitive_find_index("#");
-      strsize iFindColor = -1;
-      strsize iFindDigit = str.find_first_character_in_index("0123456789");
+      character_count iFindRgb = str.case_insensitive_find_index("rgb");
+      character_count iFindSharp = str.case_insensitive_find_index("#");
+      character_count iFindColor = -1;
+      character_count iFindDigit = str.find_first_character_in_index("0123456789");
       if(iFindRgb >= 0)
       {
          if(iFindSharp >= 0)
@@ -1147,7 +1147,7 @@ namespace html
             return false; // no more numeric width
       }
 
-      strsize i = iFindDigit;
+      character_count i = iFindDigit;
 
       if(i < 0)
          return false;
@@ -1190,7 +1190,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
       str = str.substr(i);
-      if(case_insensitive_string_begins(str, "::point_f32"))
+      if(case_insensitive_string_begins(str, "::float_point"))
       {
          str.trim();
          if(str.length() == 2 || character_isspace(str[3]))
@@ -1226,10 +1226,10 @@ namespace html
          return true;
       }
 
-      strsize iFindRgb = str.case_insensitive_find_index("rgb");
-      strsize iFindSharp = str.case_insensitive_find_index("#");
-      strsize iFindColor = -1;
-//      strsize iFindDigit = str.FindOneOf("0123456789");
+      character_count iFindRgb = str.case_insensitive_find_index("rgb");
+      character_count iFindSharp = str.case_insensitive_find_index("#");
+      character_count iFindColor = -1;
+//      character_count iFindDigit = str.FindOneOf("0123456789");
       if(iFindRgb >= 0)
       {
          if(iFindSharp >= 0)

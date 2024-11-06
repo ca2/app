@@ -16,10 +16,10 @@
 
 
 // #ifndef int_x
-// #define int_x(lp)                        ((int)(short)LOWORD(lp))
+// #define lparam_int_x(lp)                        ((int)(short)LOWORD(lp))
 // #endif
 // #ifndef int_y
-// #define int_y(lp)                        ((int)(short)HIWORD(lp))
+// #define lparam_int_y(lp)                        ((int)(short)HIWORD(lp))
 // #endif
 
 
@@ -430,7 +430,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
       for(auto property : set)
       {
 
-         if(!property.get_string().has_char()
+         if(!property.get_string().has_character()
                &&
                (property.name() == "app"
                 || property.name() == "build"
@@ -448,7 +448,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
          strCommandLine += property.name();
 
-         if(!property.get_string().has_char())
+         if(!property.get_string().has_character())
             continue;
 
          strCommandLine += "=";
@@ -517,7 +517,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       //   string str = ::account::get_cred(get_app(),strUsername,strPassword,"ca2");
 
-      //   if(strUsername.has_char() && strPassword.has_char() && str == "ok")
+      //   if(strUsername.has_character() && strPassword.has_character() && str == "ok")
       //   {
 
       //      m_bHasCred = true;
@@ -552,7 +552,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
          m_bLogin = true;
 
-         if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
+         if(m_phost->m_pbasecomposer->m_strPluginUrl.has_character())
          {
 
             m_bLogged = psession->account()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != nullptr;
@@ -712,7 +712,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 
 
-            if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_char())
+            if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_character())
             {
 
                m_bPluginTypeTested = true;
@@ -832,7 +832,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -985,9 +985,9 @@ run_install:
 #endif
 
 
-      ::rectangle_i32 rectangle_i32;
+      ::int_rectangle int_rectangle;
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
@@ -1048,7 +1048,7 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         ::rectangle_i32 rectangle_i32;
+         /*         ::int_rectangle int_rectangle;
          rectangle.left()      = 0;
          rectangle.top()       = 0;
          rectangle.bottom()    = cx;
@@ -1069,12 +1069,12 @@ run_install:
       //pgraphics.bit_blt(lprect->left()                , lprect->top()                 , lprect->right() - lprect->left(), lprect->bottom() - lprect->top(),
       //     pgraphics         , lprect->left() - ::hotplugin::plugin::m_rectangle.left()  , lprect.top() - ::hotplugin::plugin::m_rectangle.top()    );
 
-      /*string strx = ansi_string_from_i64(lprect->left());
-      string stry = ansi_string_from_i64(lprect->top());
+      /*string strx = ansi_string_from_huge_integer(lprect->left());
+      string stry = ansi_string_from_huge_integer(lprect->top());
       text_out(hdcWindow, lprect->left() + 10, lprect->top() + 10, strx, strx.get_length());
       text_out(hdcWindow, lprect->left() + 110, lprect->top() + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_i64(m_rectangle.left());
-      string stry2 = ansi_string_from_i64(m_rectangle.top());
+      string strx2 = ansi_string_from_huge_integer(m_rectangle.left());
+      string stry2 = ansi_string_from_huge_integer(m_rectangle.top());
       text_out(hdcWindow, lprect->left() + 210, lprect->top() + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left() + 310, lprect->top() + 10, stry2, stry2.get_length());
       */
@@ -1170,7 +1170,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
@@ -1234,7 +1234,7 @@ run_install:
                else if(!bRate && strLine.begins_eat("|||"))
                {
                   bRate = true;
-                  dRate = ((double) ansi_to_i32(strLine)) / (1000.0 * 1000.0 * 1000.0 );
+                  dRate = ((double) ansi_to_int(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
                else if (!bStatus2 && strLine.begins_eat("***"))
                {
@@ -1315,7 +1315,7 @@ run_install:
    }
 
 
-   void plugin::on_post(::aura::ipc::rx * prx, i64 a, i64 b)
+   void plugin::on_post(::aura::ipc::rx * prx, huge_integer a, huge_integer b)
    {
 
       if(prx == &m_rx)
@@ -1575,13 +1575,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(::point_i32 * ppt)
+   void plugin::viewport_screen_to_client(::int_point * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(::point_i32 * ppt)
+   void plugin::viewport_client_to_screen(::int_point * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1630,7 +1630,7 @@ restart:
 #else
 
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          window_rectangle(rectangle);
 
@@ -1641,7 +1641,7 @@ restart:
 
             m_rectangleSent = rectangle;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::rectangle_i32)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::int_rectangle)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

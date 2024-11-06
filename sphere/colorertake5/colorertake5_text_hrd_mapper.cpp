@@ -53,13 +53,13 @@ namespace colorertake5
             string eback;
             string sval;
             sval = (curel)->attr("stext");
-            if (sval.has_char()) stext = (sval);
+            if (sval.has_character()) stext = (sval);
             sval = (curel)->attr("etext");
-            if (sval.has_char()) etext = (sval);
+            if (sval.has_character()) etext = (sval);
             sval = (curel)->attr("sback");
-            if (sval.has_char()) sback = (sval);
+            if (sval.has_character()) sback = (sval);
             sval = (curel)->attr("eback");
-            if (sval.has_char()) eback = (sval);
+            if (sval.has_character()) eback = (sval);
 
             RegionDefine *rdef = ___new TextRegion(stext, etext, sback, eback);
             regionDefines.set_at(name, rdef);
@@ -96,10 +96,10 @@ namespace colorertake5
       string etext;
       string sback;
       string eback;
-      if (rd_new->stext.has_char()) stext = (rd_new->stext);
-      if (rd_new->etext.has_char()) etext = (rd_new->etext);
-      if (rd_new->sback.has_char()) sback = (rd_new->sback);
-      if (rd_new->eback .has_char()) eback = (rd_new->eback);
+      if (rd_new->stext.has_character()) stext = (rd_new->stext);
+      if (rd_new->etext.has_character()) etext = (rd_new->etext);
+      if (rd_new->sback.has_character()) sback = (rd_new->sback);
+      if (rd_new->eback .has_character()) eback = (rd_new->eback);
 
       RegionDefine *rd_old = regionDefines[name];
       if (rd_old != nullptr)

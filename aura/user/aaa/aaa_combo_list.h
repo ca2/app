@@ -76,7 +76,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
 
       virtual ::item current_item() override;
@@ -92,7 +92,7 @@ namespace user
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::rectangle_f64 & rectangleWindow, const ::size & sizeFull);
+      void on_drop_down(const ::double_rectangle & rectangleWindow, const ::size & sizeFull);
 
 
       //virtual bool get_font(::write_text::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;

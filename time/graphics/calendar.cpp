@@ -45,7 +45,7 @@ namespace datetime
          ::earth::time time(iYear,iMonth,1,0,0,0);
          ::earth::time_span timespan(1,0,0,0);
          color32_t crBorder;
-         rectangle_i32 rectangleDay;
+         int_rectangle rectangleDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 7; iDay++)
          {
@@ -117,7 +117,7 @@ namespace datetime
          }
 
          pgraphics->set(m_pfontYear);
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          GetRect(&rectangle,e_element_year_title);
          string strYear;
          strYear.formatf("%d",iYear);
@@ -141,7 +141,7 @@ namespace datetime
       }
 
 
-      void graphics::GetRectDay(::earth::time & time,::rectangle_i32 * lprect)
+      void graphics::GetRectDay(::earth::time & time,::int_rectangle * lprect)
       {
          int32_t iWeekDay = time.day_of_week();
          ::earth::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
@@ -149,7 +149,7 @@ namespace datetime
          GetRectDay(iWeekDay,iWeek + 1,lprect);
       }
 
-      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,::rectangle_i32 * lprect)
+      void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,::int_rectangle * lprect)
       {
          lprect->left() = m_point.x() + m_iColWidth * (iWeekDay - 1);
          lprect->right() = lprect->left() + m_iColWidth + 1;
@@ -157,7 +157,7 @@ namespace datetime
          lprect->bottom() = lprect->top() + m_iLineHeight + 1;
       }
 
-      void graphics::GetRect(::rectangle_i32 * lprect,enum enum_element eelement)
+      void graphics::GetRect(::int_rectangle * lprect,enum enum_element eelement)
       {
          if(eelement == e_element_month_title)
          {
@@ -193,7 +193,7 @@ namespace datetime
 
 
 
-      void graphics::set_pos(point_i32 pt,size_i32 sz)
+      void graphics::set_pos(int_point pt,int_size sz)
       {
          m_point = pt;
          m_size = sz;
@@ -204,7 +204,7 @@ namespace datetime
 
 
 
-      enum_element graphics::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+      enum_element graphics::hit_test(const ::int_point & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -223,13 +223,13 @@ namespace datetime
       }
 
 
-      bool graphics::time_hit_test(::earth::time & timeRet,const point_i32 & point)
+      bool graphics::time_hit_test(::earth::time & timeRet,const int_point & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
          ::earth::time time(iYear,iMonth,1,0,0,0);
          ::earth::time_span timespan(1,0,0,0);
-         rectangle_i32 rectangleDay;
+         int_rectangle rectangleDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 33; iDay++)
          {
@@ -246,10 +246,10 @@ namespace datetime
          return false;
       }
 
-      bool graphics::hit_test(enum_element eelement, const point_i32 & pt)
+      bool graphics::hit_test(enum_element eelement, const int_point & pt)
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          GetRect(&rectangle,eelement);
          return rectangle.contains(pt) != false;
 

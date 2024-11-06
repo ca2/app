@@ -36,7 +36,7 @@ namespace file
       circular_file& operator=(const circular_file& buffer);
       ~circular_file();
 
-      /** append l bytes from point_i32 to buffer */
+      /** append l bytes from int_point to buffer */
       using ::file::file::write;
       void write(const void * pdata, memsize l);
       /** copy l bytes from buffer to dest */

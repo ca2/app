@@ -167,7 +167,7 @@ namespace application_build_helper
 
             }
 
-            if (strLine.has_char())
+            if (strLine.has_character())
             {
 
                string_array straMatter;

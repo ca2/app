@@ -24,7 +24,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 #endif
 
 
-inline const void * _memory_find_u8(const void* l, int i, memsize len)
+inline const void * _memory_find_unsigned_char(const void* l, int i, memsize len)
 {
 
     auto u = (unsigned char) (*((unsigned int*)(&i)) & 0xff);
@@ -53,7 +53,7 @@ inline const void * _memory_find_u8(const void* l, int i, memsize len)
 
 
 
-inline const void * memory_find_u8(const void* l, int i, memsize len)
+inline const void * memory_find_unsigned_char(const void* l, int i, memsize len)
 {
 
     if(::is_null(l))
@@ -63,7 +63,7 @@ inline const void * memory_find_u8(const void* l, int i, memsize len)
 
     }
 
-    return _memory_find_u8(l, i, len);
+    return _memory_find_unsigned_char(l, i, len);
 
 }
 

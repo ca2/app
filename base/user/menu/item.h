@@ -27,7 +27,7 @@ namespace menu
       int                              m_iLevel;
       ::pointer<::user::menu>          m_pmenu;
       string                           m_strTitle;
-      ::rectangle_i32                  m_rectangleUi;
+      ::int_rectangle                  m_rectangleUi;
       int                            m_iColumn;
       int                            m_iRow;
       ::pointer<::image::image>        m_pimage;

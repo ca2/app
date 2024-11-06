@@ -319,8 +319,8 @@ public:
       domain_id            m_domainid;
       ::string             m_str;
       ::ansi_range         m_range;
-      ::i64                m_iLargest;
-      ::u64                m_uLargest;
+      huge_integer                m_iLargest;
+      huge_natural                m_uLargest;
 
    };
 
@@ -523,9 +523,9 @@ public:
    inline bool operator == (const ::string & str) const;
    inline ::std::strong_ordering operator <=> (const ::string & str) const;
 
-   template < strsize n >
+   template < character_count n >
    inline bool operator == (const ::ansi_character (&cha)[n]) const;
-   template < strsize n >
+   template < character_count n >
    inline ::std::strong_ordering operator <=> (const ::ansi_character (&cha)[n]) const;
 
    //inline ::std::strong_ordering order(const ::scoped_string & scopedstr) const;
@@ -676,11 +676,11 @@ public:
    //inline operator ::iptr() const { return as_iptr(); }
    //inline operator ::enum_message () const { return as_emessage(); }
    
-   inline ::i64 as_i64() const;
+   inline huge_integer as_huge_integer() const;
    inline ::iptr as_iptr() const;
-   inline int as_int() const { return (int) as_i64(); }
-   inline unsigned int as_unsigned_int() const { return (unsigned int) as_i64(); }
-   inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
+   inline int as_int() const { return (int) as_huge_integer(); }
+   inline unsigned int as_unsigned_int() const { return (unsigned int) as_huge_integer(); }
+   inline ::collection::index as_index() const { return (::collection::index)as_huge_integer(); }
    inline unsigned int as_umessage() const { return as_unsigned_int(); }
    inline ::enum_message as_emessage() const;
    inline ::enum_id as_eid() const;
@@ -721,7 +721,7 @@ public:
 
    inline bool is_null() const;
    inline bool is_empty() const;
-   inline bool has_char() const;
+   inline bool has_character() const;
    inline bool is_set() const { return !is_empty(); }
    
    inline void Empty();

@@ -203,7 +203,7 @@ namespace file
    }
 
 
-   ::file::file & file::getline(char* sz, strsize n)
+   ::file::file & file::getline(char* sz, character_count n)
    {
 
       char c;
@@ -211,7 +211,7 @@ namespace file
       while (n > 0)
       {
 
-         c = (char) get_u8();
+         c = (char) get_unsigned_char();
 
          if (is_end_of_file())
          {
@@ -222,7 +222,7 @@ namespace file
          else if (c == '\n')
          {
 
-            c = (char) get_u8();
+            c = (char) get_unsigned_char();
 
             if (c != '\r' && !is_end_of_file())
             {
@@ -237,7 +237,7 @@ namespace file
          else if (c == '\r')
          {
 
-            c = get_u8();
+            c = get_unsigned_char();
 
             if (c != '\n' && !is_end_of_file())
             {
@@ -497,7 +497,7 @@ namespace file
    }
 
 
-   int file::get_u8()
+   int file::get_unsigned_char()
    {
 
       unsigned char uch = 0;
@@ -514,7 +514,7 @@ namespace file
    }
 
    
-   int file::get_u16()
+   int file::get_unsigned_short()
    {
 
       unsigned short u = 0;
@@ -531,7 +531,7 @@ namespace file
    }
 
 
-   bool file::get_u64(::u64 & u)
+   bool file::get_huge_natural(huge_natural & u)
    {
 
       if (read({ &u, 8 }) != 8)
@@ -608,7 +608,7 @@ namespace file
          else
          {
 
-            b = get_u8();
+            b = get_unsigned_char();
 
          }
 
@@ -633,7 +633,7 @@ namespace file
          if (b == '\r')
          {
 
-            b1 = get_u8();
+            b1 = get_unsigned_char();
 
             if (b1 != '\n' && !is_end_of_file())
             {
@@ -1307,13 +1307,13 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (i64 i)
+   void file::write (huge_integer i)
    {
       __UNREFERENCED_PARAMETER(i);
       throw ::interface_only();
    }
 
-   void file::write (u64 u)
+   void file::write (huge_natural u)
    {
       __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();
@@ -1331,14 +1331,14 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const ::rectangle_i32 & rectangle)
+   void file::write (const ::int_rectangle & rectangle)
    {
       __UNREFERENCED_PARAMETER(pcrect);
 
       throw ::interface_only();
    }
 
-   void file::write (const size_i32 & & size)
+   void file::write (const int_size & & size)
    {
       __UNREFERENCED_PARAMETER(size);
       throw ::interface_only();

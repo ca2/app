@@ -2,7 +2,7 @@
 
 
 //template < typename ENUM >
-//inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
+//inline bool __enum_is_failed(const ENUM & e) { return !(huge_integer)e; }
 
 
 template < typename ENUM >
@@ -48,16 +48,16 @@ public:
    constexpr  enumeration & operator &= (const enumeration & e) { m_eenum = (ENUM) (m_eenum & e.m_eenum); return *this; }
 
    constexpr  enumeration & operator += (ENUM e) { return operator |= (e); }
-   constexpr  enumeration & operator -= (ENUM e) { return operator &= ((ENUM)~(i64)(e)); }
+   constexpr  enumeration & operator -= (ENUM e) { return operator &= ((ENUM)~(huge_integer)(e)); }
 
    constexpr  enumeration & operator += (const enumeration & e) { return operator |= ((ENUM)e.m_eenum); }
-   constexpr  enumeration & operator -= (const enumeration & e) { return operator &= ((ENUM)~(i64)(e.m_eenum)); }
+   constexpr  enumeration & operator -= (const enumeration & e) { return operator &= ((ENUM)~(huge_integer)(e.m_eenum)); }
 
    constexpr  enumeration & operator ^= (ENUM e) { toggle(e);  return *this; }
    constexpr  enumeration & operator ^= (const enumeration & e) { toggle(e);  return *this; }
 
 //   inline enumeration operator + (ENUM e) const { return (ENUM)(m_eenum | e); }
-   constexpr  enumeration operator - (ENUM e) const { return (ENUM)(m_eenum & ~((i64)e)); }
+   constexpr  enumeration operator - (ENUM e) const { return (ENUM)(m_eenum & ~((huge_integer)e)); }
 
    //template < typename TYPE >
    //enumeration operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
@@ -78,7 +78,7 @@ public:
    constexpr  enumeration operator | (const enumeration & e) const { return (ENUM)(m_eenum | e.m_eenum); }
    constexpr  enumeration operator & (const enumeration & e) const { return (ENUM)(m_eenum & e.m_eenum); }
 
-   constexpr  bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
+   constexpr  bool is(ENUM e) const { return (huge_integer)(m_eenum & e) == (huge_integer)e; }
    constexpr  bool has(ENUM e) const { return is(e); }
    constexpr  bool is_clear(ENUM e) const { return !(m_eenum & e); }
 
@@ -124,7 +124,7 @@ public:
    constexpr enumeration & operator ++(int)
    {
 
-      m_eenum = (ENUM)((::i64) m_eenum + 1);
+      m_eenum = (ENUM)((huge_integer) m_eenum + 1);
 
       return *this;
 
@@ -134,7 +134,7 @@ public:
    constexpr enumeration & operator %=(const ENUM & eenum)
    {
 
-      m_eenum = (ENUM)((::i64) m_eenum % (::i64) eenum);
+      m_eenum = (ENUM)((huge_integer) m_eenum % (huge_integer) eenum);
 
       return *this;
 
@@ -143,7 +143,7 @@ public:
    constexpr enumeration& rotate(const ENUM& eenum)
    {
 
-      if ((::i64) m_eenum < 0)
+      if ((huge_integer) m_eenum < 0)
       {
 
          m_eenum = (ENUM) 0;
@@ -162,16 +162,16 @@ public:
 
 
 #define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
-constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
+constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((huge_natural)e | (huge_natural)f); } \
 template < primitive_integral INTEGRAL > \
-constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
+constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((huge_natural)e | (huge_natural)i); } \
 template < primitive_integral INTEGRAL > \
-constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
-constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
+constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((huge_natural)i | (huge_natural)e); } \
+constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((huge_natural)e & (huge_natural)f); } \
 template < primitive_integral INTEGRAL > \
-constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
+constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((huge_natural)e & (huge_natural)i); } \
 template < primitive_integral INTEGRAL > \
-constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
+constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((huge_natural)i & (huge_natural)e); } \
 using ENUMERATION = ::enumeration < ENUM >
 
 

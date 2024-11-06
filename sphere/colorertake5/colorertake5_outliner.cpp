@@ -123,7 +123,7 @@ namespace colorertake5
       {
          OutlineItem *thisItem = outline.last();
 
-         if (itemLabel.has_char() && thisItem->token.has_char() && thisItem->lno == lno)
+         if (itemLabel.has_character() && thisItem->token.has_character() && thisItem->lno == lno)
             thisItem->token += itemLabel;
 
       }

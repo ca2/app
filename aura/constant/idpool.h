@@ -41,7 +41,7 @@
 //      //atom su;
 //      //atom lv;
 //      //atom li;
-//      //atom hu;
+//      //atom hn;
 //      //atom sk;
 //      //atom si;
 //      //atom ro;

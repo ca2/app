@@ -105,7 +105,7 @@ namespace sockets
          if (m_straProxy.get_count() == 1)
          {
 
-            strsize iPos = str.find(" ");
+            character_count iPos = str.find(" ");
 
             string strStatus;
 
@@ -252,7 +252,7 @@ namespace sockets
    bool http_tunnel::open(bool bConfigProxy)
    {
 
-      if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
+      if (m_strProxy.has_character() && m_iProxyPort > 0 && !m_bDirect)
       {
       }
       else if (bConfigProxy)

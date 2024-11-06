@@ -53,7 +53,7 @@ public:
    }
 
    
-   ::string & substring(::string & str, strsize count)
+   ::string & substring(::string & str, character_count count)
    {
 
       str.assign(m_iterator, count);
@@ -84,7 +84,7 @@ public:
 
 
    template < primitive_range RANGE >
-   RANGE & substring(RANGE & range, strsize count)
+   RANGE & substring(RANGE & range, character_count count)
    {
 
       range.begin() = m_iterator;
@@ -145,7 +145,7 @@ public:
 
    bool get_next_word(::string * pstrToken = nullptr);
 
-   strsize read(void* p, strsize s)
+   character_count read(void* p, character_count s)
    {
 
       auto iRead = minimum(s, this->m_end - m_iterator);

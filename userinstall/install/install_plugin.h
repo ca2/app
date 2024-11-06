@@ -66,7 +66,7 @@ namespace install
 
       string               m_strLoginRequestingServer;
 
-      ::rectangle_i32             m_rectangleSent;
+      ::int_rectangle             m_rectangleSent;
       string_array              m_straLinesNativeLaunch;
 
       //bool                 m_bHasCred;
@@ -91,7 +91,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect);
 
       virtual void on_prepare_memory();
 
@@ -101,7 +101,7 @@ namespace install
       
       virtual void message_handler(::user::message * pusermessage) override;
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect);
 
       virtual double extract_spa_progress_rate();
 
@@ -109,7 +109,7 @@ namespace install
 
 #ifndef UNIVERSAL_WINDOWS
 
-      virtual void on_post(::aura::ipc::rx * prx, i64 a, i64 b);
+      virtual void on_post(::aura::ipc::rx * prx, huge_integer a, huge_integer b);
 
       using ::hotplugin::plugin::on_receive;
 
@@ -131,10 +131,10 @@ namespace install
       virtual string defer_get_plugin();
 
       using ::hotplugin::plugin::viewport_screen_to_client;
-      virtual void viewport_screen_to_client(::point_i32 * ppt);
+      virtual void viewport_screen_to_client(::int_point * ppt);
       
       using ::hotplugin::plugin::viewport_client_to_screen;
-      virtual void viewport_client_to_screen(::point_i32 * ppt);
+      virtual void viewport_client_to_screen(::int_point * ppt);
 
       virtual bool set_host(::hotplugin::host * phost);
 

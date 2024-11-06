@@ -12,8 +12,8 @@ namespace graphics
    public:
 
       ::image::image_pointer               m_pimage;
-      ::size_i32                        m_sizeTile;
-      ::size_i32                        m_sizeWindow;
+      ::int_size                        m_sizeTile;
+      ::int_size                        m_sizeWindow;
       int                           m_x;
       int                           m_y;
       int                           m_iColor;
@@ -27,7 +27,7 @@ namespace graphics
       int                           m_iLastPen;
 
 
-      console::size_i32 sizeTile);
+      console::int_size sizeTile);
 
       virtual ::draw2d::pen_pointer & get_pen2(int iColor);
       virtual ::draw2d::pen_pointer & get_pen1(int iColor);

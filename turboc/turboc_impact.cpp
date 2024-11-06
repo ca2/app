@@ -181,7 +181,7 @@ namespace turboc
 /*   void impact::_006OnDraw(::image::image *pimage)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -207,7 +207,7 @@ namespace turboc
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
+            ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
             double ratey = fHeight * 0.84 / size.cy();
 
@@ -260,7 +260,7 @@ namespace turboc
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-         ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
+         ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
          pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
 
@@ -291,7 +291,7 @@ namespace turboc
 
          }
 
-         pgraphics->BitBlt(::point_i32(),size_i32(m_cx,m_cy),m_pimageFast->get_graphics());
+         pgraphics->BitBlt(::int_point(),int_size(m_cx,m_cy),m_pimageFast->get_graphics());
 
          //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
@@ -345,15 +345,15 @@ namespace turboc
 
          unsigned char uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
 
          GetClientRect(rectangleX);
 
          //pgraphics->FillSolidRect(rectangleX,0);
 
-/*         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
+/*         pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),pimage->get_size(),pimage->g(),::int_point(),uchAlpha);
 
-         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
+         pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),imageFast.m_size,imageFast.get_graphics(),::int_point(),255 - uchAlpha);
 
       }
       else
@@ -363,7 +363,7 @@ namespace turboc
 
       }
 
-      //pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
+      //pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),imageFast.m_size,imageFast.get_graphics(),::int_point(),255);
 
 
       //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
@@ -373,7 +373,7 @@ namespace turboc
    void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -392,7 +392,7 @@ namespace turboc
 
       pdcScreen->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdcScreen->from(::point_i32(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::point_i32());
+      pdcScreen->from(::int_point(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::int_point());
 
 //      pdcScreen->FillSolidRect(500,200,100,100,argb(255,255,210,0));
 
@@ -408,7 +408,7 @@ namespace turboc
 
       synchronous_lock slDraw(m_pmutexDraw);
 
-      ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
+      ::int_size sizeNew = ::int_size(m_cx,m_cy) + ::int_size(100,100);
 
       bool bNewSize = m_pimageFast->width() < sizeNew->cx() || m_pimageFast->height() < sizeNew->cy();
 
@@ -431,7 +431,7 @@ namespace turboc
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
       double ratey = fHeight * 0.84 / size.cy();
 
@@ -499,7 +499,7 @@ namespace turboc
    void impact::full_render()
    {
 
-      size_i32 sizeNew = size_i32(m_cx, m_cy) + size(100,100);
+      int_size sizeNew = int_size(m_cx, m_cy) + size(100,100);
 
       if(m_bNewLayout)
       {
@@ -520,7 +520,7 @@ namespace turboc
             //          unsigned int dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            informationf("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
+//            informationf("hello_impact::lyot call timeA= %d ms",(huge_natural) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -744,7 +744,7 @@ namespace turboc
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -874,8 +874,8 @@ namespace turboc
 
          m_bFirstDone = true;
 
-         ::rectangle_i32 rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
-         ::rectangle_i32 rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
+         ::int_rectangle rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
+         ::int_rectangle rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 

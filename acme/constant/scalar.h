@@ -42,16 +42,16 @@ enum enum_number : unsigned char
 {
 
    e_number_none,
-   e_number_i8 = 2,
-   e_number_u8 = 4,
-   e_number_i16 = 2 | 8,
-   e_number_u16 = 4 | 8,
-   e_number_i32 = 2 | 16,
-   e_number_u32 = 4 | 16,
-   e_number_i64 = 2 | 32,
-   e_number_u64 = 4 | 32,
-   e_number_f32 = 64,
-   e_number_f64 = 65,
+   e_number_char = 2,
+   e_number_unsigned_char = 4,
+   e_number_short = 2 | 8,
+   e_number_unsigned_short = 4 | 8,
+   e_number_int = 2 | 16,
+   e_number_unsigned_int = 4 | 16,
+   e_number_huge_integer = 2 | 32,
+   e_number_huge_natural = 4 | 32,
+   e_number_float = 64,
+   e_number_double = 65,
 };
 
 

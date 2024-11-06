@@ -334,8 +334,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
-         ::point_f64(sx, sy),
-         ::point_f64(ex, ey),
+         ::double_point(sx, sy),
+         ::double_point(ex, ey),
          __color(icol),
          __color(ocol));
    
@@ -358,8 +358,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
-         ::point_f64(x, y),
-         ::point_f64(w, h),
+         ::double_point(x, y),
+         ::double_point(w, h),
          r,
          __color(icol),
          __color(ocol));
@@ -382,8 +382,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
-         ::point_f64(cx - inr, cy - outr),
-         ::size_f64(inr * 2.0f, outr * 2.0f),
+         ::double_point(cx - inr, cy - outr),
+         ::double_size(inr * 2.0f, outr * 2.0f),
          __color(icol),
          __color(ocol));
 
@@ -417,11 +417,11 @@ namespace nano2d
 
       //paintimage.m_pbrush->CreatePatternBrush(
       //   pimage,
-      //   ::size_f64(w, h));
+      //   ::double_size(w, h));
 
       
 
-      ::rectangle_f64 rectangleTarget(::point_f64(cx, cy), ::size_f64(w, h));
+      ::double_rectangle rectangleTarget(::double_point(cx, cy), ::double_size(w, h));
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -593,7 +593,7 @@ namespace nano2d
    void draw2d_context::scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_double_dimension(x, y, w, h);
+      auto r = double_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->reset_clip();
 
@@ -605,7 +605,7 @@ namespace nano2d
    void draw2d_context::intersect_scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_double_dimension(x, y, w, h);
+      auto r = double_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->intersect_clip(r);
 
@@ -874,13 +874,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->set_current_point(::point_f64(x, y));
+         m_pstate->m_ppath->set_current_point(::double_point(x, y));
 
       }
       else
       {
 
-         m_pgraphics->set_current_point(::point_f64(x, y));
+         m_pgraphics->set_current_point(::double_point(x, y));
 
       }
 
@@ -893,13 +893,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_line(::point_f64(x, y));
+         m_pstate->m_ppath->add_line(::double_point(x, y));
 
       }
       else
       {
 
-         m_pgraphics->line_to(::point_f64(x, y));
+         m_pgraphics->line_to(::double_point(x, y));
 
       }
 
@@ -912,32 +912,32 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_rectangle(rectangle_double_dimension(x, y, w, h));
+         m_pstate->m_ppath->add_rectangle(double_rectangle_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(rectangle_double_dimension(x, y, w, h));
+         m_pgraphics->rectangle(double_rectangle_dimension(x, y, w, h));
 
       }
 
    }
 
 
-   void draw2d_context::ellipse_f64(float cx, float cy, float rx, float ry)
+   void draw2d_context::double_ellipse(float cx, float cy, float rx, float ry)
    {
 
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_ellipse(rectangle_double_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
+         m_pstate->m_ppath->add_ellipse(double_rectangle_dimension(cx - rx, cy - ry, rx *2.0, ry*2.0));
 
       }
       else
       {
 
-         m_pgraphics->ellipse(rectangle_double_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
+         m_pgraphics->ellipse(double_rectangle_dimension(cx - rx, cy - ry, rx * 2.0, ry * 2.0));
 
       }
 
@@ -950,13 +950,13 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_arc(rectangle_double_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pstate->m_ppath->add_arc(double_rectangle_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
 
       }
       else
       {
 
-         m_pgraphics->arc(rectangle_double_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
+         m_pgraphics->arc(double_rectangle_dimension(cx - r, cy - r, r * 2.0, r * 2.0), a0, dir ? a1 - a0 : a0 - a1);
 
       }
 
@@ -1040,7 +1040,7 @@ namespace nano2d
    void draw2d_context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
    {
 
-      ::rectangle_f64 rectangleTarget(x, y, x + w, y + h);
+      ::double_rectangle rectangleTarget(x, y, x + w, y + h);
 
       ::image::image_source imagesource(pimage);
 

@@ -169,7 +169,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
 CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path & pathParam)
 {
 
-   if(pathParam.has_char())
+   if(pathParam.has_character())
    {
 
       auto path = pathParam;
@@ -181,7 +181,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha,
 
          path = path.folder();
 
-      } while (path.has_char());
+      } while (path.has_character());
 
    }
 
@@ -193,7 +193,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha,
 CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path & pathParam)
 {
 
-   if(pathParam.has_char())
+   if(pathParam.has_character())
    {
 
       auto path = pathParam;
@@ -205,7 +205,7 @@ CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::
 
          path = path.folder();
 
-      } while (path.has_char());
+      } while (path.has_character());
 
    }
 

@@ -10,7 +10,7 @@ namespace str
    protected:
 
 
-      strsize      m_nCurrentIndex;
+      character_count      m_nCurrentIndex;
 
 
    public:

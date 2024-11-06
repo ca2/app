@@ -76,7 +76,7 @@ namespace heap
 
    }
 
-   ::i64 g_iDebugMemoryA = 0;
+   huge_integer g_iDebugMemoryA = 0;
 
    void memory::free(void * p)
    {

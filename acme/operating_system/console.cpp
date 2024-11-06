@@ -40,7 +40,7 @@ namespace console
    }
 
 
-   ::rectangle_i32 console::get_position_rectangle(int y, int x)
+   ::int_rectangle console::get_position_rectangle(int y, int x)
    {
     
       throw ::interface_only();
@@ -61,7 +61,7 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 
    string strPrompt;
 
-   if (scopedstrPrompt.has_char())
+   if (scopedstrPrompt.has_character())
    {
 
       strPrompt = scopedstrPrompt;

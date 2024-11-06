@@ -390,7 +390,7 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //   if (m_nAllocSize == 128)
 //   {
-//      u64 & u = ((u64 &)pParam);
+//      huge_natural & u = ((huge_natural &)pParam);
 //
 //      if ((u & 0xff000000) == 00)
 //      {

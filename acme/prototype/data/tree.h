@@ -32,12 +32,12 @@ namespace data
 
       virtual void on_insert_tree(tree * ptree);
 
-      virtual i64 increment_reference_count() override
+      virtual huge_integer increment_reference_count() override
       {
          return ::matter::increment_reference_count();
       }
 
-      virtual i64 decrement_reference_count() override
+      virtual huge_integer decrement_reference_count() override
       {
          return ::matter::decrement_reference_count();
       }
@@ -57,7 +57,7 @@ namespace data
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::element * ptree, const ::point_i32 & point);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
 
       virtual void erase(tree_item_ptr_array & itemptra);
       virtual void erase(tree_item * pitem);

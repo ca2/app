@@ -27,7 +27,7 @@ bool html_document::on_new_document()
    if (::is_set(phtmlform) && ::is_set(phtmldata))
    {
 
-      if (phtmlform->m_pathDefaultDocument.has_char())
+      if (phtmlform->m_pathDefaultDocument.has_character())
       {
 
          return phtmldata->open_document(phtmlform->m_pathDefaultDocument);

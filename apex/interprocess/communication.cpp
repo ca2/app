@@ -68,7 +68,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) node()->current_process_identifier();
+      m_atomApp = (huge_integer) node()->current_process_identifier();
 
 #endif
 
@@ -146,7 +146,7 @@ namespace interprocess
       //
       //   }
       //
-      //   ::i64 iCall = ::str::consume_natural(strMessage);
+      //   huge_integer iCall = ::str::consume_natural(strMessage);
       //
       //   if(!strMessage.begins_eat(" from "))
       //   {
@@ -224,7 +224,7 @@ namespace interprocess
       //
       //   str1.trim();
       //
-      //   strsize iFind2 = str1.find(".");
+      //   character_count iFind2 = str1.find(".");
       //
       //   if(iFind2 < 0)
       //   {
@@ -290,7 +290,7 @@ namespace interprocess
 
             string strOriginObject = propertyset["protocol"]["origin_object"].as_string();
 
-            auto iCallId = propertyset["protocol"]["call_id"].as_i64();
+            auto iCallId = propertyset["protocol"]["call_id"].as_huge_integer();
 
             auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -561,7 +561,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   ::i64 iCall = ::str::consume_natural(strMessage);
+   //   //   huge_integer iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -639,7 +639,7 @@ namespace interprocess
    //   //
    //   //   str1.trim();
    //   //
-   //   //   strsize iFind2 = str1.find(".");
+   //   //   character_count iFind2 = str1.find(".");
    //   //
    //   //   if(iFind2 < 0)
    //   //   {
@@ -698,7 +698,7 @@ namespace interprocess
 
    //         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-   //         auto iCallId = propertyset["protocol"]["call_id"].i64();
+   //         auto iCallId = propertyset["protocol"]["call_id"].huge_integer();
 
    //         auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -740,7 +740,7 @@ namespace interprocess
    }
 
 
-   ::pointer<::interprocess::task>communication::get_task(i64 iTask)
+   ::pointer<::interprocess::task>communication::get_task(huge_integer iTask)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -792,7 +792,7 @@ namespace interprocess
          if (strMember.case_insensitive_begins("reply."))
          {
 
-            ::i64 iTask = propertyset["protocol:call_id"].as_i64();
+            huge_integer iTask = propertyset["protocol:call_id"].as_huge_integer();
 
             auto pinterprocesstask = get_task(iTask);
 
@@ -830,7 +830,7 @@ namespace interprocess
          else if (strMember == "on_new_instance")
          {
 
-            on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_i64());
+            on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_huge_integer());
 
          }
          else
@@ -925,7 +925,7 @@ namespace interprocess
 
       pathModule /= "module_list.txt";
 
-      ::file::path pathPid = pnode->process_identifier_module_path((unsigned int)idPid.as_i64());
+      ::file::path pathPid = pnode->process_identifier_module_path((unsigned int)idPid.as_huge_integer());
 
       string strModuleList = file_system()->as_string(pathModule);
 
@@ -944,7 +944,7 @@ namespace interprocess
 
          bool bOk = false;
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             string_array a;
@@ -958,7 +958,7 @@ namespace interprocess
 
                string strPath = pnode->process_identifier_module_path(atoi(a[1]));
 
-               if (strPath.has_char())
+               if (strPath.has_character())
                {
 
                   if (strPath.case_insensitive_order(a[0]) == 0)
@@ -1004,7 +1004,7 @@ namespace interprocess
 
       string strItem;
 
-      if (pathPid.has_char())
+      if (pathPid.has_character())
       {
 
          strItem = pathPid + "|" + idPid;

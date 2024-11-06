@@ -82,7 +82,7 @@ namespace parallelization
 //public:
 //
 //
-//   interlocked_i32      m_interlocked;
+//   interlocked_int      m_interlocked;
 //
 //
 //   counter32(int lCount) : m_interlocked(lCount) {}

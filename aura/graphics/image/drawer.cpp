@@ -38,7 +38,7 @@ void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 }
 
 
-//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_draw_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource)
 //{
 //
 //   if (rectangleTarget.size() == rectangleSource.size())
@@ -59,7 +59,7 @@ void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
+//void image_drawer::_draw_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_point & pointSrc)
 //{
 //
 //   return false;
@@ -67,7 +67,7 @@ void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_stretch_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource)
 //{
 //
 //   return false;
@@ -75,7 +75,7 @@ void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
+//void image_drawer::_draw_blend(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & pointSrc)
 //{
 //
 //   return false;
@@ -116,7 +116,7 @@ void image_drawer::_draw_raw(const ::image::image_drawing & imagedrawing)
 }
 
 
-void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
+void image_drawer::_draw_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::double_point & pointSrc)
 {
 
    ::image::image_source imagesource(pimage, { pointSrc, rectangleTarget.size()});
@@ -132,7 +132,7 @@ void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::i
 }
 
 
-void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
+void image_drawer::_stretch_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::double_rectangle & rectangleSource)
 {
 
 }

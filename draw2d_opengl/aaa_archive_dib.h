@@ -47,9 +47,9 @@ namespace draw2d_opengl
 
 
       bool from(::draw2d::graphics * pgraphics);
-      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::size sz);
 
-      bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size size, point ptSrc);
+      bool to(::draw2d::graphics * pgraphics, const ::int_point & point, ::size size, point ptSrc);
 
 
       void SetIconMask(::image::icon * picon, int cx, int cy);
@@ -75,7 +75,7 @@ namespace draw2d_opengl
       //void mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(int R, int G, int B);
 
-      //void rotate(::image::image *pimage, const ::rectangle_f64 & rectangle, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, const ::double_rectangle & rectangle, double dAngle, double dScale);
       //void rotate(::image::image *pimage, double dAngle, double dScale);
       //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 

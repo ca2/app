@@ -73,11 +73,11 @@ void o_debug_string(const ::scoped_string & scopedstr)
 CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
 {
 
-   strsize iLen;
+   character_count iLen;
 
    iLen = scopedstrText.size();
 
-   if (scopedstrFile.has_char())
+   if (scopedstrFile.has_character())
    {
 
       iLen += scopedstrFile.size();
@@ -99,7 +99,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    ansi_ncpy(psz, scopedstrText, scopedstrText.size());
 
-   if (scopedstrFile.has_char())
+   if (scopedstrFile.has_character())
    {
 
       ansi_concatenate(psz, ", \"");
@@ -111,7 +111,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
          char pszNum[30];
 
-         ansi_from_i64(pszNum, iLine, 10, e_digit_case_upper);
+         ansi_from_huge_integer(pszNum, iLine, 10, e_digit_case_upper);
 
          ansi_concatenate(psz, "(");
 

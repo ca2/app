@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context,::user::tree * ptree,const ::point_i32 & point)
+   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context,::user::tree * ptree,const ::int_point & point)
    {
 
       for(::collection::index i = 0; i < m_usertreea.get_count(); i++)

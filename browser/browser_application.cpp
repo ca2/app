@@ -106,7 +106,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
 
       string str = m_varTopicQuery["browser"];
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          m_strHelloBrowser = str;
@@ -192,7 +192,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
 
       }
 
-      if (pcreate->m_payloadFile.has_char())
+      if (pcreate->m_payloadFile.has_character())
       {
 
          m_ptemplateHelloBrowserView->do_request(pcreate);
@@ -212,14 +212,14 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
    }
 
 
-   i64 application::increment_reference_count()
+   huge_integer application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
 
    }
 
-   i64 application::decrement_reference_count()
+   huge_integer application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

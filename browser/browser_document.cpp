@@ -96,7 +96,7 @@ namespace browser
       }
       else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
               && file()->exists(payloadFile)
-              && (str = file()->as_string(payloadFile)).has_char())
+              && (str = file()->as_string(payloadFile)).has_character())
       {
 
          get_typed_impact < ::user::plain_edit_impact >()->set_text(str.left(84),::e_source_user);
@@ -114,14 +114,14 @@ namespace browser
    }
 
 
-   i64 document::increment_reference_count()
+   huge_integer document::increment_reference_count()
    {
 
       return  ::user::document::increment_reference_count();
 
    }
 
-   i64 document::decrement_reference_count()
+   huge_integer document::decrement_reference_count()
    {
 
       return  ::user::document::decrement_reference_count();

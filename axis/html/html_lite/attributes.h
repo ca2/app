@@ -242,7 +242,7 @@ private:
 // Parsing Helpers
 public:
    // parses an attribute/value pair from the given string
-   strsize parseFromStr(::lite_html_reader * preader, const ::string & pszString);
+   character_count parseFromStr(::lite_html_reader * preader, const ::string & pszString);
 
 
 };
@@ -319,7 +319,7 @@ public:
 // Initialization
 public:
    // parses attribute/value pairs from the given string
-   strsize parseFromStr(::lite_html_reader * papp, const ::string & pszString, strsize iLen);
+   character_count parseFromStr(::lite_html_reader * papp, const ::string & pszString, character_count iLen);
 
 
 

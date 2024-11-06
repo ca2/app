@@ -171,7 +171,7 @@ namespace draw2d_cairo
 
       bool bFont = false;
 
-      if (m_path.has_char())
+      if (m_path.has_character())
       {
 
          ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->draw2d();
@@ -190,7 +190,7 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      int iPangoSize = (int) (m_fontsize.double() * PANGO_SCALE);
+      int iPangoSize = (int) (m_fontsize.as_double() * PANGO_SCALE);
 
       if(iPangoSize <= 0)
       {
@@ -231,13 +231,13 @@ namespace draw2d_cairo
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.double() * PANGO_SCALE);
+         pango_font_description_set_absolute_size(m_pdesc, m_fontsize.as_double() * PANGO_SCALE);
 
       }
       else
       {
 
-         pango_font_description_set_size(m_pdesc, m_fontsize.double() * PANGO_SCALE);
+         pango_font_description_set_size(m_pdesc, m_fontsize.as_double() * PANGO_SCALE);
 
       }
 

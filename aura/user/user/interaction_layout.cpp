@@ -103,10 +103,10 @@ namespace user
 
 
 
-   //void interaction_layout::set_placement(const ::rectangle_i32 & rectangleParam)
+   //void interaction_layout::set_placement(const ::int_rectangle & rectangleParam)
    //{
 
-   //   ::rectangle_i32 rectangle(rectangleParam);
+   //   ::int_rectangle rectangle(rectangleParam);
 
    //   rectangle.deflate(m_rectanglePadding);
 
@@ -115,10 +115,10 @@ namespace user
    //}
 
 
-   ::point_i32 interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
+   ::int_point interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
-      return ::point_i32();
+      return ::int_point();
 
    }
 
@@ -139,7 +139,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::move_to(const point_i32 & point)
+   //void interaction_layout::move_to(const int_point & point)
    //{
 
    //   move_to(point.x(), point.y());
@@ -157,7 +157,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(const ::size_i32& size)
+   //void interaction_layout::set_size(const ::int_size& size)
    //{
 
    //   set_size(size.cx(), size.cy());
@@ -165,7 +165,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(const ::point_i32& point, const ::size_i32& size)
+   //void interaction_layout::set_dim(const ::int_point& point, const ::int_size& size)
    //{
    //
    //   layout().sketch().m_point = point;
@@ -177,7 +177,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::place(const ::rectangle_i32& rectangle)
+   //void interaction_layout::place(const ::int_rectangle& rectangle)
    //{
    //
    //   set_dim(rectangle.origin(), rectangle.size());
@@ -188,7 +188,7 @@ namespace user
    //void interaction_layout::set_dim(int x, int y, int cx, int cy)
    //{
    //
-   //   set_dim(::point_i32(x, y), ::size_i32(cx, cy));
+   //   set_dim(::int_point(x, y), ::int_size(cx, cy));
    //
    //}
 
@@ -445,7 +445,7 @@ namespace user
 
 
 
-   //void interaction_layout::window_rectangle(::rectangle_i32* prectangle) const
+   //void interaction_layout::window_rectangle(::int_rectangle* prectangle) const
    //{
 
    //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
@@ -470,7 +470,7 @@ namespace user
    //}
 
 
-   void interaction_layout::set_initial_dim(const ::point_i32 & p, const ::size_i32 & s)
+   void interaction_layout::set_initial_dim(const ::int_point & p, const ::int_size & s)
    {
 
       sketch().set_visual_state_origin(p);

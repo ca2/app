@@ -25,7 +25,7 @@ namespace app_shader
       //::pointer<::gpu::context>           m_pgpucontext;
       //::pointer<::gpu::program>           m_pgpuprogram;
       ::image::image_pointer                     m_pimageFromGpu;
-      //rectangle_i32                       m_rectangle;
+      //int_rectangle                       m_rectangle;
       string                              m_strFont1;
       string_map < ::image::image_pointer >      m_pimagemap;
       ::image::image_pointer                     m_pimage1;

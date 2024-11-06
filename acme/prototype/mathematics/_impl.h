@@ -15,7 +15,7 @@
 
 
 
-//inline i64 random(i64 i1, i64 i2)
+//inline huge_integer random(huge_integer i1, huge_integer i2)
 //{
 //   return __random_int(i1, i2);
 //}
@@ -28,15 +28,15 @@
 
 
 
-//inline i64 random(int i1, i64 i2)
+//inline huge_integer random(int i1, huge_integer i2)
 //{
-//   return __random_int((i64) i1, i2);
+//   return __random_int((huge_integer) i1, i2);
 //}
 
 
-//inline i64 random(i64 i1, int i2)
+//inline huge_integer random(huge_integer i1, int i2)
 //{
-//   return __random_int(i1, (i64)i2);
+//   return __random_int(i1, (huge_integer)i2);
 //}
 
 

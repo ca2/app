@@ -529,7 +529,7 @@ namespace universal_windows
 //      int cchSrc,
 //      LPWORD lpCharType)
 //   {
-//      strsize iCount = cchSrc;
+//      character_count iCount = cchSrc;
 //      if(iCount < 0)
 //         iCount = unicode_to_multibyte_count(uCodePage, lpSrcStr);
 //      string str;

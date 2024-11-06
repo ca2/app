@@ -17,7 +17,7 @@ namespace windowing
    }
 
 
-   void placement_log::add(const ::rectangle_i32& rectangle)
+   void placement_log::add(const ::int_rectangle& rectangle)
    {
 
       placement_log_item item;
@@ -32,7 +32,7 @@ namespace windowing
    }
       
    
-   bool placement_log::has_recent(const ::rectangle_i32& rectangle)
+   bool placement_log::has_recent(const ::int_rectangle& rectangle)
    {
 
       clean_recent();
@@ -55,7 +55,7 @@ namespace windowing
    }
    
 
-   bool placement_log::has_recent(const ::size_i32& size)
+   bool placement_log::has_recent(const ::int_size& size)
    {
 
       clean_recent();
@@ -78,7 +78,7 @@ namespace windowing
    }
 
 
-   bool placement_log::has_recent(const ::point_i32& point)
+   bool placement_log::has_recent(const ::int_point& point)
    {
 
       clean_recent();

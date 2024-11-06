@@ -169,7 +169,7 @@ public:
 
 
    template < primitive_point POINT >
-   inline ::point_f64 to_point_rate(const POINT & point) const
+   inline ::double_point to_point_rate(const POINT & point) const
    {
 
       return { ((double)point.x() - (double)this->left()) / (double)width(),
@@ -177,7 +177,7 @@ public:
 
    }
 
-   inline POINT_TYPE from_point_rate(const ::point_f64 & point) const
+   inline POINT_TYPE from_point_rate(const ::double_point & point) const
    {
 
       return POINT_TYPE((UNIT_TYPE)(point.x() * (double)width() + (double)this->left()),
@@ -1013,10 +1013,10 @@ public:
    }
 
 
-   ::size_f64 aspect_size(const rectangle_type & rectangle) const
+   ::double_size aspect_size(const rectangle_type & rectangle) const
    {
 
-      ::size_f64 size = { (double) width(), (double) height()};
+      ::double_size size = { (double) width(), (double) height()};
 
       double dW = (double)rectangle.width() / size.cx();
 
@@ -1577,7 +1577,7 @@ public:
 
 
 
-//using rectangle = ::rectangle_f64;
+//using rectangle = ::double_rectangle;
 
 
 
@@ -1609,48 +1609,48 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_i32 rectangle_int_dimension(X x, Y y, W w, H h)
+inline int_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return rectangle_i32(x, y, x + w, y + h);
+   return int_rectangle(x, y, x + w, y + h);
 
 }
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_i64 rectangle_i64_dimension(X x, Y y, W w, H h)
+inline huge_integer_rectangle huge_integer_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return rectangle_i64(x, y, x + w, y + h);
+   return huge_integer_rectangle(x, y, x + w, y + h);
 
 }
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_f32 rectangle_float_dimension(X x, Y y, W w, H h)
+inline float_rectangle float_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return rectangle_f32(x, y, x + w, y + h);
+   return float_rectangle(x, y, x + w, y + h);
 
 }
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline rectangle_f64 rectangle_double_dimension(X x, Y y, W w, H h)
+inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return rectangle_f64(x, y, x + w, y + h);
+   return double_rectangle(x, y, x + w, y + h);
 
 }
 
 //
-//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
+//CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator);
 //
 //
 //
-//CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator);
+//CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator);
 //
 //template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 

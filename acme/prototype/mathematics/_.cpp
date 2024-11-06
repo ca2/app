@@ -3,9 +3,9 @@
 //#include <math.h>
 
 
-::i64 ceil_div(i64 num, i64 den)
+huge_integer ceil_div(huge_integer num, huge_integer den)
 {
-   i64 quo = num / den;
+   huge_integer quo = num / den;
    if ((num % den) > 0)
       quo++;
    return quo;
@@ -104,15 +104,15 @@ int type_maximum_digits(enum_integer_type etype, int iBase)
 
 }
 
-//int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i8, iBase); }
-//int byte_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u8, iBase); }
+//int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_char, iBase); }
+//int byte_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_char, iBase); }
 //
-//int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i16, iBase); }
-//int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u16, iBase); }
+//int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_short, iBase); }
+//int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_short, iBase); }
 //
-//int int_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i32, iBase); }
-//int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
+//int int_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
+//int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_int, iBase); }
 //
-//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
-//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }
+//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_huge_integer, iBase); }
+//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_huge_natural, iBase); }
 //

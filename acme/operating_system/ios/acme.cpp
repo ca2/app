@@ -210,7 +210,7 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 
 
 //int _get_exe_path_len();
-//void _get_exe_path(char * pszPath, int size_i32);
+//void _get_exe_path(char * pszPath, int int_size);
 //
 //
 //string get_exe_path()

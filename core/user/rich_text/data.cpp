@@ -26,14 +26,14 @@ namespace user
    namespace rich_text
    {
 
-      void align(line * pline, const ::rectangle_f64 & rectangle);
+      void align(line * pline, const ::double_rectangle & rectangle);
 
       ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
       {
 
-         strsize i1 = 0;
+         character_count i1 = 0;
 
-         strsize i2 = 0;
+         character_count i2 = 0;
 
          while (true)
          {
@@ -225,12 +225,12 @@ namespace user
 
 
 
-      void data::_001Delete(strsize i1, strsize i2)
+      void data::_001Delete(character_count i1, character_count i2)
       {
 
-         strsize iSelBeg = minimum_non_negative(i1, i2);
+         character_count iSelBeg = minimum_non_negative(i1, i2);
 
-         strsize iSelEnd = maximum(i1, i2);
+         character_count iSelEnd = maximum(i1, i2);
 
          if (iSelBeg == iSelEnd)
          {
@@ -357,7 +357,7 @@ namespace user
       }
 
 
-      strsize data::_001InsertText(strsize i1, strsize i2, const ::string & strNewText, format * pformatParam)
+      character_count data::_001InsertText(character_count i1, character_count i2, const ::string & strNewText, format * pformatParam)
       {
 
          ::string strProcess(strNewText);
@@ -482,7 +482,7 @@ namespace user
 
                ASSERT(iSelBeg >= pspan->m_iPosBeg);
 
-               strsize iMid = iSelBeg - pspan->m_iPosBeg;
+               character_count iMid = iSelBeg - pspan->m_iPosBeg;
 
                if (iLine >= straLines.get_upper_bound())
                {
@@ -537,7 +537,7 @@ namespace user
       }
 
 
-      void data::_001SetFontFormat(strsize i1, strsize i2, const format * pformat, const e_attribute & eattribute)
+      void data::_001SetFontFormat(character_count i1, character_count i2, const format * pformat, const e_attribute & eattribute)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -954,7 +954,7 @@ namespace user
       }
 
 
-      strsize data::_get_text_length() const
+      character_count data::_get_text_length() const
       {
 
          _synchronous_lock synchronouslock(this->synchronization());

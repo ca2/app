@@ -121,7 +121,7 @@ namespace user
 
             synthesize_scroll_state_x(m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch], ::user::e_layout_sketch);
 
-            ::rectangle_i32 rectangleNewPos;
+            ::int_rectangle rectangleNewPos;
 
             auto pstyle = get_style();
 
@@ -426,7 +426,7 @@ namespace user
 
       pscroll->m_ecommand = ecommand;
 
-      if (dPosition != F64_MOST_NEGATIVE)
+      if (dPosition != DOUBLE_MOST_NEGATIVE)
       {
 
          pscroll->m_dPosition = dPosition;

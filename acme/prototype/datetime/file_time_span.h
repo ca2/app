@@ -9,13 +9,13 @@ class CLASS_DECL_ACME file_time_span
 public:
 
 
-   ::i64 m_iFileTimeSpan;
+   huge_integer m_iFileTimeSpan;
 
 
 
    file_time_span() noexcept;
    file_time_span(const file_time_span& span) noexcept;
-   file_time_span(file_time_span_t, ::i64 nSpan) noexcept;
+   file_time_span(file_time_span_t, huge_integer nSpan) noexcept;
 
 
    file_time_span& operator=(const file_time_span& span) noexcept;
@@ -33,8 +33,8 @@ public:
    //bool operator<=(file_time_span span) const noexcept;
    //bool operator>=(file_time_span span) const noexcept;
 
-   ::i64 get_file_time_span() const noexcept;
-   void set_file_time_span(::i64 nSpan) noexcept;
+   huge_integer get_file_time_span() const noexcept;
+   void set_file_time_span(huge_integer nSpan) noexcept;
 
 
    ::posix_time get_time_span() const noexcept;

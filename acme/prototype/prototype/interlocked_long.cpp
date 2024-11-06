@@ -6,7 +6,7 @@
 void debug_interlocked_long()
 {
 
-   interlocked_i32 l;
+   interlocked_int l;
    interlocked_count c;
 
 

@@ -87,7 +87,7 @@ inline class payload & payload::operator = (const inline_number_string & inlinen
 
 
 
-//inline void payload::set_string(const ::scoped_string & scopedstr, strsize size)
+//inline void payload::set_string(const ::scoped_string & scopedstr, character_count size)
 //{
 //
 //   if (get_type() == e_type_pstring)
@@ -846,7 +846,7 @@ inline INTEGRAL & copy(INTEGRAL & integral, const ::payload & payload)
 inline float & copy(float & f, const ::payload & payload)
 {
 
-   return f = payload.as_f32();
+   return f = payload.as_float();
 
 }
 
@@ -854,7 +854,7 @@ inline float & copy(float & f, const ::payload & payload)
 inline double & copy(double & f, const ::payload & payload)
 {
 
-   return f = payload.as_f64();
+   return f = payload.as_double();
 
 }
 

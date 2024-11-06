@@ -47,7 +47,7 @@ namespace image
 
 #endif // VECTOR3_SSE
 
-      ::size_i32           m_size;
+      ::int_size           m_size;
       int                  m_iRadius;
       byte_array           m_uchaR;
       byte_array           m_uchaG;
@@ -55,8 +55,8 @@ namespace image
       byte_array           m_uchaA;
       byte_array           m_uchaDiv;
       ::array < rgba_t >   m_rgbaa;
-      i64_array            m_iaVmin;
-      i64_array            m_iaVmax;
+      huge_integer_array            m_iaVmin;
+      huge_integer_array            m_iaVmax;
 
 
       fastblur();
@@ -64,10 +64,10 @@ namespace image
 
       using ::particle::initialize;
       void initialize(int cx, int cy, int iRadius);
-      void initialize(::size_i32 sz, int iRadius);
+      void initialize(::int_size sz, int iRadius);
 
 
-      virtual void blur(::image::image *pimage, const ::rectangle_i32 & rectangle);
+      virtual void blur(::image::image *pimage, const ::int_rectangle & rectangle);
 
 
       virtual void blur(::image::image *pimage);

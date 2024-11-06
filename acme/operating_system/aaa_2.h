@@ -28,7 +28,7 @@
 
 
 #define SWAPWORD(x)		MAKEWORD(HIBYTE(x), lower_byte(x))
-#define SWAPLONG(x)		make_i32(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+#define SWAPLONG(x)		make_int(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 
 
 #endif

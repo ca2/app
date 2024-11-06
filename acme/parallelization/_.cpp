@@ -524,7 +524,7 @@ string _001CompactString(const ::string & str, int iSkip, int iSkipBegin = 0)
 
    string strCompact;
 
-   strsize i = 0;
+   character_count i = 0;
 
    for (; i < iSkipBegin; i++)
    {
@@ -557,7 +557,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    string_array stra;
 
-   strsize iFindLast = 0;
+   character_count iFindLast = 0;
 
    string strOnlyAlnum;
 

@@ -35,7 +35,7 @@ namespace user
 
 
 
-   ::point_f64 scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
+   ::double_point scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
       //auto pparent = get_parent();
@@ -113,7 +113,7 @@ namespace user
    //}
 
 
-   point_f64 scroll_bar::get_ascendant_context_offset()
+   double_point scroll_bar::get_ascendant_context_offset()
    {
 
       if (::is_null(get_parent()))
@@ -128,7 +128,7 @@ namespace user
    }
 
 
-   point_f64 scroll_bar::get_parent_context_offset()
+   double_point scroll_bar::get_parent_context_offset()
    {
 
       return {};
@@ -136,7 +136,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_f64 > scroll_bar::get_track_rectangle(::user::enum_layout elayout)
+   ::status < ::double_rectangle > scroll_bar::get_track_rectangle(::user::enum_layout elayout)
    {
 
       return error_interface_only;
@@ -265,7 +265,7 @@ namespace user
       //   if (!m_bClipRectangle)
       //   {
 
-      //      ::rectangle_i32 rectangleX;
+      //      ::int_rectangle rectangleX;
 
       //      ::collection::index i = 0;
 

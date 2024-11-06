@@ -528,10 +528,10 @@ namespace user
 
       //}
 
-      //if(strLangUser.has_char())
+      //if(strLangUser.has_character())
       //   psession->set_locale(strLangUser,::e_source_database);
 
-      //if(strStyleUser.has_char())
+      //if(strStyleUser.has_character())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
       //string strLicense = papp->get_license_id();
@@ -942,7 +942,7 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
    //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & pWindowName, unsigned int uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
@@ -1232,7 +1232,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
 
    //{
 
@@ -1481,7 +1481,7 @@ namespace user
 
       }
 
-      i64 iMessage = pmouse->m_atom.as_i64();
+      huge_integer iMessage = pmouse->m_atom.as_huge_integer();
 
       if(iMessage == e_message_left_button_down
        //|| iMessage == e_message_left_button_up

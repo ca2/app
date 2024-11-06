@@ -76,7 +76,7 @@ public:
 //   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
 //   //point_type(const unsigned int u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
-//   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
+//   //point_type(const huge_natural u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
 //   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
 //
 //
@@ -145,7 +145,7 @@ public:
    //operator ::lparam() const { return lparam(); }
 
    unsigned int as_unsigned_int() const noexcept { return as_unsigned_int(this->x(), this->y()); }
-   ::u64 as_u64() const noexcept { return as_u64(this->x(), this->y()); }
+   huge_natural as_huge_natural() const noexcept { return as_huge_natural(this->x(), this->y()); }
    //::lparam lparam() const noexcept { return { this->x(), this->y() }; }
 
    point_type& Null() { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE) 0;  return *this; }
@@ -354,27 +354,27 @@ public:
 
 
 
-//inline auto u32_point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-inline auto u32_point_i32(const unsigned int u) noexcept { return ::point_i32((int)u32_x(u), (int)u32_y(u)); }
-inline auto u64_point_i32(const ::u64 u) noexcept { return ::point_i32((int)u64_x(u), (int)u64_y(u)); }
+//inline auto as_int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x(), lparam.y()); }
+inline auto as_int_point(const unsigned int u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
+inline auto as_int_point(const huge_natural u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
 
 
-//inline auto u32_point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
-inline auto u32_point_i64(const unsigned int u) noexcept { return ::point_i64((i64)u32_x(u), (i64)u32_y(u)); }
-inline auto u64_point_i64(const ::u64 u) noexcept { return ::point_i64((i64)u64_x(u), (i64)u64_y(u)); }
+//inline auto as_huge_integer_point(const ::lparam & lparam) noexcept { return ::huge_integer_point(lparam.x(), lparam.y()); }
+inline auto as_huge_integer_point(const unsigned int u) noexcept { return ::huge_integer_point((huge_integer)u32_x(u), (huge_integer)u32_y(u)); }
+inline auto as_huge_integer_point(const huge_natural u) noexcept { return ::huge_integer_point((huge_integer)u64_x(u), (huge_integer)u64_y(u)); }
 
 
-//inline auto __point_f32(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
-inline auto __point_f32(const unsigned int u) noexcept { return ::point_f32((float)u32_x(u), (float)u32_y(u)); }
-inline auto __point_f32(const ::u64 u) noexcept { return ::point_f32((float)u64_x(u), (float)u64_y(u)); }
+//inline auto as_float_point(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x(), (float)lparam.y()); }
+inline auto as_float_point(const unsigned int u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
+inline auto as_float_point(const huge_natural u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
 
 
-//inline auto __point_f64(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
-inline auto __point_f64(const unsigned int u) noexcept { return ::point_f64((double)u32_x(u), (double)u32_y(u)); }
-inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)u64_x(u), (double)u64_y(u)); }
+//inline auto as_double_point(const ::lparam & lparam) noexcept { return ::double_point(lparam.x(), lparam.y()); }
+inline auto as_double_point(const unsigned int u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
+inline auto as_double_point(const huge_natural u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
 
 
-inline bool is_same(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
+inline bool is_same(const ::double_point& p1, const ::double_point& p2, double dTolerance)
 {
 
    return is_same(p1.x(), p2.x(), dTolerance) && is_same(p1.y(), p2.y(), dTolerance);
@@ -382,7 +382,7 @@ inline bool is_same(const ::point_f64& p1, const ::point_f64& p2, double dTolera
 }
 
 
-inline bool is_different(const ::point_f64& p1, const ::point_f64& p2, double dTolerance)
+inline bool is_different(const ::double_point& p1, const ::double_point& p2, double dTolerance)
 {
 
    return !is_same(p1, p2, dTolerance);

@@ -1125,7 +1125,7 @@ static FONSglyph * fons__getGlyph(FONScontext * stash, FONSfont * font, unsigned
 			}
 		}
 		// It is possible that we did not find a fallback glyph.
-		// In that case the glyph index 'g' is 0, and we'll proceed below and cache empty glyph.
+		// In that case the glyph index 'g' is 0, and we'hi proceed below and cache empty glyph.
 	}
 	scale = fons__tt_getPixelHeightScale(&renderFont->font, size);
 	fons__tt_buildGlyphBitmap(&renderFont->font, g, size, scale, &advance, &lsb, &x0, &y0, &x1, &y1);

@@ -44,7 +44,7 @@ namespace draw2d
    }
 
 
-   void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,unsigned int nPlanes,unsigned int nBitcount,const void * pBits,int stride)
+   void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::int_size & size,unsigned int nPlanes,unsigned int nBitcount,const void * pBits,int stride)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -112,7 +112,7 @@ namespace draw2d
 //   }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size,void **ppvBits,int * stride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::int_size & size,void **ppvBits,int * stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -210,12 +210,12 @@ namespace draw2d
 //   }
 
 
-   //const ::size_i32 & size bitmap::SetBitmapDimension(int nWidth,int nHeight)
+   //const ::int_size & size bitmap::SetBitmapDimension(int nWidth,int nHeight)
    //{
    //   __UNREFERENCED_PARAMETER(nWidth);
    //   __UNREFERENCED_PARAMETER(nHeight);
    //   throw ::interface_only();
-   //   return ::size_i32(0,0);
+   //   return ::int_size(0,0);
    //}
 
 
@@ -232,7 +232,7 @@ namespace draw2d
       return nullptr;
    }
 
-   //const ::size_i32 & size bitmap::set_size(const ::size_i32 & size)
+   //const ::int_size & size bitmap::set_size(const ::int_size & size)
    //{
 
 
@@ -242,12 +242,12 @@ namespace draw2d
    //}
 
 
-   size_i32 bitmap::GetBitmapDimension() const
+   int_size bitmap::GetBitmapDimension() const
    {
 
       throw ::interface_only();
 
-//      ::size_i32 sizeRet(0,0);
+//      ::int_size sizeRet(0,0);
 
   //    return sizeRet;
       
@@ -256,7 +256,7 @@ namespace draw2d
    }
 
 
-   size_i32 bitmap::get_size() const
+   int_size bitmap::get_size() const
    {
 
       return GetBitmapDimension();
@@ -264,7 +264,7 @@ namespace draw2d
    }
 
 
-   size_i32 bitmap::size() const
+   int_size bitmap::size() const
    {
 
 

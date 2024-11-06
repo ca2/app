@@ -28,7 +28,7 @@ namespace windowing
       ::collection::index              m_iMainWorkspace;
       double                           m_dpi;
 
-      ::rectangle_int_array            m_rectangleaWorkAreas;
+      ::int_rectangle_array            m_rectangleaWorkAreas;
       ::string                         m_strDarkModeAnnotation;
 
 
@@ -57,89 +57,89 @@ namespace windowing
 
       virtual bool set_main_monitor(::collection::index iMonitor);
       //virtual ::collection::count get_monitor_count() //;
-      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle) //;
+      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle) //;
 
-//      virtual ::collection::index get_main_workspace(::rectangle_i32 * prectangle = nullptr) ;
+//      virtual ::collection::index get_main_workspace(::int_rectangle * prectangle = nullptr) ;
 
       virtual bool set_main_workspace(::collection::index iWorkspace);
       //virtual ::collection::count get_workspace_count() ;
-      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 * prectangle) ;
+      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle) ;
 
-      virtual bool workspace_to_monitor(::rectangle_i32 & rectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
+      virtual bool workspace_to_monitor(::int_rectangle & rectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
 
-      virtual bool monitor_to_workspace(::rectangle_i32 & rectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
+      virtual bool monitor_to_workspace(::int_rectangle & rectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
 
-      virtual bool workspace_to_monitor(::rectangle_i32 & rectangle);
+      virtual bool workspace_to_monitor(::int_rectangle & rectangle);
 
-      virtual bool monitor_to_workspace(::rectangle_i32 & rectangle);
+      virtual bool monitor_to_workspace(::int_rectangle & rectangle);
 
       //virtual ::collection::count get_desk_monitor_count() ;
-      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 * prectangle) ;
+      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle) ;
 
       virtual bool has_readily_gettable_absolute_pointer_position() const;
 
       // dynamically get mouse cursor absolute position (also set it to m_pointCursor2 member).
-      virtual ::point_i32 get_mouse_cursor_position();
+      virtual ::int_point get_mouse_cursor_position();
 
-      virtual ::point_i32 _get_mouse_cursor_position();
+      virtual ::int_point _get_mouse_cursor_position();
 
       virtual monitor * get_monitor(::collection::index iMonitor);
 
-      virtual monitor * monitor_hit_test(const ::point_i32 & point);
+      virtual monitor * monitor_hit_test(const ::int_point & point);
 
-      virtual monitor * get_best_monitor(const ::rectangle_i32 & rectangle);
+      virtual monitor * get_best_monitor(const ::int_rectangle & rectangle);
 
-      virtual void  get_monitor(rectangle_int_array & rectaMonitor, rectangle_int_array & rectaIntersect, const ::rectangle_i32 & rectangle);
+      virtual void  get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const ::int_rectangle & rectangle);
 
-      virtual ::collection::index initial_frame_position(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
+      virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);
 
-      virtual ::collection::index _get_best_zoneing(::e_display * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
+      virtual ::collection::index _get_best_zoneing(::e_display * pedisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bPreserveSize = false);
 
-      virtual ::collection::index get_best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::user::interaction * puserinteractionCursorPosition = nullptr);
+      virtual ::collection::index get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::e_activation eactivation = e_activation_default, ::user::interaction * puserinteractionCursorPosition = nullptr);
 
-      virtual ::collection::index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::user::interaction * puserinteractionCursorPosition = nullptr);
+      virtual ::collection::index get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::e_activation eactivation = e_activation_default, ::user::interaction * puserinteractionCursorPosition = nullptr);
 
-      virtual ::collection::index get_good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle);
+      virtual ::collection::index get_good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle);
 
-      virtual ::collection::index get_good_restore(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, ::e_display edisplayRestore);
+      virtual ::collection::index get_good_restore(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction, ::e_display edisplayRestore);
 
-      virtual ::collection::index get_good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
+      virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction);
 
-      virtual bool is_like_maximized(const ::rectangle_i32& rectangleWorkspace, const ::rectangle_i32& rectangle);
+      virtual bool is_like_maximized(const ::int_rectangle& rectangleWorkspace, const ::int_rectangle& rectangle);
 
-      virtual bool is_like_full_screen(const ::rectangle_i32& rectangleMonitor, const ::rectangle_i32& rectangle);
+      virtual bool is_like_full_screen(const ::int_rectangle& rectangleMonitor, const ::int_rectangle& rectangle);
 
       virtual void enum_display_monitors();
 
       virtual ::collection::index get_main_monitor_index();
-      virtual ::collection::index get_main_monitor(::rectangle_i32 & rectangle);
-      virtual ::size_i32 get_main_monitor_size();
+      virtual ::collection::index get_main_monitor(::int_rectangle & rectangle);
+      virtual ::int_size get_main_monitor_size();
 
-      virtual ::rectangle_i32 get_monitor_union_rectangle();
+      virtual ::int_rectangle get_monitor_union_rectangle();
 
       virtual ::collection::count get_monitor_count();
-      virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
-      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle);
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle);
 
-      virtual ::collection::index  get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle);
+      virtual ::collection::index  get_main_monitor_of_rectangle(const ::int_rectangle &rectangle);
 
       virtual ::collection::count get_desk_monitor_count();
-      virtual bool get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle & rectangle);
 
 
-      virtual ::collection::index get_main_workspace(::rectangle_i32 & prectangle);
+      virtual ::collection::index get_main_workspace(::int_rectangle & prectangle);
 
       ///virtual ::collection::count get_workspace_count();
       
-      virtual bool get_zoomed_window_site(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
+      virtual bool get_zoomed_window_site(::collection::index iWorkspace, ::int_rectangle & rectangle);
       
       virtual int get_zoomed_title_bar_height();
       
-      virtual bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
-      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
+      virtual bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle);
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle);
 
       //virtual ::collection::count get_desk_workspace_count();
-      virtual bool get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
+      virtual bool get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle & rectangle);
 
       virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
@@ -167,13 +167,13 @@ namespace windowing
 
       virtual void enable_wallpaper_change_notification();
 
-      virtual bool would_be_docked(const ::rectangle_i32 & rectangleWouldBeSnapped);
+      virtual bool would_be_docked(const ::int_rectangle & rectangleWouldBeSnapped);
 
-      virtual bool would_be_docked_in_monitor(const ::rectangle_i32 & rectangleWouldBeSnapped, const ::rectangle_i32 & rectangleMonitor);
+      virtual bool would_be_docked_in_monitor(const ::int_rectangle & rectangleWouldBeSnapped, const ::int_rectangle & rectangleMonitor);
 
-      virtual bool would_be_restored(const ::rectangle_i32 & rectangleWouldBeRestored);
+      virtual bool would_be_restored(const ::int_rectangle & rectangleWouldBeRestored);
 
-      virtual bool would_be_restored_in_monitor(const ::rectangle_i32 & rectangleWouldBeRestored, const ::rectangle_i32 & rectangleMonitor);
+      virtual bool would_be_restored_in_monitor(const ::int_rectangle & rectangleWouldBeRestored, const ::int_rectangle & rectangleMonitor);
 
 
    };

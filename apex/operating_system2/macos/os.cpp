@@ -23,11 +23,11 @@ CLASS_DECL_APEX bool _istlead(int ch)
 
 
 //
-//int_bool GetCursorPos(::point_i32 * ppointCursor)
+//int_bool GetCursorPos(::int_point * ppointCursor)
 //
 //{
 //
-//   HIPoint point_i32;
+//   HIPoint int_point;
 //
 //   HICoordinateSpace space = kHICoordSpaceScreenPixel;
 //

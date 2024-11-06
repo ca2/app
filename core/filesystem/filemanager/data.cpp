@@ -338,7 +338,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 ////            }
 //
 //         //}
-//         //else if (pfilemanagerdata->m_pathDefault.has_char())
+//         //else if (pfilemanagerdata->m_pathDefault.has_character())
 //         //{
 //
 //         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);

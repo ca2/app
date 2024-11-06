@@ -144,7 +144,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
    return count;
 }
 
-::collection::count utf16_len_len(const ::ansi_character * psz, strsize srclen)
+::collection::count utf16_len_len(const ::ansi_character * psz, character_count srclen)
 {
    if(psz == nullptr)
       return -1;
@@ -195,7 +195,7 @@ void ansi_to_wd16(::wd16_character * pwsz, const ::ansi_character * psz)
 }
 
 
-void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, strsize srclen)
+void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, character_count srclen)
 {
 
    while(srclen > 0 && psz != nullptr && *psz != '\0')
@@ -282,7 +282,7 @@ int utf8_len(const ::wide_character * pwsz)
    return count;
 }
 
-int utf8_len_len(const ::wide_character * pwsz, strsize srclen)
+int utf8_len_len(const ::wide_character * pwsz, character_count srclen)
 {
    if(pwsz == nullptr)
       return -1;

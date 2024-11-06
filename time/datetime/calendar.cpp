@@ -59,7 +59,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(::earth::time& time, ::rectangle_i32 * lprect)
+      void calendar::GetRectDay(::earth::time& time, ::int_rectangle * lprect)
       {
 
          int32_t iWeekDay = time.day_of_week();
@@ -69,7 +69,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect)
+      void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, ::int_rectangle * lprect)
       {
 
          __UNREFERENCED_PARAMETER(iWeekDay);
@@ -79,7 +79,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRect(::rectangle_i32 * lprect, enum enum_element eelement)
+      void calendar::GetRect(::int_rectangle * lprect, enum enum_element eelement)
       {
 
          __UNREFERENCED_PARAMETER(lprect);
@@ -123,7 +123,7 @@ namespace datetime
       }
 
 
-      void calendar::set_pos(point_i32 point, size_i32 sz)
+      void calendar::set_pos(int_point point, int_size sz)
       {
 
          __UNREFERENCED_PARAMETER(point);
@@ -246,7 +246,7 @@ namespace datetime
       }
 
 
-      enum_element calendar::hit_test(const point_i32 & point, ::user::e_zorder ezorder)
+      enum_element calendar::hit_test(const int_point & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
@@ -266,13 +266,13 @@ namespace datetime
       }
 
 
-      bool calendar::time_hit_test(::earth::time& timeRet, const point_i32 & point)
+      bool calendar::time_hit_test(::earth::time& timeRet, const int_point & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
          ::earth::time time(iYear, iMonth, 1, 0, 0, 0);
          ::earth::time_span timespan(1, 0, 0, 0);
-         rectangle_i32 rectangleDay;
+         int_rectangle rectangleDay;
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
@@ -290,10 +290,10 @@ namespace datetime
       }
 
 
-      bool calendar::hit_test(enum_element eelement, const point_i32 & point)
+      bool calendar::hit_test(enum_element eelement, const int_point & point)
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          GetRect(&rectangle, eelement);
 

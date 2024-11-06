@@ -205,7 +205,7 @@ namespace datetime
    }
 
 
-   i64 datetime::get_timestamp(int year, int month, int day)
+   huge_integer datetime::get_timestamp(int year, int month, int day)
    {
       
       ::earth::time time(year, month, day, 0, 0, 0);
@@ -270,7 +270,7 @@ namespace datetime
    }
 
 
-   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
+   //huge_integer datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
    //{
 
    //   if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -1002,9 +1002,9 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      i64 iSecDiff = (timeNow - time).seconds();
-      i64 iMinDiff = (timeNow - time).minutes();
-      i64 iHouDiff = (timeNow - time).hours();
+      huge_integer iSecDiff = (timeNow - time).seconds();
+      huge_integer iMinDiff = (timeNow - time).minutes();
+      huge_integer iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
@@ -1142,9 +1142,9 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      ::i64 iSecDiff = (timeNow - time).seconds();
-      ::i64 iMinDiff = (timeNow - time).minutes();
-      ::i64 iHouDiff = (timeNow - time).hours();
+      huge_integer iSecDiff = (timeNow - time).seconds();
+      huge_integer iMinDiff = (timeNow - time).minutes();
+      huge_integer iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
@@ -1363,10 +1363,10 @@ namespace datetime
          if (unicode_is_whitespace(psz))
          {
             i++;
-            //if(strNumber.has_char() && strText.has_char())
+            //if(strNumber.has_character() && strText.has_character())
             //{
             //}
-            if ((bAdd || bMinus) && strNumber.has_char() && strText1.has_char())
+            if ((bAdd || bMinus) && strNumber.has_character() && strText1.has_character())
             {
                result span;
                span.m_bSpan = true;
@@ -1975,7 +1975,7 @@ namespace datetime
    }
 
 
-::string datetime::elapsed_nanoseconds_text(::i64 iNanoseconds)
+::string datetime::elapsed_nanoseconds_text(huge_integer iNanoseconds)
 {
 
    ::string str;

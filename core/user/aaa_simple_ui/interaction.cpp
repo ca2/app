@@ -387,7 +387,7 @@ namespace simple_ui
 //
 //   }
 //
-//   ::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+//   ::item_pointer interaction::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
 //   {
 //
 //      auto rectangle = this->rectangle(::e_element_client);
@@ -404,7 +404,7 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::get_rect(::rectangle_i32 & rectangle, const ::item& item)
+//   bool interaction::get_rect(::int_rectangle & rectangle, const ::item& item)
 //   {
 //
 //      if (!item)
@@ -462,7 +462,7 @@ namespace simple_ui
 ////   }
 //
 //
-//   void interaction::simple_ui_draw_back_01_old(::rectangle_i32 rectangle, ::draw2d::graphics_pointer & pgraphics)
+//   void interaction::simple_ui_draw_back_01_old(::int_rectangle rectangle, ::draw2d::graphics_pointer & pgraphics)
 //   {
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -492,22 +492,22 @@ namespace simple_ui
 //
 //      auto pbrush = __create < ::draw2d::brush > ();
 //
-//      pbrush->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
+//      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top(), (int)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.top(), (int)rectangle.width(), iBorderH), br);
 //
 //      pbrush->create_solid(crIn);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top() + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), br);
+//      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.top() + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), br);
 //
-//      pbrush->CreateLinearGradientBrush(point_i32(rectangle.left(), rectangle.bottom() - iBorderH), rectangle.bottom_left(), crIn, crOut);
+//      pbrush->CreateLinearGradientBrush(int_point(rectangle.left(), rectangle.bottom() - iBorderH), rectangle.bottom_left(), crIn, crOut);
 //
-//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.bottom() - iBorderH, (int)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.bottom() - iBorderH, (int)rectangle.width(), iBorderH), br);
 //
 //   }
 //
 //
-//   void interaction::simple_ui_draw_back_01_new(::rectangle_i32 rectangle, ::draw2d::graphics_pointer & pgraphics)
+//   void interaction::simple_ui_draw_back_01_new(::int_rectangle rectangle, ::draw2d::graphics_pointer & pgraphics)
 //   {
 //
 //      /*simple_solid_brush br(g, argb(255, 255, 255, 255));
@@ -581,7 +581,7 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangleX;
+//      ::int_rectangle rectangleX;
 //
 //      this->rectangle(rectangleX);
 //
@@ -593,9 +593,9 @@ namespace simple_ui
 //
 //      pgraphics->set(b);
 //
-//      ::draw2d::pen_pointer point_i32(e_create);
+//      ::draw2d::pen_pointer int_point(e_create);
 //
-//      point_i32->create_solid(1.0, argb(255, 0, 0, 0));
+//      int_point->create_solid(1.0, argb(255, 0, 0, 0));
 //
 //      pgraphics->set(point);
 //
@@ -607,7 +607,7 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::graphics_pointer & pgraphics)
 //   {
 //      /*
-//      ::rectangle_i32 rectangleWindow;
+//      ::int_rectangle rectangleWindow;
 //
 //      window_rectangle(rectangleWindow);
 //
@@ -671,10 +671,10 @@ namespace simple_ui
 //      iB = 100 + iColor;
 //      }
 //
-//      point_i32[0] = iR;
-//      point_i32[1] = iG;
-//      point_i32[2] = iB;
-//      point_i32[3] = 84;
+//      int_point[0] = iR;
+//      int_point[1] = iG;
+//      int_point[2] = iB;
+//      int_point[3] = 84;
 //      point += 4;
 //
 //      }
@@ -688,7 +688,7 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_dark_glass(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangleWindow;
+//      ::int_rectangle rectangleWindow;
 //
 //      this->rectangle(rectangleWindow);
 //
@@ -701,14 +701,14 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_pestana(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangleWindow;
+//      ::int_rectangle rectangleWindow;
 //
 //      this->rectangle(rectangleWindow);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
 //      int iCount = rectangleWindow.height();
-//      ::draw2d::pen_pointer point_i32(e_create);
+//      ::draw2d::pen_pointer int_point(e_create);
 //      for (int i = 0; i < iCount; i += 2)
 //      {
 //         double dRate = (double)i / (double)iCount;
@@ -717,7 +717,7 @@ namespace simple_ui
 //         unsigned char r1 = brate(dRate, 23, 127);
 //         unsigned char g1 = brate(dRate, 23, 127);
 //         unsigned char b1 = brate(dRate, 23, 127);
-//         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
+//         int_point->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
 //         pgraphics->draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i);
 //
@@ -731,25 +731,25 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_auth_box(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //
 //      this->rectangle(rectangle);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
 //      // front
-//      point_i32 pa[4];
+//      int_point pa[4];
 //      //  0       1
 //      //
 //      //
 //      //  3       2
 //
 //      // back
-//      point_i32 pb[4];
+//      int_point pb[4];
 //
 //
 //      // guards
-//      point_i32 pc[4];
+//      int_point pc[4];
 //
 //
 //      pa[0].x() = rectangle.left();
@@ -781,9 +781,9 @@ namespace simple_ui
 //
 //         pgraphics->fill_polygon(pb, 4);
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(192, 192, 192, 192));
+//         int_point->create_solid(1.0, argb(192, 192, 192, 192));
 //
 //         pgraphics->set(point);
 //
@@ -821,9 +821,9 @@ namespace simple_ui
 //
 //         pgraphics->fill_polygon(pc, 4);
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(180, 180, 177, 177));
+//         int_point->create_solid(1.0, argb(180, 180, 177, 177));
 //
 //         pgraphics->set(point);
 //
@@ -847,9 +847,9 @@ namespace simple_ui
 //
 //         pgraphics->fill_polygon(pc, 4);
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(123, 90, 90, 90));
+//         int_point->create_solid(1.0, argb(123, 90, 90, 90));
 //
 //         pgraphics->set(point);
 //
@@ -873,9 +873,9 @@ namespace simple_ui
 //
 //         pgraphics->fill_polygon(pc, 4);
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(149, 176, 176, 176));
+//         int_point->create_solid(1.0, argb(149, 176, 176, 176));
 //
 //         pgraphics->set(point);
 //
@@ -899,9 +899,9 @@ namespace simple_ui
 //
 //         pgraphics->fill_polygon(pc, 4);
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(90, 120, 120, 123));
+//         int_point->create_solid(1.0, argb(90, 120, 120, 123));
 //
 //         pgraphics->set(point);
 //
@@ -916,9 +916,9 @@ namespace simple_ui
 //
 //      {
 //
-//         ::draw2d::pen_pointer point_i32(e_create);
+//         ::draw2d::pen_pointer int_point(e_create);
 //
-//         point_i32->create_solid(1.0, argb(190, 90, 90, 90));
+//         int_point->create_solid(1.0, argb(190, 90, 90, 90));
 //
 //         pgraphics->set(point);
 //
@@ -930,7 +930,7 @@ namespace simple_ui
 //   }
 //
 //
-//   //::item_pointer interaction::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+//   //::item_pointer interaction::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
 //   //{
 //
 //   //   auto rectangleX = this->rectangle();

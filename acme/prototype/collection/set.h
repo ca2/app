@@ -1313,7 +1313,7 @@ void node_set < NODE >::InitHashTable(
    unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
-//   hash table size_i32 of (which is fairly small)
+//   hash table int_size of (which is fairly small)
 {
 
    //ASSERT_VALID(this);

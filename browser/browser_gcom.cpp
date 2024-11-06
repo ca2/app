@@ -10,7 +10,7 @@ namespace browser
       impact_base(pparticle)
    {
 
-      if (papp->m_varTopicQuery["hello_bk"].get_string().has_char())
+      if (papp->m_varTopicQuery["hello_bk"].get_string().has_character())
       {
 
          property_set payloadFile;

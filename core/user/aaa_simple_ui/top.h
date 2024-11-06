@@ -14,8 +14,8 @@ namespace simple_ui
 
 
       bool                       m_bLButtonDown;
-      ::point_i32                    m_pointLButtonDown;
-      ::size_i32                     m_sizeLButtonDownOffset;
+      ::int_point                    m_pointLButtonDown;
+      ::int_size                     m_sizeLButtonDownOffset;
 
       bool                       m_bDrag;
 

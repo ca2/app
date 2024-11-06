@@ -25,7 +25,7 @@ namespace datetime
          ::write_text::font_pointer     m_pfontSpin;
  /*        int                        m_iColWidth;
          int                        m_iLineHeight;
-         point_i32                      m_point;*/
+         int_point                      m_point;*/
 
 
          graphics();
@@ -35,17 +35,17 @@ namespace datetime
          void initialize(::particle * pparticle) override;
 
 
-         virtual void GetRectDay(::earth::time& time, ::rectangle_i32 * lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::rectangle_i32 * lprect);
-         virtual void GetRect(::rectangle_i32 * lprect, enum enum_element eelement);
+         virtual void GetRectDay(::earth::time& time, ::int_rectangle * lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, ::int_rectangle * lprect);
+         virtual void GetRect(::int_rectangle * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 
-         void set_pos(point_i32 pt, size_i32 sz);
+         void set_pos(int_point pt, int_size sz);
 
-         virtual enum_element hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
-         virtual bool hit_test(enum_element eelement, const ::point_i32& point);
-         virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
+         virtual enum_element hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+         virtual bool hit_test(enum_element eelement, const ::int_point& point);
+         virtual bool time_hit_test(::earth::time& time, const ::int_point& point);
 
       };
 

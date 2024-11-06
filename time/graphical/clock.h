@@ -18,8 +18,8 @@ namespace datetime
       public:
 
 
-         point_i32    m_point;
-         size_i32     m_size;
+         int_point    m_point;
+         int_size     m_size;
 
 
          graphical();

@@ -281,29 +281,29 @@ namespace dynamic_source
          return true;
 
       {
-         strsize iFind1 = str.find_index(" C1033:");
+         character_count iFind1 = str.find_index(" C1033:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find_index(" C1083:"); // Permission Denied
+         character_count iFind1 = str.find_index(" C1083:"); // Permission Denied
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find_index(" C1041:"); // fatal error C1041: cannot open program database
+         character_count iFind1 = str.find_index(" C1041:"); // fatal error C1041: cannot open program database
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find_index(".dll: does not exist.");
+         character_count iFind1 = str.find_index(".dll: does not exist.");
          if(iFind1 >= 0)
          {
             // if dll does not exist
             {
-               strsize iFind1 = str.find_index(" errorf(");
-               strsize iFind2 = str.find_index(" error ");
-               strsize iFind3 = str.find_index("Linking...");
+               character_count iFind1 = str.find_index(" errorf(");
+               character_count iFind2 = str.find_index(" error ");
+               character_count iFind3 = str.find_index("Linking...");
                // and have compile error (others than the ones above, that are considered temporary as they may be due temporary file locks, for example...).
                if((iFind3 >= 0 && ((iFind1 < iFind3 && iFind1 >= 0) ||
                                    (iFind2 < iFind3 && iFind2 >= 0))))
@@ -316,19 +316,19 @@ namespace dynamic_source
       }
 
       {
-         strsize iFind1 = str.find_index("warning LNK4099:");
+         character_count iFind1 = str.find_index("warning LNK4099:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find_index("fatal error LNK1168:");
+         character_count iFind1 = str.find_index("fatal error LNK1168:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find_index(" errorf(");
-         strsize iFind2 = str.find_index(" error ");
-         strsize iFind3 = str.find_index("Linking...");
+         character_count iFind1 = str.find_index(" errorf(");
+         character_count iFind2 = str.find_index(" error ");
+         character_count iFind3 = str.find_index("Linking...");
          if(iFind3 >= 0 && (iFind1 > iFind3 || iFind2 > iFind3))
          {
             return true;

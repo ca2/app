@@ -21,12 +21,12 @@
 typedef signed char char;
 typedef short int short;
 typedef int int;
-typedef ::i64 i64;
+typedef huge_integer hi;
 
 typedef unsigned char uch;
 typedef unsigned short int unsigned short;
 typedef unsigned int unsigned int;
-typedef ::u64 u64;
+typedef huge_natural huge_natural;
 #else
 #include "_stdint.h"
 #endif

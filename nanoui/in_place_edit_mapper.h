@@ -13,11 +13,11 @@ namespace nanoui
    {
    public:
 
-      virtual ::point_f32 inner_to_outer(const ::point_f32& point, in_place_edit*);
-      virtual ::point_f32 outer_to_inner(const ::point_f32& point, in_place_edit*);
+      virtual ::float_point inner_to_outer(const ::float_point& point, in_place_edit*);
+      virtual ::float_point outer_to_inner(const ::float_point& point, in_place_edit*);
 
 
-      virtual ::rectangle_f32 inner_to_outer(const ::rectangle_f32& rectangle, in_place_edit*);
+      virtual ::float_rectangle inner_to_outer(const ::float_rectangle& rectangle, in_place_edit*);
 
     
    };

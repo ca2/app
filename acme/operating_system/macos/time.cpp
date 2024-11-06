@@ -4,7 +4,7 @@
 // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
 // http://stackoverflow.com/users/346736/jbenet
 // https://stackoverflow.com/users/847987/charphacy
-// https://stackoverflow.com/users/1211018/point_i32-marecki
+// https://stackoverflow.com/users/1211018/int_point-marecki
 
 //#include <mach/clock.h>
 //#include <mach/mach.h>
@@ -15,7 +15,7 @@
 
 void ns_Sleep(unsigned int uiMillis);
 
-//u64 get_nanos()
+//huge_natural get_nanos()
 //{
 //
 //   return mach_absolute_time() * g_machtime_conversion_factor;
@@ -24,7 +24,7 @@ void ns_Sleep(unsigned int uiMillis);
 //   //
 //   //   clock_get_time(g_cclock, &mts);
 //   //
-//   //   return ((u64) mts.tv_sec * (u64)1000 * (u64)1000 * (u64)1000 )+ ((u64) mts.tv_nsec);
+//   //   return ((huge_natural) mts.tv_sec * (huge_natural)1000 * (huge_natural)1000 * (huge_natural)1000 )+ ((huge_natural) mts.tv_nsec);
 //
 //}
 

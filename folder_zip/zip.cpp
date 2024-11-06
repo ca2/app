@@ -102,7 +102,7 @@ typedef struct
    uptr pos_local_header;     /* offset of the static header of the file
                                      currenty writing */
    char* central_header;       /* central header data for the current file */
-   uptr size_centralheader;   /* size_i32 of the central header for cur file */
+   uptr size_centralheader;   /* int_size of the central header for cur file */
    uptr flag;                 /* flag of the file currently writing */
 
    int  method;                /* compression method of file currenty wr.*/
@@ -168,42 +168,42 @@ linkedlist_datablock_internal* ldi)
 }
 
 static void init_linkedlist(
-linkedlist_data* ll)
+linkedlist_data* hi)
 {
-   ll->first_block = ll->last_block = nullptr;
+   hi->first_block = hi->last_block = nullptr;
 }
 
 void free_linkedlist(
-linkedlist_data* ll);
+linkedlist_data* hi);
 
 
 void free_linkedlist(
-linkedlist_data* ll)
+linkedlist_data* hi)
 {
-   free_datablock(ll->first_block);
-   ll->first_block = ll->last_block = nullptr;
+   free_datablock(hi->first_block);
+   hi->first_block = hi->last_block = nullptr;
 }
 
 
 static int add_data_in_datablock(
-linkedlist_data* ll,
+linkedlist_data* hi,
 const void * buf,
 uptr len)
 {
    linkedlist_datablock_internal* ldi;
    const uchar* from_copy;
 
-   if (ll==nullptr)
+   if (hi==nullptr)
       return ZIP_INTERNALERROR;
 
-   if (ll->last_block == nullptr)
+   if (hi->last_block == nullptr)
    {
-      ll->first_block = ll->last_block = allocate_new_datablock();
-      if (ll->first_block == nullptr)
+      hi->first_block = hi->last_block = allocate_new_datablock();
+      if (hi->first_block == nullptr)
          return ZIP_INTERNALERROR;
    }
 
-   ldi = ll->last_block;
+   ldi = hi->last_block;
    from_copy = (uchar*)buf;
 
    while (len>0)
@@ -218,7 +218,7 @@ uptr len)
          if (ldi->next_datablock == nullptr)
             return ZIP_INTERNALERROR;
          ldi = ldi->next_datablock ;
-         ll->last_block = ldi;
+         hi->last_block = ldi;
       }
 
       if (ldi->avail_in_this_block < len)
@@ -416,7 +416,7 @@ voidpf filestream)
    uchar* buf;
    uptr uSizeFile;
    uptr uBackRead;
-   uptr uMaxBack=0xffff; /* maximum size_i32 of global comment */
+   uptr uMaxBack=0xffff; /* maximum int_size of global comment */
    uptr uPosFound=0;
 
    if (ZSEEK(*pzlib_filefunc_def,filestream,0,ZLIB_FILEFUNC_SEEK_END) != 0)
@@ -515,7 +515,7 @@ void * fstream)
    {
       uptr byte_before_the_zipfile;/* unsigned char before the zipfile, (>0 for sfx)*/
 
-      uptr size_central_dir;     /* size_i32 of the central directory  */
+      uptr size_central_dir;     /* int_size of the central directory  */
       uptr offset_central_dir;   /* offset of start of central directory */
       uptr central_pos,uL;
 
@@ -562,7 +562,7 @@ void * fstream)
             (number_disk!=0))
          err=ZIP_BADZIPFILE;
 
-      /* size_i32 of the central directory */
+      /* int_size of the central directory */
       if (ziplocal_getLong(&ziinit.z_filefunc, ziinit.filestream,&size_central_dir)!=ZIP_OK)
          err=ZIP_ERRNO;
 
@@ -734,8 +734,8 @@ unsigned int  crcForCrypting)
    ziplocal_putValue_inmemory(zi->ci.central_header+10,(uptr)zi->ci.method,2);
    ziplocal_putValue_inmemory(zi->ci.central_header+12,(uptr)zi->ci.dosDate,4);
    ziplocal_putValue_inmemory(zi->ci.central_header+16,(uptr)0,4); /*crc*/
-   ziplocal_putValue_inmemory(zi->ci.central_header+20,(uptr)0,4); /*compr size_i32*/
-   ziplocal_putValue_inmemory(zi->ci.central_header+24,(uptr)0,4); /*uncompr size_i32*/
+   ziplocal_putValue_inmemory(zi->ci.central_header+20,(uptr)0,4); /*compr int_size*/
+   ziplocal_putValue_inmemory(zi->ci.central_header+24,(uptr)0,4); /*uncompr int_size*/
    ziplocal_putValue_inmemory(zi->ci.central_header+28,(uptr)size_filename,2);
    ziplocal_putValue_inmemory(zi->ci.central_header+30,(uptr)size_extrafield_global,2);
    ziplocal_putValue_inmemory(zi->ci.central_header+32,(uptr)size_comment,2);
@@ -1030,11 +1030,11 @@ uptr crc32)
 
    ziplocal_putValue_inmemory(zi->ci.central_header+16,crc32,4); /*crc*/
    ziplocal_putValue_inmemory(zi->ci.central_header+20,
-                              compressed_size,4); /*compr size_i32*/
+                              compressed_size,4); /*compr int_size*/
    if (zi->ci.stream.data_type == Z_ASCII)
       ziplocal_putValue_inmemory(zi->ci.central_header+36,(uptr)Z_ASCII,2);
    ziplocal_putValue_inmemory(zi->ci.central_header+24,
-                              uncompressed_size,4); /*uncompr size_i32*/
+                              uncompressed_size,4); /*uncompr int_size*/
 
    if (err==ZIP_OK)
       err = add_data_in_datablock(&zi->central_dir,zi->ci.central_header,
@@ -1131,7 +1131,7 @@ const char* global_comment)
    if (err==ZIP_OK) /* total number of entries in the central dir */
       err = ziplocal_putValue(&zi->z_filefunc,zi->filestream,(uptr)zi->number_entry,2);
 
-   if (err==ZIP_OK) /* size_i32 of the central directory */
+   if (err==ZIP_OK) /* int_size of the central directory */
       err = ziplocal_putValue(&zi->z_filefunc,zi->filestream,(uptr)size_centraldir,4);
 
    if (err==ZIP_OK) /* offset of start of central directory with respect to the

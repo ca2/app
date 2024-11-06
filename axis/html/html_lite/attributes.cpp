@@ -47,7 +47,7 @@
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
+character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
 
 {
    ASSERT(is_string_ok(pszString));
@@ -232,14 +232,14 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::string & pszString, strsize iLen)
+character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::string & pszString, character_count iLen)
 
 {
 
    CElemAttrArray      *pcoll = nullptr;
    LiteHTMLElemAttr   oElemAttr;
-   const strsize         nStrLen = iLen;
-   strsize            nRetVal = 0U,
+   const character_count         nStrLen = iLen;
+   character_count            nRetVal = 0U,
                        nTemp = 0U;
 
    do
@@ -356,7 +356,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
    m_strValue.replace_with(' ', '\t');
 
    /** resolve entity object(s) */
-   strsize iCurPos = -1, iParseLen = 0;
+   character_count iCurPos = -1, iParseLen = 0;
 
    string strChar;
 

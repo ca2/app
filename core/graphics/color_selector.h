@@ -13,7 +13,7 @@ namespace graphics
 
 
       bool                             m_bMouseColorBeam;
-      ::point_i32                      m_pointMouseColorBeam;
+      ::int_point                      m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
       ::string                         m_strOk;
@@ -23,7 +23,7 @@ namespace graphics
       //::user::plain_edit               m_editBlue;
       //::user::plain_edit               m_editHex;
 
-      ::rectangle_i32                  m_rectangleTarget;
+      ::int_rectangle                  m_rectangleTarget;
 
       ::image::image_pointer                  m_pimageTemplate;
       ::image::image_pointer                  m_pimage;
@@ -31,7 +31,7 @@ namespace graphics
 
       ::color::hls                     m_hls;
 
-      ::rectangle_i32                  m_rectangleColors;
+      ::int_rectangle                  m_rectangleColors;
 
       ::function < void(const ::color::hls & hls, bool bFinal) >    m_callbackHls;
 
@@ -60,8 +60,8 @@ namespace graphics
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point);
-      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int y);
+      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & point);
+      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int y);
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -70,10 +70,10 @@ namespace graphics
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      virtual void layout_color_selector(const ::rectangle_i32 & rectangle) ;
+      virtual void layout_color_selector(const ::int_rectangle & rectangle) ;
 
-      virtual void on_mouse_motion(const ::point_i32 & point);
-      virtual bool is_ok_target(const ::point_i32 & point);
+      virtual void on_mouse_motion(const ::int_point & point);
+      virtual bool is_ok_target(const ::int_point & point);
       virtual void rebuild_luminance();
 
       virtual ::color::color color_selector_get_color();

@@ -43,7 +43,7 @@ namespace opengl
    }
 
 
-   void context_cgl::_create_offscreen_buffer(const ::size_i32 & size)
+   void context_cgl::_create_offscreen_buffer(const ::int_size & size)
    {
 
       auto pgpu = system()->get_gpu();
@@ -239,7 +239,7 @@ namespace opengl
    void context_cgl::_translate_shader(string_array & stra)
    {
 
-      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
+      character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if(iFindPrecision >= 0)
       {

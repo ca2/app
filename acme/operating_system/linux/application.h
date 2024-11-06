@@ -97,7 +97,7 @@
 //      virtual ::user::interaction_base * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const ::scoped_string & scopedstrWindow);
 //
 //
-//      virtual void get_time(struct timeval *point_i32);
+//      virtual void get_time(struct timeval *int_point);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual itask_t get_thread_id();
 //      string draw2d_get_default_implementation_name();

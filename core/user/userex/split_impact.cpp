@@ -97,7 +97,7 @@ namespace userex
 
       ppane->m_atom = atom;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       rectangle = ppane->m_pplaceholder->rectangle();
 

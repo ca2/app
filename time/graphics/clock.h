@@ -32,11 +32,11 @@ namespace datetime
          void initialize(::particle * pparticle) override;
 
 
-         void GetRect(::rectangle_i32 * lprect, enum enum_element eelement);
+         void GetRect(::int_rectangle * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 
-         void set_pos(point_i32 pt, size_i32 sz);
+         void set_pos(int_point pt, int_size sz);
 
 
 

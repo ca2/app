@@ -37,7 +37,7 @@ namespace user
       static const int                       m_iMarging;
       int                                    m_cxBorder;
       int                                    m_cyBorder;
-      //::rectangle_i32                        m_rectangleClient;
+      //::int_rectangle                        m_rectangleClient;
       
       ::collection::count                                m_iPaneCount;
 
@@ -58,17 +58,17 @@ namespace user
       bool InsertPaneAt(::collection::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
       bool SetPane(::collection::index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
       bool RemovePaneAt(::collection::index iIndex);
-      void SetPaneFixedSize(::collection::index iIndex, const ::size_i32 & pSize);
-      void CalcSplitBarRect(::collection::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
+      void SetPaneFixedSize(::collection::index iIndex, const ::int_size & pSize);
+      void CalcSplitBarRect(::collection::index iIndex, ::int_rectangle & rectangle, enum_layout elayout = e_layout_design);
 
-      void CalcPaneRect(int nMinPos, int nMaxPos, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
+      void CalcPaneRect(int nMinPos, int nMaxPos, ::int_rectangle & rectangle, enum_layout elayout = e_layout_design);
 
-      void CalcPaneRect(::collection::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
+      void CalcPaneRect(::collection::index iIndex, ::int_rectangle & rectangle, enum_layout elayout = e_layout_design);
 
 
       virtual ::user::interaction * get_pane_window(::collection::index iPane);
       virtual ::user::place_holder * get_pane_holder(::collection::index iPane);
-      virtual ::rectangle_i32 & get_pane_rect(::collection::index iPane);
+      virtual ::int_rectangle & get_pane_rect(::collection::index iPane);
       virtual atom get_pane_id(::collection::index iPane);
       virtual split_pane * get_pane_by_id(::atom atom);
 
@@ -109,7 +109,7 @@ namespace user
       void _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics);
 
 
-      //::rectangle_i32 hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      //::int_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

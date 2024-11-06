@@ -21,7 +21,7 @@ public:
 
 
    unicode_iterator(const CHARACTER * psz) : m_psz(psz) { }
-   unicode_iterator(const CHARACTER * psz, strsize size) : m_psz(psz + size) { }
+   unicode_iterator(const CHARACTER * psz, character_count size) : m_psz(psz + size) { }
 
    ::wd32_character operator *();
    unicode_iterator & operator ++();

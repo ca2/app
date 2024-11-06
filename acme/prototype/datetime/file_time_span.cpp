@@ -16,7 +16,7 @@ file_time_span::file_time_span(const file_time_span& span) noexcept:
 }
 
 
-file_time_span::file_time_span(file_time_span_t, ::i64 nSpan) noexcept:
+file_time_span::file_time_span(file_time_span_t, huge_integer nSpan) noexcept:
    m_iFileTimeSpan(nSpan)
 {
 
@@ -117,7 +117,7 @@ std::strong_ordering file_time_span::operator<=>(file_time_span span) const noex
 }
 
 
-::i64 file_time_span::get_file_time_span() const noexcept
+huge_integer file_time_span::get_file_time_span() const noexcept
 {
 
    return(m_iFileTimeSpan);
@@ -125,7 +125,7 @@ std::strong_ordering file_time_span::operator<=>(file_time_span span) const noex
 }
 
 
-void file_time_span::set_file_time_span(::i64 nSpan) noexcept
+void file_time_span::set_file_time_span(huge_integer nSpan) noexcept
 {
 
    m_iFileTimeSpan = nSpan;

@@ -324,7 +324,7 @@ namespace url
       //string name(const ::string & str);
       //string ::url::encode(const ::string & str);
       //string ::url::decode(const ::string & str);
-      //string ::url::decode(const ::string & str, strsize iLen);
+      //string ::url::decode(const ::string & str, character_count iLen);
 
       //string query_append(const ::string & strUrl, const ::string & strQuery);
       //string query_erase(const ::string & strQuery, string_array & straKey);

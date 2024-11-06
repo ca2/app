@@ -77,7 +77,7 @@ namespace html
          {
          }
       }
-//      strsize iLen;
+//      character_count iLen;
 
       auto psystem = system();
 

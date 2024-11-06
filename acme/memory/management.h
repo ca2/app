@@ -230,7 +230,7 @@ namespace heap
 //         m_p         = nullptr;
 //         m_uiSize    = 0;
 //
-//         size_i32(uiSize);
+//         int_size(uiSize);
 //
 //      }
 //
@@ -314,7 +314,7 @@ namespace heap
 //
 //      memsize count() { return size() / sizeof(T); }
 //
-//      void stralloc(::collection::count cChar) { size_i32((cChar + 1) * sizeof(T)); }
+//      void stralloc(::collection::count cChar) { int_size((cChar + 1) * sizeof(T)); }
 //
 //      string & to_string(string & str) const;
 //

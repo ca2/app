@@ -393,7 +393,7 @@ namespace zip
    filesize in_file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      u64 iNewPosition;
+      huge_natural iNewPosition;
 
       if(eseek == ::e_seek_set)
       {
@@ -444,9 +444,9 @@ namespace zip
       if(iNewPosition > m_iPosition)
       {
 
-         i64 iRemain = iNewPosition - m_iPosition;
+         huge_integer iRemain = iNewPosition - m_iPosition;
 
-         i64 iGet;
+         huge_integer iGet;
 
          int iRead;
 

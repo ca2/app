@@ -172,7 +172,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    wstrModuleFolder.release_buffer();
 
-   if(wstrModuleFolder.has_char())
+   if(wstrModuleFolder.has_character())
    {
 
       wstrModuleFolder.trim_right(L"\\/");
@@ -187,9 +187,9 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    {
 
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //            str = ::file::path(str).folder();
 //            goto found;
@@ -197,9 +197,9 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 //         }
 //
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //            str = ::file::path(str).folder();
 //            goto found;
@@ -209,7 +209,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
       str = get_exe_path();
 
 
-      if(str.has_char())
+      if(str.has_character())
       {
          str = ::file::path(str).folder();
          goto found;
@@ -392,7 +392,7 @@ void __node_acme_pos_term()
 }
 
 
-string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)
+string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped_string & scopedstrType, character_count iReadAtMostByteCount = -1)
 {
 
    HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(scopedstrType));
@@ -424,7 +424,7 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
 
       unsigned int * pnRes = (unsigned int *)::LockResource(hres);
 
-      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (strsize)dwResSize);
+      iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (character_count)dwResSize);
 
       psz = str.get_buffer(iReadAtMostByteCount);
 
@@ -477,7 +477,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 
 //
 //
-//CLASS_DECL_ACME string get_error_string(::i64 iError)
+//CLASS_DECL_ACME string get_error_string(huge_integer iError)
 //{
 //
 //

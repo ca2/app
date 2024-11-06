@@ -10,8 +10,8 @@
 
 
 
-CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept;
-CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcept;
+CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz) noexcept;
+CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character * psz) noexcept;
 
 
 using BLOCK = ::range < unsigned char * >;
@@ -163,7 +163,7 @@ struct CLASS_DECL_ACME block :
 
    }
 
-   template < strsize c >
+   template < character_count c >
    block & operator = (const unsigned char(&ba)[c])
    {
 
@@ -197,7 +197,7 @@ struct CLASS_DECL_ACME block :
 
    }
 
-   template < strsize c >
+   template < character_count c >
    block & operator >>(unsigned char(&ba)[c])
    {
 
@@ -419,7 +419,7 @@ inline ::u32hash unsigned_int_hash < const ::block & >(const ::block & b)
 
    unsigned int uHash = 0;
 
-   strsize i = 1;
+   character_count i = 1;
 
    auto len = minimum(64, b.size());
 

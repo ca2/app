@@ -22,7 +22,7 @@ namespace gpu
       ::pointer<::gpu::context>             m_pgpucontext;
       ::image::image_pointer                       m_pimageFromGpu;
       ::pointer<::gpu::program>             m_pgpuprogram;
-      rectangle_i32                         m_rectangle;
+      int_rectangle                         m_rectangle;
       //string                              m_strFont1;
       //string_map < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;
@@ -68,7 +68,7 @@ namespace gpu
 
       //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, rectangle_i32 & r, double dStart, double dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle & r, double dStart, double dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

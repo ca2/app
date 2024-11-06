@@ -41,7 +41,7 @@ namespace database
 
    }
 
-   //void     database::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
+   //void     database::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, huge_natural uConnectionFlags)
    //{
 
 

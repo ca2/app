@@ -89,9 +89,9 @@ namespace colorertake5
       */
       void startParsing(index lno);
       void clearLine(index lno, const ::string & line);
-      void addRegion(index lno, const ::string & line, strsize sx, strsize ex, class region *region);
-      void enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
-      void leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
+      void addRegion(index lno, const ::string & line, character_count sx, character_count ex, class region *region);
+      void enterScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme);
+      void leaveScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme);
    protected:
       /**
       * Behaviour is redefined in derived classes

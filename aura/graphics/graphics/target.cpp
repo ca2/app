@@ -78,7 +78,7 @@ namespace graphics
    //
    //   //      ::image::image_source imagesource(pimage);
    //
-   //   //      ::image::image_drawing_options imagedrawingoptions(rectangle_i32(0, 0, m_cx, m_cy));
+   //   //      ::image::image_drawing_options imagedrawingoptions(int_rectangle(0, 0, m_cx, m_cy));
    //
    //   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //

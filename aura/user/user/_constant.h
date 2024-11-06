@@ -166,7 +166,7 @@ enum
 // Frame interaction_impl styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
-#define FWS_SNAPTOBARS  0x00002000L // snap size_i32 to size_i32 of contained bars
+#define FWS_SNAPTOBARS  0x00002000L // snap int_size to int_size of contained bars
 
 
 
@@ -314,7 +314,7 @@ namespace user
 
 
 
-//CLASS_DECL_ACME i64 oswindow_id(oswindow w);
+//CLASS_DECL_ACME huge_integer oswindow_id(oswindow w);
 
 
 //CLASS_DECL_ACME int_bool is_window(oswindow oswindow);

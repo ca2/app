@@ -28,8 +28,8 @@ public:
 
 
    polygon_type();
-   polygon_type(const polygon_type & polygon_i32);
-   polygon_type(polygon_type&& polygon_i32);
+   polygon_type(const polygon_type & int_polygon);
+   polygon_type(polygon_type&& int_polygon);
    ~polygon_type();
 
    template < primitive_rectangle RECTANGLE >
@@ -67,7 +67,7 @@ public:
 
    const ::rectangle_type < NUMBER > & bounding_rect() const;
 
-   bool overlaps(const polygon_type & polygon_i32) const;
+   bool overlaps(const polygon_type & int_polygon) const;
 
    polygon_type convex_intersection(const polygon_type & polygon) const;
 
@@ -90,8 +90,8 @@ public:
 
    }
 
-   polygon_type& operator = (const polygon_type& polygon_i32);
-   polygon_type& operator = (polygon_type&& polygon_i32);
+   polygon_type& operator = (const polygon_type& int_polygon);
+   polygon_type& operator = (polygon_type&& int_polygon);
 
 
 
@@ -124,7 +124,7 @@ inline bool polygon_type < NUMBER >::bounding_rectangle_contains(const ::point_t
 }
 
 
-inline double atan(const point_f64 & point, double x, double y)
+inline double atan(const double_point & point, double x, double y)
 {
 
    return ::atan2(point.y() - y, point.x() - x);
@@ -195,13 +195,13 @@ polygon_type < NUMBER > & polygon_type < NUMBER >::operator = (polygon_type&& po
 }
 
 
-inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3, const point_f64 & pt4);
+inline bool int_lineersection(double_point & point, const double_point & pt1, const double_point & pt2, const double_point & pt3, const double_point & pt4);
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
 //latlong1 and latlong2 represent two coordinates that make up the bounded box
-//latlong3 is a point_i32 that we are checking to see is inside the box
-inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3)
+//latlong3 is a int_point that we are checking to see is inside the box
+inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, const double_point & pt3)
 {
 
    double dSpan = 0.01;
@@ -256,7 +256,7 @@ inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const poi
 
 }
 
-inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3)
+inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, const double_point & pt3)
 {
 
    if (pt1.x() < pt2.x())
@@ -311,7 +311,7 @@ inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const po
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
-inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3, const point_f64 & pt4)
+inline bool int_lineersection(double_point & point, const double_point & pt1, const double_point & pt2, const double_point & pt3, const double_point & pt4)
 {
 
    //Line segment 1 (point1, point2)
@@ -343,15 +343,15 @@ inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const po
 }
 
 
-inline void get_intersection_points(point_double_array & pa, const point_f64 & point1, const point_f64 & point2, const point_double_array & paPolygon)
+inline void get_intersection_points(double_point_array & pa, const double_point & point1, const double_point & point2, const double_point_array & paPolygon)
 {
 
-   point_f64 point;
+   double_point point;
 
    for (iptr i = 0; i < paPolygon.get_count(); i++)
    {
 
-      if (line_intersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
+      if (int_lineersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
       {
 
          pa.tolerance_add_unique(0.001, point);
@@ -483,7 +483,7 @@ bool polygon_type < NUMBER >::overlaps(const polygon_type & polygon) const
 
       }
 
-      point_f64 point;
+      double_point point;
 
       for (int i = 0; i < c1; i++)
       {
@@ -491,7 +491,7 @@ bool polygon_type < NUMBER >::overlaps(const polygon_type & polygon) const
          for (int k = 0; k < c2; k++)
          {
 
-            if (line_intersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
+            if (int_lineersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
             {
 
                return true;

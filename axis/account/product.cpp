@@ -112,7 +112,7 @@ namespace account
 //
 //         string strResponseSessId = doc.attribute("sessid");
 //
-//         if(strId.has_char()
+//         if(strId.has_character()
 //               && strId == "licensed"
 //               && m_XstrAppId == strAppId
 //               && strResponseSessId == strRequestSessId)

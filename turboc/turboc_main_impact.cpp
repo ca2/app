@@ -65,7 +65,7 @@ namespace turboc
       if(papp->m_bMultiverseChat)
       {
 
-         m_ptopimpact = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"turboc_top");
+         m_ptopimpact = create_impact < top_impact >(NULL,::int_rectangle(),NULL,"turboc_top");
 
          if(m_ptopimpact == NULL)
          {

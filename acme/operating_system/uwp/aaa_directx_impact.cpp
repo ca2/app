@@ -306,7 +306,7 @@ namespace universal_windows
       // because the system itself changed the selection.
       SetSelection(newSelection);
 
-      if(m_strNewText.has_char())
+      if(m_strNewText.has_character())
       {
 
          auto pfocusui = psession->get_focus_ui();

@@ -50,7 +50,7 @@ constexpr ::color32_t argb32_color32(
    ::iptr u8Blue)
 {
 
-   return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
+   return { make_unsigned_int(u8Red, u8Green, u8Blue, u8Opacity) };
 
 }
 
@@ -284,10 +284,10 @@ namespace color
 
       constexpr void set_opaque() { this->m_uchOpacity = 255; }
 
-      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = 255; }
-      constexpr void set_u8(unsigned char R, unsigned char G, unsigned char B, unsigned char A) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = A; }
-      constexpr void set_f64(double R, double G, double B) { m_uchRed = (unsigned char) (R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = 255; }
-      constexpr void set_f64(double R, double G, double B, double A) { m_uchRed = (unsigned char)(R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = (unsigned char) (A * 255.); }
+      constexpr void set_unsigned_char(unsigned char R, unsigned char G, unsigned char B) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = 255; }
+      constexpr void set_unsigned_char(unsigned char R, unsigned char G, unsigned char B, unsigned char A) { m_uchRed = R; m_uchGreen = G; m_uchBlue = B; m_uchOpacity = A; }
+      constexpr void set_double(double R, double G, double B) { m_uchRed = (unsigned char) (R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = 255; }
+      constexpr void set_double(double R, double G, double B, double A) { m_uchRed = (unsigned char)(R * 255.); m_uchGreen = (unsigned char) (G * 255.); m_uchBlue = (unsigned char) (B * 255.); m_uchOpacity = (unsigned char) (A * 255.); }
 
       void make_black_and_white();
 
@@ -527,7 +527,7 @@ constexpr ::color::color opaque_color(enum_plain_color ecolor);
 
 constexpr rgba_t argb_rgba(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 {
-   return { make_u32(u8Red, u8Green, u8Blue, u8Opacity) };
+   return { make_unsigned_int(u8Red, u8Green, u8Blue, u8Opacity) };
 }
 
 //constexpr unsigned char rgba_byte_red(::rgba_t rgba) { return lower_byte(rgba.m_ui); }
@@ -544,7 +544,7 @@ constexpr rgba_t argb_rgba(unsigned char u8Opacity, unsigned char u8Red, unsigne
 
 constexpr bgra_t argb_bgra(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 {
-   return { make_u32(u8Blue, u8Green, u8Red, u8Opacity) };
+   return { make_unsigned_int(u8Blue, u8Green, u8Red, u8Opacity) };
 }
 
 

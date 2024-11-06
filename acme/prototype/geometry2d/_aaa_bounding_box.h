@@ -3,7 +3,7 @@
 
 
 //template < primitive_rectangle RECTANGLE >
-//inline void expand_bounding_box(RECTANGLE & rectangle, const ::point_f64 & p)
+//inline void expand_bounding_box(RECTANGLE & rectangle, const ::double_point & p)
 //{
 //
 //   rectangle.left() = (decltype(rectangle.left()))minimum(rectangle.left(), p.x());
@@ -14,7 +14,7 @@
 //}
 
 template < primitive_rectangle RECTANGLE >
-inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::collection::count c)
+inline void expand_bounding_box(RECTANGLE & rectangle, ::double_point * p, ::collection::count c)
 {
 
    for (::collection::index i = 0; i < c; i++)

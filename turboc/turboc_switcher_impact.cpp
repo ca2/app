@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_ptopimpact = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
+      m_ptopimpact = create_impact < top_impact >(NULL,::int_rectangle(),NULL,"switcher_top");
 
       if(m_ptopimpact == NULL)
       {

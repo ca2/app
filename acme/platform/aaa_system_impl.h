@@ -158,7 +158,7 @@ namespace acme
 //       class ::time                                                        m_timeFileListingCache;
 //       //critical_section                                                  m_csEnumText;
 //       //string_map < i64_map < string > >                                 m_mapEnumToText;
-//       //string_map < string_map < i64 > >                                 m_mapTextToEnum;
+//       //string_map < string_map < huge_integer > >                                 m_mapTextToEnum;
 //
 //
 //       ::pointer<::internet::internet>                                   m_pinternet;
@@ -231,10 +231,10 @@ namespace acme
 #ifdef _DEBUG
 
 
-      i64 increment_reference_count() override;
+      huge_integer increment_reference_count() override;
 
 
-      i64 decrement_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 
 #endif
@@ -505,9 +505,9 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
+//      m_mapEnumToText[typeid(e).name()][(huge_integer)e] = psz;
 //
-//      m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
+//      m_mapTextToEnum[typeid(e).name()][psz] = (huge_integer)e;
 //
 //   }
 
@@ -518,7 +518,7 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[typeid(e).name()][(i64)e];
+//      return m_mapEnumToText[typeid(e).name()][(huge_integer)e];
 //
 //   }
 
@@ -529,7 +529,7 @@ namespace acme
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
-//      i64 iValue;
+//      huge_integer iValue;
 //
 //      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
 //      {
@@ -562,7 +562,7 @@ namespace acme
 //   inline string enum_text(const base_enum < ENUM, edefault >& b)
 //   {
 //
-//      return enum_text(b.m_evalue, (i64)(ENUM)b);
+//      return enum_text(b.m_evalue, (huge_integer)(ENUM)b);
 //
 //   }
 
@@ -576,7 +576,7 @@ namespace acme
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const string & str);
-      static inline ::atom atom(i64 i);
+      static inline ::atom atom(huge_integer i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);
@@ -594,7 +594,7 @@ namespace acme
       virtual void get_public_internet_domain_extension_list(string_array & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
+      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
       
       void handle(::topic* ptopic, ::context* pcontext) override;
 
@@ -831,7 +831,7 @@ namespace acme
 //       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 //
 //       //virtual ::install::canvas * install_create_canvas();
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode();
 //
 //       //virtual string install_get_platform() override;
@@ -1146,7 +1146,7 @@ namespace acme
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::string & psz);
 //       static inline ::atom atom(const ::string & str);
-//       static inline ::atom atom(i64 i);
+//       static inline ::atom atom(huge_integer i);
 //       static inline ::atom_space & atom();
 //       inline ::atom atom(const ::payload & payload);
 //       inline ::atom atom(const property & prop);*/
@@ -1224,7 +1224,7 @@ namespace acme
 //
 // //#ifndef UNIVERSAL_WINDOWS
 //
-// //virtual void get_time(timeval * point_i32) override;
+// //virtual void get_time(timeval * int_point) override;
 //
 // //#endif
 //
@@ -1245,8 +1245,8 @@ namespace acme
 //       //virtual void defer_check_openweather_city_list();
 //
 //       //virtual openweather_city * openweather_find_city(string strQuery);
-//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, huge_integer & iId, double & dLat, double & dLon);
+//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, huge_integer & iId, double & dLat, double & dLon, bool bPrefix);
 //
 // //#ifdef ANDROID
 // ////#pragma message("at macos??")
@@ -1265,7 +1265,7 @@ namespace acme
 //
 //       //virtual bool initialize_native_window1();
 //
-//       //virtual void * initialize_native_window2(const ::rectangle_i32 & rectangle);
+//       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
 //
 //
 //       //virtual void on_os_text(e_os_text etext, string strText) override;
@@ -1282,7 +1282,7 @@ namespace acme
 //       //virtual bool set_standalone_setting(string str, string strSetting) override;
 //
 //
-//       //virtual void on_event(::u64 u, ::particle * pparticle) override;
+//       //virtual void on_event(huge_natural u, ::particle * pparticle) override;
 //
 //
 //       virtual void on_initial_frame_position(::user::frame_interaction * pframe);
@@ -1397,7 +1397,7 @@ namespace acme
 //
 // //#ifdef UNIVERSAL_WINDOWS
 // //
-// //      virtual bool window_rectangle(::rectangle_i32* prectangle);
+// //      virtual bool window_rectangle(::int_rectangle* prectangle);
 // //
 // //
 // //#endif
@@ -1419,7 +1419,7 @@ namespace acme
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
 //
-//             //virtual void get_cursor_position(::point_i32 * ppoint);
+//             //virtual void get_cursor_position(::int_point * ppoint);
 //
 //
 //
@@ -1478,18 +1478,18 @@ namespace acme
 //
 //
 //       //virtual ::install::canvas * install_create_canvas() override;
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode() override;
 //
 //
 //
 //       //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
 //       //virtual bool adju(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
-//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
+//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
 //
 //       //virtual ::collection::count get_monitor_count() override;
 //
-//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32* prectangle) override;
+//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle) override;
 //
 //
 //       //virtual ::windowing::window * impl_from_handle(void * pdata) override;

@@ -30,7 +30,7 @@ Graph::Graph(Widget * parent, const ::scoped_string & caption)
 }
 
 
-size_i32 Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+int_size Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize)
 {
 
    return {180, 45 };
@@ -68,21 +68,21 @@ void Graph::draw(::nano2d::context * pcontext) {
 
    pcontext->font_face("sans");
 
-   if (m_strCaption.has_char()) {
+   if (m_strCaption.has_character()) {
       pcontext->font_size(14.0f);
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
       pcontext->fill_color(m_colorText);
       pcontext->text(m_pos.x() + 3.f, m_pos.y() + 1.f, m_strCaption.c_str());
    }
 
-   if (m_header.has_char()) {
+   if (m_header.has_character()) {
       pcontext->font_size(18.0f);
       pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_top);
       pcontext->fill_color(m_colorText);
       pcontext->text(m_pos.x() + m_size.cx() - 3.f, m_pos.y() + 1.f, m_header.c_str());
    }
 
-   if (m_footer.has_char()) {
+   if (m_footer.has_character()) {
       pcontext->font_size(15.0f);
       pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_bottom);
       pcontext->fill_color(m_colorText);

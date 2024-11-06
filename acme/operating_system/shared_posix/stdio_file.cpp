@@ -288,7 +288,7 @@ memsize stdio_file::read(void * p, ::memsize s)
 }
 
 
-int stdio_file::get_u8()
+int stdio_file::get_unsigned_char()
 {
 
    int iChar = fgetc(m_pfile);
@@ -470,7 +470,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 
 
 
-memory file_system::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+memory file_system::as_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_papplication->__create_new < stdio_file >();
@@ -500,13 +500,13 @@ memory file_system::as_memory(const ::file::path & pathParam, strsize iReadAtMos
    if (iReadAtMostByteCount < 0)
    {
 
-      iReadAtMostByteCount = (strsize)uSize;
+      iReadAtMostByteCount = (character_count)uSize;
 
    }
    else
    {
 
-      iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+      iReadAtMostByteCount = minimum(iReadAtMostByteCount, (character_count)uSize);
 
    }
 
@@ -537,7 +537,7 @@ memory file_system::as_memory(const ::file::path & pathParam, strsize iReadAtMos
 }
 
 
-memory file_system::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+memory file_system::safe_get_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_papplication->__create_new < stdio_file >();
@@ -810,7 +810,7 @@ void file_system::as_memory(memory_base & memory, const ::file::path & pathParam
 
    }
 
-   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize)iSize);
+   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::character_count)iSize);
 
    memory.set_size(iReadAtMostByteCount);
 

@@ -377,13 +377,13 @@ namespace numeric_info_internal
 #if !defined(GNU_COMPILER) && !defined(FREEBSD)
 
    template < >
-   class CLASS_DECL_ACME numeric_info < ::i64 > :
+   class CLASS_DECL_ACME numeric_info < huge_integer > :
       public numeric_integer_base
    {
    public:
 
-      typedef i64 TYPE;
-      typedef i64 OFFSET_TYPE;
+      typedef huge_integer TYPE;
+      typedef huge_integer OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -413,13 +413,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < u64 >:
+   class CLASS_DECL_ACME numeric_info < huge_natural >:
       public numeric_integer_base
    {
    public:
 
-      typedef u64 TYPE;
-      typedef i64 OFFSET_TYPE;
+      typedef huge_natural TYPE;
+      typedef huge_integer OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {

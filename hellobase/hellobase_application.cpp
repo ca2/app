@@ -60,7 +60,7 @@ namespace hellobase
 
       string str = m_varTopicQuery["hellobase"];
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          m_strHelloBase = str;

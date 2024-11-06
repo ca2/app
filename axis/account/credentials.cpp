@@ -155,8 +155,8 @@ namespace account
       m_iPasswordOriginalLength = -1;
       m_strPassword.empty();
 
-      ASSERT(m_strToken.has_char());
-      ASSERT(m_strTitle.has_char());
+      ASSERT(m_strToken.has_character());
+      ASSERT(m_strTitle.has_character());
 
       if(m_pinteractive != nullptr)
       {
@@ -272,7 +272,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (::e_status) ::ansi_to_i64(strOpen);
+            auto estatus = (::e_status) ::ansi_to_huge_integer(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {
@@ -281,7 +281,7 @@ namespace account
 
                m_strPasshash = strHash;
 
-               m_iPasswordOriginalLength = ansi_to_i32(strOlen);
+               m_iPasswordOriginalLength = ansi_to_int(strOlen);
 
                return ::success_credentials;
 
@@ -321,7 +321,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = ::as_string(estatus.as_i64());
+      string strStatus = ::as_string(estatus.as_huge_integer());
 
       set("open", strStatus);
 
@@ -416,7 +416,7 @@ namespace account
    string credentials::calc_mod_hash()
    {
 
-      if(m_strModHash.has_char())
+      if(m_strModHash.has_character())
       {
 
          return m_strModHash;
@@ -441,7 +441,7 @@ namespace account
    string credentials::calc_key_hash()
    {
 
-      if(m_strKeyHash.has_char())
+      if(m_strKeyHash.has_character())
       {
 
          return m_strKeyHash;
@@ -458,7 +458,7 @@ namespace account
    string credentials::calc_ca2_hash()
    {
 
-      if(m_strCa2Hash.has_char())
+      if(m_strCa2Hash.has_character())
       {
 
          return m_strCa2Hash;
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            error() <<"check_ca2_hash " << exception.m_estatus.as_i64();
+            error() <<"check_ca2_hash " << exception.m_estatus.as_huge_integer();
 
          }
 

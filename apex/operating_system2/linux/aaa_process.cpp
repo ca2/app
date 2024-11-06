@@ -534,7 +534,7 @@ retry:
 //      //}
 //         ::file::path path = module_path_from_pid(iPid);
 //
-//         if(path.has_char())
+//         if(path.has_character())
 //         {
 //
 //            //information(path + "\n");
@@ -616,7 +616,7 @@ string_array cmdline_from_pid(unsigned int iPid)
 
    }
 
-   if(strArg.has_char())
+   if(strArg.has_character())
    {
 
       stra.add(strArg);

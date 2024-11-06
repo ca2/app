@@ -68,7 +68,7 @@
       - Added STBI_MALLOC, STBI_REALLOC, and STBI_FREE macros for replacing
         the memory allocator. Unlike other STBI libraries, these macros don't
         support a context parameter, so if you need to pass a context in to
-        the allocator, you'll have to store it in a global or a thread-local
+        the allocator, you'hi have to store it in a global or a thread-local
         variable.
 
       - Split existing STBI_NO_HDR flag into two flags, STBI_NO_HDR and
@@ -2017,8 +2017,8 @@ static void stbi__idct_block(stbi_uc * out, int out_stride, short data[64])
          // loop, plus horizontal and vertical each scale by sqrt(8) so together
          // we've got an extra 1<<3, so 1<<17 total we need to remove.
          // so we want to round that, which means adding 0.5 * 1<<17,
-         // aka 65536. Also, we'll end up with -128 to 127 that we want
-         // to encode as 0..255 by adding 128, so we'll add that before the shift
+         // aka 65536. Also, we'hi end up with -128 to 127 that we want
+         // to encode as 0..255 by adding 128, so we'hi add that before the shift
          x0 += 65536 + (128 << 17);
       x1 += 65536 + (128 << 17);
       x2 += 65536 + (128 << 17);
@@ -2374,9 +2374,9 @@ static void stbi__idct_simd(stbi_uc * out, int out_stride, short data[64])
       uint8x8_t p7 = vqrshrun_n_s16(row7, 1);
 
       // again, these can translate into one instruction, but often don't.
-#define dct_trn8_8(x, y) { uint8x8x2_t t = vtrn_u8(x, y); x = t.val[0]; y = t.val[1]; }
-#define dct_trn8_16(x, y) { uint16x4x2_t t = vtrn_u16(vreinterpret_u16_u8(x), vreinterpret_u16_u8(y)); x = vreinterpret_byte_u16(t.val[0]); y = vreinterpret_byte_u16(t.val[1]); }
-#define dct_trn8_32(x, y) { uint32x2x2_t t = vtrn_u32(vreinterpret_u32_u8(x), vreinterpret_u32_u8(y)); x = vreinterpret_byte_u32(t.val[0]); y = vreinterpret_byte_u32(t.val[1]); }
+#define dct_trn8_8(x, y) { uint8x8x2_t t = vtrn_unsigned_char(x, y); x = t.val[0]; y = t.val[1]; }
+#define dct_trn8_16(x, y) { uint16x4x2_t t = vtrn_unsigned_short(vreinterpret_u16_unsigned_char(x), vreinterpret_u16_unsigned_char(y)); x = vreinterpret_byte_unsigned_short(t.val[0]); y = vreinterpret_byte_unsigned_short(t.val[1]); }
+#define dct_trn8_32(x, y) { uint32x2x2_t t = vtrn_unsigned_int(vreinterpret_u32_unsigned_char(x), vreinterpret_u32_unsigned_char(y)); x = vreinterpret_byte_unsigned_int(t.val[0]); y = vreinterpret_byte_unsigned_int(t.val[1]); }
 
       // sadly can't use interleaved stores here since we only write
       // 8 bytes to each scan line!
@@ -2400,14 +2400,14 @@ static void stbi__idct_simd(stbi_uc * out, int out_stride, short data[64])
       dct_trn8_32(p3, p7);
 
       // store
-      vst1_u8(out, p0); out += out_stride;
-      vst1_u8(out, p1); out += out_stride;
-      vst1_u8(out, p2); out += out_stride;
-      vst1_u8(out, p3); out += out_stride;
-      vst1_u8(out, p4); out += out_stride;
-      vst1_u8(out, p5); out += out_stride;
-      vst1_u8(out, p6); out += out_stride;
-      vst1_u8(out, p7);
+      vst1_unsigned_char(out, p0); out += out_stride;
+      vst1_unsigned_char(out, p1); out += out_stride;
+      vst1_unsigned_char(out, p2); out += out_stride;
+      vst1_unsigned_char(out, p3); out += out_stride;
+      vst1_unsigned_char(out, p4); out += out_stride;
+      vst1_unsigned_char(out, p5); out += out_stride;
+      vst1_unsigned_char(out, p6); out += out_stride;
+      vst1_unsigned_char(out, p7);
 
 #undef dct_trn8_8
 #undef dct_trn8_16
@@ -2440,7 +2440,7 @@ static stbi_uc stbi__get_marker(stbi__jpeg * j)
    return x;
 }
 
-// in each scan, we'll have scan_n components, and the order
+// in each scan, we'hi have scan_n components, and the order
 // of the components is specified by order[]
 #define STBI__RESTART(x)     ((x) >= 0xd0 && (x) <= 0xd7)
 
@@ -2768,7 +2768,7 @@ static int stbi__process_frame_header(stbi__jpeg * z, int scan)
       // number of effective pixels (e.g. for non-interleaved MCU)
       z->img_comp[i].x() = (s->img_x * z->img_comp[i].h + h_max - 1) / h_max;
       z->img_comp[i].y() = (s->img_y * z->img_comp[i].v + v_max - 1) / v_max;
-      // to simplify generation, we'll allocate enough memory to decode
+      // to simplify generation, we'hi allocate enough memory to decode
       // the bogus oversized data from using interleaved MCUs and their
       // big blocks (e.g. a 16x16 iMCU on an image of width 33); we won't
       // discard the extra data until colorspace conversion
@@ -2822,7 +2822,7 @@ static int stbi__decode_jpeg_header(stbi__jpeg * z, int scan)
       if (!stbi__process_marker(z, m)) return 0;
       m = stbi__get_marker(z);
       while (m == STBI__MARKER_none) {
-         // some files have extra padding after their blocks, so ok, we'll scan
+         // some files have extra padding after their blocks, so ok, we'hi scan
          if (stbi__at_eof(z->s)) return stbi__err("no SOF", "Corrupt JPEG");
          m = stbi__get_marker(z);
       }
@@ -2859,7 +2859,7 @@ static int stbi__decode_jpeg_image(stbi__jpeg * j)
                   return stbi__err("junk before marker", "Corrupt JPEG");
                }
             }
-            // if we reach eof without hitting a marker, stbi__get_marker() below will fail and we'll eventually return 0
+            // if we reach eof without hitting a marker, stbi__get_marker() below will fail and we'hi eventually return 0
          }
       }
       else {
@@ -3014,10 +3014,10 @@ static stbi_uc * stbi__resample_row_hv_2_simd(stbi_uc * out, stbi_uc * in_near, 
 #elif defined(STBI_NEON)
       // load and perform the vertical filtering pass
       // this uses 3*x + y = 4*x + (y - x)
-      uint8x8_t farb = vld1_u8(in_far + i);
-      uint8x8_t nearb = vld1_u8(in_near + i);
-      int16x8_t diff = vreinterpretq_s16_u16(vsubl_u8(farb, nearb));
-      int16x8_t nears = vreinterpretq_s16_u16(vshll_n_u8(nearb, 2));
+      uint8x8_t farb = vld1_unsigned_char(in_far + i);
+      uint8x8_t nearb = vld1_unsigned_char(in_near + i);
+      int16x8_t diff = vreinterpretq_s16_unsigned_short(vsubl_unsigned_char(farb, nearb));
+      int16x8_t nears = vreinterpretq_s16_unsigned_short(vshll_n_unsigned_char(nearb, 2));
       int16x8_t curr = vaddq_s16(nears, diff); // current row
 
       // horizontal filter works the same based on shifted vers of current
@@ -3044,7 +3044,7 @@ static stbi_uc * stbi__resample_row_hv_2_simd(stbi_uc * out, stbi_uc * in_near, 
       uint8x8x2_t o;
       o.val[0] = vqrshrun_n_s16(even, 4);
       o.val[1] = vqrshrun_n_s16(odd, 4);
-      vst2_u8(out + i * 2, o);
+      vst2_unsigned_char(out + i * 2, o);
 #endif
 
       // "previous" value for next iter
@@ -3208,7 +3208,7 @@ static void stbi__YCbCr_to_RGB_simd(stbi_uc * out, stbi_uc const * y, stbi_uc co
    // in this version, step=3 support would be easy to add. but is there demand?
    if (step == 4) {
       // this is a fairly straightforward implementation and not super-optimized.
-      uint8x8_t signflip = vdup_n_u8(0x80);
+      uint8x8_t signflip = vdup_n_unsigned_char(0x80);
       int16x8_t cr_const0 = vdupq_n_s16((short)(1.40200f * 4096.0f + 0.5f));
       int16x8_t cr_const1 = vdupq_n_s16(-(short)(0.71414f * 4096.0f + 0.5f));
       int16x8_t cb_const0 = vdupq_n_s16(-(short)(0.34414f * 4096.0f + 0.5f));
@@ -3216,14 +3216,14 @@ static void stbi__YCbCr_to_RGB_simd(stbi_uc * out, stbi_uc const * y, stbi_uc co
 
       for (; i + 7 < count; i += 8) {
          // load
-         uint8x8_t y_bytes = vld1_u8(y + i);
-         uint8x8_t cr_bytes = vld1_u8(pcr + i);
-         uint8x8_t cb_bytes = vld1_u8(pcb + i);
-         int8x8_t cr_biased = vreinterpret_s8_u8(vsub_u8(cr_bytes, signflip));
-         int8x8_t cb_biased = vreinterpret_s8_u8(vsub_u8(cb_bytes, signflip));
+         uint8x8_t y_bytes = vld1_unsigned_char(y + i);
+         uint8x8_t cr_bytes = vld1_unsigned_char(pcr + i);
+         uint8x8_t cb_bytes = vld1_unsigned_char(pcb + i);
+         int8x8_t cr_biased = vreinterpret_s8_unsigned_char(vsub_unsigned_char(cr_bytes, signflip));
+         int8x8_t cb_biased = vreinterpret_s8_unsigned_char(vsub_unsigned_char(cb_bytes, signflip));
 
          // expand to s16
-         int16x8_t yws = vreinterpretq_s16_u16(vshll_n_u8(y_bytes, 4));
+         int16x8_t yws = vreinterpretq_s16_unsigned_short(vshll_n_unsigned_char(y_bytes, 4));
          int16x8_t crw = vshll_n_s8(cr_biased, 7);
          int16x8_t cbw = vshll_n_s8(cb_biased, 7);
 
@@ -3241,10 +3241,10 @@ static void stbi__YCbCr_to_RGB_simd(stbi_uc * out, stbi_uc const * y, stbi_uc co
          o.val[0] = vqrshrun_n_s16(rws, 4);
          o.val[1] = vqrshrun_n_s16(gws, 4);
          o.val[2] = vqrshrun_n_s16(bws, 4);
-         o.val[3] = vdup_n_u8(255);
+         o.val[3] = vdup_n_unsigned_char(255);
 
          // store, interleaving r/g/b/a
-         vst4_u8(out, o);
+         vst4_unsigned_char(out, o);
          out += 8 * 4;
       }
    }
@@ -4123,7 +4123,7 @@ static int stbi__create_png_image_raw(stbi__png * a, stbi_uc * raw, stbi__uint32
          stbi_uc * cur = a->out + stride * j;
          stbi_uc * in = a->out + stride * j + x * out_n - img_width_bytes;
          // unpack 1/2/4-bit into a 8-bit buffer. allows us to keep the common 8-bit path optimal at minimal cost for 1/2/4-bit
-         // png guarante unsigned char alignment, if width is not multiple of 8/4/2 we'll decode dummy trailing data that will be skipped in the later loop
+         // png guarante unsigned char alignment, if width is not multiple of 8/4/2 we'hi decode dummy trailing data that will be skipped in the later loop
          stbi_uc scale = (color == 0) ? stbi__depth_scale_table[depth] : 1; // scale grayscale values to 0..255 range
 
          // note that the final unsigned char might overshoot and write more data than desired.
@@ -4777,7 +4777,7 @@ static stbi_uc * stbi__bmp_load(stbi__context * s, int * x, int * y, int * comp,
    if (req_comp && req_comp >= 3) // we can directly decode 3 or 4
       target = req_comp;
    else
-      target = s->img_n; // if they want monochrome, we'll post-convert
+      target = s->img_n; // if they want monochrome, we'hi post-convert
 
    out = (stbi_uc *)stbi__malloc(target * s->img_x * s->img_y);
    if (!out) return stbi__errpuc("outofmem", "Out of memory");
@@ -5073,7 +5073,7 @@ static stbi_uc * stbi__tga_load(stbi__context * s, int * x, int * y, int * comp,
    }
    tga_inverted = 1 - ((tga_inverted >> 5) & 1);
 
-   //   If I'm paletted, then I'll use the number of bits from the palette
+   //   If I'm paletted, then I'hi use the number of bits from the palette
    if (tga_indexed) tga_comp = stbi__tga_get_comp(tga_palette_bits, 0, &tga_rgb16);
    else tga_comp = stbi__tga_get_comp(tga_bits_per_pixel, (tga_image_type == 3), &tga_rgb16);
 
@@ -6636,7 +6636,7 @@ STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const * c, void * user, i
       1.24  (2010-07-12)
               perf improvements reading from files on platforms with lock-heavy fgetc()
               minor perf improvements for jpeg
-              deprecated type-specific functions so we'll get feedback if they're needed
+              deprecated type-specific functions so we'hi get feedback if they're needed
               attempt to fix trans_data warning (Won Chun)
       1.23    fixed bug in iPhone support
       1.22  (2010-07-10)

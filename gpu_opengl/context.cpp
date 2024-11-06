@@ -351,7 +351,7 @@ namespace opengl
 
 
 
-   //void context::create_offscreen_buffer(const ::size_i32& size)
+   //void context::create_offscreen_buffer(const ::int_size& size)
    //{
 
    //   auto pgpu = psystem->get_gpu();
@@ -395,7 +395,7 @@ namespace opengl
    //}
 
 
-   //void context::_create_offscreen_buffer(const ::size_i32& size)
+   //void context::_create_offscreen_buffer(const ::int_size& size)
    //{
 
    //   return ::success_none;
@@ -403,7 +403,7 @@ namespace opengl
    //}
 
 
-   //void context::resize_offscreen_buffer(const ::size_i32& size)
+   //void context::resize_offscreen_buffer(const ::int_size& size)
    //{
 
    //   return ::success_none;

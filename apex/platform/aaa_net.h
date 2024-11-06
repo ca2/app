@@ -5,7 +5,7 @@
 
 
 //CLASS_DECL_APEX string url_decode(const ::scoped_string & scopedstr);
-//CLASS_DECL_APEX string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen);
+//CLASS_DECL_APEX string url_decode(const ::scoped_string & scopedstrUrl,character_count iLen);
 
 
 

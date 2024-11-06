@@ -48,8 +48,8 @@ namespace user
    public:
 
 
-      strsize                 m_iStart;
-      strsize                 m_iEnd;
+      character_count                 m_iStart;
+      character_count                 m_iEnd;
       class ::time            m_tick;
       string                  m_strMessage;
 
@@ -108,7 +108,7 @@ namespace user
 
       //   action_context    m_actioncontext;
 
-      //   ::point_i32           m_point;
+      //   ::int_point           m_point;
       //   ::collection::index           m_iSelEnd;
 
       //   call() {}
@@ -151,7 +151,7 @@ namespace user
       //   public call
       //{
       //public:
-      //   call_set_sel_end(strsize iSelEnd)
+      //   call_set_sel_end(character_count iSelEnd)
       //   {
 
       //      m_ecall = e_call_set_sel_end;
@@ -166,7 +166,7 @@ namespace user
       //{
       //public:
 
-      //   call_set_sel_end_on_point(point_i32 point)
+      //   call_set_sel_end_on_point(int_point point)
       //   {
 
       //      m_ecall = e_call_set_sel_end;
@@ -211,7 +211,7 @@ namespace user
       // Potential - line count at client area as if it was fully filled
       ::collection::count                               m_iCurrentPagePotentialLineCount;
       bool                                m_bCustomFrameBefore;
-      ::rectangle_i32                              m_FullScreenWindowRect;
+      ::int_rectangle                              m_FullScreenWindowRect;
 
       string_to_string                    m_base64map;
 
@@ -221,30 +221,30 @@ namespace user
       //bool                                m_bLeftButtonDownIsSelectingAll;
       bool                                m_bNewFocusSelectAll;
       class ::time                        m_timeNewFocusSelectAll;
-      strsize                             m_iNewFocusSelectAllSelBeg;
-      strsize                             m_iNewFocusSelectAllSelEnd;
-      strsize                             m_iNewFocusSelectAllColumn;
+      character_count                             m_iNewFocusSelectAllSelBeg;
+      character_count                             m_iNewFocusSelectAllSelEnd;
+      character_count                             m_iNewFocusSelectAllColumn;
       class ::time                        m_timeLeftButtonDown;
       bool                                m_bRMouseDown;
-      point_i32                           m_pointSelStart;
+      int_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
       string_array                        m_straLines;
       double                              m_dy;
       bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
-      strsize                             m_iImpactOffset; // in bytes
-      strsize                             m_iImpactSize; // in bytes
+      character_count                             m_iImpactOffset; // in bytes
+      character_count                             m_iImpactSize; // in bytes
       double                              m_dLineHeight;
       ::collection::index                               m_iColumn;
       int                                 m_iColumnX;
       bool                                m_bMultiLine;
       bool                                m_bSendEnterKey;
       bool                                m_bReadOnly;
-      point_i32                               m_pointLastCursor;
+      int_point                               m_pointLastCursor;
 
       // Used for whatever it can make faster for large files (scroll for example)
-      // keep each line size_i32
+      // keep each line int_size
       index_array                         m_iaLineLength;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line flags
@@ -286,9 +286,9 @@ namespace user
       virtual bool is_new_focus_select_all() const;
 
 
-      virtual void get_text_composition_area(::rectangle_i32 & r) override;
+      virtual void get_text_composition_area(::int_rectangle & r) override;
       void edit_on_text(string str) override;
-      void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
+      void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
       void on_text_composition(string str) override;
       void on_text_commit(string str) override;
       void on_text_composition_done() override;
@@ -297,18 +297,18 @@ namespace user
 
       bool InputConnectionBeginBatchEdit(bool bSuper) override;
       bool InputConnectionEndBatchEdit(bool bSuper) override;
-      bool InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition, bool bSuper) override;
-      bool InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper) override;
-      bool InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition, bool bSuper) override;
-      bool InputConnectionSetComposingRegion(strsize iStart, strsize iEnd, bool bSuper) override;
-      bool InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper) override;
+      bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper) override;
+      bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper) override;
+      bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionFinishComposingText(bool bSuper) override;
 
       
       void queue_selection_synchronization() override;
 
 
-      void constrain_context_offset(point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      void constrain_context_offset(double_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer& pgraphics) override;
@@ -335,7 +335,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
+      status < ::double_rectangle > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
   
       
       void on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage) override;
@@ -421,10 +421,10 @@ namespace user
 
       void _001OnKeyboardFocusTimer(::enum_timer etimer);
 
-      string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, array < strsize * > intptra = array < strsize * >());
+      string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, array < character_count * > intptra = array < character_count * >());
 
       string plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
-      double plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, strsize iChar);
+      double plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, character_count iChar);
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
 
@@ -440,17 +440,17 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
-      virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & point);
-      virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, int x, ::collection::index iLine);
+      virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::int_point & point);
+      virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, int x, ::collection::index iLine);
 
       //colorertake5::file_type * colorer_select_type();
 
-      virtual void extend_selection_end(const ::point_i32 & pointHost);
-      virtual void _extend_selection_end(const ::point_i32 & pointHost);
+      virtual void extend_selection_end(const ::int_point & pointHost);
+      virtual void _extend_selection_end(const ::int_point & pointHost);
 
 
-      //virtual strsize get_text_length() override;
-      virtual strsize get_text_length();
+      //virtual character_count get_text_length() override;
+      virtual character_count get_text_length();
       virtual ::collection::count line_count() const;
       ::string get_text() const override;
 
@@ -462,30 +462,30 @@ namespace user
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
       virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1);
 
-      //void get_text_selection(strsize &iSelStart, strsize &iSelEnd) override;
-      //void get_text_selection(strsize & iSelStart, strsize & iSelEnd);
-      //void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
+      //void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
+      //void get_text_selection(character_count & iSelStart, character_count & iSelEnd);
+      //void get_text_selection(character_count & iSelBeg, character_count & iSelEnd);
       //void set_text(const ::string & str, const ::action_context & actioncontext) override;
       void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
-      void set_text_and_selection(const ::scoped_string & scopedstr, strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext) override;
+      void set_text_and_selection(const ::scoped_string & scopedstr, character_count iSelStart, character_count iSelEnd, const ::action_context & actioncontext) override;
       //void set_selection_text(const ::string & psz, const ::action_context & actioncontext) override;
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
-      //void _001SetSelEnd(strsize iSelEnd, const ::action_context & actioncontext) override;
-      void set_selection_end(strsize iSelEnd, const ::action_context & actioncontext);
-      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & actioncontext);
+      //void _001SetSelEnd(character_count iSelEnd, const ::action_context & actioncontext) override;
+      void set_selection_end(character_count iSelEnd, const ::action_context & actioncontext);
+      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, character_count iSelEnd, const ::action_context & actioncontext);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
-      //void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext = ::e_source_user) override;
-      void plain_edit_set_text_selection_begin(strsize iSelStart, const ::action_context & actioncontext);
-      void plain_edit_set_text_selection_end(strsize iSelEnd, const ::action_context & actioncontext);
-      void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext) override;
+      //void set_text_selection(character_count iSelStart, character_count iSelEnd, const ::action_context & actioncontext = ::e_source_user) override;
+      void plain_edit_set_text_selection_begin(character_count iSelStart, const ::action_context & actioncontext);
+      void plain_edit_set_text_selection_end(character_count iSelEnd, const ::action_context & actioncontext);
+      void set_text_selection(character_count iSelStart, character_count iSelEnd, const ::action_context & actioncontext) override;
       virtual void _unlocked_plain_edit_on_change_text_selection(const ::action_context & actioncontext);
-      void get_text_selection(strsize & iSelStart, strsize & iSelEnd) const override;
-      void get_text_selection(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
+      void get_text_selection(character_count & iSelStart, character_count & iSelEnd) const override;
+      void get_text_selection(character_count& iSelStart, character_count& iSelEnd, character_count & iComposingStart, character_count & iComposingEnd) const override;
 
-      void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
+      void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, character_count iChar);
       void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
 
-      void plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pgraphics, strsize iChar);
+      void plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pgraphics, character_count iChar);
       void plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
 
       bool should_load_full_file();
@@ -503,21 +503,21 @@ namespace user
       void plain_edit_on_line_update(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, const ::action_context & actioncontext);
       void plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
 
-      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x) override;
-      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x) override;
-      strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
-      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, strsize iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32 * lprect, ::collection::index iLine);
+      ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
+      ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, ::collection::index iLine);
 
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
-      void IndexRegisterDelete(strsize iSel, strsize iCount);
-      void IndexRegisterInsert(strsize iSel, const ::string & pcszWhat);
+      void IndexRegisterDelete(character_count iSel, character_count iCount);
+      void IndexRegisterInsert(character_count iSel, const ::string & pcszWhat);
 
 
       virtual void MacroBegin();
@@ -547,7 +547,7 @@ namespace user
 
       void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual ::size_f64 get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
+      //virtual ::double_size get_total_size(::user::enum_layout = ::user::e_layout_sketch) override;
 
       virtual ::payload get_payload();
 
@@ -560,7 +560,7 @@ namespace user
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 
-      virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, strsize beforeLength, strsize afterLength);
+      virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, character_count beforeLength, character_count afterLength);
 
       virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
 

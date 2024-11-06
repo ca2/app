@@ -21,7 +21,7 @@ namespace file
          bool Create(unsigned int bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream);}
          void ReleaseStream() { m_Stream.ReleaseStream(); }
-         u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) / 8; }
+         huge_natural GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) / 8; }
          void Init()
          {
             m_Stream.Init();

@@ -26,7 +26,7 @@ namespace experience_nanoui
       ::draw2d::pen_pointer               m_ppenShadow1;
       ::draw2d::pen_pointer               m_ppenDkShadow1;
       status < ::color::color >    m_colorDkShadow;
-      size_i32                            m_minSize;
+      int_size                            m_minSize;
 
       ::draw2d::pen_pointer               m_ppenHollow0;
       ::draw2d::pen_pointer               m_ppenHollow1;
@@ -34,7 +34,7 @@ namespace experience_nanoui
       ::draw2d::pen_pointer               m_ppenHollow3;
       ::draw2d::pen_pointer               m_ppenHollow4;
       ::draw2d::pen_pointer               m_ppenHollow5;
-      ::size_i32                          m_sizeIcon;
+      ::int_size                          m_sizeIcon;
 
       frame();
       virtual ~frame();
@@ -64,27 +64,27 @@ namespace experience_nanoui
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
+      //virtual void _001OnBeforeMove(const ::int_rectangle &lpcrectWindow);
 
-      //virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow);
+      //virtual void _001OnBeforeSize(const ::int_rectangle &lpcrectWindow);
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
+      bool get_element_rectangle(::int_rectangle & rectangle, enum_element eelement) override;
 
-      void GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * lprect, enum_border eside);
+      void GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside);
 
-      //bool experience_frame_hit_test(const ::point_i32 &point, enum_element &eelementParam) override;
+      //bool experience_frame_hit_test(const ::int_point &point, enum_element &eelementParam) override;
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color& color, unsigned char bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color& color, unsigned char bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
 
       virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 

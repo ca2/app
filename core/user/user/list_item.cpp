@@ -208,7 +208,7 @@ namespace user
                {
 
 
-                  pimage->create(m_rectangleImage.size() + size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
+                  pimage->create(m_rectangleImage.size() + int_size(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
                   //m_plist->m_pfastblurIcon->initialize(m_rectangleImage.size() , m_plist.m_iIconBlurRadius);
 
                }
@@ -224,7 +224,7 @@ namespace user
                pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
 
                get_image_list()->draw(pimage->g(), (int)m_iImage,
-                  point_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::point_i32(), 0);
+                  int_point(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::int_point(), 0);
 
                if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0)
                {
@@ -248,7 +248,7 @@ namespace user
 
                }
 
-               //pimage->g()->fill_rectangle(::rectangle_i32(pimage->size()), argb(255, 200, 220, 255));
+               //pimage->g()->fill_rectangle(::int_rectangle(pimage->size()), argb(255, 200, 220, 255));
                if (m_pitem->m_pmesh->m_plist->m_iIconBlur > 0 && m_pitem->m_pmesh->m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -274,8 +274,8 @@ namespace user
 
                ::image::image_source imagesource(pimage);
 
-               rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate),
-                  m_rectangleImage.size() + size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
+               double_rectangle rectangleDib(m_rectangleImage.top_left() - int_size(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate),
+                  m_rectangleImage.size() + int_size(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
 
                ::image::image_drawing_options imagedrawingoptions(rectangleDib);
 
@@ -285,7 +285,7 @@ namespace user
 
             }
 
-            ::rectangle_i32 rectangleI;
+            ::int_rectangle rectangleI;
 
             if (m_pitem->m_pmesh->m_plist->m_pimageSpot->is_set() && m_pitem->m_pmesh->m_plist->m_pimageSpot->area() > 0 && rectangleI.intersect(m_rectangleImage, m_pitem->m_pmesh->m_plist->m_rectangleSpot)
                && m_iImage >= 0 && m_iImage < get_image_list()->get_image_count())
@@ -294,7 +294,7 @@ namespace user
 
                m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
 
-               ::rectangle_i32 rectangle = rectangleI;
+               ::int_rectangle rectangle = rectangleI;
 
                rectangle.offset(-m_rectangleImage.top_left());
 
@@ -302,7 +302,7 @@ namespace user
 
                //m_plist->m_pimageTime->get_graphics()->fill_rectangle(r, 0);
 
-               ::rectangle_i32 rect2 = rectangleI;
+               ::int_rectangle rect2 = rectangleI;
 
                rect2.offset(-m_pitem->m_pmesh->m_plist->m_rectangleSpot.top_left());
 
@@ -312,7 +312,7 @@ namespace user
                   rect2.top_left(),
                   rectangle.size(), rectangle.top_left(), 0);
 
-               //m_pgraphics->draw(rectangleI + point_i32(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
+               //m_pgraphics->draw(rectangleI + int_point(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
 
@@ -353,12 +353,12 @@ namespace user
 
             //auto ret = 
 
-            pimagelist->_draw(m_pitem->m_pdrawlistitem->m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+            pimagelist->_draw(m_pitem->m_pdrawlistitem->m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::int_point(), 0);
 
             //auto pimageDebug = create_image(m_rectangleImage.size());
             //{
 
-            //   auto ret = get_image_list()->draw(pimageDebug->g(), (int)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
+            //   auto ret = get_image_list()->draw(pimageDebug->g(), (int)m_iImage, { 0,0 }, m_rectangleImage.size(), ::int_point(), 0);
             //   auto pimage32 = pimageDebug->get_data();
             //   informationf("imageDebug");
 
@@ -385,7 +385,7 @@ namespace user
 
       //return 
 
-      m_pmesh->m_plist->m_pimagelistGroup->draw(m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+      m_pmesh->m_plist->m_pimagelistGroup->draw(m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::int_point(), 0);
 
    }
 
@@ -512,7 +512,7 @@ namespace user
          if (m_pitem->m_pmesh->m_plist->m_eview == list::impact_icon && m_pitem->m_pmesh->m_plist->m_bEmboss && ((m_pitem->m_pmesh->m_plist->m_iTextBlurRadius > 0 && m_pitem->m_pmesh->m_plist->m_iTextBlur > 0) || m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius > 0))
          {
 
-            if (m_strText.has_char())
+            if (m_strText.has_character())
             {
 
                ::image::image_pointer & pimage2 = m_pitem->m_pmesh->m_plist->m_mapBlur[m_pitem->m_iItem];
@@ -552,7 +552,7 @@ namespace user
             }
 
          }
-         else if (m_strText.has_char())
+         else if (m_strText.has_character())
          {
 
             //auto pbrushText = __create < ::draw2d::brush > ();
@@ -573,7 +573,7 @@ namespace user
 
             set_text_color(pgraphics);
 
-            ::rectangle_i32 rectangleMargin(2, 0, 2, 0);
+            ::int_rectangle rectangleMargin(2, 0, 2, 0);
 
             auto rectangleText = m_rectangleText;
 

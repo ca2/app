@@ -132,7 +132,7 @@ namespace html
 
          str.trim();
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             m_bHasChar = true;
@@ -191,11 +191,11 @@ namespace html
 
          pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
 
-         ::size_f32 size = pgraphics->get_text_extent(strMax);
+         ::float_size size = pgraphics->get_text_extent(strMax);
 
          m_cxMax = (float) size.cx();
 
-         //strsize iLastSpace = 0;
+         //character_count iLastSpace = 0;
 
          char ch;
 
@@ -297,7 +297,7 @@ namespace html
 
          str.trim();
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             m_bHasChar = true;
@@ -383,7 +383,7 @@ namespace html
 
          m_sizea.erase_all();
 
-         ::size_f32 sizeText;
+         ::float_size sizeText;
 
          int iSpace;
 
@@ -391,7 +391,7 @@ namespace html
 
          char ch;
 
-         strsize iLastSpace = 0;
+         character_count iLastSpace = 0;
 
          auto pointBound = top_left();
 
@@ -399,7 +399,7 @@ namespace html
 
          float x = pointBound.x();
 
-         ::size_f32 sizeContent = ::size_f32(get_bound_size());
+         ::float_size sizeContent = ::float_size(get_bound_size());
 
          sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left() - m_padding.right() - m_border.left() - m_border.right() - m_margin.left() - m_margin.right());
 
@@ -492,7 +492,7 @@ namespace html
 
                }
 
-               m_sizea.add(::size_f32(sizeText));
+               m_sizea.add(::float_size(sizeText));
 
                iLastSpace = 0;
 
@@ -515,7 +515,7 @@ namespace html
 
             m_straLines.add(strLine);
 
-            m_sizea.add(::size_f32(sizeText));
+            m_sizea.add(::float_size(sizeText));
 
          }
 
@@ -524,7 +524,7 @@ namespace html
 
             m_straLines.add("");
 
-            m_sizea.add(::size_f32(0.f, 0.f));
+            m_sizea.add(::float_size(0.f, 0.f));
 
          }
 
@@ -609,9 +609,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectangleWindow;
+         //::int_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
-         ::point_i32 pointPreviousContextOrg = pgraphics->get_origin();
+         ::int_point pointPreviousContextOrg = pgraphics->get_origin();
 
          pgraphics->offset_origin((int) m_box.left(), (int) m_box.top());
 
@@ -641,7 +641,7 @@ namespace html
 
                pgraphics->set(pfont);
 
-               ::rectangle_i32 rectangleLine;
+               ::int_rectangle rectangleLine;
 
                for (::collection::index i = 0; i < m_straLines.get_count(); i++)
                {
@@ -675,7 +675,7 @@ namespace html
          if(etag == tag_body)
          {
 
-            ::rectangle_i32 rectangle;
+            ::int_rectangle rectangle;
 
             if(!pdata->m_pcoredata->m_bDrawFirstBody)
             {
@@ -803,14 +803,14 @@ namespace html
 
          bool bCaretOn = ((m_timeFocusStart.elapsed()) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
-         strsize iSelStart;
-         strsize iSelEnd;
-         ::size_f32 size3;
+         character_count iSelStart;
+         character_count iSelEnd;
+         ::float_size size3;
          draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIp"), size3);
          int maxcy = size3.cy();
 
          get_text_selection(iSelStart, iSelEnd);
-         strsize iCursor = iSelEnd;
+         character_count iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
 
          ::html::font * pfont = pdata->get_font(m_pelemental);
@@ -822,11 +822,11 @@ namespace html
 
          }
 
-         const ::point_f32 & point = get_content_xy();
+         const ::float_point & point = get_content_xy();
 
-         float x = ::point_f32.x();
+         float x = ::float_point.x();
 
-         float y = ::point_f32.y();
+         float y = ::float_point.y();
 
          if(m_pelemental->m_pparent != nullptr)
          {
@@ -844,7 +844,7 @@ namespace html
          string strExtent1;
          string strExtent2;
          string strExtent3;
-         strsize lim = 0;
+         character_count lim = 0;
 
          auto pbrushBackground = __create < ::draw2d::brush > ();
 
@@ -867,11 +867,11 @@ namespace html
                {
                   float y = top;
                   string_array stra;
-                  strsize i1 = iSelStart - lim;
-                  strsize i2 = iSelEnd - lim;
-                  strsize i3 = iCursor - lim;
-                  strsize iStart = maximum(0,i1);
-                  strsize iEnd = minimum(i2,strLine.length());
+                  character_count i1 = iSelStart - lim;
+                  character_count i2 = iSelEnd - lim;
+                  character_count i3 = iCursor - lim;
+                  character_count iStart = maximum(0,i1);
+                  character_count iEnd = minimum(i2,strLine.length());
                   str1 = strLine.substr(0,iStart);
                   str2 = strLine.substr(iStart,iEnd - iStart);
                   str3 = strLine.substr(iEnd);
@@ -886,12 +886,12 @@ namespace html
                   pgraphics->set(pbrushText);
                   //pgraphics->SetBkColor(crBkSel);
                   pgraphics->text_out(left,y,strExtent1);
-                  ::size_f32 size1 = pgraphics->get_text_extent(strExtent1);
+                  ::float_size size1 = pgraphics->get_text_extent(strExtent1);
 
                   pbrushBackground->create_solid(crBkSel);
                   //pgraphics->SetBkMode(OPAQUE);
                   pgraphics->set(pbrushBackground);
-                  ::size_f32 size2 = pgraphics->get_text_extent(strExtent2);
+                  ::float_size size2 = pgraphics->get_text_extent(strExtent2);
                   pgraphics->fill_solid_rect_dim((int)(left + size1.cx()),(int)y,size2.cx(),size2.cy(),crBkSel);
 
                   //pgraphics->set_text_color(crSel);
@@ -1051,7 +1051,7 @@ namespace html
       }
 
 
-      int text::hit_test(html_data * pdocument, const ::point_f32 & point)
+      int text::hit_test(html_data * pdocument, const ::float_point & point)
       {
 
          __UNREFERENCED_PARAMETER(pdocument);
@@ -1170,10 +1170,10 @@ namespace html
       }
 
 
-      strsize text::char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, int py)
+      character_count text::char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, int py)
       {
 
-         ::rectangle_i32 rectangle(m_box);
+         ::int_rectangle rectangle(m_box);
 
          pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_pfont);
 
@@ -1190,9 +1190,9 @@ namespace html
 
          }
 
-         strsize iFind = 0;
+         character_count iFind = 0;
 
-         strsize iLen = 0;
+         character_count iLen = 0;
 
          for(int i = 0; i < m_straLines.get_size(); i++)
          {
@@ -1208,9 +1208,9 @@ namespace html
             if(py >= (y + cy) && py < (y + m_sizea[i].cy()))
             {
 
-               ::size_f32 size;
+               ::float_size size;
 
-               strsize iChar = 0;
+               character_count iChar = 0;
 
                while(true)
                {

@@ -127,7 +127,7 @@ namespace tc4
 
       }
 
-      if(pcreate->m_payloadFile.has_char())
+      if(pcreate->m_payloadFile.has_character())
       {
 
          m_ptemplateHelloMultiverseImpact->do_request(pcreate);

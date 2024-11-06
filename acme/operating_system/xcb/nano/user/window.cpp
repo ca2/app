@@ -319,7 +319,7 @@ namespace nano
       //
       //   for (int i = 0; i < m_iButtonCount; i++)
       //   {
-      //      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
+      //      if (m_buttona[i].m_rectangle.contains(int_point(x, y)))
       //      {
       //
       //         return m_buttona[i].m_edialogresult;
@@ -408,12 +408,12 @@ namespace nano
       //}
 
       //#ifndef int_x
-      //#define int_x(lparam)                          ((int)(short)LOWORD(lparam))
+      //#define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
       //#endif
       //
       //
       //#ifndef int_y
-      //#define int_y(lparam)                          ((int)(short)HIWORD(lparam))
+      //#define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
       //#endif
       //
       ////LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
@@ -438,14 +438,14 @@ namespace nano
       //      }
       //         break;
       //      case WM_LBUTTONDOWN:
-      //         on_left_button_down(int_x(lparam), int_y(lparam));
+      //         on_left_button_down(lparam_int_x(lparam), lparam_int_y(lparam));
       //         break;
       //      case WM_MOUSEMOVE:
-      //         on_mouse_move(int_x(lparam), int_y(lparam));
+      //         on_mouse_move(lparam_int_x(lparam), lparam_int_y(lparam));
       //         break;
       //      case WM_LBUTTONUP:
       //      {
-      //         on_left_button_up(int_x(lparam), int_y(lparam));
+      //         on_left_button_up(lparam_int_x(lparam), lparam_int_y(lparam));
       //
       //      }
       //
@@ -698,7 +698,7 @@ namespace nano
             if (!m_psurface)
             {
 
-               rectangle_i32 rectangleX;
+               int_rectangle rectangleX;
 
                get_client_rectangle(rectangleX);
 
@@ -991,11 +991,11 @@ namespace nano
       //   }
       //   break;
       //   case WM_LBUTTONDOWN:
-      //      on_left_button_down(int_x(lparam), int_y(lparam));
+      //      on_left_button_down(lparam_int_x(lparam), lparam_int_y(lparam));
       //      break;
       //   case WM_LBUTTONUP:
       //   {
-      //      on_left_button_up(int_x(lparam), int_y(lparam));
+      //      on_left_button_up(lparam_int_x(lparam), lparam_int_y(lparam));
       //   }
       //
       //   break;
@@ -1063,7 +1063,7 @@ namespace nano
       }
 
 
-      void window::move_to(const ::point_i32 & point)
+      void window::move_to(const ::int_point & point)
       {
 
          m_pdisplay->_move_window(m_window, point.x(), point.y());
@@ -1112,7 +1112,7 @@ namespace nano
       }
 
 
-      void window::get_client_rectangle(::rectangle_i32 & rectangle)
+      void window::get_client_rectangle(::int_rectangle & rectangle)
       {
 
          xcb_get_geometry_reply_t geometry;
@@ -1127,7 +1127,7 @@ namespace nano
       }
 
 
-      void window::get_window_rectangle(::rectangle_i32 & rectangle)
+      void window::get_window_rectangle(::int_rectangle & rectangle)
       {
 
          xcb_get_geometry_reply_t geometry;
@@ -1159,7 +1159,7 @@ namespace nano
       }
 
 
-      //   ::size_i32 window::get_main_screen_size()
+      //   ::int_size window::get_main_screen_size()
       //   {
       //
       //      return m_pdisplay->get_main_screen_size();

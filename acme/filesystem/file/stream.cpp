@@ -262,7 +262,7 @@ bool  stream_base::is_version(int i)
 //void stream::close()
 //{
 //}
-//void stream::getline(char * sz, strsize n)
+//void stream::getline(char * sz, character_count n)
 //{
 //
 //   if (n > 0)
@@ -407,55 +407,55 @@ bool  stream_base::is_version(int i)
 //      write(*payload.m_pstr);
 //   }
 //   break;
-//   case e_type_i8:
+//   case e_type_char:
 //      *this << payload.m_ch;
 //      break;
-//   case e_type_i16:
+//   case e_type_short:
 //      *this << payload.m_sh;
 //      break;
-//   case e_type_u8:
+//   case e_type_unsigned_char:
 //      *this << payload.m_uch;
 //      break;
-//   case e_type_u16:
+//   case e_type_unsigned_short:
 //      *this << payload.m_ush;
 //      break;
-//   case e_type_i32:
+//   case e_type_int:
 //      *this << payload.m_i;
 //      break;
-//   case e_type_i64:
-//      *this << payload.m_i64;
+//   case e_type_huge_integer:
+//      *this << payload.m_hi;
 //      break;
-//   case e_type_u32:
+//   case e_type_unsigned_int:
 //      *this << payload.m_ui;
 //      break;
-//   case e_type_u64:
-//      *this << payload.m_u64;
+//   case e_type_huge_natural:
+//      *this << payload.m_hn;
 //      break;
-//   case e_type_pi8:
-//      *this << *payload.m_pi8;
+//   case e_type_pchar:
+//      *this << *payload.m_pch;
 //      break;
-//   case e_type_pi16:
-//      *this << *payload.m_pi16;
+//   case e_type_pshort:
+//      *this << *payload.m_psh;
 //      break;
-//   case e_type_pu8:
-//      *this << *payload.m_pu8;
+//   case e_type_punsigned_char:
+//      *this << *payload.m_puch;
 //      break;
-//   case e_type_pu16:
-//      *this << *payload.m_pu16;
+//   case e_type_punsigned_short:
+//      *this << *payload.m_push;
 //      break;
-//   case e_type_pi32:
-//      *this << *payload.m_pi32;
+//   case e_type_pint:
+//      *this << *payload.m_pi;
 //      break;
 //   case e_type_pi64:
 //      *this << *payload.m_pi64;
 //      break;
-//   case e_type_pu32:
-//      *this << *payload.m_pu32;
+//   case e_type_punsigned_int:
+//      *this << *payload.m_pui;
 //      break;
 //   case e_type_pu64:
 //      *this << *payload.m_pu64;
 //      break;
-//   case e_type_f64:
+//   case e_type_double:
 //      *this << payload.m_d;
 //      break;
 //   case e_type_bool:
@@ -627,7 +627,7 @@ bool  stream_base::is_version(int i)
 ////
 ////   }
 ////
-////   if (strLink.has_char())
+////   if (strLink.has_character())
 ////   {
 ////
 ////      m_papplication->save_to_file(strLink, m_pvarOptions, preference);
@@ -665,7 +665,7 @@ bool  stream_base::is_version(int i)
 ////
 ////   set_object_link(preference, strLink, bReadOnly);
 ////
-////   if (strLink.has_char())
+////   if (strLink.has_character())
 ////   {
 ////
 ////      m_papplication->load_from_file(preference, strLink);
@@ -752,7 +752,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(i64 & i)
+//void stream::read(huge_integer & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -760,7 +760,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(u64 & u)
+//void stream::read(huge_natural & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -806,7 +806,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-////void stream::read(::point_i32 & point)
+////void stream::read(::int_point & point)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -814,7 +814,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::size_i32 & size)
+////void stream::read(::int_size & size)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -822,7 +822,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::rectangle_i32 & rectangle)
+////void stream::read(::int_rectangle & rectangle)
 ////{
 ////
 ////   throw ::exception(error_io);

@@ -16,8 +16,8 @@
 #include "hex.h"
 
 
-CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME huge_integer strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME huge_integer strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -157,7 +157,7 @@ template < primitive_string STRING, primitive_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
-	string.append_formatf("%lld", (::i64)number);
+	string.append_formatf("%lld", (huge_integer)number);
 
 	return string;
 
@@ -177,7 +177,7 @@ template < primitive_natural NATURAL, primitive_string STRING >
 inline void copy(NATURAL& n, const STRING& string)
 {
 
-	n = (NATURAL)string_to_natural(string);
+	n = (NATURAL)as_huge_natural(string);
 
 }
 
@@ -263,7 +263,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 
 //   inline_number_string numberstring;
 
-//   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+//   __huge_integertoansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
 //   return numberstring;
 
@@ -319,7 +319,7 @@ inline ::u32hash unsigned_int_hash < scoped_wd32_string >(const scoped_wd32_stri
 }
 
 
-template < strsize n >
+template < character_count n >
 inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
 {
 
@@ -328,7 +328,7 @@ inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
 }
 
 
-template < strsize n >
+template < character_count n >
 inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
 {
 
@@ -341,7 +341,7 @@ namespace file
 {
 
 
-    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
             path(::ansi_string(scopedstr), epath, etype, bNormalizePath, iSize)
     {
 
@@ -500,7 +500,7 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd32_strin
 
 
 template<typename ITERATOR_TYPE>
-::collection::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
+::collection::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), character_count minimum_count)
 {
 
    auto c = this->begins_count(character_is_function);
@@ -922,7 +922,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
    auto rangeToConsume = scopedstr();
 
-   while(rangeToConsume.has_char())
+   while(rangeToConsume.has_character())
    {
 
       if(this->is_empty() || (*this->m_begin != *rangeToConsume.m_begin))
@@ -968,7 +968,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //}
 
 
-//u64 str::consume_natural(u64 uMax, u64 uMin)
+//huge_natural str::consume_natural(huge_natural uMax, huge_natural uMin)
 //{
 //
 //   auto u = consume_natural(this->m_begin, uMax, uMin);
@@ -979,7 +979,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
 
 template < typename ITERATOR_TYPE >
-u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
+huge_natural string_range < ITERATOR_TYPE >::consume_natural(huge_natural uMax, huge_natural uMin)
 {
 
    if (uMax < uMin)
@@ -993,7 +993,7 @@ u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
 
    int i = 0;
 
-   u64 u;
+   huge_natural u;
 
    while (unicode_is_digit(this->m_begin))
    {
@@ -1111,7 +1111,7 @@ template < typename ITERATOR_TYPE >
 
       int len;
       
-      i64 i = unicode_index_length(this->m_begin, len);
+      huge_integer i = unicode_index_length(this->m_begin, len);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {
@@ -1162,7 +1162,7 @@ template < typename ITERATOR_TYPE >
 
       unicode_increment(this->m_begin);
 
-   } while(this->has_char() &&
+   } while(this->has_character() &&
            (unicode_is_letter_or_digit(this->m_begin)
             || *this->m_begin == '_' || *this->m_begin == '-'));
    
@@ -1213,7 +1213,7 @@ template < typename ITERATOR_TYPE >
 
 
 //template < typename ITERATOR_TYPE >
-// void string_base < ITERATOR_TYPE >::no_escape_consume_quoted_value(char ** ppsz, strsize & iBufferSize)
+// void string_base < ITERATOR_TYPE >::no_escape_consume_quoted_value(char ** ppsz, character_count & iBufferSize)
 //{
 //
 //   const ::ansi_character * pszStart = this->m_begin;
@@ -1249,7 +1249,7 @@ template < typename ITERATOR_TYPE >
 //
 //   }
 //
-//   strsize iNewBufferSize = this->m_begin - pszValueStart;
+//   character_count iNewBufferSize = this->m_begin - pszValueStart;
 //
 //   if (iNewBufferSize > iBufferSize)
 //   {
@@ -1357,7 +1357,7 @@ template < typename ITERATOR_TYPE >
 
    auto pszStart = this->m_begin;
 
-   while (this->has_char() && !ansi_char_isspace(*this->m_begin))
+   while (this->has_character() && !ansi_char_isspace(*this->m_begin))
    {
       
       this->m_begin++;
@@ -1382,7 +1382,7 @@ template < typename ITERATOR_TYPE >
 //
 //   string str(psz);
 //
-//   strsize iOldLen = str.length();
+//   character_count iOldLen = str.length();
 //
 //   string strResult = consume_spaced_value(str);
 //
@@ -1398,7 +1398,7 @@ template < typename ITERATOR_TYPE >
 //
 //   string str(psz, pszEnd - psz);
 //
-//   strsize iOldLen = str.length();
+//   character_count iOldLen = str.length();
 //
 //   string strResult = consume_spaced_value(str);
 //
@@ -1453,7 +1453,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 //
 //   string str(psz);
 //
-//   strsize iOldLen = str.length();
+//   character_count iOldLen = str.length();
 //
 //   string strResult = consume_command_line_argument(str);
 //
@@ -1469,7 +1469,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 //
 //   string str(psz, pszEnd - psz);
 //
-//   strsize iOldLen = str.length();
+//   character_count iOldLen = str.length();
 //
 //   string strResult = consume_command_line_argument(str);
 //
@@ -1503,7 +1503,7 @@ template < typename ITERATOR_TYPE >
 
    STRING_RANGE rangePreviousChar;
 
-   while (this->has_char())
+   while (this->has_character())
    {
 
 //      unicode_increment(this->m_begin);
@@ -1843,7 +1843,7 @@ template < typename ITERATOR_TYPE >
 void string_range < ITERATOR_TYPE >::escape_skip_to_character(int ch, int escape)
 {
 
-  while (this->has_char() && *this->m_begin)
+  while (this->has_character() && *this->m_begin)
   {
 
      if (escape != 0 && *this->m_begin == escape)
@@ -1881,7 +1881,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
   
   const char * prev_escape = nullptr;
 
-  while (this->has_char() && *this->m_begin)
+  while (this->has_character() && *this->m_begin)
   {
      
      if (escape != 0 && *this->m_begin == escape && prev_escape == nullptr)
@@ -1929,7 +1929,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 
   auto r = (*this)();
 
-  while (r.has_char() && *r.m_begin && rangeCompare.has_char())
+  while (r.has_character() && *r.m_begin && rangeCompare.has_character())
   {
      
      if (escape != 0 && *r.m_begin == escape && prev_escape == nullptr)
@@ -1980,7 +1980,7 @@ void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::sco
   
   const char * prev_escape = nullptr;
    
-  while (this->has_char() && *this->m_begin)
+  while (this->has_character() && *this->m_begin)
   {
 
      if (escape != 0 && *this->m_begin == escape && prev_escape == nullptr)
@@ -2109,7 +2109,7 @@ inline void write_text_stream::print_string_copy(const T & t)
 
 
 // // template < typename FILE >
-template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+template < primitive_character CHARACTER2, character_count sizeMaximumLength >
 inline write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 {
 

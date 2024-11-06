@@ -212,7 +212,7 @@ namespace mathematics
          while(s > 4)
          {
 
-            *pu = m_randomnumbergenerator.get_u32();
+            *pu = m_randomnumbergenerator.get_unsigned_int();
 
             s-=4;
 
@@ -227,7 +227,7 @@ namespace mathematics
 
             s--;
 
-            pc[s] = m_randomnumbergenerator.get_u8();
+            pc[s] = m_randomnumbergenerator.get_unsigned_char();
 
          }
 
@@ -324,14 +324,14 @@ namespace mathematics
    }
 
 
-   u64 mathematics::random_u64()
+   huge_natural mathematics::random_huge_natural()
    {
 //#if defined(UNIVERSAL_WINDOWS)
-//      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-//      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      return uiLo | (uiHi << 32);
 //#else
-      u64 u = 0;
+      huge_natural u = 0;
          random({ e_as_block,u });
          
       return u;
@@ -342,8 +342,8 @@ namespace mathematics
    char mathematics::random_char()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
 //      char ch = 0;
@@ -358,14 +358,14 @@ namespace mathematics
    unsigned char mathematics::random_uch()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
       //unsigned char u = 0;
       //random({ e_as_block,u });
 
-      return m_posdata->m_randomnumbergenerator.get_u8();
+      return m_posdata->m_randomnumbergenerator.get_unsigned_char();
       //#endif
       //
    }
@@ -374,26 +374,26 @@ namespace mathematics
    unsigned int mathematics::random_ui()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
       //unsigned int u = 0;
       //random({ e_as_block,u });
 
-      return m_posdata->m_randomnumbergenerator.get_u32();
+      return m_posdata->m_randomnumbergenerator.get_unsigned_int();
       //#endif
       //
    }
 
-//   u64 mathematics::gen_rand()
+//   huge_natural mathematics::gen_rand()
 //   {
 ////#if defined(UNIVERSAL_WINDOWS)
-////      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-////      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 ////      return uiLo | (uiHi << 32);
 ////#else
-//      u64 u = 0;
+//      huge_natural u = 0;
 //      gen_rand(&u, sizeof(u));
 //      return u;
 ////#endif
@@ -423,7 +423,7 @@ namespace mathematics
    //}
 
 
-   string mathematics::random_alphanumeric(strsize s)
+   string mathematics::random_alphanumeric(character_count s)
    {
 
       ::string str;
@@ -439,7 +439,7 @@ namespace mathematics
    }
 
 
-   //string mathematics::gen_rand_alnum(strsize s)
+   //string mathematics::gen_rand_alnum(character_count s)
    //{
 
    //   string str;
@@ -489,7 +489,7 @@ namespace mathematics
    //}
 
 
-   bool mathematics::IsPowerOfTwo(u64 uiValue)
+   bool mathematics::IsPowerOfTwo(huge_natural uiValue)
    {
 
       if (uiValue == 0)
@@ -585,13 +585,13 @@ namespace mathematics
 
    /*
 
-   u64 mathematics::RandRange(u64 ui1, u64 ui2)
+   huge_natural mathematics::RandRange(huge_natural ui1, huge_natural ui2)
    {
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   u64 uiMin = minimum(ui1, ui2);
-   u64 uiMax = maximum(ui1, ui2);
+   huge_natural uiMin = minimum(ui1, ui2);
+   huge_natural uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

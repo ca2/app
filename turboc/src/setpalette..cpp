@@ -101,7 +101,7 @@ setallpalette (struct palettetype *palette)
 {
   int i;
   TcGraphResult = grOk;
-  for (i = 0; i < palette->size_i32; i++)
+  for (i = 0; i < palette->int_size; i++)
     {
       setpalette (i, palette->colors[i]);
       if (TcGraphResult != grOk)

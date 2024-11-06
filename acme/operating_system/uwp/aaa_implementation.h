@@ -33,10 +33,10 @@ CLASS_DECL_ACME bool __compare_class_name(oswindow hWnd, const char * lpszClassN
 CLASS_DECL_ACME oswindow __child_window_from_point(oswindow, POINT32);
 
 // for determining version of COMCTL32.DLL
-#define VERSION_WIN4    make_i32(0, 4)
-#define VERSION_IE3             make_i32(70, 4)
-#define VERSION_IE4             make_i32(71, 4)
-#define VERSION_IE401   make_i32(72, 4)
-#define VERSION_6      make_i32(0, 6)
+#define VERSION_WIN4    make_int(0, 4)
+#define VERSION_IE3             make_int(70, 4)
+#define VERSION_IE4             make_int(71, 4)
+#define VERSION_IE401   make_int(72, 4)
+#define VERSION_6      make_int(0, 6)
 extern int gen_ComCtlVersion;
 unsigned int __get_common_controls_version();

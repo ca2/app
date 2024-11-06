@@ -244,7 +244,7 @@ namespace userfs
 
       //   ::file::path pathSemiFinal = pathItem;
 
-      //   if (listingUser.m_pathFinal.has_char())
+      //   if (listingUser.m_pathFinal.has_character())
       //   {
 
       //      pathSemiFinal = listingUser.m_pathFinal / pathItem.name();

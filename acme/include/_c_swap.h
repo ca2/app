@@ -23,16 +23,16 @@
 //
 //
 //#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), lower_byte(x))
-//#define SWAPLONG(x)		make_i32(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+//#define SWAPLONG(x)		make_int(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 //
 //
 //
-//#define first_u16(u) ((u) & 0xffff)
-//#define second_u16(u) (((u) >> 16) & 0xffff)
-//#define first_i16(u) ((short)(((int)(u)) & 0xffff)) // signed first_u16 or at least should be designed to be signed
-//#define second_i16(u) ((short)((((int)(u)) >> 16) & 0xffff)) // signed second_u16 or at least should be designed to be signed
-//#define x_i16(u) first_i16(u)
-//#define y_i16(u) second_i16(u)
+//#define first_unsigned_short(u) ((u) & 0xffff)
+//#define second_unsigned_short(u) (((u) >> 16) & 0xffff)
+//#define first_short(u) ((short)(((int)(u)) & 0xffff)) // signed first_unsigned_short or at least should be designed to be signed
+//#define second_short(u) ((short)((((int)(u)) >> 16) & 0xffff)) // signed second_unsigned_short or at least should be designed to be signed
+//#define x_short(u) first_short(u)
+//#define y_short(u) second_short(u)
 //#define lower32_from64(u) ((u) & 0xffffffff)
 //#define upper32_from64(u) ((u >> 32) & 0xffffffff)
 //

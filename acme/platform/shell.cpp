@@ -358,7 +358,7 @@ namespace acme
 
          auto iExitCode = get_posix_shell_command_output(strOutput, strCommand, eposixshell, 1_min);
 
-         return iExitCode == 0 || strOutput.has_char();
+         return iExitCode == 0 || strOutput.has_character();
 
       }
       catch (...)

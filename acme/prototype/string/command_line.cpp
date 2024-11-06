@@ -249,7 +249,7 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //
 //      string strReplace;
 //
-//      if(get_command_line_parameter(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
+//      if(get_command_line_parameter(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_character())
 //      {
 //
 //         strValue = strReplace;
@@ -648,7 +648,7 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
    bool bColon = false;
 
-   while (range.has_char())
+   while (range.has_character())
    {
 
       range.consume_spaces(0);
@@ -755,7 +755,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 
    string str;
 
-   while (range.has_char())
+   while (range.has_character())
    {
 
       range.consume_spaces(0);

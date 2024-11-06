@@ -7,16 +7,16 @@
 
 
 
-::i64 g_iMaxHttpPost = 1_gb;
+huge_integer g_iMaxHttpPost = 1_gb;
 
-void set_max_http_post(::i64 i)
+void set_max_http_post(huge_integer i)
 {
 
    g_iMaxHttpPost = i;
 
 }
 
-::i64 get_max_http_post()
+huge_integer get_max_http_post()
 {
 
    return g_iMaxHttpPost;
@@ -38,7 +38,7 @@ namespace http
    }
 
 
-   void form::parse_body(file::file *infil, const ::scoped_string & scopedstrContentType, strsize content-length)
+   void form::parse_body(file::file *infil, const ::scoped_string & scopedstrContentType, character_count content-length)
    {
 
       if (::comparison::gt(content-length, get_max_http_post()))
@@ -52,7 +52,7 @@ namespace http
 
       __UNREFERENCED_PARAMETER(content-length);
 
-      strsize extra = 2;
+      character_count extra = 2;
 
       string content-type(pszContentType);
 
@@ -65,7 +65,7 @@ namespace http
 
          memory tempcmp;
          ::collection::index tc = 0;
-         strsize iBoundaryLength = 0;
+         character_count iBoundaryLength = 0;
          string str = pa.getword();
          m_strBoundary = "";
          while (!str.is_empty())
@@ -85,7 +85,7 @@ namespace http
             string current_name;
             string current_filename;
             string slask;
-            while((slask.has_char() && !ansi_count_compare(slask,m_strBoundary, m_strBoundary.length())) || infil ->read_string(slask))
+            while((slask.has_character() && !ansi_count_compare(slask,m_strBoundary, m_strBoundary.length())) || infil ->read_string(slask))
             {
                content-type = "";
                current_name = "";
@@ -123,7 +123,7 @@ namespace http
 
                            h = pa.getword();
 
-                           while(h.has_char())
+                           while(h.has_character())
                            {
 
                               ::parse pa2(h,"=");
@@ -165,7 +165,7 @@ namespace http
 
                                  }
 
-                                 strsize x = 0;
+                                 character_count x = 0;
 
                                  for (int i = 0; i < current_filename.get_length(); i++)
                                  {
@@ -211,7 +211,7 @@ namespace http
 
                      string val;
 
-                     while (infil -> read_string(slask) && ansi_count_compare(slask,m_strBoundary, (strsize)m_strBoundary.length() ))
+                     while (infil -> read_string(slask) && ansi_count_compare(slask,m_strBoundary, (character_count)m_strBoundary.length() ))
                      {
 
                         val += slask;
@@ -395,8 +395,8 @@ namespace http
 
          infil->full_read_string(strNetworkArguments);
 
-         //strsize len = str.length();
-//         strsize clen = content-length;
+         //character_count len = str.length();
+//         character_count clen = content-length;
          //informationf("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);
 
@@ -422,7 +422,7 @@ namespace http
    void form::strcpyval(string & v,const char *value) const
    {
       v = "";
-      for (strsize i = 0; i < ansi_length(value); i++)
+      for (character_count i = 0; i < ansi_length(value); i++)
       {
          if (value[i] == '<')
          {

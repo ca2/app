@@ -203,7 +203,7 @@ namespace opengl
    }
 
 
-//   void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
+//   void context_egl::_create_offscreen_buffer(const ::int_size & size)
 //   {
 //
 //      auto psystem = system();
@@ -347,7 +347,7 @@ namespace opengl
 
 
 
-   void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
+   void context_egl::_create_offscreen_buffer(const ::int_size & size)
    {
 
       auto psystem = system();
@@ -515,7 +515,7 @@ namespace opengl
    }
 
 
-   void context_egl::resize_offscreen_buffer(const ::size_i32& size)
+   void context_egl::resize_offscreen_buffer(const ::int_size& size)
    {
 
       //auto estatus =
@@ -588,7 +588,7 @@ namespace opengl
    void context_egl::_translate_shader(string_array & stra)
    {
 
-      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
+      character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if(iFindPrecision >= 0)
       {

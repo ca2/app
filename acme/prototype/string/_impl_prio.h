@@ -1,8 +1,8 @@
 #pragma once
 
 
-CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME huge_integer strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME huge_integer strtoi(const ::wide_character * psz);
 
 
 namespace file

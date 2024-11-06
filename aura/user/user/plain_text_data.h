@@ -35,10 +35,10 @@ namespace user
    public:
 
 
-      strsize   m_iSelBeg;
-      strsize   m_iSelEnd;
-      strsize   m_iPreviousSelBeg;
-      strsize   m_iPreviousSelEnd;
+      character_count   m_iSelBeg;
+      character_count   m_iSelEnd;
+      character_count   m_iPreviousSelBeg;
+      character_count   m_iPreviousSelEnd;
 
 
       virtual void Undo(plain_text_tree * pedit);

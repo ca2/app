@@ -80,7 +80,7 @@ namespace platform
 //
 //          ::e_status m_estatus;
 //          ::particle_pointer m_pparticle;
-//          long long m_ll;
+//          huge_integer m_hi;
 //          void * m_p;
 //
 //       };
@@ -139,8 +139,8 @@ namespace platform
       
 #ifdef DEBUG
 
-      ::i64 increment_reference_count() override;
-      ::i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 #endif
 
@@ -159,10 +159,10 @@ namespace platform
 
       virtual void _001TryCloseApplication() override;
 
-      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr) override;
+      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, huge_integer hi = 0, void * p = nullptr) override;
 
 
-      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr) override;
+      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, huge_integer hi = 0, void * p = nullptr) override;
 
 
       //virtual void application_main();

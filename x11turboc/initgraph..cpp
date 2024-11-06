@@ -77,7 +77,7 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
   // An alternate display name might allow the program to be run remotely.  
   // Since the conio.h functionality of the TurboC library (implemented 
   // in ncurses) is accessible remotely, it would be consistent to implement 
-  // this.  If/when I figure this out, I'll fix it up.
+  // this.  If/when I figure this out, I'hi fix it up.
   if (*graphdriver == 0)
     detectgraph (graphdriver, graphmode);
   TcDisplay = XOpenDisplay (NULL);

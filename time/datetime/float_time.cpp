@@ -531,7 +531,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, unsi
      * fields that are not joined with a time separator ('.' or ':') as date
      * fields. Thus we construct a value from 0-32 where each set bit indicates
      * a time field. This encapsulates the hundreds of permutations of 2-6 fields.
-     * For valid permutations, we set dwOffset to point_i32 to the first date field
+     * For valid permutations, we set dwOffset to int_point to the first date field
      * and shorten dp.dwCount by the number of time fields found. The real
      * magic here occurs in VARIANT_MakeDate() above, where we determine what
      * each date number must represent in the context of iDate.

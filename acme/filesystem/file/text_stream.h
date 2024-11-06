@@ -8,9 +8,9 @@
 
 
 
-inline ::string ellipsis(const ::ansi_character * psz, strsize len);
-inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline ::string ellipsis(const ::ansi_character * psz, character_count len);
+inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
 inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
 
 
@@ -296,7 +296,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(i64 i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(huge_integer i)
 //{
 //
 //   print_number(as_string(i));
@@ -307,7 +307,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(u64 u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(huge_natural u)
 //{
 //
 //   print_number(as_string(u));
@@ -347,7 +347,7 @@ public:
 //}
 
 
-//text_stream & text_stream < FILE >::operator <<(const ::rectangle_i32 &rectangle)
+//text_stream & text_stream < FILE >::operator <<(const ::int_rectangle &rectangle)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -357,7 +357,7 @@ public:
 //}
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const ::size_i32 * psize)
+//text_stream & text_stream < FILE >::operator <<(const ::int_size * psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -368,7 +368,7 @@ public:
 //
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const ::point_i32 * ppoint)
+//text_stream & text_stream < FILE >::operator <<(const ::int_point * ppoint)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -534,7 +534,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(i64& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(huge_integer& i)
 //{
 //
 //   number_read(i);
@@ -545,7 +545,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(u64& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(huge_natural& u)
 //{
 //
 //   number_read(u);
@@ -576,7 +576,7 @@ public:
 //
 //}
 //
-////text_stream & text_stream < FILE >::operator >>(::rectangle_i32 * prectangle)
+////text_stream & text_stream < FILE >::operator >>(::int_rectangle * prectangle)
 ////
 ////{
 ////   m_pfile->read(&prectangle->left(), sizeof(prectangle->left()));
@@ -589,13 +589,13 @@ public:
 ////   
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(::size_i32 * psize)
+////text_stream & text_stream < FILE >::operator >>(::int_size * psize)
 ////{
 ////   m_pfile->read(&psize->cx(), sizeof(psize->cx()));
 ////   m_pfile->read(&psize->cy(), sizeof(psize->cy()));
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(::point_i32 * ppoint)
+////text_stream & text_stream < FILE >::operator >>(::int_point * ppoint)
 ////{
 ////   m_pfile->read(&ppoint->x, sizeof(ppoint->x));
 ////   m_pfile->read(&ppoint->y, sizeof(ppoint->y));
@@ -691,7 +691,7 @@ public:
 //
 //
 //// template < typename FILE >
-//inline void text_stream < FILE >::write(const void* psz, strsize s)
+//inline void text_stream < FILE >::write(const void* psz, character_count s)
 //{
 //
 //   m_pfile->write(psz, s);

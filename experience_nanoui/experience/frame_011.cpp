@@ -45,7 +45,7 @@ namespace experience_nanoui
    }
 
 
-   ::experience::enum_frame frame_011::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame_011::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
          
       ::experience::enum_frame etest = ::experience::e_frame_client;
@@ -53,11 +53,11 @@ namespace experience_nanoui
       {
          //      m_pframewindow->screen_to_client()(point);
          auto rectangleEvent = m_pframewindow->raw_rectangle();
-         ::rectangle_i32 rectangle;
-         ::point_i32 pointCenter = rectangleEvent.center();
+         ::int_rectangle rectangle;
+         ::int_point pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-         ::point_i32 pointHitTest = point;
+         ::int_point pointHitTest = point;
 
 //                  if(rectangleEvent.left() < 0)
 //                     pointHitTest.x() -= rectangleEvent.left();
@@ -201,7 +201,7 @@ SizingNone:;
 
 
 
-   void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleX,enum_border eside)
+   void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleX,enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -240,14 +240,14 @@ SizingNone:;
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
 
-      ::rectangle_i32 rectangleA(rectangleX);
+      ::int_rectangle rectangleA(rectangleX);
 
       if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
             || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
             || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -268,7 +268,7 @@ SizingNone:;
          rectangleA.deflate(1,1,1,1);
          Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
-         //::rectangle_i32 rectangle;
+         //::int_rectangle rectangle;
          //GetBorderRectangle(rectangleX, &rectangle, eside);
          //class imaging & imaging = psystem->imaging();
          //imaging.color_blend(pgraphics,
@@ -279,13 +279,13 @@ SizingNone:;
       else
       {
             
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
             
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & 0.5_opacity);
 
-         ::rectangle_i32 rectangleXB = rectangleA;
+         ::int_rectangle rectangleXB = rectangleA;
 
          rectangleXB.bottom()--;
          rectangleXB.right()--;
@@ -341,7 +341,7 @@ SizingNone:;
 
       string str;
 
-      ::rectangle_i32 rectangleNClient;
+      ::int_rectangle rectangleNClient;
 
       pframewindow->window_rectangle(rectangleNClient);
 
@@ -381,7 +381,7 @@ SizingNone:;
    }
 
 
-   void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleX)
+   void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleX)
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
@@ -417,16 +417,16 @@ SizingNone:;
    }
 
 //   void frame_011::GetBorderRectangle(
-//   const ::rectangle_i32 & rectangleX,
-//   ::rectangle_i32 * lprect,
+//   const ::int_rectangle & rectangleX,
+//   ::int_rectangle * lprect,
 //   enum_border eside)
 //   {
-//      ::rectangle_i32 rectangleBig(rectangleX);
-//      ::rectangle_i32 rectangleSmall;
+//      ::int_rectangle rectangleBig(rectangleX);
+//      ::int_rectangle rectangleSmall;
 //
 //      rectangleSmall = m_pframewindow->rectangle();
 //
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //      if(eside == e_border_top)
 //      {
 //         rectangle.left() = rectangleBig.left();
@@ -472,20 +472,20 @@ SizingNone:;
 #define GRIP_SMALL 8
 #define GRIP_LARGE 30
 
-   void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleXParam,enum_grip egrip)
+   void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleXParam,enum_grip egrip)
    {
 
 
 
       const int size = 16;
 
-      ::rectangle_i32 rectangleX(rectangleXParam);
-      //            ::rectangle_i32 rectangleXB(rectangleX);
-      ::rectangle_i32 rectangleA;
-      ::point_i32 pointA;
-      ::point_i32 pointB;
-      ::point_i32 pointC;
-      //            ::rectangle_i32 rectangle(rectangleX);
+      ::int_rectangle rectangleX(rectangleXParam);
+      //            ::int_rectangle rectangleXB(rectangleX);
+      ::int_rectangle rectangleA;
+      ::int_point pointA;
+      ::int_point pointB;
+      ::int_point pointC;
+      //            ::int_rectangle rectangle(rectangleX);
       switch(egrip)
       {
       case e_grip_top_left:
@@ -602,12 +602,12 @@ SizingNone:;
 
    }
 
-   void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
+   void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
    {
 
       //
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       auto pframewindow = m_pframewindow;
 
@@ -640,7 +640,7 @@ SizingNone:;
    }
 
 
-   void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleX)
+   void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleX)
    {
 
       auto psizenager = m_pframewindow->size_manager();

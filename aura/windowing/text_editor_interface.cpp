@@ -20,7 +20,7 @@ namespace windowing
    }
 
 
-   void text_editor_interface::set_input_method_manager_selection(strsize iSelBeg, strsize iSelEnd, strsize iCandidateBeg, strsize iCandidateEnd)
+   void text_editor_interface::set_input_method_manager_selection(character_count iSelBeg, character_count iSelEnd, character_count iCandidateBeg, character_count iCandidateEnd)
    {
 
 
@@ -34,7 +34,7 @@ namespace windowing
    }
 
 
-   void text_editor_interface::set_editor_selection(strsize iStart, strsize iEnd)
+   void text_editor_interface::set_editor_selection(character_count iStart, character_count iEnd)
    {
 
 

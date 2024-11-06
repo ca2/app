@@ -22,7 +22,7 @@
 
 
 void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
-::i64 get_tick();
+huge_integer get_tick();
 
 
 

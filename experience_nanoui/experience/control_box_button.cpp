@@ -122,7 +122,7 @@ namespace experience_nanoui
 
       }
 
-      ::rectangle_i32 rectangleEllipse(rectangleX);
+      ::int_rectangle rectangleEllipse(rectangleX);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -166,7 +166,7 @@ namespace experience_nanoui
 
          pgraphics->set(ppen);
 
-         ::rectangle_i32 rectangleIcon(rectangleEllipse);
+         ::int_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -205,7 +205,7 @@ namespace experience_nanoui
 
       __defer_construct(m_pregion);
 
-      ::ellipse_f64 ellipse;
+      ::double_ellipse ellipse;
 
       ellipse.set(rectangleX);
 

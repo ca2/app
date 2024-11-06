@@ -28,7 +28,7 @@
 //
 //   using NATURAL_POINTER::NATURAL_POINTER;
 //
-//   simple_string_base(e_char_count, strsize iCharCount)
+//   simple_string_base(e_char_count, character_count iCharCount)
 //   {
 //
 //      this->m_pdata = NATURAL_META_DATA::to_data(this->create_meta_data(sizeof(CHARACTER_TYPE) * (iCharCount + 1)));

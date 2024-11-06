@@ -19,7 +19,7 @@ namespace user
    public:
 
 
-      //size_i32                                m_sizeTotal;
+      //int_size                                m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
       ::pointer<::data::tree>                   m_ptreedata;
@@ -31,11 +31,11 @@ namespace user
       ::collection::index                                     m_dwFirstVisibleItem;
       ::collection::index                                     m_iItemCount;
       unsigned int                                     m_uiLButtonUpFlags;
-      point_i32                                 m_pointLButtonUp;
+      int_point                                 m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       ::collection::index                                     m_iFirstVisibleItemProperIndex;
       int                                       m_iCurrentImpactWidth;
-      ::size_i32                                m_sizeItemMaximum;
+      ::int_size                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
@@ -109,20 +109,20 @@ namespace user
       void _001SetCollapseImageDark(const ::string & pszMatter);
       void _001SetExpandImageDark(const ::string & pszMatter);
       void update_tree_hover();
-      void update_tree_hover(point_i32 point);
+      void update_tree_hover(int_point point);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::tree * ptree, const ::point_i32 & point);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::tree * ptree, const ::int_point & point);
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(::rectangle_i32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
+      virtual bool _001GetItemElementRect(::int_rectangle * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
       virtual ::collection::index _001GetIndentation();
 
 
-      ::pointer<::data::tree_item>_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
+      ::pointer<::data::tree_item>_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement);
 
       bool on_click(::item * pitem) override;
 
@@ -130,7 +130,7 @@ namespace user
 
       virtual void perform_click();
 
-      virtual void perform_right_click(uptr uFlags, const ::point_i32 & point);
+      virtual void perform_right_click(uptr uFlags, const ::int_point & point);
 
       virtual int get_wheel_scroll_delta() override;
 
@@ -198,7 +198,7 @@ namespace user
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual ::size_f64 get_total_size() override;
+      //virtual ::double_size get_total_size() override;
 
       //void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 

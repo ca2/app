@@ -93,7 +93,7 @@ namespace hellobase
 
       return;
 
-      //size_i32 sizeNew = size_i32(m_cx, m_cy);
+      //int_size sizeNew = int_size(m_cx, m_cy);
 
       //if (m_bNewLayout)
       //{
@@ -387,7 +387,7 @@ namespace hellobase
 //
 //      ::get_task()->m_bThreadToolsForIncreasedFps = true;
 //
-//      ::rectangle_i32 rectangleX;
+//      ::int_rectangle rectangleX;
 //
 //      rectangleX.left() = 0;
 //
@@ -433,7 +433,7 @@ namespace hellobase
 //
 //      double r = (tri(w * t) + 1.0) / 2.0;
 //
-//      ::size_i32 size;
+//      ::int_size size;
 //
 //      string strHelloBase;
 //
@@ -489,11 +489,11 @@ namespace hellobase
 //
 //                  m_pimage->g()->SelectObject(pbrushText);
 //
-//                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2, (m_cyCache1 - size_i32->cy()) / 2, strHelloBase);
+//                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2, (m_cyCache1 - int_size->cy()) / 2, strHelloBase);
 //
 //                  m_pimage->map();
 //
-/*                  psystem->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pimage->g(), ::int_point(), m_pimage->get_size(), m_pimage->g(), ::int_point(), int (m_dMaxRadius));
 //
 //                  m_pimage->blur();
 //
@@ -567,11 +567,11 @@ namespace hellobase
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //      psystem->imaging().bitmap_blend(pgraphics,
-//                                             point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
+//                                             int_point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
 //                                             , m_pimageTemplate2->m_size,
-//                                             m_pimageTemplate2->get_graphics(), ::point_i32(), unsigned char (128 + (255 - 128) * r));
+//                                             m_pimageTemplate2->get_graphics(), ::int_point(), unsigned char (128 + (255 - 128) * r));
 //
-//      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
+//      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::int_point(), rectangleX>si);
 //
 //      pgraphics->set_font(m_pfont);
 //
@@ -638,7 +638,7 @@ namespace hellobase
 //      if (m_pimageWork->area() <= 0)
 //         return;
 //
-//      ::rectangle_i32 rectangleX;
+//      ::int_rectangle rectangleX;
 //
 //      rectangleX.left() = 0;
 //
@@ -720,7 +720,7 @@ namespace hellobase
 //
 //      string strHelloBase = get_helloaura();
 //
-//      ::size_i32 size = pgraphics->get_text_extent(strHelloBase);
+//      ::int_size size = pgraphics->get_text_extent(strHelloBase);
 //
 //      m_cxTarget = int(size.cx() * 1.2);
 //      m_cyTarget = int(size.cy() * 1.2);
@@ -759,7 +759,7 @@ namespace hellobase
 //
 //            m_pimage->g()->set_font(m_pfont);
 //
-//            m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2, (m_cy - size_i32->cy()) / 2, strHelloBase);
+//            m_pimage->g()->text_out((m_cx - int_size->cx()) / 2, (m_cy - int_size->cy()) / 2, strHelloBase);
 //
 //            if (m_dMinRadius > 3.0)
 //            {
@@ -869,7 +869,7 @@ namespace hellobase
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
+//               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
 //               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //
@@ -920,7 +920,7 @@ namespace hellobase
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
+//               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
 //               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //
@@ -975,7 +975,7 @@ namespace hellobase
 
       return ::helloaura::render::_006OnDraw(pgraphics);
 
-      //::rectangle_i32 rectangleX;
+      //::int_rectangle rectangleX;
 
       //rectangleX.left() = 0;
       //rectangleX.top() = 0;
@@ -990,7 +990,7 @@ namespace hellobase
       //try
       //{
 
-      //   if (m_stra23.get_size() > 0 || m_strLast23.has_char() || m_strCurrent23.has_char())
+      //   if (m_stra23.get_size() > 0 || m_strLast23.has_character() || m_strCurrent23.has_character())
       //   {
 
       //      if (!m_bFirst23)
@@ -1041,7 +1041,7 @@ namespace hellobase
 
       //         unsigned char uchAlpha = 255 * t / border;
 
-      //         if (m_strLast23.has_char())
+      //         if (m_strLast23.has_character())
       //         {
 
       //            synchronous_lock synchronouslock(m_pmutexDib23);
@@ -1053,13 +1053,13 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->get_graphics(), ::int_point(), 255 - uchAlpha);
 
       //            }
 
       //         }
 
-      //         if (m_strCurrent23.has_char())
+      //         if (m_strCurrent23.has_character())
       //         {
 
       //            synchronous_lock synchronouslock(m_pmutexDib23);
@@ -1071,14 +1071,14 @@ namespace hellobase
 
       //               pimage->defer_update();
 
-/*      //               psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
+/*      //               psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->get_graphics(), ::int_point(), uchAlpha);
 
       //            }
 
       //         }
 
       //      }
-      //      else if (m_strCurrent23.has_char())
+      //      else if (m_strCurrent23.has_character())
       //      {
 
       //         synchronous_lock synchronouslock(m_pmutexDib23);
@@ -1132,7 +1132,7 @@ namespace hellobase
 
       //         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      //         ::size_i32 size = pgraphics->get_text_extent(strHelloBase);
+      //         ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
       //         double ratey = fHeight * 0.84 / size.cy();
 
@@ -1162,7 +1162,7 @@ namespace hellobase
 
       //      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      //      ::size_i32 size = pgraphics->get_text_extent(strHelloBase);
+      //      ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
       //      pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBase);
 
@@ -1207,7 +1207,7 @@ namespace hellobase
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //   pgraphics->BitBlt(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
+      //   pgraphics->BitBlt(::int_point(), int_size(m_cx, m_cy), m_pimageFast->get_graphics());
 
       //   //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
@@ -1248,15 +1248,15 @@ namespace hellobase
 
       //   uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
+/*      //   psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->g(), ::int_point(), uchAlpha);
 
-      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
+      //   psystem->imaging().bitmap_blend(pgraphics, ::int_point(), imageFast.get_size(), imageFast.get_graphics(), ::int_point(), 255 - uchAlpha);
 
       //}
       //else
       //{
 
-/*      //   pgraphics->from(::point_i32(), pimage->get_size(), pimage->g(), ::point_i32());
+/*      //   pgraphics->from(::int_point(), pimage->get_size(), pimage->g(), ::int_point());
 
       //}
 
@@ -1358,7 +1358,7 @@ namespace hellobase
 
    //   synchronous_lock slDraw(m_pmutexDraw);
 
-   //   ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
+   //   ::int_size sizeNew = ::int_size(m_cx, m_cy);
 
    //   bool bNewSize = m_pimageFast->width() != sizeNew->cx() || m_pimageFast->height() != sizeNew->cy();
 
@@ -1383,7 +1383,7 @@ namespace hellobase
 
    //   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-   //   ::size_i32 size = pgraphics->get_text_extent(strHelloBase);
+   //   ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
    //   double ratey = fHeight * 0.84 / size.cy();
 

@@ -4,7 +4,7 @@
 #pragma once
 
 
-enum enum_element : ::i64
+enum enum_element : huge_integer
 {
 
    e_element_none,

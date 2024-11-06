@@ -212,7 +212,7 @@ namespace filemanager
 
                string strPrefix;
 
-               if (path.title().has_char())
+               if (path.title().has_character())
                {
 
                   strPrefix = path.title() + " - ";
@@ -221,18 +221,18 @@ namespace filemanager
 
                string strSuffix;
 
-               if (filemanager_data()->m_pdocumentTopic->get_save_file_extension().has_char())
+               if (filemanager_data()->m_pdocumentTopic->get_save_file_extension().has_character())
                {
 
                   strSuffix = "." + filemanager_data()->m_pdocumentTopic->get_save_file_extension();
 
                }
-               else if (path.final_extension().has_char())
+               else if (path.final_extension().has_character())
                {
 
                   string strExtension = ptopic->payload("file_extension");
 
-                  if (strExtension.has_char())
+                  if (strExtension.has_character())
                   {
 
                      strSuffix = "." + strExtension;

@@ -54,7 +54,7 @@ namespace image
       virtual ::image::image_pointer create_image();
 
 
-      virtual ::image::image_pointer create_image(const ::size_i32& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image::image_pointer create_image(const ::int_size& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
       virtual int image_integer(const ::file::path & path);

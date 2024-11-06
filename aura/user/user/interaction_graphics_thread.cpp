@@ -101,7 +101,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 graphics_thread::increment_reference_count()
+   huge_integer graphics_thread::increment_reference_count()
    {
 
       return ::thread::increment_reference_count();
@@ -109,7 +109,7 @@ namespace user
    }
 
 
-   i64 graphics_thread::decrement_reference_count()
+   huge_integer graphics_thread::decrement_reference_count()
    {
 
       return ::thread::decrement_reference_count();
@@ -117,7 +117,7 @@ namespace user
    }
 
 
-   i64 graphics_thread::release()
+   huge_integer graphics_thread::release()
    {
 
       return ::thread::release();
@@ -817,7 +817,7 @@ namespace user
          auto timeFrame = m_puserinteraction->has_fps_output_purpose()
             ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
-         //i64 i2 = get_nanos();
+         //huge_integer i2 = get_nanos();
 
          // calculates the next/aaa_memory_new frame atom
          //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
@@ -830,7 +830,7 @@ namespace user
 
          auto timeNow = m_timeStart.elapsed();
 
-         ::i64 iFrame = (::i64) floor(timeNow / timeFrame);
+         huge_integer iFrame = (huge_integer) floor(timeNow / timeFrame);
 
          m_timeThisFrame = timeFrame * iFrame;
 
@@ -940,7 +940,7 @@ namespace user
 
             //{
 
-            //   i64 nanosDeltaPostRedraw = (i64)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (i64)get_nanos();
+            //   huge_integer nanosDeltaPostRedraw = (huge_integer)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (huge_integer)get_nanos();
 
             //   int msDeltaPostRedraw = (int)(nanosDeltaPostRedraw / 1'000'000);
 
@@ -1002,7 +1002,7 @@ namespace user
       }
 #endif
 
-      i64 i1 = ::i64_nanosecond();
+      huge_integer i1 = ::i64_nanosecond();
 
       //m_timeLastFrame = m_timeThisFrame;
 
@@ -1329,7 +1329,7 @@ namespace user
 //         //
 //         //         //bUpdateWindow = false;
 //         //
-//         //         i64 i1 = ::i64_nanosecond();
+//         //         huge_integer i1 = ::i64_nanosecond();
 //         //
 //         //      //   bool bTransparentDraw;
 //         //
@@ -1382,7 +1382,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         i64 i2 = ::i64_nanosecond();
+//         huge_integer i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //
@@ -1443,7 +1443,7 @@ namespace user
 ////
 ////         //bUpdateWindow = false;
 ////
-////         i64 i1 = ::i64_nanosecond();
+////         huge_integer i1 = ::i64_nanosecond();
 ////
 ////      //   bool bTransparentDraw;
 ////
@@ -1496,7 +1496,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         i64 i2 = ::i64_nanosecond();
+//         huge_integer i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //

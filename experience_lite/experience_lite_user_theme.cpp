@@ -1,7 +1,7 @@
 #include "framework.h" 
 #include "aura/user/menu/user_menu_central.h"
 #include "core/user/userex/userex.h"
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -81,14 +81,14 @@ namespace lite
    bool theme::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::rectangle_i32 rectangle;
-      ::rectangle_i32 rectangleBorder;
-      ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleX;
-      ::rectangle_i32 rectangleIcon;
-      ::rectangle_i32 rectangleClose;
+      ::int_rectangle rectangle;
+      ::int_rectangle rectangleBorder;
+      ::int_rectangle rectangleText;
+      ::int_rectangle rectangleX;
+      ::int_rectangle rectangleIcon;
+      ::int_rectangle rectangleClose;
 
-      ::rectangle_i32 r1;
+      ::int_rectangle r1;
       ptab->rectangle(r1);
 
       pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
@@ -99,13 +99,13 @@ namespace lite
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rcTab;
+      ::int_rectangle rcTab;
 
       rcTab = ptab->get_data()->m_rectangleTab;
 
-      ::rectangle_i32 rcTabs(rcTab);
+      ::int_rectangle rcTabs(rcTab);
 
-      ::rectangle_i32 rcClient;
+      ::int_rectangle rcClient;
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
@@ -466,7 +466,7 @@ namespace lite
    }
 
 
-   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 * lpcrect,::draw2d::brush_pointer & pbrushText)
+   void theme::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle * lpcrect,::draw2d::brush_pointer & pbrushText)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -482,16 +482,16 @@ namespace lite
       else
       {
 
-         ::rectangle_i32 rectangleText(lpcrect);
+         ::int_rectangle rectangleText(lpcrect);
 
          ::write_text::font_pointer pfont;
          font = pgraphics->get_current_font();
-         size_i32 sSep = ptab->get_data()->m_sizeSep;
-         ::rectangle_i32 rectangleEmp;
+         int_size sSep = ptab->get_data()->m_sizeSep;
+         ::int_rectangle rectangleEmp;
          for(::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
-            size_i32 s = pane.m_sizeaText[i];
+            int_size s = pane.m_sizeaText[i];
             rectangleText.right() =rectangleText.left() + s.cx();
             pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left() += s.cx();
@@ -603,7 +603,7 @@ namespace lite
 
             tab_pane.do_split_layout(ptab->m_dcextension,graphics);
 
-            ::size_i32 size;
+            ::int_size size;
 
             ptab->m_dcextension.get_text_extent(pgraphics,str, size);
 
@@ -651,7 +651,7 @@ namespace lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
          ptab->rectangle(rectangleX);
 
          ptab->get_data()->m_rectangleTab.left()       = rectangleX.left();
@@ -683,7 +683,7 @@ namespace lite
 
          pgraphics->SelectObject(ptab->_001GetFont(::user::font_tab_sel));
 
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
          ptab->rectangle(rectangleX);
          int x = rectangleX.left();
 
@@ -700,7 +700,7 @@ namespace lite
 
             tab_pane.do_split_layout(ptab->m_dcextension,graphics);
 
-            size_i32 size;
+            int_size size;
 
             ptab->m_dcextension.get_text_extent(pgraphics,str, size);
 
@@ -724,7 +724,7 @@ namespace lite
 
             //            string str = tab_pane.get_title();
 
-            //            size_i32 size;
+            //            int_size size;
 
             ixAdd = 5;
 
@@ -787,7 +787,7 @@ namespace lite
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32 & rectangleHosting = ptab->get_data()->m_rectangleHosting;
+         int_rectangle & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
          rectangleHosting.left()       = ptab->get_data()->m_rectangleTab.left();
          rectangleHosting.top()        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
@@ -849,9 +849,9 @@ namespace lite
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleItem;
+      ::int_rectangle rectangleItem;
 
-      ::rectangle_i32 rectangleImage;
+      ::int_rectangle rectangleImage;
 
       ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
@@ -923,7 +923,7 @@ namespace lite
 
       if ((nStyle & e_tool_item_style_separator) != 0)
       {
-         ::rectangle_i32 rectangleSeparator;
+         ::int_rectangle rectangleSeparator;
          rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
          rectangleSeparator.right() = rectangleSeparator.left() + 2;
          rectangleSeparator.top() = rectangleImage.top();
@@ -978,7 +978,7 @@ namespace lite
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
+               ::int_rectangle rectangleShadow;
 
                ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
@@ -1002,17 +1002,17 @@ namespace lite
                if (item.m_pimage->is_set())
                {
 
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
                {
 
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
@@ -1047,11 +1047,11 @@ namespace lite
             if (item.m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1084,11 +1084,11 @@ namespace lite
             if (item.m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1113,12 +1113,12 @@ namespace lite
 
       }
 
-      if (item.m_str.has_char())
+      if (item.m_str.has_character())
       {
 
          ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-         ::rectangle_i32 rectangleText;
+         ::int_rectangle rectangleText;
 
          auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -1153,9 +1153,9 @@ namespace lite
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleItem;
+      ::int_rectangle rectangleItem;
 
-      ::rectangle_i32 rectangleImage;
+      ::int_rectangle rectangleImage;
 
       ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
@@ -1230,7 +1230,7 @@ namespace lite
 
       if (item.m_atom.case_insensitive_order("separator") == 0)
       {
-         /*::rectangle_i32 rectangleSeparator;
+         /*::int_rectangle rectangleSeparator;
          rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
          rectangleSeparator.right() = rectangleSeparator.left() + 2;
          rectangleSeparator.top() = rectangleImage.top();
@@ -1285,7 +1285,7 @@ namespace lite
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
+               ::int_rectangle rectangleShadow;
 
                ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
@@ -1309,17 +1309,17 @@ namespace lite
 /*               if (item.m_pimage->is_set())
                {
 
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
                {
 
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
@@ -1354,11 +1354,11 @@ namespace lite
 /*            if (item.m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1414,11 +1414,11 @@ namespace lite
 /*            if (item.m_pimage->is_set())
             {
 
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
 
 /*               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::int_point(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1443,12 +1443,12 @@ namespace lite
 
       }
 
-      if (item.m_str.has_char())
+      if (item.m_str.has_character())
       {
 
          ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-         ::rectangle_i32 rectangleText;
+         ::int_rectangle rectangleText;
 
          auto pbrushText = __create < ::draw2d::brush > ();
 
@@ -1490,7 +1490,7 @@ namespace lite
    bool theme::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       psplitlayout->rectangle(rectangleX);
 

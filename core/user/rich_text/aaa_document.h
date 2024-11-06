@@ -33,8 +33,8 @@ namespace user
 
 
 #ifdef _DEBUG
-         virtual i64 increment_reference_count() override;
-         virtual i64 decrement_reference_count() override;
+         virtual huge_integer increment_reference_count() override;
+         virtual huge_integer decrement_reference_count() override;
 #endif
 
          //virtual bool parse_rtf_text(string str);

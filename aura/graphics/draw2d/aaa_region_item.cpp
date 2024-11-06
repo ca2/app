@@ -10,18 +10,18 @@
 namespace draw2d
 {
 
-   void region::item::translate(const ::point_i32 & point)
+   void region::item::translate(const ::int_point & point)
    {
 
 
    }
-   void region::item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
 
    }
 
-   bool region::item::internal_contains(const ::point_f64 & p)
+   bool region::item::internal_contains(const ::double_point & p)
    {
 
       return false;
@@ -30,7 +30,7 @@ namespace draw2d
 
 
 
-   void region::rectangle_item::translate(const ::point_i32 & point)
+   void region::rectangle_item::translate(const ::int_point & point)
    {
 
       m_rectangle.offset(point);
@@ -38,15 +38,15 @@ namespace draw2d
    }
 
 
-   void region::rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::rectangle_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::double_point *)&m_rectangle, 2);
 
    }
 
 
-   bool region::rectangle_item::internal_contains(const ::point_f64 & p)
+   bool region::rectangle_item::internal_contains(const ::double_point & p)
    {
 
       return m_rectangle.contains(p);
@@ -54,7 +54,7 @@ namespace draw2d
    }
 
 
-   void region::ellipse_item::translate(const ::point_i32 & point)
+   void region::ellipse_item::translate(const ::int_point & point)
    {
 
       m_rectangle.offset(point);
@@ -63,15 +63,15 @@ namespace draw2d
 
 
 
-   void region::ellipse_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::ellipse_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::double_point *)&m_rectangle, 2);
 
    }
 
 
-   bool region::ellipse_item::internal_contains(const ::point_f64 & p)
+   bool region::ellipse_item::internal_contains(const ::double_point & p)
    {
 
       auto center = m_rectangle.center();
@@ -116,7 +116,7 @@ namespace draw2d
 
    }
 
-   void region::polygon_item::translate(const ::point_i32 & point)
+   void region::polygon_item::translate(const ::int_point & point)
    {
 
       for (auto & pointVertex : m_polygon)
@@ -129,7 +129,7 @@ namespace draw2d
    }
 
 
-   void region::polygon_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::polygon_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       ::expand_bounding_box(rectangle, m_polygon.data(), m_polygon.get_size());
@@ -137,7 +137,7 @@ namespace draw2d
    }
 
 
-   bool region::polygon_item::internal_contains(const ::point_f64 & p)
+   bool region::polygon_item::internal_contains(const ::double_point & p)
    {
 
       return m_polygon.contains(p);
@@ -145,7 +145,7 @@ namespace draw2d
    }
 
 
-   void region::poly_polygon_item::translate(const ::point_i32 & point)
+   void region::poly_polygon_item::translate(const ::int_point & point)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -163,7 +163,7 @@ namespace draw2d
    }
 
 
-   void region::poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::poly_polygon_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -181,7 +181,7 @@ namespace draw2d
    }
 
 
-   bool region::poly_polygon_item::internal_contains(const ::point_f64 & p)
+   bool region::poly_polygon_item::internal_contains(const ::double_point & p)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -201,7 +201,7 @@ namespace draw2d
    }
 
 
-   void region::combine_item::translate(const ::point_i32 & point)
+   void region::combine_item::translate(const ::int_point & point)
    {
 
       m_pregion1->translate(point);
@@ -210,7 +210,7 @@ namespace draw2d
    }
 
 
-   void region::combine_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::combine_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
       // "fake" implementation
 
@@ -220,7 +220,7 @@ namespace draw2d
    }
 
 
-   bool region::combine_item::internal_contains(const ::point_f64 & point)
+   bool region::combine_item::internal_contains(const ::double_point & point)
    {
 
       if (m_ecombine == e_combine_add)
@@ -326,22 +326,22 @@ namespace draw2d
 
 
 
-   void region::round_rectangle_item::translate(const ::point_i32 & point)
+   void region::round_rectangle_item::translate(const ::int_point & point)
    {
 
       m_rectangle.offset(point);
 
    }
 
-   void region::round_rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics)
+   void region::round_rectangle_item::expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+      ::expand_bounding_box(rectangle, (::double_point *)&m_rectangle, 2);
 
    }
 
 
-   bool region::round_rectangle_item::internal_contains(const ::point_f64 & point)
+   bool region::round_rectangle_item::internal_contains(const ::double_point & point)
    {
 
       // "fake" implementation

@@ -3,7 +3,7 @@
 
 /*
 
-CLASS_DECL_APEX int_bool ui_get_cursor_pos(::point_i32 * ppt)
+CLASS_DECL_APEX int_bool ui_get_cursor_pos(::int_point * ppt)
 {
 
    return ::GetCursorPos(ppt);

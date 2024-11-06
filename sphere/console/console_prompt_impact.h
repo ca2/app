@@ -17,15 +17,15 @@ namespace console
 
       class ::time                 m_timeCaretPeriod;
 
-      strsize              m_iCursor;
+      character_count              m_iCursor;
 
-      ::size_i32               m_sizeChar;
+      ::int_size               m_sizeChar;
 
       string               m_strCommand;
 
       event                m_evNewChar;
 
-      strsize              m_iNewChar;
+      character_count              m_iNewChar;
 
       class ::time m_timeLastError;
 

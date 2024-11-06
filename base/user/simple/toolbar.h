@@ -15,17 +15,17 @@ public:
    bool                       m_bStyleFlat : 1;
    
    int                     m_iImageSpacing;
-   ::size_i32                  m_sizePress;
-   ::size_i32                  m_sizeSpacing;
-   ::size_i32                  m_sizeSeparator;
-   ::rectangle_i32                m_rectangleBorder;
-   ::rectangle_i32                m_rectangleItemPad;
+   ::int_size                  m_sizePress;
+   ::int_size                  m_sizeSpacing;
+   ::int_size                  m_sizeSeparator;
+   ::int_rectangle                m_rectangleBorder;
+   ::int_rectangle                m_rectangleItemPad;
    //bool                       m_bTransparentBackground;
    bool                    m_bSimpleLayout;
    ::write_text::font_size       m_fontsize;
 
-   ::size_i32                  m_sizeButton;
-   ::size_i32                  m_sizeImage;
+   ::int_size                  m_sizeButton;
+   ::int_size                  m_sizeImage;
 //#ifdef WINDOWS
   // HRSRC           m_hRsrcImageWell; // handle to loaded resource for image well
 //#endif
@@ -44,11 +44,11 @@ public:
    ~simple_toolbar() override;
 
    virtual int  get_image_spacing();
-   virtual ::size_i32 get_press_shift();
-   virtual ::size_i32 get_item_spacing();
-   virtual ::size_i32 get_separator_size();
-   virtual ::rectangle_i32 get_bar_border();
-   virtual ::rectangle_i32 get_item_pad();
+   virtual ::int_size get_press_shift();
+   virtual ::int_size get_item_spacing();
+   virtual ::int_size get_separator_size();
+   virtual ::int_rectangle get_bar_border();
+   virtual ::int_rectangle get_item_pad();
 
    virtual double get_pixel_font_size() const;
 
@@ -60,12 +60,12 @@ public:
    virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
    virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
-   virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int dwMode) override;
-   virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int dwMode, ::collection::index nLength = -1) override;
+   virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int dwMode) override;
+   virtual ::int_size CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
-   virtual ::size_i32 CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);
+   virtual ::int_size CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);
    virtual void OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle) override;
-   virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+   virtual ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
 
 
    void RemoveAllTools();
@@ -80,8 +80,8 @@ public:
    void _001SetImageList(::image::image_list_pointer imagelist);
    void _001DiscardImageList();
    bool on_click(::item * pitem) override;
-   virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
-   //void _001Hover(const ::point_i32 & point, bool bRedraw = true);
+   virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+   //void _001Hover(const ::int_point & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);
 
 
@@ -100,9 +100,9 @@ public:
       bool LoadBitmap(unsigned int nIDResource);
    */
 
-//  virtual bool index_item_rectangle(::collection::index iItem,::rectangle_i32 * prectangle)
+//  virtual bool index_item_rectangle(::collection::index iItem,::int_rectangle * prectangle)
 
-   ::status < ::rectangle_i32 > index_element_rectangle(::collection::index iItem, ::enum_element eelement,
+   ::status < ::int_rectangle > index_element_rectangle(::collection::index iItem, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 
@@ -110,14 +110,14 @@ public:
 
 //   bool SetButtons(const unsigned int* pIDArray, ::collection::index nIDCount);
 
-   void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
+   void SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage);
 
 
 
    //void TransparentEraseNonClient(::draw2d::graphics_pointer & pgraphics);
    //void SetTransparentBackground(bool bSet);
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
+   virtual ::int_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
 
    void _001OnImageListAttrib();
    DECLARE_MESSAGE_HANDLER(on_message_create);

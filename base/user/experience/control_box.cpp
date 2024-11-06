@@ -84,7 +84,7 @@ namespace experience
           && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
-         ::point_i32 point = pmouse->m_pointAbsolute;
+         ::int_point point = pmouse->m_pointAbsolute;
 
          m_pframewindow->screen_to_client()(point);
 
@@ -116,7 +116,7 @@ namespace experience
          if (m_bDrag)
          {
 
-            ::point_i32 point = pmouse->m_pointHost;
+            ::int_point point = pmouse->m_pointHost;
 
             m_pframewindow->host_to_client()(point);
 
@@ -139,7 +139,7 @@ namespace experience
    }
 
 
-   void control_box::drag(const ::point_i32 & point)
+   void control_box::drag(const ::int_point & point)
    {
 
       //int x = point.x() - m_pointDrag.x();
@@ -151,15 +151,15 @@ namespace experience
 
       //}
 
-      //::rectangle_i32 rectangleParent;
+      //::int_rectangle rectangleParent;
 
       //get_parent()->rectangle(rectangleParent);
 
-      //::rectangle_i32 rectangleX;
+      //::int_rectangle rectangleX;
 
       //this->rectangle(rectangleX);
 
-      //::rectangle_i32 rectangleWindow;
+      //::int_rectangle rectangleWindow;
 
       //window_rectangle(rectangleWindow);
 
@@ -171,9 +171,9 @@ namespace experience
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::point_i32 point(x, rectangleWindow.top());
+      //::int_point point(x, rectangleWindow.top());
 
-      //::point_i32 pointScreen(point);
+      //::int_point pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
@@ -238,7 +238,7 @@ namespace experience
 
          }
 
-         ::point_i32 pointCursorHost;
+         ::int_point pointCursorHost;
 
          pointCursorHost = host_mouse_cursor_position();
 
@@ -557,7 +557,7 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::rectangle_i32 & rectangle)
+   void control_box::_layout_button(enum_button ebutton, ::int_rectangle & rectangle)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -621,13 +621,13 @@ namespace experience
    {
 
       auto_hide_calculate_control_visibility();
-//      ::rectangle_i32 rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
+//      ::int_rectangle rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 //
-//      ::rectangle_i32 rectangleParent(rectangleWindow);
+//      ::int_rectangle rectangleParent(rectangleWindow);
 //
 //      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
 //
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //
 //      window_rectangle(rectangle, ::user::e_layout_lading);
 //
@@ -1030,12 +1030,12 @@ namespace experience
 //
 //      int iDefaultButtonSize = calculate_button_size(pgraphics);
 //
-//      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize, iDefaultButtonSize);
+//      m_sizeButtonDefault = ::int_size(iDefaultButtonSize, iDefaultButtonSize);
 //
 //   }
 
 
-   size_i32 control_box::get_button_size(enum_button ebutton)
+   int_size control_box::get_button_size(enum_button ebutton)
    {
 
       return m_sizeButtonDefault;
@@ -1043,10 +1043,10 @@ namespace experience
    }
 
 
-   rectangle_i32 control_box::get_button_margin(enum_button ebutton)
+   int_rectangle control_box::get_button_margin(enum_button ebutton)
    {
 
-      ::rectangle_i32 rectangleMargin;
+      ::int_rectangle rectangleMargin;
 
       rectangleMargin.left() = 0;
       rectangleMargin.top() = m_iDefaultButtonMargin;
@@ -1065,7 +1065,7 @@ namespace experience
 
       int iButtonSize = (int) (dFontHeight + m_iDefaultButtonMargin * 3);
 
-      m_sizeButtonDefault = ::size_i32(iButtonSize, iButtonSize);
+      m_sizeButtonDefault = ::int_size(iButtonSize, iButtonSize);
 
       return iButtonSize;
 
@@ -1173,11 +1173,11 @@ namespace experience
    void control_box::on_message_move(::message::message * pmessage)
    {
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       window_rectangle(rectangle);
 
@@ -1241,11 +1241,11 @@ namespace experience
 //      try
 //      {
 //
-//         ::rectangle_i32 rectangleClip;
+//         ::int_rectangle rectangleClip;
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleX;
+//         ::int_rectangle rectangleX;
 //
 //         bool bFirst = true;
 //
@@ -1272,7 +1272,7 @@ namespace experience
 //
 //            ::user::interaction * pinteraction = this;
 //
-//            ::rectangle_i32 rectangleFocus;
+//            ::int_rectangle rectangleFocus;
 //
 //            while (pinteraction != nullptr)
 //            {

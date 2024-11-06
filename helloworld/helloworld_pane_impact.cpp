@@ -480,7 +480,7 @@ namespace helloworld
 
       }
 
-      if (m_strTopicTitle.has_char())
+      if (m_strTopicTitle.has_character())
       {
 
          str.replace("Helloworld!!", m_strTopicTitle);
@@ -524,7 +524,7 @@ namespace helloworld
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
 
-               if (strFont.has_char())
+               if (strFont.has_character())
                {
 
                   m_pimpactLast->m_strHoverFont = strFont;
@@ -541,7 +541,7 @@ namespace helloworld
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();
 
-               if (strFont.has_char())
+               if (strFont.has_character())
                {
 
                   m_pimpactLast->m_strHoverFont = strFont;

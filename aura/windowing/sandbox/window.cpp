@@ -205,7 +205,7 @@ namespace sandbox_windowing
 
       string strWindowText = puserinteraction->get_window_text();
 
-      //if (strWindowText.has_char())
+      //if (strWindowText.has_character())
       //{
 
       //   strName = strWindowText;
@@ -214,7 +214,7 @@ namespace sandbox_windowing
 
       //}
 
-      //if (strName.has_char())
+      //if (strName.has_character())
       //{
 
       //   XStoreName(Display(), Window(), strName);
@@ -249,8 +249,8 @@ namespace sandbox_windowing
       //      {
 
       //         // window managers generally "don't like" windows that starts "docked/snapped".
-      //         // initial (XCreateWindow) size_i32 and position maybe not be honored.
-      //         // so requesting the same change again in a effort to set the "docked/snapped" size_i32 and position.
+      //         // initial (XCreateWindow) int_size and position maybe not be honored.
+      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
 
       //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
       //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
@@ -268,7 +268,7 @@ namespace sandbox_windowing
       //if(pshowwindow->m_bShow)
       {
 
-         //::rectangle_i32 rect32;
+         //::int_rectangle rect32;
 
          //(::window_rectangle((oswindow) get_handle(), rect32))
          {
@@ -840,7 +840,7 @@ namespace sandbox_windowing
 //
 //         ::image::image_source imagesource(pimage->g(), pimage->rectangle());
 //
-//         rectangle_f64 rectangle(d1->rectangle());
+//         double_rectangle rectangle(d1->rectangle());
 //
 //         ::image::image_drawing_options imagedrawingoptions(rectangle);
 //
@@ -1117,7 +1117,7 @@ namespace sandbox_windowing
    }
 
 
-   //::point_i32 window::get_mouse_cursor_position()
+   //::int_point window::get_mouse_cursor_position()
    //{
 
    //   return m_pointCursor;
@@ -1406,14 +1406,14 @@ namespace sandbox_windowing
    //   }
    //
    //
-   void window::full_screen(const ::rectangle_i32& rectangle)
+   void window::full_screen(const ::int_rectangle& rectangle)
    {
 
 
    }
 
    //
-   //      ::rectangle_i32 rBest;
+   //      ::int_rectangle rBest;
    //
    //      int iMonitor = m_pdisplay->get_best_monitor(&rBest, rectangle);
    //
@@ -1445,7 +1445,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::rectangle_i32 rWindow;
+   //      ::int_rectangle rWindow;
    //
    //      rWindow.left() = attr.x();
    //      rWindow.top() = attr.y();
@@ -1617,7 +1617,7 @@ namespace sandbox_windowing
    //   }
 
 
-   bool window::client_to_screen(::point_i32* ppoint)
+   bool window::client_to_screen(::int_point* ppoint)
    {
 
       return true;
@@ -1625,7 +1625,7 @@ namespace sandbox_windowing
    }
 
 
-   bool window::screen_to_client(::point_i32* ppoint)
+   bool window::screen_to_client(::int_point* ppoint)
    {
 
       return true;
@@ -1842,10 +1842,10 @@ namespace sandbox_windowing
    }
 
 
-   //   void oswindow_data::wm_full_screen(const ::rectangle_i32 & rectangle)
+   //   void oswindow_data::wm_full_screen(const ::int_rectangle & rectangle)
    //   {
    //
-   //      ::rectangle_i32 rBest;
+   //      ::int_rectangle rBest;
    //
    //      int iMonitor = best_xinerama_monitor(m_pwindow->m_puserinteraction, rectangle, rBest);
    //
@@ -1875,7 +1875,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::rectangle_i32 rWindow;
+   //      ::int_rectangle rWindow;
    //
    //      rWindow.left()      = attr.x();
    //      rWindow.top()       = attr.y();
@@ -2491,7 +2491,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_window_rect(::rectangle_i32 * prectangle)
+   //bool window::x11_get_window_rect(::int_rectangle * prectangle)
    //{
 
    //   return ::x11_get_window_rect(Display(), Window(), prectangle);
@@ -2499,7 +2499,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::window_rectangle(::rectangle_i32 * prectangle)
+   //::e_status window::window_rectangle(::int_rectangle * prectangle)
    //{
 
    //   return x11_get_window_rect(prectangle);
@@ -2507,7 +2507,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_client_rect(::rectangle_i32 * prectangle)
+   //bool window::x11_get_client_rect(::int_rectangle * prectangle)
    //{
 
    //   return ::x11_get_client_rect(Display(), Window(), prectangle);
@@ -2515,7 +2515,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::this->rectangle(::rectangle_i32 * prectangle)
+   //::e_status window::this->rectangle(::int_rectangle * prectangle)
    //{
 
    //   return x11_get_client_rect(prectangle);
@@ -2523,7 +2523,7 @@ namespace sandbox_windowing
    //}
 
 
-//   void window::upper_window_rects(rectangle_int_array & ra)
+//   void window::upper_window_rects(int_rectangle_array & ra)
 //   {
 //
 //      synchronous_lock synchronouslock(user_synchronization());
@@ -2560,7 +2560,7 @@ namespace sandbox_windowing
 //
 //      }
 //
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //
 //      x11_get_window_rect(rectangle);
 //
@@ -2568,14 +2568,14 @@ namespace sandbox_windowing
 //
 //      //string strTopic = x11_get_name(x11_display(), Window());
 //
-//      ::rectangle_i32 rectangleTest;
+//      ::int_rectangle rectangleTest;
 //
 //      for (iFind++; iFind < windowa.get_size(); iFind++)
 //      {
 //
 //         //string strItem = x11_get_name(x11_display(), windowa[iFind]);
 //
-//         ::rectangle_i32 rectangleHigher;
+//         ::int_rectangle rectangleHigher;
 //
 //         if (::x11_get_window_rect(Display(), windowa[iFind], rectangleHigher))
 //         {
@@ -3338,7 +3338,7 @@ namespace sandbox_windowing
    //   }
 
    //// should be called in user_thread
-   //   int_bool window::x11_get_window_rect(::rectangle_i32 *prectangle)
+   //   int_bool window::x11_get_window_rect(::int_rectangle *prectangle)
    //   {
    //
    //      XWindowAttributes attrs;
@@ -3379,7 +3379,7 @@ namespace sandbox_windowing
    //
    //   }
 
-   //   int_bool window::this->rectangle(::rectangle_i32 *prectangle)
+   //   int_bool window::this->rectangle(::int_rectangle *prectangle)
    //   {
    //
    //      synchronous_lock synchronouslock(user_synchronization());

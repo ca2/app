@@ -21,7 +21,7 @@ namespace app_integration
 
       pgraphics->text_out(100, 50, "Round Rectangle (100, 100) - (900, 500) r = 100");
 
-      ::rectangle_f64 r(100, 100, 900, 500);
+      ::double_rectangle r(100, 100, 900, 500);
 
       double Δx = m_rectangle.width() / 1000.0;
 

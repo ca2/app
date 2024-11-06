@@ -192,11 +192,11 @@ namespace experience
 
 #ifdef _DEBUG
 
-   i64 frame_window::increment_reference_count()
+   huge_integer frame_window::increment_reference_count()
    {
       return ::user::frame_window::increment_reference_count();
    }
-   i64 frame_window::decrement_reference_count()
+   huge_integer frame_window::decrement_reference_count()
    {
       return ::user::frame_window::decrement_reference_count();
    }
@@ -665,7 +665,7 @@ namespace experience
    }
 
 
-   //void frame_window::GetRegionClientRectangle(::rectangle_i32 * prectangle)
+   //void frame_window::GetRegionClientRectangle(::int_rectangle * prectangle)
    //{
 
    //   ASSERT(m_pframe != nullptr);
@@ -1288,7 +1288,7 @@ namespace experience
 
       ::user::main_window::on_perform_top_down_layout(pgraphics);
 
-      //::rectangle_i32 frame_window::rectangle(::user::enum_layout elayout)
+      //::int_rectangle frame_window::rectangle(::user::enum_layout elayout)
       //{
 
          //information() << "experience::frame_experience::on_perform_top_down_layout (2)";
@@ -1454,7 +1454,7 @@ namespace experience
    }
 
 
-   ::rectangle_i32 frame_window::outer_frame()
+   ::int_rectangle frame_window::outer_frame()
    {
 
       return m_pframe->outer_frame();
@@ -2110,7 +2110,7 @@ namespace experience
    }
 
 
-   void frame_window::OnNcCalcSize(::rectangle_i32 * prectangle)
+   void frame_window::OnNcCalcSize(::int_rectangle * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -2120,9 +2120,9 @@ namespace experience
    }
 
 
-   // point_i32 should be in screen coordinates
-   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
-   //::item_pointer frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   // int_point should be in screen coordinates
+   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   //::item_pointer frame_window::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -2301,12 +2301,12 @@ namespace experience
 #define ZONEING_COMPARE ::comparison
 
 
-   ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangleRequest, bool bPreserveSize)
    {
 
-      //i64 g_i_get_best_zoneing = 0;
+      //huge_integer g_i_get_best_zoneing = 0;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       if (rectangleRequest.is_set())
       {
@@ -2321,7 +2321,7 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectangleWorkspace;
+      ::int_rectangle rectangleWorkspace;
 
       ::collection::index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
@@ -2355,7 +2355,7 @@ namespace experience
       if (iBestWorkspace >= 0)
       {
 
-         ::rectangle_i32 rectangleOld(rectangle);
+         ::int_rectangle rectangleOld(rectangle);
 
          auto pwindowing = windowing();
 
@@ -2376,7 +2376,7 @@ namespace experience
 
       bool bCursorPosition = layout().is_moving();
 
-      ::point_i32 pointCursor(no_initialize_t{});
+      ::int_point pointCursor(no_initialize_t{});
 
       if (bCursorPosition)
       {
@@ -2618,7 +2618,7 @@ namespace experience
    }
 
 
-   ::item_pointer frame_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer frame_window::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
       if (!m_pframe)
@@ -2678,7 +2678,7 @@ namespace experience
    //
    //         dock_manager()->on_message_left_button_down(pmouse);
    //
-   //         //::rectangle_i32 rectangleWindow;
+   //         //::int_rectangle rectangleWindow;
    //
    //         //ptopic->user_interaction()->window_rectangle(rectangleWindow);
    //
@@ -2941,7 +2941,7 @@ namespace experience
    }
 
 
-   void frame_window::place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame_window::place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
 
       if (::is_null(m_pframe))

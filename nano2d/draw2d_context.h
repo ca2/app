@@ -129,10 +129,10 @@ namespace nano2d
       void reset_scissor() override;
 
 
-      ::rectangle_f32 text(float x, float y, const ::scoped_string & scopedstr) override;
+      ::float_rectangle text(float x, float y, const ::scoped_string & scopedstr) override;
       int text_glyph_positions(float x, float y, const ::scoped_string & scopedstr, ::nano2d::glyphPosition * positions, int maxPositions) override;
-      ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, strsize iStart = 0, strsize iEnd = -1) override;
-      float text_bounds(float x, float y, const ::scoped_string & scopedstr, ::rectangle_f32 * prectangle) override;
+      ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, character_count iStart = 0, character_count iEnd = -1) override;
+      float text_bounds(float x, float y, const ::scoped_string & scopedstr, ::float_rectangle * prectangle) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 
       using ::nano2d::context::move_to;
@@ -145,7 +145,7 @@ namespace nano2d
 
       void rectangle(float x, float y, float w, float h) override;
       void ellipse(float cx, float cy, float rx, float ry) override;
-      void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir) override;
+      void arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir) override;
 
 
       void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width) override;

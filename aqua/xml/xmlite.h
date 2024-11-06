@@ -75,7 +75,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, int escape );
+   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const char * str, character_count len, int escape );
 
    ////========================================================
    //// Name   : _tcsenistr
@@ -86,7 +86,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, int escape );
+   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, character_count len, int escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -126,14 +126,14 @@ namespace xml
    void _trim(::const_ansi_range & range)
    {
 
-      while (range.has_char() && character_isspace(*range.m_begin))
+      while (range.has_character() && character_isspace(*range.m_begin))
       {
 
          range.m_begin++;
 
       }
 
-      while (range.has_char() && character_isspace(*(range.m_end - 1)))
+      while (range.has_character() && character_isspace(*(range.m_end - 1)))
       {
 
          range.m_begin--;

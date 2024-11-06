@@ -29,11 +29,11 @@ public:
 
    virtual void trace_progress();
 
-   virtual void trace_progress(i64 iStep);
+   virtual void trace_progress(huge_integer iStep);
 
    virtual void progress_step();
 
-   virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,i64 iValue,int iFlags);
+   virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,huge_integer iValue,int iFlags);
 
    int_scalar & operator ()(){ return m_scalar;  }
 

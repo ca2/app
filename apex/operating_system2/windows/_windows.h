@@ -23,7 +23,7 @@
 // {
 
 //    pmsg->hwnd = (HWND)(pmessage->oswindow);
-//    pmsg->message = (UINT)pmessage->m_atom.i64();
+//    pmsg->message = (UINT)pmessage->m_atom.huge_integer();
 //    pmsg->wParam = pmessage->wParam;
 //    pmsg->lParam = pmessage->lParam;
 //    pmsg->pt.x() = pmessage->pt.x();

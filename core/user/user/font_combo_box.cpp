@@ -60,7 +60,7 @@ namespace user
 
       //throw ::exception(todo("style"));
 
-      //::rectangle_f64 r(2, 2, 2, 2);
+      //::double_rectangle r(2, 2, 2, 2);
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
 

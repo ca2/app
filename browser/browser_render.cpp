@@ -108,7 +108,7 @@ namespace browser
    void render::full_render()
    {
 
-      size_i32 sizeNew = size_i32(m_cx, m_cy);
+      int_size sizeNew = int_size(m_cx, m_cy);
 
       if (m_bNewLayout)
       {
@@ -239,19 +239,19 @@ namespace browser
 
       nano_timer nanotimer;
 
-      u64 uNow = get_nanos();
+      huge_natural uNow = get_nanos();
 
-      u64 uFrameNanos = (u64)(1000000000LL / get_frames_per_second());
+      huge_natural uFrameNanos = (huge_natural)(1000000000LL / get_frames_per_second());
 
       uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
-      u64 uFrameId = uNow / uFrameNanos;
+      huge_natural uFrameId = uNow / uFrameNanos;
 
-      u64 uLastFrameId = uFrameId;
+      huge_natural uLastFrameId = uFrameId;
 
-      u64 uNextFrame;
+      huge_natural uNextFrame;
 
-      u64 uWait;
+      huge_natural uWait;
 
       ::collection::count cLost;
 
@@ -270,7 +270,7 @@ namespace browser
 
             uNow = get_nanos();
 
-            uFrameNanos = (u64)(1000000000ULL / get_frames_per_second());
+            uFrameNanos = (huge_natural)(1000000000ULL / get_frames_per_second());
 
             uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
@@ -421,7 +421,7 @@ namespace browser
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX.left() = 0;
 
@@ -454,7 +454,7 @@ namespace browser
 
       double r = (tri(w * t) + 1.0) / 2.0;
 
-      ::size_i32 size;
+      ::int_size size;
 
       string strHelloBrowser;
 
@@ -503,7 +503,7 @@ namespace browser
 
                synchronous_lock slDib(m_pmutexDib);
 
-/*               m_pimage->create_image(this, ::size_i32(m_cxCache1, m_cyCache1));
+/*               m_pimage->create_image(this, ::int_size(m_cxCache1, m_cyCache1));
 
 /*               if (m_pimage)
                {
@@ -520,11 +520,11 @@ namespace browser
 
 /*                  m_pimage->g()->SelectObject(pbrushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx()) / 2, (m_cyCache1 - size_i32->cy()) / 2, strHelloBrowser);
+/*                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2, (m_cyCache1 - int_size->cy()) / 2, strHelloBrowser);
 
 /*                  m_pimage->map();
 
-/*                  psystem->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pimage->g(), ::int_point(), m_pimage->get_size(), m_pimage->g(), ::int_point(), int (m_dMaxRadius));
 
 /*                  m_blurImage.blur(m_pimage, int(m_dMaxRadius));
 
@@ -610,11 +610,11 @@ namespace browser
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       psystem->imaging().bitmap_blend(pgraphics,
-                                         point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
+                                         int_point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->get_size(),
-                                         m_pimageTemplate2->get_graphics(), ::point_i32(), unsigned char (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::int_point(), unsigned char (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::point_i32(), rectangleX>si);
+      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::int_point(), rectangleX>si);
 
       pgraphics->set_font(m_pfont);
 
@@ -680,7 +680,7 @@ namespace browser
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX.left() = 0;
 
@@ -771,7 +771,7 @@ namespace browser
 
       string strHelloBrowser = strGetHelloBrowser;
 
-      ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
+      ::int_size size = pgraphics->get_text_extent(strHelloBrowser);
 
       m_cxTarget = int(size.cx() * 1.2);
 
@@ -793,7 +793,7 @@ namespace browser
 
             }
 
-/*            m_pimage->create_image(this, ::size_i32(m_cx, m_cy));
+/*            m_pimage->create_image(this, ::int_size(m_cx, m_cy));
 
 /*            m_pimage->defer_realize(pgraphics);
 
@@ -809,7 +809,7 @@ namespace browser
 
 /*            m_pimage->g()->set_font(m_pfont);
 
-/*            m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2, (m_cy - size_i32->cy()) / 2, strHelloBrowser);
+/*            m_pimage->g()->text_out((m_cx - int_size->cx()) / 2, (m_cy - int_size->cy()) / 2, strHelloBrowser);
 
             if (m_dMinRadius > 3.0)
             {
@@ -912,7 +912,7 @@ namespace browser
             if (error == 0)
             {
 
-               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
+               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 
@@ -963,7 +963,7 @@ namespace browser
             if (error == 0)
             {
 
-               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
+               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 
@@ -1026,7 +1026,7 @@ namespace browser
 
       }
 
-/*      psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage, ::point_i32(), pslide->m_iAlpha);
+/*      psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage, ::int_point(), pslide->m_iAlpha);
 
    }
 
@@ -1034,7 +1034,7 @@ namespace browser
    void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX.left() = 0;
       rectangleX.top() = 0;
@@ -1085,7 +1085,7 @@ namespace browser
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-               ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
+               ::int_size size = pgraphics->get_text_extent(strHelloBrowser);
 
                double ratey = fHeight * 0.84 / size.cy();
 
@@ -1115,7 +1115,7 @@ namespace browser
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
+            ::int_size size = pgraphics->get_text_extent(strHelloBrowser);
 
             pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser);
 
@@ -1168,7 +1168,7 @@ namespace browser
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
+            pgraphics->draw(::int_point(), int_size(m_cx, m_cy), m_pimageFast->get_graphics());
 
          }
 
@@ -1209,15 +1209,15 @@ namespace browser
 
          uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->g(), ::int_point(), uchAlpha);
 
-         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
+         psystem->imaging().bitmap_blend(pgraphics, ::int_point(), imageFast.get_size(), imageFast.get_graphics(), ::int_point(), 255 - uchAlpha);
 
       }
       else
       {
 
-/*         pgraphics->from(::point_i32(), pimage->get_size(), pimage->g(), ::point_i32());
+/*         pgraphics->from(::int_point(), pimage->get_size(), pimage->g(), ::int_point());
 
       }
 
@@ -1320,7 +1320,7 @@ namespace browser
 
       synchronous_lock slDraw(m_pmutexDraw);
 
-      ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
+      ::int_size sizeNew = ::int_size(m_cx, m_cy);
 
 
       bool bNewSize = m_pimageFast->width() != sizeNew->cx() || m_pimageFast->height() != sizeNew->cy();
@@ -1341,7 +1341,7 @@ namespace browser
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::size_i32 size = pgraphics->get_text_extent(strHelloBrowser);
+      ::int_size size = pgraphics->get_text_extent(strHelloBrowser);
 
       double ratey = fHeight * 0.84 / size.cy();
 

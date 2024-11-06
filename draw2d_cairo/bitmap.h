@@ -17,7 +17,7 @@ namespace draw2d_cairo
 
       cairo_surface_t *       m_psurface;
       memory                  m_mem;
-      ::size_i32              m_size;
+      ::int_size              m_size;
 
 
       bitmap();
@@ -32,7 +32,7 @@ namespace draw2d_cairo
 //      bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
       void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight) override;
       void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight) override;
-      void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, void **ppvBits, int * stride) override;
+      void create_bitmap(::draw2d::graphics * pgraphics, const ::int_size & size, void **ppvBits, int * stride) override;
       void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, unsigned int iUsage) override;
 
       bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap) override;
@@ -45,8 +45,8 @@ namespace draw2d_cairo
 
       unsigned int SetBitmapBits(unsigned int dwCount, const void * lpBits) override;
       unsigned int GetBitmapBits(unsigned int dwCount, void * lpBits) const override;
-      ::size_i32 SetBitmapDimension(int nWidth, int nHeight);
-      ::size_i32 GetBitmapDimension() const override;
+      ::int_size SetBitmapDimension(int nWidth, int nHeight);
+      ::int_size GetBitmapDimension() const override;
 
       // void dump(dump_context & dumpcontext) const override;
 

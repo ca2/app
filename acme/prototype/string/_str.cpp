@@ -507,7 +507,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strPrefix(pcszPrefix);
 //
 //
-//      strsize iLen = strPrefix.length();
+//      character_count iLen = strPrefix.length();
 //
 //      if(str.left(iLen) == pcszPrefix)
 //
@@ -531,7 +531,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strPrefix(pcszPrefix);
 //
 //
-//      strsize iLen = strPrefix.length();
+//      character_count iLen = strPrefix.length();
 //
 //      if(str.left(iLen).case_insensitive_order(pcszPrefix) == 0)
 //
@@ -728,7 +728,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strSuffix(pcszSuffix);
 //
 //
-//      strsize iLen = strSuffix.length();
+//      character_count iLen = strSuffix.length();
 //
 //      if(str.right(iLen).case_insensitive_order(pcszSuffix) == 0)
 //
@@ -752,7 +752,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
    //}
 
 
-string str::replace_with(const ::string & strOld, const ::string & strNew, const ::string & strParam, strsize iStart)
+string str::replace_with(const ::string & strOld, const ::string & strNew, const ::string & strParam, character_count iStart)
 {
 
    string str(strParam);
@@ -774,7 +774,7 @@ string str::replace_with(const ::string & strOld, const ::string & strNew, const
    for (::collection::index i = 0; i < straSearch.get_count(); i++)
    {
 
-      if (straSearch[i].has_char())
+      if (straSearch[i].has_character())
       {
 
          ::collection::index iSearch = str.find_index(straSearch[i], iStart);
@@ -833,7 +833,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 }
 
 
-::collection::count str::utf8_replace_with(string & str, const ::string & strNew, const ::string & strOld, strsize iStart)
+::collection::count str::utf8_replace_with(string & str, const ::string & strNew, const ::string & strOld, character_count iStart)
 {
 
    ::collection::count c = 0;
@@ -883,7 +883,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 }
 
 
-string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
+string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, character_count iStart)
 {
 
    ::collection::index iPos = iStart;
@@ -930,7 +930,7 @@ string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, 
 }
 
 
-string str::case_insensitive_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
+string str::case_insensitive_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, character_count iStart)
 {
 
    ::collection::index iPos = iStart;
@@ -977,7 +977,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-::collection::count str::replace_with_ci_count(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
+::collection::count str::replace_with_ci_count(const ::string & strNew, const ::string & strOld, const ::string & strParam, character_count iStart)
 {
 
    ::collection::index iPos = iStart;
@@ -1247,7 +1247,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 //   const ::scoped_string & scopedstr1 = str;
 //   const ::scoped_string & scopedstr2 = pszOld;
 
-//   strsize iPos = 0;
+//   character_count iPos = 0;
 
 //   while(iPos <= iLast)
 //   {
@@ -1307,7 +1307,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
    }
 
-   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point_i32 definitive false).
+   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start int_point definitive false).
    // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
    ::collection::index iLen = str.length() - iStart;
@@ -1342,9 +1342,9 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
    const ::ansi_character * psz2 = strOld;
 
-   strsize iPos = 0;
+   character_count iPos = 0;
 
-   strsize iPos2 = 0;
+   character_count iPos2 = 0;
 
    while (iPos <= iLast)
    {
@@ -1644,7 +1644,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-strsize str::find_ww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
+character_count str::find_ww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    if (strParam.is_empty())
@@ -1692,7 +1692,7 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, ::colle
 }
 
 
-strsize str::find_aww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
+character_count str::find_aww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    if (strParam.is_empty())
@@ -1748,7 +1748,7 @@ string str::has_char(const ::string & strIfHasChar, const ::string & strBefore, 
    if (strIfHasChar.is_empty())
    {
 
-      if (strDoesnt.has_char())
+      if (strDoesnt.has_character())
       {
 
          return strDoesnt;
@@ -1770,7 +1770,7 @@ string str::has_char(const ::string & strIfHasChar, const ::string & strBefore, 
 
    }
 
-   if (strBefore.has_char())
+   if (strBefore.has_character())
    {
 
       str = strBefore;
@@ -1779,7 +1779,7 @@ string str::has_char(const ::string & strIfHasChar, const ::string & strBefore, 
 
    str += strIfHasChar;
 
-   if (strAfter.has_char())
+   if (strAfter.has_character())
    {
 
       str += strAfter;
@@ -1998,7 +1998,7 @@ string str::get_word(const ::string & str, const ::string & strSeparator, bool b
 
 // GitHub MightyPork / utf8_encode.c
 
-utf8_character unicode_to_utf8(::i64 i)
+utf8_character unicode_to_utf8(huge_integer i)
 {
 
    utf8_character utf8character;
@@ -2047,7 +2047,7 @@ utf8_character unicode_to_utf8(::i64 i)
 }
 
 
-strsize unicode_to_utf8_length(::i64 i)
+character_count unicode_to_utf8_length(huge_integer i)
 {
    if (i <0)
    {
@@ -2078,7 +2078,7 @@ strsize unicode_to_utf8_length(::i64 i)
 
 
 
-//const char * str::utf8_next_add_length(strsize * paddlength, const ::ansi_character * psz)
+//const char * str::utf8_next_add_length(character_count * paddlength, const ::ansi_character * psz)
 //{
 //
 //   char len = 1 + trailingBytesForUTF8(*psz);
@@ -2128,10 +2128,10 @@ strsize unicode_to_utf8_length(::i64 i)
 //}
 
 
-//const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
+//const char * str::utf8_inc_copy_slide_back(character_count * pslideback, char * pchDst, const char * pchSrc)
 //{
 //
-//   strsize count = 0;
+//   character_count count = 0;
 //
 //   ::str::utf8_inc_slide(&count, pchSrc);
 //
@@ -2540,7 +2540,7 @@ string utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_characte
 }
 
 
-int str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos)
+int str::get_escaped_char(const ::ansi_character * psz, character_count pos, character_count & retPos)
 {
 
    retPos = pos;
@@ -2565,9 +2565,9 @@ int str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & r
 
             }
 
-            i64 hex = ::hex::to_i64(val);
+            huge_integer hex = ::hex::to_huge_integer(val);
 
-            strsize val_len = val.length();
+            character_count val_len = val.length();
 
             if (hex < 0 || hex > 0xFFFF)
             {
@@ -2584,9 +2584,9 @@ int str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & r
          else
          {
 
-            i64 hex = ::hex::to_i64(string(&psz[pos + 2], 2));
+            huge_integer hex = ::hex::to_huge_integer(string(&psz[pos + 2], 2));
 
-            if (i64(strlen(psz)) <= pos + 2 || hex == -1)
+            if (huge_integer(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;
@@ -2638,7 +2638,7 @@ bool str::get_curly_content(const ::ansi_character * psz, string & str)
 }
 
 
-bool str::is_simple_natural(const ::ansi_character * pszCandidate, strsize iCount)
+bool str::is_simple_natural(const ::ansi_character * pszCandidate, character_count iCount)
 {
 
    if (iCount == 0)
@@ -2731,13 +2731,13 @@ bool str::is_integer(const ::string & strParam)
 
 
 
-template < const strsize m_iSize = 1024 >
+template < const character_count m_iSize = 1024 >
 class mini_str_buffer
 {
 public:
 
 
-   strsize     m_iPos;
+   character_count     m_iPos;
    char        m_sz[m_iSize];
    string      m_str;
 
@@ -2768,7 +2768,7 @@ public:
 
    }
 
-   void append_uni(i64 w)
+   void append_uni(huge_integer w)
    {
 
       if (m_iPos + 3 > m_iSize)
@@ -2805,7 +2805,7 @@ public:
       }
    }
 
-   void append(const ::ansi_character * psz, strsize iSize)
+   void append(const ::ansi_character * psz, character_count iSize)
    {
 
       if (m_iPos + iSize > m_iSize)
@@ -2946,9 +2946,9 @@ string str::line(string & str, bool bNewLine)
 //bool str::begins_consume(::const_ansi_range & range, const ::string & str)
 //{
 //
-//   //strsize idx;
+//   //character_count idx;
 //
-//   strsize len = str.length();
+//   character_count len = str.length();
 //
 //   if (strncmp(pszParse, str, len) != 0)
 //   {
@@ -3067,13 +3067,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
 
-   string bigint2string(u64 l)
+   string bigint2string(huge_natural l)
    {
       string str;
-      u64 tmp = l;
+      huge_natural tmp = l;
       while (tmp)
       {
-         u64 a = tmp % 10;
+         huge_natural a = tmp % 10;
          str = (char)(a + 48) + str;
          tmp /= 10;
       }
@@ -3085,23 +3085,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }*/
 
 
-int str::to_i32(const ::string & str)
+int str::to_int(const ::string & str)
 {
 
-   return ansi_to_i32(str);
+   return ansi_to_int(str);
 
 }
 
 
-unsigned int str::to_u32(const ::scoped_string & scopedstr)
+unsigned int str::to_unsigned_int(const ::scoped_string & scopedstr)
 {
 
-   return (unsigned int)ansi_to_i64(scopedstr);
+   return (unsigned int)ansi_to_huge_integer(scopedstr);
 
 }
 
 
-i64 str::to_i64(const ::string & str)
+huge_integer str::to_huge_integer(const ::string & str)
 {
 
    int i = 0;
@@ -3117,7 +3117,7 @@ i64 str::to_i64(const ::string & str)
 
    }
 
-   u64 u = 0;
+   huge_natural u = 0;
 
    for (; i < str.length() && character_isdigit(str[i]); i++)
    {
@@ -3129,20 +3129,20 @@ i64 str::to_i64(const ::string & str)
    if (bNegative)
    {
 
-      return -(i64)u;
+      return -(huge_integer)u;
 
    }
    else
    {
 
-      return (i64)u;
+      return (huge_integer)u;
 
    }
 
 }
 
 
-//i64 to_i64(const ::string & str)
+//huge_integer to_huge_integer(const ::string & str)
 //{
 
 //   int i = 0;
@@ -3154,7 +3154,7 @@ i64 str::to_i64(const ::string & str)
 //   if(bNegative)
 //      psz++;
 
-//   u64 u = 0;
+//   huge_natural u = 0;
 
 //   for(; *psz != '\0' && i < 30 && ansi_char_isdigit(*psz); psz++, i++)
 //   {
@@ -3162,20 +3162,20 @@ i64 str::to_i64(const ::string & str)
 //   }
 
 //   if(bNegative)
-//      return -(i64) u;
+//      return -(huge_integer) u;
 //   else
-//      return (i64) u;
+//      return (huge_integer) u;
 
 //}
 
-u64 str::to_u64(const ::string & str)
+huge_natural str::to_huge_natural(const ::string & str)
 {
 
    int i = 0;
 
    for (; i < str.length() && character_isspace(str[i]); i++);
 
-   u64 u = 0;
+   huge_natural u = 0;
 
    for (; i < str.length() && character_isdigit(str[i]); i++)
    {
@@ -3186,14 +3186,14 @@ u64 str::to_u64(const ::string & str)
 
 }
 
-//u64 to_u64(const ::string & strParam)
+//huge_natural to_huge_natural(const ::string & strParam)
 //{
 
 //   int i = 0;
 
 //   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
-//   u64 u = 0;
+//   huge_natural u = 0;
 
 //   for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
 //   {
@@ -3209,7 +3209,7 @@ u64 str::to_u64(const ::string & str)
 void str::increment_digit_letter(string & str)
 {
 
-   strsize i = str.length() - 1;
+   character_count i = str.length() - 1;
 
    while (i >= 0)
    {
@@ -3272,7 +3272,7 @@ void str::increment_digit_letter(string & str)
 //   void begin(wstring & wstr, const unichar * pcszPrefix)
 //   {
 //
-//      strsize iPrefixLen = wide_length(pcszPrefix);
+//      character_count iPrefixLen = wide_length(pcszPrefix);
 //
 //      if(wstr.get_storage_size_in_bytes() >= ((wstr.get_length() + iPrefixLen + 1) * __sizeof(unichar)))
 //      {
@@ -3433,7 +3433,7 @@ void str::increment_digit_letter(string & str)
 //
 //   /// \lparam[in] pcszPrefix Candidate prefix string.
 //
-//   /// \return True if \point_i32 pcsz is prefixed with \point_i32 pcszPrefix.
+//   /// \return True if \int_point pcsz is prefixed with \int_point pcszPrefix.
 //
 //   /// \note Case insensitive.
 //   ///
@@ -3564,7 +3564,7 @@ string str::ansi_upper(const ::string & str)
 **/
 
 
-bool str::simple_escaped(const ::string & str, strsize pos)
+bool str::simple_escaped(const ::string & str, character_count pos)
 {
 
    if (pos == 0)
@@ -3582,7 +3582,7 @@ bool str::simple_escaped(const ::string & str, strsize pos)
 bool str::trim(string & str)
 {
 
-   strsize iLen = str.length();
+   character_count iLen = str.length();
 
    str.trim();
 
@@ -3677,7 +3677,7 @@ bool str::paired_trim(string & str, char ch)
 bool str::utf8_check_is_valid(const string & string)
 {
 
-   strsize i, c, ix, n, j;
+   character_count i, c, ix, n, j;
 
    for (i = 0, ix = string.length(); i < ix; i++)
    {
@@ -3865,7 +3865,7 @@ bool str::is_true(string str)
 
    }
 
-   if (ansi_to_i32(str) == 0)
+   if (ansi_to_int(str) == 0)
    {
 
       return false;
@@ -3974,7 +3974,7 @@ void str::fix_eol(string & str)
 }
 
 
-string & str::zero_pad(string & str, strsize lenPad)
+string & str::zero_pad(string & str, character_count lenPad)
 {
 
    ::ansi_zero_pad(str.get_buffer(str.length() + lenPad), lenPad);
@@ -3986,7 +3986,7 @@ string & str::zero_pad(string & str, strsize lenPad)
 }
 
 
-string str::zero_padded(const ::string & strSrc, strsize lenPad)
+string str::zero_padded(const ::string & strSrc, character_count lenPad)
 {
 
    string str(strSrc);
@@ -4021,7 +4021,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
          auto range = str();
 
-         if(str.has_char())
+         if(str.has_character())
          {
 
             functionNewLine(str, false);
@@ -4036,7 +4036,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
    }
 
-   strsize iLast = -1;
+   character_count iLast = -1;
 
    while(true)
    {
@@ -4053,7 +4053,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
             auto range = str();
 
-            if(str.has_char())
+            if(str.has_character())
             {
 
                functionNewLine(str, false);
@@ -4161,10 +4161,10 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
-strsize str::x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm)
+character_count str::x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm)
 {
 
-   strsize start = 0;
+   character_count start = 0;
 
    while (auto found = scopedstr.case_insensitive_find_index(scopedstrSearchedTerm, start))
    {

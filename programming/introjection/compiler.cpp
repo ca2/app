@@ -1224,7 +1224,7 @@ auto tickStart = ::time::now();
 #ifdef LINUX
       if(!bTimeout)
 #else
-      if(!bTimeout && strLog.has_char())
+      if(!bTimeout && strLog.has_character())
 #endif
       {
 
@@ -1238,7 +1238,7 @@ auto tickStart = ::time::now();
 
          str.trim();
 
-         if(str.has_char())
+         if(str.has_character())
          {
 #ifndef MACOS
             file()->put_text_utf8(strClog,strLog);
@@ -1417,7 +1417,7 @@ auto tickStart = ::time::now();
 
 #endif
 
-         if(!bTimeout && strLog.has_char())
+         if(!bTimeout && strLog.has_character())
          {
 
 #ifdef LINUX
@@ -1431,7 +1431,7 @@ auto tickStart = ::time::now();
 
             str.trim();
 
-            if(str.has_char())
+            if(str.has_character())
             {
 
 #ifndef MACOS

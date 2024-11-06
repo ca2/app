@@ -234,14 +234,14 @@ namespace nano2d
 	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines)
 	{
 
-		::rectangle_f32 bounds;
+		::float_rectangle bounds;
 
 		for (int i = 0; i < straLines.get_size(); i++)
 		{
 
 			string strLabel = straLines[i];
 
-			if (strLabel.has_char())
+			if (strLabel.has_character())
 			{
 
 				text_bounds(0, 0, strLabel, &bounds);
@@ -1973,7 +1973,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-   void context::move_to(const ::point_f32 & p)
+   void context::move_to(const ::float_point & p)
    {
       //float vals[] = { ::nano2d::e_command_move_to, x, y };
       //context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));
@@ -1993,7 +1993,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-   void context::line_to(const ::point_f32 & p)
+   void context::line_to(const ::float_point & p)
    {
       /*float vals[] = { ::nano2d::e_command_line_to, x, y };
       context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));*/
@@ -2095,7 +2095,7 @@ void TransformSkewX(float* t, float a)
 
 	}
 
-	void context::arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir)
+	void context::arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir)
 	{
 		//arc(cx, cy, r, a0, a1, dir);
 		//float a = 0, da = 0, hda = 0, kappa = 0;
@@ -2583,7 +2583,7 @@ void TransformSkewX(float* t, float a)
 	//	return -1;
 	//}
 	//
-	::rectangle_f32 context::text(float x, float y, const ::scoped_string& scopedstr)
+	::float_rectangle context::text(float x, float y, const ::scoped_string& scopedstr)
 	{
 
 		//::nano2d::state * state = __getState();
@@ -2829,7 +2829,7 @@ void TransformSkewX(float* t, float a)
    
       auto range = scopedstr();
    
-		strsize pos = 0;
+		character_count pos = 0;
    
       while (true)
       {
@@ -3293,7 +3293,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	float context::text_bounds(float x, float y, const ::scoped_string& string, ::rectangle_f32 * bounds)
+	float context::text_bounds(float x, float y, const ::scoped_string& string, ::float_rectangle * bounds)
 	{
 
 		//return text_bounds(x, y, string, end, bounds);
@@ -3326,7 +3326,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	void context::text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::rectangle_f32 * bounds)
+	void context::text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::float_rectangle * bounds)
 	{
 
 		//text_bounds(x, y, string, end, bounds);
@@ -3406,7 +3406,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::collection::count context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
+	::collection::count context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, character_count iStart, character_count iEnd)
 	{
 
 		throw ::interface_only();

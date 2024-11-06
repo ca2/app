@@ -179,7 +179,7 @@ public:
    }
 
 
-   text_reader & operator >>(i64 & i)
+   text_reader & operator >>(huge_integer & i)
    {
 
       read_integer(i, m_psz);
@@ -189,7 +189,7 @@ public:
    }
 
 
-   text_reader & operator >>(u64 & u)
+   text_reader & operator >>(huge_natural & u)
    {
 
       read_natural(u, m_psz);
@@ -424,7 +424,7 @@ public:
    }
 
 
-   static string ellipsis(const char * psz, strsize maximum_length)
+   static string ellipsis(const char * psz, character_count maximum_length)
    {
 
       if (maximum_length < 3)
@@ -436,7 +436,7 @@ public:
 
       auto pszStart = psz;
 
-      strsize i = 0;
+      character_count i = 0;
 
       for (; i < maximum_length; i++, psz++)
       {

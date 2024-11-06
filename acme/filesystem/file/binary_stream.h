@@ -28,8 +28,8 @@ public:
    virtual ::payload & options();
 
 
-   //void write_buffer_length(::u64 u);
-   //::u64 read_buffer_length();
+   //void write_buffer_length(huge_natural u);
+   //huge_natural read_buffer_length();
 
 
 
@@ -163,7 +163,7 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   inline void write_length(::u64 u)
+   inline void write_length(huge_natural u)
    {
 
       if (u < 255)
@@ -184,14 +184,14 @@ public:
 
          operator <<((unsigned char)255);
          operator <<((unsigned short)65535);
-         operator <<((::u64)u);
+         operator <<((huge_natural)u);
 
       }
 
    }
 
 
-   inline void read_length(::u64 & u)
+   inline void read_length(huge_natural & u)
    {
 
       unsigned char uRead;
@@ -251,17 +251,17 @@ public:
    binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
    binary_stream & operator <<(int i) { raw_write(i); return *this; }
    binary_stream & operator <<(unsigned int ui) { raw_write(ui); return *this; }
-   binary_stream & operator <<(i64 i64) { raw_write(i64); return *this; }
-   binary_stream & operator <<(u64 u64) { raw_write(u64); return *this; }
+   binary_stream & operator <<(huge_integer hi) { raw_write(hi); return *this; }
+   binary_stream & operator <<(huge_natural hn) { raw_write(hn); return *this; }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    binary_stream & operator <<(unsigned long u) { raw_write(u); return *this; }
    binary_stream & operator <<(long l) { raw_write(l);  return *this; }
 #endif
    binary_stream & operator <<(float f) { raw_write(f); return *this; }
    binary_stream & operator <<(double d) { raw_write(d); return *this; }
-   // void write(const ::point_i32 & point) { raw_write(point); }
-   // void write(const ::size_i32 & size) { raw_write(size); }
-   // void write(const ::rectangle_i32 &crect) { raw_write(crect); }
+   // void write(const ::int_point & point) { raw_write(point); }
+   // void write(const ::int_size & size) { raw_write(size); }
+   // void write(const ::int_rectangle &crect) { raw_write(crect); }
    //binary_stream & operator <<(const ::scoped_string & scopedstr);
 #ifdef WINDOWS
    binary_stream & operator <<(const unichar * wch) {
@@ -287,17 +287,25 @@ public:
 
 
    binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(uch); b = uch ? true : false; return *this; }
-   binary_stream & operator >>(char & ch) { raw_read(ch); return *this; }
-   binary_stream & operator >>(unsigned char & uch) { raw_read(uch); return *this; }
+   //binary_stream & operator >>(char & ch) { raw_read(ch); return *this; }
+   //binary_stream & operator >>(unsigned char & uch) { raw_read(uch); return *this; }
 #ifdef WINDOWS
    binary_stream & operator >>(unichar & wch) { raw_read(wch); return *this; }
 #endif
-   binary_stream & operator >>(short & sh) { raw_read(sh); return *this; }
-   binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
-   binary_stream & operator >>(int & i) { raw_read(i); return *this; }
-   binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
-   binary_stream & operator >>(i64 & i64) { raw_read(i64); return *this; }
-   binary_stream & operator >>(u64 & u64) { raw_read(u64); return *this; }
+
+
+#define NUMBER_TYPE_OPERATION(NUMBER_TYPE, NUMBER_NAME, NUMBER_SHORT_NAME, UPPER_CASE_NAME) \
+   binary_stream & operator >>(NUMBER_TYPE & NUMBER_SHORT_NAME) { raw_read(NUMBER_SHORT_NAME); return *this; }
+   DO_FOR_NUMBER_TYPES(NUMBER_TYPE_OPERATION)
+#undef NUMBER_TYPE_OPERATION
+
+
+   //binary_stream & operator >>(short & sh) { raw_read(sh); return *this; }
+   //binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
+   //binary_stream & operator >>(int & i) { raw_read(i); return *this; }
+   //binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
+   //binary_stream & operator >>(huge_integer & hi) { raw_read(hi); return *this; }
+   //binary_stream & operator >>(huge_natural & hn) { raw_read(huge_natural); return *this; }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    binary_stream & operator >>(unsigned long & u) {
       raw_read(u); return *this;
@@ -306,11 +314,11 @@ public:
       raw_read(l); return *this;
    }
 #endif
-   binary_stream & operator >>(float & f) { raw_read(f); return *this; }
-   binary_stream & operator >>(double & d) { raw_read(d); return *this; }
-   // void read(::point_i32 & point) { raw_read(point); }
-   //// void read(::size_i32 & size) { raw_read(size); }
-   //// void read(::rectangle_i32 & rectangle) { raw_read(rectangle); }
+   //binary_stream & operator >>(float & f) { raw_read(f); return *this; }
+   //binary_stream & operator >>(double & d) { raw_read(d); return *this; }
+   // void read(::int_point & point) { raw_read(point); }
+   //// void read(::int_size & size) { raw_read(size); }
+   //// void read(::int_rectangle & rectangle) { raw_read(rectangle); }
    //binary_stream & operator >>(atom & atom);
    //binary_stream & operator >>(::payload & payload);
    // void read_var_type(enum_type & etype);
@@ -325,7 +333,7 @@ public:
 
    // void save_var_type(::enum_type etype);
 
-   /* void getline(char * sz, strsize n);
+   /* void getline(char * sz, character_count n);
    unsigned char get_byte();
    unsigned char peek_byte();*/
 
@@ -466,7 +474,7 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   void write_buffer_length(::u64 u)
+   void write_buffer_length(huge_natural u)
    {
 
       if (u < 255)
@@ -487,14 +495,14 @@ public:
 
          operator <<((unsigned char)255);
          operator <<((unsigned short)65535);
-         operator <<((::u64)u);
+         operator <<((huge_natural)u);
 
       }
 
    }
 
    
-   inline ::u64 read_buffer_length_unbounded_part2()
+   inline huge_natural read_buffer_length_unbounded_part2()
    {
 
       unsigned short ush;
@@ -510,18 +518,18 @@ public:
       else
       {
 
-         ::u64 u64;
+         huge_natural huge_natural;
 
-         u64 = m_pfile->get_u64_unbounded();
+         huge_natural = m_pfile->get_u64_unbounded();
 
-         return u64;
+         return huge_natural;
 
       }
 
    }
 
 
-   inline ::u64 read_buffer_length_unbounded()
+   inline huge_natural read_buffer_length_unbounded()
    {
 
       unsigned char uch = m_pfile->get_byte_unbounded();
@@ -531,7 +539,7 @@ public:
    }
 
 
-   virtual ::u64 read_buffer_length();
+   virtual huge_natural read_buffer_length();
 
 
    virtual string factory_id_to_text(const ::atom & atom);
@@ -883,7 +891,7 @@ public:
    //
    //   }
    //
-   //   if (strLink.has_char())
+   //   if (strLink.has_character())
    //   {
    //
    //      write_link(strLink, matter);
@@ -921,7 +929,7 @@ public:
    //   set_object_link(matter, strLink, bReadOnly);
    //
    //
-   //   if (strLink.has_char())
+   //   if (strLink.has_character())
    //   {
    //
    //      read_link(strLink, matter);
@@ -982,7 +990,7 @@ public:
    //
    //   }
    //
-   //   if (strLink.has_char())
+   //   if (strLink.has_character())
    //   {
    //
    //      m_pfilecontext->m_pfileapexcontext->save_to_file(strLink, m_pfilevarOptions, preference);
@@ -1020,7 +1028,7 @@ public:
    //
    //   set_object_link(preference, strLink, bReadOnly);
    //
-   //   if (strLink.has_char())
+   //   if (strLink.has_character())
    //   {
    //
    //      m_pfilecontext->m_pfileapexcontext->load_from_file(preference, strLink);
@@ -1148,7 +1156,7 @@ public:
    }
 
 
-   virtual void getline(char * sz, strsize n);
+   virtual void getline(char * sz, character_count n);
 
 
 

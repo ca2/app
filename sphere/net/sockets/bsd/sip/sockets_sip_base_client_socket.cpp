@@ -96,7 +96,7 @@ namespace sockets
                      m_chunk_line = m_chunk_line.left(m_chunk_line.get_length() - 2);
                      ::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
-                     m_chunk_size = ::hex::to_u32(size_str);
+                     m_chunk_size = ::hex::to_unsigned_int(size_str);
                      if (!m_chunk_size)
                      {
                         m_chunk_state = 4;

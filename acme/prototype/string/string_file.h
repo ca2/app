@@ -8,8 +8,8 @@ public:
 
    string_base < TYPE_CHAR >& m_str;
    char* m_pszBuffer;
-   strsize m_nLength;
-   strsize m_nBufferLength;
+   character_count m_nLength;
+   character_count m_nBufferLength;
 
    // Private copy constructor and copy assignment operator to prevent accidental use
 
@@ -30,7 +30,7 @@ public:
 
    }
 
-   string_buffer(string_base& str, strsize nMinLength, unsigned int dwFlags = AUTO_LENGTH) THROWS :
+   string_buffer(string_base& str, character_count nMinLength, unsigned int dwFlags = AUTO_LENGTH) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
       m_nLength((dwFlags& AUTO_LENGTH) ? -1 : nMinLength),
@@ -76,7 +76,7 @@ public:
    }
 
 
-   inline void set_length(strsize nLength);
+   inline void set_length(character_count nLength);
 
 private:
 

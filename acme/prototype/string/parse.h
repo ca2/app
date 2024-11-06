@@ -44,21 +44,21 @@ public:
    const char * m_psz;
    string   pa_splits;
    string   m_strWord;
-   strsize  m_iPos;
+   character_count  m_iPos;
    char     pa_breakchar;
    char     pa_enable;
    char     pa_disable;
    short    pa_nospace;
    bool     m_bQuote;
-   strsize  m_iLen;
+   character_count  m_iLen;
 
    parse();
    parse(::range < const ::ansi_character * > range) : parse(range.begin(), range.size()) {}
    parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits):parse(range.begin(), range.size(), splits) {}
    parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits, short nospace):parse(range.begin(), range.size(),splits,nospace) {}
-   parse(const ::ansi_character * psz, strsize iLen);
-   parse(const ::ansi_character * psz, strsize iLen, ::range < const ::ansi_character * > splits);
-   parse(const ::ansi_character * psz, strsize iLen, ::range < const ::ansi_character * > splits, short);
+   parse(const ::ansi_character * psz, character_count iLen);
+   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits);
+   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits, short);
    ~parse();
    short issplit(const char);
    void getsplit();
@@ -75,8 +75,8 @@ public:
    int getwordlen();
    int getrestlen();
 
-   inline bool has_char() const { return m_iPos < m_iLen; }
-   inline bool is_eostr() const { return !has_char();  }
+   inline bool has_character() const { return m_iPos < m_iLen; }
+   inline bool is_eostr() const { return !has_character();  }
       
 
    void enablebreak(const char ca)
@@ -92,11 +92,11 @@ public:
    void getline(string &);
 
    // operational functions that does not store resulting word (pa_the_ord) starts with underscore.
-   void _get_expandable_line(strsize & start, strsize & end, bool & bFinal);
+   void _get_expandable_line(character_count & start, character_count & end, bool & bFinal);
    void _get_expandable_line(string &);
    void get_expandable_line();
 
-   strsize get_pos() { return m_iPos; }
+   character_count get_pos() { return m_iPos; }
    void EnableQuote(bool b) { m_bQuote = b; }
 
 };

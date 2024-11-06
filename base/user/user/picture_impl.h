@@ -21,23 +21,23 @@ namespace user
    public:
 
 
-      rectangle_f64                    m_rectangle;
-      rectangle_f64                    m_rectangleDrawing;
+      double_rectangle                    m_rectangle;
+      double_rectangle                    m_rectangleDrawing;
 
-      rectangle_f64                    m_rectangleRegion;
-      rectangle_f64                    m_rectangleRegionDrawing;
+      double_rectangle                    m_rectangleRegion;
+      double_rectangle                    m_rectangleRegionDrawing;
 
 
-      rectangle_f64                    m_rectangleCursor;
+      double_rectangle                    m_rectangleCursor;
       bool                             m_bDrag;
       double                           m_dRotate;
       ::draw2d::region_pointer         m_region;
-      rectangle_f64                    m_rectangleBounding;
-      polygon_f64                      m_polygon;
-      polygon_f64                      m_polygonDrawing;
-      point_double_array                  m_pointaCursor;
+      double_rectangle                    m_rectangleBounding;
+      double_polygon                      m_polygon;
+      double_polygon                      m_polygonDrawing;
+      double_point_array                  m_pointaCursor;
       double                           m_dZoom;
-      point_f64                        m_pointDrag2;
+      double_point                        m_pointDrag2;
 
       bool                             m_bOutline;
       int                              m_iOutlineWidth;

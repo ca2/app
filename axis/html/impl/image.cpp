@@ -37,11 +37,11 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               auto pointDst = ::point_f64((int)left(), (int)top());
+               auto pointDst = ::double_point((int)left(), (int)top());
 
                auto sizeDst = m_pimage->size();
 
-               auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
+               auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
 
                ::image::image_source imagesource(m_pimage);
 

@@ -134,7 +134,7 @@ namespace experience
             /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(false);
                      if(pmenu != nullptr)
                      {
-                     const ::point_i32 & point(LOWORD(lparam), HIWORD(lparam));
+                     const ::int_point & point(LOWORD(lparam), HIWORD(lparam));
 
                      pframewindow->client_to_screen(&point);
                      pmenu->track_popup_menu(
@@ -148,7 +148,7 @@ namespace experience
       }
    }
 
-   bool menu_manager::OnLButtonDblClk(unsigned int nFlags, const ::point_i32 & point)
+   bool menu_manager::OnLButtonDblClk(unsigned int nFlags, const ::int_point & point)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);

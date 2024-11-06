@@ -52,7 +52,7 @@ constexpr ::std::strong_ordering case_insensitive__sz_compare(const CHARACTER * 
 
 
 template < primitive_character CHARACTER, ::comparison::ordering < CHARACTER > ORDERING >
-inline ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, strsize sizeB, ORDERING ordering) noexcept
+inline ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, character_count sizeB, ORDERING ordering) noexcept
 {
 
    auto pBEnd = pB + sizeB;
@@ -86,7 +86,7 @@ inline ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const CHAR
 
 
 template < primitive_character CHARACTER >
-constexpr ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, strsize sizeB) noexcept
+constexpr ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, character_count sizeB) noexcept
 {
 
    return _sz_count_compare(pA, pB, sizeB, ::comparison::comparison<CHARACTER>());
@@ -95,7 +95,7 @@ constexpr ::std::strong_ordering _sz_count_compare(const CHARACTER * pA, const C
 
 
 template < primitive_character CHARACTER >
-constexpr ::std::strong_ordering case_insensitive__sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, strsize sizeB) noexcept
+constexpr ::std::strong_ordering case_insensitive__sz_count_compare(const CHARACTER * pA, const CHARACTER * pB, character_count sizeB) noexcept
 {
 
    return _sz_count_compare(pA, pB, sizeB, ::comparison::case_insensitive < CHARACTER >());
@@ -104,7 +104,7 @@ constexpr ::std::strong_ordering case_insensitive__sz_count_compare(const CHARAC
 
 
 template < primitive_character CHARACTER, ::comparison::ordering < CHARACTER > ORDERING >
-inline ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, strsize sizeA, const CHARACTER * pB, ORDERING ordering) noexcept
+inline ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB, ORDERING ordering) noexcept
 {
 
    auto pAEnd = pA + sizeA;
@@ -138,7 +138,7 @@ inline ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, strsize si
 
 
 template < primitive_character CHARACTER >
-constexpr ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, strsize sizeA, const CHARACTER * pB) noexcept
+constexpr ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB) noexcept
 {
 
    return _count_sz_compare(pA, sizeA, pB, ::comparison::comparison<CHARACTER>());
@@ -147,7 +147,7 @@ constexpr ::std::strong_ordering _count_sz_compare(const CHARACTER * pA, strsize
 
 
 template < primitive_character CHARACTER >
-constexpr ::std::strong_ordering case_insensitive__count_sz_compare(const CHARACTER * pA, strsize sizeA, const CHARACTER * pB) noexcept
+constexpr ::std::strong_ordering case_insensitive__count_sz_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB) noexcept
 {
 
    return _count_sz_compare(pA, sizeA, pB, ::comparison::case_insensitive < CHARACTER >());
@@ -157,10 +157,10 @@ constexpr ::std::strong_ordering case_insensitive__count_sz_compare(const CHARAC
 
 
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering case_insensitive__string_compare(const CHARACTER * pszA, strsize sizeA, const ::ansi_character * pszB, strsize sizeB) noexcept
+//inline ::std::strong_ordering case_insensitive__string_compare(const CHARACTER * pszA, character_count sizeA, const ::ansi_character * pszB, character_count sizeB) noexcept
 //{
 //
-//   strsize lenCompare = minimum(sizeA, sizeB);
+//   character_count lenCompare = minimum(sizeA, sizeB);
 //
 //   auto ordering = case_insensitive_string_count_compare(pszA, pszB, lenCompare);
 //
@@ -180,7 +180,7 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering _scopedstr_collate(::scoped_string_base <  ITERATOR_TYPE > scopedstrA, ::scoped_string_base <  ITERATOR_TYPE > scopedstrB) noexcept
 {
 
-   strsize len = minimum(scopedstrA.size(), scopedstrB.size());
+   character_count len = minimum(scopedstrA.size(), scopedstrB.size());
 
    auto order = string_count_collate(scopedstrA.begin(), scopedstrB.begin(), len);
 
@@ -200,7 +200,7 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_string_base <  ITERATOR_TYPE > scopedstrA, ::scoped_string_base <  ITERATOR_TYPE > scopedstrB) noexcept
 {
 
-   strsize len = minimum(scopedstrA.size(), scopedstrB.size());
+   character_count len = minimum(scopedstrA.size(), scopedstrB.size());
 
    auto order = case_insensitive_string_count_collate(scopedstrA.begin(), scopedstrB.begin(), len);
 
@@ -217,7 +217,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline int string_compare(const CHARACTER * pszA, strsize sizeA, const ::ansi_character * pszB, strsize sizeB) noexcept
+//inline int string_compare(const CHARACTER * pszA, character_count sizeA, const ::ansi_character * pszB, character_count sizeB) noexcept
 //{
 //
 //   int iCompare;
@@ -289,7 +289,7 @@ inline ::std::strong_ordering case_insensitive_range_collate(::scoped_string_bas
 
 
 template < primitive_character CHARACTER >
-inline ::std::strong_ordering _sz_count_collate(const CHARACTER * pszA, const CHARACTER * pszB, strsize sizeB) noexcept
+inline ::std::strong_ordering _sz_count_collate(const CHARACTER * pszA, const CHARACTER * pszB, character_count sizeB) noexcept
 {
 
    return range_collate<const CHARACTER>(pszA, { pszB, sizeB });
@@ -298,7 +298,7 @@ inline ::std::strong_ordering _sz_count_collate(const CHARACTER * pszA, const CH
 
 
 template < primitive_character CHARACTER >
-inline ::std::strong_ordering _case_insensitive_sz_count_collate(const CHARACTER * pszA, const CHARACTER * pszB, strsize sizeB) noexcept
+inline ::std::strong_ordering _case_insensitive_sz_count_collate(const CHARACTER * pszA, const CHARACTER * pszB, character_count sizeB) noexcept
 {
 
    return case_insensitive_range_collate<const CHARACTER>(pszA, { pszB, sizeB });
@@ -306,7 +306,7 @@ inline ::std::strong_ordering _case_insensitive_sz_count_collate(const CHARACTER
 }
 
 
-inline ::std::strong_ordering _count_sz_collate(const ::ansi_character * pszA, strsize sizeA, const ::ansi_character * pszB) noexcept
+inline ::std::strong_ordering _count_sz_collate(const ::ansi_character * pszA, character_count sizeA, const ::ansi_character * pszB) noexcept
 {
 
    return range_collate<const ::ansi_character *>({ pszA, sizeA }, pszB);
@@ -314,7 +314,7 @@ inline ::std::strong_ordering _count_sz_collate(const ::ansi_character * pszA, s
 }
 
 
-inline ::std::strong_ordering _case_insensitive_count_sz_collate(const ::ansi_character * pszA, strsize sizeA, const ::ansi_character * pszB) noexcept
+inline ::std::strong_ordering _case_insensitive_count_sz_collate(const ::ansi_character * pszA, character_count sizeA, const ::ansi_character * pszB) noexcept
 {
 
    return case_insensitive_range_collate<const ::ansi_character * >({ pszA, sizeA }, pszB);
@@ -332,7 +332,7 @@ CLASS_DECL_ACME void foo123();
 
 
 template < typename ITERATOR_TYPE >
-inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, strsize length)
+inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, character_count length)
 {
 
    if (::is_null(p) || length <= 0)
@@ -372,7 +372,7 @@ inline void string_base < ITERATOR_TYPE >::construct2(const RANGE& range)
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct5(const CHARACTER2* p, strsize len)
+inline void string_base < ITERATOR_TYPE >::construct5(const CHARACTER2* p, character_count len)
 {
 
    if (::is_null(p) || len <= 0)
@@ -429,7 +429,7 @@ inline void string_base < ITERATOR_TYPE >::construct10(const ::range <  const CH
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct20(const CHARACTER2 * start, strsize length, enum_range erange)
+inline void string_base < ITERATOR_TYPE >::construct20(const CHARACTER2 * start, character_count length, enum_range erange)
 {
 
    if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
@@ -467,7 +467,7 @@ inline void string_base < ITERATOR_TYPE >::construct20(const CHARACTER2 * start,
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repeat) :
+inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, character_count repeat) :
    string_base(nullptr)
 {
 
@@ -514,7 +514,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repe
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE >::string_base(::ansi_character ansich, strsize repeat)
+//inline string_base < ITERATOR_TYPE >::string_base(::ansi_character ansich, character_count repeat)
 //{
 //
 //   assign(ansich, repeat);
@@ -523,7 +523,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repe
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE >::string_base(::wd16_character wd16ch, strsize repeat)
+//inline string_base < ITERATOR_TYPE >::string_base(::wd16_character wd16ch, character_count repeat)
 //{
 //
 //   assign(wd16ch, repeat);
@@ -532,7 +532,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repe
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE >::string_base(::wd32_character wd32ch, strsize repeat)
+//inline string_base < ITERATOR_TYPE >::string_base(::wd32_character wd32ch, character_count repeat)
 //{
 //
 //   assign(wd32ch, repeat);
@@ -541,7 +541,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repe
 
 
 template < typename ITERATOR_TYPE >
-inline strsize const_string_range < ITERATOR_TYPE >::unichar_count() const
+inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() const
 {
 
    return ::unichar_count(this->begin());
@@ -1004,7 +1004,7 @@ inline strsize const_string_range < ITERATOR_TYPE >::unichar_count() const
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const CHARACTER2 * start, strsize len)
+inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const CHARACTER2 * start, character_count len)
 {
 
    _assign(start, len);
@@ -1015,7 +1015,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const wd16_string & widestrSrc, strsize count)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const wd16_string & widestrSrc, character_count count)
 //{
 //
 //   return assign(*this, widestrSrc.begin() + pos, count);
@@ -1024,7 +1024,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const wd32_string & widestrSrc, strsize count)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const wd32_string & widestrSrc, character_count count)
 //{
 //
 //   return assign(*this, widestrSrc.begin() + pos, count);
@@ -1044,10 +1044,10 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 //template < typename ITERATOR_TYPE >
 //template < primitive_character CHARACTER2 >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::start_count_length(strsize & start, strsize & count, const CHARACTER2 * pszSource)
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::start_count_length(character_count & start, character_count & count, const CHARACTER2 * pszSource)
 //{
 //
-//   strsize len = -1;
+//   character_count len = -1;
 //
 //   if (start < 0)
 //   {
@@ -1099,7 +1099,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 
 //template < typename ITERATOR_TYPE >
-//inline void string_range < ITERATOR_TYPE >::start_count(strsize & start, strsize & count, strsize len)
+//inline void string_range < ITERATOR_TYPE >::start_count(character_count & start, character_count & count, character_count len)
 //{
 //
 //   if (start < 0)
@@ -1147,7 +1147,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const CHARACTER2 * pszSource, strsize len)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const CHARACTER2 * pszSource, character_count len)
 {
 
    auto dstlen = utf_to_utf_length(this->begin(), pszSource, len);
@@ -1184,7 +1184,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(co
 //
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::wd16_character * pwd16sz, strsize len)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::wd16_character * pwd16sz, character_count len)
 //{
 //
 //   return assign(*this, pwd16sz, len);
@@ -1202,7 +1202,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(co
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::wd32_character * pwd32sz, strsize len)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::wd32_character * pwd32sz, character_count len)
 //{
 //
 //   return assign(*this, pwd32sz, len);
@@ -1239,7 +1239,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(co
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHARACTER2 chSrc, strsize repeat)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHARACTER2 chSrc, character_count repeat)
 {
 
    if (repeat > 0)
@@ -1289,7 +1289,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(::wd16_character wd16ch, strsize repeat)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(::wd16_character wd16ch, character_count repeat)
 //{
 //
 //   if (repeat > 0)
@@ -1330,7 +1330,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(::wd32_character wd32ch, strsize repeat)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(::wd32_character wd32ch, character_count repeat)
 //{
 //
 //   if (repeat > 0)
@@ -1455,7 +1455,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(con
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const CHARACTER2 * pszSrc, strsize count)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const CHARACTER2 * pszSrc, character_count count)
 {
 
    auto nOldLength = this->length();
@@ -1467,7 +1467,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 
    }
 
-   strsize nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, count);
+   character_count nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, count);
 
    auto pszBuffer = get_buffer(nNewLength);
 
@@ -1493,7 +1493,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 //
 //   }
 //
-//   strsize nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, nLength);
+//   character_count nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, nLength);
 //
 //   auto pszBuffer = get_buffer(nNewLength);
 //
@@ -1519,7 +1519,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 //
 //   }
 //
-//   strsize nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, nLength);
+//   character_count nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, nLength);
 //
 //   auto pszBuffer = get_buffer(nNewLength);
 //
@@ -1560,15 +1560,15 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_cha
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(strsize len, CHARACTER ch)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(character_count len, CHARACTER ch)
 {
 
    if (len > 0)
    {
 
-      strsize nOldLength = this->size();
+      character_count nOldLength = this->size();
 
-      strsize nNewLength = nOldLength + len;
+      character_count nNewLength = nOldLength + len;
 
       CHARACTER * pszBuffer = this->get_buffer(nNewLength);
 
@@ -1595,15 +1595,15 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(strsize len, ::ansi_character ch)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(character_count len, ::ansi_character ch)
 //{
 //
 //   if (len > 0)
 //   {
 //
-//      strsize nOldLength = this->size();
+//      character_count nOldLength = this->size();
 //
-//      strsize nNewLength = nOldLength + len;
+//      character_count nNewLength = nOldLength + len;
 //
 //      CHARACTER * pszBuffer = this->get_buffer(nNewLength);
 //
@@ -1654,7 +1654,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 
 //
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(strsize start, strsize count, const SCOPED_STRING & scopedstr, strsize iStart2, strsize iCount2) const noexcept
+//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(character_count start, character_count count, const SCOPED_STRING & scopedstr, character_count iStart2, character_count iCount2) const noexcept
 //{
 //
 //   if (start + count > size())
@@ -1677,7 +1677,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_order(strsize start, strsize count, const SCOPED_STRING & scopedstr, strsize iStart2, strsize iCount2) const noexcept
+//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_order(character_count start, character_count count, const SCOPED_STRING & scopedstr, character_count iStart2, character_count iCount2) const noexcept
 //{
 //
 //   if (start + count > size())
@@ -1700,7 +1700,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::collate(strsize start, strsize count, const SCOPED_STRING & scopedstr, strsize iStart2, strsize iCount2) const noexcept
+//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::collate(character_count start, character_count count, const SCOPED_STRING & scopedstr, character_count iStart2, character_count iCount2) const noexcept
 //{
 //
 //   if (start + count > size())
@@ -1723,7 +1723,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING & scopedstr, strsize iStart2, strsize iCount2) const noexcept
+//inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_collate(character_count start, character_count count, const SCOPED_STRING & scopedstr, character_count iStart2, character_count iCount2) const noexcept
 //{
 //
 //   if (start + count > size())
@@ -1824,7 +1824,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 //
 //   auto psz = ::string_token({ this->begin() + pos, n }, scopedstrSeparators);
 //
-//   return ::is_set(psz) ? (::strsize)psz - this->begin() : -1;
+//   return ::is_set(psz) ? (::character_count)psz - this->begin() : -1;
 //
 //}
 //
@@ -1956,7 +1956,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 
 
 //template < typename ITERATOR_TYPE >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const CHARACTER * psz, character_count count) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::string_rear_find_first_character_in({this->begin(), size() + count + 1}, {psz, ::string_safe_length(psz)}));
@@ -1984,7 +1984,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 //
 
 //template < typename ITERATOR_TYPE >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const CHARACTER * psz, character_count count) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::_string_rear_find_first_character_in({this->begin(), size() + count + 1}, {psz, ::string_safe_length(psz)}));
@@ -2002,7 +2002,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_left(strsize count) const
+inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_left(character_count count) const
 {
 
    return { this->begin(), this->unichar_at(count) };
@@ -2012,7 +2012,7 @@ inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_le
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(strsize iFirst) const
+inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(character_count iFirst) const
 {
 
    return { this->unichar_at(iFirst), this->end() };
@@ -2021,7 +2021,7 @@ inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mi
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(strsize iStart, strsize iCount) const
+inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(character_count iStart, character_count iCount) const
 {
 
    return { this->unichar_at(iStart), this->unichar_at(iStart + iCount) };
@@ -2030,7 +2030,7 @@ inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mi
 
 
 //template < typename ITERATOR_TYPE >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::erase(strsize iIndex, strsize count)
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::erase(character_count iIndex, character_count count)
 //{
 //
 //   return Delete(iIndex, count);
@@ -2130,7 +2130,7 @@ inline const CHARACTER * FormatArgument(const typename GET_BLOCK_TYPE<CHARACTER>
 
 //template < typename ITERATOR_TYPE >
 //inline string_base < ITERATOR_TYPE >::string_base(const SCOPED_STRING & scopedstr) :
-//   string_base((const ::ansi_character *)scopedstr.data(), (strsize)scopedstr.size())
+//   string_base((const ::ansi_character *)scopedstr.data(), (character_count)scopedstr.size())
 //{
 //
 //
@@ -2324,7 +2324,7 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_all
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::Tokenize(const SCOPED_STRING & scopedstrTokens, strsize & start) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::Tokenize(const SCOPED_STRING & scopedstrTokens, character_count & start) const
 {
    ASSERT(start >= 0);
 
@@ -2344,16 +2344,16 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::Tokenize(const SCOP
       const CHARACTER * pszEnd = this->begin() + size();
       if (pszPlace < pszEnd)
       {
-         strsize nIncluding = string_skip_any_character_in(pszPlace,
+         character_count nIncluding = string_skip_any_character_in(pszPlace,
             scopedstrTokens);
 
          if ((pszPlace + nIncluding) < pszEnd)
          {
             pszPlace += nIncluding;
-            strsize nExcluding = string_find_first_character_in(pszPlace, scopedstrTokens);
+            character_count nExcluding = string_find_first_character_in(pszPlace, scopedstrTokens);
 
-            strsize iFrom = start + nIncluding;
-            strsize nUntil = nExcluding;
+            character_count iFrom = start + nIncluding;
+            character_count nUntil = nExcluding;
             start = iFrom + nUntil + 1;
 
             return substr(iFrom, nUntil);
@@ -2377,7 +2377,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::intersection(const 
 
    string_base < ITERATOR_TYPE > scopedstr;
 
-   for (strsize i = 0; i < size(); i++)
+   for (character_count i = 0; i < size(); i++)
    {
 
       auto ch = this->operator[](i);
@@ -2401,10 +2401,10 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::concatenate_with_separator(const SCOPED_STRING & scopedstrSeparator, const SCOPED_STRING & scopedstr)
 {
 
-   if (this->has_char())
+   if (this->has_character())
    {
       
-      if (scopedstr.has_char())
+      if (scopedstr.has_character())
       {
 
          this->append(scopedstrSeparator + scopedstr);
@@ -2412,7 +2412,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::concatenat
       }
 
    }
-   else if (scopedstr.has_char())
+   else if (scopedstr.has_character())
    {
 
       this->assign(scopedstr);
@@ -2436,7 +2436,7 @@ inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noe
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE >::NATURAL_META_DATA * string_base < ITERATOR_TYPE >::create_meta_data(strsize characterCount)
+//inline string_base < ITERATOR_TYPE >::NATURAL_META_DATA * string_base < ITERATOR_TYPE >::create_meta_data(character_count characterCount)
 //{
 //
 //   auto sizeStorageInBytes = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
@@ -2451,7 +2451,7 @@ inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noe
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::create_string(strsize characterCount)
+void string_base < ITERATOR_TYPE >::create_string(character_count characterCount)
 {
 
    auto pNew = this->create_meta_data(characterCount);
@@ -2466,7 +2466,7 @@ void string_base < ITERATOR_TYPE >::create_string(strsize characterCount)
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
+void string_base < ITERATOR_TYPE >::fork_string(character_count characterCount)
 {
 
    auto pNew = this->fork_meta_data(characterCount);
@@ -2481,7 +2481,7 @@ void string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_buffer(strsize characterCount)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_buffer(character_count characterCount)
 {
 
    if (characterCount < 0)
@@ -2503,7 +2503,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_buffer(st
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE >::storage_character_count() const { return this->NATURAL_POINTER::metadata()->storage_character_count(); }
+inline character_count string_base < ITERATOR_TYPE >::storage_character_count() const { return this->NATURAL_POINTER::metadata()->storage_character_count(); }
 
 
 template < typename ITERATOR_TYPE >
@@ -2515,10 +2515,10 @@ inline memsize string_base < ITERATOR_TYPE >::null_terminated_character_count_in
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::resize(strsize n, CHARACTER c)
+void string_base < ITERATOR_TYPE >::resize(character_count n, CHARACTER c)
 {
 
-   strsize nOldSize = length();
+   character_count nOldSize = length();
 
    if (n < nOldSize)
    {
@@ -2599,7 +2599,7 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
 
 
 template < typename ITERATOR_TYPE >
-inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
+inline void string_base < ITERATOR_TYPE >::set_at(character_count iChar, CHARACTER ch)
 {
 
    auto p = this->NATURAL_POINTER::metadata();
@@ -3070,24 +3070,24 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(con
 
 
 //template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::erase(strsize start, strsize strsize)
+//string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::erase(character_count start, character_count character_count)
 //{
 //
 //   if (start < 0)
 //   {
 //
-//      strsize = 0;
+//      character_count = 0;
 //
 //   }
 //
-//   if (strsize < 0)
+//   if (character_count < 0)
 //   {
 //
-//      strsize = size();
+//      character_count = size();
 //
 //   }
 //
-//   Delete(start, strsize);
+//   Delete(start, character_count);
 //
 //   return *this;
 //
@@ -3095,10 +3095,10 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(con
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIndex, strsize count)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(character_count iIndex, character_count count)
 {
 
-   strsize nLength = size();
+   character_count nLength = size();
 
    if (iIndex < 0)
    {
@@ -3138,9 +3138,9 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
    if (count > 0)
    {
 
-      strsize nNewLength = nLength - count;
+      character_count nNewLength = nLength - count;
 
-      strsize nCopy = nLength - (iIndex + count) + 1;
+      character_count nCopy = nLength - (iIndex + count) + 1;
 
       CHARACTER * pszBuffer = get_buffer();
 
@@ -3156,7 +3156,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
 
 template < typename ITERATOR_TYPE >
-inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
+inline ::collection::count string_base < ITERATOR_TYPE >::insert(character_count i, CHARACTER ch)
 {
 
    if (i < 0)
@@ -3173,7 +3173,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, CHAR
 
    }
 
-   strsize nNewLength = size() + 1;
+   character_count nNewLength = size() + 1;
 
    CHARACTER * pszBuffer = get_buffer(nNewLength);
 
@@ -3189,7 +3189,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, CHAR
 
 
 template < typename ITERATOR_TYPE >
-inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
+inline ::collection::count string_base < ITERATOR_TYPE >::insert(character_count i, const string_base & str)
 {
 
    if (i < 0)
@@ -3206,9 +3206,9 @@ inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, cons
 
    }
 
-   strsize nInsertLength = str.size();
+   character_count nInsertLength = str.size();
 
-   strsize nNewLength = size();
+   character_count nNewLength = size();
 
    if (nInsertLength > 0)
    {
@@ -3231,10 +3231,10 @@ inline ::collection::count string_base < ITERATOR_TYPE >::insert(strsize i, cons
 
 
 template < typename ITERATOR_TYPE >
-inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
+inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, character_count start)
 {
 
-   strsize count = 0;
+   character_count count = 0;
 
    // short-circuit the nop case
    if (charOld != charNew)
@@ -3243,8 +3243,8 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
       bool bCopied = false;
       CHARACTER * pszBuffer = const_cast<CHARACTER *>(this->begin() + start);  // We don't actually write to pszBuffer until we've called get_buffer().
 
-      strsize nLength = size();
-      strsize iChar = 0;
+      character_count nLength = size();
+      character_count iChar = 0;
       while (iChar < nLength)
       {
          // replace instances of the specified character only
@@ -3258,7 +3258,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
             pszBuffer[iChar] = charNew;
             count++;
          }
-         iChar = strsize((pszBuffer + iChar + 1) - pszBuffer);
+         iChar = character_count((pszBuffer + iChar + 1) - pszBuffer);
       }
       if (bCopied)
       {
@@ -3277,7 +3277,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 //
 //   // can't have is_empty or nullptr pszOld
 //   // nSourceLen is in XCHARs
-//   strsize nSourceLen = scopedstrOld.size();
+//   character_count nSourceLen = scopedstrOld.size();
 //
 //   if (nSourceLen == 0)
 //   {
@@ -3287,16 +3287,16 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 //   }
 //
 //   // nReplacementLen is in XCHARs
-//   strsize nReplacementLen = scopedstrNew.size();
+//   character_count nReplacementLen = scopedstrNew.size();
 //
-//   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-//   strsize count = 0;
+//   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+//   character_count count = 0;
 //
 //   {
 //
-//      strsize i = start;
+//      character_count i = start;
 //
-//      strsize iFind;
+//      character_count iFind;
 //
 //      while ((iFind = case_insensitive_find(scopedstrOld, i, -1)) >= 0)
 //      {
@@ -3315,17 +3315,17 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 //
 //      // if the buffer is too small, just
 //      //   allocate a ___new buffer(slow but sure)
-//      strsize nOldLength = size();
+//      character_count nOldLength = size();
 //
-//      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
+//      character_count nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 //
 //      CHARACTER * pszBuffer = get_buffer(maximum(nNewLength, nOldLength));
 //
-//      strsize i = start;
+//      character_count i = start;
 //
-//      strsize nEnd = nNewLength;
+//      character_count nEnd = nNewLength;
 //
-//      strsize iFind;
+//      character_count iFind;
 //
 //      // loop again to actually do the work
 //      while (i < nEnd)
@@ -3336,7 +3336,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 //
 //            auto pszTarget = pszBuffer + iFind;
 //
-//            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
+//            character_count nBalance = nOldLength - character_count(pszTarget - pszBuffer + nSourceLen);
 //
 //            memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 //
@@ -3367,7 +3367,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 
 template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-::collection::count string_base < ITERATOR_TYPE >::replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
+::collection::count string_base < ITERATOR_TYPE >::replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, character_count start)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -3375,14 +3375,14 @@ template < typename ITERATOR_TYPE >
    ::collection::count c = 0;
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = scopedstrOld.size();
+   character_count nSourceLen = scopedstrOld.size();
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = scopedstrNew.size();
+   character_count nReplacementLen = scopedstrNew.size();
 
-   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-   strsize count = 0;
+   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+   character_count count = 0;
 
    {
 
@@ -3408,8 +3408,8 @@ template < typename ITERATOR_TYPE >
    {
       // if the buffer is too small, just
       //   allocate a ___new buffer(slow but sure)
-      strsize nOldLength = size();
-      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
+      character_count nOldLength = size();
+      character_count nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
       CHARACTER * pszBuffer = get_buffer(maximum(nNewLength, nOldLength));
 
@@ -3425,7 +3425,7 @@ template < typename ITERATOR_TYPE >
          while ((pszTarget = (CHARACTER *)string_find_string(pszStart, scopedstrOld)) != nullptr)
          {
 
-            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
+            character_count nBalance = nOldLength - character_count(pszTarget - pszBuffer + nSourceLen);
 
             memory_transfer((void *)(pszTarget + nReplacementLen), pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
@@ -3456,7 +3456,7 @@ template < typename ITERATOR_TYPE >
 
 template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-::collection::count string_base < ITERATOR_TYPE >::replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
+::collection::count string_base < ITERATOR_TYPE >::replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, character_count start)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -3464,14 +3464,14 @@ template < typename ITERATOR_TYPE >
    ::collection::count c = 0;
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = scopedstrOld.size();
+   character_count nSourceLen = scopedstrOld.size();
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = scopedstrOld.size();
+   character_count nReplacementLen = scopedstrOld.size();
 
-   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-   strsize count = 0;
+   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+   character_count count = 0;
    {
       const CHARACTER * pszStart = this->begin() + start;
       //      const CHARACTER * pszEnd = pszStart+size();
@@ -3489,8 +3489,8 @@ template < typename ITERATOR_TYPE >
    {
       // if the buffer is too small, just
       //   allocate a ___new buffer(slow but sure)
-      strsize nOldLength = size();
-      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
+      character_count nOldLength = size();
+      character_count nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
       CHARACTER * pszBuffer = get_buffer(maximum(nNewLength, nOldLength));
 
@@ -3506,7 +3506,7 @@ template < typename ITERATOR_TYPE >
          while ((pszTarget = (CHARACTER *)case_insensitive_string_find_string(pszStart, scopedstrOld)) != nullptr)
          {
 
-            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
+            character_count nBalance = nOldLength - character_count(pszTarget - pszBuffer + nSourceLen);
 
             memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
@@ -3536,7 +3536,7 @@ template < typename ITERATOR_TYPE >
 
 
 //template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(strsize start, strsize count, const SCOPED_STRING & scopedstr)
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(character_count start, character_count count, const SCOPED_STRING & scopedstr)
 //{
 //
 //   if (count < 0)
@@ -3608,7 +3608,7 @@ template < typename ITERATOR_TYPE >
 inline ::collection::count string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
 {
 
-   strsize nLength = size();
+   character_count nLength = size();
 
    CHARACTER * pszBuffer = get_buffer(nLength);
 
@@ -3638,14 +3638,14 @@ inline ::collection::count string_base < ITERATOR_TYPE >::erase_character(CHARAC
       pszSource = pszNewSource;
    }
    *pszDest = 0;
-   strsize count = strsize(pszSource - pszDest);
+   character_count count = character_count(pszSource - pszDest);
    release_buffer(nLength - count);
 
    return(count);
 
 }
 
-// find the first occurrence of character 'ch', starting at strsize 'start'
+// find the first occurrence of character 'ch', starting at character_count 'start'
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 {
@@ -3675,7 +3675,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 // find routines
 
-//// find the first occurrence of character 'ch', starting at strsize 'start'
+//// find the first occurrence of character 'ch', starting at character_count 'start'
 //template < typename ITERATOR_TYPE >
 //inline string_range  < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 //{
@@ -3683,7 +3683,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //   ASSERT(start >= 0);
 //
 //   // nLength is in XCHARs
-//   strsize nLength = size();
+//   character_count nLength = size();
 //   if (start < 0 || start >= nLength)
 //   {
 //      return -1;
@@ -3716,7 +3716,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //
 //}
 
-// find the first occurrence of character 'ch', starting at strsize 'start'
+// find the first occurrence of character 'ch', starting at character_count 'start'
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch) const RELEASENOTHROW
 {
@@ -3724,7 +3724,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
    //ASSERT(start >= 0);
 
    // nLength is in XCHARs
-   //strsize nLength = this->size();
+   //character_count nLength = this->size();
 //   if (start < 0 || start >= nLength)
 //   {
 //      return(-1);
@@ -3784,7 +3784,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch, ::strsize start) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch, ::character_count start) const RELEASENOTHROW
 {
    
    return ::string_find_character(this->begin() + start, this->end(), ch);
@@ -3818,11 +3818,11 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //   return this->find(scopedstr, ::comparison::comparison < CHARACTER >());
 //
 //
-//   //strsize scopedstrLen;
+//   //character_count scopedstrLen;
 //
-//   //strsize nEndExclusive;
+//   //character_count nEndExclusive;
 //
-//   //strsize i;
+//   //character_count i;
 //
 //   //if (_find_prefix(i, scopedstr, start, count, scopedstrLen, nEndExclusive))
 //   //{
@@ -3880,18 +3880,18 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 
 ///// @brief find the first occurrence of a scopedstr
-///// string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
+///// string_base < ITERATOR_TYPE > 'scopedstr', starting at character_count 'start'
 //template < typename ITERATOR_TYPE >
 //inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return this->find(scopedstr, ::comparison::case_insensitive < CHARACTER >());
 //
-//   //strsize scopedstrLen;
+//   //character_count scopedstrLen;
 //
-//   //strsize nEndExclusive;
+//   //character_count nEndExclusive;
 //
-//   //strsize i;
+//   //character_count i;
 //
 //   //if (_find_prefix(i, scopedstr, start, count, scopedstrLen, nEndExclusive))
 //   //{
@@ -3948,7 +3948,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //}
 
 
-// find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
+// find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at character_count 'start'
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
@@ -4021,7 +4021,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 }
 
 
-// find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
+// find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at character_count 'start'
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
@@ -4347,7 +4347,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch, character_count count) const RELEASENOTHROW
 //{
 //
 //   return ::string_find_character(this->begin() + pos, ch, count);
@@ -4378,7 +4378,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(CHARACTER ca) const
 //RELEASENOTHROW
 //{
-//   strsize nLength = size();
+//   character_count nLength = size();
 //
 //   if (pos < 0 || pos >= nLength)
 //      return -1;
@@ -4399,7 +4399,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //{
 //   string_base < ITERATOR_TYPE > strChars(s, n);
 //
-//   strsize nLength = size();
+//   character_count nLength = size();
 //
 //   if (pos < 0 || pos >= nLength)
 //      return -1;
@@ -4422,7 +4422,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //
 //   return BASE_RANGE::rear_skip_start(ch);
 //
-//   //strsize nLength = size();
+//   //character_count nLength = size();
 //   //// nLength is in XCHARs
 //   //if (pos < 0)
 //   //   pos = nLength - 1;
@@ -4447,7 +4447,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //template < typename ITERATOR_TYPE >
 //inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
 //{
-//   strsize nLength = size();
+//   character_count nLength = size();
 //   // nLength is in XCHARs
 //   if (pos < 0)
 //      pos = nLength - 1;
@@ -4479,7 +4479,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //   return offset_of(BASE_RANGE::rear_skip_start_count(ch, start, count));
 //
 //}
-//   strsize nLength = size();
+//   character_count nLength = size();
 //   // nLength is in XCHARs
 //   if (pos < 0)
 //      pos = nLength - 1;
@@ -4509,7 +4509,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //template < typename ITERATOR_TYPE >
 //inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
 //{
-//   strsize nLength = size();
+//   character_count nLength = size();
 //   // nLength is in XCHARs
 //   if (pos < 0)
 //      pos = nLength - 1;
@@ -4535,19 +4535,19 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
 //// find the last occurrence of character 'ch'
 //template < typename ITERATOR_TYPE >
-//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(CHARACTER ch, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(CHARACTER ch, character_count count) const RELEASENOTHROW
 //{
 //   // find last single character
 //   auto psz = string_rear_find_character({ this->begin(), size() + count + 1}, ch);
 //
 //   // return -1 if not found, distance from beginning otherwise
-//   return ::is_set(psz) ? strsize(psz - this->begin()) : -1;
+//   return ::is_set(psz) ? character_count(psz - this->begin()) : -1;
 //
 //}
 //
 
 template < typename ITERATOR_TYPE >
-typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < ITERATOR_TYPE >::last_char(strsize count) const
+typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < ITERATOR_TYPE >::last_char(character_count count) const
 {
 
    return *(this->end() + count);
@@ -4572,7 +4572,7 @@ typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < IT
 //   const SCOPED_STRING & scopedstr = string_find_string_reverse(this->begin(), ch, start);
 //
 //   // return -1 if not found, distance from beginning otherwise
-//   return((psz == nullptr) ? -1 : strsize(psz - this->begin()));
+//   return((psz == nullptr) ? -1 : character_count(psz - this->begin()));
 //}
 //
 //// manipulation
@@ -4581,7 +4581,7 @@ typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < IT
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_upper()
 {
-   strsize nLength = size();
+   character_count nLength = size();
    CHARACTER * pszBuffer = get_buffer(nLength);
    string_uppercase(pszBuffer, nLength + 1);
    release_buffer(nLength);
@@ -4593,7 +4593,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_upper()
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_lower()
 {
-   strsize nLength = size();
+   character_count nLength = size();
    CHARACTER * pszBuffer = get_buffer(nLength);
    string_lowercase(pszBuffer, nLength + 1);
    release_buffer(nLength);
@@ -4605,7 +4605,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_lower()
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::MakeReverse()
 {
-   strsize nLength = size();
+   character_count nLength = size();
    CHARACTER * pszBuffer = get_buffer(nLength);
    string_reverse(pszBuffer);
    release_buffer(nLength);
@@ -4660,7 +4660,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right()
 
    //   // truncate at trailing space start
 
-   //   strsize iLast = strsize(pszLast - this->begin());
+   //   character_count iLast = character_count(pszLast - this->begin());
 
    //   truncate(iLast);
 
@@ -4691,14 +4691,14 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left()
 
    ////auto psz = this->begin();
 
-   ////strsize iHere;
+   ////character_count iHere;
 
    ////while (unicode_is_whitespace(psz))
    ////{
 
    ////   unicode_increment(psz);
 
-   ////   iHere = (strsize)(psz - this->begin());
+   ////   iHere = (character_count)(psz - this->begin());
 
    ////   if (iHere >= size())
    ////   {
@@ -4725,13 +4725,13 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left()
    ////if (psz != this->begin())
    ////{
    ////   // fix up begin and length
-   ////   strsize iFirst = strsize(psz - this->begin());
+   ////   character_count iFirst = character_count(psz - this->begin());
 
    ////   CHARACTER * pszBuffer = get_buffer(size());
 
    ////   psz = pszBuffer + iFirst;
 
-   ////   strsize nDataLength = size() - iFirst;
+   ////   character_count nDataLength = size() - iFirst;
 
    ////   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
 
@@ -4808,7 +4808,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(CHARAC
    //if (pszLast != nullptr)
    //{
    //   // truncate at left-most matching character
-   //   strsize iLast = strsize(pszLast - this->begin());
+   //   character_count iLast = character_count(pszLast - this->begin());
    //   truncate(iLast);
    //}
 
@@ -4871,7 +4871,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
    //if (pszLast != nullptr)
    //{
    //   // truncate at left-most matching character
-   //   strsize iLast = strsize(pszLast - pszStart);
+   //   character_count iLast = character_count(pszLast - pszStart);
    //   truncate(iLast);
    //}
 
@@ -4907,10 +4907,10 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(CHARACT
    //if (psz != this->begin())
    //{
    //   // fix up begin and length
-   //   strsize iFirst = strsize(psz - this->begin());
+   //   character_count iFirst = character_count(psz - this->begin());
    //   CHARACTER * pszBuffer = get_buffer(size());
    //   psz = pszBuffer + iFirst;
-   //   strsize nDataLength = size() - iFirst;
+   //   character_count nDataLength = size() - iFirst;
    //   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
    //   release_buffer(nDataLength);
    //}
@@ -4955,10 +4955,10 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const S
    //if (psz != this->begin())
    //{
    //   // fix up begin and length
-   //   strsize iFirst = strsize(psz - this->begin());
+   //   character_count iFirst = character_count(psz - this->begin());
    //   CHARACTER * pszBuffer = get_buffer(size());
    //   psz = pszBuffer + iFirst;
-   //   strsize nDataLength = size() - iFirst;
+   //   character_count nDataLength = size() - iFirst;
    //   memory_transfer(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
    //   release_buffer(nDataLength);
    //}
@@ -5096,7 +5096,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left_trimmed(const 
 
 
 template < typename ITERATOR_TYPE >
-const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subrange(strsize start) const
+const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subrange(character_count start) const
 {
 
    return subrange(start, -1);
@@ -5109,7 +5109,7 @@ template < primitive_integral START, primitive_integral COUNT >
 const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subrange(START start, COUNT count) const
 {
 
-   strsize length = this->size();
+   character_count length = this->size();
 
    if (start < 0)
    {
@@ -5117,14 +5117,14 @@ const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subra
       start = 0;
 
    }
-   else if ((::strsize)start >= length)
+   else if ((::character_count)start >= length)
    {
 
       return {};
 
    }
 
-   strsize end;
+   character_count end;
 
    if (count < 0)
    {
@@ -5146,20 +5146,20 @@ const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subra
 
    }
 
-   if (end <= (::strsize)start)
+   if (end <= (::character_count)start)
    {
 
       return {};
 
    }
 
-   return { this->begin() + start, (::strsize)(end - start) };
+   return { this->begin() + start, (::character_count)(end - start) };
 
 }
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(strsize start) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(character_count start) const
 {
    
    return substr(start, -1);
@@ -5172,7 +5172,7 @@ template < primitive_integral START, primitive_integral COUNT >
 string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start, COUNT count) const
 {
 
-   strsize length = this->size();
+   character_count length = this->size();
 
    if (start < 0)
    {
@@ -5180,14 +5180,14 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
       start = 0;
 
    }
-   else if ((::strsize)start >= length)
+   else if ((::character_count)start >= length)
    {
 
       return {};
 
    }
 
-   strsize end;
+   character_count end;
 
    if (count < 0)
    {
@@ -5209,14 +5209,14 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
 
    }
 
-   if (end <= (::strsize) start)
+   if (end <= (::character_count) start)
    {
 
       return {};
 
    }
 
-   return { this->begin() + start, (::strsize) (end - start) };
+   return { this->begin() + start, (::character_count) (end - start) };
 
 }
 
@@ -5231,7 +5231,7 @@ void string_base < ITERATOR_TYPE >::clear()
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right(strsize count) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right(character_count count) const
 {
 
    if (count < 0)
@@ -5241,7 +5241,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right(strsize count
 
    }
 
-   strsize nLength = size();
+   character_count nLength = size();
 
    if (count >= nLength)
    {
@@ -5257,7 +5257,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right(strsize count
 
 // Return the substring consisting of the leftmost 'count' characters
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left(strsize count) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left(character_count count) const
 {
 
    // count is in XCHARs
@@ -5268,7 +5268,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left(strsize count)
 
    }
 
-   strsize nLength = size();
+   character_count nLength = size();
 
    if (count >= nLength)
    {
@@ -5334,13 +5334,13 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf_ar
 
    ASSERT(is_string_ok(pszFormat));
 
-   strsize nCurrentLength = this->size();
+   character_count nCurrentLength = this->size();
 
    va_list argsForCount;
 
    va_copy(argsForCount, args);
 
-   strsize nAppendLength = get_formatted_length(pszFormat, argsForCount);
+   character_count nAppendLength = get_formatted_length(pszFormat, argsForCount);
 
    va_end(argsForCount);
 
@@ -5372,7 +5372,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments
 
    va_copy(ptr1, args);
 
-   strsize nLength = get_formatted_length(pszFormat, ptr1);
+   character_count nLength = get_formatted_length(pszFormat, ptr1);
 
    va_end(ptr1);
 
@@ -5476,7 +5476,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf(co
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::reserve(strsize res_arg)
+void string_base < ITERATOR_TYPE >::reserve(character_count res_arg)
 {
    get_buffer(res_arg + 1);
 }
@@ -5504,7 +5504,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::reversed() const
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strsize iFirst) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(character_count iFirst) const
 {
 
    return unichar_substr(iFirst, -1);
@@ -5513,7 +5513,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strsize iFirst, strsize count) const
+string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(character_count iFirst, character_count count) const
 {
 
    const CHARACTER * pchStart = *this;
@@ -5593,7 +5593,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unichar_at(strsize iUnicharIndex) const
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unichar_at(character_count iUnicharIndex) const
 {
 
    auto p = this->begin();
@@ -6130,7 +6130,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 //inline bool string_base < ITERATOR_TYPE > ::begins_eat(const SCOPED_STRING & scopedstrPrefix)
 //{
 //
-//   strsize lenPrefix;
+//   character_count lenPrefix;
 //
 //   if (!_string_begins(this->begin(), size(), scopedstrPrefix, lenPrefix))
 //   {
@@ -6150,7 +6150,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 //inline bool string_base < ITERATOR_TYPE > ::ends_eat(const SCOPED_STRING & scopedstrSuffix)
 //{
 //
-//   strsize lenSuffix;
+//   character_count lenSuffix;
 //
 //   if (!_string_ends(this->begin(), size(), scopedstrSuffix, lenSuffix))
 //   {
@@ -6170,7 +6170,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 //inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eat(const SCOPED_STRING & scopedstrPrefix)
 //{
 //
-//   strsize lenPrefix;
+//   character_count lenPrefix;
 //
 //   if (!case_insensitive__string_begins(this->begin(), size(), scopedstrPrefix, lenPrefix))
 //   {
@@ -6190,7 +6190,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 //inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eat(const SCOPED_STRING & scopedstrSuffix)
 //{
 //
-//   strsize lenSuffix;
+//   character_count lenSuffix;
 //
 //   if (!case_insensitive__string_ends(this->begin(), size(), scopedstrSuffix, lenSuffix))
 //   {
@@ -6210,7 +6210,7 @@ template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE > ::begins_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
-   strsize lenPrefix;
+   character_count lenPrefix;
 
    if (!_string_begins(this->begin(), size(), scopedstrPrefix, lenPrefix))
    {
@@ -6230,7 +6230,7 @@ template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE > ::ends_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrSuffix) const
 {
 
-   strsize lenSuffix;
+   character_count lenSuffix;
 
    if (!_string_ends(this->begin(), size(), scopedstrSuffix, lenSuffix))
    {
@@ -6418,11 +6418,11 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 template < typename ITERATOR_TYPE >
 // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
 template < typename EQUALITY >
-inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality)
+inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, character_count start, EQUALITY equality)
 {
 
    // nSourceLen is in XCHARs
-   strsize nReplacedLen = scopedstrOld.size();
+   character_count nReplacedLen = scopedstrOld.size();
 
    if (nReplacedLen == 0)
    {
@@ -6432,9 +6432,9 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
    }
 
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = scopedstrNew.size();
+   character_count nReplacementLen = scopedstrNew.size();
 
-   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
+   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
    auto count = (*this)(start)._occurrence_count_of(scopedstrOld, equality);
 
    // if any changes were made, make them
@@ -6448,7 +6448,7 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
    // if the buffer is too small, just
    //   allocate a ___new buffer(slow but sure)
 
-   strsize nNewLength = this->size() + (nReplacementLen - nReplacedLen) * count;
+   character_count nNewLength = this->size() + (nReplacementLen - nReplacedLen) * count;
 
    string_base < ITERATOR_TYPE > str;
 
@@ -6574,7 +6574,7 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
 
 
 template < primitive_character CHARACTER >
-void CopyCharsOverlapped(CHARACTER * pchDest, const CHARACTER * pchSrc, strsize nChars) noexcept
+void CopyCharsOverlapped(CHARACTER * pchDest, const CHARACTER * pchSrc, character_count nChars) noexcept
 {
 
    memory_transfer(pchDest, pchSrc, nChars * sizeof(CHARACTER));
@@ -6583,7 +6583,7 @@ void CopyCharsOverlapped(CHARACTER * pchDest, const CHARACTER * pchSrc, strsize 
 
 
 template < primitive_character CHARACTER >
-void CopyCharsOverlapped(CHARACTER * pchDest, size_t nDestLen, const CHARACTER * pchSrc, strsize nChars) noexcept
+void CopyCharsOverlapped(CHARACTER * pchDest, size_t nDestLen, const CHARACTER * pchSrc, character_count nChars) noexcept
 {
 
    memory_transfer(pchDest, pchSrc, nChars * sizeof(CHARACTER));
@@ -6593,10 +6593,10 @@ void CopyCharsOverlapped(CHARACTER * pchDest, size_t nDestLen, const CHARACTER *
 
 
 template < typename STRING >
-inline STRING & string_concatenate(STRING & scopedstr, const typename STRING::CHARACTER * psz1, strsize nLength1, const typename STRING::CHARACTER * psz2, strsize nLength2)
+inline STRING & string_concatenate(STRING & scopedstr, const typename STRING::CHARACTER * psz1, character_count nLength1, const typename STRING::CHARACTER * psz2, character_count nLength2)
 {
 
-   strsize nNewLength = nLength1 + nLength2;
+   character_count nNewLength = nLength1 + nLength2;
 
    typename STRING::CHARACTER * pszBuffer = scopedstr.get_buffer(nNewLength);
 
@@ -6676,8 +6676,8 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 //}
 
 
-//// find the first occurrence of character 'ch', starting at strsize 'start'
-//inline strsize string::find(::ansi_character ch) const RELEASENOTHROW
+//// find the first occurrence of character 'ch', starting at character_count 'start'
+//inline character_count string::find(::ansi_character ch) const RELEASENOTHROW
 //{
 //
 //   const ::ansi_character * psz = strchr(m_psz, ch);
@@ -6687,8 +6687,8 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 //}
 //
 
-//// find the first occurrence of character 'ch', starting at strsize 'start'
-//inline strsize string::find(::ansi_character ch) const RELEASENOTHROW
+//// find the first occurrence of character 'ch', starting at character_count 'start'
+//inline character_count string::find(::ansi_character ch) const RELEASENOTHROW
 //{
 //
 //   const ::ansi_character * psz = strchr(&m_psz[start], ch);
@@ -6746,7 +6746,7 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
 
 
-//template < strsize m_sizeMaximumLength >
+//template < character_count m_sizeMaximumLength >
 //inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 //{
 //
@@ -6775,7 +6775,7 @@ inline ::string operator +(char ch, const ::string & str)
 }
 
 
-//template < ::collection::count c, strsize m_sizeMaximumLength >
+//template < ::collection::count c, character_count m_sizeMaximumLength >
 //inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 //{
 //
@@ -6785,7 +6785,7 @@ inline ::string operator +(char ch, const ::string & str)
 //
 //
 //
-//template < ::collection::count c, strsize m_sizeMaximumLength >
+//template < ::collection::count c, character_count m_sizeMaximumLength >
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
 //{
 //

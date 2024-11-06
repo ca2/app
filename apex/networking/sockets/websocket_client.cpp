@@ -117,7 +117,7 @@
 //int client_send(memory & m, int fin, memory & memory, bool useMask)
 //{
 //
-//   i64 message_size = memory.size();
+//   huge_integer message_size = memory.size();
 //
 //   int length = (int) ( 2 + message_size);
 //
@@ -277,7 +277,7 @@
 //
 //         frame[1] = 127;
 //         
-//         *((i64*)&frame[2]) = HTONLL(len);
+//         *((huge_integer*)&frame[2]) = HTONLL(len);
 //         
 //      }
 //      else
@@ -589,14 +589,14 @@ namespace sockets
          //iLen = (int)(m_strBase64.length());
 
          inheader("Sec-WebSocket-Key") = m_strBase64;
-         if (m_strWebSocketProtocol.has_char())
+         if (m_strWebSocketProtocol.has_character())
          {
             inheader("Sec-WebSocket-Protocol") = m_strWebSocketProtocol;
 
          }
          inheader("Sec-WebSocket-Version") = "13";
 
-         if (m_strOrigin.has_char())
+         if (m_strOrigin.has_character())
          {
 
             inheader("Origin") = m_strOrigin;
@@ -715,7 +715,7 @@ namespace sockets
 
                   informationf("\n\nnow : websocket\n");
 
-                  if (m_strWebSocketProtocol.has_char())
+                  if (m_strWebSocketProtocol.has_character())
                   {
 
                      informationf("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
@@ -831,7 +831,7 @@ namespace sockets
 
          m_memResponse.append(buf, len);
 
-         //u64 uLen = 0;
+         //huge_natural uLen = 0;
 
          //int iOffset = 2;
 
@@ -945,8 +945,8 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((u64)data[2]) << 8;
-               m_iN |= ((u64)data[3]) << 0;
+               m_iN |= ((huge_natural)data[2]) << 8;
+               m_iN |= ((huge_natural)data[3]) << 0;
                m_i = 4;
 
             }
@@ -954,14 +954,14 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((u64)data[2]) << 56;
-               m_iN |= ((u64)data[3]) << 48;
-               m_iN |= ((u64)data[4]) << 40;
-               m_iN |= ((u64)data[5]) << 32;
-               m_iN |= ((u64)data[6]) << 24;
-               m_iN |= ((u64)data[7]) << 16;
-               m_iN |= ((u64)data[8]) << 8;
-               m_iN |= ((u64)data[9]) << 0;
+               m_iN |= ((huge_natural)data[2]) << 56;
+               m_iN |= ((huge_natural)data[3]) << 48;
+               m_iN |= ((huge_natural)data[4]) << 40;
+               m_iN |= ((huge_natural)data[5]) << 32;
+               m_iN |= ((huge_natural)data[6]) << 24;
+               m_iN |= ((huge_natural)data[7]) << 16;
+               m_iN |= ((huge_natural)data[8]) << 8;
+               m_iN |= ((huge_natural)data[9]) << 0;
                m_i = 10;
 
             }

@@ -247,31 +247,31 @@ namespace apex
 
       }
 
-      if (directory()->image().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->image()))
+      if (directory()->image().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (directory()->music().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->music()))
+      else if (directory()->music().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (directory()->video().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->video()))
+      else if (directory()->video().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (directory()->document().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->document()))
+      else if (directory()->document().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (directory()->download().has_char() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->download()))
+      else if (directory()->download().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->download()))
       {
 
          return ::file::path("download://") / str;
@@ -299,49 +299,49 @@ namespace apex
 
       ::file::path path = defer_process_path(strParam);
 
-      if (directory()->image().has_char() && path.case_insensitive_order(directory()->image()) == 0)
+      if (directory()->image().has_character() && path.case_insensitive_order(directory()->image()) == 0)
       {
 
          return "Image";
 
       }
-      else if (directory()->music().has_char() && path.case_insensitive_order(directory()->music()) == 0)
+      else if (directory()->music().has_character() && path.case_insensitive_order(directory()->music()) == 0)
       {
 
          return "Music";
 
       }
-      else if (directory()->video().has_char() && path.case_insensitive_order(directory()->video()) == 0)
+      else if (directory()->video().has_character() && path.case_insensitive_order(directory()->video()) == 0)
       {
 
          return "Video";
 
       }
-      else if (directory()->document().has_char() && path.case_insensitive_order(directory()->document()) == 0)
+      else if (directory()->document().has_character() && path.case_insensitive_order(directory()->document()) == 0)
       {
 
          return "Document";
 
       }
-      else if (directory()->download().has_char() && path.case_insensitive_order(directory()->download()) == 0)
+      else if (directory()->download().has_character() && path.case_insensitive_order(directory()->download()) == 0)
       {
 
          return "Download";
 
       }
-      else if (directory()->desktop().has_char() && path.case_insensitive_order(directory()->desktop()) == 0)
+      else if (directory()->desktop().has_character() && path.case_insensitive_order(directory()->desktop()) == 0)
       {
 
          return "Desktop";
 
       }
-      else if (directory()->bookmark().has_char() && path.case_insensitive_order(directory()->bookmark()) == 0)
+      else if (directory()->bookmark().has_character() && path.case_insensitive_order(directory()->bookmark()) == 0)
       {
 
          return "Bookmark";
 
       }
-      else if (directory()->bookmark().has_char() && path == "/")
+      else if (directory()->bookmark().has_character() && path == "/")
       {
 
          return "File System";

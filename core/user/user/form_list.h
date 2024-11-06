@@ -31,7 +31,7 @@ namespace user
       void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;
 
       using ::user::list::_001HitTest_;
-      bool _001HitTest_(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
+      bool _001HitTest_(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
 
 
       virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::collection::index iItem);
@@ -39,15 +39,15 @@ namespace user
       virtual void on_check_save(::user::interaction* puserinteraction);
       virtual void on_check_load(::user::interaction* puserinteraction);
 
-      void control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & prectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & prectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle) override;
 
-      bool control_001DisplayHitTest(const ::point_i32 & point);
+      bool control_001DisplayHitTest(const ::int_point & point);
 
       virtual bool _001IsEditing() override;
 
-      bool _001IsPointInside(::user::interaction * pinteraction, const point_i64 & point) override;
+      bool _001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point) override;
 
       void _001OnAddColumn(list_column * pcolumn) override;
 

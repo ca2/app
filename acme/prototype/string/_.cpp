@@ -60,7 +60,7 @@ int debug_string_iterator()
 //}
 //
 
-CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
+CLASS_DECL_ACME inline character_count safe_strlen(void * p, character_count n)
 {
 
    if (p == nullptr)
@@ -72,7 +72,7 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
 
    auto psz = (const char *)p;
 
-   strsize i = 0;
+   character_count i = 0;
 
    for (; i < n; i++)
    {

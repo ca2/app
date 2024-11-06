@@ -123,7 +123,7 @@ void subparticle::finalize()
 #ifdef _DEBUG
 
 
-i64 subparticle::increment_reference_count()
+huge_integer subparticle::increment_reference_count()
 {
 
 #if REFERENCING_DEBUGGING
@@ -145,7 +145,7 @@ i64 subparticle::increment_reference_count()
 }
 
 
-i64 subparticle::decrement_reference_count()
+huge_integer subparticle::decrement_reference_count()
 {
 
 #if REFERENCING_DEBUGGING
@@ -172,7 +172,7 @@ i64 subparticle::decrement_reference_count()
 }
 
 
-i64 subparticle::replace_reference()
+huge_integer subparticle::replace_reference()
 {
 
    auto c = m_countReference;
@@ -195,10 +195,10 @@ i64 subparticle::replace_reference()
 }
 
 
-i64 subparticle::release()
+huge_integer subparticle::release()
 {
 
-   i64 i = decrement_reference_count();
+   huge_integer i = decrement_reference_count();
 
    if (i == 0)
    {

@@ -10,7 +10,7 @@ class CLASS_DECL_APEX context :
 public:
 
 
-   ::i64       m_iUpdateSerial;
+   huge_integer       m_iUpdateSerial;
 
 
    context();

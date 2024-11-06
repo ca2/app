@@ -284,7 +284,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const ::string & strRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -361,7 +361,7 @@ namespace axis
          //if (datastream()->get({ "system_locale", true }, str))
          //{
 
-         //   if (str.has_char())
+         //   if (str.has_character())
          //   {
 
          //      if (str != get_locale())
@@ -419,7 +419,7 @@ namespace axis
          //else if (datastream()->get({ "locale", true }, str))
          //{
 
-         //   if (str.has_char())
+         //   if (str.has_character())
          //   {
 
          //      set_locale(str, ::e_source_database);
@@ -432,7 +432,7 @@ namespace axis
          //if (datastream()->get({ "system_schema", true }, str))
          //{
 
-         //   if (str.has_char())
+         //   if (str.has_character())
          //   {
 
          //      if (str != get_schema())
@@ -478,7 +478,7 @@ namespace axis
          //else if (datastream()->get({ "schema", true }, str))
          //{
 
-         //   if (str.has_char())
+         //   if (str.has_character())
          //   {
 
          //      set_schema(str, ::e_source_database);
@@ -498,7 +498,7 @@ namespace axis
          ////if (datastream()->get({ "system_locale", true }, str))
          ////{
 
-         ////   if (str.has_char())
+         ////   if (str.has_character())
          ////   {
 
          ////      if (str != get_locale())
@@ -556,7 +556,7 @@ namespace axis
          ////else if (datastream()->get({ "locale", true }, str))
          ////{
 
-         ////   if (str.has_char())
+         ////   if (str.has_character())
          ////   {
 
          ////      set_locale(str, ::e_source_database);
@@ -569,7 +569,7 @@ namespace axis
          ////if (datastream()->get({ "system_schema", true }, str))
          ////{
 
-         ////   if (str.has_char())
+         ////   if (str.has_character())
          ////   {
 
          ////      if (str != get_schema())
@@ -615,7 +615,7 @@ namespace axis
          ////else if (datastream()->get({ "schema", true }, str))
          ////{
 
-         ////   if (str.has_char())
+         ////   if (str.has_character())
          ////   {
 
          ////      set_schema(str, ::e_source_database);
@@ -1816,7 +1816,7 @@ namespace axis
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_character())
       {
 
          strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";

@@ -27,10 +27,10 @@ namespace user
          bool                             m_bPendingSelectionChange;
 
          /// runtime span, ephemeral, derived
-/// should be easily rebuildable from "storage" data and a client rectangle_i32
+/// should be easily rebuildable from "storage" data and a client int_rectangle
          pointer< pointer_array < line > >            m_plinea;
-         strsize                                      m_iSelBeg;
-         strsize                                      m_iSelEnd;
+         character_count                                      m_iSelBeg;
+         character_count                                      m_iSelEnd;
          ::collection::index                                        m_iSelLine;
          class ::time                                 m_timeCaretPeriod;
          //index                                      m_iFormatDefault;
@@ -53,11 +53,11 @@ namespace user
 
          //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
-         ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+         ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::rectangle_i32 * prectangle, ::collection::index i);
+         virtual bool get_item_rect(::int_rectangle * prectangle, ::collection::index i);
 
-         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, ::collection::index i, enum_element eelement);
+         virtual bool get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement);
 
 
          ::user::drawable * get_drawable() override;
@@ -67,7 +67,7 @@ namespace user
          bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
 
-         virtual ::size_f64 get_size() override;
+         virtual ::double_size get_size() override;
 
          virtual void do_layout();
 
@@ -75,7 +75,7 @@ namespace user
          // void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, ::collection::index iItem);
-         virtual bool _001IsPointInside(const ::point_i32 & point) override;
+         virtual bool _001IsPointInside(const ::int_point & point) override;
          virtual void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
@@ -88,11 +88,11 @@ namespace user
          virtual void _001GetLayoutText(string & str) const;
 
 
-         //virtual i64 increment_reference_count() override
+         //virtual huge_integer increment_reference_count() override
          //{
          //   return ::object::increment_reference_count();
          //}
-         //virtual i64 decrement_reference_count() override
+         //virtual huge_integer decrement_reference_count() override
          //{
          //   return ::object::decrement_reference_count();
          //}
@@ -109,7 +109,7 @@ namespace user
 
          virtual void _001OnDeleteText();
 
-         virtual ::rectangle_f64 get_drawing_rect();
+         virtual ::double_rectangle get_drawing_rect();
 
          virtual void internal_update_sel_char();
 
@@ -167,36 +167,36 @@ namespace user
 
          void handle(::topic * ptopic, ::context * pcontext) override;
 
-         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle);
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle);
 
-         virtual strsize _001GetLayoutTextLength() const;
+         virtual character_count _001GetLayoutTextLength() const;
 
-         //strsize get_text_length() override;
+         //character_count get_text_length() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
 
-         void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
+         void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
          virtual void _001GetSelLineText(string & str);
 
 
-         void get_text_composition_area(::rectangle_i32 & r) override;
+         void get_text_composition_area(::int_rectangle & r) override;
          void on_text_composition(string str) override;
          void on_text_composition_done() override;
          bool edit_undo() override;
 
 
-         virtual strsize get_sel_beg();
-         virtual strsize get_sel_end();
+         virtual character_count get_sel_beg();
+         virtual character_count get_sel_end();
 
-         virtual ::collection::index SelToLine(strsize i);
-         virtual strsize LineColumnToSel(::collection::index iLine, strsize iColumn);
+         virtual ::collection::index SelToLine(character_count i);
+         virtual character_count LineColumnToSel(::collection::index iLine, character_count iColumn);
 
 
          bool has_text_input() override;
 
-         virtual strsize _hit_test(point_f64 point);
-         virtual strsize _hit_test_line_x(::collection::index iLine, double x);
+         virtual character_count _hit_test(double_point point);
+         virtual character_count _hit_test_line_x(::collection::index iLine, double x);
 
 
       };

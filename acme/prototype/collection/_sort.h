@@ -31,7 +31,7 @@ namespace sort
 
    //    static iptr DWordCompare(const iptr dwA, const iptr dwB);
 
-   //   static void BubbleSort(LPINT pInt, iptr size_i32);
+   //   static void BubbleSort(LPINT pInt, iptr int_size);
 
 
    //   static void quick_sort(

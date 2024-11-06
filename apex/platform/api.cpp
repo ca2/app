@@ -83,7 +83,7 @@ void api::load_configuration()
 
    pathName = m_strImplementation;
 
-   if (m_strService.has_char())
+   if (m_strService.has_character())
    {
 
       pathName /= m_strService;
@@ -125,7 +125,7 @@ void api::load_profile()
 
    m_strToken = m_setProfile["token"];
 
-   if (m_strToken.has_char())
+   if (m_strToken.has_character())
    {
 
       m_bAuthenticated = true;

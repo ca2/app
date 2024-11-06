@@ -19,7 +19,7 @@ namespace account
       ::pointer<::account::style>           m_pstyle;
       ::pointer<login>                    m_plogin;
       bool                                   m_bFontopusSimpleUiLayout;
-      ::rectangle_i32                        m_rectangleParent;
+      ::int_rectangle                        m_rectangleParent;
 
       main_window **                         m_psimpleuiDeferTranslate;
 
@@ -32,9 +32,9 @@ namespace account
       virtual void initialize_simple_ui(::account::credentials * pcredentials);
 
 
-      virtual string get_cred(const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle);
+      virtual string get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle);
 
-      virtual string do_account(const ::rectangle_i32 & rectangle);
+      virtual string do_account(const ::int_rectangle & rectangle);
 
       void install_message_routing(::channel * pchannel) override;
 

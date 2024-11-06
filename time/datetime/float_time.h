@@ -293,28 +293,28 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
    inline double float_time_span::GetTotalDays() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)::i64(m_span + (m_span < 0 ?
+      return (double)huge_integer(m_span + (m_span < 0 ?
                                         -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND));
    }
 
    inline double float_time_span::GetTotalHours() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)::i64((m_span + (m_span < 0 ?
+      return (double)huge_integer((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * 24);
    }
 
    inline double float_time_span::GetTotalMinutes() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)::i64((m_span + (m_span < 0 ?
+      return (double)huge_integer((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60));
    }
 
    inline double float_time_span::GetTotalSeconds() const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
-      return (double)::i64((m_span + (m_span < 0 ?
+      return (double)huge_integer((m_span + (m_span < 0 ?
                                          -FLOAT_TIME_HALF_SECOND : FLOAT_TIME_HALF_SECOND)) * (24 * 60 * 60));
    }
 

@@ -32,7 +32,7 @@ namespace user
    }
 
 
-   void color_selector_popup::show_popup(const ::point_i32 & point)
+   void color_selector_popup::show_popup(const ::int_point & point)
    {
 
       information() << "show_popup : " << point;

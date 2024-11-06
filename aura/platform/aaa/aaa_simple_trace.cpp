@@ -53,7 +53,7 @@ void o_debug_string(const ::string & psz)
 CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszText, const ::string & pszFile, int iLine)
 {
 
-   strsize iLen;
+   character_count iLen;
 
    iLen = strlen(pszText);
 
@@ -91,7 +91,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
          char pszNum[30];
 
-         ansi_from_i64(pszNum, iLine, 10);
+         ansi_from_huge_integer(pszNum, iLine, 10);
 
          ansi_concatenate(psz, "(");
 

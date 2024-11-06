@@ -72,10 +72,10 @@ namespace gpu
 
       enum_mode                        m_emode;
 
-      ::size_i32                           m_sizeNew;
-      ::size_i32                           m_size;
+      ::int_size                           m_sizeNew;
+      ::int_size                           m_size;
       float                            m_z;
-      point_i32                            m_pointTranslate;
+      int_point                            m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>        m_pcpubuffer;
       ::pointer<::gpu::program>       m_pprogram;
       bool                             m_bCreated;
@@ -117,10 +117,10 @@ namespace gpu
 
       virtual void create_window_buffer(void * pHwnd);
       virtual void _create_window_buffer(void * pHwnd);
-      virtual void create_offscreen_buffer(const ::size_i32& size);
-      virtual void _create_offscreen_buffer(const ::size_i32& size);
+      virtual void create_offscreen_buffer(const ::int_size& size);
+      virtual void _create_offscreen_buffer(const ::int_size& size);
 
-      virtual void resize_offscreen_buffer(const ::size_i32& size);
+      virtual void resize_offscreen_buffer(const ::int_size& size);
       virtual void destroy_offscreen_buffer();
       
       virtual void prepare_for_gpu_read();

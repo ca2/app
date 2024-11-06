@@ -13,16 +13,16 @@ public:
 
 
    // Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
-   inline static const ::u64 EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
+   inline static const huge_natural EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
    // Contains a 64-bit value representing the number
    // of 100-nanosecond intervals since January 1, 1601 (UTC).
-   ::u64          m_uFileTime;
+   huge_natural          m_uFileTime;
 
 
    file_time() noexcept { m_uFileTime = 0; }
-   file_time(file_time_t, ::u64 uFileTime) noexcept { m_uFileTime = uFileTime; }
+   file_time(file_time_t, huge_natural uFileTime) noexcept { m_uFileTime = uFileTime; }
    explicit file_time(const system_time & systemtime);
    explicit file_time(const ::posix_time & time);
    explicit file_time(const class ::time & time);
@@ -53,8 +53,8 @@ public:
    //bool operator<=(file_time ft) const noexcept;
    //bool operator>=(file_time ft) const noexcept;
 
-   ::u64 get_file_time() const noexcept;
-   void set_file_time(::u64 nTime) noexcept;
+   huge_natural get_file_time() const noexcept;
+   void set_file_time(huge_natural nTime) noexcept;
 
 
    

@@ -699,7 +699,7 @@ namespace dynamic_source
                         try
                         {
 
-                           if (pdsscript->m_strError.has_char())
+                           if (pdsscript->m_strError.has_character())
                            {
 
                               pinstanceParent->output_file()->print(pscript->m_strError);
@@ -1585,14 +1585,14 @@ namespace dynamic_source
    }
 
 
-   size_i32 script_manager::get_image_size(const ::file::path& strFile)
+   int_size script_manager::get_image_size(const ::file::path& strFile)
    {
 
       _single_lock synchronouslock(m_pmutexImageSize);
 
       synchronouslock._lock();
 
-      ::size_i32 size;
+      ::int_size size;
 
       if (m_mapImageSize.lookup(strFile, size))
          return size;
@@ -1619,7 +1619,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::extract_image_size(const ::file::path& strFile, ::size_i32* psize)
+   bool script_manager::extract_image_size(const ::file::path& strFile, ::int_size* psize)
    {
 
       // auto pcontext = get_context();
@@ -1650,7 +1650,7 @@ namespace dynamic_source
       // reading GIF dimensions requires the first 10 bytes of the file
       // reading PNG dimensions requires the first 24 bytes of the file
       // reading JPEG dimensions requires scanning through jpeg chunks
-      // In all formats, the file is at least 24 bytes big, so we'll read that always
+      // In all formats, the file is at least 24 bytes big, so we'hi read that always
       unsigned char buf[24];
 
       if (pfile->read({ buf, 24 }) < 24)
@@ -1681,7 +1681,7 @@ namespace dynamic_source
 
             if (buf[i + 1] == 0xC0)
             {
-               //0xFFC0 is the "Start of frame" marker which contains the file size_i32
+               //0xFFC0 is the "Start of frame" marker which contains the file int_size
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
                if (pfile->read({ buf, 5 }) < 5)

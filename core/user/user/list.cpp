@@ -257,7 +257,7 @@ namespace user
 
       _synchronous_lock synchronouslock(m_pmeshdata->synchronization());
 
-      ::rectangle_i32 rectangleX = this->rectangle();
+      ::int_rectangle rectangleX = this->rectangle();
 
       auto pointOffset = get_context_offset();
 
@@ -276,7 +276,7 @@ namespace user
 
          pgraphics->set(pbrushText);
 
-         ::size_double_array sizea;
+         ::double_size_array sizea;
 
          m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
@@ -299,7 +299,7 @@ namespace user
                   || i == sizea.get_upper_bound())
             {
 
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
 
                rectangle.top() = int(y - pointOffset.y());
 
@@ -339,8 +339,8 @@ namespace user
       //}
 
 
-      ::rectangle_i32 rectangleItem;
-      ::rectangle_i32 rectangleIntersect;
+      ::int_rectangle rectangleItem;
+      ::int_rectangle rectangleIntersect;
 
       auto iItemCount = m_nDisplayCount;
 
@@ -447,9 +447,9 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             
-            pgraphics->fill_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
+            pgraphics->fill_rectangle(::double_rectangle(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
-            pgraphics->draw_inset_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208), 1.0);
+            pgraphics->draw_inset_rectangle(::double_rectangle(x1, y1, x2, y2), argb(192, 192, 192, 208), 1.0);
 
          }
 
@@ -484,9 +484,9 @@ namespace user
 
       ::collection::index iGroup;
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
-      ::rectangle_i32 rectangleIntersect;
+      ::int_rectangle rectangleIntersect;
 
       rectangleX = this->rectangle();
 
@@ -600,7 +600,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleIntersect;
+      ::int_rectangle rectangleIntersect;
 
       //rectangleX.offset(get_context_offset());
 
@@ -889,7 +889,7 @@ namespace user
 
          auto ppenHighlight = _001GetPenHighlight();
 
-         ::rectangle_i32 rectangleHighlight(pdrawitem->m_rectangleItem);
+         ::int_rectangle rectangleHighlight(pdrawitem->m_rectangleItem);
 
          rectangleHighlight.inflate(8, 0, 8, -1);
 
@@ -1294,7 +1294,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       if (m_eview == impact_list)
       {
@@ -1302,7 +1302,7 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rectangle = ::rectangle_i32(0, 0, 0, 0);
+            rectangle = ::int_rectangle(0, 0, 0, 0);
 
          }
          else
@@ -1352,7 +1352,7 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rectangle = ::rectangle_i32(0, 0, 0, 0);
+            rectangle = ::int_rectangle(0, 0, 0, 0);
 
          }
          else
@@ -1384,7 +1384,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         rectangle = ::rectangle_i32(0, 0, 0, 0);
+         rectangle = ::int_rectangle(0, 0, 0, 0);
 
          auto pitemFirst = get_item(0);
 
@@ -1605,7 +1605,7 @@ namespace user
 
       ::collection::index iItemWidth = 0;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       string str;
 
@@ -1979,7 +1979,7 @@ namespace user
 
       ::collection::index iItem;
 
-      if (_001DisplayHitTest(point_i32(0,
+      if (_001DisplayHitTest(int_point(0,
          pointOffset.y() + (int) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
@@ -2016,7 +2016,7 @@ namespace user
       if (m_eview == impact_list)
       {
 
-         ::rectangle_i32 rectangleImpact;
+         ::int_rectangle rectangleImpact;
 
          rectangleImpact = this->rectangle();
 
@@ -2048,11 +2048,11 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleImpact;
+         ::int_rectangle rectangleImpact;
 
          rectangleImpact = this->rectangle();
 
-         const ::size_i32 & sizeItem = get_item_size();
+         const ::int_size & sizeItem = get_item_size();
 
          return maximum((rectangleImpact.width() / sizeItem.cx()) * (rectangleImpact.height() / sizeItem.cy()),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
@@ -2061,7 +2061,7 @@ namespace user
       else if (m_eview == impact_report)
       {
 
-         ::rectangle_i32 rectangleImpact;
+         ::int_rectangle rectangleImpact;
 
          rectangleImpact = this->rectangle();
 
@@ -2110,11 +2110,11 @@ namespace user
 
       auto iItemLast = iItemFirst;
 
-      ::rectangle_i32 rectangleItem;
+      ::int_rectangle rectangleItem;
 
-      ::rectangle_i32 rectangleIntersect;
+      ::int_rectangle rectangleIntersect;
 
-      ::rectangle_i32 rectangleUpdate;
+      ::int_rectangle rectangleUpdate;
 
       rectangleUpdate = this->rectangle();
 
@@ -2197,7 +2197,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2211,7 +2211,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem)
+   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -2228,7 +2228,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, ::collection::index & iItem)
+   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -2245,7 +2245,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2259,7 +2259,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItemParam, ::collection::index & iSubItemParam)
+   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam, ::collection::index & iSubItemParam)
    {
 
       ::collection::index iItem;
@@ -2297,7 +2297,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      ::rectangle_i32 rectangleMargin;
+      ::int_rectangle rectangleMargin;
 
       get_margin_rect(&rectangleMargin);
 
@@ -2357,7 +2357,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItemParam)
+   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam)
    {
 
 //      {
@@ -2974,9 +2974,9 @@ namespace user
             if (pdrawitem->m_iItem == m_iItemLButtonDown || m_rangeSelection.has_item(pdrawitem->m_iDisplayItem))
             {
 
-               ::point_i32 point = m_pointLButtonUp;
+               ::int_point point = m_pointLButtonUp;
 
-               ::point_i32 point2 = m_pointLButtonDown1;
+               ::int_point point2 = m_pointLButtonDown1;
 
                point -= point2;
 
@@ -3209,10 +3209,10 @@ namespace user
                   if (eelement == ::user::list::e_element_image)
                   {
 
-                     ::rectangle_i32 rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
+                     ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
 
                      rectangleAlign.left() = x;
-                     ::rectangle_i32 rectangleIcon;
+                     ::int_rectangle rectangleIcon;
                      rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx(), pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy());
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
@@ -3259,9 +3259,9 @@ namespace user
                   if (eelement == ::user::list::e_element_image)
                   {
 
-                     ::rectangle_i32 rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
+                     ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
                      rectangleAlign.left() = x;
-                     ::rectangle_i32 rectangleIcon;
+                     ::int_rectangle rectangleIcon;
                      rectangleIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
@@ -3435,13 +3435,13 @@ namespace user
       if (m_bHeaderCtrl)
       {
 
-         ::rectangle_i32 rectangleFocus;
+         ::int_rectangle rectangleFocus;
 
          GetFocusRect(rectangleFocus);
 
          m_plistheader->order_bottom();
 
-         m_plistheader->place(::rectangle_int_dimension(0, 0, (int)maximum(m_iItemWidth + 10, rectangleFocus.width()), (int)m_dItemHeight));
+         m_plistheader->place(::int_rectangle_dimension(0, 0, (int)maximum(m_iItemWidth + 10, rectangleFocus.width()), (int)m_dItemHeight));
 
          m_plistheader->display();;
 
@@ -3919,7 +3919,7 @@ namespace user
 
                // uptr nFlags = 0;
 
-               // const ::point_i32 & point = point;
+               // const ::int_point & point = point;
 
                // on_click(item);
 
@@ -4185,7 +4185,7 @@ namespace user
 
                      string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
-                     if (strSort.has_char())
+                     if (strSort.has_character())
                      {
 
                         defer_update_display();
@@ -5764,7 +5764,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::size_double_array sizea;
+      ::double_size_array sizea;
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
@@ -5898,9 +5898,9 @@ namespace user
 
       ::image::image_list::info ii;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
-      ::size_f64 size;
+      ::double_size size;
 
       ::collection::index cx = 0;
 
@@ -6897,7 +6897,7 @@ namespace user
       if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y() != 0 && m_nDisplayCount > 0)
       {
 
-         ::rectangle_i32 rectangleScroll;
+         ::int_rectangle rectangleScroll;
 
          auto pscrollbar = get_scroll_bar_x();
 
@@ -7365,7 +7365,7 @@ namespace user
    //}
 
 
-   ::size_i32 list::get_item_size()
+   ::int_size list::get_item_size()
    {
 
       if (m_eview == impact_icon)
@@ -7374,7 +7374,7 @@ namespace user
          if (m_pcolumna->get_count() == 0)
          {
 
-            return ::size_i32(32, 32);
+            return ::int_size(32, 32);
 
          }
 
@@ -7382,7 +7382,7 @@ namespace user
 
          ::collection::index iItemSize = iIconSize * 2;
 
-         return ::size_i32((int) iItemSize, (int) iItemSize);
+         return ::int_size((int) iItemSize, (int) iItemSize);
 
       }
       else
@@ -7703,11 +7703,11 @@ namespace user
 //         try
 //         {
 //
-//            ::rectangle_i32 rectangleX;
+//            ::int_rectangle rectangleX;
 //
 //            this->rectangle(rectangleX);
 //
-//            ::rectangle_i32 rectangleXHeader;
+//            ::int_rectangle rectangleXHeader;
 //
 //            m_plistheader->rectangle(rectangleXHeader);
 //
@@ -7801,7 +7801,7 @@ namespace user
    }
 
 
-   //bool list::this->rectangle(::rectangle_i32 * prectangle)
+   //bool list::this->rectangle(::int_rectangle * prectangle)
 
    //{
 
@@ -7811,7 +7811,7 @@ namespace user
     //  if (m_bHeaderCtrl && m_plistheader != nullptr)
       //{
 
-      //   ::rectangle_i32 rectangleX;
+      //   ::int_rectangle rectangleX;
 
       //   m_plistheader->rectangle(rectangleX);
 
@@ -7845,7 +7845,7 @@ namespace user
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
-      if (strSort.has_char())
+      if (strSort.has_character())
       {
 
          defer_update_display();

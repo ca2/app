@@ -2181,6 +2181,7 @@
     <ClCompile Include="prototype\string\c\extension\ansi_impl.cpp" />
     <ClCompile Include="prototype\string\c\extension\wd16_impl.cpp" />
     <ClCompile Include="prototype\string\c\extension\wd32_impl.cpp" />
+    <ClCompile Include="prototype\string\c\strdup.cpp" />
     <ClCompile Include="prototype\string\c\unicode_impl.cpp" />
     <ClCompile Include="prototype\string\encoding_exception.cpp" />
     <ClCompile Include="prototype\string\command_line.cpp" />

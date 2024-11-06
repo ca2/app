@@ -7,7 +7,7 @@
 
 
 //using real = double;
-//using integer = ::i64;
+//using integer = huge_integer;
 
 class CLASS_DECL_ACME number
 {
@@ -22,8 +22,8 @@ public:
       unsigned short       m_ush;
       int       m_i;
       unsigned int       m_ui;
-      ::i64       m_i64;
-      ::u64       m_u64;
+      huge_integer       m_hi;
+      huge_natural       m_hn;
 
       float       m_f;
       double       m_d;
@@ -32,19 +32,19 @@ public:
 
    enum_number    m_enumber;
 
-   number(enum_number enumber = e_number_none) { m_i64 = 0; m_enumber = enumber; }
-   number(char i) { m_ch = i; m_enumber = e_number_i8; }
-   number(unsigned char u) { m_uch = u; m_enumber = e_number_u8; }
-   number(short i) { m_sh = i; m_enumber = e_number_i16; }
-   number(unsigned short u) { m_ush = u; m_enumber = e_number_u16; }
-   number(int i) { m_i = i; m_enumber = e_number_i32; }
-   number(unsigned int u) { m_ui = u; m_enumber = e_number_u32; }
-   number(i64 i) { m_i64 = i; m_enumber = e_number_i64; }
-   number(u64 u) { m_u64 = u; m_enumber = e_number_u64; }
-   number(float f) { m_f = f; m_enumber = e_number_f32; }
-   number(double d) { m_d = d; m_enumber = e_number_f64; }
+   number(enum_number enumber = e_number_none) { m_hi = 0; m_enumber = enumber; }
+   number(char i) { m_ch = i; m_enumber = e_number_char; }
+   number(unsigned char u) { m_uch = u; m_enumber = e_number_unsigned_char; }
+   number(short i) { m_sh = i; m_enumber = e_number_short; }
+   number(unsigned short u) { m_ush = u; m_enumber = e_number_unsigned_short; }
+   number(int i) { m_i = i; m_enumber = e_number_int; }
+   number(unsigned int u) { m_ui = u; m_enumber = e_number_unsigned_int; }
+   number(huge_integer i) { m_hi = i; m_enumber = e_number_huge_integer; }
+   number(huge_natural u) { m_hn = u; m_enumber = e_number_huge_natural; }
+   number(float f) { m_f = f; m_enumber = e_number_float; }
+   number(double d) { m_d = d; m_enumber = e_number_double; }
 //#ifdef __clang__
-//   number(long l) { m_i64 = l; m_enumber = e_number_i64; }
+//   number(long l) { m_hi = l; m_enumber = e_number_huge_integer; }
 //#endif
 
 
@@ -62,25 +62,25 @@ public:
       {
       case e_number_none:
          return (T)0;
-      case e_number_i8:
+      case e_number_char:
          return (T)m_ch;
-      case e_number_u8:
+      case e_number_unsigned_char:
          return(T)m_uch;
-      case e_number_i16:
+      case e_number_short:
          return(T)m_sh;
-      case e_number_u16:
+      case e_number_unsigned_short:
          return (T)m_ush;
-      case e_number_i32:
+      case e_number_int:
          return(T)m_i;
-      case e_number_u32:
+      case e_number_unsigned_int:
          return (T)m_ui;
-      case e_number_i64:
-         return(T)m_i64;
-      case e_number_u64:
-         return (T)m_u64;
-      case e_number_f32:
+      case e_number_huge_integer:
+         return(T)m_hi;
+      case e_number_huge_natural:
+         return (T)m_hn;
+      case e_number_float:
          return (T)m_f;
-      case e_number_f64:
+      case e_number_double:
          return(T)m_d;
       };
       return (T)0;
@@ -94,50 +94,50 @@ public:
       {
       case e_number_none:
          break;
-      case e_number_i8:
+      case e_number_char:
          m_ch = (char) t;
          break;
-      case e_number_u8:
+      case e_number_unsigned_char:
          m_uch = (unsigned char) t;
          break;
-      case e_number_i16:
+      case e_number_short:
          m_sh = (short) t;
          break;
-      case e_number_u16:
+      case e_number_unsigned_short:
          m_ush = (unsigned short)t;
          break;
-      case e_number_i32:
+      case e_number_int:
          m_i = (int)t;
          break;
-      case e_number_u32:
+      case e_number_unsigned_int:
          m_ui = (unsigned int)t;
          break;
-      case e_number_i64:
-         m_i64 = (::i64)t;
+      case e_number_huge_integer:
+         m_hi = (huge_integer)t;
          break;
-      case e_number_u64:
-         m_u64 = (::u64)t;
+      case e_number_huge_natural:
+         m_hn = (huge_natural)t;
          break;
-      case e_number_f32:
+      case e_number_float:
          m_f = (float)t;
          break;
-      case e_number_f64:
+      case e_number_double:
          m_d = (double)t;
          break;
       };
 
    }
 
-   char get_i8() const { return get < char>(); }
-   unsigned char get_u8() const { return get < unsigned char>(); }
-   short get_i16() const { return get < short>(); }
-   unsigned short get_u16() const { return get < unsigned short>(); }
-   int get_i32() const { return get < int>(); }
-   unsigned int get_u32() const { return get < unsigned int>(); }
-   ::i64 get_i64() const { return get < ::i64>(); }
-   ::u64 get_u64() const { return get < ::u64>(); }
-   float get_f32() const { return get < float>(); }
-   double get_f64() const { return get < double>(); }
+   char get_char() const { return get < char>(); }
+   unsigned char get_unsigned_char() const { return get < unsigned char>(); }
+   short get_short() const { return get < short>(); }
+   unsigned short get_unsigned_short() const { return get < unsigned short>(); }
+   int get_int() const { return get < int>(); }
+   unsigned int get_unsigned_int() const { return get < unsigned int>(); }
+   huge_integer get_huge_integer() const { return get < huge_integer>(); }
+   huge_natural get_huge_natural() const { return get < huge_natural>(); }
+   float get_float() const { return get < float>(); }
+   double get_double() const { return get < double>(); }
 
 
    ::number operator + (const number& number) const
@@ -150,13 +150,13 @@ public:
       if (numberResult.is_float())
       {
 
-         numberResult.set(get_f64() + number.get_f64());
+         numberResult.set(get_double() + number.get_double());
 
       }
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_i64() + number.get_i64());
+         numberResult.set(get_huge_integer() + number.get_huge_integer());
 
       }
 
@@ -175,13 +175,13 @@ public:
       if (numberResult.is_float())
       {
 
-         numberResult.set(get_f64() - number.get_f64());
+         numberResult.set(get_double() - number.get_double());
 
       }
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_i64() - number.get_i64());
+         numberResult.set(get_huge_integer() - number.get_huge_integer());
 
       }
 
@@ -199,13 +199,13 @@ public:
       if (numberResult.is_float())
       {
 
-         numberResult.set(get_f64() * number.get_f64());
+         numberResult.set(get_double() * number.get_double());
 
       }
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_i64() * number.get_i64());
+         numberResult.set(get_huge_integer() * number.get_huge_integer());
 
       }
 
@@ -224,13 +224,13 @@ public:
       if (numberResult.is_float())
       {
 
-         numberResult.set(get_f64() / number.get_f64());
+         numberResult.set(get_double() / number.get_double());
 
       }
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_i64() / number.get_i64());
+         numberResult.set(get_huge_integer() / number.get_huge_integer());
 
       }
 
@@ -247,13 +247,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() == number.get_f64();
+         return get_double() == number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() == number.get_i64();
+         return get_huge_integer() == number.get_huge_integer();
 
       }
 
@@ -269,13 +269,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() != number.get_f64();
+         return get_double() != number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() != number.get_i64();
+         return get_huge_integer() != number.get_huge_integer();
 
       }
 
@@ -292,13 +292,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() < number.get_f64();
+         return get_double() < number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() < number.get_i64();
+         return get_huge_integer() < number.get_huge_integer();
 
       }
 
@@ -315,13 +315,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() <= number.get_f64();
+         return get_double() <= number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() <= number.get_i64();
+         return get_huge_integer() <= number.get_huge_integer();
 
       }
 
@@ -338,13 +338,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() > number.get_f64();
+         return get_double() > number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() > number.get_i64();
+         return get_huge_integer() > number.get_huge_integer();
 
       }
 
@@ -362,13 +362,13 @@ public:
       if (enumber & 64) // float
       {
 
-         return get_f64() >= number.get_f64();
+         return get_double() >= number.get_double();
 
       }
       else if (enumber & 6) // integer
       {
 
-         return get_i64() >= number.get_i64();
+         return get_huge_integer() >= number.get_huge_integer();
 
       }
 
@@ -396,7 +396,7 @@ inline string get_default_integer_scalar_format()
 //}
 //
 //template <  >
-//inline string get_default_scalar_format < i64 >()
+//inline string get_default_scalar_format < huge_integer >()
 //{
 //   return "%lli";
 //}
@@ -614,14 +614,14 @@ public:
 //
 //
 ////using double_scalar_manager = scalar_manager < double >;
-////using int_scalar_manager  = scalar_manager < i64 >;
+////using int_scalar_manager  = scalar_manager < huge_integer >;
 //
 ////using double_scalar_listener = scalar_manager < double >::listener;
-////using int_scalar_listener  = scalar_manager < i64 >::listener;
+////using int_scalar_listener  = scalar_manager < huge_integer >::listener;
 //
 //
 ////using double_scalar = scalar < double >;
-////using int_scalar  = scalar < i64 >;
+////using int_scalar  = scalar < huge_integer >;
 //
 //
 //

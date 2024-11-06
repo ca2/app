@@ -30,15 +30,15 @@ namespace app_core_flag
 
       double Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 
@@ -481,7 +481,7 @@ namespace graphics
    //void color_selector::on_message_create(::message::message * pmessage)
    //{
 
-   //   //m_pimageBeam->create_image(this, ::size_i32(32, 32));
+   //   //m_pimageBeam->create_image(this, ::int_size(32, 32));
 
    //   //m_pimageBeam->fill(0);
 
@@ -491,7 +491,7 @@ namespace graphics
 
    //   //m_pimageBeam->g()->set(ppen);
 
-   //   //m_pimageBeam->g()->DrawEllipse(rectangle_int_dimension(0, 0, 32, 32));
+   //   //m_pimageBeam->g()->DrawEllipse(int_rectangle_dimension(0, 0, 32, 32));
 
 
 
@@ -550,7 +550,7 @@ namespace graphics
    }
 
 
-   void color_selector::on_mouse_motion(const ::point_i32 & point)
+   void color_selector::on_mouse_motion(const ::int_point & point)
    {
 
       if (point.y() >= m_rectangleColors.bottom())
@@ -613,7 +613,7 @@ namespace graphics
       else if (point.x() < m_rectangleColors.center().x() + m_rectangleColors.width() / 8)
       {
 
-         auto pointLuminance = point - ::size_i32(m_rectangleColors.center().x(), m_rectangleColors.top());
+         auto pointLuminance = point - ::int_size(m_rectangleColors.center().x(), m_rectangleColors.top());
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y() / (double)m_pimage->height());
 
@@ -641,10 +641,10 @@ namespace graphics
    }
 
 
-   bool color_selector::is_ok_target(const ::point_i32 & point)
+   bool color_selector::is_ok_target(const ::int_point & point)
    {
 
-      return m_strOk.has_char() && m_pfontOk && m_rectangleTarget.contains(point);
+      return m_strOk.has_character() && m_pfontOk && m_rectangleTarget.contains(point);
 
    }
 
@@ -657,18 +657,18 @@ namespace graphics
    }
 
 
-   void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
+   void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & pointParam)
    {
 
-      point_f64 point(pointParam);
+      double_point point(pointParam);
 
       double dSize = 17.0;
 
-      size_f64 sizeBeam(dSize, dSize);
+      double_size sizeBeam(dSize, dSize);
 
-      rectangle_f64 rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
+      double_rectangle rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
 
-      rectangle_f64 rectangleInner(rectangleOuter);
+      double_rectangle rectangleInner(rectangleOuter);
 
       rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
@@ -682,23 +682,11 @@ namespace graphics
 
       {
 
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.left(), point.y() - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.left(), point.y()));
-         pointa.add(point_f64(rectangleOuter.left(), point.y() + dHalfTriBase));
-
-         pgraphics->fill_polygon(pointa);
-
-      }
-
-      {
-
-         point_double_array pointa;
-
-         pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.top()));
-         pointa.add(point_f64(point.x(), rectangleInner.top()));
-         pointa.add(point_f64(point.x() + dHalfTriBase, rectangleOuter.top()));
+         pointa.add(double_point(rectangleOuter.left(), point.y() - dHalfTriBase));
+         pointa.add(double_point(rectangleInner.left(), point.y()));
+         pointa.add(double_point(rectangleOuter.left(), point.y() + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -706,11 +694,11 @@ namespace graphics
 
       {
 
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.right(), point.y() - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.right(), point.y()));
-         pointa.add(point_f64(rectangleOuter.right(), point.y() + dHalfTriBase));
+         pointa.add(double_point(point.x() - dHalfTriBase, rectangleOuter.top()));
+         pointa.add(double_point(point.x(), rectangleInner.top()));
+         pointa.add(double_point(point.x() + dHalfTriBase, rectangleOuter.top()));
 
          pgraphics->fill_polygon(pointa);
 
@@ -718,11 +706,23 @@ namespace graphics
 
       {
 
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_f64(point.x() - dHalfTriBase, rectangleOuter.bottom()));
-         pointa.add(point_f64(point.x(), rectangleInner.bottom()));
-         pointa.add(point_f64(point.x() + dHalfTriBase, rectangleOuter.bottom()));
+         pointa.add(double_point(rectangleOuter.right(), point.y() - dHalfTriBase));
+         pointa.add(double_point(rectangleInner.right(), point.y()));
+         pointa.add(double_point(rectangleOuter.right(), point.y() + dHalfTriBase));
+
+         pgraphics->fill_polygon(pointa);
+
+      }
+
+      {
+
+         double_point_array pointa;
+
+         pointa.add(double_point(point.x() - dHalfTriBase, rectangleOuter.bottom()));
+         pointa.add(double_point(point.x(), rectangleInner.bottom()));
+         pointa.add(double_point(point.x() + dHalfTriBase, rectangleOuter.bottom()));
 
          pgraphics->fill_polygon(pointa);
 
@@ -731,16 +731,16 @@ namespace graphics
    }
 
 
-   void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
+   void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int yParam)
    {
 
       double y = yParam;
 
       double dSize = 17.0;
 
-      rectangle_f64 rectangleInner(rectangleW);
+      double_rectangle rectangleInner(rectangleW);
 
-      rectangle_f64 rectangleOuter(rectangleInner);
+      double_rectangle rectangleOuter(rectangleInner);
 
       rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
@@ -754,11 +754,11 @@ namespace graphics
 
       {
 
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.left(), y - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.left(), y));
-         pointa.add(point_f64(rectangleOuter.left(), y + dHalfTriBase));
+         pointa.add(double_point(rectangleOuter.left(), y - dHalfTriBase));
+         pointa.add(double_point(rectangleInner.left(), y));
+         pointa.add(double_point(rectangleOuter.left(), y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -766,11 +766,11 @@ namespace graphics
 
       {
 
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_f64(rectangleOuter.right(), y - dHalfTriBase));
-         pointa.add(point_f64(rectangleInner.right(), y));
-         pointa.add(point_f64(rectangleOuter.right(), y + dHalfTriBase));
+         pointa.add(double_point(rectangleOuter.right(), y - dHalfTriBase));
+         pointa.add(double_point(rectangleInner.right(), y));
+         pointa.add(double_point(rectangleOuter.right(), y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -782,7 +782,7 @@ namespace graphics
    void color_selector::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rC;
+      ::int_rectangle rC;
 
       //rC = this->rectangle();
 
@@ -803,9 +803,9 @@ namespace graphics
 
       rTarget.set_size(m_pimage->get_size());
 
-      ::rectangle_i32 rSource = m_pimage->rectangle();
+      ::int_rectangle rSource = m_pimage->rectangle();
 
-      ::rectangle_i32 rCursor;
+      ::int_rectangle rCursor;
 
       {
 
@@ -819,7 +819,7 @@ namespace graphics
 
       }
 
-      ::point_i32 point;
+      ::int_point point;
 
       if (m_bMouseColorBeam)
       {
@@ -838,9 +838,9 @@ namespace graphics
 
       draw_beam(pgraphics, point);
 
-      ::rectangle_i32 rectangleLum1;
+      ::int_rectangle rectangleLum1;
 
-      rectangleLum1.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1, 0);
+      rectangleLum1.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1, 0);
 
       rectangleLum1.set_size(m_pimageLuminance->get_size());
 
@@ -860,7 +860,7 @@ namespace graphics
 
       }
 
-      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
+      rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
 
       rTarget.set_size(m_rectangleColors.right() - rTarget.left(), m_pimage->height());
 
@@ -870,7 +870,7 @@ namespace graphics
 
       draw_level(pgraphics, rectangleLum1, y);
 
-      if (m_strOk.has_char() && m_pfontOk)
+      if (m_strOk.has_character() && m_pfontOk)
       {
 
          pgraphics->set(m_pfontOk);
@@ -900,7 +900,7 @@ namespace graphics
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   ::point_i32 point = pmouse->m_pointHost;
+   //   ::int_point point = pmouse->m_pointHost;
 
    //   host_to_client()(point);
 
@@ -920,7 +920,7 @@ namespace graphics
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   ::point_i32 point = pmouse->m_pointHost;
+   //   ::int_point point = pmouse->m_pointHost;
 
    //   host_to_client()(point);
 
@@ -956,7 +956,7 @@ namespace graphics
    //   if (m_bLButtonPressed)
    //   {
 
-   //      ::point_i32 point = pmouse->m_pointHost;
+   //      ::int_point point = pmouse->m_pointHost;
 
    //      host_to_client()(point);
 
@@ -969,7 +969,7 @@ namespace graphics
    //}
 
 
-   void color_selector::layout_color_selector(const ::rectangle_i32 & rectangle)
+   void color_selector::layout_color_selector(const ::int_rectangle & rectangle)
    {
 
    //   ::user::impact::on_layout(pgraphics);
@@ -985,7 +985,7 @@ namespace graphics
 
       information() << "rectangle : " << rectangle;
 
-      ::rectangle_i32 rectangleColors;
+      ::int_rectangle rectangleColors;
 
       rectangleColors = rectangle;
 
@@ -1005,7 +1005,7 @@ namespace graphics
 
       __defer_construct(m_pimage);
 
-      auto sizeImage = ::size_i32(m_rectangleColors.width() / 2,  m_rectangleColors.height());
+      auto sizeImage = ::int_size(m_rectangleColors.width() / 2,  m_rectangleColors.height());
 
       if(sizeImage.is_empty())
       {

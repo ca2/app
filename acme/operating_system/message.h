@@ -14,8 +14,8 @@ struct MESSAGE
    ::atom                  m_atom;
    wparam                  wParam;
    lparam                  lParam;
-   ::point_i32               pt;
-   ::u64                   time;
+   ::int_point               pt;
+   huge_natural                   time;
 
 
    MESSAGE() {}

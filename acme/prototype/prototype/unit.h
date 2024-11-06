@@ -13,7 +13,7 @@ protected:
 
       double m_d;
 
-      ::i64 m_i64;
+      huge_integer m_hi;
 
    };
 
@@ -27,7 +27,7 @@ public:
 
    constexpr unit_base() 
    {
-      m_i64 = 0; 
+      m_hi = 0; 
       m_eunit = (ENUM)0; 
       m_bFloating = false; 
    }
@@ -35,7 +35,7 @@ public:
    template < primitive_integral INTEGRAL >
    constexpr unit_base(INTEGRAL i, ENUM eunit)
    {
-      m_i64 = (::i64)i;
+      m_hi = (huge_integer)i;
       m_eunit = eunit; 
       clear_floating();
    }
@@ -57,7 +57,7 @@ public:
    }
 
    constexpr unit_base(const unit_base & unit): 
-      m_i64(unit.m_i64),
+      m_hi(unit.m_hi),
       m_eunit(unit.m_eunit),
       m_bFloating(unit.m_bFloating)
    { }
@@ -68,29 +68,29 @@ public:
    constexpr void set_floating() {  m_bFloating = true; }
    constexpr void clear_floating() { m_bFloating = false; }
 
-   constexpr ::i64 as_i64() const { return is_floating() ? (::i64)m_d : m_i64; }
-   constexpr double as_double() const { return is_floating() ? m_d : (double)m_i64; }
-   constexpr int as_int() const { return (int) this->as_i64(); }
+   constexpr huge_integer as_huge_integer() const { return is_floating() ? (huge_integer)m_d : m_hi; }
+   constexpr double as_double() const { return is_floating() ? m_d : (double)m_hi; }
+   constexpr int as_int() const { return (int) this->as_huge_integer(); }
    constexpr float as_float() const { return (float) this->as_double(); }
    constexpr ENUM eunit() const { return m_eunit; }
 
-   constexpr bool is_null_or_negative() { return is_floating() ? m_d <= 0.0 : m_i64 <= 0; }
-   constexpr bool is_negative() { return is_floating() ? m_d < 0.0 : m_i64 < 0; }
-   constexpr bool is_null_or_positive() { return is_floating() ? m_d >= 0.0 : m_i64 >= 0; }
-   constexpr bool is_positive() { return is_floating() ? m_d > 0.0 : m_i64 > 0; }
+   constexpr bool is_null_or_negative() { return is_floating() ? m_d <= 0.0 : m_hi <= 0; }
+   constexpr bool is_negative() { return is_floating() ? m_d < 0.0 : m_hi < 0; }
+   constexpr bool is_null_or_positive() { return is_floating() ? m_d >= 0.0 : m_hi >= 0; }
+   constexpr bool is_positive() { return is_floating() ? m_d > 0.0 : m_hi > 0; }
 
-//   constexpr operator ::i64() const { return i64(); }
+//   constexpr operator huge_integer() const { return huge_integer(); }
 //   constexpr operator double() const { return double(); }
 //   constexpr operator ENUM() const { return eunit(); }
 
    //template < primitive_integral INTEGRAL >
-   //constexpr unit_base & operator = (INTEGRAL i) { m_i64 = (::i64)i; clear_floating(); return *this; }
+   //constexpr unit_base & operator = (INTEGRAL i) { m_hi = (huge_integer)i; clear_floating(); return *this; }
 
    
    bool operator ==(const unit_base & unit) const
    {
       
-      return m_i64 == unit.m_i64 && m_eunit == unit.m_eunit;
+      return m_hi == unit.m_hi && m_eunit == unit.m_eunit;
       
    }
    
@@ -112,7 +112,7 @@ public:
    constexpr unit_base & operator = (const unit_base & unit) 
    {
       
-      m_i64 = unit.m_i64; 
+      m_hi = unit.m_hi; 
 
       m_eunit = unit.m_eunit; 
 
@@ -201,7 +201,7 @@ constexpr auto operator *(NUMBER n, pixel_t) { return unit(n, e_unit_pixel); }
 
 using unit = unit_base < enum_unit >;
 
-constexpr auto operator ""_px(unsigned long long i)
+constexpr auto operator ""_px(huge_natural i)
 {
 
    return unit(i, e_unit_pixel);
@@ -223,7 +223,7 @@ template < primitive_number NUMBER >
 constexpr auto operator *(NUMBER n, point_t) { return unit(n, e_unit_point); }
 
 
-constexpr auto operator ""_pt(unsigned long long i)
+constexpr auto operator ""_pt(huge_natural i)
 {
 
    return unit(i, e_unit_point);

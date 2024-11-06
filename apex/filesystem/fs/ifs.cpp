@@ -213,7 +213,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").as_string(),::file::path_url));
 
-   //      path.m_iSize = pchild->attribute("size_i32");
+   //      path.m_iSize = pchild->attribute("int_size");
 
    //      path.m_iDir = 0;
 
@@ -236,9 +236,9 @@ bool ifs::enumerate(::file::listing & listing)
    ////if(m_mapdirFileName[strDir].is_null())
    ////   m_mapdirFileName[strDir] = __allocate string_array();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = __allocate i64_array();
+   ////   m_mapdirFileSize[strDir] = __allocate huge_integer_array();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = __allocate i64_array();
+   ////   m_mapdirFolderSize[strDir] = __allocate huge_integer_array();
    ////if(m_mapdirFileDir[strDir].is_null())
    ////   m_mapdirFileDir[strDir] = __allocate bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
@@ -249,8 +249,8 @@ bool ifs::enumerate(::file::listing & listing)
    ////::file::path_array  & straThisDirName     = m_mapdirFolderName[strDir];
    ////::file::path_array  & straThisFile        = m_mapdirFile[strDir];
    ////::file::path_array  & straThisFileName    = m_mapdirFileName[strDir];
-   ////i64_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   ////i64_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   ////huge_integer_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   ////huge_integer_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
    ////bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
 

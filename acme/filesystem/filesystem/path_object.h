@@ -23,8 +23,8 @@ namespace file
       ~path_object() override;
 
 
-      virtual strsize sz_len() const override;
-      virtual void to_sz(char* sz, strsize size) const override;
+      virtual character_count sz_len() const override;
+      virtual void to_sz(char* sz, character_count size) const override;
       
       //using matter::set_flag;
       //using matter::has_flag;
@@ -55,7 +55,7 @@ namespace file
 
       // g_interlockedcountFilePathObject++;
 
-       //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+       //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 
    }
 
@@ -65,7 +65,7 @@ namespace file
 
    //   //g_interlockedcountFilePathObject++;
 
-   //   //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+   //   //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 
    //}
 
@@ -76,7 +76,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 
    }
 
@@ -87,7 +87,7 @@ namespace file
 
       //g_interlockedcountFilePathObject++;
 
-      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 
    }
 
@@ -108,7 +108,7 @@ namespace file
    }*/
 
 
-   inline strsize path_object::sz_len() const
+   inline character_count path_object::sz_len() const
    {
 
       return length() + 1;
@@ -116,7 +116,7 @@ namespace file
    }
 
 
-   inline void path_object::to_sz(char* sz, strsize len) const
+   inline void path_object::to_sz(char* sz, character_count len) const
    {
 
       ansi_ncpy(sz, c_str(), len);

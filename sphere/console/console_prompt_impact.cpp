@@ -225,7 +225,7 @@ namespace console
 
          }
 
-         if(str.has_char())
+         if(str.has_character())
          {
 
             if(m_iNewChar == I32_MINIMUM)
@@ -345,7 +345,7 @@ namespace console
       if(bCaretOn)
       {
 
-         ::rectangle_i32 rectangleCaret;
+         ::int_rectangle rectangleCaret;
 
          rectangleCaret.left() = (int) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
          rectangleCaret.right() = rectangleCaret.left() + m_sizeChar.cx();

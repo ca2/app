@@ -59,7 +59,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, long long ll)
+   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, huge_integer hi)
    {
    }
 
@@ -952,7 +952,7 @@ namespace platform
    }
 
 
-   ::u64  acme_node_layer::translate_processor_affinity(int i)
+   huge_natural  acme_node_layer::translate_processor_affinity(int i)
    {
       return   0;
    }
@@ -1231,7 +1231,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::application_handle(long long l, void* p)
+   void acme_node_layer::application_handle(huge_integer l, void* p)
    {
    }
 
@@ -1869,13 +1869,13 @@ namespace platform
    //      void acme_node_layer::windowing_system_display_error_trap_pop_ignored(int i){}
 
 
-   bool acme_node_layer::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32& rectangle)
+   bool acme_node_layer::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle& rectangle)
    {
       return false;
    }
 
 
-   bool acme_node_layer::_get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32& rectangle)
+   bool acme_node_layer::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle& rectangle)
    {
       return false;
    }

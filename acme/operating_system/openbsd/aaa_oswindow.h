@@ -126,7 +126,7 @@ public:
    Colormap                               m_colormap;
    class ::time                                   m_timeLastMouseMove;
    Window                                 m_parent;
-   ::rectangle_i32                                 m_rectangle;
+   ::int_rectangle                                 m_rectangle;
    string                                 m_strWMClass;
    int                                    m_iaNetWmState[net_wm_state_count];
 
@@ -222,7 +222,7 @@ public:
 
    void exit_iconify();
 
-   void full_screen(const ::rectangle_i32 & rectangle = nullptr);
+   void full_screen(const ::int_rectangle & rectangle = nullptr);
 
    void exit_full_screen();
 
@@ -245,9 +245,9 @@ public:
    bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
    iptr get_window_long_ptr(int nIndex);
    iptr set_window_long_ptr(int nIndex, iptr l);
-   bool client_to_screen(::point_i32 * ppoint);
+   bool client_to_screen(::int_point * ppoint);
 
-   bool screen_to_client(::point_i32 * ppoint);
+   bool screen_to_client(::int_point * ppoint);
 
 
    Atom intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);
@@ -289,7 +289,7 @@ public:
       for(auto point : *this)
       {
 
-         delete point_i32;
+         delete int_point;
 
       }
 

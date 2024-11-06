@@ -19,11 +19,11 @@ namespace windowing
       ~text_editor_interface() override;
 
 
-      virtual void set_input_method_manager_selection(strsize iSelBeg, strsize iSelEnd, strsize iCandidateBeg, strsize iCandidateEnd);
+      virtual void set_input_method_manager_selection(character_count iSelBeg, character_count iSelEnd, character_count iCandidateBeg, character_count iCandidateEnd);
       virtual void synchronize_input_method_manager_with_selection_end();
 
 
-      virtual void set_editor_selection(strsize iStart, strsize iEnd);
+      virtual void set_editor_selection(character_count iStart, character_count iEnd);
       virtual void set_editor_text(const ::string & strText);
       virtual void show_software_keyboard();
       virtual void hide_software_keyboard();

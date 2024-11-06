@@ -170,7 +170,7 @@ unsigned char* wf_glyph_convert(wfContext* wfc, int width, int height, unsigned 
 //	return br;
 //}
 
-void wf_scale_rect(wfContext* wfc, ::rectangle_i32* source)
+void wf_scale_rect(wfContext* wfc, ::int_rectangle* source)
 {
 	int ww, wh, dw, dh;
 
@@ -207,7 +207,7 @@ void wf_scale_rect(wfContext* wfc, ::rectangle_i32* source)
 
 void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 {
-	::rectangle_i32 rectangle_i32;
+	::int_rectangle int_rectangle;
 
 	wfc->update_rect.left() = x + wfc->offset_x;
 	wfc->update_rect.top() = y + wfc->offset_y;
@@ -284,7 +284,7 @@ void wf_resize_window(wfContext* wfc)
 	{		
 		SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_CHILD);
 
-		/* Now resize to get full canvas size_i32 and room for caption and borders */
+		/* Now resize to get full canvas int_size and room for caption and borders */
 		set_window_position(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
@@ -308,7 +308,7 @@ void wf_resize_window(wfContext* wfc)
 		
 //		wf_update_canvas_diff(wfc);
 
-		/* Now resize to get full canvas size_i32 and room for caption and borders */
+		/* Now resize to get full canvas int_size and room for caption and borders */
 		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x(), wfc->client_height + wfc->diff.y(), 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
@@ -535,7 +535,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_opaque_rect(wfContext* wfc, OPAQUE_RECT_ORDER* opaque_rect)
 //{
-//	::rectangle_i32 rectangle_i32;
+//	::int_rectangle int_rectangle;
 //	HBRUSH brush;
 //	unsigned int brush_color;
 //
@@ -556,10 +556,10 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //void wf_gdi_multi_opaque_rect(wfContext* wfc, MULTI_OPAQUE_RECT_ORDER* multi_opaque_rect)
 //{
 //	int i;
-//	::rectangle_i32 rectangle_i32;
+//	::int_rectangle int_rectangle;
 //	HBRUSH brush;
 //	unsigned int brush_color;
-//	DELTA_RECT* rectangle_i32;
+//	DELTA_RECT* int_rectangle;
 //
 //	brush_color = freerdp_color_convert_var_rgb(multi_opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -567,10 +567,10 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	{
 //		rectangle = &multi_opaque_rect->rectangles[i];
 //
-//		rectangle.left() = rectangle_i32->left();
-//		rectangle.top() = rectangle_i32->top();
-//		rectangle.right() = rectangle_i32->left() + rectangle_i32->width;
-//		rectangle.bottom() = rectangle_i32->top() + rectangle_i32->height;
+//		rectangle.left() = int_rectangle->left();
+//		rectangle.top() = int_rectangle->top();
+//		rectangle.right() = int_rectangle->left() + int_rectangle->width;
+//		rectangle.bottom() = int_rectangle->top() + int_rectangle->height;
 //		brush = CreateSolidBrush(brush_color);
 //
 //		FillRect(wfc->drawing->hdc, &rectangle, brush);
@@ -626,13 +626,13 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (polyline->numDeltaEntries > 0)
 //	{
-//		::point_i32  *pts;
-//		::point_i32  temp;
+//		::int_point  *pts;
+//		::int_point  temp;
 //		int    numPoints;
 //		int    i;
 //
 //		numPoints = polyline->numDeltaEntries + 1;
-//		pts = (::point_i32*) malloc(sizeof(::point_i32) * numPoints);
+//		pts = (::int_point*) malloc(sizeof(::int_point) * numPoints);
 //		pts[0].x() = temp.x() = polyline->xStart;
 //		pts[0].y() = temp.y() = polyline->yStart;
 //
@@ -811,7 +811,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
-//	::rectangle_i32 rc_client, rc_wnd;
+//	::int_rectangle rc_client, rc_wnd;
 //	int Δx, Δy;
 //
 //	this->rectangle(wfc->hwnd, &rc_client);

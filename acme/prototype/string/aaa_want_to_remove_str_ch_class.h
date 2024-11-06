@@ -20,7 +20,7 @@ namespace str
       ch_class(const ch_class &);
       ~ch_class();
 
-      static ch_class *createCharClass(const char * ccs, strsize pos, strsize *retPos);
+      static ch_class *createCharClass(const char * ccs, character_count pos, character_count *retPos);
 
       void add_char(const char *);
       void clear_char(const char *);

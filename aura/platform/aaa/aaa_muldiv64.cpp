@@ -43,11 +43,11 @@
 // */
 
 
-// void mul64(u64 v1, u64 v2, u64 & hi, u64 & lo)
+// void mul64(huge_natural v1, huge_natural v2, huge_natural & hi, huge_natural & lo)
 // {
-//   u64 a, ca;
-//    u64 b, d;
-//    u64 x, y;
+//   huge_natural a, ca;
+//    huge_natural b, d;
+//    huge_natural x, y;
 
 //   a = (v1 >> 32) & 0xffffffff;
 //   b = v1 & 0xffffffff;
@@ -64,32 +64,32 @@
 //   hi += a * ca;                  /* AC */
 // }
 
-// void mul64(i64 v1, i64 v2, i64 & hi, u64 & lo)
+// void mul64(huge_integer v1, huge_integer v2, huge_integer & hi, huge_natural & lo)
 // {
 //    if(v1 > 0)
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((u64) v1, (u64) v2, (u64 &) hi, lo);
+//          mul64((huge_natural) v1, (huge_natural) v2, (huge_natural &) hi, lo);
 //       }
 //       else
 //       {
-//          mul64((u64) v1, (u64) -(i64)v2, (u64 &) hi, lo);
+//          mul64((huge_natural) v1, (huge_natural) -(huge_integer)v2, (huge_natural &) hi, lo);
 //          hi = -hi;
-//          lo = (u64)-(i64)lo;
+//          lo = (huge_natural)-(huge_integer)lo;
 //       }
 //    }
 //    else
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((u64) -v1, (u64) v2, (u64 &) hi, lo);
+//          mul64((huge_natural) -v1, (huge_natural) v2, (huge_natural &) hi, lo);
 //          hi = -hi;
-//          lo = (u64)-(i64)lo;
+//          lo = (huge_natural)-(huge_integer)lo;
 //       }
 //       else
 //       {
-//          mul64((u64) -(i64)v1, (u64) -(i64)v2, (u64 &) hi, lo);
+//          mul64((huge_natural) -(huge_integer)v1, (huge_natural) -(huge_integer)v2, (huge_natural &) hi, lo);
 //       }
 //    }
 // }
@@ -101,11 +101,11 @@
 
 //    //64t rhi = hi/div;
 //    //64t rlo = hi % div + lo /div;
-// u64 div128_64(u64 hi, u64 lo, u64 div, u64 & remainder)
+// huge_natural div128_64(huge_natural hi, huge_natural lo, huge_natural div, huge_natural & remainder)
 // {
 //    for(size_t i = 1; i <= 64; ++i)
 //    {
-//       u64 t = i64(hi) >> 63;
+//       huge_natural t = huge_integer(hi) >> 63;
 //       // t is all ones if x(63) = 1
 //       // Shift the hi|lo left one bit
 //       hi = (hi << 1) | (lo >> 63);
@@ -121,28 +121,28 @@
 //    return lo;
 // }
 
-// i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder)
+// huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder)
 // {
 //    if(hi > 0)
 //    {
 //       if(div > 0)
 //       {
-//          return div128_64((u64) hi, lo, (u64) div, remainder);
+//          return div128_64((huge_natural) hi, lo, (huge_natural) div, remainder);
 //       }
 //       else
 //       {
-//          return -(i64)div128_64((u64) hi, lo, (u64) -(i64)div, remainder);
+//          return -(huge_integer)div128_64((huge_natural) hi, lo, (huge_natural) -(huge_integer)div, remainder);
 //       }
 //    }
 //    else
 //    {
 //       if(div > 0)
 //       {
-//          return -(i64)div128_64((u64) -(i64)hi, (u64)-(i64)lo, (u64) div, remainder);
+//          return -(huge_integer)div128_64((huge_natural) -(huge_integer)hi, (huge_natural)-(huge_integer)lo, (huge_natural) div, remainder);
 //       }
 //       else
 //       {
-//          return div128_64((u64) -(i64)hi, (u64)-(i64)lo, (u64) -(i64)div, remainder);
+//          return div128_64((huge_natural) -(huge_integer)hi, (huge_natural)-(huge_integer)lo, (huge_natural) -(huge_integer)div, remainder);
 //       }
 //    }
 // }
@@ -153,16 +153,16 @@
 // typedef struct  {
 //     unsigned int l : 32;
 //     unsigned int h : 32;
-// } ::u64_u32;
+// } ::u64_unsigned_int;
 
 // /**
 //  * determine the msb of a value in O(log log n)
 //  * @author Sean Eron Anderson
 //  */
-// inline unsigned int msb(u64 value)
+// inline unsigned int msb(huge_natural value)
 // {
 //     const int MAX_LOGLOG = 6;
-//     const u64 BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
+//     const huge_natural BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
 //     const unsigned int EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
 //     unsigned int r = 0;
 //     for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
@@ -176,16 +176,16 @@
 
 
 
-// static u64 const g_base = 1ULL<<32;
-// static u64 const g_maxdiv = (g_base-1)*g_base + (g_base-1);
+// static huge_natural const g_base = 1ULL<<32;
+// static huge_natural const g_maxdiv = (g_base-1)*g_base + (g_base-1);
 
-// u64 my_multdiv_64(u64 a, u64 b, u64 c)
+// huge_natural my_multdiv_64(huge_natural a, huge_natural b, huge_natural c)
 // {
 //     // First get the easy thing
 //     if(c == 0)
 //       return 0;
 
-//     u64 res = (a/c) * b + (a%c) * (b/c);
+//     huge_natural res = (a/c) * b + (a%c) * (b/c);
 //     a %= c;
 //     b %= c;
 //     // Are we done?
@@ -196,31 +196,31 @@
 //         return res + (a*b/c);
 //     // Now 0 < a < c, 0 < b < c, c >= 1ULL
 //     // Normalize
-//     u64 norm = g_maxdiv/c;
+//     huge_natural norm = g_maxdiv/c;
 //     c *= norm;
 //     a *= norm;
 //     // split into 2 digits
-//     u64 ah = a / g_base, al = a % g_base;
-//     u64 bh = b / g_base, bl = b % g_base;
-//     u64 ch = c / g_base, cl = c % g_base;
+//     huge_natural ah = a / g_base, al = a % g_base;
+//     huge_natural bh = b / g_base, bl = b % g_base;
+//     huge_natural ch = c / g_base, cl = c % g_base;
 //     // compute the product
-//     u64 p0 = al*bl;
-//     u64 u1 = p0 / g_base + al*bh;
+//     huge_natural p0 = al*bl;
+//     huge_natural u1 = p0 / g_base + al*bh;
 //     p0 %= g_base;
-//     u64 u2 = u1 / g_base + ah*bh;
+//     huge_natural u2 = u1 / g_base + ah*bh;
 //     u1 = (u1 % g_base) + ah * bl;
 //     u2 += u1 / g_base;
 //     u1 %= g_base;
 //     // u2 holds 2 digits, u1 and p0 one
 
 //     // first digit is easy, not null only in case of overflow
-// //    u64 q2 = u2 / c;
+// //    huge_natural q2 = u2 / c;
 //     u2 = u2 % c;
 
 //     // second digit, estimate
-//     u64 q1 = u2 / ch;
+//     huge_natural q1 = u2 / ch;
 //     // and now adjust
-//     u64 rhat = u2 % ch;
+//     huge_natural rhat = u2 % ch;
 //     // the loop can be unrolled, it will be executed at most twice for
 //     // even g_bases -- three times for odd one -- due to the normalisation above
 //     while (q1 >= g_base || (rhat < g_base && q1*cl > rhat*g_base+u1)) {
@@ -233,7 +233,7 @@
 //     u1 = u1 % g_base + (u2 % g_base) * g_base;
 
 //     // now u1 hold 2 digits, p0 one and u2 is to be ignored
-//     u64 q0 = u1 / ch;
+//     huge_natural q0 = u1 / ch;
 //     rhat = u1 % ch;
 //     while (q0 >= g_base || (rhat < g_base && q0*cl > rhat*g_base+p0)) {
 //         q0--;
@@ -246,14 +246,14 @@
 
 
 // //
-// i64 _stdcall muldiv64(i64 number, i64 numerator, i64 denominator)
+// huge_integer _stdcall muldiv64(huge_integer number, huge_integer numerator, huge_integer denominator)
 // {
 //    return my_multdiv_64(number, numerator, denominator);
 
-// //   i64 hi;
-// //   u64 lo;
+// //   huge_integer hi;
+// //   huge_natural lo;
 // //   mul64(number, numerator, hi, lo);
-// //   u64 remainder;
+// //   huge_natural remainder;
 // //   return div128_64(hi, lo, denominator, remainder);
 // }
 
@@ -264,7 +264,7 @@
 //  *     Xscaled = (Xstart * Multiplier) SHR rshift
 //  * Uses 128 bit intermediate result
 //  */
-// i64 _stdcall mulshr64(i64 operant, i64 multiplier, uchar rshift)
+// huge_integer _stdcall mulshr64(huge_integer operant, huge_integer multiplier, uchar rshift)
 // {
 //    return (operant * multiplier) >> rshift;
 // /*   // Declare 128bit storage

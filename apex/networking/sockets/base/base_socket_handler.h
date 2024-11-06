@@ -124,8 +124,8 @@ namespace sockets
       virtual bool socket_get_run() const;
 
       /** Override and return false to deny all incoming connections.
-      \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(base_socket *point_i32) = 0;
+      \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
+      virtual bool OkToAccept(base_socket *int_point) = 0;
 
       ///** Called by socket when a socket changes state. */
       //virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;

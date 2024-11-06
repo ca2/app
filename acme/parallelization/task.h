@@ -118,7 +118,7 @@ public:
 #endif
    bool                                            m_bKeepRunningPostedProcedures : 1;
 
-   ::u64                                           m_uThreadAffinityMask;
+   huge_natural                                           m_uThreadAffinityMask;
 
 #if defined(WINDOWS)
 

@@ -90,14 +90,14 @@
 ////CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
 ////{
 ////
-////   const ::point_i32 pointZero = { 0,0 };
+////   const ::int_point pointZero = { 0,0 };
 ////
 ////   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
 ////
 ////}
 //
 //
-////CLASS_DECL_ACME bool GetPrimaryMonitorRect(::rectangle_i32 * lprect)
+////CLASS_DECL_ACME bool GetPrimaryMonitorRect(::int_rectangle * lprect)
 ////{
 ////
 ////   MONITORINFO mi;

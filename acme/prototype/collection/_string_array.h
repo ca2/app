@@ -26,7 +26,7 @@ inline ::string as_string(const string_array & container, const ::scoped_string&
    for (const auto& item : container)
    {
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += scopedstrSeparator;

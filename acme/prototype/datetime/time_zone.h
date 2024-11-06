@@ -24,7 +24,7 @@ namespace datetime
       bool is_valid(const class ::time & timeTimeOut) const
       {
 
-         return m_strZone.has_char() && m_dZone > -25.0 && m_dZone < 25.0 && m_time.elapsed() < timeTimeOut;
+         return m_strZone.has_character() && m_dZone > -25.0 && m_dZone < 25.0 && m_time.elapsed() < timeTimeOut;
 
       }
 

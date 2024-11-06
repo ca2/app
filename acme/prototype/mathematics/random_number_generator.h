@@ -34,14 +34,14 @@ namespace mathematics
 
 
       void seed(int iTwistLen, unsigned int seed);
-      unsigned int get_u32();
-      unsigned char get_u8();
+      unsigned int get_unsigned_int();
+      unsigned char get_unsigned_char();
 
    private:
       unsigned int _get();
       int m_value;
       unsigned_int_array m_uinta;
-      ::i64 m_iAccess = 0;
+      huge_integer m_iAccess = 0;
    };
 
    // http://www.alhem.net/

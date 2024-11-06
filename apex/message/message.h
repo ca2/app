@@ -46,7 +46,7 @@ namespace message
       unsigned int                  m_uiMessageFlags;
       ::e_status                     m_estatus;
       ::action_context              m_actioncontext;
-      ::point_i32                   m_pointMessage;
+      ::int_point                   m_pointMessage;
       bool m_bProbing = false;
       bool m_bCommand = false;
 
@@ -71,7 +71,7 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam, const ::point_i32 & point);
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam, const ::int_point & point);
       //virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam);
 
 

@@ -265,7 +265,7 @@ namespace user
 
             string strPoData = file()->as_string(pathApplication);
 
-            if (strPoData.has_char())
+            if (strPoData.has_character())
             {
 
                bOk = true;

@@ -303,7 +303,7 @@ namespace sqlite
       const ::string & user,
       const ::string & pass,
       const ::string & sckt,
-      u64 uConnectionFlags)
+      huge_natural uConnectionFlags)
    {
 
       m_strHost = host;
@@ -767,7 +767,7 @@ namespace sqlite
 
             }
 
-            strsize iLength = strKey.length();
+            character_count iLength = strKey.length();
 
             int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, strKey, (int) iLength,
                                         SQLITE_TRANSIENT);
@@ -894,7 +894,7 @@ namespace sqlite
 
       const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
 
-      strsize iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
+      character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 
       if (!getmemory.get(psz, iLen))
       {

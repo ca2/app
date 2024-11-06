@@ -34,7 +34,7 @@ bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
    return;
-//   ::rectangle_i32 rectangleX;
+//   ::int_rectangle rectangleX;
 //
 //   this->rectangle(rectangleX);
 //

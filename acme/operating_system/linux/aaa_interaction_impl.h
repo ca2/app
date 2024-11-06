@@ -29,7 +29,7 @@ namespace linux
       ::rect64                      m_rectangleLastPos;
       ::duration m_durationLastPos;
 
-      ::point_i32                       m_pointLastMove;
+      ::int_point                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
@@ -112,7 +112,7 @@ namespace linux
 //      const ::scoped_string & scopedstrWindowName,
 
 //      unsigned int dwStyle,
-//      const ::rectangle_f64 & rectangle,
+//      const ::double_rectangle & rectangle,
 //      ::user::interaction * pParentWnd,
 //      atom atom,
 //      ::create * pContext = nullptr) override;
@@ -176,7 +176,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::point_i32 & point) const;
+//      bool DragDetect(const ::int_point & point) const;
 
 
 
@@ -185,10 +185,10 @@ namespace linux
       // oswindow Text Functions
       void set_window_text(const ::scoped_string & scopedstrString) override;
 
-      //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
+      //character_count GetWindowText(char * pszStringBuf, character_count nMaxCount);
 
       void get_window_text(string & str) override;
-      //strsize GetWindowTextLength();
+      //character_count GetWindowTextLength();
       void SetFont(::write_text::font* pFont, bool bRedraw = true);
       ::write_text::font* GetFont();
 
@@ -199,7 +199,7 @@ namespace linux
       //virtual bool layout().is_full_screen();
       //void MoveWindow(int x, int y, int nWidth, int nHeight,
         //              bool bRepaint = true);
-      //void MoveWindow(const ::rectangle_f64 & rectangle, bool bRepaint = true);
+      //void MoveWindow(const ::double_rectangle & rectangle, bool bRepaint = true);
 
 //      int SetWindowRgn(HRGN hRgn, bool bRedraw);
 //      int GetWindowRgn(HRGN hRgn);
@@ -224,7 +224,7 @@ namespace linux
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::point_i32 client_screen_top_left() override;
+      //virtual ::int_point client_screen_top_left() override;
 
 //      virtual bool client_to_screen(RECT32 * prect);
 
@@ -267,10 +267,10 @@ namespace linux
 //
 //      virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 //      virtual void Invalidate(bool bErase = true);
-//      virtual void InvalidateRect(const ::rectangle_f64 & rectangle, bool bErase = true);
+//      virtual void InvalidateRect(const ::double_rectangle & rectangle, bool bErase = true);
 //
 //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-//      virtual void ValidateRect(const ::rectangle_f64 & rectangle);
+//      virtual void ValidateRect(const ::double_rectangle & rectangle);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
@@ -294,7 +294,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, unsigned int flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rectangle_f64& rectangleUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::double_rectangle& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(int nSBFlags, unsigned int nArrowFlags = ESB_ENABLE_BOTH);
@@ -378,7 +378,7 @@ namespace linux
 
       void show_task(bool bShow) override;
 
-      virtual void non_top_most_upper_window_rects(::rectangle_int_array& recta) override;
+      virtual void non_top_most_upper_window_rects(::int_rectangle_array& recta) override;
 
    };
 

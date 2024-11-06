@@ -25,17 +25,17 @@ namespace earth
 
 
       constexpr time_span() noexcept;
-      constexpr time_span(i64 lDays,int nHours,int nMins,int nSecs) noexcept;
+      constexpr time_span(huge_integer lDays,int nHours,int nMins,int nSecs) noexcept;
       constexpr time_span(const posix_time & posixtime) noexcept : posix_time(posixtime) {}
       constexpr time_span(const class ::time & time) noexcept : posix_time(time) {}
 
 
-      constexpr i64 days() const noexcept;
-      constexpr i64 hours() const noexcept;
+      constexpr huge_integer days() const noexcept;
+      constexpr huge_integer hours() const noexcept;
       constexpr int hour() const noexcept;
-      constexpr i64 minutes() const noexcept;
+      constexpr huge_integer minutes() const noexcept;
       constexpr int minute() const noexcept;
-      constexpr i64 seconds() const noexcept;
+      constexpr huge_integer seconds() const noexcept;
       constexpr int second() const noexcept;
 
       constexpr posix_time GetTimeSpan() const noexcept;
@@ -111,15 +111,15 @@ namespace earth
    }
 
 
-   constexpr time_span::time_span(i64 lDays, int nHours, int nMins, int nSecs) noexcept
+   constexpr time_span::time_span(huge_integer lDays, int nHours, int nMins, int nSecs) noexcept
    {
 
-      m_iSecond = nSecs + 60 * (nMins + 60 * (nHours + i64(24) * lDays));
+      m_iSecond = nSecs + 60 * (nMins + 60 * (nHours + huge_integer(24) * lDays));
 
    }
 
 
-   constexpr i64 time_span::days() const noexcept
+   constexpr huge_integer time_span::days() const noexcept
    {
 
       return m_iSecond / (24 * 3600);
@@ -127,7 +127,7 @@ namespace earth
    }
 
 
-   constexpr  i64 time_span::hours() const noexcept
+   constexpr  huge_integer time_span::hours() const noexcept
    {
 
       return m_iSecond / 3600;
@@ -143,7 +143,7 @@ namespace earth
    }
 
 
-   constexpr  i64 time_span::minutes() const noexcept
+   constexpr  huge_integer time_span::minutes() const noexcept
    {
 
       return m_iSecond / 60;
@@ -159,7 +159,7 @@ namespace earth
    }
 
 
-   constexpr  i64 time_span::seconds() const noexcept
+   constexpr  huge_integer time_span::seconds() const noexcept
    {
       
       return m_iSecond;

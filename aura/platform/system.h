@@ -117,7 +117,7 @@ namespace aura
       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
@@ -433,7 +433,7 @@ namespace aura
   /*    static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::string & psz);
       static inline ::atom atom(const ::string & str);
-      static inline ::atom atom(i64 i);
+      static inline ::atom atom(huge_integer i);
       static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);*/
@@ -511,7 +511,7 @@ namespace aura
 
       //#ifndef UNIVERSAL_WINDOWS
 
-      //virtual void get_time(timeval * point_i32) override;
+      //virtual void get_time(timeval * int_point) override;
 
       //#endif
 
@@ -532,8 +532,8 @@ namespace aura
       //virtual void defer_check_openweather_city_list();
 
       //virtual openweather_city * openweather_find_city(string strQuery);
-      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
-      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, huge_integer & iId, double & dLat, double & dLon);
+      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, huge_integer & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef ANDROID
 ////#pragma message("at macos??")
@@ -552,7 +552,7 @@ namespace aura
 
       //virtual bool initialize_native_window1();
 
-      //virtual void * initialize_native_window2(const ::rectangle_i32 & rectangle);
+      //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
 
 
       //virtual void on_os_text(e_os_text etext, string strText) override;
@@ -569,7 +569,7 @@ namespace aura
       //virtual bool set_standalone_setting(string str, string strSetting) override;
 
 
-      //virtual void on_event(::u64 u, ::particle * pparticle) override;
+      //virtual void on_event(huge_natural u, ::particle * pparticle) override;
 
 
       virtual void on_initial_frame_position(::user::frame_interaction * pframe) override;
@@ -684,7 +684,7 @@ namespace aura
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      virtual bool window_rectangle(::rectangle_i32* prectangle);
+//      virtual bool window_rectangle(::int_rectangle* prectangle);
 //
 //
 //#endif
@@ -706,7 +706,7 @@ namespace aura
 
 //      virtual void add_impact_library(::acme::library* plibrary);
 
-      //virtual void get_cursor_position(::point_i32 * ppoint);
+      //virtual void get_cursor_position(::int_point * ppoint);
 
 
 
@@ -765,18 +765,18 @@ namespace aura
 
 
       //virtual ::install::canvas * install_create_canvas() override;
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
       //virtual int install_canvas_increment_mode() override;
 
 
 
       //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
       //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
+      //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
 
       //virtual ::collection::count get_monitor_count() override;
 
-      //bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32* prectangle) override;
+      //bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle) override;
 
 
       //virtual ::windowing::window * impl_from_handle(void * pdata) override;

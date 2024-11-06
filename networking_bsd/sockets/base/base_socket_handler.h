@@ -124,8 +124,8 @@ namespace sockets_bsd
       virtual bool socket_get_run() const override;
 
       /** Override and return false to deny all incoming connections.
-      \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(::sockets::base_socket *point_i32) override = 0;
+      \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
+      virtual bool OkToAccept(::sockets::base_socket *int_point) override = 0;
 
       /** Called by socket when a socket changes state. */
       virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;

@@ -2,16 +2,16 @@
 #pragma once
 
 
-//typedef u64 file_time_t;
+//typedef huge_natural file_time_t;
 
 
-using process_identifier = ::i64;
+using process_identifier = huge_integer;
 
 
 using nullptr_t = ::std::nullptr_t;
 
 
-constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
+constexpr huge_natural operator "" _uintmax(huge_natural u) { return u << 32LL; }
 
 
 #include "acme/parallelization/_types.h"

@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      ::size_i32     m_sizeMinimum;
+      ::int_size     m_sizeMinimum;
       bool           m_bHideOnLostFocus;
       class ::time   m_timeLostFocus;
 
@@ -29,7 +29,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-      virtual void show_popup(const ::point_i32 & point);
+      virtual void show_popup(const ::int_point & point);
       virtual void hide_popup();
 
 

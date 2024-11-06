@@ -183,7 +183,7 @@ public:
    //bool operator != (const ::quantum* pparticle) const;
 
 
-   inline operator bool() const { return ::atom::has_char(); }
+   inline operator bool() const { return ::atom::has_character(); }
 
    //inline operator const char * () const { return ::atom::operator const char *(); }
 

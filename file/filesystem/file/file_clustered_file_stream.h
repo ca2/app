@@ -10,22 +10,22 @@ namespace file
    class clustered_istream:
       public istream
    {
-      u64 _virtPos;
-      u64 _physPos;
-      u64 _curRem;
+      huge_natural _virtPos;
+      huge_natural _physPos;
+      huge_natural _curRem;
    public:
       istream * Stream;
-      u64 StartOffset;
-      u64 Size;
+      huge_natural StartOffset;
+      huge_natural Size;
       int BlockSizeLog;
       u64_array Vector;
 
-      u64 SeekToPhys()
+      huge_natural SeekToPhys()
       {
          return Stream->seek((filesize) _physPos, seek_begin);
       }
 
-      u64 InitAndSeek()
+      huge_natural InitAndSeek()
       {
          _curRem = 0;
          _virtPos = 0;

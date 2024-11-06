@@ -65,7 +65,7 @@ namespace application_build_helper
       ////
       ////   }
       ////
-      ////   if (m_strProjectName.has_char())
+      ////   if (m_strProjectName.has_character())
       ////   {
       ////
       ////      if (m_strProjectName.case_insensitive_begins("shared_") || m_strProjectName.case_insensitive_begins("static_"))
@@ -312,7 +312,7 @@ namespace application_build_helper
       //
       //   }
       //
-      //   if (m_strProjectName.has_char())
+      //   if (m_strProjectName.has_character())
       //   {
       //
       //      if (m_strProjectName.case_insensitive_begins("shared_") || m_strProjectName.case_insensitive_begins("static_"))

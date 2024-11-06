@@ -40,7 +40,7 @@ namespace image
 
       image_header itemFind;
 
-      u64 uAreaMax = 0;
+      huge_natural uAreaMax = 0;
 
       auto iterator = this->begin();
 
@@ -76,7 +76,7 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image::operator[](const ::size_i32 & size)
+   ::image::image_pointer & size_image::operator[](const ::int_size & size)
    {
 
       bool bExists;
@@ -86,10 +86,10 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image::get(const ::size_i32 & size, bool & bExists)
+   ::image::image_pointer & size_image::get(const ::int_size & size, bool & bExists)
    {
 
-      auto & pimage = ::map < ::size_i32, ::image::image_pointer >::operator [](size);
+      auto & pimage = ::map < ::int_size, ::image::image_pointer >::operator [](size);
 
       if (pimage->is_null())
       {

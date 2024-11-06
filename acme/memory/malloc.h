@@ -35,7 +35,7 @@ namespace acme
 
 
       POINTER     m_p;
-      i64     m_iSize;
+      huge_integer     m_iSize;
 
       malloc(POINTER p = nullptr)
       {

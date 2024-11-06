@@ -12,7 +12,7 @@ CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2)
 
    // heuristic/simple/easy implementation
 
-   return (::e_status)(::enum_status)minimum((::i64)e1, (::i64)e2);
+   return (::e_status)(::enum_status)minimum((huge_integer)e1, (huge_integer)e2);
 
 }
 
@@ -41,7 +41,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
    else if(estatus.succeeded())
    {
 
-      str += "\"succeeded status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";
+      str += "\"succeeded status=" + ::hex::lower_case_from(estatus.as_huge_integer()) + "...\"";
 
    }
    else if(estatus == error_not_implemented)
@@ -95,7 +95,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
    else if(estatus.failed())
    {
 
-      str += "\"failed status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";
+      str += "\"failed status=" + ::hex::lower_case_from(estatus.as_huge_integer()) + "...\"";
 
    }
 

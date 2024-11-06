@@ -145,7 +145,7 @@
 //
 //   wstrModuleFolder.release_buffer();
 //
-//   if (wstrModuleFolder.has_char())
+//   if (wstrModuleFolder.has_character())
 //   {
 //
 //      wstrModuleFolder.trim_right(L"\\/");
@@ -160,9 +160,9 @@
 //
 //   {
 //
-//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //      //
-//      //         if(str.has_char())
+//      //         if(str.has_character())
 //      //         {
 //      //            str = ::file::path(str).folder();
 //      //            goto found;
@@ -170,9 +170,9 @@
 //      //         }
 //      //
 //      //
-//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //      //
-//      //         if(str.has_char())
+//      //         if(str.has_character())
 //      //         {
 //      //            str = ::file::path(str).folder();
 //      //            goto found;
@@ -182,7 +182,7 @@
 //      str = get_exe_path();
 //
 //
-//      if (str.has_char())
+//      if (str.has_character())
 //      {
 //         str = ::file::path(str).folder();
 //         goto found;

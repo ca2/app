@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_flag : u64
+enum enum_flag : huge_natural
 {
 
 

@@ -306,7 +306,7 @@ namespace nano2d
 
             m_pgraphics->intersect_clip(pstate->m_ppath);
             
-            ::rectangle_f64 rect;
+            ::double_rectangle rect;
             
             m_pgraphics->get_clip_box(rect);
 
@@ -360,8 +360,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
-         ::point_f64(sx, sy),
-         ::point_f64(ex, ey),
+         ::double_point(sx, sy),
+         ::double_point(ex, ey),
          icol,
          ocol);
    
@@ -384,8 +384,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
-         ::point_f64(x, y),
-         ::size_f64(w, h),
+         ::double_point(x, y),
+         ::double_size(w, h),
          r,
          icol,
          ocol);
@@ -408,8 +408,8 @@ namespace nano2d
       m_pgraphics->__construct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
-         ::point_f64(cx - inr, cy - outr),
-         ::size_f64(inr * 2.0f, outr * 2.0f),
+         ::double_point(cx - inr, cy - outr),
+         ::double_size(inr * 2.0f, outr * 2.0f),
          icol,
          ocol);
 
@@ -445,7 +445,7 @@ namespace nano2d
 
       auto& paintimage = _create_new_paint_image();
 
-      ::rectangle_f64 rectangleTarget(::point_f64(cx, cy), ::size_f64(w, h));
+      ::double_rectangle rectangleTarget(::double_point(cx, cy), ::double_size(w, h));
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -624,7 +624,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_double_dimension(x, y, w, h);
+      auto r = double_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->reset_clip();
 
@@ -636,7 +636,7 @@ pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
    void draw2d_context::intersect_scissor(float x, float y, float w, float h)
    {
 
-      auto r = rectangle_double_dimension(x, y, w, h);
+      auto r = double_rectangle_dimension(x, y, w, h);
 
       m_pgraphics->intersect_clip(r);
 
@@ -725,7 +725,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   ::rectangle_f32 draw2d_context::text(float x, float y, const ::scoped_string& scopedstr)
+   ::float_rectangle draw2d_context::text(float x, float y, const ::scoped_string& scopedstr)
    {
       
       //::string strText(string, end ? end - string : string_safe_length(string));
@@ -768,7 +768,7 @@ pstate->m_ppen->m_color = color;
 
       }
 
-      ::rectangle_f32 r;
+      ::float_rectangle r;
 
       r.left() = (float) ((double)x + offsetx);
       r.top() = (float) ((double)y + offsety);
@@ -856,7 +856,7 @@ pstate->m_ppen->m_color = color;
    }
 
 
-   float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, ::rectangle_f32 * bounds)
+   float draw2d_context::text_bounds(float x, float y, const ::scoped_string & scopedstr, ::float_rectangle * bounds)
    {
 
       //::string strText(string, end ? end - string : string_safe_length(scopedstr));
@@ -949,13 +949,13 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->set_current_point(::point_f64(x, y));
+         pstate->m_ppath->set_current_point(::double_point(x, y));
 
       }
       else
       {
 
-         m_pgraphics->set_current_point(::point_f64(x, y));
+         m_pgraphics->set_current_point(::double_point(x, y));
 
       }
 
@@ -971,13 +971,13 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->add_line(::point_f64(x, y));
+         pstate->m_ppath->add_line(::double_point(x, y));
 
       }
       else
       {
 
-         m_pgraphics->line_to(::point_f64(x, y));
+         m_pgraphics->line_to(::double_point(x, y));
 
       }
 
@@ -993,13 +993,13 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       if (pstate->m_ppath)
       {
 
-         pstate->m_ppath->add_rectangle(rectangle_double_dimension(x, y, w, h));
+         pstate->m_ppath->add_rectangle(double_rectangle_dimension(x, y, w, h));
 
       }
       else
       {
 
-         m_pgraphics->rectangle(rectangle_double_dimension(x, y, w, h));
+         m_pgraphics->rectangle(double_rectangle_dimension(x, y, w, h));
 
       }
 
@@ -1009,7 +1009,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    void draw2d_context::ellipse(float cx, float cy, float rx, float ry)
    {
       
-      ::ellipse_f64 ellipse;
+      ::double_ellipse ellipse;
       
       ellipse.left() = cx - rx;
       ellipse.top() = cy - ry;
@@ -1036,10 +1036,10 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir)
+   void draw2d_context::arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir)
    {
       
-      ::rectangle_f64 rectangle(cx - r, cy - r, cx + r, cy + r);
+      ::double_rectangle rectangle(cx - r, cy - r, cx + r, cy + r);
 
       ::pointer < draw2d_state > pstate = m_pstate;
 
@@ -1141,7 +1141,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    void draw2d_context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
    {
 
-      ::rectangle_f64 rectangleTarget(x, y, x + w, y + h);
+      ::double_rectangle rectangleTarget(x, y, x + w, y + h);
 
       ::image::image_source imagesource(pimage);
 
@@ -1157,7 +1157,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
+   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, character_count iStart, character_count iEnd)
    {
 
       __set_current_font();

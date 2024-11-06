@@ -45,7 +45,7 @@ namespace graphics
 
       }*/
 
-      if (pwindow->m_strBitmapSource.has_char())
+      if (pwindow->m_strBitmapSource.has_character())
       {
 
 
@@ -202,7 +202,7 @@ namespace graphics
       try
       {
 
-         i64 * p = (i64 *)pdata;
+         huge_integer * p = (huge_integer *)pdata;
 
          int iScan = (int)(ppixmap->width() * sizeof(::color32_t));
 

@@ -25,19 +25,19 @@ unsigned int c_inet_to_ui(const char * src)
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (unsigned int) ansi_to_i64(&src[2], nullptr, 16);
+      return (unsigned int) ansi_to_huge_integer(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (unsigned int) ansi_to_i64(&src[1], nullptr, 16);
+      return (unsigned int) ansi_to_huge_integer(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (unsigned int) ansi_to_i64(src, nullptr, 10);
+      return (unsigned int) ansi_to_huge_integer(src, nullptr, 10);
 
    }
 
@@ -375,22 +375,22 @@ struct c_in_addr
 //   if(stra.get_count() != 4)
 //      throw parsing_exception("to in_addr (stra.get_count() != 4)");
 //
-//   int i1 = ansi_to_i32(stra[0]);
+//   int i1 = ansi_to_int(stra[0]);
 //
 //   if(i1 < 0 || i1 > 255)
 //      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (I)");
 //
-//   int i2 = ansi_to_i32(stra[1]);
+//   int i2 = ansi_to_int(stra[1]);
 //
 //   if(i2 < 0 || i2 > 255)
 //      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (II)");
 //
-//   int i3 = ansi_to_i32(stra[2]);
+//   int i3 = ansi_to_int(stra[2]);
 //
 //   if(i3 < 0 || i3 > 255)
 //      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (III)");
 //
-//   int i4 = ansi_to_i32(stra[3]);
+//   int i4 = ansi_to_int(stra[3]);
 //
 //   if(i4 < 0 || i4 > 255)
 //      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (IV)");
@@ -418,19 +418,19 @@ struct c_in_addr
 //
 //   char * psz = str.get_buffer(20);
 //
-//   ansi_concatenate_i64(psz, b1);
+//   ansi_concatenate_huge_integer(psz, b1);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_i64(psz, b2);
+//   ansi_concatenate_huge_integer(psz, b2);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_i64(psz, b3);
+//   ansi_concatenate_huge_integer(psz, b3);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_i64(psz, b4);
+//   ansi_concatenate_huge_integer(psz, b4);
 //
 //   str.release_buffer();
 //

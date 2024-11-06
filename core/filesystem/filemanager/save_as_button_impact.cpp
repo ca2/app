@@ -69,7 +69,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      if (strTitle.folder().has_char() && filemanager_data()->fs_data()->is_dir(strTitle.folder()))
+      if (strTitle.folder().has_character() && filemanager_data()->fs_data()->is_dir(strTitle.folder()))
       {
 
          strPath = strTitle;
@@ -81,7 +81,7 @@ namespace filemanager
          strPath = filemanager_item()->user_path() / strTitle;
 
       }
-      else if (strTitle.has_char())
+      else if (strTitle.has_character())
       {
 
          strPath = filemanager_item()->user_path() / strTitle;

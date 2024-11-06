@@ -2,7 +2,7 @@
 // Created by camilo on 23/12/2022 <3ThomasBorregaardSorensen!!
 //
 
-inline ::string ellipsis(const ::ansi_character * psz, strsize len)
+inline ::string ellipsis(const ::ansi_character * psz, character_count len)
 {
 
    auto lenTotal = string_safe_length(psz, len);
@@ -23,8 +23,8 @@ inline ::string ellipsis(const ::ansi_character * psz, strsize len)
 }
 
 
-//inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
-inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix)
+//inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix)
 {
 
    char* endptr = nullptr;
@@ -52,8 +52,8 @@ inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin
 }
 
 
-inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix)
-//inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix)
+//inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;

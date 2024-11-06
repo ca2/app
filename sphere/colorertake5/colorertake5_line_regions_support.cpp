@@ -171,7 +171,7 @@ namespace colorertake5
       flowBackground = lfirst;
    }
 
-   void LineRegionsSupport::addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region* region)
+   void LineRegionsSupport::addRegion(index lno, const ::string &line, character_count sx, character_count ex, class region* region)
    {
 
       __UNREFERENCED_PARAMETER(line);
@@ -201,7 +201,7 @@ namespace colorertake5
       addLineRegion(lno, lnew);
    }
 
-   void LineRegionsSupport::enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region* region, class scheme *scheme)
+   void LineRegionsSupport::enterScheme(index lno, const ::string &line, character_count sx, character_count ex, class region* region, class scheme *scheme)
    {
       __UNREFERENCED_PARAMETER(line);
       __UNREFERENCED_PARAMETER(ex);
@@ -239,7 +239,7 @@ namespace colorertake5
       };
    }
 
-   void LineRegionsSupport::leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region* region, class scheme * scheme)
+   void LineRegionsSupport::leaveScheme(index lno, const ::string &line, character_count sx, character_count ex, class region* region, class scheme * scheme)
    {
       __UNREFERENCED_PARAMETER(line);
       __UNREFERENCED_PARAMETER(sx);

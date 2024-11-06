@@ -90,7 +90,7 @@ namespace user
       for (auto & strPath : stra)
       {
 
-         if (strPath.has_char() && 
+         if (strPath.has_character() && 
             (
                directory_system()->is(strPath)
             || file_system()->exists(strPath)
@@ -448,7 +448,7 @@ namespace user
 
                      pimage->g()->set(pfont);
 
-                     size_f64 s = pimage->g()->get_text_extent(str);
+                     double_size s = pimage->g()->get_text_extent(str);
 
                      if (s.area() > 0.)
                      {
@@ -469,7 +469,7 @@ namespace user
 
                               pimage->g()->set_text_color(argb(255, 0, 0, 0));
 
-                              pimage->g()->draw_text(str, ::rectangle_i32(pimage->get_size()), e_align_bottom_left);
+                              pimage->g()->draw_text(str, ::int_rectangle(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

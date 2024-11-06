@@ -65,7 +65,7 @@ namespace console
       inline int GetTextColor() { return m_iTextColor; }
       virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1) = 0;
       virtual void write(const ::string & str) = 0;
-      virtual ::rectangle_i32 get_position_rectangle(int y, int x);
+      virtual ::int_rectangle get_position_rectangle(int y, int x);
 
    };
 

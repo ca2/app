@@ -88,7 +88,7 @@ namespace windowing
    }
 
 
-   ::point_i32 window_base::windowing_popup_origin()
+   ::int_point window_base::windowing_popup_origin()
    {
 
       return {};
@@ -96,7 +96,7 @@ namespace windowing
    }
 
 
-   ::size_i32 window_base::windowing_popup_size()
+   ::int_size window_base::windowing_popup_size()
    {
 
       return {};
@@ -295,7 +295,7 @@ void window_base::on_create_window()
 
 
 
-::point_i32 window_base::try_absolute_mouse_position(const ::point_i32 & point)
+::int_point window_base::try_absolute_mouse_position(const ::int_point & point)
 {
 
    //return window_interface::try_absolute_mouse_position(point);
@@ -336,7 +336,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
-::size_i32 window_base::get_main_screen_size()
+::int_size window_base::get_main_screen_size()
 {
 
    auto pdisplay = get_display();
@@ -537,7 +537,7 @@ void window_base::on_char(int iChar)
 //
 
 
-   void window_base::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
+   void window_base::set_interface_client_size(const ::int_size & sizeWindow) // set_size
    {
 
       m_sizeWindow = sizeWindow;
@@ -545,7 +545,7 @@ void window_base::on_char(int iChar)
    }
 
 
-   void window_base::set_rectangle(const rectangle_i32 &rectangle)
+   void window_base::set_rectangle(const int_rectangle &rectangle)
    {
 
       auto r = rectangle;
@@ -560,7 +560,7 @@ void window_base::on_char(int iChar)
    }
 
 
-   void window_base::set_position(const point_i32 &point)
+   void window_base::set_position(const int_point &point)
    {
 
       auto p = point;
@@ -575,7 +575,7 @@ void window_base::on_char(int iChar)
    }
 
 
-   void window_base::set_size(const size_i32 &size)
+   void window_base::set_size(const int_size &size)
    {
 
       auto s = size;
@@ -591,7 +591,7 @@ void window_base::on_char(int iChar)
    }
 
 
-   void window_base::set_rectangle_unlocked(const rectangle_i32 & rectangle)
+   void window_base::set_rectangle_unlocked(const int_rectangle & rectangle)
    {
 
       set_position_unlocked(rectangle.top_left());
@@ -601,24 +601,24 @@ void window_base::on_char(int iChar)
    }
 
 
-   void window_base::set_position_unlocked(const point_i32 &point)
+   void window_base::set_position_unlocked(const int_point &point)
    {
 
 
    }
 
 
-   void window_base::set_size_unlocked(const size_i32 &size)
+   void window_base::set_size_unlocked(const int_size &size)
    {
 
 
    }
 
 
-   ::rectangle_i32 window_base::get_window_rectangle()
+   ::int_rectangle window_base::get_window_rectangle()
    {
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       main_send([this, & rectangle]()
       {
@@ -632,7 +632,7 @@ void window_base::on_char(int iChar)
    }
 
 
-   ::rectangle_i32 window_base::get_window_rectangle_unlocked()
+   ::int_rectangle window_base::get_window_rectangle_unlocked()
    {
 
       return {};

@@ -209,7 +209,7 @@ namespace windowing
    }
 
 
-//   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
+//   void windowing::set_cursor_position(const ::int_point & pointCursor)
 //   {
 //
 //      m_pointCursor = pointCursor;
@@ -251,7 +251,7 @@ namespace windowing
    }
 
 
-   void windowing::defer_initialize_host_window(const ::rectangle_i32* lpcrect)
+   void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    {
 
 
@@ -370,7 +370,7 @@ namespace windowing
    }
 
 
-   ::point_i32 windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point)
+   ::int_point windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::int_point& point)
    {
 
       auto p = point;
@@ -600,10 +600,10 @@ namespace windowing
    }
 
 
-   size_i32 windowing::get_window_minimum_size()
+   int_size windowing::get_window_minimum_size()
    {
 
-      return size_i32(300, 300);
+      return int_size(300, 300);
 
    }
 
@@ -679,7 +679,7 @@ namespace windowing
    }
 
 
-   int_bool windowing::point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin)
+   int_bool windowing::point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin)
    {
 
       return false;

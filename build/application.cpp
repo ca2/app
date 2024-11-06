@@ -101,7 +101,7 @@ namespace app_build
 
       string str = payload("hellomultiverse");
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          m_strHelloMultiverse = str;
@@ -219,7 +219,7 @@ namespace app_build
 
       string strExperience = payload("experience");
 
-      if (strExperience.has_char())
+      if (strExperience.has_character())
       {
 
          return strExperience;
@@ -231,14 +231,14 @@ namespace app_build
    }
 
 
-   //i64 application::increment_reference_count()
+   //huge_integer application::increment_reference_count()
    //{
 
    //   return ::object::increment_reference_count();
 
    //}
 
-   //i64 application::decrement_reference_count()
+   //huge_integer application::decrement_reference_count()
    //{
 
    //   return ::object::decrement_reference_count();

@@ -35,7 +35,7 @@ namespace image
    }
 
 
-   ::image::image_drawing_options::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::image::enum_placement & eplacement, const ::point_f64 & pointAlign, enum_image_selection eimageselection) :
+   ::image::image_drawing_options::image_drawing_options(const ::double_rectangle & rectangleTarget, const ::image::enum_placement & eplacement, const ::double_point & pointAlign, enum_image_selection eimageselection) :
       m_rectangleTarget(rectangleTarget),
       m_eplacement(eplacement),
       m_pointAlign(pointAlign),
@@ -79,7 +79,7 @@ namespace image
    }
 
 
-   ::rectangle_f64 image_drawing::source_rectangle() const
+   ::double_rectangle image_drawing::source_rectangle() const
    {
 
       if (m_esubimage == e_sub_image_rate)
@@ -89,7 +89,7 @@ namespace image
 
          auto size = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
 
-         return ::rectangle_f64(
+         return ::double_rectangle(
             m_rectangleSubImage.left() * size.cx(),
             m_rectangleSubImage.top() * size.cy(),
             m_rectangleSubImage.right() * size.cx(),
@@ -109,14 +109,14 @@ namespace image
 
          auto sizeTarget(m_rectangleTarget.size());
 
-         return ::rectangle_f64(m_pimagesource->image_source_size(sizeTarget, m_eimageselection));
+         return ::double_rectangle(m_pimagesource->image_source_size(sizeTarget, m_eimageselection));
 
       }
 
    }
 
 
-   ::rectangle_f64 image_drawing::target_rectangle() const
+   ::double_rectangle image_drawing::target_rectangle() const
    {
 
       if (m_eplacement == e_placement_stretch)

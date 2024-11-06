@@ -284,16 +284,16 @@
 //
 //   virtual bool create(const ::string & pClassName, const ::string & lpWindowName,
 //
-//      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+//      unsigned int dwStyle, const ::int_rectangle & rectangle,
 //      ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
 //   virtual bool create_window_ex(unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName,
 //
-//      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+//      unsigned int dwStyle, const ::int_rectangle & rectangle,
 //      ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
 //
 //
 //   bool OnNcActivate(bool bActive);
-//   LRESULT OnNcHitTest(const ::point_i32 & point);
+//   LRESULT OnNcHitTest(const ::int_point & point);
 //   void OnSysCommand(unsigned int nID, LPARAM lParam);
 //   void OnGetMinMaxInfo(MINMAXINFO* pMMI);
 //   LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
@@ -302,7 +302,7 @@
 //
 //
 //public:
-//   static void CalcBorders(::rectangle_i32 * pClientRect, unsigned int dwStyle = 0, unsigned int dwExStyle = 0);
+//   static void CalcBorders(::int_rectangle * pClientRect, unsigned int dwStyle = 0, unsigned int dwExStyle = 0);
 //
 //
 //protected:

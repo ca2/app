@@ -421,7 +421,7 @@ namespace user
 
       auto timeStart = ::time::now();
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       ::pointer<tree>ptree = this;
 
@@ -554,7 +554,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectangleFill = ::rectangle_f64(data.m_rectangleX.left(), data.m_rectangle.top(), data.m_rectangleX.right(), data.m_rectangle.bottom());
+         auto rectangleFill = ::double_rectangle(data.m_rectangleX.left(), data.m_rectangle.top(), data.m_rectangleX.right(), data.m_rectangle.bottom());
 
          data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
@@ -572,7 +572,7 @@ namespace user
          //else
          //{
 
-         //   ::rectangle_i32 rectangleUnion;
+         //   ::int_rectangle rectangleUnion;
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
@@ -623,7 +623,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if (strItem.has_char() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
+      if (strItem.has_character() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer pbrushText;
@@ -847,7 +847,7 @@ namespace user
    }
 
 
-   void tree::perform_right_click(uptr nFlags, const ::point_i32 & pointCursor)
+   void tree::perform_right_click(uptr nFlags, const ::int_point & pointCursor)
    {
 
       //_001OnRightClick(nFlags, pointCursor);
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement)
+   ::pointer<::data::tree_item>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
    {
 
       ::collection::index iy = point.y();
@@ -1074,7 +1074,7 @@ namespace user
 
 
    bool tree::_001GetItemElementRect(
-      ::rectangle_i32 * prectangle,
+      ::int_rectangle * prectangle,
 
       ::user::tree_draw_item & drawitem,
       ::user::enum_tree_element eelement)
@@ -1461,7 +1461,7 @@ namespace user
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::tree * ptree, const ::point_i32 & point)
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
    {
 
       if (context.contains(this))
@@ -1488,7 +1488,7 @@ namespace user
    }
 
 
-   void tree::update_tree_hover(point_i32 point)
+   void tree::update_tree_hover(int_point point)
    {
 
       //host_to_client()(point);
@@ -1560,7 +1560,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -1787,7 +1787,7 @@ namespace user
 
          string strText = pitem->get_text();
 
-         size_f64 s = pgraphics->get_text_extent(strText);
+         double_size s = pgraphics->get_text_extent(strText);
 
          iWidth = (int)(48 + s.cx() + iIndent * (iLevel + 1));
 

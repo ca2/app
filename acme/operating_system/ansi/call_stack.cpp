@@ -89,7 +89,7 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
                ansi_concatenate(_strS, file);
                ansi_concatenate(_strS, ":");
-               ansi_from_u64(szN, iLine, 10);
+               ansi_from_huge_natural(szN, iLine, 10);
                ansi_concatenate(_strS, szN);
                ansi_concatenate(_strS, ":1: warning: ");
 

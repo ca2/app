@@ -115,7 +115,7 @@ namespace sandbox_windowing
    void host_interaction::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::rectangle_i32 r;
+      ::int_rectangle r;
 
       r = this->rectangle();
 

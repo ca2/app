@@ -145,7 +145,7 @@
 //
 //   stream << *editimpl.m_pdata;
 //
-//   ::rectangle_i32 rectangleWindow;
+//   ::int_rectangle rectangleWindow;
 //
 //   rectangleWindow = editimpl.window_rectangle();
 //
@@ -171,7 +171,7 @@
 //
 //   stream >> *editimpl.m_pdata;
 //
-//   ::rectangle_i32 rectangleWindow;
+//   ::int_rectangle rectangleWindow;
 //
 //   stream >> rectangleWindow;
 //

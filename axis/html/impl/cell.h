@@ -82,8 +82,8 @@ namespace html
          void move_to(html_data * pdocument);
 
 
-         virtual ::size_f32 get_content_size();
-         virtual ::point_f32 get_content_top_left();
+         virtual ::float_size get_content_size();
+         virtual ::float_point get_content_top_left();
 
 
          virtual float get_extra_content_height();

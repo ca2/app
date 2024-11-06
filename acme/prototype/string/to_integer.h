@@ -1,20 +1,20 @@
 #pragma once
 
-//CLASS_DECL_ACME int ansi_to_i32(const char * sz, const char ** pszEnd, int iBase);
-//CLASS_DECL_ACME int ansi_to_i32(const char * sz, const char ** pszEnd);
-//CLASS_DECL_ACME int ansi_to_i32(const char * sz, int iOnNull = 0);
+//CLASS_DECL_ACME int ansi_to_int(const char * sz, const char ** pszEnd, int iBase);
+//CLASS_DECL_ACME int ansi_to_int(const char * sz, const char ** pszEnd);
+//CLASS_DECL_ACME int ansi_to_int(const char * sz, int iOnNull = 0);
 
-//CLASS_DECL_ACME unsigned int ansi_to_u32(const char * sz, const char ** pszEnd, int iBase);
-//CLASS_DECL_ACME unsigned int ansi_to_u32(const char * sz, const char ** pszEnd);
-//CLASS_DECL_ACME unsigned int ansi_to_u32(const char * sz);
+//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const char * sz, const char ** pszEnd, int iBase);
+//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const char * sz, const char ** pszEnd);
+//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const char * sz);
 
-//CLASS_DECL_ACME int ansi_count_to_i64(const char * sz, const char ** pszEnd, int iBase, size_t iLen);
-//CLASS_DECL_ACME int ansi_count_to_i64(const char * sz, const char ** pszEnd, size_t iLen);
-//CLASS_DECL_ACME int ansi_count_to_i64(const char * sz, size_t iLen);
+//CLASS_DECL_ACME int ansi_count_to_huge_integer(const char * sz, const char ** pszEnd, int iBase, size_t iLen);
+//CLASS_DECL_ACME int ansi_count_to_huge_integer(const char * sz, const char ** pszEnd, size_t iLen);
+//CLASS_DECL_ACME int ansi_count_to_huge_integer(const char * sz, size_t iLen);
 
 
-//#define atoint_dup(...) ansi_to_i32(__VA_ARGS__)
-//#define atouint_dup(...) ansi_to_u32(__VA_ARGS__)
+//#define atoint_dup(...) ansi_to_int(__VA_ARGS__)
+//#define atouint_dup(...) ansi_to_unsigned_int(__VA_ARGS__)
 //#define ntouint_dup(...) ntoui_dup(__VA_ARGS__)
 
 
@@ -24,16 +24,16 @@
 
 
 
-//CLASS_DECL_ACME i64 ansi_to_i64(const char * sz, char ** pszEnd);
-//CLASS_DECL_ACME i64 ansi_to_i64(const char * sz);
+//CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const char * sz, char ** pszEnd);
+//CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const char * sz);
 
 
-//CLASS_DECL_ACME u64 ansi_to_u64(const char * sz, char ** pszEnd);
-//CLASS_DECL_ACME u64 ansi_to_u64(const char * sz);
+//CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const char * sz, char ** pszEnd);
+//CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const char * sz);
 
 
-//CLASS_DECL_ACME i64 ansi_count_to_i64(const char * sz, char ** pszEnd, size_t iLen);
-//CLASS_DECL_ACME i64 ansi_count_to_i64(const char * sz, size_t iLen);
+//CLASS_DECL_ACME huge_integer ansi_count_to_huge_integer(const char * sz, char ** pszEnd, size_t iLen);
+//CLASS_DECL_ACME huge_integer ansi_count_to_huge_integer(const char * sz, size_t iLen);
 
 
 #define ansi_to_iptr __END_OSBIT(ansi_to_i)
@@ -48,24 +48,24 @@
 
 //#if defined(LINUX)
 //
-//#define _strtoi64 ansi_to_i64
+//#define _strtoi64 ansi_to_huge_integer
 //
 //#endif
 
 
-//CLASS_DECL_ACME i64 wide_to_i64(const unichar * sz, const unichar ** pszEnd, int iBase);
-//CLASS_DECL_ACME i64 wide_to_i64(const unichar * sz, const unichar ** pszEnd);
-//CLASS_DECL_ACME i64 wide_to_i64(const unichar * sz);
+//CLASS_DECL_ACME huge_integer wide_to_huge_integer(const unichar * sz, const unichar ** pszEnd, int iBase);
+//CLASS_DECL_ACME huge_integer wide_to_huge_integer(const unichar * sz, const unichar ** pszEnd);
+//CLASS_DECL_ACME huge_integer wide_to_huge_integer(const unichar * sz);
 
 
 #ifdef __cplusplus
 
-inline void ansi_to(unsigned int & u, const ::ansi_character * psz) { u = ansi_to_u32(psz); }
-inline void ansi_to(u64 & u, const ::ansi_character * psz) { u = ansi_to_u64(psz); }
+inline void ansi_to(unsigned int & u, const ::ansi_character * psz) { u = ansi_to_unsigned_int(psz); }
+inline void ansi_to(huge_natural & u, const ::ansi_character * psz) { u = ansi_to_huge_natural(psz); }
 //inline void ansi_to(uptr & u, const ::ansi_character * psz) { u = ansi_to_uptr(psz); }
 
-inline void wide_to(unsigned int & u, const ::wide_character * psz) { u = wide_to_u32(psz); }
-inline void wide_to(u64 & u, const ::wide_character * psz) { u = wide_to_u64(psz); }
+inline void wide_to(unsigned int & u, const ::wide_character * psz) { u = wide_to_unsigned_int(psz); }
+inline void wide_to(huge_natural & u, const ::wide_character * psz) { u = wide_to_huge_natural(psz); }
 //inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(psz); }
 
 #endif

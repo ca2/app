@@ -995,6 +995,8 @@ list(APPEND library_source
    #prototype/string/c/ancient/_impl.h
    prototype/string/c/extension/_.h
    prototype/string/c/_.h
+   prototype/string/c/strdup.cpp
+   prototype/string/c/strdup.h
    prototype/string/c/extension/ansi_impl.cpp
    prototype/string/c/extension/ansi.h
    prototype/string/c/extension/wd32_impl.cpp

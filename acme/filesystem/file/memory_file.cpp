@@ -163,7 +163,7 @@ void memory_file::write_from_hex(const ::block & block)
 
    char ch = 0;
 
-   strsize iLen = block.size();
+   character_count iLen = block.size();
 
    if ((iLen % 2) != 0)
    {
@@ -248,38 +248,38 @@ void memory_file::write_from_hex(const ::block & block)
 }
 
 
-//void memory_file::Truncate(filesize size_i32)
+//void memory_file::Truncate(filesize int_size)
 //{
 //
-//   allocate((memsize)size_i32);
+//   allocate((memsize)int_size);
 //
-//   if (m_position > (memsize)size_i32)
-//      m_position = (memsize)size_i32;
+//   if (m_position > (memsize)int_size)
+//      m_position = (memsize)int_size;
 //
 //
 //}
 
 
-int memory_file::get_u8()
+int memory_file::get_unsigned_char()
 {
 
-   return _get_u8();
+   return _get_unsigned_char();
 
 }
 
 
-int memory_file::get_u16()
+int memory_file::get_unsigned_short()
 {
 
-   return _get_u16();
+   return _get_unsigned_short();
 
 }
 
 
-bool memory_file::get_u64(::u64 & u64)
+bool memory_file::get_huge_natural(huge_natural & hn)
 {
 
-   return _get_u64(u64);
+   return _get_huge_natural(hn);
 
 }
 
@@ -449,10 +449,10 @@ void memory_file::clear()
 }
 
 
-void memory_file::set_size(filesize size_i32)
+void memory_file::set_size(filesize int_size)
 {
 
-   ::memory_container::set_size((memsize) size_i32);
+   ::memory_container::set_size((memsize) int_size);
 
    if (m_position > size())
    {

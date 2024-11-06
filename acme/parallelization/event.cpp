@@ -264,7 +264,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
       m_pcond = nullptr;
 
-      if(scopedstrName.has_char())
+      if(scopedstrName.has_character())
       {
 
          string strPath = "/var/tmp/ca2/ftok/event/" + string(scopedstrName);

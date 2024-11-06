@@ -45,7 +45,7 @@ namespace apex
 //       ::pointer<::operating_system::department>       m_poperatingsystem;
 //
 //       ::pointer<::parallelization::threading>         m_pthreading;
-//       size_t                                             m_nSafetyPoolSize; // ideal size_i32
+//       size_t                                             m_nSafetyPoolSize; // ideal int_size
 //
 //
 //       ::pointer < ::input::input >                       m_pinput;
@@ -77,10 +77,10 @@ namespace apex
 #ifdef _DEBUG
 
 
-      i64 increment_reference_count() override;
+      huge_integer increment_reference_count() override;
 
 
-      i64 decrement_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 
 #endif
@@ -387,7 +387,7 @@ namespace apex
 
 #ifdef UNIVERSAL_WINDOWS
 
-      virtual bool window_rectangle(::rectangle_i32* prectangle);
+      virtual bool window_rectangle(::int_rectangle* prectangle);
 
 
 #endif
@@ -419,7 +419,7 @@ namespace apex
 
       void dump_command_line_and_environment_variables_to_file() override;
 
-      void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
+      void system_id_update(huge_integer iUpdate, huge_integer iPayload) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 

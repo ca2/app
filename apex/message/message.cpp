@@ -116,7 +116,7 @@ namespace message
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam, const ::point_i32 & point)
+   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam, const ::int_point & point)
    //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, const ::atom& atom, wparam wparam, ::lparam lparam)
    //{
    //   

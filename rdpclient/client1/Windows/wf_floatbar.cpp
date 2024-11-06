@@ -40,7 +40,7 @@ typedef struct _Button Button;
 #define BUTTON_CLOSE        3
 #define BTN_MAX             4
 
-/* bmp size_i32 */
+/* bmp int_size */
 #define BACKGROUND_W        581
 #define BACKGROUND_H        29
 #define LOCK_X              13
@@ -70,7 +70,7 @@ struct _Button {
 struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
-	::rectangle_i32 rectangle_i32;
+	::int_rectangle int_rectangle;
 	int width;
 	int height;
 	wfContext* wfc;

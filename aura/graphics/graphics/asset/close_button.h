@@ -16,11 +16,11 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle_f64(pitem->m_rectangle);
+      ::double_rectangle double_rectangle(pitem->m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      ppen->create_solid(rectangle_f64.minimum_dimension() / 10.0, color);
+      ppen->create_solid(double_rectangle.minimum_dimension() / 10.0, color);
 
       pbrush->create_solid(color);
 
@@ -41,7 +41,7 @@ namespace user
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangle_f64, color);
+      pgraphics->fill_rectangle(double_rectangle, color);
 
       if (color.get_hls().m_dL <= 0.5)
       {
@@ -56,17 +56,17 @@ namespace user
 
          colorLighter.m_iA = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::int_size(1, 0), colorLighter);
 
       }
 
-      rectangle_f64.deflate(rectangle_f64.minimum_dimension() / 5.0);
+      double_rectangle.deflate(double_rectangle.minimum_dimension() / 5.0);
 
       pgraphics->set(ppen);
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      pgraphics->draw_stock_icon(rectangle_f64, stock_icon_close);
+      pgraphics->draw_stock_icon(double_rectangle, stock_icon_close);
 
 
    }

@@ -183,7 +183,7 @@ namespace fs
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 
-      //      path.m_iSize = pchild->attribute("size_i32");
+      //      path.m_iSize = pchild->attribute("int_size");
 
       //      path.m_iDir = 0;
 

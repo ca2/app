@@ -83,7 +83,7 @@ namespace console_integration
       //{
       // /*  auto pathDependency = library_source_path(scopedstrLibraryDependency);
 
-      //   if (pathDependency.has_char())
+      //   if (pathDependency.has_character())
       //   {
       //      ::string str = "lib" + scopedstrLibraryName + ".dylib";
 

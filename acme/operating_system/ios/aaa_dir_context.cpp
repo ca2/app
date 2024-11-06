@@ -339,7 +339,7 @@ pdirectorysystem->is(stra[i]))
    //   string ::file_path_folder(const ::string & str)
    //   {
    //
-   //      strsize iLast = str.length() - 1;
+   //      character_count iLast = str.length() - 1;
    //
    //      while(iLast >= 0)
    //      {
@@ -511,7 +511,7 @@ pdirectorysystem->is(stra[i]))
 //   ::file::path directory_context::name(const ::file::path & str)
 //   {
 //
-//      strsize iLast = str.length() - 1;
+//      character_count iLast = str.length() - 1;
 //
 //      while(iLast >= 0)
 //      {

@@ -32,10 +32,10 @@ public:
 };
 
 
-using size_int_array = size_array_base < int >;
-using size_i64_array = size_array_base < ::i64 >;
-using size_float_array = size_array_base < float >;
-using size_double_array = size_array_base < double >;
+using int_size_array = size_array_base < int >;
+using huge_integer_size_array = size_array_base < huge_integer >;
+using float_size_array = size_array_base < float >;
+using double_size_array = size_array_base < double >;
 
 
 

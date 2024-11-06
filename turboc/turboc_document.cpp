@@ -75,14 +75,14 @@ namespace turboc
    }
 
 
-   i64 document::increment_reference_count()
+   huge_integer document::increment_reference_count()
    {
 
       return  ::aura::document::increment_reference_count();
 
    }
 
-   i64 document::decrement_reference_count()
+   huge_integer document::decrement_reference_count()
    {
 
       return  ::aura::document::decrement_reference_count();

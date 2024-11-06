@@ -34,7 +34,7 @@ namespace filemanager
               255 - iDeltaVermelho - iDeltaDark,
               (unsigned char)(255 - (iDeltaV2 / 2.0) + (int)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectangle_double_dimension(x,iTop,iW,cy), color32);
+         pgraphics->fill_rectangle(::double_rectangle_dimension(x,iTop,iW,cy), color32);
       }
       if(x < iRight)
       {
@@ -42,7 +42,7 @@ namespace filemanager
               255 - iDeltaVermelho - iDeltaDark,
               (unsigned char)(255 - (iDeltaV2 / 2.0) + (int)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectangle_double_dimension(x,iTop,iRight - x,cy), color32);
+         pgraphics->fill_rectangle(::double_rectangle_dimension(x,iTop,iRight - x,cy), color32);
       }
    }
 
@@ -69,7 +69,7 @@ namespace filemanager
       int iLineCount = 23;
       double dBarHeight = (double)rectangleX.height() / (double)iLineCount;
       double dTop = 0.0;
-      ::rectangle_i32 rectangleProgress;
+      ::int_rectangle rectangleProgress;
       rectangleProgress = rectangleX;
       //rectangleProgress.left() += 23;
       //rectangleProgress.right() -= 23;
@@ -78,7 +78,7 @@ namespace filemanager
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
-      ::rectangle_i32 rectangleBar;
+      ::int_rectangle rectangleBar;
       double dProgress;
       dProgress = get_document()->m_poperationthread->get_progress_rate();
       for(int iLine = 0; iLine < iLineCount; iLine++)

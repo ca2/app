@@ -362,7 +362,7 @@ namespace apex
 ////
 ////               string strTopicText(pszTopicText);
 ////
-////               if (strTopicText.has_char())
+////               if (strTopicText.has_character())
 ////               {
 ////
 ////                  strTopicText.case_insensitive_begins_eat("class ");
@@ -404,14 +404,14 @@ namespace apex
 ////      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
 ////      string strTick;
 ////      auto millisTotal = ::get_millis() - ::first_milli();
-////      i64 uiMillis = millisTotal % 1000;
-////      i64 uiTotalSeconds = millisTotal / 1000;
-////      i64 uiSeconds = uiTotalSeconds % 60;
-////      i64 uiTotalMinutes = uiTotalSeconds / 60;
-////      i64 uiMinutes = uiTotalMinutes % 60;
-////      i64 uiTotalHours = uiTotalMinutes / 60;
-////      i64 uiHours = uiTotalHours % 24;
-////      i64 uiTotalDays = uiTotalHours / 24;
+////      huge_integer uiMillis = millisTotal % 1000;
+////      huge_integer uiTotalSeconds = millisTotal / 1000;
+////      huge_integer uiSeconds = uiTotalSeconds % 60;
+////      huge_integer uiTotalMinutes = uiTotalSeconds / 60;
+////      huge_integer uiMinutes = uiTotalMinutes % 60;
+////      huge_integer uiTotalHours = uiTotalMinutes / 60;
+////      huge_integer uiHours = uiTotalHours % 24;
+////      huge_integer uiTotalDays = uiTotalHours / 24;
 ////      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
 ////      if (uiTotalDays > 0)
 ////      {

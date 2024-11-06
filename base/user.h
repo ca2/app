@@ -28,13 +28,13 @@ namespace graphics
 #define WM_COMMANDHELP      0x0365  // lResult = true/false,
 // lParam = dwContext
 #define e_message_help_hit_test      0x0366  // lResult = dwContext,
-// lParam = make_i32(x,y)
+// lParam = make_int(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
 #define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl
 //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (aaa_memory_new position/size_i32)
+// lParam = pRectNew (aaa_memory_new position/int_size)
 
 #define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent

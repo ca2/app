@@ -290,7 +290,7 @@ char * _iso_8859_1__utf8(const char * iso)
    char k;
    char * p;
    char * t = (char *)iso;
-   strsize len = 0;
+   character_count len = 0;
    while ( ( ca = *t++) )
    {
       if ( ca < 0 )

@@ -167,7 +167,7 @@ namespace html
       ::user::form_callback* m_pcallback;
       ::user::interaction* m_puserinteraction;
       ::pointer<::draw2d::graphics>m_pgraphics;
-      ::rectangle_f32                              m_box;
+      ::float_rectangle                              m_box;
       string                           m_strTitle;
       layout_state1                    m_layoutstate1;
       layout_state2                    m_layoutstate2;
@@ -221,8 +221,8 @@ namespace html
 
 
       virtual string process_url(const ::string & pszUrl);
-      //virtual i64 increment_reference_count() override;
-      //virtual i64 decrement_reference_count() override;
+      //virtual huge_integer increment_reference_count() override;
+      //virtual huge_integer decrement_reference_count() override;
 
 
       bool open_document(const ::payload & payloadFile) override;

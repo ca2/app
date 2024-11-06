@@ -139,7 +139,7 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -147,7 +147,7 @@ namespace userex
 
       pframewindow->order_front();
 
-      pframewindow->place(::rectangle_int_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
+      pframewindow->place(::int_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
 
       pframewindow->display();
 
@@ -484,7 +484,7 @@ namespace userex
       if (user()->impact_system("main") != nullptr)
       {
 
-         ::rectangle_i32 rectangleTab;
+         ::int_rectangle rectangleTab;
 
          ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document();
 
@@ -526,7 +526,7 @@ namespace userex
                   information() << "pframewindowTab VISIBLE VISIBLE VISIBLE";
                   information() << "";
                   information() << "";
-                  auto rectangleRequest = rectangle_int_dimension(20, 20, 800, 300);
+                  auto rectangleRequest = int_rectangle_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())
                   {

@@ -195,7 +195,7 @@ file_pointer file_system::get_writer(const ::payload& payloadFile, ::file::e_ope
 }
 
 
-string file_system::as_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string file_system::as_string(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
    
    auto memory = as_memory(pathParam, iReadAtMostByteCount);
@@ -257,13 +257,13 @@ string file_system::as_string(const ::file::path & pathParam, strsize iReadAtMos
    //if(iReadAtMostByteCount < 0)
    //{
    //   
-   //   iReadAtMostByteCount = (strsize) uSize;
+   //   iReadAtMostByteCount = (character_count) uSize;
    //   
    //}
    //else
    //{
    //   
-   //   iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+   //   iReadAtMostByteCount = minimum(iReadAtMostByteCount, (character_count)uSize);
    //   
    //}
 
@@ -296,7 +296,7 @@ string file_system::as_string(const ::file::path & pathParam, strsize iReadAtMos
 }
 
 
-string file_system::safe_get_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string file_system::safe_get_string(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto memory = safe_get_memory(pathParam, iReadAtMostByteCount);
@@ -404,7 +404,7 @@ bool file_system::exists(const ::file::path & pathParam)
 //}
 
 
-void file_system::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
+void file_system::get_temporary_file_name_template(char * szRet, character_count iBufferSize, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
 {
 
    throw ::interface_only();

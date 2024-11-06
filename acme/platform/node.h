@@ -55,7 +55,7 @@ namespace platform
    //    union
    //    {
    //
-   //       ::u64                                              m_uNodeFlags;
+   //       huge_natural                                              m_uNodeFlags;
    //
    //       bool                                               m_bHasNodePostedSystemInitialRequest : 1;
    //
@@ -127,8 +127,8 @@ namespace platform
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count() override;
-      i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 #endif
       
@@ -151,7 +151,7 @@ namespace platform
 
       virtual void initialize(::particle * pparticle) override;
       
-      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long ll = 0) override;
+      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, huge_integer hi = 0) override;
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
 
       //virtual ::particle_pointer create_quit_particle();
@@ -535,7 +535,7 @@ namespace platform
       virtual int get_current_processor_index() override;
       virtual int get_current_process_maximum_affinity() override;
       virtual int get_current_process_affinity_order() override;
-      virtual ::u64 translate_processor_affinity(int i) override;
+      virtual huge_natural translate_processor_affinity(int i) override;
 
       //CLASS_DECL_ACME string expand_env(string str);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
@@ -712,7 +712,7 @@ namespace platform
       virtual ::string operating_system_application_version() override;
       
 
-      virtual void application_handle(long long l, void * p) override;
+      virtual void application_handle(huge_integer l, void * p) override;
 
 
       virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
@@ -1017,8 +1017,8 @@ namespace platform
       
 
 
-      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle) override;
-      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle) override;
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle) override;
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle) override;
 
       virtual void realize(::particle_pointer pparticle) override;
 

@@ -17,7 +17,7 @@ namespace windows
 
       double m_dVelocity;
       class ::time m_timeLastSizeMove;
-      ::point_i32 m_pointSizeMoveStart;
+      ::int_point m_pointSizeMoveStart;
       bool m_bMovingNow;
       bool m_bDefaultSystemMenu;
       bool m_bSizeMoveMode;

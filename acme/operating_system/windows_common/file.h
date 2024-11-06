@@ -47,23 +47,23 @@ namespace windows
 
       void flush_file_buffers();
 
-      ::i64 get_file_size() const;
+      huge_integer get_file_size() const;
 
-      void ensure_file_size(::i64 iSize);
+      void ensure_file_size(huge_integer iSize);
 
-      void set_file_size(::i64 iSize);
+      void set_file_size(huge_integer iSize);
 
-      void set_file_pointer_ex(::i64 iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
+      void set_file_pointer_ex(huge_integer iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
 
-      void set_file_pointer(::i64 iOffset, DWORD dwMoveMethod);
+      void set_file_pointer(huge_integer iOffset, DWORD dwMoveMethod);
 
-      ::i64 get_file_pointer() const;
+      huge_integer get_file_pointer() const;
 
       void set_end_of_file();
 
-      void lock_file(::i64 iOffset, ::i64 iCount);
+      void lock_file(huge_integer iOffset, huge_integer iCount);
 
-      void unlock_file(::i64 iOffset, ::i64 iCount);
+      void unlock_file(huge_integer iOffset, huge_integer iCount);
 
       void set_file_time(const FILETIME * lpCreationTime, const FILETIME * lpLastAccessTime, const FILETIME * lpLastWriteTime);
 

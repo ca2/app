@@ -137,15 +137,15 @@ namespace user
 
       };
 
-      //size_i32                                   m_sizeTotal;
-      ::size_i32                                   m_sizePage;
+      //int_size                                   m_sizeTotal;
+      ::int_size                                   m_sizePage;
       ::user::list *                               m_plist; // should be set to this ::user::list if this is a list
 
       int                                          m_iDefaultColumnWidth;
       index_map < int >                            m_mapColumnWidth;
 
       CSortInfo                                    m_sortinfo;
-      ::size_i32                                   m_sizeMaximumImage;
+      ::int_size                                   m_sizeMaximumImage;
 
       EFilterState                                 m_efilterstate;
       index_biunique *                             m_piaFilterIcon;
@@ -174,8 +174,8 @@ namespace user
 
       ::collection::index                                        m_iClick;
       bool                                         m_bLButtonDown;
-      point_i32                                    m_pointLButtonDown1;
-      point_i32                                    m_pointLButtonDown2;
+      int_point                                    m_pointLButtonDown1;
+      int_point                                    m_pointLButtonDown2;
       class ::time                                   m_timeLButtonDownStart1;
       class ::time                                   m_timeLButtonDownStart2;
       ::collection::index                                        m_iDisplayItemLButtonDown1;
@@ -203,16 +203,16 @@ namespace user
       ::collection::index                                        m_iShiftFirstSelection;
       uptr                                         m_uiLButtonDownFlags;
       uptr                                         m_uiLButtonUpFlags;
-      point_i32                                    m_pointLButtonUp;
+      int_point                                    m_pointLButtonUp;
       unsigned int                                        m_uiRButtonUpFlags;
-      point_i32                                    m_pointRButtonUp;
+      int_point                                    m_pointRButtonUp;
       ::regular_expression_pointer                 m_pregexFilter1;
       int                                          m_iFilter1Step;
       bool                                         m_bFilter1;
 
       bool                                         m_bTopText;
       string                                       m_strTopText;
-      ::rectangle_i32                              m_rectangleTopText;
+      ::int_rectangle                              m_rectangleTopText;
       ::pointer<mesh_data>                        m_pmeshdata;
 //      ::write_text::font_pointer                 m_pfont;
       //    ::write_text::font_pointer             m_pfontHover;
@@ -293,7 +293,7 @@ namespace user
       //using interaction::update_hover;
       //::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-      ::item_pointer on_hit_test(const ::point_i32& point, e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point& point, e_zorder ezorder) override;
 
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
@@ -332,7 +332,7 @@ namespace user
 
 
 
-      virtual ::size_i32 get_item_size();
+      virtual ::int_size get_item_size();
 
       virtual void _001OnSort(::collection::index iSubItem);
       virtual void _001OnMeshHeaderItemClick(::collection::index iHeaderItem);
@@ -483,14 +483,14 @@ namespace user
       virtual ::collection::count  _001GetGroupCount();
 
 
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index &iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem);
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index&iItemParam);
+      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index &iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index&iItemParam);
 
 
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem);
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItemParam);
+      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItemParam);
 
 
       virtual void  _001OnAfterSort();
@@ -529,7 +529,7 @@ namespace user
 
 
       bool on_click(::item * pitem) override;
-      virtual bool  _001OnRightClick(uptr uFlags,const ::point_i32 & point);
+      virtual bool  _001OnRightClick(uptr uFlags,const ::int_point & point);
 
       virtual void  get_selection(range& selection);
 
@@ -592,9 +592,9 @@ namespace user
 
       virtual void  defer_create_mesh_data();
 
-      ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::double_size get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual string  _001GetItemId(::collection::index iStrictItem);
       virtual ::collection::index  _001GetItemById(const ::string & pszChar);

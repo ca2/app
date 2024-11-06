@@ -38,7 +38,7 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_buffer((strsize)(pfile->size() / 16 + 1) * 80);
+   char* psz = strBuffer.get_buffer((character_count)(pfile->size() / 16 + 1) * 80);
 
    unsigned char buf[16];
 
@@ -653,7 +653,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         m_content_ptr = (memsize) number.get_i64();
+         m_content_ptr = (memsize) number.get_huge_integer();
 
          return true;
 
@@ -674,7 +674,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (::i64)0;
+         return (huge_integer)0;
 
       }
       else
@@ -693,7 +693,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (::i64)m_content_ptr;
+         return (huge_integer)m_content_ptr;
 
       }
       else
@@ -712,7 +712,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (::i64) m_content_length;
+         return (huge_integer) m_content_length;
 
       }
       else
@@ -801,7 +801,7 @@ namespace sockets
 
       auto papp = get_app();
 
-      if (get_app()->m_strHttpUserAgentToken.has_char() && get_app()->m_strHttpUserAgentVersion.has_char())
+      if (get_app()->m_strHttpUserAgentToken.has_character() && get_app()->m_strHttpUserAgentVersion.has_character())
       {
 
          strAddUp = get_app()->m_strHttpUserAgentToken + "/" + get_app()->m_strHttpUserAgentVersion;
@@ -835,14 +835,14 @@ namespace sockets
 //
 //      string strOpSys = op_sys();
 //
-//      if (get_app()->m_strAppName.has_char())
+//      if (get_app()->m_strAppName.has_character())
 //      {
 //
 //         str += get_app()->m_strAppName;
 //
 //         str += " (";
 //
-//         if (strOpSys.has_char())
+//         if (strOpSys.has_character())
 //         {
 //
 //            str += strOpSys;
@@ -863,7 +863,7 @@ namespace sockets
 //
 //         str += " (";
 //
-//         if (strOpSys.has_char())
+//         if (strOpSys.has_character())
 //         {
 //
 //            str += strOpSys;

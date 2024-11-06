@@ -67,7 +67,7 @@ namespace user
 
       //   colorLighter.alpha = 127;
 
-      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::int_size(1, 0), colorLighter);
 
       //}
 
@@ -93,7 +93,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::rectangle_f64 rectangle(useritem.m_rectangle);
+      //::double_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -138,7 +138,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::rectangle_f64 rectangle(useritem.m_rectangle);
+      //::double_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -180,7 +180,7 @@ namespace user
 
       //   colorLighter.alpha = 127;
 
-      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::int_size(1, 0), colorLighter);
 
       //}
 
@@ -211,7 +211,7 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::rectangle_f64 rectangle(useritem.m_rectangle);
+      //::double_rectangle rectangle(useritem.m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
@@ -255,7 +255,7 @@ namespace user
 
       //   colorLighter.alpha = 127;
 
-      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::int_size(1, 0), colorLighter);
 
       //}
 

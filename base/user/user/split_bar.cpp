@@ -43,7 +43,7 @@ namespace user
 //      //0,
 //      //0,
 //      //0);
-//      //   ::rectangle_i32 rectangle(0, 0, 0, 0);
+//      //   ::int_rectangle rectangle(0, 0, 0, 0);
 //
 //      if(!::user::interaction::create_child(pparent))
 //      {

@@ -136,17 +136,17 @@ public:
    // dot product with another vector
    inline float dot(const vector4 & b) const
    {
-      return _mm_cvtss_f32(_mm_dp_ps(mmvalue, b.mmvalue, 0x55));
+      return _mm_cvtss_float(_mm_dp_ps(mmvalue, b.mmvalue, 0x55));
    }
    // length of the vector
    inline float length() const
    {
-      return _mm_cvtss_f32(_mm_sqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
+      return _mm_cvtss_float(_mm_sqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
    }
    // 1/length() of the vector
    inline float rlength() const
    {
-      return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
+      return _mm_cvtss_float(_mm_rsqrt_ss(_mm_dp_ps(mmvalue, mmvalue, 0x55)));
    }
    // returns the vector scaled to unit length
    inline vector4 normalize() const

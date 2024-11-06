@@ -13,9 +13,9 @@
 string chunk_split(const string & body,int chunklen,const string & end)
 {
 
-   strsize pos = 0;
+   character_count pos = 0;
    string strRet;
-   strsize iRead;
+   character_count iRead;
    while(pos < body.length())
    {
       iRead = minimum(chunklen,body.length() - pos);
@@ -111,20 +111,20 @@ namespace account
 //      if (strText == "api.ca2.software")
 //      {
 //         strSessId = psession->account()->m_mapAccountSessId[psession->account()->m_strFirstFontopusServer];
-//         if (strSessId.has_char())
+//         if (strSessId.has_character())
 //            return strSessId;
 //
 //      }
 //      strSessId = m_sessionidmap[strText];
-//      if(strSessId.has_char())
+//      if(strSessId.has_character())
 //         return strSessId;
 //      string strFontopusServer = psession->account()->get_server(strText, 2);
-//      if(strFontopusServer.has_char())
+//      if(strFontopusServer.has_character())
 //      {
 //
 //         strSessId = psession->account()->m_mapFontopusSessId[strFontopusServer];
 //
-//         if(strSessId.has_char())
+//         if(strSessId.has_character())
 //            return strSessId;
 //
 //      }

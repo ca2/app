@@ -196,7 +196,7 @@ namespace user
          get_window_text(str);
          const ::size & size = pgraphics->get_text_extent(str);
 
-         ::rectangle_f64 rectangle(0, 0, 0, 0);
+         ::double_rectangle rectangle(0, 0, 0, 0);
          rectangle.right() = int(size.cx() * 1.6);
          rectangle.bottom() = int(size.cy() * 1.4);
 
@@ -287,13 +287,13 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX, ::user::e_layout_design);
 
       ::size sizeText = calc_text_size();
 
-      ::rectangle_f64 rectangle;
+      ::double_rectangle rectangle;
 
       rectangle.left() = rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2;
 
@@ -320,7 +320,7 @@ namespace user
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -414,13 +414,13 @@ namespace user
 
       rectangleX.left() += 3;
       rectangleX.top() += 3;
-      ::rectangle_f64 rectangleText = m_rectangleText;
+      ::double_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
       {
          if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)
          {
-            ::rectangle_f64 rectangleDib;
+            ::double_rectangle rectangleDib;
             rectangleDib = m_rectangleText;
             rectangleDib.bottom() = minimum(rectangleText.top() + m_pbitmap->m_pimage->width(), rectangleText.bottom());
             rectangleDib.right() = minimum(rectangleText.left() + m_pbitmap->m_pimage->height(), rectangleText.right());
@@ -559,7 +559,7 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -589,7 +589,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.2, 0.0);
 
-         ::rectangle_f64 rectanglePush(rectangleX);
+         ::double_rectangle rectanglePush(rectangleX);
 
          pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
@@ -619,7 +619,7 @@ namespace user
 
    {
 
-      ::rectangle_f64 rectangleText(prectText);
+      ::double_rectangle rectangleText(prectText);
 
 
       if (m_estockicon == stock_icon_none)
@@ -629,7 +629,7 @@ namespace user
 
          get_window_text(strText);
 
-         if (strText.has_char())
+         if (strText.has_character())
          {
 
             color32_t crText = get_button_text_color();
@@ -695,7 +695,7 @@ namespace user
 
          pgraphics->set(ppen);
 
-         ::rectangle_f64 rectangleIcon(rectangleText);
+         ::double_rectangle rectangleIcon(rectangleText);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -709,15 +709,15 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::rectangle_f64 rectangleMargin(2, 2,2, 2);
+      ::double_rectangle rectangleMargin(2, 2,2, 2);
 
-      ::rectangle_f64 rectangleBorder(2, 2, 2, 2);
+      ::double_rectangle rectangleBorder(2, 2, 2, 2);
 
       rectangleX.deflate(rectangleMargin);
 
@@ -725,7 +725,7 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::rectangle_f64 rectanglePadding(4, 4, 4,4);
+      ::double_rectangle rectanglePadding(4, 4, 4,4);
 
       rectangleX.deflate(rectanglePadding);
 
@@ -760,26 +760,26 @@ namespace user
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      ::rectangle_f64 rectangleMargin(4, 4, 4, 4);
+      ::double_rectangle rectangleMargin(4, 4, 4, 4);
 
-      ::rectangle_f64 rectangleBorder(2, 2,2 ,2);
+      ::double_rectangle rectangleBorder(2, 2,2 ,2);
 
       rectangleX.deflate(rectangleMargin);
 
       rectangleX.deflate(rectangleBorder);
 
-      ::rectangle_f64 rectanglePadding(4, 4,4,4);
+      ::double_rectangle rectanglePadding(4, 4,4,4);
 
       rectangleX.deflate(rectanglePadding);
 
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
-         ::rectangle_f64 rectangleAspect;
+         ::double_rectangle rectangleAspect;
 
          rectangleAspect.left() = 0;
 
@@ -801,7 +801,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw(rectangleAspect, pimage->g(), ::rectangle_f64(pimage->get_size()));
+         pgraphics->draw(rectangleAspect, pimage->g(), ::double_rectangle(pimage->get_size()));
 
       }
 
@@ -813,17 +813,17 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      ::rectangle_f64 rectanglePadded(rectangleX);
+      ::double_rectangle rectanglePadded(rectangleX);
 
       int iPadding = 4;
 
       rectanglePadded.deflate(iPadding, iPadding);
 
-      ::rectangle_f64 rectangleAspect(rectanglePadded);
+      ::double_rectangle rectangleAspect(rectanglePadded);
 
       if (m_pbitmap->m_pimage)
       {
@@ -865,7 +865,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(rectangleAspect, pimage->g(), ::rectangle_f64(pimage->get_size()));
+            pgraphics->draw(rectangleAspect, pimage->g(), ::double_rectangle(pimage->get_size()));
 
             rectangleAspect.left() = rectangleAspect.right() + iPadding;
             rectangleAspect.right() = rectanglePadded.right();
@@ -886,7 +886,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -941,7 +941,7 @@ namespace user
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
-      ::rectangle_f64 rectangle = rectangleX;
+      ::double_rectangle rectangle = rectangleX;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
@@ -1131,7 +1131,7 @@ namespace user
 
    void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
       bool bItemHover;
       bool bSubItemHover;
 
@@ -1154,7 +1154,7 @@ namespace user
          bSubItemHover  = bItemHover;
       }
 
-      ::point_i32 point = rectangleX.top_left();
+      ::int_point point = rectangleX.top_left();
       point += ::size(1, 1);
 
       if(bSubItemHover)

@@ -125,7 +125,7 @@
 ////memory string_array_base < Type, RawType, t_etypeContainer > ::GetFormatV004()
 ////{
 ////
-////   strsize iTotalLength = 0;
+////   character_count iTotalLength = 0;
 ////
 ////   ::collection::index i;
 ////
@@ -154,7 +154,7 @@
 ////
 ////   char * lpszN = lpsz;
 ////
-////   strsize iLength;
+////   character_count iLength;
 ////
 ////   for (i = 0; i < this->m_nSize; i++)
 ////   {

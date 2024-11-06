@@ -534,7 +534,7 @@ namespace sockets_bsd
             if (sa_len != sizeof(sa))
             {
 
-               warning() <<"recvfrom 0 unexpected address struct size_i32";
+               warning() <<"recvfrom 0 unexpected address struct int_size";
 
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -612,7 +612,7 @@ namespace sockets_bsd
          if (sa_len != sizeof(sa))
          {
 
-            warning() <<"recvfrom 0 unexpected address struct size_i32";
+            warning() <<"recvfrom 0 unexpected address struct int_size";
 
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);

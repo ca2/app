@@ -453,7 +453,7 @@ namespace draw2d
 
    void draw2d::embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
-      const ::rectangle_i32 & rectangle,
+      const ::int_rectangle & rectangle,
       string strText,
       ::image::fastblur & blur,
       ::image::image_pointer & imageBlur,
@@ -515,7 +515,7 @@ namespace draw2d
 
 void draw2d::emboss_predicate(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::rectangle_i32 & rectangle,
+   const ::int_rectangle & rectangle,
    const ::function < void(::draw2d::graphics *) > & functionDraw,
    ::image::fastblur & blur,
    ::image::image_pointer & pimageBlur,
@@ -529,7 +529,7 @@ void draw2d::emboss_predicate(
 
    int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-   ::rectangle_i32 rectangleEmboss = rectangle;
+   ::int_rectangle rectangleEmboss = rectangle;
 
    rectangleEmboss.left() -= (int)(iR * g_dEmboss);
    rectangleEmboss.top() -= (int)(iR * g_dEmboss);
@@ -543,13 +543,13 @@ void draw2d::emboss_predicate(
 
       int iEffectiveBlurRadius = iBlurRadius;
 
-      const ::size_i32 & size = rectangleEmboss.size();
+      const ::int_size & size = rectangleEmboss.size();
 
       //pimageBlur->initialize(rectangleEmboss, iEffectiveBlurRadius);
 
       //pimageBlur->fill(0, 0, 0, 0);
 
-      ::rectangle_i32 rectangleCache;
+      ::int_rectangle rectangleCache;
 
       rectangleCache.left() = (int)(iR * g_dEmboss);
       rectangleCache.top() = (int)(iR * g_dEmboss);
@@ -1345,7 +1345,7 @@ void draw2d::emboss_predicate(
 
          //strDraw2d.trim();
 
-         //if (strDraw2d.has_char())
+         //if (strDraw2d.has_character())
          //{
 
          //   strDraw2d.case_insensitive_begins_eat("draw2d_");
@@ -1360,7 +1360,7 @@ void draw2d::emboss_predicate(
 
       ::e_status estatus;
 
-      if (strImplementationName.has_char())
+      if (strImplementationName.has_character())
       {
 
          ::pointer<::aura::system>psystem = system();

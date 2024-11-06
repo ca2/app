@@ -22,7 +22,7 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create(oswindow window, i64 cxParam, i64 cyParam, int iStrideParam)
+void window_xlib::create(oswindow window, huge_integer cxParam, huge_integer cyParam, int iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)
@@ -79,7 +79,7 @@ void window_xlib::destroy()
 }
 
 
-void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::rectangle_i32 * lpcrect, int iStride)
+void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::int_rectangle * lpcrect, int iStride)
 {
 
    single_lock synchronouslock(&user_synchronization());

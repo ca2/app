@@ -110,7 +110,7 @@ message_box::~message_box()
 #ifdef DEBUG
 
 
-::i64 message_box::increment_reference_count()
+huge_integer message_box::increment_reference_count()
 {
 
    return ::particle::increment_reference_count();
@@ -118,7 +118,7 @@ message_box::~message_box()
 }
 
 
-::i64 message_box::decrement_reference_count()
+huge_integer message_box::decrement_reference_count()
 {
 
    return ::particle::decrement_reference_count();

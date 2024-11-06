@@ -47,12 +47,12 @@ namespace mathematics
 
 /* generates a random number on [0,0xffffffff]-interval */
 
-   unsigned int random_number_generator::get_u32()
+   unsigned int random_number_generator::get_unsigned_int()
    {
       return m_distributionU32(m_generator);
    }
 
-   unsigned char random_number_generator::get_u8()
+   unsigned char random_number_generator::get_unsigned_char()
    {
       return m_distributionU8(m_generator);
    }
@@ -88,7 +88,7 @@ namespace mathematics
 } // namespace random_number_generator
 
 
-   i64 random_context_entropy64(unsigned char bLevel)
+   huge_integer random_context_entropy64(unsigned char bLevel)
    {
 
       bLevel = minimum(bLevel, 3);
@@ -100,17 +100,17 @@ namespace mathematics
 
       }
 
-      i64 i0 = ::i64_nanosecond();
+      huge_integer i0 = ::i64_nanosecond();
 
       preempt(microsecond_time(bLevel));
 
-      i64 i1 = ::i64_nanosecond();
+      huge_integer i1 = ::i64_nanosecond();
 
-      i64 i2 = time(nullptr);
+      huge_integer i2 = time(nullptr);
 
-      i64 i3 = ::i64_nanosecond();
+      huge_integer i3 = ::i64_nanosecond();
 
-      i64 i4 = abs(i0 + i1 + i2 + i3);
+      huge_integer i4 = abs(i0 + i1 + i2 + i3);
 
       return i4;
 
@@ -127,7 +127,7 @@ namespace mathematics
 
       }
 
-      ::i64 iValue = 0;
+      huge_integer iValue = 0;
 
       iValue %= I32_MAXIMUM;
 

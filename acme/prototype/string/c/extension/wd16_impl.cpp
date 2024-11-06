@@ -55,7 +55,7 @@ CLASS_DECL_ACME ::wd16_character * wd16_copy(::wd16_character * psz, const ::wd1
 }
 
 
-CLASS_DECL_ACME ::wd16_character * wd16_count_copy(::wd16_character * psz, const ::wd16_character * cpy, strsize len)
+CLASS_DECL_ACME ::wd16_character * wd16_count_copy(::wd16_character * psz, const ::wd16_character * cpy, character_count len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -69,7 +69,7 @@ CLASS_DECL_ACME ::wd16_character * wd16_count_copy(::wd16_character * psz, const
 }
 
 
-CLASS_DECL_ACME strsize wd16_length(const ::wd16_character * psz)
+CLASS_DECL_ACME character_count wd16_length(const ::wd16_character * psz)
 {
 
    if (::is_null(psz)) return 0;
@@ -93,7 +93,7 @@ CLASS_DECL_ACME ::wd16_character * wd16_duplicate(const ::wd16_character * psz)
 }
 
 
-CLASS_DECL_ACME ::wd16_character * wd16_count_duplicate(const ::wd16_character * psz, strsize len)
+CLASS_DECL_ACME ::wd16_character * wd16_count_duplicate(const ::wd16_character * psz, character_count len)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -156,12 +156,12 @@ CLASS_DECL_ACME const ::wd16_character * wd16_find_string_case_insensitive(const
 }
 
 
-CLASS_DECL_ACME const ::wd16_character * wd16_count_find_string(const ::wd16_character * psz, const ::wd16_character * find, strsize len)
+CLASS_DECL_ACME const ::wd16_character * wd16_count_find_string(const ::wd16_character * psz, const ::wd16_character * find, character_count len)
 {
 
    if (::is_null(psz)) return nullptr;
 
-   if (len > (strsize) wd16_len(find)) return nullptr;
+   if (len > (character_count) wd16_len(find)) return nullptr;
 
    if (len <= 0)
    {
@@ -189,12 +189,12 @@ CLASS_DECL_ACME const ::wd16_character * wd16_count_find_string(const ::wd16_cha
 }
 
 
-CLASS_DECL_ACME const ::wd16_character * wd16_count_find_string_case_insensitive(const ::wd16_character * psz, const ::wd16_character * find, strsize len)
+CLASS_DECL_ACME const ::wd16_character * wd16_count_find_string_case_insensitive(const ::wd16_character * psz, const ::wd16_character * find, character_count len)
 {
 
    if (::is_null(psz)) return nullptr;
 
-   if (len > (strsize) wd16_len(find)) return nullptr;
+   if (len > (character_count) wd16_len(find)) return nullptr;
 
    if (len <= 0)
    {
@@ -294,7 +294,7 @@ CLASS_DECL_ACME int wd16_compare_case_insensitive(const ::wd16_character * psz, 
 }
 
 
-CLASS_DECL_ACME int wd16_count_compare(const ::wd16_character * psz, const ::wd16_character * sz2, strsize len)
+CLASS_DECL_ACME int wd16_count_compare(const ::wd16_character * psz, const ::wd16_character * sz2, character_count len)
 {
 
    if (len < 0)
@@ -337,7 +337,7 @@ CLASS_DECL_ACME int wd16_count_compare(const ::wd16_character * psz, const ::wd1
 }
 
 
-CLASS_DECL_ACME int wd16_count_compare_case_insensitive(const ::wd16_character * psz, const ::wd16_character * sz2, strsize len)
+CLASS_DECL_ACME int wd16_count_compare_case_insensitive(const ::wd16_character * psz, const ::wd16_character * sz2, character_count len)
 {
 
    if (len < 0)
@@ -452,7 +452,7 @@ CLASS_DECL_ACME int wd16_collate_case_insensitive(const ::wd16_character * psz, 
 }
 
 
-CLASS_DECL_ACME int wd16_count_collate(const ::wd16_character * psz, const ::wd16_character * sz2, strsize len)
+CLASS_DECL_ACME int wd16_count_collate(const ::wd16_character * psz, const ::wd16_character * sz2, character_count len)
 {
 
    if (len < 0)
@@ -495,7 +495,7 @@ CLASS_DECL_ACME int wd16_count_collate(const ::wd16_character * psz, const ::wd1
 }
 
 
-CLASS_DECL_ACME int wd16_count_collate_case_insensitive(const ::wd16_character * psz, const ::wd16_character * sz2, strsize len)
+CLASS_DECL_ACME int wd16_count_collate_case_insensitive(const ::wd16_character * psz, const ::wd16_character * sz2, character_count len)
 {
 
    if (len < 0)
@@ -738,7 +738,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_find_char_reverse(const ::wd16_cha
 //CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_duplicate_and_free(const ::wd16_character * psz1, ::wd16_character * psz2);
 
 
-CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, u64 u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, huge_natural u, int iBase, enum_digit_case edigitcase)
 {
 
    wd16_character * pend = nullptr;
@@ -748,12 +748,12 @@ CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, u64 u, int iBase,
 }
 
 
-CLASS_DECL_ACME void wd16_from_i64_base(::wd16_character * sz, i64 i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd16_from_huge_integer_base(::wd16_character * sz, huge_integer i, int iBase, enum_digit_case edigitcase)
 {
 
    wd16_character * pend = nullptr;
 
-   __i64towd16(i, sz, iBase, edigitcase, pend);
+   __huge_integertowd16(i, sz, iBase, edigitcase, pend);
 
 }
 
@@ -761,7 +761,7 @@ CLASS_DECL_ACME void wd16_from_i64_base(::wd16_character * sz, i64 i, int iBase,
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstoll(psz, (::wd16_character **) ppszEnd, iBase);
@@ -769,7 +769,7 @@ CLASS_DECL_ACME i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_natural wd16_to_huge_natural(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstoull(psz, (::wd16_character **) ppszEnd, iBase);
@@ -777,7 +777,7 @@ CLASS_DECL_ACME u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME int wd16_to_i32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME int wd16_to_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstol(psz, (::wd16_character **) ppszEnd, iBase);
@@ -785,7 +785,7 @@ CLASS_DECL_ACME int wd16_to_i32(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME unsigned int wd16_to_u32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned int wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstoul(psz, (::wd16_character **) ppszEnd, iBase);
@@ -797,7 +797,7 @@ CLASS_DECL_ACME unsigned int wd16_to_u32(const ::wd16_character * psz, const ::w
 
 
 
-CLASS_DECL_ACME i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16toi64(psz, (::wd16_character **) ppszEnd, iBase);
@@ -805,7 +805,7 @@ CLASS_DECL_ACME i64 wd16_to_i64(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_natural wd16_to_huge_natural(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16tou64(psz, (::wd16_character **) ppszEnd, iBase);
@@ -813,7 +813,7 @@ CLASS_DECL_ACME u64 wd16_to_u64(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME int wd16_to_i32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME int wd16_to_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16toi32(psz, (::wd16_character **) ppszEnd, iBase);
@@ -821,7 +821,7 @@ CLASS_DECL_ACME int wd16_to_i32(const ::wd16_character * psz, const ::wd16_chara
 }
 
 
-CLASS_DECL_ACME unsigned int wd16_to_u32(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned int wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16tou32(psz, (::wd16_character **) ppszEnd, iBase);
@@ -840,12 +840,12 @@ CLASS_DECL_ACME void wd16_reverse(::wd16_character * psz)
 
 }
 
-CLASS_DECL_ACME void wd16_zero_pad(::wd16_character * psz, strsize lenPad)
+CLASS_DECL_ACME void wd16_zero_pad(::wd16_character * psz, character_count lenPad)
 {
 
-   strsize len = wd16_len(psz);
+   character_count len = wd16_len(psz);
 
-   strsize countZero = lenPad - len;
+   character_count countZero = lenPad - len;
 
    if (countZero <= 0)
    {
@@ -854,9 +854,9 @@ CLASS_DECL_ACME void wd16_zero_pad(::wd16_character * psz, strsize lenPad)
 
    }
 
-   strsize end = len - 1;
+   character_count end = len - 1;
 
-   strsize endFinal = len + countZero;
+   character_count endFinal = len + countZero;
 
    psz[endFinal + 1] = '\0';
 
@@ -918,11 +918,11 @@ CLASS_DECL_ACME ::wd16_character * wd16_upper(::wd16_character * pch)
 CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::wd16_character * psz1, const ::wd16_character * psz2, int iFree1, int iFree2)
 {
 
-   strsize len1 = wd16_length(psz1);
+   character_count len1 = wd16_length(psz1);
 
-   strsize len2 = wd16_length(psz2);
+   character_count len2 = wd16_length(psz2);
 
-   strsize len = len1 + len2 + 1;
+   character_count len = len1 + len2 + 1;
 
    auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len, nullptr);
 
@@ -976,11 +976,11 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_duplicate_and_free(const ::wd16_character * psz1, ::wd16_character * psz2)
 //{
 //
-//   strsize len1 = wd16_len(psz1);
+//   character_count len1 = wd16_len(psz1);
 //
-//   strsize len2 = wd16_len(psz2);
+//   character_count len2 = wd16_len(psz2);
 //
-//   strsize len = len1 + len2 + 1;
+//   character_count len = len1 + len2 + 1;
 //
 //   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
@@ -1011,11 +1011,11 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_free_and_duplicate(::wd16_character * psz1, const ::wd16_character * psz2)
 //{
 //
-//   strsize len1 = wd16_len(psz1);
+//   character_count len1 = wd16_len(psz1);
 //
-//   strsize len2 = wd16_len(psz2);
+//   character_count len2 = wd16_len(psz2);
 //
-//   strsize len = len1 + len2 + 1;
+//   character_count len = len1 + len2 + 1;
 //
 //   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
@@ -1046,11 +1046,11 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::wd16_character * wd16_concatenat_free_duplicate_and_free(::wd16_character * psz1, ::wd16_character * psz2)
 //{
 //
-//   strsize len1 = wd16_len(psz1);
+//   character_count len1 = wd16_len(psz1);
 //
-//   strsize len2 = wd16_len(psz2);
+//   character_count len2 = wd16_len(psz2);
 //
-//   strsize len = len1 + len2 + 1;
+//   character_count len = len1 + len2 + 1;
 //
 //   auto * psz = (::wd16_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
@@ -1084,7 +1084,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 
 
 
-//CLASS_DECL_ACME const void * memory_find_memory(const void * src, strsize srclen, const void * find, strsize findlen)
+//CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_count srclen, const void * find, character_count findlen)
 //{
 //
 //   if (::is_null(src)) return nullptr;
@@ -1131,7 +1131,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 
 //CLASS_DECL_ACME unichar * wd16_concatenate(unichar * dest, const unichar * cat);
 //CLASS_DECL_ACME unichar * wd16_copy(unichar * dest, const unichar * src);
-//CLASS_DECL_ACME unichar * wd16_count_copy(unichar * dest, const unichar * src, strsize n);
+//CLASS_DECL_ACME unichar * wd16_count_copy(unichar * dest, const unichar * src, character_count n);
 //CLASS_DECL_ACME int wd16_char_is_alnum(int wch);
 //CLASS_DECL_ACME count wd16_length(const unichar * pwsz);
 //CLASS_DECL_ACME count wd16_32len_dup(const wchar_t * pwsz);
@@ -1140,21 +1140,21 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME int wd16_compare_case_insensitive(const unichar * psz, const unichar * sz2);
 //CLASS_DECL_ACME ::wd16_character * wd16_find_string_case_insensitive(const unichar * src, const unichar * find);
 
-//CLASS_DECL_ACME void wd16_from_u64_base(unichar * sz, u64 i, int iBase);
-//CLASS_DECL_ACME void wd16_from_int_base(unichar * sz, i64 i, int iBase);
+//CLASS_DECL_ACME void wd16_from_u64_base(unichar * sz, huge_natural i, int iBase);
+//CLASS_DECL_ACME void wd16_from_int_base(unichar * sz, huge_integer i, int iBase);
 
 
-//CLASS_DECL_ACME void l64toa_dup(::wd16_character * sz, i64 i, i64 iBase);
-//CLASS_DECL_ACME void i64toa_dup(::wd16_character * sz, i64 i);
+//CLASS_DECL_ACME void l64toa_dup(::wd16_character * sz, huge_integer i, huge_integer iBase);
+//CLASS_DECL_ACME void i64toa_dup(::wd16_character * sz, huge_integer i);
 //CLASS_DECL_ACME void wd16_reverse(unichar * sz);
-//CLASS_DECL_ACME void w_zero_pad(::wd16_character * sz, strsize iPad);
+//CLASS_DECL_ACME void w_zero_pad(::wd16_character * sz, character_count iPad);
 
 
 //CLASS_DECL_ACME unichar wd16_char_lower(int wch);
 //CLASS_DECL_ACME unichar wd16_char_upper(int wch);
 
-//CLASS_DECL_ACME errno_t wd16_lower(unichar * sz, strsize size);
-//CLASS_DECL_ACME errno_t wd16_upper(unichar * sz, strsize size);
+//CLASS_DECL_ACME errno_t wd16_lower(unichar * sz, character_count size);
+//CLASS_DECL_ACME errno_t wd16_upper(unichar * sz, character_count size);
 
 //CLASS_DECL_ACME int wd16_char_isalpha(int ch);
 //CLASS_DECL_ACME int wd16_char_isdigit(int ch);

@@ -73,11 +73,11 @@
          data_struct data;
          data.mtype        = 20170101;
          data.request      = 0;
-         data.size_i32         = ansi_length(pszMessage);
-         if(data.size_i32 > 512)
+         data.int_size         = ansi_length(pszMessage);
+         if(data.int_size > 512)
             return false;
 
-         /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+         /* The length is essentially the int_size of the structure minus sizeof(mtype) */
          int length = sizeof(data_struct) - sizeof(long);
 
          int result;
@@ -110,7 +110,7 @@
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
-         data.size_i32         = (int)ansi_length(pszMessage);
+         data.int_size         = (int)ansi_length(pszMessage);
 
          ::collection::count cPos = 0;
 
@@ -130,7 +130,7 @@
             else
                data.size = (int)cSend;
 
-            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
             int length = sizeof(data_struct) - sizeof(long);
 
             int result;
@@ -252,7 +252,7 @@
       // {
       // }
 
-      // void rx::receiver::on_ipc_post(rx * prx,i64 a,i64 b)
+      // void rx::receiver::on_ipc_post(rx * prx,huge_integer a,huge_integer b)
       // {
       // }
 
@@ -289,7 +289,7 @@
 
 
 
-      void * rx::on_interprocess_post(rx * prx,i64 a,i64 b)
+      void * rx::on_interprocess_post(rx * prx,huge_integer a,huge_integer b)
       {
 
          if(m_preceiver != nullptr)
@@ -338,7 +338,7 @@
 
             data_struct data;
 
-            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
             //length = sizeof(data_struct) - sizeof(long);
 
             memory mem;
@@ -364,9 +364,9 @@
                }
                */
 
-               mem.assign(data.data,data.size_i32);
+               mem.assign(data.data,data.int_size);
 
-               if (data.size_i32 < 512)
+               if (data.int_size < 512)
                {
 
                   break;

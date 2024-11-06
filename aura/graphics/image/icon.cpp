@@ -128,7 +128,7 @@ namespace image
    }
 
 
-   ::size_i32 icon::get_size()
+   ::int_size icon::get_size()
    {
 
       if (m_sizea.is_empty())
@@ -143,7 +143,7 @@ namespace image
    }
 
 
-   ::image::image_pointer icon::image_source_image(const ::size_i32 & size)
+   ::image::image_pointer icon::image_source_image(const ::int_size & size)
    {
 
       bool bExists;
@@ -185,7 +185,7 @@ namespace image
    }
 
 
-   ::size_i32 icon::get_smaller_size(const ::size_i32 & size)
+   ::int_size icon::get_smaller_size(const ::int_size & size)
    {
 
       if (m_sizea.is_empty())
@@ -227,7 +227,7 @@ namespace image
    }
 
 
-   /*::image::image_pointer icon::image::image_source_image(const concrete < ::size_i32 > & size) const
+   /*::image::image_pointer icon::image::image_source_image(const concrete < ::int_size > & size) const
    {
 
       return ((icon *)this)->get_image(size);
@@ -235,15 +235,15 @@ namespace image
    }*/
 
 
-   // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
+   // inline concrete < ::int_size > int_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->int_size(sizeDst, sizeSrc, eimageselection); }
 
-   ::size_i32 icon::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   ::int_size icon::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
    {
 
       if (m_sizea.is_empty())
       {
 
-         return ::size_i32();
+         return ::int_size();
 
       }
 
@@ -313,7 +313,7 @@ namespace image
       if (iFound < 0)
       {
 
-         return size_i32();
+         return int_size();
 
       }
 
@@ -322,10 +322,10 @@ namespace image
    }
 
 
-   ::size_i32 icon::image_source_size() const
+   ::int_size icon::image_source_size() const
    { 
       
-      return image_source_size(::size_f64(), e_image_selection_default);
+      return image_source_size(::double_size(), e_image_selection_default);
    
    }
 

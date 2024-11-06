@@ -268,7 +268,7 @@ return g_pdraw2dcairo;
 //
 //   bool draw2d::embossed_text_out(
 //   ::draw2d::graphics_pointer & pgraphics,
-//   const ::rectangle_i32 & rectangle,
+//   const ::int_rectangle & rectangle,
 //   string strText,
 //   ::image::fastblur & blur,
 //   ::image::image_pointer & imageBlur,
@@ -1274,7 +1274,7 @@ return g_pdraw2dcairo;
 //
 //         //strDraw2d.trim();
 //
-//         //if (strDraw2d.has_char())
+//         //if (strDraw2d.has_character())
 //         //{
 //
 //         //   strDraw2d.case_insensitive_begins_eat("draw2d_");
@@ -1289,7 +1289,7 @@ return g_pdraw2dcairo;
 //
 //      ::e_status estatus;
 //
-//      if (strLibrary.has_char())
+//      if (strLibrary.has_character())
 //      {
 //
 //         estatus = psystem->([a-z0-9_]+)_factory("write_text", strLibrary);

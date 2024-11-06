@@ -40,7 +40,7 @@ namespace html
    void style_sheet::parse(html_data * pdata, const_ansi_range & range)
    {
 
-      while(range.has_char())
+      while(range.has_character())
       {
          const ::ansi_character * pszStart = range.m_begin;
          while(*range.m_begin != '{' && *range.m_begin != '\0')

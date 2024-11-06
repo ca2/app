@@ -77,13 +77,13 @@ namespace fs
    //{
    //   string strPath(pszPath);
    //   auto pFind = 0;
-   //   strsize iStart = strPath.length() - 1;
+   //   character_count iStart = strPath.length() - 1;
    //   if(iCount <= 0)
    //      return pszPath;
    //   while(iCount > 0)
    //   {
    //      iFind = strPath.rear_find('/', iStart);
-   //      strsize iPos = iFind - 1;
+   //      character_count iPos = iFind - 1;
    //      if(iPos >= 0 && strPath[iPos] == '/')
    //      {
    //         iPos--;

@@ -4,11 +4,11 @@
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, char & i) { s.default_exchange(atom, i); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, short & i) { s.default_exchange(atom, i); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, int & i) { s.default_exchange(atom, i); }
-//inline void __var_exchange(payload_stream & s, const ::atom & atom, i64 & i) { s.default_exchange(atom, i); }
+//inline void __var_exchange(payload_stream & s, const ::atom & atom, huge_integer & i) { s.default_exchange(atom, i); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, unsigned char & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, unsigned short & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, unsigned int & u) { s.default_exchange(atom, u); }
-//inline void __var_exchange(payload_stream & s, const ::atom & atom, u64 & u) { s.default_exchange(atom, u); }
+//inline void __var_exchange(payload_stream & s, const ::atom & atom, huge_natural & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, float & f) { s.default_exchange(atom, f); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, double & d) { s.default_exchange(atom, d); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::earth::time & time) { s.default_exchange(atom, time.m_iSecond); }
@@ -28,14 +28,14 @@
 //inline void __exchange(::payload_stream& s, char& i) { s.default_exchange(i); }
 //inline void __exchange(::payload_stream& s, short& i) { s.default_exchange(i); }
 //inline void __exchange(::payload_stream& s, int& i) { s.default_exchange(i); }
-//inline void __exchange(::payload_stream& s, i64& i) { s.default_exchange(i); }
+//inline void __exchange(::payload_stream& s, huge_integer& i) { s.default_exchange(i); }
 //#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //inline void __exchange(::payload_stream& s, long& l) { s.default_exchange(l); }
 //#endif
 //inline void __exchange(::payload_stream& s, unsigned char& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, unsigned short& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, unsigned int& u) { s.default_exchange(u); }
-//inline void __exchange(::payload_stream& s, u64& u) { s.default_exchange(u); }
+//inline void __exchange(::payload_stream& s, huge_natural& u) { s.default_exchange(u); }
 //inline void __exchange(::payload_stream& s, float& f) { s.default_exchange(f); }
 //inline void __exchange(::payload_stream& s, double& d) { s.default_exchange(d); }
 //inline void __exchange(::payload_stream& s, ::earth::time& time) { s.default_exchange(time.m_i); }

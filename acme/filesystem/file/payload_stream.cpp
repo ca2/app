@@ -88,12 +88,12 @@
 ////
 ////      m_var = u;
 ////   }
-////   void payload_stream::write(i64 i)
+////   void payload_stream::write(huge_integer i)
 ////   {
 ////
 ////      m_var = i;
 ////   }
-////   void payload_stream::write(u64 u)
+////   void payload_stream::write(huge_natural u)
 ////   {
 ////
 ////      m_var = u;
@@ -106,7 +106,7 @@
 ////      m_var = u;
 ////
 ////   }
-////   //void write (long long ll);
+////   //void write (huge_integer hi);
 ////#endif
 ////   void payload_stream::write(float f)
 ////   {
@@ -120,13 +120,13 @@
 ////      m_var = d;
 ////
 ////   }
-////   void payload_stream::write(const rectangle_i32 & & rectangle)
+////   void payload_stream::write(const int_rectangle & & rectangle)
 ////   {
 ////
 ////      oblt(rectangle);
 ////
 ////   }
-////   void payload_stream::write(::rectangle_i32 * pcrect)
+////   void payload_stream::write(::int_rectangle * pcrect)
 //
 ////   {
 ////
@@ -134,7 +134,7 @@
 //
 ////
 ////   }
-////   void payload_stream::write(const size_i32 & & size)
+////   void payload_stream::write(const int_size & & size)
 ////   {
 ////      oblt(size);
 ////
@@ -170,8 +170,8 @@
 ////
 ////   //      virtual void read(int & i);
 ////   //      virtual void read(unsigned int & u);
-////   //      virtual void read(i64 & i);
-////   //      virtual void read(u64 & u);
+////   //      virtual void read(huge_integer & i);
+////   //      virtual void read(huge_natural & u);
 ////
 ////
 ////   void payload_stream::read(bool & b);
@@ -184,17 +184,17 @@
 ////   void payload_stream::read(unsigned short & u);
 ////   void payload_stream::read(int & i);
 ////   void payload_stream::read(unsigned int & u);
-////   void payload_stream::read(i64 & i);
-////   void payload_stream::read(u64 & u);
+////   void payload_stream::read(huge_integer & i);
+////   void payload_stream::read(huge_natural & u);
 ////#ifdef __APPLE__
 ////   void payload_stream::read(unsigned long & u);
-////   //virtual void read (long long & u);
+////   //virtual void read (huge_integer & u);
 ////#endif
 ////   void payload_stream::read(float & f);
 ////   void payload_stream::read(double & d);
-////   void payload_stream::read(::rectangle_i32 * prectangle);
+////   void payload_stream::read(::int_rectangle * prectangle);
 //
-////   void payload_stream::read(const size_i32 & & size);
+////   void payload_stream::read(const int_size & & size);
 ////   void payload_stream::read(atom & atom);
 ////   void payload_stream::read(::payload & payload);
 ////   void payload_stream::read(property & property);
@@ -309,7 +309,7 @@
 //
 //}
 //
-//void payload_stream::exchange(const ::atom& atom, i64& i)
+//void payload_stream::exchange(const ::atom& atom, huge_integer& i)
 //{
 //
 //   var_exchange(atom, i);

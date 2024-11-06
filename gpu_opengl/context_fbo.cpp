@@ -65,7 +65,7 @@ void context_fbo::run()
    
 }
 
-   void context_fbo::_create_offscreen_buffer(const ::size_i32 & sizeParam)
+   void context_fbo::_create_offscreen_buffer(const ::int_size & sizeParam)
    {
       
       
@@ -341,7 +341,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    void context_fbo::_translate_shader(string_array & stra)
    {
 
-      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
+      character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if(iFindPrecision >= 0)
       {
@@ -414,7 +414,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    }
 
 
-   void context_fbo::resize_offscreen_buffer(const ::size_i32& sizeParam)
+   void context_fbo::resize_offscreen_buffer(const ::int_size& sizeParam)
    {
       
       auto size = sizeParam;

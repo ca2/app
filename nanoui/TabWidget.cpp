@@ -178,7 +178,7 @@ namespace nanoui
 
       m_iaTabOffsets.clear();
       int width = 0;
-      ::rectangle_f32 unused;
+      ::float_rectangle unused;
       for (auto & label : m_straTabCaptions)
       {
 
@@ -196,7 +196,7 @@ namespace nanoui
    }
 
 
-   size_i32 TabWidgetBase::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidgetBase::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
       pcontext->font_face(m_font.c_str());
       pcontext->font_size(font_size());
@@ -204,14 +204,14 @@ namespace nanoui
 
       int width = 0;
       for (auto & label : m_straTabCaptions) {
-         ::rectangle_f32 unused;
+         ::float_rectangle unused;
          int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), &unused);
          width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
          if (m_bTabsCloseable)
             width += m_iCloseButtonWidth;
       }
 
-      return sequence2_i32(width + 1,
+      return sequence2_int(width + 1,
          (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
    }
 
@@ -363,7 +363,7 @@ namespace nanoui
    }
 
 
-   ::item_pointer TabWidgetBase::hit_test(const point_i32& p, bool test_vertical) const 
+   ::item_pointer TabWidgetBase::hit_test(const int_point& p, bool test_vertical) const 
    {
 
       auto pitem = __allocate ::item();
@@ -421,7 +421,7 @@ namespace nanoui
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
       auto pitem = hit_test(p);
@@ -454,7 +454,7 @@ namespace nanoui
       {
 
          m_ppopup = m_popupcallback(tab_id(pitem->m_item.m_iItem), pscreen);
-         m_ppopup->set_position(p + sequence2_i32(8, -6));
+         m_ppopup->set_position(p + sequence2_int(8, -6));
          m_ppopup->set_anchor_offset(8);
          m_ppopup->set_anchor_size(8);
          
@@ -483,7 +483,7 @@ namespace nanoui
             [this](::nano2d::context* pcontext)
          {
             
-            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + size_i32(40, 0));
+            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + int_size(40, 0));
             
             m_ppopup->perform_layout(pcontext);
 
@@ -593,7 +593,7 @@ namespace nanoui
    }
 
 
-   bool TabWidgetBase::mouse_enter_event(const point_i32&/* p */, bool /* enter */, const ::user::e_key&)
+   bool TabWidgetBase::mouse_enter_event(const int_point&/* p */, bool /* enter */, const ::user::e_key&)
    {
 
       if (m_bTabsCloseable && m_iCloseIndex >= 0)
@@ -607,7 +607,7 @@ namespace nanoui
    }
 
 
-   bool TabWidgetBase::mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       auto pitem = hit_test(p, false);
@@ -702,9 +702,9 @@ namespace nanoui
       for (Widget* pwidgetChild : m_children) 
       {
 
-         pwidgetChild->set_position(sequence2_i32(m_iPadding, m_iPadding + tab_height + 1));
+         pwidgetChild->set_position(sequence2_int(m_iPadding, m_iPadding + tab_height + 1));
 
-         pwidgetChild->set_size(m_size - sequence2_i32(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
+         pwidgetChild->set_size(m_size - sequence2_int(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
 
          pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
 
@@ -741,12 +741,12 @@ namespace nanoui
    }
 
 
-   size_i32 TabWidget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);
 
-      size_i32 sizeContent;
+      int_size sizeContent;
          
       for (Widget* pwidgetChild : m_children)
       {
@@ -755,7 +755,7 @@ namespace nanoui
 
       }
 
-      return size_i32(
+      return int_size(
          ::maximum(sizeBase.cx(), sizeContent.cx() + 2 * m_iPadding),
          sizeBase.cy() + sizeContent.cy() + 2 * m_iPadding
       );

@@ -81,26 +81,26 @@ using text_changed = ::function < void(text_change & textchange) >;
       //virtual void get_text(string & str);
 
 
-      //virtual strsize get_text_length();
-      //virtual void get_text(char * psz, strsize len);
+      //virtual character_count get_text_length();
+      //virtual void get_text(char * psz, character_count len);
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
       //virtual void set_text(const ::string & str, const ::action_context & action_context);
-      //virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
+      //virtual void set_text(const ::string & psz, character_count len, const ::action_context & action_context);
 
 
 
-      //virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-      //virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
-      //virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void _001GetSel(character_count & iBeg, character_count & iEnd);
+      //virtual void set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void _001SetSelEnd(character_count iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
       //virtual void get_selection_text(string & str);
       //virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
 
 
-      //virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
+      //virtual void get_text_selection(character_count &iSelStart, character_count &iSelEnd);
 
 
       //virtual void MacroBegin();
@@ -118,7 +118,7 @@ using text_changed = ::function < void(text_change & textchange) >;
       //virtual bool edit_undo();
 
 
-      //virtual void get_text_composition_area(::rectangle_i32& rectangle);
+      //virtual void get_text_composition_area(::int_rectangle& rectangle);
 
       ::comparable_array < ::data::text_will_change > & text_will_change();
       ::comparable_array < ::data::text_changed > & text_changed();

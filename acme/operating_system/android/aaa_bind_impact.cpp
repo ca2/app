@@ -249,7 +249,7 @@
 //
 //   set_context(env);
 //
-//   ::rectangle_f64 rectangle;
+//   ::double_rectangle rectangle;
 //
 //   rectangle.left() = 0;
 //   rectangle.top() = 0;
@@ -258,7 +258,7 @@
 //
 //   SetMainScreenRect(rectangle);
 //
-//   ::point_i32 p;
+//   ::int_point p;
 //
 //   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 //

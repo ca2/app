@@ -6,7 +6,7 @@
 #include <wchar.h>
 
 
-CLASS_DECL_ACME::i64 string_to_signed(const ::wd32_character * pwsz)
+CLASS_DECL_ACME huge_integer string_to_signed(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS
@@ -24,7 +24,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const ::wd32_character * pwsz)
 }
 
 
-CLASS_DECL_ACME::u64 string_to_natural(const ::wd32_character * pwsz)
+CLASS_DECL_ACME huge_natural as_huge_natural(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS

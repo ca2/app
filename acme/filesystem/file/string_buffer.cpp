@@ -181,7 +181,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //}
 //
 //
-////void string_buffer::alloc(strsize iSize)
+////void string_buffer::alloc(character_count iSize)
 ////{
 //
 ////   if(iSize < 0)
@@ -189,7 +189,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //
 ////   if(iSize + 1 > m_iAlloc)
 ////   {
-////                  strsize oldAlloc = m_iAlloc;
+////                  character_count oldAlloc = m_iAlloc;
 ////      m_iAlloc = iSize + 1024;
 ////      if(m_psz == nullptr)
 ////      {
@@ -209,7 +209,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //
 ////}
 //
-////void string_buffer::alloc_up(strsize iAtLeast)
+////void string_buffer::alloc_up(character_count iAtLeast)
 ////{
 //
 ////   if(iAtLeast <= 0)
@@ -219,7 +219,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //
 ////}
 //
-//void string_buffer::set(const ::scoped_string & scopedstr,strsize len)
+//void string_buffer::set(const ::scoped_string & scopedstr,character_count len)
 //{
 //      
 //   if(psz == nullptr || *psz == '\0' || len <= 0)
@@ -232,7 +232,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //
 //}
 //
-//void string_buffer::append(const ::scoped_string & scopedstr,strsize len)
+//void string_buffer::append(const ::scoped_string & scopedstr,character_count len)
 //{
 //
 //   if(psz == nullptr || *psz == '\0' || len <= 0)
@@ -345,11 +345,11 @@ bool string_reference_buffer::unget_if(::ansi_character ch)
 
 
 //void destroy() { }
-//void alloc(strsize iSize);
+//void alloc(character_count iSize);
 
-//void alloc_up(strsize iAtLeast);
+//void alloc_up(character_count iAtLeast);
 
-//void set(const ::scoped_string & scopedstr, strsize len)
+//void set(const ::scoped_string & scopedstr, character_count len)
 //{
 
 
@@ -362,7 +362,7 @@ bool string_reference_buffer::unget_if(::ansi_character ch)
 //}
 
 
-//void append(const ::scoped_string & scopedstr, strsize len)
+//void append(const ::scoped_string & scopedstr, character_count len)
 //{
 
 //   m_str.append

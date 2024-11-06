@@ -4,7 +4,7 @@
 #pragma once
 
 
-inline ::rectangle_i32 & copy(::rectangle_i32 & rectangle, const QRect &qrect)
+inline ::int_rectangle & copy(::int_rectangle & rectangle, const QRect &qrect)
 {
 
    rectangle.left() = qrect.left();

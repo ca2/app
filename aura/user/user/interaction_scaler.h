@@ -22,7 +22,7 @@ namespace user
       ~interaction_scaler() override;
 
 
-      virtual void on_display_change(const ::size_i32 & sizeMonitor);
+      virtual void on_display_change(const ::int_size & sizeMonitor);
       virtual void on_display_change(::user::interaction * puserinteraction);
 
 

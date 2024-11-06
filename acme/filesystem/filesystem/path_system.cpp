@@ -322,7 +322,7 @@ bool path_system::real_path_is_same(const ::file::path & path1, const ::file::pa
 
    ::file::path pathFull2 = real_path(path2);
 
-   return pathFull1.has_char() && pathFull1.case_insensitive_order(pathFull2) == 0;
+   return pathFull1.has_character() && pathFull1.case_insensitive_order(pathFull2) == 0;
 
 }
 
@@ -694,7 +694,7 @@ void path_system::rename(const ::file::path& pathNewName, const ::file::path& pa
 
    ::string str;
 
-   if (strAllExtensions.has_char())
+   if (strAllExtensions.has_character())
    {
 
       if (iZeroPaddingWidth <= 1)

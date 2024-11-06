@@ -43,7 +43,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      void get_slider_rect(::rectangle_i32 & rectangle);
+      void get_slider_rect(::int_rectangle & rectangle);
 
    };
 

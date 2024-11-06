@@ -18,7 +18,7 @@ typedef unsigned int    u_int;
 typedef unsigned long   u_long;
 
 #if(_WIN32_WINNT >= 0x0501)
-typedef ::u64 u_int64;
+typedef huge_natural u_int64;
 #endif //(_WIN32_WINNT >= 0x0501)
 
 #ifdef __cplusplus
@@ -109,8 +109,8 @@ static inline ULONG __wine_ulong_swap(ULONG l)
 //// Defines to match RFC 2553.
 ////
 //#define _S6_un      u
-//#define _S6_u8      Byte
-//#define s6_addr     _S6_un._S6_u8
+//#define _S6_unsigned_char      Byte
+//#define s6_addr     _S6_un._S6_unsigned_char
 //
 ////
 //// Defines for our implementation.

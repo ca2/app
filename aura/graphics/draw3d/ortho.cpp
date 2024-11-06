@@ -17,12 +17,12 @@ namespace draw3d
 {
 
 
-   ::int_array ortho::draw_ortho_plain_wire_frame(::box_f64 * pbox,int iHint,int bA,bool bFirst)
+   ::int_array ortho::draw_ortho_plain_wire_frame(::box_double * pbox,int iHint,int bA,bool bFirst)
    {
 
       double dA = bA / 255.0;
 
-      array < ::location_f64 > locationa = pbox->vertices();
+      array < ::location_double > locationa = pbox->vertices();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -182,7 +182,7 @@ namespace draw3d
 
             m_pdc->set(ppen);
 
-            m_pdc->draw_line(::point_f64(locationa[point1[iMax]].cxy()), ::point_f64(locationa[point2[iMax]].cxy()));
+            m_pdc->draw_line(::double_point(locationa[point1[iMax]].cxy()), ::double_point(locationa[point2[iMax]].cxy()));
 
          }
 
@@ -225,18 +225,18 @@ namespace draw3d
    }
 
 
-   ::int_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
+   ::int_array ortho::draw_ortho_plain_fill(::box_double * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
    {
 
       ::draw2d::bitmap bm;
 
-      ::point_i32 point2da[3];
+      ::int_point point2da[3];
 
       ::int_array ia;
 
       double dA = bA / 255.0;
 
-      array < ::location_f64 > locationa = pbox->vertices();
+      array < ::location_double > locationa = pbox->vertices();
       array < ::int_array > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -350,9 +350,9 @@ namespace draw3d
 //
 //            pimage->fill((int)(dA * (184.0 - r * 128.0)),colorA.red,colorA.green,colorA.blue);
 //
-//            point2da[0]=::point_i32((int)locationa[f[iMax][0]].x(),(int)locationa[f[iMax][0]].y());
-//            point2da[1]= ::point_i32((int)locationa[f[iMax][1]].x(),(int)locationa[f[iMax][1]].y());
-//            point2da[2]= ::point_i32((int)locationa[f[iMax][2]].x(),(int)locationa[f[iMax][2]].y());
+//            point2da[0]=::int_point((int)locationa[f[iMax][0]].x(),(int)locationa[f[iMax][0]].y());
+//            point2da[1]= ::int_point((int)locationa[f[iMax][1]].x(),(int)locationa[f[iMax][1]].y());
+//            point2da[2]= ::int_point((int)locationa[f[iMax][2]].x(),(int)locationa[f[iMax][2]].y());
 //
 //            throw ::exception(todo, "plgblt");
 //            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);

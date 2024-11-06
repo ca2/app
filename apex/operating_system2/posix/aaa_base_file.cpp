@@ -197,7 +197,7 @@ pdirectorysystem->create(::file_path_folder(path));
 
 
 
-string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 {
 
    string str;
@@ -230,7 +230,7 @@ string file_system()->as_string(const ::file::path & path, strsize iReadAtMostBy
 }
 
 
-memory file_as_memory(const ::file::path & path, strsize iReadAtMostByteCount)
+memory file_as_memory(const ::file::path & path, character_count iReadAtMostByteCount)
 {
 
    memory mem;
@@ -242,13 +242,13 @@ memory file_as_memory(const ::file::path & path, strsize iReadAtMostByteCount)
 }
 
 
-bool file_as_memory(memory_base & memory, const ::file::path & path, strsize iReadAtMostByteCount)
+bool file_as_memory(memory_base & memory, const ::file::path & path, character_count iReadAtMostByteCount)
 {
 
    FILE * f = fopen(path, "rb");
    if (f == nullptr)
       return false;
-   strsize iSize = FILE_get_size(f);
+   character_count iSize = FILE_get_size(f);
 
    if (iSize < 0)
    {

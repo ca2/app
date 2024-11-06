@@ -64,22 +64,22 @@ namespace http
       str = m_strName;
       str += "=";
       str += m_payload;
-      if(m_strExpire.has_char())
+      if(m_strExpire.has_character())
       {
          str += "; expires=";
          str += m_strExpire;
       }
-      if(m_strPath.has_char())
+      if(m_strPath.has_character())
       {
          str += "; path=";
          str += m_strPath;
       }
-      if(m_strDomain.has_char())
+      if(m_strDomain.has_character())
       {
          str += "; domain=";
          str += m_strDomain;
       }
-      if (m_strSameSite.has_char())
+      if (m_strSameSite.has_character())
       {
          str += "; SameSite=";
          str += m_strSameSite;
@@ -278,7 +278,7 @@ namespace http
    }
 
 
-   strsize cookies::get_length( const char * name)
+   character_count cookies::get_length( const char * name)
    {
 
       return cookie(name).m_payload.as_string().length();

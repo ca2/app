@@ -130,8 +130,8 @@ namespace sockets
       //::pointer< ::mutex >        m_pmutexSslCtx;
       ////
       //bool m_b_input_buffer_disabled;
-      //u64 m_bytes_sent;
-      //u64 m_bytes_received;
+      //huge_natural m_bytes_sent;
+      //huge_natural m_bytes_received;
       //memory         m_memRead;
       //output_list m_obuf; ///< output buffer
       //::pointer<output>m_obuf_top; ///< output buffer on top
@@ -165,8 +165,8 @@ namespace sockets
       tcp_socket();
       /** Constructor with custom values for i/o buffer.
       \lparam h base_socket_handler object
-      \lparam isize Input buffer size_i32
-      \lparam osize Output buffer size_i32 */
+      \lparam isize Input buffer int_size
+      \lparam osize Output buffer int_size */
       //tcp_socket(memsize isize,memsize osize);
       ~tcp_socket() override;
 
@@ -261,9 +261,9 @@ namespace sockets
       \lparam line Line read */
       void OnLine(const string & line) override;
       /** get counter of number of bytes received. */
-      u64 GetBytesReceived(bool clear = false) override;
+      huge_natural GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */
-      u64 GetBytesSent(bool clear = false) override;
+      huge_natural GetBytesSent(bool clear = false) override;
 
 
       virtual output * top_output_buffer();

@@ -111,8 +111,8 @@ namespace user
       
       
 #ifdef DEBUG
-      i64 increment_reference_count() override;
-      i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 #endif
 
       //using pointer_array < ::user::interaction >::find_first;

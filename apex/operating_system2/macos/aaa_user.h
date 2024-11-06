@@ -71,9 +71,9 @@ namespace macos
  int    top;
  int    right;
  int    bottom;
- } const rectangle_i32 &, *PRECT, *NPRECT, *::rectangle_i32 *;
+ } const int_rectangle &, *PRECT, *NPRECT, *::int_rectangle *;
  
- typedef const rectangle_i32 & * const rectangle_i32 &;
+ typedef const int_rectangle & * const int_rectangle &;
  
  
  
@@ -83,7 +83,7 @@ namespace macos
 //CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 //
 //
-//int_bool get_nswindow_rect(oswindow hwnd,::rectangle_i32 * prectangle);
+//int_bool get_nswindow_rect(oswindow hwnd,::int_rectangle * prectangle);
 
 
 
@@ -168,7 +168,7 @@ typedef int wxCoord;
 //   
 //   bool IsFullySpecified() const { return x != wxDefaultCoord && y != wxDefaultCoord; }
 //   
-//   // combine this size_i32 with the other one replacing the default (i.e. equal
+//   // combine this int_size with the other one replacing the default (i.e. equal
 //   // to wxDefaultCoord) components of this object with those of the other
 //   void SetDefaults(const wxSize& size)
 //   {
@@ -339,7 +339,7 @@ typedef int wxCoord;
 
 
 //
-//int_bool set_nswindow_frame(oswindow hwnd, const ::rectangle_i32 * prectangle, int iDisplay);
+//int_bool set_nswindow_frame(oswindow hwnd, const ::int_rectangle * prectangle, int iDisplay);
 //int_bool move_nswindow(oswindow hwnd,int x,int y);
 //int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 //int_bool order_front_nswindow(oswindow hwnd);

@@ -9,7 +9,7 @@
 #if !defined(_DEBUG)
 
 
-inline i64 subparticle::increment_reference_count()
+inline huge_integer subparticle::increment_reference_count()
 {
 
    auto c = ++m_countReference;
@@ -25,7 +25,7 @@ inline i64 subparticle::increment_reference_count()
 }
 
 
-inline i64 subparticle::decrement_reference_count()
+inline huge_integer subparticle::decrement_reference_count()
 {
 
    auto c = --m_countReference;
@@ -46,10 +46,10 @@ inline i64 subparticle::decrement_reference_count()
 }
 
 
-inline i64 subparticle::release()
+inline huge_integer subparticle::release()
 {
 
-   i64 i = decrement_reference_count();
+   huge_integer i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -63,7 +63,7 @@ inline i64 subparticle::release()
 }
 
 
-inline i64 subparticle::replace_reference()
+inline huge_integer subparticle::replace_reference()
 {
 
    return m_countReference;

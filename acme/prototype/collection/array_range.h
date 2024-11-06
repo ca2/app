@@ -490,7 +490,7 @@
 
 //
 //template < primitive_character CHARACTER >
-//const CHARACTER * string_compare(const CHARACTER * pA, strsize sizeA, const CHARACTER * pB, strsize sizeB)
+//const CHARACTER * string_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB, character_count sizeB)
 //{
 //
 //   int iCompare;

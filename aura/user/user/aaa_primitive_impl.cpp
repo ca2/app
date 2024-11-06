@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
+   //void primitive_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -355,14 +355,14 @@ namespace user
    }
 
 
-   void primitive_impl::on_configure(const ::rectangle_i32 & rectangle)
+   void primitive_impl::on_configure(const ::int_rectangle & rectangle)
    {
 
 
    }
 
 
-//   void primitive_impl::on_resize(const ::size_i32 & size)
+//   void primitive_impl::on_resize(const ::int_size & size)
 //   {
 //
 //
@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(::sequence2_i32 & sequence)
+   void primitive_impl::viewport_client_to_screen(::sequence2_int & sequence)
    {
 
       if (m_puserinteraction)
@@ -504,7 +504,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(::sequence2_i32 & sequence)
+   void primitive_impl::viewport_screen_to_client(::sequence2_int & sequence)
    {
 
       if (m_puserinteraction)
@@ -517,7 +517,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
+   void primitive_impl::viewport_client_to_screen(::int_rectangle & rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -527,11 +527,11 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(::rectangle_i32 & rectangle)
+   void primitive_impl::viewport_screen_to_client(::int_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left());
-      viewport_screen_to_client((::point_i32 &)rectangle.right());
+      viewport_screen_to_client((::int_point &)rectangle.left());
+      viewport_screen_to_client((::int_point &)rectangle.right());
 
    }
 
@@ -770,7 +770,7 @@ namespace user
    }
 
 
-   lresult primitive_impl::send_message(const ::atom& atom, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult primitive_impl::send_message(const ::atom& atom, wparam wparam, lparam lparam, const ::int_point& point)
    {
 
       return message_call(atom, wparam, lparam, point);
@@ -865,9 +865,9 @@ namespace user
 
             pmessage->m_nChar = static_cast<unsigned int>(wparam);
 
-            pmessage->m_nRepCnt = lower_u16(lparam);
+            pmessage->m_nRepCnt = lower_unsigned_short(lparam);
 
-            pmessage->m_nFlags = upper_u16(lparam);
+            pmessage->m_nFlags = upper_unsigned_short(lparam);
 
             pmessage->m_iVirtualKey = (int)wparam;
 
@@ -907,9 +907,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = int_x(lparam);
+         pmessage->m_point.x() = lparam_int_x(lparam);
 
-         pmessage->m_point.y() = int_y(lparam);
+         pmessage->m_point.y() = lparam_int_y(lparam);
       }
       break;
       case ::message::e_prototype_move:
@@ -934,9 +934,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
 
-         pmessage->m_dPosition = (double) (short)upper_u16(wparam);
+         pmessage->m_dPosition = (double) (short)upper_unsigned_short(wparam);
 
       }
       break;
@@ -1007,11 +1007,11 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
+         pmessage->m_ebuttonstate = (::user::enum_button_state) lower_unsigned_short(wparam);
 
          pmessage->m_pointAbsolute = lparam.point();
 
-         pmessage->m_Δ = upper_i16(wparam);
+         pmessage->m_Δ = upper_short(wparam);
 
          pmessage->m_pointHost = pmessage->m_pointAbsolute;
 
@@ -1025,7 +1025,7 @@ namespace user
 
          pmessage->m_nType = static_cast <unsigned int> (wparam);
 
-         pmessage->m_size = ::size_i32(int_x(lparam), int_y(lparam));
+         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -1038,7 +1038,7 @@ namespace user
 
             //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_eactivate = (enum_activate)(lower_u16(wparam));
+         pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
 
          if (lparam == 0)
          {
@@ -1059,7 +1059,7 @@ namespace user
 
          }
 
-         pmessage->m_bMinimized = upper_u16(wparam) != false;
+         pmessage->m_bMinimized = upper_unsigned_short(wparam) != false;
 
          //}
 
@@ -1126,7 +1126,7 @@ namespace user
 
    }
 
-//   strsize primitive_impl::get_window_text(char* pszStringBuf, strsize nMaxCount)
+//   character_count primitive_impl::get_window_text(char* pszStringBuf, character_count nMaxCount)
 //   {
 //
 //      return 0;
@@ -1141,7 +1141,7 @@ namespace user
 //   }
 
 
-//   strsize primitive_impl::get_window_text_length()
+//   character_count primitive_impl::get_window_text_length()
 //   {
 //
 //      return 0;
@@ -1177,7 +1177,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point)
+   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::int_point& point)
    {
 
       return nullptr;
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point, unsigned int nFlags)
+   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags)
    {
 
       return nullptr;
@@ -1407,14 +1407,14 @@ namespace user
    }
 
 
-   void primitive_impl::set_need_redraw(const ::rectangle_int_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void primitive_impl::set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 
    }
 
 
-   void primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void primitive_impl::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       if (!m_puserinteraction)
@@ -1990,7 +1990,7 @@ namespace user
    }
 
 
-   lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -2126,7 +2126,7 @@ namespace user
    //}
 
 
-   void primitive_impl::get_rect_normal(::rectangle_i32 * prectangle)
+   void primitive_impl::get_rect_normal(::int_rectangle * prectangle)
    {
 
       *prectangle = m_puserinteraction->screen_rectangle();
@@ -2923,7 +2923,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::InvalidateRect(::rectangle_i32 const &,bool)
+   //void primitive_impl::InvalidateRect(::int_rectangle const &,bool)
    //{
 
 
@@ -2937,7 +2937,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::ValidateRect(::rectangle_i32 const &)
+   //void primitive_impl::ValidateRect(::int_rectangle const &)
    //{
 
 
@@ -3058,14 +3058,14 @@ namespace user
 
    //}
 
-   void primitive_impl::_raw_client_to_screen(::point_i32 & point)
+   void primitive_impl::_raw_client_to_screen(::int_point & point)
    {
 
       m_puserinteraction->client_to_screen(e_layout_design)(point);
 
    }
 
-   void primitive_impl::_raw_screen_to_client(::point_i32& point)
+   void primitive_impl::_raw_screen_to_client(::int_point& point)
    {
 
       m_puserinteraction->screen_to_client(e_layout_design)(point);

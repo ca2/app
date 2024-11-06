@@ -72,7 +72,7 @@ namespace windowing
    }
 
 
-   i64 simple_ui_display::increment_reference_count()
+   huge_integer simple_ui_display::increment_reference_count()
    {
 
       return hook::increment_reference_count();
@@ -80,7 +80,7 @@ namespace windowing
    }
 
 
-   i64 simple_ui_display::decrement_reference_count()
+   huge_integer simple_ui_display::decrement_reference_count()
    {
 
       return hook::decrement_reference_count();
@@ -88,7 +88,7 @@ namespace windowing
    }
 
 
-   i64 simple_ui_display::release()
+   huge_integer simple_ui_display::release()
    {
 
       return hook::release();
@@ -367,14 +367,14 @@ namespace windowing
 //
 //               XGlyphInfo &rText = pbutton->m_infoText;
 //
-//               ::rectangle_i32 &rButtonOuter = pbutton->m_rectangle;
+//               ::int_rectangle &rButtonOuter = pbutton->m_rectangle;
 //
 //               rButtonOuter.right() = right;
 //               rButtonOuter.left() = right - m_iButtonWidth;
 //               rButtonOuter.top() = m_iButtonTop;
 //               rButtonOuter.bottom() = m_iButtonTop + m_iButtonHeight;
 //
-//               ::rectangle_i32 rButton = rButtonOuter;
+//               ::int_rectangle rButton = rButtonOuter;
 //
 //               rButton.deflate(1, 1);
 //
@@ -456,7 +456,7 @@ namespace windowing
 //
 //               XftDrawRect(m_pdraw, &colorBack, rButton.left(), rButton.top(), rButton.width(), rButton.height());
 //
-//               ::rectangle_i32 rectangleText(rButton);
+//               ::int_rectangle rectangleText(rButton);
 //
 //               rectangleText.deflate(m_iButtonHPadding, m_iButtonVPadding);
 //
@@ -566,7 +566,7 @@ namespace windowing
 //            //printf("Window created %" PRId64 "\n", m_window);
 //            XStoreName(pdisplay, m_window, m_strTitle);
 //
-//            const char *pszFont = "Ubuntu:size_i32=12";
+//            const char *pszFont = "Ubuntu:int_size=12";
 //
 //            m_pfont = XftFontOpenName(pdisplay, m_iScreen, pszFont);
 //
@@ -608,7 +608,7 @@ namespace windowing
    void simple_ui_display::on_layout(display *pdisplay)
    {
 
-      ::size_i32 sizeLine;
+      ::int_size sizeLine;
 
 //      XGlyphInfo infoDummy;
 //
@@ -673,7 +673,7 @@ namespace windowing
 //
 //      m_iButtonHeight = m_iButtonVPadding + m_iLineHeight + m_iButtonVPadding;
 //
-//      ::size_i32 sizeTotal;
+//      ::int_size sizeTotal;
 //
 //      sizeTotal.cx() = maximum(m_iMarginLeft + sizeLine.cx() + m_iMarginRight,
 //                         m_iMarginLeft + m_iButtonWidth * m_buttona.get_count() +
@@ -752,7 +752,7 @@ namespace windowing
 //         else if (e.type == MotionNotify)
 //         {
 //
-//            ::point_i32 point(e.xmotion.x(), e.xmotion.y());
+//            ::int_point point(e.xmotion.x(), e.xmotion.y());
 //
 //            bool bRedraw = false;
 //
@@ -783,7 +783,7 @@ namespace windowing
 //         else if (e.type == ButtonPress)
 //         {
 //
-//            ::point_i32 point(e.xbutton.x(), e.xbutton.y());
+//            ::int_point point(e.xbutton.x(), e.xbutton.y());
 //
 //            bool bRedraw = false;
 //
@@ -814,7 +814,7 @@ namespace windowing
 //         else if (e.type == ButtonRelease)
 //         {
 //
-//            ::point_i32 point(e.xbutton.x(), e.xbutton.y());
+//            ::int_point point(e.xbutton.x(), e.xbutton.y());
 //
 //            bool bRedraw = false;
 //

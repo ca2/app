@@ -313,7 +313,7 @@ int get_current_process_affinity_order()
 }
 
 
-::u64 translate_processor_affinity(int i)
+huge_natural translate_processor_affinity(int i)
 {
 
    return 1;

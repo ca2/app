@@ -101,13 +101,13 @@ namespace user
    void shell::image_key::set_extension(const ::string & strPath)
    {
 
-      strsize iFind1 = strPath.rear_find_index('/');
+      character_count iFind1 = strPath.rear_find_index('/');
 
-      strsize iFind2 = strPath.rear_find_index('\\');
+      character_count iFind2 = strPath.rear_find_index('\\');
 
       auto iFind = maximum(iFind1, iFind2) + 1;
 
-      strsize iDot = strPath.find_index('.', iFind);
+      character_count iDot = strPath.find_index('.', iFind);
 
       if (iDot < 0)
       {
@@ -370,7 +370,7 @@ namespace user
 
                ::image::image_source imagesource(pimageTemplate);
 
-               rectangle_f64 rectangle(::size_f64(iSize, iSize));
+               double_rectangle rectangle(::double_size(iSize, iSize));
 
                ::image::image_drawing_options imagedrawingoptions(rectangle, ::image::e_placement_aspect_fit, {0.0, 0.0});
 
@@ -952,7 +952,7 @@ namespace user
 //
 //         string strRoot = url()->get_root(path);
 //
-//         if (strProtocol.has_char() && strRoot.has_char())
+//         if (strProtocol.has_character() && strRoot.has_character())
 //         {
 //
 //            if(get_image_by_file_extension(getfileimage))
@@ -1114,7 +1114,7 @@ namespace user
 
          string strRoot = url.connect().host();
 
-         if (strProtocol.has_char() && strRoot.has_char())
+         if (strProtocol.has_character() && strRoot.has_character())
          {
 
             if(get_image_by_file_extension(getfileimage))
@@ -1257,10 +1257,10 @@ namespace user
 
       }
 
-      if (strIcon16.has_char() || strIcon48.has_char())
+      if (strIcon16.has_character() || strIcon48.has_character())
       {
 
-         if(strIcon16.has_char())
+         if(strIcon16.has_character())
          {
 
             getfileimage.m_imagekey.m_strPath = strIcon16;
@@ -1277,7 +1277,7 @@ namespace user
             }
 
          }
-         else if(strIcon48.has_char())
+         else if(strIcon48.has_character())
          {
 
             getfileimage.m_imagekey.m_strPath = strIcon48;
@@ -1328,7 +1328,7 @@ namespace user
 
          ::image::image_pointer image16;
 
-         if(pimage1->get_size() == ::size_i32(16, 16))
+         if(pimage1->get_size() == ::int_size(16, 16))
          {
 
             image16 = pimage1;
@@ -1350,7 +1350,7 @@ namespace user
 
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(16, 16));
+            double_rectangle rectangle(::int_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1362,7 +1362,7 @@ namespace user
 
          ::image::image_pointer image48;
 
-         if(pimage->get_size() == ::size_i32(48, 48))
+         if(pimage->get_size() == ::int_size(48, 48))
          {
 
             image48 = pimage;
@@ -1384,7 +1384,7 @@ namespace user
 
             ::image::image_source imagesource(pimage, pimage->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(48, 48));
+            double_rectangle rectangle(::int_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1400,7 +1400,7 @@ namespace user
 
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(16, 16));
+            double_rectangle rectangle(::int_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1416,7 +1416,7 @@ namespace user
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(48, 48));
+            double_rectangle rectangle(::int_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1432,7 +1432,7 @@ namespace user
 
             ::image::image_source imagesource(image16, image16->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(16, 16));
+            double_rectangle rectangle(::int_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1450,7 +1450,7 @@ namespace user
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
-            rectangle_f64 rectangle(::size_i32(48, 48));
+            double_rectangle rectangle(::int_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1546,7 +1546,7 @@ namespace user
 
       return true;
 
-//      if(strUniversalTypeIdentifier.has_char())
+//      if(strUniversalTypeIdentifier.has_character())
 //      {
 //
 //         string strPathOld = getfileimage.m_imagekey.m_strPath;
@@ -1773,7 +1773,7 @@ namespace user
       for (auto iSize : m_iaSize)
       {
 
-         auto pimage = pdraw2dicon->image_source_image(::size_f64(iSize, iSize));
+         auto pimage = pdraw2dicon->image_source_image(::double_size(iSize, iSize));
 
          if (::is_null(pimage))
          {
@@ -1784,7 +1784,7 @@ namespace user
 
          ::image::image_source imagesource(pimage);
 
-         rectangle_f64 rectangle(::size_f64(iSize, iSize));
+         double_rectangle rectangle(::double_size(iSize, iSize));
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1980,7 +1980,7 @@ namespace user
 
                ::image::image_source imagesource(pimage);
 
-               rectangle_f64 rectangle(::size_f64(iSize, iSize));
+               double_rectangle rectangle(::double_size(iSize, iSize));
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2053,7 +2053,7 @@ namespace user
 
    //      {
    //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-   //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
+   //         int_size s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
@@ -2113,7 +2113,7 @@ namespace user
 
    //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   //         auto rectangleDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
+   //         auto rectangleDraw = ::double_rectangle(::double_point(iImage * 48, 0), ::double_size(48, 48));
 
    //         m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 

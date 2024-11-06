@@ -30,7 +30,7 @@ namespace sockets
 
 
 
-      virtual i64 increment_reference_count() override
+      virtual huge_integer increment_reference_count() override
       {
 
          return http_client_socket::increment_reference_count();
@@ -38,7 +38,7 @@ namespace sockets
       }
 
 
-      virtual i64 decrement_reference_count() override
+      virtual huge_integer decrement_reference_count() override
       {
 
          return http_client_socket::decrement_reference_count();

@@ -40,8 +40,8 @@ off_t tell64(int fd);
 //typedef struct _cairo_rectangle_int cairo_rectangle_int_t;
 //typedef cairo_rectangle_int_t         GdkRectangle;
 //
-//void copy(::rectangle_i32 * prectTarget, const GdkRectangle * prectSource);
-//void copy(GdkRectangle * prectTarget, const ::rectangle_i32 * prectSource);
+//void copy(::int_rectangle * prectTarget, const GdkRectangle * prectSource);
+//void copy(GdkRectangle * prectTarget, const ::int_rectangle * prectSource);
 
 
 //namespace user

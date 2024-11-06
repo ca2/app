@@ -61,7 +61,7 @@ namespace userex
    string image_list_impact::get_link_prefix()
    {
 
-      if (m_strLinkPrefix.has_char())
+      if (m_strLinkPrefix.has_character())
       {
 
          return m_strLinkPrefix;
@@ -110,7 +110,7 @@ namespace userex
 
             auto papp = get_app();
 
-         if (m_pathFolder.has_char())
+         if (m_pathFolder.has_character())
          {
 
             __defer_construct_new(m_plisting);
@@ -284,7 +284,7 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::point_i32 & point = pmouse->m_point;
+   //   const ::int_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -311,7 +311,7 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::point_i32 & point = pmouse->m_point;
+   //   const ::int_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 

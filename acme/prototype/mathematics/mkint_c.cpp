@@ -11,11 +11,11 @@ CLASS_DECL_ACME int mkint32(unsigned int u)
    return (int)u;
 }
 
-CLASS_DECL_ACME  i64 mkint64(u64 ull)
+CLASS_DECL_ACME  huge_integer mkint64(huge_natural hn)
 {
-   if (ull >= 0x7fffffffffffffffull)
+   if (hn >= 0x7fffffffffffffffull)
       throw_cast_overflow();
-   return (i64)ull;
+   return (huge_integer)hn;
 }
 
 
@@ -26,11 +26,11 @@ CLASS_DECL_ACME unsigned int natural32(int i)
    return (unsigned int)i;
 }
 
-CLASS_DECL_ACME  u64 natural64(i64 ll)
+CLASS_DECL_ACME  huge_natural natural64(huge_integer hi)
 {
-   if (ll < 0)
+   if (hi < 0)
       return 0;
-   return (u64)ll;
+   return (huge_natural)hi;
 }
 
 

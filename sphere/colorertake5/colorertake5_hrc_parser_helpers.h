@@ -37,7 +37,7 @@ namespace colorertake5
    public:
       int num;
       int matchCase;
-      strsize minKeywordLength;
+      character_count minKeywordLength;
       ::str::ch_class *firstChar;
       KeywordInfo *kwList;
       KeywordList();

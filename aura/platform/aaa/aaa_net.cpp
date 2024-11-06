@@ -9,7 +9,7 @@ CLASS_DECL_AURA string url_decode(const ::string & psz)
 
    str.replace("+"," ");
 
-   strsize iStart = 0;
+   character_count iStart = 0;
 
    while(true)
    {
@@ -55,7 +55,7 @@ CLASS_DECL_AURA string url_decode(const ::string & psz)
 
 
 
-string url_decode(const ::string & pszUrl,strsize iLen)
+string url_decode(const ::string & pszUrl,character_count iLen)
 
 {
 
@@ -63,7 +63,7 @@ string url_decode(const ::string & pszUrl,strsize iLen)
 
    char * psz = strDecode.get_buffer(iLen * 4);
 
-   strsize i = 0;
+   character_count i = 0;
 
    while(*pszUrl != '\0' && i < iLen)
 
@@ -272,7 +272,7 @@ string url_encode(const ::string & psz)
       else
       {
 
-         ansi_from_i64(sz,uch,16);
+         ansi_from_huge_integer(sz,uch,16);
 
          ansi_upper(sz);
 
@@ -462,7 +462,7 @@ pdirectorysystem->system() / "config\\user.txt");
 
 pdirectorysystem->system() / "config\\pass.txt");
 //
-//   //if(strUsername.has_char() && strPassword.has_char())
+//   //if(strUsername.has_character() && strPassword.has_character())
 //   //{
 //
 //   //}
@@ -506,7 +506,7 @@ pdirectorysystem->system() / "config\\pass.txt");
 //
 //   }
 //
-//   if(domain != nullptr && strDomain.has_char())
+//   if(domain != nullptr && strDomain.has_character())
 //   {
 //
 //      *domain = strdup(strDomain);

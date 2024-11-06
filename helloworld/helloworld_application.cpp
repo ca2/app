@@ -76,7 +76,7 @@ namespace helloworld
 
       string str = m_varTopicQuery["helloworld"];
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          m_strHelloWorld = str;
@@ -161,7 +161,7 @@ namespace helloworld
 
       }
 
-      if (pcreate->m_payloadFile.has_char())
+      if (pcreate->m_payloadFile.has_character())
       {
 
          m_ptemplateHelloWorldView->do_request(pcreate);
@@ -188,14 +188,14 @@ namespace helloworld
    }
 
 
-   i64 application::increment_reference_count()
+   huge_integer application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
 
    }
 
-   i64 application::decrement_reference_count()
+   huge_integer application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

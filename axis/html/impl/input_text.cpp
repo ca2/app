@@ -129,7 +129,7 @@ namespace html
 
          int iSize = 20;
 
-         if (strSize.has_char())
+         if (strSize.has_character())
          {
 
             iSize = maximum(1, atoi(strSize));
@@ -169,7 +169,7 @@ namespace html
 
          //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectangleWindow;
+         //::int_rectangle rectangleWindow;
 
          //m_pedit->window_rectangle(rectangleWindow);
 

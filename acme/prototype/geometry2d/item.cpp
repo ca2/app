@@ -21,14 +21,14 @@ namespace geometry2d
    }
 
 
-   void item::translate(const ::point_f64 & point)
+   void item::translate(const ::double_point & point)
    {
 
 
    }
 
 
-   bool item::contains(const ::point_f64 & point)
+   bool item::contains(const ::double_point & point)
    {
 
       return false;
@@ -36,7 +36,7 @@ namespace geometry2d
    }
 
 
-   void item::expand_bounding_box(::rectangle_f64 & rectangle)
+   void item::expand_bounding_box(::double_rectangle & rectangle)
    {
 
 
@@ -76,7 +76,7 @@ namespace geometry2d
 
 
 //
-   //void item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //}
@@ -90,7 +90,7 @@ namespace geometry2d
    //}
 
 
-   //void rectangle_item::translate(const ::point_i32 & point)
+   //void rectangle_item::translate(const ::int_point & point)
    //{
 
    //   m_rectangle.offset(point);
@@ -99,7 +99,7 @@ namespace geometry2d
 
 
 
-   //bool rectangle_item::contains(const ::point_f64 & p)
+   //bool rectangle_item::contains(const ::double_point & p)
    //{
 
    //   return m_rectangle.contains(p);
@@ -108,14 +108,14 @@ namespace geometry2d
 
 
 
-   //void rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void rectangle_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   ::expand_bounding_box(rectangle, m_rectangle);
 
    //}
 
-   //void rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void rectangle_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   rectangle.left() = ::minimum(m_rectangle.left(), rectangle.left());
@@ -134,7 +134,7 @@ namespace geometry2d
    //}
 
 
-   //void ellipse_item::translate(const ::point_i32 & point)
+   //void ellipse_item::translate(const ::int_point & point)
    //{
 
    //   m_ellipse.offset(point);
@@ -142,15 +142,15 @@ namespace geometry2d
    //}
 
 
-   ////void ellipse_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   ////void ellipse_item::expand_bounding_box(::double_rectangle & rectangle)
    ////{
 
-   ////   ::expand_bounding_box(rectangle, (::point_f64 *)&m_ellipse, 2);
+   ////   ::expand_bounding_box(rectangle, (::double_point *)&m_ellipse, 2);
 
    ////}
 
 
-   //bool ellipse_item::contains(const ::point_f64 & p)
+   //bool ellipse_item::contains(const ::double_point & p)
    //{
 
    //   auto center = m_ellipse.center();
@@ -196,7 +196,7 @@ namespace geometry2d
    //}
 
 
-   //void ellipse_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void ellipse_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   ::expand_bounding_box(rectangle, m_ellipse);/* rectangleleft = ::minimum(m_rectangle.left(), rectangle.left());
@@ -215,7 +215,7 @@ namespace geometry2d
    //}
 
 
-   //void arc_item::translate(const ::point_i32 & point)
+   //void arc_item::translate(const ::int_point & point)
    //{
 
    //   m_arc.offset(point);
@@ -223,17 +223,17 @@ namespace geometry2d
    //}
 
 
-   ////void arc_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   ////void arc_item::expand_bounding_box(::double_rectangle & rectangle)
    ////{
 
-   ////   //::expand_bounding_box(rectangle, (::point_f64 *)&m_rectangle, 2);
+   ////   //::expand_bounding_box(rectangle, (::double_point *)&m_rectangle, 2);
 
    ////   ::expand_bounding_box(rectangle, m_arc);
 
    ////}
 
 
-   //bool arc_item::contains(const ::point_f64 & p)
+   //bool arc_item::contains(const ::double_point & p)
    //{
 
    //   //return m_rectangle.contains(p);
@@ -242,7 +242,7 @@ namespace geometry2d
    //}
 
 
-   //void arc_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void arc_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   ::expand_bounding_box(rectangle, m_arc);
@@ -262,7 +262,7 @@ namespace geometry2d
    }
 
 
-   void polygon_item::translate(const ::point_f64 & point)
+   void polygon_item::translate(const ::double_point & point)
    {
 
       m_polygon.offset(point);
@@ -270,7 +270,7 @@ namespace geometry2d
    }
 
 
-   //void polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void polygon_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   ::expand_bounding_box(rectangle, m_polygon.data(), m_polygon.get_size());
@@ -278,7 +278,7 @@ namespace geometry2d
    //}
 
 
-   bool polygon_item::contains(const ::point_f64 & p)
+   bool polygon_item::contains(const ::double_point & p)
    {
 
       if (m_efillmode == ::draw2d::e_fill_mode_winding)
@@ -297,7 +297,7 @@ namespace geometry2d
    }
 
 
-   void polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   void polygon_item::expand_bounding_box(::double_rectangle & rectangle)
    {
 
       m_polygon.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
@@ -314,7 +314,7 @@ namespace geometry2d
    //
    //}
 
-   void poly_polygon_item::translate(const ::point_f64 & point)
+   void poly_polygon_item::translate(const ::double_point & point)
    {
 
       for (auto & ppolygon : m_polypolygon)
@@ -332,7 +332,7 @@ namespace geometry2d
    }
 
    
-   bool poly_polygon_item::contains(const ::point_f64 & point)
+   bool poly_polygon_item::contains(const ::double_point & point)
    {
 
       for (auto & ppolygon : m_polypolygon)
@@ -378,7 +378,7 @@ namespace geometry2d
    //}
 
 
-   void poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   void poly_polygon_item::expand_bounding_box(::double_rectangle & rectangle)
    {
 
       m_polypolygon.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
@@ -386,7 +386,7 @@ namespace geometry2d
    }
 
 
-   //void poly_polygon_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void poly_polygon_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   ::expand_bounding_box(rectangle, m_polypolygon);
@@ -402,7 +402,7 @@ namespace geometry2d
    }
 
 
-   void combine_item::translate(const ::point_f64 & point)
+   void combine_item::translate(const ::double_point & point)
    {
 
       m_pregion1->translate(point);
@@ -411,7 +411,7 @@ namespace geometry2d
    }
 
 
-   void combine_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   void combine_item::expand_bounding_box(::double_rectangle & rectangle)
    {
       // "fake" implementation
 
@@ -421,7 +421,7 @@ namespace geometry2d
    }
 
 
-   bool combine_item::contains(const ::point_f64 & point)
+   bool combine_item::contains(const ::double_point & point)
    {
 
       if (m_ecombine == ::draw2d::e_combine_add)
@@ -526,7 +526,7 @@ namespace geometry2d
    }
 
 
-   void round_rectangle_item::translate(const ::point_f64 & point)
+   void round_rectangle_item::translate(const ::double_point & point)
    {
 
       m_rectangle.offset(point);
@@ -534,7 +534,7 @@ namespace geometry2d
    }
 
 
-   void round_rectangle_item::expand_bounding_box(::rectangle_f64 & rectangle)
+   void round_rectangle_item::expand_bounding_box(::double_rectangle & rectangle)
    {
 
       m_rectangle.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right());
@@ -542,7 +542,7 @@ namespace geometry2d
    }
 
 
-   bool round_rectangle_item::contains(const ::point_f64 & point)
+   bool round_rectangle_item::contains(const ::double_point & point)
    {
 
       // "fake" implementation

@@ -2696,7 +2696,7 @@ particle* system::matter_mutex()
 
          ::string strApp;
 
-         if (strCommandLine.has_char())
+         if (strCommandLine.has_character())
          {
 
             information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
@@ -2953,7 +2953,7 @@ particle* system::matter_mutex()
 
       string strAppId = application()->m_strAppId;
 
-      if (strAppId.has_char())
+      if (strAppId.has_character())
       {
 
          string strModifier;
@@ -3079,7 +3079,7 @@ particle* system::matter_mutex()
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count()
+   huge_integer system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -3087,7 +3087,7 @@ particle* system::matter_mutex()
    }
 
 
-   i64 system::decrement_reference_count()
+   huge_integer system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -3098,7 +3098,7 @@ particle* system::matter_mutex()
 #endif
 
 
-   void system::system_id_update(::i64 iId, ::i64 iPayload)
+   void system::system_id_update(huge_integer iId, huge_integer iPayload)
    {
 
       call((::enum_id)iId, iPayload);
@@ -4166,7 +4166,7 @@ particle* system::matter_mutex()
 
          ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
 
-         if (strComponentDefaultImplementation.has_char())
+         if (strComponentDefaultImplementation.has_character())
          {
 
             auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
@@ -4507,7 +4507,7 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(::platform::system * psystem, ::i64 iUpdate, ::i64 iParam)
+void system_id_update(::platform::system * psystem, huge_integer iUpdate, huge_integer iParam)
 {
 
    psystem->system_id_update(iUpdate, iParam);
@@ -4555,7 +4555,7 @@ void system_on_open_file(::platform::system * psystem, const char* pszFile)
 //
 //#if !defined(CUBE)
 //
-//   if (strAppId.has_char())
+//   if (strAppId.has_character())
 //   {
 //
 //      string strMessage;

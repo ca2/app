@@ -186,7 +186,7 @@
 //
 //   // Create a copy of the original font with the ___new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
-//   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
+//   // Pass in 0.0 and nullptr for int_size and matrix to preserve the values from
 //   // the original font.
 //   return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 //
@@ -256,11 +256,11 @@
 //
 //
 //
-////void FillSolidRect_dup(HDC hdc, const ::rectangle_i32 & rectangle, color32_t clr)
+////void FillSolidRect_dup(HDC hdc, const ::int_rectangle & rectangle, color32_t clr)
 //
 ////{
 ////   CGColorRef color = cg_create_color(clr);
-////   CGRect rectangle_i32;
+////   CGRect int_rectangle;
 ////   rectangle.origin.x() = prectangle->left();
 //
 ////   rectangle.origin.y() = prectangle->top();

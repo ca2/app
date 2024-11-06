@@ -19,7 +19,7 @@ namespace networking
       void * m_p2;
 
 
-      interlocked_i32                              m_lHttpGetSerial;
+      interlocked_int                              m_lHttpGetSerial;
 
       
       ::pointer<::sockets::sockets>    m_psockets;

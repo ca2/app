@@ -467,7 +467,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::colle
 {
    // // ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
-   ASSERT(nCount > 0);     // zero or negative size_i32 not allowed
+   ASSERT(nCount > 0);     // zero or negative int_size not allowed
 
    if (nIndex >= this->size())
    {
@@ -478,7 +478,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::colle
    {
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count)this->size();
-      this->set_size((::collection::count)(this->size() + nCount));  // grow it to ___new size_i32
+      this->set_size((::collection::count)(this->size() + nCount));  // grow it to ___new int_size
       // shift old data up to fill gap
       memory_transfer(&get_data()[nIndex + nCount], &get_data()[nIndex], (nOldSize - nIndex) * sizeof(Type));
 
@@ -2376,7 +2376,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator =(const i64_array & ia)
+//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator =(const huge_integer_array & ia)
 //{
 //
 //   this->_001CopyContainer(ia);
@@ -3663,7 +3663,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::encode_v16()
    //   /*      for(::collection::index uj = 0; uj < str.size(); uj++)
    //   {
    //   char sz[32];
-   //   ansi_from_i64(sz, str[uj], 16);
+   //   ansi_from_huge_integer(sz, str[uj], 16);
    //   if(ansi_length(sz) == 0)
    //   {
    //   strEncode += "00";
@@ -3706,7 +3706,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const SC
    //   sz[1] = psz[0];
    //   sz[2] = '\0';
    //   const SCOPED_STRING &strEnd;
-   //   ::collection::index iConversion = ::ansi_to_i32(sz,&pszEnd,16);
+   //   ::collection::index iConversion = ::ansi_to_int(sz,&pszEnd,16);
    //   char ch = static_cast <char> (iConversion);
    //   if(ch == '\0')
    //   {
@@ -4451,7 +4451,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 //memory string_array_base < Type, RawType, t_etypeContainer > ::GetFormatV004()
 //{
 //
-//   strsize iTotalLength = 0;
+//   character_count iTotalLength = 0;
 //
 //   ::collection::index i;
 //
@@ -4480,7 +4480,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 //
 //   char * lpszN = lpsz;
 //
-//   strsize iLength;
+//   character_count iLength;
 //
 //   for (i = 0; i < this->size(); i++)
 //   {

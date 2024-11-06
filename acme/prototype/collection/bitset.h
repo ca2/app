@@ -5,14 +5,14 @@
 		// TEMPLATE CLASS _Bitset_base
 template<int>
 	struct _Bitset_base
-	{	// default matter size_i32
+	{	// default matter int_size
 	typedef unsigned int _Ty;
 	};
 
 template<>
 	struct _Bitset_base <8>
 	{	// eight-unsigned char bitset
-	typedef u64 _Ty;
+	typedef huge_natural _Ty;
 	};
 
 		// TEMPLATE CLASS bitset
@@ -151,10 +151,10 @@ public:
 	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
-	bitset(u64 _Val)
+	bitset(huge_natural _Val)
  #endif /* _HAS_CPP0X */
 
-		{	// construct from bits in u64
+		{	// construct from bits in huge_natural
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -162,7 +162,7 @@ public:
 		}
 
  #define _BITSET_SIZE_TYPE	\
-	strsize
+	character_count
 
 	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos = 0)
 	{	// construct from [_Pos, ...) elements in string
@@ -182,11 +182,11 @@ public:
 
    void _Construct(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0, char _E1)
    {	// initialize from [_Pos, _Pos + _Count) elements in string
-		strsize _Num;
+		character_count _Num;
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
-			_Count = _Str.size() - _Pos;	// trim _Count to size_i32
+			_Count = _Str.size() - _Pos;	// trim _Count to int_size
 		if (_Bits < _Count)
 			_Count = _Bits;	// trim _Count to length of bitset
 		_Tidy();
@@ -307,28 +307,28 @@ public:
 		return (*this);
 		}
 
-	u64 to_ulong() const
-   {	// convert bitset to u64
-		u64 _Val = to_ullong();
-		u64 _Ans = (u64)_Val;
+	huge_natural to_ulong() const
+   {	// convert bitset to huge_natural
+		huge_natural _Val = to_ullong();
+		huge_natural _Ans = (huge_natural)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 	}
 
-	u64 to_ullong() const
-	{	// convert bitset to u64 long
+	huge_natural to_ullong() const
+	{	// convert bitset to huge_natural long
 		enum
-			{	// cause zero divide if u64 long not multiple of _Ty
+			{	// cause zero divide if huge_natural long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (u64) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (huge_natural) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (u64) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (huge_natural) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		u64 _Val = _Array[_Wpos];
+		huge_natural _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
    return (_Val);
@@ -337,7 +337,7 @@ public:
    string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
    {	// convert bitset to string
 		string _Str;
-		strsize _Pos;
+		character_count _Pos;
 		_Str.reserve(_Bits);
 
 		for (_Pos = _Bits; 0 < _Pos; )
@@ -361,7 +361,7 @@ public:
 		}
 
 	size_t size() const
-		{	// return size_i32 of bitset
+		{	// return int_size of bitset
 		return (_Bits);
 		}
 

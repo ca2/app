@@ -18,8 +18,8 @@ namespace filemanager
 
    bool has_digit(string strName);
    string get_number_mask(string strName);
-   i64 get_number_value(string strName);
-   string set_number_value(string strName, i64 iValue);
+   huge_integer get_number_value(string strName);
+   string set_number_value(string strName, huge_integer iValue);
 
 
    operation::operation()
@@ -81,7 +81,7 @@ namespace filemanager
 
       string strBase;
 
-      if(pszSrcBase.has_char())
+      if(pszSrcBase.has_character())
       {
 
          strBase = pszSrcBase;
@@ -778,7 +778,7 @@ namespace filemanager
    }
 
 
-   i64 get_number_value(string strName)
+   huge_integer get_number_value(string strName)
    {
 
       string strResult;
@@ -806,12 +806,12 @@ namespace filemanager
 
       }
 
-      return ansi_to_i64(strResult);
+      return ansi_to_huge_integer(strResult);
 
    }
 
 
-   string set_number_value(string strName, i64 iValue)
+   string set_number_value(string strName, huge_integer iValue)
    {
 
       string strValue = as_string(iValue);
@@ -820,7 +820,7 @@ namespace filemanager
 
       string strMask = get_number_mask(strName);
 
-      strsize j = strValue.length() - 1;
+      character_count j = strValue.length() - 1;
 
       if (strMask.length() < strValue.length())
       {
@@ -902,7 +902,7 @@ namespace filemanager
 
       if(has_digit(strName))
       {
-         i64 iValue = get_number_value(strName);
+         huge_integer iValue = get_number_value(strName);
          string strFormat;
          for(int i = 1; i < 1000; i++)
          {

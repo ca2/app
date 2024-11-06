@@ -538,7 +538,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in *point = (struct sockaddr_in *)sa;
          ::sockets::address_pointer addr;
-         addr(aaa_primitive_new ::sockets::ipv4_address(get_app(), *point_i32));
+         addr(aaa_primitive_new ::sockets::ipv4_address(get_app(), *int_point));
          return addr;
       }
       break;
@@ -547,7 +547,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
          ::sockets::address_pointer addr;
-         addr(aaa_primitive_new ::sockets::ipv6_address(get_app(), *point_i32));
+         addr(aaa_primitive_new ::sockets::ipv6_address(get_app(), *int_point));
          return addr;
       }
       break;
@@ -1108,7 +1108,7 @@ int net::service_port(const ::string & str, int flags)
 {
 
    if(::str::is_simple_natural(str))
-      return ::str::to_i32(str);
+      return ::str::to_int(str);
 
    if(str.case_insensitive_order("http"))
    {

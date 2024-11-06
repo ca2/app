@@ -45,7 +45,7 @@ public:
    ::color::color                            m_colorWindow;
    bool                                      m_bNcActive;
 
-   rectangle_i32                             m_rectangle;
+   int_rectangle                             m_rectangle;
 
    pointer_array < ::micro::child >              m_childa;
    ::atom                                    m_atomLeftButtonDown;
@@ -116,15 +116,15 @@ public:
 
    virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
-   ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
+   ::int_point try_absolute_mouse_position(const ::int_point & point) override;
 
 
-   ::point_i32 origin() override;
+   ::int_point origin() override;
 
 
    //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
    virtual ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-   virtual ::micro::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+   virtual ::micro::child * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
    virtual void add_child(::micro::child * pchild);
    virtual ::micro::child * get_child_by_id(const ::atom & atom);
 
@@ -138,9 +138,9 @@ public:
    void on_right_button_up(::user::mouse * pmouse) override;
    void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
-   void set_position(const ::point_i32 & point) override;
+   void set_position(const ::int_point & point) override;
 
-   ::rectangle_i32 get_window_rectangle() override;
+   ::int_rectangle get_window_rectangle() override;
 
    void on_create_window() override;
 
@@ -148,7 +148,7 @@ public:
 
    void redraw() override;
 
-   void get_client_rectangle(::rectangle_i32 & rectangle) override;
+   void get_client_rectangle(::int_rectangle & rectangle) override;
 
    //void get_window_rectangle() override;
 

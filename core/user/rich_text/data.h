@@ -28,7 +28,7 @@ namespace user
 
          //::draw2d::graphics_pointer                   m_pgraphics;
 
-         //::rectangle_f64                            m_rectangle;
+         //::double_rectangle                            m_rectangle;
          
          // storage data
          pointer_array < span >                       m_spana;
@@ -72,10 +72,10 @@ namespace user
          string get_full_text();
 
 
-         virtual void _001SetFontFormat(::strsize iSelBeg, ::strsize iEnd, const format * pformat, const e_attribute & eattribute);
+         virtual void _001SetFontFormat(::character_count iSelBeg, ::character_count iEnd, const format * pformat, const e_attribute & eattribute);
 
-         virtual void _001Delete(strsize i1, strsize i2);
-         virtual strsize _001InsertText(strsize i1, strsize i2, const ::string & psz, format * pformatParam = nullptr);
+         virtual void _001Delete(character_count i1, character_count i2);
+         virtual character_count _001InsertText(character_count i1, character_count i2, const ::string & psz, format * pformatParam = nullptr);
 
          //virtual void get_text(string & str) const;
 
@@ -84,7 +84,7 @@ namespace user
          virtual void optimize_data();
 
 
-         virtual strsize _get_text_length() const;
+         virtual character_count _get_text_length() const;
 
          
          bool on_new_data() override;

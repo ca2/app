@@ -25,7 +25,7 @@ namespace user
             m_pitem                          = pformmesh->m_pitemControl;
             pformmesh->m_pitemControl        = pitem;
          }
-         inline control_keep(form_mesh * pformmesh,const ::point_i32 & point)
+         inline control_keep(form_mesh * pformmesh,const ::int_point & point)
          {
             m_pformmesh                      = pformmesh;
             m_pitem                          = pformmesh->m_pitemControl;
@@ -59,17 +59,17 @@ namespace user
       //void _000OnMouse(::message::mouse * pmouse) override;
 
 
-      virtual bool _001HitTest_(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
+      virtual bool _001HitTest_(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle) override;
 
-      bool control_001DisplayHitTest(const ::point_i32 & point);
+      bool control_001DisplayHitTest(const ::int_point & point);
 
       bool _001IsEditing() override;
 
-      bool _001IsPointInside(::user::interaction * pinteraction, const point_i64 & point) override;
+      bool _001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point) override;
 
       void _001HideEditingControls();
       void _001HideControl(::user::interaction * pinteraction);

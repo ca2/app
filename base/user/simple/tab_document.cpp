@@ -51,14 +51,14 @@ bool simple_tab_document::on_open_document(const ::payload & payloadFile)
 
 #ifdef _DEBUG
 
-i64 simple_tab_document::increment_reference_count()
+huge_integer simple_tab_document::increment_reference_count()
 {
 
    return  ::user::document::increment_reference_count();
 
 }
 
-i64 simple_tab_document::decrement_reference_count()
+huge_integer simple_tab_document::decrement_reference_count()
 {
 
    return  ::user::document::decrement_reference_count();

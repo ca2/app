@@ -104,14 +104,14 @@
 struct SIZEPARENTPARAMS
 {
 
-   ::rectangle_i32  rectangle;     // parent client rectangle (trim as appropriate)
-   ::size_i32       sizeTotal;     // total size on each side as on_layout proceeds
+   ::int_rectangle  rectangle;     // parent client rectangle (trim as appropriate)
+   ::int_size       sizeTotal;     // total size on each side as on_layout proceeds
    bool           bStretch;      // should stretch to fill all space
 
 };
 
 
-//CLASS_DECL_ACME i64 oswindow_id(oswindow w);
+//CLASS_DECL_ACME huge_integer oswindow_id(oswindow w);
 
 
 //CLASS_DECL_ACME int_bool is_window(oswindow oswindow);

@@ -552,7 +552,7 @@ namespace user
       }
 
 
-      ::size_f64 edit_impl::get_size()
+      ::double_size edit_impl::get_size()
       {
 
          if (is_picture_enabled())
@@ -564,7 +564,7 @@ namespace user
          else
          {
 
-            ::rectangle_i32 rectangle;
+            ::int_rectangle rectangle;
 
             window_rectangle(rectangle);
 
@@ -586,7 +586,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rectangle(::rectangle_i32 * prectangle, ::collection::index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -623,7 +623,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(::rectangle_i32 * prectangle, ::collection::index i)
+      bool edit_impl::get_item_rect(::int_rectangle * prectangle, ::collection::index i)
 
       {
 
@@ -666,7 +666,7 @@ namespace user
 
 
 
-      ::item_pointer edit_impl::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+      ::item_pointer edit_impl::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
       {
 
          auto r = this->raw_rectangle();
@@ -680,7 +680,7 @@ namespace user
 
          }
 
-         //::point_f64 pointHit = item.m_pointHitTest;
+         //::double_point pointHit = item.m_pointHitTest;
 
          //if (is_picture_enabled())
          //{
@@ -743,7 +743,7 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::rectangle_i32 rectangleX;
+         //::int_rectangle rectangleX;
 
          //if (pdrawcontext != nullptr)
          //{
@@ -827,12 +827,12 @@ namespace user
       }
 
 
-      ::point_f64 edit_impl::get_point_transform()
+      ::double_point edit_impl::get_point_transform()
       {
 
          // auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
 
-         auto pointD = ::point_f64(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+         auto pointD = ::double_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
 
          return pointD;
 
@@ -875,7 +875,7 @@ namespace user
 
          //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
-         //::rectangle_i32 r(25, 25, 150, 150);
+         //::int_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -909,7 +909,7 @@ namespace user
 
          ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
-         //::rectangle_i32 r(25, 25, 150, 150);
+         //::int_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -1013,21 +1013,21 @@ namespace user
       }
 
 
-      bool edit_impl::_001IsPointInside(const ::point_i32 & pointParam)
+      bool edit_impl::_001IsPointInside(const ::int_point & pointParam)
       {
 
          if (is_picture_enabled())
          {
 
-            point_f64 point(pointParam);
+            double_point point(pointParam);
 
             screen_to_client()(point);
 
-            ::rectangle_i32 rWindow;
+            ::int_rectangle rWindow;
 
             window_rectangle(rWindow);
 
-            rectangle_f64 rectangleWindow;
+            double_rectangle rectangleWindow;
 
             rectangleWindow = rWindow;
 
@@ -1043,7 +1043,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            return rectangleX.contains(::point_i32(point));
+            return rectangleX.contains(::int_point(point));
 
          }
 
@@ -1522,9 +1522,9 @@ namespace user
 
             _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-            strsize i1 = get_sel_beg();
+            character_count i1 = get_sel_beg();
 
-            strsize i2 = get_sel_end();
+            character_count i2 = get_sel_end();
 
             if (i1 != i2)
             {
@@ -1547,7 +1547,7 @@ namespace user
 
                _001GetLayoutText(str);
 
-               strsize iIncLen = ::str::utf8_inc_len(&str[i1]);
+               character_count iIncLen = ::str::utf8_inc_len(&str[i1]);
 
                prichtextdata->_001Delete(i1, i1 + iIncLen);
 
@@ -1671,7 +1671,7 @@ namespace user
                //int x;
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::rectangle_i32 rectangleX;
+               //::int_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -1705,7 +1705,7 @@ namespace user
 
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::rectangle_i32 rectangleX;
+               //::int_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -1744,9 +1744,9 @@ namespace user
 
                      _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-                     strsize i1 = get_sel_beg();
+                     character_count i1 = get_sel_beg();
 
-                     strsize i2 = get_sel_end();
+                     character_count i2 = get_sel_end();
 
                      if (i1 > 0)
                      {
@@ -1770,7 +1770,7 @@ namespace user
 
                            _001GetLayoutText(str);
 
-                           strsize iDecLen = ::str::utf8_dec_len(str, &str[i1]);
+                           character_count iDecLen = ::str::utf8_dec_len(str, &str[i1]);
 
                            prichtextdata->_001Delete(i1, i1 - iDecLen);
 
@@ -2204,7 +2204,7 @@ namespace user
       }
 
 
-      //strsize edit_impl::get_text_length()
+      //character_count edit_impl::get_text_length()
       //{
 
       //   auto prichtextdata = get_rich_text_data();
@@ -2214,7 +2214,7 @@ namespace user
       //}
 
 
-      void edit_impl::get_text_selection(strsize & iBeg, strsize & iEnd) const
+      void edit_impl::get_text_selection(character_count & iBeg, character_count & iEnd) const
       {
 
          //auto prichtextdata = get_rich_text_data();
@@ -2285,7 +2285,7 @@ namespace user
 
       //   prichtextdata->write(stream);
 
-      //   ::rectangle_i32 rectangleWindow;
+      //   ::int_rectangle rectangleWindow;
 
       //   ((edit_impl *)this)->window_rectangle(rectangleWindow);
 
@@ -2310,7 +2310,7 @@ namespace user
 
       //   prichtextdata->read(stream);
 
-      //   ::rectangle_i32 rectangleWindow;
+      //   ::int_rectangle rectangleWindow;
 
       //   stream >> rectangleWindow;
 
@@ -2325,7 +2325,7 @@ namespace user
       //}
 
 
-      void edit_impl::get_text_composition_area(::rectangle_i32 & r)
+      void edit_impl::get_text_composition_area(::int_rectangle & r)
       {
 
       }

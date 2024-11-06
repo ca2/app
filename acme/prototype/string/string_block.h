@@ -7,7 +7,7 @@
 //{
 //public:
 //
-//   string_block(const ::scoped_string & scopedstr, strsize length) : block(psz, length) { }
+//   string_block(const ::scoped_string & scopedstr, character_count length) : block(psz, length) { }
 //   string_block(const ::scoped_string & scopedstr) : block(psz, ::ansi_length(psz)) { }
 //
 //

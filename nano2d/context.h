@@ -46,7 +46,7 @@ namespace nano2d
 //
 //         ::e_align                     m_ealignText;
 //
-//         ::point_f64                   m_pointCurrent;
+//         ::double_point                   m_pointCurrent;
 //
 //         ::geometry2d::matrix              m_matrix;
 //
@@ -345,11 +345,11 @@ namespace nano2d
 
 		// Starts ___new sub-path with specified point as first point.
 		virtual void move_to(float x, float y);
-      virtual void move_to(const ::point_f32 & p);
+      virtual void move_to(const ::float_point & p);
 
 		// Adds line segment from the last point in the path to the specified point.
 		virtual void line_to(float x, float y);
-      virtual void line_to(const ::point_f32 & p);
+      virtual void line_to(const ::float_point & p);
 
 
 		// Adds cubic bezier segment from last point in the path via two control points to the specified point.
@@ -370,7 +370,7 @@ namespace nano2d
 		// Creates ___new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
 		// and the arc is drawn from angle a0 to a1, and swept in direction dir (_CCW, or _CW).
 		// Angles are specified in radians.
-		virtual void arc(float cx, float cy, float r, ::angle_f32 a0, ::angle_f32 a1, int dir);
+		virtual void arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir);
 
 		// Creates ___new rectangle shaped sub-path.
 		virtual void rectangle(float x, float y, float w, float h);
@@ -479,7 +479,7 @@ namespace nano2d
 		virtual void font_face(const ::scoped_string& font);
 
 		// Draws text string at specified location. If end is specified only the sub-string up to the end is drawn.
-		virtual ::rectangle_f32 text(float x, float y, const ::scoped_string& scopedstr);
+		virtual ::float_rectangle text(float x, float y, const ::scoped_string& scopedstr);
 
 		// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
 		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when ___new-line characters are encountered.
@@ -491,16 +491,16 @@ namespace nano2d
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 		// Returns the horizontal advance of the measured text (i.e. where the next character should drawn).
 		// Measured values are returned in local coordinate space.
-		virtual float text_bounds(float x, float y, const ::scoped_string& scopedstr, ::rectangle_f32* prectangle);
+		virtual float text_bounds(float x, float y, const ::scoped_string& scopedstr, ::float_rectangle* prectangle);
 
 		// Measures the specified multi-text string. Parameter bounds should be a pointer to float[4],
 		// if the bounding box of the text should be returned. The bounds value are [xmin,ymin, xmax,ymax]
 		// Measured values are returned in local coordinate space.
 		//virtual void text_box_bounds(float x, float y, float breakRowWidth, const ::scoped_string& scopedstr, float* bounds);
-      virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::rectangle_f32* prectangle);
+      virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::float_rectangle* prectangle);
 
 
-		virtual ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, strsize iStart = 0, strsize iEnd = -1);
+		virtual ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, character_count iStart = 0, character_count iEnd = -1);
 
 
 		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.

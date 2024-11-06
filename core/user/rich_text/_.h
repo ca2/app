@@ -53,9 +53,9 @@ namespace user
 
       ::collection::index find_span(pointer_array < span > & spana, ::collection::index iSel);
 
-      ::collection::index find_char_span(pointer_array < span > & spana, strsize iChar);
+      ::collection::index find_char_span(pointer_array < span > & spana, character_count iChar);
 
-//      void align(line * pline, const ::rectangle_f64 & rectangle);
+//      void align(line * pline, const ::double_rectangle & rectangle);
 //
       box * find_box(pointer_array < line > & linea, ::collection::index iSel);
 

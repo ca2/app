@@ -48,7 +48,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "port", COMMAND_LINE_VALUE_REQUIRED, "<number>", nullptr, nullptr, -1, nullptr, "Server port" },
 	{ "w", COMMAND_LINE_VALUE_REQUIRED, "<width>", "1024", nullptr, -1, nullptr, "Width" },
 	{ "h", COMMAND_LINE_VALUE_REQUIRED, "<height>", "768", nullptr, -1, nullptr, "Height" },
-	{ "size_i32", COMMAND_LINE_VALUE_REQUIRED, "<width>x<height> or <percent>%", "1024x768", nullptr, -1, nullptr, "Screen size_i32" },
+	{ "int_size", COMMAND_LINE_VALUE_REQUIRED, "<width>x<height> or <percent>%", "1024x768", nullptr, -1, nullptr, "Screen int_size" },
 	{ "f", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "Fullscreen mode" },
 	{ "bpp", COMMAND_LINE_VALUE_REQUIRED, "<depth>", "16", nullptr, -1, nullptr, "Session bpp (color depth)" },
 	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<on_layout atom> or <on_layout name>", nullptr, nullptr, -1, nullptr, "Keyboard on_layout" },
@@ -67,7 +67,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "monitor-list", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List detected monitors" },
 	{ "t", COMMAND_LINE_VALUE_REQUIRED, "<title>", nullptr, nullptr, -1, "title", "Window title" },
 	{ "decorations", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "Window decorations" },
-	{ "smart-sizing", COMMAND_LINE_VALUE_OPTIONAL, "<width>x<height>", nullptr, nullptr, -1, nullptr, "Scale remote desktop to window size_i32" },
+	{ "smart-sizing", COMMAND_LINE_VALUE_OPTIONAL, "<width>x<height>", nullptr, nullptr, -1, nullptr, "Scale remote desktop to window int_size" },
 	{ "a", COMMAND_LINE_VALUE_REQUIRED, nullptr, nullptr, nullptr, -1, "addin", "Addin" },
 	{ "vc", COMMAND_LINE_VALUE_REQUIRED, nullptr, nullptr, nullptr, -1, nullptr, "Static virtual channel" },
 	{ "dvc", COMMAND_LINE_VALUE_REQUIRED, nullptr, nullptr, nullptr, -1, nullptr, "Dynamic virtual channel" },
@@ -152,7 +152,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "glyph-cache", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "glyph cache" },
 	{ "codec-cache", COMMAND_LINE_VALUE_REQUIRED, "<rfx|nsc|jpeg>", nullptr, nullptr, -1, nullptr, "bitmap codec cache" },
 	{ "fast-path", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "fast-path input/output" },
-	{ "maximum-fast-path-size_i32", COMMAND_LINE_VALUE_OPTIONAL, "<size_i32>", nullptr, nullptr, -1, nullptr, "maximum fast-path update size_i32" },
+	{ "maximum-fast-path-int_size", COMMAND_LINE_VALUE_OPTIONAL, "<int_size>", nullptr, nullptr, -1, nullptr, "maximum fast-path update int_size" },
 	{ "async-input", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous input" },
 	{ "async-update", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous update" },
 	{ "async-transport", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "asynchronous transport (unstable)" },
@@ -1519,7 +1519,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			settings->DesktopHeight = atoi(arg->Value);
 		}
-		CommandLineSwitchCase(arg, "size_i32")
+		CommandLineSwitchCase(arg, "int_size")
 		{
 			if (!(str = _strdup(arg->Value)))
 				return COMMAND_LINE_ERROR_MEMORY;
@@ -2191,7 +2191,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 			settings->FastPathInput = arg->Value ? true : false;
 			settings->FastPathOutput = arg->Value ? true : false;
 		}
-		CommandLineSwitchCase(arg, "maximum-fast-path-size_i32")
+		CommandLineSwitchCase(arg, "maximum-fast-path-int_size")
 		{
 			settings->MultifragMaxRequestSize = atoi(arg->Value);
 		}

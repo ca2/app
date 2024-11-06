@@ -249,7 +249,7 @@ namespace user
    //}
 
 
-   //::point_i32 font_list_impact::get_context_offset()
+   //::int_point font_list_impact::get_context_offset()
    //{
 
    //   return ::user::list_impact::get_context_offset();
@@ -257,7 +257,7 @@ namespace user
    //}
 
 
-   //::size_f64 font_list_impact::get_total_size()
+   //::double_size font_list_impact::get_total_size()
    //{
 
    //   return ::user::list_impact::get_total_size();

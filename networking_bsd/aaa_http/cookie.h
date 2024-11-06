@@ -91,7 +91,7 @@ namespace http
       void add(const ::scoped_string & scopedstr);
       void parse_header(const ::scoped_string & scopedstr);
       string get_cookie_header();
-      strsize get_length(const char * name);
+      character_count get_length(const char * name);
       bool set_cookie(
          const ::scoped_string & scopedstrKey,
          const ::payload & payload,

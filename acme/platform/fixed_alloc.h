@@ -23,7 +23,7 @@ public:
    };
 
    ::heap::allocator * m_pallocator;
-   unsigned int m_nAllocSize;   // size_i32 of each block from Alloc
+   unsigned int m_nAllocSize;   // int_size of each block from Alloc
    unsigned int m_nBlockSize;   // number of blocks to get at a time
    ::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)

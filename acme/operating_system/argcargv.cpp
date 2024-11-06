@@ -41,7 +41,7 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
    int i = 0;
 
-   while (range.has_char())
+   while (range.has_character())
    {
 
       range.consume_spaces(0);
@@ -378,7 +378,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
       
       	 strArg.trim();
       	 
-      	 if(strArg.has_char())
+      	 if(strArg.has_character())
       	 {
 
 	    stra.add(strArg);
@@ -430,7 +430,7 @@ end:
 
    strArg.trim();
 
-   if(strArg.has_char())
+   if(strArg.has_character())
    {
    
       stra.add(strArg);

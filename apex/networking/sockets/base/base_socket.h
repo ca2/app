@@ -323,10 +323,10 @@ namespace sockets
 
 
       /** Outgoing traffic counter. */
-      virtual u64 GetBytesSent(bool clear = false);
+      virtual huge_natural GetBytesSent(bool clear = false);
 
       /** Incoming traffic counter. */
-      virtual u64 GetBytesReceived(bool clear = false);
+      virtual huge_natural GetBytesReceived(bool clear = false);
 
       // LIST_TIMEOUT
 
@@ -705,7 +705,7 @@ namespace sockets
 virtual      void SetSocks4Host(const string & );
 ////#endif
 ////      /** Socks4 server port to use. */
-virtual      void SetSocks4Port(::networking::port_t point_i32);
+virtual      void SetSocks4Port(::networking::port_t int_point);
 ////      /** Provide a socks4 userid if required by the socks4 server. */
 virtual       void SetSocks4Userid(const string & x);
 ////      /** get the ip address/port of socks4 server to use.

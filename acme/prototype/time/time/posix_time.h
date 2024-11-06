@@ -7,7 +7,7 @@ struct posix_time_t {};
 struct CLASS_DECL_ACME posix_time
 {
 
-   ::i64    m_iSecond;
+   huge_integer    m_iSecond;
 
    constexpr posix_time() : m_iSecond(0) {}
    constexpr posix_time(no_initialize_t) {}
@@ -110,9 +110,9 @@ struct CLASS_DECL_ACME posix_time
 
    inline static posix_time now() { return now_t{}; }
 
-   constexpr ::i64 minutes() const;
-   constexpr ::i64 hours() const;
-   constexpr ::i64 days() const;
+   constexpr huge_integer minutes() const;
+   constexpr huge_integer hours() const;
+   constexpr huge_integer days() const;
 
 };
 
@@ -124,7 +124,7 @@ constexpr posix_time operator * (INTEGRAL i, const ::posix_time & time)
 }
 
 
-constexpr posix_time operator "" _posix_time(unsigned long long int u) {
+constexpr posix_time operator "" _posix_time(huge_natural u) {
    return { posix_time_t{}, u };
 }
 

@@ -32,7 +32,7 @@ namespace launch
    void application::calculate_distro__branch_and_release()
    {
 
-      if(m_strDistro.has_char())
+      if(m_strDistro.has_character())
       {
 
          return;
@@ -237,7 +237,7 @@ namespace launch
 
       }
 
-      if(strCommand.has_char())
+      if(strCommand.has_character())
       {
 
          //log_system(strCommand);
@@ -363,7 +363,7 @@ namespace launch
                         psummary->m_strName.c_str(),
                         psummary-> m_strDistroReleaseName.c_str());
 
-         if(m_strBranch.has_char())
+         if(m_strBranch.has_character())
          {
 
             strErr.append_formatf(" \"%s\".", psummary->m_strDistroBranchName.c_str());
@@ -513,7 +513,7 @@ namespace launch
 
       auto strTraceLevel = platform()->get_argument_begins_eat("--trace-level=");
 
-      if(strTraceLevel.has_char())
+      if(strTraceLevel.has_character())
       {
 
          strCommand += " --trace-level=" + strTraceLevel;
@@ -560,7 +560,7 @@ namespace launch
 
       ::string strUrl;
 
-      if (m_strBranch.has_char())
+      if (m_strBranch.has_character())
       {
 
          strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",

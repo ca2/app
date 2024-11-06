@@ -30,7 +30,7 @@ namespace handler
 #ifdef _DEBUG
 
 
-   i64 signal::increment_reference_count()
+   huge_integer signal::increment_reference_count()
    {
 
       return ::topic::increment_reference_count();
@@ -38,7 +38,7 @@ namespace handler
    }
 
 
-   i64 signal::decrement_reference_count()
+   huge_integer signal::decrement_reference_count()
    {
 
       return ::topic::decrement_reference_count();
@@ -46,7 +46,7 @@ namespace handler
    }
 
 
-   i64 signal::release()
+   huge_integer signal::release()
    {
 
       return ::topic::release();

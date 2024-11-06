@@ -86,10 +86,10 @@ namespace datetime
 //         if(unicode_is_whitespace(psz))
 //         {
 //            i++;
-//            //if(strNumber.has_char() && strText.has_char())
+//            //if(strNumber.has_character() && strText.has_character())
 //            //{
 //            //}
-//            if((bAdd || bMinus) && strNumber.has_char() && strText1.has_char())
+//            if((bAdd || bMinus) && strNumber.has_character() && strText1.has_character())
 //            {
 //               value span;
 //               span.m_bSpan = true;
@@ -587,10 +587,10 @@ namespace datetime
 } // namespace datetime
 
 
-::i64 g_iNanosFirst;
+huge_integer g_iNanosFirst;
 
 
-CLASS_DECL_ACME ::i64 _first_nano()
+CLASS_DECL_ACME huge_integer _first_nano()
 {
 
    return g_iNanosFirst;

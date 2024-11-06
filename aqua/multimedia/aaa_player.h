@@ -90,7 +90,7 @@ namespace wave
       virtual double player_get_volume();
 
       virtual class ::time player_get_prebuffer_time();
-      virtual u64 player_get_frame_byte_count();
+      virtual huge_natural player_get_frame_byte_count();
 
 
       virtual out * wave_out();

@@ -19,7 +19,7 @@ namespace acme
       public:
 
 
-         ::point_i32             m_pointCursor2;
+         ::int_point             m_pointCursor2;
 
          enum_display_type       m_edisplaytype;
 
@@ -49,7 +49,7 @@ namespace acme
          virtual void display_send(const ::procedure& procedure);
 
 
-         virtual ::size_i32 get_main_screen_size();
+         virtual ::int_size get_main_screen_size();
 
 
       };

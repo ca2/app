@@ -21,14 +21,14 @@ namespace http
        * Input is read from stdin. Number of characters to read
        * can be found in the environment ::payload CONTENT_LENGTH.
       */
-      void parse_body(::file::file *, const ::scoped_string & scopedstrContentType, strsize content_length);
+      void parse_body(::file::file *, const ::scoped_string & scopedstrContentType, character_count content_length);
       /**
        * Another constructor (used in GET operations).
        * Input is read from the environment ::payload QUERY_STRING.
        * @lparam query_string The httpd server provided QUERY_STRING
        * @lparam length Query string length.
       */
-      void parse_query_string(const string & query_string,strsize length);
+      void parse_query_string(const string & query_string,character_count length);
 
       void EnableRaw(bool bRaw = true);
 
@@ -85,7 +85,7 @@ namespace http
    }
 
 
-   inline void form::parse_query_string(const string & buffer, strsize)
+   inline void form::parse_query_string(const string & buffer, character_count)
    {
       
       m_setGet._parse_network_arguments(buffer);

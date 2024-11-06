@@ -35,14 +35,14 @@ enum enum_posix_shell : int;
 enum enum_integer_type : int
 {
 
-   e_integer_type_i8 = 0,
-   e_integer_type_u8 = 1,
-   e_integer_type_i16 = 2,
-   e_integer_type_u16 = 3,
-   e_integer_type_i32 = 4,
-   e_integer_type_u32 = 5,
-   e_integer_type_i64 = 6,
-   e_integer_type_u64 = 7,
+   e_integer_type_char = 0,
+   e_integer_type_unsigned_char = 1,
+   e_integer_type_short = 2,
+   e_integer_type_unsigned_short = 3,
+   e_integer_type_int = 4,
+   e_integer_type_unsigned_int = 5,
+   e_integer_type_huge_integer = 6,
+   e_integer_type_huge_natural = 7,
 
 };
 

@@ -359,9 +359,9 @@ namespace html
 
       string strChar;
 
-      strsize iCurPos = -1;
+      character_count iCurPos = -1;
 
-      strsize iParseLen;
+      character_count iParseLen;
 
       do
       {
@@ -739,7 +739,7 @@ namespace html
 
       string strDisplay = varDisplay.as_string();
 
-      if(strDisplay.has_char())
+      if(strDisplay.has_character())
       {
 
          strDisplay.make_lower();

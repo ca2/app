@@ -51,7 +51,7 @@ namespace draw2d_opengl
 
 
 
-   void image::create(const ::size_i32& size, ::enum_flag eobjectCreate, int iGoodStride, bool bPreserve)
+   void image::create(const ::int_size& size, ::enum_flag eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set()
@@ -219,7 +219,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool image::to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc)
+   //bool image::to(::draw2d::graphics * pgraphics, const ::int_point& point, const ::int_size& size, const ::int_point& pointSrc)
    //{
 
    //   return pgraphics->draw(point, size, get_graphics(), point);
@@ -245,7 +245,7 @@ namespace draw2d_opengl
 
       //}
 
-      ::size_i32 size = pgraphics->m_pimage->get_size();
+      ::int_size size = pgraphics->m_pimage->get_size();
 
       //if(!create(size))
       create(size);
@@ -266,13 +266,13 @@ namespace draw2d_opengl
    }
 
 
-   //bool image::from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz)
+   //bool image::from(int_point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::int_size sz)
    //{
 
    //   if (m_pgraphics.is_null())
    //      return false;
 
-   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point_i32) != false;
+   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, int_point) != false;
 
    //}
 
@@ -280,11 +280,11 @@ namespace draw2d_opengl
    /*void image::Fill ( int R, int G, int B )
    {
       color32_t color=rgb ( B, G, R );
-      i64 size = area();
+      huge_integer size = area();
 
       color32_t * pcr;
 
-      i64 iSize32 = size / 32;
+      huge_integer iSize32 = size / 32;
       int i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -323,7 +323,7 @@ namespace draw2d_opengl
          pcr[31] = color;
       }
 
-      for (i=0; i<size_i32; i++ )
+      for (i=0; i<int_size; i++ )
       {
          m_pcolorref[i]=color;
       }
@@ -331,12 +331,12 @@ namespace draw2d_opengl
 
    void image::set_rgb(int R, int G, int B)
    {
-      i64 size = area();
+      huge_integer size = area();
 
       unsigned char * pbyte = (unsigned char *) m_pcolorref;
 
       int i;
-      for (i=0; i<size_i32; i++ )
+      for (i=0; i<int_size; i++ )
       {
          *pbyte++ = (unsigned char) R;
          *pbyte++ = (unsigned char) G;
@@ -348,7 +348,7 @@ namespace draw2d_opengl
    void image::ToAlpha(int i)
    {
       unsigned char *dst=(unsigned char*)m_pcolorref;
-      i64 size = area();
+      huge_integer size = area();
 
       while ( size-- )
       {
@@ -360,7 +360,7 @@ namespace draw2d_opengl
    void image::from_alpha()
    {
       unsigned char *dst=(unsigned char*)m_pcolorref;
-      i64 size = area();
+      huge_integer size = area();
 
       while ( size-- )
       {
@@ -425,7 +425,7 @@ namespace draw2d_opengl
    //void image::Map(int ToRgb, int FromRgb)
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
 
    //   while ( size-- )
    //   {
@@ -438,7 +438,7 @@ namespace draw2d_opengl
    //void image::ToAlphaAndFill(int i, color32_t color32)
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
 
    //   unsigned char uchB = ::blue(color32);
    //   unsigned char uchG = ::green(color32);
@@ -457,7 +457,7 @@ namespace draw2d_opengl
    //void image::GrayToARGB(color32_t color32)
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
 
    //   unsigned int dwB = ::blue(color32);
    //   unsigned int dwG = ::green(color32);
@@ -478,7 +478,7 @@ namespace draw2d_opengl
    //{
    //   if(op == 123) // zero dest rgb, invert alpha, and OR src rgb
    //   {
-   //      i64 isize = area();
+   //      huge_integer isize = area();
    //      LPDWORD lpbitsSrc= (LPDWORD) pimage->get_data();
    //      LPDWORD lpbitsDest= (LPDWORD) m_pcolorref;
 
@@ -499,9 +499,9 @@ namespace draw2d_opengl
 
    //void image::Invert()
    //{
-   //   i64 size = area();
+   //   huge_integer size = area();
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //   for ( int i=0; i<size_i32; i++ )
+   //   for ( int i=0; i<int_size; i++ )
    //   {
    //      lpb[0] = 255 - lpb[0];
    //      lpb[1] = 255 - lpb[1];
@@ -512,12 +512,12 @@ namespace draw2d_opengl
 
    //void image::color::e_channel_invert(color::color::color::rgba::echannel echannel)
    //{
-   //   i64 size_i32   = area();
-   //   register i64 size_i64 = size / 64;
+   //   huge_integer int_size   = area();
+   //   register huge_integer huge_integer_size = size / 64;
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
    //   lpb += ((int)echannel) % 4;
-   //   register i64 i = 0;
-   //   for(; i < size_i64; i++)
+   //   register huge_integer i = 0;
+   //   for(; i < huge_integer_size; i++)
    //   {
    //      lpb[4 *  0] = 255 - lpb[4 *  0];
    //      lpb[4 *  1] = 255 - lpb[4 *  1];
@@ -598,13 +598,13 @@ namespace draw2d_opengl
    //{
    //   if(dRate < 0)
    //      return;
-   //   register i64 size = area();
+   //   register huge_integer size = area();
    //   LPBYTE lpb = (LPBYTE) get_data();
    //   lpb += ((int)echannel) % 4;
    //   register int iDiv = 256 * 256;
    //   register int iMul = (int) (dRate * ((double) iDiv));
    //   register int iRes;
-   //   for(register i64 i = 0; i < size; i++)
+   //   for(register huge_integer i = 0; i < size; i++)
    //   {
    //      iRes = *lpb * iMul / iDiv;
    //      *lpb = (unsigned char) (iRes > 255 ? 255 : iRes);
@@ -615,7 +615,7 @@ namespace draw2d_opengl
    //void image::FillGlass ( int R, int G, int B, int A )
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -664,7 +664,7 @@ namespace draw2d_opengl
    //{
 
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
 
    //   unsigned int dwB = ::blue(color32);
    //   unsigned int dwG = ::green(color32);
@@ -692,7 +692,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -713,7 +713,7 @@ namespace draw2d_opengl
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   unsigned char *alf=(unsigned char*)imageA.m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
 
    //   A = 2 - A;
    //
@@ -737,7 +737,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -756,7 +756,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -779,7 +779,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -799,7 +799,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -818,7 +818,7 @@ namespace draw2d_opengl
 
    //   unsigned char *src=(unsigned char*)pimage->get_data();
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   i64 size = area();
+   //   huge_integer size = area();
    //
    //   while ( size-- )
    //   {
@@ -1330,7 +1330,7 @@ namespace draw2d_opengl
 
    //   int size=cx*cy;
 
-   //   for ( int i=0; i<size_i32; i++ )
+   //   for ( int i=0; i<int_size; i++ )
    //      if(m_pcolorref[i]== crFind)
    //         m_pcolorref[i] = crSet;
    //      else
@@ -1341,9 +1341,9 @@ namespace draw2d_opengl
    //void image::transparent_color(::color::color color)
    //{
    //   color32_t crFind = color.get_rgb();
-   //   i64 size = area();
+   //   huge_integer size = area();
 
-   //   for ( int i=0; i<size_i32; i++ )
+   //   for ( int i=0; i<int_size; i++ )
    //      if((m_pcolorref[i] & 0x00ffffff) == crFind)
    //         ((LPBYTE)&m_pcolorref[i])[3] = 255;
    //      else
@@ -1941,7 +1941,7 @@ namespace draw2d_opengl
 
    //void image::rotate(
    //   image image,
-   //   const ::rectangle_i32 & rectangle,
+   //   const ::int_rectangle & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
@@ -1950,7 +1950,7 @@ namespace draw2d_opengl
 
 
 
-   //   ::rectangle_i32 rectangle(rectangle);
+   //   ::int_rectangle rectangle(rectangle);
 
    //   int cx = rectangle.width();
    //   int cy = rectangle.height();
@@ -2052,7 +2052,7 @@ namespace draw2d_opengl
 
    //   color32_t * pcr;
 
-   //   i64 iSize32 = size / 32;
+   //   huge_integer iSize32 = size / 32;
    //   int i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -2091,7 +2091,7 @@ namespace draw2d_opengl
    //      pcr[31] = color;
    //   }
 
-   //   for (i=0; i<size_i32; i++ )
+   //   for (i=0; i<int_size; i++ )
    //   {
    //      m_pcolorref[i]=color;
    //   }
@@ -2157,7 +2157,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::create_frame(::size_i32 size, int iFrameCount)
+   //void image::create_frame(::int_size size, int iFrameCount)
    //{
    //   int iSliceCount = (int) sqrt((double) iFrameCount);
    //   int iFrameWidth = size.cx() / iSliceCount;
@@ -2497,7 +2497,7 @@ namespace draw2d_opengl
    //       pb[31 * 4] = (unsigned char) intensity;
    //    }
 
-   //    for (; i<size_i32; i++ )
+   //    for (; i<int_size; i++ )
    //    {
    //       *(((unsigned char * ) &m_pcolorref[i]) + offset) = (unsigned char) intensity;
    //    }
@@ -2542,7 +2542,7 @@ namespace draw2d_opengl
 //   {
 //
 //
-//      rectangle_i64 rectangleWindow;
+//      huge_integer_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2562,7 +2562,7 @@ namespace draw2d_opengl
 ////         unsigned char *dstG=dstR + 1;
 ////         unsigned char *dstB=dstR + 2;
 ////         unsigned char *dstA=dstR + 3;
-////         i64 size = area() * 4;
+////         huge_integer size = area() * 4;
 ////
 ////
 ////         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -2617,7 +2617,7 @@ namespace draw2d_opengl
 //////
 ////      }
 ////#endif
-//      ::rectangle_i32 rectangle(rectangleWindow);
+//      ::int_rectangle rectangle(rectangleWindow);
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2670,14 +2670,14 @@ namespace draw2d_opengl
 //
 //      m_pgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::rectangle_i32 rectx;
+//      ::int_rectangle rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_pgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
 //      //      unsigned int dw = ::get_last_error();
-//      ::size_i32 size = pbitmap->get_size();
+//      ::int_size size = pbitmap->get_size();
 //
 //      rectx.left() = 0;
 //      rectx.top() = 0;
@@ -2687,7 +2687,7 @@ namespace draw2d_opengl
 //      try
 //      {
 //
-//         ::rectangle_i32 rectangleWindow;
+//         ::int_rectangle rectangleWindow;
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2701,20 +2701,20 @@ namespace draw2d_opengl
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::rectangle_i32 rectanglePaint;
-//         ::rectangle_i32 rectangleUpdate;
+//         ::int_rectangle rectanglePaint;
+//         ::int_rectangle rectangleUpdate;
 //         rectangleUpdate = rectangleWindow;
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics-> set_origin(::point_i32());
+//         m_pgraphics-> set_origin(::int_point());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_pgraphics->set_origin(::point_i32());
+//         m_pgraphics->set_origin(::int_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left(), rectangleUpdate.top(), 100, 100, 255);
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics->set_origin(::point_i32());
+//         m_pgraphics->set_origin(::int_point());
 //
 //         m_pgraphics->SelectClipRgn( nullptr);
 //         m_pgraphics->BitBlt(rectanglePaint.left(), rectanglePaint.top(),

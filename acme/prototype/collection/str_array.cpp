@@ -32,7 +32,7 @@ CLASS_DECL_ACME ::collection::count explode_command_line(string_array & stra, co
 
    auto range = str();
 
-   while (range.has_char())
+   while (range.has_character())
    {
 
       stra.add(range.consume_command_line_argument());
@@ -70,9 +70,9 @@ CLASS_DECL_ACME string_array & csstidy_explode_ws(string_array & stra, char sep,
    char to = '\0';
 
    stra.add("");
-   strsize num = 0;
-   strsize len = istring.length();
-   for (strsize i = 0; i < len; i++)
+   character_count num = 0;
+   character_count len = istring.length();
+   for (character_count i = 0; i < len; i++)
    {
 
       switch (status)

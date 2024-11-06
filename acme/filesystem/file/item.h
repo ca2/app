@@ -46,7 +46,7 @@ namespace file
          m_strName(pathUser.name())
       {
 
-         if (m_pathFinal.has_char())
+         if (m_pathFinal.has_character())
          {
 
             if (m_pathFinal.flags() & e_flag_final_path)
@@ -74,7 +74,7 @@ namespace file
          m_strName(pathUser.name())
       {
 
-         if (m_pathFinal.has_char())
+         if (m_pathFinal.has_character())
          {
 
             if (m_pathFinal.flags() & e_flag_final_path)
@@ -96,8 +96,8 @@ namespace file
       ~item() override {}
 
 
-      const ::file::path & user_path() const { return m_pathUser.has_char() ? m_pathUser : m_pathFinal; }
-      const ::file::path & final_path() const { return m_pathFinal.has_char() ? m_pathFinal : m_pathUser; }
+      const ::file::path & user_path() const { return m_pathUser.has_character() ? m_pathUser : m_pathFinal; }
+      const ::file::path & final_path() const { return m_pathFinal.has_character() ? m_pathFinal : m_pathUser; }
 
       ::file::path & user_path_reference() { return m_pathUser; }
       ::file::path & final_path_reference() { return m_pathFinal; }

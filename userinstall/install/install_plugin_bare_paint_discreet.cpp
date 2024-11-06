@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,11 +21,11 @@ namespace hotplugin
 
       }
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
       int cx = rectangleWindow.right() - rectangleWindow.left();
       int cy = rectangleWindow.bottom() - rectangleWindow.top();
-      ::rectangle_i32 rectangle_i32;
+      ::int_rectangle int_rectangle;
       rectangle.left() = 0;
       rectangle.top() = 0;
       rectangle.bottom() = cy;
@@ -115,7 +115,7 @@ auto m_timeSync = ::time::now();
 
       auto ppathClip1 = __create < ::draw2d::path >();
 
-      ::rectangle_i32 rectangleClip1;
+      ::int_rectangle rectangleClip1;
 
       rectangleClip1.left() = rectangle.left() + iBorder1;
       rectangleClip1.top() = rectangle.top() + iBorder1;
@@ -141,11 +141,11 @@ auto m_timeSync = ::time::now();
 
          stringtow strProgress(wstrProgress);
 
-         string strDecimal = ansi_string_from_i64(iRatePercentMillis);
+         string strDecimal = ansi_string_from_huge_integer(iRatePercentMillis);
 
          ansi_zero_pad(strDecimal, 3);
 
-         strProgress = ansi_string_from_i64(iRatePercent) + "." + strDecimal + "%";
+         strProgress = ansi_string_from_huge_integer(iRatePercent) + "." + strDecimal + "%";
 
       }
 
@@ -157,7 +157,7 @@ auto m_timeSync = ::time::now();
 
       auto ppathClip = __create < ::draw2d::path >();
 
-      ::rectangle_i32 rectangleClip;
+      ::int_rectangle rectangleClip;
 
       rectangleClip.left() = rectangle.left() + cx / iRate - iBorder;
       rectangleClip.top() = rectangle.top() + (cy - iBarHeight) / 2 - iBorder;
@@ -174,7 +174,7 @@ auto m_timeSync = ::time::now();
       //pgraphics->exclude_clip(pathClip);
 
 
-      ::point_i32 pa[4];
+      ::int_point pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.FillRectangle(pbr, rectangle.left() , rectangle.top(), rectangle.left() + cx, rectangle.top() + cy);
@@ -234,7 +234,7 @@ auto m_timeSync = ::time::now();
 
       pbrush->create_solid(argb(84, 90, 90, 80));
 
-      ::rectangle_i32 r1;
+      ::int_rectangle r1;
 
       r1.left() = rectangle.left() + cx / iRate - 1;
       r1.top() = rectangle.top() + (cy - iBarHeight) / 2 - 1;
@@ -264,23 +264,23 @@ auto m_timeSync = ::time::now();
       delete pbr;
       }
       }*/
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
+         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = rectangle_int_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
          pgraphics->FillRect(r, br);
       }
 

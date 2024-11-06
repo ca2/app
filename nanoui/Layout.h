@@ -64,7 +64,7 @@ namespace nanoui
        *     The preferred size, accounting for things such as spacing, padding
        *     for icons, etc.
        */
-      virtual size_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
+      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
    };
 
    /**
@@ -87,7 +87,7 @@ namespace nanoui
       enum_alignment m_ealignment;
 
       /// The margin padding of this BoxLayout.
-      ::rectangle_i32 m_rectangleMargin;
+      ::int_rectangle m_rectangleMargin;
 
       /// The spacing between widgets of this BoxLayout.
       int m_iSpacing;
@@ -108,7 +108,7 @@ namespace nanoui
        *     Extra spacing placed between widgets
        */
       BoxLayout(enum_orientation orientation, enum_alignment alignment,
-         ::rectangle_i32 margin, int spacing);
+         ::int_rectangle margin, int spacing);
 
       /// The enum_orientation this BoxLayout is using.
       enum_orientation orientation() const { return m_eorientation; }
@@ -123,10 +123,10 @@ namespace nanoui
       void set_alignment(enum_alignment alignment) { m_ealignment = alignment; }
 
       /// The margin of this BoxLayout.
-      rectangle_i32 margin() const { return m_rectangleMargin; }
+      int_rectangle margin() const { return m_rectangleMargin; }
 
       /// Sets the margin of this BoxLayout.
-      void set_margin(rectangle_i32 margin) { m_rectangleMargin = margin; }
+      void set_margin(int_rectangle margin) { m_rectangleMargin = margin; }
 
       /// The spacing this BoxLayout is using to pad in between widgets.
       int spacing() const { return m_iSpacing; }
@@ -137,7 +137,7 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual size_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
@@ -205,7 +205,7 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual size_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
@@ -250,7 +250,7 @@ namespace nanoui
       /// The number of rows or columns before starting a ___new one, depending on the enum_orientation.
       int m_resolution;
       /// The spacing used for each dimension.
-      size_i32 m_sizeSpacing;
+      int_size m_sizeSpacing;
       /// The margin around this GridLayout.
       int m_iMargin;
       /**
@@ -330,7 +330,7 @@ namespace nanoui
 
       /* Implementation of the layout interface */
       /// See \::pointer Layout::preferred_size.
-      virtual size_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
@@ -486,7 +486,7 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual size_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;

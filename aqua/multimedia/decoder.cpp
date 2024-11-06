@@ -111,7 +111,7 @@ namespace multimedia
 
       }
 
-      if (wstrAttr.has_char())
+      if (wstrAttr.has_character())
       {
 
          bMediaCall = true;
@@ -141,7 +141,7 @@ namespace multimedia
       {
          //strAttr.ReleaseBuffer();
          wstrAttr = strAttr.as_string_array()._008Implode(", ", " and ");
-         if (wstrAttr.has_char())
+         if (wstrAttr.has_character())
          {
             wstraFormat.add("Performer: %0");
             wstr2aTitle.add_new();
@@ -153,7 +153,7 @@ namespace multimedia
       {
          //            strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         if (wstrAttr.has_char())
+         if (wstrAttr.has_character())
          {
             wstraFormat.add("Album: %0");
             wstr2aTitle.add_new();
@@ -165,7 +165,7 @@ namespace multimedia
       {
          //            strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         if (wstrAttr.has_char())
+         if (wstrAttr.has_character())
          {
             wstraFormat.add("Composer: %0");
             wstr2aTitle.add_new();
@@ -177,7 +177,7 @@ namespace multimedia
       {
          //            strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         if (wstrAttr.has_char())
+         if (wstrAttr.has_character())
          {
             wstraFormat.add("%0");
             wstr2aTitle.add_new();
@@ -189,7 +189,7 @@ namespace multimedia
       {
          //strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         if (wstrAttr.has_char())
+         if (wstrAttr.has_character())
          {
             wstraFormat.add("Year: %0");
             wstr2aTitle.add_new();

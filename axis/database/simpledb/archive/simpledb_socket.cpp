@@ -199,7 +199,7 @@ namespace simpledb
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
-      if(strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)
+      if(strContentType.has_character() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;
       }

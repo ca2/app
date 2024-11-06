@@ -76,7 +76,7 @@ namespace user
 
          m_strOpenOnCreate.empty();
 
-         if (strOpenOnCreate.has_char())
+         if (strOpenOnCreate.has_character())
          {
 
             get_document()->on_open_document(strOpenOnCreate);
@@ -167,7 +167,7 @@ namespace user
 
             }
 
-            if (strHtml.has_char())
+            if (strHtml.has_character())
             {
 
                pformNew->open_html(strHtml);

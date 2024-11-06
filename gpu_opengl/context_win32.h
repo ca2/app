@@ -25,12 +25,12 @@ namespace opengl
       ~context_win32() override;
 
 
-      virtual void _create_offscreen_window(const ::size_i32 & size);
+      virtual void _create_offscreen_window(const ::int_size & size);
 
 
       virtual void _create_window_buffer();
-      void _create_offscreen_buffer(const ::size_i32& size) override;
-      void resize_offscreen_buffer(const ::size_i32& size) override;
+      void _create_offscreen_buffer(const ::int_size& size) override;
+      void resize_offscreen_buffer(const ::int_size& size) override;
       void destroy_offscreen_buffer() override;
 
       void make_current() override;

@@ -43,7 +43,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //}
 //
-//wstring::wstring(const unsigned char* psz, strsize iSize)
+//wstring::wstring(const unsigned char* psz, character_count iSize)
 //{
 //
 //   operator = ((const char*)string(psz, iSize));
@@ -51,13 +51,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //}
 //
 //
-//wstring::wstring(const unichar* pwsz, strsize strsize)
+//wstring::wstring(const unichar* pwsz, character_count character_count)
 //{
 //
 //   if (::is_null(pwsz))
 //   {
 //
-//      if (strsize != 0)
+//      if (character_count != 0)
 //      {
 //
 //         throw ::exception(error_bad_argument);
@@ -70,7 +70,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //   else
 //   {
 //
-//      auto pNew = create_meta_data(char_length_to_byte_length(strsize + 1));
+//      auto pNew = create_meta_data(char_length_to_byte_length(character_count + 1));
 //
 //      if (pNew == nullptr)
 //      {
@@ -83,7 +83,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //      ::memory_copy(pNew->m_pdata, pwsz, pNew->memsize());
 //
-//      set_length(strsize);
+//      set_length(character_count);
 //
 //   }
 //
@@ -180,13 +180,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //   }
 //
-//   auto strsize = utf16_len(psz);
+//   auto character_count = utf16_len(psz);
 //
-//   auto pNew = create_meta_data(strsize + 1);
+//   auto pNew = create_meta_data(character_count + 1);
 //
 //   ansi_to_wd16(pNew->m_pdata, psz);
 //
-//   pNew->set_length(strsize);
+//   pNew->set_length(character_count);
 //
 //   POINTER::operator = (pNew);
 //
@@ -300,14 +300,14 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //
 //
-//// find the first occurrence of character 'ch', starting at strsize 'iStart'
-//strsize wstring::find(unichar ch, strsize iStart, strsize nCount) const RELEASENOTHROW
+//// find the first occurrence of character 'ch', starting at character_count 'iStart'
+//character_count wstring::find(unichar ch, character_count iStart, character_count nCount) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
 //
 //   // nLength is in XCHARs
-//   strsize nLength = get_length();
+//   character_count nLength = get_length();
 //   if (iStart < 0 || iStart >= nLength)
 //   {
 //      return -1;
@@ -332,8 +332,8 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //   }
 //   return -1;
 //}
-//// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize wstring::find(const unichar* pszSub, strsize iStart, strsize nCount, const unichar** pszTail) const RELEASENOTHROW
+//// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
+//character_count wstring::find(const unichar* pszSub, character_count iStart, character_count nCount, const unichar** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -344,13 +344,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //      return(-1);
 //   }
 //   // nLength is in XCHARs
-//   strsize nLength = get_length();
+//   character_count nLength = get_length();
 //   if (iStart < 0 || iStart > nLength)
 //   {
 //      return(-1);
 //   }
 //
-//   strsize nLength2 = unilen(pszSub);
+//   character_count nLength2 = unilen(pszSub);
 //
 //   if (nCount < 0)
 //      nCount = nLength;

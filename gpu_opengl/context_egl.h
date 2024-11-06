@@ -33,8 +33,8 @@ namespace opengl
       void create_context() override;
 
 
-      void _create_offscreen_buffer(const ::size_i32& size) override;
-      void resize_offscreen_buffer(const ::size_i32& size) override;
+      void _create_offscreen_buffer(const ::int_size& size) override;
+      void resize_offscreen_buffer(const ::int_size& size) override;
       void destroy_offscreen_buffer() override;
 
       void make_current() override;

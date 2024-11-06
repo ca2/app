@@ -20,7 +20,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, const ::scoped_string & scopedstr, size_f64 & s)
+   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, const ::scoped_string & scopedstr, double_size & s)
    {
 
       s = pgraphics->get_text_extent(scopedstr);
@@ -33,14 +33,14 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::size_double_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::double_size_array & sizea)
    {
 
 
       throw ::exception(todo);
       /*string str(pcsz);
 
-      strsize iLen = str.length();
+      character_count iLen = str.length();
       sizea.allocate(iLen);
       if(iLen > 0)
       {
@@ -58,7 +58,7 @@ namespace draw2d
    }
 
 
-   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, size_i32 & size)
+   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, int_size & size)
    //{
 
    //   //synchronous_lock ml(&user_synchronization());
@@ -79,7 +79,7 @@ namespace draw2d
    //}
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, size_f64 & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, double_size & size)
    {
 
       /*::GetTextExtentPoint32U(

@@ -17,7 +17,7 @@ CLASS_DECL_ACME string url_decode(const ::string & strParam)
 
    str.replace_with(" ", "+");
 
-   strsize iStart = 0;
+   character_count iStart = 0;
 
    while(true)
    {
@@ -63,7 +63,7 @@ CLASS_DECL_ACME string url_decode(const ::string & strParam)
 
 
 
-string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen)
+string url_decode(const ::scoped_string & scopedstrUrl,character_count iLen)
 
 {
 
@@ -73,7 +73,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen)
 
    auto psz = pszStart;
 
-   strsize i = 0;
+   character_count i = 0;
 
    while(*pszUrl != '\0' && i < iLen)
 
@@ -300,7 +300,7 @@ string url_encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_i64(sz,(i64)(unsigned char) ch,16);
+         ansi_from_huge_integer(sz,(huge_integer)(unsigned char) ch,16);
 
          ansi_upper(sz);
 
@@ -473,7 +473,7 @@ void openURL(const string &url_str)
 //
 //pdirectorysystem->system() / "config\\pass.txt");
 ////
-//   //if(strUsername.has_char() && strPassword.has_char())
+//   //if(strUsername.has_character() && strPassword.has_character())
 //   //{
 //
 //   //}
@@ -517,7 +517,7 @@ void openURL(const string &url_str)
 //
 //   }
 //
-//   if(domain != nullptr && strDomain.has_char())
+//   if(domain != nullptr && strDomain.has_character())
 //   {
 //
 //      *domain = strdup(strDomain);
@@ -546,9 +546,9 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 
    string strCandidate(pszCandidate);
 
-   strsize iLen = strCandidate.length();
+   character_count iLen = strCandidate.length();
 
-   strsize i = 0;
+   character_count i = 0;
 
    char ch;
 
@@ -588,7 +588,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //
 //   str.replace_with(" ", "+");
 //
-//   strsize iStart = 0;
+//   character_count iStart = 0;
 //
 //   while (true)
 //   {
@@ -634,7 +634,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 
 
 
-//string url_decode(const ::scoped_string & scopedstrUrl, strsize iLen)
+//string url_decode(const ::scoped_string & scopedstrUrl, character_count iLen)
 //
 //{
 //
@@ -642,7 +642,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //
 //   char* psz = strDecode.get_buffer(iLen * 4);
 //
-//   strsize i = 0;
+//   character_count i = 0;
 //
 //   while (*pszUrl != '\0' && i < iLen)
 //
@@ -851,7 +851,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      else
 //      {
 //
-//         ansi_from_i64(sz, uch, 16);
+//         ansi_from_huge_integer(sz, uch, 16);
 //
 //         ansi_upper(sz);
 //
@@ -1041,7 +1041,7 @@ pdirectorysystem->system() / "config\\user.txt")*/;
 //
 //pdirectorysystem->system() / "config\\pass.txt");
 //
-//   //if(strUsername.has_char() && strPassword.has_char())
+//   //if(strUsername.has_character() && strPassword.has_character())
 //   //{
 //
 //   //}
@@ -1085,7 +1085,7 @@ pdirectorysystem->system() / "config\\user.txt")*/;
 //
 //   }
 //
-//   if(domain != nullptr && strDomain.has_char())
+//   if(domain != nullptr && strDomain.has_character())
 //   {
 //
 //      *domain = strdup(strDomain);

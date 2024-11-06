@@ -90,7 +90,7 @@ namespace user
 
       string strPo = load_podata(bOnlyHeader);
 
-      if (strPo.has_char())
+      if (strPo.has_character())
       {
 
          m_bLoadedDefaultResourceRet = parse_podata(strPo, bOnlyHeader);
@@ -252,7 +252,7 @@ namespace user
 
                strName = range.consume_nc_name();
 
-               if (strName.has_char())
+               if (strName.has_character())
                {
 
                   i--;
@@ -272,7 +272,7 @@ namespace user
 
                         strHeader = range.consume_quoted_value_ex();
 
-                        if (strHeader.has_char())
+                        if (strHeader.has_character())
                         {
 
                            string_array stra;
@@ -332,7 +332,7 @@ namespace user
             else if (iState == -1)
             {
 
-               if (iStringCount > 0 || strMsgId.has_char() || strText.has_char())
+               if (iStringCount > 0 || strMsgId.has_character() || strText.has_character())
                {
 
                   m_stringmap[strMsgId] = str;

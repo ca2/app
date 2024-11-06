@@ -53,7 +53,7 @@
 //    virtual void create_drawing_objects();
 //    virtual void update_drawing_objects();
 //
-//    virtual ::point_i32 origin();
+//    virtual ::int_point origin();
 //
 //    //virtual bool defer_perform_entire_reposition_process();
 //
@@ -69,18 +69,18 @@
 //    // virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 //
 //
-//    virtual ::shift_i32 host_to_client();
-//    virtual ::shift_i32 client_to_host();
+//    virtual ::shift_int host_to_client();
+//    virtual ::shift_int client_to_host();
 //
-//    virtual ::shift_i32 absolute_to_client();
-//    virtual ::shift_i32 client_to_absolute();
+//    virtual ::shift_int absolute_to_client();
+//    virtual ::shift_int client_to_absolute();
 //
-//    virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+//    virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 //
 //       // drag_client
 //    void drag_set_capture() override;
-//    bool on_drag_start(::point_i32 & point, ::item * pitem) override;
-//    ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
+//    bool on_drag_start(::int_point & point, ::item * pitem) override;
+//    ::int_point drag_mouse_cursor_position(::item* pitem, const ::int_point & point) override;
 //    bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 //    bool drag_hover(::item * pitem) override;
 //    void drag_release_capture() override;
@@ -88,7 +88,7 @@
 //
 //
 //    virtual ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-//    virtual ::micro::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+//    virtual ::micro::child * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 //    virtual void add_child(::micro::child * pchild);
 //
 //    virtual ::payload get_result();
@@ -104,14 +104,14 @@
 //
 //    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 //
-//    virtual void move_to(const ::point_i32 & point);
+//    virtual void move_to(const ::int_point & point);
 //
 //    void destroy() override;
 //
 //    virtual void redraw();
 //
-//    virtual void get_client_rectangle(::rectangle_i32 & rectangle);
-//    virtual void get_window_rectangle(::rectangle_i32 & rectangle);
+//    virtual void get_client_rectangle(::int_rectangle & rectangle);
+//    virtual void get_window_rectangle(::int_rectangle & rectangle);
 //
 //    virtual void set_capture();
 //

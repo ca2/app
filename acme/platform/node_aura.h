@@ -50,7 +50,7 @@ namespace platform
 
 //      void set_application_menu(::application_menu * pmenu, ::apex::application * papp) override;
 
-//      virtual void * node_wrap_window(void * pdisplay, i64 window);
+//      virtual void * node_wrap_window(void * pdisplay, huge_integer window);
 
       //using apex::node::user_fork;
 

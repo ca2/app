@@ -45,13 +45,13 @@ struct CLASS_DECL_ACME image32_t
 
    constexpr bool operator == (const image32_t & image) const { return m_ui == image.m_ui; }
 
-   constexpr rgba_t rgb(color_indexes indexes) const { return { make_u32(byte_red(indexes), byte_green(indexes), byte_blue(indexes), 0) }; }
+   constexpr rgba_t rgb(color_indexes indexes) const { return { make_unsigned_int(byte_red(indexes), byte_green(indexes), byte_blue(indexes), 0) }; }
 
 
 
    inline ::color::color get_pixel(color_indexes indexes, int iScan, int iHeight, int x, int y);
    void vertical_swap_copy( int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-   inline void vertical_swap_copy(const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+   inline void vertical_swap_copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
    {
       vertical_swap_copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
    }
@@ -65,32 +65,32 @@ struct CLASS_DECL_ACME image32_t
       return offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    void copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-   inline void copy(const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+   inline void copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
    {
       copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
    }
 
    //void vertical_swap_copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    void vertical_swap_copy_swap_red_blue(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-   inline void vertical_swap_copy_swap_red_blue(const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
+   inline void vertical_swap_copy_swap_red_blue(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
       vertical_swap_copy_swap_red_blue(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
    }
    //void copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    //void copy(int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-   //void copy(const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
-   inline void copy(const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
+   //void copy(const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
+   inline void copy(const ::int_point & point, const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
       copy(point.x(), point.y(), size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
    }
-   inline void copy(const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
+   inline void copy(const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
       copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
    }
    void copy_swap_red_blue(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    void _001ProperCopyColorref(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
 
-   inline void copy(const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc);
+   inline void copy(const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc);
 
 
 };
@@ -100,7 +100,7 @@ struct CLASS_DECL_ACME image32_t
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//constexpr unsigned int argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr unsigned int argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Blue
@@ -120,7 +120,7 @@ struct CLASS_DECL_ACME image32_t
 //#else
 //
 //
-//constexpr unsigned int argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr unsigned int argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Red
@@ -191,7 +191,7 @@ namespace draw2d
 
    CLASS_DECL_ACME void image_copy(::image::image *imagethis, ::image::image *pimage);
    CLASS_DECL_ACME void image_create(::particle * pparticle, ::image::image *& image);
-   CLASS_DECL_ACME void image_create_image(::image::image *pimage, const size_i32 & size);
+   CLASS_DECL_ACME void image_create_image(::image::image *pimage, const int_size & size);
    CLASS_DECL_ACME unsigned int * image_get_data(::image::image *pimage);
    CLASS_DECL_ACME graphics * image_get_graphics(::image::image *pimage);
 
@@ -221,11 +221,11 @@ inline ::color::color image32_get_pixel(const ::image32_t * pdata, color_indexes
 
 
 
-//CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
-//CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+//CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::int_point & point, const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
+//CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
 
 
-//inline void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc);
+//inline void copy_image32(::image32_t * pimage32Dst, const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc);
 
 
 

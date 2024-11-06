@@ -55,7 +55,7 @@
                ::draw2d::pen_pointer                 m_ppenShadow1;
                ::draw2d::pen_pointer                 m_ppenDkShadow1;
                color32_t                         m_colorDkShadow;
-               size_i32                             m_minSize;
+               int_size                             m_minSize;
 
                ::draw2d::pen_pointer                 m_ppenHollow1;
                ::draw2d::pen_pointer                 m_ppenHollow2;
@@ -91,23 +91,23 @@
 
                virtual void on_style_change() override;
 
-               virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
+               virtual void _001OnBeforeMove(const ::int_rectangle &lpcrectWindow);
 
-               virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow) override;
+               virtual void _001OnBeforeSize(const ::int_rectangle &lpcrectWindow) override;
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rectangle(::rectangle_i32 * lprect, enum_element eelement) override;
+               virtual bool get_element_rectangle(::int_rectangle * lprect, enum_element eelement) override;
 
-               virtual bool hit_test(const ::point_i32 &point, enum_element &eelementParam);
+               virtual bool hit_test(const ::int_point &point, enum_element &eelementParam);
 
-               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
+               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, unsigned char bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect, color32_t color32, unsigned char bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
                virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
@@ -115,7 +115,7 @@
 
 
 
-               virtual void GetFrameRect(rectangle_i32 * lprect) override;
+               virtual void GetFrameRect(int_rectangle * lprect) override;
 
 
             };

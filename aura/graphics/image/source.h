@@ -13,15 +13,15 @@ namespace image
 
 
    template < typename IMAGE_SOURCE_POINTER >
-   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::size_i32 & size, const ::size_f64 & sizeDst, enum_image_selection eimageselection)
+   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::int_size & size, const ::double_size & sizeDst, enum_image_selection eimageselection)
    {
 
 
       { p->get_image(size) } -> ::std::same_as < ::image::image *>;
 
 
-      { p->size(sizeDst, eimageselection) } -> ::std::same_as < ::size_i32 >;
-      { p->size() } -> ::std::same_as < ::size_i32 >;
+      { p->size(sizeDst, eimageselection) } -> ::std::same_as < ::int_size >;
+      { p->size() } -> ::std::same_as < ::int_size >;
 
 
    };
@@ -33,11 +33,11 @@ namespace image
    public:
 
 
-      virtual image_pointer image_source_image(const ::size_i32 & size) = 0;
+      virtual image_pointer image_source_image(const ::int_size & size) = 0;
 
 
-      virtual ::size_i32 image_source_size(const ::size_f64 & sizeTarget, enum_image_selection eimageselection) const = 0;
-      virtual ::size_i32 image_source_size() const = 0;
+      virtual ::int_size image_source_size(const ::double_size & sizeTarget, enum_image_selection eimageselection) const = 0;
+      virtual ::int_size image_source_size() const = 0;
 
 
    };
@@ -50,7 +50,7 @@ namespace image
 
 
       enum_sub_image                      m_esubimage;
-      ::rectangle_f64                     m_rectangleSubImage;
+      ::double_rectangle                     m_rectangleSubImage;
       ::pointer<image_source_interface>  m_pimagesource;
 
 
@@ -89,7 +89,7 @@ namespace image
       }
 
 
-      image_source(image_source_interface * pimagesource, const ::rectangle_f64 & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
+      image_source(image_source_interface * pimagesource, const ::double_rectangle & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
          m_esubimage(esubimage),
          m_pimagesource(pimagesource),
          m_rectangleSubImage(rectangleSubImage)
@@ -98,7 +98,7 @@ namespace image
       }
 
 
-      ::rectangle_f64 source_rectangle() const
+      ::double_rectangle source_rectangle() const
       {
 
          if (m_esubimage == e_sub_image_coordinates)
@@ -106,7 +106,7 @@ namespace image
 
             auto size = m_pimagesource->image_source_size();
 
-            return ::rectangle_f64(
+            return ::double_rectangle(
                m_rectangleSubImage.left() * size.cx(),
                m_rectangleSubImage.top() * size.cy(),
                m_rectangleSubImage.right() * size.cx(),
@@ -122,7 +122,7 @@ namespace image
          else
          {
 
-            return ::rectangle_f64(m_pimagesource->image_source_size());
+            return ::double_rectangle(m_pimagesource->image_source_size());
 
          }
 

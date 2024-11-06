@@ -68,7 +68,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 
    m_rectangle.set_dimension(x, y, w, h);
 
-   ::rectangle_i32 rectangleMainScreen;
+   ::int_rectangle rectangleMainScreen;
 
    rectangleMainScreen.set_dimension(0, 0, wScreen, hScreen);
 
@@ -139,7 +139,7 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 void popup_button::on_draw(::nano::graphics::device * pnanodevice)
 {
 
-   /*rectangle_i32 rectangleText;
+   /*int_rectangle rectangleText;
 
    get_client_rectangle(rectangleText);
 

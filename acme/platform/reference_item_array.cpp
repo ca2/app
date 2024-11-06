@@ -674,7 +674,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
       ::string str = m_psubparticle->get_short_debug_text(0);
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str1 = "ShDbgTxt: " + str;
@@ -739,7 +739,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
       try
       {
 
-         if (pitem->m_strCallStackTrace.has_char())
+         if (pitem->m_strCallStackTrace.has_character())
          {
 
             strDump += "Callstack:\n";

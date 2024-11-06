@@ -351,14 +351,14 @@ namespace xml
                {
                   entity_value = rangeXml.consume_quoted_value();
                }
-               if(entity_value.has_char())
+               if(entity_value.has_character())
                {
                   //::__construct(m_pdocument, m_pdocument->m_pentitiesHash);
                   //::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
                   m_pdocument->__defer_construct(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
-               if(ext_entity_value.has_char())
+               if(ext_entity_value.has_character())
                {
                   m_pdocument->__defer_construct(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
@@ -404,7 +404,7 @@ namespace xml
 
       }
 
-      while(rangeXml.has_char() && *rangeXml.m_begin != '\0')
+      while(rangeXml.has_character() && *rangeXml.m_begin != '\0')
       {
 
          rangeXml.consume_spaces(0);
@@ -632,7 +632,7 @@ namespace xml
 //
 //      }
 //
-//      while(rangeXml.has_char() && *rangeXml.m_begin)
+//      while(rangeXml.has_character() && *rangeXml.m_begin)
 //      {
 //
 //         rangeXml.consume_spaces(0);
@@ -910,7 +910,7 @@ namespace xml
       bool do_other_type = true;
       *pbRet = false;
 
-      while( rangeXml.has_char() && do_other_type)
+      while( rangeXml.has_character() && do_other_type)
       {
          do_other_type = false;
 
@@ -1083,7 +1083,7 @@ namespace xml
 
          
          ////pnode->_load(xml, xml, pszEndXml, pparseinfo);
-         //if (pnode->m_strName.has_char())
+         //if (pnode->m_strName.has_character())
          //{
          //   m_nodea.add(pnode);
 
@@ -1215,7 +1215,7 @@ namespace xml
             }
 
             // generate child nodes
-            if(rangeXml.has_char() && *rangeXml.m_begin)
+            if(rangeXml.has_character() && *rangeXml.m_begin)
             {
                //::pointer<node>pnode = __allocate node(this);
                //if (m_pdocument == this)
@@ -1233,7 +1233,7 @@ namespace xml
                //pnode->m_enode = m_enode;
 
                pnode->_load(rangeXml, pparseinfo);
-               //if (pnode->m_strName.has_char())
+               //if (pnode->m_strName.has_character())
                //{
                //   m_nodea.add(pnode);
 
@@ -1248,7 +1248,7 @@ namespace xml
                // open/close tag <TAG ..> ... </TAG>
                //                             ^- current pointer
                // CloseTag case
-               if (rangeXml.has_char() && *rangeXml.m_begin && *(rangeXml.m_begin + 1) && *rangeXml.m_begin == '<' && *(rangeXml.m_begin + 1) == '/')
+               if (rangeXml.has_character() && *rangeXml.m_begin && *(rangeXml.m_begin + 1) && *rangeXml.m_begin == '<' && *(rangeXml.m_begin + 1) == '/')
                {
                   // </close>
                   rangeXml.m_begin += 2; // C
@@ -1325,12 +1325,12 @@ namespace xml
                   }
 
                }
-               else if (rangeXml.has_char() && *rangeXml.m_begin)  // Alone child Tag Loaded
+               else if (rangeXml.has_character() && *rangeXml.m_begin)  // Alone child Tag Loaded
                   // else "I wonder if I should or shouldn't"(TranslatedFromKorean).
                {
 
                   //if( xml && this->m_strValue.is_empty() && *xml !='<' )
-                  if (rangeXml.has_char() && ::str::trimmed_is_empty(pnode->m_strValue) && *rangeXml.m_begin != '<')
+                  if (rangeXml.has_character() && ::str::trimmed_is_empty(pnode->m_strValue) && *rangeXml.m_begin != '<')
                   {
                      // Text Value
                      auto pszStart = rangeXml.m_begin;
@@ -1392,7 +1392,7 @@ namespace xml
 
 //         }
 
-         if (pnode->m_strName.has_char())
+         if (pnode->m_strName.has_character())
          {
 
             m_nodea.add(pnode);
@@ -2738,7 +2738,7 @@ namespace xml
 
             strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
             
-            if(strValue.has_char())
+            if(strValue.has_character())
             {
                
                count++;
@@ -2778,7 +2778,7 @@ namespace xml
 
             strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
 
-            if(strValue.has_char())
+            if(strValue.has_character())
             {
                if(iIndex <= 0)
                {
@@ -2830,7 +2830,7 @@ namespace xml
             
             strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
 
-            if(strValue.has_char() && case_insensitive_ansi_compare(strValue, scopedstrAttrValue) == 0)
+            if(strValue.has_character() && case_insensitive_ansi_compare(strValue, scopedstrAttrValue) == 0)
             {
 
                return m_nodea[i]->get_xml_node();
@@ -2858,7 +2858,7 @@ namespace xml
 
                ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
 
-               if(strValue.has_char() && case_insensitive_ansi_compare(strValue.c_str(), straAttrValue[j]) == 0)
+               if(strValue.has_character() && case_insensitive_ansi_compare(strValue.c_str(), straAttrValue[j]) == 0)
                {
 
                   return m_nodea[i]->get_xml_node();

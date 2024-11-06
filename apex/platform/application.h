@@ -170,8 +170,8 @@ namespace apex
 
 #ifdef DEBUG
 
-      ::i64 increment_reference_count() override;
-      ::i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 #endif
       void initialize(::particle* pparticle) override;
@@ -309,7 +309,7 @@ namespace apex
       void show_about_box() override;
 
 
-      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::size_i32& size) override;
+      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;
 
 
       virtual void init_fs_set(::fs::set* pfsset) override;
@@ -493,7 +493,7 @@ namespace apex
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(::u64 u, ::particle * pparticle) override;
+      //virtual void on_event(huge_natural u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -1036,7 +1036,7 @@ namespace apex
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
 
-      //virtual ::pointer<::user::interaction>uie_from_point(const ::point_i32& point);
+      //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point);
 
       //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
@@ -1185,7 +1185,7 @@ namespace apex
       virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(i64& i64Size, const ::string& pszPath, bool& bPending) override;
+      virtual bool get_fs_size(huge_integer& i64Size, const ::string& pszPath, bool& bPending) override;
 
 
       virtual void set_title(const ::string& pszTitle) override;

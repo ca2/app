@@ -249,7 +249,7 @@ namespace userfs
 ////            }
 //
 //         //}
-//         //else if (pfilemanagerdata->m_pathDefault.has_char())
+//         //else if (pfilemanagerdata->m_pathDefault.has_character())
 //         //{
 //
 //         //   browse(pfilemanagerdata->m_pathDefault, ::e_source_initialize);
@@ -441,7 +441,7 @@ namespace userfs
 
          ::file::path pathSemiFinal = pathItem;
 
-         if (listingUser.m_pathFinal.has_char())
+         if (listingUser.m_pathFinal.has_character())
          {
 
             pathSemiFinal = listingUser.m_pathFinal / pathItem.name();
@@ -520,7 +520,7 @@ namespace userfs
          
          if(i2 == i1 + 1
             && i < listingUser.m_straTitle.size()
-            && listingUser.m_straTitle[i].has_char())
+            && listingUser.m_straTitle[i].has_character())
          {
           
             listingFolderUser.m_straTitle.insert_at(i2, listingUser.m_straTitle[i]);

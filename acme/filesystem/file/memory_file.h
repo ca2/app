@@ -49,7 +49,7 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
       *(::u56 *)target = *(::u56 *)source;
       break;
    case 8:
-      *(::u64 *)target = *(::u64 *)source;
+      *(huge_natural *)target = *(huge_natural *)source;
       break;
    default:
       ::memory_copy(target, source, s);
@@ -162,7 +162,7 @@ public:
    inline memsize _get_left() { return m_pmemory->size() - m_position; }
    inline bool _is_end_of_file() const { return m_position >= m_pmemory->size(); }
 
-   inline int _get_u8()
+   inline int _get_unsigned_char()
    {
 
       return _get_left() < 1 ? -1 : ((unsigned char *)m_pmemory.m_p->data())[m_position++];
@@ -177,7 +177,7 @@ public:
    }
 
 
-   inline int _get_u16()
+   inline int _get_unsigned_short()
    {
 
       if (_get_left() < 2)
@@ -208,7 +208,7 @@ public:
    }
 
 
-   inline bool _get_u64(::u64 & u64)
+   inline bool _get_huge_natural(huge_natural & hn)
    {
 
       if (_get_left() < 8)
@@ -218,7 +218,7 @@ public:
 
       }
 
-      u64 = *((::u64 *)&(m_pmemory.m_p->data()[m_position]));
+      hn = *((huge_natural *)&(m_pmemory.m_p->data()[m_position]));
 
       m_position += 8;
 
@@ -227,10 +227,10 @@ public:
    }
 
 
-   inline u64 get_u64_unbounded()
+   inline huge_natural get_u64_unbounded()
    {
 
-      auto u = *(u64 *)(m_pbyte + m_position);
+      auto u = *(huge_natural *)(m_pbyte + m_position);
 
       m_position += 8;
 
@@ -239,9 +239,9 @@ public:
    }
 
 
-   int get_u8() override;
-   int get_u16() override;
-   bool get_u64(::u64 & u64) override;
+   int get_unsigned_char() override;
+   int get_unsigned_short() override;
+   bool get_huge_natural(huge_natural & hn) override;
    bool is_end_of_file() const override;
 
 

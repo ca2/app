@@ -47,12 +47,12 @@ namespace draw2d
    class host;
 
    //template < typename GRAPHICS_SOURCE_POINTER >
-   //concept graphics_source_pointer = requires(const ::image::image_drawing & imagedrawing, const ::size_f64 & sizeHint)
+   //concept graphics_source_pointer = requires(const ::image::image_drawing & imagedrawing, const ::double_size & sizeHint)
    //{
 
    //   { pgraphicssource->g(sizeHint) } -> ::std::convertible_to < ::draw2d::graphics * >;
-   //   { pgraphicssource->origin() } -> ::std::convertible_to < ::size_f64 >;
-   //   { pgraphicssource->size_i32(sizeHint) } -> ::std::convertible_to < ::size_f64 >;
+   //   { pgraphicssource->origin() } -> ::std::convertible_to < ::double_size >;
+   //   { pgraphicssource->int_size(sizeHint) } -> ::std::convertible_to < ::double_size >;
 
    //};
 
@@ -83,7 +83,7 @@ namespace draw2d
       ::pointer<::text::context>          m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
       ::image::image_pointer                        m_pimageAlphaBlend;
-      ::point_f64                            m_pointAlphaBlend;
+      ::double_point                            m_pointAlphaBlend;
       ::pointer<::task>                     m_ptask;
       bool                                   m_bDraw;
 
@@ -94,7 +94,7 @@ namespace draw2d
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
 
-      ::point_f64                            m_point;
+      ::double_point                            m_point;
 
    protected:
       enum_alpha_mode                        m_ealphamode;
@@ -108,16 +108,16 @@ namespace draw2d
       ::write_text::enum_rendering           m_ewritetextrendering;
       double                                 m_dFontFactor;
 
-      ::size_f64                             m_sizeScaling;
-      ::point_f64                            m_pointOrigin;
+      ::double_size                             m_sizeScaling;
+      ::double_point                            m_pointOrigin;
       ::geometry2d::matrix                   m_matrix;
 
-      ::rectangle_f64                        m_rectangleDraw;
+      ::double_rectangle                        m_rectangleDraw;
 
       bool                                   m_bPrinting;
       void *                                 m_osdata[8];
       ::user::style_pointer                  m_puserstyleGraphics;
-      //::point_f64                            m_pointAddShapeTranslate;
+      //::double_point                            m_pointAddShapeTranslate;
       bool                                   m_bUseImageMipMapsOrResizedImages;
 
       //::e_status                             m_estatus;
@@ -191,16 +191,16 @@ namespace draw2d
       
       
       
-      inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return this; }
-      inline ::size_f64 origin() const { return ::size_f64(); }
+      inline ::draw2d::graphics * g(const ::double_size & sizeHint) { return this; }
+      inline ::double_size origin() const { return ::double_size(); }
 
       bool _is_ok() const override;
 
-      ::image::image_pointer image_source_image(const ::size_i32 & sizeDst) override;
+      ::image::image_pointer image_source_image(const ::int_size & sizeDst) override;
 
-      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
 
-      ::size_i32 image_source_size() const override;
+      ::int_size image_source_size() const override;
 
 
       ::user::redraw * user_redraw();
@@ -215,7 +215,7 @@ namespace draw2d
 
       virtual void on_begin_draw();
 
-      virtual bool fill_contains(const point_f64 & point);
+      virtual bool fill_contains(const double_point & point);
 
       void draw_ca2(int x,int y,int z,const ::color::color & colorBk,const ::color::color & color);
       void draw_ca2_with_border(int x,int y,int z,int b,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorOut);
@@ -223,8 +223,8 @@ namespace draw2d
       void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorBorderOut,const ::color::color & colorIn);
 
 
-      void draw_border(const ::rectangle_f64 & rectangle, const ::color::color & color, int iWidth);
-      void draw_rect_side(const ::rectangle_f64& rectangle_f64, enum_border eborder);
+      void draw_border(const ::double_rectangle & rectangle, const ::color::color & color, int iWidth);
+      void draw_rect_side(const ::double_rectangle& double_rectangle, enum_border eborder);
 
       virtual bool is_set();
 
@@ -266,7 +266,7 @@ namespace draw2d
 
       virtual enum_smooth_mode get_smooth_mode();
 
-      virtual void blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle);
+      virtual void blur(bool bExpand, double dRadius, const ::double_rectangle & rectangle);
 
       virtual void set_solid_pen(double dWidth, const ::color::color & color);
 
@@ -291,11 +291,11 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual void create_memory_graphics(const ::size_i32 & size = {});
+      virtual void create_memory_graphics(const ::int_size & size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
-      virtual void on_begin_draw(oswindow wnd, const ::size_f64 & sz);
+      virtual void on_begin_draw(oswindow wnd, const ::double_size & sz);
       virtual void on_end_draw(oswindow wnd);
 
       virtual void DeleteDC();
@@ -303,11 +303,11 @@ namespace draw2d
 
       // Device-Context Functions
       virtual int GetDeviceCaps(int nIndex);
-      virtual unsigned int SetBoundsRect(const ::rectangle_f64 & rectangleBounds, unsigned int flags);
-      virtual unsigned int GetBoundsRect(::rectangle_f64 * rectdBounds, unsigned int flags);
+      virtual unsigned int SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags);
+      virtual unsigned int GetBoundsRect(::double_rectangle * rectdBounds, unsigned int flags);
 
 
-      virtual void resize(const ::size_i32 & sizeWindow);
+      virtual void resize(const ::int_size & sizeWindow);
 
 
       
@@ -317,9 +317,9 @@ namespace draw2d
 //#endif
 
       // Drawing-Tool Functions
-      virtual ::point_f64 GetBrushOrg();
-      virtual ::point_f64 SetBrushOrg(double x, double y);
-      virtual ::point_f64 SetBrushOrg(const ::point_f64 & point);
+      virtual ::double_point GetBrushOrg();
+      virtual ::double_point SetBrushOrg(double x, double y);
+      virtual ::double_point SetBrushOrg(const ::double_point & point);
       //virtual int EnumObjects(int nObjectType,
                               //int (CALLBACK* pfn)(LPVOID, lparam), lparam lpData);
 
@@ -364,9 +364,9 @@ namespace draw2d
       virtual void sync_flush();
 
 
-      virtual ::size_f64 get_size() const;
+      virtual ::double_size get_size() const;
 
-      ::size_i32 get_image_drawer_size() const override;
+      ::int_size get_image_drawer_size() const override;
 
 
 
@@ -402,55 +402,55 @@ namespace draw2d
 //      virtual void GetWorldTransform(XFORM* pXform);
 //#endif
 
-      virtual ::size_f64 get_scaling();
+      virtual ::double_size get_scaling();
 
       // Mapping Functions
       ///virtual int GetMapMode();
-      virtual ::point_f64 get_origin();
+      virtual ::double_point get_origin();
       //virtual int SetMapMode(int nMapMode);
       // Context Origin
-      virtual ::point_f64 set_origin(double x, double y);
-      virtual ::point_f64 set_origin(const ::point_f64 & point_f64);
-      virtual ::point_f64 offset_origin(double x, double y);
+      virtual ::double_point set_origin(double x, double y);
+      virtual ::double_point set_origin(const ::double_point & double_point);
+      virtual ::double_point offset_origin(double x, double y);
 
       // Context Extent
-      virtual ::size_f64 get_extents();
-      virtual ::size_f64 set_extents(double cx, double cy);
-      virtual ::size_f64 set_extents(const ::size_f64 & size);
-      virtual ::size_f64 scale_extents(double xNum, double xDenom, double yNum, double yDenom);
+      virtual ::double_size get_extents();
+      virtual ::double_size set_extents(double cx, double cy);
+      virtual ::double_size set_extents(const ::double_size & size);
+      virtual ::double_size scale_extents(double xNum, double xDenom, double yNum, double yDenom);
 
       // Window Origin
-      virtual ::point_f64 GetWindowOrg();
-      virtual ::point_f64 SetWindowOrg(double x, double y);
-      virtual ::point_f64 SetWindowOrg(const ::point_f64 & point);
-      virtual ::point_f64 offset_window_org(double nWidth, double nHeight);
+      virtual ::double_point GetWindowOrg();
+      virtual ::double_point SetWindowOrg(double x, double y);
+      virtual ::double_point SetWindowOrg(const ::double_point & point);
+      virtual ::double_point offset_window_org(double nWidth, double nHeight);
 
       // Window extent
-      virtual ::size_f64 GetWindowExt();
-      virtual ::size_f64 set_window_ext(double cx, double cy);
-      virtual ::size_f64 set_window_ext(const ::size_f64 & size);
-      virtual ::size_f64 scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
+      virtual ::double_size GetWindowExt();
+      virtual ::double_size set_window_ext(double cx, double cy);
+      virtual ::double_size set_window_ext(const ::double_size & size);
+      virtual ::double_size scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
 
       // Coordinate Functions
-      virtual void DPtoLP(::point_f64 * ppoint, ::collection::count nCount = 1);
-      virtual void DPtoLP(::rectangle_f64 * prectd);
+      virtual void DPtoLP(::double_point * ppoint, ::collection::count nCount = 1);
+      virtual void DPtoLP(::double_rectangle * prectd);
 
-      virtual void DPtoLP(::size_f64 * pSize);
+      virtual void DPtoLP(::double_size * pSize);
 
-      virtual void LPtoDP(::point_f64 * ppoint, ::collection::count nCount = 1);
-      virtual void LPtoDP(::rectangle_f64 * prectd);
+      virtual void LPtoDP(::double_point * ppoint, ::collection::count nCount = 1);
+      virtual void LPtoDP(::double_rectangle * prectd);
 
-      virtual void LPtoDP(::size_f64 * pSize);
+      virtual void LPtoDP(::double_size * pSize);
 
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      virtual void DPtoHIMETRIC(::size_f64 * pSize);
+      virtual void DPtoHIMETRIC(::double_size * pSize);
 
-      virtual void LPtoHIMETRIC(::size_f64 * pSize);
+      virtual void LPtoHIMETRIC(::double_size * pSize);
 
-      virtual void HIMETRICtoDP(::size_f64 * pSize);
+      virtual void HIMETRICtoDP(::double_size * pSize);
 
-      virtual void HIMETRICtoLP(::size_f64 * pSize);
+      virtual void HIMETRICtoLP(::double_size * pSize);
 
 
       // Region Functions
@@ -460,13 +460,13 @@ namespace draw2d
       virtual void paint_region(::draw2d::region* pregion);
 
       // Clipping Functions
-      virtual int get_clip_box(::rectangle_f64 & rectangle);
+      virtual int get_clip_box(::double_rectangle & rectangle);
 
-      //virtual int get_clip_box(::rectangle_f64 * prectangle);
+      //virtual int get_clip_box(::double_rectangle * prectangle);
 
       //virtual void PtVisible(double x, double y);
-      //virtual void PtVisible(const ::point_f64 & point);
-      //virtual void RectVisible(const ::rectangle_f64 & rectangle);
+      //virtual void PtVisible(const ::double_point & point);
+      //virtual void RectVisible(const ::double_rectangle & rectangle);
       
 
       
@@ -476,9 +476,9 @@ namespace draw2d
       
       //virtual void set_clipping(::draw2d::region * pregion);
       
-      virtual void intersect_clip(const ::rectangle_f64 & rectangle_f64);
-      virtual void intersect_clip(const ::ellipse_f64 & ellipse);
-      virtual void intersect_clip(const ::polygon_f64 & polygon);
+      virtual void intersect_clip(const ::double_rectangle & double_rectangle);
+      virtual void intersect_clip(const ::double_ellipse & ellipse);
+      virtual void intersect_clip(const ::double_polygon & polygon);
       
 
       virtual ::draw2d::region * defer_get_os_data(::pointer < ::geometry2d::region > & pregion);
@@ -503,23 +503,23 @@ namespace draw2d
       /// Otherwise (if it is "complex" shape, a combine_item)
       /// it returns false.
       virtual bool _add_simple_shape(::geometry2d::item * pitem);
-      virtual void _add_shape(const ::rectangle_f64 & rectangle);
-      virtual void _add_shape(const ::ellipse_f64 & ellipse);
-      virtual void _add_shape(const ::polygon_f64 & polygon);
+      virtual void _add_shape(const ::double_rectangle & rectangle);
+      virtual void _add_shape(const ::double_ellipse & ellipse);
+      virtual void _add_shape(const ::double_polygon & polygon);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
-      //virtual void IntersectClipRect(const ::rectangle_f64 & rectangle);
+      //virtual void IntersectClipRect(const ::double_rectangle & rectangle);
       //virtual int ExcludeClipRect(double x1, double y1, double x2, double y2);
-      //virtual int ExcludeClipRect(const ::rectangle_f64 & rectangle);
+      //virtual int ExcludeClipRect(const ::double_rectangle & rectangle);
       //virtual int ExcludeUpdateRgn(::windowing::window * pwindow);
       //virtual int OffsetClipregion(double x, double y);
-      //virtual int OffsetClipregion(const ::size_f64 & ::size_f64);
+      //virtual int OffsetClipregion(const ::double_size & ::double_size);
       //virtual int SelectClipregion(::draw2d::region* pregion, ::draw2d::enum_combine ecombine);
 
       virtual void on_apply_clip_region();
 
-      virtual ::point_f64 current_position();
+      virtual ::double_point current_position();
 
       //inline void set_current_point(double x, double y)
       //{
@@ -535,7 +535,7 @@ namespace draw2d
       virtual void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen);
 
       
-      inline void set_current_point(const ::point_f64 & point) 
+      inline void set_current_point(const ::double_point & point) 
       { 
       
          return set_current_point(point.x(), point.y());
@@ -543,7 +543,7 @@ namespace draw2d
       }
 
 
-      virtual void line_to(const ::point_f64 & point) 
+      virtual void line_to(const ::double_point & point) 
       { 
          
          return line_to(point.x(), point.y()); 
@@ -551,7 +551,7 @@ namespace draw2d
       }
 
       
-      inline void draw_line(const ::point_f64 & point1, const ::point_f64 & point2) 
+      inline void draw_line(const ::double_point & point1, const ::double_point & point2) 
       { 
 
          return draw_line(point1.x(), point1.y(), point2.x(), point2.y());
@@ -559,7 +559,7 @@ namespace draw2d
       }
 
 
-      inline void draw_line(const ::point_f64 & point1, const ::point_f64 & point2, ::draw2d::pen * ppen)
+      inline void draw_line(const ::double_point & point1, const ::double_point & point2, ::draw2d::pen * ppen)
       {
 
          return draw_line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
@@ -576,126 +576,126 @@ namespace draw2d
 
 
       virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-      virtual void arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
-      virtual void arc(double x1, double y1, double x2, double y2, ::angle_f64 start, ::angle_f64 extends);
-      virtual void arc(const ::rectangle_f64 & rectangle, ::angle_f64 start, ::angle_f64 extends);
+      virtual void arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd);
+      virtual void arc(double x1, double y1, double x2, double y2, ::angle_double start, ::angle_double extends);
+      virtual void arc(const ::double_rectangle & rectangle, ::angle_double start, ::angle_double extends);
       
       
-      virtual void polyline(const ::point_double_array & pointa);
-      virtual void polyline(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void polyline(const ::double_point_array & pointa);
+      virtual void polyline(const ::double_point * ppoints, ::collection::count nCount);
 
 
 //      virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-//      virtual void arc(const rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
+//      virtual void arc(const double_rectangle & double_rectangle, const ::double_point & pointStart, const ::double_point & pointEnd);
 
 //      virtual void arc(double x1, double y1, double x2, double y2, angle start, angle extends);
-//      virtual void arc(const rectangle_f64 & rectangle_f64, angle start, angle extends);
+//      virtual void arc(const double_rectangle & double_rectangle, angle start, angle extends);
 
 
-      virtual void angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle);
+      virtual void angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle);
       virtual void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-      virtual void arc_to(const ::rectangle_f64 & rectangle,const ::point_f64 & pointStart,const ::point_f64 & pointEnd);
+      virtual void arc_to(const ::double_rectangle & rectangle,const ::double_point & pointStart,const ::double_point & pointEnd);
       //virtual int GetArcDirectdion();
       //virtual int SetArcDirectdion(int nArcDirectdion);
 
-      virtual void polydraw(const ::point_f64 * ppoints, const unsigned char* pTypes, ::collection::count nCount);
+      virtual void polydraw(const ::double_point * ppoints, const unsigned char* pTypes, ::collection::count nCount);
 
-      virtual void polyline_to(const ::point_f64 * ppoints, ::collection::count nCount);
-      virtual void poly_polyline(const ::point_f64 * ppoints, const int * pPolyPoints, ::collection::count nCount);
-
-
-      virtual void poly_bezier(const ::point_f64 * ppoints, ::collection::count nCount);
-      virtual void poly_bezier_to(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void polyline_to(const ::double_point * ppoints, ::collection::count nCount);
+      virtual void poly_polyline(const ::double_point * ppoints, const int * pPolyPoints, ::collection::count nCount);
 
 
-      virtual void frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pbrush);
-      virtual void invert_rectangle(const ::rectangle_f64 & rectangle);
+      virtual void poly_bezier(const ::double_point * ppoints, ::collection::count nCount);
+      virtual void poly_bezier_to(const ::double_point * ppoints, ::collection::count nCount);
+
+
+      virtual void frame_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush* pbrush);
+      virtual void invert_rectangle(const ::double_rectangle & rectangle);
       
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, ::draw2d::bitmap* pBitmap, unsigned int nFlags,::draw2d::brush* pBrush = nullptr);
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush = nullptr);
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, ::draw2d::bitmap* pBitmap, unsigned int nFlags,::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, unsigned int nFlags, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, hicon hIcon, unsigned int nFlags, HBRUSH hBrush = nullptr);
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, hicon hIcon, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
 //#endif
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, unsigned int nFlags,
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::string & pszText, unsigned int nFlags,
 
   //                           void bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, unsigned int nFlags,
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::string & pszText, unsigned int nFlags,
 //
 //                             void bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS_DESKTOP
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, DRAWSTATEPROC pDrawProc,
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, DRAWSTATEPROC pDrawProc,
 //
 //                             lparam lData, unsigned int nFlags, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, DRAWSTATEPROC pDrawProc,
+//      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, DRAWSTATEPROC pDrawProc,
 //
 //                             lparam lData, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
 //#endif
       // Ellipse and Polygon Functions
       virtual void Chord(double x1, double y1, double x2, double y2, double x3, double y3,
                          double x4, double y4);
-      virtual void Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
+      virtual void Chord(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd);
 
-      virtual void DrawFocusRect(const ::rectangle_f64 & rectangle);
+      virtual void DrawFocusRect(const ::double_rectangle & rectangle);
 
     /*  virtual void ellipse(double x1, double y1, double x2, double y2);
-      virtual void ellipse(const ::rectangle_f64 & rectangle_f64);
+      virtual void ellipse(const ::double_rectangle & double_rectangle);
 
       virtual void draw_ellipse(double x1, double y1, double x2, double y2);
-      virtual void draw_ellipse(const ::rectangle_f64 & rectangle_f64);
+      virtual void draw_ellipse(const ::double_rectangle & double_rectangle);
 
       virtual void fill_ellipse(double x1, double y1, double x2, double y2);
-      virtual void fill_ellipse(const ::rectangle_f64 & rectangle_f64);*/
+      virtual void fill_ellipse(const ::double_rectangle & double_rectangle);*/
 
 
 
 
 
       virtual void ellipse(double x1,double y1,double x2,double y2);
-      virtual void ellipse(const rectangle_f64 & prectd);
+      virtual void ellipse(const double_rectangle & prectd);
 
       virtual void draw_ellipse(double x1,double y1,double x2,double y2);
-      virtual void draw_ellipse(const rectangle_f64 & prectd);
+      virtual void draw_ellipse(const double_rectangle & prectd);
 
       virtual void fill_ellipse(double x1,double y1,double x2,double y2);
-      virtual void fill_ellipse(const rectangle_f64 & prectd);
+      virtual void fill_ellipse(const double_rectangle & prectd);
 
 
       virtual void Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-      virtual void Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
+      virtual void Pie(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd);
 
 
-      //virtual void polygon_i32(const ::point_f64 * ppoints, ::collection::count nCount);
-      virtual void polygon(const ::point_f64 * ppoints, ::collection::count nCount);
-      //virtual void draw_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
-      virtual void draw_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
-      //virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
-      virtual void fill_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
+      //virtual void int_polygon(const ::double_point * ppoints, ::collection::count nCount);
+      virtual void polygon(const ::double_point * ppoints, ::collection::count nCount);
+      //virtual void draw_polygon(const ::double_point * ppoints, ::collection::count nCount);
+      virtual void draw_polygon(const ::double_point * ppoints, ::collection::count nCount);
+      //virtual void fill_polygon(const ::double_point * ppoints,count nCount);
+      virtual void fill_polygon(const ::double_point * ppoints, ::collection::count nCount);
 
-      //virtual void poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
-      virtual void poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
-      //virtual void draw_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
-      virtual void draw_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
-      //virtual void fill_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
-      virtual void fill_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      //virtual void poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      virtual void poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      //virtual void draw_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      virtual void draw_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      //virtual void fill_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
+      virtual void fill_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount);
 
 
-      virtual void rectangle(const ::rectangle_f64 & rectangle);
+      virtual void rectangle(const ::double_rectangle & rectangle);
 
       virtual void frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color, int width);
 
-      virtual void draw_rectangle(const ::rectangle_f64 & rectangle);
-      virtual void draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen);
+      virtual void draw_rectangle(const ::double_rectangle & rectangle);
+      virtual void draw_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen);
 
-      virtual void fill_rectangle(const ::rectangle_f64 & rectangle);
-      virtual void fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush);
-      virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
-      virtual void fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
-      virtual void fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
+      virtual void fill_rectangle(const ::double_rectangle & rectangle);
+      virtual void fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush);
+      virtual void fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color);
+      virtual void fill_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color);
+      virtual void fill_solid_rectangle(const ::double_rectangle & rectangle, const ::color::color & color);
 
-      virtual void color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity & opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
+      virtual void color_blend_3dRect(const int_rectangle& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity & opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
 
-      //virtual void color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
+      //virtual void color_blend(const ::int_rectangle& rectangle, const ::color::color& color, const ::opacity & opacity);
 
 //      virtual void color_blend(image_list * pilBlend, image_list * pil, const ::color::color& color32, const ::opacity& opacity);
 
@@ -710,7 +710,7 @@ namespace draw2d
 //
 //         }
 //
-//         if (!color_blend(::rectangle_i32(pimagesource->size()), color, opacity))
+//         if (!color_blend(::int_rectangle(pimagesource->size()), color, opacity))
 //         {
 //
 //            return false;
@@ -723,36 +723,36 @@ namespace draw2d
 
 
 
-      //virtual void rectangle_i32(const rectangle_f64 & rectangle_f64);
-      //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64);
-      //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64, ::draw2d::pen * ppen);
-      //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64);
-      //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64, ::draw2d::brush * pbrush);
+      //virtual void int_rectangle(const double_rectangle & double_rectangle);
+      //virtual void draw_rectangle(const double_rectangle & double_rectangle);
+      //virtual void draw_rectangle(const double_rectangle & double_rectangle, ::draw2d::pen * ppen);
+      //virtual void fill_rectangle(const double_rectangle & double_rectangle);
+      //virtual void fill_rectangle(const double_rectangle & double_rectangle, ::draw2d::brush * pbrush);
 
-      //virtual void round_rectd(const ::rectangle_f64 & rectangle, const ::point_f64 & point);
+      //virtual void round_rectd(const ::double_rectangle & rectangle, const ::double_point & point);
 
-      virtual void round_rectangle(const ::rectangle_f64 & rectangle, double dRadius);
+      virtual void round_rectangle(const ::double_rectangle & rectangle, double dRadius);
 
 
-      //virtual void from(const ::point_f64 & pointDst, const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc);
-      //virtual void from(const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pSrc);
-      //virtual void from(const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc);
+      //virtual void from(const ::double_point & pointDst, const ::double_size & ::double_size, ::draw2d::graphics * pgraphicsSrc, const ::double_point & pointSrc);
+      //virtual void from(const ::double_size & ::double_size, ::draw2d::graphics * pgraphicsSrc, const ::double_point & pSrc);
+      //virtual void from(const ::double_size & ::double_size, ::draw2d::graphics * pgraphicsSrc);
       //virtual void PatBlt(double x, double y, int nWidth, int nHeight);
 
 
 
-      //virtual void draw_image(const ::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & point);
+      //virtual void draw_image(const ::double_rectangle & rectangle, ::draw2d::graphics * pgraphicsSrc, const ::double_point & point);
 
-      //virtual void draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangle);
-      //virtual void draw_image(const ::rectangle_f64 & rectdDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangle);
-      //virtual void draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource);
-      // virtual void draw_image(const ::rectangle_f64 & rectddDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource);
+      //virtual void draw_image(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangle);
+      //virtual void draw_image(const ::double_rectangle & rectdDst, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangle);
+      //virtual void draw_image(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource);
+      // virtual void draw_image(const ::double_rectangle & rectddDst, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource);
 
 
       // bit block transfer (pixel-to-pixel)
-      //virtual void draw_at(const ::point_f64 & pointDst, ::image::image *pimage);
-      //virtual void draw_at(const ::point_f64 & pointDst, ::::image::image_frame * pframe);
-      //virtual void draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphicsSrc);
+      //virtual void draw_at(const ::double_point & pointDst, ::image::image *pimage);
+      //virtual void draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe);
+      //virtual void draw_at(const ::double_point & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
       bool has_blender() const override;
@@ -760,34 +760,34 @@ namespace draw2d
       bool _draw_blend(const ::image::image_drawing & imagedrawing) override;
 
       
-      //virtual void _draw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
-      //virtual void _draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
-      //virtual void _draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
+      //virtual void _draw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource) override;
+      //virtual void _draw_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource) override;
+      //virtual void _draw_blend(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource) override;
 
       //
-      //virtual void _draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::point_f64 & pointSrc) override;
-      //virtual void _stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
+      //virtual void _draw_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_point & pointSrc) override;
+      //virtual void _stretch_raw(const ::double_rectangle & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::double_rectangle & rectangleSource) override;
 
 
 
 
       // potentially stretching
-      //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
-      //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
-      //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
-      //virtual void stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
-      //virtual void stretch_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
 
 
       //template < primitive_size SIZE >
       //inline void alpha_blend(const SIZE & sizeDst, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
-      //   auto finalSrcSize = pimagesource->size_i32(sizeDst, sizeSrc, eimageselection);
+      //   auto finalSrcSize = pimagesource->int_size(sizeDst, sizeSrc, eimageselection);
 
       //   auto pimage = pimagesource->get_image(sizeSrc);
 
-      //   return _alpha_blend(::rectangle_f64(sizeDst), pgraphicssource, ::rectangle_f64(sizeDst), dOpacity);
+      //   return _alpha_blend(::double_rectangle(sizeDst), pgraphicssource, ::double_rectangle(sizeDst), dOpacity);
 
       //}
 
@@ -796,7 +796,7 @@ namespace draw2d
       //inline void alpha_blend(const RECTANGLE & rectangleTarget, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
-      //   return _alpha_blend(rectangleTarget, pgraphicssource, ::rectangle_f64(rectangleTarget.size()), dOpacity);
+      //   return _alpha_blend(rectangleTarget, pgraphicssource, ::double_rectangle(rectangleTarget.size()), dOpacity);
 
       //}
 
@@ -814,7 +814,7 @@ namespace draw2d
 
       //   auto sizeDst = rectangleTarget.size() - pointSrc;
 
-      //   return _alpha_blend(rectangle_f64(rectangleTarget.top_left(), sizeDst), pgraphicssource, ::rectangle_f64(pointSrc, pgraphicssource->size_i32(sizeDst) - pointSrc), dOpacity);
+      //   return _alpha_blend(double_rectangle(rectangleTarget.top_left(), sizeDst), pgraphicssource, ::double_rectangle(pointSrc, pgraphicssource->int_size(sizeDst) - pointSrc), dOpacity);
 
       //}
 
@@ -828,31 +828,31 @@ namespace draw2d
       //}
 
 
-      //virtual void _alpha_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dOpacity);
-      //virtual void _alpha_blend_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dRate);
-      //virtual void _alpha_blend_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dRate);
+      //virtual void _alpha_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource, double dOpacity);
+      //virtual void _alpha_blend_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource, double dRate);
+      //virtual void _alpha_blend_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource, double dRate);
 
 
-      //virtual void draw(const ::rectangle_f64 & point, cursor * pcursor);
-      //virtual void draw(const ::rectangle_f64 & rectangleTarget, icon * picon);
+      //virtual void draw(const ::double_rectangle & point, cursor * pcursor);
+      //virtual void draw(const ::double_rectangle & rectangleTarget, icon * picon);
 
 
 
       virtual ::color::color GetPixel(double x, double y);
-      virtual ::color::color GetPixel(const ::point_f64 & point);
+      virtual ::color::color GetPixel(const ::double_point & point);
       virtual ::color::color SetPixel(double x, double y, const ::color::color & color);
-      virtual ::color::color SetPixel(const ::point_f64 & point, const ::color::color & color);
-      virtual ::color::color blend_pixel(const ::point_f64 & point, const ::color::color & color);
+      virtual ::color::color SetPixel(const ::double_point & point, const ::color::color & color);
+      virtual ::color::color blend_pixel(const ::double_point & point, const ::color::color & color);
 //      virtual void FloodFill(double x, double y, const ::color::color & color);
 //      virtual void ExtFloodFill(double x, double y, const ::color::color & color, unsigned int nFillType);
 //      virtual void MaskBlt(double x, double y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                           double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
 //                           unsigned int dwRop);
-//      virtual void PlgBlt(::point_f64 * pPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
+//      virtual void PlgBlt(::double_point * pPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
 //
 //                          int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask);
       virtual void SetPixelV(double x, double y, const ::color::color & color);
-      virtual void SetPixelV(const ::point_f64 & point, const ::color::color & color);
+      virtual void SetPixelV(const ::double_point & point, const ::color::color & color);
       //virtual void GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
       //void * pMesh, WINULONG nMeshElements, unsigned int dwMode);
 //      virtual void TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight,
@@ -862,9 +862,9 @@ namespace draw2d
 
 
       // Text Functions
-      //virtual void text_out(double x, double y, const ::string & pszString, strsize nCount);
+      //virtual void text_out(double x, double y, const ::string & pszString, character_count nCount);
 
-      inline void text_out(const ::point_f64 & point, const ::scoped_string & scopedstr)
+      inline void text_out(const ::double_point & point, const ::scoped_string & scopedstr)
       {
 
          return text_out(point.x(), point.y(), scopedstr);
@@ -872,13 +872,13 @@ namespace draw2d
       }
 
       virtual void text_out(double x, double y, const ::scoped_string & scopedstr);
-      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & pszString, character_count nCount, int * lpDxWidths);
 
-      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & str, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & str, int * lpDxWidths);
 
-      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin);
+      //virtual ::double_size TabbedTextOut(double x, double y, const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin);
 
-      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin);
+      //virtual ::double_size TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin);
 
 
       void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
@@ -886,54 +886,54 @@ namespace draw2d
       virtual bool TextOutAlphaBlend(double x, double y, const ::scoped_string & scopedstr);
 
 
-      virtual void _001DrawText(const ::string & str, rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);
+      virtual void _001DrawText(const ::string & str, double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);
 
 
-      virtual void draw_text(const ::string & str, const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual void draw_text(const ::string & str, const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      //virtual void draw_text(const ::string & str, const rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      //virtual void draw_text(const ::string & str, const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 
 #ifndef UNIVERSAL_WINDOWS
 
-//      virtual void draw_text_ex(const ::string & str,const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual void draw_text_ex(const ::string & str,const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-//      virtual void draw_text_ex(const ::string & str,const rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual void draw_text_ex(const ::string & str,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual void draw_text_ex(const ::string & str,const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual void draw_text_ex(const ::string & str,const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      //virtual void draw_text_ex(const ::string & str,const rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      //virtual void draw_text_ex(const ::string & str,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 #endif
 
 
-      virtual ::collection::count get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
+      virtual ::collection::count get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, character_count iStart = 0, character_count iCount = -1);
 
-      //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString);
+      //virtual ::double_size get_text_extent(const ::scoped_string & scopedstrString);
 
-      ::size_f64 get_text_extent(const ::scoped_string & scopedstr) override;
+      ::double_size get_text_extent(const ::scoped_string & scopedstr) override;
 
-      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstr, ::strsize iIndex);
+      virtual ::double_size get_text_extent(const ::scoped_string & scopedstr, ::character_count iIndex);
 
-      virtual ::size_f64 GetTextBegin(const ::scoped_string & scopedstrString, ::strsize iIndex);
+      virtual ::double_size GetTextBegin(const ::scoped_string & scopedstrString, ::character_count iIndex);
 
-      //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount);
+      //virtual ::double_size get_text_extent(const ::scoped_string & scopedstrString, character_count nCount);
 
-      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
+      //virtual void get_text_extent(::double_size & size, const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex);
 
-      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount);
+      //virtual void get_text_extent(::double_size & size, const ::scoped_string & scopedstrString, character_count nCount);
 
-      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstr);
-      //virtual ::size_f64 GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount);
+      //virtual void get_text_extent(::double_size & size, const ::scoped_string & scopedstr);
+      //virtual ::double_size GetOutputTextExtent(const ::scoped_string & scopedstrString, character_count nCount);
 
-      //virtual ::size_f64 GetOutputTextExtent(const ::string & str);
-      //virtual ::size_f64 GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
+      //virtual ::double_size GetOutputTextExtent(const ::string & str);
+      //virtual ::double_size GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
 
-      //virtual ::size_f64 GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
+      //virtual ::double_size GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
 
-      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
+      //virtual ::double_size GetOutputTabbedTextExtent(const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
 
-      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
+      //virtual ::double_size GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
 
       //virtual void GrayString(::draw2d::brush* pBrush, void (CALLBACK* pfnOutput)(HDC, lparam, int), lparam lpData, int nCount, double x, double y, int nWidth, int nHeight);
 
@@ -955,18 +955,18 @@ namespace draw2d
 
 // #ifdef WINDOWS_DESKTOP
 
-//       virtual unsigned int GetCharacterPlacement(const ::string & pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags);
+//       virtual unsigned int GetCharacterPlacement(const ::string & pString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags);
 
-//       virtual unsigned int GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, unsigned int dwFlags);
+//       virtual unsigned int GetCharacterPlacement(string & str, character_count nMaxExtent, LPGCP_RESULTS pResults, unsigned int dwFlags);
 
 
 // #endif
 
 // #if (_WIN32_WINNT >= 0x0500)
 
-//       virtual void get_text_extentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, int * pnFit, int * alpDx, __out_opt ::size_f64 * ::size_f64 *);
+//       virtual void get_text_extentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, int * pnFit, int * alpDx, __out_opt ::double_size * ::double_size *);
 
-//       virtual void get_text_extentPointI(LPWORD pgiIn, int cgi, __out_opt ::size_f64 * pSize);
+//       virtual void get_text_extentPointI(LPWORD pgiIn, int cgi, __out_opt ::double_size * pSize);
 
 
 // #endif
@@ -974,15 +974,15 @@ namespace draw2d
 //
 //
 //  /*    // Advanced Drawing
-//      virtual void DrawEdge(const ::rectangle_f64 & prectd,unsigned int nEdge,unsigned int nFlags);
+//      virtual void DrawEdge(const ::double_rectangle & prectd,unsigned int nEdge,unsigned int nFlags);
 //
-//      virtual void DrawFrameControl(const ::rectangle_f64 & prectd,unsigned int nType,unsigned int nState);
+//      virtual void DrawFrameControl(const ::double_rectangle & prectd,unsigned int nType,unsigned int nState);
 //*/
 
       //// Scolorolling Functions
-      //virtual void ScrollDC(int Δx, int Δy, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
+      //virtual void ScrollDC(int Δx, int Δy, const ::double_rectangle &  pRectScoloroll, const ::double_rectangle &  lpRectClip,
 
-      //                      ::draw2d::region* pregionUpdate, ::rectangle_f64 * pRectUpdate);
+      //                      ::draw2d::region* pregionUpdate, ::double_rectangle * pRectUpdate);
 
 
       // font Functions
@@ -991,7 +991,7 @@ namespace draw2d
 //      virtual void GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, int * pBuffer);
 
 //      virtual unsigned int SetMapperFlags(unsigned int dwFlag);
-//      virtual ::size_f64 GetAspectRatioFilter();
+//      virtual ::double_size GetAspectRatioFilter();
 
 // #ifdef WINDOWS_DESKTOP
 
@@ -1059,7 +1059,7 @@ namespace draw2d
       // MetaFile Functions
 //#ifdef WINDOWS
 //      virtual void PlayMetaFile(HMETAFILE hMF);
-//      virtual void PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 &  pBounds);
+//      virtual void PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::double_rectangle &  pBounds);
 //
 //#endif
       virtual void AddMetaFileComment(unsigned int nDataSize, const unsigned char* pCommentData);
@@ -1076,7 +1076,7 @@ namespace draw2d
       virtual void widen_path();
       virtual float GetMiterLimit();
       virtual void SetMiterLimit(float fMiterLimit);
-//      virtual int GetPath(::point_f64 * ppoint, unsigned char * pTypes, ::collection::count nCount);
+//      virtual int GetPath(::double_point * ppoint, unsigned char * pTypes, ::collection::count nCount);
 
       virtual void SelectClipPath(int nMode);
 
@@ -1091,21 +1091,21 @@ namespace draw2d
 
       // Misc helper Functions
       virtual ::draw2d::brush * GetHalftoneBrush();
-      //virtual void DrawDragRect(const ::rectangle_f64 & rectangle, const ::size_f64 & ::size_f64,
+      //virtual void DrawDragRect(const ::double_rectangle & rectangle, const ::double_size & ::double_size,
 
-      //                          const ::rectangle_f64 &  pRectLast, const ::size_f64 & sizeLast,
+      //                          const ::double_rectangle &  pRectLast, const ::double_size & sizeLast,
 
       //                          ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
 
-      //virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
-      //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color & color);
+      //virtual void fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color);
+      //virtual void fill_rectangle(const double_rectangle & double_rectangle, const ::color::color & color);
 
-      virtual void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, double dWidth, const ::e_border & eborder = e_border_all);
-      //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_3d_rectangle(const ::double_rectangle & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, double dWidth, const ::e_border & eborder = e_border_all);
+      //virtual void draw_inset_3d_rectangle(const double_rectangle & double_rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      virtual void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, double dWidth, const ::e_border & eborder = e_border_all);
-      virtual void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
-      //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& color, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color& color, double dWidth, const ::e_border & eborder = e_border_all);
+      virtual void frame_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
+      //virtual void draw_rectangle(const double_rectangle & double_rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
 
       virtual void set_font(::user::interaction* pinteraction, ::enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none);
 
@@ -1127,25 +1127,25 @@ namespace draw2d
       // Purpose:     Draws a rounded rectdangle with a solid pen
       //
       // Parameters:  pGraphics  - [in]   pointer to the Graphics device
-      //          rectangle_f64        - [in]   Rect that defines the round rectdangle boundaries
+      //          double_rectangle        - [in]   Rect that defines the round rectdangle boundaries
       //          color    - [in]   Color value for the brush
       //          radius      - [in]  radius of the rounded corner
       //          width    - [in]  width of the border
       //
       // Returns:     None
       //
-      virtual void draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder);
-      virtual void draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius);
-      //void draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, const ::point_f64 & point, const ::e_border & eborder = e_border_all);
-      //void draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, int radius, const ::e_border & eborder = e_border_all);
-      //void draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, int radius, const ::e_border & eborder = e_border_all);
+      virtual void draw_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder);
+      virtual void draw_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, double radius);
+      //void draw_round_rect(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, const ::double_point & point, const ::e_border & eborder = e_border_all);
+      //void draw_round_top_left(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, int radius, const ::e_border & eborder = e_border_all);
+      //void draw_round_bottom_right(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, int radius, const ::e_border & eborder = e_border_all);
 
-      //void draw_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius, double width, const ::e_border & eborder = e_border_all);
-      //void draw_round_top_left(const ::rectangle_f64 & rectangle, const ::color::color & color, int radius, int width, const ::e_border & eborder = e_border_all);
-      //void draw_round_bottom_right(const ::rectangle_f64 & rectangle, const ::color::color & color, int radius, int width, const ::e_border & eborder = e_border_all);
+      //void draw_round_rect(const ::double_rectangle & rectangle, const ::color::color & color, double radius, double width, const ::e_border & eborder = e_border_all);
+      //void draw_round_top_left(const ::double_rectangle & rectangle, const ::color::color & color, int radius, int width, const ::e_border & eborder = e_border_all);
+      //void draw_round_bottom_right(const ::double_rectangle & rectangle, const ::color::color & color, int radius, int width, const ::e_border & eborder = e_border_all);
 
 
-      virtual void draw_stock_icon(const ::rectangle_f64 & rectangle_f64, enum_stock_icon estockicon);
+      virtual void draw_stock_icon(const ::double_rectangle & double_rectangle, enum_stock_icon estockicon);
 
 
       //=============================================================================
@@ -1156,13 +1156,13 @@ namespace draw2d
       //          first then fills in the rectdangle.
       //
       // Parameters:  pGraphics  - [in]   pointer to the Graphics device
-      //          rectangle_f64        - [in]   Rect that defines the round rectdangle boundaries
+      //          double_rectangle        - [in]   Rect that defines the round rectdangle boundaries
       //          color    - [in]   Color value for the brush
       //          radius      - [in]  radius of the rounded corner
       //
       // Returns:     None
       //
-      virtual void fill_round_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius);
+      virtual void fill_round_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, double radius);
 
       //=============================================================================
       //
@@ -1173,22 +1173,22 @@ namespace draw2d
       //
       // Parameters:  pGraphics  - [in]   pointer to the Graphics device
       //          pBrush      - [in]  pointer to a Brush
-      //          rectangle_f64        - [in]   Rect that defines the round rectdangle boundaries
+      //          double_rectangle        - [in]   Rect that defines the round rectdangle boundaries
       //          color    - [in]   Color value for the border (needed in case the
       //                         brush is a type other than solid)
       //          radius      - [in]  radius of the rounded corner
       //
       // Returns:     None
       //
-      virtual void fill_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius);
+      virtual void fill_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush, double radius);
 
 
-      //void fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, const ::point_f64 & point);
+      //void fill_round_rect(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush, const ::double_point & point);
 
 
-      //virtual void round_rectangle(const ::rectangle_f64 & rectangle, double radius);
+      //virtual void round_rectangle(const ::double_rectangle & rectangle, double radius);
 
-      virtual int _DrawText(const ::string & str, const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, ::write_text::font * pfontUnderline = nullptr);
+      virtual int _DrawText(const ::string & str, const ::double_rectangle & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, ::write_text::font * pfontUnderline = nullptr);
 
       virtual void debug();
 
@@ -1206,70 +1206,70 @@ namespace draw2d
 
       virtual void is_valid_update_window_thread();
 
-      //virtual void set_current_point(double x, double y); // { return set_current_point(::point_f64(x, y)); }
-      //inline void set_current_point(double x, double y) { return set_current_point(::point_f64(x, y)); }
+      //virtual void set_current_point(double x, double y); // { return set_current_point(::double_point(x, y)); }
+      //inline void set_current_point(double x, double y) { return set_current_point(::double_point(x, y)); }
 
-      //inline void line_to(double x, double y) { return line_to(::point_f64(x, y)); }
-      //inline void line_to(double x, double y) { return line_to(::point_f64(x, y)); }
-      //virtual void line_to(double x, double y);// { return line_to(::point_f64(x, y)); }
+      //inline void line_to(double x, double y) { return line_to(::double_point(x, y)); }
+      //inline void line_to(double x, double y) { return line_to(::double_point(x, y)); }
+      //virtual void line_to(double x, double y);// { return line_to(::double_point(x, y)); }
 
-      //inline void draw_line(double x1, double y1, double x2, double y2) { return draw_line(::point_f64(x1,y1), ::point_f64(x2, y2)); }
-      //inline void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_line(::point_f64(x1, y1), ::point_f64(x2, y2), ppen); }
+      //inline void draw_line(double x1, double y1, double x2, double y2) { return draw_line(::double_point(x1,y1), ::double_point(x2, y2)); }
+      //inline void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_line(::double_point(x1, y1), ::double_point(x2, y2), ppen); }
 
-      ///virtual void draw_line(double x1, double y1, double x2, double y2); // { return draw_line(::point_f64(x1, y1), ::point_f64(x2, y2)); }
-      //virtual void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen); // { return draw_line(::point_f64(x1, y1), ::point_f64(x2, y2), ppen); }
+      ///virtual void draw_line(double x1, double y1, double x2, double y2); // { return draw_line(::double_point(x1, y1), ::double_point(x2, y2)); }
+      //virtual void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen); // { return draw_line(::double_point(x1, y1), ::double_point(x2, y2), ppen); }
 
-      //inline void draw_line(double x1, double y1, double x2, double y2) { return draw_line(::point_f64(x1, y1), ::point_f64(x2, y2)); }
-      //inline void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_line(::point_f64(x1, y1), ::point_f64(x2, y2), ppen); }
+      //inline void draw_line(double x1, double y1, double x2, double y2) { return draw_line(::double_point(x1, y1), ::double_point(x2, y2)); }
+      //inline void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_line(::double_point(x1, y1), ::double_point(x2, y2), ppen); }
 
-      //inline void rectdangle_coord(double x1, double y1, double x2, double y2) { return rectdangle(::rectangle_f64(x1, y1, x2, y2)); }
-      //inline void rectdangle_coord(double x1, double y1, double x2, double y2); // { return rectdangle(rectangle_f64(x1, y1, x2, y2)); }
+      //inline void rectdangle_coord(double x1, double y1, double x2, double y2) { return rectdangle(::double_rectangle(x1, y1, x2, y2)); }
+      //inline void rectdangle_coord(double x1, double y1, double x2, double y2); // { return rectdangle(double_rectangle(x1, y1, x2, y2)); }
 
-      //inline void rectdangle_dim(double x, double y, int cx, int cy) { return rectdangle(rectangle_double_dimension(x, y, cx, cy)); }
+      //inline void rectdangle_dim(double x, double y, int cx, int cy) { return rectdangle(double_rectangle_dimension(x, y, cx, cy)); }
       //inline void rectdangle_dim(double x, double y, double cx, double cy); // { return rectdangle(rectdd_dim(x, y, cx, cy)); }
 
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2)); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2), ppen); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2); // { return draw_rectangle(rectangle_f64(x1, y1, x2, y2)); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen); // { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), ppen); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2) { return draw_rectangle(::double_rectangle(x1, y1, x2, y2)); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) { return draw_rectangle(::double_rectangle(x1, y1, x2, y2), ppen); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2); // { return draw_rectangle(double_rectangle(x1, y1, x2, y2)); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen); // { return draw_rectangle(double_rectangle(x1, y1, x2, y2), ppen); }
 
-      //inline void draw_rect_dim(double x, double y, int cx, int cy) { return draw_rectangle(rectangle_double_dimension(x, y, cx, cy)); }
-      //inline void draw_rect_dim(double x, double y, int cx, int cy, ::draw2d::pen * ppen) { return draw_rectangle(rectangle_double_dimension(x, y, cx, cy), ppen); }
+      //inline void draw_rect_dim(double x, double y, int cx, int cy) { return draw_rectangle(double_rectangle_dimension(x, y, cx, cy)); }
+      //inline void draw_rect_dim(double x, double y, int cx, int cy, ::draw2d::pen * ppen) { return draw_rectangle(double_rectangle_dimension(x, y, cx, cy), ppen); }
       //inline void draw_rect_dim(double x, double y, double cx, double cy); // { return draw_rectangle(rectdd_dim(x, y, cx, cy)); }
       //inline void draw_rect_dim(double x, double y, double cx, double cy, ::draw2d::pen * ppen); // { return draw_rectangle(rectdd_dim(x, y, cx, cy), ppen); }
 
-      //inline void fill_rect_coord(double x1, double y1, double x2, double y2); // { return fill_rectangle(::rectangle_f64(x1, y1, x2, y2)); }
-      //inline void fill_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::brush * pbrush); // { return fill_rectangle(::rectangle_f64(x1, y1, x2, y2), pbrush); }
-      //inline void fill_rect_coord(double x1, double y1, double x2, double y2); // { return fill_rectangle(rectangle_f64(x1, y1, x2, y2)); }
-      //inline void fill_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::brush * pbrush); // { return fill_rectangle(rectangle_f64(x1, y1, x2, y2), pbrush); }
+      //inline void fill_rect_coord(double x1, double y1, double x2, double y2); // { return fill_rectangle(::double_rectangle(x1, y1, x2, y2)); }
+      //inline void fill_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::brush * pbrush); // { return fill_rectangle(::double_rectangle(x1, y1, x2, y2), pbrush); }
+      //inline void fill_rect_coord(double x1, double y1, double x2, double y2); // { return fill_rectangle(double_rectangle(x1, y1, x2, y2)); }
+      //inline void fill_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::brush * pbrush); // { return fill_rectangle(double_rectangle(x1, y1, x2, y2), pbrush); }
 
-      //inline void fill_rect_dim(double x, double y, int cx, int cy) { return fill_rectangle(rectangle_double_dimension(x, y, cx, cy)); }
-      //inline void fill_rect_dim(double x, double y, int cx, int cy, ::draw2d::brush * pbrush) { return fill_rectangle(rectangle_double_dimension(x, y, cx, cy), pbrush); }
+      //inline void fill_rect_dim(double x, double y, int cx, int cy) { return fill_rectangle(double_rectangle_dimension(x, y, cx, cy)); }
+      //inline void fill_rect_dim(double x, double y, int cx, int cy, ::draw2d::brush * pbrush) { return fill_rectangle(double_rectangle_dimension(x, y, cx, cy), pbrush); }
       //inline void fill_rect_dim(double x, double y, double cx, double cy); // { return fill_rectangle(rectdd_dim(x, y, cx, cy)); }
       //inline void fill_rect_dim(double x, double y, double cx, double cy, ::draw2d::brush * pbrush); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), pbrush); }
 
-      //inline void polygon(point_int_array & pointa) { return polygon(pointa.data(), pointa.size()); }
-      inline void polygon(point_double_array & pointa) { return polygon(pointa.data(), pointa.size()); }
-      //inline void draw_polygon(point_int_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
-      inline void draw_polygon(point_double_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
-      //inline void fill_polygon(point_int_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
-      inline void fill_polygon(point_double_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
+      //inline void polygon(int_point_array & pointa) { return polygon(pointa.data(), pointa.size()); }
+      inline void polygon(double_point_array & pointa) { return polygon(pointa.data(), pointa.size()); }
+      //inline void draw_polygon(int_point_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      inline void draw_polygon(double_point_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      //inline void fill_polygon(int_point_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
+      inline void fill_polygon(double_point_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
 
-      //inline void fill_solid_rect_dim(double x, double y, int cx, int cy, const ::color::color & color) { return fill_rectangle(rectangle_double_dimension(x, y, cx, cy), color); }
+      //inline void fill_solid_rect_dim(double x, double y, int cx, int cy, const ::color::color & color) { return fill_rectangle(double_rectangle_dimension(x, y, cx, cy), color); }
       //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), color); }
 
-      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
-      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(::double_rectangle(x1, y1, x2, y2), color); }
+      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(double_rectangle(x1, y1, x2, y2), color); }
 
-      //inline void draw_3drect_dim(double x, double y, int cx, int cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_double_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_double_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_rect_dim(double x, double y, int cx, int cy, const ::color::color& color) { return draw_rectangle(rectangle_double_dimension(x, y, cx, cy), color); }
-      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rectangle(rectangle_double_dimension(x, y, cx, cy), color); }
+      //inline void draw_3drect_dim(double x, double y, int cx, int cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(double_rectangle_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(double_rectangle_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_rect_dim(double x, double y, int cx, int cy, const ::color::color& color) { return draw_rectangle(double_rectangle_dimension(x, y, cx, cy), color); }
+      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rectangle(double_rectangle_dimension(x, y, cx, cy), color); }
 
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(::double_rectangle(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(double_rectangle(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(::double_rectangle(x1, y1, x2, y2), color); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(double_rectangle(x1, y1, x2, y2), color); }
 
       
    //protected:
@@ -1289,8 +1289,8 @@ namespace draw2d
       graphics *              m_pgraphics;
       int                     m_iSavedDC;
 
-      ::size_f64              m_sizeScaling;
-      ::point_f64             m_pointOrigin;
+      ::double_size              m_sizeScaling;
+      ::double_point             m_pointOrigin;
       ::geometry2d::matrix    m_matrix;
 
       save_context(graphics * graphics);
@@ -1307,8 +1307,8 @@ namespace draw2d
 } // namespace draw2d
 
 
-//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::size_f64 & size);
-//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::point_f64 & point);
+//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::double_size & size);
+//CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::double_point & point);
 
 
 

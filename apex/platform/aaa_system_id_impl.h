@@ -48,7 +48,7 @@
 //}
 //
 //
-//inline atom & atom::operator = (::i64 i)
+//inline atom & atom::operator = (huge_integer i)
 //{
 //
 //   m_etype     = type_integer;
@@ -60,7 +60,7 @@
 //}
 //
 //
-//inline atom & atom::operator = (::u64 u)
+//inline atom & atom::operator = (huge_natural u)
 //{
 //   
 //   m_etype     = type_integer;

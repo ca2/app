@@ -52,9 +52,9 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void set_context_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
-      void set_context_offset(const ::point_f64 & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      ::point_f64 get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      ::size_f64 get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      void set_context_offset(const ::double_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::double_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 

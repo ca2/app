@@ -42,7 +42,7 @@ namespace windowing
    }
 
 
-   void * icon::get_os_data(const ::size_i32 & size) const
+   void * icon::get_os_data(const ::int_size & size) const
    {
 
       return nullptr;
@@ -89,7 +89,7 @@ namespace windowing
    }
 
 
-   ::image::image_pointer icon::get_image(const ::size_i32 & size)
+   ::image::image_pointer icon::get_image(const ::int_size & size)
    {
 
       throw ::interface_only();
@@ -99,7 +99,7 @@ namespace windowing
    }
 
 
-   ::pointer < ::innate_ui::icon > icon::innate_ui_icon(const ::size_i32 & size)
+   ::pointer < ::innate_ui::icon > icon::innate_ui_icon(const ::int_size & size)
    {
 
       return {};
@@ -108,7 +108,7 @@ namespace windowing
 
 
 
-   void icon::get_sizes(::size_int_array & a)
+   void icon::get_sizes(::int_size_array & a)
    {
 
 

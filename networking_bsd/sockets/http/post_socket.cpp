@@ -210,7 +210,7 @@ namespace sockets
 
          SendRequest();
 
-         if (strBody.has_char())
+         if (strBody.has_character())
          {
             
             // send body
@@ -228,11 +228,11 @@ namespace sockets
    void http_post_socket::DoMultipartPost()
    {
 
-      u64 length = 0; // calculate content-length of our post body
+      huge_natural length = 0; // calculate content-length of our post body
 
       string tmp;
 
-      if (m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends.has_char())
+      if (m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends.has_character())
       {
 
          m_boundary = m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
@@ -279,11 +279,11 @@ namespace sockets
 
             string & name = pair.element1();
 
-            u64 content-length = pair.element2().m_uiContentLength;
+            huge_natural content-length = pair.element2().m_uiContentLength;
 
             string filename;
 
-            if (pair.element2().m_spfile->get_file_path().has_char())
+            if (pair.element2().m_spfile->get_file_path().has_character())
             {
 
                filename = "; filename=\"" + string(::file::path(pair.element2().m_spfile->get_file_path()).name()) + "\"";
@@ -292,7 +292,7 @@ namespace sockets
 
             string content-type;
 
-            if (pair.element2().m_strContentType.has_char())
+            if (pair.element2().m_strContentType.has_character())
             {
 
                content-type = "Content-Type: " + pair.element2().m_strContentType + "\r\n";
@@ -324,7 +324,7 @@ namespace sockets
          //
          //   m_mapFiles.get_next_assoc(pos, name, filename);
          //
-         //   u64 content-length = m_mapContentLength[filename];
+         //   huge_natural content-length = m_mapContentLength[filename];
 
          //   string content-type = m_mapContentType[filename];
 
@@ -365,7 +365,7 @@ namespace sockets
 
       inheader("content-type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader("content-length") = (i64) length;
+      inheader("content-length") = (huge_integer) length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 
@@ -394,7 +394,7 @@ namespace sockets
          //   //}
          //}
 
-         if (strFields.has_char())
+         if (strFields.has_character())
          {
 
             print(strFields);
@@ -411,11 +411,11 @@ namespace sockets
 
             string & name = pair.element1();
 
-            u64 content-length = pair.element2().m_uiContentLength;
+            huge_natural content-length = pair.element2().m_uiContentLength;
 
             string filename;
 
-            if (pair.element2().m_spfile->get_file_path().has_char())
+            if (pair.element2().m_spfile->get_file_path().has_character())
             {
 
                filename = "; filename=\"" + string(::file::path(pair.element2().m_spfile->get_file_path()).name()) + "\"";
@@ -424,7 +424,7 @@ namespace sockets
 
             string content-type;
 
-            if (pair.element2().m_strContentType.has_char())
+            if (pair.element2().m_strContentType.has_character())
             {
 
                content-type = "Content-Type: " + pair.element2().m_strContentType + "\r\n";

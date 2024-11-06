@@ -26,7 +26,7 @@ namespace progress
    }
 
 
-   void integer::trace_progress(i64 iStep)
+   void integer::trace_progress(huge_integer iStep)
    {
 
       m_scalar.set(iStep);

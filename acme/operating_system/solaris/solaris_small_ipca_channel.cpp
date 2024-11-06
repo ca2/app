@@ -72,11 +72,11 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = 0;
-         data.size_i32         = ansi_length(pszMessage);
-         if(data.size_i32 > 512)
+         data.int_size         = ansi_length(pszMessage);
+         if(data.int_size > 512)
             return false;
 
-         /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+         /* The length is essentially the int_size of the structure minus sizeof(mtype) */
          int length = sizeof(data_struct) - sizeof(long);
 
          int result;
@@ -109,7 +109,7 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = I32_MINIMUM;
-         data.size_i32         = (int)ansi_length(pszMessage);
+         data.int_size         = (int)ansi_length(pszMessage);
 
          ::collection::count cPos = 0;
 
@@ -129,7 +129,7 @@ namespace acme
             else
                data.size = (int)cSend;
 
-            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
             int length = sizeof(data_struct) - sizeof(long);
 
             int result;
@@ -252,7 +252,7 @@ namespace acme
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,i64 a,i64 b)
+      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,huge_integer a,huge_integer b)
       {
       }
 
@@ -289,7 +289,7 @@ namespace acme
 
 
 
-      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,i64 a,i64 b)
+      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,huge_integer a,huge_integer b)
       {
 
          if(m_preceiver != nullptr)
@@ -338,7 +338,7 @@ namespace acme
 
             data_struct data;
 
-            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
+            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
             length = sizeof(data_struct) - sizeof(long);
 
             memory mem;
@@ -363,10 +363,10 @@ namespace acme
 
                }
 
-               mem.append(data.data,data.size_i32);
+               mem.append(data.data,data.int_size);
 
 
-               if(data.size_i32 < 512)
+               if(data.int_size < 512)
                   break;
 
             }

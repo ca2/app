@@ -222,7 +222,7 @@ namespace geo
 
          str = pfile->as_string(payload);
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             string_array stra;
@@ -246,17 +246,17 @@ namespace geo
 
                m_straCityLo.add(strLine.lowered());
 
-               i64 iId;
+               huge_integer iId;
 
-               iId = v["_id"].as_i64();
+               iId = v["_id"].as_huge_integer();
 
                m_iaIds.add(iId);
 
-               double dLon = v["coord"]["lon"].as_f64();
+               double dLon = v["coord"]["lon"].as_double();
 
                m_daLon.add(dLon);
 
-               double dLat = v["coord"]["lat"].as_f64();
+               double dLat = v["coord"]["lat"].as_double();
 
                m_daLat.add(dLat);
 
@@ -303,7 +303,7 @@ namespace geo
    }
 
 
-   ::collection::index geo::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
+   ::collection::index geo::openweather_find_city2(string strQuery, string& strCit, huge_integer& iId, double& dLat, double& dLon)
    {
 
       string_array stra;
@@ -363,7 +363,7 @@ namespace geo
 
 
 
-   ::collection::index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
+   ::collection::index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, huge_integer& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -608,9 +608,9 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_i64() }, iTimeZone);
+      ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_huge_integer() }, iTimeZone);
 
-      ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
+      ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_huge_integer() }, iTimeZone);
 
       iRise = (int)timeSunrise.GetZoneTimeOfDay().m_iSecond;
 
@@ -683,7 +683,7 @@ namespace geo
 
       strQ = strLocality;
 
-      if (strCountry.has_char())
+      if (strCountry.has_character())
       {
 
          strQ += ", ";
@@ -693,7 +693,7 @@ namespace geo
       }
 
 
-      //  i64 iId;
+      //  huge_integer iId;
 
 //      double dLat;
 
@@ -730,7 +730,7 @@ namespace geo
       //
       //         str = papp->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
       //
-      //         if (str.has_char())
+      //         if (str.has_character())
       //         {
       //
       //            const ::ansi_character * pszJson = str;
@@ -846,7 +846,7 @@ namespace geo
          return "cest";
 
       }
-      else if (strCountry == "point_i32")
+      else if (strCountry == "int_point")
       {
 
          return "west";
@@ -1409,7 +1409,7 @@ namespace geo
 
          timezone = _get_time_zone(pcity);
 
-         if (timezone.m_strZone.has_char())
+         if (timezone.m_strZone.has_character())
          {
 
             set_locality_time_zone_modified();
@@ -1497,7 +1497,7 @@ namespace geo
 
          timezone = _get_time_zone(dLat, dLng);
 
-         if (timezone.m_strZone.has_char())
+         if (timezone.m_strZone.has_character())
          {
 
             set_locality_time_zone_modified();
@@ -1558,7 +1558,7 @@ namespace geo
 
          timezone.m_strZone = payload["zone_name"];
 
-         timezone.m_dZone = payload["zone_offset"].as_f64();
+         timezone.m_dZone = payload["zone_offset"].as_double();
 
       }
       catch (...)
@@ -1636,7 +1636,7 @@ namespace geo
 
          stringtimeout.m_str = _get_weather(pcity);
 
-         if (stringtimeout.m_str.has_char())
+         if (stringtimeout.m_str.has_character())
          {
 
             set_city_weather_modified();

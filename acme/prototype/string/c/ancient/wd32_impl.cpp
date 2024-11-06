@@ -12,7 +12,7 @@ CLASS_DECL_ACME int __wd32charisspace(int ch) { return ch == '\r' || ch == '\n' 
 CLASS_DECL_ACME int __wd32charisxdigit(int i) { return wd32_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const ::wd32_character * pszSrc, strsize srclen)
+CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const ::wd32_character * pszSrc, character_count srclen)
 {
 
    if (pszDst != pszSrc)
@@ -39,7 +39,7 @@ CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszD
 }
 
 
-CLASS_DECL_ACME strsize __wd32len(const ::wd32_character * psz)
+CLASS_DECL_ACME character_count __wd32len(const ::wd32_character * psz)
 {
 
    auto pszStart = psz;
@@ -74,7 +74,7 @@ CLASS_DECL_ACME ::wd32_character * __wd32cpy(::wd32_character * pszDst, const ::
 }
 
 
-CLASS_DECL_ACME ::wd32_character * __wd32ncpy(::wd32_character * pszDst, const ::wd32_character * psz, strsize len)
+CLASS_DECL_ACME ::wd32_character * __wd32ncpy(::wd32_character * pszDst, const ::wd32_character * psz, character_count len)
 {
 
    auto pszStart = pszDst;
@@ -226,7 +226,7 @@ CLASS_DECL_ACME int __wd32cmp(const ::wd32_character * psz1, const ::wd32_charac
 }
 
 
-CLASS_DECL_ACME int __wd32ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, strsize s)
+CLASS_DECL_ACME int __wd32ncmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
 {
 
    int iCompare = 0;
@@ -328,7 +328,7 @@ CLASS_DECL_ACME ::wd32_character * __wd32lwr(::wd32_character * psz)
 }
 
 
-CLASS_DECL_ACME ::wd32_character * __wd32lwr_s(::wd32_character * psz, strsize s)
+CLASS_DECL_ACME ::wd32_character * __wd32lwr_s(::wd32_character * psz, character_count s)
 {
 
    auto p = psz;
@@ -368,7 +368,7 @@ CLASS_DECL_ACME ::wd32_character * __wd32upr(::wd32_character * psz)
 }
 
 
-CLASS_DECL_ACME ::wd32_character * __wd32upr_s(::wd32_character * psz, strsize s)
+CLASS_DECL_ACME ::wd32_character * __wd32upr_s(::wd32_character * psz, character_count s)
 {
 
    auto p = psz;
@@ -436,7 +436,7 @@ CLASS_DECL_ACME int __wd32icmp(const ::wd32_character * psz1, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME int __wd32nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, strsize s)
+CLASS_DECL_ACME int __wd32nicmp(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s)
 {
 
    int iCompare = 0;
@@ -503,13 +503,13 @@ CLASS_DECL_ACME const ::wd32_character * __wd32istr(const ::wd32_character * psz
 
 CLASS_DECL_ACME int __wd32coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wd32_cmp(psz1, psz2); }
 
-CLASS_DECL_ACME int __wd32ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, strsize s) { return wd32_ncmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __wd32ncoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return wd32_ncmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME int __wd32icoll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wd32_icmp(psz1, psz2); }
 
-CLASS_DECL_ACME int __wd32nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, strsize s) { return wd32_nicmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __wd32nicoll(const ::wd32_character * psz1, const ::wd32_character * psz2, character_count s) { return wd32_nicmp(psz1, psz2, s); }
 
-CLASS_DECL_ACME strsize __wd32spn(const ::wd32_character * psz1, const ::wd32_character * psz2)
+CLASS_DECL_ACME character_count __wd32spn(const ::wd32_character * psz1, const ::wd32_character * psz2)
 {
 
    auto pszStart = psz1;
@@ -548,7 +548,7 @@ CLASS_DECL_ACME strsize __wd32spn(const ::wd32_character * psz1, const ::wd32_ch
 
 }
 
-CLASS_DECL_ACME strsize __wd32cspn(const ::wd32_character * psz1, const ::wd32_character * psz2)
+CLASS_DECL_ACME character_count __wd32cspn(const ::wd32_character * psz1, const ::wd32_character * psz2)
 {
 
    auto pszStart = psz1;

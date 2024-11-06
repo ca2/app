@@ -52,18 +52,18 @@
             }
 
 
-            e_hittest frame_008::_001HitTest(::point_i32 pointCursor)
+            e_hittest frame_008::_001HitTest(::int_point pointCursor)
             {
                e_hittest etest = ::experience::e_frame_client;
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-                  ::rectangle_i32 rectangleEvent;
+                  ::int_rectangle rectangleEvent;
                   m_pframewindow->window_rectangle(rectangleEvent);
-                  ::rectangle_i32 rectangle;
-                  //point_i32 ptCenter = rectangleEvent.center();
+                  ::int_rectangle rectangle;
+                  //int_point ptCenter = rectangleEvent.center();
                   enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-                  ::point_i32 pointHitTest = pointCursor;
+                  ::int_point pointHitTest = pointCursor;
 
 //                  if(rectangleEvent.left() < 0)
 //                     pointHitTest.x() -= rectangleEvent.left();
@@ -208,7 +208,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -242,7 +242,7 @@ SizingNone:
 }
 
                enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
-               ::rectangle_i32 rectangleA(lpcrectClient);
+               ::int_rectangle rectangleA(lpcrectClient);
 
                if(m_bHollow)
                {
@@ -266,7 +266,7 @@ SizingNone:
                   //   rectangleA.deflate(1,1,1,1);
                   //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
-                  //   ::rectangle_i32 rectangle;
+                  //   ::int_rectangle rectangle;
                   //   GetBorderRectangle(lpcrectClient,rectangle,eside);
                   //   class imaging & imaging = psystem->imaging();
                   //   imaging.color_blend(pgraphics,
@@ -281,7 +281,7 @@ SizingNone:
                        || m_estyle == StyleTranslucidLightBlue
                        || m_estyle == StyleTranslucidLightGreen)
                {
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   pgraphics->color_blend(
@@ -291,7 +291,7 @@ SizingNone:
                }
                else
                {
-                  ::rectangle_i32 rectangle;
+                  ::int_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   pgraphics->color_blend(
@@ -299,7 +299,7 @@ SizingNone:
                                       crMoveableBorder,
                                       127);
 
-                  ::rectangle_i32 rectangleXB = rectangleA;
+                  ::int_rectangle rectangleXB = rectangleA;
 
                   rectangleXB.bottom()--;
                   rectangleXB.right()--;
@@ -355,7 +355,7 @@ SizingNone:
                string str;
 
 
-               ::rectangle_i32 rectangleNClient;
+               ::int_rectangle rectangleNClient;
 
                pframewindow->window_rectangle(rectangleNClient);
 
@@ -379,7 +379,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -400,7 +400,7 @@ SizingNone:
                if(m_bHollow)
                {
                   //return;
-                  ::rectangle_i32 rectangleA(lpcrectClient);
+                  ::int_rectangle rectangleA(lpcrectClient);
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -418,7 +418,7 @@ SizingNone:
                   if (m_pframewindow->GetWndDraw()->is_active())
                   {
 
-                     ::rectangle_i32 rectangleA(lpcrectClient);
+                     ::int_rectangle rectangleA(lpcrectClient);
 
                      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -498,14 +498,14 @@ SizingNone:
             }
 
             void frame_008::GetBorderRectangle(
-            const ::rectangle_i32 &lpcrectClient,
-            ::rectangle_i32 * lprect,
+            const ::int_rectangle &lpcrectClient,
+            ::int_rectangle * lprect,
             enum_border eside)
             {
-               ::rectangle_i32 rectangleBig(lpcrectClient);
-               ::rectangle_i32 rectangleSmall;
+               ::int_rectangle rectangleBig(lpcrectClient);
+               ::int_rectangle rectangleSmall;
                get_window_client_rectangle(&rectangleSmall);
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
                if(eside == e_border_top)
                {
                   rectangle.left() = rectangleBig.left();

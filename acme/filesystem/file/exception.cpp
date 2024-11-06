@@ -38,14 +38,14 @@ namespace file
    {
 
       if (estatus < error_file ||
-         (estatus.as_i64()) >= ((i64)error_file + (i64)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
+         (estatus.as_huge_integer()) >= ((huge_integer)error_file + (huge_integer)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
       {
 
          return nullptr;
 
       }
 
-      return rgszFileExceptionCause[estatus.as_i64() - (i64)error_file];
+      return rgszFileExceptionCause[estatus.as_huge_integer() - (huge_integer)error_file];
 
    }
 
@@ -116,7 +116,7 @@ namespace file
 
          string strException;
 
-         strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_i64(), strErrorCodeMessage.c_str());
+         strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_huge_integer(), strErrorCodeMessage.c_str());
 
          m_strMessage += strException;
 

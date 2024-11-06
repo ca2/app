@@ -126,7 +126,7 @@
 //#define ASSERT(X) assert(X)
 /* Frees the given link IF it isn't owned by anything else */
 #define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { delete __v; } }
-/* Create a LINK to point_i32 to VAR and free the old link.
+/* Create a LINK to int_point to VAR and free the old link.
  * BUT this is more clever - it tries to keep the old link if it's not owned to save allocations */
 #define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = ___new CScriptVarLink(VAR); else LINK->replaceWith(VAR); }
 
@@ -234,7 +234,7 @@ bool isNumeric(char ch)
 }
 bool isNumber(const string &str)
 {
-   for (strsize i=0; i<str.size(); i++)
+   for (character_count i=0; i<str.size(); i++)
       if (!isNumeric(str[i])) return false;
    return true;
 }
@@ -267,8 +267,8 @@ bool isIDString(const ::string &strParam)
 
 void replace(string &str, char textFrom, const ::string &textTo)
 {
-   strsize sLen = ansi_len(textTo);
-   strsize iPosition = str.find_index(textFrom);
+   character_count sLen = ansi_len(textTo);
+   character_count iPosition = str.find_index(textFrom);
    while (iPosition >= 0)
    {
       str = str.substr(0, iPosition) + textTo + str.substr(iPosition +1);
@@ -280,7 +280,7 @@ void replace(string &str, char textFrom, const ::string &textTo)
 string getJSString(const string &str)
 {
    string nStr = str;
-   for (strsize i=0; i<nStr.size(); i++)
+   for (character_count i=0; i<nStr.size(); i++)
    {
       const char *replaceWith = "";
       bool replace = true;
@@ -319,7 +319,7 @@ bool isAlphaNum(const string &str)
 {
    if (str.size()==0) return true;
    if (!isAlpha(str[0])) return false;
-   for (strsize i=0; i<str.size(); i++)
+   for (character_count i=0; i<str.size(); i++)
       if (!(isAlpha(str[i]) || isNumeric(str[i])))
          return false;
    return true;
@@ -525,7 +525,7 @@ void CScriptLex::getNextToken()
             getNextCh();
          }
       }
-      // do fancy e-style floating point_i32
+      // do fancy e-style floating int_point
       if (!isHex && (currCh=='e'||currCh=='E'))
       {
          token = LEX_FLOAT;
@@ -986,7 +986,7 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, int varFl
 CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
 {
 
-   strsize iPosition = path.find_index('.');
+   character_count iPosition = path.find_index('.');
 
    if (iPosition < 0)
    {
@@ -2645,8 +2645,8 @@ void tinyjs::statement(bool &execute)
 CScriptVar *tinyjs::getScriptVariable(const string &path)
 {
    // traverse path
-   strsize prevIdx = 0;
-   strsize thisIdx = path.find_index('.');
+   character_count prevIdx = 0;
+   character_count thisIdx = path.find_index('.');
    if (thisIdx < 0) thisIdx = path.length();
    CScriptVar *payload = root;
    while (payload && prevIdx<path.length())

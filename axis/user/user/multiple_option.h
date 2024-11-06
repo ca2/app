@@ -54,9 +54,9 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      bool get_element_rectangle(::rectangle_i32 & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::int_rectangle & prectangle, enum_element eelement) override;
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);

@@ -262,7 +262,7 @@ namespace user
    }
 
 
-   //void impact::CalcWindowRect(::rectangle_i32 * pClientRect, unsigned int nAdjustType)
+   //void impact::CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType)
 
    //{
    //   /* trans   ENSURE_ARG(pClientRect != nullptr);
@@ -294,7 +294,7 @@ namespace user
    //   return;
    //   }*/
 
-   //   // call default to place borders outside of client rectangle_i32
+   //   // call default to place borders outside of client int_rectangle
    //   ::user::interaction::CalcWindowRect(pClientRect, nAdjustType);
 
    //}
@@ -638,7 +638,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact drag/drop support
 
-   ///*DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+   ///*DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, int_point /*int_point*/)
    //{
    //#ifndef ___NO_OLE_SUPPORT
    // return DROPEFFECT_SCROLL; // this means do the default
@@ -648,25 +648,25 @@ namespace user
    //}
 
    //DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-   // unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+   // unsigned int /*dwKeyState*/, int_point /*int_point*/)
    //{
    // return 0;   // DROPEFFECT_NONE
    //}
 
    //DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-   //unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+   //unsigned int /*dwKeyState*/, int_point /*int_point*/)
    //{
    //return 0;   // DROPEFFECT_NONE
    //}
 
    //bool impact::OnDrop(COleDataObject* /*pDataObject*/,
-   //DROPEFFECT /*dropEffect*/, point_i32 /*point_i32*/)
+   //DROPEFFECT /*dropEffect*/, int_point /*int_point*/)
    //{
    // return false;
    //}
 
    //DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
-   // DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point_i32 /*point_i32*/)
+   // DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, int_point /*int_point*/)
    //{
    // return (DROPEFFECT)-1;  // not implemented
    //}
@@ -1367,7 +1367,7 @@ namespace user
 //   /////////////////////////////////////////////////////////////////////////////
 //   // ::user::impact drag/drop support
 //
-//   DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+//   DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, int_point /*int_point*/)
 //   {
 //#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
@@ -1377,25 +1377,25 @@ namespace user
 //   }
 //
 //   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-//      unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+//      unsigned int /*dwKeyState*/, int_point /*int_point*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
 //
 //   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-//      unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
+//      unsigned int /*dwKeyState*/, int_point /*int_point*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
 //
 //   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
-//      DROPEFFECT /*dropEffect*/, point_i32 /*point_i32*/)
+//      DROPEFFECT /*dropEffect*/, int_point /*int_point*/)
 //   {
 //      return false;
 //   }
 //
 //   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
-//      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point_i32 /*point_i32*/)
+//      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, int_point /*int_point*/)
 //   {
 //      return (DROPEFFECT)-1;  // not implemented
 //   }
@@ -1474,7 +1474,7 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   rectangle_i32(0,0,0,0), this, nID, (::pointer<::create> pContext))
+   int_rectangle(0,0,0,0), this, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
@@ -1511,7 +1511,7 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   rectangle_i32(0,0,0,0), puserinteractionParent, nID, (::pointer<::create> pContext))
+   int_rectangle(0,0,0,0), puserinteractionParent, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact

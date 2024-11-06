@@ -49,18 +49,18 @@ namespace experience_tranquillum
    }
 
 
-//    ::experience::enum_frame frame_011::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+//    ::experience::enum_frame frame_011::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
 //   {
 //       ::experience::enum_frame etest =  ::experience::e_frame_client;
 //      {
 //         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-//         ::rectangle_i32 rectangleEvent;
+//         ::int_rectangle rectangleEvent;
 //         m_pframewindow->window_rectangle(rectangleEvent);
-//         ::rectangle_i32 rectangle;
-//         ::point_i32 pointCenter = rectangleEvent.center();
+//         ::int_rectangle rectangle;
+//         ::int_point pointCenter = rectangleEvent.center();
 //         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 //
-//         ::point_i32 pointHitTest = point;
+//         ::int_point pointHitTest = point;
 //
 //         if (rectangleEvent.left() < 0)
 //            pointHitTest.x() -= rectangleEvent.left();
@@ -204,7 +204,7 @@ namespace experience_tranquillum
 
 
 
-   void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX, enum_border eside)
+   void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -242,14 +242,14 @@ namespace experience_tranquillum
       }
 
       enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-      ::rectangle_i32 rectangleA(rectangleX);
+      ::int_rectangle rectangleA(rectangleX);
 
 
       if (estyle == ::user::StyleTranslucidWarmGray
             || estyle == ::user::StyleTranslucidLightBlue
             || estyle == ::user::StyleTranslucidLightGreen)
       {
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
@@ -273,7 +273,7 @@ namespace experience_tranquillum
          rectangleA.deflate(1, 1, 1, 1);
          Draw3dRectSide(pgraphics, rectangleA, eside, colorMoveableBorder, colorMoveableBorder);
 
-         //::rectangle_i32 rectangle;
+         //::int_rectangle rectangle;
          //GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
@@ -284,7 +284,7 @@ namespace experience_tranquillum
       }
       else
       {
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
          //class imaging & imaging = psystem->imaging();
@@ -292,7 +292,7 @@ namespace experience_tranquillum
          pgraphics->fill_rectangle(rectangle, colorMoveableBorder &
                               127_opacity);
 
-         ::rectangle_i32 rectangleXB = rectangleA;
+         ::int_rectangle rectangleXB = rectangleA;
 
          rectangleXB.bottom()--;
          rectangleXB.right()--;
@@ -341,13 +341,13 @@ namespace experience_tranquillum
       //::aura::savings & savings = session()->savings();
 
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
       rectangleX = pframewindow->rectangle();
 
       string str;
 
 
-      ::rectangle_i32 rectangleNClient;
+      ::int_rectangle rectangleNClient;
 
       pframewindow->window_rectangle(rectangleNClient);
 
@@ -386,7 +386,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
+   void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
 
    {
 
@@ -427,17 +427,17 @@ namespace experience_tranquillum
    }
 
    //void frame_011::GetBorderRectangle(
-   //const ::rectangle_i32 & rectangleX,
+   //const ::int_rectangle & rectangleX,
 
-   //::rectangle_i32 * prectangle,
+   //::int_rectangle * prectangle,
 
    //enum_border eside)
    //{
-   //   ::rectangle_i32 rectangleBig(rectangleX);
+   //   ::int_rectangle rectangleBig(rectangleX);
 
-   //   ::rectangle_i32 rectangleSmall;
+   //   ::int_rectangle rectangleSmall;
    //   rectangleSmall = client_rectangle2();
-   //   ::rectangle_i32 rectangle;
+   //   ::int_rectangle rectangle;
    //   if (eside == e_border_top)
    //   {
    //      rectangle.left() = rectangleBig.left();
@@ -484,19 +484,19 @@ namespace experience_tranquillum
 #define GRIP_LARGE 30
 
 
-   void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_grip egrip)
+   void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleXParam, enum_grip egrip)
    {
 
       const int size = 16;
 
-      ::rectangle_i32 rectangleX(rectangleXParam);
+      ::int_rectangle rectangleX(rectangleXParam);
 
-      //            ::rectangle_i32 rectangleXB(rectangleX);
-      ::rectangle_i32 rectangleA;
-      ::point_i32 pointA;
-      ::point_i32 pointB;
-      ::point_i32 pointC;
-      //            ::rectangle_i32 rectangle(rectangleX);
+      //            ::int_rectangle rectangleXB(rectangleX);
+      ::int_rectangle rectangleA;
+      ::int_point pointA;
+      ::int_point pointB;
+      ::int_point pointC;
+      //            ::int_rectangle rectangle(rectangleX);
       switch (egrip)
       {
       case e_grip_top_left:
@@ -614,7 +614,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleParam)
+   void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangleParam)
    {
 
       //
@@ -631,7 +631,7 @@ namespace experience_tranquillum
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow, 1.0);
 
@@ -652,7 +652,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleX)
+   void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
    {
 
       ::experience::size_manager * psizenager = m_pframewindow->size_manager();

@@ -477,7 +477,7 @@ namespace platform
 
 #ifdef UNIVERSAL_WINDOWS
 
-      bool apex_system_layer::window_rectangle(::rectangle_i32* prectangle)
+      bool apex_system_layer::window_rectangle(::int_rectangle* prectangle)
    {
       return false;
    }
@@ -518,7 +518,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::system_id_update(::i64 iUpdate, ::i64 iPayload)
+   void apex_system_layer::system_id_update(huge_integer iUpdate, huge_integer iPayload)
    {
    }
 

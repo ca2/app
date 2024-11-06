@@ -22,7 +22,7 @@ namespace http
 //   }
 
 
-//   bool status_succeeded(i64 i)
+//   bool status_succeeded(huge_integer i)
 //   {
 //
 //      return succeeded((void    ) i);
@@ -38,7 +38,7 @@ namespace http
 //   }
 
 //
-//   bool status_failed(i64 i)
+//   bool status_failed(huge_integer i)
 //   {
 //
 //      return !status_succeeded(i);
@@ -83,7 +83,7 @@ namespace http
 
       }
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += ", ";

@@ -19,10 +19,10 @@ namespace draw2d
    }
 
 
-   void buffered_graphics::Prepare(const rectangle_i32 & rectangleParam)
+   void buffered_graphics::Prepare(const int_rectangle & rectangleParam)
    {
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       m_p->set_origin(rectangle.top_left());
 

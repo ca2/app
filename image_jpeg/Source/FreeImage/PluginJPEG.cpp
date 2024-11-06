@@ -65,14 +65,14 @@ static int s_format_id;
 //   Constant declarations
 // ----------------------------------------------------------
 
-#define INPUT_BUF_SIZE  4096	// choose an efficiently fread'able size_i32
-#define OUTPUT_BUF_SIZE 4096    // choose an efficiently fwrite'able size_i32
+#define INPUT_BUF_SIZE  4096	// choose an efficiently fread'able int_size
+#define OUTPUT_BUF_SIZE 4096    // choose an efficiently fwrite'able int_size
 
 #define EXIF_MARKER		(JPEG_APP0+1)	// EXIF marker / Adobe XMP marker
 #define ICC_MARKER		(JPEG_APP0+2)	// ICC profile marker
 #define IPTC_MARKER		(JPEG_APP0+13)	// IPTC marker / BIM marker
 
-#define ICC_HEADER_SIZE 14				// size_i32 of non-profile data in APP2
+#define ICC_HEADER_SIZE 14				// int_size of non-profile data in APP2
 #define MAX_BYTES_IN_MARKER 65533L		// maximum data length of a JPEG marker
 #define MAX_DATA_BYTES_IN_MARKER 65519L	// maximum data length of a JPEG APP2 marker
 
@@ -165,7 +165,7 @@ jpeg_error_exit (j_common_ptr cinfo)
       // let the memory manager delete any temp files before we die
       jpeg_destroy(cinfo);
 
-      // return control to the setjmp point_i32
+      // return control to the setjmp int_point
       longjmp(error_ptr->setjmp_buffer, 1);
    }
 }
@@ -529,7 +529,7 @@ marker_is_icc(jpeg_saved_marker_ptr marker)
   if so, reassemble and return the profile data.
 
   true is returned if an ICC profile was found, false if not.
-  If true is returned, *icc_data_ptr is set to point_i32 to the
+  If true is returned, *icc_data_ptr is set to int_point to the
   returned data, and *icc_data_len is set to its length.
 
   IMPORTANT: the data at **icc_data_ptr has been allocated with malloc()
@@ -553,7 +553,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 
    const int MAX_SEQ_NO = 255;			// sufficient since marker numbers are bytes
    unsigned char marker_present[MAX_SEQ_NO+1];	// 1 if marker found
-   unsigned data_length[MAX_SEQ_NO+1];	// size_i32 of profile data in marker
+   unsigned data_length[MAX_SEQ_NO+1];	// int_size of profile data in marker
    unsigned data_offset[MAX_SEQ_NO+1];	// offset for data in marker
 
    *icc_data_ptr = nullptr;		// avoid confusion if false return
@@ -864,7 +864,7 @@ static int_bool
 
 /*   FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(pimage);
 
-   if (iccProfile->size_i32 && iccProfile->data)
+   if (iccProfile->int_size && iccProfile->data)
    {
       // ICC_HEADER_SIZE: ICC signature is 'ICC_PROFILE' + 2 bytes
 
@@ -872,7 +872,7 @@ static int_bool
       if(profile == nullptr) return false;
       ::memory_copy(profile, icc_signature, 12);
 
-      for(long i = 0; i < (long)iccProfile->size_i32; i += MAX_DATA_BYTES_IN_MARKER)
+      for(long i = 0; i < (long)iccProfile->int_size; i += MAX_DATA_BYTES_IN_MARKER)
       {
          unsigned length = (unsigned) minimum((long)(iccProfile->size - i), MAX_DATA_BYTES_IN_MARKER);
          // sequence number
@@ -922,7 +922,7 @@ static int_bool
             ::memory_copy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
             // 8BIM segment type
             ::memory_copy(&iptc_profile[14], "8BIM\x04\x04\x0\x0\x0\x0", 10);
-            // segment size_i32
+            // segment int_size
             iptc_profile[24] = (unsigned char)(length >> 8);
             iptc_profile[25] = (unsigned char)(length & 0xFF);
             // segment data
@@ -1056,12 +1056,12 @@ static int_bool
    }
 
    // stores the thumbnail as a baseline JPEG into a memory block
-   // return the memory block only if its size_i32 is within JFXX marker size_i32 limit!
+   // return the memory block only if its int_size is within JFXX marker int_size limit!
    FIMEMORY *stream = FreeImage_OpenMemory();
 
    if(FreeImage_SaveToMemory(FreeImage_GetFIFFromFormat("JPEG"), thumbnail, stream, JPEG_BASELINE))
    {
-      // check that the memory block size_i32 is within JFXX marker size_i32 limit
+      // check that the memory block int_size is within JFXX marker int_size limit
       FreeImage_SeekMemory(stream, 0, SEEK_END);
       const long eof = FreeImage_TellMemory(stream);
       if(eof > MAX_JFXX_THUMB_SIZE)
@@ -1152,7 +1152,7 @@ static int_bool
 }
 
 // ------------------------------------------------------------
-//   Keep original size_i32 info when using scale option on loading
+//   Keep original int_size info when using scale option on loading
 // ------------------------------------------------------------
 static void
 /*store_size_info(FIBITMAP * pimage, JDIMENSION width, JDIMENSION height)
@@ -1314,7 +1314,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          // step 4: set parameters for decompression
 
          unsigned int scale_denom = 1;		// fraction by which to scale image
-         int	requested_size = flags >> 16;	// requested user size_i32 in pixels
+         int	requested_size = flags >> 16;	// requested user int_size in pixels
          if(requested_size > 0)
          {
             // the JPEG codec can perform x2, x4 or x8 scaling on loading
@@ -1392,7 +1392,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          }
          if(scale_denom != 1)
          {
-            // store original size_i32 info if a scaling was requested
+            // store original int_size info if a scaling was requested
 /*            store_size_info(pimage, cinfo.image_width, cinfo.image_height);
          }
 

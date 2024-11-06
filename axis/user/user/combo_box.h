@@ -34,7 +34,7 @@ namespace user
 //};
 //
 
-      ::size_i32                    m_sizeFull;
+      ::int_size                    m_sizeFull;
       //string                        m_strText;
       class ::time                      m_timeShowComboList;
       ::pointer<list_box>          m_plistbox;
@@ -74,7 +74,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(point_double_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(double_point_array& pointa) override;
 
       virtual bool has_action_hover();
 
@@ -91,9 +91,9 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      bool get_element_rectangle(::rectangle_i32 & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::int_rectangle & prectangle, enum_element eelement) override;
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -168,9 +168,9 @@ namespace user
 //#endif   // WINVER >= 0x0500
 
       // for edit control
-      bool GetEditSel(strsize & nStartChar, strsize & nEndChar);
-      bool LimitText(strsize nMaxChars);
-      bool SetEditSel(strsize nStartChar, strsize nEndChar);
+      bool GetEditSel(character_count & nStartChar, character_count & nEndChar);
+      bool LimitText(character_count nMaxChars);
+      bool SetEditSel(character_count nStartChar, character_count nEndChar);
 
       // for combobox item
       uptr GetItemData(::collection::index nIndex);
@@ -180,7 +180,7 @@ namespace user
       ::collection::index GetLBText(::collection::index nIndex, char * pszText);
 
       void GetLBText(::collection::index nIndex, string & rString);
-      strsize GetLBTextLen(::collection::index nIndex);
+      character_count GetLBTextLen(::collection::index nIndex);
 
       int SetItemHeight(::collection::index nIndex, unsigned int cyItemHeight);
       int GetItemHeight(::collection::index nIndex);
@@ -188,7 +188,7 @@ namespace user
 
       int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
-      void GetDroppedControlRect(::rectangle_i32 * prectangle);
+      void GetDroppedControlRect(::int_rectangle * prectangle);
 
       bool GetDroppedState();
 

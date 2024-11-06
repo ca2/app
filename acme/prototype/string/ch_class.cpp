@@ -36,7 +36,7 @@ void * gen_ch_class_reference_tables()
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */
-   ch_class *ch_class::createCharClass(const char * ccs, strsize pos, strsize *retPos)
+   ch_class *ch_class::createCharClass(const char * ccs, character_count pos, character_count *retPos)
    {
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
@@ -137,7 +137,7 @@ void * gen_ch_class_reference_tables()
                cc->add_class(cc_temp);
                break;
             default:
-               strsize retEnd;
+               character_count retEnd;
                prev_char = unicode_to_utf8(
                   ::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
@@ -152,7 +152,7 @@ void * gen_ch_class_reference_tables()
          // substract -[class]
          if (__lt(pos+1, ansi_len(ccs)) && ccs[pos] == '-' && ccs[pos+1] == '[')
          {
-            strsize retEnd;
+            character_count retEnd;
             ch_class * scc = createCharClass(ccs, pos+1, &retEnd);
             if(retEnd == ansi_len(ccs))
                return nullptr;
@@ -170,7 +170,7 @@ void * gen_ch_class_reference_tables()
          // intersect &&[class]
          if (__lt(pos+2, ansi_len(ccs)) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
          {
-            strsize retEnd;
+            character_count retEnd;
             ch_class *scc = createCharClass(ccs, pos+2, &retEnd);
             if(retEnd == ansi_len(ccs))
                return nullptr;
@@ -188,7 +188,7 @@ void * gen_ch_class_reference_tables()
          // add [class]
          if (ccs[pos] == '[')
          {
-            strsize retEnd;
+            character_count retEnd;
             ch_class *scc = createCharClass(ccs, pos, &retEnd);
             if(scc == nullptr)
             {
@@ -202,10 +202,10 @@ void * gen_ch_class_reference_tables()
             continue;
          }
 
-         if(ccs[pos] == '-' && prev_char.has_char() && __lt(pos+1, ansi_len(ccs)) && ccs[pos+1] != ']')
+         if(ccs[pos] == '-' && prev_char.has_character() && __lt(pos+1, ansi_len(ccs)) && ccs[pos+1] != ']')
          {
 
-            strsize retEnd;
+            character_count retEnd;
 
             string nextc = unicode_to_utf8(::str::get_escaped_char(ccs, pos+1, retEnd));
 
@@ -231,7 +231,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_char(const ::ansi_character * pszUtf8Char)
    {
-      i64 iChar = unicode_index(pszUtf8Char);
+      huge_integer iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -243,7 +243,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_char(const ::ansi_character * pszUtf8Char)
    {
-      i64 iChar = unicode_index(pszUtf8Char);
+      huge_integer iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -252,9 +252,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      i64 iCharStart = unicode_index(s);
-      i64 iCharEnd = unicode_index(e);
-      for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      huge_integer iCharStart = unicode_index(s);
+      huge_integer iCharEnd = unicode_index(e);
+      for(huge_integer ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = __raw_new bit_array();
@@ -266,9 +266,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      i64 iCharStart = unicode_index(s);
-      i64 iCharEnd = unicode_index(e);
-      for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      huge_integer iCharStart = unicode_index(s);
+      huge_integer iCharEnd = unicode_index(e);
+      for(huge_integer ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = __raw_new bit_array();

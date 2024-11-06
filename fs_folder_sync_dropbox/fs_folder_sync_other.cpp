@@ -37,7 +37,7 @@ namespace fs_folder_sync_dropbox
 
             pathFolder.trim();
 
-            if (pathFolder.has_char() && directory_system()->is(pathFolder))
+            if (pathFolder.has_character() && directory_system()->is(pathFolder))
             {
 
                iTry = 0;

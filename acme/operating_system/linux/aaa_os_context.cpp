@@ -1108,7 +1108,7 @@ namespace linux
 
             ::file::path path = module_path_from_pid(iPid);
 
-            if(path.has_char())
+            if(path.has_character())
             {
 
                patha.add(path);

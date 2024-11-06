@@ -59,7 +59,7 @@ public:
    memsize read(void * p, ::memsize s) override;
 
 
-   int get_u8() override;
+   int get_unsigned_char() override;
    int peek_byte() override;
    void put_byte_back(unsigned char b) override;
 

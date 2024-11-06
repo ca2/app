@@ -133,7 +133,7 @@ namespace httpd
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (i64)mem.size();
+         m_response.header("Content-length") = (huge_integer)mem.size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
@@ -535,7 +535,7 @@ namespace httpd
       }
 
 
-      if (inheader("range").has_char())
+      if (inheader("range").has_character())
       {
 
          string_array straItem;

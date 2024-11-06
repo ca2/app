@@ -8,7 +8,7 @@
 #include "acme/platform/uint64_muldiv.h"
 
 
-CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator, int denominator)
+CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator)
 {
 
    rectangle.left()    = ::MulDiv32(rectangle.left()     , numerator, denominator);
@@ -22,7 +22,7 @@ CLASS_DECL_ACME rectangle_i32 & muldiv(rectangle_i32 & rectangle, int numerator,
 
 
 
-CLASS_DECL_ACME rectangle_i64 & muldiv(rectangle_i64 & rectangle, ::i64 numerator, ::i64 denominator)
+CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator)
 {
 
    rectangle.left()    = ::uint64_muldiv(rectangle.left()     , (int)numerator, denominator);

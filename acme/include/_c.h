@@ -16,10 +16,10 @@ inline bool is_null(const void* p) { return ::is_null(p, 65535); }
 inline int is_set(const void* p) { return !is_null(p); }
 
 
-CLASS_DECL_ACME strsize safe_strlen(void* p, strsize n);
+CLASS_DECL_ACME character_count safe_strlen(void* p, character_count n);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
+inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
 

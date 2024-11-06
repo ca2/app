@@ -82,7 +82,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->__create < ::image::image >();
@@ -182,7 +182,7 @@ namespace image
 
       auto strPath = m_mapIntPath[iImage];
 
-      ASSERT(strPath.has_char());
+      ASSERT(strPath.has_character());
 
       return path_image(strPath);
 
@@ -1215,7 +1215,7 @@ namespace image
       if (payloadSaveOptions["quality"].is_floating())
       {
 
-         saveoptions.m_iQuality = (int)(payloadSaveOptions["quality"].as_f64() * 100.0);
+         saveoptions.m_iQuality = (int)(payloadSaveOptions["quality"].as_double() * 100.0);
 
       }
       else if (payloadSaveOptions["quality"].is_integer())

@@ -26,7 +26,7 @@ request::~request()
 
 
 
-::i64 request::increment_reference_count()
+huge_integer request::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -34,7 +34,7 @@ request::~request()
 }
 
 
-::i64 request::decrement_reference_count()
+huge_integer request::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();
@@ -111,7 +111,7 @@ void request::initialize_create(string strAppId, ::payload payloadFile, const ::
 
    create_common_construct(varOptions, puiParent);
 
-   if(strAppId.has_char())
+   if(strAppId.has_character())
    {
 
       m_strAppId = strAppId;
@@ -146,7 +146,7 @@ void request::initialize_create(::data::data * pdata, const ::payload & varOptio
 
    create_common_construct(varOptions, puiParent);
 
-   //if (strAppId.has_char())
+   //if (strAppId.has_character())
    //{
 
    //   m_strAppId = strAppId;
@@ -449,13 +449,13 @@ void request::ParseParamFlag(const ::string& strParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (strParam.case_insensitive_order("point_i32") == 0)
+   if (strParam.case_insensitive_order("int_point") == 0)
    {
 
       m_ecommand = e_command_file_print_to;
 
    }
-   else if (strParam.case_insensitive_order("point_i32") == 0)
+   else if (strParam.case_insensitive_order("int_point") == 0)
    {
 
       m_ecommand = e_command_file_print;
@@ -574,7 +574,7 @@ void request::_001ParseCommandLine(const ::string& strCommandLine)
    if (has_property("uri"))
    {
 
-      if (m_payloadFile.has_char())
+      if (m_payloadFile.has_character())
       {
 
          m_payloadFile += ";";
@@ -670,7 +670,7 @@ void request::_001ParseCommandFork(const ::string& strCommandFork)
    if (has_property("uri"))
    {
 
-      if (m_payloadFile.has_char())
+      if (m_payloadFile.has_character())
       {
 
          m_payloadFile += ";";
@@ -742,7 +742,7 @@ void request::_001ParseCommandArguments(::string_array& straArguments)
    if (has_property("uri"))
    {
 
-      if (m_payloadFile.has_char())
+      if (m_payloadFile.has_character())
       {
 
          m_payloadFile += ";";

@@ -43,9 +43,9 @@ namespace user
 
       //virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      virtual ::item_pointer parent_client_hit_test(const ::point_i32 & point, e_zorder ezorder);
+      virtual ::item_pointer parent_client_hit_test(const ::int_point & point, e_zorder ezorder);
 
-      virtual ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, e_zorder ezorder);
+      virtual ::item_pointer parent_client_on_hit_test(const ::int_point & point, e_zorder ezorder);
 
 
    };
@@ -65,23 +65,23 @@ namespace user
 
 
 
-   //   //virtual bool _get_client_rect(::rectangle_i32 * prectangle) = 0;
-   //   //virtual bool _get_window_rect(::rectangle_i32 * prectangle) = 0;
+   //   //virtual bool _get_client_rect(::int_rectangle * prectangle) = 0;
+   //   //virtual bool _get_window_rect(::int_rectangle * prectangle) = 0;
    //   
-   //   //virtual ::point_i32 _client_parent_top_left() = 0;
-   //   //virtual ::point_i32 _client_screen_top_left() = 0;
+   //   //virtual ::int_point _client_parent_top_left() = 0;
+   //   //virtual ::int_point _client_screen_top_left() = 0;
 
 
-   //   //mutable size_i32      m_sizeClient;
-   //   //mutable size_i32      m_sizeScreen;
+   //   //mutable int_size      m_sizeClient;
+   //   //mutable int_size      m_sizeScreen;
 
-   //   //mutable point_i32     m_pointClient;
-   //   //mutable point_i32     m_pointScreen;
-   //   //mutable point_i32     m_pointParentWindow;
-   //   //mutable point_i32     m_pointParentClient;
+   //   //mutable int_point     m_pointClient;
+   //   //mutable int_point     m_pointScreen;
+   //   //mutable int_point     m_pointParentWindow;
+   //   //mutable int_point     m_pointParentClient;
 
-   //   //inline auto get_client_rect64() { ::rectangle_i64 rectangle; this->rectangle(rectangle); return rectangle; }
-   //   //inline auto get_window_rect64() { ::rectangle_i64 rectangle; window_rectangle(rectangle); return rectangle; }
+   //   //inline auto get_client_rect64() { ::i64_rectangle rectangle; this->rectangle(rectangle); return rectangle; }
+   //   //inline auto get_window_rect64() { ::i64_rectangle rectangle; window_rectangle(rectangle); return rectangle; }
 
 
    //};

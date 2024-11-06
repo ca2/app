@@ -85,7 +85,7 @@ namespace datetime
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.day_of_week();
          int32_t iLastDayPreviousMonth = (time - ::earth::time_span(1, 0, 0, 0)).day();
-         rectangle_i32 rectangleDay;
+         int_rectangle rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
          if (!pfile->m_strOptions.contains("<no-week-bar-title>"))

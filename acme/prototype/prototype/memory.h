@@ -58,7 +58,7 @@ public:
    memory(manager * pmanager);
    memory(const memory & memory, manager * pmanager);
    memory(const memory * pmemory, manager * pmanager);
-   memory(const unsigned char * pchSrc, strsize nLength, manager * pmanager);
+   memory(const unsigned char * pchSrc, character_count nLength, manager * pmanager);
    memory(memory && memory);
    memory(const ::string & str);
    ~memory() override;
@@ -76,8 +76,8 @@ public:
    inline memory & operator += (const ::memory & memory) { append(memory); return *this; };
 
    
-   strsize sz_len() const override;
-   void to_sz(char * sz, strsize len) const override;
+   character_count sz_len() const override;
+   void to_sz(char * sz, character_count len) const override;
 
 
 };

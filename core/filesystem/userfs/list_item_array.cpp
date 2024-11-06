@@ -25,7 +25,7 @@ namespace userfs
    list_item_array::list_item_array()
    {
 
-  /*    add_sort((::i64) ::fs::arrange_by_name, [](auto & pitem1, auto & pitem2)
+  /*    add_sort((huge_integer) ::fs::arrange_by_name, [](auto & pitem1, auto & pitem2)
          {
 
             int iCompareType = pitem1->get_type_weight() - pitem2->get_type_weight();
@@ -83,7 +83,7 @@ namespace userfs
    void list_item_array::arrange(::fs::e_arrange earrange)
    {
 
-      //sort((::i64) earrange);
+      //sort((huge_integer) earrange);
 
    }
 

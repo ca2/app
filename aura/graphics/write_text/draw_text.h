@@ -14,7 +14,7 @@ namespace write_text
    public:
 
 
-      ::rectangle_i32            m_rectangle;
+      ::int_rectangle            m_rectangle;
       ::e_align                  m_ealign;
       ::e_draw_text              m_edrawtext;
 

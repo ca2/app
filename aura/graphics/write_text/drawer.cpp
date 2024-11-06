@@ -96,10 +96,10 @@ namespace write_text
    }
 
 
-   ::size_f64 drawer::get_text_extent(const ::scoped_string & scopedstr)
+   ::double_size drawer::get_text_extent(const ::scoped_string & scopedstr)
    {
 
-      return ::size_f64();
+      return ::double_size();
 
    }
 
@@ -298,7 +298,7 @@ namespace write_text
 
             strNow = string(pszStart, ::is_null(pszEnd) ? -1 : pszEnd - pszStart);
 
-            if (strNow.has_char())
+            if (strNow.has_character())
             {
 
                stra.insert_at(i + c, strNow);
@@ -395,7 +395,7 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const string & str, const ::rectangle_i32 & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const string & str, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
       string_array stra;
@@ -423,7 +423,7 @@ namespace write_text
       for (auto & strLine : stra)
       {
 
-         if (strLine.has_char())
+         if (strLine.has_character())
          {
 
             auto ptextout = __create_new < text_out >();

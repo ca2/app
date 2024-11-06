@@ -98,10 +98,10 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(sequence2_i32 & sequence)
+   void matrix::transform(sequence2_int & sequence)
    {
 
-      ::sequence2_i32 s;
+      ::sequence2_int s;
 
       s.a() = (int) (sequence.a() * a1 + sequence.b() * b1 + c1);
       s.b() = (int) (sequence.a() * a2 + sequence.b() * b2 + c2);
@@ -111,10 +111,10 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(sequence2_f64 & sequence)
+   void matrix::transform(sequence2_double & sequence)
    {
 
-      sequence2_f64 s;
+      sequence2_double s;
 
       s.a() = sequence.a() * a1 + sequence.b() * b1 + c1;
       s.b() = sequence.a() * a2 + sequence.b() * b2 + c2;

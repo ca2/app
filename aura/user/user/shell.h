@@ -109,7 +109,7 @@ namespace user
 
    protected:
 
-      ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the size_i32
+      ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
       ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
       map < ::pointer < ::user::interaction >, ::string_array >      m_mapInterest;
 

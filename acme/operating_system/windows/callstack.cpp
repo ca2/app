@@ -185,7 +185,7 @@ namespace platform
 
       ::string_array stra;
 
-      strsize maximum_line_length = 0;
+      character_count maximum_line_length = 0;
 
       for (auto i = 0; i < frame_count; ++i)
       {

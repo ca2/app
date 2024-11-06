@@ -5,7 +5,7 @@
 //#include "string_range.h"
 
 
-template < primitive_character CHARACTER, strsize m_sizeMaximumLength >
+template < primitive_character CHARACTER, character_count m_sizeMaximumLength >
 class inline_string :
    //public ::range < CHARACTER * >
    public ::range < CHARACTER * >
@@ -72,8 +72,8 @@ public:
    //const CHARACTER * end() const { return data() + size(); }
    //CHARACTER * end() { return data() + size(); }
 
-   //strsize size() const { return ::maximum(0, m_iLength); }
-   //strsize length_in_bytes() const { return size() * sizeof(CHARACTER); }
+   //character_count size() const { return ::maximum(0, m_iLength); }
+   //character_count length_in_bytes() const { return size() * sizeof(CHARACTER); }
 
    //operator ::block() const { return { data(), size() }; }
 

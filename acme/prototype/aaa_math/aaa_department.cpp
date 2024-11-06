@@ -315,14 +315,14 @@ namespace mathematics
    }
 
 
-   u64 math::gen_rand()
+   huge_natural math::gen_rand()
    {
 #if defined(UNIVERSAL_WINDOWS)
-      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       return uiLo | (uiHi << 32);
 #else
-      u64 u = 0;
+      huge_natural u = 0;
       gen_rand(&u, sizeof(u));
       return u;
 #endif
@@ -352,7 +352,7 @@ namespace mathematics
    }
 
 
-   string math::random_string(strsize s)
+   string math::random_string(character_count s)
    {
 
       return gen_rand_alnum(s);
@@ -360,7 +360,7 @@ namespace mathematics
    }
 
 
-   string math::gen_rand_alnum(strsize s)
+   string math::gen_rand_alnum(character_count s)
    {
 
       string str;
@@ -410,7 +410,7 @@ namespace mathematics
    }
 
 
-   bool math::IsPowerOfTwo(u64 uiValue)
+   bool math::IsPowerOfTwo(huge_natural uiValue)
    {
 
       if (uiValue == 0)
@@ -506,13 +506,13 @@ namespace mathematics
 
    /*
 
-   u64 math::RandRange(u64 ui1, u64 ui2)
+   huge_natural math::RandRange(huge_natural ui1, huge_natural ui2)
    {
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   u64 uiMin = minimum(ui1, ui2);
-   u64 uiMax = maximum(ui1, ui2);
+   huge_natural uiMin = minimum(ui1, ui2);
+   huge_natural uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

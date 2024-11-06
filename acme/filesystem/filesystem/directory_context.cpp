@@ -165,9 +165,9 @@ inline bool myspace(char ch)
 //      return strFolder;
 //   }
 
-//   strsize iFolderBeg = 0;
+//   character_count iFolderBeg = 0;
 
-//   strsize iFolderEnd = strFolder.length() - 1;
+//   character_count iFolderEnd = strFolder.length() - 1;
 
 //   if(iFolderEnd >= iFolderBeg)
 //   {
@@ -185,9 +185,9 @@ inline bool myspace(char ch)
 //         iFolderEnd--;
 //   }
 
-//   strsize iRelativeBeg = 0;
+//   character_count iRelativeBeg = 0;
 
-//   strsize iRelativeEnd = strRelative.length() - 1;
+//   character_count iRelativeEnd = strRelative.length() - 1;
 
 //   if(iRelativeEnd >= iRelativeBeg)
 //   {
@@ -263,9 +263,9 @@ inline bool myspace(char ch)
 
 //   // none of them - 3 - are empty
 
-//   strsize iFolderBeg = 0;
+//   character_count iFolderBeg = 0;
 
-//   strsize iFolderEnd = strFolder.length() - 1;
+//   character_count iFolderEnd = strFolder.length() - 1;
 
 //   if(iFolderEnd >= iFolderBeg)
 //   {
@@ -283,9 +283,9 @@ inline bool myspace(char ch)
 //         iFolderEnd--;
 //   }
 
-//   strsize iRelativeBeg = 0;
+//   character_count iRelativeBeg = 0;
 
-//   strsize iRelativeEnd = strRelative.length() - 1;
+//   character_count iRelativeEnd = strRelative.length() - 1;
 
 //   if(iRelativeEnd >= iRelativeBeg)
 //   {
@@ -304,9 +304,9 @@ inline bool myspace(char ch)
 //   }
 
 
-//   strsize iBeg2 = 0;
+//   character_count iBeg2 = 0;
 
-//   strsize iEnd2 = str2.length() - 1;
+//   character_count iEnd2 = str2.length() - 1;
 
 //   if(iEnd2 >= iBeg2)
 //   {
@@ -500,7 +500,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 
    __check_refdbg
 
-   if (listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
+   if (listing.m_pathFinal.is_empty() && listing.m_pathUser.has_character())
    {
 
       listing.m_pathFinal = application()->defer_process_path(listing.m_pathUser);
@@ -2089,9 +2089,9 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
       else
       {
 
-         strsize iFind1 = strMatter.case_insensitive_find_index("/matter/");
+         character_count iFind1 = strMatter.case_insensitive_find_index("/matter/");
 
-         strsize iFind2 = strMatter.case_insensitive_find_index("\\matter\\");
+         character_count iFind2 = strMatter.case_insensitive_find_index("\\matter\\");
 
          auto iFind = minimum_non_negative(iFind1, iFind2);
 
@@ -2334,7 +2334,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    if (psystem->directory_system()->m_bMatterFromHttpCache)
    {
 
-      if (psystem->directory_system()->m_pathLocalAppMatterCacheFolder.has_char())
+      if (psystem->directory_system()->m_pathLocalAppMatterCacheFolder.has_character())
       {
 
          ::file::path pathLs0 = straMatterLocator.first();
@@ -2350,7 +2350,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
-            class ::time t = millisecond_time(::as_i64(path));
+            class ::time t = millisecond_time(::as_huge_integer(path));
 
             auto elapsed = t.elapsed();
 
@@ -2370,7 +2370,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          }
 
-         if (!(patha[0].flags() & ::file::e_flag_bypass_cache) && path.has_char())
+         if (!(patha[0].flags() & ::file::e_flag_bypass_cache) && path.has_character())
          {
 
             string strFinal(path);
@@ -2517,7 +2517,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       auto iFind = strMatter.case_insensitive_find_index(strToken);
 
-      if (strMatter.has_char() && ::found(iFind))
+      if (strMatter.has_character() && ::found(iFind))
       {
 
          iFind += strToken.length();
@@ -2620,7 +2620,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
 ret:
 
-   if (pathCache.has_char() && psystem->directory_system()->m_bMatterFromHttpCache)
+   if (pathCache.has_character() && psystem->directory_system()->m_bMatterFromHttpCache)
    {
 
       string strPath;
@@ -3118,7 +3118,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //      ::file::path directory_context::get_api_cc()
 //      {
 //
-//         if(m_strApiCc.has_char())
+//         if(m_strApiCc.has_character())
 //            return m_strApiCc;
 //
 //         _synchronous_lock synchronouslock(m_pmutex);
@@ -3369,7 +3369,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //
 //       string strIni = file()->safe_get_string(pathIni);
 //
-//       if (strIni.has_char())
+//       if (strIni.has_character())
 //       {
 //
 //          ::property_set set;

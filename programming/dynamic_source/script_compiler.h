@@ -84,7 +84,7 @@ namespace dynamic_source
 
       bool defer_run_persistent(const ::string &psz);
 
-      bool is_id(const ::string & psz, strsize iLen, const ::string & pszId, strsize iLenId, strsize & iIdLen);
+      bool is_id(const ::string & psz, character_count iLen, const ::string & pszId, character_count iLenId, character_count & iIdLen);
       const char * next_nonspace(const ::string & psz);
 
       void compile(ds_script * pscript);

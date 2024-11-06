@@ -21,7 +21,7 @@
 #include "base/platform/session.h"
 
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -80,12 +80,12 @@ namespace experience_core
 
       };
 
-      ::rectangle_i32 rectangle;
-      ::rectangle_i32 rectangleBorder;
-      ::rectangle_i32 rectangleText;
-      ::rectangle_i32 rectangleX;
-      ::rectangle_i32 rectangleIcon;
-      ::rectangle_i32 rectangleClose;
+      ::int_rectangle rectangle;
+      ::int_rectangle rectangleBorder;
+      ::int_rectangle rectangleText;
+      ::int_rectangle rectangleX;
+      ::int_rectangle rectangleIcon;
+      ::int_rectangle rectangleClose;
 
       //return true;
       
@@ -114,7 +114,7 @@ namespace experience_core
 
       ::collection::index iTab = -1;
 
-      ::rectangle_i32 rcClient;
+      ::int_rectangle rcClient;
 
       rcClient = ptab->rectangle(::user::e_layout_sketch);
       
@@ -833,7 +833,7 @@ namespace experience_core
 
       }
 
-      ::rectangle_i32 rectangleScroll;
+      ::int_rectangle rectangleScroll;
 
       bool bScroll = ptab->_001HasBarXDragScrolling();
 
@@ -938,7 +938,7 @@ namespace experience_core
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -956,7 +956,7 @@ namespace experience_core
       else
       {
 
-         ::rectangle_i32 rectangleText(rectangle);
+         ::int_rectangle rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
 
@@ -964,16 +964,16 @@ namespace experience_core
 
          auto pdata = ptab->get_data();
 
-         size_i32 sSep = pdata->m_sizeSep;
+         int_size sSep = pdata->m_sizeSep;
 
-         ::rectangle_i32 rectangleEmp;
+         ::int_rectangle rectangleEmp;
 
          for (::collection::index i = 0; i < straTitle.get_size(); i++)
          {
 
             string str = straTitle[i];
 
-            size_i32 s = pane.m_sizeaText[i];
+            int_size s = pane.m_sizeaText[i];
 
             rectangleText.right() = rectangleText.left() + s.cx();
 
@@ -1103,7 +1103,7 @@ namespace experience_core
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::size_f64 size;
+            ::double_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1165,7 +1165,7 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleX = ptab->rectangle(::user::e_layout_sketch);
+         ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
 
          pdata->m_rectangleTab.left() = rectangleX.left();
          pdata->m_rectangleTab.top() = rectangleX.top();
@@ -1195,7 +1195,7 @@ namespace experience_core
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleX = ptab->rectangle(::user::e_layout_sketch);
+         ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
          //ptab->rectangle(rectangleX);
          int x = rectangleX.left();
 
@@ -1216,7 +1216,7 @@ namespace experience_core
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            size_f64 size;
+            double_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -1240,7 +1240,7 @@ namespace experience_core
 
             //            string str = ppane->get_title();
 
-            //            size_i32 size;
+            //            int_size size;
 
             ixAdd = 5;
 
@@ -1303,7 +1303,7 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         rectangle_i32 & rectangleHosting = pdata->m_rectangleHosting;
+         int_rectangle & rectangleHosting = pdata->m_rectangleHosting;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          //bool bTabbedClient = ptab->m_bShowTabs;
@@ -1333,7 +1333,7 @@ namespace experience_core
 
       ptab->layout_pane(ptab->get_current_tab_index(), ptab->is_this_visible());
 
-      ::rectangle_i32 rcClient;
+      ::int_rectangle rcClient;
 
       rcClient = ptab->rectangle(::user::e_layout_sketch);
 
@@ -1954,7 +1954,7 @@ namespace experience_core
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::rectangle_i32 rectangleX = pscrollbar->rectangle();
+      ::int_rectangle rectangleX = pscrollbar->rectangle();
 
       if (colorBackground.m_uchOpacity != 0)
       {
@@ -1976,7 +1976,7 @@ namespace experience_core
 
       auto statusrectangleTrack = pscrollbar->get_track_rectangle(::user::e_layout_design);
 
-      //::rectangle_i32 rectangleWindow;
+      //::int_rectangle rectangleWindow;
 
       //pscrollbar->window_rectangle(rectangleWindow);
 
@@ -2007,7 +2007,7 @@ namespace experience_core
 
          auto periodFadeOut = 490_ms;
 
-         double dRate = maximum(0u, minimum(1.0, pbar->find_u32("tracking_alpha") / 255.0));
+         double dRate = maximum(0u, minimum(1.0, pbar->find_unsigned_int("tracking_alpha") / 255.0));
 
          if (pbar->m_bTracking)
          {
@@ -2038,7 +2038,7 @@ namespace experience_core
 
          }
 
-         //::point_i32 point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         //::int_point point1 = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
          //pbar->client_to_screen()(point1);
 
@@ -2107,7 +2107,7 @@ namespace experience_core
             uchAlpha = 255;
          }
 
-         ::rectangle_i32 rectangleMachineThumb;
+         ::int_rectangle rectangleMachineThumb;
 
          bool bSimple = pbar->is_true("tracking_simple");
 
@@ -2116,11 +2116,11 @@ namespace experience_core
 
             auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_f64(dSize / 2.0, dSize / 2.0);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::double_size(dSize / 2.0, dSize / 2.0);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_f64(dSize, dSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::double_size(dSize, dSize);
 
-            ::rectangle_i32 rectangleIntersect;
+            ::int_rectangle rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, statusrectangleTrack);
 
@@ -2136,9 +2136,9 @@ namespace experience_core
 
             auto dSize = statusrectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_f64(dSize / 2., dSize / 2.);
+            rectangleMachineThumb.top_left() = statusrectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::double_size(dSize / 2., dSize / 2.);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_f64(dSize, dSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::double_size(dSize, dSize);
 
             rectangleMachineThumb.assign_normal(statusrectangleTrack, pbar->m_eorientation);
 
@@ -2160,7 +2160,7 @@ namespace experience_core
 
       pgraphics->set(ppenGrip);
 
-      ::point_i32 pointCenter = statusrectangleTrack.center();
+      ::int_point pointCenter = statusrectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
@@ -2304,7 +2304,7 @@ namespace experience_core
          //
          //      }
 
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
 
          rectangleX = pframe->rectangle();
 

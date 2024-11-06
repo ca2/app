@@ -50,7 +50,7 @@ namespace xcb
    }
 
 
-   void ::nano::graphics::device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
+   void ::nano::graphics::device::_draw_text(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -102,7 +102,7 @@ namespace xcb
    }
 
 
-   ::size_i32 ::nano::graphics::device::get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont)
+   ::int_size ::nano::graphics::device::get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -120,7 +120,7 @@ namespace xcb
    }
 
 
-   void ::nano::graphics::device::rectangle_f64(const ::rectangle_i32 & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
+   void ::nano::graphics::device::double_rectangle(const ::int_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_NONE);

@@ -105,7 +105,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 
    if(m_nSize != m_nMaxSize)
    {
-      // shrink to desired size_i32
+      // shrink to desired int_size
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
@@ -117,7 +117,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 #ifdef __MCRTDBG
          if (::get_task() != nullptr)
          {
-            if (::get_task()->m_strFile.has_char())
+            if (::get_task()->m_strFile.has_character())
             {
                pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
@@ -132,7 +132,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
          }
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             pNewData = ALLOCATOR::alloc(m_nSize, ::get_task_object_debug(), 0);
@@ -235,7 +235,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count) m_nSize;
 
-      set_size((::collection::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new size_i32
+      set_size((::collection::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new int_size
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -401,7 +401,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count) m_nSize;
 
-      set_size((::collection::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new size_i32
+      set_size((::collection::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new int_size
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -516,7 +516,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       throw ::exception(error_bad_argument);
 
    if(nGrowBy >= 0)
-      m_nGrowBy = nGrowBy;  // set aaa_primitive_new size_i32
+      m_nGrowBy = nGrowBy;  // set aaa_primitive_new int_size
 
    if(nNewSize == 0)
    {
@@ -548,7 +548,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       {
 #if defined(MEMDLEAK)
 
-         if (::get_task()->m_strFile.has_char())
+         if (::get_task()->m_strFile.has_character())
          {
 
             m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
@@ -563,7 +563,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -631,7 +631,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       if (::get_task() != nullptr)
       {
 
-         if (::get_task()->m_strFile.has_char())
+         if (::get_task()->m_strFile.has_character())
          {
 
             pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -654,7 +654,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #else
 
-      if (::get_task_object_debug().has_char())
+      if (::get_task_object_debug().has_character())
       {
 
          pNewData = ALLOCATOR::alloc(nNewMax, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -712,7 +712,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    if(nGrowBy >= 0)
    {
 
-      m_nGrowBy = nGrowBy;  // set aaa_primitive_new size_i32
+      m_nGrowBy = nGrowBy;  // set aaa_primitive_new int_size
 
    }
 
@@ -762,7 +762,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -777,7 +777,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
@@ -909,7 +909,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -924,7 +924,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;

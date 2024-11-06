@@ -120,7 +120,7 @@
 // }
 //
 //
-// ::point_i32 window_interface::origin()
+// ::int_point window_interface::origin()
 // {
 //
 //    throw ::exception(error_wrong_state);
@@ -146,7 +146,7 @@
 // // }
 //
 //
-//    ::shift_i32 window_interface::host_to_client()
+//    ::shift_int window_interface::host_to_client()
 // {
 //
 //    return - client_to_host();
@@ -154,7 +154,7 @@
 // }
 //
 //
-// ::shift_i32 window_interface::client_to_host()
+// ::shift_int window_interface::client_to_host()
 // {
 //
 //    return {};
@@ -162,7 +162,7 @@
 // }
 //
 //
-// ::shift_i32 window_interface::absolute_to_client()
+// ::shift_int window_interface::absolute_to_client()
 // {
 //
 //    return - client_to_host();
@@ -170,7 +170,7 @@
 // }
 //
 //
-// ::shift_i32 window_interface::client_to_absolute()
+// ::shift_int window_interface::client_to_absolute()
 // {
 //
 //    if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
@@ -180,7 +180,7 @@
 //
 //    }
 //
-//    ::rectangle_i32 r;
+//    ::int_rectangle r;
 //
 //    get_window_rectangle(r);
 //
@@ -189,7 +189,7 @@
 // }
 //
 //
-// ::point_i32 window_interface::try_absolute_mouse_position(const ::point_i32& point)
+// ::int_point window_interface::try_absolute_mouse_position(const ::int_point& point)
 // {
 //
 //    auto p = point;
@@ -209,7 +209,7 @@
 // }
 //
 //
-// bool window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
+// bool window_interface::on_drag_start(::int_point & point, ::item * pitem)
 // {
 //
 //    if (pitem->m_item.m_eelement == e_element_client)
@@ -235,7 +235,7 @@
 // }
 //
 //
-// ::point_i32 window_interface::drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point)
+// ::int_point window_interface::drag_mouse_cursor_position(::item* pitem, const ::int_point & point)
 // {
 //
 //    auto p = try_absolute_mouse_position(point);
@@ -320,7 +320,7 @@
 // }
 //
 //
-// child * window_interface::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+// child * window_interface::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
 // {
 //
 //    return nullptr;
@@ -390,7 +390,7 @@
 // }
 //
 //
-// void window_interface::move_to(const ::point_i32 & point)
+// void window_interface::move_to(const ::int_point & point)
 // {
 //
 //
@@ -411,14 +411,14 @@
 // }
 //
 //
-// void window_interface::get_client_rectangle(::rectangle_i32 & rectangle)
+// void window_interface::get_client_rectangle(::int_rectangle & rectangle)
 // {
 //
 //
 // }
 //
 //
-// void window_interface::get_window_rectangle(::rectangle_i32 & rectangle)
+// void window_interface::get_window_rectangle(::int_rectangle & rectangle)
 // {
 //
 //

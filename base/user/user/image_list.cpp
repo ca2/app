@@ -353,7 +353,7 @@ namespace user
    //}
 
 
-   ::item_pointer image_list::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer image_list::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
       return ::user::scroll_base::on_hit_test(point, ezorder);
@@ -440,8 +440,8 @@ namespace user
 
          //::item itemText;
 
-         ::rectangle_i32 rectangleSel;
-         ::rectangle_i32 rectangleText;
+         ::int_rectangle rectangleSel;
+         ::int_rectangle rectangleText;
 
          //itemText = e_element_text;
 
@@ -484,7 +484,7 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectangleForImage(rectangle1);
+         ::int_rectangle rectangleForImage(rectangle1);
 
          if (m_bLabel)
          {
@@ -526,7 +526,7 @@ namespace user
                if (pimage->area() <= 0)
                {
 
-                  ::rectangle_i32 rectangleImage;
+                  ::int_rectangle rectangleImage;
 
                   double dW = (double)rectangleForImage.width() / (double)pimageSrc->width();
 
@@ -536,7 +536,7 @@ namespace user
 
                   auto sizeSrc = pimageSrc->get_size();
 
-                  ::size_i32 szNew =  sizeSrc * dMin;
+                  ::int_size szNew =  sizeSrc * dMin;
 
                   if (!szNew.is_empty())
                   {
@@ -549,7 +549,7 @@ namespace user
 
                      ::image::image_source imagesource(pimageSrc);
 
-                     rectangle_f64 rectangleImageNew(szNew);
+                     double_rectangle rectangleImageNew(szNew);
 
                      ::image::image_drawing_options imagedrawingoptions(rectangleImageNew);
 
@@ -561,7 +561,7 @@ namespace user
 
                }
 
-               ::rectangle_i32 rectangleImage;
+               ::int_rectangle rectangleImage;
 
                rectangleImage.left() = rectangleForImage.left() + (rectangleForImage.width() - pimage->width()) / 2;
 
@@ -731,7 +731,7 @@ namespace user
 
       int y = top;
 
-      ::rectangle_i32 rectangleTotal;
+      ::int_rectangle rectangleTotal;
 
       __defer_construct_new(main_content().m_pitema);
 

@@ -112,8 +112,8 @@
 //
 //         auto strName = path.name();
 //
-//         if ((m_strName.has_char() && strName == m_strName)
-//             || (m_path.has_char() && path_system()->real_path_is_same(path, m_path)))
+//         if ((m_strName.has_character() && strName == m_strName)
+//             || (m_path.has_character() && path_system()->real_path_is_same(path, m_path)))
 //         {
 //
 //            m_path = info->dlpi_name;

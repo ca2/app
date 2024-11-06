@@ -110,22 +110,22 @@ namespace user
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);
          pgraphics->set(pbrush);
-         ::rectangle_i32 rectanglePopupArrow;
+         ::int_rectangle rectanglePopupArrow;
          rectanglePopupArrow.left() = rectangleX.right() - 9;
          rectanglePopupArrow.right() = rectangleX.right() - 4;
          rectanglePopupArrow.top() = ((rectangleX.top() + rectangleX.bottom()) / 2) - 4;
          rectanglePopupArrow.bottom() = ((rectangleX.top() + rectangleX.bottom()) / 2) + 4;
-         point_double_array pointa;
+         double_point_array pointa;
 
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
 
-         pointa.add(point_i32(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
+         pointa.add(int_point(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
 
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
 
 
 
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
          pgraphics->polygon(pointa);
 
       }
@@ -197,7 +197,7 @@ namespace user
    }
 
 
-   ::size_f64 menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::double_size menu_interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto strWindowText = get_window_text();

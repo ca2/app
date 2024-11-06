@@ -76,7 +76,7 @@ namespace app_integration
 
       }
 
-      rectangle_i32 rectangle;
+      int_rectangle rectangle;
 
       int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
@@ -90,7 +90,7 @@ namespace app_integration
 
       rectangle.offset_x(iSize / 5 * m_iDrawing);
       
-      ::size_f64 size(0., 0.);
+      ::double_size size(0., 0.);
       
       bool bDrawText = true;
       
@@ -205,7 +205,7 @@ namespace app_integration
 
       pgraphics->ellipse(rectangle);
 
-      ::rectangle_i32 rectangleText;
+      ::int_rectangle rectangleText;
 
       rectangleText.set_size(size);
 

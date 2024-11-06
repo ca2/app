@@ -237,7 +237,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 system::increment_reference_count()
+   huge_integer system::increment_reference_count()
    {
 
       return ::platform::system::increment_reference_count();
@@ -245,7 +245,7 @@ namespace apex
    }
 
 
-   i64 system::decrement_reference_count()
+   huge_integer system::decrement_reference_count()
    {
 
       return ::platform::system::decrement_reference_count();
@@ -494,7 +494,7 @@ namespace apex
 //
 //#endif
 
-      m_nSafetyPoolSize = 512;        // default size_i32
+      m_nSafetyPoolSize = 512;        // default int_size
 
       //estatus =
       __construct_new(m_pgeometry);
@@ -535,7 +535,7 @@ namespace apex
 
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
-      factory()->add_factory_item < ::i64_array >();
+      factory()->add_factory_item < ::huge_integer_array >();
       factory()->add_factory_item < ::double_array >();
       factory()->add_factory_item < ::acme::library >();
 
@@ -547,7 +547,7 @@ namespace apex
       factory()->add_factory_item < ::int_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::i64_array >();
+      //factory()->add_factory_item < ::huge_integer_array >();
       //factory()->add_factory_item < ::double_array >();
       //factory()->add_factory_item < ::acme::library >();
 
@@ -704,7 +704,7 @@ namespace apex
       //
       //            strLine.trim();
       //
-      //            strsize i = strLine.find('=');
+      //            character_count i = strLine.find('=');
       //
       //            if(i > 0)
       //            {
@@ -1442,7 +1442,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      GetSystemTimeAsFileTime(&ft);
    //
-   //      u64 tt;
+   //      huge_natural tt;
    //
    //      ::memory_copy(&tt, &ft, sizeof(tt));
    //
@@ -2063,19 +2063,19 @@ pdirectorysystem->create("/ca2core");
 
       string str;
 
-      if (strFileName.has_char() || strModuleName.has_char())
+      if (strFileName.has_character() || strModuleName.has_character())
       {
 
          string_array stra;
 
-         if (strFileName.has_char())
+         if (strFileName.has_character())
          {
 
             stra.add(strFileName);
 
          }
 
-         if (strModuleName.has_char())
+         if (strModuleName.has_character())
          {
 
             stra.add(strModuleName);
@@ -2378,7 +2378,7 @@ pdirectorysystem->create("/ca2core");
    bool system::assert_running_global(const ::string & pszAppName, const ::string & pszId)
    {
 
-      if (string(pszId).has_char())
+      if (string(pszId).has_character())
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
@@ -2453,7 +2453,7 @@ pdirectorysystem->create("/ca2core");
    {
       string strAppName(pszAppName);
       string strId(pszId);
-      if (strId.has_char())
+      if (strId.has_character())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
          auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName, strId));
@@ -3137,7 +3137,7 @@ pdirectorysystem->create("/ca2core");
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::rectangle_i32 & rectangle)
+//    void * system::initialize_native_window2(const ::int_rectangle & rectangle)
 
 //    {
 
@@ -3160,7 +3160,7 @@ pdirectorysystem->create("/ca2core");
    //
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::rectangle_f64 * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::double_rectangle * prectangle)
    //
    //   {
    //
@@ -3179,12 +3179,12 @@ pdirectorysystem->create("/ca2core");
    //   }
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::rectangle_i32 * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::int_rectangle * prectangle)
    //   {
    //
-   //      ::rectangle_f64 rectangle;
+   //      ::double_rectangle rectangle;
    //
-   //      if (!window_rectangle(pwindow, (::rectangle_f64*)rectangle_i32))
+   //      if (!window_rectangle(pwindow, (::double_rectangle*)int_rectangle))
    //      {
    //
    //         return false;
@@ -3506,7 +3506,7 @@ pmessagebox->sync();
 
       strProfile = strProfile + "." + strWeather;
 
-      if (strUrl.has_char())
+      if (strUrl.has_character())
       {
 
          if (strBrowser == "firefox")
@@ -3621,7 +3621,7 @@ pmessagebox->sync();
 
          //strOpenUrl = strUrl + ::str::has_char(strOpenUrl, ";");
 
-         //if (strOpenUrl.has_char())
+         //if (strOpenUrl.has_character())
          {
 
             // psystem->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
@@ -3658,7 +3658,7 @@ pmessagebox->sync();
 
 #else
 
-         if (strUrl.has_char())
+         if (strUrl.has_character())
          {
 
             strParam = "\"" + strUrl + "\"";
@@ -3788,7 +3788,7 @@ pmessagebox->sync();
          if (!bFound)
          {
 
-            if (strUrl.has_char())
+            if (strUrl.has_character())
             {
 
                auto iFind = strParam.find_index("%1");
@@ -3968,7 +3968,7 @@ pmessagebox->sync();
 
       strParam = "-P \"" + strProfile + "\"";
 
-      if (strUrl.has_char())
+      if (strUrl.has_character())
       {
 
          strParam += " -___new-tab \"" + strUrl + "\"";
@@ -4012,7 +4012,7 @@ pmessagebox->sync();
 
       }
 
-      if (strBrowser.has_char())
+      if (strBrowser.has_character())
       {
 
          file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", strBrowser);
@@ -4494,7 +4494,7 @@ namespace apex
 
       strLocation = set["get_headers"]["Location"];
 
-      if (strLocation.has_char())
+      if (strLocation.has_character())
       {
 
          property_set set;
@@ -4686,7 +4686,7 @@ namespace apex
 #ifdef UNIVERSAL_WINDOWS
 
 
-   bool system::window_rectangle(::rectangle_i32 * prectangle)
+   bool system::window_rectangle(::int_rectangle * prectangle)
    {
 
       if (::is_null(session()))
@@ -4774,7 +4774,7 @@ namespace apex
    }
 
 
-   void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
+   void system::system_id_update(huge_integer iUpdate, huge_integer iPayload)
    {
 
       call((::enum_id)iUpdate, iPayload);

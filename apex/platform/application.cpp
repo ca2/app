@@ -303,7 +303,7 @@ namespace apex
 #ifdef DEBUG
 
 
-   ::i64 application::increment_reference_count()
+   huge_integer application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -311,7 +311,7 @@ namespace apex
    }
 
 
-   ::i64 application::decrement_reference_count()
+   huge_integer application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -697,7 +697,7 @@ namespace apex
    string application::title()
    {
 
-      if (m_textAppTitle.get_text().has_char())
+      if (m_textAppTitle.get_text().has_character())
       {
 
          return m_textAppTitle.get_text();
@@ -724,7 +724,7 @@ namespace apex
 
       }
 
-      if (m_strAppName.has_char())
+      if (m_strAppName.has_character())
       {
 
          return m_strAppName;
@@ -747,7 +747,7 @@ namespace apex
 
       }
 
-      if (m_strAppId.has_char())
+      if (m_strAppId.has_character())
       {
 
          return m_strAppId;
@@ -1085,7 +1085,7 @@ namespace apex
                      
                      application_on_status(pop->m_estatus,
                                            pop->m_pparticle,
-                                           pop->m_ll,
+                                           pop->m_hi,
                                            pop->m_p);
                      
                      
@@ -1110,7 +1110,7 @@ namespace apex
    }
 
 
-   ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
+   ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::int_size & size)
    {
 
       auto pfile = file()->get("matter://main/icon.png");
@@ -1246,7 +1246,7 @@ namespace apex
 
    //   string strTitle;
 
-   //   u64 uFlags = 0;
+   //   huge_natural uFlags = 0;
 
    //   ::time timeTimeout;
 
@@ -1296,7 +1296,7 @@ namespace apex
    //   if (!load_string(str, atom))
    //   {
 
-   //      if (strDefault.has_char())
+   //      if (strDefault.has_character())
    //         return strDefault;
 
    //      return "";
@@ -2108,7 +2108,7 @@ namespace apex
             if (datastream()->get({ "system_locale", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   if (str != get_locale())
@@ -2166,7 +2166,7 @@ namespace apex
             else if (datastream()->get({ "locale", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   set_locale(str, ::e_source_database);
@@ -2179,7 +2179,7 @@ namespace apex
             if (datastream()->get({ "system_schema", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   if (str != get_schema())
@@ -2225,7 +2225,7 @@ namespace apex
             else if (datastream()->get({ "schema", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   set_schema(str, ::e_source_database);
@@ -2254,7 +2254,7 @@ namespace apex
             if (datastream()->get({ "system_locale", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   if (str != get_locale())
@@ -2312,7 +2312,7 @@ namespace apex
             else if (datastream()->get({ "locale", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   set_locale(str, ::e_source_database);
@@ -2325,7 +2325,7 @@ namespace apex
             if (datastream()->get({ "system_schema", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   if (str != get_schema())
@@ -2371,7 +2371,7 @@ namespace apex
             else if (datastream()->get({ "schema", true }, str))
             {
 
-               if (str.has_char())
+               if (str.has_character())
                {
 
                   set_schema(str, ::e_source_database);
@@ -2733,7 +2733,7 @@ namespace apex
 
       if (!(bHasInstall || bHasUninstall)
          && m_bLicense
-         && strLicense.has_char())
+         && strLicense.has_character())
       {
 
          assert_user_logged_in();
@@ -3426,7 +3426,7 @@ namespace apex
 
          string strSchema;
 
-         //if (psystem->get_user_language().has_char())
+         //if (psystem->get_user_language().has_character())
          //{
 
          m_strLocale = psystem->get_user_language();
@@ -3819,7 +3819,7 @@ namespace apex
 
       ::file::path pathPreviousLocation = platform()->get_argument_begins_eat("--previous-location");
 
-      if (pathPreviousLocation.has_char())
+      if (pathPreviousLocation.has_character())
       {
 
          //auto pmessagebox = __initialize_new ::message_box("there is a previous location");
@@ -5214,7 +5214,7 @@ namespace apex
 
       strExperience = payload("experience");
 
-      if (strExperience.has_char())
+      if (strExperience.has_character())
       {
 
          return strExperience;
@@ -5375,7 +5375,7 @@ namespace apex
    }
 
 
-   //   void application::on_event(::u64 u, ::particle * pparticle)
+   //   void application::on_event(huge_natural u, ::particle * pparticle)
    //   {
    //
    //      object_ptra ptra;
@@ -5572,7 +5572,7 @@ namespace apex
 
       string strNetworkPayload = file()->safe_get_string(directory_system()->config() / strAppId / +"http.network_payload");
 
-      if (strNetworkPayload.has_char())
+      if (strNetworkPayload.has_character())
       {
 
          try
@@ -6823,7 +6823,7 @@ namespace apex
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_character())
       {
 
          strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";
@@ -7143,10 +7143,10 @@ namespace apex
    string application::get_license_id()
    {
 
-      if (m_strLicense.has_char())
+      if (m_strLicense.has_character())
          return m_strLicense;
 
-      if (m_strInstallToken.has_char())
+      if (m_strInstallToken.has_character())
          return m_strInstallToken;
 
       return m_strAppId;
@@ -8182,9 +8182,9 @@ namespace apex
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "point_i32") == 0)
+   if (lstrcmpA(pszParam, "int_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "point_i32") == 0)
+   else if (lstrcmpA(pszParam, "int_point") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
    ::__invariant_stricmp(pszParam, "Regserver") == 0)
@@ -8754,7 +8754,7 @@ namespace apex
    ////ASSERT(m_pszRegistryKey == nullptr);
    ////ASSERT(pszRegistryKey != nullptr);
    //
-   ////ASSERT(m_strAppName.has_char());
+   ////ASSERT(m_strAppName.has_character());
    //
    //////bool bEnable = __enable_memory_tracking(false);
    ////free((void *)m_pszRegistryKey);
@@ -9509,7 +9509,7 @@ namespace apex
    //}
 
 
-   //::pointer<::user::interaction>application::uie_from_point(const ::point_i32& point)
+   //::pointer<::user::interaction>application::uie_from_point(const ::int_point& point)
    //{
 
    //   user::interaction_pointer_array wnda = *m_puiptraFrame;
@@ -9670,7 +9670,7 @@ namespace apex
    bool application::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 
-      i64 i64Size;
+      huge_integer i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -9730,7 +9730,7 @@ namespace apex
    }
 
 
-   bool application::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
+   bool application::get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -10067,7 +10067,7 @@ namespace apex
 
       auto path = payload.as_file_path();
 
-      if (path.has_char())
+      if (path.has_character())
       {
 
          if (::url::is(path) || file_system()->exists(path))

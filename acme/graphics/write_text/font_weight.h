@@ -124,11 +124,11 @@ namespace write_text
 
 
       constexpr enum_font_weight efontweight() const { return m_efontweight; }
-      constexpr int int() const { return m_iFontWeight; }
+      constexpr int as_int() const { return m_iFontWeight; }
 
 
       constexpr operator enum_font_weight() const { return efontweight(); }
-      constexpr operator int() const { return int(); }
+      constexpr operator int() const { return as_int(); }
 
 
       constexpr ::std::weak_ordering operator <=>(const enum_font_weight efontweight) const

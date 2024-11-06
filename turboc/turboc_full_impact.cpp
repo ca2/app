@@ -97,7 +97,7 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX.left() = 0;
 
@@ -174,7 +174,7 @@ namespace turboc
 
       string strHelloMultiverse = get_processed_turboc();
 
-      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
       if(!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -206,7 +206,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_font(m_pfont);
 
-/*         m_pimage->g()->text_out((m_cx - size_i32->cx()) / 2,(m_cy - size_i32->cy()) / 2,strHelloMultiverse);
+/*         m_pimage->g()->text_out((m_cx - int_size->cx()) / 2,(m_cy - int_size->cy()) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {
@@ -314,7 +314,7 @@ namespace turboc
             if(error == 0)
             {
 
-               i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
+               huge_integer iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face,(int)iChar);
 
@@ -365,7 +365,7 @@ namespace turboc
             if(error == 0)
             {
 
-               i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
+               huge_integer iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face,(int)iChar);
 

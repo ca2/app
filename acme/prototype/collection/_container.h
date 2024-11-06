@@ -59,7 +59,7 @@ inline ::string as_string(const CONTAINER& container, const ::scoped_string& sco
    for (const auto& item : container)
    {
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += scopedstrSeparator;
@@ -83,7 +83,7 @@ inline ::string as_string(const ::set < ITEM > & set, const ::scoped_string& sco
    for (const auto& item : set)
    {
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += scopedstrSeparator;

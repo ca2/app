@@ -55,7 +55,7 @@ namespace geometry2d
    //}
 
 
-   bool region::create_rectangle(const ::rectangle_f64 & rectangle)
+   bool region::create_rectangle(const ::double_rectangle & rectangle)
    {
 
       if (m_pitem)
@@ -78,7 +78,7 @@ namespace geometry2d
    }
 
 
-   bool region::create_ellipse(const ::ellipse_f64 & ellipse)
+   bool region::create_ellipse(const ::double_ellipse & ellipse)
    {
 
       if (m_pitem)
@@ -101,7 +101,7 @@ namespace geometry2d
    }
 
 
-   bool region::create_polygon(const ::point_f64 * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_polygon(const ::double_point * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       //if (m_eregion != ::draw2d::e_region_none)
@@ -131,7 +131,7 @@ namespace geometry2d
 
 
 
-   bool region::create_polygon(const polygon_f64 & polygon, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_polygon(const double_polygon & polygon, ::draw2d::enum_fill_mode efillmode)
    {
 
       return create_polygon(polygon.data(), (int)polygon.size(), efillmode);
@@ -139,7 +139,7 @@ namespace geometry2d
    }
 
 
-   bool region::create_polygon(const ::point_i32 * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_polygon(const ::int_point * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       //if (m_eregion != ::draw2d::e_region_none)
@@ -161,7 +161,7 @@ namespace geometry2d
 
          auto & p = pitem->m_polygon[i];
 
-         p = (const ::point_i32 &)ppoints[i];
+         p = (const ::int_point &)ppoints[i];
 
       }
 
@@ -176,7 +176,7 @@ namespace geometry2d
 
 
 
-   bool region::create_poly_polygon(const ::point_f64 * ppoints, const int * ppolycounts, int nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_poly_polygon(const ::double_point * ppoints, const int * ppolycounts, int nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       //if (m_eregion != ::draw2d::e_region_none)
@@ -195,7 +195,7 @@ namespace geometry2d
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate polygon_f64();
+         pitem->m_polypolygon[i] = __allocate double_polygon();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
@@ -222,7 +222,7 @@ namespace geometry2d
 
 
 
-   bool region::create_poly_polygon(const ::point_i32 * ppoints, const int * ppolycounts, int nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_poly_polygon(const ::int_point * ppoints, const int * ppolycounts, int nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       //if (m_eregion != ::draw2d::e_region_none)
@@ -241,7 +241,7 @@ namespace geometry2d
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate polygon_f64();
+         pitem->m_polypolygon[i] = __allocate double_polygon();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
@@ -267,7 +267,7 @@ namespace geometry2d
    }
 
 
-   bool region::create_poly_polygon(const ::poly_polygon_f64 & polypolygon, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_poly_polygon(const ::double_poly_polygon & polypolygon, ::draw2d::enum_fill_mode efillmode)
    {
 
       ////if (m_eregion != ::draw2d::e_region_none)
@@ -387,7 +387,7 @@ namespace geometry2d
    }
 
 
-   bool region::get_bounding_box(::rectangle_f64 & rectangle)
+   bool region::get_bounding_box(::double_rectangle & rectangle)
    {
 
       if (!m_pitem)
@@ -406,7 +406,7 @@ namespace geometry2d
    }
 
 
-   void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   void region::expand_bounding_box(::double_rectangle & rectangle)
    {
 
       if (!m_pitem)
@@ -425,7 +425,7 @@ namespace geometry2d
    }
 
 
-   bool region::contains(const ::point_f64 & point)
+   bool region::contains(const ::double_point & point)
    {
       
       if(!m_pitem)
@@ -450,7 +450,7 @@ namespace geometry2d
 
 
 
-   bool region::translate(const ::point_f64 & point)
+   bool region::translate(const ::double_point & point)
    {
 
       //set_modified();
@@ -467,7 +467,7 @@ namespace geometry2d
    }
 
 
-   //bool region::contains(const ::point_f64 & point)
+   //bool region::contains(const ::double_point & point)
    //{
 
    //   return internal_contains(point);
@@ -475,10 +475,10 @@ namespace geometry2d
    //}
 
 
-   //void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void region::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
-   //   ::rectangle_f64 rectangleMaxBounding;
+   //   ::double_rectangle rectangleMaxBounding;
 
    //   expand_bounding_box(rectangleMaxBounding);
 
@@ -487,10 +487,10 @@ namespace geometry2d
    //}
 
 
-   //void region::expand_bounding_box(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::expand_bounding_box(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   ::rectangle_f64 rectangle;
+   //   ::double_rectangle rectangle;
 
    //   max_bounding_box_rect(rectangle);
 
@@ -500,10 +500,10 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_oval(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   ::rectangle_f64 rectangle;
+   //   ::double_rectangle rectangle;
 
    //   max_bounding_box_oval(rectangle);
 
@@ -512,10 +512,10 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   ::rectangle_f64 rectangle;
+   //   ::double_rectangle rectangle;
 
    //   max_bounding_box_polygon(rectangle);
 
@@ -524,10 +524,10 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   ::rectangle_f64 rectangle;
+   //   ::double_rectangle rectangle;
 
    //   max_bounding_box_poly_polygon(rectangle);
 
@@ -536,10 +536,10 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_combine(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
-   //   ::rectangle_f64 rectangle;
+   //   ::double_rectangle rectangle;
 
    //   max_bounding_box_combine(rectangle);
 
@@ -548,7 +548,7 @@ namespace geometry2d
    //}
 
 
-   //void region::expand_bounding_box(::rectangle_f64 & rectangle)
+   //void region::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
    //   if (m_pitem)
@@ -561,7 +561,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_rect(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_rect(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   if (m_pitem)
@@ -574,7 +574,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_oval(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   if (m_pitem)
@@ -588,7 +588,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   if(m_nCount <= 0)
@@ -614,7 +614,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   int n = 0;
@@ -642,7 +642,7 @@ namespace geometry2d
    //}
 
 
-   //void region::max_bounding_box_combine(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   m_pregion1->expand_bounding_box(prectangle);
@@ -652,7 +652,7 @@ namespace geometry2d
    //}
 
 
-   bool region::internal_contains(const ::point_f64 & point)
+   bool region::internal_contains(const ::double_point & point)
    {
 
       if (m_pitem)
@@ -667,7 +667,7 @@ namespace geometry2d
    }
 
 
-   //bool region::internal_rectangle_contains(const ::point_f64 & point)
+   //bool region::internal_rectangle_contains(const ::double_point & point)
    //{
 
    //   return point.x() >= m_x1 && point.y() >= m_y1 && point.x() <= m_x2 && point.y() <= m_y2;
@@ -675,7 +675,7 @@ namespace geometry2d
    //}
 
 
-   //bool region::internal_oval_contains(const ::point_f64 & point)
+   //bool region::internal_oval_contains(const ::double_point & point)
    //{
 
    //   double centerx    = (m_x2 + m_x1) / 2.0;
@@ -723,7 +723,7 @@ namespace geometry2d
    //}
 
 
-   //bool region::internal_polygon_contains(const ::point_f64 & point)
+   //bool region::internal_polygon_contains(const ::double_point & point)
    //{
 
    //   if (m_nCount <= 0)
@@ -745,7 +745,7 @@ namespace geometry2d
    //}
 
 
-   //bool region::internal_poly_polygon_contains(const ::point_f64 & point)
+   //bool region::internal_poly_polygon_contains(const ::double_point & point)
    //{
 
    //   int n = 0;
@@ -771,7 +771,7 @@ namespace geometry2d
    //}
 
 
-   //bool region::internal_combine_contains(const ::point_f64 & point)
+   //bool region::internal_combine_contains(const ::double_point & point)
    //{
 
    //   if(m_ecombine == e_combine_add)
@@ -876,50 +876,50 @@ namespace geometry2d
    //}
 
 
-   //bool region::contains(const ::point_i32 & point)
+   //bool region::contains(const ::int_point & point)
    //{
 
-   //   return internal_contains(point_f64(point));
+   //   return internal_contains(double_point(point));
 
    //}
 
 
-   //bool region::internal_rectangle_contains(const ::point_i32 & point)
+   //bool region::internal_rectangle_contains(const ::int_point & point)
    //{
 
-   //   return internal_rectangle_contains(point_f64(point));
+   //   return internal_rectangle_contains(double_point(point));
 
    //}
 
 
-   //bool region::internal_oval_contains(const ::point_i32 & point)
+   //bool region::internal_oval_contains(const ::int_point & point)
    //{
 
-   //   return internal_oval_contains(point_f64(point));
+   //   return internal_oval_contains(double_point(point));
 
    //}
 
 
-   //bool region::internal_polygon_contains(const ::point_i32 & point)
+   //bool region::internal_polygon_contains(const ::int_point & point)
    //{
 
-   //   return internal_polygon_contains(point_f64(point));
+   //   return internal_polygon_contains(double_point(point));
 
    //}
 
 
-   //bool region::internal_poly_polygon_contains(const ::point_i32 & point)
+   //bool region::internal_poly_polygon_contains(const ::int_point & point)
    //{
 
-   //   return internal_poly_polygon_contains(point_f64(point));
+   //   return internal_poly_polygon_contains(double_point(point));
 
    //}
 
 
-   //bool region::internal_combine_contains(const ::point_i32 & point)
+   //bool region::internal_combine_contains(const ::int_point & point)
    //{
 
-   //   return internal_combine_contains(point_f64(point));
+   //   return internal_combine_contains(double_point(point));
 
    //}
 

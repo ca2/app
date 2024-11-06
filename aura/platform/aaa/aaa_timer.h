@@ -25,14 +25,14 @@ public:
    }
 
 
-   void wait(u64 uWait)
+   void wait(huge_natural uWait)
    {
 
 #ifdef WINDOWS
 
       LARGE_INTEGER li = {};
 
-      li.QuadPart = - ((::i64) uWait / 100LL);
+      li.QuadPart = - ((huge_integer) uWait / 100LL);
 
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {

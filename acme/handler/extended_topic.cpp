@@ -25,7 +25,7 @@ extended_topic::~extended_topic()
 #ifdef _DEBUG
 
 
-i64 extended_topic::increment_reference_count()
+huge_integer extended_topic::increment_reference_count()
 {
 
 return ::property_object::increment_reference_count();
@@ -33,7 +33,7 @@ return ::property_object::increment_reference_count();
 }
 
 
-i64 extended_topic::decrement_reference_count()
+huge_integer extended_topic::decrement_reference_count()
 {
 
 return ::property_object::decrement_reference_count();
@@ -41,7 +41,7 @@ return ::property_object::decrement_reference_count();
 }
 
 
-i64 extended_topic::release()
+huge_integer extended_topic::release()
 {
 
 return ::property_object::release();

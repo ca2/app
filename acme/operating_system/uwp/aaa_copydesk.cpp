@@ -144,7 +144,7 @@ namespace universal_windows
 
       ASSERT(m_p->is_window());
 
-      strsize iLen = 0;
+      character_count iLen = 0;
 
       for(int i = 0; i < stra.get_size(); i++)
       {

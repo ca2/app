@@ -147,7 +147,7 @@ namespace text
 
 #ifdef _DEBUG
       
-      i64 increment_reference_count() override
+      huge_integer increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
@@ -155,7 +155,7 @@ namespace text
       }
 
 
-      i64 decrement_reference_count() override
+      huge_integer decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();

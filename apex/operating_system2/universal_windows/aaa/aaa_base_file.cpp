@@ -60,7 +60,7 @@ filesize file_length_dup(const ::file::path & path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   u64 u = hfile_get_size(hfile);
+   huge_natural u = hfile_get_size(hfile);
 
    CloseHandle(hfile);
 
@@ -796,14 +796,14 @@ int_bool FILE_set_size(FILE * file,size_t iSize)
 }
 
 
-int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
+int_bool ensure_file_size_handle(HANDLE h,huge_natural iSize)
 {
 
    unsigned int dwHi;
 
    unsigned int dwLo = GetFileSize(h,&dwHi);
 
-   if(((u64)dwLo | ((u64)dwHi << 32)) != iSize)
+   if(((huge_natural)dwLo | ((huge_natural)dwHi << 32)) != iSize)
    {
 
       int l = (iSize >> 32) & 0xffffffff;
@@ -1082,7 +1082,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   int offsetHigh = (offset >> 32) & 0xffffffffLL;
 //   unsigned int dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
 //   ((FILE*)fp)->_flag &= ~_FILE_EOF;
-//   return (u64)dw | (((u64)offsetHigh) << 32);
+//   return (huge_natural)dw | (((huge_natural)offsetHigh) << 32);
 //
 //}
 //
@@ -1371,7 +1371,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//u64 hfile_get_size(HANDLE h)
+//huge_natural hfile_get_size(HANDLE h)
 //{
 //
 //   unsigned int dwHi;
@@ -1386,14 +1386,14 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 
-void hfile_set_size(HANDLE h,i64 iSize)
+void hfile_set_size(HANDLE h,huge_integer iSize)
 {
 
    unsigned int dwHi;
 
    unsigned int dwLo = ::GetFileSize(h,&dwHi);
 
-   if(((u64)dwLo | ((i64)dwHi << 32)) != iSize)
+   if(((huge_natural)dwLo | ((huge_integer)dwHi << 32)) != iSize)
    {
       int l = (iSize >> 32) & 0xffffffff;
       ::SetFilePointer(h,iSize & 0xffffffff,&l,SEEK_SET);
@@ -1752,7 +1752,7 @@ pdirectorysystem->create(::file_path_folder(path));
 
 
 
-string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 {
 
    string str;

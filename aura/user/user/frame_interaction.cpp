@@ -778,7 +778,7 @@ namespace user
    }
 
 
-   //void frame_interaction::this->rectangle(::rectangle_i32* lprect)
+   //void frame_interaction::this->rectangle(::int_rectangle* lprect)
    //{
    //   
    //   ::user::interaction::this->rectangle(lprect);
@@ -1051,7 +1051,7 @@ namespace user
    }
 
 
-   size_i32 frame_interaction::get_window_minimum_size()
+   int_size frame_interaction::get_window_minimum_size()
    {
 
       if (m_sizeMinimum.area() > 0)
@@ -1063,7 +1063,7 @@ namespace user
       else if (const_layout().sketch().display() == ::e_display_minimal)
       {
 
-         return ::size_i32(8, 8);
+         return ::int_size(8, 8);
 
       }
       else
@@ -1201,7 +1201,7 @@ namespace user
 
          //}
 
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
 
          ::pointer<::user::interaction> pparent = puserinteractionParent;
 

@@ -24,8 +24,8 @@ public:
    bool on_open_document(const ::payload & payloadFile) override;
 
 #ifdef _DEBUG
-   virtual i64 increment_reference_count() override;
-   virtual i64 decrement_reference_count() override;
+   virtual huge_integer increment_reference_count() override;
+   virtual huge_integer decrement_reference_count() override;
 #else
    
 #endif

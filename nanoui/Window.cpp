@@ -57,7 +57,7 @@ void Window::on_destroy_window()
    }
 
 
-   size_i32 Window::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size Window::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       bool bButtonPanelWasVisible = true;
@@ -89,7 +89,7 @@ void Window::on_destroy_window()
 
       }
 
-      return size_i32(
+      return int_size(
          ::maximum(sizeResult.cx(), (int)(m_boundsHeader.width() + 20)),
          ::maximum(sizeResult.cy(), (int)(m_boundsHeader.height()))
       );
@@ -206,7 +206,7 @@ void Window::on_destroy_window()
          //pcontext->fill();
          //pcontext->Restore();
 
-         if (m_title.has_char()) {
+         if (m_title.has_character()) {
             /* Draw header */
             ::nano2d::paint header_paint = pcontext->linear_gradient(
                (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
@@ -276,7 +276,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_enter_event(const point_i32& pointCursor, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_enter_event(const int_point& pointCursor, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(pointCursor, enter, ekeyModifiers);
@@ -290,7 +290,7 @@ void Window::on_destroy_window()
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const point_i32&pointCursor, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_motion_event(const int_point&pointCursor, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_bDrag && (ekeyModifiers & ::user::e_key_left_button) != 0 && bDown)
@@ -300,14 +300,14 @@ void Window::on_destroy_window()
          
          auto posNew = m_pointDragStartPosition + offset;
          
-         posNew = posNew.maximum(::point_i32(0, 0));
+         posNew = posNew.maximum(::int_point(0, 0));
          
          posNew = posNew.minimum(parent()->size() - m_size);
          
          if(posNew != m_pointLastDragPosition)
          {
             
-            ::point_i32 parentPosition;
+            ::int_point parentPosition;
             
             if(parent())
             {
@@ -316,7 +316,7 @@ void Window::on_destroy_window()
                
             }
             
-            ::rectangle_i32 rectangleOld(m_pointLastDragPosition, m_size);
+            ::int_rectangle rectangleOld(m_pointLastDragPosition, m_size);
             
             if(parent())
             {
@@ -331,7 +331,7 @@ void Window::on_destroy_window()
                         rectangleOld.right(),
                         rectangleOld.bottom());
             
-            ::rectangle_int_array rectanglea;
+            ::int_rectangle_array rectanglea;
             
             rectanglea.add(rectangleOld);
 
@@ -340,7 +340,7 @@ void Window::on_destroy_window()
 
                auto ppopup = ppopupbutton->popup();
 
-               ::rectangle_i32 rectangleOld(ppopup->m_pointLastDragPosition, ppopup->m_size);
+               ::int_rectangle rectangleOld(ppopup->m_pointLastDragPosition, ppopup->m_size);
 
                if (ppopup->parent())
                {
@@ -372,7 +372,7 @@ void Window::on_destroy_window()
 
             }
 
-            ::rectangle_i32 rectangleNew(posNew, m_size);
+            ::int_rectangle rectangleNew(posNew, m_size);
 
             if(parent())
             {
@@ -396,7 +396,7 @@ void Window::on_destroy_window()
 
                auto ppopup = ppopupbutton->popup();
 
-               ::rectangle_i32 rectangleNew(ppopup->m_pointLastDragPosition, ppopup->m_size);
+               ::int_rectangle rectangleNew(ppopup->m_pointLastDragPosition, ppopup->m_size);
 
                rectangleNew += offset;
 
@@ -465,7 +465,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_button_event(const point_i32& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_button_event(const int_point& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (Widget::mouse_button_event(pointCursor, emouse, down, bDoubleClick, ekeyModifiers))
@@ -531,7 +531,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::scroll_event(const point_i32& pointCursor, const size_f32& rel)
+   bool Window::scroll_event(const int_point& pointCursor, const float_size& rel)
    {
 
       Widget::scroll_event(pointCursor, rel);

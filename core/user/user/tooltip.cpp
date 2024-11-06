@@ -103,7 +103,7 @@ namespace user
 
       ppath->set_current_point(rectangleX.left(), rectangleX.bottom());
 
-      ::rectangle_i32 rectangleBody;
+      ::int_rectangle rectangleBody;
 
       rectangleBody = rectangleX;
 
@@ -135,7 +135,7 @@ namespace user
 
       pgraphics->set_text_color(argb(255, 120, 120, 255));
 
-      //::rectangle_i32 rectangle;
+      //::int_rectangle rectangle;
 
       //rectangleText.left() = 0;
 
@@ -153,16 +153,16 @@ namespace user
 
    }
 
-   size_i32 tooltip::CalcSize()
+   int_size tooltip::CalcSize()
    {
 
       string_array stra;
 
       stra.add_lines(m_str);
 
-      ::size_i32 size(0,0);
+      ::int_size size(0,0);
 
-      ::size_i32 sizeLine;
+      ::int_size sizeLine;
 
       ::draw2d::graphics_pointer g(e_create, this);
 

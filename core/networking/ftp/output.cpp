@@ -27,7 +27,7 @@ namespace ftp
 
       if (command.AsString().case_insensitive_contains("PASS"))
       {
-         if (strImplode.has_char())
+         if (strImplode.has_character())
          {
             WriteLine("< PASS **********", "S");
          }

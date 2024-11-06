@@ -36,7 +36,7 @@ manager::~manager()
 //#error "manager::increment_reference_count is being compiled??"
 
 
-i64 manager::increment_reference_count()
+huge_integer manager::increment_reference_count()
 {
 
    return ::property_object::increment_reference_count();
@@ -44,7 +44,7 @@ i64 manager::increment_reference_count()
 }
 
 
-i64 manager::decrement_reference_count()
+huge_integer manager::decrement_reference_count()
 {
 
    return ::property_object::decrement_reference_count();
@@ -52,7 +52,7 @@ i64 manager::decrement_reference_count()
 }
 
 
-i64 manager::release()
+huge_integer manager::release()
 {
 
    return ::property_object::release();

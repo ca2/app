@@ -36,7 +36,7 @@ public:
 
     //}
 
-    ::u64 read_natural(int iRadix = 10);
+    huge_natural read_natural(int iRadix = 10);
 //    {
 //
 //       return consume_natural(m_psz, m_pszBegin, iRadix);
@@ -44,7 +44,7 @@ public:
 //    }
 
 
-    ::i64 read_integer(int iRadix = 10);
+    huge_integer read_integer(int iRadix = 10);
 //    {
 //
 //       return consume_integer(m_psz, m_pszBegin, iRadix);
@@ -94,13 +94,13 @@ public:
 //   text_stream& operator <<(unsigned short u);
 //   text_stream& operator <<(int i);
 //   text_stream& operator <<(unsigned int u);
-//   text_stream& operator <<(i64 i);
-//   text_stream& operator <<(u64 u);
+//   text_stream& operator <<(huge_integer i);
+//   text_stream& operator <<(huge_natural u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
-//   // void write(const ::point_i32 & point) ;
-//   // void write(const ::size_i32 & size) ;
-//   // void write(const ::rectangle_i32 &rectangle) ;
+//   // void write(const ::int_point & point) ;
+//   // void write(const ::int_size & size) ;
+//   // void write(const ::int_rectangle &rectangle) ;
 //
 //   text_stream& operator <<(const ::ansi_character * psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
@@ -293,7 +293,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(i64& i);
+    read_sz_stream& operator >>(huge_integer& i);
 //    {
 //
 //       i = read_integer();
@@ -303,7 +303,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(u64& u);
+    read_sz_stream& operator >>(huge_natural& u);
 //    {
 //
 //       u = read_natural();

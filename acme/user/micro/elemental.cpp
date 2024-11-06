@@ -181,7 +181,7 @@ namespace micro
 
       }
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX = get_client_rectangle();
 
@@ -702,7 +702,7 @@ namespace micro
    }
 
 
-   ::micro::elemental* elemental::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
+   ::micro::elemental* elemental::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
    {
 
       if (m_pacmeuserinteractionaChildren)
@@ -1128,7 +1128,7 @@ namespace micro
    //}
 
 
-   //::point_i32 elemental::origin()
+   //::int_point elemental::origin()
    //{
 
    //   throw ::exception(error_wrong_state);
@@ -1138,7 +1138,7 @@ namespace micro
    //}
 
 
-   ::shift_i32 elemental::host_to_client()
+   ::shift_int elemental::host_to_client()
    {
 
       return -client_to_host();
@@ -1146,7 +1146,7 @@ namespace micro
    }
 
 
-   ::shift_i32 elemental::client_to_host()
+   ::shift_int elemental::client_to_host()
    {
 
       return {};
@@ -1154,7 +1154,7 @@ namespace micro
    }
 
 
-   ::shift_i32 elemental::absolute_to_client()
+   ::shift_int elemental::absolute_to_client()
    {
 
       return -client_to_host();
@@ -1162,7 +1162,7 @@ namespace micro
    }
 
 
-   ::shift_i32 elemental::client_to_absolute()
+   ::shift_int elemental::client_to_absolute()
    {
 
       if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
@@ -1179,7 +1179,7 @@ namespace micro
    }
 
 
-   ::point_i32 elemental::origin()
+   ::int_point elemental::origin()
    {
       auto r = get_window_rectangle();
 
@@ -1188,7 +1188,7 @@ namespace micro
    }
 
 
-   ::rectangle_i32 elemental::get_client_rectangle()
+   ::int_rectangle elemental::get_client_rectangle()
    {
       auto r = get_rectangle();
 
@@ -1262,7 +1262,7 @@ namespace micro
    }
 
 
-   //::point_i32 elemental::try_absolute_mouse_position(const ::point_i32 & point)
+   //::int_point elemental::try_absolute_mouse_position(const ::int_point & point)
    //{
 
    //   auto p = point;
@@ -1282,7 +1282,7 @@ namespace micro
    //}
 
 
-   //bool elemental::on_drag_start(::point_i32 & point, ::item * pitem)
+   //bool elemental::on_drag_start(::int_point & point, ::item * pitem)
    //{
 
    //   if (pitem->m_item.m_eelement == e_element_client)
@@ -1308,7 +1308,7 @@ namespace micro
    //}
 
 
-   //::point_i32 elemental::drag_mouse_cursor_position(::item * pitem, const ::point_i32 & point)
+   //::int_point elemental::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
    //{
 
    //   //auto p = try_absolute_mouse_position(point);
@@ -1439,7 +1439,7 @@ namespace micro
    //}
 
 
-   void elemental::set_position(const ::point_i32& point)
+   void elemental::set_position(const ::int_point& point)
    {
 
       acme_windowing_window()->set_position(point);
@@ -1544,14 +1544,14 @@ namespace micro
    }
 
 
-   //void elemental::get_client_rectangle(::rectangle_i32 & rectangle)
+   //void elemental::get_client_rectangle(::int_rectangle & rectangle)
    //{
 
 
    //}
 
 
-   rectangle_i32 elemental::get_rectangle()
+   int_rectangle elemental::get_rectangle()
    {
 
       return m_rectangle;
@@ -1696,29 +1696,21 @@ namespace micro
    //}
 
 
-   //void elemental::get_text_selection(strsize & iBeg, strsize & iEnd) const
+   //void elemental::get_text_selection(character_count & iBeg, character_count & iEnd) const
    //{
 
 
    //}
 
 
-   //void elemental::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   //void elemental::get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const
    //{
 
 
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-   //{
-
-   //   return -1;
-
-   //}
-
-
-   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
    //{
 
    //   return -1;
@@ -1726,7 +1718,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
    //{
 
    //   return -1;
@@ -1734,7 +1726,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
    //{
 
    //   return -1;
@@ -1742,7 +1734,7 @@ namespace micro
    //}
 
 
-   //strsize elemental::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
    //{
 
    //   return -1;
@@ -1750,7 +1742,7 @@ namespace micro
    //}
 
 
-   //strsize elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+   //character_count elemental::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
    //{
 
    //   return -1;
@@ -1758,7 +1750,15 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+   //{
+
+   //   return -1;
+
+   //}
+
+
+   //::collection::index elemental::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
    //{
 
    //   return -1;
@@ -1775,7 +1775,7 @@ namespace micro
 
       ::string strAtom = m_atom.as_string();
 
-      if (strAtom.has_char() && strAtom != strType)
+      if (strAtom.has_character() && strAtom != strType)
       {
          statement << "=" << strAtom;
       }

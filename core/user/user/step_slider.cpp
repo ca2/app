@@ -123,12 +123,12 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
-      i64 iMin = m_scalar.minimum().get_i64();
-      i64 iMax = m_scalar.maximum().get_i64();
-      i64 iVal = m_scalar.get().get_i64();
+      huge_integer iMin = m_scalar.minimum().get_huge_integer();
+      huge_integer iMax = m_scalar.maximum().get_huge_integer();
+      huge_integer iVal = m_scalar.get().get_huge_integer();
 
-      ::rectangle_i32 rectangle;
-      for(i64 i = iMin; i <= iMax; i++)
+      ::int_rectangle rectangle;
+      for(huge_integer i = iMin; i <= iMax; i++)
       {
          GetStepRect(&rectangle, i, iMin, iMax, rectangleX);
          if(i == iVal)
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX)
+   void step_slider::GetStepHoverRect(::int_rectangle * prectangle, huge_integer iStep, huge_integer iMin, huge_integer iMax, const ::int_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(::rectangle_i32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX)
+   void step_slider::GetStepRect(::int_rectangle * prectangle, huge_integer iStep, huge_integer iMin, huge_integer iMax, const ::int_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer step_slider::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       auto rectangleX = this->rectangle();
@@ -224,11 +224,11 @@ namespace user
 
       }
 
-      i64 iMin, iMax;
+      huge_integer iMin, iMax;
 
-      iMin = m_scalar.minimum().get_i64();
+      iMin = m_scalar.minimum().get_huge_integer();
 
-      iMax = m_scalar.maximum().get_i64();
+      iMax = m_scalar.maximum().get_huge_integer();
 
       return __allocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
 
@@ -246,7 +246,7 @@ namespace user
 //
 //      set_need_redraw();
 //
-//      ::rectangle_i32 rectangleX;
+//      ::int_rectangle rectangleX;
 //
 //      this->rectangle(rectangleX);
 //

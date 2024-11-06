@@ -537,7 +537,7 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      /*if (!::LockFile((HANDLE)m_iFile, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
+      /*if (!::LockFile((HANDLE)m_iFile, lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
          ::file::throw_os_error( (int)::get_last_error());*/
    }
 
@@ -546,7 +546,7 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      /*      if (!::UnlockFile((HANDLE)m_iFile,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
+      /*      if (!::UnlockFile((HANDLE)m_iFile,  lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
                ::file::throw_os_error( (int)::get_last_error());*/
    }
 
@@ -578,13 +578,13 @@ namespace android
       file* pFile = (file*)this;
       dwCur = pFile->seek(0L, ::e_seek_current);
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::e_seek_set));
+      VERIFY(dwCur == (huge_natural)pFile->seek((filesize) dwCur, ::e_seek_set));
 
       return (filesize) dwLen;
    }
 
    //// file does not support direct buffering (CMemFile does)
-   //u64 file::GetBufferPtr(unsigned int nCommand, u64 /*nCount*/,
+   //huge_natural file::GetBufferPtr(unsigned int nCommand, huge_natural /*nCount*/,
    //                            void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
@@ -753,14 +753,14 @@ namespace android
 
    }
 
-   //u64 file::ReadHuge(void * lpBuffer, u64 dwCount)
+   //huge_natural file::ReadHuge(void * lpBuffer, huge_natural dwCount)
    //{
 
    //   return  read(lpBuffer, dwCount);
 
    //}
 
-   //void file::WriteHuge(const void * lpBuffer, u64 dwCount)
+   //void file::WriteHuge(const void * lpBuffer, huge_natural dwCount)
    //{
 
    //   write(lpBuffer, dwCount);

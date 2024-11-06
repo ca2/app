@@ -112,7 +112,7 @@ namespace micro
    void message_box::on_draw(::nano::graphics::device* pmicrodevice)
    {
 
-      rectangle_i32 rectangleText;
+      int_rectangle rectangleText;
 
       rectangleText = get_client_rectangle();
 
@@ -144,7 +144,7 @@ namespace micro
    void message_box::defer_create_details_still()
    {
 
-      if (m_prealizable->m_strDetails.has_char())
+      if (m_prealizable->m_strDetails.has_character())
       {
 
          m_pstillDetails = __allocate ::micro::still();
@@ -554,7 +554,7 @@ namespace micro
 
       //auto pwindowParent = this->acme_windowing_window();
 
-      ::rectangle_i32 rectanglePointTo;
+      ::int_rectangle rectanglePointTo;
 
       rectanglePointTo.left() = pmouse->m_pointAbsolute.x();
       rectanglePointTo.top() = pmouse->m_pointAbsolute.y();

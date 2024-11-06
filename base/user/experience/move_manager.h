@@ -17,9 +17,9 @@ namespace experience
 
       ::experience::frame_window *     m_pframewindow;
       e_border                         m_eborderMask;
-      point_i32                        m_pointCursorOrigin;
-      point_i32                        m_pointWindowOrigin;
-      point_i32                        m_pointMove;
+      int_point                        m_pointCursorOrigin;
+      int_point                        m_pointWindowOrigin;
+      int_point                        m_pointMove;
       bool                             m_bMoving;
       //unsigned int                          m_uiSWPFlags;
       ::user::layout_state             m_stateBefore;
@@ -48,7 +48,7 @@ namespace experience
       
       virtual void cancel_moving();
       
-      //void MoveWindow(void * oswindow, const ::point_i32 & point);
+      //void MoveWindow(void * oswindow, const ::int_point & point);
       //void SetSWPFlags(unsigned int uFlags);
 
 

@@ -78,9 +78,9 @@ namespace html
       element * get_element_by_name(atom atom);
       element * get_element_by_id(atom atom);
 
-      virtual element * hit_test(html_data * phtmldata, const ::point_f32 & point);
-      virtual element * bound_hit_test(html_data * phtmldata, const ::point_f32 & point);
-      virtual element * bound_hit_test(html_data * phtmldata, const ::point_f32 & point, double & dMin);
+      virtual element * hit_test(html_data * phtmldata, const ::float_point & point);
+      virtual element * bound_hit_test(html_data * phtmldata, const ::float_point & point);
+      virtual element * bound_hit_test(html_data * phtmldata, const ::float_point & point, double & dMin);
 
 
       virtual void implement(html_data * phtmldata);

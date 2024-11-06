@@ -120,7 +120,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //
 //   str.replace_with(" ", "+");
 //
-//   strsize iStart = 0;
+//   character_count iStart = 0;
 //
 //   while(true)
 //   {
@@ -181,7 +181,7 @@ namespace url
 
       auto pszDecode = pszStart;
 
-      strsize i = 0;
+      character_count i = 0;
 
       const ::scoped_string & scopedstrEncoded = (const char*)block.get_data();
 
@@ -578,7 +578,7 @@ void openURL(const string& url_str)
 //
 //pdirectorysystem->system() / "config\\pass.txt");
 ////
-//   //if(strUsername.has_char() && strPassword.has_char())
+//   //if(strUsername.has_character() && strPassword.has_character())
 //   //{
 //
 //   //}
@@ -622,7 +622,7 @@ void openURL(const string& url_str)
 //
 //   }
 //
-//   if(domain != nullptr && strDomain.has_char())
+//   if(domain != nullptr && strDomain.has_character())
 //   {
 //
 //      *domain = strdup(strDomain);
@@ -651,9 +651,9 @@ void openURL(const string& url_str)
 //
 //   string strCandidate(pszCandidate);
 //
-//   strsize iLen = strCandidate.length();
+//   character_count iLen = strCandidate.length();
 //
-//   strsize i = 0;
+//   character_count i = 0;
 //
 //   char ch;
 //
@@ -693,7 +693,7 @@ void openURL(const string& url_str)
 //
 //   str.replace_with(" ", "+");
 //
-//   strsize iStart = 0;
+//   character_count iStart = 0;
 //
 //   while (true)
 //   {
@@ -739,7 +739,7 @@ void openURL(const string& url_str)
 
 
 
-//string ::url::decode(const ::scoped_string & scopedstrUrl, strsize iLen)
+//string ::url::decode(const ::scoped_string & scopedstrUrl, character_count iLen)
 //
 //{
 //
@@ -747,7 +747,7 @@ void openURL(const string& url_str)
 //
 //   char* psz = strDecode.get_buffer(iLen * 4);
 //
-//   strsize i = 0;
+//   character_count i = 0;
 //
 //   while (*pszUrl != '\0' && i < iLen)
 //
@@ -956,7 +956,7 @@ void openURL(const string& url_str)
 //      else
 //      {
 //
-//         ansi_from_i64(sz, uch, 16);
+//         ansi_from_huge_integer(sz, uch, 16);
 //
 //         ansi_upper(sz);
 //
@@ -1146,7 +1146,7 @@ pdirectorysystem->system() / "config\\user.txt")*/;
 //
 //pdirectorysystem->system() / "config\\pass.txt");
 //
-//   //if(strUsername.has_char() && strPassword.has_char())
+//   //if(strUsername.has_character() && strPassword.has_character())
 //   //{
 //
 //   //}
@@ -1190,7 +1190,7 @@ pdirectorysystem->system() / "config\\user.txt")*/;
 //
 //   }
 //
-//   if(domain != nullptr && strDomain.has_char())
+//   if(domain != nullptr && strDomain.has_character())
 //   {
 //
 //      *domain = strdup(strDomain);

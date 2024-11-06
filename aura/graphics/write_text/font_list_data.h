@@ -22,7 +22,7 @@ namespace write_text
       ::collection::index                   m_iUpdateId;
       int                     m_iBaseSize;
       ::int_array             m_iaSize;
-      ::rectangle_i32         m_rectangleX;
+      ::int_rectangle         m_rectangleX;
       int                     m_iUpdatedCount;
       bool                    m_bLayoutStillIntersect;
 

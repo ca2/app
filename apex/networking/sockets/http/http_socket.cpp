@@ -138,7 +138,7 @@ namespace sockets
 
                         string size_str = pa.getword();
 
-                        m_chunk_size = ::hex::to_u32(size_str);
+                        m_chunk_size = ::hex::to_unsigned_int(size_str);
 
                         if (!m_chunk_size)
                         {
@@ -371,7 +371,7 @@ namespace sockets
          {
             iFind++;
          }
-         strsize iLen = line.length();
+         character_count iLen = line.length();
          while (iLen >= iFind && character_isspace(line[iLen - 1]))
          {
             iLen--;
@@ -390,7 +390,7 @@ namespace sockets
 
          ::string strProtocol = value;
 
-         if (strProtocol.has_char())
+         if (strProtocol.has_character())
          {
 
             if (strProtocol.case_insensitive_equals("https"))
@@ -507,7 +507,7 @@ namespace sockets
 
       strHost = m_response.header("host");
 
-      if (strHost.has_char())
+      if (strHost.has_character())
       {
 
          msg += "Host: " + strHost + "\r\n";
@@ -645,7 +645,7 @@ namespace sockets
    void http_socket::SendResponseBody()
    {
 
-      if (response().m_strFile.has_char())
+      if (response().m_strFile.has_character())
       {
 
          string strFile = response().m_strFile;
@@ -710,7 +710,7 @@ namespace sockets
       msg = m_request.attr("http_method") + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") +
             "\r\n";
 
-      if (m_request.m_propertysetHeader["host"].has_char())
+      if (m_request.m_propertysetHeader["host"].has_character())
       {
 
          strLine = "Host: " + m_request.m_propertysetHeader["host"];
@@ -778,7 +778,7 @@ namespace sockets
    {
       string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 veriview/10.0";
 
-      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; point_i32-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; int_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
 #ifdef _VERSION
       version += _VERSION;
@@ -977,7 +977,7 @@ namespace sockets
    }
 
 
-   ::i64 http_socket::get_request_serial()
+   huge_integer http_socket::get_request_serial()
    {
 
       return m_iHttpSocketRequestSerial;

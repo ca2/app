@@ -374,23 +374,23 @@ namespace datetime
          return "";
       const char * start = input;
       string strNat1 = check_natural(input, scanner);
-      if(strNat1.has_char())
+      if(strNat1.has_character())
       {
          input = scanner;
          string strSep1 = check_natural_separator(input, scanner);
-         if(strSep1.has_char())
+         if(strSep1.has_character())
          {
             input = scanner;
             string strNat2 = check_natural(input, scanner);
-            if(strNat2.has_char())
+            if(strNat2.has_character())
             {
                input = scanner;
                string strSep2 = check_natural_separator(input, scanner);
-               if(strSep2.has_char() && strSep2 == strSep1)
+               if(strSep2.has_character() && strSep2 == strSep1)
                {
                   input = scanner;
                   string strNat3 = check_natural(input, scanner);
-                  if(strNat3.has_char())
+                  if(strNat3.has_character())
                   {
                      
                      input = scanner;
@@ -411,7 +411,7 @@ namespace datetime
                {
                   input = scanner;
                   string strMonth = check_month(input, scanner);
-                  if(strMonth.has_char())
+                  if(strMonth.has_character())
                   {
                      
                      input = scanner;
@@ -434,7 +434,7 @@ namespace datetime
                   }
 
                }
-               else if(!strSep2.has_char())
+               else if(!strSep2.has_character())
                {
 
                   input = scanner;
@@ -461,15 +461,15 @@ namespace datetime
             {
                input = scanner;
                string strMonth = check_month(input, scanner);
-               if(strMonth.has_char())
+               if(strMonth.has_character())
                {
                   input = scanner;
                   string strSep2 = check_natural_separator(input, scanner);
-                  if(strSep2.has_char() && strSep2 == strSep1)
+                  if(strSep2.has_character() && strSep2 == strSep1)
                   {
                      input = scanner;
                      string strNat3 = check_natural(input, scanner);
-                     if(strNat3.has_char())
+                     if(strNat3.has_character())
                      {
                         
                         input = scanner;
@@ -490,7 +490,7 @@ namespace datetime
                   {
                      input = scanner;
                      string strNat2 = check_natural(input, scanner);
-                     if(strNat2.has_char())
+                     if(strNat2.has_character())
                      {
 
                         input = scanner;
@@ -566,7 +566,7 @@ namespace datetime
 
          string strNat = check_natural(input, scanner);
 
-         if(!strNat.has_char())
+         if(!strNat.has_character())
          {
 
             if (iCount > 0)
@@ -584,7 +584,7 @@ namespace datetime
 
          string strUnit = check_unit(pcontext, input, scanner);
 
-         if(!strNat.has_char())
+         if(!strNat.has_character())
          {
 
             return "";
@@ -618,14 +618,14 @@ namespace datetime
 
       string strDate = check_date(input, scanner);
 
-      if(strDate.has_char())
+      if(strDate.has_character())
       {
 
          input = scanner;
 
          string strOffset = check_offset(pcontext, input, scanner);
 
-         if(strOffset.has_char())
+         if(strOffset.has_character())
          {
 
             input = scanner;
@@ -670,14 +670,14 @@ namespace datetime
 
          string strLangDate = check_lang_date(input, scanner);
 
-         if(strLangDate.has_char())
+         if(strLangDate.has_character())
          {
 
             input = scanner;
 
             string strOffset = check_offset(pcontext, input, scanner);
 
-            if(strOffset.has_char())
+            if(strOffset.has_character())
             {
 
                input = scanner;
@@ -724,7 +724,7 @@ namespace datetime
 
             string strOffset = check_offset(pcontext, input, scanner);
 
-            if(strOffset.has_char())
+            if(strOffset.has_character())
             {
 
                input = scanner;

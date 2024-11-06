@@ -232,7 +232,7 @@ namespace html
 
             string str = ptag->get_attr_value("face");
 
-            if (str.has_char())
+            if (str.has_character())
             {
 
                m_pstyle->m_propertyset["font-family"] = str;
@@ -241,7 +241,7 @@ namespace html
 
             str = ptag->get_attr_value("color");
 
-            if (str.has_char())
+            if (str.has_character())
             {
 
                m_pstyle->m_propertyset["color"] = str;
@@ -407,7 +407,7 @@ namespace html
          //if (m_elementalptra.has_elements())
          {
 
-            if (m_strClass.has_char() || m_strInlineStyle.has_char())
+            if (m_strClass.has_character() || m_strInlineStyle.has_character())
             {
                if (m_strClass == "field")
                {
@@ -672,7 +672,7 @@ namespace html
       /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx())
             {
 
-            m_pimpl->set_bound_size(phtmldata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx()));
+            m_pimpl->set_bound_size(phtmldata, ::float_size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx()));
 
             }
 
@@ -1463,7 +1463,7 @@ namespace html
    }
 
 
-   element * element::hit_test(html_data * phtmldata, const ::point_f32 & point)
+   element * element::hit_test(html_data * phtmldata, const ::float_point & point)
    {
 
       if (m_pimpl != nullptr)
@@ -1527,7 +1527,7 @@ namespace html
    }
 
 
-   element * element::bound_hit_test(html_data * phtmldata, const ::point_f32 & point)
+   element * element::bound_hit_test(html_data * phtmldata, const ::float_point & point)
    {
 
       double dMin = -1.0;
@@ -1537,7 +1537,7 @@ namespace html
    }
 
 
-   element * element::bound_hit_test(html_data * phtmldata, const ::point_f32 & point, double & dMin)
+   element * element::bound_hit_test(html_data * phtmldata, const ::float_point & point, double & dMin)
    {
 
       if (m_pimpl != nullptr)

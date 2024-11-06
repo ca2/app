@@ -132,7 +132,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count()
+   huge_integer node::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -140,7 +140,7 @@ namespace platform
    }
 
 
-   i64 node::decrement_reference_count()
+   huge_integer node::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -224,7 +224,7 @@ namespace platform
       for (auto & str : stra)
       {
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             string_array a;
@@ -238,13 +238,13 @@ namespace platform
 
                string strProcessId = a[1];
 
-               int iProcessId = ansi_to_i32(strProcessId);
+               int iProcessId = ansi_to_int(strProcessId);
 
                stra2.case_insensitive_add_unique(strProcessName);
 
                string strPath = pnode->process_identifier_module_path(iProcessId);
 
-               if (strPath.has_char())
+               if (strPath.has_character())
                {
 
                   if (path_system()->real_path_is_same(strPath, strProcessName))
@@ -272,7 +272,7 @@ namespace platform
       //for(auto & str : stra2)
       //{
 
-      //   if(str.has_char())
+      //   if(str.has_character())
       //   {
 
       //          iaPid.add_unique(module_path_get_pid(str));
@@ -324,7 +324,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const char * pszStatus, void * p, long long ll)
+   void node::node_application_on_status(const char * pszStatus, void * p, huge_integer hi)
    {
       
       
@@ -670,7 +670,7 @@ namespace platform
 
    //   ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
-   //   if(strUserToolkit.has_char())
+   //   if(strUserToolkit.has_character())
    //   {
 
    //      auto pfactory = system()->factory("windowing_system", strUserToolkit);
@@ -748,7 +748,7 @@ namespace platform
    ::file::path node::module_path_source()
    {
 
-      if (m_pathModule.has_char())
+      if (m_pathModule.has_character())
       {
 
          return m_pathModule;
@@ -915,7 +915,7 @@ namespace platform
 
       strBuild = file_system()->as_string(path);
 
-      return strBuild.has_char();
+      return strBuild.has_character();
 
    }
 
@@ -949,7 +949,7 @@ namespace platform
 
       auto pathLastRun = get_last_run_application_path(strAppId);
 
-      if (pathLastRun.has_char() && file_system()->exists(pathLastRun))
+      if (pathLastRun.has_character() && file_system()->exists(pathLastRun))
       {
 
          return pathLastRun;
@@ -1365,7 +1365,7 @@ namespace platform
 
       string strWaylandDisplay(get_environment_variable("WAYLAND_DISPLAY"));
 
-      return strWaylandDisplay.has_char();
+      return strWaylandDisplay.has_character();
 
    }
 
@@ -2664,7 +2664,7 @@ return false;
 
       ::file::path path = get_last_run_application_path(strAppId);
 
-      if (path.has_char())
+      if (path.has_character())
       {
 
          return path;
@@ -2824,7 +2824,7 @@ return false;
    }
 
 
-   ::u64 node::translate_processor_affinity(int i)
+   huge_natural node::translate_processor_affinity(int i)
    {
 
       return 0;
@@ -3246,7 +3246,7 @@ bool node::_is_smart_git_installed()
 
                strPath.trim();
 
-               if (strPath.has_char() && directory()->is(strPath))
+               if (strPath.has_character() && directory()->is(strPath))
                {
 
                   m_pathDropbox = strPath;
@@ -3508,7 +3508,7 @@ bool node::_is_smart_git_installed()
    }
 
 
-   void node::application_handle(long long l, void * p)
+   void node::application_handle(huge_integer l, void * p)
    {
 
       
@@ -4720,7 +4720,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }*/
 
 
-   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
+   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
    {
 
       return false;
@@ -4728,7 +4728,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
+   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle)
    {
 
       return false;
@@ -4746,10 +4746,10 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 } // namespace platform
 
 
-void node_application_send_status(const char * pszStatus, void * p, long long ll)
+void node_application_send_status(const char * pszStatus, void * p, huge_integer hi)
 {
    
-   system()->node()->node_application_on_status(pszStatus, p, ll);
+   system()->node()->node_application_on_status(pszStatus, p, hi);
    
 }
 

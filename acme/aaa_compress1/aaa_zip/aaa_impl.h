@@ -220,7 +220,7 @@ extern int CLASS_DECL_ACME zipCloseFileInZipRaw OF((zipFile file,
 /*
   close the current file in the zipfile, for fiel opened with
     parameter raw=1 in zipOpenNewFileInZip2
-  uncompressed_size and crc32 are value for the uncompressed size_i32
+  uncompressed_size and crc32 are value for the uncompressed int_size
 */
 
 extern int CLASS_DECL_ACME zipClose OF((zipFile file,

@@ -70,7 +70,7 @@ public:
          if (tolerance_is_equal(tolerance, point.x(), pointAdd.x()) && tolerance_is_equal(tolerance, point.y(), pointAdd.y()))
          {
 
-            /// 'p' is "tolerance"-equal to an existing point_i32 'p' in '*this' array,
+            /// 'p' is "tolerance"-equal to an existing int_point 'p' in '*this' array,
             /// so don't add it.
 
             return -1;
@@ -88,7 +88,7 @@ public:
 
 
    ::collection::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-polygon_i32-with-given-n-ordered-vertices/
+   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertices/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()
@@ -192,7 +192,7 @@ void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
 
 /*
 http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point_i32-is-within-a-polygon_i32
+https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-int_point-is-within-a-int_polygon
 int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 {
    int i, j, c = 0;

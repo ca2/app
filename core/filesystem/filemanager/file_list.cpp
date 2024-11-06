@@ -215,7 +215,7 @@ namespace filemanager
 
             auto pointCursor = pcontextmenu->m_pointHost;
             
-            auto r = ::rectangle_i32::square_with_center_and_apothem(point, 8);
+            auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
 
 //            host_to_client()(point);
             
@@ -244,7 +244,7 @@ namespace filemanager
 
          auto pointCursor = pcontextmenu->m_pointHost;
 
-         auto r = ::rectangle_i32::square_with_center_and_apothem(point, 8);
+         auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
          
          auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
          
@@ -309,7 +309,7 @@ namespace filemanager
    //      while (i < fs_list()->m_pitema->get_count() || is_window_visible())
    //      {
 
-   //         i64 i64Size;
+   //         huge_integer i64Size;
 
    //         bool bPendingSize;
 
@@ -2083,7 +2083,7 @@ namespace filemanager
 
          filepath.trim();
 
-         if (filepath.has_char() && fs_data()->is_dir(filepath))
+         if (filepath.has_character() && fs_data()->is_dir(filepath))
          {
 
             if (filepatha.add_unique(filepath) >= 0)
@@ -2238,7 +2238,7 @@ namespace filemanager
          if (ptopic->m_atom == id_replace_name)
          {
 
-            if (ptopic->payload(id_find).has_char())
+            if (ptopic->payload(id_find).has_character())
             {
 
                // auto pcontext = get_context();
@@ -2253,7 +2253,7 @@ namespace filemanager
          else if (ptopic->m_atom == id_new_folder)
          {
 
-            if (ptopic->payload(id_folder).has_char())
+            if (ptopic->payload(id_folder).has_character())
             {
 
                ::file::path pathFolder = filemanager_item()->user_path() / ptopic->payload(id_folder);

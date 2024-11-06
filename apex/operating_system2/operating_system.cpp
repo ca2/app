@@ -24,7 +24,7 @@
 //
 //   string strAppId = get_command_line_parameter(psz, "app");
 //
-//   if (strAppId.has_char())
+//   if (strAppId.has_character())
 //   {
 //
 //      pathFolder /= strAppId;

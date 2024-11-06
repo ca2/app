@@ -261,7 +261,7 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 
    m_strTaskName = scopedstrTaskName;
 
-   if (m_strTaskTag.is_empty() && m_strTaskName.has_char())
+   if (m_strTaskTag.is_empty() && m_strTaskName.has_character())
    {
 
       m_strTaskTag = m_strTaskName;
@@ -1457,7 +1457,7 @@ void task::handle_posted_procedures()
 bool task::on_get_task_name(string & strTaskName)
 {
 
-   if (m_strTaskTag.has_char())
+   if (m_strTaskTag.has_character())
    {
 
       //::task_set_name(m_strTaskTag);

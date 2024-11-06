@@ -324,7 +324,7 @@ pdirectorysystem->roaming() / "home";
    bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
-      strsize iLast = str.length() - 1;
+      character_count iLast = str.length() - 1;
       while(iLast >= 0)
       {
          if(str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')

@@ -36,7 +36,7 @@ inline ::payload operator + (::payload payload, const ::enum_message_box& emessa
 
    }
 
-   payload["flags"] = (::i64) emessagebox;
+   payload["flags"] = (huge_integer) emessagebox;
 
    return ::payload;
 

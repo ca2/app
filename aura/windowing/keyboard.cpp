@@ -73,7 +73,7 @@ namespace windowing
 
       const string srcText = fromText[srcValue];
 
-      if (srcText.has_char())
+      if (srcText.has_character())
       {
 
          string targetText;
@@ -282,7 +282,7 @@ namespace windowing
 //     return os;
 // }
 
-// Main entry point_i32 (test) ---------------------------------------------
+// Main entry int_point (test) ---------------------------------------------
 
 // int main(int argc, char** argv)
 // {

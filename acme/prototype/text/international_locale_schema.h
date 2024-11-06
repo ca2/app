@@ -40,7 +40,7 @@ namespace text
          ~locale_schema() override;
 
 
-         //::atom localeid(const scoped_string & strLocale, strsize iLen);
+         //::atom localeid(const scoped_string & strLocale, character_count iLen);
 
 
          virtual bool add_locale_variant(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
@@ -48,9 +48,9 @@ namespace text
          //virtual void end_prepare();
 
          bool defer_add_locale(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-         //bool defer_add_locale(const scoped_string & str, strsize iLen, const ::atom & idStyle);
+         //bool defer_add_locale(const scoped_string & str, character_count iLen, const ::atom & idStyle);
          bool _add_locale_variant(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-         //bool _add_locale_variant(const scoped_string & str, strsize iLen, atom idStyle);
+         //bool _add_locale_variant(const scoped_string & str, character_count iLen, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -59,8 +59,8 @@ namespace text
 
 #ifdef _DEBUG
 
-         virtual i64 increment_reference_count() override;
-         virtual i64 release() override;
+         virtual huge_integer increment_reference_count() override;
+         virtual huge_integer release() override;
 
 #endif
 

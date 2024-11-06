@@ -265,7 +265,7 @@
 ////}
 ////
 ////
-////void dump_context::write(i64 i)
+////void dump_context::write(huge_integer i)
 ////{
 ////
 ////   string str;
@@ -279,7 +279,7 @@
 ////}
 ////
 ////
-////void dump_context::write(u64 u)
+////void dump_context::write(huge_natural u)
 ////{
 ////
 ////   string str;
@@ -377,7 +377,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(i64 i)
+////void dump_context::hex_dump(huge_integer i)
 ////{
 ////
 ////   string str;
@@ -391,7 +391,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(u64 u)
+////void dump_context::hex_dump(huge_natural u)
 ////{
 ////
 ////   string str;
@@ -442,7 +442,7 @@
 ////   string str;
 ////
 ////   // prefix a pointer with "$" and print in hex
-////   str.formatf("$%point_i32", p);
+////   str.formatf("$%int_point", p);
 ////
 ////   output_string(str);
 ////

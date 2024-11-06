@@ -12,7 +12,7 @@
 //}
 
 
-//void element::handle(enum_message emessage, i64 iData, ::particle * pparticle)
+//void element::handle(enum_message emessage, huge_integer iData, ::particle * pparticle)
 //{
 //
 //   return ::success;

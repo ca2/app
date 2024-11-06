@@ -205,7 +205,7 @@ namespace sockets
 
       }
 
-      if (response().m_strFile.has_char())
+      if (response().m_strFile.has_character())
       {
 
          response().m_propertysetHeader["content-length"] = file_system()->get_size(response().m_strFile);
@@ -214,7 +214,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.set_at("content-length", (i64)m_response.file()->get_size());
+         m_response.m_propertysetHeader.set_at("content-length", (huge_integer)m_response.file()->get_size());
 
       }
 
@@ -335,7 +335,7 @@ namespace sockets
 
             auto pfile = create_memory_file();
 
-            if (response().m_strFile.has_char())
+            if (response().m_strFile.has_character())
             {
 
                system()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
@@ -387,10 +387,10 @@ namespace sockets
       {
          outheader("content-type") = "text/plain";
       }
-      else if (outheader("content-type").string().has_char())
+      else if (outheader("content-type").string().has_character())
       {
       }
-      else if (strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)
+      else if (strContentType.has_character() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;
       }

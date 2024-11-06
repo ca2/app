@@ -14,7 +14,7 @@
 //   
 //     // g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 //
 //   }
 //
@@ -24,7 +24,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 //   
 //   }
 //
@@ -35,7 +35,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 //   
 //   }
 //
@@ -46,7 +46,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator huge_integer()) + ")\n");
 //   
 //   }
 //
@@ -67,7 +67,7 @@
 //   }*/
 //
 //
-//   strsize path_object::sz_len() const
+//   character_count path_object::sz_len() const
 //   {
 //
 //      return get_length() + 1;
@@ -75,7 +75,7 @@
 //   }
 //
 //   
-//   void path_object::to_sz(char* sz, strsize len) const
+//   void path_object::to_sz(char* sz, character_count len) const
 //   {
 //
 //      strncpy(sz, c_str(), len);

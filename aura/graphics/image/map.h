@@ -8,7 +8,7 @@
 
 
 //template < >
-//inline u32hash unsigned_int_hash < const ::size_i32 & >(const ::size_i32 & size) 
+//inline u32hash unsigned_int_hash < const ::int_size & >(const ::int_size & size) 
 //{ 
 //   
 //   return (u32hash)(size.cx() | size.cy() << 16); 
@@ -17,19 +17,19 @@
 
 
 //template < >
-//inline u32hash unsigned_int_hash < ::size_i32 >(::size_i32 size)
+//inline u32hash unsigned_int_hash < ::int_size >(::int_size size)
 //{
 //
-//   return unsigned_int_hash<const ::size_i32& >((const ::size_i32 &) size);
+//   return unsigned_int_hash<const ::int_size& >((const ::int_size &) size);
 //
 //}
 
 
 //template < >
-//inline u32hash unsigned_int_hash < const concrete < ::size_i32 > & >(const concrete < ::size_i32 > & size)
+//inline u32hash unsigned_int_hash < const concrete < ::int_size > & >(const concrete < ::int_size > & size)
 //{
 //
-//   return unsigned_int_hash((const ::size_i32 &) size);
+//   return unsigned_int_hash((const ::int_size &) size);
 //
 //}
 
@@ -46,13 +46,13 @@ namespace image
 
 
    class CLASS_DECL_AURA size_image :
-      virtual public map < size_i32, ::image::image_pointer >
+      virtual public map < int_size, ::image::image_pointer >
    {
    public:
 
 
-      ::image::image_pointer & operator[](const size_i32 & size);
-      ::image::image_pointer & get(const size_i32 & size, bool & bExists);
+      ::image::image_pointer & operator[](const int_size & size);
+      ::image::image_pointer & get(const int_size & size, bool & bExists);
 
 
    };

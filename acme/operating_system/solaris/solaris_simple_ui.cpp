@@ -45,7 +45,7 @@ namespace os
    }
 
 
-   bool simple_ui::create_window(const ::rectangle_i32 * lpcrect)
+   bool simple_ui::create_window(const ::int_rectangle * lpcrect)
    {
 
       single_lock ml(&user_synchronization());
@@ -151,7 +151,7 @@ namespace os
       m_size.cy() = height(lpcrect);
 
       m_rectangleWindow = *lpcrect;
-      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual rectangle_i32 to trigger simple_ui on_move and on_size events
+      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual int_rectangle to trigger simple_ui on_move and on_size events
 
       m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
@@ -185,7 +185,7 @@ namespace os
 
 
 
-   bool simple_ui::prepare_window(const ::rectangle_i32 * lpcrect)
+   bool simple_ui::prepare_window(const ::int_rectangle * lpcrect)
    {
 
       single_lock ml(&user_synchronization());
@@ -303,7 +303,7 @@ namespace os
 
                            //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                            //                  lpMsg->wParam        = 0;
-                           //              lpMsg->lParam        = make_i32(e.xbutton.x_root, e.xbutton.y_root);
+                           //              lpMsg->lParam        = make_int(e.xbutton.x_root, e.xbutton.y_root);
 
                         }
 
@@ -432,7 +432,7 @@ namespace os
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->wParam        = e.xkey.keycode;
-                        //lpMsg->lParam        = make_i32(0, e.xkey.keycode);
+                        //lpMsg->lParam        = make_int(0, e.xkey.keycode);
 
 
 
@@ -443,7 +443,7 @@ namespace os
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->message       = e_message_mouse_move;
                         //lpMsg->wParam        = 0;
-                        //lpMsg->lParam        = make_i32(e.xmotion.x_root, e.xmotion.y_root);
+                        //lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
                         on_mouse_move(e.xmotion.x(), e.xmotion.y());
 
@@ -498,13 +498,13 @@ namespace os
    }
 
 
-   void simple_ui::client_to_screen(::point_i32 * ppt)
+   void simple_ui::client_to_screen(::int_point * ppt)
    {
       //::client_to_screen(m_window, ppt);
       ::user::interaction::client_to_screen(ppt);
    }
 
-   void simple_ui::screen_to_client(::point_i32 * ppt)
+   void simple_ui::screen_to_client(::int_point * ppt)
    {
       //::screen_to_client(m_window, ppt);
       ::user::interaction::screen_to_client(ppt);
@@ -573,13 +573,13 @@ namespace os
 
 
 
-   void simple_ui::window_rectangle(::rectangle_i32 * prectangle)
+   void simple_ui::window_rectangle(::int_rectangle * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
 
    }
-   void simple_ui::this->rectangle(::rectangle_i32 * prectangle)
+   void simple_ui::this->rectangle(::int_rectangle * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
@@ -595,7 +595,7 @@ namespace os
    void simple_ui::on_draw_framebuffer()
    {
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       ::window_rectangle(m_window, rectangleWindow);
 
@@ -619,11 +619,11 @@ namespace os
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectangleX = rectangleWindow;
+         ::int_rectangle rectangleX = rectangleWindow;
 
          rectangleX -= rectangleWindow.top_left();
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          rectangle = rectangleWindow;
 
@@ -643,7 +643,7 @@ namespace os
 
 /*         unsigned char *dst = (unsigned char*) m_pimage->get_data();
 
-         i64 size = m_size.cx() * m_size.cy();
+         huge_integer size = m_size.cx() * m_size.cy();
 
 
          // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255

@@ -22,14 +22,14 @@ namespace experience_tranquillum
       style();
       ~style() override;
 
-      //virtual i64 increment_reference_count() override
+      //virtual huge_integer increment_reference_count() override
       //{
 
       //   return ::object::increment_reference_count();
 
       //}
 
-      //virtual i64 decrement_reference_count() override
+      //virtual huge_integer decrement_reference_count() override
       //{
 
       //   return ::object::decrement_reference_count();
@@ -47,7 +47,7 @@ namespace experience_tranquillum
          //      virtual bool on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow) override;
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;
-      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
+      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
 
       bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 

@@ -50,9 +50,9 @@ public:
 
    int get_i(jfieldID jfieldid);
 
-   void set_l(jfieldID jfieldid, long long ll);
+   void set_l(jfieldID jfieldid, huge_integer hi);
 
-   long long get_l(jfieldID jfieldid);
+   huge_integer get_l(jfieldID jfieldid);
 
    void set_f(jfieldID jfieldid, float f);
 
@@ -86,9 +86,9 @@ public:
 
    int get_i(const ::scoped_string & scopedstrField);
 
-   void set_l(const ::scoped_string & scopedstrField, long long ll);
+   void set_l(const ::scoped_string & scopedstrField, huge_integer hi);
 
-   long long get_l(const ::scoped_string & scopedstrField);
+   huge_integer get_l(const ::scoped_string & scopedstrField);
 
    void set_f(const ::scoped_string & scopedstrField, float f);
 

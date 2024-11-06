@@ -20,10 +20,10 @@ namespace geometry2d
       virtual ::draw2d::enum_item type() const;
 
 
-      virtual void translate(const ::point_f64 & point);
-      //virtual void expand_bounding_box(::rectangle_f64 & rectangle);
-      virtual bool contains(const ::point_f64 & point);
-      virtual void expand_bounding_box(::rectangle_f64 & rectangle);
+      virtual void translate(const ::double_point & point);
+      //virtual void expand_bounding_box(::double_rectangle & rectangle);
+      virtual bool contains(const ::double_point & point);
+      virtual void expand_bounding_box(::double_rectangle & rectangle);
 
    };
 
@@ -124,20 +124,20 @@ namespace geometry2d
    public:
 
       
-      ::polygon_f64                          m_polygon;
+      ::double_polygon                          m_polygon;
       ::draw2d::enum_fill_mode               m_efillmode;
 
 
       ::draw2d::enum_item type() const override;
 
 
-      //void translate(const ::point_i32 & point) override;
-      //void expand_bounding_box(::rectangle_f64 & rectangle) override;
-      void translate(const ::point_f64 & point) override;
-      bool contains(const ::point_f64 & p) override;
-      //virtual bool contains(const ::point_f64 & point) { m_item.contains(point); }
-      void expand_bounding_box(::rectangle_f64 & rectangle)override;
-      //void expand_bounding_box(::rectangle_f64 & rectangle) override;
+      //void translate(const ::int_point & point) override;
+      //void expand_bounding_box(::double_rectangle & rectangle) override;
+      void translate(const ::double_point & point) override;
+      bool contains(const ::double_point & p) override;
+      //virtual bool contains(const ::double_point & point) { m_item.contains(point); }
+      void expand_bounding_box(::double_rectangle & rectangle)override;
+      //void expand_bounding_box(::double_rectangle & rectangle) override;
 
 
       ::particle_pointer clone() override
@@ -157,7 +157,7 @@ namespace geometry2d
    };
 
 
-   // using poly_polygon_item_base = item_type < ::poly_polygon_f64, ::draw2d::e_item_poly_polygon >;
+   // using poly_polygon_item_base = item_type < ::double_poly_polygon, ::draw2d::e_item_poly_polygon >;
 
 
    class CLASS_DECL_ACME poly_polygon_item :
@@ -166,17 +166,17 @@ namespace geometry2d
    public:
 
       
-      ::poly_polygon_f64                  m_polypolygon;
+      ::double_poly_polygon                  m_polypolygon;
       ::draw2d::enum_fill_mode            m_efillmode;
 
 
       //::draw2d::enum_item type() const override;
 
 
-      void translate(const ::point_f64 & point) override;
-      //void expand_bounding_box(::rectangle_f64 & rectangle) override;
-      bool contains(const ::point_f64 & pooint) override;
-      void expand_bounding_box(::rectangle_f64 & rectangle) override;
+      void translate(const ::double_point & point) override;
+      //void expand_bounding_box(::double_rectangle & rectangle) override;
+      bool contains(const ::double_point & pooint) override;
+      void expand_bounding_box(::double_rectangle & rectangle) override;
 
 
       ::particle_pointer clone() override
@@ -204,7 +204,7 @@ namespace geometry2d
    public:
 
       
-      ///pointer_array < ::polygon_f64 >        m_polygon;
+      ///pointer_array < ::double_polygon >        m_polygon;
 
       ::pointer < ::geometry2d::region >     m_pregion1;
       ::pointer < ::geometry2d::region >     m_pregion2;
@@ -214,9 +214,9 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      void translate(const ::point_f64 & point) override;
-      bool contains(const ::point_f64 & point) override;
-      void expand_bounding_box(::rectangle_f64 & rectangle) override;
+      void translate(const ::double_point & point) override;
+      bool contains(const ::double_point & point) override;
+      void expand_bounding_box(::double_rectangle & rectangle) override;
 
 
       ::particle_pointer clone() override;
@@ -231,13 +231,13 @@ namespace geometry2d
    public:
 
 
-      ::rectangle_f64   m_rectangle;
-      ::size_f64        m_sizeRadius;
+      ::double_rectangle   m_rectangle;
+      ::double_size        m_sizeRadius;
 
 
-      void translate(const ::point_f64 & point) override;
-      bool contains(const ::point_f64 & point) override;
-      void expand_bounding_box(::rectangle_f64 & rectangle) override;
+      void translate(const ::double_point & point) override;
+      bool contains(const ::double_point & point) override;
+      void expand_bounding_box(::double_rectangle & rectangle) override;
 
 
       ::particle_pointer clone() override

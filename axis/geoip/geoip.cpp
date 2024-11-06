@@ -285,7 +285,7 @@ void GeoIP_setup_custom_directory (char * dir)
 
 char *_GeoIP_full_path_to(const char *file_name)
 {
-   strsize len;
+   character_count len;
    char *path = (char *)  malloc(sizeof(char) * 1024);
 
    if (custom_directory == nullptr)
@@ -591,7 +591,7 @@ unsigned int _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply point_i32 to record in memory */
+         /* simply int_point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else
@@ -696,7 +696,7 @@ unsigned int _GeoIP_seek_record (GeoIP *gi, unsigned int ipnum)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply point_i32 to record in memory */
+         /* simply int_point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else

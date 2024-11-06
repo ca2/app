@@ -162,11 +162,11 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_FILE_STDERR   ((_HFILE)-5)
 #define _DEBUG_REPORT_FILE   ((_HFILE)-6)
 #else
-#define _DEBUG_INVALID_HFILE ((_HFILE)(i64)-1)
-#define _DEBUG_HFILE_ERROR   ((_HFILE)(i64)-2)
-#define _DEBUG_FILE_STDOUT   ((_HFILE)(i64)-4)
-#define _DEBUG_FILE_STDERR   ((_HFILE)(i64)-5)
-#define _DEBUG_REPORT_FILE   ((_HFILE)(i64)-6)
+#define _DEBUG_INVALID_HFILE ((_HFILE)(huge_integer)-1)
+#define _DEBUG_HFILE_ERROR   ((_HFILE)(huge_integer)-2)
+#define _DEBUG_FILE_STDOUT   ((_HFILE)(huge_integer)-4)
+#define _DEBUG_FILE_STDERR   ((_HFILE)(huge_integer)-5)
+#define _DEBUG_REPORT_FILE   ((_HFILE)(huge_integer)-6)
 #endif
 
 #endif
@@ -191,7 +191,7 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_CHECK_EVERY_128_DF  0x00800000  /* check heap every 128 heap ops */
 #define _DEBUG_CHECK_EVERY_1024_DF 0x04000000  /* check heap every 1024 heap ops */
 /*
-We do not check the heap by default at this point_i32 because the cost was too high
+We do not check the heap by default at this int_point because the cost was too high
 for some applications. You can still turn this feature on manually.
  */
 #define _DEBUG_CHECK_DEFAULT_DF    0

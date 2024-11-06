@@ -36,7 +36,7 @@
 //
 //   }
 //
-//   payload["flags"] = (::i64) emessagebox;
+//   payload["flags"] = (huge_integer) emessagebox;
 //
 //   return ::payload;
 //

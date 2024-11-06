@@ -25,7 +25,7 @@ namespace innate_ui
    }
 
 
-   void icon::create(const ::payload & payloadFile, const ::size_i32 & size)
+   void icon::create(const ::payload & payloadFile, const ::int_size & size)
    {
 
       m_memory = file()->as_memory(payloadFile);

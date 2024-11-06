@@ -53,7 +53,7 @@ void still::on_draw(::nano::graphics::device * pnanodevice)
 
    wstring wstrText(m_strText);
 
-   rectangle_i32 rectangleText(m_rectangle);
+   int_rectangle rectangleText(m_rectangle);
 
    rectangleText.inflate(1);
 

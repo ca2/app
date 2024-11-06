@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   enum enum_key : ::i64
+   enum enum_key : huge_integer
    {
 
       e_key_none,

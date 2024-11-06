@@ -26,30 +26,30 @@ namespace draw2d
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::point_f64 *                    ppoints,
+      ::double_point *                    ppoints,
       int                           iCount,
       double                        dRateX,
-      ::point_f64 *                    ppointOffset);
+      ::double_point *                    ppointOffset);
 
 
       void draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::point_f64 *                    ppoints,
+      ::double_point *                    ppoints,
       int                           iCount,
       double                        dRateX,
-      ::point_f64 *                    ppointOffset);
+      ::double_point *                    ppointOffset);
 
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      array < point_double_array, point_double_array & > * pglyph,
+      array < double_point_array, double_point_array & > * pglyph,
       double                        dRateX,
-      point_f64 *                      ppointOffset);
+      double_point *                      ppointOffset);
 
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const rectangle_f64 &                 pcrect,
+      const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
       const ::string & str);
@@ -57,7 +57,7 @@ namespace draw2d
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const rectangle_f64 &                 pcrect,
+      const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
       const char *                  psz,
@@ -79,7 +79,7 @@ namespace draw2d
 
       void simple_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const rectangle_f64 &                 pcrect,
+      const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
       const char *                  psz,

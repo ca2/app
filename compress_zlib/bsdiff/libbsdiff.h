@@ -1,7 +1,7 @@
 #pragma once
 
 #if defined(_M_IA64) || defined(_M_AMD64)
-#define bs_offset long long
+#define bs_offset huge_integer
 #else
 #define bs_offset long
 #endif

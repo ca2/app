@@ -257,7 +257,7 @@ namespace menu
 
          string strImage(pnode->attribute("image").as_string());
 
-         if (strImage.has_char())
+         if (strImage.has_character())
          {
 
             m_pimage = image()->matter_image(strImage);

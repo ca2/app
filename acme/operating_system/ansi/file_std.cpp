@@ -79,7 +79,7 @@ filesize FILE_write(const void *buffer, memsize size, memsize count, FILE *str)
 }
 
 
-char * FILE_gets(char * str, strsize n, FILE *s)
+char * FILE_gets(char * str, character_count n, FILE *s)
 {
 
    return fgets(str, (int) n, s);

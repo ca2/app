@@ -44,14 +44,14 @@ namespace acme
             rString.empty();        // return is_empty string as well
             return false;
          }
-         pszFullString++;       // point_i32 past the separator
+         pszFullString++;       // int_point past the separator
 
       }
 
       const char* pchEnd = ansi_chr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -282,7 +282,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 }
 
 //
-//void c_post_system_event(::u64 u, void* pparam)
+//void c_post_system_event(huge_natural u, void* pparam)
 //{
 //
 //   lparam lparam = (LPARAM)pparam;

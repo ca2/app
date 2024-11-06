@@ -22,7 +22,7 @@ namespace heap
       public:
 
          ::string m_strDebug;
-         ::i64    m_i = 0;
+         huge_integer    m_i = 0;
 
 
       };
@@ -74,7 +74,7 @@ namespace heap
       //}
 
 
-      ::i64 get_counter(const TYPE & t)
+      huge_integer get_counter(const TYPE & t)
       {
 
          critical_section_lock lock(&m_criticalsection);

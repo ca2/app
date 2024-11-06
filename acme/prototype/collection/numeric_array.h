@@ -23,9 +23,9 @@ template < typename ARG_TYPE >
 }
 
 //template < >
-//inline i64 from_string(const ::scoped_string & scopedstr)
+//inline huge_integer from_string(const ::scoped_string & scopedstr)
 //{
-//   return to_i64(string(psz));
+//   return to_huge_integer(string(psz));
 //}
 
 
@@ -728,12 +728,12 @@ get_minimum_value()
 template < typename INTEGER >
 inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
 {
-   i64 x = 0;
-   i64 y = 0;
+   huge_integer x = 0;
+   huge_integer y = 0;
    ::collection::count c = N;
    while (c > 0)
    {
-      i64 a = *p;
+      huge_integer a = *p;
       x += a / N;
       if (a >= 0)
       {
@@ -773,7 +773,7 @@ template < primitive_integral INTEGRAL >
 inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::collection::count N)
 {
 
-   ::i64 i = 0;
+   huge_integer i = 0;
 
    ::collection::count c = N;
 

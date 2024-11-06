@@ -778,7 +778,7 @@ void directory_system::create(const ::file::path & pathParam)
 
    ::file::path pathDir;
 
-   strsize iLastPo = -1;
+   character_count iLastPo = -1;
 
    ::file::path_array patha;
 
@@ -1033,7 +1033,7 @@ bool directory_system::defer_process_media_library_path(::file::path& path)
 
    auto plibraryitem = media_library_item(path);
 
-   if(::is_set(plibraryitem) && plibraryitem->get_full_path().has_char())
+   if(::is_set(plibraryitem) && plibraryitem->get_full_path().has_character())
    {
 
       path = plibraryitem->get_full_path();
@@ -1052,7 +1052,7 @@ bool directory_system::defer_media_library_representative_file_name(::file::path
 
    auto plibraryitem = media_library_item(path);
 
-   if (::is_set(plibraryitem) && plibraryitem->get_mime_type().has_char())
+   if (::is_set(plibraryitem) && plibraryitem->get_mime_type().has_character())
    {
 
       string strMimeType = plibraryitem->get_mime_type();
@@ -1557,7 +1557,7 @@ void directory_system::init_system()
 
    }
 
-   if (pathAppData.has_char())
+   if (pathAppData.has_character())
    {
 
       m_pathAppData = pathAppData;

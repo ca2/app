@@ -219,7 +219,7 @@ namespace mysql
             mysql_sqlstate((MYSQL*)m_pmysql),
             mysql_error((MYSQL*)m_pmysql));
       }
-      if (strPrefix.has_char())
+      if (strPrefix.has_character())
          return strPrefix + ": " + strFormat;
       else
          return strPrefix + strFormat;
@@ -455,7 +455,7 @@ namespace mysql
    }
 
 
-   i64 database::_mysql_num_fields(MYSQL_RES* pres)
+   huge_integer database::_mysql_num_fields(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -470,7 +470,7 @@ namespace mysql
    }
 
 
-   i64 database::_mysql_num_rows(MYSQL_RES* pres)
+   huge_integer database::_mysql_num_rows(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -505,9 +505,9 @@ namespace mysql
 
       auto& prowa = pset->m_prowa;
 
-      i64 iNumRows = _mysql_num_rows(pres);
+      huge_integer iNumRows = _mysql_num_rows(pres);
 
-      i64 iNumFields = _mysql_num_fields(pres);
+      huge_integer iNumFields = _mysql_num_fields(pres);
 
       if (iColumnCount > 0)
       {
@@ -525,7 +525,7 @@ namespace mysql
 
       prowa->set_size(iNumRows);
 
-      i64 iRow = 0;
+      huge_integer iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -550,7 +550,7 @@ namespace mysql
 
          prow->set_size(iNumFields);
 
-         for (i64 iField = 0; iField < iNumFields; iField++)
+         for (huge_integer iField = 0; iField < iNumFields; iField++)
          {
 
             if (row[iField] == nullptr)
@@ -689,11 +689,11 @@ namespace mysql
 
       MYSQL_ROW row;
 
-      i64 iNumRows = _mysql_num_rows(pres);
+      huge_integer iNumRows = _mysql_num_rows(pres);
 
       pvara->set_size(iNumRows);
 
-      i64 iRow = 0;
+      huge_integer iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -750,11 +750,11 @@ namespace mysql
 
       }
 
-      i64 iNumFields = _mysql_num_fields(pres);
+      huge_integer iNumFields = _mysql_num_fields(pres);
 
       prow->set_size(iNumFields);
 
-      for (i64 iField = 0; iField < iNumFields; iField++)
+      for (huge_integer iField = 0; iField < iNumFields; iField++)
       {
 
          if (row[iField] == nullptr)
@@ -845,7 +845,7 @@ namespace mysql
    }
 
 
-   string database::escape(const ::scoped_string & scopedstr, strsize iLen)
+   string database::escape(const ::scoped_string & scopedstr, character_count iLen)
    {
 
       string strEscaped;
@@ -878,7 +878,7 @@ namespace mysql
 
    ::payload database::get_insert_id()
    {
-      return (u64)mysql_insert_id((MYSQL*)m_pmysql);
+      return (huge_natural)mysql_insert_id((MYSQL*)m_pmysql);
    }
 
 } //   namespace mysql

@@ -241,7 +241,7 @@ namespace folder_zip
 
       strPrefix.trim("\\/");
 
-      if (strPrefix.has_char())
+      if (strPrefix.has_character())
       {
 
          strPrefix += "/";
@@ -279,7 +279,7 @@ namespace folder_zip
             if (listing.m_bRecursive || !strTitle.contains("/") || strTitle.find_index("/") == (strTitle.length() - 1))
             {
 
-               if (strTitle.has_char())
+               if (strTitle.has_character())
                {
 
                   path = pathBaseFolder / strTitle;
@@ -323,7 +323,7 @@ namespace folder_zip
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (pathFile.has_char())
+      if (pathFile.has_character())
       {
 
          if (pathFile.contains("-256.png"))
@@ -741,7 +741,7 @@ namespace folder_zip
 
       }
 
-      if (strPrefix.has_char())
+      if (strPrefix.has_character())
       {
 
          strPrefix += "/";
@@ -792,7 +792,7 @@ namespace folder_zip
 
       }
 
-      if (strPrefix.has_char())
+      if (strPrefix.has_character())
       {
 
          strPrefix += "/";

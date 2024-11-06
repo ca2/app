@@ -892,7 +892,7 @@ public:
    ::collection::count append_container(const CONTAINER & container);
    ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
    virtual ::collection::count append(const TYPE * p, ::collection::count c);
-   virtual ::collection::count append(const array_base_quantum & src); // return old size_i32
+   virtual ::collection::count append(const array_base_quantum & src); // return old int_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list);
@@ -1575,7 +1575,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
          if (::get_task() != nullptr)
          {
 
-            if (::get_task()->m_strFile.has_char())
+            if (::get_task()->m_strFile.has_character())
             {
 
                pNewData = MEMORY::allocate(size, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -1598,7 +1598,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             pNewData = MEMORY::allocate(size, ::get_task_object_debug(), 0);
@@ -1960,7 +1960,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::era
 //      // inserting in the middle of the array
 //      ::collection::count nOldSize = (::collection::count) this->size();
 //
-//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new size_i32
+//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -2075,7 +2075,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //      throw_exception(error_bad_argument);
 //
 //   if(nGrowBy >= 0)
-//      m_countAddUp = nGrowBy;  // set ___new size_i32
+//      m_countAddUp = nGrowBy;  // set ___new int_size
 //
 //   if(nNewSize == 0)
 //   {
@@ -2108,7 +2108,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //      {
 //#if defined(MEMDLEAK)
 //
-//         if (::get_task()->m_strFile.has_char())
+//         if (::get_task()->m_strFile.has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, 0);
@@ -2123,7 +2123,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -2191,7 +2191,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //      if (::get_task() != nullptr)
 //      {
 //
-//         if (::get_task()->m_strFile.has_char())
+//         if (::get_task()->m_strFile.has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2214,7 +2214,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //
 //#else
 //
-//      if (::get_task_object_debug().has_char())
+//      if (::get_task_object_debug().has_character())
 //      {
 //
 //         pNewData = MEMORY::allocate(nNewMax, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -2286,7 +2286,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             this->m_begin = MEMORY::allocate(newAllocationSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2301,7 +2301,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             this->m_begin = MEMORY::allocate(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2372,7 +2372,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             pNewData = MEMORY::allocate(newAllocationSize, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2387,7 +2387,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             pNewData = MEMORY::allocate(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2500,7 +2500,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2515,7 +2515,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             this->m_begin = MEMORY::allocate(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2649,7 +2649,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #if defined(__MCRTDBG)
 
-         if(::get_task()->m_strFile.has_char())
+         if(::get_task()->m_strFile.has_character())
          {
 
             pNewData = MEMORY::allocate(countNewAllocation, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2664,7 +2664,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #else
 
-         if (::get_task_object_debug().has_char())
+         if (::get_task_object_debug().has_character())
          {
 
             pNewData = MEMORY::allocate(countNewAllocation, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2796,7 +2796,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2811,7 +2811,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
@@ -2943,7 +2943,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2958,7 +2958,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(nNewMax, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;

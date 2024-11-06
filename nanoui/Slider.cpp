@@ -25,7 +25,7 @@ namespace nanoui
    }
 
 
-   size_i32 Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+   int_size Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
    {
 
       return { 70, 16 };
@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_motion_event(const point_i32 & p, const size_i32 & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_motion_event(const int_point & p, const int_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
    {
 
       if (!m_bEnabled || !bDown)
@@ -69,7 +69,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
       if (!m_bEnabled)
@@ -113,7 +113,7 @@ namespace nanoui
    void Slider::draw(::nano2d::context * pcontext)
    {
 
-      auto center = point_f32(m_pos) + size_f32(m_size) * 0.5f;
+      auto center = float_point(m_pos) + float_size(m_size) * 0.5f;
 
       float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
 
@@ -121,7 +121,7 @@ namespace nanoui
 
       float width_x = m_size.cx() - 2 * (kr + kshadow);
 
-      point_f32 knob_pos(start_x + (m_value - m_range.m_element1) /
+      float_point knob_pos(start_x + (m_value - m_range.m_element1) /
          (m_range.m_element2 - m_range.m_element1) * width_x,
          center.y() + 0.5f);
 

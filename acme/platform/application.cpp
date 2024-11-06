@@ -311,7 +311,7 @@ namespace platform
    }
 
 
-   void application::application_on_status(::e_status estatus, ::particle* pparticle, long long ll, void* p)
+   void application::application_on_status(::e_status estatus, ::particle* pparticle, huge_integer hi, void* p)
    {
 
       if (estatus == error_icloud_not_available)
@@ -326,7 +326,7 @@ namespace platform
 
             pusermessage->m_pparticle = pparticle;
 
-            pusermessage->m_ll = ll;
+            pusermessage->m_hi = hi;
 
             pusermessage->m_p = p;
 
@@ -336,7 +336,7 @@ namespace platform
          else
          {
 
-            on_error_icloud_not_available(pparticle, ll, p);
+            on_error_icloud_not_available(pparticle, hi, p);
 
          }
 
@@ -345,7 +345,7 @@ namespace platform
    }
 
 
-   void application::on_error_icloud_not_available(::particle* pparticle, long long ll, void* p)
+   void application::on_error_icloud_not_available(::particle* pparticle, huge_integer hi, void* p)
    {
 
       ::function < void(const ::atom& atom) > function;
@@ -384,6 +384,7 @@ namespace platform
 
       }
 
+      if(m_strAppId.has_character())
       {
 
          string strPrgName = m_strAppId;
@@ -679,7 +680,7 @@ namespace platform
 
       ::string strAppName;
 
-      if (m_strAppName.has_char())
+      if (m_strAppName.has_character())
       {
 
          strAppName = m_strAppName;
@@ -736,7 +737,7 @@ namespace platform
 
       string strAppTitle;
 
-      if (textAppTitle.get_text().has_char())
+      if (textAppTitle.get_text().has_character())
       {
 
          strAppTitle = textAppTitle.get_text();
@@ -772,7 +773,7 @@ namespace platform
 
       string strAppName;
 
-      if (textAppName.get_text().has_char())
+      if (textAppName.get_text().has_character())
       {
 
          strAppName = textAppName.get_text();
@@ -1043,7 +1044,7 @@ namespace platform
 #ifdef DEBUG
 
 
-   ::i64 application::increment_reference_count()
+   huge_integer application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -1051,7 +1052,7 @@ namespace platform
    }
    
    
-   ::i64 application::decrement_reference_count()
+   huge_integer application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -1360,15 +1361,20 @@ namespace platform
 
       initialize_context();
 
-      string_array stra;
+      if (m_strAppId.has_character())
+      {
 
-      stra.explode("/", m_strAppId);
+         string_array stra;
 
-      m_strRoot = stra[0];
+         stra.explode("/", m_strAppId);
 
-      m_strDomain = stra.slice(1).implode("/");
+         m_strRoot = stra[0];
 
-      add_matter_locator(this);
+         m_strDomain = stra.slice(1).implode("/");
+
+         add_matter_locator(this);
+
+      }
 
    }
 
@@ -2245,10 +2251,10 @@ bool application_get_bool(::platform::application * papplication, const char* ps
 }
 
 
-CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, long long ll, void* p)
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, huge_integer hi, void* p)
 {
 
-   system()->application()->application_on_status(estatus, pparticle, ll, p);
+   system()->application()->application_on_status(estatus, pparticle, hi, p);
 
 }
 

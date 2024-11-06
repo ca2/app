@@ -302,10 +302,10 @@ namespace sockets_bsd
 
 
       /** Outgoing traffic counter. */
-      u64 GetBytesSent(bool clear = false) override;
+      huge_natural GetBytesSent(bool clear = false) override;
 
       /** Incoming traffic counter. */
-      u64 GetBytesReceived(bool clear = false) override;
+      huge_natural GetBytesReceived(bool clear = false) override;
 
       // LIST_TIMEOUT
 
@@ -688,7 +688,7 @@ namespace sockets_bsd
 //      void SetSocks4Host(const string & );
 //#endif
       /** Socks4 server port to use. */
-      void SetSocks4Port(::networking::port_t point_i32) override;
+      void SetSocks4Port(::networking::port_t int_point) override;
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x) override;
       /** get the ip address/port of socks4 server to use.

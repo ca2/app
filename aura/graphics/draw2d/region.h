@@ -23,81 +23,81 @@ namespace draw2d
       ~region() override;
 
 
-//      virtual bool create_rectangle(const ::rectangle_i32 & rectangle) override;
+//      virtual bool create_rectangle(const ::int_rectangle & rectangle) override;
 //
-//      virtual bool create_ellipse(const ::rectangle_i32 & rectangle) override;
+//      virtual bool create_ellipse(const ::int_rectangle & rectangle) override;
 //      
-//      virtual bool create_polygon(const ::point_i32 * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
+//      virtual bool create_polygon(const ::int_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
-//      virtual bool create_polygon(const ::point_f64 * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
+//      virtual bool create_polygon(const ::double_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
 //      virtual bool create_polygon(const polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding) override;
 //
-//      virtual bool create_poly_polygon(const ::point_f64 * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode) override;
+//      virtual bool create_poly_polygon(const ::double_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode) override;
 //
-//      virtual bool create_poly_polygon(const ::point_i32 * pPoints, const int * lpPolyCounts, int nCount,::draw2d::enum_fill_mode efillmode) override;
+//      virtual bool create_poly_polygon(const ::int_point * pPoints, const int * lpPolyCounts, int nCount,::draw2d::enum_fill_mode efillmode) override;
 
       
       //virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool translate(const ::point_i32 & point, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool get_bounding_box(::rectangle_i32 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool translate(const ::int_point & point, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool get_bounding_box(::int_rectangle & rectangle, ::draw2d::graphics * pgraphics = nullptr);
 
-      virtual bool contains(const ::point_i32 & point, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool contains(const ::point_f64 & point, ::draw2d::graphics * pgraphics = nullptr);
-
-      
-      bool internal_contains(const ::point_i32 & point);
-
-      bool internal_rectangle_contains(const ::point_i32 & point);
-
-      bool internal_oval_contains(const ::point_i32 & point);
-
-      bool internal_polygon_contains(const ::point_i32 & point);
-
-      bool internal_poly_polygon_contains(const ::point_i32 & point);
-
-      bool internal_combine_contains(const ::point_i32 & point);
-
-
-
-      bool internal_contains(const ::point_f64 & point);
-
-      //bool internal_rectangle_contains(const ::point_f64 & point);
-
-      //bool internal_oval_contains(const ::point_f64 & point);
-
-      //bool internal_polygon_contains(const ::point_f64 & point);
-
-      //bool internal_poly_polygon_contains(const ::point_f64 & point);
-
-      //bool internal_combine_contains(const ::point_f64 & point);
-
-
-      virtual void expand_bounding_box(::rectangle_i32 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
-
-      //virtual void max_bounding_box_rect(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
-
-      //virtual void max_bounding_box_oval(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
-
-      //virtual void max_bounding_box_polygon(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
-
-      //virtual void max_bounding_box_poly_polygon(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
-
-      //virtual void max_bounding_box_combine(::rectangle_i32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
-
+      virtual bool contains(const ::int_point & point, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool contains(const ::double_point & point, ::draw2d::graphics * pgraphics = nullptr);
 
       
-      virtual void expand_bounding_box(::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_contains(const ::int_point & point);
 
-      //virtual void max_bounding_box_rect(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_rectangle_contains(const ::int_point & point);
 
-      //virtual void max_bounding_box_oval(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_oval_contains(const ::int_point & point);
 
-      //virtual void max_bounding_box_polygon(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_polygon_contains(const ::int_point & point);
 
-      //virtual void max_bounding_box_poly_polygon(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_poly_polygon_contains(const ::int_point & point);
 
-      //virtual void max_bounding_box_combine(::rectangle_f64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      bool internal_combine_contains(const ::int_point & point);
+
+
+
+      bool internal_contains(const ::double_point & point);
+
+      //bool internal_rectangle_contains(const ::double_point & point);
+
+      //bool internal_oval_contains(const ::double_point & point);
+
+      //bool internal_polygon_contains(const ::double_point & point);
+
+      //bool internal_poly_polygon_contains(const ::double_point & point);
+
+      //bool internal_combine_contains(const ::double_point & point);
+
+
+      virtual void expand_bounding_box(::int_rectangle & rectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_rect(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_oval(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_poly_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_combine(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+
+      
+      virtual void expand_bounding_box(::double_rectangle & rectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_rect(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_oval(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_polygon(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_poly_polygon(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+
+      //virtual void max_bounding_box_combine(::double_rectangle * prectangle, ::draw2d::graphics * pgraphics = nullptr);
 
       
       virtual void destroy() override;
@@ -112,8 +112,8 @@ namespace draw2d
    
    //using arc_shape_region = _shape < ::arc, e_shape_arc, region>;
    ////using line_shape_with_region = _shape < ::line, e_shape_line, region >;
-   //using rectangle_shape_region = _shape < ::rectangle_f64, e_shape_rectangle, region >;
-   //using ellipse_shape_region = _shape < ::ellipse_f64, e_shape_ellipse, region >;
+   //using rectangle_shape_region = _shape < ::double_rectangle, e_shape_rectangle, region >;
+   //using ellipse_shape_region = _shape < ::double_ellipse, e_shape_ellipse, region >;
    //using polygon_shape_region = _shape < ::polygon, e_shape_polygon, region >;
 
    /*template < >

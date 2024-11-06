@@ -109,9 +109,9 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      unsigned int uNotificationCode = upper_u16(wparam);
+      unsigned int uNotificationCode = upper_unsigned_short(wparam);
 
-      ::atom atom(lower_u16(wparam));
+      ::atom atom(lower_unsigned_short(wparam));
 
       ::pointer<::user::interaction>pinteraction = get_child_by_id(atom);
 
@@ -737,7 +737,7 @@ namespace user
 //
 //            //   }
 //            //   break;
-//            //   case ::e_type_i32:
+//            //   case ::e_type_int:
 //            //   {
 //
 //            //      string str;
@@ -1587,7 +1587,7 @@ namespace user
    }
 
 
-   bool form_control::_001IsPointInside(::user::interaction * pinteraction, const point_i64 & point)
+   bool form_control::_001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point)
    {
 
       if(pinteraction == nullptr)
@@ -1639,7 +1639,7 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
    {
 
       pinteraction->window_rectangle(rectangle);
@@ -1647,7 +1647,7 @@ namespace user
    }
    
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
    {
 
       rectangle = pinteraction->rectangle();

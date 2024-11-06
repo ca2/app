@@ -122,21 +122,21 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   strsize   m_dwAppData;
+   character_count   m_dwAppData;
 
    /**
     * position of the seek pointer
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   strsize     m_dwBufPos;
+   character_count     m_dwBufPos;
 
    /**
     * size, in TCHARs, of the buffer
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   //strsize   m_dwBufLen;
+   //character_count   m_dwBufLen;
 
    /**
     * Bit-mask flags to customize events notification(s)
@@ -217,7 +217,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   strsize getAppData() const
+   character_count getAppData() const
       { return (m_dwAppData); }
 
    /**
@@ -230,7 +230,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   strsize setAppData(unsigned int dwNewAppData);
+   character_count setAppData(unsigned int dwNewAppData);
 
    /**
     * Returns a pointer to an event handler registered with
@@ -266,14 +266,14 @@ public:
 
 
    // parses an HTML document from the specified string
-   strsize read_form_document(const ::string & str);
+   character_count read_form_document(const ::string & str);
 
 // Helpers
    /** Parsing Helpers */
 
    // parses an HTML document, and returns the
    // number of characters successfully parsed
-   virtual strsize parseDocument();
+   virtual character_count parseDocument();
 
    // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess

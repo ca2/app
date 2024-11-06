@@ -247,7 +247,7 @@ namespace url
 
       ::string strRequest;
 
-      if (m_strPath.has_char())
+      if (m_strPath.has_character())
       {
 
          strRequest = m_strPath;
@@ -255,7 +255,7 @@ namespace url
       }
 
       if ((m_psetArguments && m_psetArguments->has_element())
-         || m_strFragment.has_char())
+         || m_strFragment.has_character())
       {
 
          if (!strRequest.begins("/"))
@@ -272,7 +272,7 @@ namespace url
 
          }
 
-         if (m_strFragment.has_char())
+         if (m_strFragment.has_character())
          {
 
             strRequest += "#" + m_strFragment;
@@ -803,7 +803,7 @@ namespace url
 
       auto pszDecode = pszStart;
 
-      strsize i = 0;
+      character_count i = 0;
 
       const ::ansi_character* pszEncoded = (const char*)block.begin();
 

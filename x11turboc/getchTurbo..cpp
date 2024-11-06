@@ -177,7 +177,7 @@ getchTurbo (void)
 	  // consistently return Esc-anything.  On the other hand,
 	  // things like Shift-Fn can be wildly different.  I'm simply 
 	  // assuming that the behavior I see on my Linux iMax
-	  // is correct and I'll try to work out the inconsistencies
+	  // is correct and I'hi try to work out the inconsistencies
 	  // later.  All unrecognized escape sequences are discarded.
 	  if (NumEscapeSequence == 1)
 	    {

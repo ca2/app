@@ -66,13 +66,13 @@
 //          virtual void _display_console();
 //
 //
-//          virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+//          virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 //
 //
 //          void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //
-//          virtual ::size_i32 get_main_screen_size();
+//          virtual ::int_size get_main_screen_size();
 //
 //
 //          virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;

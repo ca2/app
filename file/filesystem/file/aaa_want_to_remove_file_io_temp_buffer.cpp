@@ -75,7 +75,7 @@ namespace file
    {
       _outFile->close();
 
-      u64 size = 0;
+      huge_natural size = 0;
       unsigned int crc = CRC_INIT_VAL;
 
       if (_bufPos > 0)

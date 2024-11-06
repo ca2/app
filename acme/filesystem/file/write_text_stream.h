@@ -79,7 +79,7 @@ public:
 
    //   const char endptr = nullptr;
 
-   //   auto ull = strtoull(m_str, &endptr, 10);
+   //   auto hn = strtoull(m_str, &endptr, 10);
 
    //   if (!endptr)
    //   {
@@ -397,7 +397,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(i64 i)
+       //write_text_stream& operator <<(huge_integer i)
        //{
 
        //   write_integer(i);
@@ -409,7 +409,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(u64 u)
+       //write_text_stream& operator <<(huge_natural u)
        //{
 
        //   write_natural(u);
@@ -466,9 +466,9 @@ public:
    //   }
    //
 
-       // void write(const ::point_i32 & point) ;
-       // void write(const ::size_i32 & size) ;
-       // void write(const ::rectangle_i32 &rectangle) ;
+       // void write(const ::int_point & point) ;
+       // void write(const ::int_size & size) ;
+       // void write(const ::int_rectangle &rectangle) ;
 
    write_text_stream & operator <<(const ::ansi_character * psz);
    //    {
@@ -539,7 +539,7 @@ public:
    //    }
 
 
-   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+   template < primitive_character CHARACTER2, character_count sizeMaximumLength >
    write_text_stream & operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring);
    //    {
    //
@@ -599,7 +599,7 @@ public:
        //::string get_location() const;
 
        //::filesize get_position() const ;
-   void write(const void * psz, strsize s);
+   void write(const void * psz, character_count s);
 
    //void print(const ::scoped_string & scopedstr);
 
@@ -622,8 +622,8 @@ public:
 //   text_stream& operator >>(unsigned short& u);
 //   text_stream& operator >>(int& i);
 //   text_stream& operator >>(unsigned int& u);
-//   text_stream& operator >>(i64& i);
-//   text_stream& operator >>(u64& u);
+//   text_stream& operator >>(huge_integer& i);
+//   text_stream& operator >>(huge_natural& u);
 //   text_stream& operator >>(float& f);
 //   text_stream& operator >>(double& d);
 //   text_stream& operator >>(string& str);

@@ -46,7 +46,7 @@ namespace simple_ui
 
       }
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 

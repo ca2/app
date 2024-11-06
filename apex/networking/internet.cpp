@@ -52,7 +52,7 @@ namespace internet
          || idLocale == "su"
          || idLocale == "lv"
          || idLocale == "li"
-         || idLocale == "hu"
+         || idLocale == "hn"
          || idLocale == "es"
          || idLocale == "sk"
          || idLocale == "cz"

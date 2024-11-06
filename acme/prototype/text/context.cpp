@@ -291,7 +291,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char())
+            if(table.has_character())
                return table;
 
          }
@@ -299,7 +299,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char())
+            if(table.has_character())
                return table;
          }
 
@@ -307,7 +307,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char())
+            if(table.has_character())
                return table;
 
          }
@@ -316,22 +316,22 @@ namespace text
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char())
+         if(table.has_character())
             return table;
       }
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char())
+      if(table.has_character())
          return table;
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char())
+         if(table.has_character())
             return table;
       }
 
       table = (*m_pschemaStd)[atom]; // lang=_std style=_std
 
-      if(table.has_char())
+      if(table.has_character())
       {
 
          return table;
@@ -370,7 +370,7 @@ namespace text
                if(pschema != nullptr)
                {
                   table = (*pschema)[atom];
-                  if(table.has_char())
+                  if(table.has_character())
                      return table;
                }
             }
@@ -379,7 +379,7 @@ namespace text
             if(pschema != nullptr)
             {
                auto ptable = pschema->find_item(atom);
-               if(ptable && ptable->element2().has_char())
+               if(ptable && ptable->element2().has_character())
                   return ptable->element2();
             }
          }
@@ -442,7 +442,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char())
+            if(table.has_character())
                stra.add(table);
 
          }
@@ -450,7 +450,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char())
+            if(table.has_character())
                stra.add(table);
          }
 
@@ -458,7 +458,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char())
+            if(table.has_character())
                stra.add(table);
 
          }
@@ -469,46 +469,46 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char())
+         if(table.has_character())
             stra.add(table);
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char())
+      if(table.has_character())
          stra.add(table);
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char())
+         if(table.has_character())
             stra.add(table);
 
       }
 
       table = (*m_pschemaStd)[atom]; // lang=_std style=_std
-      if(table.has_char())
+      if(table.has_character())
          stra.add(table);
 
    }
 
    //struct range_sz_item
    //{
-   //   strsize s;
-   //   strsize e;
+   //   character_count s;
+   //   character_count e;
    //};
 
    //struct range_sz
    //{
 
    //   range_sz_item stack[8];
-   //   strsize m_pos = 0;
+   //   character_count m_pos = 0;
 
    //   char m_szAlloca[8 * 1024];
    //   char * m_szMerge = m_szAlloca;
-   //   strsize m_iSize =0;
-   //   strsize m_iMaxSize=sizeof(m_szAlloca);
+   //   character_count m_iSize =0;
+   //   character_count m_iMaxSize=sizeof(m_szAlloca);
    //   bool m_bOwn = false;
 
 
@@ -520,7 +520,7 @@ namespace text
    //      }
    //   }
 
-   //   void append(strsize start,strsize end, ::range < const ::ansi_character * > range)
+   //   void append(character_count start,character_count end, ::range < const ::ansi_character * > range)
    //   {
    //      stack[m_pos].s = start;
    //      stack[m_pos].e = end;
@@ -537,9 +537,9 @@ namespace text
    //      if(m_pos <= 0)
    //         return;
 
-   //      strsize oldlen = m_iSize;
+   //      character_count oldlen = m_iSize;
 
-   //      strsize newlen;
+   //      character_count newlen;
 
    //      if(oldlen == 0 && m_pos == 1)
    //      {
@@ -581,8 +581,8 @@ namespace text
    //            }
    //         }
 
-   //         strsize pos = 0;
-   //         strsize len;
+   //         character_count pos = 0;
+   //         character_count len;
    //         for(::collection::index i = 0; i < m_pos; i++)
    //         {
    //            len = stack[i].e - stack[i].s;
@@ -600,13 +600,13 @@ namespace text
 
    //   }
 
-   //   strsize calc_merge_len()
+   //   character_count calc_merge_len()
    //   {
    //      if(m_pos <= 0)
    //         return 0;
    //      if(m_pos == 1)
    //         return stack[0].e - stack[0].s;
-   //      strsize len = 0;
+   //      character_count len = 0;
    //      for(::collection::index i = 0; i < m_pos; i++)
    //      {
    //         len += stack[i].e - stack[i].s;
@@ -638,7 +638,7 @@ namespace text
 //
 //      pfile->as_memory(mem);
 //
-//      strsize len;
+//      character_count len;
 //
 //      auto strFile = mem.get_buffer<::ansi_character>(len);
 //
@@ -648,9 +648,9 @@ namespace text
 //
 //      //int i = 0;
 //
-//      strsize start;
+//      character_count start;
 //
-//      strsize end;
+//      character_count end;
 //
 //      char q;
 //
@@ -666,7 +666,7 @@ namespace text
 //
 //      const char * rd;
 //
-//      strsize l;
+//      character_count l;
 //
 //      string str;
 //
@@ -678,7 +678,7 @@ namespace text
 //
 //      string strToken;
 //
-//      while(parse.has_char())
+//      while(parse.has_character())
 //      {
 //
 //         str.empty();
@@ -948,7 +948,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
                return true;
 
          }
@@ -956,7 +956,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
                return true;
          }
 
@@ -964,7 +964,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
                return true;
 
          }
@@ -975,20 +975,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+      if(table.has_character() && case_insensitive_string_begins(strTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
             return true;
 
       }
@@ -1017,7 +1017,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+            if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
                return true;
 
          }
@@ -1025,7 +1025,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+            if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
                return true;
          }
 
@@ -1033,7 +1033,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+            if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
                return true;
 
          }
@@ -1044,20 +1044,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+         if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+      if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && strTopic.case_insensitive_begins_eat(table))
+         if(table.has_character() && strTopic.case_insensitive_begins_eat(table))
             return true;
 
       }

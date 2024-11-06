@@ -8,5 +8,5 @@
 
 
 
-CLASS_DECL_ACME ::i64 i64_nanosecond();
+CLASS_DECL_ACME huge_integer i64_nanosecond();
 

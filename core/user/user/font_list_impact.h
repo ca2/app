@@ -45,8 +45,8 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
-      //virtual ::point_i32 get_context_offset() override;
-      //::size_f64 get_total_size() override;
+      //virtual ::int_point get_context_offset() override;
+      //::double_size get_total_size() override;
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 

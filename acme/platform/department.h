@@ -21,7 +21,7 @@ namespace acme
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void call_member(::i64 iId) override;
+      virtual void call_member(huge_integer iId) override;
 
 
       virtual void process_init();

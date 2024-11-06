@@ -10,7 +10,7 @@ typedef struct tag_MSG
    unsigned int        message;
    WPARAM      wParam;
    LPARAM      lParam;
-   ::point_i32       pt;
+   ::int_point       pt;
 } MESSAGE, * MESSAGE *;
 #endif
 

@@ -181,7 +181,7 @@ void dialog::EndModalLoop(atom idResult)
 void dialog::on_position_parent_frame()
 {
 
-   ::rectangle_i32 rectangleOpen;
+   ::int_rectangle rectangleOpen;
 
    m_pframe->best_monitor(&rectangleOpen);
 

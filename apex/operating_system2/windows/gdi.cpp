@@ -38,12 +38,12 @@
 //   LOGFONTW& logFont = *pLogFont;
 //
 //
-//   ::point_i32 point;
-//   // 72 points/inch, 10 decipoints/point_i32
+//   ::int_point point;
+//   // 72 points/inch, 10 decipoints/int_point
 //   point.y() = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x() = 0;
 //   ::DPtoLP(hdc, (POINT *) &point, 1);
-//   ::point_i32 pointOrg = { 0, 0 };
+//   ::int_point pointOrg = { 0, 0 };
 //   ::DPtoLP(hdc, (POINT *) &pointOrg, 1);
 //   logFont.lfHeight = -abs(point.y() - pointOrg.y());
 //

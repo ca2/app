@@ -46,7 +46,7 @@ namespace nano2d
 
          ::e_align                     m_ealignText;
 
-         ::point_f64                   m_pointCurrent;
+         ::double_point                   m_pointCurrent;
 
          ::geometry2d::matrix              m_matrix;
 

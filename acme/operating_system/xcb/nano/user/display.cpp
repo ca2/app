@@ -1950,7 +1950,7 @@ namespace xcb
          }
 
 
-         ::size_i32 display::get_main_screen_size()
+         ::int_size display::get_main_screen_size()
          {
 
             auto snum = DefaultScreen((Display *) m_pX11Display);

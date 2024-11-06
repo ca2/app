@@ -13,11 +13,11 @@
 
 #ifdef __cplusplus
 
-CLASS_DECL_APEX void c_post_system_event(::u64 u, void * pparam = 0);
+CLASS_DECL_APEX void c_post_system_event(huge_natural u, void * pparam = 0);
 
 #else
 
-CLASS_DECL_APEX void c_post_system_event(i64 iId, void * pparam);
+CLASS_DECL_APEX void c_post_system_event(huge_integer iId, void * pparam);
 
 #endif
 

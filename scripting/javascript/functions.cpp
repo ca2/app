@@ -122,7 +122,7 @@ void scIsPlainHostName(CScriptVar *pvar, void *data)
    {
       for(int i = 0; i < stra.get_size(); i++)
       {
-         if(!is_only_digits(stra[i]) || ansi_to_i32(stra[i]) > 255)
+         if(!is_only_digits(stra[i]) || ansi_to_int(stra[i]) > 255)
          {
             bIpv4 = true;
          }

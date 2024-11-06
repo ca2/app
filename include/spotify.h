@@ -44,7 +44,7 @@ extern "C" {
 #include <stddef.h>
 
 #ifdef _WIN32
-typedef ::u64 sp_::u3264;
+typedef huge_natural sp_::u3264;
 #else
 #include <stdint.h>
 typedef uint64_t sp_::u3264;
@@ -169,7 +169,7 @@ SP_LIBEXPORT(const ::string &) sp_error_message(sp_error error);
  */
 typedef enum sp_connectionstate {
   SP_CONNECTION_STATE_LOGGED_OUT   = 0, ///< User not yet logged in
-  SP_CONNECTION_STATE_LOGGED_IN    = 1, ///< Logged in against a Spotify access point_i32
+  SP_CONNECTION_STATE_LOGGED_IN    = 1, ///< Logged in against a Spotify access int_point
   SP_CONNECTION_STATE_DISCONNECTED = 2, ///< Was logged in, but has now been disconnected
   SP_CONNECTION_STATE_UNDEFINED    = 3, ///< The connection state is undefined
   SP_CONNECTION_STATE_OFFLINE    = 4  ///< Logged in in offline mode
@@ -256,12 +256,12 @@ typedef enum sp_track_offline_status {
 } sp_track_offline_status;
 
 /**
- * Image size_i32
+ * Image int_size
  */
 typedef enum sp_image_size {
-  SP_IMAGE_SIZE_NORMAL                  = 0, ///< Normal image size_i32
-  SP_IMAGE_SIZE_SMALL                   = 1, ///< Small image size_i32
-  SP_IMAGE_SIZE_LARGE                   = 2, ///< Large image size_i32
+  SP_IMAGE_SIZE_NORMAL                  = 0, ///< Normal image int_size
+  SP_IMAGE_SIZE_SMALL                   = 1, ///< Small image int_size
+  SP_IMAGE_SIZE_LARGE                   = 2, ///< Large image int_size
 } sp_image_size;
 
 /**
@@ -277,7 +277,7 @@ typedef struct sp_audio_buffer_stats {
  */
 typedef struct sp_subscribers {
   unsigned int count;    ///< Number of elements in 'subscribers'
-  char *subscribers[1];  ///< Actual size_i32 is 'count'. Array of pointers to canonical usernames
+  char *subscribers[1];  ///< Actual int_size is 'count'. Array of pointers to canonical usernames
 } sp_subscribers;
 
 
@@ -445,7 +445,7 @@ typedef struct sp_session_callbacks {
   void (SP_CALLCONV *connection_error)(sp_session *session, sp_error error);
 
   /**
-   * Called when the access point_i32 wants to display a message to the user
+   * Called when the access int_point wants to display a message to the user
    *
    * In the desktop client, these are shown in a blueish toolbar just below the
    * search box.
@@ -652,7 +652,7 @@ typedef struct sp_session_config {
             *   if you don't want to create the folder yourself, you can set 'settings_location' to 'cache_location'.
             */
   const void *application_key;           ///< Your application key
-  size_t application_key_size;           ///< The size_i32 of the application key in bytes
+  size_t application_key_size;           ///< The int_size of the application key in bytes
   const char *user_agent;                /**< "User-Agent" for your application - maximum 255 characters long
                  The User-Agent should be a relevant, customer facing identification of your application
                  */
@@ -782,7 +782,7 @@ SP_LIBEXPORT(sp_error) sp_session_relogin(sp_session *session);
  *
  * @param[in]   session      Your session object
  * @param[out]  buffer       The buffer to hold the username
- * @param[in]   buffer_size  The maximum size_i32 of the buffer that will hold the username.
+ * @param[in]   buffer_size  The maximum int_size of the buffer that will hold the username.
  *                           The resulting string is guaranteed to always be null terminated if
  *                           buffer_size > 0
  *
@@ -871,7 +871,7 @@ SP_LIBEXPORT(void *) sp_session_userdata(sp_session *session);
  * Set maximum cache size.
  *
  * @param[in]   session    Your session object
- * @param[in]   size_i32       Maximum cache size_i32 in megabytes.
+ * @param[in]   int_size       Maximum cache int_size in megabytes.
  *                         Setting it to 0 (the default) will let libspotify automatically
  *                         resize the cache (10% of disk free space)
  * @return                 One of the following errors, from ::sp_error
@@ -1301,14 +1301,14 @@ SP_LIBEXPORT(sp_link *) sp_link_create_from_album(sp_album *album);
  * Create an image link object from an album
  *
  * @param[in]   album      An album object
- * @param[in]   size_i32       The desired size_i32 of the image
+ * @param[in]   int_size       The desired int_size of the image
  *
  * @return                 A link representing the album cover. Type is set to SP_LINKTYPE_IMAGE
  *
  * @note You need to release the link when you are done with it.
  * @see sp_link_release()
  */
-SP_LIBEXPORT(sp_link *) sp_link_create_from_album_cover(sp_album *album, sp_image_size size_i32);
+SP_LIBEXPORT(sp_link *) sp_link_create_from_album_cover(sp_album *album, sp_image_size int_size);
 
 /**
  * Creates a link object from an artist
@@ -1326,7 +1326,7 @@ SP_LIBEXPORT(sp_link *) sp_link_create_from_artist(sp_artist *artist);
  * Creates a link object pointing to an artist portrait
  *
  * @param[in]   artist     Artist browse object
- * @param[in]   size_i32       The desired size_i32 of the image
+ * @param[in]   int_size       The desired int_size of the image
  *
  * @return                 A link object representing an image
  *
@@ -1334,7 +1334,7 @@ SP_LIBEXPORT(sp_link *) sp_link_create_from_artist(sp_artist *artist);
  * @see sp_link_release()
  * @see sp_artistbrowse_num_portraits()
  */
-SP_LIBEXPORT(sp_link *) sp_link_create_from_artist_portrait(sp_artist *artist, sp_image_size size_i32);
+SP_LIBEXPORT(sp_link *) sp_link_create_from_artist_portrait(sp_artist *artist, sp_image_size int_size);
 
 
 /**
@@ -1414,7 +1414,7 @@ SP_LIBEXPORT(sp_link *) sp_link_create_from_image(sp_image * pimage);
  *
  * @param[in]   link         The Spotify link whose string representation you are interested in
  * @param[out]  buffer       The buffer to hold the string representation of link
- * @param[in]   buffer_size  The maximum size_i32 of the buffer that will hold the string representation
+ * @param[in]   buffer_size  The maximum int_size of the buffer that will hold the string representation
  *                           The resulting string is guaranteed to always be null terminated if
  *                           buffer_size > 0
  *
@@ -1810,7 +1810,7 @@ SP_LIBEXPORT(sp_artist *) sp_album_artist(sp_album *album);
  * Return image ID representing the album's coverart.
  *
  * @param[in]   album      Album object
- * @param[in]   size_i32       The desired size_i32 of the image
+ * @param[in]   int_size       The desired int_size of the image
  *
  * @return                 ID unsigned char sequence that can be passed to sp_image_create()
  *                         If the album has no image or the metadata for the album is not
@@ -1818,7 +1818,7 @@ SP_LIBEXPORT(sp_artist *) sp_album_artist(sp_album *album);
  *
  * @see sp_image_create
  */
-SP_LIBEXPORT(const unsigned char *) sp_album_cover(sp_album *album, sp_image_size size_i32);
+SP_LIBEXPORT(const unsigned char *) sp_album_cover(sp_album *album, sp_image_size int_size);
 
 /**
  * Return name of album
@@ -1903,14 +1903,14 @@ SP_LIBEXPORT(bool) sp_artist_is_loaded(sp_artist *artist);
  * Return portrait for artist
  *
  * @param[in]   artist     The artist object
- * @param[in]   size_i32       The desired size_i32 of the image
+ * @param[in]   int_size       The desired int_size of the image
  *
  * @return                 ID unsigned char sequence that can be passed to sp_image_create()
  *                         If the artist has no image or the metadata for the album is not
  *                         loaded yet, this function returns NULL.
  *
  */
-SP_LIBEXPORT(const unsigned char *) sp_artist_portrait(sp_artist *artist, sp_image_size size_i32);
+SP_LIBEXPORT(const unsigned char *) sp_artist_portrait(sp_artist *artist, sp_image_size int_size);
 
 /**
  * Increase the object count of a artist
@@ -3446,7 +3446,7 @@ SP_LIBEXPORT(sp_playlist_type) sp_playlistcontainer_playlist_type(sp_playlistcon
  *
  * @param[in]  pc           Playlist container
  * @param[in]  index        Index in playlist container. Should be in the interval [0, sp_playlistcontainer_num_playlists() - 1].
- *                          Index should point_i32 at a start-folder entry, otherwise the empty string is written to buffer.
+ *                          Index should int_point at a start-folder entry, otherwise the empty string is written to buffer.
  * @param[in]  buffer       Pointer to char[] where to store folder name
  * @param[in]  buffer_size  Size of array
  *

@@ -28,7 +28,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 redraw_item::increment_reference_count()
+   huge_integer redraw_item::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   i64 redraw_item::decrement_reference_count()
+   huge_integer redraw_item::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::rectangle_i32 & rectangle)
+   void redraw::set_need_redraw(const ::int_rectangle & rectangle)
    {
 
       if (m_rectangleaNeedRedraw.has_element())
@@ -135,7 +135,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::rectangle_int_array & rectanglea)
+   void redraw::set_need_redraw(const ::int_rectangle_array & rectanglea)
    {
 
       if (m_rectangleaNeedRedraw.has_element())
@@ -148,7 +148,7 @@ namespace user
    }
 
 
-   bool redraw::needs_to_draw(const ::rectangle_i32 & rectangle)
+   bool redraw::needs_to_draw(const ::int_rectangle & rectangle)
    {
 
       bool bNeedsToDraw = false;
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void redraw::apply_clip(shift_i32 ΔHostToClient)
+   void redraw::apply_clip(shift_int ΔHostToClient)
    {
 
       m_pgraphics->reset_clip();

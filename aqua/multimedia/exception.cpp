@@ -64,7 +64,7 @@ namespace multimedia
 
       }
 
-      if (strMultimediaMessage.has_char())
+      if (strMultimediaMessage.has_character())
       {
 
          str += ", " + strMultimediaMessage;

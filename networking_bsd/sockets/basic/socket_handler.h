@@ -80,8 +80,8 @@ namespace sockets_bsd
       ~socket_handler() override;
 
 
-      i64 increment_reference_count() override;
-      i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
       void initialize(::particle * pparticle) override;
 
@@ -134,8 +134,8 @@ namespace sockets_bsd
       ::collection::count get_count() override;
 
       /** Override and return false to deny all incoming connections.
-      \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(::sockets::base_socket *point_i32) override;
+      \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
+      bool OkToAccept(::sockets::base_socket *int_point) override;
 
       /** Called by base_socket when a base_socket changes state. */
       socket_id_list& socket_id_list_get(enum_list elist) override;

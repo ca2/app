@@ -103,19 +103,19 @@ public:
 #ifdef _DEBUG
 
 
-   virtual i64 increment_reference_count();
-   virtual i64 decrement_reference_count();
-   virtual i64 replace_reference();
-   virtual i64 release();
+   virtual huge_integer increment_reference_count();
+   virtual huge_integer decrement_reference_count();
+   virtual huge_integer replace_reference();
+   virtual huge_integer release();
 
 
 #else
 
 
-   inline i64 increment_reference_count();
-   inline i64 decrement_reference_count();
-   inline i64 replace_reference();
-   inline i64 release();
+   inline huge_integer increment_reference_count();
+   inline huge_integer decrement_reference_count();
+   inline huge_integer replace_reference();
+   inline huge_integer release();
 
 
 #endif

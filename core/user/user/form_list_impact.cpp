@@ -268,7 +268,7 @@ namespace user
 
    //}
 
-   void form_list_impact::set_context_offset(const ::point_f64 & point, ::user::enum_layout elayout)
+   void form_list_impact::set_context_offset(const ::double_point & point, ::user::enum_layout elayout)
    {
 
       ::user::list_impact::set_context_offset(point, elayout);
@@ -276,7 +276,7 @@ namespace user
    }
 
 
-   ::point_f64 form_list_impact::get_context_offset(::user::enum_layout elayout)
+   ::double_point form_list_impact::get_context_offset(::user::enum_layout elayout)
    {
 
       return ::user::list_impact::get_context_offset(elayout);
@@ -284,7 +284,7 @@ namespace user
    }
 
 
-   ::size_f64 form_list_impact::get_total_size(::user::enum_layout elayout)
+   ::double_size form_list_impact::get_total_size(::user::enum_layout elayout)
    {
 
       return ::user::list_impact::get_total_size(elayout);

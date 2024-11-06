@@ -558,7 +558,7 @@
 //               //}
 //               ::file::path path = module_path_from_pid(iPid);
 //
-//               if (path.has_char())
+//               if (path.has_character())
 //               {
 //
 //                  //information(path + "\n");
@@ -639,7 +639,7 @@
 //
 //         }
 //
-//         if (strArg.has_char())
+//         if (strArg.has_character())
 //         {
 //
 //            stra.add(strArg);

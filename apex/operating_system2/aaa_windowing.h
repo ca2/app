@@ -11,7 +11,7 @@
 
 // CLASS_DECL_APEX void os_term_windowing();
 
-// CLASS_DECL_APEX i64 oswindow_id(oswindow w);
+// CLASS_DECL_APEX huge_integer oswindow_id(oswindow w);
 
 
 // //CLASS_DECL_APEX int_bool is_window(::windowing::window * pwindow);

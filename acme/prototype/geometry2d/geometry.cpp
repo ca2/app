@@ -36,7 +36,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(int xParam, int yParam, ::point_i32 * ppoint, int iCount, double phi)
+   void geometry::rotate(int xParam, int yParam, ::int_point * ppoint, int iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -48,7 +48,7 @@ namespace geometry
    void geometry::rotate(
       int xParam,
       int yParam,
-      ::point_i32 * ppoint,
+      ::int_point * ppoint,
 
       int iCount,
       double phicos,
@@ -67,7 +67,7 @@ namespace geometry
       }
    }
 
-   void geometry::rotate(int xParam, int yParam, ::point_f64 * ppoint, int iCount, double phi)
+   void geometry::rotate(int xParam, int yParam, ::double_point * ppoint, int iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -79,7 +79,7 @@ namespace geometry
    void geometry::rotate(
       int xParam,
       int yParam,
-      ::point_f64 * ppoint,
+      ::double_point * ppoint,
 
       int iCount,
       double phicos,
@@ -99,7 +99,7 @@ namespace geometry
    }
 
 
-   //void geometry::RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle)
+   //void geometry::RandomPoint(::int_point * ppoint, const ::int_rectangle & rectangle)
    //{
 
    //   ppoint->x = (int)Sy(rectangle.left(),rectangle.right());
@@ -128,10 +128,10 @@ namespace geometry
    //// Vanessa Testoni
    ////
    ////////////////////////////////////////////////////////////////////////
-   //void geometry::deflate(::rectangle_i32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   //void geometry::deflate(::int_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
    //{
-   //   ::rectangle_i32 rectangle(prectangle);
+   //   ::int_rectangle rectangle(prectangle);
 
    //   prectangle->left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
 
@@ -145,7 +145,7 @@ namespace geometry
    //}
 
 
-   void rotation::rotate(::point_i32 * ppoint, int iCount)
+   void rotation::rotate(::int_point * ppoint, int iCount)
 
    {
       for (int i = 0; i < iCount; i++)

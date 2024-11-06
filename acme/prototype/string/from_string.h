@@ -8,15 +8,15 @@ inline  void           from_string(::wide_character & ch, const ::ansi_character
 inline  void           from_string(char & i, const ::ansi_character * psz);
 inline  void           from_string(short & i, const ::ansi_character * psz);
 inline  void           from_string(int & i, const ::ansi_character * psz);
-inline  void           from_string(i64 & i, const ::ansi_character * psz);
+inline  void           from_string(huge_integer & i, const ::ansi_character * psz);
 inline  void           from_string(int & i, int iBase, const ::ansi_character * psz);
-inline  void           from_string(i64 & i, int iBase, const ::ansi_character * psz);
+inline  void           from_string(huge_integer & i, int iBase, const ::ansi_character * psz);
 inline  void           from_string(unsigned char & i, const ::ansi_character * psz);
 inline  void           from_string(unsigned short & i, const ::ansi_character * psz);
 inline  void           from_string(unsigned int & i, const ::ansi_character * psz);
-inline  void           from_string(u64 & i, const ::ansi_character * psz);
+inline  void           from_string(huge_natural & i, const ::ansi_character * psz);
 inline  void           from_string(unsigned int & i, int iBase, const ::ansi_character * psz);
-inline  void           from_string(u64 & i, int iBase, const ::ansi_character * psz);
+inline  void           from_string(huge_natural & i, int iBase, const ::ansi_character * psz);
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 inline  void           from_string(long & l, const ::ansi_character * psz);

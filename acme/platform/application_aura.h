@@ -443,7 +443,7 @@ namespace platform
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(::u64 u, ::particle * pparticle) override;
+      //virtual void on_event(huge_natural u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -659,10 +659,10 @@ namespace platform
       //virtual bool check_exclusive(bool & bHandled) override;
       //virtual bool release_exclusive() override;
 
-      //virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
-      //virtual void get_scalar_minimum(e_scalar escalar,i64 & i) override;
-      //virtual void get_scalar(e_scalar escalar,i64 & i) override;
-      //virtual void get_scalar_maximum(e_scalar escalar,i64 & i) override;
+      //virtual void on_set_scalar(e_scalar escalar,huge_integer iValue,int iFlags) override;
+      //virtual void get_scalar_minimum(e_scalar escalar,huge_integer & i) override;
+      //virtual void get_scalar(e_scalar escalar,huge_integer & i) override;
+      //virtual void get_scalar_maximum(e_scalar escalar,huge_integer & i) override;
 
 
 
@@ -846,7 +846,7 @@ namespace platform
       //virtual ::atom translate_property_id(const ::atom & atom) override;
       //virtual property fetch_property(const ::atom & atom) override;
 
-      //virtual void get_time(struct timeval *point_i32) override;
+      //virtual void get_time(struct timeval *int_point) override;
       //
       // virtual void close(::enum_exit eexit) override;
 
@@ -983,7 +983,7 @@ namespace platform
       virtual int track_popup_menu(::menu::track_popup* ptrackpopup);
 
       // virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
-      // virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;
+      // virtual bool get_fs_size(huge_integer& i64Size, const ::string & pszPath, bool& bPending) override;
       //
       // virtual void set_title(const ::string & pszTitle) override;
 
@@ -1055,7 +1055,7 @@ namespace platform
       //
       // void on_prompt_write_file(::user::controller * pusercontroller) override;
 
-      //::pointer < ::innate_ui::icon > innate_ui_icon(const ::size_i32 & size) override;
+      //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
 
 
    };

@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   bool core_user_layer::get_fs_size(i64& i64Size, const ::string& pszPath, bool& bPending)
+   bool core_user_layer::get_fs_size(huge_integer& i64Size, const ::string& pszPath, bool& bPending)
    {
 
       return false;

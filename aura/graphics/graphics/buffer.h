@@ -32,7 +32,7 @@ namespace graphics
 
       virtual bool update_buffer(buffer_item * pitem) override;
       virtual void destroy_buffer() override;
-      virtual ::size_i32 buffer_size();
+      virtual ::int_size buffer_size();
 
 //
       //virtual bool update_screen() override;

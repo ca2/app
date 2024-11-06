@@ -42,7 +42,7 @@ namespace user
 
 
 
-   i64 menu_button::increment_reference_count()
+   huge_integer menu_button::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   i64 menu_button::decrement_reference_count()
+   huge_integer menu_button::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -163,16 +163,16 @@ namespace user
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);
          pgraphics->set(pbrush);
-         ::rectangle_i32 rectanglePopupArrow;
+         ::int_rectangle rectanglePopupArrow;
          rectanglePopupArrow.left() = rectangleX.right() - 9;
          rectanglePopupArrow.right() = rectangleX.right() - 4;
          rectanglePopupArrow.top() = ((rectangleX.top() + rectangleX.bottom()) / 2) - 4;
          rectanglePopupArrow.bottom() = ((rectangleX.top() + rectangleX.bottom()) / 2) + 4;
-         point_double_array pointa;
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
-         pointa.add(point_i32(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
-         pointa.add(point_i32(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         double_point_array pointa;
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         pointa.add(int_point(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
+         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
          pgraphics->polygon(pointa);
       }
 
@@ -283,8 +283,8 @@ namespace user
       if(uImage != 0xffffffffu)
       {
 
-         ::rectangle_i32 rectangleImage = m_rectangleCheckBox;
-         ::rectangle_i32 rectangleImageBorder = rectangleImage;
+         ::int_rectangle rectangleImage = m_rectangleCheckBox;
+         ::int_rectangle rectangleImageBorder = rectangleImage;
          rectangleImageBorder.inflate(2, 2);
          ::image::image_list::info ii;
          ::image::image_list_pointer  pimagelist;
@@ -323,7 +323,7 @@ namespace user
 
             pimagelist->get_image_info(uImage, &ii);
 
-            ::rectangle_i32 & rectangleImageInfo(ii.m_rectangle);
+            ::int_rectangle & rectangleImageInfo(ii.m_rectangle);
             rectangleImage.offset(1, 1);
             rectangleImage.top() = rectangleImage.bottom() - rectangleImageInfo.height();
             rectangleImage.right() = rectangleImage.left() + rectangleImageInfo.width();
@@ -435,7 +435,7 @@ namespace user
    }
 
 
-   ::size_f64 menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::double_size menu_button::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto size = button::get_preferred_size(pgraphics);

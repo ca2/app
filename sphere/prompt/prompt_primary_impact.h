@@ -16,7 +16,7 @@ namespace prompt
       typedef ::user::show <  ::user::plain_edit > BASE;
 
 
-      strsize m_iCompromised;
+      character_count m_iCompromised;
 
 
       primary_impact(::particle * pparticle);

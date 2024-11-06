@@ -89,7 +89,7 @@ namespace nanoui
       const ::string_array& items_short() const { return m_straItemsShort; }
 
       /// Handles mouse scrolling events for this ComboBox.
-      virtual bool scroll_event(const point_i32& p, const size_f32& rel) override;
+      virtual bool scroll_event(const int_point& p, const float_size& rel) override;
 
    };
 

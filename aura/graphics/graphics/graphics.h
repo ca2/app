@@ -20,11 +20,11 @@ namespace graphics
       ::image::image_pointer               m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::point_i32                   m_point;
-      ::size_i32                    m_size;
+      ::int_point                   m_point;
+      ::int_size                    m_size;
       ::particle_pointer      m_pparticleData;
       manual_reset_event            m_manualresetevent;
-      ::size_i32                    m_sizeInternal;
+      ::int_size                    m_sizeInternal;
       int                         m_iScan;
 
 
@@ -86,7 +86,7 @@ namespace graphics
 
       virtual void buffer_size_and_position(buffer_item * pitem);
 
-      virtual i64 _001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect);
+      virtual huge_integer _001GetTopLeftWeightedOpaqueArea(const ::int_rectangle &rect);
 
       //virtual ::particle * get_draw_lock();
       virtual buffer_item * on_begin_draw(::e_graphics egraphics);
@@ -95,7 +95,7 @@ namespace graphics
 
       virtual void on_end_draw();
 
-      //virtual bool update_buffer(const ::size_i32 & size, int iStrideParam = -1);
+      //virtual bool update_buffer(const ::int_size & size, int iStrideParam = -1);
 
       virtual bool update_buffer(buffer_item * pitem);
 

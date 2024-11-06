@@ -19,7 +19,7 @@ CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_charac
 #endif
 }
 
-CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
+CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s)
 {
 #ifdef WINDOWS
    return _strnicmp(psz1, psz2, s);
@@ -38,7 +38,7 @@ CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_chara
 #endif
 }
 
-CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s)
+CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s)
 {
 #ifdef WINDOWS
    return _strnicmp(psz1, psz2, s);
@@ -48,7 +48,7 @@ CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoll(psz, (::ansi_character **)ppszEnd, iBase);
@@ -56,7 +56,7 @@ CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoull(psz, (::ansi_character **)ppszEnd, iBase);
@@ -64,7 +64,7 @@ CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -104,7 +104,7 @@ CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_chara
 
 
 
-CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -139,7 +139,7 @@ CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::a
 
 
 
-CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept
+CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz) noexcept
 {
    
    return strlen(psz);
@@ -149,7 +149,7 @@ CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz) noexcept
 
 
 
-CLASS_DECL_ACME strsize utf8_len(const ::ansi_character * psz)
+CLASS_DECL_ACME character_count utf8_len(const ::ansi_character * psz)
 {
    if (::is_null(psz)) return 0;
    
@@ -376,15 +376,15 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right,
 
 CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) { return _strdup(psz); }
 
-CLASS_DECL_ACME strsize ansi_len(const ::ansi_character * psz) { return strlen(psz); }
+CLASS_DECL_ACME character_count ansi_len(const ::ansi_character * psz) { return strlen(psz); }
 
-CLASS_DECL_ACME strsize ansi_nlen(const ::ansi_character * psz, memsize len) { return strnlen(psz, len); }
+CLASS_DECL_ACME character_count ansi_nlen(const ::ansi_character * psz, memsize len) { return strnlen(psz, len); }
 
 CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz) { return strcat(pszDst, psz); }
 
 CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz) { return strcpy(pszDst, psz); }
 
-CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, strsize len) { return strncpy(pszDst, psz, len); }
+CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, character_count len) { return strncpy(pszDst, psz, len); }
 
 CLASS_DECL_ACME const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch) { return strchr(psz1, ch); }
 
@@ -410,7 +410,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_rchr(const ::ansi_character * psz1
 
 CLASS_DECL_ACME int ansi_cmp(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcmp(psz1, psz2); }
 
-CLASS_DECL_ACME int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return strncmp(psz1, psz2, s); }
+CLASS_DECL_ACME int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return strncmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind) { return strstr(psz, pszFind); }
 
@@ -418,15 +418,15 @@ CLASS_DECL_ACME const ::ansi_character * ansi_str(const ::ansi_character * psz, 
 
 CLASS_DECL_ACME int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcmp(psz1, psz2); }
 
-CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s) { return strncmp(psz1, psz2, s); }
+CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return strncmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
-CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, strsize s);
+CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
 
-CLASS_DECL_ACME strsize ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strspn(psz1, psz2); }
+CLASS_DECL_ACME character_count ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strspn(psz1, psz2); }
 
-CLASS_DECL_ACME strsize ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcspn(psz1, psz2); }
+CLASS_DECL_ACME character_count ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2) { return strcspn(psz1, psz2); }
 
 
 
@@ -451,7 +451,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, strsize len)
+//CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, character_count len)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
@@ -465,7 +465,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME strsize ansi_length(const ::ansi_character * psz)
+//CLASS_DECL_ACME character_count ansi_length(const ::ansi_character * psz)
 //{
 //
 //   if (::is_null(psz)) return 0;
@@ -489,7 +489,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, strsize len)
+//CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, character_count len)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
@@ -553,12 +553,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
+//CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
 //
-//   if (len > (strsize) strlen(find)) return nullptr;
+//   if (len > (character_count) strlen(find)) return nullptr;
 //
 //   if (len <= 0)
 //   {
@@ -586,12 +586,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
+//CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
 //
-//   if (len > (strsize)strlen(find)) return nullptr;
+//   if (len > (character_count)strlen(find)) return nullptr;
 //
 //   if (len <= 0)
 //   {
@@ -691,7 +691,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
 //{
 //
 //   if (len < 0)
@@ -734,7 +734,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
 //{
 //
 //   if (len < 0)
@@ -850,7 +850,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
 //{
 //
 //   if (len < 0)
@@ -893,7 +893,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
 //{
 //
 //   if (len < 0)
@@ -1010,9 +1010,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(prefix)) return false;
 //
-//   strsize len = strlen(prefix);
+//   character_count len = strlen(prefix);
 //
-//   if (len > (strsize)strlen(psz))
+//   if (len > (character_count)strlen(psz))
 //   {
 //
 //      return false;
@@ -1043,7 +1043,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(prefix)) return nullptr;
 //
-//   strsize len = strlen(prefix);
+//   character_count len = strlen(prefix);
 //
 //   if (strncmp(psz, prefix, len))
 //   {
@@ -1064,7 +1064,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(prefix)) return nullptr;
 //
-//   strsize len = strlen(prefix);
+//   character_count len = strlen(prefix);
 //
 //   if (ansi_nicmp(psz, prefix, len))
 //   {
@@ -1085,9 +1085,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(suffix)) return false;
 //
-//   strsize len = strlen(suffix);
+//   character_count len = strlen(suffix);
 //
-//   strsize end = strlen(psz) - len;
+//   character_count end = strlen(psz) - len;
 //
 //   if(end < 0)
 //   {
@@ -1108,9 +1108,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   if (::is_null(suffix)) return false;
 //
-//   strsize len = strlen(suffix);
+//   character_count len = strlen(suffix);
 //
-//   strsize end = strlen(psz) - len;
+//   character_count end = strlen(psz) - len;
 //
 //   if (end < 0)
 //   {
@@ -1148,7 +1148,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
 //
 //
-//CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_huge_natural(::ansi_character * sz, huge_natural u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1158,12 +1158,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_huge_integer(::ansi_character * sz, huge_integer i, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
 //
-//   __i64toansi(i, sz, iBase, edigitcase, end);
+//   __huge_integertoansi(i, sz, iBase, edigitcase, end);
 //
 //}
 //
@@ -1183,12 +1183,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   ::ansi_character * end;
 //
-//   __i64toansi(i, sz, iBase, edigitcase, end);
+//   __huge_integertoansi(i, sz, iBase, edigitcase, end);
 //
 //}
 //
 //
-//CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
+//CLASS_DECL_ACME huge_integer ansi_count_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
 //{
 //
 //   auto len = ansi_length(psz);
@@ -1208,7 +1208,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //         auto pszDup = ansi_count_duplicate(psz, srclen);
 //
-//         auto i = ansi_to_i64(pszDup, ppszEnd, iBase);
+//         auto i = ansi_to_huge_integer(pszDup, ppszEnd, iBase);
 //
 //         if (ppszEnd)
 //         {
@@ -1225,12 +1225,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   }
 //
-//   return ansi_to_i64(psz, ppszEnd, iBase);
+//   return ansi_to_huge_integer(psz, ppszEnd, iBase);
 //
 //}
 //
 //
-//CLASS_DECL_ACME int ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
+//CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
 //{
 //
 //   auto len = ansi_length(psz);
@@ -1250,7 +1250,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //         auto pszDup = ansi_count_duplicate(psz, srclen);
 //
-//         auto i = ansi_to_i32(pszDup, ppszEnd, iBase);
+//         auto i = ansi_to_int(pszDup, ppszEnd, iBase);
 //
 //         if (ppszEnd)
 //         {
@@ -1267,7 +1267,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   }
 //
-//   return ansi_to_i32(psz, ppszEnd, iBase);
+//   return ansi_to_int(psz, ppszEnd, iBase);
 //
 //}
 //
@@ -1280,7 +1280,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz, strsize size)
+//CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz, character_count size)
 //{
 //
 //   reverse_memory(psz, size);
@@ -1288,12 +1288,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_zero_pad(::ansi_character * psz, strsize lenPad)
+//CLASS_DECL_ACME void ansi_zero_pad(::ansi_character * psz, character_count lenPad)
 //{
 //
-//   strsize len = strlen(psz);
+//   character_count len = strlen(psz);
 //
-//   strsize countZero = lenPad - len;
+//   character_count countZero = lenPad - len;
 //
 //   if (countZero <= 0)
 //   {
@@ -1302,14 +1302,14 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   }
 //
-//   for (strsize i = len; i >= 0; i--)
+//   for (character_count i = len; i >= 0; i--)
 //   {
 //
 //      psz[countZero + i] = psz[i];
 //
 //   }
 //
-//   for(strsize i = 0; i < countZero; i++)
+//   for(character_count i = 0; i < countZero; i++)
 //   {
 //
 //      psz[i] = '0';
@@ -1360,11 +1360,11 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int iFree1, int iFree2)
 //{
 //
-//   strsize len1 = ansi_length(psz1);
+//   character_count len1 = ansi_length(psz1);
 //
-//   strsize len2 = ansi_length(psz2);
+//   character_count len2 = ansi_length(psz2);
 //
-//   strsize len = len1 + len2 + 1;
+//   character_count len = len1 + len2 + 1;
 //
 //   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 //
@@ -1418,11 +1418,11 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2)
 ////{
 ////
-////   strsize len1 = strlen(psz1);
+////   character_count len1 = strlen(psz1);
 ////
-////   strsize len2 = strlen(psz2);
+////   character_count len2 = strlen(psz2);
 ////
-////   strsize len = len1 + len2 + 1;
+////   character_count len = len1 + len2 + 1;
 ////
 ////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
@@ -1453,11 +1453,11 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_free_and_duplicate(::ansi_character * psz1, const ::ansi_character * psz2)
 ////{
 ////
-////   strsize len1 = strlen(psz1);
+////   character_count len1 = strlen(psz1);
 ////
-////   strsize len2 = strlen(psz2);
+////   character_count len2 = strlen(psz2);
 ////
-////   strsize len = len1 + len2 + 1;
+////   character_count len = len1 + len2 + 1;
 ////
 ////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
@@ -1488,11 +1488,11 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenat_free_duplicate_and_free(::ansi_character * psz1, ::ansi_character * psz2)
 ////{
 ////
-////   strsize len1 = strlen(psz1);
+////   character_count len1 = strlen(psz1);
 ////
-////   strsize len2 = strlen(psz2);
+////   character_count len2 = strlen(psz2);
 ////
-////   strsize len = len1 + len2 + 1;
+////   character_count len = len1 + len2 + 1;
 ////
 ////   auto * psz = (::ansi_character *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
 ////
@@ -1526,7 +1526,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //
 //
-//CLASS_DECL_ACME const void * memory_find_memory(const void * src, strsize srclen, const void * find, strsize findlen)
+//CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_count srclen, const void * find, character_count findlen)
 //{
 //
 //   if (::is_null(src)) return nullptr;
@@ -1572,7 +1572,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //
 //
-CLASS_DECL_ACME strsize string_safe_length(const ::ansi_character * psz) noexcept
+CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character * psz) noexcept
 {
    
    if (::is_null(psz)) return 0; return string_get_length(psz); 

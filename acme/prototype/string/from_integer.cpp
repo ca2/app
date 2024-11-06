@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "from_integer.h"
 
-string i64toa_dup(i64 i, int iBase)
+string i64toa_dup(huge_integer i, int iBase)
 {
 
    char sz[128 + 64];
@@ -48,7 +48,7 @@ string i64toa_dup(i64 i, int iBase)
 }
 
 
- string i64toa_dup(i64 i)
+ string i64toa_dup(huge_integer i)
 {
 
    return i64toa_dup(i, 10);
@@ -57,7 +57,7 @@ string i64toa_dup(i64 i, int iBase)
 
 
 
- string ui64toa_dup(i64 i, int iBase)
+ string ui64toa_dup(huge_integer i, int iBase)
 {
 
    char sz[128 + 64];
@@ -93,7 +93,7 @@ string i64toa_dup(i64 i, int iBase)
 }
 
 
- string ui64toa_dup(i64 i)
+ string ui64toa_dup(huge_integer i)
 {
 
    return ui64toa_dup(i, 10);
@@ -104,7 +104,7 @@ string i64toa_dup(i64 i, int iBase)
 
 
 
-// void ansi_from_u64(char * sz, u64 u, int iBase)
+// void ansi_from_huge_natural(char * sz, huge_natural u, int iBase)
 //{
 //   if(u == 0)
 //   {
@@ -135,7 +135,7 @@ string i64toa_dup(i64 i, int iBase)
 //
 //
 //
-//void ansi_from_i64(char * sz, i64 i, int iBase)
+//void ansi_from_huge_integer(char * sz, huge_integer i, int iBase)
 //{
 //   if(i == 0)
 //   {
@@ -201,7 +201,7 @@ string i64toa_dup(i64 i, int iBase)
 
 
 
-//void wide_from_u64_base(unichar * sz, u64 u, int iBase)
+//void wide_from_u64_base(unichar * sz, huge_natural u, int iBase)
 //{
 //   if(u == 0)
 //   {
@@ -232,7 +232,7 @@ string i64toa_dup(i64 i, int iBase)
 //
 //
 //
-//void wide_from_i64_base(unichar * sz, i64 i, int iBase)
+//void wide_from_huge_integer_base(unichar * sz, huge_integer i, int iBase)
 //{
 //   if(i == 0)
 //   {

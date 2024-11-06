@@ -99,7 +99,7 @@ namespace xml
    }
 
 
-   //void output_tree::set_attr(const ::scoped_string & scopedstrName, i64 iValue, bool bOptional)
+   //void output_tree::set_attr(const ::scoped_string & scopedstrName, huge_integer iValue, bool bOptional)
 
    //{
    //   if (iValue == 0 && bOptional)

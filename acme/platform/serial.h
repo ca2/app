@@ -284,7 +284,7 @@ namespace serial
        *  * An exception occurred, in this case an actual exception will be thrown.
        *
        * \lparam buffer An unsigned char array of at least the requested size.
-       * \lparam size_i32 A size_t defining how many bytes to be read.
+       * \lparam int_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -298,7 +298,7 @@ namespace serial
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
        * \lparam buffer A matter to a vector of unsigned char.
-       * \lparam size_i32 A size_t defining how many bytes to be read.
+       * \lparam int_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -312,7 +312,7 @@ namespace serial
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
        * \lparam buffer A matter to a string.
-       * \lparam size_i32 A size_t defining how many bytes to be read.
+       * \lparam int_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -326,7 +326,7 @@ namespace serial
       /*! Read a given amount of bytes from the serial port and return a string
        *  containing the data.
        *
-       * \lparam size_i32 A size_t defining how many bytes to be read.
+       * \lparam int_size A size_t defining how many bytes to be read.
        *
        * \return A string containing the data read from the port.
        *
@@ -341,7 +341,7 @@ namespace serial
        * Reads from the serial port until a single line has been read.
        *
        * \lparam buffer A string matter used to store the data.
-       * \lparam size_i32 A maximum length of a line, defaults to 65536 (2^16)
+       * \lparam int_size A maximum length of a line, defaults to 65536 (2^16)
        * \lparam eol A string to match against for the EOL.
        *
        * \return A size_t representing the number of bytes read.
@@ -356,7 +356,7 @@ namespace serial
        *
        * Reads from the serial port until a single line has been read.
        *
-       * \lparam size_i32 A maximum length of a line, defaults to 65536 (2^16)
+       * \lparam int_size A maximum length of a line, defaults to 65536 (2^16)
        * \lparam eol A string to match against for the EOL.
        *
        * \return A string containing the line.
@@ -372,7 +372,7 @@ namespace serial
        * This requires a timeout > 0 before it can be run. It will read until a
        * timeout occurs and return a list of strings.
        *
-       * \lparam size_i32 A maximum length of combined lines, defaults to 65536 (2^16)
+       * \lparam int_size A maximum length of combined lines, defaults to 65536 (2^16)
        *
        * \lparam eol A string to match against for the EOL.
        *
@@ -389,7 +389,7 @@ namespace serial
        * \lparam data A const matter containing the data to be written
        * to the serial port.
        *
-       * \lparam size_i32 A size_t that indicates how many bytes should be written from
+       * \lparam int_size A size_t that indicates how many bytes should be written from
        * the given data buffer.
        *
        * \return A size_t representing the number of bytes actually written to

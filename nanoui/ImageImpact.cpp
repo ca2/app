@@ -112,7 +112,7 @@ void ImageImpact::reset()
 }
 
 
-point_f32 ImageImpact::pos_to_pixel(const point_f32 & p) const
+float_point ImageImpact::pos_to_pixel(const float_point & p) const
 {
 
    auto p2 = p;
@@ -120,7 +120,7 @@ point_f32 ImageImpact::pos_to_pixel(const point_f32 & p) const
    if (m_bDrawBorder)
    {
 
-      p2 -= ::size_f32(1.f, 1.f);
+      p2 -= ::float_size(1.f, 1.f);
 
    }
 
@@ -129,7 +129,7 @@ point_f32 ImageImpact::pos_to_pixel(const point_f32 & p) const
 }
 
 
-point_f32 ImageImpact::pixel_to_pos(const point_f32 & p) const
+float_point ImageImpact::pixel_to_pos(const float_point & p) const
 {
 
    auto pos = (p * scale() + m_offset) / screen()->pixel_ratio();
@@ -137,7 +137,7 @@ point_f32 ImageImpact::pixel_to_pos(const point_f32 & p) const
    if (m_bDrawBorder)
    {
 
-      pos += ::size_f32(1.f, 1.f);
+      pos += ::float_size(1.f, 1.f);
 
    }
 
@@ -175,7 +175,7 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int 
 }
 
 
-bool ImageImpact::mouse_motion_event(const point_i32 & /* p */, const size_i32 & rel, bool bDown, const ::user::e_key & /* modifiers */)
+bool ImageImpact::mouse_motion_event(const int_point & /* p */, const int_size & rel, bool bDown, const ::user::e_key & /* modifiers */)
 {
 
    if (!m_bEnabled || !m_pimage || !bDown)
@@ -194,7 +194,7 @@ bool ImageImpact::mouse_motion_event(const point_i32 & /* p */, const size_i32 &
 }
 
 
-bool ImageImpact::scroll_event(const point_i32 & p, const size_f32 & rel) 
+bool ImageImpact::scroll_event(const int_point & p, const float_size & rel) 
 {
 
    if (!m_bEnabled || !m_pimage)
@@ -204,7 +204,7 @@ bool ImageImpact::scroll_event(const point_i32 & p, const size_f32 & rel)
 
    }
 
-   sequence2_f32 p1 = pos_to_pixel(p - m_pos);
+   sequence2_float p1 = pos_to_pixel(p - m_pos);
    m_scale += rel.cy();
 
    // Restrict scaling to a reasonable range
@@ -213,7 +213,7 @@ bool ImageImpact::scroll_event(const point_i32 & p, const size_f32 & rel)
          m_pimage->height())) * 5.f));
    m_scale = ::minimum(m_scale, 45.f);
 
-   sequence2_f32 p2 = pos_to_pixel(p - m_pos);
+   sequence2_float p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
 
@@ -231,8 +231,8 @@ void ImageImpact::draw(::nano2d::context * pcontext)
 
    //Canvas::draw(pcontext);
 
-   //sequence2_i32 top_left = sequence2_i32(pixel_to_pos(sequence2_f32(0.f, 0.f))),
-   //   size = sequence2_i32(pixel_to_pos(sequence2_f32(m_pimage->width(), m_pimage->height())) - sequence2_f32(top_left));
+   //sequence2_int top_left = sequence2_int(pixel_to_pos(sequence2_float(0.f, 0.f))),
+   //   size = sequence2_int(pixel_to_pos(sequence2_float(m_pimage->width(), m_pimage->height())) - sequence2_float(top_left));
 
    //if (m_draw_image_border) {
    //   pcontext->begin_path();
@@ -254,17 +254,17 @@ void ImageImpact::draw(::nano2d::context * pcontext)
    //   pcontext->font_face("sans-bold");
    //   pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-   //   sequence2_i32 start = max(sequence2_i32(0), sequence2_i32(pos_to_pixel(sequence2_f32(0.f, 0.f))) - 1),
-   //      end = ::nanoui::min(sequence2_i32(pos_to_pixel(sequence2_f32(m_size))) + sequence2_i32(1, 1), sequence2_i32(m_pimage->width(), m_pimage->height()) + sequence2_i32(-1, -1));
+   //   sequence2_int start = max(sequence2_int(0), sequence2_int(pos_to_pixel(sequence2_float(0.f, 0.f))) - 1),
+   //      end = ::nanoui::min(sequence2_int(pos_to_pixel(sequence2_float(m_size))) + sequence2_int(1, 1), sequence2_int(m_pimage->width(), m_pimage->height()) + sequence2_int(-1, -1));
 
    //   char text_buf[80],
    //      * text[4] = { text_buf, text_buf + 20, text_buf + 40, text_buf + 60 };
 
    //   for (int y = start.y(); y <= end.y(); ++y) {
    //      for (int x = start.x(); x <= end.x(); ++x) {
-   //         sequence2_i32 pos = sequence2_i32(pixel_to_pos(sequence2_f32(x + .5f, y + .5f)));
+   //         sequence2_int pos = sequence2_int(pixel_to_pos(sequence2_float(x + .5f, y + .5f)));
 
-   //         m_pixel_callback(sequence2_i32(x, y), text, 20);
+   //         m_pixel_callback(sequence2_int(x, y), text, 20);
 
    //         for (int ch = 0; ch < 4; ++ch) {
    //            Color col(0.f, 0.f, 0.f, alpha);
@@ -298,17 +298,17 @@ void ImageImpact::draw_contents(::nano2d::context * pcontext)
 
    /* Ensure that 'offset' is a multiple of the pixel ratio */
    //float pixel_ratio = screen()->pixel_ratio();
-   //m_offset = (sequence2_f32(sequence2_i32(m_offset / pixel_ratio)) * pixel_ratio);
+   //m_offset = (sequence2_float(sequence2_int(m_offset / pixel_ratio)) * pixel_ratio);
 
-   //sequence2_f32 bound1 = sequence2_f32(m_size) * pixel_ratio,
-   //   bound2 = -sequence2_f32(m_pimage->width(), m_pimage->height()) * scale();
+   //sequence2_float bound1 = sequence2_float(m_size) * pixel_ratio,
+   //   bound2 = -sequence2_float(m_pimage->width(), m_pimage->height()) * scale();
 
    //if ((m_offset.x() >= bound1.x()) != (m_offset.x() < bound2.x()))
    //   m_offset.x() = ::maximum(::minimum(m_offset.x(), bound1.x()), bound2.x());
    //if ((m_offset.y() >= bound1.y()) != (m_offset.y() < bound2.y()))
    //   m_offset.y() = ::maximum(::minimum(m_offset.y(), bound1.y()), bound2.y());
 
-//   sequence2_i32 viewport_size = render_pass()->viewport().second;
+//   sequence2_int viewport_size = render_pass()->viewport().second;
 
    //float scale = std::pow(2.f, m_scale / 5.f);
 

@@ -19,8 +19,8 @@ block::block(const atom & atom) :
 //}
 
 
-//block::block(const ::string & str, ::strsize s) : 
-//   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.length() + s + 1))
+//block::block(const ::string & str, ::character_count s) : 
+//   ::block((const void *)str.c_str(), (huge_integer)(s >= 0 ? s : str.length() + s + 1))
 //{
 //
 //
@@ -116,7 +116,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 //}
 
 
-//fork_block & fork_block::from_base64(const ::scoped_string & scopedstr, strsize iSize)
+//fork_block & fork_block::from_base64(const ::scoped_string & scopedstr, character_count iSize)
 //{
 //
 //   m_iSize = (iSize + 1) * 3 / 4;

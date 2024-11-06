@@ -174,11 +174,11 @@ namespace linux
       if(::is_set(pFind))
       {
 
-         strsize iFind1 = pathInstall(pFind).rear_find("\\");
+         character_count iFind1 = pathInstall(pFind).rear_find("\\");
 
-         strsize iFind2 = pathInstall(pFind).rear_find("/");
+         character_count iFind2 = pathInstall(pFind).rear_find("/");
 
-         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
+         character_count iStart = maximum(iFind1 + 1, iFind2 + 1);
 
          pathInstall = pathInstall.left(iFind - 1) + "_" + pathInstall.substr(iStart, iFind - iStart) + pathInstall(pFind + 1);
 
@@ -384,7 +384,7 @@ pdirectorysystem->is(path))
    bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
-      strsize iLast = str.length() - 1;
+      character_count iLast = str.length() - 1;
       while(iLast >= 0)
       {
          if(str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')
@@ -762,7 +762,7 @@ pdirectorysystem->is(path))
 
       ::file::path path = xdg_get_dir("XDG_MUSIC_DIR");
 
-      if(path.has_char())
+      if(path.has_character())
       {
 
          return path;
@@ -783,7 +783,7 @@ pdirectorysystem->is(path))
 
       ::file::path path = xdg_get_dir("XDG_VIDEOS_DIR");
 
-      if(path.has_char())
+      if(path.has_character())
       {
 
          return path;
@@ -804,7 +804,7 @@ pdirectorysystem->is(path))
 
       ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");
 
-      if(path.has_char())
+      if(path.has_character())
       {
 
          return path;
@@ -825,7 +825,7 @@ pdirectorysystem->is(path))
 
       ::file::path path = xdg_get_dir("XDG_DOCUMENTS_DIR");
 
-      if(path.has_char())
+      if(path.has_character())
       {
 
          return path;
@@ -846,7 +846,7 @@ pdirectorysystem->is(path))
 
       ::file::path path = xdg_get_dir("XDG_DOWNLOAD_DIR");
 
-      if(path.has_char())
+      if(path.has_character())
       {
 
          return path;

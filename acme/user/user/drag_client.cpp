@@ -162,7 +162,7 @@ namespace user
       if (pdrag)
       {
 
-         ::point_i32 pointDrag;
+         ::int_point pointDrag;
          
          if (on_drag_start(pointDrag, pmouse, pitem))
          {
@@ -320,7 +320,7 @@ namespace user
    }
 
 
-   //bool drag_client::on_drag(::user::drag * pdrag, const ::point_i32 & point)
+   //bool drag_client::on_drag(::user::drag * pdrag, const ::int_point & point)
    //{
 
    //   return false;
@@ -328,7 +328,7 @@ namespace user
    //}
 
 
-   ::point_i32 drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
+   ::int_point drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pdrag = drag(pitem);

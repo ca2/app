@@ -98,7 +98,7 @@ void scCharToInt(CScriptVar * ca, void *) {
 void scStringIndexOf(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
    string search = ca->getParameter("search")->getString();
-   strsize iPosition = str.find_index(search);
+   character_count iPosition = str.find_index(search);
    int val = (int)((iPosition < 0) ? -1 : iPosition);
    ca->getReturnVar()->setInt(val);
 }
@@ -106,7 +106,7 @@ void scStringIndexOf(CScriptVar * ca, void *) {
 void scStringSubstring(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
    int lo = ca->getParameter("lo")->getInt();
-   strsize hi;
+   character_count hi;
    if (ca->findChild("hi") == nullptr)
    {
       hi = str.length();
@@ -116,7 +116,7 @@ void scStringSubstring(CScriptVar * ca, void *) {
       hi = ca->getParameter("hi")->getInt();
    }
 
-   strsize l = hi - lo;
+   character_count l = hi - lo;
    if (l > 0 && lo >= 0 && lo + l <= (int)str.length())
       ca->getReturnVar()->setString(str.substr(lo, l));
    else
@@ -157,7 +157,7 @@ void scStringSplit(CScriptVar * ca, void *) {
    result->setArray();
    int length = 0;
 
-   strsize pos = str.find_index(sep);
+   character_count pos = str.find_index(sep);
    while (pos >= 0) {
       result->setArrayIndex(length++, ___new CScriptVar(str.substr(0, pos)));
       str = str.substr(pos + 1);
@@ -253,7 +253,7 @@ void scArrayRemove(CScriptVar * ca, void * data)
    while (v) {
       int n = v->getIntName();
       int newn = n;
-      for (strsize i = 0; i < erasedIndices.get_size(); i++)
+      for (character_count i = 0; i < erasedIndices.get_size(); i++)
          if (n >= erasedIndices[i])
             newn--;
       if (newn != n)

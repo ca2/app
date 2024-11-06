@@ -122,7 +122,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //int _tcsenicmp(const ::ansi_character * psz,const char * str,strsize len,int escape)
+   //int _tcsenicmp(const ::ansi_character * psz,const char * str,character_count len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
@@ -160,7 +160,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //char * _tcsenistr(const ::ansi_character * psz,const char * str,strsize len,int escape)
+   //char * _tcsenistr(const ::ansi_character * psz,const char * str,character_count len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
@@ -193,7 +193,7 @@ namespace xml
    //========================================================
    //char * _tcseistr(const ::ansi_character * psz,const char * str,int escape)
    //{
-   //   strsize len = strlen(str);
+   //   character_count len = strlen(str);
    //   return _tcsenistr(psz,str,len,escape);
    //}
 

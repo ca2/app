@@ -20,7 +20,7 @@
 ////      m_pthreadimpl.create(this);
 ////      m_pthreadimpl->m_pthread = this;
 //
-//  //m_nSafetyPoolSize = 512;        // default size_i32
+//  //m_nSafetyPoolSize = 512;        // default int_size
 //
 //      shell::theLinuxShell.Initialize();
 //   }

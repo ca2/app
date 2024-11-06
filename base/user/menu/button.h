@@ -23,8 +23,8 @@ namespace user
       void destroy() override;
 
 
-      i64 increment_reference_count() override;
-      i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 
       void initialize_menu_interaction(::menu::item* pitem) override;
@@ -47,7 +47,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      ::size_f64 get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::double_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 

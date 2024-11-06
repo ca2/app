@@ -45,7 +45,7 @@ namespace sockets
 
 
       char * m_ibuf; ///< Input buffer
-      int m_ibufsz; ///< size_i32 of input buffer
+      int m_ibufsz; ///< int_size of input buffer
       bool m_bind_ok; ///< Bind completed successfully
       ::networking::port_t m_port; ///< Bind port number
       memsize m_last_size_written;
@@ -57,7 +57,7 @@ namespace sockets
 
       /** Constructor.
       \lparam h base_socket_handler object
-      \lparam ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
+      \lparam ibufsz Maximum int_size of receive message (extra bytes will be truncated)
       \lparam ipv6 'true' if this is an ipv6 socket */
       udp_socket(int ibufsz = 16384, bool ipv6 = false, int retries = 0);
       ~udp_socket();

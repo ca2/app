@@ -21,7 +21,7 @@ public:
    lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
    template < primitive_point POINT >
    lparam(const POINT & point) : lparam((int)point.x(), (int)point.y()) {}
-   lparam(int x, int y) { m_lparam = make_u32(x, y); }
+   lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }
 
 
    /// catching/receiving subparticle
@@ -121,7 +121,7 @@ public:
    inline short x() const
    {
 
-      return ::int_x(m_lparam);
+      return ::lparam_int_x(m_lparam);
 
    }
 
@@ -129,11 +129,11 @@ public:
    inline short y() const
    {
 
-      return ::int_y(m_lparam);
+      return ::lparam_int_y(m_lparam);
 
    }
 
-   ::point_i32 point() const
+   ::int_point point() const
    {
       
       return {(int) this->x(), (int) this->y()};

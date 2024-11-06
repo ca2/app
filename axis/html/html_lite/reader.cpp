@@ -119,9 +119,9 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int addF
    return ((EventMaskEnum)dwOldMask);
 }
 
-strsize lite_html_reader::setAppData(unsigned int dwNewAppData)
+character_count lite_html_reader::setAppData(unsigned int dwNewAppData)
 {
-   strsize   dwOldAppData = m_dwAppData;
+   character_count   dwOldAppData = m_dwAppData;
    m_dwAppData = dwNewAppData;
    return (dwOldAppData);
 }
@@ -135,7 +135,7 @@ ILiteHTMLReaderEvents* lite_html_reader::setEventHandler(ILiteHTMLReaderEvents* 
 }
 
 
-strsize lite_html_reader::parseDocument()
+character_count lite_html_reader::parseDocument()
 {
    bool   bAbort = false;         // continue parsing or abort?
    bool   bIsClosingTag = false;   // tag parsed is a closing tag?
@@ -143,8 +143,8 @@ strsize lite_html_reader::parseDocument()
    string   strCharacters;         // character data
    string   strComment;            // comment data
    string   strT;               // temporary storage
-   strsize   dwCharDataStart = 0L;   // starting position of character data
-   strsize   dwCharDataLen = 0L;      // length of character data
+   character_count   dwCharDataStart = 0L;   // starting position of character data
+   character_count   dwCharDataLen = 0L;      // length of character data
    int   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
@@ -319,7 +319,7 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize lite_html_reader::read_form_document(const ::string & str)
+character_count lite_html_reader::read_form_document(const ::string & str)
 {
 
    m_strBuffer    = str;

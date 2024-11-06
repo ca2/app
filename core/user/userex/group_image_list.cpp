@@ -113,7 +113,7 @@ namespace userex
 
       plist->m_iIndex = m_groupa.get_upper_bound();
 
-      if (pathFolder.has_char())
+      if (pathFolder.has_character())
       {
 
          plist->m_pathFolder = pathFolder;
@@ -181,7 +181,7 @@ namespace userex
 
       ASSERT(pgroup != nullptr);
 
-      if (pgroup->m_strTitle.has_char())
+      if (pgroup->m_strTitle.has_character())
       {
 
          return pgroup->m_strTitle;
@@ -204,7 +204,7 @@ namespace userex
 
          path = group->m_plist->get_link_path(strLink);
 
-         if (path.has_char())
+         if (path.has_character())
          {
 
             break;
@@ -281,7 +281,7 @@ namespace userex
 
       //m_pbuttonMenu->LoadBitmaps(pimage);
 
-      //if (pathFolder.has_char())
+      //if (pathFolder.has_character())
       //{
 
       //   plist->m_pathFolder = pathFolder;
@@ -324,7 +324,7 @@ namespace userex
 
       m_pbuttonMenu->LoadBitmaps(pimage);
 
-      if (pathFolder.has_char())
+      if (pathFolder.has_character())
       {
 
          plist->m_pathFolder = pathFolder;
@@ -419,7 +419,7 @@ namespace userex
 
       ::user::interaction * pinteraction = m_pbuttonMenu;
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       pinteraction->window_rectangle(rectangleWindow);
       
@@ -441,7 +441,7 @@ namespace userex
       ptrackpopup->track([](){});
       
 
-//      m_pmenu = puser->track_popup_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
+//      m_pmenu = puser->track_popup_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::int_size(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
@@ -526,13 +526,13 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectangleMenu(rectangleX);
+      ::int_rectangle rectangleMenu(rectangleX);
 
       rectangleMenu.bottom() = rectangleX.top() + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
-      ::rectangle_i32 rectangleList(rectangleX);
+      ::int_rectangle rectangleList(rectangleX);
 
       rectangleList.top() = rectangleX.top() + 32;
 

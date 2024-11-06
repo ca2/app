@@ -50,7 +50,7 @@ public:
 //public:
 
 
-   ::i64    m_iWidth;
+   huge_integer    m_iWidth;
 
 
    ::collection::count set_size(::collection::count w, ::collection::count h)
@@ -62,7 +62,7 @@ public:
 
    }
 
-   ::collection::count set_size(::size_i32 size)
+   ::collection::count set_size(::int_size size)
    {
 
       return this->set_size(size.cx(), size.cy());
@@ -70,7 +70,7 @@ public:
    }
 
 
-   ::size_i32 size() const
+   ::int_size size() const
    {
 
       return { m_iWidth, BASE_ARRAY::size() / m_iWidth };

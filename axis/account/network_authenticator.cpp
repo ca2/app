@@ -548,7 +548,7 @@ namespace account
 //
 //   synchronouslock.lock();
 //
-//   if(strSomeBrothersAndSisters.has_char())
+//   if(strSomeBrothersAndSisters.has_character())
 //   {
 //
 //      string_array straSomeBrothersAndSisters;

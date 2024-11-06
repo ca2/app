@@ -12,13 +12,13 @@ public:
    
 
    TYPE &         m_field;
-   ::u64          m_mask;
+   huge_natural          m_mask;
 
 
-   set_bit(TYPE & field, ::u64 mask) :
+   set_bit(TYPE & field, huge_natural mask) :
       m_field(field), m_mask(mask) { }
 
-   bool is_set() const { return ((::u64)m_field & m_mask) == m_mask; }
+   bool is_set() const { return ((huge_natural)m_field & m_mask) == m_mask; }
 
    void set(bool bSet)
    {
@@ -48,7 +48,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((::u64) m_field) | ((::u64)m_mask));
+      m_field = (TYPE) (((huge_natural) m_field) | ((huge_natural)m_mask));
 
    }
 
@@ -62,7 +62,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((::u64)m_field) & (~((::u64)m_mask)));
+      m_field = (TYPE) (((huge_natural)m_field) & (~((huge_natural)m_mask)));
 
    }
 

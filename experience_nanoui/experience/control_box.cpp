@@ -121,17 +121,17 @@ namespace experience_nanoui
    }
 
 
-   ::rectangle_i32 control_box::get_button_margin(::experience::enum_button ebutton)
+   ::int_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
    {
 
       if (::experience::e_button_close == ebutton)
       {
 
-         return ::rectangle_i32(1, 4, 4, 4);
+         return ::int_rectangle(1, 4, 4, 4);
 
       }
 
-      return ::rectangle_i32(1, 4, 2, 4);
+      return ::int_rectangle(1, 4, 2, 4);
 
    }
 

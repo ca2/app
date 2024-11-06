@@ -48,7 +48,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   i64 node::increment_reference_count()
+   huge_integer node::increment_reference_count()
    {
 
       return ::platform::node::increment_reference_count();
@@ -56,7 +56,7 @@ namespace apex
    }
 
 
-   i64 node::decrement_reference_count()
+   huge_integer node::decrement_reference_count()
    {
 
       return ::platform::node::decrement_reference_count();
@@ -301,7 +301,7 @@ namespace apex
    }
 
 
-   void node::application_handle(long long l, void * p)
+   void node::application_handle(huge_integer l, void * p)
    {
    
    }
@@ -346,7 +346,7 @@ namespace apex
 
       auto strToolkit = ::windowing::get_user_toolkit_id();
 
-      if(strToolkit.has_char())
+      if(strToolkit.has_character())
       {
 
          auto pfactory = system()->factory("innate_ui", strToolkit);
@@ -683,7 +683,7 @@ namespace apex
          
          ::file::path pathDropbox = m_papplication->defer_process_matter_path("dropbox://");
          
-         if(pathDropbox.has_char() && directory()->is(pathDropbox))
+         if(pathDropbox.has_character() && directory()->is(pathDropbox))
          {
             
             ::file::path & path = listing.insert_at(0, "dropbox://");

@@ -136,7 +136,7 @@ namespace user
       while (find_impact_kit(pimpactkit->m_atom))
       {
 
-         pimpactkit->m_atom = pimpactkit->m_atom.as_i64() + 1;
+         pimpactkit->m_atom = pimpactkit->m_atom.as_huge_integer() + 1;
 
       }
 
@@ -206,7 +206,7 @@ namespace user
             if (m_impactkititema.add_unique(pitem))
             {
 
-               if (pitem->m_strIcon.has_char())
+               if (pitem->m_strIcon.has_character())
                {
 
                   add_impact_with_icon(pitem->m_strName, pitem->m_strIcon, pitem->m_atom, pitem->m_bVisible, pitem->m_bPermanent);

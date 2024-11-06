@@ -20,7 +20,7 @@ protected:
 public:
 
    ::object_meta* m_pmeta;
-   ::i64                                              m_cRun;
+   huge_integer                                              m_cRun;
 
 
    object() : m_pmeta(nullptr) { }
@@ -32,17 +32,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual i64 increment_reference_count() override;
-   virtual i64 decrement_reference_count() override;
-   virtual i64 release() override;
+   virtual huge_integer increment_reference_count() override;
+   virtual huge_integer decrement_reference_count() override;
+   virtual huge_integer release() override;
 
 
 #else
 
 
-   virtual i64 increment_reference_count();
-   virtual i64 decrement_reference_count();
-   virtual i64 release();
+   virtual huge_integer increment_reference_count();
+   virtual huge_integer decrement_reference_count();
+   virtual huge_integer release();
 
 
 #endif
@@ -163,7 +163,7 @@ public:
    virtual void operator()() override;
 
 
-   inline i64 get_ref_count()
+   inline huge_integer get_ref_count()
    {
 
       return m_countReference;
@@ -188,7 +188,7 @@ public:
    virtual void to_string(const string_exchange& str) const override;
 
    //::image::image_pointer create_image();
-   //::image::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
@@ -404,7 +404,7 @@ public:
    virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, huge_natural uTrait, PRED pred);
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);

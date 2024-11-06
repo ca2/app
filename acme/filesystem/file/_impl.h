@@ -122,7 +122,7 @@
 ////   if (!s.fail())
 ////   {
 ////      memsize size = c * sizeof(a.get_data()[0]);
-////      if (read(a.get_data(), size) != size_i32)
+////      if (read(a.get_data(), size) != int_size)
 ////      {
 ////         throw ::exception(error_io);
 ////      }
@@ -588,7 +588,7 @@
 ////inline void __io(::binary_stream & s, int & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i64 & i) { s.io(i); }
+////inline void __io(::binary_stream & s, huge_integer & i) { s.io(i); }
 ////
 ////
 ////inline void __io(::binary_stream & s, unsigned char & u) { s.io(u); }
@@ -600,7 +600,7 @@
 ////inline void __io(::binary_stream & s, unsigned int & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u64 & u) { s.io(u); }
+////inline void __io(::binary_stream & s, huge_natural & u) { s.io(u); }
 ////
 ////inline void __io(property & property, ::matter & matter)
 ////{
@@ -797,7 +797,7 @@
 //inline void __exchange(::binary_stream & s, char & i) { s.default_exchange(i); }
 //inline void __exchange(::binary_stream & s, short & i) { s.default_exchange(i); }
 //inline void __exchange(::binary_stream & s, int & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i64 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream & s, huge_integer & i) { s.default_exchange(i); }
 //
 //#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //inline void __exchange(::binary_stream & s, long & l) { s.default_exchange(l); }
@@ -806,14 +806,14 @@
 //#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //inline void __exchange(::binary_stream& s, unsigned long& ul) { s.default_exchange(ul); }
 ////inline void __exchange(::binary_stream& s, long& l) { s.default_exchange(l); }
-////inline void __exchange(::binary_stream & s, long long & ll);
+////inline void __exchange(::binary_stream & s, huge_integer & hi);
 //#endif
 //
 //
 //inline void __exchange(::binary_stream & s, unsigned char & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, unsigned short & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, unsigned int & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u64 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, huge_natural & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, float & f) { s.default_exchange(f); }
 //inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }
 //inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }
@@ -898,14 +898,14 @@
 //}
 //
 //
-//inline void __exchange(::binary_stream & s, ::rectangle_i32 & rectangle)
+//inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //
 //}
 //
-//inline void __exchange(::binary_stream & s, ::rectangle_i64 & rectangle)
+//inline void __exchange(::binary_stream & s, ::i64_rectangle & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
@@ -914,14 +914,14 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::rectangle_f32 & rectangle)
+//inline void __exchange(::binary_stream & s, ::float_rectangle & rectangle)
 //{
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::rectangle_f64 & rectangle)
+//inline void __exchange(::binary_stream & s, ::double_rectangle & rectangle)
 //{
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //}
@@ -930,7 +930,7 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::size_i32 & size)
+//inline void __exchange(::binary_stream & s, ::int_size & size)
 //{
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //}
@@ -946,7 +946,7 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::size_f32 & size)
+//inline void __exchange(::binary_stream & s, ::float_size & size)
 //{
 //
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
@@ -955,7 +955,7 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::size_f64 & size)
+//inline void __exchange(::binary_stream & s, ::double_size & size)
 //{
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //}
@@ -964,28 +964,28 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::point_i32 & point)
+//inline void __exchange(::binary_stream & s, ::int_point & point)
 //{
 //   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::point_i64 & point)
+//inline void __exchange(::binary_stream & s, ::huge_integer_point & point)
 //{
 //   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::point_f32 & point)
+//inline void __exchange(::binary_stream & s, ::float_point & point)
 //{
 //   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::point_f64 & point)
+//inline void __exchange(::binary_stream & s, ::double_point & point)
 //{
 //   s.exchange("x", point.x()); s.exchange("y", point.y());
 //}

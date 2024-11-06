@@ -37,7 +37,7 @@
 //}
 
 
-//strsize tokenizer::find(const ::block& blockSeparator) const
+//character_count tokenizer::find(const ::block& blockSeparator) const
 //{
 //
 //   return m_block.find(blockSeparator, m_nCurrentIndex);
@@ -284,7 +284,7 @@ bool tokenizer::get_next_smallest_token(string & strToken, const string_array & 
 
    }
 
-   strsize iMaxSepLen = 0;
+   character_count iMaxSepLen = 0;
 
    const_iterator iterator;
 
@@ -343,7 +343,7 @@ bool tokenizer::get_next_smallest_token(string & strToken, const string_array & 
 bool tokenizer::get_next_token_ex(string &strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator, bool bSkipAdjacent)
 {
 
-   strsize i;
+   character_count i;
 
    string strMid;
    
@@ -407,7 +407,7 @@ bool tokenizer::ExtractFolderPath(const ::scoped_string & scopedstrFilePath)
 
    string strFilePath(scopedstrFilePath);
 
-   strsize i = strFilePath.length();
+   character_count i = strFilePath.length();
 
    bool b = false;
 

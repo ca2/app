@@ -34,7 +34,7 @@ namespace file
             Normalize();
          }
 
-         u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
+         huge_natural GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {

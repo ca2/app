@@ -22,13 +22,13 @@ namespace user
 
          ::pointer<span>      m_pspan;
 
-         rectangle_f64        m_rectangleBox;
-         rectangle_f64        m_rectangleDevice;
-         rectangle_f64        m_rectangleHitTest;
+         double_rectangle        m_rectangleBox;
+         double_rectangle        m_rectangleDevice;
+         double_rectangle        m_rectangleHitTest;
 
-         size_f64             m_sizeBox;
-         strsize              m_iPosBeg;
-         strsize              m_iPosEnd;
+         double_size             m_sizeBox;
+         character_count              m_iPosBeg;
+         character_count              m_iPosEnd;
 
          double               m_dLeft;
 
@@ -50,8 +50,8 @@ namespace user
          double get_last_pos() const { return get_pos(m_iPosEnd); }
 
          // box relative to span
-         inline strsize get_beg() const { return m_iPosBeg - m_pspan->m_iPosBeg; }
-         inline strsize get_end() const { return m_iPosEnd - m_pspan->m_iPosBeg; }
+         inline character_count get_beg() const { return m_iPosBeg - m_pspan->m_iPosBeg; }
+         inline character_count get_end() const { return m_iPosEnd - m_pspan->m_iPosBeg; }
 
          inline bool is_line_end() const { return m_iPosEnd == m_pspan->m_iPosEnd - 1; }
 

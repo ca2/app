@@ -1,10 +1,10 @@
 #include "framework.h"
 
 //
-//void os_alloc_check_bounds(unsigned char * point_i32)
+//void os_alloc_check_bounds(unsigned char * int_point)
 //{
 //
-//	uptr * pinteraction = (uptr *)point_i32;
+//	uptr * pinteraction = (uptr *)int_point;
 //
 //	unsigned char a[256];
 //
@@ -37,7 +37,7 @@
 //
 //	memory_set(&point[sizeof(uptr) + 256 + size], 0, 256);
 //
-//	uptr * pinteraction = (uptr *)point_i32;
+//	uptr * pinteraction = (uptr *)int_point;
 //
 //	*pinteraction = size;
 //
@@ -61,7 +61,7 @@
 //
 //	memory_set(&point[sizeof(uptr) + 256 + size], 0, 256);
 //
-//	uptr * pinteraction = (uptr *)point_i32;
+//	uptr * pinteraction = (uptr *)int_point;
 //
 //	*pinteraction = size;
 //

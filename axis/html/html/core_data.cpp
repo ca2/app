@@ -91,7 +91,7 @@ namespace html
 
    }
 
-   //i64 core_data::increment_reference_count()
+   //huge_integer core_data::increment_reference_count()
    //{
 
    //   return ::object::increment_reference_count();
@@ -99,7 +99,7 @@ namespace html
    //}
 
 
-   //i64 core_data::decrement_reference_count()
+   //huge_integer core_data::decrement_reference_count()
    //{
 
    //   return ::object::decrement_reference_count();
@@ -162,12 +162,12 @@ namespace html
          }
       }
       if (!pelement->m_pimpl->m_bHover
-         || !pelement->m_pstyle->get_text("font-size_i32", "hover", this, pelement, font.m_strSize))
+         || !pelement->m_pstyle->get_text("font-int_size", "hover", this, pelement, font.m_strSize))
       {
          if (!pelement->m_pimpl->has_link()
-            || !pelement->m_pstyle->get_text("font-size_f32", "link", this, pelement, font.m_strSize))
+            || !pelement->m_pstyle->get_text("font-float_size", "link", this, pelement, font.m_strSize))
          {
-            pelement->m_pstyle->get_text("font-size_i32", "", this, pelement, font.m_strSize);
+            pelement->m_pstyle->get_text("font-int_size", "", this, pelement, font.m_strSize);
          }
       }
       if (!pelement->m_pimpl->m_bHover
@@ -733,7 +733,7 @@ namespace html
 
       string strDebugUrl1 = payloadFile2.as_file_path();
 
-      if (m_strPathName.has_char())
+      if (m_strPathName.has_character())
       {
 
         payloadFile2["url"] = defer_solve_relative(pathUrl, m_strPathName);
@@ -873,7 +873,7 @@ namespace html
       
       informationf("%s", str.c_str());
       
-      if (str.has_char())
+      if (str.has_character())
       {
          
          load(str);

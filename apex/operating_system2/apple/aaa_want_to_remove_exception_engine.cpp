@@ -159,7 +159,7 @@
 // //    // "Debugging Applications" John Robbins
 // //    // The problem is that the symbol engine finds only those source
 // //    // line addresses (after the first lookup) that fall exactly on
-// //    // a zero displacement. I'll walk backward 100 bytes to
+// //    // a zero displacement. I'hi walk backward 100 bytes to
 // //    // find the line and return the proper displacement.
 // //    unsigned int dwDisplacement = 0;
 
@@ -695,7 +695,7 @@
 // // //      // "Debugging Applications" John Robbins
 // // //      // The problem is that the symbol engine finds only those source
 // // //      // line addresses (after the first lookup) that fall exactly on
-// // //      // a zero displacement. I'll walk backward 100 bytes to
+// // //      // a zero displacement. I'hi walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
 // // //      unsigned int dwDisplacement = 0 ;
 // // //      while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
@@ -723,7 +723,7 @@
 // // //      // "Debugging Applications" John Robbins
 // // //      // The problem is that the symbol engine finds only those source
 // // //      // line addresses (after the first lookup) that fall exactly on
-// // //      // a zero displacement. I'll walk backward 100 bytes to
+// // //      // a zero displacement. I'hi walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
 // // //      unsigned int dwDisplacement = 0;
 // // //      while (!SymGetLineFromAddr64(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
@@ -1589,13 +1589,13 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_u64(_strBuf, uiLineDisplacement, 10);
+//                   ansi_from_huge_natural(_strBuf, uiLineDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
 //                else
 //                {
-//                   ansi_from_u64(_strBuf, uiLineNumber, 10);
+//                   ansi_from_huge_natural(_strBuf, uiLineNumber, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                }
 //                break;
@@ -1609,7 +1609,7 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_u64(_strBuf, uiSymbolDisplacement, 10);
+//                   ansi_from_huge_natural(_strBuf, uiSymbolDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
@@ -1720,7 +1720,7 @@
 //             string real_name = get_demangle(mangled_name);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_u64(szN, i, 10);
+//             ansi_from_huge_natural(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1738,7 +1738,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_u64(szN, i, 10);
+//             ansi_from_huge_natural(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1792,7 +1792,7 @@
 
 //             ansi_concatenate(_strS, file);
 //             ansi_concatenate(_strS, ":");
-//             ansi_from_u64(szN, iLine, 10);
+//             ansi_from_huge_natural(szN, iLine, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ":1: warning: ");
 
@@ -1840,7 +1840,7 @@
 //             char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_u64(szN, i, 10);
+//             ansi_from_huge_natural(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1876,7 +1876,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_u64(szN, i, 10);
+//             ansi_from_huge_natural(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);

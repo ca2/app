@@ -42,7 +42,7 @@
 
       //   __UNREFERENCED_PARAMETER(plauncher);
 
-      //   if (m_strBaseChannel.has_char())
+      //   if (m_strBaseChannel.has_character())
       //      close();
 
       //   // LaunchUri protocol is m_strBaseChannel
@@ -59,7 +59,7 @@
       bool tx::open(const ::scoped_string & scopedstrChannel)
       {
 
-         if (m_strBaseChannel.has_char())
+         if (m_strBaseChannel.has_character())
             close();
 
          // LaunchUri protocol is m_strBaseChannel
@@ -114,7 +114,7 @@
 
          //return ::IsWindow(m_hwnd) != false;
 
-         return m_strBaseChannel.has_char();
+         return m_strBaseChannel.has_character();
 
 
       }
@@ -156,7 +156,7 @@
       bool rx::create(const ::scoped_string & scopedstrChannel)
       {
 
-         if (m_strBaseChannel.has_char())
+         if (m_strBaseChannel.has_character())
             destroy();
 
          m_strBaseChannel = pszChannel;
@@ -198,7 +198,7 @@
       //}
 
 
-      //void rx::receiver::on_ipc_post(rx * prx, long long int a, long long int b)
+      //void rx::receiver::on_ipc_post(rx * prx, huge_integer int a, huge_integer int b)
       //{
 
       //}
@@ -233,7 +233,7 @@
       }
 
 
-      void * rx::on_interprocess_post(rx * prx, long long int a, long long int b)
+      void * rx::on_interprocess_post(rx * prx, huge_integer int a, huge_integer int b)
       {
 
          if (m_preceiver != nullptr)
@@ -261,7 +261,7 @@
       bool rx::is_rx_ok()
       {
 
-         return m_strBaseChannel.has_char();
+         return m_strBaseChannel.has_character();
 
       }
 

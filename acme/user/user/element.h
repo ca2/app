@@ -171,13 +171,13 @@ namespace user
 
 
       //#ifdef WINDOWS
-      //      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
+      //      virtual character_count _009GetWindowText(wchar_t * pwsz, int n);
       //#else
-      //      virtual strsize _009GetWindowText(char * psz, int n);
+      //      virtual character_count _009GetWindowText(char * psz, int n);
       //#endif
-      //      virtual strsize _009GetWindowTextLength();
+      //      virtual character_count _009GetWindowTextLength();
 
-      virtual bool GetFocusRect(::rectangle_i32 & rectangle);
+      virtual bool GetFocusRect(::int_rectangle & rectangle);
 
 
       virtual bool is_window_visible();
@@ -366,7 +366,7 @@ namespace user
       virtual void create_child(::user::interaction * puserinteractionParent);
 
       //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,unsigned int nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -379,7 +379,7 @@ namespace user
 
       //#ifdef WINDOWS
 
-        //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
+        //    virtual void RedrawWindow(const ::int_rectangle& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
 
       //#else
 
@@ -389,7 +389,7 @@ namespace user
 
       //      virtual void UpdateWindow();
             //virtual void SetRedraw(bool bRedraw = true);
-            //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
+            //virtual bool GetUpdateRect(::int_rectangle * prectangle,bool bErase = false);
 
 
       virtual void host_post(const ::procedure & procedure);
@@ -398,11 +398,11 @@ namespace user
       //virtual lresult send(::message::message * pmessage);
       //virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
+      virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::int_point & point = {});
 
       virtual lresult send_message(::message::message * pmessage);
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
+      virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::int_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void on_message(::message::message * pmessage);
@@ -462,9 +462,9 @@ namespace user
             //virtual void set_foreground_window();
 
 
-      virtual void set_rectangle(const ::rectangle_i32 & rectangle);
-      virtual void set_position(const ::point_i32 & point);
-      virtual void set_size(const ::size_i32 & size);
+      virtual void set_rectangle(const ::int_rectangle & rectangle);
+      virtual void set_position(const ::int_point & point);
+      virtual void set_size(const ::int_size & size);
 
 
 
@@ -483,19 +483,19 @@ namespace user
 //      using ::user::drag_client::get_text;
 
 
-      virtual void set_interaction_rectangle(const ::rectangle_i32 & rectangle);
+      virtual void set_interaction_rectangle(const ::int_rectangle & rectangle);
 
-      virtual ::rectangle_i32 get_rectangle();
-      virtual ::rectangle_i32 get_window_rectangle();
+      virtual ::int_rectangle get_rectangle();
+      virtual ::int_rectangle get_window_rectangle();
 
       virtual void set_window_text(const ::string & psz);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
-      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
+      virtual character_count get_window_text(char * pszStringBuf, character_count nMaxCount);
 
       virtual string get_window_text();
       virtual void get_window_text(string & rString);
-      virtual strsize get_window_text_length();
+      virtual character_count get_window_text_length();
 
 
       //virtual bool _is_window_visible();
@@ -505,8 +505,8 @@ namespace user
 
 
 
-      virtual bool _001IsPointInside(const ::point_i32 & point);
-      virtual ::user::interaction * _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false);
+      virtual bool _001IsPointInside(const ::int_point & point);
+      virtual ::user::interaction * _001FromPoint(::int_point point, bool bTestedIfParentVisible = false);
 
       virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr);
 
@@ -548,10 +548,10 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {}, bool bStretch = true);
+      virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = {}, bool bStretch = true);
 
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, unsigned int nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags);
 
 
       //#ifdef WINDOWS_DESKTOP
@@ -584,7 +584,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      //virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {}, lresult * presult = nullptr);
+      //virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::int_point & point = {}, lresult * presult = nullptr);
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -597,8 +597,8 @@ namespace user
 
       virtual ::windowing::window * window();
 
-      //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::double_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::double_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
       //virtual bool can_merge(::user::interaction * pinteraction);
@@ -616,10 +616,10 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(::sequence2_i32 & sequence);
-      virtual void viewport_client_to_screen(::sequence2_i32 & sequence);
-      virtual void viewport_client_to_screen(::rectangle_i32 & point);
-      virtual void viewport_screen_to_client(::rectangle_i32 & point);
+      virtual void viewport_screen_to_client(::sequence2_int & sequence);
+      virtual void viewport_client_to_screen(::sequence2_int & sequence);
+      virtual void viewport_client_to_screen(::int_rectangle & point);
+      virtual void viewport_screen_to_client(::int_rectangle & point);
 
 
       virtual string get_window_default_matter();
@@ -742,7 +742,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::rectangle_int_array & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
@@ -841,14 +841,14 @@ namespace user
 
 #endif
 
-      //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
 
 
       virtual int get_total_page_count(::context * pcontext);
 
 
       virtual void edit_on_text(string str);
-      virtual void edit_on_sel(strsize iBeg, strsize iEnd);
+      virtual void edit_on_sel(character_count iBeg, character_count iEnd);
       virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 
@@ -857,19 +857,19 @@ namespace user
       virtual void on_text_composition_done();
       //virtual bool is_text_composition_active();
 
-      virtual void set_input_content_rect(const rectangle_i32 & rectangle);
-      virtual void set_input_selection_rect(const rectangle_i32 & rectangle);
+      virtual void set_input_content_rect(const int_rectangle & rectangle);
+      virtual void set_input_selection_rect(const int_rectangle & rectangle);
 
-      virtual rectangle_i32 get_input_content_rect();
-      virtual rectangle_i32 get_input_selection_rect();
+      virtual int_rectangle get_input_content_rect();
+      virtual int_rectangle get_input_selection_rect();
 
       virtual bool InputConnectionBeginBatchEdit(bool bSuper);
       virtual bool InputConnectionEndBatchEdit(bool bSuper);
-      virtual bool InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition, bool bSuper);
-      virtual bool InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper);
-      virtual bool InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition, bool bSuper);
-      virtual bool InputConnectionSetComposingRegion(strsize iStart, strsize iEnd, bool bSuper);
-      virtual bool InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper);
+      virtual bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper);
+      virtual bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper);
+      virtual bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionFinishComposingText(bool bSuper);
 
       //virtual void _001OnTimer(::timer * ptimer);

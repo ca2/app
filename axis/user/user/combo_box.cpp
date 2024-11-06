@@ -196,7 +196,7 @@ namespace user
 
       //}
 
-      ::rectangle_i32 rectangleText;
+      ::int_rectangle rectangleText;
 
       get_element_rectangle(rectangleText, e_element_text);
 
@@ -228,10 +228,10 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(point_double_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(double_point_array& pointa)
    {
 
-      ::rectangle_i32 rectangleDropDown;
+      ::int_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
@@ -239,7 +239,7 @@ namespace user
 
       int cy = cx * 2 / 3;
 
-      ::point_i32 pointCenter = rectangleDropDown.center();
+      ::int_point pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
 
@@ -274,11 +274,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleDropDown;
+      ::int_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      ::rectangle_i32 rectangleDropIn(rectangleDropDown);
+      ::int_rectangle rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::gray;
@@ -376,7 +376,7 @@ namespace user
 
       auto ppath = __create < ::draw2d::path > ();
 
-      point_double_array pointa;
+      double_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
@@ -529,7 +529,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
+   bool combo_box::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
 
    {
 
@@ -545,10 +545,10 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
+   ::item_pointer combo_box::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
    {
 
-      ::rectangle_i32 rectangleElement;
+      ::int_rectangle rectangleElement;
 
       if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
@@ -632,7 +632,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -925,7 +925,7 @@ namespace user
 
          m_plistbox->query_full_size(pgraphics, &m_sizeFull);
 
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -1229,21 +1229,21 @@ namespace user
    //index combo_box::set_current_item(index nSelect)
    // { ASSERT(is_window()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
-   bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
+   bool combo_box::GetEditSel(character_count & nStartChar, character_count & nEndChar)
    {
       /*      ASSERT(is_window()); unsigned int dw = unsigned int(send_message( CB_GETEDITSEL, 0, 0));
             nStartChar = LOWORD(dw);
             nEndChar = LOWORD(dw);*/
       return true;
    }
-   bool combo_box::LimitText(strsize nMaxChars)
+   bool combo_box::LimitText(character_count nMaxChars)
    {
       //ASSERT(is_window());
       //return send_message( CB_LIMITTEXT, nMaxChars, 0) != false;
       return true;
    }
 
-   bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
+   bool combo_box::SetEditSel(character_count nStartChar, character_count nEndChar)
    {
       //ASSERT(is_window());
       //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != false;
@@ -1304,12 +1304,12 @@ namespace user
 
    }
 
-   strsize combo_box::GetLBTextLen(::collection::index nIndex)
+   character_count combo_box::GetLBTextLen(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
 
-      //return (strsize)send_message( CB_GETLBTEXTLEN, nIndex, 0);
+      //return (character_count)send_message( CB_GETLBTEXTLEN, nIndex, 0);
 
       return -1;
 
@@ -1477,7 +1477,7 @@ namespace user
    }
 
 
-   void combo_box::GetDroppedControlRect(::rectangle_i32 * prectangle)
+   void combo_box::GetDroppedControlRect(::int_rectangle * prectangle)
    {
 
       //ASSERT(is_window());

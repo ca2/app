@@ -16,10 +16,10 @@ namespace user
       ::collection::index find_span(pointer_array < span > & spana, ::collection::index iSel);
       ::e_align box_align(pointer_array < span > & spana, ::collection::index iBox);
       bool box_align(pointer_array < span > & spana, ::collection::index iBox, ::e_align ealign);
-      ::collection::index find_char_span(pointer_array < span > & spana, strsize iChar);
+      ::collection::index find_char_span(pointer_array < span > & spana, character_count iChar);
       box * find_box(pointer_array < line > & span, ::collection::index iSel);
       string layout_text(const pointer_array < line > & span);
-      void align(line * pline, const ::rectangle_f64 & rectangle);
+      void align(line * pline, const ::double_rectangle & rectangle);
 
       string line_text(line & line);
       ::collection::index sel_line(const pointer_array < line > & span, ::collection::index iSel);

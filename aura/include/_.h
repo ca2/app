@@ -411,61 +411,61 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#include <intsafe.h>
 ////#else
 ////
-////#ifndef lower_u32
-////#define lower_u32(l)                                    ((unsigned int)(((::u64)(l)) & 0xffffffff))
+////#ifndef lower_unsigned_int
+////#define lower_unsigned_int(l)                                    ((unsigned int)(((huge_natural)(l)) & 0xffffffff))
 ////#endif
-////#ifndef upper_u32
-////#define upper_u32(l)                                    ((unsigned int)((((::u64)(l)) >> 32) & 0xffffffff))
-////#endif
-////
+////#ifndef upper_unsigned_int
+////#define upper_unsigned_int(l)                                    ((unsigned int)((((huge_natural)(l)) >> 32) & 0xffffffff))
 ////#endif
 ////
+////#endif
 ////
 ////
 ////
-////#define __u16(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
+////
+////#define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
 ////#define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 ////
 ////
 ////#ifdef __cplusplus
 ////
-////#define __MAKE_LONG64(a, b)                              (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
-////#define as_u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
+////#define as_huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
 ////
 ////#else
 ////
-////#define __MAKE_LONG64(a, b)                              (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
-////#define as_u64(a, b)                                   (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
+////#define as_huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
 ////
 ////#endif
 ////
-////#define lower_u16(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-////#define upper_u16(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-////#define lower_u32(u)                                     ((unsigned int)(u))
-////#define upper_u32(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+////#define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
+////#define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
+////#define lower_unsigned_int(u)                                     ((unsigned int)(u))
+////#define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
 ////
-////#define u32_x(u)                                     ((short)lower_u16(u))
-////#define u32_y(u)                                     ((short)upper_u16(u))
+////#define u32_x(u)                                     ((short)lower_unsigned_short(u))
+////#define u32_y(u)                                     ((short)upper_unsigned_short(u))
 ////
 ////#define __u32xy(u)                                    u32_x(u), u32_y(u)
 ////
-////#define u64_x(u)                                     ((int)lower_u32(u))
-////#define u64_y(u)                                     ((int)upper_u32(u))
+////#define u64_x(u)                                     ((int)lower_unsigned_int(u))
+////#define u64_y(u)                                     ((int)upper_unsigned_int(u))
 ////
 ////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
 ////#ifndef int_x
-////#define int_x(lparam)                          ((int)(short)LOWORD(lparam))
+////#define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
 ////#endif
 ////
 ////
 ////#ifndef int_y
-////#define int_y(lparam)                          ((int)(short)HIWORD(lparam))
+////#define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
 ////#endif
 ////
-////#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))
-////#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_u32(lparam))
+////#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
+////#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
 ////
 ////
 //////CLASS_DECL_AURA int get_aura_init();
@@ -673,10 +673,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////class eimpact;
 ////
-////enum e_simple_command : ::i64;
-////enum e_message : ::i64;
-////enum enum_impact : ::i64;
-////enum ::enum_id : ::u64;
+////enum e_simple_command : huge_integer;
+////enum e_message : huge_integer;
+////enum enum_impact : huge_integer;
+////enum ::enum_id : huge_natural;
 ////enum enum_check: int;
 ////
 ////template <typename TYPE>
@@ -1643,7 +1643,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 ////class size_type;
 ////
-////using size = size_type < ::size_i32, ::point_i32, ::rectangle_i32 >;
+////using size = size_type < ::int_size, ::int_point, ::int_rectangle >;
 ////
 ////
 ////#include "aura/primitive/math/cast.h"

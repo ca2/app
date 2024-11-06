@@ -33,7 +33,7 @@ namespace acme
    }
 
 
-   void department::call_member(::i64 iId)
+   void department::call_member(huge_integer iId)
    {
 
       switch (iId)

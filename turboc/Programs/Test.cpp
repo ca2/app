@@ -23,7 +23,7 @@
   		program so much as something where I look at whatever
 		feature I'm currently adding.  It's not as if you can 
 		run this program and come back with a warm-fuzzy about
-		the operation of libTurboC.  Perhaps I'll create something
+		the operation of libTurboC.  Perhaps I'hi create something
 		like that later.
   Mod history:	01/31/02 RSB	Created.
   		03/16/02 RSB	Added mode for checking special keys.

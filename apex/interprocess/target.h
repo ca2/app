@@ -22,13 +22,13 @@ namespace interprocess
       //public:
 
 
-      //   u64         m_uData;
+      //   huge_natural         m_uData;
       //   string      m_strMessage;
       //   memory      m_memory;
 
 
       //   dispatch_item(::string && strMessage) : m_uData(I32_MINIMUM), m_strMessage(strMessage) {}
-      //   dispatch_item(u64 uData, ::memory && memory) : m_uData(I32_MINIMUM), m_memory(::transfer(memory)) {}
+      //   dispatch_item(huge_natural uData, ::memory && memory) : m_uData(I32_MINIMUM), m_memory(::transfer(memory)) {}
 
       //   bool is_text_message() const {
       //      return m_uData == I32_MINIMUM
@@ -68,7 +68,7 @@ namespace interprocess
 
       bool _handle_uri(const ::string & strUri) override;
       //virtual bool on_interprocess_receive(int message, ::memory && memory);
-      //virtual void on_interprocess_post(i64 a, i64 b);
+      //virtual void on_interprocess_post(huge_integer a, huge_integer b);
 
 
 
@@ -81,7 +81,7 @@ namespace interprocess
 
 
       //bool dispatch_message(::string && strMessage);
-      //bool dispatch_message(::u64 uData, ::memory && memory);
+      //bool dispatch_message(huge_natural uData, ::memory && memory);
 
 
       //void dispatch_item(::pointer<dispatch_item>&& pdispatchitem);

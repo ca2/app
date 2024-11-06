@@ -73,8 +73,8 @@ public:
 //   template < primitive_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
    //size_type(unsigned int u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
-   //size_type(::i64 i) noexcept { this->cx() = (UNIT_TYPE) i; this->cy() = (UNIT_TYPE) i; }
-   //size_type(::u64 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
+   //size_type(huge_integer i) noexcept { this->cx() = (UNIT_TYPE) i; this->cy() = (UNIT_TYPE) i; }
+   //size_type(huge_natural u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx() = (UNIT_TYPE) f; this->cy() = (UNIT_TYPE) f; }
    //size_type(double d) noexcept { this->cx() = (UNIT_TYPE) d; this->cy() = (UNIT_TYPE) d; }
 //   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
@@ -84,21 +84,21 @@ public:
 //   size_type(const RECTANGLE & rectangle) noexcept { this->cx() = (UNIT_TYPE)::width(rectangle); this->cy() = (UNIT_TYPE)::height(rectangle); }
 //   template < primitive_size SIZE >
 //   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
-   //size_type(const ::size_i64& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
-   //size_type(const ::size_f32& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
-   //size_type(const ::size_f64& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
-   //size_type(const ::size_i32* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::size_i64* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::size_f32* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::size_f64* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::huge_integer_size& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
+   //size_type(const ::float_size& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
+   //size_type(const ::double_size& size) noexcept : size_type((UNIT_TYPE)size.cx(), (UNIT_TYPE)size.cy()) {}
+   //size_type(const ::int_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::huge_integer_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::float_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::double_size* psize) noexcept : size_type(*psize) {}
 //#ifdef __APPLE__
 ////   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
 ////   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
 //#endif
 
 
-   //operator ::size_i32* () noexcept { return this; }
-   //operator const ::size_i32* () const noexcept { return this; }
+   //operator ::int_size* () noexcept { return this; }
+   //operator const ::int_size* () const noexcept { return this; }
    //operator bool () const noexcept { return is_set(); }
 
    constexpr const NUMBER & cx() const { return this->a(); }
@@ -123,8 +123,8 @@ public:
 
 
    unsigned int   as_unsigned_int() const noexcept { return as_unsigned_int(this->cx(), this->cy()); }
-   ::u64          u64() const noexcept { return as_u64(this->cx(), this->cy()); }
-   class lparam   lparam() const noexcept { return make_u32(this->cx(), this->cy()); }
+   huge_natural          huge_natural() const noexcept { return as_huge_natural(this->cx(), this->cy()); }
+   class lparam   lparam() const noexcept { return make_unsigned_int(this->cx(), this->cy()); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx(); }
    inline UNIT_TYPE height() const noexcept { return this->cy(); }
@@ -219,7 +219,7 @@ public:
    
    template < primitive_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 l) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx() / l), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy() / l)); }
-//   inline size_type operator /(i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx() / i), (UNIT_TYPE)(this->cy() / i)); }
+//   inline size_type operator /(huge_integer i) const noexcept { return size_type((UNIT_TYPE)(this->cx() / i), (UNIT_TYPE)(this->cy() / i)); }
 //   inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx() / f), (UNIT_TYPE)(this->cy() / f)); }
 //   inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx() / d), (UNIT_TYPE)(this->cy() / d)); }
    template < primitive_number NUMBER1 >
@@ -307,8 +307,8 @@ public:
 
 template < primitive_size SIZE >
 inline auto abs(const SIZE & size) noexcept { return SIZE(abs(size.cx()), abs(size.cy())); }
-//inline auto abs(const ::size_i64& size) noexcept { return ::size_i64(abs(size.cx()), abs(size.cy())); }
-//inline auto abs(const ::size_f32& size) noexcept { return ::size_f32(abs(size.cx()), abs(size.cy())); }
-//inline auto abs(const ::size_f64& size) noexcept { return ::size_f64(abs(size.cx()), abs(size.cy())); }
+//inline auto abs(const ::huge_integer_size& size) noexcept { return ::huge_integer_size(abs(size.cx()), abs(size.cy())); }
+//inline auto abs(const ::float_size& size) noexcept { return ::float_size(abs(size.cx()), abs(size.cy())); }
+//inline auto abs(const ::double_size& size) noexcept { return ::double_size(abs(size.cx()), abs(size.cy())); }
 
 

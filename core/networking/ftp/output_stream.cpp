@@ -18,7 +18,7 @@ namespace ftp
    bool output_stream::implementation::GetNextLine(string& strLine)// const
    {
 
-      i64 iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
+      huge_integer iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
 
       if (::not_found(iFind))
       {
@@ -27,9 +27,9 @@ namespace ftp
 
       }
 
-      strLine = m_vBuffer.substr((strsize) m_iCurrentPos, (strsize) (iFind - m_iCurrentPos));
+      strLine = m_vBuffer.substr((character_count) m_iCurrentPos, (character_count) (iFind - m_iCurrentPos));
 
-      m_iCurrentPos = (strsize) (iFind + mc_strEolCharacterSequence.size());
+      m_iCurrentPos = (character_count) (iFind + mc_strEolCharacterSequence.size());
 
       return true;
 

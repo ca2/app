@@ -47,7 +47,7 @@ namespace user
       unsigned int                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::rectangle_i32                           m_rectangle;
+      ::int_rectangle                           m_rectangle;
 
 
 
@@ -113,13 +113,13 @@ namespace user
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(int x, int y);
 
 
-      virtual void on_configure(const ::rectangle_i32 & rectangle);
-      //\virtual void on_resize(const ::size_i32 & size);
+      virtual void on_configure(const ::int_rectangle & rectangle);
+      //\virtual void on_resize(const ::int_size & size);
 
 
       
@@ -183,7 +183,7 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::point_i32 & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::int_point & point = {});
 
       virtual ::lresult send_message(::message::message * pmessage);
 
@@ -201,13 +201,13 @@ namespace user
       virtual void on_set_window_text();
 
 
-      //virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount);
+      //virtual character_count get_window_text(char* pszStringBuf, character_count nMaxCount);
 
 
       //virtual void get_window_text(string& rString);
 
 
-      //virtual strsize get_window_text_length();
+      //virtual character_count get_window_text_length();
 
 
       //virtual void UpdateWindow();
@@ -220,8 +220,8 @@ namespace user
       virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
 
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point);
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, unsigned int nFlags);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags);
 
 
       virtual ::user::interaction* GetLastActivePopup();
@@ -296,18 +296,18 @@ namespace user
       virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, int iLevel = -1);
 
 
-      virtual void set_need_redraw(const ::rectangle_int_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
-      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
+      virtual void RedrawWindow(const ::int_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
 
 
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
-      //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
+      //virtual void InvalidateRect(const ::int_rectangle& rectangle, bool bErase = true);
 
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      //virtual void ValidateRect(const ::rectangle_i32& rectangle);
+      //virtual void ValidateRect(const ::int_rectangle& rectangle);
 
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual void ShowOwnedPopups(bool bShow = true);
@@ -334,10 +334,10 @@ namespace user
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::sequence2_i32 & sequence);
-      virtual void viewport_client_to_screen(::sequence2_i32 & sequence);
-      virtual void viewport_client_to_screen(::rectangle_i32 & rectangle);
-      virtual void viewport_screen_to_client(::rectangle_i32 & rectangle);
+      virtual void viewport_screen_to_client(::sequence2_int & sequence);
+      virtual void viewport_client_to_screen(::sequence2_int & sequence);
+      virtual void viewport_client_to_screen(::int_rectangle & rectangle);
+      virtual void viewport_screen_to_client(::int_rectangle & rectangle);
 
 
       //virtual unsigned int GetStyle() const;
@@ -397,7 +397,7 @@ namespace user
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point = {});
+      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
@@ -420,7 +420,7 @@ namespace user
 
 
 
-      virtual void get_rect_normal(::rectangle_i32 * prectangle);
+      virtual void get_rect_normal(::int_rectangle * prectangle);
 
 
       virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
@@ -489,8 +489,8 @@ namespace user
 #endif
 
 
-      virtual void _raw_client_to_screen(::point_i32 & point);
-      virtual void _raw_screen_to_client(::point_i32& point);
+      virtual void _raw_client_to_screen(::int_point & point);
+      virtual void _raw_screen_to_client(::int_point& point);
 
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;

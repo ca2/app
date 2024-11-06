@@ -28,7 +28,7 @@ object::~object()
 }
 
 
-i64 object::increment_reference_count()
+huge_integer object::increment_reference_count()
 {
 
    auto c = m_countReference++;
@@ -44,7 +44,7 @@ i64 object::increment_reference_count()
 }
 
 
-i64 object::decrement_reference_count()
+huge_integer object::decrement_reference_count()
 {
 
    auto c = --m_countReference;
@@ -65,10 +65,10 @@ i64 object::decrement_reference_count()
 }
 
 
-i64 object::release()
+huge_integer object::release()
 {
 
-   i64 i = decrement_reference_count();
+   huge_integer i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -1543,11 +1543,11 @@ bool object::__is_child_task(::particle * pparticleTask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point_i32 of impact)...
+// ->at simple objects (from finish int_point of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish point_i32 of impact)...
+// ->for complex objects (from finish int_point of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
@@ -2487,7 +2487,7 @@ void call_sync(const ::procedure_array& methoda)
 //string object::get_text(const ::payload& payload, const ::atom& atom)
 //{
 //
-//   if (payload.has_property(atom) && payload[atom].has_char())
+//   if (payload.has_property(atom) && payload[atom].has_character())
 //   {
 //
 //      return payload[atom];
@@ -2498,7 +2498,7 @@ void call_sync(const ::procedure_array& methoda)
 //
 //   //string str = file()->as_string(payload);
 //
-//   //if (str.has_char())
+//   //if (str.has_character())
 //   //{
 //
 //   //   return str;
@@ -2629,7 +2629,7 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//i64 object::increment_reference_count()
+//huge_integer object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2637,7 +2637,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::decrement_reference_count()
+//huge_integer object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2645,7 +2645,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::release()
+//huge_integer object::release()
 //{
 //
 //   return property_object::release();
@@ -2656,7 +2656,7 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//i64 object::increment_reference_count()
+//huge_integer object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2664,7 +2664,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::decrement_reference_count()
+//huge_integer object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2672,7 +2672,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//i64 object::release()
+//huge_integer object::release()
 //{
 //
 //   return property_object::release();
@@ -3001,7 +3001,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//inline i64 get_ref_count()
+//inline huge_integer get_ref_count()
 //{
 
 //   return m_countReference;
@@ -3036,7 +3036,7 @@ void object::initialize(::particle * pparticle)
 // void to_string(const string_exchange & str) const 
 
 //::image::image_pointer create_image();
-//::image::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
@@ -3484,7 +3484,7 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename PRED >
-//::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+//::image::image_pointer get_image(const ::payload & payloadFile, huge_natural uTrait, PRED pred);
 
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);

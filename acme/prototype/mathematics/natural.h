@@ -25,14 +25,14 @@ inline unsigned int natural(unsigned int u)
    return u;
 }
 
-inline u64 natural(i64 ll)
+inline huge_natural natural(huge_integer hi)
 {
-   return ll >= 0 ? (u64) ll: 0;
+   return hi >= 0 ? (huge_natural) hi: 0;
 }
 
-inline u64 natural(u64 ull)
+inline huge_natural natural(huge_natural hn)
 {
-   return ull;
+   return hn;
 }
 
 #ifdef ANDROID
@@ -76,9 +76,9 @@ inline int natural_min(int i1, int i2, int iEscape = -1)
 }
 
 
-inline bool less_than(u64 u, int i)
+inline bool less_than(huge_natural u, int i)
 {
-   return i < 0 ? false : u < (u64) i;
+   return i < 0 ? false : u < (huge_natural) i;
 }
 
 
@@ -94,16 +94,16 @@ inline int mkint(int i)
    return i;
 }
 
-inline i64 mkint(u64 ull)
+inline huge_integer mkint(huge_natural hn)
 {
-   if (ull >= 0x7fffffffffffffffull)
+   if (hn >= 0x7fffffffffffffffull)
       throw_cast_overflow();
-   return (i64)ull;
+   return (huge_integer)hn;
 }
 
-inline i64 mkint(i64 ll)
+inline huge_integer mkint(huge_integer hi)
 {
-   return ll;
+   return hi;
 }
 
 //
@@ -232,19 +232,19 @@ constexpr auto minimum_maximum(T t, L l, H h)
 //   return i < 0 ? 0 : (u < (unsigned int) i ? u : (unsigned int)i);
 //
 //}
-//template <  > constexpr const auto minimum(const ::u64 & u, const ::i64 & i){  return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-//template <  > constexpr const auto minimum(const ::u64 & u, const int & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-//template <  > constexpr const auto minimum(const ::u64 & u, const short & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-//template <  > constexpr const auto minimum(const ::u64 & u, const char & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
-//template <  > constexpr const auto minimum(const unsigned int & u, const ::i64 & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
+//template <  > constexpr const auto minimum(const huge_natural & u, const huge_integer & i){  return i < 0 ? 0 : (u < (huge_natural)i ? u : (huge_natural)i); }
+//template <  > constexpr const auto minimum(const huge_natural & u, const int & i) { return i < 0 ? 0 : (u < (huge_natural)i ? u : (huge_natural)i); }
+//template <  > constexpr const auto minimum(const huge_natural & u, const short & i) { return i < 0 ? 0 : (u < (huge_natural)i ? u : (huge_natural)i); }
+//template <  > constexpr const auto minimum(const huge_natural & u, const char & i) { return i < 0 ? 0 : (u < (huge_natural)i ? u : (huge_natural)i); }
+//template <  > constexpr const auto minimum(const unsigned int & u, const huge_integer & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
 //template <  > constexpr const auto minimum(const unsigned int & u, const int & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
 //template <  > constexpr const auto minimum(const unsigned int & u, const short & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
 //template <  > constexpr const auto minimum(const unsigned int & u, const char & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
-//template <  > constexpr const auto minimum(const unsigned short & u, const ::i64 & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
+//template <  > constexpr const auto minimum(const unsigned short & u, const huge_integer & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const int & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const short & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const char & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
-//template <  > constexpr const auto minimum(const unsigned char & u, const ::i64 & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
+//template <  > constexpr const auto minimum(const unsigned char & u, const huge_integer & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
 //template <  > constexpr const auto minimum(const unsigned char & u, const int & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
 //template <  > constexpr const auto minimum(const unsigned char & u, const short & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }
 //template <  > constexpr const auto minimum(const unsigned char & u, const char & i) { return i < 0 ? 0 : (u < (unsigned char)i ? u : (unsigned char)i); }

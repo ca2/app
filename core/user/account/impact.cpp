@@ -110,13 +110,13 @@ namespace account
    void impact::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
    {
 
-      if (strUser.has_char())
+      if (strUser.has_character())
          m_pstillUser->set_window_text(strUser);
 
-      if (strPass.has_char())
+      if (strPass.has_character())
          m_pstillPassword->set_window_text(strPass);
 
-      if (strOpen.has_char())
+      if (strOpen.has_character())
          m_pbutton->set_window_text(strOpen);
 
    }
@@ -235,7 +235,7 @@ namespace account
 
       //::user::draw draw;
 
-      ::rectangle_i32 r = this->rectangle();
+      ::int_rectangle r = this->rectangle();
 
       //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
@@ -323,7 +323,7 @@ namespace account
 
       double ry = m_dRateY;
 
-      if (m_bCred && m_strCred.has_char())
+      if (m_bCred && m_strCred.has_character())
       {
 
          float fHeight = 18.0;
@@ -354,7 +354,7 @@ namespace account
 
          ::image::image_source imagesource(m_picon95);
 
-         rectangle_f64 rectangle(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
+         double_rectangle rectangle(::int_point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::int_size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -477,7 +477,7 @@ namespace account
    //unsigned int c_cdecl thread_proc_pre_login(void * p)
    //{
 
-   //   ::aura::application * papp = (::aura::application *) point_i32;
+   //   ::aura::application * papp = (::aura::application *) int_point;
 
    //   return 0;
 
@@ -581,8 +581,8 @@ namespace account
 
          m_peditPassword->get_text(pcredentials->m_strPassword);
 
-         if(pcredentials->m_puser->m_strLogin.has_char()
-               && pcredentials->m_strPassword.has_char())
+         if(pcredentials->m_puser->m_strLogin.has_character()
+               && pcredentials->m_strPassword.has_character())
          {
 
             pcredentials->m_estatus = ::success_credentials;

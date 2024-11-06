@@ -85,12 +85,12 @@ CLASS_DECL_ACME bool equal_ignore_case(const string & left, const char * right, 
 
 
 
-CLASS_DECL_ACME void from_string(char & i, const ::ansi_character * psz)
-{
-
-   i = (char)atoi(psz);
-
-}
+//CLASS_DECL_ACME void from_string(char & i, const ::ansi_character * psz)
+//{
+//
+//   i = (char)atoi(psz);
+//
+//}
 
 
 CLASS_DECL_ACME void from_string(short & i, const ::ansi_character * psz)
@@ -109,7 +109,7 @@ CLASS_DECL_ACME void from_string(int & i, const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(i64 & i, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(huge_integer & i, const ::ansi_character * psz)
 {
 
    i = atoll(psz);
@@ -120,15 +120,15 @@ CLASS_DECL_ACME void from_string(i64 & i, const ::ansi_character * psz)
 CLASS_DECL_ACME void from_string(int & i, int iBase, const ::ansi_character * psz)
 {
 
-   i = ansi_to_i32(psz, nullptr, iBase);
+   i = ansi_to_int(psz, nullptr, iBase);
 
 }
 
 
-CLASS_DECL_ACME void from_string(i64 & i, int iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(huge_integer & i, int iBase, const ::ansi_character * psz)
 {
 
-   i = ansi_to_i64(psz, nullptr, iBase);
+   i = ansi_to_huge_integer(psz, nullptr, iBase);
 
 }
 
@@ -136,7 +136,7 @@ CLASS_DECL_ACME void from_string(i64 & i, int iBase, const ::ansi_character * ps
 CLASS_DECL_ACME void from_string(unsigned char & u, const ::ansi_character * psz)
 {
 
-   u = (unsigned char)ansi_to_u32(psz, nullptr, 10);
+   u = (unsigned char)ansi_to_unsigned_int(psz, nullptr, 10);
 
 }
 
@@ -144,7 +144,7 @@ CLASS_DECL_ACME void from_string(unsigned char & u, const ::ansi_character * psz
 CLASS_DECL_ACME void from_string(unsigned short & u, const ::ansi_character * psz)
 {
 
-   u = (unsigned short)ansi_to_u32(psz, nullptr, 10);
+   u = (unsigned short)ansi_to_unsigned_int(psz, nullptr, 10);
 
 }
 
@@ -152,15 +152,15 @@ CLASS_DECL_ACME void from_string(unsigned short & u, const ::ansi_character * ps
 CLASS_DECL_ACME void from_string(unsigned int & u, const ::ansi_character * psz)
 {
 
-   u = ansi_to_u32(psz, nullptr, 10);
+   u = ansi_to_unsigned_int(psz, nullptr, 10);
 
 }
 
 
-CLASS_DECL_ACME void from_string(u64 & u, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(huge_natural & u, const ::ansi_character * psz)
 {
 
-   u = ansi_to_u64(psz, nullptr, 10);
+   u = ansi_to_huge_natural(psz, nullptr, 10);
 
 }
 
@@ -168,15 +168,15 @@ CLASS_DECL_ACME void from_string(u64 & u, const ::ansi_character * psz)
 CLASS_DECL_ACME void from_string(unsigned int & u, int iBase, const ::ansi_character * psz)
 {
 
-   u = ansi_to_u32(psz, nullptr, iBase);
+   u = ansi_to_unsigned_int(psz, nullptr, iBase);
 
 }
 
 
-CLASS_DECL_ACME void from_string(u64 & u, int iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(huge_natural & u, int iBase, const ::ansi_character * psz)
 {
 
-   u = ansi_to_u64(psz, nullptr, iBase);
+   u = ansi_to_huge_natural(psz, nullptr, iBase);
 
 }
 
@@ -185,14 +185,14 @@ CLASS_DECL_ACME void from_string(u64 & u, int iBase, const ::ansi_character * ps
 CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 {
 
-   l = ansi_to_i64(psz, nullptr, 10);
+   l = ansi_to_huge_integer(psz, nullptr, 10);
 
 }
 #elif defined(WINDOWS)
 CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 {
 
-   l = ansi_to_i32(psz, nullptr, 10);
+   l = ansi_to_int(psz, nullptr, 10);
 
 }
 #endif
@@ -203,14 +203,14 @@ CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * psz)
 {
 
-   l = ansi_to_i64(psz, nullptr, iBase);
+   l = ansi_to_huge_integer(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
 CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * psz)
 {
 
-   l = ansi_to_i32(psz, nullptr, 10);
+   l = ansi_to_int(psz, nullptr, 10);
 
 }
 #endif
@@ -219,15 +219,15 @@ CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * p
 CLASS_DECL_ACME void from_string(int & i, const ::wd16_character * psz)
 {
 
-   i = wd16_to_i32(psz);
+   i = wd16_to_int(psz);
 
 }
 
 
-CLASS_DECL_ACME void from_string(i64 & i, const ::wd16_character * psz)
+CLASS_DECL_ACME void from_string(huge_integer & i, const ::wd16_character * psz)
 {
 
-   i = wd16_to_i64(psz);
+   i = wd16_to_huge_integer(psz);
 
 }
 
@@ -235,15 +235,15 @@ CLASS_DECL_ACME void from_string(i64 & i, const ::wd16_character * psz)
 CLASS_DECL_ACME void from_string(int & i, const ::wd32_character * psz)
 {
 
-   i = wd32_to_i32(psz);
+   i = wd32_to_int(psz);
 
 }
 
 
-CLASS_DECL_ACME void from_string(i64 & i, const ::wd32_character * psz)
+CLASS_DECL_ACME void from_string(huge_integer & i, const ::wd32_character * psz)
 {
 
-   i = wd32_to_i64(psz);
+   i = wd32_to_huge_integer(psz);
 
 }
 
@@ -272,10 +272,10 @@ CLASS_DECL_ACME void from_string(::ansi_character * sz, const ::ansi_character *
 }
 
 
-CLASS_DECL_ACME void from_string(::ansi_character & ch, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(::ansi_character & ansich, const ::ansi_character * psz)
 {
 
-   ch = *psz;
+   ansich = *psz;
 
 }
 
@@ -403,7 +403,7 @@ template < typename T >
 CLASS_DECL_ACME string string_from_int(const T & t)
 {
 
-   return as_string((::i64)t);
+   return as_string((huge_integer)t);
 
 }
 
@@ -412,7 +412,7 @@ template < typename T >
 CLASS_DECL_ACME string string_from_u(const T & t)
 {
 
-   return as_string((::u64)t);
+   return as_string((huge_natural)t);
 
 }
 

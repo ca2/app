@@ -563,7 +563,7 @@ bool timer::impl_restart()
 void timer::run()
 {
 
-   while (task_sleep(::duration((::i64) m_dwMillis)))
+   while (task_sleep(::duration((huge_integer) m_dwMillis)))
    {
 
       try

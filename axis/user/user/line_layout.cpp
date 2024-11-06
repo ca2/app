@@ -167,7 +167,7 @@ namespace user
 
             }
 
-            ::point_i32 point;
+            ::int_point point;
 
             int iMaximumNormal = 0;
 
@@ -246,7 +246,7 @@ namespace user
 
             }
 
-            ::size_i32 size;
+            ::int_size size;
 
             size.set_orthogonal_dimension(m_eorientation, iMaximumNormal);
 

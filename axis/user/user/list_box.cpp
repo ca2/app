@@ -450,7 +450,7 @@ namespace user
 
       //::draw2d::save_context savecontext(pgraphics);
 
-      //::rectangle_f64 rectangleClipBox;
+      //::double_rectangle rectangleClipBox;
 
       //pgraphics->get_clip_box(rectangleClipBox);
 
@@ -486,7 +486,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX);
 
-      ::rectangle_i32 rectangleItem;
+      ::int_rectangle rectangleItem;
 
       rectangleItem = rectangleX;
 
@@ -597,7 +597,7 @@ namespace user
 
       pgraphics->set(ppen);
 
-      ::rectangle_f64 rX(rectangleX);
+      ::double_rectangle rX(rectangleX);
 
       rX.deflate(1, 1, 1, 1);
 
@@ -632,7 +632,7 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32* psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size* psize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -643,7 +643,7 @@ namespace user
 
       string strItem;
 
-      ::size_f64 size;
+      ::double_size size;
 
       psize->cx() = 0;
 
@@ -1174,14 +1174,14 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
    {
 
       ::collection::count iItemCount = _001GetListCount();
 
       auto rectangleX = this->rectangle();
 
-      ::rectangle_i32 rectangleItem = rectangleX;
+      ::int_rectangle rectangleItem = rectangleX;
 
       int iAddUp = 0;
 
@@ -1251,16 +1251,16 @@ namespace user
    //   }
 
 
-   void list_box::on_drop_down(const ::rectangle_i32& rectangleWindow, const ::size_i32& sizeFull)
+   void list_box::on_drop_down(const ::int_rectangle& rectangleWindow, const ::int_size& sizeFull)
    {
 
       //lock_sketch_to_design lockSketchToDesign(this);
 
-      ::rectangle_i32 rectangleMonitor;
+      ::int_rectangle rectangleMonitor;
 
       ::collection::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
-      ::rectangle_i32 rectangleList;
+      ::int_rectangle rectangleList;
 
       rectangleList.left() = rectangleWindow.left();
       //rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
@@ -1305,7 +1305,7 @@ namespace user
 
          }
 
-         //::rectangle_i32 rectangleListOver;
+         //::int_rectangle rectangleListOver;
 
          //rectangleListOver.left() = rectangleList.left();
          //rectangleListOver.right() = rectangleList.right();
@@ -1401,7 +1401,7 @@ namespace user
 
       set_activation(e_activation_no_activate);
 
-      place(::rectangle_i32(rectangleList));
+      place(::int_rectangle(rectangleList));
 
       information() << "on_drop_down (10) : " << rectangleList;
 
@@ -1456,7 +1456,7 @@ namespace user
 //      else
 //      {
 //
-//         place(::rectangle_i32(rectangleList).inflate(m_iBorder));
+//         place(::int_rectangle(rectangleList).inflate(m_iBorder));
 //
 //         order_top_most();
 //

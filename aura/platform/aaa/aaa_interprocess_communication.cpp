@@ -7,7 +7,7 @@ namespace aura
 
 
 
-   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, i64 iTask) :
+   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, huge_integer iTask) :
          ::object(pcall),
          m_pcall(pcall),
          m_atomPid(idPid),
@@ -235,7 +235,7 @@ namespace aura
 
 #else
 
-      m_atomApp = (::i64) ::get_current_process_id();
+      m_atomApp = (huge_integer) ::get_current_process_id();
 
 #endif
 
@@ -557,7 +557,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      ::i64 iCall = ::str::consume_natural(str);
+      huge_integer iCall = ::str::consume_natural(str);
 
       if(!str.begins_eat(" from "))
       {
@@ -579,7 +579,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       ::atom idPidFrom = strFrom;
 
-      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64() == 0))
+      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.huge_integer() == 0))
       {
 
          return;
@@ -620,7 +620,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       str1.trim();
 
-      strsize iFind2 = str1.find(".");
+      character_count iFind2 = str1.find(".");
 
       if(iFind2 < 0)
       {
@@ -690,7 +690,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(i64 iTask)
+   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(huge_integer iTask)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -725,7 +725,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
          if(case_insensitive_string_begins(strMember, "reply."))
          {
 
-            ::i64 iTask = payloada[0].i64();
+            huge_integer iTask = payloada[0].huge_integer();
 
             auto pobjectTask = get_task(iTask);
 
@@ -809,7 +809,7 @@ repeat:
       for (auto & str : stra)
       {
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             string_array a;
@@ -821,15 +821,15 @@ repeat:
 
                stra2.case_insensitive_add_unique(a[0]);
 
-               string strPath = module_path_from_pid(ansi_to_i32(a[1]));
+               string strPath = module_path_from_pid(ansi_to_int(a[1]));
 
-               if (strPath.has_char())
+               if (strPath.has_character())
                {
 
                   if (strPath.case_insensitive_order(a[0]) == 0)
                   {
 
-                     idaPid.add(ansi_to_i32(a[1]));
+                     idaPid.add(ansi_to_int(a[1]));
 
                   }
 
@@ -850,7 +850,7 @@ repeat:
       //for(auto & str : stra2)
       //{
 
-      //   if(str.has_char())
+      //   if(str.has_character())
       //   {
 
       //          iaPid.add_unique(module_path_get_pid(str));
@@ -879,7 +879,7 @@ repeat:
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.i64());
+      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.huge_integer());
 
       string strModuleList = file_system()->as_string(pathModule);
 
@@ -898,7 +898,7 @@ repeat:
 
          bool bOk = false;
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             string_array a;
@@ -910,9 +910,9 @@ repeat:
 
                stra2.case_insensitive_add_unique(a[0]);
 
-               string strPath = module_path_from_pid(ansi_to_i32(a[1]));
+               string strPath = module_path_from_pid(ansi_to_int(a[1]));
 
-               if (strPath.has_char())
+               if (strPath.has_character())
                {
 
                   if (strPath.case_insensitive_order(a[0]) == 0)
@@ -958,7 +958,7 @@ repeat:
 
       string strItem;
 
-      if (pathPid.has_char())
+      if (pathPid.has_character())
       {
 
          strItem = pathPid + "|" + as_string(idPid);

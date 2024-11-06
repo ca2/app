@@ -24,7 +24,7 @@ namespace account
 
       string                        m_strUsername;
       string                        m_strPassword;
-      strsize                       m_iPasswordOriginalLength;
+      character_count                       m_iPasswordOriginalLength;
       
       bool                          m_bSubmitted;
       
@@ -36,7 +36,7 @@ namespace account
       string                        m_strCred;
 
       
-      /// the best size_i32 to fit current ca2 icon (as of 2014)
+      /// the best int_size to fit current ca2 icon (as of 2014)
       ::image::icon *                m_picon95;
       ::image::image_pointer                         m_pimage;
 

@@ -183,7 +183,7 @@ namespace ios
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
       auto pFind = ::str::case_insensitive_find("://", imagekey.m_strPath);
-      strsize iFind2 = ::str::case_insensitive_find(":", imagekey.m_strPath);
+      character_count iFind2 = ::str::case_insensitive_find(":", imagekey.m_strPath);
       if (::is_set(pFind) || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
@@ -537,7 +537,7 @@ namespace ios
 ////            nullptr,
 ////            lpiextractimage)))
 ////         {
-////            ::size_i32 s;
+////            ::int_size s;
 ////            s.cx() = 48;
 ////            s.cy() = 48;
 ////            unsigned int dwDepth = 32;
@@ -618,7 +618,7 @@ namespace ios
 ////
 ////                  string strExtension = p.extension();
 ////
-////                  if (m_strShellThemePrefix.has_char())
+////                  if (m_strShellThemePrefix.has_character())
 ////                  {
 ////
 ////                     image_key imagekey;
@@ -1343,7 +1343,7 @@ pdirectorysystem->is(strPath))
    //int ios::run()
    //{
 
-   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the size_i32 can be customized by the user.
+   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the int_size can be customized by the user.
 
    //   return 0;
 
@@ -1543,7 +1543,7 @@ pdirectorysystem->is(strPath))
 //      // try to find "uifs:// http:// ftp:// like addresses"
 //      // then should show icon by extension or if is folder
 //      auto pFind = imagekey.m_strPath.case_insensitive_find("://");
-//      strsize iFind2 = imagekey.m_strPath.case_insensitive_find(":");
+//      character_count iFind2 = imagekey.m_strPath.case_insensitive_find(":");
 //      if (::is_set(pFind) || iFind2 >= 2)
 //      {
 //         string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
@@ -1888,7 +1888,7 @@ pdirectorysystem->is(strPath))
 //            pimage->Fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
+//            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::int_point(), 0);
 //            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
 //            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1898,15 +1898,15 @@ pdirectorysystem->is(strPath))
 //         {
 //
 //            ::image::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
-//            size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
+//            int_size s = m_pimagelist[iSize]->m_pimage->get_size();
 //            ::image::image_pointer pimage;
 //            pimage = create_image(s);
 //            pimage->Fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
+//            pimage->get_graphics()->draw(::int_point(), d.size(), d.get_graphics());
 //            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx(), d.size().cy(), argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//            m_pimagelist[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
+//            m_pimagelist[iSize]->m_pimage->g()->draw(::int_point(), d->size(), pimage->get_graphics());
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         }

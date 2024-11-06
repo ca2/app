@@ -90,7 +90,7 @@ namespace image
    }
 
 
-   ::draw2d::graphics *cursor::g(const ::size_f64 & sizeHint)
+   ::draw2d::graphics *cursor::g(const ::double_size & sizeHint)
    {
 
       return m_pimage->g(sizeHint);
@@ -98,7 +98,7 @@ namespace image
    }
 
 
-   ::image::image_pointer cursor::image_source_image(const ::size_i32 & size)
+   ::image::image_pointer cursor::image_source_image(const ::int_size & size)
    {
       
       return m_pimage->get_image(size); 
@@ -106,7 +106,7 @@ namespace image
    }
 
 
-   ::size_i32 cursor::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   ::int_size cursor::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
    { 
       
       return m_pimage->image_source_size(sizeDst, eimageselection); 
@@ -114,7 +114,7 @@ namespace image
    }
 
 
-   ::size_i32 cursor::image_source_size() const
+   ::int_size cursor::image_source_size() const
    {
       
       return m_pimage->size(); 

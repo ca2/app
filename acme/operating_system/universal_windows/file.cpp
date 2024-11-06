@@ -83,7 +83,7 @@
 //
 //   }
 //
-//   u64 u = hfile_get_size(hfile);
+//   huge_natural u = hfile_get_size(hfile);
 //
 //   CloseHandle(hfile);
 //
@@ -502,7 +502,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new unsigned char[size_i32];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new unsigned char[int_size];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -824,14 +824,14 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 }
 
 
-//int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
+//int_bool ensure_file_size_handle(HANDLE h, huge_natural iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = GetFileSize(h, &dwHi);
 //
-//   if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
+//   if (((huge_natural)dwLo | ((huge_natural)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;
@@ -1115,7 +1115,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   int offsetHigh = (offset >> 32) & 0xffffffffLL;
 //   unsigned int dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
 //   ((FILE*)fp)->_flag &= ~_FILE_EOF;
-//   return (u64)dw | (((u64)offsetHigh) << 32);
+//   return (huge_natural)dw | (((huge_natural)offsetHigh) << 32);
 //
 //}
 //
@@ -1223,7 +1223,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   {
 //      const char *src = (const char*)buffer;
 //      size_t startpos = 0,i = 0;
-//      for(i = 0; i < size_i32*count; i++)
+//      for(i = 0; i < int_size*count; i++)
 //      {
 //         if(src[i] != '\n')
 //            continue;
@@ -1259,7 +1259,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   }
 //   else
 //   {
-//      size_t s = size_i32 * count;
+//      size_t s = int_size * count;
 //      const char *src = (const char*)buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
@@ -1404,7 +1404,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//u64 hfile_get_size(HANDLE h)
+//huge_natural hfile_get_size(HANDLE h)
 //{
 //
 //   unsigned int dwHi;
@@ -1419,14 +1419,14 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 //
-//void hfile_set_size(HANDLE h, i64 iSize)
+//void hfile_set_size(HANDLE h, huge_integer iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = ::GetFileSize(h, &dwHi);
 //
-//   if (((u64)dwLo | ((i64)dwHi << 32)) != iSize)
+//   if (((huge_natural)dwLo | ((huge_integer)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;
@@ -1637,7 +1637,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //
 //   TRUNCATE_EXISTING
 //   5
-//   Opens a file and truncates it so that its size_i32 is zero bytes, only if it exists.
+//   Opens a file and truncates it so that its int_size is zero bytes, only if it exists.
 //   If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
 //   The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
 //
@@ -1795,7 +1795,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //
 //
 //
-//string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+//string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   string str;

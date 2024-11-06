@@ -587,7 +587,7 @@ extern "C" {
    // in here: a 1-channel bitmap that is width * height. stride_in_bytes is
    // the distance from one row to the next (or 0 to mean they are packed tightly
    // together). "padding" is the amount of padding to leave between each
-   // character (normally you want '1' for bitmaps you'll use as textures with
+   // character (normally you want '1' for bitmaps you'hi use as textures with
    // bilinear filtering).
    //
    // Returns 0 on failure, 1 on success.
@@ -970,7 +970,7 @@ extern "C" {
    //      This will create an SDF bitmap in which the character is about 22 pixels
    //      high but the whole bitmap is about 22+5+5=32 pixels high. To produce a filled
    //      shape, sample the SDF at each pixel and fill the pixel if the SDF value
-   //      is greater than or equal to 180/255. (You'll actually want to antialias,
+   //      is greater than or equal to 180/255. (You'hi actually want to antialias,
    //      which is beyond the scope of this example.) Additionally, you can compute
    //      offset outlines (e.g. to stroke the character border inside & outside,
    //      or only outside). For example, to fill outside the character up to 3 SDF
@@ -3416,7 +3416,7 @@ static void stbtt__sort_edges_quicksort(stbtt__edge * p, int n)
       c12 = STBTT__COMPARE(&p[m], &p[n - 1]);
       /* if 0 >= mid >= end, or 0 < mid < end, then use mid */
       if (c01 != c12) {
-         /* otherwise, we'll need to swap something else to middle */
+         /* otherwise, we'hi need to swap something else to middle */
          int z;
          c = STBTT__COMPARE(&p[0], &p[n - 1]);
          /* 0>mid && mid<n:  0>n => n; 0<n => 0 */

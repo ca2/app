@@ -65,11 +65,11 @@ namespace user
       int                        m_iEventTool;     // item selected
       int                        m_iTool;          // item where the tip will be showed
       ::write_text::font_pointer          m_pfont;           // tip string font
-      point_i32                      m_pointOffset;       // tip point_i32 offset
-      ::size_i32                     m_sizeArrow;      // arrow size_i32
+      int_point                      m_pointOffset;       // tip int_point offset
+      ::int_size                     m_sizeArrow;      // arrow int_size
       bool                       m_bTipEnable;     // set if the tip is enabled
 
-      point_i32                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
+      int_point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
       CToolMap                   m_toolmap;        // map of tool index to tool pointers
 
       tool_tip_window();
@@ -83,7 +83,7 @@ namespace user
       tool_tip_tool * GetTool(int iTool);
       bool GetToolText(int iTool, string & str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(int iTool, ::rectangle_i32 * prectangle);
+      bool GetToolRect(int iTool, ::int_rectangle * prectangle);
 
       void update_drawing_objects();
       bool ShowTip();
@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const ::string & pcsz);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::string & pcsz);
 
       void ShowTip(int iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

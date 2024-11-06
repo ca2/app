@@ -83,7 +83,7 @@ namespace graphics
    }
 
 
-   //::size_i32 window_buffer::window_size()
+   //::int_size window_buffer::window_size()
    //{
    //
    //   if (::is_null(m_pwindow))

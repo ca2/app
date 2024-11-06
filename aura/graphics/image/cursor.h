@@ -21,7 +21,7 @@ namespace image
       bool                                m_bDefaultCursor;
       ::image::image_pointer                     m_pimage;
       ::image::image_pointer                     m_pimageCursor;
-      ::size_i32                          m_szHotspotOffset;
+      ::int_size                          m_szHotspotOffset;
 
 
       ::pointer<::windowing::cursor>     m_pcursor;
@@ -48,14 +48,14 @@ namespace image
       //static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
       ::draw2d::graphics * g() const;
-      ::draw2d::graphics * g(const ::size_f64 & sizeHint);
+      ::draw2d::graphics * g(const ::double_size & sizeHint);
 
       
-      ::image::image_pointer image_source_image(const ::size_i32 & size) override;
+      ::image::image_pointer image_source_image(const ::int_size & size) override;
 
-      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
 
-      ::size_i32 image_source_size() const override;
+      ::int_size image_source_size() const override;
 
 
    };

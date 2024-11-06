@@ -47,7 +47,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 
 
 
-//inline int unicode_index(const char *& input, strsize * psrclen)
+//inline int unicode_index(const char *& input, character_count * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -66,7 +66,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   ::wd32_character unsigned int;
 //
-//   strsize used_len = ansi_to_wd32_char(&unsigned int, input, *psrclen);
+//   character_count used_len = ansi_to_wd32_char(&unsigned int, input, *psrclen);
 //
 //   if (used_len < 0)
 //   {
@@ -84,7 +84,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //}
 //
 //
-//inline int unicode_index(const ::wd16_character *& input, strsize * psrclen)
+//inline int unicode_index(const ::wd16_character *& input, character_count * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -105,7 +105,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   ::wd32_character unsigned int;
 //
-//   strsize used_len = wd16_to_wd32_char(&unsigned int, input, *psrclen);
+//   character_count used_len = wd16_to_wd32_char(&unsigned int, input, *psrclen);
 //
 //   input += used_len;
 //
@@ -116,7 +116,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //}
 
 
-inline int unicode_index_length(const ::wd32_character *& input, strsize * psrclen)
+inline int unicode_index_length(const ::wd32_character *& input, character_count * psrclen)
 {
 
    if (*input == 0)
@@ -272,7 +272,7 @@ inline bool is_legal_unicode_index(int iUnicodeIndex)
 
    return iUnicodeIndex >= 0 && iUnicodeIndex < 65536 ? true : false;
 
-   //return ca >= ((u64) 0xffffffffu) ? false : true;
+   //return ca >= ((huge_natural) 0xffffffffu) ? false : true;
 
 }
 
@@ -1042,7 +1042,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 //template < typename TYPE_CHAR >
-//inline bool string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
+//inline bool string_begins(const TYPE_CHAR * psz, character_count len, const TYPE_CHAR * pszPrefix, character_count lenPrefix)
 //{
 //
 //   if (lenPrefix > len)
@@ -1059,7 +1059,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 //template < typename TYPE_CHAR >
-//inline bool string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
+//inline bool string_ends(const TYPE_CHAR * psz, character_count len, const TYPE_CHAR * pszSuffix, character_count lenSuffix)
 //{
 //
 //   auto offset = len - lenSuffix;
@@ -1079,7 +1079,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 //template < typename TYPE_CHAR >
-//inline bool case_insensitive_string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
+//inline bool case_insensitive_string_begins(const TYPE_CHAR * psz, character_count len, const TYPE_CHAR * pszPrefix, character_count lenPrefix)
 //{
 //
 //   if (lenPrefix > len)
@@ -1095,7 +1095,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 //template < typename TYPE_CHAR >
-//inline bool case_insensitive_string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
+//inline bool case_insensitive_string_ends(const TYPE_CHAR * psz, character_count len, const TYPE_CHAR * pszSuffix, character_count lenSuffix)
 //{
 //
 //   auto offset = len - lenSuffix;

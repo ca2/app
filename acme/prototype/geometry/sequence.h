@@ -787,21 +787,21 @@ sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const 
 //};
 
 // Import some common Enoki types
-using sequence2_i32 = sequence_type<int, 2>;
-using sequence3_i32 = sequence_type<int, 3>;
-using sequence4_i32 = sequence_type<int, 4>;
+using sequence2_int = sequence_type<int, 2>;
+using sequence3_int = sequence_type<int, 3>;
+using sequence4_int = sequence_type<int, 4>;
 
-using sequence2_i64 = sequence_type<::i64, 2>;
-using sequence3_i64 = sequence_type<::i64, 3>;
-using sequence4_i64 = sequence_type<::i64, 4>;
+using sequence2_huge_integer = sequence_type<huge_integer, 2>;
+using sequence3_huge_integer = sequence_type<huge_integer, 3>;
+using sequence4_huge_integer = sequence_type<huge_integer, 4>;
 
-using sequence2_f32 = sequence_type<float, 2>;
-using sequence3_f32 = sequence_type<float, 3>;
-using sequence4_f32 = sequence_type<float, 4>;
+using sequence2_float = sequence_type<float, 2>;
+using sequence3_float = sequence_type<float, 3>;
+using sequence4_float = sequence_type<float, 4>;
 
-using sequence2_f64 = sequence_type<double, 2>;
-using sequence3_f64 = sequence_type<double, 3>;
-using sequence4_f64 = sequence_type<double, 4>;
+using sequence2_double = sequence_type<double, 2>;
+using sequence3_double = sequence_type<double, 3>;
+using sequence4_double = sequence_type<double, 4>;
 
 ///**
 // * \class Color common.h nanoui/common.h

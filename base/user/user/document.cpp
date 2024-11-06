@@ -492,7 +492,7 @@ namespace user
 
       str += " : ";
 
-      if (get_file_path().has_char())
+      if (get_file_path().has_character())
       {
 
          str += get_file_path();
@@ -801,7 +801,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.as_property_set()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.as_property_set()["url"].has_character())
       {
          strPathName = payloadFile.as_property_set()["url"];
       }
@@ -1046,7 +1046,7 @@ namespace user
    bool document::on_new_document()
    {
 
-      if (m_pimpactsystem->m_typeatomData.has_char())
+      if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
          auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
@@ -1124,7 +1124,7 @@ namespace user
          //}
 
          //preader->close();
-         //if (m_pimpactsystem->m_typeatomData.has_char())
+         //if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
          // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
@@ -1197,7 +1197,7 @@ namespace user
          //}
 
          //preader->close();
-         //if (m_pimpactsystem->m_typeatomData.has_char())
+         //if (m_pimpactsystem->m_typeatomData.has_character())
          {
 
            // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
@@ -1817,7 +1817,7 @@ namespace user
 
             newName = m_strTitle;
             // check for dubious filename
-            strsize iBad = newName.as_string().find_first_character_in_index(":/\\");
+            character_count iBad = newName.as_string().find_first_character_in_index(":/\\");
 
             if (iBad != -1)
             {
@@ -1835,7 +1835,7 @@ namespace user
 
                ASSERT(strExt[0] == '.');
 
-               strsize iStart = 0;
+               character_count iStart = 0;
 
                newName = newName.as_string() + strExt.Tokenize(";", iStart);
 

@@ -64,7 +64,7 @@ namespace networking
 
       m_psocketthread->m_strIp = "127.0.0.1";
 
-      if (m_strHostname.has_char())
+      if (m_strHostname.has_character())
       {
 
          m_psocketthread->m_strCat = "matter://certificate/" + m_strHostname + ".cat";
@@ -147,7 +147,7 @@ namespace networking
 
          auto & phandler = assoc.m_element2;
 
-         if (strFolder.has_char() && phandler)
+         if (strFolder.has_character() && phandler)
          {
 
             string strScript = "/" + strFolder;

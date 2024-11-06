@@ -44,7 +44,7 @@ namespace httpd
 
       m_pincomingsocket->SetListeningDetach(true);
 
-      if (m_strCat.has_char())
+      if (m_strCat.has_character())
       {
 
          m_pincomingsocket->EnableSSL();

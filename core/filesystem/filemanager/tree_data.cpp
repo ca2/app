@@ -157,7 +157,7 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   i64 tree_data::increment_reference_count()
+   huge_integer tree_data::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -165,7 +165,7 @@ namespace filemanager
    }
 
 
-   i64 tree_data::decrement_reference_count()
+   huge_integer tree_data::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -173,7 +173,7 @@ namespace filemanager
    }
 
 
-   i64 tree_data::release()
+   huge_integer tree_data::release()
    {
 
       return ::object::release();
@@ -255,7 +255,7 @@ namespace filemanager
    void tree_data::knowledge(const ::file::path & pathUser, const ::action_context & context,bool bOnlyParent)
    {
 
-      if (bOnlyParent && pathUser.has_char() && find_item_by_user_path(pathUser))
+      if (bOnlyParent && pathUser.has_character() && find_item_by_user_path(pathUser))
       {
 
          return;
@@ -276,7 +276,7 @@ namespace filemanager
       
       bool bRoot = false;
 
-      if(bOnlyParent && pathUser.has_char())
+      if(bOnlyParent && pathUser.has_character())
       {
 
          strDir = pathUser.folder();
@@ -477,7 +477,7 @@ namespace filemanager
 
       //         strName = pcontext->defer_get_file_title(pathAscendant);
 
-      //         if (pathAscendant.has_char() && strName.has_char())
+      //         if (pathAscendant.has_character() && strName.has_character())
       //         {
 
       //            if (ptreeitemChild == nullptr)
@@ -701,7 +701,7 @@ namespace filemanager
 //
 //            //knowledge("", context, true);
 //
-//            if (pathUser.has_char())
+//            if (pathUser.has_character())
 //            {
 //
 //               ::file::path_array filepatha;
@@ -898,7 +898,7 @@ _001SelectItem(pchild);
 
             }
 
-            if (i == patha.get_upper_bound() && scopedstrName.has_char())
+            if (i == patha.get_upper_bound() && scopedstrName.has_character())
             {
 
                pitemNew->m_strName = scopedstrName;
@@ -1011,7 +1011,7 @@ _001SelectItem(pchild);
 
    //         strName = pcontext->defer_get_file_title(pathAscendant);
 
-   //         if (pathAscendant.has_char() && strName.has_char())
+   //         if (pathAscendant.has_character() && strName.has_character())
    //         {
 
    //            if (ptreeitemChild == nullptr)
@@ -1190,7 +1190,7 @@ _001SelectItem(pchild);
          puserinteraction->KillTimer(123);
 
          /*
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          int iArrange = (int) lparam;
 
          if(_001IsItemVisible(iArrange))

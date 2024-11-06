@@ -88,7 +88,7 @@ namespace nanoui
          m_scroll = __allocate VScrollPanel(m_ppopup);
          m_scroll->set_fixed_height(300);
          m_container = __allocate Widget(m_scroll);
-         m_ppopup->set_layout(__allocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::rectangle_i32(0), 0));
+         m_ppopup->set_layout(__allocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0), 0));
       }
 
       m_container->set_layout(__allocate GroupLayout(10));
@@ -132,7 +132,7 @@ namespace nanoui
    }
 
 
-   bool ComboBox::scroll_event(const point_i32& p, const size_f32& rel)
+   bool ComboBox::scroll_event(const int_point& p, const float_size& rel)
    {
 
       set_checked(false, e_source_selection);

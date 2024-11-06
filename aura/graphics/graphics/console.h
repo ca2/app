@@ -23,8 +23,8 @@ namespace graphics
 
       //::write_text_stream < ::file::file >      m_cout;
       ::image::image_pointer                           m_pimage;
-      ::size_i32                                m_sizeTile;
-      ::size_i32                                m_sizeWindow;
+      ::int_size                                m_sizeTile;
+      ::int_size                                m_sizeWindow;
       int                                       m_x;
       int                                       m_y;
       int                                       m_iColor;
@@ -42,7 +42,7 @@ namespace graphics
       int                                       m_iLastPen;
 
 
-      console(::user::interaction * pinteraction, ::size_i32 sizeTile);
+      console(::user::interaction * pinteraction, ::int_size sizeTile);
       ~console() override;
 
 
@@ -68,9 +68,9 @@ namespace graphics
       using ::string_buffer::write;
       void write(const void * p, ::memsize s) override;
 
-      ::rectangle_i32 get_position_rectangle(int y, int x) override;
-      virtual ::rectangle_i32 _get_position_rectangle(int y, int x);
-      virtual bool defer_write(char ch, const ::rectangle_i32 & r, int iColor);
+      ::int_rectangle get_position_rectangle(int y, int x) override;
+      virtual ::int_rectangle _get_position_rectangle(int y, int x);
+      virtual bool defer_write(char ch, const ::int_rectangle & r, int iColor);
 
       static ::color::color console_dos_color(enum_dos_color edoscolor);
 

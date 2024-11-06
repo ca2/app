@@ -39,8 +39,8 @@ namespace user
 
       bool                       m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
-      ::size_i32               m_sizeImage;  // current image size_i32
-      ::size_i32               m_sizeButton; // current button size_i32
+      ::int_size               m_sizeImage;  // current image int_size
+      ::int_size               m_sizeButton; // current button int_size
       bool                 m_bSimpleLayout;
 //      string_to_ptr *      m_pStringMap;  // used as CMapStringTounsigned int
 //      //index                m_iButtonPressItem;
@@ -67,10 +67,10 @@ namespace user
       //using ::user::control_bar::create_window_ex;
       //virtual bool create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = __IDW_TOOLBAR);
 
-      void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
-      // button size_i32 should be bigger than image
+      void SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage);
+      // button int_size should be bigger than image
       void SetHeight(::collection::index cyHeight);
-      // call after SetSizes, height overrides bitmap size_i32
+      // call after SetSizes, height overrides bitmap int_size
       //bool LoadToolBar(const ::string & pszResourceName);
 
       //bool LoadToolBar(unsigned int nIDResource);
@@ -91,7 +91,7 @@ namespace user
       
       //unsigned int GetItemID(index nIndex);
       
-//      virtual void index_item_rectangle(index nIndex, ::rectangle_i32 * prectangle);
+//      virtual void index_item_rectangle(index nIndex, ::int_rectangle * prectangle);
       
       //::collection::index tool_item_index(const ::atom & atom) const;
       
@@ -124,9 +124,9 @@ namespace user
       // for direct access to the underlying common control
       //inline toolbar_control& GetToolBarCtrl() const;
 
-      virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int nMode) override;
+      virtual ::int_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+      virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 
@@ -140,15 +140,15 @@ namespace user
 
       virtual void load_xml_toolbar(const ::payload & payloadFile);
 
-      virtual ::status < ::rectangle_i32 > index_item_rectangle(::collection::index iItem);
+      virtual ::status < ::int_rectangle > index_item_rectangle(::collection::index iItem);
 
-      virtual ::status < ::rectangle_i32 > index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate);
+      virtual ::status < ::int_rectangle > index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate);
 
       virtual ::user::tool_item * tool_item_at(::collection::index iItem);
       virtual ::collection::count tool_item_count();
 
 
-      virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      virtual ::int_size SimpleLayout(::draw2d::graphics_pointer& pgraphics);
 
 
       // implementation helpers
@@ -156,9 +156,9 @@ namespace user
 //      virtual void _GetButton(::collection::index nIndex, TBBUTTON* pButton) const;
 //      virtual void _SetButton(::collection::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int nMode, ::collection::index nLength = -1);
+      virtual ::int_size CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int nMode, ::collection::index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
-//      virtual ::size_i32 CalcSize(TBBUTTON* pData, ::collection::index nCount);
+//      virtual ::int_size CalcSize(TBBUTTON* pData, ::collection::index nCount);
 //      virtual ::collection::index WrapToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 //#endif
@@ -188,23 +188,23 @@ namespace user
 //
 //
 //// Styles for toolbar buttons
-//#define TBBS_BUTTON     make_i32(TBSTYLE_BUTTON, 0) // this entry is button
-//#define e_tool_item_style_separator  make_i32(TBSTYLE_SEP, 0)    // this entry is a separator
-//#define TBBS_CHECKBOX   make_i32(TBSTYLE_CHECK, 0)  // this is an auto check button
-//#define TBBS_GROUP      make_i32(TBSTYLE_GROUP, 0)  // marks the start of a group
+//#define TBBS_BUTTON     make_int(TBSTYLE_BUTTON, 0) // this entry is button
+//#define e_tool_item_style_separator  make_int(TBSTYLE_SEP, 0)    // this entry is a separator
+//#define TBBS_CHECKBOX   make_int(TBSTYLE_CHECK, 0)  // this is an auto check button
+//#define TBBS_GROUP      make_int(TBSTYLE_GROUP, 0)  // marks the start of a group
 //#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
-//#define TBBS_DROPDOWN   make_i32(TBSTYLE_DROPDOWN, 0) // drop down style
-//#define TBBS_AUTOSIZE   make_i32(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   make_i32(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+//#define TBBS_DROPDOWN   make_int(TBSTYLE_DROPDOWN, 0) // drop down style
+//#define TBBS_AUTOSIZE   make_int(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   make_int(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
 //
 //// styles for display states
-//#define TBBS_CHECKED    make_i32(0, TBSTATE_CHECKED)    // button is checked/down
-//#define TBBS_PRESSED    make_i32(0, TBSTATE_PRESSED)    // button is being depressed
-//#define e_tool_item_style_disabled   make_i32(0, TBSTATE_ENABLED)    // button is disabled
-//#define TBBS_INDETERMINATE  make_i32(0, TBSTATE_INDETERMINATE)  // third state
-//#define TBBS_HIDDEN     make_i32(0, e_toolbar_button_hidden) // button is hidden
-//#define TBBS_WRAPPED    make_i32(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
-//#define TBBS_ELLIPSES   make_i32(0, TBSTATE_ELIPSES)
-//#define TBBS_MARKED      make_i32(0, TBSTATE_MARKED)
+//#define TBBS_CHECKED    make_int(0, TBSTATE_CHECKED)    // button is checked/down
+//#define TBBS_PRESSED    make_int(0, TBSTATE_PRESSED)    // button is being depressed
+//#define e_tool_item_style_disabled   make_int(0, TBSTATE_ENABLED)    // button is disabled
+//#define TBBS_INDETERMINATE  make_int(0, TBSTATE_INDETERMINATE)  // third state
+//#define TBBS_HIDDEN     make_int(0, e_toolbar_button_hidden) // button is hidden
+//#define TBBS_WRAPPED    make_int(0, TBSTATE_WRAP)   // button is wrapped at this int_point
+//#define TBBS_ELLIPSES   make_int(0, TBSTATE_ELIPSES)
+//#define TBBS_MARKED      make_int(0, TBSTATE_MARKED)
 //
 

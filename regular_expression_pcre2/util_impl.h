@@ -19,11 +19,11 @@ public:
 
    virtual ::collection::count matches(const string& str, pcre_context*);
 
-   virtual ::collection::count matches(const ::string & psz, strsize len, pcre_context*);
+   virtual ::collection::count matches(const ::string & psz, character_count len, pcre_context*);
 
    virtual ::pointer<::strsize_range_array>matches_ranges(const string& str) override;
 
-   virtual ::pointer<::strsize_range_array>matches_ranges(const ::string & psz, strsize len) override;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const ::string & psz, character_count len) override;
 
 
 };

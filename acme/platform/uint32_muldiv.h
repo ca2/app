@@ -103,30 +103,30 @@
 #else
 
         //
-        //  Use C9 i64 support for Daytona RISC platforms.
+        //  Use C9 huge_integer support for Daytona RISC platforms.
         //
 
         INLINE int MulDiv32( int a, int b, int ca )
         {
-           return (int)(((i64)a * (i64)b) / (i64)ca);
+           return (int)(((huge_integer)a * (huge_integer)b) / (huge_integer)ca);
         }
 
 
         INLINE unsigned int MulDivRD( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (int)(((u64)a * (u64)b) / (u64)ca);
+           return (int)(((huge_natural)a * (huge_natural)b) / (huge_natural)ca);
         }
 
 
         INLINE unsigned int MulDivRN( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (unsigned int)(((u64)a * (u64)b) / (u64)ca);
+           return (unsigned int)(((huge_natural)a * (huge_natural)b) / (huge_natural)ca);
         }
 
 
         INLINE unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (int)((((u64) a * (i64)b) + ca -1) / (i64)ca);
+           return (int)((((huge_natural) a * (huge_integer)b) + ca -1) / (huge_integer)ca);
         }
 
     #endif
@@ -136,23 +136,23 @@
 
 inline int MulDiv32(int a, int b, int ca)
 {
-    return (int) (((i64) a * (i64) b) / (i64) ca);
+    return (int) (((huge_integer) a * (huge_integer) b) / (huge_integer) ca);
 }
 
 inline unsigned int MulDivRD(unsigned int a, unsigned int b, unsigned int ca)
 {
-    return (unsigned int) (((u64) a * (u64) b) / (u64) ca);
+    return (unsigned int) (((huge_natural) a * (huge_natural) b) / (huge_natural) ca);
 }
 
 inline unsigned int MulDivRN( unsigned int a, unsigned int b, unsigned int ca )
 {
-    return (unsigned int) ((((u64) a * (u64) b)+(u64)ca/2) / (u64)ca );
+    return (unsigned int) ((((huge_natural) a * (huge_natural) b)+(huge_natural)ca/2) / (huge_natural)ca );
 }
 
 
 inline unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int ca )
 {
-    return (unsigned int) ((((u64) a * (u64) b)+(u64)ca-1) / (u64)ca );
+    return (unsigned int) ((((huge_natural) a * (huge_natural) b)+(huge_natural)ca-1) / (huge_natural)ca );
 }
 
 

@@ -43,7 +43,7 @@ namespace user
       void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
-      virtual void send_scroll_y_message(enum_scroll_command ecommand, double dPosition = F64_MOST_NEGATIVE);
+      virtual void send_scroll_y_message(enum_scroll_command ecommand, double dPosition = DOUBLE_MOST_NEGATIVE);
 
       void install_message_routing(::channel * pchannel) override;
 

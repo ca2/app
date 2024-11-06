@@ -105,7 +105,7 @@ in read operations - helps on ECOS */
 #include <sys/lparam.h>
 #endif
 
-// i64
+// huge_integer
 #ifdef _WIN32
 #else
 #ifdef SOLARIS
@@ -171,7 +171,7 @@ namespace sockets
 }
 #endif
 
-#define s6_addr16 _S6_un._S6_u8
+#define s6_addr16 _S6_un._S6_unsigned_char
 #define MESSAGE_NOSIGNAL 0
 
 #elif defined __FreeBSD__

@@ -220,7 +220,7 @@ namespace dir
 //
 //      wstrModuleFolder.release_buffer();
 //
-//      if(wstrModuleFolder.has_char())
+//      if(wstrModuleFolder.has_character())
 //      {
 //
 //         wstrModuleFolder.trim_right(L"\\/");
@@ -235,9 +235,9 @@ namespace dir
 //
 //      {
 //
-////         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+////         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 ////
-////         if(str.has_char())
+////         if(str.has_character())
 ////         {
 ////            str = ::file::path(str).folder();
 ////            goto found;
@@ -245,9 +245,9 @@ namespace dir
 ////         }
 ////
 ////
-////         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+////         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 ////
-////         if(str.has_char())
+////         if(str.has_character())
 ////         {
 ////            str = ::file::path(str).folder();
 ////            goto found;
@@ -257,7 +257,7 @@ namespace dir
 //         str = get_exe_path();
 //
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //            str = ::file::path(str).folder();
 //            goto found;
@@ -403,7 +403,7 @@ namespace dir
 // bool eat_end_level(string & str, int iLevelCount, const char * pSeparator)
 // {
 
-//    strsize iLast = str.length() - 1;
+//    character_count iLast = str.length() - 1;
 
 //    if(iLast < 0)
 //       return iLevelCount <= 0;
@@ -414,9 +414,9 @@ namespace dir
 //    for(int i = 0; i < iLevelCount; i++)
 //    {
 
-//       strsize iFind1 = str.rear_find('/', iLast);
+//       character_count iFind1 = str.rear_find('/', iLast);
 
-//       strsize iFind2 = str.rear_find('\\', iLast);
+//       character_count iFind2 = str.rear_find('\\', iLast);
 
 //       auto pFind = maximum(iFind1, iFind2);
 
@@ -489,25 +489,25 @@ namespace dir
 //
 //         str = get_exe_path();
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //
 //            goto found;
 //
 //         }
 //
-//         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //
 //            goto found;
 //
 //         }
 //
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //
 //            goto found;
@@ -516,16 +516,16 @@ namespace dir
 //
 //         str = get_exe_path();
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //
 //            goto found;
 //
 //         }
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //
-//         if(str.has_char())
+//         if(str.has_character())
 //         {
 //
 //            goto found;
@@ -580,7 +580,7 @@ namespace dir
 
       ::file::path pathDir;
 
-      strsize iLastPos;
+      character_count iLastPos;
 
    #ifdef UNIVERSAL_WINDOWS
 
@@ -845,11 +845,11 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       }
 
-      strsize iFirstColon = path.find(':');
+      character_count iFirstColon = path.find(':');
 
-      strsize iFirstSlash = -1;
+      character_count iFirstSlash = -1;
 
-      strsize iSecondSlash = -1;
+      character_count iSecondSlash = -1;
 
       if (iFirstColon > 0)
       {
@@ -872,7 +872,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       }
 
-      strsize iEnd = -1;
+      character_count iEnd = -1;
 
       if(path.last_char() == '/' || path.last_char() == '\\')
       {
@@ -881,11 +881,11 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       }
 
-      strsize iPos1 = path.rear_find('/',iEnd);
+      character_count iPos1 = path.rear_find('/',iEnd);
 
-      strsize iPos2 = path.rear_find('\\',iEnd);
+      character_count iPos2 = path.rear_find('\\',iEnd);
 
-      strsize iPos = maximum(maximum(iPos1, iPos2), 0);
+      character_count iPos = maximum(maximum(iPos1, iPos2), 0);
 
       if (iPos == iSecondSlash)
       {
@@ -1142,7 +1142,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
             }
 
-            if (strPrefix.has_char())
+            if (strPrefix.has_character())
             {
 
                string_array stra;
@@ -1156,7 +1156,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
                   str = stra[0];
 
-                  if (str.has_char())
+                  if (str.has_character())
                   {
 
                      folder = wait(folder->GetFolderAsync(str));

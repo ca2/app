@@ -8,7 +8,7 @@ static ::interlocked_count g_interlockedcountNewReferenceRefererSerial;
 CLASS_DECL_ACME::collection::index new_reference_referer_serial()
 {
 
-   auto i = (::i64)g_interlockedcountNewReferenceRefererSerial;
+   auto i = (huge_integer)g_interlockedcountNewReferenceRefererSerial;
 
    g_interlockedcountNewReferenceRefererSerial++;
 

@@ -41,10 +41,10 @@ namespace user
          // Char* -> Very String Specific, just "small" string part indexing
 
          /// cached, derived, ephemeral, temporary values
-         strsize           m_iPosBeg;
-         strsize           m_iPosEnd;
-         size_f64             m_sizeSpan;
-         size_f64             m_sizeDevice;
+         character_count           m_iPosBeg;
+         character_count           m_iPosEnd;
+         double_size             m_sizeSpan;
+         double_size             m_sizeDevice;
          double_array      m_daPositionLeft;
          double_array      m_daPositionRight;
          double_array      m_daPositionDeviceLeft;

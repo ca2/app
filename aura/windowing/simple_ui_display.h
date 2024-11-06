@@ -20,8 +20,8 @@ namespace windowing
       string m_strFontName;
 
       ::pointer<::windowing::window>m_pwindow;
-      ::point_i32 m_point;
-      ::size_i32 m_size;
+      ::int_point m_point;
+      ::int_size m_size;
 
       int m_iLineHeight;
       int m_iTextAscent;
@@ -77,11 +77,11 @@ namespace windowing
       ~simple_ui_display();
 
 
-      virtual i64 increment_reference_count();
+      virtual huge_integer increment_reference_count();
 
-      virtual i64 decrement_reference_count();
+      virtual huge_integer decrement_reference_count();
 
-      virtual i64 release();
+      virtual huge_integer release();
 
 
       button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);

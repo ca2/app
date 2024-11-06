@@ -269,10 +269,10 @@ namespace base
 
       //}
 
-      //if(strLangUser.has_char())
+      //if(strLangUser.has_character())
       //   psession->set_locale(strLangUser,::e_source_database);
 
-      //if(strStyleUser.has_char())
+      //if(strStyleUser.has_character())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
       //string strLicense = papp->get_license_id();
@@ -554,7 +554,7 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
    CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & pWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
@@ -867,7 +867,7 @@ namespace base
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
 
    //{
 
@@ -1237,7 +1237,7 @@ namespace base
    }
 
 
-   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
    //      ::pointer<::user::menu> pmenu = __create <  ::user::menu  >();
@@ -1249,7 +1249,7 @@ namespace base
    //   }
 
 
-   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, int iFlags, const ::point_i32 & pointCursor, const ::size_i32 & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, int iFlags, const ::int_point & pointCursor, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //      
    //      ::string strXml;
@@ -1422,7 +1422,7 @@ namespace base
 
       auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
+      if (pathFile.has_character())
       {
 
          prequest->m_payloadFile = pathFile;
@@ -1471,7 +1471,7 @@ namespace base
 
       auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
+      if (pathFile.has_character())
       {
 
          prequest->m_payloadFile = pathFile;
@@ -1561,7 +1561,7 @@ namespace base
 
       auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
+      if (pathFile.has_character())
       {
 
          prequest->m_payloadFile = pathFile;
@@ -1687,7 +1687,7 @@ namespace base
 
          prequest->m_payloadArguments = payloadArgs;
 
-         if (pathFile.has_char())
+         if (pathFile.has_character())
          {
 
             prequest->m_payloadFile = pathFile;

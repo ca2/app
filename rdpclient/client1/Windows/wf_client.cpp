@@ -82,7 +82,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 	int i;
 	rdpGdi* gdi;
 	int ninvalid;
-	::rectangle_i32 updateRect;
+	::int_rectangle updateRect;
 	HGDI_RGN cinvalid;
 	REGION16 invalidRegion;
 	RECTANGLE_16 invalidRect;
@@ -175,7 +175,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //BOOL wf_hw_desktop_resize(wfContext* wfc)
 //{
 //	BOOL same;
-//	::rectangle_i32 rectangle_i32;
+//	::int_rectangle int_rectangle;
 //	rdpSettings* settings;
 //
 //	settings = wfc->instance->settings;

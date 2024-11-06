@@ -76,7 +76,7 @@ memsize operating_system_memory_size(void* p)
    if (s == (SIZE_T)-1)
    {
 
-      informationf("os_impl_size : Failed to get memory size_i32");
+      informationf("os_impl_size : Failed to get memory int_size");
 
    }
 

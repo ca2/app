@@ -24,7 +24,7 @@ public:
    class ::time                                      m_timeLastSaveWindowRect;
    class ::time                                      m_timeLastSaveWindowRectRequest;
    ::image::image_pointer                                 m_pimageBk;
-   ::rectangle_i32                                 m_FullScreenWindowRect;
+   ::int_rectangle                                 m_FullScreenWindowRect;
    ::pointer<::image::fastblur>                   m_pfastblur;
    ::image::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
@@ -66,7 +66,7 @@ public:
    bool create_bars() override;
    void on_create_bars() override;
 
-   void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle) override;
+   void _on_configure_notify_unlocked(const ::int_rectangle & rectangle) override;
 
    void install_message_routing(::channel * pchannel) override;
 
@@ -75,16 +75,16 @@ public:
    void on_after_set_parent() override;
 
    
-   //void raw_rectangle(::rectangle_i32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-   ::rectangle_i32 rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   //void raw_rectangle(::int_rectangle & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   ::int_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();
 
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
-   void SetBorderRect(const ::rectangle_i32 & rectangle) override;
-   void GetBorderRectangle(::rectangle_i32 * prectangle) override;
+   void SetBorderRect(const ::int_rectangle & rectangle) override;
+   void GetBorderRectangle(::int_rectangle * prectangle) override;
 
    ::color::color get_border_main_body_color() override;
 

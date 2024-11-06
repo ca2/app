@@ -70,7 +70,7 @@ public:
    virtual ::string get_html_form_text();
    virtual void set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
 
-   virtual void GetClientBox(::rectangle_f32 & box);
+   virtual void GetClientBox(::float_rectangle & box);
 
 
    virtual void defer_implement();

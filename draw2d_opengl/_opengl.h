@@ -42,7 +42,7 @@ namespace opengl
 {
 
 
-   inline void vertex2f(const ::rectangle_f64 & rectangle)
+   inline void vertex2f(const ::double_rectangle & rectangle)
    {
 
       glVertex2f((GLfloat)rectangle.left(), (GLfloat)rectangle.top());
@@ -53,7 +53,7 @@ namespace opengl
    }
 
 
-   void resize(const ::size_i32 & size);
+   void resize(const ::int_size & size);
 
 
    //https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2

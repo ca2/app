@@ -22,10 +22,10 @@ namespace draw2d
 {
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const rectangle_i32 & rectangleParam, string &str1, string & str2, int iEll);
+   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const int_rectangle & rectangleParam, string &str1, string & str2, int iEll);
 
 
-   strsize _EncodeV033(string & str);
+   character_count _EncodeV033(string & str);
 
 
    graphics::graphics()
@@ -102,7 +102,7 @@ namespace draw2d
    //}
 
 
-   ::image::image_pointer graphics::image::image_source_image(const concrete < ::size_i32 > & sizeDst)
+   ::image::image_pointer graphics::image::image_source_image(const concrete < ::int_size > & sizeDst)
    {
       
       return m_pimage->get_image(sizeDst); 
@@ -110,7 +110,7 @@ namespace draw2d
    }
 
    
-   concrete < ::size_i32 > graphics::image::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   concrete < ::int_size > graphics::image::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
    {
       
       return m_pimage->image_source_size(sizeDst, eimageselection); 
@@ -118,7 +118,7 @@ namespace draw2d
    }
 
 
-   concrete < ::size_i32 > graphics::image::image_source_size() const 
+   concrete < ::int_size > graphics::image::image_source_size() const 
    { 
       
       return m_pimage->size(); 
@@ -244,10 +244,10 @@ namespace draw2d
    //}
 
 
-   //::size_f64 graphics::size_i32(const ::size_f64 & sizeHint) const
+   //::double_size graphics::int_size(const ::double_size & sizeHint) const
    //{
 
-   //   return m_pimage->size_i32(sizeHint);
+   //   return m_pimage->int_size(sizeHint);
 
    //}
 
@@ -358,7 +358,7 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::GetBrushOrg()
+   double_point graphics::GetBrushOrg()
    {
 
       return nullptr;
@@ -399,7 +399,7 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::SetBrushOrg(double x, double y)
+   double_point graphics::SetBrushOrg(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -410,7 +410,7 @@ namespace draw2d
    }
 
    
-   point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
+   double_point graphics::SetBrushOrg(const ::double_point & point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -556,23 +556,23 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::get_origin()
+   double_point graphics::get_origin()
    {
 
-      return ::point_i32((int)m_matrixContext.c1, (int) m_matrixContext.c2);
+      return ::int_point((int)m_matrixContext.c1, (int) m_matrixContext.c2);
 
    }
 
 
-   size_f64 graphics::get_context_extents()
+   double_size graphics::get_context_extents()
    {
 
-      return ::size_f64(0, 0);
+      return ::double_size(0, 0);
 
    }
 
 
-   point_f64 graphics::GetWindowOrg()
+   double_point graphics::GetWindowOrg()
    {
 
       return nullptr;
@@ -580,15 +580,15 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetWindowExt()
+   double_size graphics::GetWindowExt()
    {
 
-      return ::size_f64(0, 0);
+      return ::double_size(0, 0);
 
    }
 
 
-   point_f64 graphics::set_origin(const ::point_f64 & point)
+   double_point graphics::set_origin(const ::double_point & point)
    {
 
       return set_origin(point.x(), point.y());
@@ -596,17 +596,17 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::set_context_extents(const ::size_f64 & size)
+   double_size graphics::set_context_extents(const ::double_size & size)
    {
 
       __UNREFERENCED_PARAMETER(size);
 
-      return ::size_f64(0, 0);
+      return ::double_size(0, 0);
 
    }
 
 
-   point_f64 graphics::SetWindowOrg(const ::point_f64 & point)
+   double_point graphics::SetWindowOrg(const ::double_point & point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -616,17 +616,17 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::set_window_ext(const ::size_f64 & size)
+   double_size graphics::set_window_ext(const ::double_size & size)
    {
 
       __UNREFERENCED_PARAMETER(size);
 
-      return ::size_f64(0, 0);
+      return ::double_size(0, 0);
 
    }
 
 
-   void graphics::DPtoLP(point_f64 * ppoints, ::collection::count nCount)
+   void graphics::DPtoLP(double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -635,7 +635,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(::rectangle_f64 * prectangle)
+   void graphics::DPtoLP(::double_rectangle * prectangle)
    {
 
       __UNREFERENCED_PARAMETER(prectangle);
@@ -643,7 +643,7 @@ namespace draw2d
    }
 
 
-   void graphics::LPtoDP(::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::LPtoDP(::double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -652,7 +652,7 @@ namespace draw2d
    }
 
 
-   void graphics::LPtoDP(::rectangle_f64 * prectangle)
+   void graphics::LPtoDP(::double_rectangle * prectangle)
    {
 
       __UNREFERENCED_PARAMETER(prectangle);
@@ -704,7 +704,7 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::current_position()
+   double_point graphics::current_position()
    {
 
       return m_point;
@@ -743,13 +743,13 @@ namespace draw2d
    void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
    {
 
-      // return draw_line(point_f64(point1), point_f64(point2), ppen);
+      // return draw_line(double_point(point1), double_point(point2), ppen);
       //return false;
 
    }
 
 
-   void graphics::rectangle_f64(const ::rectangle_f64 & rectangle)
+   void graphics::double_rectangle(const ::double_rectangle & rectangle)
    {
 
       //if (fill_rectangle(rectangle))
@@ -771,16 +771,16 @@ namespace draw2d
    }
 
 
-   void graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::draw_rectangle(const ::double_rectangle & rectangle)
    {
 
-      //return draw_rectangle(::rectangle_f64(rectangle), m_ppen);
-      draw_rectangle(::rectangle_f64(rectangle), m_ppen);
+      //return draw_rectangle(::double_rectangle(rectangle), m_ppen);
+      draw_rectangle(::double_rectangle(rectangle), m_ppen);
 
    }
 
 
-   void graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
+   void graphics::draw_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen)
    {
       
       throw ::interface_only();
@@ -790,7 +790,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::fill_rectangle(const ::double_rectangle & rectangle)
    {
 
       fill_rectangle(rectangle, m_pbrush);
@@ -798,7 +798,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
+   void graphics::fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush)
    {
 
       //return false;
@@ -818,7 +818,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
       arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), pointStart.x(), pointStart.y(), pointEnd.x(), pointEnd.y());
@@ -829,12 +829,12 @@ namespace draw2d
    void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      arc(rectangle_double_dimension(x, y, w, h), start, extends);
+      arc(double_rectangle_dimension(x, y, w, h), start, extends);
 
    }
 
 
-   void graphics::arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
+   void graphics::arc(const ::double_rectangle & rectangle, angle start, angle extends)
    {
 
       arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), start, extends);
@@ -842,7 +842,7 @@ namespace draw2d
    }
 
 
-   void graphics::polyline(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::polyline(const ::double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -854,7 +854,7 @@ namespace draw2d
    }
 
 
-   void graphics::frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
+   void graphics::frame_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -865,7 +865,7 @@ namespace draw2d
    }
 
 
-   void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::invert_rectangle(const ::double_rectangle & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -892,7 +892,7 @@ namespace draw2d
    }
 
 
-   void graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::Chord(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -904,7 +904,7 @@ namespace draw2d
    }
 
 
-   void graphics::DrawFocusRect(const ::rectangle_f64 & rectangle)
+   void graphics::DrawFocusRect(const ::double_rectangle & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -912,7 +912,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse_f64(const ::rectangle_f64 & rectangle)
+   void graphics::double_ellipse(const ::double_rectangle & rectangle)
    {
 
       //auto ealphamode = m_ealphamode;
@@ -930,7 +930,7 @@ namespace draw2d
    }
 
 
-   void graphics::ellipse_f64(double x1, double y1, double x2, double y2)
+   void graphics::double_ellipse(double x1, double y1, double x2, double y2)
    {
 
       fill_ellipse(x1, y1, x2, y2);
@@ -945,14 +945,14 @@ namespace draw2d
    void graphics::draw_ellipse(double x1, double y1, double x2, double y2)
    {
 
-      ::rectangle_f64 rectangle(x1, y1, x2, y2);
+      ::double_rectangle rectangle(x1, y1, x2, y2);
 
       draw_ellipse(rectangle);
 
    }
 
 
-   void graphics::draw_ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::draw_ellipse(const ::double_rectangle & rectangle)
    {
 
       return draw_ellipse(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
@@ -963,14 +963,14 @@ namespace draw2d
    void graphics::fill_ellipse(double x1, double y1, double x2, double y2)
    {
 
-      ::rectangle_f64 rectangle(x1, y1, x2, y2);
+      ::double_rectangle rectangle(x1, y1, x2, y2);
 
       fill_ellipse(rectangle);
 
    }
 
 
-   void graphics::fill_ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::fill_ellipse(const ::double_rectangle & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -997,7 +997,7 @@ namespace draw2d
    }
 
 
-   void graphics::Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::Pie(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -1009,7 +1009,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_polygon(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::fill_polygon(const ::double_point * ppoints, ::collection::count nCount)
    {
       
       throw ::interface_only();
@@ -1019,7 +1019,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_polygon(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::draw_polygon(const ::double_point * ppoints, ::collection::count nCount)
    {
       
       throw ::interface_only();
@@ -1029,7 +1029,7 @@ namespace draw2d
    }
 
 
-   void graphics::polygon(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::polygon(const ::double_point * ppoints, ::collection::count nCount)
    {
 
       fill_polygon(ppoints, nCount);
@@ -1041,7 +1041,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount)
+   void graphics::poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount)
    {
 
       fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1053,7 +1053,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount)
+   void graphics::draw_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount)
    {
 
       //bool bOk = true;
@@ -1080,7 +1080,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const int * pPolyCounts, ::collection::count nCount)
+   void graphics::fill_poly_polygon(const ::double_point * ppoints, const int * pPolyCounts, ::collection::count nCount)
    {
 
       //bool bOk = true;
@@ -1128,9 +1128,9 @@ namespace draw2d
       if (m_pimageAlphaBlend->is_ok())
       {
 
-         ::rectangle_f64 rectangleAlphaBlend(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+         ::double_rectangle rectangleAlphaBlend(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
-         ::rectangle_f64 rectangleIntersect;
+         ::double_rectangle rectangleIntersect;
 
          if (rectangleIntersect.intersect(rectangleAlphaBlend, imagedrawing.m_rectangleTarget))
          {
@@ -1139,13 +1139,13 @@ namespace draw2d
 
             auto & rectangleTarget = imagedrawing.m_rectangleTarget;
 
-            ::size_i32 size(imagedrawing.m_rectangleTarget.size());
+            ::int_size size(imagedrawing.m_rectangleTarget.size());
 
             ::image::image_pointer pimage1 = image()->create_image(size);
 
             ::image::image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
 
-            rectangle_f64 rectangle(size);
+            double_rectangle rectangle(size);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1159,13 +1159,13 @@ namespace draw2d
 
             auto y = rectangleTarget.top();
 
-            point_i32 pointDst;
+            int_point pointDst;
 
             pointDst.y() = (int) maximum(0., rectangleIntersect.top() - y);
 
             pointDst.x() = (int) maximum(0., rectangleIntersect.left() - x);
 
-            point_i32 pointSrc;
+            int_point pointSrc;
 
             pointSrc.y() = (int) maximum(0, y - rectangleAlphaBlend.top());
 
@@ -1177,7 +1177,7 @@ namespace draw2d
 
             set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            _draw_raw(rectangleTarget, pimage1, imagedrawingoptionsDrawRaw, ::point_f64());
+            _draw_raw(rectangleTarget, pimage1, imagedrawingoptionsDrawRaw, ::double_point());
 
             return true;
 
@@ -1190,29 +1190,29 @@ namespace draw2d
    }
 
 
-   //void graphics::draw(const ::point_f64 & point, cursor * pcursor)
+   //void graphics::draw(const ::double_point & point, cursor * pcursor)
    //{
    //
    //   set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //   ::point_i32 pointDst(point_i32 - pcursor->m_szHotspotOffset);
+   //   ::int_point pointDst(int_point - pcursor->m_szHotspotOffset);
 
    //   auto pimage = pcursor->m_pimage;
 
-   //   return draw(::rectangle_f64(pointDst, pimage->size()), pimage->g());
+   //   return draw(::double_rectangle(pointDst, pimage->size()), pimage->g());
 
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::image::image *pimage)
+   //void graphics::draw_at(const ::double_point & pointDst, ::image::image *pimage)
    //{
 
-   //   return draw(::rectangle_f64(pointDst, pimage->get_size()), pimage->g());
+   //   return draw(::double_rectangle(pointDst, pimage->get_size()), pimage->g());
 
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::::image::image_frame * pframe)
+   //void graphics::draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1220,7 +1220,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphics)
+   //void graphics::draw_at(const ::double_point & pointDst, ::draw2d::graphics * pgraphics)
    //{
 
    //   return draw_at(pointDst, pgraphics->m_pimage);
@@ -1228,7 +1228,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::image::image *pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(::image::image *pimage, const ::double_point & pointSrc)
    //{
 
    //   return draw(pimage->get_size() - pointSrc, pimage, pointSrc);
@@ -1236,7 +1236,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::::image::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(::::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1244,7 +1244,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc)
+   //void graphics::draw(::draw2d::graphics * pgraphicsSrc, const ::double_point & pointSrc)
    //{
 
    //   return draw(pgraphicsSrc->m_pimage, pointSrc);
@@ -1252,7 +1252,7 @@ namespace draw2d
    //}
 
    
-   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::double_point & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pimage->g(), pointSrc);
@@ -1260,7 +1260,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1270,7 +1270,7 @@ namespace draw2d
 
 
 
-   //void graphics::stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource)
    //{
 
    //   return false;
@@ -1278,12 +1278,12 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch_blend(const ::rectangle_f64 & rectangleDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSrcParam)
+   //void graphics::stretch_blend(const ::double_rectangle & rectangleDstParam, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSrcParam)
    //{
 
-   //   //::rectangle_f64 rectangleTarget(rectangleDstParam);
+   //   //::double_rectangle rectangleTarget(rectangleDstParam);
 
-   //   //::rectangle_f64 rectangleSource(rectangleSrcParam);
+   //   //::double_rectangle rectangleSource(rectangleSrcParam);
 
    //   //if (m_pimageAlphaBlend)
    //   //{
@@ -1310,7 +1310,7 @@ namespace draw2d
 
    //   //   }
 
-   //   //   ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+   //   //   ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
    //   //   if (rectangleIntersect.intersect(rectangleIntersect, rectangle))
    //   //   {
@@ -1320,13 +1320,13 @@ namespace draw2d
    //   //      //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
    //   //      //{
 
-   //   //      //   const ::point_f64 & pointOff = get_origin();
+   //   //      //   const ::double_point & pointOff = get_origin();
 
    //   //      //   x += pointOff.x();
 
    //   //      //   y += pointOff.y();
 
-   //   //      //   return m_ppimage->blend(::point_i32(x, y), pgraphicsSrc->m_pimage, ::point_i32(xSrc, ySrc), m_pimageAlphaBlend, point_i32(m_pointAlphaBlend.x() - x, m_pointAlphaBlend.y() - y), rectangleBlt.size());
+   //   //      //   return m_ppimage->blend(::int_point(x, y), pgraphicsSrc->m_pimage, ::int_point(xSrc, ySrc), m_pimageAlphaBlend, int_point(m_pointAlphaBlend.x() - x, m_pointAlphaBlend.y() - y), rectangleBlt.size());
 
    //   //      //}
    //   //      //else
@@ -1344,7 +1344,7 @@ namespace draw2d
    //   //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rectangle.size()))
    //   //            return false;
 
-   //   //         pimage1->blend(::point_i32(), m_pimageAlphaBlend,
+   //   //         pimage1->blend(::int_point(), m_pimageAlphaBlend,
    //   //            {
    //   //               (int)maximum(0, rectangle.left() - m_pointAlphaBlend.x()),
    //   //               (int)maximum(0, rectangle.top() - m_pointAlphaBlend.y())
@@ -1367,7 +1367,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc)
+   //void graphics::draw_image(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc)
    //{
 
    //   if(pgraphicsSrc == nullptr)
@@ -1386,22 +1386,22 @@ namespace draw2d
 
    //   }
 
-   //   ::rectangle_f64 rectangleSource(nullptr, pimage->get_size());
+   //   ::double_rectangle rectangleSource(nullptr, pimage->get_size());
 
    //   return draw_image(rectangleTarget, pgraphicsSrc, rectangleSource);
 
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::double_rectangle & rectangleSource)
    //{
 
-   //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::rectangle_f64(pimage->rectangle()) : rectangleSource);
+   //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::double_rectangle(pimage->rectangle()) : rectangleSource);
 
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
@@ -1409,7 +1409,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource)
    //{
 
    //   if (stretch_blend(rectangleTarget, pgraphicsSrc, rectangleSource))
@@ -1442,7 +1442,7 @@ namespace draw2d
    }
 
 
-   ::color::color graphics::GetPixel(const ::point_f64 & point)
+   ::color::color graphics::GetPixel(const ::double_point & point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -1464,7 +1464,7 @@ namespace draw2d
    }
 
 
-   ::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color& color)
+   ::color::color graphics::SetPixel(const ::double_point & point, const ::color::color& color)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -1475,7 +1475,7 @@ namespace draw2d
    }
 
 
-   ::color::color graphics::blend_pixel(const ::point_f64 & point, const ::color::color & color)
+   ::color::color graphics::blend_pixel(const ::double_point & point, const ::color::color & color)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -1486,7 +1486,7 @@ namespace draw2d
    }
 
 
-   //void graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
+   //void graphics::text_out(double x, double y, const ::string & pszString, character_count nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1503,7 +1503,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
+   //void graphics::text_out(double x, double y, const ::string & pszString, character_count nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1563,11 +1563,11 @@ namespace draw2d
 
       // "Reference" implementation for TextOutAlphaBlend
 
-      ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+      ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-      const ::size_i32 & size = ::size_i32(get_text_extent((const char *) block.get_data(), block.get_size()));
+      const ::int_size & size = ::int_size(get_text_extent((const char *) block.get_data(), block.get_size()));
 
-      ::rectangle_f64 rectangleText(point_i32((int)x, (int)y), size);
+      ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
 
       if (rectangleIntersect.intersect(rectangleIntersect, rectangleText))
       {
@@ -1589,9 +1589,9 @@ namespace draw2d
 
          {
 
-            ::image::image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
+            ::image::image_source imagesource(m_pimageAlphaBlend, ::double_rectangle(int_point((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
 
-            rectangle_f64 rectangle(pimage1->rectangle());
+            double_rectangle rectangle(pimage1->rectangle());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1607,7 +1607,7 @@ namespace draw2d
 
             ::image::image_source imagesource(pimage1);
 
-            rectangle_f64 rectangle(::rectangle_f64(::point_f64(x, y), rectangleText.size()));
+            double_rectangle rectangle(::double_rectangle(::double_point(x, y), rectangleText.size()));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1626,7 +1626,7 @@ namespace draw2d
    }
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & pszString, character_count nCount, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1642,7 +1642,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & str, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & str, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1657,7 +1657,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
+   //double_size graphics::TabbedTextOut(double x, double y, const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1668,12 +1668,12 @@ namespace draw2d
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
    //   __UNREFERENCED_PARAMETER(nTabOrigin);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
+   //double_size graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1683,12 +1683,12 @@ namespace draw2d
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
    //   __UNREFERENCED_PARAMETER(nTabOrigin);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -1696,24 +1696,24 @@ namespace draw2d
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetOutputTabbedTextExtent(const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -1721,19 +1721,19 @@ namespace draw2d
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
@@ -1788,7 +1788,7 @@ namespace draw2d
 
 
    // ::draw2d::graphics_pointer 3.1 Specific functions
-   unsigned int graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, unsigned int flags)
+   unsigned int graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags)
    {
 
       __UNREFERENCED_PARAMETER(rectangleBounds);
@@ -1799,7 +1799,7 @@ namespace draw2d
    }
 
 
-   unsigned int graphics::GetBoundsRect(::rectangle_f64 * pRectBounds, unsigned int flags)
+   unsigned int graphics::GetBoundsRect(::double_rectangle * pRectBounds, unsigned int flags)
    {
 
       __UNREFERENCED_PARAMETER(pRectBounds);
@@ -1887,7 +1887,7 @@ namespace draw2d
    }
 
 
-   void graphics::SetPixelV(const ::point_f64 & point, const ::color::color& color)
+   void graphics::SetPixelV(const ::double_point & point, const ::color::color& color)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -1912,7 +1912,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc_to(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::arc_to(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -1932,7 +1932,7 @@ namespace draw2d
    //}
 
 
-   void graphics::poly_polyline(const ::point_f64 * ppoints, const int * pPolyPoints, ::collection::count nCount)
+   void graphics::poly_polyline(const ::double_point * ppoints, const int * pPolyPoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -1993,7 +1993,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_bezier(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::poly_bezier(const ::double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -2060,7 +2060,7 @@ namespace draw2d
    }
 
 
-//   int graphics::GetPath(::point_f64 * ppoints, unsigned char * pTypes, ::collection::count nCount)
+//   int graphics::GetPath(::double_point * ppoints, unsigned char * pTypes, ::collection::count nCount)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(ppoints);
@@ -2182,7 +2182,7 @@ namespace draw2d
 //#ifdef WINDOWS
 //
 //
-//   void graphics::PlayMetaFile(HENHMETAFILE henhmetafile, const rectangle_f64 & rectangleBounds)
+//   void graphics::PlayMetaFile(HENHMETAFILE henhmetafile, const double_rectangle & rectangleBounds)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(henhmetafile);
@@ -2196,7 +2196,7 @@ namespace draw2d
 //#endif
 
 
-   void graphics::DPtoHIMETRIC(::size_f64 * psize)
+   void graphics::DPtoHIMETRIC(::double_size * psize)
    {
 
       __UNREFERENCED_PARAMETER(psize);
@@ -2204,7 +2204,7 @@ namespace draw2d
    }
 
 
-   void graphics::HIMETRICtoDP(::size_f64 * psize)
+   void graphics::HIMETRICtoDP(::double_size * psize)
    {
 
       __UNREFERENCED_PARAMETER(psize);
@@ -2212,10 +2212,10 @@ namespace draw2d
    }
 
 
-   void graphics::LPtoHIMETRIC(::size_f64 * psize)
+   void graphics::LPtoHIMETRIC(::double_size * psize)
    {
 
-      ASSERT(is_memory_segment_ok(psize, sizeof(::size_f64)));
+      ASSERT(is_memory_segment_ok(psize, sizeof(::double_size)));
 
       LPtoDP(psize);
 
@@ -2224,10 +2224,10 @@ namespace draw2d
    }
 
 
-   void graphics::HIMETRICtoLP(::size_f64 * psize)
+   void graphics::HIMETRICtoLP(::double_size * psize)
    {
 
-      ASSERT(is_memory_segment_ok(psize, sizeof(size_f64)));
+      ASSERT(is_memory_segment_ok(psize, sizeof(double_size)));
 
       HIMETRICtoDP(psize);
 
@@ -2244,7 +2244,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
@@ -2256,7 +2256,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
@@ -2284,7 +2284,7 @@ namespace draw2d
 
 
    
-   void graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_solid_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
@@ -2320,10 +2320,10 @@ namespace draw2d
    }
 
 
-   void graphics::color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
+   void graphics::color_blend_3dRect(const int_rectangle& rectangleParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
    {
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       int x = rectangle.left();
       int y = rectangle.top();
@@ -2331,16 +2331,16 @@ namespace draw2d
       int cy = rectangle.height();
 
       //auto estatus1 = 
-      fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft & opacityTopLeft);
+      fill_rectangle({ int_point(x, y), int_size(cx - 1, 1) }, colorTopLeft & opacityTopLeft);
 
       //auto estatus2 = 
-      fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft & opacityTopLeft);
+      fill_rectangle({ int_point(x, y), int_size(1, cy - 1) }, colorTopLeft & opacityTopLeft);
 
       //auto estatus3 = 
-      fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight & opacityBottomRight);
+      fill_rectangle({ int_point(x + cx - 1, y + 1), int_size(1, cy - 1) }, colorBottomRight & opacityBottomRight);
 
       //auto estatus4 =
-      fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight & opacityBottomRight);
+      fill_rectangle({ int_point(x + 1, y + cy - 1), int_size(cx - 1, 1) }, colorBottomRight & opacityBottomRight);
 
       //return estatus1 && estatus2 && estatus3 && estatus4 ;
 
@@ -2348,7 +2348,7 @@ namespace draw2d
 
 
 
-   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_inset_3d_rectangle(const ::double_rectangle & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
 
       auto smooth_mode = get_smooth_mode();
@@ -2363,14 +2363,14 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         fill_rectangle(rectangle_double_dimension(rectangle.left(), rectangle.top(), rectangle.width(), 1.0), colorTopLeft);
+         fill_rectangle(double_rectangle_dimension(rectangle.left(), rectangle.top(), rectangle.width(), 1.0), colorTopLeft);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         fill_rectangle(rectangle_double_dimension(
+         fill_rectangle(double_rectangle_dimension(
             rectangle.left(),
             rectangle.top() + (eborder & e_border_top ? 1.0 : 0),
             1.0,
@@ -2386,7 +2386,7 @@ namespace draw2d
       if (eborder & e_border_bottom)
       {
 
-         fill_rectangle(rectangle_double_dimension(
+         fill_rectangle(double_rectangle_dimension(
             rectangle.left() + (eborder & e_border_left ? 1.0 : 0),
             rectangle.bottom() - 1.0,
             rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
@@ -2404,7 +2404,7 @@ namespace draw2d
 
          //if (!
          fill_rectangle(
-            ::rectangle_double_dimension(
+            ::double_rectangle_dimension(
                rectangle.right() - 1.0,
                rectangle.top() + (eborder & e_border_top ? 1.0 : 0),
                1.0,
@@ -2430,7 +2430,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::draw_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
       //if (!
@@ -2445,7 +2445,7 @@ namespace draw2d
 
    }
 
-   void graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::frame_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
       auto rectangleFrame(rectangle);
@@ -2637,7 +2637,7 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::set_origin(double x, double y)
+   double_point graphics::set_origin(double x, double y)
    {
 
       m_matrixContext.c1 = x;
@@ -2646,7 +2646,7 @@ namespace draw2d
 
       update_matrix();
 
-      return ::point_i32((int)m_matrixContext.c1, (int)m_matrixContext.c2);
+      return ::int_point((int)m_matrixContext.c1, (int)m_matrixContext.c2);
 
    }
 
@@ -2663,7 +2663,7 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::offset_origin(double nWidth, double nHeight)
+   double_point graphics::offset_origin(double nWidth, double nHeight)
    {
 
       m_matrixContext.c1 += nWidth;
@@ -2672,24 +2672,24 @@ namespace draw2d
 
       update_matrix();
 
-      return point_f64(m_matrixContext.c1, m_matrixContext.c2);
+      return double_point(m_matrixContext.c1, m_matrixContext.c2);
 
    }
 
 
-   size_f64 graphics::set_context_extents(double x, double y)
+   double_size graphics::set_context_extents(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
 
       __UNREFERENCED_PARAMETER(y);
 
-      return size_f64(0, 0);
+      return double_size(0, 0);
 
    }
 
 
-   size_f64 graphics::scale_context_extents(double xNum, double xDenom, double yNum, double yDenom)
+   double_size graphics::scale_context_extents(double xNum, double xDenom, double yNum, double yDenom)
    {
 
       m_matrixContext.a1 *= xNum / xDenom;
@@ -2698,12 +2698,12 @@ namespace draw2d
 
       update_matrix();
 
-      return ::size_f64(0, 0);
+      return ::double_size(0, 0);
 
    }
 
 
-   point_f64 graphics::SetWindowOrg(double x, double y)
+   double_point graphics::SetWindowOrg(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -2714,7 +2714,7 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::offset_window_org(double nWidth, double nHeight)
+   double_point graphics::offset_window_org(double nWidth, double nHeight)
    {
 
       __UNREFERENCED_PARAMETER(nWidth);
@@ -2726,18 +2726,18 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::set_window_ext(double x, double y)
+   double_size graphics::set_window_ext(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
 
-      return size_f64(0, 0);
+      return double_size(0, 0);
 
    }
 
 
-   size_f64 graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
+   double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
    {
 
       __UNREFERENCED_PARAMETER(xNum);
@@ -2745,12 +2745,12 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(yNum);
       __UNREFERENCED_PARAMETER(yDenom);
 
-      return size_f64(0, 0);
+      return double_size(0, 0);
 
    }
 
 
-   //int graphics::get_clip_box(::rectangle_f64 * rectangle_i32)
+   //int graphics::get_clip_box(::double_rectangle * int_rectangle)
    //{
 
    //   __UNREFERENCED_PARAMETER(rectangle);
@@ -2760,10 +2760,10 @@ namespace draw2d
    //}
 
 
-   int graphics::get_clip_box(::rectangle_f64 * prectangle)
+   int graphics::get_clip_box(::double_rectangle * prectangle)
    {
 
-      //::rectangle_f64 rectangle;
+      //::double_rectangle rectangle;
 
       //int iClip = get_clip_box(rectangle);
 
@@ -2789,7 +2789,7 @@ namespace draw2d
 //   }
 //
 //
-//   int graphics::ExcludeClipRect(const ::rectangle_f64 & rectangle)
+//   int graphics::ExcludeClipRect(const ::double_rectangle & rectangle)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(rectangle);
@@ -2804,7 +2804,7 @@ namespace draw2d
 //   int graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
 //   {
 //
-//      ::rectangle_f64 rectangle;
+//      ::double_rectangle rectangle;
 //
 //      rectangle.left() = x1;
 //      rectangle.top() = y1;
@@ -2816,7 +2816,7 @@ namespace draw2d
 //   }
 //
 //
-//   int graphics::IntersectClipRect(const ::rectangle_f64 & rectangleParam)
+//   int graphics::IntersectClipRect(const ::double_rectangle & rectangleParam)
 //   {
 //
 //      auto pregion = __create < ::draw2d::region > ();
@@ -2855,7 +2855,7 @@ namespace draw2d
 //      if(m_pregion)
 //      {
 //
-//         m_pregion->m_pointOffset += ::size_i32(x, y);
+//         m_pregion->m_pointOffset += ::int_size(x, y);
 //
 //         m_pregion->set_modified();
 //
@@ -2868,7 +2868,7 @@ namespace draw2d
 //   }
 //
 //
-//   int graphics::OffsetClipRgn(const ::size_i32 & size)
+//   int graphics::OffsetClipRgn(const ::int_size & size)
 //   {
 //
 //      return OffsetClipRgn(size.cx(), size.cy());
@@ -2882,7 +2882,7 @@ namespace draw2d
    }
 
 
-//   int graphics::OffsetClipRgn(const ::size_i32 & size)
+//   int graphics::OffsetClipRgn(const ::int_size & size)
 //   {
 //
 //      throw ::not_implemented();
@@ -2910,7 +2910,7 @@ namespace draw2d
 //   }
 
 
-//   int graphics::OffsetClipRgn(const ::size_i32 & size)
+//   int graphics::OffsetClipRgn(const ::int_size & size)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(size);
@@ -2989,7 +2989,7 @@ namespace draw2d
    //}
 
 
-   void graphics::polydraw(const ::point_f64 * ppoints, const unsigned char* pTypes, ::collection::count nCount)
+   void graphics::polydraw(const ::double_point * ppoints, const unsigned char* pTypes, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3001,7 +3001,7 @@ namespace draw2d
    }
 
 
-   void graphics::polyline_to(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::polyline_to(const ::double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3012,7 +3012,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_bezier_to(const ::point_f64 * ppoints, ::collection::count nCount)
+   void graphics::poly_bezier_to(const ::double_point * ppoints, ::collection::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3067,10 +3067,10 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_shape(pshape->shape < ::rectangle_f64 >());
+         _add_shape(pshape->shape < ::double_rectangle >());
          break;
       case e_shape_ellipse:
-         _add_shape(pshape->shape < ::ellipse_f64 >());
+         _add_shape(pshape->shape < ::double_ellipse >());
          break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
@@ -3095,7 +3095,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_shape(const ::rectangle_f64 & rectangle)
+   void graphics::_add_shape(const ::double_rectangle & rectangle)
    {
    
       throw ::interface_only();
@@ -3105,7 +3105,7 @@ namespace draw2d
    }
 
 
-   //void graphics::_add_shape(const ::rectangle_f64 & rectangle)
+   //void graphics::_add_shape(const ::double_rectangle & rectangle)
    //{
    //
    //   throw ::interface_only();
@@ -3115,7 +3115,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::_add_shape(const ::ellipse_f64 & ellipse)
+   //void graphics::_add_shape(const ::double_ellipse & ellipse)
    //{
    //
    //   throw ::interface_only();
@@ -3125,7 +3125,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::ellipse_f64 & ellipse)
+   void graphics::_add_shape(const ::double_ellipse & ellipse)
    {
    
       throw ::interface_only();
@@ -3135,7 +3135,7 @@ namespace draw2d
    }
 
 
-   //void graphics::_add_shape(const ::polygon_i32 & polygon_i32)
+   //void graphics::_add_shape(const ::int_polygon & int_polygon)
    //{
    //
    //   throw ::interface_only();
@@ -3145,7 +3145,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
+   void graphics::_add_shape(const ::double_polygon & int_polygon)
    {
 
       throw ::interface_only();
@@ -3155,7 +3155,7 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   void graphics::intersect_clip(const ::double_rectangle & rectangle)
    {
    
       //auto estatus = 
@@ -3183,7 +3183,7 @@ namespace draw2d
    }
 
 
-   //void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   //void graphics::intersect_clip(const ::double_rectangle & rectangle)
    //{
    //
    //   auto estatus = _add_shape(rectangle);
@@ -3209,7 +3209,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
+   //void graphics::intersect_clip(const ::double_ellipse & ellipse)
    //{
    //
    //   auto estatus = _add_shape(ellipse);
@@ -3235,7 +3235,7 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::ellipse_f64 & ellipse)
+   void graphics::intersect_clip(const ::double_ellipse & ellipse)
    {
    
       //auto estatus =
@@ -3265,10 +3265,10 @@ namespace draw2d
    }
 
 
-   //void graphics::intersect_clip(const ::polygon_i32 & polygon_i32)
+   //void graphics::intersect_clip(const ::int_polygon & int_polygon)
    //{
    //
-   //   auto estatus = _add_shape(polygon_i32);
+   //   auto estatus = _add_shape(int_polygon);
    //   
    //   if(!estatus)
    //   {
@@ -3291,11 +3291,11 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::polygon_f64 & polygon_i32)
+   void graphics::intersect_clip(const ::double_polygon & int_polygon)
    {
 
       //auto estatus = 
-      _add_shape(polygon_i32);
+      _add_shape(int_polygon);
       //
       //if(!estatus)
       //{
@@ -3358,7 +3358,7 @@ namespace draw2d
    /////////////////////////////////////////////////////////////////////////////
    // Coordinate transforms
 
-   void graphics::LPtoDP(::size_f64 * psize)
+   void graphics::LPtoDP(::double_size * psize)
    {
 
       __UNREFERENCED_PARAMETER(psize);
@@ -3366,7 +3366,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(::size_f64 * psize)
+   void graphics::DPtoLP(::double_size * psize)
    {
 
       __UNREFERENCED_PARAMETER(psize);
@@ -3374,7 +3374,7 @@ namespace draw2d
    }
 
 
-   ::collection::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart, strsize iCount)
+   ::collection::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, character_count iStart, character_count iCount)
    {
 
       daLeft.erase_all();
@@ -3432,11 +3432,11 @@ namespace draw2d
 
       iCount++;
 
-      strsize iRange = 0;
+      character_count iRange = 0;
 
-      strsize iAsciiCharCount = 0;
+      character_count iAsciiCharCount = 0;
 
-      strsize iLen;
+      character_count iLen;
 
       const ::scoped_string & scopedstrStart = str;
 
@@ -3484,7 +3484,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetTextBegin(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
+   double_size graphics::GetTextBegin(const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex)
    {
 
       return get_text_extent(pszString, nCount, iIndex);
@@ -3492,7 +3492,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
+   double_size graphics::get_text_extent(const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex)
    {
 
       return get_text_extent(pszString, iIndex);
@@ -3500,7 +3500,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const ::scoped_string & scopedstrString, strsize nCount)
+   double_size graphics::get_text_extent(const ::scoped_string & scopedstrString, character_count nCount)
    {
 
       return get_text_extent(string(pszString, nCount));
@@ -3508,10 +3508,10 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const block & block)
+   double_size graphics::get_text_extent(const block & block)
    {
       
-      ::size_f64 size;
+      ::double_size size;
 
       get_text_extent(size, (const char*)block.get_data(), block.get_size());
 
@@ -3520,10 +3520,10 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
+   void graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstrString, character_count nCount, character_count iIndex)
    {
 
-      ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
+      ::double_size sz = get_text_extent(string(pszString), nCount, iIndex);
 
       size.cx() = sz.cx();
       size.cy() = sz.cy();
@@ -3533,10 +3533,10 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount)
+   void graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstrString, character_count nCount)
    {
 
-      ::size_f64 sz = get_text_extent(string(pszString), nCount);
+      ::double_size sz = get_text_extent(string(pszString), nCount);
 
       size.cx() = sz.cx();
       size.cy() = sz.cy();
@@ -3546,10 +3546,10 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const ::string & str)
+   void graphics::get_text_extent(double_size & size, const ::string & str)
    {
 
-      ::size_f64 sz = get_text_extent(str);
+      ::double_size sz = get_text_extent(str);
 
       size.cx() = sz.cx();
       size.cy() = sz.cy();
@@ -3559,53 +3559,53 @@ namespace draw2d
    }
 
 
-   //size_f64 graphics::GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount)
+   //double_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstrString, character_count nCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
    //   __UNREFERENCED_PARAMETER(nCount);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   //size_f64 graphics::GetOutputTextExtent(const ::string & str)
+   //double_size graphics::GetOutputTextExtent(const ::string & str)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
 
-   //   return size_f64(0, 0);
+   //   return double_size(0, 0);
 
    //}
 
 
-   void graphics::draw_text(const ::string & str, const rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text(const ::string & str, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      ::rectangle_f64 rectangle(rectangleParam);
+      ::double_rectangle rectangle(rectangleParam);
 
       _001DrawText(str, rectangle, ealign, edrawtext, false);
 
    }
 
 
-   //void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //void graphics::draw_text(const ::string & strParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
-   //   ::rectangle_f64 rectangle(rectangleParam);
+   //   ::double_rectangle rectangle(rectangleParam);
 
    //   return _001DrawText(strParam, rectangle, ealign, edrawtext, false);
 
    //}
 
 
-   void graphics::_001DrawText(const ::string & strParam, ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
+   void graphics::_001DrawText(const ::string & strParam, ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
       string str(strParam);
 
-      size_f64 size = get_text_extent(str);
+      double_size size = get_text_extent(str);
 
       double Δx;
 
@@ -3704,7 +3704,7 @@ namespace draw2d
 #ifndef UNIVERSAL_WINDOWS
 
 
-   void graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text_ex(const ::string & str, const double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       __UNREFERENCED_PARAMETER(str);
@@ -3780,7 +3780,7 @@ namespace draw2d
    }
 
 
-   void graphics::blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle)
+   void graphics::blur(bool bExpand, double dRadius, const ::double_rectangle & rectangle)
    {
 
 
@@ -3865,13 +3865,13 @@ namespace draw2d
    }
 
 
-   ::size_f64 graphics::get_size() const
+   ::double_size graphics::get_size() const
    {
 
       if (::is_null(m_pimage))
       {
 
-         return ::size_f64();
+         return ::double_size();
 
       }
 
@@ -3880,7 +3880,7 @@ namespace draw2d
    }
 
 
-   ::size_i32 graphics::get_image_drawer_size() const
+   ::int_size graphics::get_image_drawer_size() const
    {
 
       return get_size();
@@ -3892,10 +3892,10 @@ namespace draw2d
    //
    // draw_round_rect()
    //
-   // Purpose:     Draws a rounded rectangle_i32 with a solid pen
+   // Purpose:     Draws a rounded int_rectangle with a solid pen
    //
    // Parameters:  pGraphics  - [in]   pointer to the Graphics device
-   //          rectangle_i32        - [in]   Rect that defines the round rectangle_i32 boundaries
+   //          int_rectangle        - [in]   Rect that defines the round int_rectangle boundaries
    //          color    - [in]   Color value for the brush
    //          radius      - [in]  radius of the rounded corner
    //          width    - [in]  width of the border
@@ -3904,7 +3904,7 @@ namespace draw2d
    //
 
 
-   void graphics::draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double dRadius)
+   void graphics::draw_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, double dRadius)
    {
 
       auto radius2 = dRadius * 2.0;
@@ -3925,7 +3925,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double dRadius, const ::e_border & eborder)
+   void graphics::draw_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen, double dRadius, const ::e_border & eborder)
    {
 
       if (eborder == e_border_all)
@@ -3965,20 +3965,20 @@ namespace draw2d
    //
    // draw_round_rect()
    //
-   // Purpose:     Draws a rounded rectangle_i32 with a solid pen
+   // Purpose:     Draws a rounded int_rectangle with a solid pen
    //
    // Parameters:  pGraphics  - [in]   pointer to the Graphics device
-   //          rectangle_i32        - [in]   Rect that defines the round rectangle_i32 boundaries
+   //          int_rectangle        - [in]   Rect that defines the round int_rectangle boundaries
    //          color    - [in]   Color value for the brush
    //          radius      - [in]  radius of the rounded corner
    //          width    - [in]  width of the border
    //
    // Returns:     None
    //
-   //void graphics::draw_round_rect(const ::rectangle_f64 & rectangleParam, const ::color::color & color, double radius, const ::e_border & eborder)
+   //void graphics::draw_round_rect(const ::double_rectangle & rectangleParam, const ::color::color & color, double radius, const ::e_border & eborder)
    //{
 
-   //   ::rectangle_f64 rectangle(rectangleParam);
+   //   ::double_rectangle rectangle(rectangleParam);
 
    //   auto ppen = __create < ::draw2d::pen > ();
 
@@ -4001,7 +4001,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
+   //void graphics::draw_round_top_left(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
    //   auto ppath = __create < ::draw2d::path > ();
@@ -4021,10 +4021,10 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_round_top_left(const ::rectangle_f64 & rectangleParam, const ::color::color & color, int radius, double width, const ::e_border & eborder)
+   //void graphics::draw_round_top_left(const ::double_rectangle & rectangleParam, const ::color::color & color, int radius, double width, const ::e_border & eborder)
    //{
 
-   //   ::rectangle_f64 rectangle(rectangleParam);
+   //   ::double_rectangle rectangle(rectangleParam);
 
    //   int dia = 2 * radius;
 
@@ -4056,7 +4056,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
+   //void graphics::draw_round_bottom_right(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
    //   auto ppath = __create < ::draw2d::path > ();
@@ -4078,10 +4078,10 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangleParam, const ::color::color & color, int radius, double width, const ::e_border & eborder)
+   //void graphics::draw_round_bottom_right(const ::double_rectangle & rectangleParam, const ::color::color & color, int radius, double width, const ::e_border & eborder)
    //{
 
-   //   ::rectangle_f64 rectangle(rectangleParam);
+   //   ::double_rectangle rectangle(rectangleParam);
 
    //   int dia = 2 * radius;
 
@@ -4116,17 +4116,17 @@ namespace draw2d
    //
    // fill_round_rect()
    //
-   // Purpose:     Fills a rounded rectangle_i32 with a solid brush.  Draws the border
+   // Purpose:     Fills a rounded int_rectangle with a solid brush.  Draws the border
    //          first then fills in the rectangle.
    //
    // Parameters:  pGraphics  - [in]   pointer to the Graphics device
-   //          rectangle_i32        - [in]   Rect that defines the round rectangle_i32 boundaries
+   //          int_rectangle        - [in]   Rect that defines the round int_rectangle boundaries
    //          color    - [in]   Color value for the brush
    //          radius      - [in]  radius of the rounded corner
    //
    // Returns:     None
    //
-   void graphics::fill_round_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
+   void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, double radius)
    {
 
       auto pbrush = __create < ::draw2d::brush > ();
@@ -4142,19 +4142,19 @@ namespace draw2d
    //
    // fill_round_rect()
    //
-   // Purpose:     Fills a rounded rectangle_i32 with a solid brush.  Draws the border
+   // Purpose:     Fills a rounded int_rectangle with a solid brush.  Draws the border
    //          first then fills in the rectangle.
    //
    // Parameters:  pGraphics  - [in]   pointer to the Graphics device
    //          pBrush      - [in]  pointer to a Brush
-   //          rectangle_i32        - [in]   Rect that defines the round rectangle_i32 boundaries
+   //          int_rectangle        - [in]   Rect that defines the round int_rectangle boundaries
    //          color    - [in]   Color value for the border (needed in case the
    //                         brush is a type other than solid)
    //          radius      - [in]  radius of the rounded corner
    //
    // Returns:     None
    //
-   void graphics::fill_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius)
+   void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush, double radius)
    {
 
       auto ppath = __create < ::draw2d::path > ();
@@ -4170,7 +4170,7 @@ namespace draw2d
    }
 
 
-   void graphics::round_rectangle(const ::rectangle_f64 & rectangle, double radius)
+   void graphics::round_rectangle(const ::double_rectangle & rectangle, double radius)
    {
 
       fill_round_rectangle(rectangle, m_pbrush.m_p, radius);
@@ -4180,7 +4180,7 @@ namespace draw2d
    }
 
 
-   int graphics::_DrawText(const string& strArg, const rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfontUnderlineParam)
+   int graphics::_DrawText(const string& strArg, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfontUnderlineParam)
    {
 
       string strParam(strArg);
@@ -4215,7 +4215,7 @@ namespace draw2d
 
       string str2;
 
-      ::rectangle_f64 rectangleClip(rectangleParam);
+      ::double_rectangle rectangleClip(rectangleParam);
 
       if (rectangleClip.area() <= 0)
       {
@@ -4224,13 +4224,13 @@ namespace draw2d
 
       }
 
-      size_f64 sz;
+      double_size sz;
 
       sz.cx() = 0;
 
       sz.cy() = 0;
 
-      strsize iUnderline = -1;
+      character_count iUnderline = -1;
 
       if(!(edrawtext & e_draw_text_no_prefix))
       {
@@ -4239,7 +4239,7 @@ namespace draw2d
 
       }
 
-      strsize iLen = str.length();
+      character_count iLen = str.length();
 
       bool bLastLine = false;
 
@@ -4300,7 +4300,7 @@ namespace draw2d
          if (sz.cx() > rectangleClip.width())
          {
 
-            strsize i = iLen;
+            character_count i = iLen;
 
             if (i < 0)
             {
@@ -4370,7 +4370,7 @@ namespace draw2d
 
       }
 
-      ::rectangle_f64 rectangle;
+      ::double_rectangle rectangle;
 
       rectangle.left() = 0;
       rectangle.top() = 0;
@@ -4454,7 +4454,7 @@ namespace draw2d
                str,
                iUnderline + 1,
                &sz);*/
-               strsize iCount = str.length() - iUnderline - 1;
+               character_count iCount = str.length() - iUnderline - 1;
                pgraphics->text_out(rectangle.left() + sz.cx(), (double)rectangle.top(), { str.right(iCount).c_str(), (int)iCount });
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
@@ -4488,24 +4488,24 @@ namespace draw2d
    }
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const rectangle_i32 & rectangleParam, string &str1, string & str2, int iEll)
+   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const int_rectangle & rectangleParam, string &str1, string & str2, int iEll)
    {
 
-      ::rectangle_f64 rectangle(rectangleParam);
+      ::double_rectangle rectangle(rectangleParam);
 
       string str;
 
-      ::rectangle_f64 rectangleClip(rectangle);
+      ::double_rectangle rectangleClip(rectangle);
 
       const ::scoped_string & scopedstrSource = strSource;
 
-      strsize len = strSource.length();
+      character_count len = strSource.length();
 
       const ::ansi_character * pszEnd = pszSource + len;
 
       const ::scoped_string & scopedstrStart = unicode_next(pszSource);
 
-      size_i32 sz;
+      int_size sz;
 
       const ::scoped_string & scopedstrSpaceStart = nullptr;
 
@@ -4540,7 +4540,7 @@ namespace draw2d
 
             str = strSource;
 
-            strsize iLen = str.length();
+            character_count iLen = str.length();
 
             sz = pgraphics->get_text_extent(str,(int)iLen);
 
@@ -4548,7 +4548,7 @@ namespace draw2d
             if(sz.cx() > rectangleClip.width())
             {
 
-               strsize iSampleLen = strSource.length();
+               character_count iSampleLen = strSource.length();
 
                while(iSampleLen > 0)
                {
@@ -4667,11 +4667,11 @@ namespace draw2d
    }
 
 
-   strsize _EncodeV033(string & str)
+   character_count _EncodeV033(string & str)
    {
-      strsize iStart = 0;
-      strsize iIndex;
-      strsize iLen = str.length();
+      character_count iStart = 0;
+      character_count iIndex;
+      character_count iLen = str.length();
       while (true)
       {
          iIndex = str.find(L'&', iStart);
@@ -4701,10 +4701,10 @@ namespace draw2d
 
 
 
-   void graphics::draw_stock_icon(const ::rectangle_f64 & rectangleParam, enum_stock_icon estockicon)
+   void graphics::draw_stock_icon(const ::double_rectangle & rectangleParam, enum_stock_icon estockicon)
    {
 
-      ::rectangle_f64 rectangle(rectangleParam);
+      ::double_rectangle rectangle(rectangleParam);
 
       if(estockicon == e_stock_icon_close)
       {
@@ -4737,14 +4737,14 @@ namespace draw2d
 
          //m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
          //m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         //set_current_point(rectangle.top_left() + ::size_i32(0,(int) (ppen->m_dWidth/2.0)));
-         //line_to(rectangle.top_right() + ::size_i32(0,(int)(ppen->m_dWidth / 2.0)));
-         //set_current_point(rectangle.top_left() + ::size_i32(0,(int)(ppen->m_dWidth)));
-         //line_to(rectangle.top_right() + ::size_i32(0,(int)(ppen->m_dWidth)));
-         //set_current_point(rectangle.top_left() + ::size_i32(0,(int)(ppen->m_dWidth *3.0 / 2.0)));
-         //line_to(rectangle.top_right() + ::size_i32(0,(int)(ppen->m_dWidth *3.0 / 2.0)));
-         //set_current_point(rectangle.top_left() + ::size_i32(0,(int)(ppen->m_dWidth*2.0)));
-         //line_to(rectangle.top_right() + ::size_i32(0,(int)(ppen->m_dWidth*2.0)));
+         //set_current_point(rectangle.top_left() + ::int_size(0,(int) (ppen->m_dWidth/2.0)));
+         //line_to(rectangle.top_right() + ::int_size(0,(int)(ppen->m_dWidth / 2.0)));
+         //set_current_point(rectangle.top_left() + ::int_size(0,(int)(ppen->m_dWidth)));
+         //line_to(rectangle.top_right() + ::int_size(0,(int)(ppen->m_dWidth)));
+         //set_current_point(rectangle.top_left() + ::int_size(0,(int)(ppen->m_dWidth *3.0 / 2.0)));
+         //line_to(rectangle.top_right() + ::int_size(0,(int)(ppen->m_dWidth *3.0 / 2.0)));
+         //set_current_point(rectangle.top_left() + ::int_size(0,(int)(ppen->m_dWidth*2.0)));
+         //line_to(rectangle.top_right() + ::int_size(0,(int)(ppen->m_dWidth*2.0)));
 
       }
       else if(estockicon == e_stock_icon_restore)
@@ -4752,11 +4752,11 @@ namespace draw2d
 
          rectangle.deflate(0, rectangle.height() / 7.0);
 
-         ::rectangle_f64 rect1(rectangle);
+         ::double_rectangle rect1(rectangle);
 
          rect1.deflate(0, 0, rectangle.width() / 3.0, rectangle.height() / 3.0);
 
-         ::rectangle_f64 rect2(rect1);
+         ::double_rectangle rect2(rect1);
 
          rect2.Align(e_align_bottom_right, rectangle);
 
@@ -4764,18 +4764,18 @@ namespace draw2d
 
          m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
-         line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
+         set_current_point(rect2.top_left() + ::double_size(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect2.top_right() + ::double_size(0.,(m_ppen->m_dWidth / 2.0)));
+         set_current_point(rect2.top_left() + ::double_size(0.,(m_ppen->m_dWidth)));
+         line_to(rect2.top_right() + ::double_size(0.,(m_ppen->m_dWidth)));
 
 
          set_current_point(rect1.top_left());
          line_to(rect1.top_right());
-         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
-         line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
+         set_current_point(rect1.top_left() + ::double_size(0.,(m_ppen->m_dWidth / 2.0)));
+         line_to(rect1.top_right() + ::double_size(0.,(m_ppen->m_dWidth / 2.0)));
+         set_current_point(rect1.top_left() + ::double_size(0.,(m_ppen->m_dWidth)));
+         line_to(rect1.top_right() + ::double_size(0.,(m_ppen->m_dWidth)));
 
 
 
@@ -4783,12 +4783,12 @@ namespace draw2d
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
 
-         set_current_point(rect1.top_left() + ::size_f64(0,(m_ppen->m_dWidth)));
+         set_current_point(rect1.top_left() + ::double_size(0,(m_ppen->m_dWidth)));
          line_to(rect1.bottom_left());
          line_to(rect2.bottom_left());
 
-         set_current_point(rect1.top_right() + ::size_f64(0,(m_ppen->m_dWidth)));
-         line_to(point_f64(rect1.right(),(int)(rect2.top() - (m_ppen->m_dWidth))));
+         set_current_point(rect1.top_right() + ::double_size(0,(m_ppen->m_dWidth)));
+         line_to(double_point(rect1.right(),(int)(rect2.top() - (m_ppen->m_dWidth))));
 
       }
       else if(estockicon == e_stock_icon_iconify)
@@ -4799,14 +4799,14 @@ namespace draw2d
 
          set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
-         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(int)(m_ppen->m_dWidth*2.0)));
-         //line_to(rectangle.bottom_right() - ::size_i32(0,(int)(m_ppen->m_dWidth*2.0)));
-         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(int)(m_ppen->m_dWidth*3.0 / 2.0)));
-         //line_to(rectangle.bottom_right() - ::size_i32(0,(int)(m_ppen->m_dWidth*3.0 / 2.0)));
-         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(int)(m_ppen->m_dWidth)));
-         //line_to(rectangle.bottom_right() - ::size_i32(0,(int)(m_ppen->m_dWidth)));
-         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(int)(m_ppen->m_dWidth / 2.0)));
-         //line_to(rectangle.bottom_right() - ::size_i32(0,(int)(m_ppen->m_dWidth / 2.0)));
+         //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
+         //line_to(rectangle.bottom_right() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
+         //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*3.0 / 2.0)));
+         //line_to(rectangle.bottom_right() - ::int_size(0,(int)(m_ppen->m_dWidth*3.0 / 2.0)));
+         //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth)));
+         //line_to(rectangle.bottom_right() - ::int_size(0,(int)(m_ppen->m_dWidth)));
+         //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth / 2.0)));
+         //line_to(rectangle.bottom_right() - ::int_size(0,(int)(m_ppen->m_dWidth / 2.0)));
          //set_current_point(rectangle.bottom_left());
          //line_to(rectangle.bottom_right());
 
@@ -4822,13 +4822,13 @@ namespace draw2d
 
          draw_ellipse(rectangle);
 
-         ::rectangle_f64 rect1(rectangle);
+         ::double_rectangle rect1(rectangle);
 
          rect1.deflate((int)(m_ppen->m_dWidth / 2.0),(int)(m_ppen->m_dWidth / 2.0));
 
          draw_ellipse(rect1);
 
-         ::rectangle_f64 rect2(rectangle);
+         ::double_rectangle rect2(rectangle);
 
          rect2.deflate((int)(m_ppen->m_dWidth),(int)(m_ppen->m_dWidth));
 
@@ -4842,13 +4842,13 @@ namespace draw2d
 
          draw_ellipse(rectangle);
 
-         ::rectangle_f64 rect1(rectangle);
+         ::double_rectangle rect1(rectangle);
 
          rect1.deflate((int)(m_ppen->m_dWidth / 2.0), (int)(m_ppen->m_dWidth / 2.0));
 
          draw_ellipse(rect1);
 
-         ::rectangle_f64 rect2(rectangle);
+         ::double_rectangle rect2(rectangle);
 
          rect2.deflate((int)(m_ppen->m_dWidth), (int)(m_ppen->m_dWidth));
 
@@ -4860,7 +4860,7 @@ namespace draw2d
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);
 
-         point_double_array pointa;
+         double_point_array pointa;
 
          pointa.add(rectangle.bottom_left());
 
@@ -4876,7 +4876,7 @@ namespace draw2d
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);
 
-         point_double_array pointa;
+         double_point_array pointa;
 
          pointa.add(rectangle.top_left());
 
@@ -5043,13 +5043,13 @@ namespace draw2d
 
          set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         auto rectangleTarget = ::rectangle_f64(::point_f64(x1, h), pimage->size());
+         auto rectangleTarget = ::double_rectangle(::double_point(x1, h), pimage->size());
 
          {
 
             ::image::image_source imagesource(pimage);
 
-            rectangle_f64 rectangle(rectangleTarget);
+            double_rectangle rectangle(rectangleTarget);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5092,7 +5092,7 @@ namespace draw2d
 
       z = w * 19;
 
-      ::rectangle_i32 rectangle(x + b, y + b, x + b + z, y + b + z);
+      ::int_rectangle rectangle(x + b, y + b, x + b + z, y + b + z);
 
       auto ppen = __create < ::draw2d::pen > ();
 
@@ -5126,7 +5126,7 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_contains(const point_f64 & point)
+   bool graphics::fill_contains(const double_point & point)
    {
 
       throw ::not_implemented();
@@ -5141,7 +5141,7 @@ namespace draw2d
 
       ::draw2d::brush_pointer b(e_create, this);
 
-      // black rectangle_i32
+      // black int_rectangle
 
       int w = z / 19;
 
@@ -5152,7 +5152,7 @@ namespace draw2d
 
       b->create_solid(colorBk);
 
-      ::rectangle_i32 rectangle(x, y, x + z, y + z);
+      ::int_rectangle rectangle(x, y, x + z, y + z);
 
       fill_rectangle(rectangle, b);
 
@@ -5169,7 +5169,7 @@ namespace draw2d
       rectangle.left() += w;
       rectangle.right() = rectangle.left() + w * 5;
 
-      ::rectangle_f64 rect2(rectangle);
+      ::double_rectangle rect2(rectangle);
 
       // c vertical
 
@@ -5291,7 +5291,7 @@ namespace draw2d
 
       z = w * 19;
 
-      ::rectangle_i32 rectangle(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z - 1, y + bIn + bOut + z - 1);
+      ::int_rectangle rectangle(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z - 1, y + bIn + bOut + z - 1);
 
       auto ppen = __create < ::draw2d::pen > ();
 
@@ -5396,7 +5396,7 @@ namespace draw2d
       else
       {
 
-         line_to(point_f64(x4, y4));
+         line_to(double_point(x4, y4));
 
       }
 
@@ -5410,7 +5410,7 @@ namespace draw2d
 
       begin_path();
 
-      set_current_point(point_f64(pts[0], pts[1]));
+      set_current_point(double_point(pts[0], pts[1]));
 
       for (i = 0; i < npts - 1; i += 3)
       {
@@ -5424,7 +5424,7 @@ namespace draw2d
       if (closed)
       {
 
-         set_current_point(point_f64(pts[0], pts[1]));
+         set_current_point(double_point(pts[0], pts[1]));
 
       }
 
@@ -5448,10 +5448,10 @@ namespace draw2d
 
          float * p = &pts[i * 2];
 
-         set_current_point(::point_i32((int)p[0], (int)p[1]));
-         line_to(::point_i32((int)p[2], (int)p[3]));
-         line_to(::point_i32((int)p[4], (int)p[5]));
-         line_to(::point_i32((int)p[6], (int)p[7]));
+         set_current_point(::int_point((int)p[0], (int)p[1]));
+         line_to(::int_point((int)p[2], (int)p[3]));
+         line_to(::int_point((int)p[4], (int)p[5]));
+         line_to(::int_point((int)p[6], (int)p[7]));
 
       }
 
@@ -5465,7 +5465,7 @@ namespace draw2d
       //glVertex2f(pts[0], pts[1]);
       //for (i = 0; i < npts - 1; i += 3) {
       // float* point = &pts[i * 2];
-      //glVertex2f(point_i32[6], point_i32[7]);
+      //glVertex2f(int_point[6], int_point[7]);
       //}
       //glEnd();
 
@@ -5478,10 +5478,10 @@ namespace draw2d
       //for (i = 0; i < npts - 1; i += 3) {
       //   float* point = &pts[i * 2];
       //   glColor4ubv(lineColor);
-      //   glVertex2f(point_i32[2], point_i32[3]);
-      //   glVertex2f(point_i32[4], point_i32[5]);
+      //   glVertex2f(int_point[2], int_point[3]);
+      //   glVertex2f(int_point[4], int_point[5]);
       //   glColor4ubv(bgColor);
-      //   glVertex2f(point_i32[6], point_i32[7]);
+      //   glVertex2f(int_point[6], int_point[7]);
       //}
       //glEnd();
 
@@ -5617,7 +5617,7 @@ namespace draw2d
    }
 
 
-   void graphics::on_begin_draw(oswindow wnd, const size_f64 & sz)
+   void graphics::on_begin_draw(oswindow wnd, const double_size & sz)
    {
 
    }
@@ -5758,7 +5758,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_rect_side(const ::rectangle_f64& rectangle, enum_border eborder)
+   void graphics::draw_rect_side(const ::double_rectangle& rectangle, enum_border eborder)
    {
 
       if (eborder & e_border_top)
@@ -5800,10 +5800,10 @@ namespace draw2d
    }
 
 
-   void graphics::draw_border(const ::rectangle_f64 & rectangleParam, const ::color::color & color, int iWidth)
+   void graphics::draw_border(const ::double_rectangle & rectangleParam, const ::color::color & color, int iWidth)
    {
 
-      ::rectangle_f64 rectangle(rectangleParam);
+      ::double_rectangle rectangle(rectangleParam);
 
       rectangle.inflate(iWidth + 1, iWidth + 1);
 

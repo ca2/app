@@ -1359,7 +1359,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   }
 
-   //   i64 iMessage = pmouse->m_atom;
+   //   huge_integer iMessage = pmouse->m_atom;
 
    //   if(iMessage == e_message_left_button_down
    //    //|| iMessage == e_message_left_button_up
@@ -1418,7 +1418,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
 
 
-//   void session::get_cursor_position(::point_i32 * ppoint)
+//   void session::get_cursor_position(::int_point * ppoint)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -1426,7 +1426,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      if (m_bSystemSynchronizedCursor)
 //      {
 //
-//         ::point_i32 point_i32;
+//         ::int_point int_point;
 //
 //         ::get_cursor_position(&point);
 //
@@ -1513,7 +1513,7 @@ return m_psavings;
 
 
 
-   //index session::get_main_workspace(::rectangle_i32 * prectangle)
+   //index session::get_main_workspace(::int_rectangle * prectangle)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
@@ -1899,7 +1899,7 @@ return m_psavings;
    }
 
 
-   void session::defer_initialize_host_window(const ::rectangle_i32 * lpcrect)
+   void session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
    {
 
       system()->windowing()->defer_initialize_host_window(lpcrect);
@@ -1946,7 +1946,7 @@ return m_psavings;
 //
 //      }
 //
-//      rectangle_i32 rectangleScreen(lpcrect);
+//      int_rectangle rectangleScreen(lpcrect);
 //
 ////      if(::is_null(lprect))
 ////      {

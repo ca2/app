@@ -33,8 +33,8 @@ namespace opengl
       void lock_context() override;
       void unlock_context() override;
       void run() override;
-      void _create_offscreen_buffer(const ::size_i32& size) override;
-      //virtual void resize_offscreen_buffer(const ::size_i32& size) override;
+      void _create_offscreen_buffer(const ::int_size& size) override;
+      //virtual void resize_offscreen_buffer(const ::int_size& size) override;
       void destroy_offscreen_buffer() override;
 
       void make_current() override;
@@ -49,7 +49,7 @@ namespace opengl
       
       void prepare_for_gpu_read() override;
       
-      void resize_offscreen_buffer(const ::size_i32& size) override;
+      void resize_offscreen_buffer(const ::int_size& size) override;
       
 
    };

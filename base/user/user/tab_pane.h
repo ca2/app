@@ -37,10 +37,10 @@ namespace user
       ::pointer<impact_data>             m_pimpactdata;
       bool                                m_bTabPaneVisible;
       bool                                m_bPermanent;
-      size_i32                            m_size;
+      int_size                            m_size;
       string_array                        m_straTitle;
-      ::size_double_array                    m_sizeaText;
-      point_i32                           m_point;
+      ::double_size_array                    m_sizeaText;
+      int_point                           m_point;
       e_flag                              m_eflag;
       bool                                m_bNeedLayout;
       ::item_pointer                      m_pitemClose;

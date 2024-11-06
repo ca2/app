@@ -40,7 +40,7 @@ namespace experience
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
@@ -117,7 +117,7 @@ namespace experience
 
          pgraphics->set(ppen);
 
-         ::rectangle_i32 rectangleIcon(rectangleX);
+         ::int_rectangle rectangleIcon(rectangleX);
 
          rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
 
@@ -159,9 +159,9 @@ namespace experience
 
    //   if (wParam == e_message_mouse_move)
    //   {
-   //      ::point_i32 pointCursor = pmsg->pt;
+   //      ::int_point pointCursor = pmsg->pt;
 
-   //      ::rectangle_i32 rectangleX;
+   //      ::int_rectangle rectangleX;
    //      ::user::interaction::this->rectangle(rectangleX);
    //      ::user::interaction::client_to_screen(rectangleX);
 
@@ -194,7 +194,7 @@ namespace experience
       {
          /*if(m_bFocus)
          {
-         ::point_i32 pointCursor;
+         ::int_point pointCursor;
          
 
          auto puser = user();
@@ -202,7 +202,7 @@ namespace experience
          auto pwindowing = system()->windowing();
 
          pointCursor = pwindowing->get_cursor_position();
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
          ::user::interaction::this->rectangle(rectangleX);
          ::user::interaction::client_to_screen(rectangleX);
 
@@ -224,7 +224,7 @@ namespace experience
          //      ::pointer<::user::interaction>puserinteraction = ::user::interaction::get_parent();
 
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
          rectangle = ::user::interaction::rectangle();
       }
 
@@ -235,13 +235,13 @@ namespace experience
    void orto_button::UpdateWndRgn()
    {
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
       __defer_construct(m_pregion);
       
-      ::ellipse_f64 ellipse;
+      ::double_ellipse ellipse;
       
       ellipse.set(rectangleX);
 
@@ -264,7 +264,7 @@ namespace experience
 
 
 
-   ::item_pointer orto_button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer orto_button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_pregion.is_null())

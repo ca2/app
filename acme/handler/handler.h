@@ -55,8 +55,8 @@ namespace handler
 
       virtual bool on_idle();
       // ThomasBorregaardSorensen!! Like handlers
-      //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
-      //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
+      //virtual void call(const enum_message, huge_integer iData = 0, ::matter * pmatter = nullptr);
+      //virtual void call(const enum_id, huge_integer iData = 0, ::matter* pmatter = nullptr);
       virtual void call(const ::atom & atom, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 

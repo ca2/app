@@ -60,9 +60,9 @@ namespace colorertake5
       RegionHandler *regionHandler;
 
       void fillInvisibleSchemes(parse_cache *cache);
-      void addRegion(index lno, strsize sx, strsize ex, class region* region);
-      void enterScheme(index lno, strsize sx, strsize ex, class region* region);
-      void leaveScheme(index lno, strsize sx, strsize ex, class region* region);
+      void addRegion(index lno, character_count sx, character_count ex, class region* region);
+      void enterScheme(index lno, character_count sx, character_count ex, class region* region);
+      void leaveScheme(index lno, character_count sx, character_count ex, class region* region);
       void enterScheme(index lno, SMatches *match, SchemeNode *schemeNode);
       void leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode);
 

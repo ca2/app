@@ -767,7 +767,7 @@ namespace user
 
    //   ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
-   //   ::point_i32 point = pcontextmenu->GetPoint();
+   //   ::int_point point = pcontextmenu->GetPoint();
 
    //   screen_to_client()(point);
 
@@ -1049,11 +1049,11 @@ namespace user
 
    //   //m_payload = payload;
 
-   //   //m_bSunrise = payload["sys"]["sunrise"].has_char();
+   //   //m_bSunrise = payload["sys"]["sunrise"].has_character();
 
    //   //m_zonetimeSunrise = { payload["sys"]["sunrise"].as_posix_time(), m_timeshiftZone };
 
-   //   //m_bSunset = payload["sys"]["sunset"].has_char();
+   //   //m_bSunset = payload["sys"]["sunset"].has_character();
 
    //   //m_zonetimeSunset = { payload["sys"]["sunset"].as_posix_time(), m_timeshiftZone };
 

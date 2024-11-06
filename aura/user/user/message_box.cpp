@@ -161,7 +161,7 @@ namespace user
    }
 
 
-   i64 message_box::increment_reference_count()
+   huge_integer message_box::increment_reference_count()
    {
 
       return ::user::interaction::increment_reference_count();
@@ -169,7 +169,7 @@ namespace user
    }
 
 
-   i64 message_box::decrement_reference_count()
+   huge_integer message_box::decrement_reference_count()
    {
 
       return ::user::interaction::decrement_reference_count();
@@ -177,7 +177,7 @@ namespace user
    }
 
 
-   i64 message_box::release()
+   huge_integer message_box::release()
    {
 
       return ::user::interaction::release();
@@ -294,7 +294,7 @@ namespace user
 //
 //      }
 //
-//      ::rectangle_i32 rectangleMonitor;
+//      ::int_rectangle rectangleMonitor;
 //
 //      
 //
@@ -325,7 +325,7 @@ namespace user
 //         iButton--;
 //      }
 //
-//      ::rectangle_i32 r;
+//      ::int_rectangle r;
 //
 //      r.set_dim(0, 0, iWidth, 300);
 //
@@ -385,7 +385,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleMonitor;
+      ::int_rectangle rectangleMonitor;
 
       system()->windowing()->display()->get_main_monitor(rectangleMonitor);
 
@@ -413,7 +413,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 r;
+      ::int_rectangle r;
 
       r.set_dimension(0, 0, iWidth, (int) (300 * screen_scaler()));
 
@@ -455,7 +455,7 @@ namespace user
    //   if (ptopic->m_atom == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().i64();
+   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().huge_integer();
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

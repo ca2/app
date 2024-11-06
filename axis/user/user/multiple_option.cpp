@@ -122,7 +122,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      ::rectangle_i32 r = client2_rectangle();
+      ::int_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
@@ -169,7 +169,7 @@ namespace user
          }
 
          
-         if (strName.has_char())
+         if (strName.has_character())
          {
 
             pgraphics->draw_text(strName, rItem, e_align_center);
@@ -191,7 +191,7 @@ namespace user
    }
 
 
-   bool multiple_option::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
+   bool multiple_option::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
 
    {
 
@@ -207,10 +207,10 @@ namespace user
    }
 
 
-   ::item_pointer multiple_option::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
+   ::item_pointer multiple_option::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
    {
 
-      //::rectangle_i32 rectangleElement;
+      //::int_rectangle rectangleElement;
 
       return ::user::interaction::on_hit_test(point, ezorder);
 
@@ -296,7 +296,7 @@ namespace user
       //if (is_drop_down())
       //{
 
-      //   ::rectangle_i32 rectangleWindow;
+      //   ::int_rectangle rectangleWindow;
 
       //   window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -552,7 +552,7 @@ namespace user
 
             SetFont(fontxyz);*/
 
-      ::rectangle_i32 r = client2_rectangle();
+      ::int_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
@@ -571,7 +571,7 @@ namespace user
       for (::collection::index i = 0; i < m_atomaOptions.size(); i++)
       {
 
-         ::rectangle_i32 rItem(r);
+         ::int_rectangle rItem(r);
 
          rItem.left() = x;
          rItem.right() = rItem.left() + iW;

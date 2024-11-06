@@ -3,7 +3,7 @@
 //#include "_conv.h"
 
 
-::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
+::ansi_character * __u64toansi(huge_natural u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
 {
 
    end = buf;
@@ -15,7 +15,7 @@
 }
 
 
-::ansi_character * __i64toansi(::i64 i, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
+::ansi_character * __huge_integertoansi(huge_integer i, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
 {
 
    end = buf;

@@ -48,14 +48,14 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //            rString.empty();        // return is_empty string as well
 //            return false;
 //         }
-//         pszFullString++;       // point_i32 past the separator
+//         pszFullString++;       // int_point past the separator
 //
 //      }
 //
 //      const char* pchEnd = strchr(pszFullString, chSep);
 //
 //
-//      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
+//      character_count nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
 //
 //
 //      ASSERT(nLen >= 0);

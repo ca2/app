@@ -58,8 +58,8 @@ namespace experience
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count() override;
-      i64 decrement_reference_count() override;
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
 
 #endif
 
@@ -79,7 +79,7 @@ namespace experience
       bool is_full_screen_enabled() override;
 
 
-      ::rectangle_i32 outer_frame() override;
+      ::int_rectangle outer_frame() override;
 
 
       ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
@@ -134,7 +134,7 @@ namespace experience
 
 
 
-      void OnNcCalcSize(::rectangle_i32 * prectangle);
+      void OnNcCalcSize(::int_rectangle * prectangle);
 
       class dock_manager * dock_manager();
       class move_manager * move_manager();
@@ -173,10 +173,10 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual ::collection::index get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
+      virtual ::collection::index get_best_zoneing(::e_display & edisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangleRequest = ::int_rectangle(), bool bPreserveSize = false) override;
 
       
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
 
       bool IsHoverModeOn();
@@ -193,10 +193,10 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(unsigned int uFlags);
 
-      //void GetRegionClientRectangle(::rectangle_i32 * prectangle);
+      //void GetRegionClientRectangle(::int_rectangle * prectangle);
 
       
-      //::rectangle_i32 client_rectangle2(::user::enum_layout elayout = ::user::e_layout_design) override;
+      //::int_rectangle client_rectangle2(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
       void relay_event(::message::message * pmessage);
@@ -218,9 +218,9 @@ namespace experience
       bool is_sysmenu_enabled();
 
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+      ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 
-      //::item_pointer experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+      //::item_pointer experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 
       
       virtual button * get_box_button(enum_button ebutton);
@@ -231,7 +231,7 @@ namespace experience
 
       //virtual void on_visual_applied() override;
 
-      void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
+      void place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
 
       void _001OnAfterEnterZoomed() override;

@@ -35,7 +35,7 @@ namespace draw2d_cairo
       cairo_t *                  m_pcairo;
       cairo_surface_t *          m_psurface;
       cairo_region_t *           m_pcairoregion;
-      ::rectangle_i32            m_rectangleBoundingBoxInternal;
+      ::int_rectangle            m_rectangleBoundingBoxInternal;
 
 
       region();

@@ -718,7 +718,7 @@ namespace filemanager
 
             ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
-            ::point_i32 point = pcontextmenu->GetPoint();
+            ::int_point point = pcontextmenu->GetPoint();
 
             screen_to_client()(point);
 

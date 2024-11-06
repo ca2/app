@@ -125,7 +125,7 @@ namespace user
       {
          pSBP->m_atom = stra[i];
          pSBP->nFlags |= SBPF_UPDATE;
-         if (pSBP->m_atom.has_char())
+         if (pSBP->m_atom.has_character())
          {
             /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                         {
@@ -195,7 +195,7 @@ namespace user
    }
    */
 
-   void status_bar::CalcInsideRect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32& rectangle, bool bHorz)
+   void status_bar::CalcInsideRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle, bool bHorz)
    {
 
 //      ASSERT_VALID(this);
@@ -205,7 +205,7 @@ namespace user
 //      // subtract standard ::user::control_bar borders
 //      ::user::control_bar::CalcInsideRect(rectangle, bHorz);
 //#ifdef WINDOWS_DESKTOP
-//      // subtract size_i32 grip if present
+//      // subtract int_size grip if present
 //      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->layout().is_zoomed())
 //      {
 //         // get border metrics from common control
@@ -213,7 +213,7 @@ namespace user
 //         status_bar* pBar = (status_bar*)this;
 //         pBar->default_window_procedure(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 //
-//         // size_i32 grip uses a border + size of scrollbar + cx border
+//         // int_size grip uses a border + size of scrollbar + cx border
 //         rectangle.right() -= rgBorders[0] + ::GetSystemMetrics(SM_CXVSCROLL) +
 //                       ::GetSystemMetrics(SM_CXBORDER) * 2;
 //      }
@@ -236,7 +236,7 @@ namespace user
 //      {
 //
 //         // get border information and client work area
-//         ::rectangle_i32 rectangle;
+//         ::int_rectangle rectangle;
 //         window_rectangle(rectangle);
 //         rectangle.offset(-rectangle.left(), -rectangle.top());
 //         CalcInsideRect(rectangle, true);
@@ -266,7 +266,7 @@ namespace user
 //         for (i = 0; i < m_panecompositea.get_count(); i++)
 //         {
 //            __STATUSPANE* pSBP = _GetPanePtr(i);
-//            // determine size_i32 of the pane
+//            // determine int_size of the pane
 //            ASSERT(pSBP->cxText >= 0);
 //            right += pSBP->cxText+CX_PANE_BORDER;
 //            if ((pSBP->nStyle & SBPS_STRETCH) && cxExtra > 0)
@@ -335,7 +335,7 @@ namespace user
       return _GetPanePtr(nIndex)->m_atom;
    }
 
-   void status_bar::GetItemRect(int nIndex, ::rectangle_i32 * prectangle)
+   void status_bar::GetItemRect(int nIndex, ::int_rectangle * prectangle)
 
    {
       ASSERT_VALID(this);
@@ -489,12 +489,12 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // status_bar implementation
 
-   size_i32 status_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool, bool bHorz)
+   int_size status_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool, bool bHorz)
    {
       ASSERT_VALID(this);
       ASSERT(is_window());
 
-      // determinme size_i32 of font being used by the status bar
+      // determinme int_size of font being used by the status bar
 //      TEXTMETRICW tm;
       {
          // os independence
@@ -510,10 +510,10 @@ namespace user
       }
 
 //      // get border information
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //
 //      CalcInsideRect(pgraphics, rectangle, bHorz);
-//      ::size_i32 size;
+//      ::int_size size;
 //      size.cx() =0;
 //      size.cy() =0;
 //
@@ -562,7 +562,7 @@ namespace user
 //
 //      // calculate border space (will add to top/bottom, subtract from right/bottom)
 //
-//      ::rectangle_i32 rectangle;
+//      ::int_rectangle rectangle;
 //
 //      ::user::control_bar::CalcInsideRect(rectangle, true);
 //      ASSERT(rectangle.top() >= 2);

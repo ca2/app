@@ -250,7 +250,7 @@ namespace write_text
 
       string strSampleText = node()->get_character_set_default_sample_text(echaracterset);
 
-      if (strSampleText.has_char())
+      if (strSampleText.has_character())
       {
 
          return strSampleText;
@@ -291,13 +291,13 @@ namespace write_text
       if (m_fontsize.eunit() == ::e_unit_point)
       {
 
-         return m_fontsize.double() * pgraphics->get_dpiy() / 72.0;
+         return m_fontsize.as_double() * pgraphics->get_dpiy() / 72.0;
 
       }
       else if (m_fontsize.eunit() == ::e_unit_pixel)
       {
 
-         return m_fontsize.double();
+         return m_fontsize.as_double();
 
       }
       else
@@ -326,7 +326,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::double_rectangle & rectangle, double dRateX, double dHeight, string & str)
 //   {
 //
 //
@@ -339,12 +339,12 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rectangle_f64 rectangleOffset(rectangle);
-//      //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
+//      //      ::double_rectangle rectangleOffset(rectangle);
+//      //      const ::int_point & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
 
-//      //      strsize iSize = str.length();
+//      //      character_count iSize = str.length();
 //      //      for(int i = 0; i < iSize; i++)
 //      //      {
 //      //         pglyph = GetGlyph(str[i]);
@@ -381,7 +381,7 @@ namespace write_text
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::double_rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, int iCharsPositions, int iOffset)
 
 //   {
 //
@@ -395,14 +395,14 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rectangle_f64 rectangleOffset(rectangle);
-//      //      ::point_i32 pointOffset;
+//      //      const ::double_rectangle rectangleOffset(rectangle);
+//      //      ::int_point pointOffset;
 //      //
 //      //
 //      //      glyph * pglyph;
 
-//      //      strsize iSize = str.length();
-//      //      for(strsize i = 0; i < iSize; i++)
+//      //      character_count iSize = str.length();
+//      //      for(character_count i = 0; i < iSize; i++)
 //      //      {
 //      //         pglyph = GetGlyph(str[i]);
 

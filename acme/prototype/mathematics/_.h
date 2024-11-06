@@ -56,7 +56,7 @@ inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
 inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
-inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
+inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <huge_natural> (a) <= b; }
 
 
 template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
@@ -547,7 +547,7 @@ constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
 }
 
 
-CLASS_DECL_ACME i64 ceil_div(i64 num, i64 den);
+CLASS_DECL_ACME huge_integer ceil_div(huge_integer num, huge_integer den);
 
 
 CLASS_DECL_ACME double tri(double angle);
@@ -645,12 +645,12 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
-//inline ::i64 as_i64(const char * psz, int iBase = 10)
+//inline huge_integer as_huge_integer(const char * psz, int iBase = 10)
 //{
 //
 //   const char * pszEnd = nullptr;
 //
-//   return ansi_to_i64(psz, &pszEnd, iBase);
+//   return ansi_to_huge_integer(psz, &pszEnd, iBase);
 //
 //}
 
@@ -665,25 +665,25 @@ inline int maximum_digits(int iBase)
    if constexpr (sizeof(SIGNED) == 1)
    {
 
-      return type_maximum_digits(e_integer_type_i8, iBase);
+      return type_maximum_digits(e_integer_type_char, iBase);
 
    }
    else if constexpr (sizeof(SIGNED) == 2)
    {
 
-      return type_maximum_digits(e_integer_type_i16, iBase);
+      return type_maximum_digits(e_integer_type_short, iBase);
 
    }
    else if constexpr (sizeof(SIGNED) == 4)
    {
 
-      return type_maximum_digits(e_integer_type_i32, iBase);
+      return type_maximum_digits(e_integer_type_int, iBase);
 
    }
    else if constexpr (sizeof(SIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_i64, iBase);
+      return type_maximum_digits(e_integer_type_huge_integer, iBase);
 
    }
    else
@@ -705,25 +705,25 @@ inline int maximum_digits(int iBase)
    if constexpr (sizeof(UNSIGNED) == 1)
    {
 
-      return type_maximum_digits(e_integer_type_u8, iBase);
+      return type_maximum_digits(e_integer_type_unsigned_char, iBase);
 
    }
    else if constexpr (sizeof(UNSIGNED) == 2)
    {
 
-      return type_maximum_digits(e_integer_type_u16, iBase);
+      return type_maximum_digits(e_integer_type_unsigned_short, iBase);
 
    }
    else if constexpr (sizeof(UNSIGNED) == 4)
    {
 
-      return type_maximum_digits(e_integer_type_u32, iBase);
+      return type_maximum_digits(e_integer_type_unsigned_int, iBase);
 
    }
    else if constexpr (sizeof(UNSIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_u64, iBase);
+      return type_maximum_digits(e_integer_type_huge_natural, iBase);
 
    }
    else

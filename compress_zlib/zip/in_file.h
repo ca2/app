@@ -37,7 +37,7 @@ namespace zip
 
       void *                        m_punzfileinfo;
       string                        m_strFileName;
-      u64                           m_iPosition;
+      huge_natural                           m_iPosition;
       string_array                       m_straPath;
       pointer_array < ::zip::file >       m_filea;
       pointer_array < ::zip::in_file >    m_infilea;

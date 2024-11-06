@@ -23,13 +23,13 @@ namespace prototype
    }
 
 #ifdef DEBUG
-   ::i64 prototype::increment_reference_count()
+   huge_integer prototype::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
 
    }
-   ::i64 prototype::decrement_reference_count()
+   huge_integer prototype::decrement_reference_count()
    {
       return ::particle::decrement_reference_count();
    }
@@ -58,8 +58,8 @@ namespace prototype
       auto iSeconds = m_pmathematics->random(d1.m_iSecond, d2.m_iSecond);
 
       class ::time time(iSeconds, m_pmathematics->random(
-         (::i64)(((::i64)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
-         (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
+         (huge_integer)(((huge_integer)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
+         (huge_integer)(((huge_integer)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
 
       return time;
 

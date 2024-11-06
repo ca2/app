@@ -124,7 +124,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 //
-//  Define the access mask as a longword size_f64 structure divided up as
+//  Define the access mask as a longword double_size structure divided up as
 //  follows:
 //
 //       3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1
@@ -146,13 +146,13 @@
 //      } ACCESS_MASK;
 //      typedef ACCESS_MASK *PACCESS_MASK;
 //
-//  but to make life simple for programmer's we'll allow them to specify
+//  but to make life simple for programmer's we'hi allow them to specify
 //  a desired access mask by simply OR'ing together mulitple single rights
 //  and treat an access mask as a unsigned int.  For example
 //
 //      DesiredAccess = DELETE | READ_CONTROL
 //
-//  So we'll declare ACCESS_MASK as unsigned int
+//  So we'hi declare ACCESS_MASK as unsigned int
 //
 
 // begin_wdm

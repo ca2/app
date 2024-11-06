@@ -14,7 +14,7 @@ public:
 //       ::ansi_character    m_chaTempuStock[8];
 //       ::wd16_character    m_shaTempoStore[4];
 //       ::wd32_character    m_iaTempiWarehouse[2];
-//       ::i64               m_i64TempeMart;
+//       huge_integer               m_llTempeMart;
 //
 //   };
 
@@ -82,7 +82,7 @@ public:
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, start + string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
-   scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
+   scoped_string_base(const CHARACTER2 * start, character_count len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :
       RANGE(no_initialize_t{})
@@ -119,7 +119,7 @@ public:
 
    }
 
-   //template < strsize n >
+   //template < character_count n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
 
 

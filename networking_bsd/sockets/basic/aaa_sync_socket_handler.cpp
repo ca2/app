@@ -167,7 +167,7 @@ namespace networking_bsd
    {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      strsize uLen = strlen(xml_payload);
+      character_count uLen = strlen(xml_payload);
       unsigned int wf_total_length = htonl((u_long) uLen);
       write(&wf_total_length, 4);
       write( (char *) xml_payload, (int) uLen);

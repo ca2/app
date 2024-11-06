@@ -219,7 +219,7 @@ namespace hi5
       void authorization::display_main_frame()
       {
 
-         ::rectangle_i32 rectangleOpen;
+         ::int_rectangle rectangleOpen;
 
          m_ptabimpact->parent_frame()->best_top_level_parent(rectangleOpen);
 

@@ -183,7 +183,7 @@ namespace simpledb
 //
 //                  }
 //
-//                  strsize iLength = strKey.length();
+//                  character_count iLength = strKey.length();
 //
 //                  int res = sqlite3_bind_text(pstorage->m_pstmtReplace, pstorage->m_iReplaceId, strKey, (int)iLength, SQLITE_TRANSIENT);
 //

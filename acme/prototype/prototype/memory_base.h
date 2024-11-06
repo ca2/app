@@ -146,22 +146,22 @@ public:
 
    //using MEMORY::begins;
    //virtual bool begins(const ::scoped_string & scopedstr) const { return this->begins((const BLOCK &) scopedstr); }
-   //virtual bool begins(const ::scoped_string & scopedstr, strsize iCount = -1) const;
+   //virtual bool begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
 
    virtual bool begins_eat(const BLOCK & block);
 
-   //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
-   //virtual bool begins(const ::string & str, strsize iCount = -1) const;
-   //virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
+   //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
+   //virtual bool begins(const ::string & str, character_count iCount = -1) const;
+   //virtual bool case_insensitive_begins(const ::string & str, character_count iCount = -1) const;
 
    //using MEMORY::ends;
    //virtual bool ends(const ::scoped_string & scopedstr) const { return this->ends((const BLOCK &) scopedstr); }
-   //virtual bool ends(const ::scoped_string & scopedstr, strsize iCount = -1) const;
+   //virtual bool ends(const ::scoped_string & scopedstr, character_count iCount = -1) const;
    //virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->case_insensitive_ends(scopedstr); }
 
    virtual bool ends_eat(const BLOCK & block);
-   //virtual bool ends(const ::string & str, strsize iCount = -1) const;
-   //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
+   //virtual bool ends(const ::string & str, character_count iCount = -1) const;
+   //virtual bool case_insensitive_ends(const ::string & str, character_count iCount = -1) const;
 
    virtual memory detach_as_primitive_memory();
    //virtual unsigned char * detach_virtual_memory();
@@ -251,7 +251,7 @@ public:
 
 
    template < primitive_character CHARACTER >
-   range < CHARACTER * > get_buffer(strsize len)
+   range < CHARACTER * > get_buffer(character_count len)
    {
 
       set_size((len + 1) * sizeof(CHARACTER));
@@ -321,7 +321,7 @@ public:
 
    void to_hex(string & str, memsize iStart = 0, memsize size = -1);
    string to_hex(memsize iStart = 0, memsize size = -1);
-   strsize from_hex(const ::scoped_string & scopedstr);
+   character_count from_hex(const ::scoped_string & scopedstr);
 
    void to_base64(string & str, memsize iStart = 0, memsize size = -1);
    string to_base64(memsize iStart = 0, memsize size = -1);
@@ -347,7 +347,7 @@ public:
    memsize get_length() const;
    memsize length() const;
 
-   inline void set_char_at_grow(strsize iChar, char ch);
+   inline void set_char_at_grow(character_count iChar, char ch);
 
 
    unsigned char * find(const ::block& block, ::collection::index iStart = 0) const;
@@ -476,7 +476,7 @@ inline void memory_base::splice(const memory_base & memory, memsize iStartDst, m
 }
 
 
-inline void memory_base::set_char_at_grow(strsize iChar, char ch)
+inline void memory_base::set_char_at_grow(character_count iChar, char ch)
 {
 
    if (::comparison::ge(iChar, size()))

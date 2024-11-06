@@ -18,16 +18,16 @@ namespace user
       };
 
       ::image::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::rectangle_f64                              m_rectangleMargin;
-      //::rectangle_f64                              m_rectangleBorder;
-      //::rectangle_f64                              m_rectanglePadding;
+      //::double_rectangle                              m_rectangleMargin;
+      //::double_rectangle                              m_rectangleBorder;
+      //::double_rectangle                              m_rectanglePadding;
       ::e_align                             m_ealignText;
       e_style                             m_estyle;
-      ::rectangle_f64                              m_rectangleText;
+      ::double_rectangle                              m_rectangleText;
       ::collection::index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
-      ::rectangle_f64                              m_rectangleCheckBox;
+      ::double_rectangle                              m_rectangleCheckBox;
       string                              m_strLink;
       ::write_text::font_pointer              m_pfont;
       
@@ -55,7 +55,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

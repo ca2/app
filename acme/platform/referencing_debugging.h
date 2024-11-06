@@ -66,7 +66,7 @@ public:
    ::critical_section                                             m_criticalsection;
    ::non_particle_comparable_array < reference_item_array * >     m_item2a;
    bool                                                           m_bEnable = true;
-   ::i64                                                          m_iCount = 0;
+   huge_integer                                                          m_iCount = 0;
 
 
    referencing_debugging();

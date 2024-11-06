@@ -93,7 +93,7 @@ namespace userex
    void home_impact::on_message_create(::message::message * pmessage)
    {
 
-      //m_pimageBeam->create_image(this, ::size_i32(32, 32));
+      //m_pimageBeam->create_image(this, ::int_size(32, 32));
 
       //m_pimageBeam->fill(0);
 
@@ -103,7 +103,7 @@ namespace userex
 
       //m_pimageBeam->g()->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(rectangle_int_dimension(0, 0, 32, 32));
+      //m_pimageBeam->g()->DrawEllipse(int_rectangle_dimension(0, 0, 32, 32));
 
 
 
@@ -158,7 +158,7 @@ namespace userex
    //}
 
 
-   void home_impact::on_mouse(const ::point_i32 & point)
+   void home_impact::on_mouse(const ::int_point & point)
    {
 
 
@@ -186,7 +186,7 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_pointHost;
+      ::int_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -204,7 +204,7 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_pointHost;
+      ::int_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -249,7 +249,7 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectangleColors;
+      ::int_rectangle rectangleColors;
 
       rectangleColors = this->rectangle();
 

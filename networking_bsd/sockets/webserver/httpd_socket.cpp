@@ -104,7 +104,7 @@ namespace sockets
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (i64) mem.get_size();
+         m_response.header("Content-length") = (huge_integer) mem.get_size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();

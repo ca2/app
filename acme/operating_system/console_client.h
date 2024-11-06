@@ -30,7 +30,7 @@ namespace console
       virtual void SetTextColor(int color) override;
       virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1) override;
       virtual void write(const ::string & str) override;
-      virtual ::rectangle_i32 get_position_rectangle(int y, int x) override;
+      virtual ::int_rectangle get_position_rectangle(int y, int x) override;
 
    };
 

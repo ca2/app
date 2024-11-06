@@ -166,7 +166,7 @@ namespace filehandler
       m_iItemHeight = 30;
    }
 
-   void impact::list::on_layout(const ::rectangle_i32 * lpcrect)
+   void impact::list::on_layout(const ::int_rectangle * lpcrect)
    {
       int top = lpcrect->top();
       for(int i = 0; i < get_count(); i++)
@@ -269,7 +269,7 @@ namespace filehandler
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer impact::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_plist.is_null())

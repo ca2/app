@@ -213,7 +213,7 @@ class object_list;              // list of matter*
 
 using map_u16_to_ptr = map < unsigned short, unsigned short, void *, void * >;
 
-using map_ptr_to_u16 = map < void *, void *, unsigned short, unsigned short >;
+using map_ptr_to_unsigned_short = map < void *, void *, unsigned short, unsigned short >;
 
 using map_ptr_to_ptr = map < void *, void *, void *, void * >;
 

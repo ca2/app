@@ -52,7 +52,7 @@ namespace nano
          
          get_memory_response()->assign(data, size);
          
-         payload("http_status_code") = (::i64) http_status;
+         payload("http_status_code") = (huge_integer) http_status;
          
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          

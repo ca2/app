@@ -54,7 +54,7 @@
 //   void single_application_library < APP > ::get_extension_list(string_array & stra)
 //   {
 //
-//      if (m_strFileExt.has_char())
+//      if (m_strFileExt.has_character())
 //      {
 //
 //         stra.add(m_strFileExt);
@@ -378,7 +378,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 increment_reference_count(c_derived * pca)
+//inline huge_integer increment_reference_count(c_derived * pca)
 //{
 //
 //   if (::is_null(pca))
@@ -394,7 +394,7 @@
 //
 //
 //template < class c_derived, typename SOURCE >
-//inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
+//inline huge_integer increment_reference_count(c_derived * & pca, const SOURCE * psource)
 //{
 //
 //   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
@@ -414,7 +414,7 @@
 //
 //
 //template < class c_derived, typename SOURCE >
-//inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
+//inline huge_integer increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 //{
 //
 //   return increment_reference_count(pderived, psource.m_p);
@@ -423,7 +423,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 release(c_derived *& pca)
+//inline huge_integer release(c_derived *& pca)
 //{
 //
 //   if (::is_null(pca))
@@ -506,7 +506,7 @@
 //
 //
 //template < class COMPOSITE >
-//inline i64 release(::pointer<COMPOSITE>& pcomposite)
+//inline huge_integer release(::pointer<COMPOSITE>& pcomposite)
 //{
 //
 //   return release(pcomposite.m_p);
@@ -515,7 +515,7 @@
 //
 //
 //template < typename TYPE >
-//inline i64 release(::pointer<TYPE>& pointer)
+//inline huge_integer release(::pointer<TYPE>& pointer)
 //{
 //
 //   return release(pointer.m_p);
@@ -524,7 +524,7 @@
 //
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference)
+//inline huge_integer release(::pointer<REFERENCE>& preference)
 //{
 //
 //   return release(preference.m_p);
@@ -533,7 +533,7 @@
 //
 //
 //template < class c_derived >
-//inline i64 ref_count(c_derived * pca)
+//inline huge_integer ref_count(c_derived * pca)
 //{
 //
 //   if (pca == nullptr)

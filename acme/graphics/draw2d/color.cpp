@@ -87,14 +87,14 @@ namespace color
    1    set b [expr {  $h6 <= 1 ? -$h6
                                : $h6 <= 4 ? $h6-2
                                : 6-$h6}]
-       set rectangle [expr {$rectangle_i32 < 0.0 ? 0.0 : $rectangle_i32 > 1.0 ? 1.0 : double($rectangle_i32)}]
+       set rectangle [expr {$int_rectangle < 0.0 ? 0.0 : $int_rectangle > 1.0 ? 1.0 : double($int_rectangle)}]
        set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
        set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
 
-       set rectangle [expr {(($rectangle_i32-1)*$s+1)*$l}]
+       set rectangle [expr {(($int_rectangle-1)*$s+1)*$l}]
        set g [expr {(($g-1)*$s+1)*$l}]
        set b [expr {(($b-1)*$s+1)*$l}]
-       return [list $rectangle_i32 $g $b]
+       return [list $int_rectangle $g $b]
    }
 
 
@@ -1073,9 +1073,9 @@ namespace color
       else if(payload.m_etype == e_type_property_set)
       {
 
-         m_dH = payload["hue"].as_f64();
-         m_dL = payload["lightness"].as_f64();
-         m_dS = payload["saturation"].as_f64();
+         m_dH = payload["hue"].as_double();
+         m_dL = payload["lightness"].as_double();
+         m_dS = payload["saturation"].as_double();
 
       }
 

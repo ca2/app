@@ -21,7 +21,7 @@ namespace console
 
       strLine = "\n";
 
-      if (pmessagebox->m_strTitle.has_char())
+      if (pmessagebox->m_strTitle.has_character())
       {
 
          strLine += pmessagebox->m_strTitle;
@@ -77,7 +77,7 @@ namespace console
          //bDefault = true;
       }
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          strLine += "\n(" + str + ") ? ";
@@ -136,7 +136,7 @@ namespace console
 
          c = ::ansi_tolower(c);
 
-         if (pmessagebox->m_strDetails.has_char())
+         if (pmessagebox->m_strDetails.has_character())
          {
 
             if (c == 'd')

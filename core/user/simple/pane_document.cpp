@@ -51,14 +51,14 @@ bool simple_pane_document::on_open_document(const ::payload & payloadFile)
 
 #ifdef _DEBUG
 
-i64 simple_pane_document::increment_reference_count()
+huge_integer simple_pane_document::increment_reference_count()
 {
 
    return  ::user::document::increment_reference_count();
 
 }
 
-i64 simple_pane_document::decrement_reference_count()
+huge_integer simple_pane_document::decrement_reference_count()
 {
 
    return  ::user::document::decrement_reference_count();

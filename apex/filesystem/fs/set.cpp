@@ -143,7 +143,7 @@ namespace fs
                
                auto pathRoot = m_papplication->defer_process_path(strRoot);
                
-               if(pathRoot.has_char())
+               if(pathRoot.has_character())
                {
                   
                   if (range.case_insensitive_begins(pathRoot))

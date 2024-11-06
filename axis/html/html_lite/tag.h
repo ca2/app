@@ -82,7 +82,7 @@ public:
    unsigned int parseFromStr(
       lite_html_reader * preader,
       const ::string & strString, 
-      strsize iPos,
+      character_count iPos,
       bool &bIsOpeningTag, 
       bool &bIsClosingTag, 
       bool bParseAttrib = true);

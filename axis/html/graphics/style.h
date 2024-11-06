@@ -58,7 +58,7 @@ namespace html
       static bool _parse_border_color(const ::string & psz, ::color::color & color32);
 
       bool get_dimension(bool bParent, const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
-      bool get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectangle_f32 & rectangle);
+      bool get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, ::float_rectangle & rectangle);
       bool get_border_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       bool get_border_color(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       // todo

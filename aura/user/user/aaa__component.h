@@ -178,8 +178,8 @@
 //{
 //
 //
-//   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, strsize_array* piaTab = nullptr, ::array < strsize* > iaTab = nullptr);
-//   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, ::array < strsize* > iaTab);
+//   CLASS_DECL_AURA void replace_tab(character_count iOffset, string& strParam, int iWidth, strsize_array* piaTab = nullptr, ::array < character_count* > iaTab = nullptr);
+//   CLASS_DECL_AURA void replace_tab(character_count iOffset, string& strParam, int iWidth, ::array < character_count* > iaTab);
 //
 //
 //} // namespace str
@@ -395,16 +395,16 @@ public:
 
    virtual bool create(const ::string & pClassName, const ::string & lpWindowName,
 
-      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+      unsigned int dwStyle, const ::int_rectangle & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
    virtual bool create_window_ex(unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName,
 
-      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+      unsigned int dwStyle, const ::int_rectangle & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
 
 
    bool OnNcActivate(bool bActive);
-   lresult OnNcHitTest(const ::point_i32 & point);
+   lresult OnNcHitTest(const ::int_point & point);
    void OnSysCommand(unsigned int nID, lparam lParam);
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    lresult OnFloatStatus(wparam wParam, lparam lParam);
@@ -413,7 +413,7 @@ public:
 
 
 public:
-   static void CalcBorders(::rectangle_i32 * pClientRect, unsigned int dwStyle = 0, unsigned int dwExStyle = 0);
+   static void CalcBorders(::int_rectangle * pClientRect, unsigned int dwStyle = 0, unsigned int dwExStyle = 0);
 
 
 protected:

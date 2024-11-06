@@ -649,7 +649,7 @@ m_ibuf(isize)
 
       auto addrSocks4 = GetSocks4Host();
 
-      if (!skip_socks && addrSocks4.has_char() && GetSocks4Port())
+      if (!skip_socks && addrSocks4.has_character() && GetSocks4Port())
       {
 
          auto paddressSocks4 = system()->networking()->create_address(addrSocks4);
@@ -2004,7 +2004,7 @@ m_ibuf(isize)
          if (m_bClientSessionSet || m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
          {
 
-            if (m_strTlsHostName.has_char())
+            if (m_strTlsHostName.has_character())
             {
 
                SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char*)(const char*)m_strTlsHostName);
@@ -2725,7 +2725,7 @@ m_ibuf(isize)
 
                   //}
 
-         if (password.has_char())
+         if (password.has_character())
          {
             
             m_password = password;
@@ -3069,18 +3069,18 @@ m_ibuf(isize)
    }
 
 
-   u64 tcp_socket::GetBytesReceived(bool clear)
+   huge_natural tcp_socket::GetBytesReceived(bool clear)
    {
-      u64 z = m_bytes_received;
+      huge_natural z = m_bytes_received;
       if (clear)
          m_bytes_received = 0;
       return z;
    }
 
 
-   u64 tcp_socket::GetBytesSent(bool clear)
+   huge_natural tcp_socket::GetBytesSent(bool clear)
    {
-      u64 z = m_bytes_sent;
+      huge_natural z = m_bytes_sent;
       if (clear)
          m_bytes_sent = 0;
       return z;

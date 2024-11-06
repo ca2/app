@@ -7,7 +7,7 @@ class CLASS_DECL_AURA db_long_set_item
 public:
 
    ::time m_timeTimeout;
-   i64        m_l;
+   huge_integer        m_l;
 
 };
 
@@ -18,7 +18,7 @@ public:
 
    string         m_strKey;
    ::time m_timeTimeout;
-   i64        m_l;
+   huge_integer        m_l;
 
    db_long_set_queue_item() {}
    db_long_set_queue_item(const db_long_set_queue_item & item){ operator =(item); }
@@ -108,7 +108,7 @@ public:
    virtual int run();
 
 
-   void queue(const ::string & pszKey,i64 l);
+   void queue(const ::string & pszKey,huge_integer l);
 
 };
 
@@ -174,7 +174,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
+void db_long_sync_queue::queue(const ::string & pszKey,huge_integer l)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -205,7 +205,7 @@ db_long_set::~db_long_set()
 }
 
 // Adiciona na matriz System nomes dos diretrios de imagens.
-bool db_long_set::load(const ::string & lpKey, i64 * plValue)
+bool db_long_set::load(const ::string & lpKey, huge_integer * plValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -239,7 +239,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
          return false;
       }
 
-      *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_huge_integer(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = *plValue;
@@ -306,7 +306,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, i64 lValue)
+bool db_long_set::save(const ::string & lpKey, huge_integer lValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -355,7 +355,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
 
       ::pointer<::sqlite::database>pdb   = m_pcore->db()->get_database();
       string strSql;
-      i64 l;
+      huge_integer l;
       slDatabase.lock();
       if(load(lpKey, &l))
       {
@@ -489,10 +489,10 @@ bool db_long_set::find(const ::string & lpKey)
 }
 
 
-bool db_long_set::load(const ::string & lpKey, ::rectangle_i32 * lpRect)
+bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
 {
 
-   ::rectangle_i32 rectangle;
+   ::int_rectangle rectangle;
 
    string strKey = lpKey;
 
@@ -520,7 +520,7 @@ bool db_long_set::load(const ::string & lpKey, ::rectangle_i32 * lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const ::string & lpKey, const ::rectangle_i32 * lpRect)
+bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
 {
 
    string strKey = lpKey;
@@ -545,7 +545,7 @@ bool db_long_set::save(const ::string & lpKey, const ::rectangle_i32 * lpRect)
 bool db_long_set::MoveWindow_(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
-   ::rectangle_i32 rectangle;
+   ::int_rectangle rectangle;
 
    if(!load(lpKey, &rectangle))
       return false;
@@ -842,10 +842,10 @@ bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const ::string & lpKey, ::point_i32 * lpPoint)
+bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
 {
 
-   ::point_i32 point;
+   ::int_point point;
 
    string strKey = lpKey;
 
@@ -861,7 +861,7 @@ bool db_long_set::load(const ::string & lpKey, ::point_i32 * lpPoint)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, ::point_i32 * lpPoint)
+bool db_long_set::save(const ::string & lpKey, ::int_point * lpPoint)
 {
 
    string strKey = lpKey;

@@ -13,7 +13,7 @@ namespace apex
 
    //   GetSystemTimeAsFileTime(&ft);
 
-   //   u64 tt;
+   //   huge_natural tt;
    //   ::memory_copy(&tt, &ft, sizeof(tt));
    //   tt /= 10; // make it usecs
    //   pmicroduration->m_secs.m_i = (long)tt / 1000000;

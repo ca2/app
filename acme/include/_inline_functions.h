@@ -58,10 +58,10 @@ inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
 
 
 
-inline ::u64 make64_from32(unsigned int l, unsigned int h)
+inline huge_natural make64_from32(unsigned int l, unsigned int h)
 {
 
-   return ((::u64)l) | (((::u64)h) << 32);
+   return ((huge_natural)l) | (((huge_natural)h) << 32);
 
 }
 
@@ -214,7 +214,7 @@ inline bool is_array_ok(const TYPE * p, ::collection::count c)
 }
 
 
-inline bool is_string_ok(::wide_character * p, strsize s)
+inline bool is_string_ok(::wide_character * p, character_count s)
 {
 
    return ::is_array_ok(p, s);
@@ -222,7 +222,7 @@ inline bool is_string_ok(::wide_character * p, strsize s)
 }
 
 
-inline bool is_string_ok(const ::wide_character * p, strsize s)
+inline bool is_string_ok(const ::wide_character * p, character_count s)
 {
 
    return ::is_array_ok(p, s);
@@ -230,7 +230,7 @@ inline bool is_string_ok(const ::wide_character * p, strsize s)
 }
 
 
-inline bool is_string_ok(::ansi_character * p, strsize s)
+inline bool is_string_ok(::ansi_character * p, character_count s)
 {
 
    return ::is_array_ok(p, s);
@@ -238,7 +238,7 @@ inline bool is_string_ok(::ansi_character * p, strsize s)
 }
 
 
-inline bool is_string_ok(const ::ansi_character * p, strsize s)
+inline bool is_string_ok(const ::ansi_character * p, character_count s)
 {
 
    return ::is_array_ok(p, s);
@@ -342,7 +342,7 @@ inline bool is_string_ok(const ::ansi_character * p)
 }
 
 
-inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsize srclen)
+inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, character_count srclen)
 {
 
    return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))
@@ -460,10 +460,10 @@ inline int read_char(unsigned char*& pdata, memsize& s, char* pch)
 //
 
 
-inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
+inline bool is_impact_group(huge_natural u, huge_natural uGroup) { return u >= uGroup && u < uGroup + 1000; }
 
 
-inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
+inline bool is_impact_subgroup(huge_natural u, huge_natural uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
 inline bool is_file_or_folder2(const ::file::enum_type& etype)

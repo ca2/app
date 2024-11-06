@@ -55,28 +55,28 @@ namespace user
 
          //virtual ::pointer<span> add_end_of_line_span();
 
-         virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+         virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::rectangle_i32 * prectangle, ::collection::index i) override;
+         virtual bool get_item_rect(::int_rectangle * prectangle, ::collection::index i) override;
 
-         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, ::collection::index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement) override;
 
-         virtual ::size_f64 get_size() override;
+         virtual ::double_size get_size() override;
 
          // void assert_ok() const override;
          // void dump(dump_context & dumpcontext) const override;
 
          bool _001GetItemText(string & str, ::collection::index iItem) override;
-         bool _001IsPointInside(const ::point_i32 & point) override;
+         bool _001IsPointInside(const ::int_point & point) override;
          void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
          //document * get_document();
-         /*virtual i64 increment_reference_count() override
+         /*virtual huge_integer increment_reference_count() override
          {
             return ::object::increment_reference_count();
          }
-         virtual i64 decrement_reference_count() override
+         virtual huge_integer decrement_reference_count() override
          {
             return ::object::decrement_reference_count();
          }*/
@@ -98,7 +98,7 @@ namespace user
 
          void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         ::point_f64 get_point_transform() override;
+         ::double_point get_point_transform() override;
 
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -161,16 +161,16 @@ namespace user
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         //strsize get_text_length() override;
+         //character_count get_text_length() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
 
-         void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
+         void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
          void _001GetSelLineText(string & str) override;
 
 
-         void get_text_composition_area(::rectangle_i32 & r) override;
+         void get_text_composition_area(::int_rectangle & r) override;
          void on_text_composition(string str) override;
          void on_text_composition_done() override;
          bool edit_undo() override;

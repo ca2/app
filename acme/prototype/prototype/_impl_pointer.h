@@ -903,7 +903,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 pointer <T>::release()
+inline huge_integer pointer <T>::release()
 {
 
    ::subparticle * pparticle = nullptr;
@@ -1024,7 +1024,7 @@ inline i64 pointer <T>::release()
 
 
 //template < class T >
-//inline i64 pointer <T>::global_release()
+//inline huge_integer pointer <T>::global_release()
 //{
 //
 //   //ASSERT(referer == m_referer);
@@ -1315,7 +1315,7 @@ inline pointer < T >::pointer(lparam & lparam)
 
 
 template < class c_derived >
-inline i64 increment_reference_count(c_derived * pca)
+inline huge_integer increment_reference_count(c_derived * pca)
 {
 
    if (::is_null(pca))
@@ -1331,7 +1331,7 @@ inline i64 increment_reference_count(c_derived * pca)
 
 
 template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
+inline huge_integer increment_reference_count(c_derived * & pca, const SOURCE * psource)
 {
 
    c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
@@ -1351,7 +1351,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
 
 
 template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
+inline huge_integer increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 {
 
    return increment_reference_count(pderived, psource.m_p);
@@ -1361,8 +1361,8 @@ inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOUR
 
 
 template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer)
-//inline i64 release(::pointer<TYPE>& pointer COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
+inline huge_integer release(::pointer<TYPE>& pointer)
+//inline huge_integer release(::pointer<TYPE>& pointer COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
 {
 
    return release(pointer.m_p);
@@ -1371,7 +1371,7 @@ inline i64 release(::pointer<TYPE>& pointer)
 
 
 template < typename TYPE >
-inline i64 __finalize(::pointer<TYPE> pointer)
+inline huge_integer __finalize(::pointer<TYPE> pointer)
 {
 
 if (!pointer) return -1;
@@ -1384,7 +1384,7 @@ return release(pointer.m_p);
 
 //
 //template < class REFERENCE >
-//inline i64 release(::pointer<REFERENCE>& preference)
+//inline huge_integer release(::pointer<REFERENCE>& preference)
 //{
 //
 //   return release(preference.m_p);
@@ -1393,7 +1393,7 @@ return release(pointer.m_p);
 
 
 template < class c_derived >
-inline i64 ref_count(c_derived * pca)
+inline huge_integer ref_count(c_derived * pca)
 {
 
    if (pca == nullptr)
@@ -2209,7 +2209,7 @@ inline bool pointer < T > ::defer_destroy()
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 release(T *& p)
+inline huge_integer release(T *& p)
 {
 
    if (::is_null(p))
@@ -2254,7 +2254,7 @@ inline i64 release(T *& p)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 global_release(T *& p)
+inline huge_integer global_release(T *& p)
 {
 
    if (::is_null(p))

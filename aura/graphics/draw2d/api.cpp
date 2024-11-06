@@ -22,16 +22,16 @@ namespace draw2d
 
    void api::draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::point_f64 *                    ppoints,
+      ::double_point *                    ppoints,
       int                           iCount,
       double                        dRateX,
-      ::point_f64 *                    ppointOffset)
+      ::double_point *                    ppointOffset)
    {
 
-      ::rectangle_i32 clipRect;
+      ::int_rectangle clipRect;
 
-      size_i32 viewportExt = pgraphics->get_extents();
-      point_i32 viewportOrg = pgraphics->get_origin();
+      int_size viewportExt = pgraphics->get_extents();
+      int_point viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
@@ -52,16 +52,16 @@ namespace draw2d
 
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
-   ::point_f64 *             ppoints,
+   ::double_point *             ppoints,
    int                  iCount,
    double               dRateX,
-   ::point_f64 *               ppointOffset)
+   ::double_point *               ppointOffset)
    {
 
-      ::rectangle_i32 clipRect;
+      ::int_rectangle clipRect;
 
-      size_i32 viewportExt = pgraphics->get_extents();
-      point_i32 viewportOrg = pgraphics->get_origin();
+      int_size viewportExt = pgraphics->get_extents();
+      int_point viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
@@ -81,19 +81,19 @@ namespace draw2d
 
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
-   array<point_double_array, point_double_array &> *
+   array<double_point_array, double_point_array &> *
    pglyph,
 
    double               dRateX,
-   point_f64 *               ppointOffset)
+   double_point *               ppointOffset)
 
    {
 
-      ::rectangle_i32 clipRect;
+      ::int_rectangle clipRect;
 
-      size_i32 viewportExt = pgraphics->get_extents();
+      int_size viewportExt = pgraphics->get_extents();
 
-      point_i32 viewportOrg = pgraphics->get_origin();
+      int_point viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
 
@@ -113,7 +113,7 @@ namespace draw2d
 
    void api::embossed_text_out(
    ::draw2d::graphics_pointer &     pgraphics,
-   const rectangle_f64 &                    rectangle,
+   const double_rectangle &                    rectangle,
    double                           dRateX,
    double                           dHeight,
    const char *                     psz,
@@ -122,12 +122,12 @@ namespace draw2d
    int                              iOffset)
    {
 
-      ::rectangle_i32 clipRect;
+      ::int_rectangle clipRect;
 
 
 
       //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      point_i32 viewportOrg;
+      //      int_point viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetContextOrgEx(pgraphics->m_hDC, &viewportOrg));
@@ -170,10 +170,10 @@ namespace draw2d
    ::color::color       crOutline,
    int            iLen)
    {
-      ::rectangle_i32 clipRect;
+      ::int_rectangle clipRect;
 
       //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      point_i32 viewportOrg;
+      //      int_point viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetContextOrgEx(pgraphics->m_hDC, &viewportOrg));
@@ -223,7 +223,7 @@ namespace draw2d
 
    void api::simple_text_out(
    ::draw2d::graphics_pointer &  pgraphics,
-   const rectangle_f64 &                 pcrect,
+   const double_rectangle &                 pcrect,
    double                        dRateX,
    double                        dHeight,
    const char *                  psz,
@@ -249,7 +249,7 @@ namespace draw2d
    }
 
 
-   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dHeight, double dRateX, const ::string & psz)
+   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dHeight, double dRateX, const ::string & psz)
    {
 
       pgraphics->text_out(rectangle.left(), rectangle.top(), psz);

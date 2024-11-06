@@ -40,7 +40,7 @@ namespace hotplugin
       bool                                   m_bTryInitWindow;
       bool                                   m_bWindowOk;
       bool                                   m_bOk;
-      ::rectangle_i32                                 m_rectangle;
+      ::int_rectangle                                 m_rectangle;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
       class ::time m_timeEntryHallTextStart;

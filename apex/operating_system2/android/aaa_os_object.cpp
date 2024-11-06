@@ -202,16 +202,16 @@ int os_object::get_i(const ::scoped_string & scopedstrField)
 
 
 
-void os_object::set_l(const ::scoped_string & scopedstrField, long long ll)
+void os_object::set_l(const ::scoped_string & scopedstrField, huge_integer hi)
 {
 
-   set_l(field_l(pszField), ll);
+   set_l(field_l(pszField), hi);
 
 }
 
 
 
-long long os_object::get_l(const ::scoped_string & scopedstrField)
+huge_integer os_object::get_l(const ::scoped_string & scopedstrField)
 {
 
    return get_l(field_l(pszField));
@@ -365,15 +365,15 @@ int os_object::get_i(jfieldID fid)
 
 
 
-void os_object::set_l(jfieldID fid, long long ll)
+void os_object::set_l(jfieldID fid, huge_integer hi)
 {
 
-   t_pjnienv->SetLongField(m_jobject, fid, ll);
+   t_pjnienv->SetLongField(m_jobject, fid, hi);
 
 }
 
 
-long long os_object::get_l(jfieldID fid)
+huge_integer os_object::get_l(jfieldID fid)
 {
 
    return t_pjnienv->GetLongField(m_jobject, fid);

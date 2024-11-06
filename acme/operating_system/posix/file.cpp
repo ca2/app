@@ -244,7 +244,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//::i64 get_file_size(int fd)
+//huge_integer get_file_size(int fd)
 //{
 //
 //   struct stat st;
@@ -406,7 +406,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//string file_system()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
+//string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   string str;
@@ -438,7 +438,7 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//string_array file_as_lines(const ::file::path & path, strsize iReadAtMostByteCount)
+//string_array file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   string str = file_system()->as_string(path, iReadAtMostByteCount);
@@ -451,7 +451,7 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//memory file_as_memory(const ::file::path & path, strsize iReadAtMostByteCount)
+//memory file_as_memory(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   memory mem;
@@ -463,13 +463,13 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//bool file_as_memory(memory_base & memory, const ::file::path & path, strsize iReadAtMostByteCount)
+//bool file_as_memory(memory_base & memory, const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   FILE * f = fopen(path, "rb");
 //   if (f == nullptr)
 //      return false;
-//   strsize iSize = FILE_get_size(f);
+//   character_count iSize = FILE_get_size(f);
 //
 //   if (iSize < 0)
 //   {
@@ -1319,7 +1319,7 @@ bool file_exists(const ::file::path & path)
 //
 //   ::file::path pathDir;
 //
-//   strsize iLastPos = -1;
+//   character_count iLastPos = -1;
 //
 //   ::file::path_array stra;
 //

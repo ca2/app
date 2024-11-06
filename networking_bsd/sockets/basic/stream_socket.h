@@ -84,7 +84,7 @@ namespace sockets_bsd
       void SetCallOnConnect(bool x = true) override;
 
       /** Check call on connect flag.
-      \return true if OnConnect() should be called a.s.a.point_i32 */
+      \return true if OnConnect() should be called a.s.a.int_point */
       bool CallOnConnect() override;
 
       // e_list_retry

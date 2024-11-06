@@ -85,7 +85,7 @@ namespace user
 
    {
 
-      ASSERT(pszPathName.has_char());
+      ASSERT(pszPathName.has_character());
 
 
       rpDocMatch = nullptr;
@@ -113,7 +113,7 @@ namespace user
          ASSERT(strFilterExt[0] == '.');
          string strExtension = pszPathName.final_extension();
 
-         if (strExtension.has_char())
+         if (strExtension.has_character())
          {
             if (strExtension.case_insensitive_order(strFilterExt) == 0)
             {
@@ -176,7 +176,7 @@ namespace user
 
       bool bAddToTitle = is_true("add_to_title");
 
-      ASSERT(m_atom.has_char());
+      ASSERT(m_atom.has_character());
 
       ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
 

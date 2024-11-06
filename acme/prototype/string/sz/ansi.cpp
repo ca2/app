@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME::i64 string_to_signed(const ::ansi_character * psz)
+CLASS_DECL_ACME huge_integer string_to_signed(const ::ansi_character * psz)
 {
 
    return atoll(psz);
@@ -11,7 +11,7 @@ CLASS_DECL_ACME::i64 string_to_signed(const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME::u64 string_to_natural(const ::ansi_character * psz)
+CLASS_DECL_ACME huge_natural as_huge_natural(const ::ansi_character * psz)
 {
 
    return strtoull(psz, nullptr, 10);

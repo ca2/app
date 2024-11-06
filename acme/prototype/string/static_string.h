@@ -1,7 +1,7 @@
 #pragma once
 
 
-template< typename TYPE_CHAR, const strsize t_nSize >
+template< typename TYPE_CHAR, const character_count t_nSize >
 class static_string
 {
 public:
@@ -22,7 +22,7 @@ public:
    }
 
 
-   static strsize __cdecl get_length()
+   static character_count __cdecl get_length()
    {
 
       return (t_nSize / sizeof(TYPE_CHAR)) - 1;

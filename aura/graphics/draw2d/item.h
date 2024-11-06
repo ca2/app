@@ -22,7 +22,7 @@ namespace draw2d
       int                           itemState;
       oswindow                      oswindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::rectangle_i32               rcItem;
+      ::int_rectangle               rcItem;
       uptr                          itemData;
       
 

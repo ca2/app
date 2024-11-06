@@ -271,7 +271,7 @@ namespace user
    }
 
 
-   void toolbar::SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage)
+   void toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
    {
 
       ASSERT_VALID(this);
@@ -355,7 +355,7 @@ namespace user
    //   {
    //      bool bResult = false;
    //
-   //      // need complete bitmap size_i32 to determine number of images
+   //      // need complete bitmap int_size to determine number of images
    //      /*#ifdef WINDOWS_DESKTOP
    //            BITMAP bitmap;
    //            VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
@@ -516,7 +516,7 @@ namespace user
    ////
    ////            // invalidate just the button
    ////
-   ////            ::rectangle_i32 rectangle;
+   ////            ::int_rectangle rectangle;
    ////
    ////            if (default_window_procedure(TB_GETITEMRECT, (WPARAM)nIndex, (LPARAM)& rectangle))
    ////            {
@@ -561,7 +561,7 @@ namespace user
    //      return 0;
    //   }
 
-   //   void toolbar::GetItemRect(index nIndex, ::rectangle_i32 * prectangle)
+   //   void toolbar::GetItemRect(index nIndex, ::int_rectangle * prectangle)
    //
    //   {
    //      ASSERT_VALID(this);
@@ -571,7 +571,7 @@ namespace user
    //      //if (m_bDelayedButtonLayout)
    //      //   ((toolbar*)this)->set_need_layout(pgraphics);
    //
-   ////      // now it is safe to get the item rectangle_i32
+   ////      // now it is safe to get the item int_rectangle
    ////#ifdef WINDOWS_DESKTOP
    ////      toolbar* pBar = (toolbar*)this;
    ////      if (!pBar->default_window_procedure(TB_GETITEMRECT, (WPARAM) nIndex, (LPARAM)prectangle))
@@ -739,14 +739,14 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   ::size_i32 toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
+   //   ::int_size toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
    //   {
    //
    //      //ASSERT(pData != nullptr && nCount > 0);
    //
-   //      //point_i32 cur(0,0);
+   //      //int_point cur(0,0);
    //
-   //      //::size_i32 sizeResult(0,0);
+   //      //::int_size sizeResult(0,0);
    //
    //      //unsigned int dwExtendedStyle = (unsigned int) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
    //
@@ -779,7 +779,7 @@ namespace user
    //      //      if ((pData[i].fsStyle & TBSTYLE_DROPDOWN) &&
    //      //            (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
    //      //      {
-   //      //         // add size_i32 of drop down
+   //      //         // add int_size of drop down
    //      //         cx += 2;
    //      //      }
    //      //      sizeResult.cx() = maximum(cur.x() + cx, sizeResult.cx());
@@ -832,7 +832,7 @@ namespace user
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
-   //   //         ::size_i32 size;
+   //   //         ::int_size size;
    //   //         ::GetTextExtentPoint32U(
    //   //         (HDC)pgraphics->get_os_data(),
    //   //         str,
@@ -929,17 +929,17 @@ namespace user
    //   //            }
    //   //         }
    //   //      }
-   //   //      const ::size_i32 & size = CalcSize(pData, nCount);
+   //   //      const ::int_size & size = CalcSize(pData, nCount);
    //   //      WrapToolBar(pData, nCount, size.cx());
    //   //   }
    //   //   else
    //   //   {
    //
-   //   //      ::size_i32 sizeMax;
+   //   //      ::int_size sizeMax;
    //   //
-   //   //      ::size_i32 sizeMin;
+   //   //      ::int_size sizeMin;
    //   //
-   //   //      ::size_i32 sizeMid;
+   //   //      ::int_size sizeMid;
    //
    //   //      // Wrap ToolBar vertically
    //   //      WrapToolBar(pData, nCount, 0);
@@ -975,11 +975,11 @@ namespace user
    struct ___CONTROLPOS
    {
       ::collection::index nIndex, nID;
-      ::rectangle_i32 rectangleOldPos;
+      ::int_rectangle rectangleOldPos;
    };
 
 
-   size_i32 toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
+   int_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_VALID(this);
@@ -991,7 +991,7 @@ namespace user
       //
       //      TBBUTTON * pData = nullptr;
       //
-      //      ::size_i32 sizeResult(0,0);
+      //      ::int_size sizeResult(0,0);
       //
       //      //BLOCK: Load Buttons
       //      {
@@ -1032,7 +1032,7 @@ namespace user
       //            else if (bDynamic && (nLength != -1))
       //            {
       //
-      //               ::rectangle_i32 rectangle;
+      //               ::int_rectangle rectangle;
       //
       //               CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //
@@ -1102,7 +1102,7 @@ namespace user
       //
       //                     pControl[nControlCount].nID = pData[i].idCommand;
       //
-      //                     ::rectangle_i32 rectangle;
+      //                     ::int_rectangle rectangle;
       //
       //                     GetItemRect(i, &rectangle);
       //
@@ -1193,13 +1193,13 @@ namespace user
       //      //BLOCK: Adjust Margins
       //      {
       //
-      //         ::rectangle_i32 rectangle;
+      //         ::int_rectangle rectangle;
       //
       //         CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cy() -= rectangle.height();
       //         sizeResult.cx() -= rectangle.width();
       //
-      //         const ::size_i32 & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      //         const ::int_size & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cx() = maximum(sizeResult.cx(), size.cx());
       //         sizeResult.cy() = maximum(sizeResult.cy(), size.cy());
       //      }
@@ -1212,7 +1212,7 @@ namespace user
    }
 
 
-   size_i32 toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
+   int_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
    {
 
       unsigned int dwMode = bStretch ? LM_STRETCH : 0;
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, unsigned int dwMode)
+   int_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, unsigned int dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1450,7 +1450,7 @@ namespace user
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
@@ -1480,7 +1480,7 @@ namespace user
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
          (m_dwDockStyle & CBRS_FLOAT_MULTI)));
 
-      // a toolbar can not be both dynamic and fixed in size_i32
+      // a toolbar can not be both dynamic and fixed in int_size
       ASSERT(!((dwNewStyle & CBRS_SIZE_FIXED) &&
          (dwNewStyle & CBRS_SIZE_DYNAMIC)));
 
@@ -1609,7 +1609,7 @@ namespace user
    }
 
 
-   //   LRESULT toolbar::OnSetSizeHelper(::size_i32& size, LPARAM lParam)
+   //   LRESULT toolbar::OnSetSizeHelper(::int_size& size, LPARAM lParam)
    //   {
    //      //WINBUG: The IE4 version of COMCTL32.DLL supports a zero border, but
    //      //  only if TBSTYLE_TRANSPARENT is on during the the TB_SETBITMAPSIZE
@@ -1778,13 +1778,13 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
 
 
-   size_i32 toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   int_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ASSERT_VALID(this);
       ASSERT(is_window());
 
-      ::size_i32 sizeResult(0, 0);
+      ::int_size sizeResult(0, 0);
 
       //#ifdef WINDOWS_DESKTOP
       //      index nCount;
@@ -1819,8 +1819,8 @@ namespace user
       //            if(pData[i].fsState & TBSTATE_WRAP)
       //               ASSERT(false);
       //         }
-      //         ::rectangle_i32 rectangleItem;
-      //         ::rectangle_i32 rectangleSize(0, 0, 0, 0);
+      //         ::int_rectangle rectangleItem;
+      //         ::int_rectangle rectangleSize(0, 0, 0, 0);
       //         for (i = 0; i < nCount; i++)
       //         {
       //            GetItemRect(i, rectangleItem);
@@ -1849,10 +1849,10 @@ namespace user
    }
 
 
-   size_i32 toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   int_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      const ::size_i32 & size = CalcSimpleLayout(pgraphics);
+      const ::int_size & size = CalcSimpleLayout(pgraphics);
 
       /*set_window_position(
       e_zorder_top,
@@ -1889,7 +1889,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 > toolbar::index_item_rectangle(::collection::index iItem)
+   ::status < ::int_rectangle > toolbar::index_item_rectangle(::collection::index iItem)
    {
 
       if (!main_content().m_pitema->is_index_ok(iItem))
@@ -1901,7 +1901,7 @@ namespace user
 
       auto puseritem = user_item(main_content().item_at(iItem));
 
-      ::status < ::rectangle_i32 > statusrectangle = puseritem->m_rectangle2;
+      ::status < ::int_rectangle > statusrectangle = puseritem->m_rectangle2;
 
       statusrectangle.m_estatus = ::success;
 
@@ -1910,7 +1910,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
+   ::status < ::int_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
    {
 
       return error_failed;
@@ -2028,7 +2028,7 @@ namespace user
 
             }
 
-            if (pchild->attribute("image").has_char())
+            if (pchild->attribute("image").has_character())
             {
 
                ptoolitem->m_pimage = image()->load_image(pchild->attribute("image"), { .cache = false });
@@ -2042,7 +2042,7 @@ namespace user
                
             }
 
-            if (pchild->attribute("enable_if_has_command_handler").has_char())
+            if (pchild->attribute("enable_if_has_command_handler").has_character())
             {
 
                ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").as_string().case_insensitive_order("true") == 0;

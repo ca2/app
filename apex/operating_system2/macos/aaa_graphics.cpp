@@ -333,7 +333,7 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::rectangle_f64 & rectangle, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::double_rectangle & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
@@ -390,7 +390,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrF
 //   // convert nPointSize to logical units based on pgraphics
 //   LOGFONT logFont = *pLogFont;
 //
-//   ::point_i32 point;
+//   ::int_point point;
 //   // 72 points/inch, 10 decipoints/point
 //   point.y() = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x() = 0;
@@ -773,7 +773,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 
 
 /*
- int FillRect(HDC hdc, const ::rectangle_f64 & prc, HBRUSH hbr)
+ int FillRect(HDC hdc, const ::double_rectangle & prc, HBRUSH hbr)
 
  {
 
@@ -1088,7 +1088,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::rectangle_f64 & rectangle, color32_t clr)
+// void FillSolidRect_dup(HDC hdc, const ::double_rectangle & rectangle, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);

@@ -734,7 +734,7 @@
 //   int		m_iLine;
 //
 //   int		m_iCount;
-//   i64     m_iSize;
+//   huge_integer     m_iSize;
 //
 //};
 //
@@ -899,11 +899,11 @@
 //      {
 //         informationf("\n");
 //         informationf("--------------------------------------------------------\n");
-//         ansi_from_u64(sz, ++i, 10);
+//         ansi_from_huge_natural(sz, ++i, 10);
 //         informationf("Index : ");
 //         information(sz);
 //         informationf("\n");
-//         ansi_from_u64(sz, pblock->m_size, 10);
+//         ansi_from_huge_natural(sz, pblock->m_size, 10);
 //         informationf("Size : ");
 //         information(sz);
 //         informationf("\n");
@@ -917,7 +917,7 @@
 //   }
 //   informationf("\n");
 //   informationf("--------------------------------------------------------\n");
-//   ansi_from_u64(sz, i, 10);
+//   ansi_from_huge_natural(sz, i, 10);
 //   informationf("\nFound ");
 //   information(sz);
 //   informationf(" memory leaks.");

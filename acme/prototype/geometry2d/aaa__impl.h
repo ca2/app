@@ -14,22 +14,22 @@
 //template < primitive_size SIZE >
 //inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
 //
-//inline point_i32& top_left(const ::rectangle_i32* prectangle) { return *(point_i32*)prectangle; }
-//inline point_i32& bottom_right(const ::rectangle_i32* prectangle) { return *(point_i32*)& prectangle->right(); }
-//inline point_i32& top_left(const ::rectangle_i32& rectangle) { return top_left(&rectangle); }
-//inline point_i32& bottom_right(const ::rectangle_i32& rectangle) { return bottom_right(&rectangle); }
+//inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
+//inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right(); }
+//inline int_point& top_left(const ::int_rectangle& rectangle) { return top_left(&rectangle); }
+//inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline point_i64& top_left(const ::rectangle_i64* prectangle) { return *(point_i64*)prectangle; }
-//inline point_i64& bottom_right(const ::rectangle_i64* prectangle) { return *(point_i64*)& prectangle->right(); }
-//inline point_i64& top_left(const ::rectangle_i64& rectangle) { return top_left(&rectangle); }
-//inline point_i64& bottom_right(const ::rectangle_i64& rectangle) { return bottom_right(&rectangle); }
+//inline huge_integer_point& top_left(const ::i64_rectangle* prectangle) { return *(huge_integer_point*)prectangle; }
+//inline huge_integer_point& bottom_right(const ::i64_rectangle* prectangle) { return *(huge_integer_point*)& prectangle->right(); }
+//inline huge_integer_point& top_left(const ::i64_rectangle& rectangle) { return top_left(&rectangle); }
+//inline huge_integer_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline point_f64& top_left(const ::rectangle_f64* prectangle) { return *(point_f64*)prectangle; }
-//inline point_f64& bottom_right(const ::rectangle_f64* prectangle) { return *(point_f64*)& prectangle->right(); }
-//inline point_f64& top_left(const ::rectangle_f64& rectangle) { return top_left(&rectangle); }
-//inline point_f64& bottom_right(const ::rectangle_f64& rectangle) { return bottom_right(&rectangle); }
+//inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }
+//inline double_point& bottom_right(const ::double_rectangle* prectangle) { return *(double_point*)& prectangle->right(); }
+//inline double_point& top_left(const ::double_rectangle& rectangle) { return top_left(&rectangle); }
+//inline double_point& bottom_right(const ::double_rectangle& rectangle) { return bottom_right(&rectangle); }
 
 
 //template < typename X, typename Y >
@@ -85,7 +85,7 @@
 //
 //
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point_i32) {}
+////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -111,7 +111,7 @@
 //
 //
 //template <  >
-//inline i64 __conv<i64>(const ::string & str)
+//inline huge_integer __conv<huge_integer>(const ::string & str)
 //{
 //
 //   return (int) ::atoi(str);
@@ -147,7 +147,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<i64>()
+//inline string __xmlpri<huge_integer>()
 //{
 //
 //   return "%" PRId64;

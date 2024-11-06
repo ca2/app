@@ -96,11 +96,11 @@ namespace sockets
 
       //inheader("host")                = GetUrlHost();
 
-      if(m_content_type.has_char())
+      if(m_content_type.has_character())
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (i64) m_content_length;
+      inheader("content-length")      = (huge_integer) m_content_length;
       inheader("user_agent")          = MyUseragent();
       inheader("connection")          = "close";
       SendRequest();

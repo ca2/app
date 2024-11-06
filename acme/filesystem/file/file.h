@@ -186,7 +186,7 @@ namespace file
 
       virtual file & put(char ch);
 
-      virtual file & getline(char* sz, strsize n);
+      virtual file & getline(char* sz, character_count n);
       //virtual int get();
       //virtual int peek();
       virtual bool read(char * pch);
@@ -199,14 +199,14 @@ namespace file
       virtual int peek_byte(); // 0-255 - -1 if eof otherwise exception?
       virtual void put_byte_back(unsigned char b);
 
-      virtual int get_u8(); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned char get_byte_unbounded() { return get_u8(); }
+      virtual int get_unsigned_char(); // 0-255 - -1 if eof otherwise exception?
+      inline unsigned char get_byte_unbounded() { return get_unsigned_char(); }
 
-      virtual int get_u16(); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned short get_u16_unbounded() { return get_u16(); }
+      virtual int get_unsigned_short(); // 0-255 - -1 if eof otherwise exception?
+      inline unsigned short get_u16_unbounded() { return get_unsigned_short(); }
 
-      virtual bool get_u64(u64 & u64); // 0-255 - -1 if eof otherwise exception?
-      inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }
+      virtual bool get_huge_natural(huge_natural & hn); // 0-255 - -1 if eof otherwise exception?
+      inline huge_natural get_u64_unbounded() { huge_natural huge_natural; get_huge_natural(huge_natural); return huge_natural; }
 
 
       virtual bool unget_if(::ansi_character ch);

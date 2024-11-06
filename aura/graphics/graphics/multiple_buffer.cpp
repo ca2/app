@@ -139,7 +139,7 @@ namespace graphics
    }
 
 
-   ::collection::index multiple_buffer::find_best_buffer(const ::size_i32 & size)
+   ::collection::index multiple_buffer::find_best_buffer(const ::int_size & size)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -166,7 +166,7 @@ namespace graphics
 
          iFound = m_iDone;
 
-         ::size_i32 sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
+         ::int_size sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
 
          bBigger = sizeBuffer.cx() > size.cx() || sizeBuffer.cy() > size.cy();
 
@@ -189,7 +189,7 @@ namespace graphics
 
          }
 
-         ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage2->size();
+         ::int_size sizeBuffer = m_bufferitema[i]->m_pimage2->size();
 
          if (size == sizeBuffer)
          {
@@ -237,7 +237,7 @@ namespace graphics
 
             }
 
-            ::size_i32 sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
+            ::int_size sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
 
             if (sizeBuffer == size)
             {
@@ -306,7 +306,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         strFormat.formatf(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
+         strFormat.formatf(" buffer int_size %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
 
          s_iLastExact = -1;
 

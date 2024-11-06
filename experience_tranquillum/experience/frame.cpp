@@ -38,7 +38,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::_001OnBeforeMove(const ::rectangle_i32 & rectangle)
+   void frame::_001OnBeforeMove(const ::int_rectangle & rectangle)
    {
 
    }
@@ -52,16 +52,16 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle)
+   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangle)
    {
 
       //auto pframewindow = m_pframewindow;
 
       //class imaging & imaging = psystem->imaging();
 
-      ::rectangle_i32 rectangleX(rectangle);
+      ::int_rectangle rectangleX(rectangle);
 
-      ::rectangle_i32 rectangleInflate;
+      ::int_rectangle rectangleInflate;
 
       if (rectangleX.area() <= 0)
       {
@@ -79,7 +79,7 @@ namespace experience_tranquillum
 
       ////::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
 
-      //::rectangle_i32 rectangleScreen;
+      //::int_rectangle rectangleScreen;
 
       //pframewindow->best_monitor(rectangleScreen);
 
@@ -90,14 +90,14 @@ namespace experience_tranquillum
       //pimage = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
       //pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
-      //::rectangle_i32 rectangleWindow = rectangleX;
+      //::int_rectangle rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
       ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
       //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
       ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
-      //b = imaging.blur(pimage->g(), ::point_i32(),
-      //                 size_i32(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
-      //                 pimage2->get_graphics(), ::point_i32(), 2);
+      //b = imaging.blur(pimage->g(), ::int_point(),
+      //                 int_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
+      //                 pimage2->get_graphics(), ::int_point(), 2);
 
       ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       ////rectangleX.deflate(1, 1);
@@ -146,7 +146,7 @@ namespace experience_tranquillum
    //}
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const ::opacity & opacity)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
    {
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -180,7 +180,7 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
    {
 
       switch (eelement)
@@ -335,7 +335,7 @@ namespace experience_tranquillum
       auto pcontrolbox = get_control_box();
 
 
-      m_minSize = size_i32(144, 48);
+      m_minSize = int_size(144, 48);
       m_minSize.cy() = 48;
       if (pcontrolbox)
       {
@@ -414,10 +414,10 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
    {
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       int x = rectangle.left();
       int y = rectangle.top();
@@ -523,7 +523,7 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->fill_solid_rectangle(::rectangle_double_dimension(0, 0, 16, 16), ::color::red);
+      //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(0, 0, 16, 16), ::color::red);
 
       //return;
 
@@ -562,7 +562,7 @@ namespace experience_tranquillum
       if (m_pframewindow->layout().is_minimal())
       {
 
-         ::rectangle_i32 rectangleIcon;
+         ::int_rectangle rectangleIcon;
 
          //auto time2 = ::time::now();
 
@@ -576,7 +576,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(pdrawicon);
 
-               rectangle_f64 rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
+               double_rectangle rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
 
                rectangleTarget.CenterOf(rectangleIcon);
 
@@ -594,7 +594,7 @@ namespace experience_tranquillum
 
          //auto time3 = ::time::now();
 
-         ::rectangle_i32 rectangleGrip;
+         ::int_rectangle rectangleGrip;
 
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
@@ -604,7 +604,7 @@ namespace experience_tranquillum
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               auto rect3d = ::rectangle_double_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
+               auto rect3d = ::double_rectangle_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -703,7 +703,7 @@ namespace experience_tranquillum
 
          //auto time3 = ::time::now();
 
-         ::rectangle_i32 rectangleIcon;
+         ::int_rectangle rectangleIcon;
 
          auto pframewindow = m_pframewindow;
 
@@ -746,7 +746,7 @@ namespace experience_tranquillum
 
          //auto time4 = ::time::now();
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          m_pframewindow->window_rectangle(rectangle);
 
@@ -762,7 +762,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(picon);
 
-               //rectangle_f64 rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
+               //double_rectangle rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
 
                //rectangleTarget.CenterOf(rectangleIcon);
 
@@ -821,7 +821,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::GetFrameRect(rectangle_i32 & rectangle)
+   void frame::GetFrameRect(int_rectangle & rectangle)
    {
 
       m_pframewindow->window_rectangle(rectangle);
@@ -833,27 +833,27 @@ namespace experience_tranquillum
    }
 
 
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
       //::item_pointer pitemHi etest = ::experience::e_frame_client;
       {
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-         //::rectangle_i32 rectangleEvent;
+         //::int_rectangle rectangleEvent;
 
          auto rectangleEvent = m_pframewindow->window_rectangle();
 
-         ::rectangle_i32 rectangle;
-         //::point_i32 pointCenter = rectangleEvent.center();
+         ::int_rectangle rectangle;
+         //::int_point pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
 
-         ::rectangle_i32 rectangleOuter(rectangleEvent);
+         ::int_rectangle rectangleOuter(rectangleEvent);
 
-         ::rectangle_i32 rectangleInner(rectangleEvent);
+         ::int_rectangle rectangleInner(rectangleEvent);
 
          rectangleInner.deflate(2);
 
-         ::point_i32 pointHitTest = point;
+         ::int_point pointHitTest = point;
 
          //               if(rectangleEvent.left() < 0)
          //                  pointHitTest.x() -= rectangleEvent.left();
@@ -967,12 +967,12 @@ namespace experience_tranquillum
    }
 
 
-   void frame::GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * prectangle, enum_border eside)
+   void frame::GetBorderRectangle(const ::int_rectangle & rectangleOuter, ::int_rectangle * prectangle, enum_border eside)
    {
 
       auto rectangleInner = hosting_rectangle();
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       if (eside == e_border_top)
       {

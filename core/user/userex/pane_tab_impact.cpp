@@ -83,7 +83,7 @@ namespace userex
    }
 
 
-   void pane_tab_impact::GetTabClientRect(::rectangle_i32 & rectangle)
+   void pane_tab_impact::GetTabClientRect(::int_rectangle & rectangle)
    {
 
       if(m_pimpactdata == nullptr || m_pimpactdata->m_puserinteraction == nullptr || m_pimpactdata->m_iExtendOnParent == 0)
@@ -311,7 +311,7 @@ namespace userex
 
       //   string strAppOptions(pframe->m_varFrame["options_impact"]["resource"]);
 
-      //   if (strAppOptions.has_char())
+      //   if (strAppOptions.has_character())
       //   {
 
       //      string strTitle(pframe->m_varFrame["options_impact"]["title"]);
@@ -746,10 +746,10 @@ namespace userex
 
          pfilemanagerdata->m_pfilemanagerdocument = pfilemanagerdocument;
 
-   /*      if (find_i32("filemanager_icon_size") > 0)
+   /*      if (find_int("filemanager_icon_size") > 0)
          {
 
-            pfilemanagerdata->m_iIconSize = find_i32("filemanager_icon_size");
+            pfilemanagerdata->m_iIconSize = find_int("filemanager_icon_size");
 
          }*/
 

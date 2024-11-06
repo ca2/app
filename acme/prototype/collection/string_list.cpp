@@ -171,7 +171,7 @@ void string_list::add_tail_tokens(const ::scoped_string & scopedstr, const ::sco
       while(tokenizer.get_next_token(strToken, scopedstrSeparator, false))
       {
 
-         if (strToken.has_char())
+         if (strToken.has_character())
          {
 
             add_tail(strToken);

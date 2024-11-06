@@ -97,15 +97,15 @@ struct wf_context
 	HCURSOR hDefaultCursor;
 
 	HWND hwnd;
-	::point_i32 diff;
+	::int_point diff;
 
 	wfBitmap* primary;
 	wfBitmap* drawing;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
-	::rectangle_i32 update_rect;
-	::rectangle_i32 scale_update_rect;
+	::int_rectangle update_rect;
+	::int_rectangle scale_update_rect;
 
 	unsigned int mainThreadId;
 	unsigned int keyboardThreadId;

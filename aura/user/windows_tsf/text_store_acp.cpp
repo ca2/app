@@ -249,10 +249,10 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       //set the start point_i32 to the given start point_i32
+       //set the start int_point to the given start int_point
        *pacpResultStart = acpTestStart;
 
-       //set the end point_i32 to the given end point_i32
+       //set the end int_point to the given end int_point
        *pacpResultEnd = acpTestEnd;
 
        return S_OK;
@@ -281,10 +281,10 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       //set the start point_i32 after the insertion
+       //set the start int_point after the insertion
        *pacpResultStart = acpTestStart;
 
-       //set the end point_i32 after the insertion
+       //set the end int_point after the insertion
        *pacpResultEnd = acpTestStart + cch;
     
        return S_OK;
@@ -339,8 +339,8 @@ namespace tsf
 
        _GetCurrentSelection();
     
-       //find out which end of the selection the caret (insertion point_i32) is
-       ::point_i32   pt;
+       //find out which end of the selection the caret (insertion int_point) is
+       ::int_point   pt;
        int lPos = 0;
        GetCaretPos(&pt);
        //lPos = ::SendMessage(m_hwndEdit, EM_POSFROMCHAR, m_acpStart, 0);
@@ -1019,7 +1019,7 @@ namespace tsf
    **************************************************************************/
 
    STDMETHODIMP edit_window::GetACPFromPoint(  TsImpactCookie vcImpact, 
-                                               const ::point_i32 *pt,
+                                               const ::int_point *pt,
                                                unsigned int dwFlags,
                                                int *pacp)
    {
@@ -1032,7 +1032,7 @@ namespace tsf
 
        edit_window::GetTextExt()
 
-       If the text spans multiple lines, the result is the rectangle_i32 that 
+       If the text spans multiple lines, the result is the int_rectangle that 
        contains all of the requested characters.
 
    **************************************************************************/
@@ -1040,7 +1040,7 @@ namespace tsf
    STDMETHODIMP edit_window::GetTextExt(   TsImpactCookie vcImpact, 
                                            int acpStart,
                                            int acpEnd,
-                                           ::rectangle_i32 *prc,
+                                           ::int_rectangle *prc,
                                            BOOL *pfClipped)
    {
        OutputDebugString(TEXT("edit_window::GetTextExt \n"));
@@ -1051,7 +1051,7 @@ namespace tsf
        }
 
        *pfClipped = false;
-       ZeroMemory(prc, sizeof(::rectangle_i32));
+       ZeroMemory(prc, sizeof(::int_rectangle));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1073,7 +1073,7 @@ namespace tsf
 
        int        lTextLength;
        int        lTemp;
-       //::rectangle_i32        rc;
+       //::int_rectangle        rc;
        //unsigned int       dwStart;
        //unsigned int       dwEnd;
        //HDC         hdc;
@@ -1130,7 +1130,7 @@ namespace tsf
        //dwEnd = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
        //
        ////calculate the width of the last character
-       //::size_i32    size;
+       //::int_size    size;
        //GetTextExtentPoint32W(hdc, pwszText + acpEnd, 1, &size);
        //rc.right() = LOWORD(dwEnd) + size.cx();
        //rc.bottom() = HIWORD(dwEnd);
@@ -1143,31 +1143,31 @@ namespace tsf
        //ReleaseDC(m_hwndEdit, hdc);
 
        ///*
-       //If the text range spans multiple lines, expand the rectangle_i32 to include all 
+       //If the text range spans multiple lines, expand the int_rectangle to include all 
        //of the requested text. 
        //*/
        //if(rc.bottom() > rc.top())
        //{
        //    unsigned int   dwMargins;
-       //    ::rectangle_i32    rcEdit;
+       //    ::int_rectangle    rcEdit;
 
        //    GetClientRect(m_hwndEdit, &rcEdit);
        //    
        //    dwMargins = (unsigned int)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
        //    
-       //    //set the left point_i32 of the rectangle_i32 to the left margin of the edit control
+       //    //set the left int_point of the int_rectangle to the left margin of the edit control
        //    rc.left() = LOWORD(dwMargins);
 
        //    //set the right member to the width of the edit control less both the right margin
        //    rc.right() = rc.right() - HIWORD(dwMargins);
        //}
 
-       ////add the line height to the bottom of the rectangle_i32
+       ////add the line height to the bottom of the int_rectangle
        //rc.bottom() += lLineHeight;
 
        //*prc = rc;
        //
-       ////if any part of the text rectangle_i32 is not visible, set *pfClipped to true
+       ////if any part of the text int_rectangle is not visible, set *pfClipped to true
        //GetClientRect(m_hwndEdit, &rc);
 
        //if( (prc->left() < rc.left()) ||
@@ -1178,8 +1178,8 @@ namespace tsf
        //    *pfClipped = true;
        //}
 
-       ////convert the rectangle_i32 to screen coordinates
-       //MapWindowPoints(m_hwndEdit, NULL, (::point_i32 *)prc, 2);
+       ////convert the int_rectangle to screen coordinates
+       //MapWindowPoints(m_hwndEdit, NULL, (::int_point *)prc, 2);
 
        //GlobalFree(pwszText);
 
@@ -1192,7 +1192,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, ::rectangle_i32 *prc)
+   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, ::int_rectangle *prc)
    {
        OutputDebugString(TEXT("edit_window::GetScreenExt \n"));
 
@@ -1201,7 +1201,7 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       ZeroMemory(prc, sizeof(::rectangle_i32));
+       ZeroMemory(prc, sizeof(::int_rectangle));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1211,7 +1211,7 @@ namespace tsf
        //no lock is necessary for this method.
 
        //GetClientRect(m_hwndEdit, prc);
-       //MapWindowPoints(m_hwndEdit, NULL, (::point_i32 *)prc, 2);
+       //MapWindowPoints(m_hwndEdit, NULL, (::int_point *)prc, 2);
 
        window_rectangle(prc);
 

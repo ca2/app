@@ -23,7 +23,7 @@ namespace nanoui
    }
 
 
-   ::pointer < in_place_edit > in_place_edit_array::hit_test_label(const ::point_f32& point, in_place_edit_mapper* pmapper) const
+   ::pointer < in_place_edit > in_place_edit_array::hit_test_label(const ::float_point& point, in_place_edit_mapper* pmapper) const
    {
 
       for (auto& pinplaceedit : *this)

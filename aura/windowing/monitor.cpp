@@ -57,7 +57,7 @@ namespace windowing
    }
 
 
-   ::rectangle_i32 monitor::monitor_rectangle()
+   ::int_rectangle monitor::monitor_rectangle()
    {
 
       m_pdisplay->_get_monitor_rectangle(m_iIndex, m_rectangle);
@@ -67,7 +67,7 @@ namespace windowing
    }
 
 
-   ::rectangle_i32 monitor::workspace_rectangle()
+   ::int_rectangle monitor::workspace_rectangle()
    {
 
       if(m_rectangleFixedWorkspace.left() != I32_MINIMUM
@@ -95,7 +95,7 @@ namespace windowing
       }
 
 
-      ::rectangle_i32 rectangleWorkspace = _workspace_rectangle();
+      ::int_rectangle rectangleWorkspace = _workspace_rectangle();
 
       for(auto i = 0; i < 4; i++)
       {
@@ -114,7 +114,7 @@ namespace windowing
    }
 
 
-   ::rectangle_i32 monitor::_workspace_rectangle()
+   ::int_rectangle monitor::_workspace_rectangle()
    {
 
       information() << "monitor::_workspace_rectangle";
@@ -142,7 +142,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle(const ::rectangle_i32 & rectangle)
+   void monitor::set_workspace_rectangle(const ::int_rectangle & rectangle)
    {
 
       m_rectangleFixedWorkspace = rectangle;

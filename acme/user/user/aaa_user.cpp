@@ -92,9 +92,9 @@ namespace acme
 
          string strDetails(strDetailsParam);
 
-         if (strExceptionDetails.has_char())
+         if (strExceptionDetails.has_character())
          {
-            if (strDetails.has_char())
+            if (strDetails.has_character())
             {
                strDetails += "\n";
             }

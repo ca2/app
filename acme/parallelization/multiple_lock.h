@@ -11,7 +11,7 @@ public:
 
 
    synchronization_array &       m_synchronizationa;
-   bits < ::u64 >                m_bitsLocked;
+   bits < huge_natural >                m_bitsLocked;
 
 
    multiple_lock(synchronization_array & synchronizationa, bool bInitialLock = false);

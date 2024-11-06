@@ -175,7 +175,7 @@ namespace user
 
 //      int i;
 
-      //::rectangle_i32 rectangle;
+      //::int_rectangle rectangle;
 
       //::color32_t color32 = argb(190, 92, 92, 80);
 

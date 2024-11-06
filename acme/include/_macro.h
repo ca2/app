@@ -106,50 +106,50 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 //#define __CONCAT3____(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-// #define __u16(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
+// #define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
 // #define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
 
 // #ifdef __cplusplus
 
 
-// #define as_u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define as_huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
 
 
 // #else
 
-// #define __MAKE_LONG64(a, b)                              (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
-// #define __u64(a, b)                                   (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
+// #define __MAKE_LONG64(a, b)                              (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
+// #define __huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
 
 // #endif
 
-// #define lower_u16(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-// #define upper_u16(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-// #define lower_u32(u)                                     ((unsigned int)(u))
-// #define upper_u32(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+// #define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
+// #define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
+// #define lower_unsigned_int(u)                                     ((unsigned int)(u))
+// #define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
 
-// #define u32_x(u)                                     ((short)lower_u16(u))
-// #define u32_y(u)                                     ((short)upper_u16(u))
+// #define u32_x(u)                                     ((short)lower_unsigned_short(u))
+// #define u32_y(u)                                     ((short)upper_unsigned_short(u))
 
 // #define __u32xy(u)                                    u32_x(u), u32_y(u)
 
-// #define u64_x(u)                                     ((int)lower_u32(u))
-// #define u64_y(u)                                     ((int)upper_u32(u))
+// #define u64_x(u)                                     ((int)lower_unsigned_int(u))
+// #define u64_y(u)                                     ((int)upper_unsigned_int(u))
 
 // #define __u64xy(u)                                    u64_x(u), u64_y(u)
 
 
-//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_u32(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
 
 
 
 
-// #define make_i32(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
-// #define __MAKE_LONG64(a, b)         ((::i64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32))
+// #define __MAKE_LONG64(a, b)         ((huge_integer)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32))
 
-// #define make_u32(l, h)         ((::uptr)(unsigned int)make_i32(l, h))
+// #define make_unsigned_int(l, h)         ((::uptr)(unsigned int)make_int(l, h))
 
 //#define lower_byte(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
 
@@ -363,20 +363,20 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 // #ifndef int_x
-// #define int_x(lparam)                          ((int)(short)LOWORD(lparam))
+// #define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
 // #endif
 
 
 // #ifndef int_y
-// #define int_y(lparam)                          ((int)(short)HIWORD(lparam))
+// #define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
 // #endif
 
 
-// #ifndef lower_u32
-// #define lower_u32(l)                                    ((unsigned int)(((::u64)(l)) & 0xffffffffu))
+// #ifndef lower_unsigned_int
+// #define lower_unsigned_int(l)                                    ((unsigned int)(((huge_natural)(l)) & 0xffffffffu))
 // #endif
-// #ifndef upper_u32
-// #define upper_u32(l)                                    ((unsigned int)((((::u64)(l)) >> 32) & 0xffffffffu))
+// #ifndef upper_unsigned_int
+// #define upper_unsigned_int(l)                                    ((unsigned int)((((huge_natural)(l)) >> 32) & 0xffffffffu))
 // #endif
 
 

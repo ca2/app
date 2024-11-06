@@ -284,7 +284,7 @@ namespace mail
          }
          else if(strLine == "")
          {
-            if(m_strKey.has_char())
+            if(m_strKey.has_character())
             {
                m_ppop3->m_setHeaders[m_strKey] = m_strValue;
             }
@@ -318,7 +318,7 @@ namespace mail
             }
             else
             {
-               if(m_strKey.has_char())
+               if(m_strKey.has_character())
                {
                   m_ppop3->m_setHeaders[m_strKey] = m_strValue;
                }

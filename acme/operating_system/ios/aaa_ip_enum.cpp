@@ -71,7 +71,7 @@ namespace ios
 
          str = addr;
 
-         if(str.has_char())
+         if(str.has_character())
          {
 
             stra.add(str);

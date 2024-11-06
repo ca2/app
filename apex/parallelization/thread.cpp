@@ -1248,7 +1248,7 @@ bool thread::handle_message()
          informationf(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
-            ::as_string((u64)::current_itask()) + ")\n\n\n");
+            ::as_string((huge_natural)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -3641,7 +3641,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 ////
 ////            }
 ////
-////            if (strWaiting.has_char())
+////            if (strWaiting.has_character())
 ////            {
 ////
 ////               informationf("The thread %s is waiting for the following threads to finish:\r\n%s", ::type(this).name(), strWaiting.c_str());

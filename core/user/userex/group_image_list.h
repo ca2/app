@@ -28,7 +28,7 @@ namespace userex
       };
 
 
-      size_f64                        m_size;
+      double_size                        m_size;
       ::image::image_pointer                 m_pimage;
       string_array                    m_straClass;
       ::pointer<::user::button>      m_pbuttonMenu;

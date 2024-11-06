@@ -30,7 +30,7 @@
 ////class stream;
 ////class payload_stream;
 ////class string;
-//typedef iptr strsize;
+//typedef iptr character_count;
 //class payload;
 //
 //

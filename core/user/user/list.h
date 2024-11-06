@@ -45,7 +45,7 @@ namespace user
       int                                          m_iTextSpreadRadius;
       int                                          m_iTextBlurRadius;
       int                                          m_iTextBlur;
-      ::rectangle_i32                              m_rectangleSpot;
+      ::int_rectangle                              m_rectangleSpot;
       ::image::image_pointer                              m_pimageSpot;
       ::image::image_pointer                              m_pimageTime;
       bool                                         m_bHighHighLight;
@@ -121,7 +121,7 @@ namespace user
       bool is_valid_strict_item(::collection::index iStrictItem) override;
 
 
-      ::size_i32 get_item_size() override;
+      ::int_size get_item_size() override;
 
       void _001OnSort(::collection::index iSubItem) override;
       virtual void _001OnListHeaderItemClick(::collection::index iHeaderItem);
@@ -277,14 +277,14 @@ namespace user
       ::collection::count _001GetGroupCount() override;
 
 
-      bool _001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element & eelement) override;
-      bool _001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem) override;
-      bool _001HitTest_(const ::point_i32 & point, ::collection::index & iItemParam) override;
+      bool _001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element & eelement) override;
+      bool _001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem) override;
+      bool _001HitTest_(const ::int_point & point, ::collection::index & iItemParam) override;
 
 
-      bool _001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element & eelement) override;
-      bool _001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem) override;
-      bool _001DisplayHitTest(const ::point_i32 & point, ::collection::index & iItemParam) override;
+      bool _001DisplayHitTest(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element & eelement) override;
+      bool _001DisplayHitTest(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem) override;
+      bool _001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam) override;
 
 
       void _001OnAfterSort() override;
@@ -402,7 +402,7 @@ namespace user
 
       void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool this->rectangle(::rectangle_i32 * prectangle) override;
+      //virtual bool this->rectangle(::int_rectangle * prectangle) override;
 
 
       virtual void update_icon_list_impact_sort();

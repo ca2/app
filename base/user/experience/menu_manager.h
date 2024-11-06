@@ -34,7 +34,7 @@ namespace experience
       virtual void initialize_menu_manager(frame_window* pframewindow);
 
 
-      bool OnLButtonDblClk(unsigned int nFlags, const ::point_i32& point);
+      bool OnLButtonDblClk(unsigned int nFlags, const ::int_point& point);
       void relay_event(::message::message* pmessage);
 
       bool set_frame_window(frame_window* pframewindow);

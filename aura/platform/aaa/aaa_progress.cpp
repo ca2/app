@@ -25,7 +25,7 @@ int_progress::~int_progress()
 }
 
 
-void int_progress::trace_progress(i64 iStep)
+void int_progress::trace_progress(huge_integer iStep)
 {
 
    m_scalar.set(iStep);
@@ -55,7 +55,7 @@ void int_progress::progress_step()
 
 
 
-void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,i64 iValue,int iFlags)
+void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,huge_integer iValue,int iFlags)
 {
 
    if (m_scalar.m_psource == psource)

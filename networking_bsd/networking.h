@@ -100,10 +100,10 @@ namespace networking_bsd
       string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       array < ::pointer<reverse_cache_item >>            m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
-      ::i64                                              m_iListenSocket;
+      huge_integer                                              m_iListenSocket;
       /*::pointer < ::mutex > m_pmutexPool;*/
 
-      interlocked_i32                                    m_lListenSocket;
+      interlocked_int                                    m_lListenSocket;
 
       ::pointer<::sockets_bsd::SSLInitializer>           m_psslinit;
 

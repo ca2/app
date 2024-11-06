@@ -124,7 +124,7 @@
 //      {
 //
 ////         return ::IsWindow(m_oswindow) != false;
-//         return m_strBaseChannel.has_char();
+//         return m_strBaseChannel.has_character();
 //
 //      }
 //
@@ -292,7 +292,7 @@
 //      {
 //      }
 //
-//      void rx::receiver::on_post(rx * prx,long long int a,long long int b)
+//      void rx::receiver::on_post(rx * prx,huge_integer int a,huge_integer int b)
 //      {
 //      }
 //
@@ -325,7 +325,7 @@
 //      }
 //
 //
-//      void * rx::on_post(rx * prx,long long int a,long long int b)
+//      void * rx::on_post(rx * prx,huge_integer int a,huge_integer int b)
 //      {
 //
 //         if(m_preceiver != nullptr)

@@ -191,7 +191,7 @@ void channel::route_message(::message::message * pmessage)
    pmessage->m_lparam = lparam;
 
 
-//::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
+//::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point)
 ::pointer<::message::message>channel::get_message(const ::atom& atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
 {
 
@@ -528,7 +528,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    string strText = pcommand->m_atom.as_string();
 
-   if (strText.has_char())
+   if (strText.has_character())
    {
 
       if (m_atomaHandledCommands.contains(strText))

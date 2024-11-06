@@ -47,8 +47,8 @@ namespace prompt
       string str;
 
       get_text(str);
-      strsize iFind;
-      strsize iFind2;
+      character_count iFind;
+      character_count iFind2;
 
       if((iFind = str.rear_find('\n')) >= 0)
       {
@@ -57,7 +57,7 @@ namespace prompt
          if(iFind > iFind2 && iFind2 >= m_iCompromised)
          {
             string strLine = str.substr(iFind2, iFind - iFind2 - 1);
-            if(strLine.has_char())
+            if(strLine.has_character())
             {
                bool bOk = false;
                string strNewLine;

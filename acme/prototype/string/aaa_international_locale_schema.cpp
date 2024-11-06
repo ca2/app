@@ -86,9 +86,9 @@ namespace str
             _add_locale_variant(idLocale2, idSchema2);
          }
 
-         strsize iStart =idLocale2.str().get_length() + 1;
-         strsize iEnd;
-         strsize iLen;
+         character_count iStart =idLocale2.str().get_length() + 1;
+         character_count iEnd;
+         character_count iLen;
          string str;
          bool bEnd = false;
          while(!bEnd)
@@ -135,7 +135,7 @@ namespace str
       //}
 
 
-      ::atom locale_schema::localeid(const ::scoped_string & scopedstrLocale, strsize iLen)
+      ::atom locale_schema::localeid(const ::scoped_string & scopedstrLocale, character_count iLen)
       {
 
          //if(iLen == 4)
@@ -322,7 +322,7 @@ namespace str
       }
 
 
-      bool locale_schema::_add_locale_variant(const ::scoped_string & scopedstr, strsize iLen, atom idSchema)
+      bool locale_schema::_add_locale_variant(const ::scoped_string & scopedstr, character_count iLen, atom idSchema)
       {
 
 
@@ -722,12 +722,12 @@ restart:
 
       }
 
-      i64 locale_schema::increment_reference_count()
+      huge_integer locale_schema::increment_reference_count()
       {
          return matter::increment_reference_count();
       }
 
-      i64 locale_schema::release()
+      huge_integer locale_schema::release()
       {
          return matter::release();
       }

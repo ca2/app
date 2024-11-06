@@ -2,14 +2,14 @@
 
 
 //
-//CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr)
+//CLASS_DECL_ACME huge_integer strtoi(const ::scoped_string & scopedstr)
 //{
-//   return ::str::to_i64(psz);
+//   return ::str::to_huge_integer(psz);
 //}
 //
-//CLASS_DECL_ACME i64 strtoi(const unichar * psz)
+//CLASS_DECL_ACME huge_integer strtoi(const unichar * psz)
 //{
-//   return wide_to_i64(psz);
+//   return wide_to_huge_integer(psz);
 //}
 
 
@@ -31,7 +31,7 @@
 //}
 //
 
-//strsize const_empty_string::get_length() const
+//character_count const_empty_string::get_length() const
 //{
 //   return 0;
 //}

@@ -40,21 +40,21 @@ namespace draw2d_opengl
    //}
 
 
-   point_f64 path::internal_last_point()
+   double_point path::internal_last_point()
    {
 
       if(m_bHasPointInternal)
       {
 
-         //return point_f64((int) m_pointInternal.X, (int) m_pointInternal.Y);
+         //return double_point((int) m_pointInternal.X, (int) m_pointInternal.Y);
 
-         return point_f64(0, 0);
+         return double_point(0, 0);
 
       }
       else
       {
 
-         throw ::exception(error_failed, "path does not have last point_i32");
+         throw ::exception(error_failed, "path does not have last int_point");
 
       }
 
@@ -118,7 +118,7 @@ namespace draw2d_opengl
    bool path::internal_add_rect(int x,int y,int cx,int cy)
    {
 
-      //plusplus::rectangle_i32 rectangle_i32(x,y,cx,cy);
+      //plusplus::int_rectangle int_rectangle(x,y,cx,cy);
 
       //bool bOk2 = m_ppath->AddRectangle(rectangle) == plusplus::Status::Ok;
 
@@ -151,7 +151,7 @@ namespace draw2d_opengl
    }
 
 
-   point_f64 path::internal_current_point()
+   double_point path::internal_current_point()
    {
 
       return m_pointLast;
@@ -195,7 +195,7 @@ namespace draw2d_opengl
 
 
 
-   bool path::internal_add_arc(const ::rectangle_i32 & rectangle, double iStart, double iAngle)
+   bool path::internal_add_arc(const ::int_rectangle & rectangle, double iStart, double iAngle)
    {
 
       return true;
@@ -203,7 +203,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_f64& parc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_double& parc)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -213,7 +213,7 @@ namespace draw2d_opengl
    }
 
         
-   bool path::_set(::draw2d::graphics* pgraphics, const ::line_f64& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_line& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -233,7 +233,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::lines_f64& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::lines_double& pline)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -253,7 +253,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & prectangle)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle & prectangle)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -263,7 +263,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle& prectangle)
    //{
 
    //   throw ::exception(todo("::opengl::path"));
@@ -273,7 +273,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygon)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -283,7 +283,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygond)
    //{
 
    //   throw ::exception(todo("::opengl::path"));

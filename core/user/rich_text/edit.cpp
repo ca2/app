@@ -34,7 +34,7 @@ namespace user
 
       ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx);
       int longest_word(string & strSlice, double & dPosition, string strWord, double * pdaPosition, double dPositionLeft, int cx);
-      void align(line * pline, const ::rectangle_f64 & rectangle);
+      void align(line * pline, const ::double_rectangle & rectangle);
       ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str);
 
 
@@ -304,10 +304,10 @@ namespace user
       }
 
 
-      ::size_f64 edit::get_size()
+      ::double_size edit::get_size()
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          window_rectangle(rectangle);
 
@@ -334,7 +334,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rectangle(::rectangle_i32 * prectangle, ::collection::index i, enum_element eelement)
+      bool edit::get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement)
 
       {
 
@@ -372,7 +372,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(::rectangle_i32 * prectangle, ::collection::index i)
+      bool edit::get_item_rect(::int_rectangle * prectangle, ::collection::index i)
 
       {
 
@@ -396,7 +396,7 @@ namespace user
       }
 
 
-      ::item_pointer edit::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+      ::item_pointer edit::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
       {
 
          return ::user::interaction::on_hit_test(point, ezorder);
@@ -449,7 +449,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         rectangle_f64 rectangleX(rectangle);
+         double_rectangle rectangleX(rectangle);
 
          int x = (int)rectangle.left();
 
@@ -461,7 +461,7 @@ namespace user
 
          ::pointer<line>pline;
 
-         //strsize iCharLayout = 0;
+         //character_count iCharLayout = 0;
 
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
@@ -498,7 +498,7 @@ namespace user
 
          //pointer_array < span > spana;
 
-         //strsize iSpanCharEnd = 0;
+         //character_count iSpanCharEnd = 0;
 
          //index iSpan = 0;
 
@@ -622,7 +622,7 @@ namespace user
 
             double dPositionLeft = 0.;
 
-            strsize iSpanChar = 0;
+            character_count iSpanChar = 0;
 
             do
             {
@@ -697,7 +697,7 @@ namespace user
                if (ansi_char_isspace(straWords.last().last_char())
                   || (iSpan + 1 < prichtextdata->m_spana.get_count()
                      && (spana[iSpan]->is_end_of_line()
-                        || (spana[iSpan + 1]->m_str.has_char()
+                        || (spana[iSpan + 1]->m_str.has_character()
                            && ansi_char_isspace(spana[iSpan + 1]->m_str[0]))))
                   || cWords < straWords.get_count())
                {
@@ -860,10 +860,10 @@ namespace user
       }
 
 
-      ::rectangle_f64 edit::get_drawing_rect()
+      ::double_rectangle edit::get_drawing_rect()
       {
 
-         ::rectangle_f64 rectangle;
+         ::double_rectangle rectangle;
 
          if (is_picture_enabled())
          {
@@ -905,7 +905,7 @@ namespace user
 
          }
 
-         //rectangle_f64 rectangleX(rectangle);
+         //double_rectangle rectangleX(rectangle);
 
          auto rectangle = get_drawing_rect();
 
@@ -1020,9 +1020,9 @@ namespace user
 
          {
 
-            //strsize iSelBeg = get_sel_beg();
+            //character_count iSelBeg = get_sel_beg();
 
-            //strsize iSelEnd = get_sel_end();
+            //character_count iSelEnd = get_sel_end();
 
             for (::collection::index iLine = 0; iLine < plinea->get_count(); iLine++)
             {
@@ -1036,9 +1036,9 @@ namespace user
 
                   auto pboxEnd = pline->last_pointer();
 
-                  strsize iBoxPosBeg = pboxBeg->m_iPosBeg;
+                  character_count iBoxPosBeg = pboxBeg->m_iPosBeg;
 
-                  strsize iBoxPosEnd = pboxEnd->m_iPosEnd;
+                  character_count iBoxPosEnd = pboxEnd->m_iPosEnd;
 
                   if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                   {
@@ -1117,7 +1117,7 @@ namespace user
                            }
 
                            pgraphics->fill_rectangle(
-                              ::rectangle_f64(l,
+                              ::double_rectangle(l,
                                  pboxBeg->m_rectangleBox.top(),
                                  r,
                                  pboxEnd->m_rectangleBox.bottom()),
@@ -1139,7 +1139,7 @@ namespace user
 
          ::image::image_pointer imageDropShadow;
 
-         ::rectangle_i32 rDropShadow;
+         ::int_rectangle rDropShadow;
 
          if (m_ppictureimpl != nullptr)
          {
@@ -1159,7 +1159,7 @@ namespace user
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
-            ::size_i32 sz = m_ppictureimpl->m_rectangleDrawing.size();
+            ::int_size sz = m_ppictureimpl->m_rectangleDrawing.size();
 
             pimage->g()->set_origin(sz.cx() / 2, sz.cy() / 2);
 
@@ -1216,7 +1216,7 @@ namespace user
 
                auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
 
-               pgraphics->fill_rectangle(::rectangle_f64(r,
+               pgraphics->fill_rectangle(::double_rectangle(r,
                   pbox->m_rectangleBox.top() + 1,
                   r + 0.5,
                   pbox->m_rectangleBox.bottom() - dDescent),
@@ -1336,21 +1336,21 @@ namespace user
       }
 
 
-      bool edit::_001IsPointInside(const ::point_i32 & pointParam)
+      bool edit::_001IsPointInside(const ::int_point & pointParam)
       {
 
          if (is_picture_enabled())
          {
 
-            point_f64 point(pointParam);
+            double_point point(pointParam);
 
             screen_to_client()(point);
 
-            ::rectangle_i32 rWindow;
+            ::int_rectangle rWindow;
             
             window_rectangle(rWindow);
 
-            rectangle_f64 rectangleWindow;
+            double_rectangle rectangleWindow;
 
             rectangleWindow = rWindow;
             
@@ -1366,7 +1366,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            return rectangleX.contains(::point_i32(point));
+            return rectangleX.contains(::int_point(point));
 
          }
 
@@ -1778,7 +1778,7 @@ namespace user
       }
 
 
-      //strsize edit::get_text_length()
+      //character_count edit::get_text_length()
       //{
 
       //   return 0;
@@ -1786,7 +1786,7 @@ namespace user
       //}
 
 
-      void edit::get_text_selection(strsize & iBeg, strsize & iEnd) const
+      void edit::get_text_selection(character_count & iBeg, character_count & iEnd) const
       {
 
       }
@@ -1829,7 +1829,7 @@ namespace user
       //}
 
 
-      void edit::get_text_composition_area(::rectangle_i32 & r)
+      void edit::get_text_composition_area(::int_rectangle & r)
       {
 
       }
@@ -1862,7 +1862,7 @@ namespace user
 
       }
 
-      strsize edit::get_sel_beg()
+      character_count edit::get_sel_beg()
       {
 
          auto length = _001GetLayoutTextLength();
@@ -1876,7 +1876,7 @@ namespace user
       }
 
 
-      strsize edit::get_sel_end()
+      character_count edit::get_sel_end()
       {
 
          return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetLayoutTextLength());
@@ -1993,7 +1993,7 @@ namespace user
       }
 
 
-      ::collection::index edit::SelToLine(strsize iSel)
+      ::collection::index edit::SelToLine(character_count iSel)
       {
 
          return sel_line(*m_plinea, iSel);
@@ -2001,7 +2001,7 @@ namespace user
       }
 
 
-      ::collection::index edit::LineColumnToSel(::collection::index iLine, strsize iColumn)
+      ::collection::index edit::LineColumnToSel(::collection::index iLine, character_count iColumn)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -2049,7 +2049,7 @@ namespace user
       }
 
 
-      strsize edit::_hit_test(point_f64 point)
+      character_count edit::_hit_test(double_point point)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -2058,7 +2058,7 @@ namespace user
 
          //double xLast = 0.0;
 
-         rectangle_f64 rBox;
+         double_rectangle rBox;
 
          rBox.right() = -1024.0 * 1024.0 * 1024.0;
          rBox.bottom() = -1024.0 * 1024.0 * 1024.0;
@@ -2069,7 +2069,7 @@ namespace user
 
          double yLast = yStart - 1.0;
 
-         strsize iLast = 0;
+         character_count iLast = 0;
 
          auto plinea = m_plinea;
 
@@ -2099,7 +2099,7 @@ namespace user
 
                   double xRight;
 
-                  strsize iPos = pbox->m_iPosBeg;
+                  character_count iPos = pbox->m_iPosBeg;
 
                   if (point.x() <= xLeft)
                   {
@@ -2172,7 +2172,7 @@ namespace user
       }
 
 
-      strsize edit::_hit_test_line_x(::collection::index iLine, double x)
+      character_count edit::_hit_test_line_x(::collection::index iLine, double x)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -2216,7 +2216,7 @@ namespace user
 
                double xRight;
 
-               strsize iPos = pbox->m_iPosBeg;
+               character_count iPos = pbox->m_iPosBeg;
 
                for (; iPos < pbox->m_iPosEnd; iPos++)
                {
@@ -2258,9 +2258,9 @@ namespace user
 
          //bool bNeedRedraw = false;
 
-         strsize iSelBeg = m_iSelBeg;
+         character_count iSelBeg = m_iSelBeg;
 
-         strsize iSelEnd = m_iSelEnd;
+         character_count iSelEnd = m_iSelEnd;
 
          string str;
 
@@ -2333,7 +2333,7 @@ namespace user
       }
 
 
-      strsize edit::_001GetLayoutTextLength() const
+      character_count edit::_001GetLayoutTextLength() const
       {
 
          _synchronous_lock synchronouslock(this->synchronization());
@@ -2352,7 +2352,7 @@ namespace user
       }
 
 
-      void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangleBox)
+      void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangleBox)
       {
 
          _synchronous_lock synchronouslock(pgraphics->synchronization());
@@ -2389,7 +2389,7 @@ namespace user
 
                //}
 
-               ::rectangle_i32 rectangle = pbox->m_rectangleBox;
+               ::int_rectangle rectangle = pbox->m_rectangleBox;
 
 
                if (pformat->m_escript == e_script_subscript)
@@ -2433,7 +2433,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  if (strText.has_char())
+                  if (strText.has_character())
                   {
 
                      pgraphics->set(pformat->get_font(pgraphics));

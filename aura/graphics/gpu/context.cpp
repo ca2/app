@@ -217,7 +217,7 @@ namespace gpu
    }
 
 
-   void context::create_offscreen_buffer(const ::size_i32& size)
+   void context::create_offscreen_buffer(const ::int_size& size)
    {
 
       send([this, size]()
@@ -265,7 +265,7 @@ namespace gpu
    }
 
 
-   void context::_create_offscreen_buffer(const ::size_i32& size)
+   void context::_create_offscreen_buffer(const ::int_size& size)
    {
 
       //return ::success_none;
@@ -273,7 +273,7 @@ namespace gpu
    }
 
 
-   void context::resize_offscreen_buffer(const ::size_i32& size)
+   void context::resize_offscreen_buffer(const ::int_size& size)
    {
 
       send([this, size]()

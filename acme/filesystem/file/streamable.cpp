@@ -115,13 +115,13 @@ namespace file
       if (iReadAtMostByteCount < 0)
       {
 
-         iReadAtMostByteCount = (strsize)uSize;
+         iReadAtMostByteCount = (character_count)uSize;
 
       }
       else
       {
 
-         iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+         iReadAtMostByteCount = minimum(iReadAtMostByteCount, (character_count)uSize);
 
       }
 

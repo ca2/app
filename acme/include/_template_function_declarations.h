@@ -107,8 +107,8 @@ inline void assign(short & sh, const ::payload& r);
 inline void assign(unsigned short & ush, const ::payload& r);
 inline void assign(int & i, const ::payload& r);
 inline void assign(unsigned int & ui, const ::payload& r);
-inline void assign(::i64& i64, const ::payload& r);
-inline void assign(::u64& u64, const ::payload& r);
+inline void assign(huge_integer & hi, const ::payload& r);
+inline void assign(huge_natural & hn, const ::payload& r);
 
 
 //CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
@@ -187,7 +187,7 @@ namespace acme
 
 
 
-inline ::u64 make64_from32(unsigned int l, unsigned int h);
+inline huge_natural make64_from32(unsigned int l, unsigned int h);
 
 //inline bool is_memory_segment_ok(const void* p, memsize size, bool bReadWrite = true);
 //
@@ -198,7 +198,7 @@ inline ::u64 make64_from32(unsigned int l, unsigned int h);
 //inline bool is_string_ok(const ::scoped_string & scopedstr, memsize nMaxLength = UINT_MAX);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
+inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
 CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr);
@@ -231,10 +231,10 @@ inline bool is_reference_set(const TYPE& t);
 
 
 
-inline bool is_impact_group(::u64 u, ::u64 uGroup);
+inline bool is_impact_group(huge_natural u, huge_natural uGroup);
 
 
-inline bool is_impact_subgroup(::u64 u, ::u64 uGroup);
+inline bool is_impact_subgroup(huge_natural u, huge_natural uGroup);
 
 
 inline bool is_file_or_folder2(const ::file::enum_type& etype);
@@ -248,15 +248,15 @@ inline bool exists(const ::file::enum_type& etype);
 //CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
+CLASS_DECL_ACME ::ansi_character * __u64toansi(huge_natural u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
-CLASS_DECL_ACME ::ansi_character * __i64toansi(::i64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
+CLASS_DECL_ACME ::ansi_character * __huge_integertoansi(huge_integer u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
 
 template<typename T1, typename T2>

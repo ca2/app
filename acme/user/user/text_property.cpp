@@ -171,7 +171,7 @@ namespace user
    //}
 
 
-   //strsize text_property::get_text_length()
+   //character_count text_property::get_text_length()
    //{
 
    //   string str;
@@ -183,7 +183,7 @@ namespace user
    //}
 
 
-   //void text_property::get_text(char * psz, strsize len)
+   //void text_property::get_text(char * psz, character_count len)
    //{
 
    //   string str;
@@ -195,7 +195,7 @@ namespace user
    //}
 
 
-   //void text_property::get_text(string & str, strsize iBeg, strsize iEnd)
+   //void text_property::get_text(string & str, character_count iBeg, character_count iEnd)
    //{
 
    //   // default implementation, probably inefficient
@@ -213,7 +213,7 @@ namespace user
    //}
 
 
-   //void text_property::set_text(const ::string & str, strsize iLen, const ::action_context & context)
+   //void text_property::set_text(const ::string & str, character_count iLen, const ::action_context & context)
    //{
 
    //   set_text(str.substr(0, iLen),context);
@@ -221,7 +221,7 @@ namespace user
    //}
 
 
-   //void text_property::_001GetSel(strsize & iBeg, strsize & iEnd)
+   //void text_property::_001GetSel(character_count & iBeg, character_count & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -230,7 +230,7 @@ namespace user
    //}
 
 
-   //void text_property::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //void text_property::set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -240,7 +240,7 @@ namespace user
    //}
 
 
-   //void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
+   //void text_property::get_text_selection(character_count & iBeg, character_count & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -249,7 +249,7 @@ namespace user
    //}
 
 
-   //void text_property::_001SetSelEnd(strsize iEnd, const ::action_context & actioncontext)
+   //void text_property::_001SetSelEnd(character_count iEnd, const ::action_context & actioncontext)
    //{
 
    //   __UNREFERENCED_PARAMETER(iEnd);
@@ -314,7 +314,7 @@ namespace user
    //}
 
 
-   //void text::get_text_composition_area(::rectangle_i32& rectangle)
+   //void text::get_text_composition_area(::int_rectangle& rectangle)
    //{
 
 

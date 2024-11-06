@@ -45,9 +45,9 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void send_scroll_x_message(enum_scroll_command ecommand, double dPosition = F64_MOST_NEGATIVE);
+      virtual void send_scroll_x_message(enum_scroll_command ecommand, double dPosition = DOUBLE_MOST_NEGATIVE);
 
-      //virtual void GetScrollRect(::rectangle_i32 * prectangle);
+      //virtual void GetScrollRect(::int_rectangle * prectangle);
 
       void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;

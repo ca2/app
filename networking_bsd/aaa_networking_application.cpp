@@ -165,7 +165,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
       auto & phandler = assoc.m_element2;
 
-      if (strFolder.has_char() && phandler)
+      if (strFolder.has_character() && phandler)
       {
 
          string strScript = "/" + strFolder;

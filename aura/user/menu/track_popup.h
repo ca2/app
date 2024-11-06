@@ -34,8 +34,8 @@ namespace menu
       ::pointer < ::menu::menu >          m_pmenu;
       ::pointer < ::user::interaction >   m_puserinteractionTarget;
       ::pointer < ::channel >             m_pchannelNotify;
-      ::rectangle_i32                     m_rectangleScreenHint;
-      ::point_i32                         m_pointCursorHint;
+      ::int_rectangle                     m_rectangleScreenHint;
+      ::int_point                         m_pointCursorHint;
       ::menu::e_track_popup               m_etrackpopup;
       
       
@@ -46,8 +46,8 @@ namespace menu
       track_popup(::menu::menu * pmenu,
                   ::user::interaction * puserinteractionTarget,
                   ::channel * pchannelNotify,
-                  const ::point_i32 & pointCursorHint = {I32_MINIMUM,I32_MINIMUM},
-                  const ::rectangle_i32 & rectangleScreenHint = {I32_MINIMUM, I32_MINIMUM, I32_MINIMUM, I32_MINIMUM},
+                  const ::int_point & pointCursorHint = {I32_MINIMUM,I32_MINIMUM},
+                  const ::int_rectangle & rectangleScreenHint = {I32_MINIMUM, I32_MINIMUM, I32_MINIMUM, I32_MINIMUM},
                   ::menu::e_track_popup etrackpopup = {});
       
       virtual void track(const ::procedure & procedureFinished);

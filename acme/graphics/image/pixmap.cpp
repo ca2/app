@@ -22,7 +22,7 @@ void pixmap::mult_alpha()
 {
 
    unsigned char * dst = (unsigned char *)data();
-   i64 size = m_size.area();
+   huge_integer size = m_size.area();
 
 
    //  / 255 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -147,7 +147,7 @@ void pixmap::copy(const ::pixmap * ppixmapSrc)
 }
 
 
-void pixmap::copy(const ::size_i32 & size, const ::pixmap * ppixmapSrc)
+void pixmap::copy(const ::int_size & size, const ::pixmap * ppixmapSrc)
 {
 
    m_pimage32->copy(size, scan_size(), ppixmapSrc);

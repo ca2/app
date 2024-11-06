@@ -124,7 +124,7 @@ struct _xmpp_handlist_t {
 	/* timed handlers */
 	struct {
 	    unsigned long period;
-	    u64 last_stamp;
+	    huge_natural last_stamp;
 	};
 	/* atom handlers */
 	struct {
@@ -152,7 +152,7 @@ struct _xmpp_conn_t {
     xmpp_conn_type_t type;
 
     xmpp_conn_state_t state;
-    u64 timeout_stamp;
+    huge_natural timeout_stamp;
     int error;
     xmpp_stream_error_t *stream_error;
     sock_t sock;
@@ -242,7 +242,7 @@ struct _xmpp_stanza_t {
 /* handler management */
 void handler_fire_stanza(xmpp_conn_t * const conn,
 			 xmpp_stanza_t * const stanza);
-u64 handler_fire_timed(xmpp_ctx_t * const ctx);
+huge_natural handler_fire_timed(xmpp_ctx_t * const ctx);
 void handler_reset_timed(xmpp_conn_t *conn, int user_only);
 void handler_add_timed(xmpp_conn_t * const conn,
 		       xmpp_timed_handler handler,

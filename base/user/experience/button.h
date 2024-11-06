@@ -30,7 +30,7 @@ namespace experience
 
       bool should_draw() override;
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       virtual void UpdateWndRgn();
 

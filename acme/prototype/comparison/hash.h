@@ -1,7 +1,7 @@
 #pragma once
 
 
-//constexpr ::u64 hash_cat(u64 uHash1, u64 uHash2) { return (uHash1 << 32) ^ uHash2; }
+//constexpr huge_natural hash_cat(huge_natural uHash1, huge_natural uHash2) { return (uHash1 << 32) ^ uHash2; }
 
 
 

@@ -342,9 +342,9 @@ bool file_context::exists(const ::file::path &pathParam)
 //   else
 //   {
 //
-//      varRet = (((u64) data.nFileSizeHigh) << 32) | (u64) data.nFileSizeLow;
+//      varRet = (((huge_natural) data.nFileSizeHigh) << 32) | (huge_natural) data.nFileSizeLow;
 //
-//      ((::file::path &) path).m_iSize = varRet.m_i64;
+//      ((::file::path &) path).m_iSize = varRet.m_hi;
 //
 //   }
 //
@@ -365,7 +365,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //
 //      varRet = (iptr)stat.st_size;
 //
-//      ((::file::path &)path).m_iSize = varRet.m_i64;
+//      ((::file::path &)path).m_iSize = varRet.m_hi;
 //
 //   }
 //
@@ -1775,7 +1775,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::payload varNew;
 
-   if (pwriter.nok()&& directory()->is(varTarget) && (varSource.as_file_path().name().has_char() && preader.nok()))
+   if (pwriter.nok()&& directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && preader.nok()))
    {
 
       varNew = ::file::path(varTarget) / varSource.as_file_path().name();
@@ -2335,7 +2335,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
       }
 
    }
-   //if (strFail.has_char())
+   //if (strFail.has_character())
    //{
    //   App(papp).message_box(nullptr, strFail, e_message_box_icon_exclamation);
    //}
@@ -2566,7 +2566,7 @@ file_pointer file_context::get(const ::file::path &name)
 void file_context::set_extension(::file::path & path, const ::scoped_string & scopedstrExtension)
 {
 
-   strsize iEnd = path.rear_find_index('.');
+   character_count iEnd = path.rear_find_index('.');
 
    if (iEnd < 0)
    {
@@ -2600,7 +2600,7 @@ void file_context::normalize(string &str)
 
    }
 
-   while (str.has_char() &&
+   while (str.has_character() &&
           (str.right(1) == "\\" ||
            str.right(1) == "/"))
    {
@@ -2697,7 +2697,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   string strMd5 = "01234567012345670123456701234567";
 //
-//   u64 iPos;
+//   huge_natural iPos;
 //
 //   for (int i = 0; i < stra.size(); i++)
 //   {
@@ -2744,7 +2744,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   read_gen_string(pfile, nullptr, strVersion);
 //
-//   i64 n;
+//   huge_integer n;
 //
 //   string strRelative;
 //   string strMd5;
@@ -2752,7 +2752,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   int iBufSize = 1024 * 1024;
 //   memory buf;
 //   buf.set_size(iBufSize);
-//   i64 iLen;
+//   huge_integer iLen;
 //   MD5_CTX ctx;
 //
 //   auto pfile2 = __create < ::file::file >();
@@ -2795,7 +2795,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 
 
-//void file_context::write_n_number(::file::file * pfile, void * pctx, i64 iNumber)
+//void file_context::write_n_number(::file::file * pfile, void * pctx, huge_integer iNumber)
 //{
 //
 //   string str;
@@ -2814,10 +2814,10 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-//void file_context::read_n_number(::file::file * pfile, void * pctx, i64 & iNumber)
+//void file_context::read_n_number(::file::file * pfile, void * pctx, huge_integer & iNumber)
 //{
 //
-//   u64 uRead;
+//   huge_natural uRead;
 //
 //   string str;
 //
@@ -2846,7 +2846,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      MD5_Update((MD5_CTX *)pctx, &ch, 1);
 //   }
 //
-//   iNumber = ::str::to_i64(str);
+//   iNumber = ::str::to_huge_integer(str);
 //
 //}
 
@@ -2863,15 +2863,15 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 //void file_context::read_gen_string(::file::file * pfile, void * pctx, string & str)
 //{
-//   i64 iLen;
+//   huge_integer iLen;
 //   read_n_number(pfile, pctx, iLen);
-//   char * psz = str.get_buffer((strsize)(iLen + 1));
+//   char * psz = str.get_buffer((character_count)(iLen + 1));
 //
 //   pfile->read(psz, (memsize)iLen);
 //
 //   if (pctx != nullptr)
 //   {
-//      i64 iProcessed = 0;
+//      huge_integer iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
 //         int iProcess = (int)minimum(1024 * 1024, iLen - iProcessed);
@@ -3064,7 +3064,7 @@ void file_context::finalize()
 
 //   file_pointer fileOut;
 
-//   i64 iTry = 0;
+//   huge_integer iTry = 0;
 
 //   ::application * papp = ::get_app(pparticle);
 
@@ -3228,11 +3228,11 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
    if (iFind > 5)
    {
 
-      strsize iEncoding1 = strSample.find_index(",", iFind + 1);
+      character_count iEncoding1 = strSample.find_index(",", iFind + 1);
 
-      strsize iEncoding2 = strSample.find_index(";", iFind + 1);
+      character_count iEncoding2 = strSample.find_index(";", iFind + 1);
 
-      strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
+      character_count iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
 
       if (iFind > 5 && iEncoding > iFind)
       {
@@ -3762,7 +3762,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
    
    auto strProtocol = ::url::url(pathProcessed).connect().protocol();
    
-   if(strProtocol.has_char())
+   if(strProtocol.has_character())
    {
       
       auto pfile = defer_get_protocol_file(strProtocol, pathProcessed, eopen, pfileexception);

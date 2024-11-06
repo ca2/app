@@ -55,7 +55,7 @@ namespace mathematics
       inline double get_pi() const { return m_dPi; }
       inline float get_pi_f() const { return m_fPi; }
 
-      static bool IsPowerOfTwo(u64 uiValue);
+      static bool IsPowerOfTwo(huge_natural uiValue);
       static unsigned int ReverseBits(unsigned int index, unsigned int NumBits);
       static inline void MaxClip(double * pnClipValue, double nMaxValue);
       static inline void MinClip(double * pnClipValue, double nMinValue);
@@ -208,7 +208,7 @@ namespace mathematics
 
       //float random(float f1, float f2);
       //double random(double d1, double d2);
-      //i64 random(i64 i1, i64 i2);
+      //huge_integer random(huge_integer i1, huge_integer i2);
       //int random(int i1, int i2);
       //template < typename int >
       //int __random_int(int i1, int i2);
@@ -216,19 +216,19 @@ namespace mathematics
 
       //#include "acme/prototype/prototype/matter.h"
       void random(const block & block);
-      //u64 gen_rand();
+      //huge_natural gen_rand();
 //void random_bytes(void * buf, memsize dwLen);
 //void RandomBytes(void * buf, memsize dwLen);
 //void gen_rand(void * buf, memsize dwLen);
 
       void random_alphanumeric(char * buf, memsize dwLen);
-      //string gen_rand_alnum(strsize s);
-      string random_alphanumeric(strsize s);
+      //string gen_rand_alnum(character_count s);
+      string random_alphanumeric(character_count s);
 
       char random_char();
       unsigned char random_uch();
       unsigned int random_ui();
-      u64 random_u64();
+      huge_natural random_huge_natural();
 
       int rand_max();
 
@@ -287,7 +287,7 @@ namespace mathematics
 
          ::largest_type < FLOATING1, FLOATING2 > fRange = fMax - fMin;
 
-         ::u64 u = 0;
+         huge_natural u = 0;
 
          random(u);
 
@@ -310,7 +310,7 @@ namespace mathematics
 
          ::largest_type < INTEGRAL1, INTEGRAL2 > iRange = iMax - iMin;
 
-         auto u = random_u64();
+         auto u = random_huge_natural();
 
          return(::largest_type < INTEGRAL1, INTEGRAL2 >) ((u % (iRange + 1)) + iMin);
 

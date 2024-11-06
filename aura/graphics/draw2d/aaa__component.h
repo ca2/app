@@ -20,10 +20,10 @@ namespace draw2d
 
    extern float Cosines[360];
    extern float Sines[360];
-   extern i64 CosN[360]; // * 1 << 31
-   extern i64 SinN[360];
-   extern i64 Cos10N[10]; // until 10 degress
-   extern i64 Sin10N[10]; // more precision * 1 << 34
+   extern huge_integer CosN[360]; // * 1 << 31
+   extern huge_integer SinN[360];
+   extern huge_integer Cos10N[10]; // until 10 degress
+   extern huge_integer Sin10N[10]; // more precision * 1 << 34
    extern double dPi;
 
 

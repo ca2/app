@@ -179,7 +179,7 @@ namespace acme
 
       //   string str(strSource);
 
-      //   strsize iPos;
+      //   character_count iPos;
 
       //   char ch;
 
@@ -214,7 +214,7 @@ namespace acme
       //      else if (ch == '{' && chNext == '$')
       //      {
 
-      //         strsize iEnd = str.find('}', iPos + 1);
+      //         character_count iEnd = str.find('}', iPos + 1);
 
       //         if (iEnd < 0)
       //         {
@@ -258,9 +258,9 @@ namespace acme
 
       //         }
 
-      //         strsize iStart = iPos;
+      //         character_count iStart = iPos;
 
-      //         strsize iEnd = iStart + 2;
+      //         character_count iEnd = iStart + 2;
 
       //         for (; iEnd < str.length(); iEnd++)
       //         {

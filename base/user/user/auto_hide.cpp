@@ -138,7 +138,7 @@ namespace user
       //   if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
       //   {
 
-      //      ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
+      //      ::int_rectangle rectangleTab(get_data()->m_rectangleTab);
 
       //      rectangleTab+=client_to_screen();
 
@@ -176,7 +176,7 @@ namespace user
       //   else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
       //   {
 
-      //      ::rectangle_i32 rectangleWindow;
+      //      ::int_rectangle rectangleWindow;
 
       //      window_rectangle(rectangleWindow);
 

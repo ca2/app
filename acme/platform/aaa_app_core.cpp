@@ -349,7 +349,7 @@ void app_core::system_init()
 //
 //   get_command_line_parameter(strUid, strCommandLine, "uid");
 //
-//   if (strUid.has_char())
+//   if (strUid.has_character())
 //   {
 //
 //      uid_t uid = atoi(strUid);
@@ -398,13 +398,13 @@ void app_core::system_init()
 
    //get_command_line_parameter(strAppId, strCommandLine, "app");
 
-   //if (strAppId.has_char())
+   //if (strAppId.has_character())
    //{
 
    //   m_strAppId = strAppId;
 
    //}
-   //else if(m_strAppId.has_char())
+   //else if(m_strAppId.has_character())
    //{
 
    //   strCommandLine += " app=" +m_strAppId;
@@ -554,7 +554,7 @@ string app_core::get_command_line()
 //void app_core::defer_load_backbone_libraries(string strAppId)
 //{
 //
-//   if (strAppId.has_char())
+//   if (strAppId.has_character())
 //   {
 //
 //      void * hmodule = nullptr;

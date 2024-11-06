@@ -15,7 +15,7 @@ unsigned int size = sizeof(path);
 if (_NSGetExecutablePath(path, &size) == 0)
 printf("executable path is %s\n", path);
 else
-printf("buffer too small; need size_i32 %u\n", size);
+printf("buffer too small; need int_size %u\n", size);
 //                     strPath += ".app/Contents/MacOS/app";
 
    return path;

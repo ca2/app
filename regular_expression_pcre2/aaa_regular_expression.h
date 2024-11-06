@@ -19,11 +19,11 @@ namespace regular_expression_pcre2
 
       //virtual int matches(const string& str, regex_context* pcreContext = nullptr) = 0;
 
-      //virtual int matches(const ::string & psz, strsize len, regex_context* pcreContext = nullptr) = 0;
+      //virtual int matches(const ::string & psz, character_count len, regex_context* pcreContext = nullptr) = 0;
 
       //virtual void matches(strsize_array& ia, const string& str, regex_context* pcreContext = nullptr) = 0;
 
-      //virtual void matches(strsize_array& ia, const ::string & psz, strsize len, regex_context* pcreContext = nullptr) = 0;
+      //virtual void matches(strsize_array& ia, const ::string & psz, character_count len, regex_context* pcreContext = nullptr) = 0;
 
       //virtual bool replace(string& str, const string& strPrefix, string& strRet, regex_context* pcreContext = nullptr) = 0;
 
@@ -31,11 +31,11 @@ namespace regular_expression_pcre2
 
    /*   virtual int matches(const string& str) = 0;
 
-      virtual int matches(const ::string & psz, strsize len) = 0;
+      virtual int matches(const ::string & psz, character_count len) = 0;
 
       virtual int matches(strsize_array& ia, const string& str) = 0;
 
-      virtual int matches(strsize_array& ia, const ::string & psz, strsize len) = 0;
+      virtual int matches(strsize_array& ia, const ::string & psz, character_count len) = 0;
 
       virtual bool replace(string& str, const string& strPrefix, string& strRet) = 0;*/
 

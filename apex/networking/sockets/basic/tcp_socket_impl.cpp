@@ -1281,7 +1281,7 @@
 //      //   if (m_bClientSessionSet || m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
 //      //   {
 //
-//      //      if (m_strTlsHostName.has_char())
+//      //      if (m_strTlsHostName.has_character())
 //      //      {
 //
 //      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const char *)m_strTlsHostName);
@@ -2079,18 +2079,18 @@
 //   }
 //
 //
-//   u64 tcp_socket_impl::GetBytesReceived(bool clear)
+//   huge_natural tcp_socket_impl::GetBytesReceived(bool clear)
 //   {
-//      u64 z = m_bytes_received;
+//      huge_natural z = m_bytes_received;
 //      if(clear)
 //         m_bytes_received = 0;
 //      return z;
 //   }
 //
 //
-//   u64 tcp_socket_impl::GetBytesSent(bool clear)
+//   huge_natural tcp_socket_impl::GetBytesSent(bool clear)
 //   {
-//      u64 z = m_bytes_sent;
+//      huge_natural z = m_bytes_sent;
 //      if(clear)
 //         m_bytes_sent = 0;
 //      return z;
@@ -2597,7 +2597,7 @@
 ////#ifdef WINDOWS
 ////
 ////
-////i64 networking_last_error()
+////huge_integer networking_last_error()
 ////{
 ////
 ////   return WSAGetLastError();
@@ -2608,7 +2608,7 @@
 ////#else
 ////
 ////
-////i64 networking_last_error()
+////huge_integer networking_last_error()
 ////{
 ////
 ////   return errno;

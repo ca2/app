@@ -29,9 +29,9 @@ namespace hotplugin
 
       ::image::image_pointer               m_pimage;
 
-      ::rectangle_i32                        m_rectangle;
-      ::rectangle_i32                        m_rectangleX;
-      ::rectangle_i32                        m_rectangleWindow;
+      ::int_rectangle                        m_rectangle;
+      ::int_rectangle                        m_rectangleX;
+      ::int_rectangle                        m_rectangleWindow;
 
       bool                          m_bHostStarterStart;
 
@@ -58,10 +58,10 @@ namespace hotplugin
       virtual oswindow get_host_user_interaction() override;
 
       //using ::hotplugin::plugin::window_rectangle;
-      //virtual bool window_rectangle(::rectangle_i64 * prectangle) override;
+      //virtual bool window_rectangle(::i64_rectangle * prectangle) override;
 
       //using ::hotplugin::plugin::this->rectangle;
-      //virtual bool this->rectangle(::rectangle_i64 * prectangle) override;
+      //virtual bool this->rectangle(::i64_rectangle * prectangle) override;
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();
@@ -89,7 +89,7 @@ namespace hotplugin
 
       virtual int  start_ca2_system() override;
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle) override;
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle) override;
 
 
       virtual int start_app_install(const ::string & pszCommandLine);
@@ -116,13 +116,13 @@ namespace hotplugin
 
       virtual void set_status(const ::string & pszStatus) override;
 
-      virtual void set_bitmap(::draw2d::graphics * pimage, const ::rectangle_i32 & rectangle);
+      virtual void set_bitmap(::draw2d::graphics * pimage, const ::int_rectangle & rectangle);
 
 
-      virtual void paint_bitmap(::draw2d::graphics * pimage,const ::rectangle_i32 & rectangle);
+      virtual void paint_bitmap(::draw2d::graphics * pimage,const ::int_rectangle & rectangle);
 
 
-      virtual void blend_bitmap(::draw2d::graphics * pimage,const ::rectangle_i32 & rectangle);
+      virtual void blend_bitmap(::draw2d::graphics * pimage,const ::int_rectangle & rectangle);
 
 
       virtual void translate_mouse_message(int * px, int * py) override;

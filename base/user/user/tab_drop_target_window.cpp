@@ -89,7 +89,7 @@ namespace user
       for (auto eposition : m_positiona)
       {
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          m_ptab->GetDragRect(rectangle, eposition);
 

@@ -9,31 +9,31 @@
 
 
 // nanosecond unit ηs - greek eta - greek etha
-constexpr class time operator "" _ηs(unsigned long long int u) { return nanosecond_time(u); }
+constexpr class time operator "" _ηs(huge_natural u) { return nanosecond_time(u); }
 
 
 // microsecond unit μs - greek mu
-constexpr class time operator "" _μs(unsigned long long int u) { return microsecond_time(u); }
+constexpr class time operator "" _μs(huge_natural u) { return microsecond_time(u); }
 
 
-constexpr class time operator "" _ms(unsigned long long int u) { return millisecond_time(u); }
+constexpr class time operator "" _ms(huge_natural u) { return millisecond_time(u); }
 
 
-constexpr class time operator "" _s(unsigned long long int u) { return second_time(u); }
+constexpr class time operator "" _s(huge_natural u) { return second_time(u); }
 
 
-constexpr class time operator "" _min(unsigned long long int u) { return minute_time(u); }
-constexpr class time operator "" _minute(unsigned long long int u) { return minute_time(u); }
-constexpr class time operator "" _minutes(unsigned long long int u) { return minute_time(u); }
+constexpr class time operator "" _min(huge_natural u) { return minute_time(u); }
+constexpr class time operator "" _minute(huge_natural u) { return minute_time(u); }
+constexpr class time operator "" _minutes(huge_natural u) { return minute_time(u); }
 
 
-constexpr class time operator "" _h(unsigned long long int u) { return hour_time(u); }
-constexpr class time operator "" _hour(unsigned long long int u) { return hour_time(u); }
-constexpr class time operator "" _hours(unsigned long long int u) { return hour_time(u); }
+constexpr class time operator "" _h(huge_natural u) { return hour_time(u); }
+constexpr class time operator "" _hour(huge_natural u) { return hour_time(u); }
+constexpr class time operator "" _hours(huge_natural u) { return hour_time(u); }
 
 
-constexpr class time operator "" _day(unsigned long long int u) { return day_time(u); }
-constexpr class time operator "" _days(unsigned long long int u) { return day_time(u); }
+constexpr class time operator "" _day(huge_natural u) { return day_time(u); }
+constexpr class time operator "" _days(huge_natural u) { return day_time(u); }
 
 
 

@@ -98,7 +98,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   i64 thread::increment_reference_count()
+   huge_integer thread::increment_reference_count()
    {
 
       return ::thread::increment_reference_count();
@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   i64 thread::decrement_reference_count()
+   huge_integer thread::decrement_reference_count()
    {
 
       return ::thread::decrement_reference_count();
@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   i64 thread::release()
+   huge_integer thread::release()
    {
 
       return ::thread::release();
@@ -719,7 +719,7 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            ::i64 iMessage = pmessage->m_atom.as_i64();
+            huge_integer iMessage = pmessage->m_atom.as_huge_integer();
 
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
@@ -764,7 +764,7 @@ namespace user
 
             //   return true;
 
-            //   ::i64 iApp = iMessage - WM_APP;
+            //   huge_integer iApp = iMessage - WM_APP;
 
             //   pusermessage->m_puserinteractionUserThread->message_handler(pusermessage);
 

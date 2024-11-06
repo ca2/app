@@ -61,10 +61,10 @@ using serial::io_exception;
 ::durationTimer::durationTimer(const unsigned int ::duration)
    : expiry(timespec_now())
 {
-   i64 tv_nsec = expiry.tv_nsec + (::duration * 1e6);
+   huge_integer tv_nsec = expiry.tv_nsec + (::duration * 1e6);
    if (tv_nsec >= 1e9)
    {
-      i64 sec_diff = tv_nsec / static_cast<int> (1e9);
+      huge_integer sec_diff = tv_nsec / static_cast<int> (1e9);
       expiry.tv_nsec = tv_nsec % static_cast<int>(1e9);
       expiry.tv_sec += sec_diff;
    }
@@ -74,11 +74,11 @@ using serial::io_exception;
    }
 }
 
-i64
+huge_integer
 ::durationTimer::remaining()
 {
    timespec now(timespec_now());
-   i64 ::duration = (expiry.tv_sec - now.tv_sec) * 1e3;
+   huge_integer ::duration = (expiry.tv_sec - now.tv_sec) * 1e3;
    ::duration += (expiry.tv_nsec - now.tv_nsec) / 1e6;
    return ::duration;
 }
@@ -594,7 +594,7 @@ serial::serial_impl::read(unsigned char * buf, size_t size)
 
    while (bytes_read < size)
    {
-      i64 timeout_remaining_ms = total_timeout.remaining();
+      huge_integer timeout_remaining_ms = total_timeout.remaining();
       if (timeout_remaining_ms <= 0)
       {
          // Timed out
@@ -673,7 +673,7 @@ serial::serial_impl::write(const unsigned char * data, size_t length)
    bool first_iteration = true;
    while (bytes_written < length)
    {
-      i64 timeout_remaining_ms = total_timeout.remaining();
+      huge_integer timeout_remaining_ms = total_timeout.remaining();
       // Only consider the timeout if it's not the first iteration of the loop
       // otherwise a timeout of 0 won't be allowed through
       if (!first_iteration && (timeout_remaining_ms <= 0))

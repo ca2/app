@@ -100,7 +100,7 @@ namespace opengl
 
       unsigned int uGeometry = 0;
 
-      bool bGeometry = pszGeometry.trimmed().has_char();
+      bool bGeometry = pszGeometry.trimmed().has_character();
 
       if (bGeometry)
       {

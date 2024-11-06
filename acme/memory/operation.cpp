@@ -9,7 +9,7 @@
 #include <wchar.h>
 
 
-CLASS_DECL_ACME void safe_memory_copy_bytes(void* ptarget, strsize sizeTargetMax, const void* psource, strsize size)
+CLASS_DECL_ACME void safe_memory_copy_bytes(void* ptarget, character_count sizeTargetMax, const void* psource, character_count size)
 {
 
 #ifdef WINDOWS
@@ -32,7 +32,7 @@ CLASS_DECL_ACME void safe_memory_copy_bytes(void* ptarget, strsize sizeTargetMax
 }
 
 
-CLASS_DECL_ACME void safe_wide_memory_transfer(::wide_character* ptarget, strsize sizeTargetMax, const ::wide_character* psource, strsize size)
+CLASS_DECL_ACME void safe_wide_memory_transfer(::wide_character* ptarget, character_count sizeTargetMax, const ::wide_character* psource, character_count size)
 {
 
 #ifdef WINDOWS
@@ -55,7 +55,7 @@ CLASS_DECL_ACME void safe_wide_memory_transfer(::wide_character* ptarget, strsiz
 }
 
 
-CLASS_DECL_ACME void safe_memory_transfer_bytes(void* ptarget, strsize sizeTargetMax, const void* psource, strsize size)
+CLASS_DECL_ACME void safe_memory_transfer_bytes(void* ptarget, character_count sizeTargetMax, const void* psource, character_count size)
 {
 
 #ifdef WINDOWS

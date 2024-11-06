@@ -15,7 +15,7 @@ public:
 
    lparam(int i) { m_lparam = (LPARAM) i; }
 
-   lparam(i64 i) { m_lparam = (LPARAM) i; }
+   lparam(huge_integer i) { m_lparam = (LPARAM) i; }
 
 
    /// catching/receiving object
@@ -110,7 +110,7 @@ public:
    inline int x() const
    {
 
-      return int_x(m_lparam);
+      return lparam_int_x(m_lparam);
 
    }
 
@@ -118,7 +118,7 @@ public:
    inline int y() const
    {
 
-      return int_y(m_lparam);
+      return lparam_int_y(m_lparam);
 
    }
 

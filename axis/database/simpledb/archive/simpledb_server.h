@@ -13,7 +13,7 @@ namespace simpledb
 
 
       string m_strLastError;
-      i64 m_iLastUsedTime;
+      huge_integer m_iLastUsedTime;
 
       int       m_protocol;
 
@@ -58,7 +58,7 @@ namespace simpledb
 
       virtual ::payload get_agent(const ::string & pszTable, const ::string & pszEmail, const ::string & pszUser);
 
-      virtual string escape(void * p,strsize iLine);
+      virtual string escape(void * p,character_count iLine);
       virtual string escape(const ::string & psz);
 
       virtual ::payload get_insert_id();

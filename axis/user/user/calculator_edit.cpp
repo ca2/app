@@ -301,7 +301,7 @@ namespace calculator
             if (::is_null(perror))
             {
 
-               if (strSource.has_char())
+               if (strSource.has_character())
                {
                   if (strSource != strFormat)
                   {
@@ -401,7 +401,7 @@ namespace calculator
             if (m_pcallback != nullptr)
             {
 
-               if (m_strFormat.has_char())
+               if (m_strFormat.has_character())
                {
 
                   m_pcallback->set_expression(str + " " + m_strFormat);

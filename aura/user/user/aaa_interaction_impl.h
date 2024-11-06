@@ -103,8 +103,8 @@ namespace user
       bool                                      m_bPadding3;
 
       ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
-      ::rectangle_i32                           m_rectangleWindowScreen;
-      ::rectangle_i32                           m_rectangleXScreen;
+      ::int_rectangle                           m_rectangleWindowScreen;
+      ::int_rectangle                           m_rectangleXScreen;
       int                                       m_iState1;
       unsigned int                                     m_uCodePage;
       int                                       m_iLangId;
@@ -117,24 +117,24 @@ namespace user
       ::frequency                               m_frequencyProdevianFramesPerSecond;
       ::frequency                               m_frequencyNominalFramesPerSecond;
       ::frequency                               m_frequencyOutputFramesPerSecond;
-      point_i32                                 m_pointMouseMove;
-      //::size_i32                              m_sizeDrawnAAA;
-      ::size_i32                                m_sizeSetWindowSizeRequest;
+      int_point                                 m_pointMouseMove;
+      //::int_size                              m_sizeDrawnAAA;
+      ::int_size                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
-      //::rectangle_i32                           m_rectangleUpdateBuffer;
+      //::int_rectangle                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
       ::list < ::pointer<::message::message >> m_messagelist;
 
-      ::point_i32                               m_pointInside;
+      ::int_point                               m_pointInside;
       //::user::interaction_base *                       m_pprimitiveFocus;
       ::pointer<::user::element>               m_pelementSoftwareKeyboard;
 
       ::pointer<::windowing::window>           m_pwindow;
 
-      point_i32                                 m_point;
-      size_i32                                  m_size;
+      int_point                                 m_point;
+      int_size                                  m_size;
 
       //native_window *                         m_pwindow;
 
@@ -167,9 +167,9 @@ namespace user
       class ::time                              m_timeDeviceDrawEnd;
       class ::time                              m_timeLastDeviceDraw;
 
-      ::size_i32                                m_sizeDrawnBuffer;
+      ::int_size                                m_sizeDrawnBuffer;
 
-//      ::rectangle_int_array                     m_rectangleaNeedRedraw;
+//      ::int_rectangle_array                     m_rectangleaNeedRedraw;
       ::pointer_array < redraw_item >           m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -178,7 +178,7 @@ namespace user
       bool                                      m_bDoingGraphics;
 
 
-      ::size_i32                                m_sizeLastBuffer;
+      ::int_size                                m_sizeLastBuffer;
 
 
       interaction_impl();
@@ -307,9 +307,9 @@ namespace user
       virtual void track_mouse_hover() override;
       virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave = false);
+      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave = false);
 
-      //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
+      //virtual void mouse_hover_step(const __status < ::int_point > & statusPointCursor);
 
       void add(::graphics::output_purpose * pgraphicaloutputpurpose) override;
       void erase(::graphics::output_purpose * pgraphicaloutputpurpose) override;
@@ -347,8 +347,8 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
 
 
-      void on_configure(const ::rectangle_i32 & rectangle) override;
-      virtual void _on_configure(const ::rectangle_i32 & rectangle);
+      void on_configure(const ::int_rectangle & rectangle) override;
+      virtual void _on_configure(const ::int_rectangle & rectangle);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_reposition);
@@ -386,7 +386,7 @@ namespace user
 
 
       // for child windows, views, panes etc
-      //virtual bool create_interaction(::user::interaction * pinteraction, unsigned int uExStyle, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, unsigned int uExStyle, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
@@ -418,12 +418,12 @@ namespace user
       void start_destroying_window() override;
       void destroy_window() override;
 
-      // special pre-creation and interaction_impl rectangle_i32 adjustment hooks
+      // special pre-creation and interaction_impl int_rectangle adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,unsigned int nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType = adjustBorder) override;
 
       inline ::windowing::window * window() const { return m_pwindow; }
       inline ::windowing::windowing * windowing() const { return m_pwindowing; }
@@ -438,7 +438,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = {}) override;
+      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::int_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -457,7 +457,7 @@ namespace user
 
       //virtual bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
-      //virtual bool DragDetect(const ::point_i32 & point) const;
+      //virtual bool DragDetect(const ::int_point & point) const;
 
 
 
@@ -466,13 +466,13 @@ namespace user
 
       void on_set_window_text() override;
 
-      //strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
+      //character_count get_window_text(char * pszStringBuf, character_count nMaxCount) override;
 
       //void get_window_text(string & rString) override;
-      //strsize get_window_text_length() override;
+      //character_count get_window_text_length() override;
 
 
-      // Window size_i32 and position Functions
+      // Window int_size and position Functions
       virtual bool window_is_iconic();
       virtual bool window_is_zoomed();
       //virtual int SetWindowRgn(HRGN hRgn,bool bRedraw);
@@ -491,9 +491,9 @@ namespace user
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::point_i32 * pPoint,unsigned int nCount);
+      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::int_point * pPoint,unsigned int nCount);
 
-      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::rectangle_i32 * prectangle);
+      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::int_rectangle * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics,unsigned int dwFlags) const;
@@ -501,14 +501,14 @@ namespace user
 
       //void UpdateWindow() override;
       //void SetRedraw(bool bRedraw = true) override;
-      ////virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false) override;
+      ////virtual bool GetUpdateRect(::int_rectangle * prectangle,bool bErase = false) override;
 
       ////int GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       //virtual void Invalidate(bool bErase = true) override;
-      //void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
+      //void InvalidateRect(const ::int_rectangle & rectangle,bool bErase = true) override;
 
       //void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
-      //void ValidateRect(const ::rectangle_i32 & rectangle) override;
+      //void ValidateRect(const ::int_rectangle & rectangle) override;
 
       //void ValidateRgn(::draw2d::region* pRgn) override;
       ////virtual bool display(::e_display edisplay) override;
@@ -528,11 +528,11 @@ namespace user
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
+//      virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
 //
 //#else
 
-      void RedrawWindow(const ::rectangle_i32 & rectangleUpdate = {}, ::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0) override;
+      void RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0) override;
 
 //#endif
 
@@ -548,13 +548,13 @@ namespace user
 //#endif
 
 
-      //virtual ::point_i32 get_cursor_position() const override;
+      //virtual ::int_point get_cursor_position() const override;
 
       void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,unsigned int uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,unsigned int uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -574,7 +574,7 @@ namespace user
 //#if(_WIN32_WINNT >= 0x0500)
 //
 //      virtual bool SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,unsigned int dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 *pptDst,::size_i32 *psize,::draw2d::graphics * pDCSrc,::point_i32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,unsigned int dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::int_point *pptDst,::int_size *psize,::draw2d::graphics * pDCSrc,::int_point *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,unsigned int dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
@@ -624,15 +624,15 @@ namespace user
       //virtual int GetScrollPos(int nBar) const;
       //virtual void GetScrollRange(int nBar, int * pMinPos, int * lpMaxPos) const;
       //virtual void ScrollWindow(int xAmount,int yAmount,
-      //   const ::rectangle_i32 * rectangle = nullptr,
-      //   const ::rectangle_i32 * pClipRect = nullptr);
+      //   const ::int_rectangle * rectangle = nullptr,
+      //   const ::int_rectangle * pClipRect = nullptr);
 
       //virtual int SetScrollPos(int nBar,int nPos,bool bRedraw = true);
       //virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos, bool bRedraw = true);
       //virtual void ShowScrollBar(unsigned int nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(int nBar,bool bEnable = true);
 
-      //virtual int ScrollWindowEx(int Δx,int Δy, const ::rectangle_i32 * prectScroll, const ::rectangle_i32 * lprectClip, ::draw2d::region* prgnUpdate, ::rectangle_i32 * prectUpdate, unsigned int flags);
+      //virtual int ScrollWindowEx(int Δx,int Δy, const ::int_rectangle * prectScroll, const ::int_rectangle * lprectClip, ::draw2d::region* prgnUpdate, ::int_rectangle * prectUpdate, unsigned int flags);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -651,8 +651,8 @@ namespace user
 //
 //#endif   // WINVER >= 0x0500
 
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,unsigned int nFlags) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point,unsigned int nFlags) override;
 
 //#ifdef WINDOWS_DESKTOP
   //    virtual ::user::interaction * get_next_window(unsigned int nFlag = GW_HWNDNEXT);
@@ -851,8 +851,8 @@ namespace user
 
       //virtual void on_visual_applied();
 
-      void set_need_redraw(const ::rectangle_int_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
-      //virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
+      void set_need_redraw(const ::int_rectangle_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr,  bool bAscendants = true) override;
+      //virtual bool needs_to_draw(const ::int_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 
@@ -865,25 +865,25 @@ namespace user
 
       // Occlusion and Translucency
       virtual bool is_occluded();
-      virtual i64 approximate_occlusion_area();
+      virtual huge_integer approximate_occlusion_area();
       virtual double approximate_occlusion_rate();
-      virtual i64 approximate_occlusion_area_except_self_transparent();
+      virtual huge_integer approximate_occlusion_area_except_self_transparent();
       virtual double approximate_occlusion_rate_except_self_transparent();
-      virtual i64 _001GetTopLeftWeightedOccludedOpaqueArea();
+      virtual huge_integer _001GetTopLeftWeightedOccludedOpaqueArea();
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
-      virtual i64 _001GetTopLeftWeightedArea();
-      virtual i64 _001GetRectTopLeftWeightedArea(const ::rectangle_i32 &rect);
+      virtual huge_integer _001GetTopLeftWeightedArea();
+      virtual huge_integer _001GetRectTopLeftWeightedArea(const ::int_rectangle &rect);
 
-      virtual i64 opaque_area(const ::rectangle_i32 &rect);
-      virtual void approximate_occlusion_rects(rectangle_int_array& raTest);
+      virtual huge_integer opaque_area(const ::int_rectangle &rect);
+      virtual void approximate_occlusion_rects(int_rectangle_array& raTest);
 
-      virtual i64 opaque_area();
+      virtual huge_integer opaque_area();
 
       /// from top to bottom
-      virtual void non_top_most_upper_window_rects(::rectangle_int_array& recta);
+      virtual void non_top_most_upper_window_rects(::int_rectangle_array& recta);
 
 
-      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
+      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, huge_integer time_ms);
 
       void set_opacity(double dOpacity) override;
 

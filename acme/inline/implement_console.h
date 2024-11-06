@@ -65,7 +65,7 @@ int main(int argc, char ** argv, char ** envp)
 #endif
 {
 
-   ::acme::singleton pacme;
+   ::PLATFORM_LAYER_NAME::system system;
 
    
 
@@ -88,9 +88,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   pacme->initialize(argc, argv, envp);
+   system.initialize_system(argc, argv, envp);
 
-   pacme->platform()->m_bConsole = true;
+   system.m_bConsole = true;
 
    //::acme::acme::g_pacme->m_papplication->m_bConsole = true;
 
@@ -117,7 +117,7 @@ int main(int argc, char ** argv, char ** envp)
    catch (const ::exception& exception)
    {
 
-      if (pacme->platform()->m_bConsole)
+      if (system.m_bConsole)
       {
 
          
@@ -169,7 +169,7 @@ int main(int argc, char ** argv, char ** envp)
    catch (...)
    {
 
-      if (pacme->platform()->m_bConsole)
+      if (system.m_bConsole)
       {
 
          fprintf(stderr, "%s", "Unhandled Exception");

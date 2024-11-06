@@ -85,11 +85,11 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::rgba(127, 40, 150, 235));
 
-      pgraphics->fill_rectangle(::rectangle_double_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::rgba(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::double_rectangle_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::rgba(127, 255, 110, 150));
       
       rectangleX.deflate((int) dBase);
 

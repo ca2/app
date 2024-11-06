@@ -45,7 +45,7 @@ memory::memory(const memory * ps, manager * pmanager)
 }
 
 
-memory::memory(const unsigned char * pchSrc, strsize nLength, manager * pmanager)
+memory::memory(const unsigned char * pchSrc, character_count nLength, manager * pmanager)
 {
 
    __UNREFERENCED_PARAMETER(pmanager);
@@ -326,10 +326,10 @@ unsigned char * memory::impl_alloc(memsize dwAllocation)
 
 #else
 
-   if(m_strTag.has_char() && ::get_task() != nullptr)
+   if(m_strTag.has_character() && ::get_task() != nullptr)
    {
 
-      if(::get_task_object_debug().has_char())
+      if(::get_task_object_debug().has_character())
       {
 
          if(m_bAligned)
@@ -365,7 +365,7 @@ unsigned char * memory::impl_alloc(memsize dwAllocation)
       }
 
    }
-   else if(m_strTag.has_char())
+   else if(m_strTag.has_character())
    {
 
       if(m_bAligned)
@@ -432,7 +432,7 @@ void memory::impl_free(unsigned char * pdata)
 
 
 
-strsize memory::sz_len() const
+character_count memory::sz_len() const
 {
 
    return size() + 1;
@@ -440,7 +440,7 @@ strsize memory::sz_len() const
 }
 
 
-void memory::to_sz(char * sz, strsize len) const
+void memory::to_sz(char * sz, character_count len) const
 {
 
    if (len <= 0)

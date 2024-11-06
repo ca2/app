@@ -29,17 +29,17 @@ namespace user
 
       index_array                         m_iaSel;
       //::item                            m_itemLButtonDown;
-      ::size_i32                          m_size;
+      ::int_size                          m_size;
       bool                                m_bMultiSel;
-      ::size_i32                          m_sizeImage;
-      //::rectangle_i32                   m_rectangleTotal;
+      ::int_size                          m_sizeImage;
+      //::int_rectangle                   m_rectangleTotal;
 
 
       image_list();
       ~image_list() override;
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       //virtual bool get_rect(::item & item) override;
 
@@ -53,11 +53,11 @@ namespace user
 
 #ifdef _DEBUG
 
-      i64 increment_reference_count() override
+      huge_integer increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      i64 decrement_reference_count() override
+      huge_integer decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }
@@ -106,11 +106,11 @@ namespace user
 //      // void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
-      i64 increment_reference_count() override
+      huge_integer increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      i64 decrement_reference_count() override
+      huge_integer decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }

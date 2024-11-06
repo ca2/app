@@ -48,9 +48,9 @@
 
       // from Base 64 to binary data
       bool decode(::file::file * pfileOutput, ::file::file * pfileInput);
-      i64 decode(const ::block & block, ::file::file * pfileInput);
+      huge_integer decode(const ::block & block, ::file::file * pfileInput);
       bool decode(memory_base & storageBinary, const ::scoped_string & scopedstrBase64);
-      i64 decode(const ::block & block, const ::scoped_string & scopedstrBase64);
+      huge_integer decode(const ::block & block, const ::scoped_string & scopedstrBase64);
       string decode(const ::scoped_string & scopedstr);
       //bool decode(::matter & matter, const ::scoped_string & scopedstrBase64);
 

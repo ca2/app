@@ -4,12 +4,12 @@
 #include "string.h"
 
 
-bool str::to(i64 & i, const ::string & str)
+bool str::to(huge_integer & i, const ::string & str)
 {
 
    const ::ansi_character * pszEnd = nullptr;
 
-   i64 iConversion = ::ansi_to_i64(str, &pszEnd);
+   huge_integer iConversion = ::ansi_to_huge_integer(str, &pszEnd);
 
    if (pszEnd == str.c_str())
    {
@@ -30,7 +30,7 @@ bool str::to(int & i, const ::string & str)
 
    const ::ansi_character * pszEnd = nullptr;
 
-   i = ::ansi_to_i32(str, &pszEnd, 10);
+   i = ::ansi_to_int(str, &pszEnd, 10);
 
    if (pszEnd == str.c_str())
    {
@@ -44,7 +44,7 @@ bool str::to(int & i, const ::string & str)
 }
 
 
-bool str::to(i64 & i, int iBase, const ::string & str)
+bool str::to(huge_integer & i, int iBase, const ::string & str)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -58,11 +58,11 @@ bool str::to(i64 & i, int iBase, const ::string & str)
 
 #ifdef WINDOWS
 
-   i64 iConversion = ::_strtoi64(str, &pszEnd, iBase);
+   huge_integer iConversion = ::_strtoi64(str, &pszEnd, iBase);
 
 #else
 
-   i64 iConversion = ::ansi_to_i64(str, (const char **) & pszEnd, iBase);
+   huge_integer iConversion = ::ansi_to_huge_integer(str, (const char **) & pszEnd, iBase);
 
 #endif
 
@@ -89,11 +89,11 @@ bool str::to(int & i, int iBase, const ::string & str)
 
 #ifdef WINDOWS
 
-   i64 iConversion = ::_strtoi64(str, &pszEnd, iBase);
+   huge_integer iConversion = ::_strtoi64(str, &pszEnd, iBase);
 
 #else
 
-   i64 iConversion = ::ansi_to_i64(str, (const char **) & pszEnd, iBase);
+   huge_integer iConversion = ::ansi_to_huge_integer(str, (const char **) & pszEnd, iBase);
 
 #endif
 
@@ -117,12 +117,12 @@ bool str::to(int & i, int iBase, const ::string & str)
 
 }
 
-bool str::to(u64 & u, const ::string & str)
+bool str::to(huge_natural & u, const ::string & str)
 {
 
    const ::ansi_character * pszEnd = nullptr;
 
-   u64 uiConversion = ::ansi_to_i64(str, &pszEnd);
+   huge_natural uiConversion = ::ansi_to_huge_integer(str, &pszEnd);
 
    if (pszEnd == str.c_str())
    {
@@ -142,7 +142,7 @@ bool str::to(unsigned int & u, const ::string & str)
 
    const ::ansi_character * pszEnd = nullptr;
 
-   i64 uiConversion = ::ansi_to_u32(str, &pszEnd);
+   huge_integer uiConversion = ::ansi_to_unsigned_int(str, &pszEnd);
 
    if (pszEnd == str.c_str())
    {
@@ -165,7 +165,7 @@ bool str::to(unsigned int & u, const ::string & str)
 }
 
 
-bool str::to(u64 & u, int iBase, const ::string & str)
+bool str::to(huge_natural & u, int iBase, const ::string & str)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -177,7 +177,7 @@ bool str::to(u64 & u, int iBase, const ::string & str)
 
    const ::ansi_character * pszEnd = nullptr;
 
-   u64 uiConversion = ::ansi_to_u64(str, &pszEnd, iBase);
+   huge_natural uiConversion = ::ansi_to_huge_natural(str, &pszEnd, iBase);
 
    if (pszEnd == str.c_str())
    {
@@ -205,7 +205,7 @@ bool str::to(unsigned int & u, int iBase, const ::string & str)
 
    const ::ansi_character * pszEnd = nullptr;
 
-   unsigned int uiConversion = ::ansi_to_u32(str, &pszEnd, iBase);
+   unsigned int uiConversion = ::ansi_to_unsigned_int(str, &pszEnd, iBase);
 
    if (pszEnd == str.c_str())
    {
@@ -232,10 +232,10 @@ iptr str::to_iptr(const ::string & str)
 
 #if defined(_LP64) || defined(_AMD64_)
 
-   return to_i64(str);
+   return to_huge_integer(str);
 
 #else
-   return to_i32(str);
+   return to_int(str);
 
 #endif
 

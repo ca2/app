@@ -61,7 +61,7 @@ namespace micro
 
       m_rectangle.set_dimension(x, y, w, h);
 
-      ::rectangle_i32 rectangleMainScreen;
+      ::int_rectangle rectangleMainScreen;
 
       rectangleMainScreen.set_dimension(0, 0, wScreen, hScreen);
 
@@ -148,7 +148,7 @@ namespace micro
    void popup_button::on_draw(::nano::graphics::device * pmicrodevice)
    {
 
-      /*rectangle_i32 rectangleText;
+      /*int_rectangle rectangleText;
 
       get_client_rectangle(rectangleText);
 

@@ -8,7 +8,7 @@ template < class PAYLOAD >
 using int_map = map < int, PAYLOAD >;
 
 template < class PAYLOAD >
-using i64_map = map < i64, PAYLOAD >;
+using i64_map = map < huge_integer, PAYLOAD >;
 
 template < class PAYLOAD >
 using iptr_map = map < iptr, PAYLOAD >;
@@ -18,7 +18,7 @@ using index_map = map < ::collection::index, PAYLOAD >;
 
 using int_to_int = int_map < int >;
 
-using i64_to_i64 = i64_map < i64 >;
+using i64_to_huge_integer = i64_map < huge_integer >;
 
 using int_to_string =  int_map < string > ;
 

@@ -182,7 +182,7 @@ namespace colorertake5
       breakParsing = true;
    };
 
-   void text_parser_impl::addRegion(index lno, strsize sx, strsize ex, class region* region)
+   void text_parser_impl::addRegion(index lno, character_count sx, character_count ex, class region* region)
    {
 
       if (sx == -1 || region == nullptr)
@@ -192,14 +192,14 @@ namespace colorertake5
 
    }
 
-   void text_parser_impl::enterScheme(index lno, strsize sx, strsize ex, class region* region)
+   void text_parser_impl::enterScheme(index lno, character_count sx, character_count ex, class region* region)
    {
 
       regionHandler->enterScheme(lno, str, sx, ex, region, baseScheme);
 
    }
 
-   void text_parser_impl::leaveScheme(index lno, strsize sx, strsize ex, class region* region)
+   void text_parser_impl::leaveScheme(index lno, character_count sx, character_count ex, class region* region)
    {
 
       regionHandler->leaveScheme(lno, str, sx, ex, region, baseScheme);

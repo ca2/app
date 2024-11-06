@@ -721,7 +721,7 @@ void particle::delete_this()
 
 
 
-strsize particle::sz_len() const
+character_count particle::sz_len() const
 {
 
    return ansi_len(::type(this).name()) + 1;
@@ -729,7 +729,7 @@ strsize particle::sz_len() const
 }
 
 
-void particle::to_sz(char * sz, strsize len) const
+void particle::to_sz(char * sz, character_count len) const
 {
 
    ansi_ncpy(sz, ::type(this).name(), len);
@@ -1596,7 +1596,7 @@ void particle::set_finish()
 
 
 
-void particle::call_member(::i64 iId)
+void particle::call_member(huge_integer iId)
 {
 
    //return ::success_none;
@@ -1634,7 +1634,7 @@ bool particle::is_branch_current() const
 }
 
 
-CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam)
+CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, huge_integer wParam, huge_integer lParam)
 {
 
 
@@ -1683,7 +1683,7 @@ CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, i64 
 
 //
 //
-//void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
+//void handler::call(enum_message emessage, huge_integer iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, emessage, iData, pmatter);
@@ -1691,7 +1691,7 @@ CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, i64 
 //}
 //
 //
-//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//void handler::call(enum_id eid, huge_integer iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);
@@ -1714,13 +1714,13 @@ lresult particle::call(const ::atom & atom, wparam wparam, lparam lparam)
 
       auto ptopic = create_topic(this, atom);
 
-      ptopic->payload("wparam") = (::i64) wparam.m_number;
+      ptopic->payload("wparam") = (huge_integer) wparam.m_number;
 
-      ptopic->payload("lparam") = (::i64) lparam.m_lparam;
+      ptopic->payload("lparam") = (huge_integer) lparam.m_lparam;
 
       handle(ptopic, nullptr);
 
-      return ptopic->payload("lresult").as_i64();
+      return ptopic->payload("lresult").as_huge_integer();
 
    }
 
@@ -1789,7 +1789,7 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 
 
 //
-//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//void handler::call(enum_id eid, huge_integer iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);

@@ -35,7 +35,7 @@ namespace opengl
    }
 
    
-   void context_win32::_create_offscreen_window(const ::size_i32 & size)
+   void context_win32::_create_offscreen_window(const ::int_size & size)
    {
       if (::IsWindow(m_hwnd))
       {
@@ -256,7 +256,7 @@ namespace opengl
    }
 
 
-   void context_win32::_create_offscreen_buffer(const ::size_i32& size)
+   void context_win32::_create_offscreen_buffer(const ::int_size& size)
    {
 
       _create_offscreen_window(size);
@@ -266,7 +266,7 @@ namespace opengl
    }
 
 
-   void context_win32::resize_offscreen_buffer(const ::size_i32& sizeParam)
+   void context_win32::resize_offscreen_buffer(const ::int_size& sizeParam)
    {
 
       auto size(sizeParam);
@@ -396,7 +396,7 @@ namespace opengl
 
       context::_translate_shader(stra);
 
-      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
+      character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if (iFindPrecision >= 0)
       {

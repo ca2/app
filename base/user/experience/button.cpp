@@ -125,11 +125,11 @@ namespace experience
 //
 //         }
 //
-//         ::rectangle_i32 rectangleClip;
+//         ::int_rectangle rectangleClip;
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::rectangle_i32 rectangleX;
+//         ::int_rectangle rectangleX;
 //
 //         bool bFirst = true;
 //
@@ -156,7 +156,7 @@ namespace experience
 //
 //            ::user::interaction * pinteraction = this;
 //
-//            ::rectangle_i32 rectangleFocus;
+//            ::int_rectangle rectangleFocus;
 //
 //            ::collection::index i = 0;
 //
@@ -196,7 +196,7 @@ namespace experience
    }
 
 
-   ::item_pointer button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

@@ -203,7 +203,7 @@ namespace filemanager
 //
 //         string strVarFile;
 //
-//         if (get_document()->m_strManagerId.has_char())
+//         if (get_document()->m_strManagerId.has_character())
 //         {
 //
 //            strVarFile = get_document()->m_strManagerId + ":" + pathFolder;
@@ -246,7 +246,7 @@ namespace filemanager
 //            try
 //            {
 //
-//               bPathIsDir = pathFolder.has_char() && directory()->is(pathFolder);
+//               bPathIsDir = pathFolder.has_character() && directory()->is(pathFolder);
 //
 //            }
 //            catch (...)

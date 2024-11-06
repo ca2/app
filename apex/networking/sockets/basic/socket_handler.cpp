@@ -82,7 +82,7 @@ namespace sockets
 
 
 
-   i64 socket_handler::increment_reference_count()
+   huge_integer socket_handler::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -90,7 +90,7 @@ namespace sockets
    }
 
 
-   i64 socket_handler::decrement_reference_count()
+   huge_integer socket_handler::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -1300,7 +1300,7 @@ namespace sockets
 //                 else
 //                 {
 //
-//                    //informationf(" close(3) fd %d get_socket_id() %d\n", socket_id, point_i32 -> get_socket_id()));
+//                    //informationf(" close(3) fd %d get_socket_id() %d\n", socket_id, int_point -> get_socket_id()));
 //
 //                    if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
 //                    {
@@ -1326,7 +1326,7 @@ namespace sockets
 //
 //                       ppoolsocket_id->SetCloseAndDelete(false); // added - erase from m_socketidlistClose
 //
-//                       //point_i32 -> SetCloseAndDelete(false); // added - erase from m_socketidlistClose
+//                       //int_point -> SetCloseAndDelete(false); // added - erase from m_socketidlistClose
 //
 //                    }
 //                    //else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
@@ -1595,7 +1595,7 @@ namespace sockets
 //
 //      m_resolve_q[pbasesocket_id] = true;
 //
-//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket_id->GetId(), m_resolve_q.get_size(), pbasesocket_id));
+//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q int_size: %d  base_socket: %p\n", host.c_str(), port, presolvsocket_id->GetId(), m_resolve_q.get_size(), pbasesocket_id));
 //
 //      return presolvsocket_id->GetId();
 //

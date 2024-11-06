@@ -97,18 +97,18 @@ namespace colorertake5
             pos = l1->start;
          }
 
-         if (l1->texted()->sback.has_char())
+         if (l1->texted()->sback.has_character())
             markupWriter << l1->texted()->sback;
 
-         if (l1->texted()->stext.has_char())
+         if (l1->texted()->stext.has_character())
             markupWriter << l1->texted()->stext;
 
          textWriter.write(&line[pos], end - l1->start);
 
-         if (l1->texted()->etext.has_char())
+         if (l1->texted()->etext.has_character())
             markupWriter << l1->texted()->etext;
 
-         if (l1->texted()->eback.has_char())
+         if (l1->texted()->eback.has_character())
             markupWriter << l1->texted()->eback;
 
          pos += end - l1->start;
@@ -215,7 +215,7 @@ namespace colorertake5
       {
          url = docLinkHash->operator[](token);
       }
-      if (url.has_char())
+      if (url.has_character())
       {
          if (start) writer << "<a href='" +url + "'>";
          else writer << "</a>";

@@ -17,7 +17,7 @@ inline ::u32hash unsigned_int_hash < const ::ansi_character * >(const ::ansi_cha
 
    unsigned int uHash = 0;
 
-   strsize i = 1;
+   character_count i = 1;
 
    for(; psz[i]; i++)
    {
@@ -60,7 +60,7 @@ inline ::u32hash unsigned_int_hash < const ::wd16_character * >(const ::wd16_cha
 
    unsigned int uHash = 0;
 
-   strsize i = 1;
+   character_count i = 1;
 
    for (; psz[i]; i++)
    {

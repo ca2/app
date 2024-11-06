@@ -32,11 +32,11 @@ namespace user
       void words_trailing_spaces(string_array & stra, string str)
       {
 
-         strsize iFind = 0;
+         character_count iFind = 0;
 
-         strsize iFind2;
+         character_count iFind2;
 
-         strsize iFind3;
+         character_count iFind3;
 
          while (true)
          {
@@ -48,7 +48,7 @@ namespace user
 
                auto strRemainingWord = str(iFind);
 
-               if (strRemainingWord.has_char())
+               if (strRemainingWord.has_character())
                {
 
                   stra.add(strRemainingWord);
@@ -148,7 +148,7 @@ namespace user
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
 
-                  strsize iPos = iSel;
+                  character_count iPos = iSel;
 
                   int xLeft;
                   int xRight;
@@ -234,7 +234,7 @@ namespace user
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
                {
 
-                  strsize iPos = iSel;
+                  character_count iPos = iSel;
 
                   int xLeft;
                   //int xRight;
@@ -475,7 +475,7 @@ namespace user
       }
 
 
-      ::collection::index find_char_span(pointer_array < span > & spana, strsize iChar)
+      ::collection::index find_char_span(pointer_array < span > & spana, character_count iChar)
       {
 
          if (iChar < 0)
@@ -506,7 +506,7 @@ namespace user
       }
 
 
-      void align(line * pline, const ::rectangle_f64 & rectangle)
+      void align(line * pline, const ::double_rectangle & rectangle)
       {
 
          if (pline->is_empty())

@@ -44,7 +44,7 @@ void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString)
 
 
 
-//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor)
+//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const int_point & pointCursor)
 //{
 //
 //   ::platform::application * papp = (::platform::application *) pvoidApp;

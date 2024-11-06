@@ -85,7 +85,7 @@
 //}
 //
 //
-//inline int property_object::find_i32(const ::atom & atom, int iDefault) const
+//inline int property_object::find_int(const ::atom & atom, int iDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -109,7 +109,7 @@
 //}
 //
 //
-//inline unsigned int property_object::find_u32(const ::atom & atom, unsigned int iDefault) const
+//inline unsigned int property_object::find_unsigned_int(const ::atom & atom, unsigned int iDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -279,7 +279,7 @@
 //}
 //
 //
-//inline ::i64_array & material_object::idarray() const { system()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+//inline ::huge_integer_array & material_object::idarray() const { system()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
 //
 //
 //

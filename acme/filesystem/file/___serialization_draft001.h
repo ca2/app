@@ -133,38 +133,38 @@ stream
 read(atom, char) throw not_implemented;
 read(atom, short) throw not_implemented;
 read(atom, int) throw not_implemented;
-read(atom, i64) throw not_implemented;
+read(atom, huge_integer) throw not_implemented;
 read(atom, unsigned char) throw not_implemented;
 read(atom, unsigned short) throw not_implemented;
 read(atom, unsigned int) throw not_implemented;
-read(atom, u64) throw not_implemented;
+read(atom, huge_natural) throw not_implemented;
 
 read(char) throw not_implemented;
 read(short) throw not_implemented;
 read(int) throw not_implemented;
-read(i64) throw not_implemented;
+read(huge_integer) throw not_implemented;
 read(unsigned char) throw not_implemented;
 read(unsigned short) throw not_implemented;
 read(unsigned int) throw not_implemented;
-read(u64) throw not_implemented;
+read(huge_natural) throw not_implemented;
 
 write(atom, char) throw not_implemented;
 write(atom, short) throw not_implemented;
 write(atom, int) throw not_implemented;
-write(atom, i64) throw not_implemented;
+write(atom, huge_integer) throw not_implemented;
 write(atom, unsigned char) throw not_implemented;
 write(atom, unsigned short) throw not_implemented;
 write(atom, unsigned int) throw not_implemented;
-write(atom, u64) throw not_implemented;
+write(atom, huge_natural) throw not_implemented;
 
 write(char) throw not_implemented;
 write(short) throw not_implemented;
 write(int) throw not_implemented;
-write(i64) throw not_implemented;
+write(huge_integer) throw not_implemented;
 write(unsigned char) throw not_implemented;
 write(unsigned short) throw not_implemented;
 write(unsigned int) throw not_implemented;
-write(u64) throw not_implemented;
+write(huge_natural) throw not_implemented;
 
 
 }
@@ -177,38 +177,38 @@ binary_stream
 read(atom, char) read(char)
 read(atom, short) read(short)
 read(atom, int) read(int)
-read(atom, i64) read(i64)
+read(atom, huge_integer) read(huge_integer)
 read(atom, unsigned char) read(unsigned char)
 read(atom, unsigned short) read(unsigned short)
 read(atom, unsigned int) read(unsigned int)
-read(atom, u64) read(u64)
+read(atom, huge_natural) read(huge_natural)
 
 read(char) m_pfile->read(char)
 read(short) m_pfile->read(short)
 read(int) m_pfile->read(int)
-read(i64) m_pfile->read(i64)
+read(huge_integer) m_pfile->read(huge_integer)
 read(unsigned char) m_pfile->read(unsigned char)
 read(unsigned short) m_pfile->read(unsigned short)
 read(unsigned int) m_pfile->read(unsigned int)
-read(u64) m_pfile->read(u64)
+read(huge_natural) m_pfile->read(huge_natural)
 
 write(atom, char) write(char)
 write(atom, short) write(short)
 write(atom, int) write(int)
-write(atom, i64) write(i64)
+write(atom, huge_integer) write(huge_integer)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
 write(atom, unsigned int) write(unsigned int)
-write(atom, u64) write(u64)
+write(atom, huge_natural) write(huge_natural)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
 write(int) m_pfile->write(int)
-write(i64) m_pfile->write(i64)
+write(huge_integer) m_pfile->write(huge_integer)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
 write(unsigned int) m_pfile->write(unsigned int)
-write(u64) m_pfile->write(u64)
+write(huge_natural) m_pfile->write(huge_natural)
 
 
 }
@@ -220,20 +220,20 @@ text_stream
 write(atom, char) write(char)
 write(atom, short) write(short)
 write(atom, int) write(int)
-write(atom, i64) write(i64)
+write(atom, huge_integer) write(huge_integer)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
 write(atom, unsigned int) write(unsigned int)
-write(atom, u64) write(u64)
+write(atom, huge_natural) write(huge_natural)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
 write(int) m_pfile->write(int)
-write(i64) m_pfile->write(i64)
+write(huge_integer) m_pfile->write(huge_integer)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
 write(unsigned int) m_pfile->write(unsigned int)
-write(u64) m_pfile->write(u64)
+write(huge_natural) m_pfile->write(huge_natural)
 
 
 }
@@ -247,38 +247,38 @@ id_stream :
 read(atom, char)char = m_ppayload->operator[](atom);
 read(atom, short) short= m_ppayload->operator[](atom);
 read(atom, int) int= m_ppayload->operator[](atom);
-read(atom, i64) i64= m_ppayload->operator[](atom);
+read(atom, huge_integer) huge_integer= m_ppayload->operator[](atom);
 read(atom, unsigned char) unsigned char= m_ppayload->operator[](atom);
 read(atom, unsigned short) unsigned short= m_ppayload->operator[](atom);
 read(atom, unsigned int) unsigned int= m_ppayload->operator[](atom);
-read(atom, u64) u64= m_ppayload->operator[](atom);
+read(atom, huge_natural) huge_natural= m_ppayload->operator[](atom);
 
 read(char) char = *m_ppayload
 read(short) short = *m_ppayload
 read(int) int = *m_ppayload
-read(i64) i64 = *m_ppayload
+read(huge_integer) huge_integer = *m_ppayload
 read(unsigned char) uch = *m_ppayload
 read(unsigned short) unsigned short = *m_ppayload
 read(unsigned int) unsigned int = *m_ppayload
-read(u64) u64 = *m_ppayload
+read(huge_natural) huge_natural = *m_ppayload
 
 write(atom, char) write(char)
 write(atom, short) write(short)
 write(atom, int) write(int)
-write(atom, i64) write(i64)
+write(atom, huge_integer) write(huge_integer)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
 write(atom, unsigned int) write(unsigned int)
-write(atom, u64) write(u64)
+write(atom, huge_natural) write(huge_natural)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
 write(int) m_pfile->write(int)
-write(i64) m_pfile->write(i64)
+write(huge_integer) m_pfile->write(huge_integer)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
 write(unsigned int) m_pfile->write(unsigned int)
-write(u64) m_pfile->write(u64)
+write(huge_natural) m_pfile->write(huge_natural)
 
 }
 

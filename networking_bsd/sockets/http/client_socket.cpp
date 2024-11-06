@@ -31,7 +31,7 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_buffer((strsize)(pfile->get_size() / 16 + 1) * 80);
+   char* psz = strBuffer.get_buffer((character_count)(pfile->get_size() / 16 + 1) * 80);
 
    unsigned char buf[16];
 
@@ -610,7 +610,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::on_set_scalar(enum_scalar escalar,i64 iValue,int iFlags)
+   void http_client_socket::on_set_scalar(enum_scalar escalar,huge_integer iValue,int iFlags)
    {
 
       if (escalar == scalar_download_size)
@@ -629,7 +629,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::get_scalar_minimum(enum_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar_minimum(enum_scalar escalar, huge_integer & i)
    {
 
       if (escalar == scalar_download_size)
@@ -647,7 +647,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar(enum_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar(enum_scalar escalar, huge_integer & i)
    {
 
       if (escalar == scalar_download_size)
@@ -665,7 +665,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar_maximum(enum_scalar escalar, i64 & i)
+   void http_client_socket::get_scalar_maximum(enum_scalar escalar, huge_integer & i)
    {
 
       if (escalar == scalar_download_size)
@@ -749,7 +749,7 @@ namespace sockets
 
       string strAddUp;
 
-      if (get_app()->m_strHttpUserAgentToken.has_char() && get_app()->m_strHttpUserAgentVersion.has_char())
+      if (get_app()->m_strHttpUserAgentToken.has_character() && get_app()->m_strHttpUserAgentVersion.has_character())
       {
 
          strAddUp = get_app()->m_strHttpUserAgentToken + "/" + get_app()->m_strHttpUserAgentVersion;
@@ -783,14 +783,14 @@ namespace sockets
 //
 //      string strOpSys = op_sys();
 //
-//      if (get_app()->m_strAppName.has_char())
+//      if (get_app()->m_strAppName.has_character())
 //      {
 //
 //         str += get_app()->m_strAppName;
 //
 //         str += " (";
 //
-//         if (strOpSys.has_char())
+//         if (strOpSys.has_character())
 //         {
 //
 //            str += strOpSys;
@@ -811,7 +811,7 @@ namespace sockets
 //
 //         str += " (";
 //
-//         if (strOpSys.has_char())
+//         if (strOpSys.has_character())
 //         {
 //
 //            str += strOpSys;

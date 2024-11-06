@@ -306,7 +306,7 @@ namespace hi5
    void oauth::generateNonceTimeStamp()
    {
 
-      if (m_nonce.has_char() && m_timeStamp.has_char())
+      if (m_nonce.has_character() && m_timeStamp.has_character())
          return;
 
       char szTime[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
@@ -318,7 +318,7 @@ namespace hi5
 #ifdef WINDOWS
       sprintf( szTime, "%ld", (int) time( nullptr ) );
 #elif defined __LP64
-      sprintf( szTime, "%ld", (i64) time( nullptr ) );
+      sprintf( szTime, "%ld", (huge_integer) time( nullptr ) );
 #else
       sprintf( szTime, "%d", (int) time( nullptr ) );
 #endif
@@ -459,7 +459,7 @@ namespace hi5
       /* Signing key is composed of consumer_secret&token_secret */
       secretSigningKey = m_consumerSecret;
       secretSigningKey += "&" ;
-      if( m_oAuthTokenSecret.has_char())
+      if( m_oAuthTokenSecret.has_character())
       {
          secretSigningKey += m_oAuthTokenSecret;
       }

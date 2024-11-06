@@ -8,7 +8,7 @@ class enum_bitset
 public:
 
 
-   ::u64 m_array[((m_iBitCount - 1) >> 6) + 1];
+   huge_natural m_array[((m_iBitCount - 1) >> 6) + 1];
 
 
    void set(ENUM e) { m_array[e >> 6] |= (1ull << (e & 63)); }

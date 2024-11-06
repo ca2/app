@@ -47,7 +47,7 @@ namespace write_text
       {
       public:
 
-         size_f64          m_size;
+         double_size          m_size;
          bool              m_bSize;
          wstring           m_wstr;
          void *            m_osdata[4];

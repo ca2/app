@@ -1,7 +1,7 @@
 #pragma once
 
 
-//CLASS_DECL_APEX void hfile_set_size(HANDLE h, i64 iSize);
+//CLASS_DECL_APEX void hfile_set_size(HANDLE h, huge_integer iSize);
 //CLASS_DECL_APEX unsigned int Winwindows_get_file_attributes(const unichar * psz);
 //#define WinGetFileAttributes Winwindows_get_file_attributes
 //CLASS_DECL_APEX unsigned int GetFileSize(HANDLE h, LPDWORD lpdwHi);

@@ -26,14 +26,53 @@ using uptr = unsigned int;
 
 
 // #else
-
-
-using iptr = i64;
-using uptr = u64;
+using huge_integer = int64_t;
+using huge_natural = uint64_t;
+#if defined(HAS_HYPER_INTEGER)
+using hyper_integer = __int128;
+using hyper_natural = unsigned __int128;
+#endif
+using iptr = huge_integer;
+using uptr = huge_natural;
 
 #define IPTR_MAXIMUM I64_MAXIMUM
 #define UPTR_MAXIMUM U64_MAXIMUM
 #define IPTR_MINIMUM I64_MINIMUM
+
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+
+#define DO_FOR_NUMBER_TYPES(DO) \
+DO(char, char, ch); \
+DO(unsigned char, unsigned_char, uch); \
+DO(short, short, sh); \
+DO(unsigned short, unsigned_short, ush); \
+DO(int, int, i); \
+DO(unsigned int, unsigned_int, ui); \
+DO(long, long, l); \
+DO(unsigned long, unsigned_long, ul); \
+DO(huge_integer, huge_integer, hi); \
+DO(huge_natural, huge_natural, hn); \
+DO(float, float, f); \
+DO(double, double, d);
+
+#else
+
+#define DO_FOR_NUMBER_TYPES(DO) \
+DO(char, char, ch, CHAR); \
+DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
+DO(short, short, sh, SHORT); \
+DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
+DO(int, int, i, INT); \
+DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
+DO(huge_integer, huge_integer, hi, HUGE_INTEGER); \
+DO(huge_natural, huge_natural, hn, HUGE_NATURAL); \
+DO(float, float, f, FLOAT); \
+DO(double, double, d, DOUBLE);
+
+#endif
+
+
 
 // #endif
 
@@ -51,9 +90,9 @@ using uptr = u64;
 //
 //#if OSBIT == 64
 //
-//typedef u64              rtptr;
-//typedef u64              ulong_ptr;
-//typedef u64              dword_ptr;
+//typedef huge_natural              rtptr;
+//typedef huge_natural              ulong_ptr;
+//typedef huge_natural              dword_ptr;
 //
 //#else
 //

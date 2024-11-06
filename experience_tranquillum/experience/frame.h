@@ -15,8 +15,8 @@ namespace experience_tranquillum
       public:
 
 
-      ::rectangle_i32                        m_rectangleCaptionTextBk;
-      ::point_i32                            m_pointMoveGripMinimal;
+      ::int_rectangle                        m_rectangleCaptionTextBk;
+      ::int_point                            m_pointMoveGripMinimal;
       //::write_text::font_pointer           m_pfontButton;
       //::write_text::font_pointer           m_pfontCaption;
       //e_style                              m_estyle;
@@ -33,7 +33,7 @@ namespace experience_tranquillum
       ::draw2d::pen_pointer                  m_ppenShadow1;
       ::draw2d::pen_pointer                  m_ppenDkShadow1;
       status < ::color::color >       m_colorDkShadow;
-      size_i32                               m_minSize;
+      int_size                               m_minSize;
 
       ::draw2d::pen_pointer                  m_ppenHollow1;
       ::draw2d::pen_pointer                  m_ppenHollow2;
@@ -66,27 +66,27 @@ namespace experience_tranquillum
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnBeforeMove(const ::rectangle_i32 & rectangleWindow);
+      virtual void _001OnBeforeMove(const ::int_rectangle & rectangleWindow);
 
 
-//               virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow) override;
+//               virtual void _001OnBeforeSize(const ::int_rectangle & rectangleWindow) override;
 
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rectangle(::rectangle_i32 & rectangle, enum_element eelement) override;
+      virtual bool get_element_rectangle(::int_rectangle & rectangle, enum_element eelement) override;
 
 
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const class ::opacity & opacity);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color, const class ::opacity & opacity);
 
 
       //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight);
 
       virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
@@ -94,10 +94,10 @@ namespace experience_tranquillum
 
 
 
-      virtual void GetFrameRect(rectangle_i32 & rectangle) override;
-      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * prectangle, enum_border eside);
+      virtual void GetFrameRect(int_rectangle & rectangle) override;
+      virtual void GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * prectangle, enum_border eside);
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
 
    };

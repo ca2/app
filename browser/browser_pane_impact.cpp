@@ -478,7 +478,7 @@ namespace browser
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
 
-               if (strFont.has_char())
+               if (strFont.has_character())
                {
 
                   m_pimpactLastBilbo->m_prender->m_strFontHover.empty();
@@ -497,7 +497,7 @@ namespace browser
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();
 
-               if (strFont.has_char())
+               if (strFont.has_character())
                {
 
                   m_pimpactLastBilbo->m_prender->m_strFontHover = strFont;
@@ -581,7 +581,7 @@ namespace browser
 
       }
 
-      if (m_strTopicTitle.has_char())
+      if (m_strTopicTitle.has_character())
       {
 
          str.replace("Hellomultiverse!!", m_strTopicTitle);

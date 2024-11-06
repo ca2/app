@@ -887,7 +887,7 @@ template <typename Context, typename Iter> inline bool _parse(Context &ctx, inpu
     } else {                                                                                                                       \
       return false;                                                                                                                \
     }
-    IS('n', "ull", ctx.set_null());
+    IS('n', "hn", ctx.set_null());
     IS('f', "alse", ctx.set_bool(false));
     IS('t', "rue", ctx.set_bool(true));
 #undef IS

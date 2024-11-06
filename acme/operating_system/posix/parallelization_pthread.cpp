@@ -455,7 +455,7 @@ void os_on_term_thread()
 }
 
 
-CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
+CLASS_DECL_ACME huge_natural translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;
@@ -622,7 +622,7 @@ void task_set_name(const char * psz)
 string task_get_name()
 {
    /* Try obtaining the thread name.
-    * If this fails, we'll return a pointer to an empty string. */
+    * If this fails, we'hi return a pointer to an empty string. */
     //if (!thread_name_buffer[0])
    char thread_name_buffer[17] = { 0 };
    prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);

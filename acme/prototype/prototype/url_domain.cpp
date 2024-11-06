@@ -322,7 +322,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 }
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
+bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count blen, const char * pszTop2, character_count alen)
 {
    char a1;
    char a2;
@@ -661,7 +661,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, co
          }
          else if(b2 == 'u')
          {
-            // hu
+            // hn
             if(alen == 2)
             {
                if(a1 == 'c' && a2 == 'o')
@@ -820,7 +820,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, co
       {
          if(b2 == 't')
          {
-            // point_i32
+            // int_point
             if(alen == 3)
             {
                if(a1 == 'c' && a2 == 'o' && a3 == 'm')

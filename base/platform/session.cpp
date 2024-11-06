@@ -27,7 +27,7 @@ namespace base
 
 #ifdef _DEBUG
 
-   i64 session::increment_reference_count()
+   huge_integer session::increment_reference_count()
    {
 
       return ::axis::session::increment_reference_count();
@@ -35,7 +35,7 @@ namespace base
    }
 
 
-   i64 session::decrement_reference_count()
+   huge_integer session::decrement_reference_count()
    {
 
       return ::axis::session::decrement_reference_count();

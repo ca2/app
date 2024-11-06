@@ -4,7 +4,7 @@
 
 
 
-//#define make_i32(a, b)      ((int)(((unsigned short)(((dword_ptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define make_int(a, b)      ((int)(((unsigned short)(((dword_ptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 
@@ -509,7 +509,7 @@ namespace user
 
    };
 
-   enum enum_interaction : ::i64
+   enum enum_interaction : huge_integer
    {
 
       e_interaction_none = 0,
@@ -536,7 +536,7 @@ namespace user
 #pragma once
 
 
-enum enum_tool_item_state : ::i64
+enum enum_tool_item_state : huge_integer
 {
 
    e_tool_item_state_none,
@@ -553,7 +553,7 @@ enum enum_tool_item_state : ::i64
 };
 
 
-enum enum_tool_item_style : ::i64
+enum enum_tool_item_style : huge_integer
 {
 
    e_tool_item_style_none = e_toolbar_style_none,
@@ -565,16 +565,16 @@ enum enum_tool_item_style : ::i64
    e_tool_item_style_autosize = e_toolbar_style_autosize,
    e_tool_item_style_noprefix = e_toolbar_style_noprefix,
    e_tool_item_style_custom_control = 1_uintmax,
-   //#define TBBS_AUTOSIZE   make_i32(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-   //#define TBBS_NOPREFIX   make_i32(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-   e_tool_item_style_checked = make_i32(0, e_tool_item_state_checked),
-   e_tool_item_style_pressed = make_i32(0, e_tool_item_state_pressed),
-   e_tool_item_style_disabled = make_i32(0, e_tool_item_state_enabled),
-   e_tool_item_style_indeterminate = make_i32(0, e_tool_item_state_indeterminate),
-   e_tool_item_style_hidden = make_i32(0, e_tool_item_state_hidden),
-   e_tool_item_style_wrapped = make_i32(0, e_tool_item_state_wrap),
-   e_tool_item_style_ellipses = make_i32(0, e_tool_item_state_ellipses),
-   e_tool_item_style_marked = make_i32(0, e_tool_item_state_marked),
+   //#define TBBS_AUTOSIZE   make_int(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+   //#define TBBS_NOPREFIX   make_int(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+   e_tool_item_style_checked = make_int(0, e_tool_item_state_checked),
+   e_tool_item_style_pressed = make_int(0, e_tool_item_state_pressed),
+   e_tool_item_style_disabled = make_int(0, e_tool_item_state_enabled),
+   e_tool_item_style_indeterminate = make_int(0, e_tool_item_state_indeterminate),
+   e_tool_item_style_hidden = make_int(0, e_tool_item_state_hidden),
+   e_tool_item_style_wrapped = make_int(0, e_tool_item_state_wrap),
+   e_tool_item_style_ellipses = make_int(0, e_tool_item_state_ellipses),
+   e_tool_item_style_marked = make_int(0, e_tool_item_state_marked),
 };
 
 

@@ -16,7 +16,7 @@ namespace write_text
 
       unsigned int   m_ui;
 
-      array <point_int_array, point_int_array &> m_pointsets;
+      array <int_point_array, int_point_array &> m_pointsets;
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -29,7 +29,7 @@ namespace write_text
       virtual ~glyph();
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::point_i32 * ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::int_point * ppointoffset);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -39,7 +39,7 @@ namespace write_text
 //
 //#endif
 
-      void GetGlyphRect(int x, int y, ::rectangle_i32 * prectangle);
+      void GetGlyphRect(int x, int y, ::int_rectangle * prectangle);
 
 
       void clear();

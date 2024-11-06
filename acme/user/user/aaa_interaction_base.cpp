@@ -449,7 +449,7 @@
 //   }
 //
 //
-//   ::point_i32 interaction_base::origin()
+//   ::int_point interaction_base::origin()
 //   {
 //
 //      throw ::exception(error_wrong_state);
@@ -459,7 +459,7 @@
 //   }
 //
 //
-//   ::shift_i32 interaction_base::host_to_client()
+//   ::shift_int interaction_base::host_to_client()
 //   {
 //
 //      return -client_to_host();
@@ -467,7 +467,7 @@
 //   }
 //
 //
-//   ::shift_i32 interaction_base::client_to_host()
+//   ::shift_int interaction_base::client_to_host()
 //   {
 //
 //      return {};
@@ -475,7 +475,7 @@
 //   }
 //
 //
-//   ::shift_i32 interaction_base::absolute_to_client()
+//   ::shift_int interaction_base::absolute_to_client()
 //   {
 //
 //      return -client_to_host();
@@ -483,7 +483,7 @@
 //   }
 //
 //
-//   ::shift_i32 interaction_base::client_to_absolute()
+//   ::shift_int interaction_base::client_to_absolute()
 //   {
 //
 //      if (::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
@@ -500,7 +500,7 @@
 //   }
 //
 //
-//   ::point_i32 interaction_base::try_absolute_mouse_position(const ::point_i32& point)
+//   ::int_point interaction_base::try_absolute_mouse_position(const ::int_point& point)
 //   {
 //
 //      auto p = point;
@@ -520,7 +520,7 @@
 //   }
 //
 //
-//   bool interaction_base::on_drag_start(::point_i32& point, ::item* pitem)
+//   bool interaction_base::on_drag_start(::int_point& point, ::item* pitem)
 //   {
 //
 //      if (pitem->m_item.m_eelement == e_element_client)
@@ -546,7 +546,7 @@
 //   }
 //
 //
-//   ::point_i32 interaction_base::drag_mouse_cursor_position(::item* pitem, const ::point_i32& point)
+//   ::int_point interaction_base::drag_mouse_cursor_position(::item* pitem, const ::int_point& point)
 //   {
 //
 //      auto p = try_absolute_mouse_position(point);
@@ -675,7 +675,7 @@
 //   }
 //
 //
-//   void interaction_base::set_position(const ::point_i32& point)
+//   void interaction_base::set_position(const ::int_point& point)
 //   {
 //
 //      m_pwindowbase->set_position(point);
@@ -754,14 +754,14 @@
 //   }
 //
 //
-//   void interaction_base::get_client_rectangle(::rectangle_i32& rectangle)
+//   void interaction_base::get_client_rectangle(::int_rectangle& rectangle)
 //   {
 //
 //
 //   }
 //
 //
-//   rectangle_i32 interaction_base::get_window_rectangle()
+//   int_rectangle interaction_base::get_window_rectangle()
 //   {
 //
 //      return {};
@@ -912,29 +912,21 @@
 //   }
 //
 //
-//   void interaction_base::get_text_selection(strsize& iBeg, strsize& iEnd) const
+//   void interaction_base::get_text_selection(character_count& iBeg, character_count& iEnd) const
 //   {
 //
 //
 //   }
 //
 //
-//   void interaction_base::get_text_selection(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd) const
+//   void interaction_base::get_text_selection(character_count& iBeg, character_count& iEnd, character_count& iComposingStart, character_count& iComposingEnd) const
 //   {
 //
 //
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
-//   {
-//
-//      return -1;
-//
-//   }
-//
-//
-//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel)
 //   {
 //
 //      return -1;
@@ -942,7 +934,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
+//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
 //   {
 //
 //      return -1;
@@ -950,7 +942,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel)
 //   {
 //
 //      return -1;
@@ -958,7 +950,7 @@
 //   }
 //
 //
-//   strsize interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn)
+//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
 //   {
 //
 //      return -1;
@@ -966,7 +958,7 @@
 //   }
 //
 //
-//   strsize interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x)
+//   character_count interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn)
 //   {
 //
 //      return -1;
@@ -974,7 +966,15 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
+//   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//
+//   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel)
 //   {
 //
 //      return -1;
@@ -991,7 +991,7 @@
 //
 //      ::string strAtom = m_atom.as_string();
 //
-//      if (strAtom.has_char() && strAtom != strType)
+//      if (strAtom.has_character() && strAtom != strType)
 //      {
 //         statement << "=" << strAtom;
 //      }

@@ -16,8 +16,8 @@
 //   constexpr floating_microsecond_t(floating_microsecond microsecond = {}) : floating_microsecond(microsecond) {}
 //
 //
-//   integral_second integral_seconds() const { return integral_second((::i64)(m_d / 1'000'000.0)); }
-//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((::i64)(fmod(m_d, 1'000'000.0) * 1'000.0)); }
+//   integral_second integral_seconds() const { return integral_second((huge_integer)(m_d / 1'000'000.0)); }
+//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((huge_integer)(fmod(m_d, 1'000'000.0) * 1'000.0)); }
 //
 //
 //};

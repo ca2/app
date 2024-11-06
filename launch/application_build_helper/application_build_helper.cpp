@@ -412,7 +412,7 @@ namespace application_build_helper
 
          string strTranslate = defer_translate_dependency(packagereference.m_strPackage);
 
-         if (strTranslate.has_char() && strTranslate != packagereference.m_strPackage)
+         if (strTranslate.has_character() && strTranslate != packagereference.m_strPackage)
          {
 
             packagereference.m_strPackage = strTranslate;
@@ -840,7 +840,7 @@ namespace application_build_helper
 
          straApps.add("");
 
-         //if(strApps.has_char())
+         //if(strApps.has_character())
          {
 
             for (::collection::index i = 0; i < straApps.get_count(); i++)
@@ -852,7 +852,7 @@ namespace application_build_helper
 
                string strAppName = m_strUnderscoreAppId;
 
-               if (strAppAddUp.has_char())
+               if (strAppAddUp.has_character())
                {
 
                   strAppName += "_" + strAppAddUp;
@@ -871,7 +871,7 @@ namespace application_build_helper
 
                      strApplication += "#include \"framework.h\"\n";
 
-                     if (strAppAddUp.has_char())
+                     if (strAppAddUp.has_character())
                      {
 
                         strAppAddUp.make_upper();
@@ -1294,12 +1294,12 @@ namespace application_build_helper
 
          strLine.trim();
 
-         if (strLine.has_char())
+         if (strLine.has_character())
          {
 
             string strDependency = defer_translate_dependency(strLine);
 
-            if (strDependency.has_char())
+            if (strDependency.has_character())
             {
 
                string_array stra;
@@ -1311,7 +1311,7 @@ namespace application_build_helper
 
                   string strPackage = stra[1];
 
-                  if (strPackage.has_char())
+                  if (strPackage.has_character())
                   {
 
                      if (!bFirst)
@@ -1408,12 +1408,12 @@ namespace application_build_helper
 
          strLine.trim();
 
-         if (strLine.has_char())
+         if (strLine.has_character())
          {
 
             string strDependency = defer_translate_dependency(strLine);
 
-            if (strDependency.has_char())
+            if (strDependency.has_character())
             {
 
                strOutput += strDependency;
@@ -1489,7 +1489,7 @@ namespace application_build_helper
 
       strInput.trim();
 
-      if (strInput.has_char())
+      if (strInput.has_character())
       {
 
          return;

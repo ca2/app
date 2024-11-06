@@ -11,7 +11,7 @@ namespace networking_bsd
    public:
 
 
-      interlocked_i32                              m_lHttpGetSerial;
+      interlocked_int                              m_lHttpGetSerial;
 
       int                                          m_iErrorCode;
 

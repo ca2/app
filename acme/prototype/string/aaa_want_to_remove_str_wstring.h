@@ -127,9 +127,9 @@ public:
    wstring(const wstring & strSrc,manager * pstringmanager = nullptr);
    wstring(const ::scoped_string & scopedstrSrc,manager * pstringmanager = nullptr);
    wstring(const unsigned char * pszSrc,manager * pstringmanager = nullptr);
-   wstring(const unsigned char * pszSrc, strsize nLength, manager * pstringmanager = nullptr);
+   wstring(const unsigned char * pszSrc, character_count nLength, manager * pstringmanager = nullptr);
    wstring(const unichar * pchSrc, manager * pstringmanager = nullptr);
-   wstring(const unichar * pchSrc, strsize nLength,manager * pstringmanager = nullptr);
+   wstring(const unichar * pchSrc, character_count nLength,manager * pstringmanager = nullptr);
    inline wstring(const wstring_data * pdata,manager * pstringmanager = nullptr)
    {
       __UNREFERENCED_PARAMETER(pstringmanager);
@@ -155,7 +155,7 @@ public:
    }
 
 
-   void reserve(strsize n) { __UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
+   void reserve(character_count n) { __UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
 
    wstring & operator = (const wstring & wstr);
    wstring & operator = (const unichar * pwsz);
@@ -331,8 +331,8 @@ public:
    void assign(const ::scoped_string & scopedstr);
 
 
-   strsize find(unichar ch,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
-   strsize find(const unichar * pszSub,strsize start = 0,strsize count = -1,const unichar ** pszTail = nullptr) const RELEASENOTHROW;
+   character_count find(unichar ch,character_count start = 0,character_count count = -1) const RELEASENOTHROW;
+   character_count find(const unichar * pszSub,character_count start = 0,character_count count = -1,const unichar ** pszTail = nullptr) const RELEASENOTHROW;
 
    bool empty() const { return is_empty();  }
 

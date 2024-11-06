@@ -157,7 +157,7 @@ namespace colorertake5
       * Return parsed and colored LineRegions of requested line.
       * This method validates current cache state
       * and, if needed, calls Colorer parser to validate modified block of text.
-      * size_i32 of reparsed text is choosed according to information
+      * int_size of reparsed text is choosed according to information
       * about visible text range and modification events.
       * @todo If number of lines, to be reparsed is more, than backParse parameter,
       * then method will return nullptr, until validate() method is called.
@@ -238,9 +238,9 @@ namespace colorertake5
       void startParsing(index lno);
       void endParsing(index lno);
       void clearLine(index lno, const ::string &line);
-      void addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region *region);
-      void enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
-      void leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
+      void addRegion(index lno, const ::string &line, character_count sx, character_count ex, class region *region);
+      void enterScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme);
+      void leaveScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme);
 
    private:
       HRCParser *hrcParser;

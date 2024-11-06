@@ -18,7 +18,7 @@ namespace html
       
          
          ::image::image_pointer     m_pimage;
-         ::rectangle_i32            m_rectangle;
+         ::int_rectangle            m_rectangle;
 
 
          void _001OnDraw(html_data * pdocument);

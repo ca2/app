@@ -78,7 +78,7 @@ namespace nanoui
 
       m_bVisible &= m_parent_window->visible_recursive();
 
-      m_pos = m_parent_window->position() + m_anchor_pos - sequence2_i32(0, m_anchor_offset);
+      m_pos = m_parent_window->position() + m_anchor_pos - sequence2_int(0, m_anchor_offset);
 
       m_pointLastDragPosition = m_pos;
 
@@ -116,7 +116,7 @@ namespace nanoui
          pcontext->begin_path();
          pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), (float)cr);
 
-         auto base = m_pos + sequence2_i32(0, m_anchor_offset);
+         auto base = m_pos + sequence2_int(0, m_anchor_offset);
          int sign = -1;
          if (m_side == Side::Left) {
             base.x() += m_size.cx();

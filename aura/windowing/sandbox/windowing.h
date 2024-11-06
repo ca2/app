@@ -56,7 +56,7 @@ namespace sandbox_windowing
 
       void terminate_windowing() override;
 
-      void defer_initialize_host_window(const ::rectangle_i32* lpcrect) override;
+      void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
       ::windowing::window* get_application_host_window() override;
 

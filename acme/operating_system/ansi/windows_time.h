@@ -13,8 +13,8 @@
 using WORD = unsigned short;
 using LONG = int;
 using WINULONG = unsigned int;
-using LONGLONG = ::i64;
-using ULONGLONG = ::u64;
+using LONGLONG = huge_integer;
+using ULONGLONG = huge_natural;
 using NTSTATUS = int;
 using DWORD = unsigned int;
 using LPDWORD = ::DWORD *;

@@ -28,7 +28,7 @@ namespace user
 
 #ifdef _DEBUG
 
-   i64 style_base::increment_reference_count()
+   huge_integer style_base::increment_reference_count()
    {
 
       return ::manager::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   i64 style_base::decrement_reference_count()
+   huge_integer style_base::decrement_reference_count()
    {
 
       return ::manager::decrement_reference_count();
@@ -162,7 +162,7 @@ namespace user
    }
 
 
-   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       return false;
@@ -170,7 +170,7 @@ namespace user
    }
 
 
-   ::rectangle_i32 style_base::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   ::int_rectangle style_base::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
    {
 
       return {};

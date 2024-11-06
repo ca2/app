@@ -60,7 +60,7 @@ namespace acme
 
    //   strRoot.trim();
 
-   //   if (strRoot.has_char())
+   //   if (strRoot.has_character())
    //   {
 
    //      m_strRoot = strRoot;
@@ -94,7 +94,7 @@ namespace acme
 
    //   m_strCa2Name = strRoot;
 
-   //   if(strRoot.has_char())
+   //   if(strRoot.has_character())
    //   {
 
    //      m_strRoot = strRoot;
@@ -151,7 +151,7 @@ namespace acme
 
       //   m_strPath = pszPath;
 
-      //   if (m_strCa2Name.has_char())
+      //   if (m_strCa2Name.has_character())
       //   {
 
       //      __own(psystem, m_mapLibrary[m_strCa2Name], this);
@@ -257,7 +257,7 @@ namespace acme
       //
       // }
 
-      if (m_strName.has_char())
+      if (m_strName.has_character())
       {
 
          __refdbg_add_referer
@@ -325,7 +325,7 @@ namespace acme
 
    //   //         iPhase++;
 
-   //   //         if (strTitle.has_char())
+   //   //         if (strTitle.has_character())
    //   //         {
 
    //   //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
@@ -432,7 +432,7 @@ namespace acme
 
    //   }
 
-   //   if (m_strCa2Name.has_char())
+   //   if (m_strCa2Name.has_character())
    //   {
 
    //      system()->m_mapLibrary[m_strCa2Name] = this;

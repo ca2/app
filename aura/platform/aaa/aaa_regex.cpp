@@ -20,7 +20,7 @@
 }
 
 
-//index regex::match(string_array & stra, const ::string & strParam, strsize iSize)
+//index regex::match(string_array & stra, const ::string & strParam, character_count iSize)
 //{
 //
 //   stra.erase_all();
@@ -40,8 +40,8 @@
 //
 //   for(::collection::index i = 0; i < matches.cMatch; i++)
 //   {
-//      strsize iStart   = matches.s[i];
-//      strsize iEnd     = matches.e[i];
+//      character_count iStart   = matches.s[i];
+//      character_count iEnd     = matches.e[i];
 //      stra.add(str.substr(iStart, iEnd - iStart));
 //   }
 //

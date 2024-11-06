@@ -45,22 +45,22 @@
 
 
 #ifndef __APPLE__
-#define HTONLL(n) (((((u64)(n) & 0xFFuLL)) << 56) | \
-   ((((u64)(n) & 0xFF00uLL)) << 40) | \
-   ((((u64)(n) & 0xFF0000uLL)) << 24) | \
-   ((((u64)(n) & 0xFF000000uLL)) << 8) | \
-   ((((u64)(n) & 0xFF00000000uLL)) >> 8) | \
-   ((((u64)(n) & 0xFF0000000000uLL)) >> 24) | \
-   ((((u64)(n) & 0xFF000000000000uLL)) >> 40) | \
-   ((((u64)(n) & 0xFF00000000000000uLL)) >> 56))
-#define NTOHLL(n) (((((u64)(n) & 0xFFuLL)) << 56) | \
-   ((((u64)(n) & 0xFF00uLL)) << 40) | \
-   ((((u64)(n) & 0xFF0000uLL)) << 24) | \
-   ((((u64)(n) & 0xFF000000uLL)) << 8) | \
-   ((((u64)(n) & 0xFF00000000uLL)) >> 8) | \
-   ((((u64)(n) & 0xFF0000000000uLL)) >> 24) | \
-   ((((u64)(n) & 0xFF000000000000uLL)) >> 40) | \
-   ((((u64)(n) & 0xFF00000000000000uLL)) >> 56))
+#define HTONLL(n) (((((huge_natural)(n) & 0xFFuLL)) << 56) | \
+   ((((huge_natural)(n) & 0xFF00uLL)) << 40) | \
+   ((((huge_natural)(n) & 0xFF0000uLL)) << 24) | \
+   ((((huge_natural)(n) & 0xFF000000uLL)) << 8) | \
+   ((((huge_natural)(n) & 0xFF00000000uLL)) >> 8) | \
+   ((((huge_natural)(n) & 0xFF0000000000uLL)) >> 24) | \
+   ((((huge_natural)(n) & 0xFF000000000000uLL)) >> 40) | \
+   ((((huge_natural)(n) & 0xFF00000000000000uLL)) >> 56))
+#define NTOHLL(n) (((((huge_natural)(n) & 0xFFuLL)) << 56) | \
+   ((((huge_natural)(n) & 0xFF00uLL)) << 40) | \
+   ((((huge_natural)(n) & 0xFF0000uLL)) << 24) | \
+   ((((huge_natural)(n) & 0xFF000000uLL)) << 8) | \
+   ((((huge_natural)(n) & 0xFF00000000uLL)) >> 8) | \
+   ((((huge_natural)(n) & 0xFF0000000000uLL)) >> 24) | \
+   ((((huge_natural)(n) & 0xFF000000000000uLL)) >> 40) | \
+   ((((huge_natural)(n) & 0xFF00000000000000uLL)) >> 56))
 
 
 #endif

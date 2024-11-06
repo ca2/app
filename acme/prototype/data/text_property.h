@@ -82,26 +82,26 @@ namespace data
       //virtual void get_text(string & str);
 
 
-      //virtual strsize get_text_length();
-      //virtual void get_text(char * psz, strsize len);
+      //virtual character_count get_text_length();
+      //virtual void get_text(char * psz, character_count len);
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
       //virtual void set_text(const ::string & str, const ::action_context & action_context);
-      //virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
+      //virtual void set_text(const ::string & psz, character_count len, const ::action_context & action_context);
 
 
 
-      //virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-      //virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
-      //virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void _001GetSel(character_count & iBeg, character_count & iEnd);
+      //virtual void set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void _001SetSelEnd(character_count iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
       //virtual void get_selection_text(string & str);
       //virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
 
 
-      //virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
+      //virtual void get_text_selection(character_count &iSelStart, character_count &iSelEnd);
 
 
       //virtual void MacroBegin();
@@ -119,7 +119,7 @@ namespace data
       //virtual bool edit_undo();
 
 
-      //virtual void get_text_composition_area(::rectangle_i32& rectangle);
+      //virtual void get_text_composition_area(::int_rectangle& rectangle);
 
       ::comparable_array < ::data::text_will_change > & text_will_change();
       ::comparable_array < ::data::text_changed > & text_changed();
@@ -145,26 +145,26 @@ namespace data
             virtual void get_text(string & str);
 
 
-            virtual strsize get_text_length();
-            virtual void get_text(char * psz, strsize len);
+            virtual character_count get_text_length();
+            virtual void get_text(char * psz, character_count len);
             virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
             virtual void set_text(const ::string & str, const ::action_context & action_context);
-            virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
+            virtual void set_text(const ::string & psz, character_count len, const ::action_context & action_context);
 
 
 
-            virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-            virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
-            virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
+            virtual void _001GetSel(character_count & iBeg, character_count & iEnd);
+            virtual void set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context = ::e_source_user);
+            virtual void _001SetSelEnd(character_count iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
             virtual void get_selection_text(string & str);
             virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
 
 
-            virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
+            virtual void get_text_selection(character_count &iSelStart, character_count &iSelEnd);
 
 
             virtual void MacroBegin();
@@ -182,41 +182,41 @@ namespace data
             virtual bool edit_undo();
 
 
-            //virtual void get_text_composition_area(::rectangle_i32& rectangle);
+            //virtual void get_text_composition_area(::int_rectangle& rectangle);
       */
 
       ::string as_text() const;
-      ::strsize selection_begin() const;
-      ::strsize selection_end() const;
+      ::character_count selection_begin() const;
+      ::character_count selection_end() const;
 
 
       bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext);
 
       bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext);
 
-      strsize get_size() const;
+      character_count get_size() const;
 
-      //void get_text(char * psz, strsize len);
+      //void get_text(char * psz, character_count len);
 
 
       ::string get_text() const;
 
-      //void get_text(::string & str, strsize iBeg, strsize iEnd = -1) const;
+      //void get_text(::string & str, character_count iBeg, character_count iEnd = -1) const;
 
 
-      void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext);
+      void set_text(const ::scoped_string & scopedstrText, character_count iLen, const ::action_context & actioncontext);
 
       text_property & operator = (const payload_action_context & payloadactioncontext);
 
-      void get_selection(strsize & iBegin, strsize & iEnd) const;
+      void get_selection(character_count & iBegin, character_count & iEnd) const;
 
 
-      // strsize selection_begin() const
+      // character_count selection_begin() const
       // {
       //
-      //    ::strsize iBegin;
+      //    ::character_count iBegin;
       //
-      //    ::strsize iEnd;
+      //    ::character_count iEnd;
       //
       //    get_selection(iBegin, iEnd);
       //
@@ -225,12 +225,12 @@ namespace data
       // }
 
 
-      // strsize selection_end() const
+      // character_count selection_end() const
       // {
       //
-      //    ::strsize iBegin;
+      //    ::character_count iBegin;
       //
-      //    ::strsize iEnd;
+      //    ::character_count iEnd;
       //
       //    get_selection(iBegin, iEnd);
       //
@@ -239,10 +239,10 @@ namespace data
       // }
 
 
-      void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
+      void set_selection(character_count iBegin, character_count iEnd, const ::action_context & actioncontext);
 
       /*
-         void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+         void set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context)
          {
 
             __UNREFERENCED_PARAMETER(iBeg);
@@ -252,7 +252,7 @@ namespace data
          }
 
 
-         void text::get_text_selection(strsize & iBeg, strsize & iEnd)
+         void text::get_text_selection(character_count & iBeg, character_count & iEnd)
          {
 
             __UNREFERENCED_PARAMETER(iBeg);
@@ -261,9 +261,9 @@ namespace data
          }
       */
 
-      void set_selection_begin(strsize iBegin, const ::action_context & actioncontext);
+      void set_selection_begin(character_count iBegin, const ::action_context & actioncontext);
 
-      void set_selection_end(strsize iEnd, const ::action_context & actioncontext);
+      void set_selection_end(character_count iEnd, const ::action_context & actioncontext);
       ::string get_selection_text() const;
 
       /*
@@ -311,7 +311,7 @@ namespace data
          }
 
 
-         void text::get_text_composition_area(::rectangle_i32& rectangle)
+         void text::get_text_composition_area(::int_rectangle& rectangle)
          {
 
 

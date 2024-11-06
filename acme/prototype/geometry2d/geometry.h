@@ -16,7 +16,7 @@ namespace geometry
       int      m_iXCenter;
       int      m_iYCenter;
 
-      void rotate(::point_i32 * ppoint, int iCount);
+      void rotate(::int_point * ppoint, int iCount);
 
    };
 
@@ -36,18 +36,18 @@ namespace geometry
 
       double rotate_y(double x, double y, double phi);
       double rotate_x(double x, double y, double phi);
-      void rotate(int x, int y, ::point_i32 * ppoint, int iCount, double phi);
+      void rotate(int x, int y, ::int_point * ppoint, int iCount, double phi);
 
-      void rotate(int x, int y, ::point_i32 * ppoint, int iCount, double cosphi, double sinphi);
+      void rotate(int x, int y, ::int_point * ppoint, int iCount, double cosphi, double sinphi);
 
-      void rotate(int x, int y, ::point_f64 * ppoint, int iCount, double phi);
+      void rotate(int x, int y, ::double_point * ppoint, int iCount, double phi);
 
-      void rotate(int x, int y, ::point_f64 * ppoint, int iCount, double cosphi, double sinphi);
+      void rotate(int x, int y, ::double_point * ppoint, int iCount, double cosphi, double sinphi);
 
 
 
-      //void RandomPoint(::point_i32 * ppoint, const ::rectangle_i32 & rectangle);
-      void deflate(::rectangle_i32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+      //void RandomPoint(::int_point * ppoint, const ::int_rectangle & rectangle);
+      void deflate(::int_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
       template < primitive_rectangle RECTANGLE >

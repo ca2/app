@@ -40,7 +40,7 @@ void device::on_end_draw()
 }
 
 
-void device::draw_text123(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
+void device::draw_text123(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
 {
 
    if(ealign & e_align_bottom_right_bias)
@@ -82,14 +82,14 @@ void device::draw_text123(const ::string & str, const ::rectangle_i32 & rectangl
 }
 
 
-void device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
+void device::_draw_text(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
 {
 
 
 }
 
 
-::size_i32 device::get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont)
+::int_size device::get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont)
 {
 
    return {};
@@ -98,7 +98,7 @@ void device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleT
 
 
 
-void device::rectangle(const ::rectangle_i32 & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
+void device::rectangle(const ::int_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen)
 {
 
 

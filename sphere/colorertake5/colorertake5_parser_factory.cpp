@@ -48,7 +48,7 @@ namespace colorertake5
          {
             string logLocation = (elem)->attr("log-location");
 
-            if (logLocation.has_char())
+            if (logLocation.has_character())
             {
                string str = file()->as_string(logLocation);
                colorer_logger_set_target(str);
@@ -222,7 +222,7 @@ namespace colorertake5
          else
          {
             string strSource = file()->as_string(path);
-            if(strSource.has_char())
+            if(strSource.has_character())
             {
                try
                {
@@ -296,7 +296,7 @@ namespace colorertake5
 
       for(int idx = 0; idx < hrdLocV->get_size(); idx++)
       {
-         if (hrdLocV->element_at(idx).has_char())
+         if (hrdLocV->element_at(idx).has_character())
          {
 
             try
@@ -346,7 +346,7 @@ namespace colorertake5
       TextHRDMapper *mapper = ___new TextHRDMapper(this);
       for(int idx = 0; idx < hrdLocV->get_size(); idx++)
       {
-         if (hrdLocV->element_at(idx).has_char())
+         if (hrdLocV->element_at(idx).has_character())
          {
             try
             {

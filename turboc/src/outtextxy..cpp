@@ -76,7 +76,7 @@ outtextxy (int x, int y, char * textstring)
 	//  // This does not actually work in true Turbo C 2.x().
 	//  // The text ends up right-justified in my tests.  
 	//  // I'm not sure if I should duplicate Borland's bug or not ....
-	//  // No, I guess I'll make it work the way it's documented,
+	//  // No, I guess I'hi make it work the way it's documented,
 	//  // since Borland may have fixed it in later versions.
 	//  break;
 	//case CENTER_TEXT:
@@ -129,7 +129,7 @@ outtextxy (int x, int y, char * textstring)
 	//    // Here's the basic idea.  For each character, we set up the
 	//    // Points array to contain all of the visible pixels in the char.
 	//    // This entire set of pixels is drawn at once with XDrawPoints.
-	//    // If the chracter size_i32 has been magnified, so that each 
+	//    // If the chracter int_size has been magnified, so that each 
 	//    // "pixel" is really an NxN block of pixels, we modify the
 	//    // coordinates in Points NxN times and use XDrawPoints NxN times.
 	//    // First, though, there is the initial setup of Points.

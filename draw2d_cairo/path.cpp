@@ -49,7 +49,7 @@ namespace draw2d_cairo
    }
 
 
-   bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
+   bool path::contains(::draw2d::graphics_pointer & pgraphics, const double_point& point)
    {
 
       auto pcairographics = pgraphics.cast < graphics >();

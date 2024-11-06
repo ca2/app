@@ -145,7 +145,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 #endif
 
 
-u64 file_length_raw(const ::file::path & path)
+huge_natural file_length_raw(const ::file::path & path)
 {
 
 #ifdef WINDOWS

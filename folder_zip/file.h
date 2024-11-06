@@ -38,7 +38,7 @@ namespace folder_zip
 
       //void *                              m_punzfileinfo;
       string                              m_strFileName;
-      u64                                 m_iPosition;
+      huge_natural                                 m_iPosition;
       string_array                        m_straPath;
       ::pointer<folder>                  m_pfolder;
       //pointer_array < ::file_container >   m_filea;

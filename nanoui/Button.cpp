@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   size_i32 Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize || m_fTextWidth < 0.f || m_sizeImage.cx() < 0.f || m_sizeImage.cy() < 0.f)
@@ -62,12 +62,12 @@ namespace nanoui
 
       }
       
-      return ::size_i32((int)(m_fTextWidth + m_sizeImage.cx()) + 20, (int)(m_sizeImage.cy() + 11));
+      return ::int_size((int)(m_fTextWidth + m_sizeImage.cx()) + 20, (int)(m_sizeImage.cy() + 11));
       
    }
 
    //
-   //bool Button::mouse_enter_event(const point_i32 & p, bool enter, const ::user::e_key & ekeyModifiers)
+   //bool Button::mouse_enter_event(const int_point & p, bool enter, const ::user::e_key & ekeyModifiers)
    //{
    //   
    //   Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -77,7 +77,7 @@ namespace nanoui
    //}
 
 
-   bool Button::mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
@@ -311,7 +311,7 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const point_i32& p, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_enter_event(const int_point& p, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, bEnter, ekeyModifiers);
@@ -468,7 +468,7 @@ namespace nanoui
 
       auto center = m_pos + m_size * 0.5f;
       
-      auto text_pos = center - ::size_f32(text_width * 0.5f, 1.f);
+      auto text_pos = center - ::float_size(text_width * 0.5f, 1.f);
 
       ::color::color text_color =
          m_colorText.is_transparent() ? m_ptheme->m_colorText : m_colorText;
@@ -495,7 +495,7 @@ namespace nanoui
             iw += m_size.cy() * 0.15f;
          pcontext->fill_color(text_color);
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-         point_f32 icon_pos = center;
+         float_point icon_pos = center;
          icon_pos.y() -= 1;
 
          if (m_icon_position == IconPosition::LeftCentered) {

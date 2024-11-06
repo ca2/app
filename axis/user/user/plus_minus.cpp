@@ -160,7 +160,7 @@ namespace user
       if (m_i >= m_iMax)
       {
 
-         if (m_strMax.has_char())
+         if (m_strMax.has_character())
          {
 
             return m_strMax;
@@ -171,7 +171,7 @@ namespace user
       else if (m_i <= m_iMin)
       {
 
-         if (m_strMin.has_char())
+         if (m_strMin.has_character())
          {
 
             return m_strMin;
@@ -180,7 +180,7 @@ namespace user
 
       }
 
-      if (m_strFormat.has_char())
+      if (m_strFormat.has_character())
       {
 
          string str;
@@ -205,7 +205,7 @@ namespace user
 
       int iM = rectangleX.center().x();
 
-      ::rectangle_i32 rectangleL(rectangleX);
+      ::int_rectangle rectangleL(rectangleX);
 
       rectangleL.right() = iM - wPadding / 2;
 
@@ -215,7 +215,7 @@ namespace user
       
       m_pbuttonMinus->display();
 
-      ::rectangle_i32 rectangleR(rectangleX);
+      ::int_rectangle rectangleR(rectangleX);
 
       rectangleR.left() = iM + wPadding / 2;
 

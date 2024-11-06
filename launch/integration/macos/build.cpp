@@ -100,7 +100,7 @@ namespace console_integration
 
          acmenode()->unset_environment_variable("OS_ACTIVITY_DT_MODE");
 
-         if (m_strTarget.has_char())
+         if (m_strTarget.has_character())
          {
 
             acmenode()->set_environment_variable("MACOSX_DEPLOYMENT_TARGET", m_strTarget);
@@ -277,7 +277,7 @@ namespace console_integration
       {
          auto pathDependency = library_source_path(scopedstrLibraryDependency);
 
-         if (pathDependency.has_char())
+         if (pathDependency.has_character())
          {
             ::string str = "lib" + scopedstrLibraryName + ".dylib";
 

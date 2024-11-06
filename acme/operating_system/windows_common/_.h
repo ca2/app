@@ -30,7 +30,7 @@ using dword_array = ::numeric_array < DWORD >;
 //CLASS_DECL_ACME string get_mem_info_report1();
 //CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const char *** ppszFile, const char *** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
 #ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize);
+CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], huge_integer ** ppiStack, int ** ppiLine, huge_integer ** ppiSize);
 #endif
 
 
@@ -58,10 +58,10 @@ namespace windows
 //}
 
 //template < >
-//inline bool gt(count i,u64 u)
+//inline bool gt(count i,huge_natural u)
 //{
 
-//   return i < 0 ? false : ((u64)i) > u;
+//   return i < 0 ? false : ((huge_natural)i) > u;
 
 //}
 

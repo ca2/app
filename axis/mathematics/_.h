@@ -23,5 +23,5 @@ CLASS_DECL_AXIS double fmod_dup(double x, double y);
 
 
 
-CLASS_DECL_AXIS i64 ftoi64(double d);
+CLASS_DECL_AXIS huge_integer ftoi64(double d);
 CLASS_DECL_AXIS int ftol(double d);

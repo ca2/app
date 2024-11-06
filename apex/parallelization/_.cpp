@@ -742,7 +742,7 @@ namespace apex
    //
    //   string strCompact;
    //
-   //   strsize i = 0;
+   //   character_count i = 0;
    //
    //   for (; i < iSkipBegin; i++)
    //   {
@@ -775,7 +775,7 @@ namespace apex
    //
    //   string_array stra;
    //
-   //   strsize iFindLast = 0;
+   //   character_count iFindLast = 0;
    //
    //   auto pFind = 0;
    //

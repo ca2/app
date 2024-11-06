@@ -26,7 +26,7 @@ namespace userex
       ~progress_control() override;
 
 #ifdef _DEBUG
-      i64 decrement_reference_count() override;
+      huge_integer decrement_reference_count() override;
 #endif
 
 
@@ -55,7 +55,7 @@ namespace userex
 
       ::pointer<::user::progress>  m_pprogress;
 
-      ::rectangle_i32                        m_rectangleStatus;
+      ::int_rectangle                        m_rectangleStatus;
 
 
       progress_impact();
@@ -65,11 +65,11 @@ namespace userex
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 #ifdef _DEBUG
-      virtual i64 increment_reference_count() override
+      virtual huge_integer increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      virtual i64 decrement_reference_count() override
+      virtual huge_integer decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }

@@ -144,9 +144,9 @@ namespace text
 
          }
 
-         strsize iStart = strLocale2.length() + 1;
-         strsize iEnd;
-         strsize iLen;
+         character_count iStart = strLocale2.length() + 1;
+         character_count iEnd;
+         character_count iLen;
          string str;
          bool bEnd = false;
          while (!bEnd)
@@ -199,7 +199,7 @@ namespace text
       //}
 
 
-      //::string locale_schema::localeid(const scoped_string & scopedstrLocale, strsize iLen)
+      //::string locale_schema::localeid(const scoped_string & scopedstrLocale, character_count iLen)
       //{
 
       //   //if(iLen == 4)
@@ -387,7 +387,7 @@ namespace text
       //}
 
 
-      //bool locale_schema::_add_locale_variant(const scoped_string & str, strsize iLen, string idSchema)
+      //bool locale_schema::_add_locale_variant(const scoped_string & str, character_count iLen, string idSchema)
       //{
 
 
@@ -532,7 +532,7 @@ namespace text
       //   //      {
       //   //         if(ch2 == 't')
       //   //         {
-      //   //            // point_i32
+      //   //            // int_point
       //   //            defer_add_locale("br", idSchema);
       //   //            defer_add_locale("pt_br", idSchema);
       //   //            defer_add_locale("es", idSchema);
@@ -683,14 +683,14 @@ namespace text
             if (::is_set(pFind))
             {
                ::string strLocale2 = strLocale(0, pFind);
-               if (strLocale2.has_char() && !m_straLocale.contains(strLocale2))
+               if (strLocale2.has_character() && !m_straLocale.contains(strLocale2))
                {
                   m_straLocale.insert_at(i + 1, strLocale2);
                   m_straSchema.insert_at(i + 1, strSchema);
                   goto restart;
                }
                strLocale2 = strLocale(pFind + 1);
-               if (strLocale2.has_char() && !m_straLocale.contains(strLocale2))
+               if (strLocale2.has_character() && !m_straLocale.contains(strLocale2))
                {
                   m_straLocale.insert_at(i + 1, strLocale2);
                   m_straSchema.insert_at(i + 1, strSchema);
@@ -782,7 +782,7 @@ namespace text
 
 #ifdef _DEBUG
 
-      i64 locale_schema::increment_reference_count()
+      huge_integer locale_schema::increment_reference_count()
       {
 
          return particle::increment_reference_count();
@@ -790,7 +790,7 @@ namespace text
       }
 
 
-      i64 locale_schema::release()
+      huge_integer locale_schema::release()
       {
 
          return particle::release();
@@ -818,7 +818,7 @@ namespace text
       //}
 
 
-      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, strsize iLen, const ::string& idSchema)
+      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::string& idSchema)
       //{
 
       //   return defer_add_locale(localeid(pszLocale, iLen), idSchema);

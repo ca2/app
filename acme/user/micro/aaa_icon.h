@@ -19,7 +19,7 @@ virtual public ::micro::object{
     icon();
     ~icon();
 
-   virtual ::size_i32 size() const;
+   virtual ::int_size size() const;
 
    virtual void load_image_from_file(::file::file * pfile);
    virtual void load_image_file(const void *p, memsize size);

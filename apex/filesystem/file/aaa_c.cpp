@@ -27,9 +27,9 @@ bool file_system()->put_contents(const ::file::path & path, const memory_base & 
 string file_path_name(const ::file::path & path)
 {
    string str(path);
-   strsize iPos;
-   strsize iPos1 = str.rear_find('\\');
-   strsize iPos2 = str.rear_find('/');
+   character_count iPos;
+   character_count iPos1 = str.rear_find('\\');
+   character_count iPos2 = str.rear_find('/');
    if(iPos1 != -1 && iPos2 != -1)
    {
       if(iPos1 > iPos2)
@@ -60,7 +60,7 @@ string file_path_name(const ::file::path & path)
 string file_path_title(const ::file::path & path)
 {
    string str = file_path_name(path);
-   strsize iPos = str.find('.');
+   character_count iPos = str.find('.');
    if(iPos != -1)
    {
       return str.substr(0, iPos);

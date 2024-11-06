@@ -32,7 +32,7 @@ namespace user
    }
 
 
-   void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::point_i32 & pointDrag)
+   void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::int_point & pointDrag)
    {
 
 //      m_pmouse = pmouse;

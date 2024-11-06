@@ -182,7 +182,7 @@ namespace user
          //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
          //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
          //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
-         //::rectangle_f64 r(2, 2, 2, 2);
+         //::double_rectangle r(2, 2, 2, 2);
          //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
          //bm_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
          m_pcomboSize->m_bEdit = true;
@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->m_atom == "font_foreground")
                {
 
-                  ::point_i32 pointShowPopup({ ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() });
+                  ::int_point pointShowPopup({ ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() });
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 
@@ -841,7 +841,7 @@ namespace user
 
          m_pformat = pselection->get_selection_common_format();
 
-         ::rectangle_i32 rectangleOther;
+         ::int_rectangle rectangleOther;
 
          puserinteraction->window_rectangle(rectangleOther);
 
@@ -853,13 +853,13 @@ namespace user
 
          add_handler(puserinteraction);
 
-         ::rectangle_i32 rectangle(rectangleOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
+         ::int_rectangle rectangle(rectangleOther.top_left() - ::int_size(0, 48), ::int_size(100, 100));
 
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
-         ::rectangle_i32 rectangleRequest;
+         ::int_rectangle rectangleRequest;
 
          rectangleRequest.left() = rectangle.left() - 32;
 

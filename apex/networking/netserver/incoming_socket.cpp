@@ -203,7 +203,7 @@ namespace netserver
 
    ////   pointer_array < ::int_array > rangea;
 
-   ////   if (inheader("range").has_char())
+   ////   if (inheader("range").has_character())
    ////   {
    ////      
    ////      string_array straItem;

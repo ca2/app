@@ -21,7 +21,7 @@ namespace nanoui
 ProgressBar::ProgressBar(Widget * parent)
    : Widget(parent), m_value(0.0f) {}
 
-size_i32 ProgressBar::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
+int_size ProgressBar::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
    return {70, 12};
 }
 

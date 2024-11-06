@@ -56,7 +56,7 @@
 //      CFTypeRef         values[2];
 //
 //      // Set up options if you want them. The options here are for
-//      // caching the image in a decoded form and for using floating-point_i32
+//      // caching the image in a decoded form and for using floating-int_point
 //      // values if the image format supports them.
 //      keys[0] = kCGImageSourceShouldCache;
 //      values[0] = (CFTypeRef)kCFBooleanFalse;

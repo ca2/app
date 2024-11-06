@@ -73,7 +73,7 @@ namespace platform
 
       string strPath = operating_system_library_is_loaded(path);
 
-      if (strPath.has_char())
+      if (strPath.has_character())
       {
 
          return operating_system_library_open(strPath, strMessage);

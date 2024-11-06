@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::user::place_holder * place_holder_container::get_new_place_holder(const ::rectangle_i32 & rectangleCreate)
+   ::user::place_holder * place_holder_container::get_new_place_holder(const ::int_rectangle & rectangleCreate)
    {
 
       auto pplaceholder = __create_new < ::user::place_holder >();
@@ -76,7 +76,7 @@ namespace user
       return bRemove;
    }
 
-   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectangleCreate)
+   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::int_rectangle & rectangleCreate)
    {
       ::pointer<place_holder>pholder = get_new_place_holder(rectangleCreate);
       if(!on_place_hold(pinteraction, pholder))
@@ -156,7 +156,7 @@ namespace user
    //}
 
 
-   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const rectangle_i32 & rectangleCreate)
+   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const int_rectangle & rectangleCreate)
    {
 
       place_holder_ptra holderptra;

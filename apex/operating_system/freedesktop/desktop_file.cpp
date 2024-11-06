@@ -132,7 +132,7 @@ namespace freedesktop
 
          string strCategory = proper_category(strCategoryParam);
 
-         if(strCategory.has_char())
+         if(strCategory.has_character())
          {
 
             straCategory.add(strCategory);
@@ -435,7 +435,7 @@ namespace freedesktop
 
       }
 
-      if(straCategories.has_elements() && straCategories.implode("").has_char())
+      if(straCategories.has_elements() && straCategories.implode("").has_character())
       {
 
          straLine._007SetLine("[Desktop Entry]", "Categories", straCategories.implode(";") + ";");
@@ -489,7 +489,7 @@ namespace freedesktop
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
-      if(straLine.last().has_char())
+      if(straLine.last().has_character())
       {
 
          straLine.add("");

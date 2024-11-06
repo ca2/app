@@ -11,7 +11,7 @@
 
 
 template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::raw_set_character_count(::strsize countData)
+inline void string_meta_data < CHARACTER > ::raw_set_character_count(::character_count countData)
 {
 
    if (this->natural_is_shared())
@@ -36,7 +36,7 @@ inline void string_meta_data < CHARACTER > ::raw_set_character_count(::strsize c
 
 
 template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::set_character_count(::strsize countData)
+inline void string_meta_data < CHARACTER > ::set_character_count(::character_count countData)
 {
 
    raw_set_character_count(countData);
@@ -45,10 +45,10 @@ inline void string_meta_data < CHARACTER > ::set_character_count(::strsize count
 
 
 template < primitive_character CHARACTER >
-inline ::strsize string_meta_data < CHARACTER>::storage_character_count() const
+inline ::character_count string_meta_data < CHARACTER>::storage_character_count() const
 {
 
-   return (::strsize)null_terminated_byte_length_to_character_count(this->begin(), (::strsize)this->m_sizeStorageInBytes);
+   return (::character_count)null_terminated_byte_length_to_character_count(this->begin(), (::character_count)this->m_sizeStorageInBytes);
 
 }
 

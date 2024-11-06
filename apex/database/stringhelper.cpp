@@ -43,9 +43,9 @@ string str_helper::before(string s, bool &is_found)
     
    is_found = false;
    
-   strsize pos = work_str.find_index(s);
+   character_count pos = work_str.find_index(s);
    
-   strsize idx = pos + s.length();
+   character_count idx = pos + s.length();
     
    is_found = pos >= 0;
    

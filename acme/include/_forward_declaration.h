@@ -316,7 +316,7 @@ template<class TYPE>
 using add_const = typename insert_const<TYPE>::CONST_TYPE;
 
 
-//constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
+//constexpr huge_natural operator "" _uintmax(huge_natural u) { return u << 32LL; }
 
 template<typename DERIVED, typename BASE>
 concept is_derived_from =

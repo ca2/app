@@ -42,7 +42,7 @@ namespace platform
       ::pointer<::operating_system::department>             m_poperatingsystem;
 
       ::pointer<::parallelization::threading>               m_pthreading;
-      size_t                                                m_nSafetyPoolSize; // ideal size_i32
+      size_t                                                m_nSafetyPoolSize; // ideal int_size
 
 
       ::pointer < ::input::input >                          m_pinput;
@@ -356,7 +356,7 @@ namespace platform
 
 #ifdef UNIVERSAL_WINDOWS
 
-      virtual bool window_rectangle(::rectangle_i32* prectangle);
+      virtual bool window_rectangle(::int_rectangle* prectangle);
 
 
 #endif
@@ -388,7 +388,7 @@ namespace platform
 
       virtual void dump_command_line_and_environment_variables_to_file();
 
-      virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
+      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 

@@ -112,7 +112,7 @@ namespace app_message_box
 
       double y = dBase * 3;
 
-      ::rectangle_i32 rectangleButton(rectangleX);
+      ::int_rectangle rectangleButton(rectangleX);
 
       rectangleButton.right() -= (int) x;
 

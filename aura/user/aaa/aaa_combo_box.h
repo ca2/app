@@ -94,7 +94,7 @@ namespace user
 
       virtual bool get_element_rectangle(RECT32 * prect, enum_element eelement) override;
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -149,9 +149,9 @@ namespace user
 #endif   // WINVER >= 0x0500
 
       // for edit control
-      bool GetEditSel(strsize & nStartChar, strsize & nEndChar);
-      bool LimitText(strsize nMaxChars);
-      bool SetEditSel(strsize nStartChar, strsize nEndChar);
+      bool GetEditSel(character_count & nStartChar, character_count & nEndChar);
+      bool LimitText(character_count nMaxChars);
+      bool SetEditSel(character_count nStartChar, character_count nEndChar);
 
       // for combobox item
       uptr GetItemData(index nIndex);
@@ -161,7 +161,7 @@ namespace user
       ::collection::index GetLBText(index nIndex, char * pszText);
 
       void GetLBText(index nIndex, string & rString);
-      strsize GetLBTextLen(index nIndex);
+      character_count GetLBTextLen(index nIndex);
 
       int SetItemHeight(index nIndex, unsigned int cyItemHeight);
       int GetItemHeight(index nIndex);

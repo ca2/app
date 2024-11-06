@@ -143,7 +143,7 @@ namespace image
       //auto dx = (double)imagedrawing.m_rectangleTarget.width() / (double)imagedrawing.image()->width();
       //auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
 
-      //::size_i32 size;
+      //::int_size size;
 
       //size.cx() = pframes->m_size.cx() * dx;
       //size.cy() = pframes->m_size.cy() * dx;

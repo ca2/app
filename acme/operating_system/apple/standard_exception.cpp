@@ -52,8 +52,8 @@ standard_exception(iSignal,  psiginfo, pc, 3, nullptr)
 
        void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
 
-       str += "signal " + ansi_string_from_i64(sig_num) +
-                 +" (" + ansi_string_from_i64(sig_num) + "), address is "  +
+       str += "signal " + ansi_string_from_huge_integer(sig_num) +
+                 +" (" + ansi_string_from_huge_integer(sig_num) + "), address is "  +
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
 

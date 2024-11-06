@@ -39,8 +39,8 @@ public:
    //filepathmap(::file::path_array)    m_mapdirFolder;
    //filepathmap(::file::path_array)    m_mapdirFileName;
    //filepathmap(::file::path_array)    m_mapdirFolderName;
-   //filepathmap(i64_array)      m_mapdirFileSize;
-   //filepathmap(i64_array)      m_mapdirFolderSize; // by now, always store item count?
+   //filepathmap(huge_integer_array)      m_mapdirFileSize;
+   //filepathmap(huge_integer_array)      m_mapdirFolderSize; // by now, always store item count?
    //filepathmap(bool_array)       m_mapdirFileDir;
    //filepathmap(bool_array)       m_mapdirFolderDir; // by now, always store item count?
 

@@ -785,7 +785,7 @@
 //   using comparable_range < BASE_RANGE >::find;
 //
 //
-//   this_iterator find(const CONST_RAW_RANGE & range, strsize iStart = 0, strsize nCount = -1, this_iterator * ppszTail = nullptr) const RELEASENOTHROW
+//   this_iterator find(const CONST_RAW_RANGE & range, character_count iStart = 0, character_count nCount = -1, this_iterator * ppszTail = nullptr) const RELEASENOTHROW
 //   {
 //
 //      return find(range, iStart, nCount, ppszTail, ::comparison::comparison < ITEM >());

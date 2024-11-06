@@ -221,7 +221,7 @@ namespace user
    }
 
 
-   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
@@ -312,7 +312,7 @@ namespace user
    //}
 
 
-   ::rectangle_i32 style::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   ::int_rectangle style::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
    {
 
       return {6, 6, 6, 6};
@@ -329,7 +329,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::rectangle_i32 rectangleX = pinteraction->::user::interaction::rectangle();
+      ::int_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
 
       //double dRotate = pinteraction->get_rotate();
 
@@ -635,7 +635,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::rectangle_i32 rectangleX = pinteraction->::user::interaction::rectangle();
+      ::int_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
 
       double dRotate = pinteraction->get_rotate();
 
@@ -944,7 +944,7 @@ namespace user
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
    //{
 
    //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
@@ -1116,7 +1116,7 @@ namespace user
    //}
 
 
-   //bool style::create_session_default_opaque_color(e_color eusercolor, u64 u)
+   //bool style::create_session_default_opaque_color(e_color eusercolor, huge_natural u)
    //{
 
    //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
@@ -1131,7 +1131,7 @@ namespace user
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, u64 u)
+   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, huge_natural u)
    //{
 
    //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
@@ -1196,7 +1196,7 @@ namespace user
    //}
 
 
-   //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
+   //bool style::create_pixel_rect(e_rect erect, double_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
@@ -1220,7 +1220,7 @@ namespace user
    //}
 
 
-   //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
+   //bool style::create_point_rect(e_rect erect, double_rectangle r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::e_unit_point);
@@ -1253,7 +1253,7 @@ namespace user
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::double_rectangle rectangle, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), eunit);

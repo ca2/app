@@ -156,7 +156,7 @@
 //
 //
 //
-//::i64_array & material_object::idarray() const
+//::huge_integer_array & material_object::idarray() const
 //{
 //
 //   m_papplication->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia;

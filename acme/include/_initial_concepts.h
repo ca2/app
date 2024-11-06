@@ -639,7 +639,7 @@ constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { retur
 
 
 
-template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
+template<primitive_character CHARACTER, character_count m_sizeMaximumLength>
 class inline_string;
 
 
@@ -721,7 +721,7 @@ concept non_container = !primitive_container < CONTAINER >;
 
 
 template < primitive_enum ENUM >
-inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
+inline huge_integer as_huge_integer(const ENUM & e) { return (huge_integer)(::raw_enum_of<ENUM>) e; }
 
 
 

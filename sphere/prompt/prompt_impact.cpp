@@ -119,11 +119,11 @@ namespace prompt
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      ::rectangle_i32 rectangleDesktop;
+      ::int_rectangle rectangleDesktop;
 
       best_monitor(rectangleDesktop);
 
-      ::rectangle_i32 rectangleX = this->rectangle();
+      ::int_rectangle rectangleX = this->rectangle();
       
       //this->rectangle(rectangleX);
       
@@ -172,7 +172,7 @@ namespace prompt
    void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-//      ::point_i32 point = pcontextmenu->GetPoint();
+//      ::int_point point = pcontextmenu->GetPoint();
 
 
    }

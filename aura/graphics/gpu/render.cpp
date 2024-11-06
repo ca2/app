@@ -207,7 +207,7 @@ namespace gpu
 
                         //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
-                        //::rectangle_f64 rectangleTarget(m_rectangle);
+                        //::double_rectangle rectangleTarget(m_rectangle);
 
                         //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -329,7 +329,7 @@ namespace gpu
 
          //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
-         //::rectangle_f64 rectangleTarget(m_rectangle);
+         //::double_rectangle rectangleTarget(m_rectangle);
 
          //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 

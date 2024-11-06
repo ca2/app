@@ -40,7 +40,7 @@ namespace experience_anthill
       ::draw2d::pen_pointer                  m_ppenDkShadow1;
       status < ::color::color >              m_colorDkShadow;
       status < ::color::color >              m_colorFrameBorder;
-      size_i32                               m_minSize;
+      int_size                               m_minSize;
 
       ::draw2d::pen_pointer                  m_ppenHollow1;
       ::draw2d::pen_pointer                  m_ppenHollow2;
@@ -77,21 +77,21 @@ namespace experience_anthill
 
       //virtual void on_style_change() override;
 
-      //virtual void _001OnBeforeMove(const ::rectangle_i32 & rectangleWindow) override;
+      //virtual void _001OnBeforeMove(const ::int_rectangle & rectangleWindow) override;
 
-      //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow) override;
+      //virtual void _001OnBeforeSize(const ::int_rectangle & rectangleWindow) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rectangle(::rectangle_i32 & rect, enum_element eelement) override;
+      virtual bool get_element_rectangle(::int_rectangle & rect, enum_element eelement) override;
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const ::opacity & opacity);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity);
 
       //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
       virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
@@ -99,11 +99,11 @@ namespace experience_anthill
 
 
 
-      virtual void GetFrameRect(rectangle_i32 & rect) override;
-      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleX, ::rectangle_i32 * prectangle, enum_border eside);
+      virtual void GetFrameRect(int_rectangle & rect) override;
+      virtual void GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * prectangle, enum_border eside);
 
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
 
    };

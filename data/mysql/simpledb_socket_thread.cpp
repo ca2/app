@@ -96,16 +96,16 @@ namespace simpledb
             {
 
                EnablePool();
-               ::sockets::listen_socket < socket > ll(*this);
-               ll.m_bDetach = true;
+               ::sockets::listen_socket < socket > hi(*this);
+               hi.m_bDetach = true;
                while(true)
                {
                   //m_strIp = "127.0.0.1";
                   if(m_iPort == 443)
                   {
-                     ll.EnableSSL();
+                     hi.EnableSSL();
                   }
-                  if (ll.Bind(m_strIp, (port_t) m_iPort))
+                  if (hi.Bind(m_strIp, (port_t) m_iPort))
                   {
                      string strMessage;
                      strMessage.formatf("could not bind to address %s %d", m_strIp, m_iPort);
@@ -113,7 +113,7 @@ namespace simpledb
                      //message_box(nullptr, strMessage);
                      return;
                   }
-                  ::sockets::socket_handler::add(&ll);
+                  ::sockets::socket_handler::add(&hi);
                   while (true)
                   {
                      select(8,0);

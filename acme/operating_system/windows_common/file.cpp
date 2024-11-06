@@ -304,7 +304,7 @@ namespace windows
    }
 
 
-   ::i64 file::get_file_size() const
+   huge_integer file::get_file_size() const
    {
 
       LARGE_INTEGER largeintegerFileSize{};
@@ -321,7 +321,7 @@ namespace windows
    }
 
 
-   void file::ensure_file_size(i64 iSize)
+   void file::ensure_file_size(huge_integer iSize)
    {
 
       auto iSizeCurrent = get_file_size();
@@ -336,7 +336,7 @@ namespace windows
    }
 
 
-   void file::set_file_size(::i64 iSize)
+   void file::set_file_size(huge_integer iSize)
    {
 
       set_file_pointer_ex(iSize, nullptr, SEEK_SET);
@@ -346,7 +346,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer_ex(::i64 iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
+   void file::set_file_pointer_ex(huge_integer iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
    {
 
       LARGE_INTEGER largeinteger{.QuadPart = iOffset };
@@ -361,7 +361,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer(::i64 iOffset, DWORD dwMoveMethod)
+   void file::set_file_pointer(huge_integer iOffset, DWORD dwMoveMethod)
    {
 
       set_file_pointer_ex(iOffset, nullptr, dwMoveMethod);
@@ -369,7 +369,7 @@ namespace windows
    }
 
 
-   ::i64 file::get_file_pointer() const
+   huge_integer file::get_file_pointer() const
    {
 
       LARGE_INTEGER largeinteger{};
@@ -394,10 +394,10 @@ namespace windows
    }
 
 
-   void file::lock_file(::i64 iOffset, ::i64 iCount)
+   void file::lock_file(huge_integer iOffset, huge_integer iCount)
    {
 
-      if (!::LockFile(m_handle, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
+      if (!::LockFile(m_handle, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
       {
 
          throw_last_error_exception();
@@ -407,10 +407,10 @@ namespace windows
    }
 
 
-   void file::unlock_file(::i64 iOffset, ::i64 iCount)
+   void file::unlock_file(huge_integer iOffset, huge_integer iCount)
    {
 
-      if (!::UnlockFile(m_handle, lower_u32(iOffset), upper_u32(iOffset), lower_u32(iCount), upper_u32(iCount)))
+      if (!::UnlockFile(m_handle, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
       {
 
          throw_last_error_exception();

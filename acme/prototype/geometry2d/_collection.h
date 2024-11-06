@@ -17,25 +17,25 @@
 
 //
 //
-//using lines = lines_f64;
+//using lines = lines_double;
 //
 //
 
-//using polygon_i32 = polygon_base < int >;
-//using polygon_i64 = polygon_base < ::i64 >;
-//using polygon_f32 = polygon_base < float >;
-//using polygon_f64 = polygon_base < double >;
+//using int_polygon = polygon_base < int >;
+//using huge_integer_polygon = polygon_base < huge_integer >;
+//using float_polygon = polygon_base < float >;
+//using double_polygon = polygon_base < double >;
 
 //
-//using polygon = polygon_f64;
+//using polygon = double_polygon;
 //
 //
 
 
 
 //
-//using lines = ::lines_f64;
-//using polygon = ::polygon_f64;
+//using lines = ::lines_double;
+//using polygon = ::double_polygon;
 //
 
 #include "acme/prototype/geometry2d/point_array.h"
@@ -43,10 +43,10 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-//using point_int_array = point_array_base < int >;
-//using point_i64_array = point_array_base < ::i64 >;
-//using point_float_array = point_array_base < float >;
-//using point_double_array = point_array_base < double >;
+//using int_point_array = point_array_base < int >;
+//using huge_integer_point_array = point_array_base < huge_integer >;
+//using float_point_array = point_array_base < float >;
+//using double_point_array = point_array_base < double >;
 
 
 #include "polygon.h"

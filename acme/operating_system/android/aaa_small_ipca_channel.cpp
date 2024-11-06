@@ -252,7 +252,7 @@ namespace acme
       // {
       // }
 
-      // void rx::receiver::on_ipc_post(rx * prx,i64 a,i64 b)
+      // void rx::receiver::on_ipc_post(rx * prx,huge_integer a,huge_integer b)
       // {
       // }
 
@@ -289,7 +289,7 @@ namespace acme
 
 
 
-      void * rx::on_ipc_post(rx * prx,i64 a,i64 b)
+      void * rx::on_ipc_post(rx * prx,huge_integer a,huge_integer b)
       {
 
          if(m_preceiver != nullptr)

@@ -16,7 +16,7 @@ typedef struct
 typedef struct
 {
    ContributionType *ContribRow; // Row (or column) of contribution weights
-   unsigned int WindowSize,              // Filter window size_i32 (of affecting source pixels)
+   unsigned int WindowSize,              // Filter window int_size (of affecting source pixels)
         LineLength;              // Length of line (no. or rows / cols)
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
@@ -68,7 +68,7 @@ private:
    LineContribType *AllocContributions (   unsigned int uLineLength,
                                            unsigned int uWindowSize);
 
-   void FreeContributions (LineContribType * point_i32);
+   void FreeContributions (LineContribType * int_point);
 
    LineContribType *CalcContributions (    unsigned int    uLineSize,
                                            unsigned int    uSrcSize,
@@ -131,16 +131,16 @@ AllocContributions (unsigned int uLineLength, unsigned int uWindowSize)
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-FreeContributions (LineContribType * point_i32)
+FreeContributions (LineContribType * int_point)
 {
-   //for (unsigned int u = 0; u < point_i32->LineLength; u++)
+   //for (unsigned int u = 0; u < int_point->LineLength; u++)
    //{
    //   // Free contribs for every pixel
-   //   delete [] point_i32->ContribRow[u].Weights;
+   //   delete [] int_point->ContribRow[u].Weights;
    //}
-   delete point_i32->matrix;
-   delete [] point_i32->ContribRow;    // Free list of pixels contribs
-   delete point_i32;                   // Free contribs header
+   delete int_point->matrix;
+   delete [] int_point->ContribRow;    // Free list of pixels contribs
+   delete int_point;                   // Free contribs header
 }
 
 template <class FilterClass>
@@ -180,7 +180,7 @@ CalcContributions (unsigned int uLineSize, unsigned int uSrcSize, double dScale)
       dWidth= dFilterWidth;
    }
 
-   // Window size_i32 is the number of sampled pixels
+   // Window int_size is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
    // Allocate a ___new line contributions strucutre
@@ -221,7 +221,7 @@ CalcContributions (unsigned int uLineSize, unsigned int uSrcSize, double dScale)
          // Normalize weight of neighbouring points
          for (int iSrc = iLeft; iSrc <= iRight; iSrc++)
          {
-            // Normalize point_i32
+            // Normalize int_point
             res->ContribRow[u].Weights[iSrc-iLeft] /= dTotalWeight;
          }
       }
@@ -290,7 +290,7 @@ HorizScale (::image32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (unsigned char(double(u) / double (uResHeight) * 50.0)))
+         if (!m_Callback ((unsigned char)(double(u) / double (uResHeight) * 50.0)))
          {
             //
             // User wished to abort now
@@ -337,9 +337,9 @@ ScaleCol (::image32_t*pSrc,
          // Scan between boundries
          // Accumulate weighted effect of each neighboring pixel
          ::color::color pCurSrc = pSrc[i * uSrcWidth + uCol].color(indexes);
-         r += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_red()));
-         g += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_green()));
-         b += unsigned char(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_blue()));
+         r += (unsigned char)(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_red()));
+         g += (unsigned char)(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_green()));
+         b += (unsigned char)(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(pCurSrc.byte_blue()));
       }
       pRes[y * uResWidth + uCol].assign(rgb(r, g, b), indexes);   // Place result in destination pixel
    }
@@ -374,7 +374,7 @@ VertScale (::image32_t*pSrc,
          //
          // Progress and report callback supplied
          //
-         if (!m_Callback (unsigned char(double(u) / double (uResWidth) * 50.0) + 50))
+         if (!m_Callback ((unsigned char)(double(u) / double (uResWidth) * 50.0) + 50))
          {
             //
             // User wished to abort now

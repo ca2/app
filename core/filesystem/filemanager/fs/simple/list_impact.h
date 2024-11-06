@@ -27,8 +27,8 @@ namespace filemanager
             virtual public object
          {
          public:
-            i64     m_iParent;
-            i64     m_iFolder;
+            huge_integer     m_iParent;
+            huge_integer     m_iFolder;
             string      m_strTitle;
             string      m_strFileName;
             string      m_strExtension;

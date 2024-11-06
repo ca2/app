@@ -28,12 +28,12 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void GetStepHoverRect(::rectangle_i32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleX);
+      void GetStepHoverRect(::int_rectangle * prectangle, huge_integer iVal, huge_integer iMin, huge_integer iMax, const ::int_rectangle & rectangleX);
 
-      void GetStepRect(::rectangle_i32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & lpcrectClient);
+      void GetStepRect(::int_rectangle * prectangle, huge_integer iVal, huge_integer iMin, huge_integer iMax, const ::int_rectangle & lpcrectClient);
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       //void update_hover();
 

@@ -5,7 +5,7 @@
 
 
 template < primitive_integral INTEGRAL >
-inline bool fits_i32(INTEGRAL i)
+inline bool fits_int(INTEGRAL i)
 {
 
    if (::comparison::comparison2 < INTEGRAL, int >().order(i, I32_MAXIMUM) > 0)

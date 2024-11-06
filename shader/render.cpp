@@ -325,7 +325,7 @@ namespace app_shader
             
             
          };
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
 
       //rectangle.left() = rectangle.right() - 48;
@@ -370,7 +370,7 @@ namespace app_shader
 
          m_strLastLabel = strLabel;
 
-         if (strLabel.has_char())
+         if (strLabel.has_character())
          {
 
             colorBackground.m_uchOpacity = 128;
@@ -402,7 +402,7 @@ namespace app_shader
 
             auto size = pgraphicsLabel->get_text_extent(strLabel);
 
-            ::rectangle_i32 rect(::point_f64(0, 0), size);
+            ::int_rectangle rect(::double_point(0, 0), size);
 
             rect.inflate(4);
 
@@ -439,7 +439,7 @@ namespace app_shader
 
          ::image::image_source imagesource(m_pimageLabel);
 
-         rectangle_f64 rectangle(point_f64(10, 10), m_pimageLabel->size());
+         double_rectangle rectangle(double_point(10, 10), m_pimageLabel->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -491,7 +491,7 @@ namespace app_shader
 
          m_strLastError = strError;
 
-         if(strError.has_char())
+         if(strError.has_character())
          {
 
             auto pinteraction = pgraphics->m_puserinteraction;
@@ -542,7 +542,7 @@ namespace app_shader
 
             auto size = pgraphicsError->get_text_extent(strError);
 
-            ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
+            ::int_rectangle rect(::double_point( 0, 0 ), size);
 
             rect.move_to(10, 10);
             rect.inflate(4);
@@ -578,7 +578,7 @@ namespace app_shader
 
          ::image::image_source imagesource(m_pimageError);
 
-         rectangle_f64 rectangle(point_f64(10, 40), m_pimageError->size());
+         double_rectangle rectangle(double_point(10, 40), m_pimageError->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -642,7 +642,7 @@ namespace app_shader
 
       //}
 
-      //rectangle_i32 rectangle;
+      //int_rectangle rectangle;
 
       //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
@@ -656,7 +656,7 @@ namespace app_shader
 
       //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::size_f64 size(0., 0.);
+      //::double_size size(0., 0.);
       //
       //bool bDrawText = true;
       //
@@ -742,7 +742,7 @@ namespace app_shader
 
       //pgraphics->ellipse(rectangle);
 
-      //::rectangle_i32 rectangleText;
+      //::int_rectangle rectangleText;
 
       //rectangleText.set_size(size);
 

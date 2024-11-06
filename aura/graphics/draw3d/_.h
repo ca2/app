@@ -11,6 +11,6 @@ class box_type;
 
 
 
-using box_f64 = ::box_type < double >;
+using box_double = ::box_type < double >;
 
 

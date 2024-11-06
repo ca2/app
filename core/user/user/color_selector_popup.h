@@ -24,7 +24,7 @@ namespace user
       void install_message_routing(channel * pchannel) override;
 
 
-      void show_popup(const ::point_i32 & point) override;
+      void show_popup(const ::int_point & point) override;
 
 
    };

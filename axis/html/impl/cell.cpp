@@ -349,9 +349,9 @@ namespace html
 
             iTableBorder += 2;
 
-            ::size_f32.cx() = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
+            ::float_size.cx() = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
 
-            ::size_f32.cy() -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            ::float_size.cy() -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
 
          }
          else*/
@@ -462,31 +462,31 @@ namespace html
       }
 
 
-      ::size_f32 cell::get_content_size()
+      ::float_size cell::get_content_size()
       {
 
          auto size = ::html::impl::element::get_content_size();
 
-         //::size_f32.cx() -= get_table()->m_iCellSpacing;
+         //::float_size.cx() -= get_table()->m_iCellSpacing;
 
          //if(m_iColBeg == 0)
          //{
-         //   ::size_f32.cx() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cx() -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
          //{
-         //   ::size_f32.cx() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cx() -= get_table()->m_iCellSpacing / 2.f;
          //}
 
-         //::size_f32.cy() -= get_table()->m_iCellSpacing;
+         //::float_size.cy() -= get_table()->m_iCellSpacing;
 
          //if(m_iRowBeg == 0)
          //{
-         //   ::size_f32.cy() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cy() -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
          //{
-         //   ::size_f32.cy() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cy() -= get_table()->m_iCellSpacing / 2.f;
          //}
 
          return size;
@@ -514,27 +514,27 @@ namespace html
       }
 
 
-      ::point_f32 cell::get_content_top_left()
+      ::float_point cell::get_content_top_left()
       {
 
          auto point = ::html::impl::element::get_content_top_left();
 
          /*if(m_iColBeg == 0)
          {
-            ::point_f32.x() += get_table()->m_iCellSpacing;
+            ::float_point.x() += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::point_f32.x() += get_table()->m_iCellSpacing / 2.f;
+            ::float_point.x() += get_table()->m_iCellSpacing / 2.f;
          }
 
          if(m_iRowBeg == 0)
          {
-            ::point_f32.y() += get_table()->m_iCellSpacing;
+            ::float_point.y() += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::point_f32.y() += get_table()->m_iCellSpacing / 2.f;
+            ::float_point.y() += get_table()->m_iCellSpacing / 2.f;
          }*/
 
          return point;

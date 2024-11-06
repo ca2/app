@@ -2,7 +2,7 @@
 #pragma once
 
 
-//using socket_id = ::i64;
+//using socket_id = huge_integer;
 //
 namespace sockets
 {

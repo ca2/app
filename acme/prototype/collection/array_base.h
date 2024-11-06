@@ -886,7 +886,7 @@
 //   inline TYPE takeFirst(::collection::index i = 0);
 //   inline TYPE takeLast(::collection::index i = -1);
 //
-//   virtual ::collection::count append(const array_base_quantum & src); // return old size_i32
+//   virtual ::collection::count append(const array_base_quantum & src); // return old int_size
 //   virtual void copy(const array_base_quantum & src);
 //
 //
@@ -1525,7 +1525,7 @@ public:
 //         if (::get_task() != nullptr)
 //         {
 //
-//            if (::get_task()->m_strFile.has_char())
+//            if (::get_task()->m_strFile.has_character())
 //            {
 //
 //               pNewData = MEMORY::allocate(size, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -1548,7 +1548,7 @@ public:
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(size, ::get_task_object_debug(), 0);
@@ -1833,7 +1833,7 @@ public:
 ////      // inserting in the middle of the array
 ////      ::collection::count nOldSize = (::collection::count) this->size();
 ////
-////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new size_i32
+////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
 ////      // destroy intial data before copying over it
 ////      // shift old data up to fill gap
 ////      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1948,7 +1948,7 @@ public:
 ////      throw_exception(error_bad_argument);
 ////
 ////   if(nGrowBy >= 0)
-////      m_countAddUp = nGrowBy;  // set ___new size_i32
+////      m_countAddUp = nGrowBy;  // set ___new int_size
 ////
 ////   if(nNewSize == 0)
 ////   {
@@ -1981,7 +1981,7 @@ public:
 ////      {
 ////#if defined(MEMDLEAK)
 ////
-////         if (::get_task()->m_strFile.has_char())
+////         if (::get_task()->m_strFile.has_character())
 ////         {
 ////
 ////            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, 0);
@@ -1996,7 +1996,7 @@ public:
 ////
 ////#else
 ////
-////         if (::get_task_object_debug().has_char())
+////         if (::get_task_object_debug().has_character())
 ////         {
 ////
 ////            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -2064,7 +2064,7 @@ public:
 ////      if (::get_task() != nullptr)
 ////      {
 ////
-////         if (::get_task()->m_strFile.has_char())
+////         if (::get_task()->m_strFile.has_character())
 ////         {
 ////
 ////            pNewData = MEMORY::allocate(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2087,7 +2087,7 @@ public:
 ////
 ////#else
 ////
-////      if (::get_task_object_debug().has_char())
+////      if (::get_task_object_debug().has_character())
 ////      {
 ////
 ////         pNewData = MEMORY::allocate(nNewMax, ::get_task_object_debug(), ::get_task()->m_iLine);
@@ -2159,7 +2159,7 @@ public:
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(newAllocationSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2174,7 +2174,7 @@ public:
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2245,7 +2245,7 @@ public:
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(newAllocationSize, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2260,7 +2260,7 @@ public:
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(newAllocationSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2371,7 +2371,7 @@ public:
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2386,7 +2386,7 @@ public:
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            this->m_begin = MEMORY::allocate(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2518,7 +2518,7 @@ public:
 //
 //#if defined(__MCRTDBG)
 //
-//         if(::get_task()->m_strFile.has_char())
+//         if(::get_task()->m_strFile.has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(countNewAllocation, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2533,7 +2533,7 @@ public:
 //
 //#else
 //
-//         if (::get_task_object_debug().has_char())
+//         if (::get_task_object_debug().has_character())
 //         {
 //
 //            pNewData = MEMORY::allocate(countNewAllocation, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__);
@@ -2663,7 +2663,7 @@ public:
 ////
 ////#if defined(__MCRTDBG)
 ////
-////         if(::get_task()->m_strFile.has_char())
+////         if(::get_task()->m_strFile.has_character())
 ////         {
 ////
 ////            this->m_begin = MEMORY::allocate(nAllocSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
@@ -2678,7 +2678,7 @@ public:
 ////
 ////#else
 ////
-////         if (::get_task_object_debug().has_char())
+////         if (::get_task_object_debug().has_character())
 ////         {
 ////
 ////            this->m_begin = MEMORY::allocate(nAllocSize, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;
@@ -2810,7 +2810,7 @@ public:
 ////
 ////#if defined(__MCRTDBG)
 ////
-////         if(::get_task()->m_strFile.has_char())
+////         if(::get_task()->m_strFile.has_character())
 ////         {
 ////
 ////            pNewData = MEMORY::allocate(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
@@ -2825,7 +2825,7 @@ public:
 ////
 ////#else
 ////
-////         if (::get_task_object_debug().has_char())
+////         if (::get_task_object_debug().has_character())
 ////         {
 ////
 ////            pNewData = MEMORY::allocate(nNewMax, "thread://" + ::get_task_object_name() + ", " + ::get_task_object_debug() + ", " + string(__FILE__), __LINE__;

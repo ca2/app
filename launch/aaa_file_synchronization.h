@@ -133,7 +133,7 @@ namespace application_build_helper
       //         return pfileneedsupdate->m_pmemorySource->order(*pfileneedsupdate->m_pmemoryTarget) != 0;
 
       //      }
-      //      else if (pfileneedsupdate->m_strHashSource.has_char() && pfileneedsupdate->m_strHashTarget.has_char())
+      //      else if (pfileneedsupdate->m_strHashSource.has_character() && pfileneedsupdate->m_strHashTarget.has_character())
       //      {
 
       //         return !pfileneedsupdate->m_strHashSource.case_insensitive_equals(pfileneedsupdate->m_strHashTarget);

@@ -32,7 +32,7 @@ namespace user
       enum_display                                 m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
-      ::size_i32                                   m_sizeMinimum;
+      ::int_size                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       ::pointer<::user::style>                     m_puserstyleFrameInteraction;
       bool                                         m_bShowControlBox;
@@ -78,7 +78,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       ::image::icon* get_draw_icon() override;
 
       
-      //void this->rectangle(::rectangle_i32 * prectangle) override;
+      //void this->rectangle(::int_rectangle * prectangle) override;
       ::user::interaction_base * set_parent(::user::interaction_base * puserinteractionParent) override;
       
       
@@ -149,7 +149,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       virtual void initial_frame_placement();
       virtual void initial_frame_display();
 
-      ::size_i32 get_window_minimum_size() override;
+      ::int_size get_window_minimum_size() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_application_exit);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);

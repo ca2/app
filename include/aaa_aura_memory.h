@@ -21,8 +21,8 @@ typedef unsigned long uptr;
 #else
 
 
-typedef i64 iptr;
-typedef u64 uptr;
+typedef huge_integer iptr;
+typedef huge_natural uptr;
 
 
 #endif
@@ -31,7 +31,7 @@ typedef u64 uptr;
 #else
 
 
-#error "OSBIT should be defined with system default pointer size_i32 in bit count."
+#error "OSBIT should be defined with system default pointer int_size in bit count."
 
 
 #endif
@@ -41,9 +41,9 @@ typedef u64 uptr;
 
 #if OSBIT == 64
 
-typedef u64              rtptr;
-typedef u64              ulong_ptr;
-typedef u64              dword_ptr;
+typedef huge_natural              rtptr;
+typedef huge_natural              ulong_ptr;
+typedef huge_natural              dword_ptr;
 
 #else
 

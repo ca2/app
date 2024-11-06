@@ -34,10 +34,10 @@ int get_process_pid(const char * procNameParam)
 
             auto estatus = fgets_string(cmdLine, cmdFile, 1024 * 256);
 
-            if(estatus && cmdLine.has_char())
+            if(estatus && cmdLine.has_character())
             {
                // Keep first cmdline item which contains the program path
-               strsize pos = cmdLine.find_index('\0');
+               character_count pos = cmdLine.find_index('\0');
                if(pos >= 0)
                   cmdLine = cmdLine.substr(0, pos);
                // Keep program name only, removing the path

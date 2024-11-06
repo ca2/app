@@ -178,20 +178,18 @@ enum enum_type
    // integral
    //type_block = 1000,
    e_type_bool,
-   e_type_byte,
-   e_type_u8 = e_type_byte,
    e_type_char,
-   e_type_i8 = e_type_char,
-   e_type_u16,
-   e_type_i16,
-   e_type_u32,
-   e_type_i32,
-   e_type_u64,
-   e_type_i64,
+   e_type_unsigned_char,
+   e_type_short,
+   e_type_unsigned_short,
+   e_type_int,
+   e_type_unsigned_int,
+   e_type_huge_integer,
+   e_type_huge_natural,
 
-   // floating point_i32
-   e_type_f32 = 2000,
-   e_type_f64,
+   // floating int_point
+   e_type_float = 2000,
+   e_type_double,
 
    // simple classes
    e_type_string = 4000,
@@ -244,7 +242,7 @@ enum enum_type
    e_type_int_array,
    e_type_payload_array,
    e_type_property_set,
-   e_type_i64_array,
+   e_type_huge_integer_array,
    e_type_memory,
    e_type_path,
    e_type_last_element,
@@ -258,16 +256,16 @@ enum enum_type
    e_type_primitive_mask = 65535,
    e_type_pointer_of = 65536,
    e_type_pbool = e_type_bool | e_type_pointer_of,
-   e_type_pu8 = e_type_u8 | e_type_pointer_of,
-   e_type_pi8 = e_type_i8 | e_type_pointer_of,
-   e_type_pu16 = e_type_u16 | e_type_pointer_of,
-   e_type_pi16 = e_type_i16 | e_type_pointer_of,
-   e_type_pu32 = e_type_u32 | e_type_pointer_of,
-   e_type_pi32 = e_type_i32 | e_type_pointer_of,
-   e_type_pu64 = e_type_u64 | e_type_pointer_of,
-   e_type_pi64 = e_type_i64 | e_type_pointer_of,
-   e_type_pf32= e_type_f32 | e_type_pointer_of,
-   e_type_pf64= e_type_f64 | e_type_pointer_of,
+   e_type_punsigned_char = e_type_unsigned_char | e_type_pointer_of,
+   e_type_pchar = e_type_char | e_type_pointer_of,
+   e_type_punsigned_short = e_type_unsigned_short | e_type_pointer_of,
+   e_type_pshort = e_type_short | e_type_pointer_of,
+   e_type_punsigned_int = e_type_unsigned_int | e_type_pointer_of,
+   e_type_pint = e_type_int | e_type_pointer_of,
+   e_type_pu64 = e_type_huge_natural | e_type_pointer_of,
+   e_type_pi64 = e_type_huge_integer | e_type_pointer_of,
+   e_type_pfloat = e_type_float | e_type_pointer_of,
+   e_type_pdouble= e_type_double | e_type_pointer_of,
 
 
 
@@ -279,16 +277,16 @@ constexpr bool is_number(enum_type etype)
 
    return
       etype == e_type_bool
-   || etype == e_type_u8
-   || etype == e_type_i8
-   || etype ==  e_type_u16
-   || etype ==  e_type_i16
-   || etype ==  e_type_u32
-   || etype ==  e_type_i32
-   || etype ==  e_type_u64
-   || etype ==  e_type_i64
-   || etype == e_type_f32
-   || etype == e_type_f64;
+   || etype == e_type_unsigned_char
+   || etype == e_type_char
+   || etype ==  e_type_unsigned_short
+   || etype ==  e_type_short
+   || etype ==  e_type_unsigned_int
+   || etype ==  e_type_int
+   || etype ==  e_type_huge_natural
+   || etype ==  e_type_huge_integer
+   || etype == e_type_float
+   || etype == e_type_double;
 
 }
 
@@ -377,7 +375,7 @@ constexpr char line_feed_letter(bool bCarriage)
 
 
 
-//enum  : i64
+//enum  : huge_integer
 //{
 //
 //
@@ -427,9 +425,9 @@ enum enum_priority
 
 
 //bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_succeeded(i64 i);
+//bool CLASS_DECL_ACME status_succeeded(huge_integer i);
 //bool CLASS_DECL_ACME failed(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_failed(i64 i);
+//bool CLASS_DECL_ACME status_failed(huge_integer i);
 
 
 enum enum_task_flag
@@ -519,7 +517,7 @@ enum enum_zorder
 
 
 //enum e_callstack :
-//   i64
+//   huge_integer
 //{
 //
 //
@@ -683,7 +681,7 @@ enum enum_border
 };
 
 
-enum enum_window_flag : i64
+enum enum_window_flag : huge_integer
 {
 
 
@@ -809,7 +807,7 @@ enum enum_service_status
 #include "parallelization.h"
 
 
-enum enum_item : ::i64
+enum enum_item : huge_integer
 {
 
    e_item_none = 0,
@@ -1093,7 +1091,7 @@ namespace user
 {
 
 
-   enum enum_key : ::i64;
+   enum enum_key : huge_integer;
 
 
 } // namespace user

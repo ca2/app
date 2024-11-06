@@ -113,7 +113,7 @@
 //   //{
 //   //public:
 //
-//   //   enum { nSizeRecv = 1000 }; // maximum receive buffer size_i32 (> hdr line length)
+//   //   enum { nSizeRecv = 1000 }; // maximum receive buffer int_size (> hdr line length)
 //
 //
 //   //   char*  m_pReadBuf; // read buffer

@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const ::ansi_character * psz, strsize iLen)
+   parse::parse(const ::ansi_character * psz, character_count iLen)
       :m_psz(psz)
    ,pa_splits("")
    ,m_strWord("")
@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const ::ansi_character * s,strsize iLen, ::range < const ::ansi_character * > splits)
+   parse::parse(const ::ansi_character * s,character_count iLen, ::range < const ::ansi_character * > splits)
    :m_psz(s)
    ,pa_splits(splits)
    ,m_strWord("")
@@ -81,7 +81,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const ::ansi_character *s,strsize iLen, ::range < const ::ansi_character * > splits,short nospace)
+   parse::parse(const ::ansi_character *s,character_count iLen, ::range < const ::ansi_character * > splits,short nospace)
    :m_psz(s)
    ,pa_splits(splits)
    ,m_strWord("")
@@ -473,7 +473,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       s = m_strWord;
    }
 
-   void parse::_get_expandable_line(strsize & start, strsize & end, bool & bFinal)
+   void parse::_get_expandable_line(character_count & start, character_count & end, bool & bFinal)
    {
 
       start = m_iPos;
@@ -496,10 +496,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void parse::_get_expandable_line(string & s)
    {
-      strsize start;
-      strsize end;
+      character_count start;
+      character_count end;
       bool bFinal;
-      while(has_char())
+      while(has_character())
       {
          _get_expandable_line(start,end,bFinal);
 

@@ -88,7 +88,7 @@ namespace integration
 
       path = m_pathSource;
 
-      if (scopedstr.has_char())
+      if (scopedstr.has_character())
       {
 
          path /= scopedstr;
@@ -107,7 +107,7 @@ namespace integration
 
       path = m_pathBuild;
 
-      if (scopedstr.has_char())
+      if (scopedstr.has_character())
       {
 
          path /= scopedstr;
@@ -144,7 +144,7 @@ namespace integration
    void context::prepare_compile_and_link_environment()
    {
 
-      if (m_pathPrefix.has_char())
+      if (m_pathPrefix.has_character())
       {
 
          directory_system()->create(m_pathPrefix);
@@ -451,7 +451,7 @@ namespace integration
 
             ::function<void(const::scoped_string& scopedstr) > callback;
 
-            strsize iLastLineLength=0;
+            character_count iLastLineLength=0;
             int iFilesExtracted = 0;
             callback = [this,&iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)
                {
@@ -814,7 +814,7 @@ namespace integration
 
       ::string strBuildingIntegration = integration_one_that_is_building();
 
-      bool bAnyBuilding = strBuildingIntegration.has_char();
+      bool bAnyBuilding = strBuildingIntegration.has_character();
 
       return bAnyBuilding;
 
@@ -828,7 +828,7 @@ namespace integration
 
       ::string strBuildingIntegration = integration_one_that_is_building();
 
-      if (strBuildingIntegration.has_char())
+      if (strBuildingIntegration.has_character())
       {
 
          if (strBuildingIntegration == scopedstrIntegration)
@@ -914,7 +914,7 @@ namespace integration
 
          }
 
-         if (strBuildingIntegration.has_char())
+         if (strBuildingIntegration.has_character())
          {
 
             break;

@@ -14,8 +14,8 @@ protected:
    
    ::collection::index                m_iLineStart;
    ::collection::index                m_iLineEnd;
-   strsize              m_iCharStart;
-   strsize              m_iCharEnd;
+   character_count              m_iCharStart;
+   character_count              m_iCharEnd;
 
 
 public:
@@ -25,8 +25,8 @@ public:
    xfplayer_impact_line_selection_item(
       ::collection::index      iLineStart,
       ::collection::index      iLineEnd,
-      strsize      iCharStart,
-      strsize      iCharEnd
+      character_count      iCharStart,
+      character_count      iCharEnd
       );
    ~xfplayer_impact_line_selection_item();
 
@@ -42,7 +42,7 @@ public:
    ::collection::index GetCharEnd();
    void SetLineStart(::collection::index iLine);
    void SetLineEnd(::collection::index iLine);
-   void SetCharStart(strsize iChar);
+   void SetCharStart(character_count iChar);
    void SetCharEnd(::collection::index iChar);
 
 
@@ -82,8 +82,8 @@ public:
 
    ::collection::index                   m_iLineStartSource;
    ::collection::index                   m_iLineEndSource;
-   strsize                 m_iCharStartSource;
-   strsize                 m_iCharEndSource;
+   character_count                 m_iCharStartSource;
+   character_count                 m_iCharEndSource;
 
    int                     m_etype; 
    enum_state              m_estate;
@@ -101,22 +101,22 @@ public:
    bool SetSelBefore(xfplayer_impact_line & viewline);
    bool SetSelAfter(xfplayer_impact_line & viewline);
    void NormalizeSel(xfplayer_impact_line & viewline);
-   void GetNormalSelection(::collection::index & iLineStart, strsize & iCharStart, ::collection::index & iLineEnd, strsize & iCharEnd);
+   void GetNormalSelection(::collection::index & iLineStart, character_count & iCharStart, ::collection::index & iLineEnd, character_count & iCharEnd);
 
    void Select(
       ::collection::index      iLineStart,
       ::collection::index      iLineEnd,
-      strsize      iCharStart,
-      strsize      iCharEnd,
+      character_count      iCharStart,
+      character_count      iCharEnd,
       bool   bMerge);
 
 
    xfplayer_impact_line_selection & operator =(xfplayer_impact_line_selection & selection);
 
 
-   bool OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
-   bool OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
-   bool OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
+   bool OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
+   bool OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
+   bool OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
    bool OnTimer(xfplayer_impact_line & viewline, unsigned int user);
 
 

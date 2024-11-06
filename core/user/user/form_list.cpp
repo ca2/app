@@ -543,7 +543,7 @@ namespace user
       if (psubitem->m_bOk)
       {
 
-         rectangle_f64 rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+         double_rectangle rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
          auto pointContext = get_context_offset();
 
@@ -838,7 +838,7 @@ namespace user
 
             string str(pinteraction->m_setValue[::e_check_checked].as_string());
 
-            if (str.has_char())
+            if (str.has_character())
             {
 
                psubitem->m_strText = str;
@@ -857,7 +857,7 @@ namespace user
 
             string str(pinteraction->m_setValue[::e_check_unchecked].as_string());
 
-            if (str.has_char())
+            if (str.has_character())
             {
 
                psubitem->m_strText = str;
@@ -876,7 +876,7 @@ namespace user
 
             string str(pinteraction->m_setValue[::e_check_tristate].as_string());
 
-            if (str.has_char())
+            if (str.has_character())
             {
 
                psubitem->m_strText = str;
@@ -1282,7 +1282,7 @@ namespace user
    }
 
 
-   bool form_list::_001IsPointInside(::user::interaction * pinteraction, const point_i64 & point)
+   bool form_list::_001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point)
    {
 
       if (pinteraction != nullptr)
@@ -1295,7 +1295,7 @@ namespace user
             if (pinteraction == _001GetEditControl())
             {
 
-               ::rectangle_i32 rectangleWindow;
+               ::int_rectangle rectangleWindow;
 
                pinteraction->window_rectangle(rectangleWindow);
 
@@ -1311,9 +1311,9 @@ namespace user
          }
       }
 
-      ::rectangle_i32 rectangleControl;
+      ::int_rectangle rectangleControl;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       //auto pitem = __allocate draw_list_item(this);
 
@@ -1334,9 +1334,9 @@ namespace user
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = pitem->m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
-//      rectangle_i64 rectangleForm;
+//      huge_integer_rectangle rectangleForm;
 //      window_rectangle(rectangleForm);
-//      rectangle_i64 rectangleX;
+//      huge_integer_rectangle rectangleX;
 //      rectangleX.top() = rectangleForm.top();
 //      rectangleX.bottom() = rectangleForm.bottom();
 //      rectangleX.left() = rectangleControl.left();
@@ -1467,7 +1467,7 @@ namespace user
    //      //}
    //      //}
    //      //}*/
-   //      //control_keep controlkeep(this,point_i32);
+   //      //control_keep controlkeep(this,int_point);
    //      //::pointer<::user::interaction>pinteraction = top_child();
    //      //::pointer<::user::interaction>puiBefore = nullptr;
    //      //bool bError;
@@ -1517,7 +1517,7 @@ namespace user
    //
    //
    //
-   //      //::point_i32 point = pmouse->m_point;
+   //      //::int_point point = pmouse->m_point;
    //      //screen_to_client()(point);
    //      ///*      if(emessage == e_message_left_button_down)
    //      //      {
@@ -1558,7 +1558,7 @@ namespace user
    //      //      }
    //      //      }
    //      //      }*/
-   //      //control_keep controlkeep(this,point_i32);
+   //      //control_keep controlkeep(this,int_point);
    //      //::pointer<::user::interaction>pinteraction = top_child();
    //      //::pointer<::user::interaction>puiBefore = nullptr;
    //      //bool bError;
@@ -1607,7 +1607,7 @@ namespace user
    //   }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
    {
 
       if (pinteraction == nullptr)
@@ -1619,7 +1619,7 @@ namespace user
 
       }
 
-      //::rectangle_i32 rectangleControl;
+      //::int_rectangle rectangleControl;
 
       //auto iItem = display_to_strict((::collection::index)m_iDisplayItemHover);
 
@@ -1663,7 +1663,7 @@ namespace user
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
    {
 
       control_get_client_rect(pinteraction, rectangle);
@@ -1673,7 +1673,7 @@ namespace user
    }
 
 
-   bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
+   bool form_list::control_001DisplayHitTest(const ::int_point & point)
    {
 
       return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);
@@ -2070,9 +2070,9 @@ namespace user
                if (pedit.is_set())
                {
 
-                  strsize iSel;
+                  character_count iSel;
 
-                  strsize iSelEnd;
+                  character_count iSelEnd;
 
                   pedit->get_text_selection(iSel, iSelEnd);
 
@@ -2092,7 +2092,7 @@ namespace user
                   else if (pkey->m_ekey == e_key_right)
                   {
 
-                     strsize iLen = pedit->get_text_length();
+                     character_count iLen = pedit->get_text_length();
 
                      if (iSel != iLen)
                      {
@@ -2158,7 +2158,7 @@ namespace user
                   if (pkey->m_ekey == e_key_left)
                   {
 
-                     strsize iLen = pedit->get_text_length();
+                     character_count iLen = pedit->get_text_length();
 
                      pedit->set_text_selection(iLen, iLen, e_source_user);
 
@@ -2193,7 +2193,7 @@ namespace user
    }
 
 
-   bool form_list::_001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem)
+   bool form_list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
       return ::user::list::_001HitTest_(point, iItem, iSubItem);
@@ -2328,7 +2328,7 @@ namespace user
       //   //         if (pdrawitem->m_bOk)
       //   //         {
 
-      //   //            rectangle_i32 r;
+      //   //            int_rectangle r;
 
       //   //            rectangle.left() = 0;
       //   //            rectangle.top() = 0;
@@ -2415,7 +2415,7 @@ namespace user
             //
                         //client_to_screen(pdrawitem->m_rectangleWindow);
 
-                        //::rectangle_i32 rectangleWindow;
+                        //::int_rectangle rectangleWindow;
 
                         //pinteraction->window_rectangle(rectangleWindow);
 
@@ -2589,7 +2589,7 @@ namespace user
                //pitem->m_item.m_iSubItem = iSubItem;
                psubitem->m_strText = pinteraction->m_setValue[echeck];
 
-               if (!psubitem->m_strText.has_char())
+               if (!psubitem->m_strText.has_character())
                {
 
                   return false;

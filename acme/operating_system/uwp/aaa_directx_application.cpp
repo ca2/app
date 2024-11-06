@@ -398,7 +398,7 @@ namespace universal_windows
          pkey->m_nFlags             = virtualkey_to_code(args->VirtualKey);
          pkey->m_lparam             = pkey->m_nFlags << 16;
          //pkey->m_strText            = m_strNewText;
-         //if (pkey->m_strText.has_char())
+         //if (pkey->m_strText.has_character())
          //{
            // pkey->m_ekey = ::user::e_key_refer_to_text_member;
          //}

@@ -117,7 +117,7 @@ namespace acme
       // }
 
 
-      ::size_i32 display::get_main_screen_size()
+      ::int_size display::get_main_screen_size()
       {
 
          return { 800, 600 };

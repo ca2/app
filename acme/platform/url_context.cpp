@@ -99,7 +99,7 @@ namespace url
    }
 
 
-   string __parameter_erased(const ::scoped_string& scopedstr, strsize iStartParam, const ::scoped_string& scopedstrKey)
+   string __parameter_erased(const ::scoped_string& scopedstr, character_count iStartParam, const ::scoped_string& scopedstrKey)
    {
 
       auto iStart = iStartParam;
@@ -165,7 +165,7 @@ namespace url
    }
 
 
-   bool __get_parameter(::string& strParameter, const ::scoped_string& scopedstr, ::strsize iStartParam, const ::scoped_string& scopedstrKey)
+   bool __get_parameter(::string& strParameter, const ::scoped_string& scopedstr, ::character_count iStartParam, const ::scoped_string& scopedstrKey)
    {
 
       if (scopedstrKey.size() > scopedstr.size())
@@ -210,9 +210,9 @@ namespace url
 
       //}
 
-      ::strsize iStart = iStartParam;
+      ::character_count iStart = iStartParam;
 
-      ::strsize iFind;
+      ::character_count iFind;
 
       while (found(iFind = scopedstr.find_index(scopedstrKey, iStart)))
       {
@@ -262,7 +262,7 @@ namespace url
    }
 
 
-   bool __has_parameter_replace(::string& str, const ::scoped_string& scopedstr, ::strsize iStartParam, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter)
+   bool __has_parameter_replace(::string& str, const ::scoped_string& scopedstr, ::character_count iStartParam, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter)
    {
 
       if (scopedstrKey.size() > scopedstr.size())
@@ -309,7 +309,7 @@ namespace url
 
       auto iStart = iStartParam;
 
-      ::strsize iFind;
+      ::character_count iFind;
 
       while (found(iFind = scopedstr.find_index(scopedstrKey, iStart)))
       {
@@ -369,7 +369,7 @@ namespace url
    ::string parameter_erased(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrKey)
    {
 
-      strsize iStart = scopedstr.find_index('?');
+      character_count iStart = scopedstr.find_index('?');
 
       if (iStart < 0)
       {
@@ -663,7 +663,7 @@ namespace url
    bool has_parameter_replace(::string& str, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter)
    {
 
-      strsize iStart = scopedstr.find_index('?');
+      character_count iStart = scopedstr.find_index('?');
 
       if (iStart < 0)
       {
@@ -680,7 +680,7 @@ namespace url
    bool get_parameter(::string& strParameter, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrKey)
    {
 
-      strsize iStart = scopedstr.find_index('?');
+      character_count iStart = scopedstr.find_index('?');
 
       if (iStart < 0)
       {
@@ -1004,7 +1004,7 @@ namespace url
 //
 //      string strQuery(strQueryParam);
 //
-//      if (strQuery.has_char())
+//      if (strQuery.has_character())
 //      {
 //
 //         return strScript + "?" + strQuery;
@@ -1107,7 +1107,7 @@ namespace url
 //   //}
 //
 //
-//   //string url::url::decode(const ::string & strUrl, strsize iLen)
+//   //string url::url::decode(const ::string & strUrl, character_count iLen)
 //   //{
 //
 //   //   return ::url::decode(strUrl,iLen);
@@ -1165,9 +1165,9 @@ namespace url
 //
 //      string strCandidate(strCandidateParam);
 //
-//      strsize iLen = strCandidate.length();
+//      character_count iLen = strCandidate.length();
 //
-//      strsize i = 0;
+//      character_count i = 0;
 //
 //      char ch;
 //
@@ -1266,7 +1266,7 @@ namespace url
 //
 //         ::string strQuery(::url::encode(scopedstrKey));
 //
-//         if (scopedstrPayload.has_char())
+//         if (scopedstrPayload.has_character())
 //         {
 //
 //            strQuery += "=" + ::url::encode(scopedstrPayload);
@@ -1333,8 +1333,8 @@ namespace url
 ////      string strKey = ::url::encode(strKeyParam);
 ////      string strValue = ::url::encode(strParam);
 ////
-////      strsize iLenUrl = ansi_len(strUrlParam);
-////      strsize iLenKey = strKey.length();
+////      character_count iLenUrl = ansi_len(strUrlParam);
+////      character_count iLenKey = strKey.length();
 ////
 ////      string str;
 ////
@@ -1351,7 +1351,7 @@ namespace url
 ////      }
 ////      else
 ////      {
-////         strsize iFinalLen = pszQuery - strUrlParam;
+////         character_count iFinalLen = pszQuery - strUrlParam;
 //////         int pPos = 0;
 ////         ansi_count_copy(psz, strUrlParam, iFinalLen);
 ////         psz[iFinalLen] = '?';
@@ -1621,7 +1621,7 @@ namespace url
 //         auto pPos = strQuery.find(strAndKeyEqual);
 //         if(not_found(pPos))
 //         {
-//            if(strQuery.has_char())
+//            if(strQuery.has_character())
 //            {
 //               strQuery += strAndKeyEqual2 + strValue;
 //            }
@@ -1635,7 +1635,7 @@ namespace url
 //            pPos = strQuery.find(strAndKeyEqual2);
 //            if(not_found(pPos))
 //            {
-//               if(strQuery.has_char())
+//               if(strQuery.has_character())
 //               {
 //                  strQuery += strAndKeyEqual2 + strValue;
 //               }
@@ -1685,7 +1685,7 @@ namespace url
 //         auto pPos = strQuery.find(strAndKeyEqual);
 //         if(not_found(pPos))
 //         {
-//            if(strQuery.has_char())
+//            if(strQuery.has_character())
 //            {
 //               strQuery += strAndKeyEqual + strParam;
 //            }
@@ -1898,7 +1898,7 @@ namespace url
 //   bool url::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
 //   {
 //
-//      strsize iCmp = strQuery.length() - strKey.length();
+//      character_count iCmp = strQuery.length() - strKey.length();
 //      
 //      if(iCmp < 0)
 //      {
@@ -1996,7 +1996,7 @@ namespace url
 //   bool url::query_has_param(const ::string & strQuery, const ::string & strKey)
 //   {
 //
-//      strsize iCmp = strQuery.length() - strKey.length();
+//      character_count iCmp = strQuery.length() - strKey.length();
 //      
 //      if(iCmp < 0)
 //      {
@@ -2060,7 +2060,7 @@ namespace url
 //   bool url::query_param_has_char(const ::string & strQuery, const ::string & strKey)
 //   {
 //
-//      strsize iCmp = strQuery.length() - strKey.length();
+//      character_count iCmp = strQuery.length() - strKey.length();
 //      
 //      if(iCmp < 0)
 //      {
@@ -2150,7 +2150,7 @@ namespace url
 //   bool url::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
 //   {
 //
-//      strsize iCmp = strQuery.length() - strKey.length();
+//      character_count iCmp = strQuery.length() - strKey.length();
 //      
 //      if(iCmp < 0)
 //      {
@@ -2194,7 +2194,7 @@ namespace url
 //
 //      }
 //
-//      strsize iStart = strKey.length();
+//      character_count iStart = strKey.length();
 //
 //      ::string::const_iterator pFind;
 //
@@ -2323,16 +2323,16 @@ namespace url
 //      string strQuery = get_query(strDst);
 //      string strQueryOver = get_query(strSrc);
 //
-//      if(strProtocolOver.has_char())
+//      if(strProtocolOver.has_character())
 //         strProtocol = strProtocolOver;
 //
-//      if(strRootOver.has_char())
+//      if(strRootOver.has_character())
 //         strRoot = strRootOver;
 //
-//      if(strScriptOver.has_char())
+//      if(strScriptOver.has_character())
 //         strScript = strScriptOver;
 //
-//      if(strQueryOver.has_char())
+//      if(strQueryOver.has_character())
 //         strQuery = strQueryOver;
 //
 //      if (!string_begins(strScript, "/"))
@@ -2532,7 +2532,7 @@ namespace url
 //
 //   str.replace_with(" ", "+");
 //
-//   strsize iStart = 0;
+//   character_count iStart = 0;
 //
 //   while(true)
 //   {
@@ -3001,7 +3001,7 @@ namespace url
 ////
 ////pdirectorysystem->system() / "config\\pass.txt");
 //////
-////   //if(strUsername.has_char() && strPassword.has_char())
+////   //if(strUsername.has_character() && strPassword.has_character())
 ////   //{
 ////
 ////   //}
@@ -3045,7 +3045,7 @@ namespace url
 ////
 ////   }
 ////
-////   if(domain != nullptr && strDomain.has_char())
+////   if(domain != nullptr && strDomain.has_character())
 ////   {
 ////
 ////      *domain = strdup(strDomain);
@@ -3074,9 +3074,9 @@ namespace url
 ////
 ////   string strCandidate(pszCandidate);
 ////
-////   strsize iLen = strCandidate.length();
+////   character_count iLen = strCandidate.length();
 ////
-////   strsize i = 0;
+////   character_count i = 0;
 ////
 ////   char ch;
 ////
@@ -3116,7 +3116,7 @@ namespace url
 ////
 ////   str.replace_with(" ", "+");
 ////
-////   strsize iStart = 0;
+////   character_count iStart = 0;
 ////
 ////   while (true)
 ////   {
@@ -3162,7 +3162,7 @@ namespace url
 //
 //
 //
-////string ::url::decode(const ::ansi_character * pszUrl, strsize iLen)
+////string ::url::decode(const ::ansi_character * pszUrl, character_count iLen)
 ////
 ////{
 ////
@@ -3170,7 +3170,7 @@ namespace url
 ////
 ////   char* psz = strDecode.get_buffer(iLen * 4);
 ////
-////   strsize i = 0;
+////   character_count i = 0;
 ////
 ////   while (*pszUrl != '\0' && i < iLen)
 ////
@@ -3402,7 +3402,7 @@ namespace url
 //         }
 //         //psz + len
 //
-//         //ansi_from_i64(sz, uch, 16);
+//         //ansi_from_huge_integer(sz, uch, 16);
 //
 //         //ansi_upper(sz);
 //
@@ -3592,7 +3592,7 @@ namespace url
 ////
 ////pdirectorysystem->system() / "config\\pass.txt");
 ////
-////   //if(strUsername.has_char() && strPassword.has_char())
+////   //if(strUsername.has_character() && strPassword.has_character())
 ////   //{
 ////
 ////   //}
@@ -3636,7 +3636,7 @@ namespace url
 ////
 ////   }
 ////
-////   if(domain != nullptr && strDomain.has_char())
+////   if(domain != nullptr && strDomain.has_character())
 ////   {
 ////
 ////      *domain = strdup(strDomain);

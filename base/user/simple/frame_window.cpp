@@ -810,7 +810,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    psignal->add_handler(pframe);
 
-   if (strStyle.has_char())
+   if (strStyle.has_character())
    {
 
       set_user_style(strStyle);
@@ -1008,7 +1008,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         if (m_pimpactsystem->m_atom.has_char())
+         if (m_pimpactsystem->m_atom.has_character())
          {
 
             ::file::path pathFrameJson = "matter://" + m_pimpactsystem->m_atom + "/frame.network_payload";
@@ -1779,7 +1779,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRectangle(::rectangle_i32 * prectangle)
+void simple_frame_window::GetBorderRectangle(::int_rectangle * prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -1787,7 +1787,7 @@ void simple_frame_window::GetBorderRectangle(::rectangle_i32 * prectangle)
 }
 
 
-void simple_frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
+void simple_frame_window::SetBorderRect(const ::int_rectangle & rectangle)
 {
 
    m_rectangleBorder = rectangle;
@@ -2179,7 +2179,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwD
 //
 //      ::string strAtom = pusersystem->m_atom.as_string();
 //
-//      if (strAtom.has_char())
+//      if (strAtom.has_character())
 //      {
 //
 //         m_atom = strAtom;
@@ -2201,7 +2201,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwD
 //
 //   }
 
-//   ::rectangle_i32 rectangleFrame;
+//   ::int_rectangle rectangleFrame;
 //
 //   ::pointer<::user::place_holder>pholder;
 //
@@ -2618,7 +2618,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 //   ::draw2d::save_context savecontext(pgraphicsParam);
 //
-//   point_i32 pointScroll = m_pointScroll;
+//   int_point pointScroll = m_pointScroll;
 //
 //   if (!pointScroll.is_null())
 //   {
@@ -2694,7 +2694,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
-//   ::rectangle_i32 rectangleX;
+//   ::int_rectangle rectangleX;
 //
 //   this->rectangle(rectangleX);
 //
@@ -2895,7 +2895,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //pgraphics->fill_solid_rectangle(::rectangle_double_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+   //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
 
    //return;
 
@@ -2954,7 +2954,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if (m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectangleTarget(rectangleX.size());
+            ::double_rectangle rectangleTarget(rectangleX.size());
 
             {
 
@@ -3008,7 +3008,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
 
-//   pgraphics->fill_solid_rectangle(::rectangle_double_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+//   pgraphics->fill_solid_rectangle(::double_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
    //return;
 
@@ -3085,7 +3085,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-::rectangle_i32 simple_frame_window::rectangle(::user::enum_layout elayout)
+::int_rectangle simple_frame_window::rectangle(::user::enum_layout elayout)
 {
 
    return ::experience::frame_window::rectangle(elayout);
@@ -3305,7 +3305,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, unsigned int dwExStyle, ::request * prequest)
+//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, unsigned int dwExStyle, ::request * prequest)
 //{
 //
 //   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
@@ -3602,11 +3602,11 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
-         auto squareHint = rectangle_i32::square_with_center_and_apothem(pointCursor, 8);
+         auto squareHint = int_rectangle::square_with_center_and_apothem(pointCursor, 8);
 
          pointCursor -= squareHint.top_left();
 
-         pointCursor += ::size_i32(16, 16);
+         pointCursor += ::int_size(16, 16);
 
          auto pmenu = m_pnotifyicon->menu();
 
@@ -3626,7 +3626,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          ptrackpopup->track([](){});
          
-//         puser->track_popup_menu(this, pmenu, 0, pointCursor, size_i32(), m_pnotifyicon);
+//         puser->track_popup_menu(this, pmenu, 0, pointCursor, int_size(), m_pnotifyicon);
 
       }
       else if (ptopic->m_atom == ::id_left_button_double_click)
@@ -4261,7 +4261,7 @@ void simple_frame_window::on_create_bars()
 
       ::atom atom = m_pimpactsystem->m_atom;
 
-      if (atom.has_char())
+      if (atom.has_character())
       {
 
          get_toolbar(atom);
@@ -4513,7 +4513,7 @@ void simple_frame_window::on_select_user_style()
 
       string strSchema(m_varFrame["experience"].as_string());
 
-      if (strSchema.has_char() || is_top_level_window())
+      if (strSchema.has_character() || is_top_level_window())
       {
 
          auto puser = user();
@@ -4586,7 +4586,7 @@ void simple_frame_window::notification_area_action(const ::string & pszId)
 //}
 
 
-void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
+void simple_frame_window::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
 {
 
    ::experience::frame_window::_on_configure_notify_unlocked(rectangle);

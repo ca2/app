@@ -131,7 +131,7 @@
 //   virtual void create_drawing_objects();
 //   virtual void update_drawing_objects();
 //
-//   virtual ::point_i32 origin();
+//   virtual ::int_point origin();
 //
 //   //virtual bool defer_perform_entire_reposition_process();
 //
@@ -147,18 +147,18 @@
 //   // virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 //
 //
-//   virtual ::shift_i32 host_to_client();
-//   virtual ::shift_i32 client_to_host();
+//   virtual ::shift_int host_to_client();
+//   virtual ::shift_int client_to_host();
 //
-//   virtual ::shift_i32 absolute_to_client();
-//   virtual ::shift_i32 client_to_absolute();
+//   virtual ::shift_int absolute_to_client();
+//   virtual ::shift_int client_to_absolute();
 //
-//   virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+//   virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 //
 //      // drag_client
 //   void drag_set_capture() override;
-//   bool on_drag_start(::point_i32 & point, ::item * pitem) override;
-//   ::point_i32 drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point) override;
+//   bool on_drag_start(::int_point & point, ::item * pitem) override;
+//   ::int_point drag_mouse_cursor_position(::item* pitem, const ::int_point & point) override;
 //   bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 //   bool drag_hover(::item * pitem) override;
 //   void drag_release_capture() override;
@@ -166,7 +166,7 @@
 //
 //
 //   // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-//   // virtual ::micro::child * nano_user_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+//   // virtual ::micro::child * nano_user_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 //   // virtual void nano_user_add_child(::micro::child * pchild);
 //
 //   virtual ::payload get_result();
@@ -182,14 +182,14 @@
 //
 //   //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 //
-//   void set_position(const ::point_i32 & point) override;
+//   void set_position(const ::int_point & point) override;
 //
 //   void destroy() override;
 //
 //   void redraw() override;
 //
-//   virtual void get_client_rectangle(::rectangle_i32 & rectangle);
-//   ::rectangle_i32 get_window_rectangle() override;
+//   virtual void get_client_rectangle(::int_rectangle & rectangle);
+//   ::int_rectangle get_window_rectangle() override;
 //
 //   void set_capture() override;
 //
@@ -207,15 +207,15 @@
 //
 //
 //   // Text Edit
-//   void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
-//   virtual void get_text_selection(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
-//   virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-//   virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x);
-//   virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-//   virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int & x);
-//   virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn);
-//   virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x);
-//   virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
+//   void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
+//   virtual void get_text_selection(character_count& iBeg, character_count& iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
+//   virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel);
+//   virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x);
+//   virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel);
+//   virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x);
+//   virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn);
+//   virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x);
+//   virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel);
 //
 //
 //   ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const override;

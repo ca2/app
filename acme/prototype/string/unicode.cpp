@@ -18,7 +18,7 @@ CLASS_DECL_ACME int is_surrogated(unsigned int character)
 }
 
 
-strsize wd16_to_wd32(::wd32_character* output, const ::wd16_character* input, strsize input_size)
+character_count wd16_to_wd32(::wd32_character* output, const ::wd16_character* input, character_count input_size)
 {
 
    ::wd32_character* start = output;
@@ -61,7 +61,7 @@ strsize wd16_to_wd32(::wd32_character* output, const ::wd16_character* input, st
 }
 
 
-strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
+character_count wd16_to_wd32_len(const ::wd16_character * input, character_count input_size)
 {
 
    const ::wd16_character * const end = input + input_size;
@@ -105,10 +105,10 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 
 
 
-::wd32_character* wd16_to_wd32(const ::wd16_character * input, strsize input_size)
+::wd32_character* wd16_to_wd32(const ::wd16_character * input, character_count input_size)
 {
 
-   strsize s = wd16_to_wd32_len(input, input_size);
+   character_count s = wd16_to_wd32_len(input, input_size);
 
    ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
 
@@ -201,7 +201,7 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 //   return result;
 //}
 
-// strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize input_size)
+// character_count wd32_to_ansi_len(const ::wd32_character* pwsz, character_count input_size)
 // {
 
 //    if (pwsz == nullptr)
@@ -211,9 +211,9 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 
 //    }
 
-//    strsize len = 0;
+//    character_count len = 0;
 
-//    strsize n;
+//    character_count n;
 
 //    char sz[16];
 
@@ -242,14 +242,14 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 // }
 
 
-// strsize utf32_len(const ::wd32_character* pwsz)
+// character_count utf32_len(const ::wd32_character* pwsz)
 // {
 
 //    if (pwsz == nullptr)
 //    {
 //       return 0;
 //    }
-//    strsize s = 0;
+//    character_count s = 0;
 //    while (*pwsz != 0)
 //    {
 //       s++;

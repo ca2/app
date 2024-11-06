@@ -21,12 +21,12 @@ namespace user
 
 
       using ::user::interaction::hit_test;
-      virtual ::item_pointer parent_client_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer parent_client_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
       using ::user::interaction::on_hit_test;
-      virtual ::item_pointer parent_client_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer parent_client_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-      virtual ::size_f64 get_request_size() override;
+      virtual ::double_size get_request_size() override;
 
 
    };

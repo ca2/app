@@ -37,7 +37,7 @@ namespace file
             m_Value = 0;
             NumExtraBytes = 0;
          }
-         u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
+         huge_natural GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {

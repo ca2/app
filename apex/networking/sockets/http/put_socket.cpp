@@ -64,7 +64,7 @@ namespace sockets
 
          m_filename = file;
 
-         m_content_length = ::particle::file()->length(file).as_i64();
+         m_content_length = ::particle::file()->length(file).as_huge_integer();
 
       }
       else
@@ -106,11 +106,11 @@ namespace sockets
       auto strHost = GetUrlHost();
       inheader("host")                = strHost;
 
-      if(m_content_type.has_char())
+      if(m_content_type.has_character())
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (i64) m_content_length;
+      inheader("content-length")      = (huge_integer) m_content_length;
       
       auto strUserAgent=MyUseragent();
       inheader("user-agent")          = strUserAgent;

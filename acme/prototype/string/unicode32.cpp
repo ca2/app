@@ -3,7 +3,7 @@
 ////#include "acme/exception/exception.h"
 
 
-strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
+character_count wd32_to_ansi_len(const ::wd32_character* pwsz, character_count srclen)
 {
 
    if (pwsz == nullptr)
@@ -13,9 +13,9 @@ strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
 
    }
 
-   strsize len = 0;
+   character_count len = 0;
 
-   strsize n;
+   character_count n;
 
    //char sz[16];
 
@@ -44,7 +44,7 @@ strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
 }
 
 
-//strsize wd32_to_ansi_len_len(const ::wd32_character* pwsz, strsize input_size)
+//character_count wd32_to_ansi_len_len(const ::wd32_character* pwsz, character_count input_size)
 //{
 //
 //   if (pwsz == nullptr)
@@ -54,9 +54,9 @@ strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
 //
 //   }
 //
-//   strsize len = 0;
+//   character_count len = 0;
 //
-//   strsize n;
+//   character_count n;
 //
 //   char sz[16];
 //
@@ -85,14 +85,14 @@ strsize wd32_to_ansi_len(const ::wd32_character* pwsz, strsize srclen)
 //}
 
 
-strsize utf32_len(const ::wd32_character* pwsz)
+character_count utf32_len(const ::wd32_character* pwsz)
 {
 
    if (pwsz == nullptr)
    {
       return 0;
    }
-   strsize s = 0;
+   character_count s = 0;
    while (*pwsz != 0)
    {
       s++;
@@ -100,12 +100,12 @@ strsize utf32_len(const ::wd32_character* pwsz)
    }
    return s;
 }
-strsize wd32_to_ansi(char* psz, const ::wd32_character* pwsz, strsize srclen)
+character_count wd32_to_ansi(char* psz, const ::wd32_character* pwsz, character_count srclen)
 {
 
-   strsize c = 0;
+   character_count c = 0;
 
-   strsize n;
+   character_count n;
 
    if (srclen < 0)
    {
@@ -129,12 +129,12 @@ strsize wd32_to_ansi(char* psz, const ::wd32_character* pwsz, strsize srclen)
 }
 
 
-strsize ansi_to_wd32_len(const ::ansi_character * psz, strsize srclen)
+character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count srclen)
 {
 
-   strsize len;
+   character_count len;
 
-   strsize utf32len = 0;
+   character_count utf32len = 0;
 
    while (psz != nullptr && *psz != '\0')
    {
@@ -169,7 +169,7 @@ strsize ansi_to_wd32_len(const ::ansi_character * psz, strsize srclen)
 
 }
 
-strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen)
+character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, character_count srclen)
 {
 
    int dstlen = 0;
@@ -212,10 +212,10 @@ strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsi
 
 
 
-::wd32_character* ansi_to_wd32_dup(const char* input, strsize input_size)
+::wd32_character* ansi_to_wd32_dup(const char* input, character_count input_size)
 {
 
-   strsize s = ansi_to_wd32_len(input, input_size);
+   character_count s = ansi_to_wd32_len(input, input_size);
 
    ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
 
@@ -234,10 +234,10 @@ strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsi
 
 
 
-string wd32_to_ansi_str(const ::wd32_character * pwszUni32, strsize iUni32Len)
+string wd32_to_ansi_str(const ::wd32_character * pwszUni32, character_count iUni32Len)
 {
 
-   strsize iUtf8Len = wd32_to_ansi_len(pwszUni32, iUni32Len);
+   character_count iUtf8Len = wd32_to_ansi_len(pwszUni32, iUni32Len);
 
    string str;
 

@@ -22,8 +22,8 @@ namespace acme
       message_union        m_union;
 
       class ::time         m_time;
-      ::i64                m_iTimestamp;
-      ::point_f64          m_pointMessage;
+      huge_integer                m_iTimestamp;
+      ::double_point          m_pointMessage;
       wparam               m_wparam;
       lparam               m_lparam;
       lresult              m_lresult;

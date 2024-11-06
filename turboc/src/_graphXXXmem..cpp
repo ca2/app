@@ -31,13 +31,13 @@
 //----------------------------------------------------------------------------
 
 void
-_graphfreemem (void *ptr, unsigned size_i32)
+_graphfreemem (void *ptr, unsigned int_size)
 {
   free (ptr);
 }
 
 void *
-_graphgetmem (unsigned size_i32)
+_graphgetmem (unsigned int_size)
 {
   return (malloc (size));
 }

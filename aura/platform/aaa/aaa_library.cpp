@@ -47,7 +47,7 @@ namespace aura
 
       strRoot.trim();
 
-      if (strRoot.has_char())
+      if (strRoot.has_character())
       {
 
          m_strRoot = strRoot;
@@ -81,7 +81,7 @@ namespace aura
 
       m_strCa2Name = strRoot;
 
-      if(strRoot.has_char())
+      if(strRoot.has_character())
       {
 
          m_strRoot = strRoot;
@@ -122,7 +122,7 @@ namespace aura
 
          m_strPath = pszPath;
 
-         if (m_strCa2Name.has_char())
+         if (m_strCa2Name.has_character())
          {
 
             ::auraacmesystem()->m_mapLibrary[m_strCa2Name] = this;
@@ -172,7 +172,7 @@ namespace aura
 
       information() << "acme::library::open success";
 
-      if (m_strCa2Name.has_char())
+      if (m_strCa2Name.has_character())
       {
 
          ::auraacmesystem()->m_mapLibrary.set_at(m_strCa2Name, this);
@@ -228,7 +228,7 @@ namespace aura
 
                iPhase++;
 
-               if (strTitle.has_char())
+               if (strTitle.has_character())
                {
 
                   get(pfnNewAuraLibrary, strTitle + "_get_new_library");
@@ -335,7 +335,7 @@ namespace aura
 
       }
 
-      if (m_strCa2Name.has_char())
+      if (m_strCa2Name.has_character())
       {
 
          ::auraacmesystem()->m_mapLibrary.set_at(m_strCa2Name, this);

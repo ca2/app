@@ -65,13 +65,13 @@ namespace user
 
          get_window_text(strText);
 
-         ::rectangle_f64 rectangleX;
+         ::double_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
-         //::rectangle_f64 rectangleMargin(2, 2,2, 2);
+         //::double_rectangle rectangleMargin(2, 2,2, 2);
 
-//         ::rectangle_f64 rectangleBorder(2, 2,2, 2);
+//         ::double_rectangle rectangleBorder(2, 2,2, 2);
 
   //       rectangleX.deflate(rectangleMargin);
 
@@ -131,7 +131,7 @@ namespace user
 
          }
 
-         ::rectangle_f64 rectanglePadding(0, 0, 0, 0);
+         ::double_rectangle rectanglePadding(0, 0, 0, 0);
 
          rectangleX.deflate(rectanglePadding);
 
@@ -173,7 +173,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::rectangle_f64 rectangleIcon(rectangleX);
+            ::double_rectangle rectangleIcon(rectangleX);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -221,7 +221,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::point_i32 point = pmouse->m_point;
+   //   ::int_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -251,7 +251,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::point_i32 point = pmouse->m_point;
+   //   ::int_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -285,7 +285,7 @@ namespace user
 
    //   //enum_element eelement;
 
-   //   //::point_i32 point = pmouse->m_point;
+   //   //::int_point point = pmouse->m_point;
 
    //   //screen_to_client()(point);
 
@@ -412,12 +412,12 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   //::item_pointer still::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);
 
-   //   //::rectangle_f64 rectangleWindow;
+   //   //::double_rectangle rectangleWindow;
    //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
@@ -479,7 +479,7 @@ namespace user
 
          auto size = pgraphics->get_text_extent(str);
 
-         ::rectangle_f64 rectangle(0, 0, 0, 0);
+         ::double_rectangle rectangle(0, 0, 0, 0);
 
          rectangle.right() = int(size.cx() * 1.6);
          rectangle.bottom() = int(size.cy() * 1.4);
@@ -549,7 +549,7 @@ namespace user
       }
 
 
-      if (m_atom.has_char())
+      if (m_atom.has_character())
       {
 
          string strText = _(m_atom);
@@ -572,14 +572,14 @@ namespace user
    void still::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
 
       ::size sizeText = calc_text_size();
 
-      ::rectangle_f64 rectangle;
+      ::double_rectangle rectangle;
 
       rectangle.left() = rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2;
 
@@ -637,7 +637,7 @@ namespace user
 
 
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -714,11 +714,11 @@ namespace user
 
       rectangleX.left() += 3;
       rectangleX.top() += 3;
-      ::rectangle_f64 rectangleText = m_rectangleText;
+      ::double_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
-         ::rectangle_f64 rectangleDib;
+         ::double_rectangle rectangleDib;
          rectangleDib = m_rectangleText;
          rectangleDib.bottom() = minimum(rectangleText.top() + m_pimage->height(), rectangleText.bottom());
          rectangleDib.right() = minimum(rectangleText.left() + m_pimage->width(), rectangleText.right());
@@ -809,7 +809,7 @@ namespace user
 
       get_window_text(strText);
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
       this->rectangle(rectangleX);
 
 
@@ -872,7 +872,7 @@ namespace user
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
-         ::rectangle_f64 rectangleAspect;
+         ::double_rectangle rectangleAspect;
 
          rectangleAspect.left() = 0;
 
@@ -890,7 +890,7 @@ namespace user
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
-        pgraphics->draw(rectangleX, pimage->g(), ::rectangle_f64(pimage->get_size()));
+        pgraphics->draw(rectangleX, pimage->g(), ::double_rectangle(pimage->get_size()));
 
       }
 
@@ -1052,7 +1052,7 @@ namespace user
    bool still::has_link()
    {
 
-      return m_strLink.has_char();
+      return m_strLink.has_character();
 
    }
 

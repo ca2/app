@@ -149,11 +149,11 @@
 //template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_i64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_f32 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_f64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
 //template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
@@ -233,7 +233,7 @@
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
 //
 //
-//CLASS_DECL_ACME double d_distance(const point_i32& point1, const point_i32& point2);
+//CLASS_DECL_ACME double d_distance(const int_point& point1, const int_point& point2);
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
@@ -1016,11 +1016,11 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 //template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_i64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_f32 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::rectangle_f64 * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
 template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
@@ -1381,40 +1381,40 @@ template < primitive_rectangle RECTANGLE >
 inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right(); }
 
 
-//inline point_i64& top_left(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle; }
-//inline point_i64& bottom_right(const rectangle_i64& rectangle) { return *(point_i64*)&rectangle.right(); }
+//inline huge_integer_point& top_left(const huge_integer_rectangle& rectangle) { return *(huge_integer_point*)&rectangle; }
+//inline huge_integer_point& bottom_right(const huge_integer_rectangle& rectangle) { return *(huge_integer_point*)&rectangle.right(); }
 
 
-//inline point_f32& top_left(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle; }
-//inline point_f32& bottom_right(const rectangle_f32& rectangle) { return *(point_f32*)&rectangle.right(); }
+//inline float_point& top_left(const float_rectangle& rectangle) { return *(float_point*)&rectangle; }
+//inline float_point& bottom_right(const float_rectangle& rectangle) { return *(float_point*)&rectangle.right(); }
 
 
-//inline point_f64& top_left(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle; }
-//inline point_f64& bottom_right(const rectangle_f64& rectangle) { return *(point_f64*)&rectangle.right(); }
+//inline double_point& top_left(const double_rectangle& rectangle) { return *(double_point*)&rectangle; }
+//inline double_point& bottom_right(const double_rectangle& rectangle) { return *(double_point*)&rectangle.right(); }
 
 
-//inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle; }
-//inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return *(point_i32 *)&rectangle.right(); }
-//inline point_i32 & top_left(const ::rectangle_i32 &rectangle) { return top_left(&rectangle); }
-//inline point_i32 & bottom_right(const ::rectangle_i32 &rectangle) { return bottom_right(&rectangle); }
+//inline int_point & top_left(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle; }
+//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle.right(); }
+//inline int_point & top_left(const ::int_rectangle &rectangle) { return top_left(&rectangle); }
+//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
 
 
-//inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle; }
-//inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return *(point_i64 *)&rectangle.right(); }
-//inline point_i64 & top_left(const ::rectangle_i64 & rectangle) { return top_left(&rectangle); }
-//inline point_i64 & bottom_right(const ::rectangle_i64 & rectangle) { return bottom_right(&rectangle); }
+//inline huge_integer_point & top_left(const ::i64_rectangle & rectangle) { return *(huge_integer_point *)&rectangle; }
+//inline huge_integer_point & bottom_right(const ::i64_rectangle & rectangle) { return *(huge_integer_point *)&rectangle.right(); }
+//inline huge_integer_point & top_left(const ::i64_rectangle & rectangle) { return top_left(&rectangle); }
+//inline huge_integer_point & bottom_right(const ::i64_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
-//inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle; }
-//inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return *(point_f64 *)&rectangle.right(); }
-//inline point_f64 & top_left(const ::rectangle_f64 & rectangle) { return top_left(&rectangle); }
-//inline point_f64 & bottom_right(const ::rectangle_f64 & rectangle) { return bottom_right(&rectangle); }
+//inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }
+//inline double_point & bottom_right(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle.right(); }
+//inline double_point & top_left(const ::double_rectangle & rectangle) { return top_left(&rectangle); }
+//inline double_point & bottom_right(const ::double_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
 
 
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point_i32) {}
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -1440,7 +1440,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline i64 __conv<i64>(const ::string & str)
+//inline huge_integer __conv<huge_integer>(const ::string & str)
 //{
 //
 //   return (int) ::atoi(str);
@@ -1476,7 +1476,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<i64>()
+//inline string __xmlpri<huge_integer>()
 //{
 //
 //   return "%" PRId64;

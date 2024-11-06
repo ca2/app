@@ -15,7 +15,7 @@ namespace aura
 {
 
 
-   inline void __cdecl ::safe_memory_copy(void * _S1, strsize _S1max, const void * _S2, strsize N)
+   inline void __cdecl ::safe_memory_copy(void * _S1, character_count _S1max, const void * _S2, character_count N)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::safe_memory_copy(_S1, (rsize_t)_S1max, _S2, (rsize_t)N));
@@ -24,7 +24,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wmemcpy_s(::wide_character * _S1, strsize _N1, const ::wide_character * _S2, strsize N)
+   inline void __cdecl wmemcpy_s(::wide_character * _S1, character_count _N1, const ::wide_character * _S2, character_count N)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, (rsize_t)_N1, _S2, (rsize_t)N));
@@ -33,7 +33,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl ::safe_memory_transfer(void * _S1, strsize _S1max, const void * _S2, strsize N)
+   inline void __cdecl ::safe_memory_transfer(void * _S1, character_count _S1max, const void * _S2, character_count N)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::safe_memory_transfer(_S1, (rsize_t)_S1max, _S2, (rsize_t)N));

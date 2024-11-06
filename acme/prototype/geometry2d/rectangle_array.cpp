@@ -3,7 +3,7 @@
 #include "rectangle_array.h"
 
 
-CLASS_DECL_ACME ::rectangle_int_array get_top_left_oriented_damaged_areas_by_resizing(const ::rectangle_i32 & rectangleNew, const ::rectangle_i32 & rectangleOld, bool bOnlyGrowing)
+CLASS_DECL_ACME ::int_rectangle_array get_top_left_oriented_damaged_areas_by_resizing(const ::int_rectangle & rectangleNew, const ::int_rectangle & rectangleOld, bool bOnlyGrowing)
 {
 
    auto rectangleBefore = rectangleOld;
@@ -21,7 +21,7 @@ CLASS_DECL_ACME ::rectangle_int_array get_top_left_oriented_damaged_areas_by_res
 
    }
 
-   rectangle_int_array rectanglea;
+   int_rectangle_array rectanglea;
 
    {
 

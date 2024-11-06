@@ -39,7 +39,7 @@ namespace hotplugin
       ::image::image_pointer              m_pimage;
       ::draw2d::graphics_pointer         m_pgraphics;
       file::memory_map              m_memorymapBitmap;
-      ::size_i32                        m_sizeBitmap;
+      ::int_size                        m_sizeBitmap;
 
       string                        m_strStatus;
       string                        m_strStatus2;
@@ -50,9 +50,9 @@ namespace hotplugin
       const char *                  m_pszReloadCommandLine;
 
       ::pointer< ::mutex >                       m_pmutexBitmap;
-      ::size_i32                          m_sizeBitmapData;
+      ::int_size                          m_sizeBitmapData;
       string                        m_strBitmapChannel;
-      ::point_i32                         m_pointCursorPhase;
+      ::int_point                         m_pointCursorPhase;
 
       class ::time m_timeSync;
       int                       m_iDelta;
@@ -88,16 +88,16 @@ namespace hotplugin
 
       /*
       using ::user::interaction::client_to_screen;
-      virtual bool client_to_screen(::point_i32 * ppt) override;
+      virtual bool client_to_screen(::int_point * ppt) override;
 
       using ::user::interaction::screen_to_client;
-      virtual bool screen_to_client(::point_i32 * ppt) override;
+      virtual bool screen_to_client(::int_point * ppt) override;
 
       using ::user::interaction::window_rectangle;
-      virtual bool window_rectangle(::rectangle_i64 * prectangle) override;
+      virtual bool window_rectangle(::i64_rectangle * prectangle) override;
 
       using ::user::interaction::this->rectangle;
-      virtual bool this->rectangle(::rectangle_i64 * prectangle) override;
+      virtual bool this->rectangle(::i64_rectangle * prectangle) override;
       */
 
 
@@ -127,7 +127,7 @@ namespace hotplugin
 
       virtual int  start_ca2_system();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
       virtual void deferred_prodevian_redraw();
@@ -145,16 +145,16 @@ namespace hotplugin
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
 
-      virtual void on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
       virtual void start_ca2();
@@ -165,7 +165,7 @@ namespace hotplugin
 
       virtual void on_update_progress();
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
 
 
       virtual double extract_spa_progress_rate();
@@ -176,7 +176,7 @@ namespace hotplugin
 
       virtual void restart_aura_ipc() override;
 
-      virtual void ensure_bitmap_data(const ::size_i32 & size, bool bCreateFile);
+      virtual void ensure_bitmap_data(const ::int_size & size, bool bCreateFile);
 
       virtual bool set_host(::hotplugin::host * phost);
 

@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   void margin_base::get_margin_rect(::rectangle_i32 * prectMargin)
+   void margin_base::get_margin_rect(::int_rectangle * prectMargin)
 
    {
 

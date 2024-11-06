@@ -81,7 +81,7 @@
 //
 //bool macos_set_user_wallpaper(int iScreen, const ::string & psz);
 //
-////long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
+////huge_integer mm_get_user_wallpaper(huge_integer llScreen, char ** ppp);
 ////
 ////CLASS_DECL_CORE string macos_get_user_wallpaper(int iScreen)
 ////{
@@ -419,14 +419,14 @@ namespace core
 
             //auto papp = get_se();
 
-            //if (strLangUser.has_char())
+            //if (strLangUser.has_character())
             //{
 
             //   psession->set_locale(strLangUser, ::e_source_database);
 
             //}
 
-            //if (strStyleUser.has_char())
+            //if (strStyleUser.has_character())
             //{
 
             //   psession->set_schema(strStyleUser, ::e_source_database);
@@ -444,7 +444,7 @@ namespace core
       //
       //      if (!(bHasInstall || bHasUninstall)
       //            && papp->m_bLicense
-      //            && strLicense.has_char())
+      //            && strLicense.has_character())
       //      {
       //
       //         // call application's is_licensed function
@@ -785,7 +785,7 @@ namespace core
    //}
 
 //
-//   int user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
+//   int user::track_popup_menu(const ::string & pszMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(pszMatter);
@@ -800,7 +800,7 @@ namespace core
    bool user::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 
-      i64 i64Size;
+      huge_integer i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -860,7 +860,7 @@ namespace core
    }
 
 
-   bool user::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
+   bool user::get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending)
    {
 
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -1039,7 +1039,7 @@ namespace core
 
    //   auto pathFile = payload.as_file_path();
 
-   //   if (pathFile.has_char())
+   //   if (pathFile.has_character())
    //   {
 
    //      prequest->m_payloadFile = pathFile;
@@ -1121,7 +1121,7 @@ namespace core
 
    //   auto pathFile = payload.as_file_path();
 
-   //   if (pathFile.has_char())
+   //   if (pathFile.has_character())
    //   {
 
    //      prequest->m_payloadFile = pathFile;

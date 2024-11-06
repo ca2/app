@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
+   void menu_list_window::layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -192,7 +192,7 @@ namespace user
          if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
          {
             
-            auto rPlacement = ::rectangle_int_dimension(
+            auto rPlacement = ::int_rectangle_dimension(
                                                         prectangle->left() + pitem->m_iLevel * g_base_menu_indent,
                                                         prectangle->top(),
                                                         iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
@@ -249,7 +249,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleX;
+      ::int_rectangle rectangleX;
       
       ::string strType = ::type(get_parent());
 
@@ -258,7 +258,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
+      const ::int_size & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
       int iMaxHeight = size.cy();
 
@@ -274,7 +274,7 @@ namespace user
 
       m_size.cy() = (int) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
 
-      ::rectangle_i32 rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
+      ::int_rectangle rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
 
       string str;
 

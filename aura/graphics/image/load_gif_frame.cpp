@@ -90,7 +90,7 @@ namespace image
    //
    //   //      }
    //
-   //   //      ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
+   //   //      ::int_rectangle rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
    //
    //   //      rectangle.offset(5, 5);
    //
@@ -100,11 +100,11 @@ namespace image
    //
    //   //   pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //
-   //   //   ::const ::point_i32 & point = pframe->m_rectangle.top_left();
+   //   //   ::const ::int_point & point = pframe->m_rectangle.top_left();
    //
-   //   //   ::size_i32 sz = pframe->m_rectangle.size();
+   //   //   ::int_size sz = pframe->m_rectangle.size();
    //
-   //   //   pimageCanvas.get_graphics()->BitBlt(point_i32 + point_i32(5, 5), sz, pframe->m_pimage->get_graphics());
+   //   //   pimageCanvas.get_graphics()->BitBlt(int_point + int_point(5, 5), sz, pframe->m_pimage->get_graphics());
    //
    //   //   pframe->m_pimage->from(pimageCanvas);
    //
@@ -123,7 +123,7 @@ namespace image
    //
    //   //      crBack = pframe->m_colorTransparent;
    //
-   //   //      size_i32 s = pframe->m_pimage->get_size();
+   //   //      int_size s = pframe->m_pimage->get_size();
    //
    //   //      int cx = s.cx();
    //
@@ -174,7 +174,7 @@ namespace image
    //
    //   //   pframe->m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //   //   pframe->m_pimage->get_graphics()->BitBlt(nullptr, pframea->m_size, pimageCanvas.get_graphics(), point_i32(5, 5));
+   //   //   pframe->m_pimage->get_graphics()->BitBlt(nullptr, pframea->m_size, pimageCanvas.get_graphics(), int_point(5, 5));
    //
    //
    //
@@ -217,7 +217,7 @@ namespace image
    //
    //   //   //   d->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //   //   //   d->get_graphics()->BitBlt(nullptr, pframea->m_size, f.get_graphics(), point_i32(5, 5));
+   //   //   //   d->get_graphics()->BitBlt(nullptr, pframea->m_size, f.get_graphics(), int_point(5, 5));
    //
    //   //   //   pframe->m_pimage->div_alpha();
    //
@@ -256,7 +256,7 @@ namespace image
    //
    //         }
    //
-   //         ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
+   //         ::int_rectangle rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
    //
    //         pimageCanvas->g()->fill_rectangle(rectangle, crBack);
    //
@@ -264,9 +264,9 @@ namespace image
    //
    //      //pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //
-   //      ::point_i32 point = pframe->m_rectangle.top_left();
+   //      ::int_point point = pframe->m_rectangle.top_left();
    //
-   //      ::size_i32 size = pframe->m_rectangle.size();
+   //      ::int_size size = pframe->m_rectangle.size();
    //
    //
    //

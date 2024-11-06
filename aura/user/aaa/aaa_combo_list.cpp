@@ -85,7 +85,7 @@ namespace user
 
       }
 
-      ::rectangle_f64 rectangleClipBox;
+      ::double_rectangle rectangleClipBox;
 
       pgraphics->get_clip_box(rectangleClipBox);
 
@@ -103,7 +103,7 @@ namespace user
 
       string strItem;
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       layout().this->rectangle(rectangleX, ::user::e_layout_design);
 
@@ -115,7 +115,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX);
 
-      ::rectangle_f64 rectangleItem;
+      ::double_rectangle rectangleItem;
 
       //point p = pgraphics->get_origin();
 
@@ -906,7 +906,7 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_pcombo == nullptr)
@@ -922,7 +922,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::rectangle_f64 rectangleItem = rectangleX;
+      ::double_rectangle rectangleItem = rectangleX;
 
       int iAddUp = 0;
 
@@ -978,14 +978,14 @@ namespace user
    }
 
 
-   void list_box::on_drop_down(const ::rectangle_f64 & rectangleWindow, const ::size & sizeFull)
+   void list_box::on_drop_down(const ::double_rectangle & rectangleWindow, const ::size & sizeFull)
    {
 
-      ::rectangle_f64 rectangleMonitor;
+      ::double_rectangle rectangleMonitor;
 
       psession->get_best_monitor(rectangleMonitor, rectangleWindow);
 
-      ::rectangle_f64 rectangleList;
+      ::double_rectangle rectangleList;
 
       rectangleList.left() = rectangleWindow.left();
       rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
@@ -997,7 +997,7 @@ namespace user
 
          rectangleList.bottom() = rectangleMonitor.bottom() - m_iBorder;
 
-         ::rectangle_f64 rectangleListOver;
+         ::double_rectangle rectangleListOver;
 
          rectangleListOver.left() = rectangleWindow.left();
          rectangleListOver.right() = rectangleWindow.left() + sizeFull.cx();
@@ -1050,7 +1050,7 @@ namespace user
 
          ::user::system createstruct(0, nullptr, "list_box");
 
-         pusersystem->m_createstruct.set_rect(::rectangle_f64(rectangleList).inflate(m_iBorder));
+         pusersystem->m_createstruct.set_rect(::double_rectangle(rectangleList).inflate(m_iBorder));
 
          if (!create_window_ex(createstruct))
          {
@@ -1067,7 +1067,7 @@ namespace user
       else
       {
 
-         place(::rectangle_f64(rectangleList).inflate(m_iBorder));
+         place(::double_rectangle(rectangleList).inflate(m_iBorder));
 
       }
 

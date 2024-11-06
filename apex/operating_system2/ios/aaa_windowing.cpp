@@ -463,7 +463,7 @@
 //
 //
 //
-//int_bool window_rectangle(oswindow hwnd, ::rectangle_i32 * lprect)
+//int_bool window_rectangle(oswindow hwnd, ::int_rectangle * lprect)
 //{
 //
 //   if(void_ptr_is_null(hwnd))
@@ -479,7 +479,7 @@
 //}
 //
 //
-//int_bool SetWindowRect(oswindow hwnd, ::rectangle_i32 * lprect)
+//int_bool SetWindowRect(oswindow hwnd, ::int_rectangle * lprect)
 //{
 //
 //   if(hwnd == nullptr)
@@ -597,7 +597,7 @@
 //// }
 //
 //
-//int_bool point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   return abs(ptHitTest.x()) < iMargin && abs(ptHitTest.y()) < iMargin;

@@ -6,8 +6,8 @@
 //public:
 //
 //
-//   strsize m_len;
-//   strsize m_alloc;
+//   character_count m_len;
+//   character_count m_alloc;
 //
 //
 //};
@@ -38,32 +38,32 @@
 //   bstring(bstring && bstr);
 //
 //
-//   bstring(strsize s, char ch);
+//   bstring(character_count s, char ch);
 //
 //
-//   bstring(const bstring& str, strsize pos, strsize len = -1);
+//   bstring(const bstring& str, character_count pos, character_count len = -1);
 //
 //
 //   bstring(const ::scoped_string & scopedstr);
 //
 //
-//   bstring(const void * p, strsize start, strsize end);
+//   bstring(const void * p, character_count start, character_count end);
 //
 //
-//   bstring(const void * p, strsize c);
+//   bstring(const void * p, character_count c);
 //
 //
 //   ~bstring();
 //
 //
-//   strsize get_allocation_size() const
+//   character_count get_allocation_size() const
 //   {
 //
 //      return get_bstring_data()->m_len;
 //
 //   }
 //
-//   void set_allocation_size(strsize s)
+//   void set_allocation_size(character_count s)
 //   {
 //
 //      get_bstring_data()->m_len = s;
@@ -71,36 +71,36 @@
 //   }
 //
 //
-//   strsize length() const
+//   character_count length() const
 //   {
 //
 //      return get_bstring_data()->m_len - 1;
 //
 //   }
 //
-//   strsize size() const
+//   character_count size() const
 //   {
 //
 //      return length();
 //
 //   }
 //
-//   strsize get_length() const
+//   character_count get_length() const
 //   {
 //
 //      return length();
 //
 //   }
 //
-//   strsize get_size() const
+//   character_count get_size() const
 //   {
 //
 //      return get_allocation_size();
 //
 //   }
 //
-//   void allocate(strsize s);
-//   void allocate_add_up(strsize s);
+//   void allocate(character_count s);
+//   void allocate_add_up(character_count s);
 //   void free();
 //
 //   void append(const ::scoped_string & scopedstr);
@@ -116,25 +116,25 @@
 //
 //   }
 //
-//   void reserve(strsize s);
+//   void reserve(character_count s);
 //
-//   void assign(const void * p, strsize s, strsize c);
+//   void assign(const void * p, character_count s, character_count c);
 //
-//   bstring & assign(const bstring& str, strsize subpos, strsize sublen);
+//   bstring & assign(const bstring& str, character_count subpos, character_count sublen);
 //
-//   void assign(const void * p, strsize s);
+//   void assign(const void * p, character_count s);
 //
-//   bstring & assign(strsize s, char c);
+//   bstring & assign(character_count s, char c);
 //
-//   bstring & append(strsize s, char c);
+//   bstring & append(character_count s, char c);
 //
-//   bstring & erase(strsize s = 0, strsize len = -1);
+//   bstring & erase(character_count s = 0, character_count len = -1);
 //
 //   void clear();
 //
-//   void append(const void * p, strsize s);
+//   void append(const void * p, character_count s);
 //
-//   strsize copy(value_type * s, strsize len, strsize pos = 0) const;
+//   character_count copy(value_type * s, character_count len, character_count pos = 0) const;
 //
 //   bool is_empty() const
 //   {
@@ -201,19 +201,19 @@
 //   const char * c_str() const;
 //
 //
-//   char & operator [](strsize i);
+//   char & operator [](character_count i);
 //
 //
-//   const char & operator [](strsize i) const;
+//   const char & operator [](character_count i) const;
 //
 //
-//   char * get_buffer(strsize s);
+//   char * get_buffer(character_count s);
 //
 //
-//   void release_buffer(strsize s = -1);
+//   void release_buffer(character_count s = -1);
 //
 //
-//   void ReleaseBuffer(strsize s = -1);
+//   void ReleaseBuffer(character_count s = -1);
 //
 //
 //   unsigned char * data();

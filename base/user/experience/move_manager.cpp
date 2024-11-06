@@ -82,7 +82,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::rectangle_i32 rectangleWindow;
+      ::int_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
@@ -170,10 +170,10 @@ namespace experience
 
       }
 
-      if (pframewindow->find_i32("ysnap") > 1)
+      if (pframewindow->find_int("ysnap") > 1)
       {
 
-         pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
+         pointMove.y() -= pointMove.y() % pframewindow->find_int("ysnap");
 
       }
 
@@ -259,10 +259,10 @@ namespace experience
 
       ////}
 
-      ////if (pframewindow->find_i32("ysnap") > 1)
+      ////if (pframewindow->find_int("ysnap") > 1)
       ////{
 
-      ////   pointMove.y() -= pointMove.y() % pframewindow->find_i32("ysnap");
+      ////   pointMove.y() -= pointMove.y() % pframewindow->find_int("ysnap");
 
       ////}
 

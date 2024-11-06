@@ -130,7 +130,7 @@ namespace draw2d
 
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,
-         const ::rectangle_i32 & rectangle,
+         const ::int_rectangle & rectangle,
          string strText,
          ::image::fastblur & blur,
          ::image::image_pointer & imageBlur,
@@ -148,7 +148,7 @@ namespace draw2d
 
       void emboss_predicate(
          ::draw2d::graphics_pointer & pgraphics,
-         const ::rectangle_i32 & rectangle,
+         const ::int_rectangle & rectangle,
          const ::function < void(::draw2d::graphics *) > & functionDraw,
          ::image::fastblur & blur,
          ::image::image_pointer & pimageBlur,

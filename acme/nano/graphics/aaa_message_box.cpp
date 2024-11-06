@@ -57,7 +57,7 @@ void message_box::on_draw(::nano::graphics::device * pnanodevice)
 
 
 
-   rectangle_i32 rectangleText;
+   int_rectangle rectangleText;
 
    get_client_rectangle(rectangleText);
 
@@ -90,7 +90,7 @@ void message_box::on_draw(::nano::graphics::device * pnanodevice)
 void message_box::defer_create_details_still()
 {
 
-   if (m_strDetails.has_char())
+   if (m_strDetails.has_character())
    {
 
       m_pstillDetails = __allocate ::micro::still();

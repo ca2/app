@@ -618,7 +618,7 @@ namespace crypto
          for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
          {
 
-            i64 iDigit = system()->mathematics()->random<char>();
+            huge_integer iDigit = system()->mathematics()->random<char>();
 
             strFormat.formatf("%02x", iDigit);
 
@@ -731,7 +731,7 @@ namespace crypto
 
          string str = file()->as_string(strPath);
 
-         if (str.has_char())
+         if (str.has_character())
          {
 
             return str;

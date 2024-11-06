@@ -44,8 +44,8 @@ typedef short short;  // NOLINT
 typedef unsigned short ush;  // NOLINT
 typedef int int;
 typedef unsigned int unsigned int;
-typedef ::i64 i64;
-typedef ::u64 u64;
+typedef huge_integer hi;
+typedef huge_natural huge_natural;
 // intptr_t and friends are defined in crtdefs.h through stdio.h.
 
 #else

@@ -698,7 +698,7 @@ namespace sphere
                   on_request(pcreate);
                }
             }
-            else if(pcreate->m_strApp.has_char() &&
+            else if(pcreate->m_strApp.has_character() &&
                get_document() != nullptr && get_document()->get_typed_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {

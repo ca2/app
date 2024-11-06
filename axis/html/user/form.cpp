@@ -216,10 +216,10 @@ void html_form::install_message_routing(::channel * pchannel)
 }
 
 
-void html_form::GetClientBox(::rectangle_f32 & box)
+void html_form::GetClientBox(::float_rectangle & box)
 {
 
-   ::rectangle_i32 rectangleX;
+   ::int_rectangle rectangleX;
 
    rectangleX = this->rectangle();
 
@@ -297,7 +297,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::point_i32 point;
+   ::int_point point;
 
    point = pmouse->m_pointHost;
 
@@ -345,7 +345,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    track_mouse_hover();
 
-   ::point_i32 point(pmouse->m_pointHost);
+   ::int_point point(pmouse->m_pointHost);
 
    host_to_client()(point);
 
@@ -426,7 +426,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::point_i32 point(pmouse->m_pointHost);
+   ::int_point point(pmouse->m_pointHost);
 
    host_to_client()(point);
 
@@ -553,7 +553,7 @@ bool html_form::open_document(const ::payload & payloadFile)
 //   if (path.is_empty())
 //   {
 //
-//      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
+//      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_character())
 //      {
 //
 //         path = payloadFile.propset()["url"];

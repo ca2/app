@@ -2127,7 +2127,7 @@ namespace platform
    //
    //          ::string strApp;
    //
-   //          if (strCommandLine.has_char())
+   //          if (strCommandLine.has_character())
    //          {
    //
    //             information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
@@ -2382,7 +2382,7 @@ namespace platform
    //
    //       string strAppId = application()->m_strAppId;
    //
-   //       if (strAppId.has_char())
+   //       if (strAppId.has_character())
    //       {
    //
    //          string strModifier;
@@ -2510,7 +2510,7 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //    i64 system::increment_reference_count()
+   //    huge_integer system::increment_reference_count()
    //    {
    //
    //       return ::object::increment_reference_count();
@@ -2518,7 +2518,7 @@ namespace platform
    //    }
    //
    //
-   //    i64 system::decrement_reference_count()
+   //    huge_integer system::decrement_reference_count()
    //    {
    //
    //       return ::object::decrement_reference_count();
@@ -2529,7 +2529,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_update(::i64 iId, ::i64 iPayload)
+   //    void acme_system_layer::system::system_id_update(huge_integer iId, huge_integer iPayload)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -3570,7 +3570,7 @@ namespace platform
    //
    //          ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
    //
-   //          if (strComponentDefaultImplementation.has_char())
+   //          if (strComponentDefaultImplementation.has_character())
    //          {
    //
    //             auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
@@ -3930,10 +3930,10 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //       i64 increment_reference_count() override{}
+   //       huge_integer increment_reference_count() override{}
    //
    //
-   //       i64 decrement_reference_count() override{}
+   //       huge_integer decrement_reference_count() override{}
    //
    //
    // #endif
@@ -4446,9 +4446,9 @@ return nullptr;
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      m_mapEnumToText[typeid(e).name()][(i64)e] = psz{}
+   //      m_mapEnumToText[typeid(e).name()][(huge_integer)e] = psz{}
    //
-   //      m_mapTextToEnum[typeid(e).name()][psz] = (i64)e{}
+   //      m_mapTextToEnum[typeid(e).name()][psz] = (huge_integer)e{}
    //
    //   }
 
@@ -4459,7 +4459,7 @@ return nullptr;
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      return m_mapEnumToText[typeid(e).name()][(i64)e]{}
+   //      return m_mapEnumToText[typeid(e).name()][(huge_integer)e]{}
    //
    //   }
 
@@ -4470,7 +4470,7 @@ return nullptr;
    //
    //      critical_section_lock lock(&m_csEnumText){}
    //
-   //      i64 iValue{}
+   //      huge_integer iValue{}
    //
    //      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
    //      {
@@ -4503,7 +4503,7 @@ return nullptr;
    //   inline string enum_text(const base_enum < ENUM, edefault >& b)
    //   {
    //
-   //      return enum_text(b.m_evalue, (i64)(ENUM)b){}
+   //      return enum_text(b.m_evalue, (huge_integer)(ENUM)b){}
    //
    //   }
 
@@ -4535,7 +4535,7 @@ return nullptr;
    // }
 
 
-   // static inline ::atom atom(i64 i)
+   // static inline ::atom atom(huge_integer i)
    // {
    // }
    //
@@ -4596,7 +4596,7 @@ return nullptr;
    }
 
 
-   void acme_system_layer::system_id_update(::i64 iUpdate, ::i64 iPayload)
+   void acme_system_layer::system_id_update(huge_integer iUpdate, huge_integer iPayload)
    {
    }
 
@@ -4939,7 +4939,7 @@ return nullptr;
 // //}
 //
 //
-// void acme_system_layer::system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
+// void acme_system_layer::system_id_update(void* pSystem, huge_integer iUpdate, huge_integer iParam)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;
@@ -4996,7 +4996,7 @@ return nullptr;
 // //
 // //#if !defined(CUBE)
 // //
-// //   if (strAppId.has_char())
+// //   if (strAppId.has_character())
 // //   {
 // //
 // //      string strMessage;

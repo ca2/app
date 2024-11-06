@@ -22,8 +22,8 @@ namespace sandbox_windowing
 
 
       class ::time                                m_timeLastMouseMove;
-      ::rectangle_i32                           m_rect;
-      //::point_i32                               m_pointCursor;
+      ::int_rectangle                           m_rect;
+      //::int_point                               m_pointCursor;
 
 
       htask_t                                   m_htask;
@@ -46,7 +46,7 @@ namespace sandbox_windowing
 
       void exit_iconify() override;
 
-      void full_screen(const ::rectangle_i32 & rect = {}) override;
+      void full_screen(const ::int_rectangle & rect = {}) override;
 
       void exit_full_screen() override;
 
@@ -64,7 +64,7 @@ namespace sandbox_windowing
       //virtual ::Window get_parent_handle();
       ::oswindow get_parent_oswindow() const override;
 
-      //::point_i32 get_mouse_cursor_position() override;
+      //::int_point get_mouse_cursor_position() override;
 
       //virtual ::Window get_parent_handle() const;
 
@@ -79,9 +79,9 @@ namespace sandbox_windowing
       bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay) override;
       //virtual iptr get_window_long_ptr(int nIndex);
       //virtual iptr set_window_long_ptr(int nIndex, iptr l);
-      virtual bool client_to_screen(::point_i32* ppoint) override;
+      virtual bool client_to_screen(::int_point* ppoint) override;
 
-      virtual bool screen_to_client(::point_i32* ppoint) override;
+      virtual bool screen_to_client(::int_point* ppoint) override;
 
 
       //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
@@ -123,8 +123,8 @@ namespace sandbox_windowing
       //virtual Atom get_window_long_atom(int nIndex);
       //virtual void mapped_net_state_raw(bool add, windowing_android_WINDOW_MEMBER int iScreen, Atom state1, Atom state2);
       //virtual void unmapped_net_state_raw( windowing_android_WINDOW_MEMBER ...);
-      //virtual bool x11_get_window_rect(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
-      //virtual bool x11_get_client_rect(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
+      //virtual bool x11_get_window_rect(windowing_android_WINDOW_MEMBER  ::int_rectangle * prectangle);
+      //virtual bool x11_get_client_rect(windowing_android_WINDOW_MEMBER  ::int_rectangle * prectangle);
       //virtual oswindow set_capture( windowing_android_WINDOW_MEMBER );
       //virtual int_bool release_capture();
       //virtual oswindow set_focus( windowing_android_WINDOW_MEMBER );
@@ -132,7 +132,7 @@ namespace sandbox_windowing
       //virtual unsigned long x11_get_long_property( windowing_android_WINDOW_MEMBER char* property_name);
       //virtual string x11_get_name(windowing_android_WINDOW_MEMBER);
       //virtual ::e_status set_active_window();
-      //virtual void upper_window_rects(windowing_android_WINDOW_MEMBER  rectangle_int_array & ra);
+      //virtual void upper_window_rects(windowing_android_WINDOW_MEMBER  int_rectangle_array & ra);
       //virtual oswindow set_active_window( windowing_android_WINDOW_MEMBER );
 //      virtual  windowing_android_WINDOW_MEMBER _get_if_found(Window w);
       //virtual oswindow get_parent( windowing_android_WINDOW_MEMBER );
@@ -198,9 +198,9 @@ namespace sandbox_windowing
       //virtual ::e_status post_ui_message(const MESSAGE & message);
       ////virtual bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie);
       ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, int x, int y, int cx, int cy, unsigned int nFlags);
-      //virtual ::e_status window_rectangle(windowing_android_WINDOW_MEMBER ::rectangle_i32 * prectangle);
-      //virtual ::e_status this->rectangle(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
-      ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::rectangle_i32 & rectangle);
+      //virtual ::e_status window_rectangle(windowing_android_WINDOW_MEMBER ::int_rectangle * prectangle);
+      //virtual ::e_status this->rectangle(windowing_android_WINDOW_MEMBER  ::int_rectangle * prectangle);
+      ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::int_rectangle & rectangle);
 
       //virtual ::e_status x11_store_name(const ::scoped_string & scopedstrName);
       //virtual ::e_status set_foreground_window();

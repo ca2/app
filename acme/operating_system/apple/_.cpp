@@ -43,7 +43,7 @@ void CancelDispatchSource(void * p)
 }
 
 
-void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void (*pfnTimer)(void * p), void * p)
+void * CreateDispatchTimer(huge_natural interval, huge_natural leeway, void * queue, void (*pfnTimer)(void * p), void * p)
 {
 
    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, (dispatch_queue_t) queue);
@@ -64,7 +64,7 @@ void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void (*pfnTim
 }
 
 
-void * ResetDispatchTimer(void * timerParam, u64 interval, u64 leeway)
+void * ResetDispatchTimer(void * timerParam, huge_natural interval, huge_natural leeway)
 {
 
    dispatch_source_t timer = (dispatch_source_t) timerParam;
@@ -251,10 +251,10 @@ string apple_get_executable_path()
 
 
 
-i64 oswindow_id(oswindow w)
+huge_integer oswindow_id(oswindow w)
 {
 
-   return (i64) (w);
+   return (huge_integer) (w);
 
 }
 
@@ -445,7 +445,7 @@ i64 oswindow_id(oswindow w)
 //
 //   wstrModuleFolder.release_buffer();
 //
-//   if (wstrModuleFolder.has_char())
+//   if (wstrModuleFolder.has_character())
 //   {
 //
 //      wstrModuleFolder.trim_right(L"\\/");
@@ -460,9 +460,9 @@ i64 oswindow_id(oswindow w)
 //
 //   {
 //
-//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //      //
-//      //         if(str.has_char())
+//      //         if(str.has_character())
 //      //         {
 //      //            str = ::file::path(str).folder();
 //      //            goto found;
@@ -470,9 +470,9 @@ i64 oswindow_id(oswindow w)
 //      //         }
 //      //
 //      //
-//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
 //      //
-//      //         if(str.has_char())
+//      //         if(str.has_character())
 //      //         {
 //      //            str = ::file::path(str).folder();
 //      //            goto found;
@@ -482,7 +482,7 @@ i64 oswindow_id(oswindow w)
 //      str = get_exe_path();
 //
 //
-//      if (str.has_char())
+//      if (str.has_character())
 //      {
 //         str = ::file::path(str).folder();
 //         goto found;

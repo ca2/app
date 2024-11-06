@@ -229,7 +229,7 @@ namespace apple
 
          string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
 
-         if(strCurrent.has_char())
+         if(strCurrent.has_character())
          {
 
             strFallback += ":" + strCurrent;
@@ -451,7 +451,7 @@ namespace apple
          strFallback = strCurrent;
 
       }
-      else if(strCurrent.has_char())
+      else if(strCurrent.has_character())
       {
 
          strFallback += ":" + strCurrent;

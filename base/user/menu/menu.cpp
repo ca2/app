@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   i64 menu::increment_reference_count()
+   huge_integer menu::increment_reference_count()
    {
 
 #if REFERENCING_DEBUGGING 
@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   i64 menu::decrement_reference_count()
+   huge_integer menu::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu::update_track_cursor(const ::point_i32& pointCursorHint)
+   void menu::update_track_cursor(const ::int_point& pointCursorHint)
    {
 
       if (pointCursorHint.is_all(I32_MINIMUM))
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void menu::update_track_rectangle(const ::rectangle_i32& rectangleScreenHint)
+   void menu::update_track_rectangle(const ::int_rectangle& rectangleScreenHint)
    {
 
       if (rectangleScreenHint.is_all(I32_MINIMUM))
@@ -805,7 +805,7 @@ namespace user
    //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::point_i32 point = m_pointTrack;
+   //   ::int_point point = m_pointTrack;
 
    //   if (get_parent() != nullptr)
    //   {
@@ -963,14 +963,14 @@ namespace user
 
    //   }
 
-   //   ::rectangle_i32 rectangleWindow;
+   //   ::int_rectangle rectangleWindow;
 
    //   rectangleWindow.left() = point.x();
    //   rectangleWindow.top() = point.y();
    //   rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
    //   rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
-   //   ::rectangle_i32 rectangleMonitor;
+   //   ::int_rectangle rectangleMonitor;
 
    //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
    //      
@@ -1036,7 +1036,7 @@ namespace user
       if (crBackground.is_translucent())
       {
 
-         ::rectangle_f64 rectangleClip;
+         ::double_rectangle rectangleClip;
 
          pgraphics->get_clip_box(rectangleClip);
 
@@ -1173,7 +1173,7 @@ namespace user
       ////
       ////                           m_psubmenu->m_pmenuParent = this;
       ////
-      ////                           ::rectangle_i32 rectangle;
+      ////                           ::int_rectangle rectangle;
       ////
       ////                           ptopic->user_interaction()->window_rectangle(rectangle);
       ////
@@ -1351,7 +1351,7 @@ namespace user
 
       m_pmenuSubMenu = pusermenu;
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
 
       pmenuitem->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1468,7 +1468,7 @@ namespace user
 
          KillTimer(e_timer_menu);
 
-         //if (m_atomSubMenu.has_char())
+         //if (m_atomSubMenu.has_character())
          //{
          //   m_psubmenu->send_message(e_message_close);
          //   m_psubmenu = nullptr;
@@ -1502,7 +1502,7 @@ namespace user
 
 
             //}
-            //if (m_atomTimerMenu.has_char())
+            //if (m_atomTimerMenu.has_character())
             //{
 
             //   m_atomSubMenu = m_atomTimerMenu;
@@ -1511,7 +1511,7 @@ namespace user
 
             //   m_psubmenu->initialize(this);
 
-            //   ::rectangle_i32 rectangle;
+            //   ::int_rectangle rectangle;
 
             //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1701,7 +1701,7 @@ namespace user
    }
 
 
-   size_i32 menu::get_window_minimum_size()
+   int_size menu::get_window_minimum_size()
    {
 
       return m_sizeMinimum;
@@ -1736,7 +1736,7 @@ namespace user
       //else
       //{
 
-      //   ::rectangle_i32 * prectangle = (::rectangle_i32 *)pusermessage->m_lparam.m_lparam;
+      //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
 
       //   prectangle->left() = m_pointTrack.x();
 
@@ -2057,9 +2057,9 @@ namespace user
 
       }
 
-      ::point_i32 pointCursorHint;
+      ::int_point pointCursorHint;
 
-      ::rectangle_i32 rectangleScreenHint;
+      ::int_rectangle rectangleScreenHint;
 
       if (get_parent() == nullptr)
       {
@@ -2162,7 +2162,7 @@ namespace user
 
       //calcsize.m_pgraphics = pgraphics;
 
-      ::size_i32 size;
+      ::int_size size;
 
       if (m_bCloseButton)
       {
@@ -2305,7 +2305,7 @@ namespace user
 
       }
 
-      //::size_i32 sizeSeparator;
+      //::int_size sizeSeparator;
 
       //for (int i = 0; i < pmenuitema->get_size(); i++)
       //{
@@ -2436,7 +2436,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         ::rectangle_i32 rectangleWindow;
+         ::int_rectangle rectangleWindow;
 
          rectangleWindow.left() = pointCursorHint.x();
          //rectangleWindow.top() = rectangleScreenHint.bottom();
@@ -2467,7 +2467,7 @@ namespace user
          rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
          rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
-         ::rectangle_i32 rectangleMonitor;
+         ::int_rectangle rectangleMonitor;
 
          auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 

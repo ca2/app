@@ -11,7 +11,7 @@ class flags :
 public:
 
 
-   i64_array m_ia;
+   huge_integer_array m_ia;
 
 
    flags();
@@ -128,21 +128,21 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::add(ENUM eenum)
 {
-   return m_ia.add_unique((::i64)eenum);
+   return m_ia.add_unique((huge_integer)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.erase((::i64)eenum);
+   return m_ia.erase((huge_integer)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::has(ENUM eenum) const
 {
-   return ::is_set(this) && m_ia.has((::i64)eenum);
+   return ::is_set(this) && m_ia.has((huge_integer)eenum);
 }
 
 

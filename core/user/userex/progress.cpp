@@ -49,10 +49,10 @@ namespace userex
 
 
 #ifdef _DEBUG
-   i64 progress_control::decrement_reference_count()
+   huge_integer progress_control::decrement_reference_count()
    {
 
-      i64 i = ::progress::real::decrement_reference_count();
+      huge_integer i = ::progress::real::decrement_reference_count();
 
       //if (i == 1 && m_pthread.is_set())
       //{
@@ -279,7 +279,7 @@ namespace userex
       
                KillTimer(ptimer->m_uEvent);
       
-               ::rectangle_i32 rectangle;
+               ::int_rectangle rectangle;
       
                auto pwindowing = windowing();
       
@@ -352,7 +352,7 @@ namespace userex
       int cxBorder = rectangleX.width() / 16;
       int h = rectangleX.height() / 4;
 
-      ::rectangle_i32 rectangleIndicator(rectangleX);
+      ::int_rectangle rectangleIndicator(rectangleX);
 
       rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 

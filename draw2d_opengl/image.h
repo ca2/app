@@ -21,7 +21,7 @@ namespace draw2d_opengl
 
 
       HBITMAP                          m_hbitmap;
-      class ::size_i64                   m_sizeWnd;
+      class ::huge_integer_size                   m_sizeWnd;
       BITMAPINFO                       m_bitmapinfo;
       OffscreenContext *               m_phost;
 
@@ -44,7 +44,7 @@ namespace draw2d_opengl
 
       using ::image::image::create;
 
-      virtual void create(const ::size_i32& size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual void create(const ::int_size& size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
       virtual void create(::draw2d::graphics* pgraphics);
 
@@ -53,9 +53,9 @@ namespace draw2d_opengl
       bool host(::pixmap * ppixmap) override;
 
       bool from(::draw2d::graphics * pgraphics);
-      //bool from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz);
+      //bool from(int_point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::int_size sz);
 
-      //void to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
+      //void to(::draw2d::graphics * pgraphics, const ::int_point& point, const ::int_size& size, const ::int_point& pointSrc) override;
 
 
       //void SetIconMask(::image::icon * picon, int cx, int cy);
@@ -82,7 +82,7 @@ namespace draw2d_opengl
       //void mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(int R, int G, int B);
 
-      //void rotate(::image::image *pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, const ::int_rectangle & rectangle, double dAngle, double dScale);
       //void rotate(::image::image *pimage, double dAngle, double dScale);
       //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 
@@ -137,7 +137,7 @@ namespace draw2d_opengl
       void Line ( int x1, int y1, int x2, int y2, int R, int G, int B );
       void LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A );*/
 
-      //void create_frame(::size_i32 size, int iFrameCount);
+      //void create_frame(::int_size size, int iFrameCount);
       //void set_frame2(void * lpdata, int iFrame, int iFrameCount);
       //void set_frame1(void * lpdata, int iFrame, int iFrameCount);
       //void get_frame(void * lpdata, int iFrame, int iFrameCount);

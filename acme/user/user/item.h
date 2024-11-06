@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   //enum enum_item : ::i64
+   //enum enum_item : huge_integer
    //{
 
    //   e_item_normal = 0,
@@ -57,11 +57,11 @@ namespace user
 //
 //
 //      ::item_pointer                m_pitem;
-//      ::point_i32                   m_pointScreen;
-//      ::point_i32                   m_pointHost;
-//      ::point_i32                   m_pointClient;
-//      ::point_i32                   m_pointHitTest;
-//      ::rectangle_i32               m_rectangle;
+//      ::int_point                   m_pointScreen;
+//      ::int_point                   m_pointHost;
+//      ::int_point                   m_pointClient;
+//      ::int_point                   m_pointHitTest;
+//      ::int_rectangle               m_rectangle;
 //      ::user::e_item                m_eitem;
 //      ::particle_pointer      m_pparticle;
 //      ::user::e_zorder              m_ezorder;
@@ -294,7 +294,7 @@ namespace user
    public:
 
 
-      //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
+      //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const huge_natural uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
       //item(const ::user::e_flag & eflag, enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
@@ -332,11 +332,11 @@ namespace user
 
       
       ::item_pointer                m_pitem;
-      //::point_i32                   m_pointScreen;
-      ::point_i32                   m_pointHost;
-      ::point_i32                   m_pointClient;
-      ::point_i32                   m_pointHitTest;
-      ::rectangle_i32               m_rectangle2;
+      //::int_point                   m_pointScreen;
+      ::int_point                   m_pointHost;
+      ::int_point                   m_pointClient;
+      ::int_point                   m_pointHitTest;
+      ::int_rectangle               m_rectangle2;
       ::user::e_item                m_eitem;
       ::particle_pointer      m_pparticle;
       ::user::e_zorder              m_ezorder;
@@ -585,8 +585,8 @@ namespace user
       //::collection::index operator + (int iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
       //::collection::index operator - (int iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
-      //::collection::index operator + (::i64 iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
-      //::collection::index operator - (::i64 iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
+      //::collection::index operator + (huge_integer iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
+      //::collection::index operator - (huge_integer iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
 
       /*bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }

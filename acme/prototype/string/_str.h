@@ -83,7 +83,7 @@ public:
 
 
    template < primitive_character CHAR_TYPE >
-   static inline  string_base < const CHAR_TYPE * > repeat(const CHAR_TYPE * psz, strsize c);
+   static inline  string_base < const CHAR_TYPE * > repeat(const CHAR_TYPE * psz, character_count c);
 
    //extern enum_error g_eerror;
 
@@ -97,47 +97,47 @@ public:
 
    static void   copy(string & str, const ::string & pcsz, int iCount);
 
-   static string   replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
-   static string   case_insensitive_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
-   static ::collection::count   replace_with_ci_count(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
-   static ::collection::count   utf8_replace_with(string & str, const ::string & pszNew, const ::string & pszOld, strsize iStart = 0);
-   static string   utf8_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
+   static string   replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, character_count iStart = 0);
+   static string   case_insensitive_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, character_count iStart = 0);
+   static ::collection::count   replace_with_ci_count(const ::string & pszNew, const ::string & pszOld, const ::string & psz, character_count iStart = 0);
+   static ::collection::count   utf8_replace_with(string & str, const ::string & pszNew, const ::string & pszOld, character_count iStart = 0);
+   static string   utf8_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, character_count iStart = 0);
 
-   static inline  string find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  string find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, character_count iStart = 0)
    {
       return replace_with(pszNew, pszOld, psz, iStart);
    }
-   static inline  string case_insensitive_find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  string case_insensitive_find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, character_count iStart = 0)
    {
       return case_insensitive_replace_with(pszNew, pszOld, psz, iStart);
    }
-   static inline  ::collection::count case_insensitive_find_replace_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  ::collection::count case_insensitive_find_replace_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, character_count iStart = 0)
    {
       return replace_with_ci_count(pszNew, pszOld, psz, iStart);
    }
-   static inline  ::collection::count utf8_find_replace(string & str, const ::string & pszOld, const ::string & pszNew, strsize iStart = 0)
+   static inline  ::collection::count utf8_find_replace(string & str, const ::string & pszOld, const ::string & pszNew, character_count iStart = 0)
    {
       return utf8_replace_with(str, pszNew, pszOld, iStart);
    }
-   static inline  string utf8_find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  string utf8_find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, character_count iStart = 0)
    {
       return utf8_replace_with(pszNew, pszOld, psz, iStart);
    }
 
    static string   random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::string & psz);
 
-   static strsize   find_first(const string_array & straSearch, ::collection::index & iFound, const ::string & str, ::collection::index iStart = 0);
+   static character_count   find_first(const string_array & straSearch, ::collection::index & iFound, const ::string & str, ::collection::index iStart = 0);
 
-   static strsize   case_insensitive_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   static character_count   case_insensitive_find(const ::string & strFind, const ::string & str, character_count iStart = 0);
 
-   static strsize   utf8_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   static character_count   utf8_find(const ::string & strFind, const ::string & str, character_count iStart = 0);
 
-   static strsize   find_file_extension(const ::string & pszExtension, const ::string & str, strsize iStart = 0, strsize iLast = -1);
+   static character_count   find_file_extension(const ::string & pszExtension, const ::string & str, character_count iStart = 0, character_count iLast = -1);
 
-   static strsize   find_ww(const ::string & strFind, const ::string & str, strsize iStart = 0);
-   static strsize   find_wwci(const ::string & strFind, const ::string & str, strsize iStart = 0);
-   static strsize   find_aww(const ::string & strFind, const ::string & str, strsize iStart = 0);
-   static strsize   find_awwci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   static character_count   find_ww(const ::string & strFind, const ::string & str, character_count iStart = 0);
+   static character_count   find_wwci(const ::string & strFind, const ::string & str, character_count iStart = 0);
+   static character_count   find_aww(const ::string & strFind, const ::string & str, character_count iStart = 0);
+   static character_count   find_awwci(const ::string & strFind, const ::string & str, character_count iStart = 0);
    static string   has_char(const ::string & strIfHasChar, const ::string & strBefore = nullptr, const ::string & strAfter = nullptr, const ::string & strDoesnt = nullptr);
    static bool   has_upper(const ::string & str);
    static bool   has_lower(const ::string & str);
@@ -151,9 +151,9 @@ public:
 
    //inline  const ::ansi_character * __utf8_inc(const ::ansi_character * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   //const ::ansi_character *    utf8_next_add_length(strsize * paddlength, const ::ansi_character * psz);
-   //const ::ansi_character *    utf8_inc_copy_slide_back(strsize * pslideback, ::ansi_character * pchDst, const ::ansi_character * pchSrc);
-   //const ::ansi_character *    utf8_inc_count(const ::ansi_character * psz, strsize * piCount);
+   //const ::ansi_character *    utf8_next_add_length(character_count * paddlength, const ::ansi_character * psz);
+   //const ::ansi_character *    utf8_inc_copy_slide_back(character_count * pslideback, ::ansi_character * pchDst, const ::ansi_character * pchSrc);
+   //const ::ansi_character *    utf8_inc_count(const ::ansi_character * psz, character_count * piCount);
 
    static string block(::ansi_character ch, int iSize);
    static void fill(string & str, ::ansi_character ch);
@@ -190,11 +190,11 @@ public:
 
 
 
-   static string & zero_pad(string & str, strsize iPad);
-   static string         zero_padded(const ::string & str, strsize iPad);
-   static int            get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos);
+   static string & zero_pad(string & str, character_count iPad);
+   static string         zero_padded(const ::string & str, character_count iPad);
+   static int            get_escaped_char(const ::ansi_character * psz, character_count pos, character_count & retPos);
    static bool           get_curly_content(const ::ansi_character * psz, string & str);
-   static bool           is_simple_natural(const ::ansi_character * psz, strsize iCount = -1);
+   static bool           is_simple_natural(const ::ansi_character * psz, character_count iCount = -1);
    static bool           is_natural(const ::string & str);
    static bool           is_integer(const ::string & str);
 
@@ -212,16 +212,16 @@ public:
 
    static string pad(const ::string & psz, ::collection::count iLen, const ::string & pszPattern, enum_pad epad);
 
-   static inline  strsize length(const ::ansi_character * pansichar) { return ansi_length(pansichar); }
-   static inline  strsize length(const ::wd16_character * pwd16char) { return wd16_length(pwd16char); }
-   static inline  strsize length(const ::wd32_character * pwd32char) { return wd32_length(pwd32char); }
+   static inline  character_count length(const ::ansi_character * pansichar) { return ansi_length(pansichar); }
+   static inline  character_count length(const ::wd16_character * pwd16char) { return wd16_length(pwd16char); }
+   static inline  character_count length(const ::wd32_character * pwd32char) { return wd32_length(pwd32char); }
 
 
    template < typename TYPE >
    static inline  TYPE from_string(const ::ansi_character * psz);
 
 
-   static bool simple_escaped(const ::string & str, strsize pos);
+   static bool simple_escaped(const ::string & str, character_count pos);
 
 
 
@@ -260,9 +260,9 @@ public:
    static bool is_true(string str);
 
 
-   static inline  strsize utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz);
+   static inline  character_count utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz);
 
-   static inline  strsize utf8_inc_len(const ::ansi_character * psz);
+   static inline  character_count utf8_inc_len(const ::ansi_character * psz);
 
    static inline  bool namespaced(const ::ansi_character * psz, const ::ansi_character * pszNamespace, const ::ansi_character * pszSeparator = "::");
 
@@ -271,32 +271,32 @@ public:
    static void fix_eol(string & str);
 
 
-   static bool to(i64 & i, const ::string & strParam);
+   static bool to(huge_integer & i, const ::string & strParam);
    static bool to(int & i, const ::string & strParam);
-   static bool to(u64 & u, const ::string & strParam);
+   static bool to(huge_natural & u, const ::string & strParam);
    static bool to(unsigned int & u, const ::string & strParam);
 
 
    static bool to(int & i, int iBase, const ::string & strParam);
-   static bool to(i64 & i, int iBase, const ::string & strParam);
-   static bool to(u64 & u, int iBase, const ::string & strParam);
+   static bool to(huge_integer & i, int iBase, const ::string & strParam);
+   static bool to(huge_natural & u, int iBase, const ::string & strParam);
    static bool to(unsigned int & u, int iBase, const ::string & strParam);
 
 
    static iptr         to_iptr(const ::string & psz);
-   static int          to_i32(const ::string & psz);
-   static unsigned int          to_u32(const ::scoped_string & scopedstr);
+   static int          to_int(const ::string & psz);
+   static unsigned int          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
-   static i64           to_i64(const ::string & psz);
-   static u64           to_u64(const ::string & psz);
+   static huge_integer           to_huge_integer(const ::string & psz);
+   static huge_natural           to_huge_natural(const ::string & psz);
 
 
 
    static inline   int to_with_fallback(const ::string & psz, int iDefault);
-   static inline   i64 to_with_fallback(const ::string & psz, i64 iDefault);
+   static inline   huge_integer to_with_fallback(const ::string & psz, huge_integer iDefault);
    static inline   int to_with_fallback(const ::string & psz, int iDefault, int iBase);
-   static inline   i64 to_with_fallback(const ::string & psz, i64 iDefault, int iBase);
+   static inline   huge_integer to_with_fallback(const ::string & psz, huge_integer iDefault, int iBase);
 
 
 
@@ -318,9 +318,9 @@ public:
    // static inline const ::wide_character * windows_bb(const wide_string &);
 
 
-   static inline strsize unichar_count(const ::ansi_character * pstr);
-   static inline strsize unichar_count(const ::wd16_character * pstr);
-   static inline strsize unichar_count(const ::wd32_character * pstr);
+   static inline character_count unichar_count(const ::ansi_character * pstr);
+   static inline character_count unichar_count(const ::wd16_character * pstr);
+   static inline character_count unichar_count(const ::wd32_character * pstr);
 
 
    static void get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string &, bool bCarriage) > & functionNewLine);
@@ -329,7 +329,7 @@ public:
    static void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
 
 
-   static strsize x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
+   static character_count x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
    static bool x_contains(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
 
    static bool x_contains(const ::scoped_string& scopedstr, const ::string_array & straSearchedTerm);
@@ -357,7 +357,7 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 //}
 
 
-inline strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
+inline character_count str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
 {
 
    const ::ansi_character * pszDec = unicode_prior(psz, pszBeg);
@@ -374,7 +374,7 @@ inline strsize str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_c
 }
 
 
-inline strsize str::utf8_inc_len(const ::ansi_character * psz)
+inline character_count str::utf8_inc_len(const ::ansi_character * psz)
 {
 
    return get_utf8_char_length(psz);

@@ -33,15 +33,15 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 
 
-int get_main_screen_rectangle(::rectangle_i32 * prectangle);
+int get_main_screen_rectangle(::int_rectangle * prectangle);
 
 
-int GetScreenRect(::rectangle_i32 * prectangle, int iMonitor);
+int GetScreenRect(::int_rectangle * prectangle, int iMonitor);
 
 
 int GetScreenCount();
 
-int GetWorkspaceRect(::rectangle_i32 * prectangle, int iMonitor);
+int GetWorkspaceRect(::int_rectangle * prectangle, int iMonitor);
 
 
 int GetWorkspaceCount();

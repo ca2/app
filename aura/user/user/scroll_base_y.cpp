@@ -108,7 +108,7 @@ namespace user
    void scroll_base_y::layout_scroll_bar_y(::user::enum_layout elayout)
    {
 
-      ::rectangle_i32 rectangleX = raw_rectangle(elayout);
+      ::int_rectangle rectangleX = raw_rectangle(elayout);
 
       //scroll_bar_get_client_rect(rectangleX);
 
@@ -124,7 +124,7 @@ namespace user
 
             synthesize_scroll_state_y(m_pscrolllayoutY->m_scrollstatea[elayout], elayout);
 
-            ::rectangle_i32 rectangleNewPos;
+            ::int_rectangle rectangleNewPos;
 
             auto pstyle = get_style();
 
@@ -446,7 +446,7 @@ namespace user
    }
 
 
-   //bool scroll_base_y::validate_context_offset(point_i32 & point)
+   //bool scroll_base_y::validate_context_offset(int_point & point)
    //{
 
    //   if (point.y() < 0)
@@ -647,7 +647,7 @@ namespace user
 
       pscroll->m_ecommand = ecommand;
 
-      if (dPosition != F64_MOST_NEGATIVE)
+      if (dPosition != DOUBLE_MOST_NEGATIVE)
       {
 
          pscroll->m_dPosition = dPosition;

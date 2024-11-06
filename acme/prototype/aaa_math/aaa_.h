@@ -1,26 +1,26 @@
 #pragma once
 
 //// SIGNED SIGNED
-//inline constexpr bool __lt(const i64 & a, const i64 & b) { return a < b; }
-//inline constexpr bool __lt(const int & a, const i64 & b) { return a < b; }
-//inline constexpr bool __lt(const i64 & a, const int & b) { return a < b; }
+//inline constexpr bool __lt(const huge_integer & a, const huge_integer & b) { return a < b; }
+//inline constexpr bool __lt(const int & a, const huge_integer & b) { return a < b; }
+//inline constexpr bool __lt(const huge_integer & a, const int & b) { return a < b; }
 //
 //// UNSIGNED SIGNED
 //inline constexpr bool __lt(const unsigned int & a, const int & b) { return b < 0 ? false : a < static_cast < unsigned int > (b); }
-//inline constexpr bool __lt(const size_t & a, const i64 & b) { return b < 0 ? false : a < static_cast < u64 > (b); }
+//inline constexpr bool __lt(const size_t & a, const huge_integer & b) { return b < 0 ? false : a < static_cast < huge_natural > (b); }
 //
 //// SIGNED UNSIGNED
 //inline constexpr bool __lt(const int & a, const unsigned int & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
-//inline constexpr bool __lt(const i64 & a, const size_t & b) { return a < 0 ? true : static_cast <u64> (a) < b; }
+//inline constexpr bool __lt(const huge_integer & a, const size_t & b) { return a < 0 ? true : static_cast <huge_natural> (a) < b; }
 //
 //
 //// UNSIGNED SIGNED
 //inline constexpr bool __le(const unsigned int & a, const int & b) { return b < 0 ? false : a <= static_cast <unsigned int> (b); }
-//inline constexpr bool __le(const size_t & a, const i64 & b) { return b < 0 ? false : a <= static_cast <u64> (b); }
+//inline constexpr bool __le(const size_t & a, const huge_integer & b) { return b < 0 ? false : a <= static_cast <huge_natural> (b); }
 //
 //// SIGNED UNSIGNED
 //inline constexpr bool __le(const int & a, const unsigned int & b) { return a < 0 ? false : static_cast <unsigned int> (a) <= b; }
-//inline constexpr bool __le(const i64 & a, const size_t & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
+//inline constexpr bool __le(const huge_integer & a, const size_t & b) { return a < 0 ? false : static_cast <huge_natural> (a) <= b; }
 //
 //
 //template < typename A, typename B >
@@ -32,20 +32,20 @@
 //
 //// UNSIGNED SIGNED
 //constexpr int minimum(const unsigned int & a, const int & b) { return __lt(a, b) ? (int) a : b; }
-//constexpr i64 minimum(const size_t & a, const i64 & b) { return __lt(a, b) ? (i64) a : b; }
+//constexpr huge_integer minimum(const size_t & a, const huge_integer & b) { return __lt(a, b) ? (huge_integer) a : b; }
 //
 //// SIGNED UNSIGNED
 //constexpr int minimum(const int & a, const unsigned int & b) { return __lt(a, b) ? a : (int) b; }
-//constexpr i64 minimum(const i64 & a, const size_t & b) { return __lt(a, b) ? a : (i64) b; }
+//constexpr huge_integer minimum(const huge_integer & a, const size_t & b) { return __lt(a, b) ? a : (huge_integer) b; }
 //
 //
 //// UNSIGNED SIGNED
 //constexpr unsigned int maximum(const unsigned int & a, const int & b) { return __lt(b, a) ? a : (unsigned int) b; }
-//constexpr size_t maximum(const size_t & a, const i64 & b) { return __lt(b, a) ? a : (size_t) b; }
+//constexpr size_t maximum(const size_t & a, const huge_integer & b) { return __lt(b, a) ? a : (size_t) b; }
 //
 //// SIGNED UNSIGNED
 //constexpr unsigned int maximum(const int & a, const unsigned int & b) { return __lt(b, a) ? (unsigned int) a : b; }
-//constexpr size_t maximum(const i64 & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
+//constexpr size_t maximum(const huge_integer & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
 //
 //
 //#include "count.h"
@@ -54,7 +54,7 @@
 //#include "index.h"
 
 
-//CLASS_DECL_APEX i64 ceil_div(i64 num, i64 den);
+//CLASS_DECL_APEX huge_integer ceil_div(huge_integer num, huge_integer den);
 //
 //
 //CLASS_DECL_APEX double tri(double angle);

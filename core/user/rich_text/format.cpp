@@ -355,7 +355,7 @@ namespace user
       //   stream.exchange("italic", m_bItalic);
       //   stream.exchange("underline", m_bUnderline);
       //   stream.exchange("family", m_strFontFamily);
-      //   stream.exchange("size_i32", m_dFontSize);
+      //   stream.exchange("int_size", m_dFontSize);
       //   stream.exchange("foreground", (unsigned int &)m_colorForeground);
       //   stream.exchange("background", (unsigned int &)m_colorBackground);
       //   stream.exchange("script", (int &)m_escript);

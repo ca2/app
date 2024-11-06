@@ -1075,7 +1075,7 @@ namespace platform
 
             strFsType = set["get_headers"]["x-fstype"];
 
-            if (strFsType.has_char())
+            if (strFsType.has_character())
             {
                if (strFsType == "directory")
                {

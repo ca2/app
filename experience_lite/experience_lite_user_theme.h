@@ -17,14 +17,14 @@ namespace lite
       theme(::particle * pparticle);
       virtual ~theme();
 
-      virtual i64 increment_reference_count() override
+      virtual huge_integer increment_reference_count() override
       {
 
          return ::object::increment_reference_count();
 
       }
 
-      virtual i64 decrement_reference_count() override
+      virtual huge_integer decrement_reference_count() override
       {
 
          return ::object::decrement_reference_count();
@@ -40,7 +40,7 @@ namespace lite
       virtual bool on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow) override;
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;
-      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 * lpcrect,::draw2d::brush_pointer & pbrushText) override;
+      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle * lpcrect,::draw2d::brush_pointer & pbrushText) override;
       bool _001OnTabLayout(::user::tab * ptab) override;
 
       virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar) override;

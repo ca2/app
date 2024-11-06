@@ -10,7 +10,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS border :
-      public ::rectangle_f32
+      public ::float_rectangle
    {
    public:
 

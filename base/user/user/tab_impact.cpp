@@ -582,7 +582,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      //::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
+      //::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
       //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
@@ -696,7 +696,7 @@ namespace user
 
                __check_refdbg
 
-               if (pimpactdata->m_strTitle.has_char())
+               if (pimpactdata->m_strTitle.has_character())
                {
 
                   __check_refdbg
@@ -1154,7 +1154,7 @@ namespace user
 
       auto strXml = get_app()->file()->safe_get_string(path);
 
-      if (strXml.has_char())
+      if (strXml.has_character())
       {
 
          if (!pmenu->load_xml_menu(strXml))
@@ -1288,7 +1288,7 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_impact::create_impact(atom atom, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_impact::create_impact(atom atom, const ::int_rectangle & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
@@ -1317,7 +1317,7 @@ namespace user
 
    //            _synchronous_lock synchronouslock(this->synchronization());
 
-   //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
+   //            if (pimpactdata->m_strCreatorDataTitle.has_character() && ppane->m_atom == pimpactdata->m_atom)
    //            {
 
    //               ppane->set_title(pimpactdata->m_strCreatorDataTitle);
@@ -1483,7 +1483,7 @@ namespace user
 
       {
 
-         ::point_i32 pointOffset;
+         ::int_point pointOffset;
 
          if (m_puserinteractionParent != nullptr)
          {
@@ -1680,9 +1680,9 @@ namespace user
       if (!ptabdata->m_bNoClient && m_pimpactdata)
       {
 
-         ::rectangle_i32 rectangleHosting = ptabdata->m_rectangleHosting;
+         ::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
-         ::rectangle_i32 rectangleX;
+         ::int_rectangle rectangleX;
 
          rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 

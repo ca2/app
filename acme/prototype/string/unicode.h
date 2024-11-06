@@ -6,13 +6,13 @@
 
 #if WCHAR_T_SIZE == 16
 
-CLASS_DECL_ACME wstring wd32_to_wd16_str(const ::wd32_character * pcwsz, strsize input_size = -1);
+CLASS_DECL_ACME wstring wd32_to_wd16_str(const ::wd32_character * pcwsz, character_count input_size = -1);
 
 #endif
 
-CLASS_DECL_ACME string wd16_to_ansi_str(const ::wd16_character * pwsz, strsize srclen = -1);
+CLASS_DECL_ACME string wd16_to_ansi_str(const ::wd16_character * pwsz, character_count srclen = -1);
 
-CLASS_DECL_ACME string wd32_to_ansi_str(const ::wd32_character * pwsz, strsize srclen = -1);
+CLASS_DECL_ACME string wd32_to_ansi_str(const ::wd32_character * pwsz, character_count srclen = -1);
 
 
 
@@ -22,20 +22,20 @@ string         get_utf8_char(const ::ansi_character * psz, const ::ansi_characte
 ::const_ansi_range get_utf8_char(::const_ansi_range & range);
 
 bool           get_utf8_char(string & strChar, const char *& psz, const ::ansi_character * pszEnd);
-string         get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i);
-string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
-string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
-CLASS_DECL_ACME utf8_character         unicode_to_utf8(i64 ch);
-CLASS_DECL_ACME strsize        unicode_to_utf8_length(i64 ch);
+string         get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i);
+string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i = 0);
+string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i = 0);
+CLASS_DECL_ACME utf8_character         unicode_to_utf8(huge_integer ch);
+CLASS_DECL_ACME character_count        unicode_to_utf8_length(huge_integer ch);
 int            unicode_to_utf8_2_or_more(::ansi_character * dest, int ch);
 
 
 CLASS_DECL_ACME const ::ansi_character * utf8_dec(const ::ansi_character * pszBeg, const ::ansi_character * psz);
 
 
-//inline int unicode_index(const ::ansi_character *& input, strsize * psrclen);
-//inline int unicode_index(const ::wd16_character *& input, strsize * psrclen);
-//inline int unicode_index(const ::wd32_character *& input, strsize * psrclen);
+//inline int unicode_index(const ::ansi_character *& input, character_count * psrclen);
+//inline int unicode_index(const ::wd16_character *& input, character_count * psrclen);
+//inline int unicode_index(const ::wd32_character *& input, character_count * psrclen);
 
 
 // return Unicode Index and
@@ -221,17 +221,17 @@ inline bool string_begins(const ::wd32_character * pz, const ::wd32_character * 
 {   return null_terminated_begins_null_terminated(pz, pzPrefix, ::comparison::comparison<::wd32_character>());}
 
 //template < primitive_character CHARACTER >
-//inline bool _string_begins(const CHARACTER * psz, strsize len, const CHARACTER * pszPrefix, strsize & lenPrefix)
+//inline bool _string_begins(const CHARACTER * psz, character_count len, const CHARACTER * pszPrefix, character_count & lenPrefix)
 //{
-//   return string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool _string_begins(const ::wd16_character* psz, strsize len, const ::wd16_character* pszPrefix, strsize& lenPrefix)
+//inline bool _string_begins(const ::wd16_character* psz, character_count len, const ::wd16_character* pszPrefix, character_count& lenPrefix)
 //{
-//   return string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool _string_begins(const ::wd32_character* psz, strsize len, const ::wd32_character* pszPrefix, strsize& lenPrefix)
+//inline bool _string_begins(const ::wd32_character* psz, character_count len, const ::wd32_character* pszPrefix, character_count& lenPrefix)
 //{
-//   return string_begins<const ::wd32_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return string_begins<const ::wd32_character>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
 
 
@@ -244,17 +244,17 @@ inline bool string_ends(const ::wd32_character * psz, const ::wd32_character * p
 {   return ::null_terminated_ends(psz, pszSuffix, ::comparison::comparison<::wd32_character>()); }
 
 //template < primitive_character CHARACTER >
-//inline bool _string_ends(const CHARACTER * psz, strsize len, const CHARACTER * pszSuffix, strsize& lenSuffix)
+//inline bool _string_ends(const CHARACTER * psz, character_count len, const CHARACTER * pszSuffix, character_count& lenSuffix)
 //{
-//   return _range_ends<const CHARACTER>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return _range_ends<const CHARACTER>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool _string_ends(const ::wd16_character* psz, strsize len, const ::wd16_character* pszSuffix, strsize& lenSuffix)
+//inline bool _string_ends(const ::wd16_character* psz, character_count len, const ::wd16_character* pszSuffix, character_count& lenSuffix)
 //{
-//   return string_ends<const ::wd16_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return string_ends<const ::wd16_character>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool _string_ends(const ::wd32_character* psz, strsize len, const ::wd32_character* pszSuffix, strsize& lenSuffix)
+//inline bool _string_ends(const ::wd32_character* psz, character_count len, const ::wd32_character* pszSuffix, character_count& lenSuffix)
 //{
-//   return string_ends<const ::wd32_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return string_ends<const ::wd32_character>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
 
 
@@ -270,17 +270,17 @@ inline bool case_insensitive_string_begins(const ::wd32_character * psz, const :
 
 
 //template < primitive_character CHARACTER >
-//inline bool case_insensitive__string_begins(const CHARACTER * psz, strsize len, const CHARACTER * pszPrefix, strsize & lenPrefix)
+//inline bool case_insensitive__string_begins(const CHARACTER * psz, character_count len, const CHARACTER * pszPrefix, character_count & lenPrefix)
 //{
-//   return case_insensitive_string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool case_insensitive__string_begins(const ::wd16_character* psz, strsize len, const ::wd16_character* pszPrefix, strsize& lenPrefix)
+//inline bool case_insensitive__string_begins(const ::wd16_character* psz, character_count len, const ::wd16_character* pszPrefix, character_count& lenPrefix)
 //{
-//   return case_insensitive_string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool case_insensitive__string_begins(const ::wd32_character* psz, strsize len, const ::wd32_character* pszPrefix, strsize& lenPrefix)
+//inline bool case_insensitive__string_begins(const ::wd32_character* psz, character_count len, const ::wd32_character* pszPrefix, character_count& lenPrefix)
 //{
-//   return case_insensitive_string_begins<const ::wd32_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const ::wd32_character>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
 
 inline bool case_insensitive_string_ends(const ::ansi_character * psz, const ::ansi_character * pszSuffix)
@@ -291,17 +291,17 @@ inline bool case_insensitive_string_ends(const ::wd32_character * psz, const ::w
 {   return ::null_terminated_ends(psz, pszSuffix, ::comparison::case_insensitive<::wd32_character>());}
 
 //template < primitive_character CHARACTER >
-//inline bool case_insensitive__string_ends(const CHARACTER * psz, strsize len, const CHARACTER * pszSuffix, strsize & lenSuffix)
+//inline bool case_insensitive__string_ends(const CHARACTER * psz, character_count len, const CHARACTER * pszSuffix, character_count & lenSuffix)
 //{
-//   return case_insensitive_string_ends<const CHARACTER>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const CHARACTER>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool case_insensitive__string_ends(const ::wd16_character* psz, strsize len, const ::wd16_character* pszSuffix, strsize& lenSuffix)
+//inline bool case_insensitive__string_ends(const ::wd16_character* psz, character_count len, const ::wd16_character* pszSuffix, character_count& lenSuffix)
 //{
-//   return case_insensitive_string_ends<const ::wd16_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const ::wd16_character>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool case_insensitive__string_ends(const ::wd32_character* psz, strsize len, const ::wd32_character* pszSuffix, strsize& lenSuffix)
+//inline bool case_insensitive__string_ends(const ::wd32_character* psz, character_count len, const ::wd32_character* pszSuffix, character_count& lenSuffix)
 //{
-//   return case_insensitive_string_ends<const ::wd32_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const ::wd32_character>({ psz, len }, { pszSuffix, (character_count)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
 
 
@@ -379,10 +379,10 @@ bool unicode_is_mirrored(const ::scoped_string & scopedstrUtf8Char);
 int unicode_size_of_tables();
 
 
-inline  bool unicode_is_kanji(i64 i) { return i >= 0x4E00 && i <= 0x9FBF; }
-inline  bool unicode_is_hiragana(i64 i) { return i >= 0x3040 && i <= 0x309F; }
-inline  bool unicode_is_katakana(i64 i) { return i >= 0x30A0 && i <= 0x30FF; }
-inline  bool unicode_is_japanese(i64 i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
+inline  bool unicode_is_kanji(huge_integer i) { return i >= 0x4E00 && i <= 0x9FBF; }
+inline  bool unicode_is_hiragana(huge_integer i) { return i >= 0x3040 && i <= 0x309F; }
+inline  bool unicode_is_katakana(huge_integer i) { return i >= 0x30A0 && i <= 0x30FF; }
+inline  bool unicode_is_japanese(huge_integer i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
 inline  bool unicode_is_kanji(const ::ansi_character * pszUtf8) { return unicode_is_kanji(unicode_index(pszUtf8)); }
 inline  bool unicode_is_hiragana(const ::ansi_character * pszUtf8) { return unicode_is_hiragana(unicode_index(pszUtf8)); }
 inline  bool unicode_is_katakana(const ::ansi_character * pszUtf8) { return unicode_is_katakana(unicode_index(pszUtf8)); }

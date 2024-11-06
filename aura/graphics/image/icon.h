@@ -30,7 +30,7 @@ namespace image
 
       ::pointer<::windowing::icon>              m_pwindowingicon;
       ::pointer<size_image>                     m_pimagemap;
-      ::size_int_array                          m_sizea;
+      ::int_size_array                          m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;
@@ -55,30 +55,30 @@ namespace image
       string get_tray_icon_name();
 
 
-      ::size_i32 get_size();
+      ::int_size get_size();
 
 
-      ::size_i32 get_smaller_size(const ::size_i32 & size);
+      ::int_size get_smaller_size(const ::int_size & size);
 
 
       virtual void on_update_icon();
 
 
-      inline ::size_f64 origin() const { return ::size_f64(); }
+      inline ::double_size origin() const { return ::double_size(); }
 
 
-//      ::image::image_pointer get_image(const concrete < ::size_i32 > & size);
+//      ::image::image_pointer get_image(const concrete < ::int_size > & size);
 
 
-      ::image::image_pointer image_source_image(const ::size_i32& size) override;
+      ::image::image_pointer image_source_image(const ::int_size& size) override;
 
 
-      // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
+      // inline concrete < ::int_size > int_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->int_size(sizeDst, sizeSrc, eimageselection); }
 
-      ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
+      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
 
       
-      ::size_i32 image_source_size() const override;
+      ::int_size image_source_size() const override;
 
          
    };

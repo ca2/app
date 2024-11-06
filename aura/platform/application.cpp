@@ -845,7 +845,7 @@ namespace aura
 
    //   string strTitle;
 
-   //   u64 uFlags = 0;
+   //   huge_natural uFlags = 0;
 
    //   ::time timeTimeout;
 
@@ -895,7 +895,7 @@ namespace aura
    //   if (!load_string(str, atom))
    //   {
 
-   //      if (strDefault.has_char())
+   //      if (strDefault.has_character())
    //         return strDefault;
 
    //      return "";
@@ -1399,7 +1399,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -1935,7 +1935,7 @@ namespace aura
 
       if (!(bHasInstall || bHasUninstall)
             && m_bLicense
-            && strLicense.has_char())
+            && strLicense.has_character())
       {
 
          if (!assert_user_logged_in())
@@ -2526,7 +2526,7 @@ retry_license:
    }
 
 
-   //void application::on_set_scalar(enum_scalar escalar, i64 iValue, int iFlags)
+   //void application::on_set_scalar(enum_scalar escalar, huge_integer iValue, int iFlags)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2557,7 +2557,7 @@ retry_license:
    //}
 
 
-   //void application::get_scalar_minimum(enum_scalar escalar, i64 & i)
+   //void application::get_scalar_minimum(enum_scalar escalar, huge_integer & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2587,7 +2587,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar(enum_scalar escalar, i64 & i)
+   //void application::get_scalar(enum_scalar escalar, huge_integer & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2617,7 +2617,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar_maximum(enum_scalar escalar, i64 & i)
+   //void application::get_scalar_maximum(enum_scalar escalar, huge_integer & i)
    //{
 
    //   //if (escalar == scalar_download_size)
@@ -3893,7 +3893,7 @@ retry_license:
 
       strExperience = payload("experience");
 
-      if (strExperience.has_char())
+      if (strExperience.has_character())
       {
 
          return strExperience;
@@ -4008,7 +4008,7 @@ retry_license:
 //   }
 //
 //
-////   void application::on_event(::u64 u, ::particle * pparticle)
+////   void application::on_event(huge_natural u, ::particle * pparticle)
 ////   {
 ////
 ////      object_ptra ptra;
@@ -4194,7 +4194,7 @@ retry_license:
 
    //   string strNetworkPayload = file.as_string(directory_system()->config() / strAppId / +"http.network_payload");
 
-   //   if (strNetworkPayload.has_char())
+   //   if (strNetworkPayload.has_character())
    //   {
 
    //      try
@@ -5015,7 +5015,7 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_char())
+      if (file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt").has_character())
       {
 
          strRequestUrl = "https://" + file_system()->as_string(directory_system()->userconfig() / "config\\system\\ignition_server.txt") + "/api/spaignition";
@@ -5320,10 +5320,10 @@ retry_license:
    string application::get_license_id()
    {
 
-      if (m_strLicense.has_char())
+      if (m_strLicense.has_character())
          return m_strLicense;
 
-      if (m_strInstallToken.has_char())
+      if (m_strInstallToken.has_character())
          return m_strInstallToken;
 
       return m_strAppId;
@@ -6376,9 +6376,9 @@ namespace aura
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "point_i32") == 0)
+   if (lstrcmpA(pszParam, "int_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "point_i32") == 0)
+   else if (lstrcmpA(pszParam, "int_point") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
    ::__invariant_stricmp(pszParam, "Regserver") == 0)
@@ -6954,7 +6954,7 @@ namespace aura
       //ASSERT(m_pszRegistryKey == nullptr);
       //ASSERT(pszRegistryKey != nullptr);
 
-      //ASSERT(m_strAppName.has_char());
+      //ASSERT(m_strAppName.has_character());
 
       ////bool bEnable = __enable_memory_tracking(false);
       //free((void *)m_pszRegistryKey);
@@ -7894,7 +7894,7 @@ namespace aura
    bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
    {
 
-      i64 i64Size;
+      huge_integer i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -7954,7 +7954,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(huge_integer& i64Size, const ::string & pszPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -8145,7 +8145,7 @@ namespace aura
    //   string str;
 
    //   // keyboard on_layout
-   //   //if(datastream()->get("keyboard_layout",str) && str.has_char())
+   //   //if(datastream()->get("keyboard_layout",str) && str.has_character())
    //   {
    //      // psession->set_keyboard_layout(str,::e_source_database);
    //   }
@@ -8682,12 +8682,12 @@ namespace aura
 
 
 
-   /*string application::get_cred(const ::string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const ::string & strRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
 
-      if(str == "ok" && strUsername.has_char() && strPassword.has_char())
+      if(str == "ok" && strUsername.has_character() && strPassword.has_character())
          return "ok";
 
       if(!bInteractive)

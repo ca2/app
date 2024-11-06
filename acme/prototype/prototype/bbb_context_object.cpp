@@ -11,7 +11,7 @@ object::~object()
 #ifdef _DEBUG
 
 
-i64 object::increment_reference_count()
+huge_integer object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -19,7 +19,7 @@ i64 object::increment_reference_count()
 }
 
 
-i64 object::decrement_reference_count()
+huge_integer object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -27,7 +27,7 @@ i64 object::decrement_reference_count()
 }
 
 
-i64 object::release()
+huge_integer object::release()
 {
 
    return property_object::release();
@@ -38,7 +38,7 @@ i64 object::release()
 #else
 
 
-i64 object::increment_reference_count()
+huge_integer object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -46,7 +46,7 @@ i64 object::increment_reference_count()
 }
 
 
-i64 object::decrement_reference_count()
+huge_integer object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -54,7 +54,7 @@ i64 object::decrement_reference_count()
 }
 
 
-i64 object::release()
+huge_integer object::release()
 {
 
    return property_object::release();
@@ -347,7 +347,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-   //inline i64 get_ref_count()
+   //inline huge_integer get_ref_count()
    //{
 
    //   return m_countReference;
@@ -382,7 +382,7 @@ void object::process_exit_status(const ::e_status & estatus)
    // void to_string(const string_exchange & str) const 
 
    //::image::image_pointer create_image();
-   //::image::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
@@ -830,7 +830,7 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, huge_natural uTrait, PRED pred);
 
    // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);

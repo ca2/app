@@ -143,7 +143,7 @@ namespace earth
 
       posix_time time_of_day(const class ::time &timeshift = {}) const noexcept;
 
-      i64 day_sig(const class ::time &timeshift = {}) const noexcept;
+      huge_integer day_sig(const class ::time &timeshift = {}) const noexcept;
 
 
       time_span elapsed() const;
@@ -155,7 +155,7 @@ namespace earth
       ::std::strong_ordering operator <=> (const class  ::time & time) const;
 
 
-      ::i64 total_minutes(const class ::time & timeshift = {}) const noexcept;
+      huge_integer total_minutes(const class ::time & timeshift = {}) const noexcept;
 
 
    };

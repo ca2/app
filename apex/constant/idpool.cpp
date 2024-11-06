@@ -35,7 +35,7 @@
 //      su = "su";
 //      lv = "lv";
 //      li = "li";
-//      hu = "hu";
+//      hn = "hn";
 //      sk = "sk";
 //      si = "si";
 //      ro = "ro";
@@ -95,8 +95,8 @@
 //      de_de = "de-de";
 //
 //      br = "br";
-//      pt_br = "point_i32-br";
-//      pt = "point_i32";
+//      pt_br = "int_point-br";
+//      pt = "int_point";
 //
 //      es = "es";
 //
@@ -193,7 +193,7 @@
 //      html_h3 = "h3";
 //      html_h4 = "h4";
 //      html_h5 = "h5";
-//      html_p = "point_i32";
+//      html_p = "int_point";
 //      html_table = "table";
 //      html_tbody = "tbody";
 //      html_tr = "tr";

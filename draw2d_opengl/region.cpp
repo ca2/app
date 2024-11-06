@@ -39,7 +39,7 @@ namespace draw2d_opengl
    void region::SetRectRgn(int x1, int y1, int x2, int y2)
    { ASSERT(get_os_data() != nullptr); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2); }
    
-   void region::SetRectRgn(const ::rectangle_i32 & rectangle)
+   void region::SetRectRgn(const ::int_rectangle & rectangle)
    { 
       ::SetRectRgn((HRGN)get_os_data(), rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom()); 
    }
@@ -61,16 +61,16 @@ namespace draw2d_opengl
 
    int region::OffsetRgn(int x, int y)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
-   int region::OffsetRgn(const ::point_i32 & point)
+   int region::OffsetRgn(const ::int_point & point)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x(), point.y()); }
 
    */
-   bool region::get_bounding_box(::rectangle_i32 * lprect) const
+   bool region::get_bounding_box(::int_rectangle * lprect) const
    {
 
       //((region *)this)->defer_update();
 
-      //plusplus::rectangle_i32 rectangle_i32;
+      //plusplus::int_rectangle int_rectangle;
 
       //((region *) this)->m_pregion->GetBounds(&rectangle, &plusplus::Graphics((HDC) nullptr));
 
@@ -87,37 +87,37 @@ namespace draw2d_opengl
    bool region::PtInRegion(int x, int y) const
    { 
 
-      plusplus::PointF point_f32((plusplus::REAL) x, (plusplus::REAL) y);
+      plusplus::PointF float_point((plusplus::REAL) x, (plusplus::REAL) y);
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(point_f32)  != false;
+      return m_pregion->IsVisible(float_point)  != false;
    
    }
    */
-   bool region::contains(const ::point_i32 & point) const
+   bool region::contains(const ::int_point & point) const
    { 
 
     /*  ((region *) (this))->defer_update();
 
-      plusplus::PointF point_f32((plusplus::REAL) point.x(), (plusplus::REAL) point.y());
+      plusplus::PointF float_point((plusplus::REAL) point.x(), (plusplus::REAL) point.y());
       
       ASSERT(get_os_data() != nullptr);
 
-      return m_pregion->IsVisible(point_f32)  != false;
+      return m_pregion->IsVisible(float_point)  != false;
 */
       return true;
    }
    /*
-   bool region::rectInRegion(const ::rectangle_i32 & rectangle) const
+   bool region::rectInRegion(const ::int_rectangle & rectangle) const
    { 
       //ASSERT(get_os_data() != nullptr); return ::rectInRegion((HRGN)get_os_data(), rectangle); 
 
-      plusplus::rectF rectangle_f32((plusplus::REAL) rectangle.left(), (plusplus::REAL) rectangle.top(), (plusplus::REAL) (rectangle.right() - rectangle.left()), (plusplus::REAL) (rectangle.bottom() - rectangle.top()));
+      plusplus::rectF float_rectangle((plusplus::REAL) rectangle.left(), (plusplus::REAL) rectangle.top(), (plusplus::REAL) (rectangle.right() - rectangle.left()), (plusplus::REAL) (rectangle.bottom() - rectangle.top()));
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(rectangle_f32)  != false;
+      return m_pregion->IsVisible(float_rectangle)  != false;
 
    }
    */
@@ -198,7 +198,7 @@ namespace draw2d_opengl
 
    //   plusplus::GraphicsPath path;
 
-   //   plusplus::rectF rectangle_i32;
+   //   plusplus::rectF int_rectangle;
 
    //   rectangle.X      = (plusplus::REAL) m_x1;
    //   rectangle.Y      = (plusplus::REAL) m_y1;

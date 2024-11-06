@@ -2,10 +2,10 @@
 ////#include "acme/exception/exception.h"
 
 
-::wd32_character* wd16_to_wd32_dup(const ::wd16_character* input, strsize input_size)
+::wd32_character* wd16_to_wd32_dup(const ::wd16_character* input, character_count input_size)
 {
 
-   strsize s = wd16_to_wd32_len(input, input_size);
+   character_count s = wd16_to_wd32_len(input, input_size);
 
    ::wd32_character* v = (::wd32_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd32_character) * (s + 1), nullptr);
 
@@ -20,10 +20,10 @@
 
 
 
-strsize wd32_to_wd16_len(const ::wd32_character* codepoints, strsize input_size)
+character_count wd32_to_wd16_len(const ::wd32_character* codepoints, character_count input_size)
 {
 
-   strsize len = 0;
+   character_count len = 0;
 
    while (input_size != 0)
    {
@@ -64,10 +64,10 @@ strsize wd32_to_wd16_len(const ::wd32_character* codepoints, strsize input_size)
 }
 
 
-strsize wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* codepoints, strsize input_size)
+character_count wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* codepoints, character_count input_size)
 {
 
-   strsize len = 0;
+   character_count len = 0;
 
    while (input_size != 0)
    {
@@ -113,10 +113,10 @@ strsize wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* codepoints
 }
 
 
-//wstring wd32_to_wd16(const ::wd32_character* input, strsize input_size)
+//wstring wd32_to_wd16(const ::wd32_character* input, character_count input_size)
 //{
 //
-//   strsize s = wd32_to_wd16_len(input, input_size);
+//   character_count s = wd32_to_wd16_len(input, input_size);
 //
 //   wstring wstr;
 //
@@ -124,7 +124,7 @@ strsize wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* codepoints
 //
 //   wd32_to_wd16(point, input, s);
 //
-//   point_i32[s] = 0;
+//   int_point[s] = 0;
 //
 //   return wstr;
 //

@@ -44,7 +44,7 @@ namespace sockets
       public:
 
          file_pointer      m_spfile;
-         u64             m_uiContentLength;
+         huge_natural             m_uiContentLength;
          string               m_strContentType;
 
       };

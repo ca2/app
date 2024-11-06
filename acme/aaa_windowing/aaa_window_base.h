@@ -27,9 +27,9 @@ namespace windowing
 
       bool                                               m_bRepositioningWindowFromCenter;
       bool                                               m_bResizingWindowFromBottomRight;
-      ::point_i32                                        m_pointWindow;
-      ::size_i32                                         m_sizeWindow;
-      ::point_i32                                        m_pointCursor2;
+      ::int_point                                        m_pointWindow;
+      ::int_size                                         m_sizeWindow;
+      ::int_point                                        m_pointCursor2;
 
       ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
@@ -53,8 +53,8 @@ namespace windowing
 
 
       virtual bool is_windowing_popup();
-      virtual ::point_i32 windowing_popup_origin();
-      virtual ::size_i32 windowing_popup_size();
+      virtual ::int_point windowing_popup_origin();
+      virtual ::int_size windowing_popup_size();
       virtual void _on_windowing_close_window();
       virtual bool is_satellite_window();
       virtual window_base * owner_window();
@@ -133,13 +133,13 @@ namespace windowing
 
       virtual bool is_active_window();
 
-               virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+               virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 
 
                void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-               virtual ::size_i32 get_main_screen_size();
+               virtual ::int_size get_main_screen_size();
 
 
       void _on_window_simple_action(const char * pszActionName) override;
@@ -155,21 +155,21 @@ namespace windowing
 
 
 
-      virtual void set_interface_client_size(const ::size_i32 & sizeWindow);
+      virtual void set_interface_client_size(const ::int_size & sizeWindow);
 
 
-      void set_rectangle(const rectangle_i32 &rectangle) override;
-      void set_position(const point_i32 &point) override;
-      void set_size(const size_i32 &size) override;
+      void set_rectangle(const int_rectangle &rectangle) override;
+      void set_position(const int_point &point) override;
+      void set_size(const int_size &size) override;
 
 
-      ::rectangle_i32 get_window_rectangle() override;
-      virtual ::rectangle_i32 get_window_rectangle_unlocked();
+      ::int_rectangle get_window_rectangle() override;
+      virtual ::int_rectangle get_window_rectangle_unlocked();
 
 
-      virtual void set_rectangle_unlocked(const rectangle_i32 &rectangle);
-      virtual void set_position_unlocked(const point_i32 &point);
-      virtual void set_size_unlocked(const size_i32 &size);
+      virtual void set_rectangle_unlocked(const int_rectangle &rectangle);
+      virtual void set_position_unlocked(const int_point &point);
+      virtual void set_size_unlocked(const int_size &size);
 
 
       virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);

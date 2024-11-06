@@ -32,7 +32,7 @@ public:
 
 
    ::payload get_page(::collection::index iPage, ::collection::count iMessageCountPerPage);
-   i64 get_count();
+   huge_integer get_count();
 
 
 };

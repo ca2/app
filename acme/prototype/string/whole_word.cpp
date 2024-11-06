@@ -30,7 +30,7 @@
 
          bool bLowerBound1 = iFind == 0;
          bool bLowerBound = bLowerBound1 || !ansi_char_isalpha(str[iFind - 1]);
-         strsize iUpperBound = iFind + strFind.length();
+         character_count iUpperBound = iFind + strFind.length();
          bool bUpperBound1 = iUpperBound == str.length();
          bool bUpperBound = bUpperBound1 || !ansi_char_isalpha(str[iUpperBound]);
 

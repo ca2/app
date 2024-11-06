@@ -129,7 +129,7 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectangleWindow;
+         //::int_rectangle rectangleWindow;
          //m_pbutton->window_rectangle(rectangleWindow);
          //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
          //auto pointPreviousContextOrg = pgraphics->get_origin();

@@ -27,7 +27,7 @@ enum enum_parallelization
 
 //
 //enum e_task_flag :
-//   i64
+//   huge_integer
 //{
 //
 //   task_flag_fast_path = 1 << 0,
@@ -41,7 +41,7 @@ enum enum_parallelization
 
 
 
-enum enum_task_op :i64
+enum enum_task_op :huge_integer
 {
 
    e_task_op_none,

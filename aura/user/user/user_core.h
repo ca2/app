@@ -50,7 +50,7 @@ namespace user
       //bool                                       m_bProgrammerMode;
 
       //bool                                       m_bSystemSynchronizedCursor;
-      //point_i32                                      m_pointCursor;
+      //int_point                                      m_pointCursor;
 
       //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 
@@ -90,8 +90,8 @@ namespace user
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //rectangle_int_array                                            m_rectangleaMonitor;
-      //rectangle_int_array                                            m_rectangleaWorkspace;
+      //int_rectangle_array                                            m_rectangleaMonitor;
+      //int_rectangle_array                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
@@ -134,7 +134,7 @@ namespace user
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
       virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-      virtual bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 

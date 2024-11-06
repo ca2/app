@@ -58,7 +58,7 @@ namespace data
    //   }
    //
    //
-   //   strsize text_property::get_text_length()
+   //   character_count text_property::get_text_length()
    //   {
    //
    //      string str;
@@ -70,7 +70,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text(char * psz, strsize len)
+   //   void text_property::get_text(char * psz, character_count len)
    //   {
    //
    //      string str;
@@ -82,7 +82,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text(string & str, strsize iBeg, strsize iEnd)
+   //   void text_property::get_text(string & str, character_count iBeg, character_count iEnd)
    //   {
    //
    //      // default implementation, probably inefficient
@@ -100,7 +100,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::set_text(const ::string & str, strsize iLen, const ::action_context & context)
+   //   void text_property::set_text(const ::string & str, character_count iLen, const ::action_context & context)
    //   {
    //
    //      set_text(str.substr(0, iLen),context);
@@ -108,7 +108,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::_001GetSel(strsize & iBeg, strsize & iEnd)
+   //   void text_property::_001GetSel(character_count & iBeg, character_count & iEnd)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(iBeg);
@@ -117,7 +117,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //   void text_property::set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(iBeg);
@@ -127,7 +127,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
+   //   void text_property::get_text_selection(character_count & iBeg, character_count & iEnd)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(iBeg);
@@ -136,7 +136,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::_001SetSelEnd(strsize iEnd, const ::action_context & actioncontext)
+   //   void text_property::_001SetSelEnd(character_count iEnd, const ::action_context & actioncontext)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(iEnd);
@@ -201,7 +201,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text_composition_area(::rectangle_i32& rectangle)
+   //   void text_property::get_text_composition_area(::int_rectangle& rectangle)
    //   {
    //
    //
@@ -222,7 +222,7 @@ namespace data
    }
 
 
-   ::strsize text_property::selection_begin() const
+   ::character_count text_property::selection_begin() const
    {
 
       return this->get_property({ id_text_selection_begin }).as_iptr();
@@ -230,7 +230,7 @@ namespace data
    }
 
 
-   ::strsize text_property::selection_end() const
+   ::character_count text_property::selection_end() const
    {
 
       return this->get_property({ id_text_selection_end }).as_iptr();
@@ -252,9 +252,9 @@ namespace data
 
       auto strText = this->as_text();
 
-      strsize iBegin;
+      character_count iBegin;
 
-      strsize iEnd;
+      character_count iEnd;
 
       this->get_selection(iBegin, iEnd);
 
@@ -284,7 +284,7 @@ namespace data
    }
 
 
-   strsize text_property::get_size() const
+   character_count text_property::get_size() const
    {
 
       return this->as_text().size();
@@ -292,7 +292,7 @@ namespace data
    }
 
 
-  /* void text_property::get_text(char * psz, strsize len)
+  /* void text_property::get_text(char * psz, character_count len)
    {
 
       auto strText = this->as_text();
@@ -310,7 +310,7 @@ namespace data
    }
 
 
-   //void text_property::get_text(::string & str, strsize iBeg, strsize iEnd) const
+   //void text_property::get_text(::string & str, character_count iBeg, character_count iEnd) const
    //{
 
    //   auto strText = this->as_text();
@@ -322,7 +322,7 @@ namespace data
    //}
 
 
-   void text_property::set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext)
+   void text_property::set_text(const ::scoped_string & scopedstrText, character_count iLen, const ::action_context & actioncontext)
    {
 
       set_text(scopedstrText(0, iLen), actioncontext);
@@ -341,7 +341,7 @@ namespace data
    }
 
 
-   void text_property::get_selection(strsize & iBegin, strsize & iEnd) const
+   void text_property::get_selection(character_count & iBegin, character_count & iEnd) const
    {
 
       iBegin = selection_begin();
@@ -351,12 +351,12 @@ namespace data
    }
 
 
-   // strsize selection_begin() const
+   // character_count selection_begin() const
    // {
    //
-   //    ::strsize iBegin;
+   //    ::character_count iBegin;
    //
-   //    ::strsize iEnd;
+   //    ::character_count iEnd;
    //
    //    get_selection(iBegin, iEnd);
    //
@@ -365,12 +365,12 @@ namespace data
    // }
 
 
-   // strsize selection_end() const
+   // character_count selection_end() const
    // {
    //
-   //    ::strsize iBegin;
+   //    ::character_count iBegin;
    //
-   //    ::strsize iEnd;
+   //    ::character_count iEnd;
    //
    //    get_selection(iBegin, iEnd);
    //
@@ -379,7 +379,7 @@ namespace data
    // }
 
 
-   void text_property::set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext)
+   void text_property::set_selection(character_count iBegin, character_count iEnd, const ::action_context & actioncontext)
    {
 
       set_selection_begin(iBegin, actioncontext);
@@ -389,7 +389,7 @@ namespace data
    }
 
    /*
-      void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+      void set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context)
       {
 
          __UNREFERENCED_PARAMETER(iBeg);
@@ -399,7 +399,7 @@ namespace data
       }
 
 
-      void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
+      void text_property::get_text_selection(character_count & iBeg, character_count & iEnd)
       {
 
          __UNREFERENCED_PARAMETER(iBeg);
@@ -408,7 +408,7 @@ namespace data
       }
    */
 
-   void text_property::set_selection_begin(strsize iBegin, const ::action_context & actioncontext)
+   void text_property::set_selection_begin(character_count iBegin, const ::action_context & actioncontext)
    {
 
       set_property({ id_text_selection_begin }, iBegin, actioncontext);
@@ -416,7 +416,7 @@ namespace data
    }
 
 
-   void text_property::set_selection_end(strsize iEnd, const ::action_context & actioncontext)
+   void text_property::set_selection_end(character_count iEnd, const ::action_context & actioncontext)
    {
 
       set_property({ id_text_selection_end }, iEnd, actioncontext);
@@ -427,9 +427,9 @@ namespace data
    ::string text_property::get_selection_text() const
    {
 
-      ::strsize iBegin;
+      ::character_count iBegin;
 
-      ::strsize iEnd;
+      ::character_count iEnd;
 
       get_selection(iBegin, iEnd);
 
@@ -486,7 +486,7 @@ namespace data
       }
 
 
-      void text_property::get_text_composition_area(::rectangle_i32& rectangle)
+      void text_property::get_text_composition_area(::int_rectangle& rectangle)
       {
 
 
@@ -670,7 +670,7 @@ namespace data
    //}
 
 
-   //strsize text_property::get_text_length()
+   //character_count text_property::get_text_length()
    //{
 
    //   string str;
@@ -682,7 +682,7 @@ namespace data
    //}
 
 
-   //void text_property::get_text(char * psz, strsize len)
+   //void text_property::get_text(char * psz, character_count len)
    //{
 
    //   string str;
@@ -694,7 +694,7 @@ namespace data
    //}
 
 
-   //void text_property::get_text(string & str, strsize iBeg, strsize iEnd)
+   //void text_property::get_text(string & str, character_count iBeg, character_count iEnd)
    //{
 
    //   // default implementation, probably inefficient
@@ -712,7 +712,7 @@ namespace data
    //}
 
 
-   //void text_property::set_text(const ::string & str, strsize iLen, const ::action_context & context)
+   //void text_property::set_text(const ::string & str, character_count iLen, const ::action_context & context)
    //{
 
    //   set_text(str.substr(0, iLen),context);
@@ -720,7 +720,7 @@ namespace data
    //}
 
 
-   //void text_property::_001GetSel(strsize & iBeg, strsize & iEnd)
+   //void text_property::_001GetSel(character_count & iBeg, character_count & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -729,7 +729,7 @@ namespace data
    //}
 
 
-   //void text_property::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //void text_property::set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & action_context)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -739,7 +739,7 @@ namespace data
    //}
 
 
-   //void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
+   //void text_property::get_text_selection(character_count & iBeg, character_count & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -748,7 +748,7 @@ namespace data
    //}
 
 
-   //void text_property::_001SetSelEnd(strsize iEnd, const ::action_context & actioncontext)
+   //void text_property::_001SetSelEnd(character_count iEnd, const ::action_context & actioncontext)
    //{
 
    //   __UNREFERENCED_PARAMETER(iEnd);
@@ -813,7 +813,7 @@ namespace data
    //}
 
 
-   //void text::get_text_composition_area(::rectangle_i32& rectangle)
+   //void text::get_text_composition_area(::int_rectangle& rectangle)
    //{
 
 

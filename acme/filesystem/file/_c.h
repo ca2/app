@@ -22,7 +22,7 @@
 //CLASS_DECL_ACME int_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);
 //CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const void * contents, memsize len);
 //CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * lpszName, const ::scoped_string & scopedstrExtension);
-//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, character_count iBufferSize, const char * lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 //CLASS_DECL_ACME filesize file_length(const ::file::path & path);
 
 
@@ -43,7 +43,7 @@
 //CLASS_DECL_ACME filesize FILE_tell(FILE *fp);
 //CLASS_DECL_ACME filesize FILE_read(void * buffer, memsize size, memsize count, FILE * str);
 //CLASS_DECL_ACME filesize FILE_write(const void * buffer, memsize size, memsize count, FILE * str);
-//CLASS_DECL_ACME char * FILE_gets(char * str, strsize n, FILE *s);
+//CLASS_DECL_ACME char * FILE_gets(char * str, character_count n, FILE *s);
 //CLASS_DECL_ACME int FILE_getc(FILE *s);
 //CLASS_DECL_ACME int FILE_ungetc(int c,FILE *s);
 //CLASS_DECL_ACME int FILE_error(FILE *s);
@@ -55,7 +55,7 @@
 //#ifdef WINDOWS
 //CLASS_DECL_ACME FILE *FILE_wopen(const unichar * path, const unichar * attrs, int iShare);
 //CLASS_DECL_ACME int FILE_wprintf(FILE * fp, const unichar * s, ...);
-//CLASS_DECL_ACME unichar *FILE_getws(unichar * str, strsize n, FILE * s);
+//CLASS_DECL_ACME unichar *FILE_getws(unichar * str, character_count n, FILE * s);
 //CLASS_DECL_ACME wint_t FILE_getwc(FILE * s);
 //CLASS_DECL_ACME wint_t FILE_ungetwc(wint_t w, FILE * s);
 //#endif
@@ -78,9 +78,9 @@
 //
 //
 //
-////typedef u64  filesize;
-////typedef u64  filesize;
-////typedef i64   filesize;
+////typedef huge_natural  filesize;
+////typedef huge_natural  filesize;
+////typedef huge_integer   filesize;
 //
 
 CLASS_DECL_ACME bool is_directory(const ::file::path & path);

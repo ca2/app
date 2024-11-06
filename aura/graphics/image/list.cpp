@@ -95,7 +95,7 @@ namespace image
       if (m_iSize > 0)
       {
 
-         m_pimage->create(::size_i32(m_size.cx() * m_iSize, m_size.cy()));
+         m_pimage->create(::int_size(m_size.cx() * m_iSize, m_size.cy()));
 
       }
 
@@ -139,20 +139,20 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       __UNREFERENCED_PARAMETER(iFlag);
 
-      point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx()), 0.);
 
-      rectangle_f64 rectangleSource(pointSource, m_size);
+      double_rectangle rectangleSource(pointSource, m_size);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      rectangle_f64 rectangleTarget(point, m_size);
+      double_rectangle rectangleTarget(point, m_size);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -163,7 +163,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, int iFlag, const class ::opacity & opacity)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag, const class ::opacity & opacity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -184,13 +184,13 @@ namespace image
 
       }
 
-      point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx()), 0.);
 
-      rectangle_f64 rectangleSource(pointSource, m_size);
+      double_rectangle rectangleSource(pointSource, m_size);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      rectangle_f64 rectangleTarget(point, m_size);
+      double_rectangle rectangleTarget(point, m_size);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -218,7 +218,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, int iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffsetParam, int iFlag)
    {
 
       if (iImage < 0)
@@ -242,10 +242,10 @@ namespace image
    }
 
 
-   void image_list::_draw(::draw2d::graphics * pgraphics, int iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, int iFlag)
+   void image_list::_draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffsetParam, int iFlag)
    {
 
-      ::point_f64 pointOffset(pointOffsetParam);
+      ::double_point pointOffset(pointOffsetParam);
 
       __UNREFERENCED_PARAMETER(iFlag);
 
@@ -254,13 +254,13 @@ namespace image
       sz.cx() = maximum(0, minimum(m_size.cx() - pointOffset.x(), sz.cx()));
       sz.cy() = maximum(0, minimum(m_size.cy() - pointOffset.y(), sz.cy()));
 
-      point_f64 pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx()), 0.);
 
-      rectangle_f64 rectangleSource(pointSource, sz);
+      double_rectangle rectangleSource(pointSource, sz);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      rectangle_f64 rectangleTarget(point, sz);
+      double_rectangle rectangleTarget(point, sz);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -328,7 +328,7 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::rectangle_double_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
    //   
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
@@ -341,11 +341,11 @@ namespace image
    ////
    ////#else
    //
-   //   auto pointDst = ::point_f64((iItem * m_size.cx()), 0.);
+   //   auto pointDst = ::double_point((iItem * m_size.cx()), 0.);
    //
    //   auto sizeDst = m_size;
    //
-   //   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
+   //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
    //
    //   m_pimage->get_graphics()->draw(rectangleTarget, picon);
    //
@@ -370,17 +370,17 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::rectangle_double_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
    //
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //   m_pimage->g()->fill_rectangle(rectangle, 0);
    //
-   //   auto pointDst = ::point_f64((iItem * m_size.cx()), 0.);
+   //   auto pointDst = ::double_point((iItem * m_size.cx()), 0.);
    //
    //   auto sizeDst = m_size;
    //
-   //   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
+   //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
    //
    //   auto pdraw2dicon = __create < ::image::icon >();
    //
@@ -476,7 +476,7 @@ namespace image
    //         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         m_pimage->draw(
-   //            ::rectangle_f64(::point_i32(iItem * m_size.cx(), 0),  m_size ),
+   //            ::double_rectangle(::int_point(iItem * m_size.cx(), 0),  m_size ),
    //            pimage);
    //
    //      });
@@ -509,7 +509,7 @@ namespace image
 
          ::image::image_drawing imagedrawingTarget(imagedrawing);
 
-         imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx(), 0), m_size);
+         imagedrawingTarget.m_rectangleTarget.set(::double_point(iItem * m_size.cx(), 0), m_size);
 
          m_pimage->get_graphics()->draw(imagedrawingTarget);
 
@@ -540,7 +540,7 @@ namespace image
    //
    //   ::image::image_source imagesource(pimage);
    //
-   //   rectangle_f64 rectangle(m_size);
+   //   double_rectangle rectangle(m_size);
    //
    //   ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
@@ -562,7 +562,7 @@ namespace image
    //
    //   ::image::image_source imagesource(pimage);
    //
-   //   rectangle_f64 rectangle(m_size);
+   //   double_rectangle rectangle(m_size);
    //
    //   ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
@@ -675,7 +675,7 @@ namespace image
 
       int iAllocSize = _get_alloc_count() + iGrow;
 
-      m_pimage->preserve(::size_i32(cx * iAllocSize, cy));
+      m_pimage->preserve(::int_size(cx * iAllocSize, cy));
 
       return true;
 

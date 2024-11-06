@@ -466,14 +466,14 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //   strDetails += "PID: " + strProcessId + ::string("\n");
 //   //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
 //   
-//   if (strMoreDetails.has_char())
+//   if (strMoreDetails.has_character())
 //   {
 //
 //      strDetails += strMoreDetails + "\n";
 //
 //   }
 //
-//   if (exception.m_strCallStackTrace.has_char())
+//   if (exception.m_strCallStackTrace.has_character())
 //   {
 //
 //      strDetails += "\n\n" + string(exception.m_strCallStackTrace);

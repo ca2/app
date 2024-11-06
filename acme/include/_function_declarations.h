@@ -10,12 +10,12 @@
 //CLASS_DECL_ACME char * strdup2(const char * psz1, const char * psz2);
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
 CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
@@ -115,8 +115,8 @@ inline void assign(short & sh, const ::payload& r);
 inline void assign(unsigned short & ush, const ::payload& r);
 inline void assign(int& i, const ::payload& r);
 inline void assign(unsigned int& ui, const ::payload& r);
-inline void assign(::i64& i64, const ::payload& r);
-inline void assign(::u64& u64, const ::payload& r);
+inline void assign(huge_integer & hi, const ::payload& r);
+inline void assign(huge_natural & hn, const ::payload& r);
 
 
 //CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
@@ -212,7 +212,7 @@ namespace acme
 
 
 
-inline ::u64 make64_from32(unsigned int l, unsigned int h);
+inline huge_natural make64_from32(unsigned int l, unsigned int h);
 
 
 inline bool is_memory_segment_ok(void * p, memsize s);
@@ -221,13 +221,13 @@ inline bool is_memory_segment_ok(void * p, memsize s);
 inline bool is_memory_segment_read_ok(const void* p, memsize s);
 
 
-inline bool is_string_ok(::wide_character * p, ::strsize s);
+inline bool is_string_ok(::wide_character * p, ::character_count s);
 
 
-inline bool is_string_ok(::ansi_character * p, ::strsize s);
+inline bool is_string_ok(::ansi_character * p, ::character_count s);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
+inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
 CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr);
@@ -257,10 +257,10 @@ inline bool is_reference_set(const TYPE& t);
 
 
 
-inline bool is_impact_group(::u64 u, ::u64 uGroup);
+inline bool is_impact_group(huge_natural u, huge_natural uGroup);
 
 
-inline bool is_impact_subgroup(::u64 u, ::u64 uGroup);
+inline bool is_impact_subgroup(huge_natural u, huge_natural uGroup);
 
 
 inline bool is_file_or_folder2(const ::file::enum_type& etype);
@@ -274,15 +274,15 @@ inline bool exists(const ::file::enum_type& etype);
 // CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
+CLASS_DECL_ACME ::ansi_character * __u64toansi(huge_natural u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
-CLASS_DECL_ACME ::ansi_character * __i64toansi(::i64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
+CLASS_DECL_ACME ::ansi_character * __huge_integertoansi(huge_integer u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
 
 
 template<typename T1, typename T2>
@@ -290,10 +290,10 @@ inline void sort_non_negative(T1& t1, T2& t2);
 
 
 
-CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle = nullptr, huge_integer hi = 0, void * p = nullptr);
 
 
-CLASS_DECL_ACME void node_application_send_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
+CLASS_DECL_ACME void node_application_send_status(const char * pszStatus, void * p = nullptr, huge_integer hi = 0);
 
 namespace platform
 {

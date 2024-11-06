@@ -244,7 +244,7 @@ namespace heap
 
 
 //typedef DWORD64[64]
-//::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize)
+//::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], huge_integer ** ppiStack, int ** ppiLine, huge_integer ** ppiSize)
 //{
 //
 //#ifndef MEMDLEAK
@@ -272,9 +272,9 @@ namespace heap
 //   int * piUse = (int *)malloc(sizeof(int) * ca);
 //   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
 //   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
-//   i64 * piStack = (i64 *)malloc(sizeof(i64) * ca);
+//   huge_integer * piStack = (huge_integer *)malloc(sizeof(huge_integer) * ca);
 //   int * piLine = (int *)malloc(sizeof(int) * ca);
-//   i64 * piSize = (i64 *)malloc(sizeof(i64) * ca);
+//   huge_integer * piSize = (huge_integer *)malloc(sizeof(huge_integer) * ca);
 //
 //   ::collection::index i = 0;
 //

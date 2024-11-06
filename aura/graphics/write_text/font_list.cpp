@@ -59,7 +59,7 @@ namespace write_text
 
       m_puserinteraction = nullptr;
 
-      m_rectangleMargin = rectangle_i32(5, 5, 5, 5);
+      m_rectangleMargin = int_rectangle(5, 5, 5, 5);
 
       //m_iSel = -1;
 
@@ -127,7 +127,7 @@ namespace write_text
 
       //pgraphics->reset_clip();
 
-      ::rectangle_f64 rectangleClipBox;
+      ::double_rectangle rectangleClipBox;
       
       pgraphics->get_clip_box(rectangleClipBox);
 
@@ -193,7 +193,7 @@ namespace write_text
          if (m_pfontenumeration->m_pathaLoading.get_count())
          {
 
-            ::point_f64 point{10.0,10.0};
+            ::double_point point{10.0,10.0};
 
             for (::collection::index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
             {
@@ -358,7 +358,7 @@ namespace write_text
 
             ::image::image_source imagesource(pbox->m_pimage);
 
-            rectangle_f64 rectangle(pbox->m_rectangle);
+            double_rectangle rectangle(pbox->m_rectangle);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -382,7 +382,7 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      rectangle_i32 rectangleClient = puserinteraction->rectangle();
+      int_rectangle rectangleClient = puserinteraction->rectangle();
 
       //rectangleX += m_puserinteraction->get_context_offset();
 
@@ -416,7 +416,7 @@ namespace write_text
 
          text_box * pbox = &pfontlistitem->m_box[iBox];
 
-         rectangle_i32 rectangle = pbox->m_rectangle;
+         int_rectangle rectangle = pbox->m_rectangle;
 
          rectangle.right() = rectangle.left() + m_size.cx();
 
@@ -492,7 +492,7 @@ namespace write_text
 
             ::image::image_source imagesource(pbox->m_pimage);
 
-            rectangle_f64 rectangle(pbox->m_rectangle);
+            double_rectangle rectangle(pbox->m_rectangle);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -547,7 +547,7 @@ namespace write_text
 
          synchronouslock.unlock();
 
-         ::size_f64 s;
+         ::double_size s;
 
          string strText = m_strTextLayout;
 
@@ -604,14 +604,14 @@ namespace write_text
 
             }
 
-            if (strText.has_char())
+            if (strText.has_character())
             {
 
                s = pgraphics->get_text_extent(strText);
 
             }
 
-            if (strText.has_char() && s.area() <= 0)
+            if (strText.has_character() && s.area() <= 0)
             {
 
                string strSample;
@@ -620,14 +620,14 @@ namespace write_text
 
                ::enum_character_set echarsetFound = pbox->m_pfont->get_character_set(pgraphics);
 
-               size_i32 sSample;
+               int_size sSample;
 
                if (maxarea <= 0)
                {
 
                   strSample = m_strTextLayout;
 
-                  if (strSample.has_char())
+                  if (strSample.has_character())
                   {
 
                      sSample = pgraphics->get_text_extent(strSample);
@@ -652,7 +652,7 @@ namespace write_text
 
                   strSample = pitem->m_strName;
 
-                  if (strSample.has_char())
+                  if (strSample.has_character())
                   {
 
                      sSample = pgraphics->get_text_extent(strSample);
@@ -755,7 +755,7 @@ namespace write_text
    void font_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::enum_id eid = (::enum_id)ptopic->m_atom.as_i64();
+      ::enum_id eid = (::enum_id)ptopic->m_atom.as_huge_integer();
 
       if (eid == id_font_enumeration)
       {
@@ -1030,7 +1030,7 @@ namespace write_text
 
                ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
 
-               if (pitem && pitem->m_strName.has_char() && !m_pfontenumeration->has_font_name(pitem->m_strName))
+               if (pitem && pitem->m_strName.has_character() && !m_pfontenumeration->has_font_name(pitem->m_strName))
                {
 
                   pfontlistdata->m_pitema->erase_at(iItem);
@@ -1052,7 +1052,7 @@ namespace write_text
 
                ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
 
-               if (pitem && pitem->m_strName.has_char() && pitem->m_strName != m_pfontenumerationitema->ptr_at(iItem)->m_strName)
+               if (pitem && pitem->m_strName.has_character() && pitem->m_strName != m_pfontenumerationitema->ptr_at(iItem)->m_strName)
                {
 
                   ::pointer<font_list_item>pitemNewEmpty;
@@ -1104,9 +1104,9 @@ namespace write_text
 
          string strText = m_strTextLayout;
 
-         size_i32 s;
+         int_size s;
 
-         ::rectangle_i32 rectangle;
+         ::int_rectangle rectangle;
 
          ::pointer<font_list_item>plistitem;
 
@@ -1224,9 +1224,9 @@ namespace write_text
 
             string strText = m_strTextLayout;
 
-            size_i32 s;
+            int_size s;
 
-            ::rectangle_i32 rectangle;
+            ::int_rectangle rectangle;
 
             for (::collection::index i = iStart; i < iCount && ::task_get_run(); i += iScan)
             {
@@ -1271,7 +1271,7 @@ namespace write_text
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::size_i32 sizeTotal;
+      ::int_size sizeTotal;
 
       if (m_efontlist == e_font_list_wide)
       {
@@ -1317,13 +1317,13 @@ namespace write_text
    }
 
 
-   ::size_i32 font_list::layout_wide()
+   ::int_size font_list::layout_wide()
    {
 
       if (::is_null(m_puserinteraction))
       {
 
-         return ::size_i32();
+         return ::int_size();
 
       }
 
@@ -1331,7 +1331,7 @@ namespace write_text
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::size_i32 sizeTotal;
+      ::int_size sizeTotal;
 
       bool bIntersected = false;
 
@@ -1339,7 +1339,7 @@ namespace write_text
 
       string strText = m_strTextLayout;
 
-      size_i32 s;
+      int_size s;
 
       int iMargin = 40;
 
@@ -1359,7 +1359,7 @@ namespace write_text
 
       sizeTotal.cx() = m_rectangleX.width();
 
-      rectangle_i32 rectangleX = m_puserinteraction->raw_rectangle();
+      int_rectangle rectangleX = m_puserinteraction->raw_rectangle();
 
       //rectangleX += m_puserinteraction->get_context_offset();
 
@@ -1405,7 +1405,7 @@ namespace write_text
 
          }
 
-         size_i32 & s = pitem->m_box[0].m_size;
+         int_size & s = pitem->m_box[0].m_size;
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
@@ -1497,7 +1497,7 @@ namespace write_text
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
-         size_i32 & s = pitem->m_box[0].m_size;
+         int_size & s = pitem->m_box[0].m_size;
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
@@ -1553,16 +1553,16 @@ namespace write_text
    }
 
 
-   ::size_i32 font_list::layout_single_column()
+   ::int_size font_list::layout_single_column()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::size_i32 sizeTotal;
+      ::int_size sizeTotal;
 
       string strText = m_strTextLayout;
 
-      size_i32 s;
+      int_size s;
 
       int h = 0;
 
@@ -1587,7 +1587,7 @@ namespace write_text
 
          }
 
-         size_i32 & s = pitem->m_box[0].m_size;
+         int_size & s = pitem->m_box[0].m_size;
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
@@ -1611,7 +1611,7 @@ namespace write_text
    }
 
 
-   ::item_pointer font_list::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer font_list::hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1632,7 +1632,7 @@ namespace write_text
    }
 
 
-   ::item_pointer font_list::hit_test_wide(const ::point_i32 & point)
+   ::item_pointer font_list::hit_test_wide(const ::int_point & point)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1693,7 +1693,7 @@ namespace write_text
    }
 
 
-   ::item_pointer font_list::hit_test_single_column(const ::point_i32 & point)
+   ::item_pointer font_list::hit_test_single_column(const ::int_point & point)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1721,7 +1721,7 @@ namespace write_text
 
          }
 
-         rectangle_i32 rectangle(pfontlistitem->m_box[BOX].m_rectangle);
+         int_rectangle rectangle(pfontlistitem->m_box[BOX].m_rectangle);
 
          rectangle.right() = rectangle.left() + m_size.cx();
 
@@ -1743,10 +1743,10 @@ namespace write_text
    }
 
 
-   ::status < rectangle_i32 >font_list::item_rectangle(::item * pitem)
+   ::status < int_rectangle >font_list::item_rectangle(::item * pitem)
    {
 
-      ::rectangle_i32 r;
+      ::int_rectangle r;
 
       if (!get_box_rect(&r, ::item_index(pitem)))
       {
@@ -1760,7 +1760,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect(::rectangle_i32 * lprect, ::collection::index i)
+   bool font_list::get_box_rect(::int_rectangle * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1781,7 +1781,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_wide(::rectangle_i32 * lprect, ::collection::index i)
+   bool font_list::get_box_rect_wide(::int_rectangle * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1818,7 +1818,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_single_column(::rectangle_i32 * lprect, ::collection::index i)
+   bool font_list::get_box_rect_single_column(::int_rectangle * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1857,17 +1857,17 @@ namespace write_text
    }
 
 
-   void font_list::set_client_rectangle(const ::rectangle_i32 &rectangleParam)
+   void font_list::set_client_rectangle(const ::int_rectangle &rectangleParam)
    {
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      ::int_rectangle rectangle(rectangleParam);
 
       if (rectangle != m_rectangleX)
       {
 
-         ::size_i32 sizeOld(m_rectangleX.size());
+         ::int_size sizeOld(m_rectangleX.size());
 
-         ::size_i32 sizeNew(rectangle.size());
+         ::int_size sizeNew(rectangle.size());
 
          m_rectangleX = rectangle;
 

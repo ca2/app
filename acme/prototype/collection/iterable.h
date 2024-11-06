@@ -1326,7 +1326,7 @@ namespace iter
 
       ITYPE strParse(str);
 
-      while (strParse.has_char())
+      while (strParse.has_character())
       {
 
          iterable.add((ITYPE)::str::consume_command_line_argument(strParse));
@@ -1407,15 +1407,15 @@ namespace iter
 
       STRING_TYPE str(strFindParam);
 
-      strsize iPos = 0;
+      character_count iPos = 0;
 
-      strsize iFindA;
+      character_count iFindA;
 
-      strsize iFindB;
+      character_count iFindB;
 
-      strsize iFind1;
+      character_count iFind1;
 
-      strsize iFind2;
+      character_count iFind2;
 
       do
       {
@@ -2740,9 +2740,9 @@ end:
       char to = '\0';
 
       add("");
-      strsize num = 0;
-      strsize len = istring.length();
-      for (strsize i = 0; i < len; i++)
+      character_count num = 0;
+      character_count len = istring.length();
+      for (character_count i = 0; i < len; i++)
       {
 
          switch (status)
@@ -2962,7 +2962,7 @@ end:
 
       ITYPE strPrefix(pszPrefix);
 
-      strsize iEnd;
+      character_count iEnd;
 
       if (iStart < 0)
          iStart = stra.get_size() + iStart;
@@ -2988,7 +2988,7 @@ end:
 
       ITYPE strSuffix(pszSuffix);
 
-      strsize iEnd;
+      character_count iEnd;
 
       if (iStart < 0)
          iStart = stra.get_size() + iStart;
@@ -3016,7 +3016,7 @@ end:
 
       ITYPE strSuffix(pszSuffix);
 
-      strsize iEnd;
+      character_count iEnd;
 
       if (iStart < 0)
          iStart = stra.get_size() + iStart;
@@ -3044,7 +3044,7 @@ end:
 
       ITYPE strSuffix(pszSuffix);
 
-      strsize iEnd;
+      character_count iEnd;
 
       if (iStart < 0)
          iStart = iterable.get_size() + iStart;
@@ -3070,7 +3070,7 @@ end:
 
       ITYPE strSuffix(pszSuffix);
 
-      strsize iEnd;
+      character_count iEnd;
 
       if (iStart < 0)
          iStart = iterable.get_size() + iStart;
@@ -3469,7 +3469,7 @@ end:
          /*      for(int uj = 0; uj < str.length(); uj++)
          {
          char sz[32];
-         ansi_from_i64(sz, str[uj], 16);
+         ansi_from_huge_integer(sz, str[uj], 16);
          if(ansi_length(sz) == 0)
          {
          strEncode += "00";
@@ -3509,7 +3509,7 @@ end:
          sz[1] = psz[0];
          sz[2] = '\0';
          const ITYPE & pszEnd;
-         int iConversion = ::ansi_to_i32(sz, &pszEnd, 16);
+         int iConversion = ::ansi_to_int(sz, &pszEnd, 16);
          char ch = static_cast <char> (iConversion);
          if (ch == '\0')
          {

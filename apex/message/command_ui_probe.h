@@ -50,7 +50,7 @@
 ////   ::windows_definition::DispStock = 1
 ////};
 //
-////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size_i32
+////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce int_size
 //// bloat from alignment
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY

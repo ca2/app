@@ -220,7 +220,7 @@ namespace android
    //}
 
 
-   //bool directory_context::rls_pattern(const char * lpcsz, const ::scoped_string & scopedstrPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
+   //bool directory_context::rls_pattern(const char * lpcsz, const ::scoped_string & scopedstrPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, huge_integer_array * piaSize, enum_extract eextract)
    //{
 
 
@@ -559,7 +559,7 @@ namespace android
    //}
 
 
-   //bool directory_context::ls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
+   //bool directory_context::ls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, huge_integer_array * piaSize)
    //{
 
 
@@ -715,7 +715,7 @@ namespace android
 
    //   wstring wstrPath;
 
-   //   //strsize iLen = utf8_to_unicode_count(strPath);
+   //   //character_count iLen = utf8_to_unicode_count(strPath);
    //   //wstrPath.alloc(iLen + 32);
    //   wstrPath = utf8_to_unicode(strPath);
    //   if(wstrPath.get_length() >= MAX_PATH)
@@ -740,7 +740,7 @@ namespace android
    bool directory_context::name_is(const ::file::path & str)
    {
       //information(str);
-      strsize iLast = str.length() - 1;
+      character_count iLast = str.length() - 1;
       while (iLast >= 0)
       {
          if (str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')
@@ -1115,9 +1115,9 @@ pdirectorysystem->system() / ".ca2/app/appdata";
       //auto pFind = strRelative.find(':');
       //if(::is_set(pFind))
       {
-         // strsize iFind1 = strRelative(pFind).rear_find("\\");
-         //strsize iFind2 = strRelative(pFind).rear_find("/");
-         //strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
+         // character_count iFind1 = strRelative(pFind).rear_find("\\");
+         //character_count iFind2 = strRelative(pFind).rear_find("/");
+         //character_count iStart = maximum(iFind1 + 1, iFind2 + 1);
 
          //strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
       }
@@ -1175,9 +1175,9 @@ pdirectorysystem->system() / ".ca2/app/appdata";
 //      auto pFind = strRelative.find(':');
 //      if(::is_set(pFind))
 //      {
-//         strsize iFind1 = strRelative(pFind).rear_find("\\");
-//         strsize iFind2 = strRelative(pFind).rear_find("/");
-//         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
+//         character_count iFind1 = strRelative(pFind).rear_find("\\");
+//         character_count iFind2 = strRelative(pFind).rear_find("/");
+//         character_count iStart = maximum(iFind1 + 1, iFind2 + 1);
 //         strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
 //      }
 //

@@ -176,7 +176,7 @@ namespace colorertake5
       else
       {
          string textStart;
-         strsize totalLength = 0;
+         character_count totalLength = 0;
          for(int i = 0; i < 4; i++)
          {
             string iLine = lineSource->getLine(i);
@@ -592,21 +592,21 @@ namespace colorertake5
          regionHandlers.element_at(idx)->clearLine(lno, line);
    }
 
-   void base_editor::addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region *region)
+   void base_editor::addRegion(index lno, const ::string &line, character_count sx, character_count ex, class region *region)
    {
       lrSupport->addRegion(lno, line, sx, ex, region);
       for(::collection::index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->addRegion(lno, line, sx, ex, region);
    }
 
-   void base_editor::enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
+   void base_editor::enterScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme)
    {
       lrSupport->enterScheme(lno, line, sx, ex, region, scheme);
       for(int idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->enterScheme(lno, line, sx, ex, region, scheme);
    }
 
-   void base_editor::leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
+   void base_editor::leaveScheme(index lno, const ::string &line, character_count sx, character_count ex, class region *region, class scheme *scheme)
    {
       lrSupport->leaveScheme(lno, line, sx, ex, region, scheme);
       for(int idx = 0; idx < regionHandlers.get_size(); idx++)

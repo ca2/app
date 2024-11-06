@@ -171,7 +171,7 @@ void directory_system::init_system()
 
    }
 
-   if (pathAppData.has_char())
+   if (pathAppData.has_character())
    {
 
       m_pathAppData = pathAppData;

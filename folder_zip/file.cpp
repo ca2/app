@@ -301,7 +301,7 @@ void file::write(const void * p, ::memsize s)
 
       _synchronous_lock synchronouslock(m_pfolder->synchronization());
 
-      u64 iNewPosition;
+      huge_natural iNewPosition;
 
       if (eseek == ::e_seek_set)
       {
@@ -352,9 +352,9 @@ void file::write(const void * p, ::memsize s)
       if (iNewPosition > m_iPosition)
       {
 
-         i64 iRemain = iNewPosition - m_iPosition;
+         huge_integer iRemain = iNewPosition - m_iPosition;
 
-         i64 iGet;
+         huge_integer iGet;
 
          int iRead;
 

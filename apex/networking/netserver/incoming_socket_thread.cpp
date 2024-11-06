@@ -38,7 +38,7 @@ namespace netserver
 
       m_pincomingsocket->set_ssl_catalog(m_strCat);
 
-      if (m_strCipherList.has_char())
+      if (m_strCipherList.has_character())
       {
 
          m_pincomingsocket->set_ssl_cipher_list(m_strCipherList);
@@ -53,7 +53,7 @@ namespace netserver
 
       m_pincomingsocket->SetListeningDetach(true);
 
-      if (m_strCat.has_char())
+      if (m_strCat.has_character())
       {
 
          m_pincomingsocket->EnableSSL();

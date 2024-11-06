@@ -43,7 +43,7 @@ public:
 
    virtual ::pointer<::interprocess::task>create_task(::interprocess::call* pcall, const ::atom& idPid);
 
-   virtual ::pointer<::interprocess::task>get_task(i64 iTask);
+   virtual ::pointer<::interprocess::task>get_task(huge_integer iTask);
 
    virtual ::pointer<::interprocess::call>create_call(const ::string& strApp, const ::string& strObject, const ::string& strMember);
 

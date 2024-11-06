@@ -103,7 +103,7 @@ Atom osdisplay_data::get_window_long_atom(int nIndex)
 
       vsstring strProperty;
 
-      strProperty = CA2_X11_WINDOW_LONG + ansi_string_from_i64(nIndex);
+      strProperty = CA2_X11_WINDOW_LONG + ansi_string_from_huge_integer(nIndex);
 
       return XInternAtom(m_pdisplay, strProperty, False);
 

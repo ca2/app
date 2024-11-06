@@ -510,7 +510,7 @@ namespace fs
 
          auto strTrimmed = strFile.trimmed();
 
-         if (strTrimmed.has_char())
+         if (strTrimmed.has_character())
          {
 
             break;

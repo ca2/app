@@ -28,18 +28,18 @@ namespace nano
 #ifdef _DEBUG
 
 
-        i64 speech::increment_reference_count()
+        huge_integer speech::increment_reference_count()
         {
             return ::acme::department::increment_reference_count();
         }
 
 
-        i64 speech::decrement_reference_count()
+        huge_integer speech::decrement_reference_count()
         {
             return ::acme::department::decrement_reference_count();
         }
 
-        i64 speech::release()
+        huge_integer speech::release()
         {
             return ::acme::department::release();
         }

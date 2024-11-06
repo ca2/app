@@ -3,7 +3,7 @@
 #include "acme/constant/timer.h"
 
 
-void scroll_x(RECT32 * prect, double dRateX, const ::rectangle_f64 & rectangle)
+void scroll_x(RECT32 * prect, double dRateX, const ::double_rectangle & rectangle)
 {
 
    int w = ::width(prect);
@@ -121,7 +121,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -142,9 +142,9 @@ namespace user
 
       pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
 
-      ::rectangle_f64 rectangleCheckBox;
+      ::double_rectangle rectangleCheckBox;
 
-      ::rectangle_f64 rectangleText;
+      ::double_rectangle rectangleText;
 
       {
 
@@ -250,7 +250,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -300,17 +300,17 @@ namespace user
 
       }
 
-      ::rectangle_f64 rectangle(1, 1, w-2, h-2);
+      ::double_rectangle rectangle(1, 1, w-2, h-2);
 
-      ::rectangle_f64 rectangleEllipse(1, 1, h-2, h-2);
+      ::double_rectangle rectangleEllipse(1, 1, h-2, h-2);
 
       //double dNow = ::get_millis();
 
       ::draw2d::path_pointer point(e_create);
 
-      ::rectangle_f64 rectangleL(1, 1, h-2, h-2);
+      ::double_rectangle rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = rectangle_int_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = int_rectangle_dimension(h-2, 1, h-2, h-2);
 
       point->add_arc(rectangleL, -90_degree, -180_degree);
 
@@ -478,13 +478,13 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_f64 rectangleX;
+      ::double_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
       int iMin = maximum(rectangleX.min_dim() -1, 1);
 
-      ::rectangle_f64 rectangleCheckBox;
+      ::double_rectangle rectangleCheckBox;
       rectangleCheckBox.left() = 1;
       rectangleCheckBox.top() = 1;
       rectangleCheckBox.right() = iMin + 1;

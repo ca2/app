@@ -42,13 +42,13 @@ namespace sockets
       ::pointer < ::mutex >                          m_pmutexData;
       ::memory_file_pointer            m_pmemoryfile;
       ::file::file *                   m_pfile;
-      i64                              m_iFinalSize;
+      huge_integer                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
       e_http_method                    m_emethod;
 
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response
-      //memsize m_data_size; ///< Max size_i32 of data buffer
+      //memsize m_data_size; ///< Max int_size of data buffer
       memsize m_content_length; ///< Content-length header received from remote
       string m_content; ///< Received http headers
       //bool m_data_ptr_set; ///< buffer set from outside, do not delete
@@ -89,16 +89,16 @@ namespace sockets
       /** get response headers. */
       const string & GetContent();
 
-      /** get size_i32 of response body. */
+      /** get int_size of response body. */
       memsize GetContentLength();
 
       /** get content type from response header. */
       const string & GetContentType();
 
-      /** get size_i32 of received response body. */
+      /** get int_size of received response body. */
       memsize GetContentPtr();
 
-      /** get size_i32 of received response body. */
+      /** get int_size of received response body. */
       memsize GetPos();
 
       /** Complete response has been received. */

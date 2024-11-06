@@ -109,7 +109,7 @@ public:
 
    //   string strTime = time_square(p);
 
-   //   if (strTime.has_char())
+   //   if (strTime.has_character())
    //   {
 
    //      if (!output(strTime, p, pfnOutput, pszSource))
@@ -250,8 +250,8 @@ public:
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
-   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, i64 iNumber);
-   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, i64 & iNumber);
+   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, huge_integer iNumber);
+   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, huge_integer & iNumber);
 
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);

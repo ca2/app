@@ -112,7 +112,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //   void single_application_library < APP > ::get_extension_list(string_array & stra)
 //   {
 //
-//      if (m_strFileExt.has_char())
+//      if (m_strFileExt.has_character())
 //      {
 //
 //         stra.add(m_strFileExt);
@@ -389,7 +389,7 @@ const char * memory_counter_id(T * pthis)
 //#ifndef WINDOWS
 //
 //
-//inline i64 MulDiv(i64 nNumber, int iNum, int iDen)
+//inline huge_integer MulDiv(huge_integer nNumber, int iNum, int iDen)
 //{
 //
 //   return nNumber * iNum / iDen;

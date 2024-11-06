@@ -98,13 +98,13 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
-      //inline ::point_i32 get_cursor_position() { return m_pointCursor; }
-      //virtual void set_cursor_position(const ::point_i32 & pointCursor);
+      //inline ::int_point get_cursor_position() { return m_pointCursor; }
+      //virtual void set_cursor_position(const ::int_point & pointCursor);
       virtual ::windowing::display * display();
 
       virtual ::windowing::window * window(oswindow oswindow);
 
-      virtual void defer_initialize_host_window(const ::rectangle_i32* lpcrect);
+      virtual void defer_initialize_host_window(const ::int_rectangle* lpcrect);
 
       virtual bool is_sandboxed();
       
@@ -120,7 +120,7 @@ namespace windowing
 
       virtual ::acme::windowing::window * get_keyboard_focus(::thread * pthread);
 
-      virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
+      virtual ::int_point try_absolute_mouse_position(::user::interaction* puserinteraction, const ::int_point& point);
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
       virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
       virtual bool has_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
@@ -139,7 +139,7 @@ namespace windowing
 
       //virtual ::acme::windowing::display * acme_display();
 
-      virtual size_i32 get_window_minimum_size();
+      virtual int_size get_window_minimum_size();
 
       void kick_idle() override;
 
@@ -184,7 +184,7 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual int_bool point_is_window_origin(::point_i32 ptHitTest, oswindow oswindowExclude, int iMargin);
+      virtual int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 

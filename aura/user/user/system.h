@@ -62,11 +62,11 @@ namespace user
          //const ::scoped_string & scopedstrClassName = 0,
          //const ::scoped_string & scopedstrWindowName = 0,
          //unsigned int uStyle = 0,
-         //const ::rectangle_i32& rectangle = nullptr,
+         //const ::int_rectangle& rectangle = nullptr,
          ::request* prequest = nullptr);
 
       //system(
-      //   const ::rectangle_i32& rectangle,
+      //   const ::int_rectangle& rectangle,
       //   //unsigned int uExStyle = 0,
       //   //unsigned int uStyle = 0,
       //   ::create* pcreate = nullptr);
@@ -79,13 +79,13 @@ namespace user
 
       //void set_window_name(const ::string & pszWindowName);
 
-      //void set_rect(const ::rectangle_i32& rectangle);
+      //void set_rect(const ::int_rectangle& rectangle);
 
-      //void get_rect(::rectangle_i32* prectangle);
+      //void get_rect(::int_rectangle* prectangle);
 
       void add_visible(bool bAdd = true);
 
-      //inline auto get_rect() { ::rectangle_i32 rectangle(no_initialize_t{}); get_rect(&rectangle); return rectangle; }
+      //inline auto get_rect() { ::int_rectangle rectangle(no_initialize_t{}); get_rect(&rectangle); return rectangle; }
 
       ::pointer<::user::interaction>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
 

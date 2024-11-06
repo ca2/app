@@ -601,7 +601,7 @@ namespace tsf
        {
            unsigned int           dwFlags;
            TS_TEXTCHANGE   tc;
-           strsize           cch;
+           character_count           cch;
 
            //cch = GetWindowTextLength(m_hwndEdit);
            cch = get_text_length();
@@ -669,10 +669,10 @@ namespace tsf
 
    //lresult edit_window::_OnSize(wparam wParam, lparam lParam)
    //{
-   //    //adjust the size_i32 and location of the status bar
+   //    //adjust the int_size and location of the status bar
    //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
    //
-   //    ::rectangle_i32    rc;
+   //    ::int_rectangle    rc;
    //
    //    //GetWindowRect(m_hwndStatus, &rc);
    //    
@@ -814,9 +814,9 @@ namespace tsf
    
       ///::SendMessage(m_hwndEdit, EM_GETSEL, (wparam)&m_acpStart, (lparam)&m_acpEnd);
 
-      strsize iSelStart = 0;
+      character_count iSelStart = 0;
 
-      strsize iSelEnd = 0;
+      character_count iSelEnd = 0;
 
       _001GetSel(iSelStart, iSelEnd);
 
@@ -853,7 +853,7 @@ namespace tsf
        //int     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
-       //::size_i32    size;
+       //::int_size    size;
        //TCHAR   szComposition[MAX_PATH];
 
        //hdc = GetDC(m_hwndStatus);

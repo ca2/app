@@ -72,7 +72,7 @@ namespace filemanager
       //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
 
-      //   ::rectangle_i32 rectangleX;
+      //   ::int_rectangle rectangleX;
 
       //   this->rectangle(rectangleX);
 

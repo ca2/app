@@ -191,7 +191,7 @@ namespace http
 
          file()->as_string(strFile);
 
-         if (strCache.has_char())
+         if (strCache.has_character())
          {
 
             if (strCache == "file")
@@ -300,7 +300,7 @@ namespace http
 
          strCache = file()->as_string(strFile);
 
-         if (strCache.has_char())
+         if (strCache.has_character())
          {
 
             if (strCache == "-1")
@@ -312,7 +312,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_i64(strCache);
+               return ::str::to_huge_integer(strCache);
 
             }
 
@@ -331,7 +331,7 @@ namespace http
       else
       {
 
-         strCache = as_string(len.i64());
+         strCache = as_string(len.huge_integer());
 
       }
 
@@ -447,7 +447,7 @@ namespace http
       //
       //            str = get(strUrl, set);
       //
-      //            if(str.has_char())
+      //            if(str.has_character())
       //               return str;
       //
       //         }
@@ -516,7 +516,7 @@ namespace http
       //      {
       //         // telmico: no proxy
       //         string str = file()->as_string(directory()->appdata() / "machine/proxy.xml");
-      //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
+      //         if(str.has_character() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
       //            file()->copy(directory()->appdata()/ "proxy_original.xml", directory()->install()/ "proxy.xml", false);
       //         }
@@ -543,7 +543,7 @@ namespace http
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
       //         string str = file()->as_string(directory()->appdata()/"proxy.xml");
-      //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
+      //         if(str.has_character() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
       //            file()->copy(directory()->appdata()/"proxy_original.xml", directory()->appdata()/"proxy.xml", false);
       //         }
@@ -851,14 +851,14 @@ namespace http
 
       //string str = file()->as_string(pathProxyXml);
 
-      //if (str.has_char() && str.find("<") < 0 && str.find(">") < 0)
+      //if (str.has_character() && str.find("<") < 0 && str.find(">") < 0)
       //{
 
       //   string_array stra;
 
       //   stra.explode(":", str);
 
-      //   if (stra.get_size() > 0 && stra[0].has_char())
+      //   if (stra.get_size() > 0 && stra[0].has_character())
       //   {
 
       //      pproxy->m_bDirect = false;
@@ -974,7 +974,7 @@ namespace http
       ////
       ////         //   string strUrl = m_papplication->os().connection_settings_get_auto_config_url();
       ////
-      ////         //   if(strUrl.has_char())
+      ////         //   if(strUrl.has_character())
       ////         //   {
       ////
       ////         //      informationf("get_auto_config_url : %s",strUrl);
@@ -992,7 +992,7 @@ namespace http
       ////
       ////         //   string strUrl = m_papplication->os().connection_settings_get_auto_config_url();
       ////
-      ////         //   if(strUrl.has_char())
+      ////         //   if(strUrl.has_character())
       ////         //   {
       ////
       ////         //      informationf("get_auto_config_url : %s",strUrl);
@@ -1151,7 +1151,7 @@ namespace http
 
       bool bConfigProxy = set.is_set_false("no_proxy_config");
 
-      if (strIp.has_char())
+      if (strIp.has_character())
       {
 
          psession->m_strConnectHost = strIp;
@@ -1369,7 +1369,7 @@ namespace http
 
          //}
 
-         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_character())
          {
 
             psession->request().header(__id(cookie)) = set[__id(cookie)];
@@ -1489,9 +1489,9 @@ namespace http
 
             double dRateDownloaded = 0.0;
 
-            i64 iContentLength = set["http_content_length"].i64();
+            huge_integer iContentLength = set["http_content_length"].huge_integer();
 
-            i64 iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+            huge_integer iBodySizeDownloaded = set["http_body_size_downloaded"].huge_integer();
 
             if (iContentLength > 0)
             {
@@ -1699,7 +1699,7 @@ namespace http
 
          const ::scoped_string & scopedstrData = (const char *)session.m_psocket->GetDataPtr();
 
-         strsize iSize = session.m_psocket->GetContentLength();
+         character_count iSize = session.m_psocket->GetContentLength();
 
          str = string(pszData, iSize);
 
@@ -1739,7 +1739,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
+      huge_integer iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
       //informationf("");
       //informationf("");
@@ -1783,7 +1783,7 @@ namespace http
       if (iTry > 0)
       {
 
-         if (strRedirect.has_char())
+         if (strRedirect.has_character())
          {
 
             information() << "Redirect: " << iHttpGetSerial << strRedirect;
@@ -1869,7 +1869,7 @@ namespace http
 
 //         on_auth(set, papp, strUrl, strSessId, puser);
 
-         if (strSessId.has_char())
+         if (strSessId.has_character())
          {
 
             string strCookie = set[__id(cookie)];
@@ -2065,7 +2065,7 @@ namespace http
 
       //}
 
-      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_character())
       {
 
          psocket->request().header(__id(cookie)) = set[__id(cookie)];
@@ -2109,7 +2109,7 @@ namespace http
 
       }
 
-      if (strIp.has_char())
+      if (strIp.has_character())
       {
 
          psocket->m_strConnectHost = strIp;
@@ -2126,7 +2126,7 @@ namespace http
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
 
-            set["get_status"] = (i64)error_http;
+            set["get_status"] = (huge_integer)error_http;
 
             auto tick2 = ::duration::now();
 
@@ -2140,7 +2140,7 @@ namespace http
       else if (!psocket->open(bConfigProxy))
       {
 
-         set["get_status"] = (i64)error_http;
+         set["get_status"] = (huge_integer)error_http;
 
          information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::platform::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
 
@@ -2192,9 +2192,9 @@ namespace http
 
       }
 
-      i64 iContentLength = -1;
+      huge_integer iContentLength = -1;
 
-      i64 iBodySizeDownloaded = -1;
+      huge_integer iBodySizeDownloaded = -1;
 
       int iEnteredLoop = 0;
 
@@ -2228,7 +2228,7 @@ namespace http
 
          double dRateDownloaded = 0.0;
 
-         i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].i64();
+         huge_integer iBodySizeDownloadedNow = set["http_body_size_downloaded"].huge_integer();
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2341,9 +2341,9 @@ namespace http
 
       set["http_status"] = strStatus;
 
-      iContentLength = set["http_content_length"].i64();
+      iContentLength = set["http_content_length"].huge_integer();
 
-      iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+      iBodySizeDownloaded = set["http_body_size_downloaded"].huge_integer();
 
       log_information((LOG_HTTP_PREFIX
          << strUrl
@@ -2447,7 +2447,7 @@ namespace http
             estatus = ::success_http_redirection;
 
          }
-         else if (strLocation.has_char())
+         else if (strLocation.has_character())
          {
 
 
@@ -2478,7 +2478,7 @@ namespace http
       else if (iStatusCode == 401)
       {
 
-         //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
+         //if (strSessId.has_character() && puser.is_set() && iRetrySession < 3)
          //{
 
          //   psession->account()->not_auth(pszUrl);
@@ -2513,7 +2513,7 @@ namespace http
 
          const ::scoped_string & scopedstrData = (const char *)psocket->GetDataPtr();
 
-         strsize iSize = psocket->GetContentLength();
+         character_count iSize = psocket->GetContentLength();
 
          string strResponse(pszData, iSize);
 
@@ -2621,7 +2621,7 @@ namespace http
 
       }
 
-      if (pmessageMessage->m_strVersion.has_char())
+      if (pmessageMessage->m_strVersion.has_character())
       {
 
          set["http_protocol_version"] = pmessageMessage->m_strVersion;
@@ -2633,7 +2633,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].huge_integer();
 
          pmessageMessage->m_bRet = false;
 
@@ -2641,7 +2641,7 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].huge_integer();
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 

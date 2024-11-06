@@ -90,7 +90,7 @@ namespace libarchive
 
                   string strSymlink(archive_entry_symlink_w(entry));
 
-                  if(strSymlink.has_char())
+                  if(strSymlink.has_character())
                   {
 
                      ::file::path pathSymlinkSource(strSymlink);

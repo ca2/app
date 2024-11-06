@@ -207,7 +207,7 @@ namespace xml
       string strRet;
       if(pszSrc != nullptr)
       {
-         strsize iLen = ansi_len(pszSrc);
+         character_count iLen = ansi_len(pszSrc);
          char * pszRet = strRet.get_buffer(iLen);
          if(pszRet != nullptr)
             ref_to_entity(pszSrc, pszRet, (int) iLen);
@@ -224,7 +224,7 @@ namespace xml
          int nEntityCount = get_entity_count(str);
          if( nEntityCount == 0 )
             return string(str);
-         strsize len = ansi_len(str) + nEntityCount*10 ;
+         character_count len = ansi_len(str) + nEntityCount*10 ;
          char * sbuf = s.get_buffer(len + 1);
          if( sbuf )
             entity_to_ref( str, sbuf, (int) len);
@@ -237,7 +237,7 @@ namespace xml
    {
       if(pszSrc != nullptr)
       {
-         strsize iLen = ansi_len(pszSrc);
+         character_count iLen = ansi_len(pszSrc);
          char * pszRet = str.get_buffer(iLen);
          if(pszRet != nullptr)
             iLen = ref_to_entity(pszSrc,pszRet,(int)iLen);
@@ -256,7 +256,7 @@ namespace xml
             s = str;
             return;
          }
-         strsize len = ansi_len(str) + nEntityCount * 10 ;
+         character_count len = ansi_len(str) + nEntityCount * 10 ;
          char * sbuf = s.get_buffer(len + 1);
          if(sbuf)
          {

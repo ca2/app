@@ -26,7 +26,7 @@ namespace experience_core
       ::draw2d::pen_pointer               m_ppenShadow1;
       ::draw2d::pen_pointer               m_ppenDkShadow1;
       status < ::color::color >           m_colorDkShadow;
-      size_i32                            m_minSize;
+      int_size                            m_minSize;
 
       ::draw2d::pen_pointer               m_ppenHollow0;
       ::draw2d::pen_pointer               m_ppenHollow1;
@@ -34,7 +34,7 @@ namespace experience_core
       ::draw2d::pen_pointer               m_ppenHollow3;
       ::draw2d::pen_pointer               m_ppenHollow4;
       ::draw2d::pen_pointer               m_ppenHollow5;
-      ::size_i32                          m_sizeIcon;
+      ::int_size                          m_sizeIcon;
 
       frame();
       ~frame() override;
@@ -66,38 +66,38 @@ namespace experience_core
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
+      //virtual void _001OnBeforeMove(const ::int_rectangle &lpcrectWindow);
 
-      //virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow);
+      //virtual void _001OnBeforeSize(const ::int_rectangle &lpcrectWindow);
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rectangle(::rectangle_i32 & lprect, enum_element eelement) override;
+      bool get_element_rectangle(::int_rectangle & lprect, enum_element eelement) override;
 
-      //bool _001HitTest(const ::point_i32 &point, enum_element &eelementParam) override;
+      //bool _001HitTest(const ::int_point &point, enum_element &eelementParam) override;
 
-      //::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-      //::item_pointer experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //::item_pointer experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
-      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
+      virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 
-      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color& color, unsigned char bAlpha);
+      virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color& color, unsigned char bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
-      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
+      virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight);
 
       virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, ::rectangle_i32 * lprect, enum_border eside);
-      virtual void GetBorderRectangle(const ::rectangle_i32 & rectangleOuter, int iDeflate, ::rectangle_i32 * lprect, enum_border eside);
+      virtual void GetBorderRectangle(const ::int_rectangle & rectangleOuter, ::int_rectangle * lprect, enum_border eside);
+      virtual void GetBorderRectangle(const ::int_rectangle & rectangleOuter, int iDeflate, ::int_rectangle * lprect, enum_border eside);
 
-      ::rectangle_i32 outer_frame() override;
+      ::int_rectangle outer_frame() override;
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
-      void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      void place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
    };
 

@@ -22,8 +22,8 @@ namespace user
       ::pointer<::file::edit_file>             m_peditfile;
 
 
-      strsize                                   m_iSelBeg;
-      strsize                                   m_iSelEnd;
+      character_count                                   m_iSelBeg;
+      character_count                                   m_iSelEnd;
 
 
       plain_text_tree();

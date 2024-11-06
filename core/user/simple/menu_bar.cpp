@@ -218,7 +218,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   information() << "simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.as_i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
+   information() << "simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.as_huge_integer()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -278,13 +278,13 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         unsigned int fwKeys = (unsigned int)pmsg->wParam; // key flags
 //
-//         auto point = ::point_i32((::lparam) pmsg->lParam); // horizontal position of cursor
+//         auto point = ::int_point((::lparam) pmsg->lParam); // horizontal position of cursor
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
 //         informationf("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x(), point.y());
 //
-//         //::point_i32 point(xPos, yPos);
+//         //::int_point point(xPos, yPos);
 //
 //         screen_to_client()(point);
 //
@@ -302,7 +302,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //#endif
 
 
-bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
+bool simple_menu_bar::_track_popup_menu(const ::int_point & point)
 {
    //if (m_bTracking)
    //{
@@ -335,10 +335,10 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
 
 
 
-/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, size_i32 & size)
+/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, int_size & size)
 {
-    ::rectangle_i32 rectangleItem;
-    ::rectangle_i32 rectangleSize(0, 0, 0, 0);
+    ::int_rectangle rectangleItem;
+    ::int_rectangle rectangleSize(0, 0, 0, 0);
 
     for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -349,10 +349,10 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
     return ;
 }
 
-bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size_i32 & size)
+bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, int_size & size)
 {
-    ::rectangle_i32 rectangleItem;
-    ::rectangle_i32 rectangleSize(0, 0, 0, 0);
+    ::int_rectangle rectangleItem;
+    ::int_rectangle rectangleSize(0, 0, 0, 0);
 
     for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -541,7 +541,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::rectangle_i32 * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::int_rectangle * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -605,7 +605,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-::collection::index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
+::collection::index simple_menu_bar::_001HitTest(const ::int_point *ppoint)
 
 {
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
@@ -627,7 +627,7 @@ bool simple_menu_bar::ReloadMenuBar()
    ::draw2d::memory_graphics pgraphics(this);;
    pgraphics->set(pdraw2d->fonts().GetMenuFont());
 
-   ::size_i32 size;
+   ::int_size size;
    ::collection::index ix = ITEMCHECKEDPADLEFT;
    ::collection::index iy = 0;
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
@@ -719,7 +719,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //   }
 //}
 
-/*size_i32 simple_menu_bar::CalcDynamicLayout(index nLength, unsigned int dwMode)
+/*int_size simple_menu_bar::CalcDynamicLayout(index nLength, unsigned int dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -729,10 +729,10 @@ bool simple_menu_bar::ReloadMenuBar()
    return CalcLayout(dwMode, nLength);
 
 }
-size_i32 simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nLength)
+int_size simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nLength)
 {
    _001Layout();
-   size_i32 sizeResult;
+   int_size sizeResult;
    sizeResult.cx() = 0;
    sizeResult.cy() = 0;
 
@@ -745,7 +745,7 @@ size_i32 simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nL
    return sizeResult;
 }
 
-size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
+int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
    unsigned int dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
@@ -756,8 +756,8 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 /*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, ::collection::index iItem)
 {
-   ::rectangle_i32 rectangleItem;
-   ::rectangle_i32 rectangleText;
+   ::int_rectangle rectangleItem;
+   ::int_rectangle rectangleText;
 
    SimpleMenuBarButton & button = m_buttona[iItem];
 
@@ -786,7 +786,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
    if(eelement == element_item_hover)
    {
-      ::rectangle_i32 rectangleShadow;
+      ::int_rectangle rectangleShadow;
       index_item_rectangle(iItem, rectangleShadow, e_element_item);
 
       ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
@@ -803,7 +803,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pgraphics->set(ppenOld);
       pgraphics->set(pbrushOld);
 
-      ::rectangle_i32 rectangle;
+      ::int_rectangle rectangle;
       index_item_rectangle(iItem, rectangle, e_element_text);
       pgraphics->set_text_color(rgb(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
@@ -827,7 +827,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 //   m_bCheck = false;
 }*/
 
-/*void simple_menu_bar::_001Hover(const ::point_i32 & point)
+/*void simple_menu_bar::_001Hover(const ::int_point & point)
 {
    _track_popup_menu(point);
    ::collection::index iHover = -1;
@@ -857,7 +857,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 void simple_menu_bar::_001Hover()
 {
-   ::point_i32 point;
+   ::int_point point;
    GetCursorPos(&point);
    screen_to_client()(point);
    _001Hover(point);

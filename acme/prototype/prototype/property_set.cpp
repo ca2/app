@@ -529,7 +529,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
       if (strThisArgument.begins_eat("--") || strThisArgument.begins_eat("-"))
       {
 
-         if (strThisArgument.has_char())
+         if (strThisArgument.has_character())
          {
 
             if (strNextArgument.case_insensitive_order("YES") == 0)
@@ -904,7 +904,7 @@ void property_set::parse_ini(const ::string & strIni)
 
          strKey = ::str::token(strLine, "=");
 
-         if (strKey.has_char())
+         if (strKey.has_character())
          {
 
             strKey.trim();
@@ -1892,7 +1892,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
    while (!this->is_end(p))
    {
 
-      if (strNetworkArguments.has_char())
+      if (strNetworkArguments.has_character())
       {
 
          strNetworkArguments += "&";
@@ -2021,7 +2021,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (atom.is_integer())
 //   {
 //
-//      iFind = (index) (atom.i64());
+//      iFind = (index) (atom.huge_integer());
 //
 //      if (::is_null(pFind) || iFind >= this->get_count())
 //      {
@@ -2067,7 +2067,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       }
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += " ";
@@ -2148,7 +2148,7 @@ string property_set::get_command_line() const
    for (auto & property : *this)
    {
 
-      if (str.has_char())
+      if (str.has_character())
       {
 
          str += " ";

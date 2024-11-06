@@ -475,7 +475,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //
 //end:
 //
-//   if(strArg.has_char())
+//   if(strArg.has_character())
 //   {
 //
 //      stra.add(strArg);

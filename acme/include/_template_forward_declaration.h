@@ -499,12 +499,12 @@ class numeric_array;
 using char_array = numeric_array < char >;
 using short_array = numeric_array < short >;
 using int_array = numeric_array < int >;
-using i64_array = numeric_array < i64 >;
+using huge_integer_array = numeric_array < huge_integer >;
 
 using unsigned_char_array = numeric_array < unsigned char >;
 using unsigned_short_array = numeric_array < unsigned short >;
 using unsigned_int_array = numeric_array < unsigned int >;
-using u64_array = numeric_array < u64 >;
+using u64_array = numeric_array < huge_natural >;
 
 using float_array = numeric_array < float >;
 using double_array = numeric_array < double >;
@@ -524,16 +524,16 @@ using unsigned_int_array = numeric_array < unsigned int >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
-using unique_i64_sort_array = unique_number_sort_array < i64 >;
+using unique_huge_integer_sort_array = unique_number_sort_array < huge_integer >;
 
 
 #ifdef OS64BIT
 
 
-using iptr_array = i64_array;
+using iptr_array = huge_integer_array;
 using uptr_array = u64_array;
 
-using unique_iptr_sort_array = unique_i64_sort_array;
+using unique_iptr_sort_array = unique_huge_integer_sort_array;
 
 
 #else
@@ -554,7 +554,7 @@ using strsize_array = iptr_array;
 
 using process_identifier_array = ::numeric_array < process_identifier >;
 
-//using strsize_ptr_array = ptr_array < strsize *  >;
+//using strsize_ptr_array = ptr_array < character_count *  >;
 
 
 using byte_array = unsigned_char_array;
@@ -630,7 +630,7 @@ class spreadset;
 
 using int_spreadset = spreadset < int, int, unique_int_sort_array, unique_int_sort_array >;
 
-using i64_spreadset = spreadset < i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
+using i64_spreadset = spreadset < huge_integer, huge_integer, unique_huge_integer_sort_array, unique_huge_integer_sort_array >;
 
 
 

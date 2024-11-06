@@ -310,6 +310,11 @@
 			name = __implement;
 			sourceTree = "<group>";
 		};
+		9AA326652CDB16FD00A2B1C0 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9AA828DD2CAF86F900DA11E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +440,10 @@
 			productRefGroup = 070B8EEB1B6E53F900D26137 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 9AA326652CDB16FD00A2B1C0 /* Products */;
+					ProjectRef = 9A5244392CDACFD1006ED868 /* _app_just_apex_message_box.xcodeproj */;
+				},
 				{
 					ProductGroup = 9AA828DD2CAF86F900DA11E9 /* Products */;
 					ProjectRef = 9AA828DC2CAF86F900DA11E9 /* apex_macos.xcodeproj */;

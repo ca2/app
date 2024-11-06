@@ -30,6 +30,13 @@
 			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
 			remoteInfo = app_just_message_box;
 		};
+		9AA326632CDB16FD00A2B1C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244312CDACF3A006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
+			remoteInfo = app_just_message_box;
+		};
 		9AA828CF2CAF86CF00DA11E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */;
@@ -176,6 +183,14 @@
 			name = message_box;
 			sourceTree = "<group>";
 		};
+		9AA3265B2CDB16FD00A2B1C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA326642CDB16FD00A2B1C0 /* libapp_just_message_box.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9AA828CD2CAF86CF00DA11E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +282,10 @@
 					ProductGroup = 9A5244472CDAD435006ED868 /* Products */;
 					ProjectRef = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
 				},
+				{
+					ProductGroup = 9AA3265B2CDB16FD00A2B1C0 /* Products */;
+					ProjectRef = 9A5244312CDACF3A006ED868 /* app_just_message_box.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -281,6 +300,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_just_message_box.dylib;
 			remoteRef = 9A52444C2CDAD435006ED868 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA326642CDB16FD00A2B1C0 /* libapp_just_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_message_box.dylib;
+			remoteRef = 9AA326632CDB16FD00A2B1C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AA828D52CAF86CF00DA11E9 /* libapex.dylib */ = {

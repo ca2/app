@@ -63,7 +63,7 @@ namespace filemanager
    }
 
 
-   i32 file_list_callback::GetActionButtonCount()
+   int file_list_callback::GetActionButtonCount()
    {
       
       return 0;

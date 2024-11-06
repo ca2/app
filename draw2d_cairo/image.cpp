@@ -68,7 +68,7 @@ namespace draw2d_cairo
    //}
 
 
-//   void    image::construct (i32 cx,  i32 cy)
+//   void    image::construct (int cx,  int cy)
 //   {
 //
 //      m_pcolorrefMap    = nullptr;
@@ -88,7 +88,7 @@ namespace draw2d_cairo
    }
 
 
-//   bool image::create(i32 width, i32 height, const ::uid & uidCreateImage, int iGoodStride)
+//   bool image::create(int width, int height, const ::uid & uidCreateImage, int iGoodStride)
 //   {
 //
 //      return create(::size_i32(width, height), uidCreateImage, iGoodStride);
@@ -145,7 +145,7 @@ namespace draw2d_cairo
 
       image32_t * pimage32Raw = nullptr;
 
-      i32 iScan = iGoodStride;
+      int iScan = iGoodStride;
 
 #ifdef MORE_LOG
 
@@ -331,15 +331,15 @@ namespace draw2d_cairo
 //   }
 
 
-   //void image::Fill ( i32 R, i32 G, i32 B )
+   //void image::Fill ( int R, int G, int B )
    //{
    //   color32_t color=rgb ( B, G, R );
-   //   i32 size=cx*cy;
+   //   int size=cx*cy;
 
    //   color32_t * pcr;
 
-   //   i32 iSize32 = size / 32;
-   //   i32 i;
+   //   int iSize32 = size / 32;
+   //   int i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
    //      pcr = &m_pcolorrefMap[i];
@@ -383,18 +383,18 @@ namespace draw2d_cairo
    //   }
    //}
 
-   //void image::set_rgb(i32 R, i32 G, i32 B)
+   //void image::set_rgb(int R, int G, int B)
    //{
 
    //   map();
 
-   //   i32 size = scan*cy;
+   //   int size = scan*cy;
 
    //   unsigned char * pbyte = (unsigned char *) m_pcolorrefMap;
 
-   //   i32 i;
-   //   i32 j;
-   //   i32 rectangle = scan - cx * sizeof(color32_t);
+   //   int i;
+   //   int j;
+   //   int rectangle = scan - cx * sizeof(color32_t);
    //   for (i=0; i<cy; i++ )
    //   {
    //      for (j=0; j<cx; j++ )
@@ -408,10 +408,10 @@ namespace draw2d_cairo
    //   }
    //}
 
-   //void image::ToAlpha(i32 i)
+   //void image::ToAlpha(int i)
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorrefMap;
-   //   i32 size=cx*cy;
+   //   int size=cx*cy;
 
    //   while ( size-- )
    //   {
@@ -638,7 +638,7 @@ namespace draw2d_cairo
    }
 
 
-   void image::SetIconMask(::image::icon * picon, i32 cx, i32 cy)
+   void image::SetIconMask(::image::icon * picon, int cx, int cy)
    {
 
       throw ::exception(todo);
@@ -703,7 +703,7 @@ namespace draw2d_cairo
 //      unsigned char * r2=(unsigned char*)pimage2->get_data();
 //      unsigned char * srcM=(unsigned char*)pimageM->colorref();
 //      unsigned char * dest=(unsigned char*)m_pimage32;
-//      i32 iSize = cx*cy;
+//      int iSize = cx*cy;
 //
 //      unsigned char b;
 //      unsigned char bMax;
@@ -800,7 +800,7 @@ namespace draw2d_cairo
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
-//      //      u32 dw = ::get_last_error();
+//      //      unsigned int dw = ::get_last_error();
 //      ::size_i32 size = pbitmap->get_size();
 //
 //      rectx.left() = 0;
@@ -1035,9 +1035,9 @@ namespace draw2d_cairo
 
       }
 
-      i32 scanDst = pimplDst->scan_size();
+      int scanDst = pimplDst->scan_size();
 
-      i32 scanSrc = pimplSrc->scan_size();
+      int scanSrc = pimplSrc->scan_size();
 
       unsigned char * pdst2;
 
@@ -1360,9 +1360,9 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      i32 scanDst = pimageDst->m_iScan;
+//      int scanDst = pimageDst->m_iScan;
 //
-//      i32 scanSrc = pimageSrc->m_iScan;
+//      int scanSrc = pimageSrc->m_iScan;
 //
 //      unsigned char * pdst = ((unsigned char *) pimageDst->colorref()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(color32_t));
 //
@@ -1550,9 +1550,9 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      i32 scanDst = pimplDst->scan_size();
+//      int scanDst = pimplDst->scan_size();
 //
-//      i32 scanSrc = pimplSrc->scan_size();
+//      int scanSrc = pimplSrc->scan_size();
 //
 //      unsigned char * pdst2;
 //

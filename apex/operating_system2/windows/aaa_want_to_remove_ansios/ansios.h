@@ -7,6 +7,6 @@
 
 
 
-//extern int_bool (* g_messageboxa)(oswindow interaction_impl, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, ::u32 uFlags);
+//extern int_bool (* g_messageboxa)(oswindow interaction_impl, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, unsigned int uFlags);
 
 

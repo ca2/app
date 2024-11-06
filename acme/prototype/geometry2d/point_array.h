@@ -121,7 +121,7 @@ public:
 template < primitive_number NUMBER >
 void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
-   for (i32 i = 0; i < this->get_size(); i++)
+   for (int i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x() += x;
       this->element_at(i).y() += y;
@@ -138,7 +138,7 @@ void point_array_base < NUMBER >::rotate(double dAngle)
    double dCos = ::cos(dAngle);
    double dSin = ::sin(dAngle);
 
-   for (i32 i = 0; i < this->get_count(); i++)
+   for (int i = 0; i < this->get_count(); i++)
    {
       x = this->element_at(i).x();
       y = this->element_at(i).y();
@@ -171,7 +171,7 @@ void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
    double dCos = cos(dAngle);
    double dSin = sin(dAngle);
 
-   for (i32 i = 0; i < this->get_count(); i++)
+   for (int i = 0; i < this->get_count(); i++)
    {
       this->element_at(i) -= pointCenter;
       x = this->element_at(i).x();

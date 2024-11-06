@@ -21,7 +21,7 @@ namespace file
       virtual void write_string(const ::scoped_string & scopedstr);
 
       virtual bool read_string(string & str) override;
-      virtual ::u32 read_full_string(string & str);
+      virtual unsigned int read_full_string(string & str);
 
       inline text_file & operator << (const ::scoped_string & scopedstr)
 

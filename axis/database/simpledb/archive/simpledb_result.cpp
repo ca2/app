@@ -32,7 +32,7 @@ namespace simpledb
 
 
 
-   i32 result::num_fields()
+   int result::num_fields()
    {
       return -1;
    }

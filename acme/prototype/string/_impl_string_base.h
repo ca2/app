@@ -217,7 +217,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline i32 string_compare(const CHARACTER * pszA, strsize sizeA, const ::ansi_character * pszB, strsize sizeB) noexcept
+//inline int string_compare(const CHARACTER * pszA, strsize sizeA, const ::ansi_character * pszB, strsize sizeB) noexcept
 //{
 //
 //   int iCompare;
@@ -235,7 +235,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline i32 case_insensitive_string_order(const array_scopedstr<CHARACTER> & scopedstrA, ) noexcept
+//inline int case_insensitive_string_order(const array_scopedstr<CHARACTER> & scopedstrA, ) noexcept
 //{
 //
 //   int iCompare;
@@ -2066,7 +2066,7 @@ inline bool operator > (::wide_character ch, const typename ::GET_BLOCK_TYPE<CHA
 
 
 template < primitive_character CHARACTER >
-inline bool operator>(i32 i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
+inline bool operator>(int i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
 {
 
    return ::string_base<CHARACTER>(i) > scopedstr;
@@ -2093,7 +2093,7 @@ inline bool operator<(CHARACTER ch, const typename::GET_BLOCK_TYPE<CHARACTER>::T
 
 
 template < primitive_character CHARACTER >
-inline bool operator<(i32 i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
+inline bool operator<(int i, const typename::GET_BLOCK_TYPE<CHARACTER>::TYPE & scopedstr)
 {
 
    return ::string_base <CHARACTER>(i) < scopedstr;
@@ -2709,7 +2709,7 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPE
 
 
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::contains(i32 i) const // utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::contains(int i) const // utf8 CHARACTER index
 //{
 //
 //   return find_w(unicode_to_utf8(i), start, count) >= 0;
@@ -2813,7 +2813,7 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPE
 
 
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::case_insensitive_contains(i32 i) const// utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::case_insensitive_contains(int i) const// utf8 CHARACTER index
 //{
 //
 //   return unicode_case_insensitive_find(unicode_to_utf8(i), start, count) >= 0;
@@ -3043,7 +3043,7 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(con
 
 //
 //template < typename ITERATOR_TYPE >
-//bool string_base < ITERATOR_TYPE >::unicode_case_insensitive_contains(i32 i) const// utf8 CHARACTER index
+//bool string_base < ITERATOR_TYPE >::unicode_case_insensitive_contains(int i) const// utf8 CHARACTER index
 //{
 //
 //   return unicode_case_insensitive_find(unicode_to_utf8(i), start, count) >= 0;
@@ -3236,7 +3236,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 
    strsize count = 0;
 
-   // i16-circuit the nop case
+   // short-circuit the nop case
    if (charOld != charNew)
    {
       // otherwise modify each character that matches in the string_base < ITERATOR_TYPE >
@@ -3700,7 +3700,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 //
 //   auto psz = this->begin() + start;
 //
-//   for (i32 i = 0; i < count; i++)
+//   for (int i = 0; i < count; i++)
 //   {
 //
 //      if (psz[i] == ch)
@@ -5398,7 +5398,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments
 // bool string_base < ITERATOR_TYPE >::xxxget_environment_variable(const CHARACTER* pszVar)
 // {
 
-//    u32 nLength = xxxget_environment_variable(pszVar, nullptr, 0);
+//    unsigned int nLength = xxxget_environment_variable(pszVar, nullptr, 0);
 
 //    bool bRetVal = false;
 

@@ -112,7 +112,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
+void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
 {
 
    struct tm tm;
@@ -315,12 +315,12 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 
    SYSTEMTIME sysTime;
 
-   sysTime.wYear = (::u16)time.year();
-   sysTime.wMonth = (::u16)time.month();
-   sysTime.wDay = (::u16)time.day();
-   sysTime.wHour = (::u16)time.hour();
-   sysTime.wMinute = (::u16)time.minute();
-   sysTime.wSecond = (::u16)time.second();
+   sysTime.wYear = (unsigned short)time.year();
+   sysTime.wMonth = (unsigned short)time.month();
+   sysTime.wDay = (unsigned short)time.day();
+   sysTime.wHour = (unsigned short)time.hour();
+   sysTime.wMinute = (unsigned short)time.minute();
+   sysTime.wSecond = (unsigned short)time.second();
    sysTime.wMilliseconds = 0;
 
    // convert system time to local file time

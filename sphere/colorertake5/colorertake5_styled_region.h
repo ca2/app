@@ -12,24 +12,24 @@ namespace colorertake5
  */
 class StyledRegion : public RegionDefine{
 public:
-  static const i32 RD_BOLD;
-  static const i32 RD_ITALIC;
-  static const i32 RD_UNDERLINE;
-  static const i32 RD_STRIKEOUT;
+  static const int RD_BOLD;
+  static const int RD_ITALIC;
+  static const int RD_UNDERLINE;
+  static const int RD_STRIKEOUT;
 
   /** Is foreground value assigned? */
   bool bfore;
   /** Is background value assigned? */
   bool bback;
   /** Foreground color of region */
-  u32 fore;
+  unsigned int fore;
   /** Background color of region */
-  u32 back;
+  unsigned int back;
   /** Bit mask of region's style (bold, italic, underline) */
-  u32 style;
+  unsigned int style;
 
   /** Common constructor */
-  StyledRegion(bool _bfore, bool _bback, u32 _fore, u32 _back, u32 _style){
+  StyledRegion(bool _bfore, bool _bback, unsigned int _fore, unsigned int _back, unsigned int _style){
     bfore = _bfore;
     bback = _bback;
     fore = _fore;

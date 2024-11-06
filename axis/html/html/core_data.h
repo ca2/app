@@ -114,7 +114,7 @@ namespace html
       class CLASS_DECL_AXIS layout_state2
       {
       public:
-         i32      m_iBody;
+         int      m_iBody;
          float    m_y;
          float    m_cy;
          float    m_x;
@@ -139,7 +139,7 @@ namespace html
       class CLASS_DECL_AXIS layout_state3
       {
       public:
-         i32           m_iBody;
+         int           m_iBody;
          f32_array       m_yParent;
          float             m_y;
          //         f32_array       m_cyStack;
@@ -275,7 +275,7 @@ namespace html
 
 
 
-      i32 create_font(::html::element* pelemental);
+      int create_font(::html::element* pelemental);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

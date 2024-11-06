@@ -24,7 +24,7 @@ namespace experience
       point_i32                        m_pointCursorOrigin;
       ::rectangle_i32                  m_rectangleWindowOrigin;
       size_i32                         m_sizeMinimumBorder;
-      ::u32                            m_uiSWPFlags;
+      unsigned int                            m_uiSWPFlags;
       enum_grip                        m_egripMask;
       int                              m_iPaintCount;
 
@@ -59,7 +59,7 @@ namespace experience
       
       virtual void cancel_sizing();
       
-      //void SetSWPFlags(::u32 uFlags);
+      //void SetSWPFlags(unsigned int uFlags);
       virtual ::size_i32 GetMinSize();
       bool set_frame_window(frame_window * pframewindow);
 

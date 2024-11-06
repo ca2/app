@@ -49,7 +49,7 @@
 //#endif // information
 
 
-const i32 TINYJS_LOOP_MAX_ITERATIONS = 8192;
+const int TINYJS_LOOP_MAX_ITERATIONS = 8192;
 
 
 enum LEX_TYPES
@@ -147,34 +147,34 @@ class CLASS_DECL_APP_SCRIPTING CScriptLex
 {
 public:
    CScriptLex(const string &input);
-   CScriptLex(CScriptLex *owner, i32 startChar, i32 endChar);
+   CScriptLex(CScriptLex *owner, int startChar, int endChar);
    ~CScriptLex(void);
 
    char currCh, nextCh;
-   i32 token; ///< The type of the token that we have
-   i32 tokenStart; ///< Position in the data at the beginning of the token we have here
-   i32 tokenEnd; ///< Position in the data at the last character of the token we have here
-   i32 tokenLastEnd; ///< Position in the data at the last character of the last token
+   int token; ///< The type of the token that we have
+   int tokenStart; ///< Position in the data at the beginning of the token we have here
+   int tokenEnd; ///< Position in the data at the last character of the token we have here
+   int tokenLastEnd; ///< Position in the data at the last character of the last token
    string tokenStr; ///< Data contained in the token we have here
 
-   void match(i32 expected_tk); ///< Lexical match wotsit
-   static string getTokenStr(i32 token); ///< Get the string representation of the given token
+   void match(int expected_tk); ///< Lexical match wotsit
+   static string getTokenStr(int token); ///< Get the string representation of the given token
    void reset(); ///< Reset this lex so we can start again
 
-   string getSubString(i32 pos); ///< Return a sub-string from the given position up until right now
-   CScriptLex *getSubLex(i32 lastPosition); ///< Return a sub-lexer from the given position up until right now
+   string getSubString(int pos); ///< Return a sub-string from the given position up until right now
+   CScriptLex *getSubLex(int lastPosition); ///< Return a sub-lexer from the given position up until right now
 
-   string getPosition(i32 pos=-1); ///< Return a string representing the position in lines and columns of the character pos given
+   string getPosition(int pos=-1); ///< Return a string representing the position in lines and columns of the character pos given
 
 protected:
    /* When we go into a loop, we use getSubLex to get a lexer for just the sub-part of the
       relevant string. This doesn't re-allocate and copy the string, but instead copies
       the data pointer and sets dataOwned to false, and dataStart/dataEnd to the relevant things. */
    char *data; ///< Data string to get tokens from
-   i32 dataStart, dataEnd; ///< Start and end position in data string
+   int dataStart, dataEnd; ///< Start and end position in data string
    bool dataOwned; ///< Do we own this data string?
 
-   i32 dataPos; ///< Position in data (we CAN go past the end of the string here)
+   int dataPos; ///< Position in data (we CAN go past the end of the string here)
 
    void getNextCh();
    void getNextToken(); ///< Get the text token from our text string
@@ -198,8 +198,8 @@ public:
    ~CScriptVarLink();
    void replaceWith(CScriptVar *newVar); ///< Replace the Variable pointed to
    void replaceWith(CScriptVarLink *newVar); ///< Replace the Variable pointed to (just dereferences)
-   i32 getIntName(); ///< Get the name as an integer (for arrays)
-   void setIntName(i32 n); ///< set the name as an integer (for arrays)
+   int getIntName(); ///< Get the name as an integer (for arrays)
+   void setIntName(int n); ///< set the name as an integer (for arrays)
 };
 
 /// Variable class (containing a doubly-linked list of children)
@@ -207,10 +207,10 @@ class CLASS_DECL_APP_SCRIPTING CScriptVar
 {
 public:
    CScriptVar(); ///< Create undefined
-   CScriptVar(const string &varData, i32 varFlags); ///< User defined
+   CScriptVar(const string &varData, int varFlags); ///< User defined
    CScriptVar(const string &str); ///< Create a string
    CScriptVar(double varData);
-   CScriptVar(i32 val);
+   CScriptVar(int val);
    ~CScriptVar(void);
 
    CScriptVar *getReturnVar(); ///< If this is a function, get the result value (for use by native functions)
@@ -218,24 +218,24 @@ public:
    CScriptVar *getParameter(const string &name); ///< If this is a function, get the parameter with the given name (for use by native functions)
 
    CScriptVarLink *findChild(const string &childName); ///< Tries to find a child with the given name, may return 0
-   CScriptVarLink *findChildOrCreate(const string &childName, i32 varFlags=SCRIPTVAR_UNDEFINED); ///< Tries to find a child with the given name, or will create it with the given flags
+   CScriptVarLink *findChildOrCreate(const string &childName, int varFlags=SCRIPTVAR_UNDEFINED); ///< Tries to find a child with the given name, or will create it with the given flags
    CScriptVarLink *findChildOrCreateByPath(const string &path); ///< Tries to find a child with the given path (separated by dots)
    CScriptVarLink *addChild(const string &childName, CScriptVar *child=nullptr);
    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=nullptr); ///< add a child overwriting any with the same name
    void eraseChild(CScriptVar *child);
    void eraseLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
    void eraseAllChildren();
-   CScriptVar *getArrayIndex(i32 idx); ///< The the value at an array index
-   void setArrayIndex(i32 idx, CScriptVar *value); ///< set the value at an array index
-   i32 getArrayLength(); ///< If this is an array, return the number of items in it (else 0)
-   i32 getChildren(); ///< Get the number of children
+   CScriptVar *getArrayIndex(int idx); ///< The the value at an array index
+   void setArrayIndex(int idx, CScriptVar *value); ///< set the value at an array index
+   int getArrayLength(); ///< If this is an array, return the number of items in it (else 0)
+   int getChildren(); ///< Get the number of children
 
-   i32 getInt();
+   int getInt();
    bool getBool() { return getInt() != 0; }
    double getDouble();
    const string &getString();
    string getParsableString(); ///< get Data as a parsable javascript string
-   void setInt(i32 num);
+   void setInt(int num);
    void setDouble(double val);
    void setString(const string &str);
    void setUndefined();
@@ -254,7 +254,7 @@ public:
    bool isNull() { return (flags & SCRIPTVAR_NULL)!=0; }
    bool isBasic() { return firstChild==0; } ///< Is this *not* an array/object/etc
 
-   CScriptVar *mathsOp(CScriptVar *b, i32 op); ///< do a maths op with another script variable
+   CScriptVar *mathsOp(CScriptVar *b, int op); ///< do a maths op with another script variable
    void copyValue(CScriptVar *val); ///< copy the value from the value given
    CScriptVar *deepCopy(); ///< deep copy this node and return the result
 
@@ -269,14 +269,14 @@ public:
    /// For memory management/garbage collection
    CScriptVar *ref(); ///< add object to this variable
    void unref(); ///< Remove a object, and delete this variable if required
-   i32 getRefs(); ///< Get the number of references to this script variable
+   int getRefs(); ///< Get the number of references to this script variable
 protected:
-   i32 refs; ///< The number of references held to this - used for garbage collection
+   int refs; ///< The number of references held to this - used for garbage collection
 
    string data; ///< The contents of this variable if it is a string
-   long intData; ///< The contents of this variable if it is an i32
+   long intData; ///< The contents of this variable if it is an int
    double doubleData; ///< The contents of this variable if it is a double
-   i32 flags; ///< the flags determine the type of the variable - i32/double/string/etc
+   int flags; ///< the flags determine the type of the variable - int/double/string/etc
    JSCallback jsCallback; ///< Callback for native functions
    void *jsCallbackUserData; ///< user data passed as element2() argument to native functions
 

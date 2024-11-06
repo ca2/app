@@ -90,7 +90,7 @@ namespace graphics
 #define WM_RESERVED_037E    0x037E
 
 // WM_FORWARDMSG - used by apex to forward a message to another interaction_impl for processing
-//   WPARAM - u32 dwUserData - defined by ::account::user
+//   WPARAM - unsigned int dwUserData - defined by ::account::user
 //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 #define WM_FORWARDMSG      0x037F

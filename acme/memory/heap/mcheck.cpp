@@ -175,7 +175,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine, memsize align)
 //{
 //
 //   void * p;
@@ -240,7 +240,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   void * p;
@@ -355,7 +355,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_allocate_debug(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 //{
 //#ifdef MCHECK
 //   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -380,7 +380,7 @@
 //
 //
 //
-//void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_reallocate_debug(void * pmemory, size_t size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //#if defined(__VLD)
@@ -563,7 +563,7 @@
 //
 //
 //
-//void memory_free_debug(void * pmemory, i32 iBlockType)
+//void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
 //#if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
@@ -675,7 +675,7 @@
 //
 //}
 //
-//size_t memory_size_debug(void * pmemory, i32 iBlockType)
+//size_t memory_size_debug(void * pmemory, int iBlockType)
 //{
 //
 //#if defined(__VLD) || defined(__MCRTDBG)
@@ -723,14 +723,14 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
 //
 //}
 //
-//void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -756,7 +756,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_allocate_debug(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -772,7 +772,7 @@
 //}
 //
 //
-//void * memory_reallocate_debug(void * p, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_reallocate_debug(void * p, size_t size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //
@@ -798,7 +798,7 @@
 //}
 //
 //
-//void memory_free_debug(void * p, i32 iBlockType)
+//void memory_free_debug(void * p, int iBlockType)
 //{
 //
 //   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pvoid);
@@ -806,7 +806,7 @@
 //}
 //
 //
-//size_t memory_size_debug(void * p, i32 iBlockType)
+//size_t memory_size_debug(void * p, int iBlockType)
 //{
 //#ifdef WINDOWS
 //   return _msize(pvoid);
@@ -869,7 +869,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //  // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -887,7 +887,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -1040,7 +1040,7 @@
 //}
 //
 //
-//void _memory_free_debug(void * pmemory, i32 iBlockType)
+//void _memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
 //   if((iptr) pmemory < 1024)
@@ -1143,7 +1143,7 @@
 //}
 //
 //
-//memsize _memory_size_debug(void * pmemory, i32 iBlockType)
+//memsize _memory_size_debug(void * pmemory, int iBlockType)
 //{
 //
 //   if (pmemory == nullptr)

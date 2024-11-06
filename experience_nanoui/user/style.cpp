@@ -97,7 +97,7 @@ namespace experience_nanoui
 
       int iTabHeight = 0;
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
             
          auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -631,11 +631,11 @@ namespace experience_nanoui
 
       if(ptab->get_data()->m_bVertical)
       {
-         i32 iTabWidth = 16;
-         i32 iTabHeight = 8;
-         i32 cx;
-         i32 cy;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         int iTabWidth = 16;
+         int iTabHeight = 8;
+         int cx;
+         int cy;
+         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -717,9 +717,9 @@ namespace experience_nanoui
       else
       {
 
-         i32 iTabHeight = 16;
+         int iTabHeight = 16;
 
-         i32 cy;
+         int cy;
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
@@ -727,8 +727,8 @@ namespace experience_nanoui
          //ptab->rectangle(rectangleX);
          int x = rectangleX.left();
 
-         i32 ixAdd;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         int ixAdd;
+         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -806,7 +806,7 @@ namespace experience_nanoui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -845,7 +845,7 @@ namespace experience_nanoui
          //TRACE0("rectangleHosting");
       }
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if(iPane != ptab->get_current_tab_id())
@@ -1636,7 +1636,7 @@ namespace experience_nanoui
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-            i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
+            int iArea = (int)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 

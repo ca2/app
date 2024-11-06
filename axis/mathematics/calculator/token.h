@@ -43,7 +43,7 @@ namespace calculator
       /* Tokens */
       enum_type         m_etype;
       string         m_str;
-      i32        m_iType;
+      int        m_iType;
       bool           m_bKeyword;
 
 

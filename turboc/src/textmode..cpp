@@ -49,7 +49,7 @@
 //#include "conio.h"
 
 char BypassResizeXterm = 0;
-static u32 LastMode = C80;
+static unsigned int LastMode = C80;
 #define NUM_VIDEO_MODES 65
 static struct
 {
@@ -349,10 +349,10 @@ InitializeTranslatedChar (void)
   TranslatedChar[(int) 0xf8] = ACS_DEGREE;
   TranslatedChar[(int) 0xf9] = ACS_BULLET;*/
 #ifndef DoNotFixIntegers
-#define short i16
-#define int i16
-#define unsigned u16
-#define long i32
+#define short short
+#define int short
+#define unsigned unsigned short
+#define long int
 #endif
 };
 
@@ -361,7 +361,7 @@ InitializeTranslatedChar (void)
 void
 textmode (int newmode)
 {
-  i32 Rows, Columns;
+  int Rows, Columns;
   // Parse the current and desired modes.
 //  if (ConioInitialized)
 //    {

@@ -367,11 +367,11 @@ namespace micro
       //void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
       //virtual void get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
       //virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel);
-      //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x);
+      //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x);
       //virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel);
-      //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x);
+      //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x);
       //virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-      //virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x);
+      //virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
       //virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel);
 
 

@@ -22,7 +22,7 @@ namespace sockets_bsd
       SSL_CTX *            m_psslcontext;
       SSL_SESSION *        m_psslsession;
       const SSL_METHOD *   m_psslmethod;
-      i32                  m_iSslRetry;
+      int                  m_iSslRetry;
 
 
       ssl_client_context(const SSL_METHOD * pmethod = nullptr);

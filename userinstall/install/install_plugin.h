@@ -4,7 +4,7 @@
 #if defined()
 
 
-i32 installer_start(const ::string & pszVersion, const ::string & pszId);
+int installer_start(const ::string & pszVersion, const ::string & pszId);
 
 
 namespace install
@@ -113,7 +113,7 @@ namespace install
 
       using ::hotplugin::plugin::on_receive;
 
-      virtual void on_receive(::aura::ipc::rx * prx, i32 message, void * pdata, i32 len);
+      virtual void on_receive(::aura::ipc::rx * prx, int message, void * pdata, int len);
 
 #endif
 
@@ -124,7 +124,7 @@ namespace install
       virtual void restart_aura_ipc();
 
       using ::hotplugin::plugin::set_window_position;
-      virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW);
+      virtual bool set_window_position(iptr z,int x,int y,int cx,int cy,unsigned int nFlags = SWP_SHOWWINDOW);
 
       virtual void on_ready();
 

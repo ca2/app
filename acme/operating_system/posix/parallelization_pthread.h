@@ -7,13 +7,13 @@
 using hsynchronization = ::subparticle *;
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pparticle, const class ::time & tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
 
-::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask);
+::e_status MsgWaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, unsigned int dwWakeMask);
 
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable);
+::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable);
 
-::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout);
+::e_status WaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout);
 
 ::e_status WaitForSingleObjectEx(hsynchronization hsynchronization, const class ::time & tickTimeout, int_bool bAlertable);
 

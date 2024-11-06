@@ -70,7 +70,7 @@
 //   //   /// The last watchid
 //   //   //atom mLastWatchID;
 //   //   /// inotify file descriptor
-//   //   //i32 mFD;
+//   //   //int mFD;
 //   //   /// time out data
 //   //   //struct timeval mTimeOut;
 //   //   /// File descriptor set
@@ -112,7 +112,7 @@
 //   public:
 //
 //
-//      i32 mFD;
+//      int mFD;
 //      struct timeval mTimeOut;
 //      fd_set mDescriptorSet;
 //

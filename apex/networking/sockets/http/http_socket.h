@@ -24,7 +24,7 @@ namespace sockets
 
       ::url::parts         m_urlparts;
       string               m_strProxy;
-      i32                  m_iProxyPort;
+      int                  m_iProxyPort;
 
       ::string m_strResponseLogMessage;
       ::http::request      m_request;

@@ -24,8 +24,8 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleWindow;
       window_rectangle(&rectangleWindow);
-      i32 cx = rectangleWindow.right() - rectangleWindow.left();
-      i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right() - rectangleWindow.left();
+      int cy = rectangleWindow.bottom() - rectangleWindow.top();
       ::rectangle_i32 rectangle;
       rectangle.left() = 0;
       rectangle.top() = 0;
@@ -52,8 +52,8 @@ namespace hotplugin
 
 
 
-      i32 iDelta = m_iDelta;
-      i32 iRadius = 8;
+      int iDelta = m_iDelta;
+      int iRadius = 8;
       auto iPhase = ((((m_timeSync.elapsed()) % iDelta)) * iRadius * 2) / iDelta;
 
       if (iPhase == 0 && m_timeSync.timeout(2000_tick))
@@ -72,17 +72,17 @@ namespace hotplugin
 
       wstr = m_strStatus;
 
-      i32 iRate1 = 25;
+      int iRate1 = 25;
 
       unsigned char bA;
 
       {
 
-         //i32 iARange = (184 - 23) * 2;
-         //i32 iAClip = iARange / 2;
+         //int iARange = (184 - 23) * 2;
+         //int iAClip = iARange / 2;
          double period = 8.4; // seconds
          double frequency = 1.0 / period;
-         //i32 iA = (iARange * ::get_tick() / 8000) % iARange;
+         //int iA = (iARange * ::get_tick() / 8000) % iARange;
          double w = 2.0 * 3.1415 * frequency;
          double t= ::time::now() / 1000.0;
 
@@ -104,14 +104,14 @@ namespace hotplugin
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-      i32 iRate = 10;
+      int iRate = 10;
 
-      const i32 iRowCount = cx - cx / (iRate / 2);
-      i32 iProgressCount = maximum(minimum((i32)(iRowCount * dRate), iRowCount), 0);
+      const int iRowCount = cx - cx / (iRate / 2);
+      int iProgressCount = maximum(minimum((int)(iRowCount * dRate), iRowCount), 0);
 
 
 
-      i32 iBorder1 = maximum(cx / iRate1, cy / iRate1);
+      int iBorder1 = maximum(cx / iRate1, cy / iRate1);
 
       auto ppathClip1 = __create < ::draw2d::path >();
 
@@ -134,8 +134,8 @@ namespace hotplugin
 
 
 
-      i32 iRatePercentMillis = ((i32)(dRate * 100.0 * 1000.0)) % 1000;
-      i32 iRatePercent = ((i32)(dRate * 100.0));
+      int iRatePercentMillis = ((int)(dRate * 100.0 * 1000.0)) % 1000;
+      int iRatePercent = ((int)(dRate * 100.0));
 
       wstring wstrProgress;
 
@@ -151,11 +151,11 @@ namespace hotplugin
 
       }
 
-      i32 iBarHeight = 23;
+      int iBarHeight = 23;
 
 
 
-      i32 iBorder = 16;
+      int iBorder = 16;
 
       auto ppathClip = __create < ::draw2d::path >();
 
@@ -189,14 +189,14 @@ namespace hotplugin
 
       pbrush->create_solid(argb(49, 184 + 23, 184 + 23, 184 + 19));
 
-      i32 mcy = cy / 2;
+      int mcy = cy / 2;
 
       if (m_iHealingSurface == 1)
       {
 
          pgraphics->SelectObject(br);
 
-         for (i32 x = 0; x < (cx + cy); x += 46)
+         for (int x = 0; x < (cx + cy); x += 46)
          {
 
             pa[0].x() = rectangleParam.left() + x;
@@ -310,7 +310,7 @@ namespace hotplugin
          pgraphics->fill_rectangle(rect2, br);
       }
 
-      i32 iOffset = 3;
+      int iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
       pgraphics->draw_line(rectangleParam.left() + cx / iRate - iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, rectangleParam.left() + cx - cx / iRate + iOffset, rectangleParam.top() + (cy - iBarHeight) / 2 - iOffset, ppen);

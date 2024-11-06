@@ -32,10 +32,10 @@ namespace universal_windows
    }
 
 
-   i32 shell::get_image_by_extension(const image_key & imagekey, color32_t crBk)
+   int shell::get_image_by_extension(const image_key & imagekey, color32_t crBk)
    {
 
-      i32 iImage = -1;
+      int iImage = -1;
 //
 //         SHFILEINFOW shfi16;
 //
@@ -181,10 +181,10 @@ pdirectorysystem->is(strPath))
    }
 
 
-   i32 shell::impl_get_file_image(const image_key & imagekey)
+   int shell::impl_get_file_image(const image_key & imagekey)
    {
 
-      i32 iImage = I32_MINIMUM;
+      int iImage = I32_MINIMUM;
 
       if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
       {
@@ -299,7 +299,7 @@ pdirectorysystem->is(strPath))
 
          string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
 
-         i32 i = 0;
+         int i = 0;
 
          while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
          {

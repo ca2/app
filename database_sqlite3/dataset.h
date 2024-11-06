@@ -61,7 +61,7 @@
 //
 //      //virtual ::payload field_value_at(::collection::index iFieldIndex) override;
 //      //virtual ::payload FieldValueAt(::collection::index iFieldIndex);
-//      //virtual i32 GetFieldIndex(const ::string &f_name);
+//      //virtual int GetFieldIndex(const ::string &f_name);
 //
 //
 //   };

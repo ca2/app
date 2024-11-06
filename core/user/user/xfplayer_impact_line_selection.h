@@ -85,7 +85,7 @@ public:
    strsize                 m_iCharStartSource;
    strsize                 m_iCharEndSource;
 
-   i32                     m_etype; 
+   int                     m_etype; 
    enum_state              m_estate;
 
    
@@ -117,7 +117,7 @@ public:
    bool OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
    bool OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
    bool OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point);
-   bool OnTimer(xfplayer_impact_line & viewline, ::u32 user);
+   bool OnTimer(xfplayer_impact_line & viewline, unsigned int user);
 
 
 };

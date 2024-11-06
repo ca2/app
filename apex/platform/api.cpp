@@ -451,7 +451,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    }
 
 
-   string api::randomDataBase64url(u32 length)
+   string api::randomDataBase64url(unsigned int length)
    {
 
       memory m;

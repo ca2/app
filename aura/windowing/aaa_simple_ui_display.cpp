@@ -33,7 +33,7 @@ namespace windowing
 
       m_stra.add_lines(strMessage);
 
-      ::u32 uType = ((::u32) emessagebox) & 7;
+      unsigned int uType = ((unsigned int) emessagebox) & 7;
 
       switch (uType)
       {

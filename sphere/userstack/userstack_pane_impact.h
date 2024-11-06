@@ -17,9 +17,9 @@ namespace userstack
 
       ::pointer<::user::form>                         m_pformOptions;
       ::image::image_pointer                         m_pimageBk;
-      i32                                m_iNewArea;
-      i32                                m_iArea;
-      i32                                m_iDisplay;
+      int                                m_iNewArea;
+      int                                m_iArea;
+      int                                m_iDisplay;
       filemanager::file_properties_form *    m_ppropform;
       ::file::item_array                       m_itema;
 
@@ -53,7 +53,7 @@ namespace userstack
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void set_display(i32 iDisplay);
+      virtual void set_display(int iDisplay);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;

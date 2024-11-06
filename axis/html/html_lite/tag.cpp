@@ -60,7 +60,7 @@ lite_html_tag::~lite_html_tag()
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-::u32 lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::string & strString, strsize iPos,
+unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::string & strString, strsize iPos,
                                  bool &bIsOpeningTag,
                                  bool &bIsClosingTag,
                                  bool bParseAttrib /* = true */)
@@ -71,7 +71,7 @@ lite_html_tag::~lite_html_tag()
    bool            bOpeningTag = false;
    LiteHTMLAttributes   *pcollAttr = nullptr;
    string            strTagName;
-   ::u32            nRetVal = 0U,
+   unsigned int            nRetVal = 0U,
                    nTemp = 0U;
    const char *            pszBegin = &strString[iPos];
 
@@ -100,7 +100,7 @@ lite_html_tag::~lite_html_tag()
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == nullptr);
       ASSERT(!bClosingTag);
-      nRetVal = (::u32) (pszBegin - &strString[iPos]);
+      nRetVal = (unsigned int) (pszBegin - &strString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -178,7 +178,7 @@ lite_html_tag::~lite_html_tag()
 
       ASSERT(strTagName.length());
       ASSERT(pcollAttr == nullptr);
-      nRetVal = (::u32) (pszEnd - &strString[iPos]);
+      nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -212,7 +212,7 @@ lite_html_tag::~lite_html_tag()
          }
 
          // ... and delegate parsing process
-         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.length() - (pszBegin - (const ::string &) strString));
+         nTemp = (unsigned int) pcollAttr->parseFromStr(preader, pszBegin, strString.length() - (pszBegin - (const ::string &) strString));
 
       }
 
@@ -271,7 +271,7 @@ lite_html_tag::~lite_html_tag()
       pszEnd++;
 
 
-   nRetVal = (::u32) (pszEnd - &strString[iPos]);
+   nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
 
    goto LUpdateAndExit;   // just to show the flow-of-control
 

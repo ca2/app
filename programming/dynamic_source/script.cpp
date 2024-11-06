@@ -392,7 +392,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-            u32 dwMessageId = GetLastError();
+            unsigned int dwMessageId = GetLastError();
 
             if(dwMessageId == 0x139)
             {
@@ -543,7 +543,7 @@ namespace dynamic_source
 
       string str;
 
-      i32 iRetry = 0;
+      int iRetry = 0;
 
       bool bHasTempError = false;
 

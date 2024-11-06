@@ -1865,7 +1865,7 @@ namespace experience_anthill
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
+      unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
 
       ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
 
@@ -2185,7 +2185,7 @@ namespace experience_anthill
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
+      unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
 
       ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
 

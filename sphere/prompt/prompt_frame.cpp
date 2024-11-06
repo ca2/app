@@ -154,7 +154,7 @@ namespace prompt
 
    void frame::ShowControlBars(bool bShow)
    {
-      ::u32 nShow;
+      unsigned int nShow;
       if(bShow)
       {
          nShow = e_display_normal;
@@ -227,7 +227,7 @@ namespace prompt
       if(pmessage->m_bRet)
          return;
 
-      if(!datastream()->get("DockPosition", (i32 &) m_eposition))
+      if(!datastream()->get("DockPosition", (int &) m_eposition))
       {
 
          m_eposition = e_position_left;
@@ -316,7 +316,7 @@ namespace prompt
                m_eposition = e_position_right;
             }
          }
-         datastream()->set("DockPosition", (i32) m_eposition);
+         datastream()->set("DockPosition", (int) m_eposition);
       }*/
    }
 

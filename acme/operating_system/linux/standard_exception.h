@@ -94,7 +94,7 @@ friend class ::exception_translator;
 #ifdef WINDOWS
 //EXCEPTION_POINTERS * m_ppointers;
 #else
-i32               m_iSignal;
+int               m_iSignal;
 void *            m_psiginfo;
 #ifndef ANDROID
 ucontext_t        m_ucontext;
@@ -105,7 +105,7 @@ ucontext_t        m_ucontext;
 #ifdef WINDOWS
 //EXCEPTION_POINTERS * info() const         { return m_ppointers; }
 #else
-u32         code() const;
+unsigned int         code() const;
 void *               address() const;
 const void *    info() const;    // siginfo_t *
 const char *         name() const;
@@ -124,7 +124,7 @@ static void siginfofree(void * psiginfo);
 
 #ifdef ANDROID
 
-standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
+standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
       ::exception(error_exception, nullptr, nullptr, iSkip),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
@@ -136,7 +136,7 @@ standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_
 
 #else
 
-standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = -1, void * caller_address = nullptr);
+standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = -1, void * caller_address = nullptr);
 
 #endif
 
@@ -179,7 +179,7 @@ class standard_access_violation : public standard_exception
 public:
 
 
-   standard_access_violation (i32 signal, void * psiginfo, void * pc);
+   standard_access_violation (int signal, void * psiginfo, void * pc);
 
 };
 
@@ -192,7 +192,7 @@ class standard_sigfpe : public standard_exception
    public:
 
 
-      standard_sigfpe(i32 iSignal,void * psiginfo,void * pc):
+      standard_sigfpe(int iSignal,void * psiginfo,void * pc):
          standard_exception(iSignal, psiginfo, pc)
       {
 
@@ -209,7 +209,7 @@ class standard_sigfpe : public standard_exception
 class standard_sigfpe : public standard_exception
    {
    public:
-      standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (int iSignal, siginfo_t * psiginfo, void * pc) :
 #ifdef _LP64
          standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
          //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),

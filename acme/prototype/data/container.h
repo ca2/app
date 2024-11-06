@@ -28,7 +28,7 @@ namespace data
 
       virtual bool is_data_locked() const;
 
-      virtual void on_update_data(i32 iHint);
+      virtual void on_update_data(int iHint);
 
    };
 

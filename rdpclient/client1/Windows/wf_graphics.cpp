@@ -154,9 +154,9 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //	::u3216 size;
 //	unsigned char* pSrcData;
 //	unsigned char* pDstData;
-//	::u32 SrcSize;
-//	::u32 SrcFormat;
-//	::u32 bytesPerPixel;
+//	unsigned int SrcSize;
+//	unsigned int SrcFormat;
+//	unsigned int bytesPerPixel;
 //
 //	bytesPerPixel = (bpp + 7) / 8;
 //	size = width * height * 4;
@@ -167,7 +167,7 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 //		bitmap->data = (unsigned char*) _aligned_realloc(bitmap->data, size, 16);
 //
 //	pSrcData = data;
-//	SrcSize = (::u32) length;
+//	SrcSize = (unsigned int) length;
 //	pDstData = bitmap->data;
 //
 //	if (compressed)

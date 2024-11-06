@@ -6,7 +6,7 @@ namespace dynamic_source
 {
 
 
-   exit_exception::exit_exception(i32 iCode) :
+   exit_exception::exit_exception(int iCode) :
       m_iCode(iCode)
    {
       

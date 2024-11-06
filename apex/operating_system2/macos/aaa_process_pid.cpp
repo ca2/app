@@ -125,7 +125,7 @@ atom_array module_path_get_pid(const char * csProcessName)
    for(auto & iCurrentPid : pids)
    {
 
-      strPath = module_path_from_pid(iCurrentPid.i32());
+      strPath = module_path_from_pid(iCurrentPid.int());
 
       if(strPath.case_insensitive_order(csProcessName) == 0 )
       {
@@ -214,7 +214,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //      }
 //
-//      ::file::path path = module_path_from_pid(pid.i32());
+//      ::file::path path = module_path_from_pid(pid.int());
 //
 //      if(path.title() == strApp || path == path1)
 //      {
@@ -225,7 +225,7 @@ string module_path_from_pid(unsigned int uiPid)
 //      else
 //      {
 //
-//         string_array straCmdLine = cmdline_from_pid(pid.i32());
+//         string_array straCmdLine = cmdline_from_pid(pid.int());
 //
 //         string strCmdLine;
 //

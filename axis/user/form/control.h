@@ -17,7 +17,7 @@ namespace user
       string                     m_strPath;
       bool                       m_bOnEditUpdate;
       bool                       m_bOnLanguageChange;
-      ::u32                       m_uiId;
+      unsigned int                       m_uiId;
       //control_descriptor_set     m_controldescriptorset;
       bool                       m_bInitialized;
       ::file::path               m_pathDefaultDocument;
@@ -100,13 +100,13 @@ namespace user
 
       bool OnCommand(wparam wparam,lparam lparam);
 
-      bool OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
+      bool OnCommandButton(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
 
-      bool OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
+      bool OnCommandCheckBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
 
-      bool OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
+      bool OnCommandComboBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
 
-      bool OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
+      bool OnCommandEdit(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
 
 
 

@@ -199,11 +199,11 @@ namespace html
 
          char ch;
 
-         i32 iSpace = 0;
+         int iSpace = 0;
 
          string strLine;
 
-         for (i32 i = 0; i < str.length();)
+         for (int i = 0; i < str.length();)
          {
 
             iSpace = 0;
@@ -274,7 +274,7 @@ namespace html
 
          m_cxMin = 0;
 
-         for (i32 i = 0; i < m_straWordSpace.get_size(); i++)
+         for (int i = 0; i < m_straWordSpace.get_size(); i++)
          {
 
             ch = m_straWordSpace[i][0];
@@ -385,7 +385,7 @@ namespace html
 
          ::size_f32 sizeText;
 
-         i32 iSpace;
+         int iSpace;
 
          string strLine;
 
@@ -405,7 +405,7 @@ namespace html
 
          sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top() - m_padding.bottom() - m_border.top() - m_border.bottom() - m_margin.top() - m_margin.bottom());
 
-         for (i32 i = 0; i < str.length();)
+         for (int i = 0; i < str.length();)
          {
 
             iSpace = 0;
@@ -553,7 +553,7 @@ namespace html
 
          float cy = 0.f;
 
-         i32 i;
+         int i;
 
          for (i = 0; i < m_sizea.get_size(); i++)
          {
@@ -613,7 +613,7 @@ namespace html
          //m_pcheckbox->window_rectangle(rectangleWindow);
          ::point_i32 pointPreviousContextOrg = pgraphics->get_origin();
 
-         pgraphics->offset_origin((i32) m_box.left(), (i32) m_box.top());
+         pgraphics->offset_origin((int) m_box.left(), (int) m_box.top());
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
@@ -807,7 +807,7 @@ namespace html
          strsize iSelEnd;
          ::size_f32 size3;
          draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIp"), size3);
-         i32 maxcy = size3.cy();
+         int maxcy = size3.cy();
 
          get_text_selection(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
@@ -858,7 +858,7 @@ namespace html
          if(m_straLines.get_size() == m_sizea.get_size())
          {
 
-            for(i32 i = 0; i < m_straLines.get_size(); i++)
+            for(int i = 0; i < m_straLines.get_size(); i++)
             {
                string strLine = m_straLines[i];
                float left = i == 0 ? x : m_bound.left();
@@ -892,7 +892,7 @@ namespace html
                   //pgraphics->SetBkMode(OPAQUE);
                   pgraphics->set(pbrushBackground);
                   ::size_f32 size2 = pgraphics->get_text_extent(strExtent2);
-                  pgraphics->fill_solid_rect_dim((i32)(left + size1.cx()),(i32)y,size2.cx(),size2.cy(),crBkSel);
+                  pgraphics->fill_solid_rect_dim((int)(left + size1.cx()),(int)y,size2.cx(),size2.cy(),crBkSel);
 
                   //pgraphics->set_text_color(crSel);
                   pbrushText->create_solid(crSel);
@@ -1051,7 +1051,7 @@ namespace html
       }
 
 
-      i32 text::hit_test(html_data * pdocument, const ::point_f32 & point)
+      int text::hit_test(html_data * pdocument, const ::point_f32 & point)
       {
 
          __UNREFERENCED_PARAMETER(pdocument);
@@ -1061,7 +1061,7 @@ namespace html
          float x1;
          float x2;
 
-         for(i32 i = 0; i < m_straLines.get_size(); i++)
+         for(int i = 0; i < m_straLines.get_size(); i++)
          {
 
             x1 = i == 0 ? x : m_bound.left();
@@ -1170,7 +1170,7 @@ namespace html
       }
 
 
-      strsize text::char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 px, i32 py)
+      strsize text::char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, int py)
       {
 
          ::rectangle_i32 rectangle(m_box);
@@ -1194,7 +1194,7 @@ namespace html
 
          strsize iLen = 0;
 
-         for(i32 i = 0; i < m_straLines.get_size(); i++)
+         for(int i = 0; i < m_straLines.get_size(); i++)
          {
 
             string str = m_straLines[i];
@@ -1204,7 +1204,7 @@ namespace html
             const ::ansi_character * pszEnd = pszStart;
 
             float cur_x = i == 0 ? x : m_bound.left();
-//            i32 cur_y = y + cy;
+//            int cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy()))
             {
 

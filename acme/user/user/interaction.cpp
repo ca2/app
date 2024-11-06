@@ -1749,7 +1749,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+         ::collection::index interaction::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
          {
 
             return -1;
@@ -1765,7 +1765,7 @@ namespace acme
          }
 
 
-         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+         ::collection::index interaction::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
          {
 
             return -1;
@@ -1781,7 +1781,7 @@ namespace acme
          }
 
 
-         strsize interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
+         strsize interaction::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
          {
 
             return -1;

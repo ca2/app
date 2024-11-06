@@ -50,7 +50,7 @@ namespace data
       //void signal(::signal * psignal) override;
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void on_update_data(i32 iHint);
+      virtual void on_update_data(int iHint);
 
 
       bool is_new_data() const;

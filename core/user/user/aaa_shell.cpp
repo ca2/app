@@ -236,7 +236,7 @@ namespace user
 
       }
 
-      bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
+      bool shell::reserve_image(const image_key & imagekey, int & iImage)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -278,7 +278,7 @@ namespace user
       }
 
 
-      bool shell::contains_image(const image_key & imagekey, i32 & iImage)
+      bool shell::contains_image(const image_key & imagekey, int & iImage)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -554,7 +554,7 @@ namespace user
       }
 
 
-      i32 shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      int shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -566,10 +566,10 @@ namespace user
       }
 
 
-      i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      int shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         //i32 iImage = I32_MINIMUM;
+         //int iImage = I32_MINIMUM;
 
          if (color32_u8_opacity(crBk) != 255)
          {
@@ -599,7 +599,7 @@ namespace user
       }
 
 
-      i32 shell::get_file_image(const image_key & imagekey)
+      int shell::get_file_image(const image_key & imagekey)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -611,7 +611,7 @@ namespace user
 
          }
 
-         i32 iImage;
+         int iImage;
 
          if (m_imagemap.lookup(imagekey, iImage))
          {
@@ -636,7 +636,7 @@ namespace user
       }
 
 
-      i32 shell::_get_file_image(const image_key & imagekey)
+      int shell::_get_file_image(const image_key & imagekey)
       {
 
          {
@@ -686,7 +686,7 @@ namespace user
 
          //iThread = iThread % m_threadptra.get_size();
 
-         //i32 iImage = m_threadptra[iThread]->_get_file_image(oswindow, imagekey);
+         //int iImage = m_threadptra[iThread]->_get_file_image(oswindow, imagekey);
 
          //iThread++;
 
@@ -748,7 +748,7 @@ namespace user
       }
 
 
-      i32 shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
+      int shell::add_icon_path(::file::path path, color32_t crBk, int iImage)
       {
 
          return -1;
@@ -756,12 +756,12 @@ namespace user
       }
 
 
-      i32 shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
+      int shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
       {
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);
 
-         i32 iImage;
+         int iImage;
 
          if (reserve_image(imagekey, iImage))
          {

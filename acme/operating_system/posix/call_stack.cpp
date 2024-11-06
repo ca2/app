@@ -50,7 +50,7 @@
 //      *pszMangledName++ = '\0';
 //      *pszOffsetBeg++ = '\0';
 //
-//      i32 status;
+//      int status;
 //
 //      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 //
@@ -122,7 +122,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
         *pszOffsetBegin++ = '\0';
         *pszOffsetEnd++ = '\0';
 
-        i32 status;
+        int status;
 
         acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 

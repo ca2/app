@@ -9,7 +9,7 @@ namespace sockets_bsd
 {
 
 
-   SctpSocket::SctpSocket(i32 type) : stream_socket(h)
+   SctpSocket::SctpSocket(int type) : stream_socket(h)
       ,m_type(type)
       ,m_buf(___new char[](SCTP_BUFSIZE_READ))
    {
@@ -25,7 +25,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::Bind(const string & a,::networking::port_t point_i32)
+   int SctpSocket::Bind(const string & a,::networking::port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -41,7 +41,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::Bind(::networking::address * ad)
+   int SctpSocket::Bind(::networking::address * ad)
    {
       if (!ad.IsValid())
       {
@@ -54,7 +54,7 @@ namespace sockets_bsd
       }
       if (GetSocketId() != INVALID_SOCKET)
       {
-         i32 n = bind(GetSocketId(), ad, ad);
+         int n = bind(GetSocketId(), ad, ad);
          if (n == -1)
          {
             error() <<"SctpSocket", -1, "bind() failed";
@@ -68,7 +68,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::AddAddress(const string & a,::networking::port_t point_i32)
+   int SctpSocket::AddAddress(const string & a,::networking::port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -84,7 +84,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::AddAddress(::networking::address * ad)
+   int SctpSocket::AddAddress(::networking::address * ad)
    {
       if (!ad.IsValid())
       {
@@ -96,7 +96,7 @@ namespace sockets_bsd
          error() <<"SctpSocket", -1, "AddAddress called with invalid file descriptor";
          return -1;
       }
-      i32 n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_ADD_ADDR);
+      int n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
          error() <<"SctpSocket", -1, "sctp_bindx() failed";
@@ -105,7 +105,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::RemoveAddress(const string & a,::networking::port_t point_i32)
+   int SctpSocket::RemoveAddress(const string & a,::networking::port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -121,7 +121,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::RemoveAddress(::networking::address * ad)
+   int SctpSocket::RemoveAddress(::networking::address * ad)
    {
       if (!ad.IsValid())
       {
@@ -133,7 +133,7 @@ namespace sockets_bsd
          error() <<"SctpSocket", -1, "RemoveAddress called with invalid file descriptor";
          return -1;
       }
-      i32 n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_REM_ADDR);
+      int n = sctp_bindx(GetSocketId(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
          error() <<"SctpSocket", -1, "sctp_bindx() failed";
@@ -142,7 +142,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::open(const string & a,::networking::port_t point_i32)
+   int SctpSocket::open(const string & a,::networking::port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -158,7 +158,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::open(::networking::address * ad)
+   int SctpSocket::open(::networking::address * ad)
    {
       if (!ad.IsValid())
       {
@@ -175,7 +175,7 @@ namespace sockets_bsd
          {
             return -1;
          }
-         i32 n = connect(GetSocketId(), ad, ad);
+         int n = connect(GetSocketId(), ad, ad);
          if (n == -1)
          {
             // check error code that means a connect is in progress
@@ -200,7 +200,7 @@ namespace sockets_bsd
 
 
 #ifndef SOLARIS
-   i32 SctpSocket::AddConnection(const string & a,::networking::port_t point_i32)
+   int SctpSocket::AddConnection(const string & a,::networking::port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -216,7 +216,7 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::AddConnection(::networking::address * ad)
+   int SctpSocket::AddConnection(::networking::address * ad)
    {
       if (!ad.IsValid())
       {
@@ -228,7 +228,7 @@ namespace sockets_bsd
          error() <<"SctpSocket", -1, "AddConnection called with invalid file descriptor";
          return -1;
       }
-      i32 n = sctp_connectx(GetSocketId(), ad, ad);
+      int n = sctp_connectx(GetSocketId(), ad, ad);
       if (n == -1)
       {
          error() <<"SctpSocket", -1, "sctp_connectx() failed";
@@ -242,16 +242,16 @@ namespace sockets_bsd
 #endif
 
 
-   i32 SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *point = nullptr;
-      i32 n = sctp_getpaddrs(GetSocketId(), atom, &point);
+      int n = sctp_getpaddrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
          warning() <<"SctpSocket", -1, "sctp_getpaddrs failed";
          return n;
       }
-      for (i32 i = 0; i < n; i++)
+      for (int i = 0; i < n; i++)
       {
          vec.add(Utility::Sa2String(&point[i]));
       }
@@ -260,16 +260,16 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *point = nullptr;
-      i32 n = sctp_getladdrs(GetSocketId(), atom, &point);
+      int n = sctp_getladdrs(GetSocketId(), atom, &point);
       if (!n || n == -1)
       {
          warning() <<"SctpSocket", -1, "sctp_getladdrs failed";
          return n;
       }
-      for (i32 i = 0; i < n; i++)
+      for (int i = 0; i < n; i++)
       {
          vec.add(Utility::Sa2String(&point[i]));
       }
@@ -278,9 +278,9 @@ namespace sockets_bsd
    }
 
 
-   i32 SctpSocket::PeelOff(sctp_assoc_t atom)
+   int SctpSocket::PeelOff(sctp_assoc_t atom)
    {
-      i32 n = sctp_peeloff(GetSocketId(), atom);
+      int n = sctp_peeloff(GetSocketId(), atom);
       if (n == -1)
       {
          warning() <<"SctpSocket", -1, "PeelOff failed";
@@ -297,9 +297,9 @@ namespace sockets_bsd
    void SctpSocket::OnRead()
    {
       /*
-         i32 sctp_recvmsg(i32 sd, void * msg, memsize * len,
+         int sctp_recvmsg(int sd, void * msg, memsize * len,
             struct sockaddr * from, socklen_t * fromlen,
-            struct sctp_sndrcvinfo * sinfo, i32 * msg_flags);
+            struct sctp_sndrcvinfo * sinfo, int * msg_flags);
 
          DESCRIPTION
          sctp_recvmsg  is  a  wrapper library function that can be used to receive a message from a socket while using the advanced
@@ -316,8 +316,8 @@ namespace sockets_bsd
       struct sockaddr sa;
       socklen_t sa_len = 0;
       struct sctp_sndrcvinfo sinfo;
-      i32 flags = 0;
-      i32 n = sctp_recvmsg(GetSocketId(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
+      int flags = 0;
+      int n = sctp_recvmsg(GetSocketId(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
          fatal() <<log_this, "SctpSocket", networking_last_error(), bsd_socket_error(networking_last_error());
@@ -330,7 +330,7 @@ namespace sockets_bsd
    }
 
 
-   void SctpSocket::OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,i32 msg_flags)
+   void SctpSocket::OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags)
    {
    }
 
@@ -339,7 +339,7 @@ namespace sockets_bsd
    {
       if (is_connecting())
       {
-         i32 err = SoError();
+         int err = SoError();
 
          // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
          /// \todo add to read fd_set here
@@ -446,14 +446,14 @@ namespace sockets_bsd
       }
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
-      i32 err = SoError();
+      int err = SoError();
       fatal() <<log_this, "exception on select", err, bsd_socket_error(err);
       SetCloseAndDelete();
    }
 #endif // _WIN32
 
 
-   i32 SctpSocket::Protocol()
+   int SctpSocket::Protocol()
    {
       return IPPROTO_SCTP;
    }

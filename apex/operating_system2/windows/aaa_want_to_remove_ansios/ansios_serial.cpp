@@ -56,7 +56,7 @@ using serial::port_not_opened_exception;
 using serial::io_exception;
 
 
-::durationTimer::durationTimer (const ::u32 ::duration)
+::durationTimer::durationTimer (const unsigned int ::duration)
   : expiry(timespec_now())
 {
   int64_t tv_nsec = expiry.tv_nsec + (::duration * 1e6);
@@ -97,7 +97,7 @@ timespec
 }
 
 timespec
-timespec_from_ms (const ::u32 ::duration)
+timespec_from_ms (const unsigned int ::duration)
 {
   timespec time;
   time.tv_sec = ::duration / 1e3;
@@ -441,7 +441,7 @@ serial::serial_impl::reconfigurePort ()
   ::tcsetattr (fd_, TCSANOW, &options);
 
   // Update byte_time_ based on the ___new settings.
-  ::u32 bit_time_ns = 1e9 / baudrate_;
+  unsigned int bit_time_ns = 1e9 / baudrate_;
   byte_time_ns_ = bit_time_ns * (1 + ebytesize_ + eparity_ + estopbit_);
 
   // Compensate for the e_stop_bit_one_point_five enum being equal to int 3,
@@ -489,7 +489,7 @@ serial::serial_impl::available ()
 }
 
 bool
-serial::serial_impl::waitReadable (::u32 timeout)
+serial::serial_impl::waitReadable (unsigned int timeout)
 {
   // Setup a select call to block for serial data or a timeout
   fd_set readfds;
@@ -538,7 +538,7 @@ serial::serial_impl::read (::u328_t *buf, size_t size)
   // Calculate total timeout in ::durations t_c + (t_m * N)
   long total_timeout_ms = timeout_.read_timeout_constant;
   total_timeout_ms += timeout_.read_timeout_multiplier * static_cast<long> (size);
-  ::durationTimer total_timeout((::u32)total_timeout_ms);
+  ::durationTimer total_timeout((unsigned int)total_timeout_ms);
 
   // Pre-fill buffer with available bytes
   {
@@ -556,7 +556,7 @@ serial::serial_impl::read (::u328_t *buf, size_t size)
     }
     // Timeout for the next select is whichever is less of the remaining
     // total read timeout and the inter-unsigned char timeout.
-    ::u32 timeout = std::minimum(static_cast<::u32> (timeout_remaining_ms),
+    unsigned int timeout = std::minimum(static_cast<unsigned int> (timeout_remaining_ms),
                                 timeout_.inter_byte_timeout);
     // Wait for the device to be readable, and then attempt to read.
     if (waitReadable(timeout)) {
@@ -614,7 +614,7 @@ serial::serial_impl::write (const ::u328_t *data, size_t length)
   // Calculate total timeout in ::durations t_c + (t_m * N)
   long total_timeout_ms = timeout_.write_timeout_constant;
   total_timeout_ms += timeout_.write_timeout_multiplier * static_cast<long> (length);
-  ::durationTimer total_timeout((::u32)total_timeout_ms);
+  ::durationTimer total_timeout((unsigned int)total_timeout_ms);
 
   bool first_iteration = true;
   while (bytes_written < length) {
@@ -627,7 +627,7 @@ serial::serial_impl::write (const ::u328_t *data, size_t length)
     }
     first_iteration = false;
 
-    timespec timeout(timespec_from_ms((::u32)timeout_remaining_ms));
+    timespec timeout(timespec_from_ms((unsigned int)timeout_remaining_ms));
 
     FD_ZERO (&writefds);
     FD_SET (fd_, &writefds);

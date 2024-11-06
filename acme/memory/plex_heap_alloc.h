@@ -14,7 +14,7 @@ protected:
    friend class plex_heap_alloc_array;
 
 
-   plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize = 64);
+   plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
 
@@ -22,15 +22,15 @@ public:
 
    // // Now alloc from any pool and release to any pool (not necessaraly the same allocated at) . save four bytes per allocation
    ::heap::allocator *      m_pallocator;
-   i32                      m_iAlloc; // Now alloc from any pool
-   i32                      m_iFree; // and release to any pool
-   i32                      m_iShareCount;
-   i32                      m_iShareBound;
-   i32                      m_iAllocSize;
+   int                      m_iAlloc; // Now alloc from any pool
+   int                      m_iFree; // and release to any pool
+   int                      m_iShareCount;
+   int                      m_iShareBound;
+   int                      m_iAllocSize;
 
 
 
-   inline ::u32 GetAllocSize() { return m_iAllocSize; }
+   inline unsigned int GetAllocSize() { return m_iAllocSize; }
 
    void * Alloc();               // return a chunk of memory of nAllocSize
    void Free(void * p);          // free chunk of memory returned from Alloc
@@ -44,7 +44,7 @@ public:
    //void operator delete(void * p);
 
 
-   //plex_heap_alloc_sync * new_plex_heap_alloc_sync(memsize nAllocSize, ::u32 nBlockSize = 64);
+   //plex_heap_alloc_sync * new_plex_heap_alloc_sync(memsize nAllocSize, unsigned int nBlockSize = 64);
    //void delete_plex_heap_alloc_sync(plex_heap_alloc_sync *p);
 
 

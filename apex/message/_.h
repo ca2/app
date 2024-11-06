@@ -17,13 +17,13 @@ namespace message
 
    enum enum_prototype : int;
 
-   CLASS_DECL_APEX enum_prototype get_message_prototype(::enum_message emessage, ::u32 uCode);
+   CLASS_DECL_APEX enum_prototype get_message_prototype(::enum_message emessage, unsigned int uCode);
 
    class message;
    //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));
    //class receiver; -> oyet
 
-   ::u32 translate_to_os_message(const ::atom& atom);
+   unsigned int translate_to_os_message(const ::atom& atom);
 
 
    CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage);

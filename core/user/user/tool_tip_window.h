@@ -62,8 +62,8 @@ namespace user
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
       ::pointer<::user::interaction>   m_puserinteraction;           // window associate with this tool tip wnd
       string                     m_strTip;         // tip string
-      i32                        m_iEventTool;     // item selected
-      i32                        m_iTool;          // item where the tip will be showed
+      int                        m_iEventTool;     // item selected
+      int                        m_iTool;          // item where the tip will be showed
       ::write_text::font_pointer          m_pfont;           // tip string font
       point_i32                      m_pointOffset;       // tip point_i32 offset
       ::size_i32                     m_sizeArrow;      // arrow size_i32
@@ -80,10 +80,10 @@ namespace user
 
 
       void RemoveAllTools();
-      tool_tip_tool * GetTool(i32 iTool);
-      bool GetToolText(i32 iTool, string & str);
+      tool_tip_tool * GetTool(int iTool);
+      bool GetToolText(int iTool, string & str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(i32 iTool, ::rectangle_i32 * prectangle);
+      bool GetToolRect(int iTool, ::rectangle_i32 * prectangle);
 
       void update_drawing_objects();
       bool ShowTip();
@@ -93,13 +93,13 @@ namespace user
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
       bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const ::string & pcsz);
 
-      void ShowTip(i32 iTool, bool bForce = false);
+      void ShowTip(int iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);
       void relay_event(tool_tip_tool * puserinteraction, ::message::message * pmessage);
 
       void OnPaint();
-      void OnTimer(::u32 uEvent);
-      void OnSize(::u32 nType, i32 cx, i32 cy);
+      void OnTimer(unsigned int uEvent);
+      void OnSize(unsigned int nType, int cx, int cy);
       void on_destroy() override;
 
 

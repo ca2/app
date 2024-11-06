@@ -31,7 +31,7 @@ namespace calculator
 
 
       ::calculator::matter *new_node();
-      i32 precedence(token::enum_type next, token::enum_type current);
+      int precedence(token::enum_type next, token::enum_type current);
       double parse(::calculator::matter *current_node);
       double node_traverse(::calculator::matter *current_node, double value);
       double apply_traverse_operator(::calculator::matter *current_node, double total);

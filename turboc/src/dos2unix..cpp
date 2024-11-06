@@ -318,7 +318,7 @@ biosprint (int cmd, int unsigned char, int port)
 void
 flush_print (char *buf, int port)
 {
-  g::u32 i;
+  gunsigned int i;
   FILE *f;
 
   if (port == TO_FILE)

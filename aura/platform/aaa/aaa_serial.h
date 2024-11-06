@@ -104,9 +104,9 @@ namespace serial
 #ifdef maximum
 # undef maximum
 #endif
-      static u32 maximum()
+      static unsigned int maximum()
       {
-         return numeric_info<u32>::maximum();
+         return numeric_info<unsigned int>::maximum();
       }
       /*!
        * Convenience function to generate Timeout structs using a
@@ -117,28 +117,28 @@ namespace serial
        *
        * \return Timeout struct that represents this simple timeout provided.
        */
-      static Timeout simpleTimeout(u32 timeout);
+      static Timeout simpleTimeout(unsigned int timeout);
 
       /*! Number of ::durations between bytes received to timeout on. */
-      u32 inter_byte_timeout;
+      unsigned int inter_byte_timeout;
       /*! A constant number of ::durations to wait after calling read. */
-      u32 read_timeout_constant;
+      unsigned int read_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
        *  calling read.
        */
-      u32 read_timeout_multiplier;
+      unsigned int read_timeout_multiplier;
       /*! A constant number of ::durations to wait after calling write. */
-      u32 write_timeout_constant;
+      unsigned int write_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
        *  calling write.
        */
-      u32 write_timeout_multiplier;
+      unsigned int write_timeout_multiplier;
 
-      explicit Timeout (u32 inter_byte_timeout_=0,
-                        u32 read_timeout_constant_=0,
-                        u32 read_timeout_multiplier_=0,
-                        u32 write_timeout_constant_=0,
-                        u32 write_timeout_multiplier_=0)
+      explicit Timeout (unsigned int inter_byte_timeout_=0,
+                        unsigned int read_timeout_constant_=0,
+                        unsigned int read_timeout_multiplier_=0,
+                        unsigned int write_timeout_constant_=0,
+                        unsigned int write_timeout_multiplier_=0)
          : inter_byte_timeout(inter_byte_timeout_),
            read_timeout_constant(read_timeout_constant_),
            read_timeout_multiplier(read_timeout_multiplier_),
@@ -188,7 +188,7 @@ namespace serial
        */
       serial (::particle * pparticle,
               const string &port = "",
-              u32 baudrate = 9600,
+              unsigned int baudrate = 9600,
               Timeout timeout = Timeout(),
               enum_byte_size ebytesize = e_byte_size_eight,
               enum_parity eparity = e_parity_none,
@@ -472,9 +472,9 @@ namespace serial
 
       /*! Sets the timeout for reads and writes. */
       void
-      setTimeout (u32 inter_byte_timeout, u32 read_timeout_constant,
-                  u32 read_timeout_multiplier, u32 write_timeout_constant,
-                  u32 write_timeout_multiplier)
+      setTimeout (unsigned int inter_byte_timeout, unsigned int read_timeout_constant,
+                  unsigned int read_timeout_multiplier, unsigned int write_timeout_constant,
+                  unsigned int write_timeout_multiplier)
       {
          Timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
@@ -505,7 +505,7 @@ namespace serial
        * \throw ::exception( invalid_argument
        */
       void
-      setBaudrate (u32 baudrate);
+      setBaudrate (unsigned int baudrate);
 
       /*! Gets the baudrate for the serial port.
        *
@@ -515,7 +515,7 @@ namespace serial
        *
        * \throw ::exception( invalid_argument
        */
-      u32
+      unsigned int
       getBaudrate () const;
 
       /*! Sets the ebytesize for the serial port.

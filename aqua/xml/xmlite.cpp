@@ -16,9 +16,9 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   i32 _tcselen(i32 escape,char * srt,char * end)
+   int _tcselen(int escape,char * srt,char * end)
    {
-      i32 len = 0;
+      int len = 0;
       char * pch = srt;
       if(end == nullptr) end = (char *)sizeof(long);
       char * prev_escape = nullptr;
@@ -45,7 +45,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void _tcsecpy(char * psz,i32 escape, const char * srt, const char * end)
+   void _tcsecpy(char * psz,int escape, const char * srt, const char * end)
    {
       const char * pch = srt;
       if(end == nullptr) end = (char *)sizeof(long);
@@ -122,12 +122,12 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //i32 _tcsenicmp(const ::ansi_character * psz,const char * str,strsize len,i32 escape)
+   //int _tcsenicmp(const ::ansi_character * psz,const char * str,strsize len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
    //   char * des = (char *)str;
-   //   i32 i = 0;
+   //   int i = 0;
 
    //   while(pch && *pch && i < len)
    //   {
@@ -160,12 +160,12 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //char * _tcsenistr(const ::ansi_character * psz,const char * str,strsize len,i32 escape)
+   //char * _tcsenistr(const ::ansi_character * psz,const char * str,strsize len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
    //   //char * des = (char *)str;
-   //   //i32 i = 0;
+   //   //int i = 0;
 
    //   while(pch && *pch)
    //   {
@@ -191,7 +191,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //char * _tcseistr(const ::ansi_character * psz,const char * str,i32 escape)
+   //char * _tcseistr(const ::ansi_character * psz,const char * str,int escape)
    //{
    //   strsize len = strlen(str);
    //   return _tcsenistr(psz,str,len,escape);

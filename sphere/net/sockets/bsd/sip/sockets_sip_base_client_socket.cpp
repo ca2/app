@@ -472,7 +472,7 @@ namespace sockets
 
    void sip_base_client_socket::OnHeaderComplete()
    {
-      i32 iStatusCode = m_response.attr("http_status_code").int32();
+      int iStatusCode = m_response.attr("http_status_code").int32();
       string strMethod = m_response.attr("http_method");
       if(m_estate == state_free)
       {

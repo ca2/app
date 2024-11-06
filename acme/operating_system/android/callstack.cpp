@@ -71,7 +71,7 @@ namespace acme
    }
 
    
-   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * /* caller_address */, int iCount)
+   string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * /* caller_address */, int iCount)
    {
 
       string strCallStack;

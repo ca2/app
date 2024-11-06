@@ -18,7 +18,7 @@ CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
 
 #if MEMDLEAK
 
-::collection::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
+::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
 
 #endif
 
@@ -29,7 +29,7 @@ CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
 
 #define __output_debug_string information
 
-// turn on/off tracking for a i16 while
+// turn on/off tracking for a short while
 CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is true
@@ -75,7 +75,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 
 #define ENSURE_THROW(cond, exception)   \
-   do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
+   do { int _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
 #define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
@@ -100,7 +100,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 CLASS_DECL_ACME bool __assert_failed_line(const ::ansi_character * pszFileName, int nLine);
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, int nLine);
 
 //CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 

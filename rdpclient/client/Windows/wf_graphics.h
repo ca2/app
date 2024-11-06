@@ -22,10 +22,10 @@
 
 #include "wf_client.h"
 
-HBITMAP wf_create_dib(wfContext* wfc, ::u32 width, ::u32 height,
-                      ::u32 format, const unsigned char* data, unsigned char** pdata);
-wfBitmap* wf_image_new(wfContext* wfc, ::u32 width, ::u32 height,
-                       ::u32 format, const unsigned char* data);
+HBITMAP wf_create_dib(wfContext* wfc, unsigned int width, unsigned int height,
+                      unsigned int format, const unsigned char* data, unsigned char** pdata);
+wfBitmap* wf_image_new(wfContext* wfc, unsigned int width, unsigned int height,
+                       unsigned int format, const unsigned char* data);
 /*void wf_image_free(wfBitmap* pimage);
 
 BOOL wf_register_pointer(rdpGraphics* graphics);

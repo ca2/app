@@ -26,18 +26,18 @@ namespace draw2d_opengl
 
       void defer_update();
 
-      //void SetRectRgn(i32 x1, i32 y1, i32 x2, i32 y2);
+      //void SetRectRgn(int x1, int y1, int x2, int y2);
       //void SetRectRgn(const ::rectangle_i32 & rectangle);
-      //i32 CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, i32 nCombineMode);
-      //i32 CopyRgn(const ::draw2d::region* pRgnSrc);
+      //int CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int nCombineMode);
+      //int CopyRgn(const ::draw2d::region* pRgnSrc);
       //bool EqualRgn(const ::draw2d::region* pRgn) const;
-      i32 OffsetRgn(i32 x, i32 y);
-      //i32 OffsetRgn(const ::point_i32 & point);
+      int OffsetRgn(int x, int y);
+      //int OffsetRgn(const ::point_i32 & point);
       bool get_bounding_box(::rectangle_i32 * prectangle) const;
-      //bool PtInRegion(i32 x, i32 y) const;
+      //bool PtInRegion(int x, int y) const;
       bool contains(const ::point_i32 & point) const;
       //bool RectInRegion(const ::rectangle_i32 & rectangle) const;
-      //i32 GetRegionData(LPRGNDATA lpRgnData, i32 nCount) const;
+      //int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;
 
       virtual void destroy() override;
 

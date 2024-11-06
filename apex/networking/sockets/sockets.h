@@ -19,7 +19,7 @@ namespace sockets
    public:
 
 
-      i32                                          m_iErrorCode;
+      int                                          m_iErrorCode;
 
       sockets();
       ~sockets() override;

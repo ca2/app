@@ -18,7 +18,7 @@ namespace acme
 
 // #ifdef WINDOWS
 
-//       ::u32                   m_dwLastError;
+//       unsigned int                   m_dwLastError;
 //       bool                    m_bResourceException;
 
 // #else

@@ -59,12 +59,12 @@
 ////      m_var = uch;
 ////   }
 ////
-////   void payload_stream::write(i16 sh)
+////   void payload_stream::write(short sh)
 ////   {
 ////      m_var = sh;
 ////   }
 ////
-////   void payload_stream::write(u16 u)
+////   void payload_stream::write(unsigned short u)
 ////   {
 ////      m_var = u;
 ////   }
@@ -79,11 +79,11 @@
 ////   {
 ////      m_var = b;
 ////   }
-////   void payload_stream::write(i32 i)
+////   void payload_stream::write(int i)
 ////   {
 ////      m_var = i;
 ////   }
-////   void payload_stream::write(u32 u)
+////   void payload_stream::write(unsigned int u)
 ////   {
 ////
 ////      m_var = u;
@@ -168,8 +168,8 @@
 ////
 ////
 ////
-////   //      virtual void read(i32 & i);
-////   //      virtual void read(u32 & u);
+////   //      virtual void read(int & i);
+////   //      virtual void read(unsigned int & u);
 ////   //      virtual void read(i64 & i);
 ////   //      virtual void read(u64 & u);
 ////
@@ -180,10 +180,10 @@
 ////#ifdef WINDOWS
 ////   void payload_stream::read(unichar & wch);
 ////#endif
-////   void payload_stream::read(i16 & sh);
-////   void payload_stream::read(u16 & u);
-////   void payload_stream::read(i32 & i);
-////   void payload_stream::read(u32 & u);
+////   void payload_stream::read(short & sh);
+////   void payload_stream::read(unsigned short & u);
+////   void payload_stream::read(int & i);
+////   void payload_stream::read(unsigned int & u);
 ////   void payload_stream::read(i64 & i);
 ////   void payload_stream::read(u64 & u);
 ////#ifdef __APPLE__

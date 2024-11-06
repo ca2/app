@@ -24,7 +24,7 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 
-i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 {
 
    string_array stra;
@@ -73,7 +73,7 @@ i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessI
 }
 
 
-i32 create_process3(const char * _cmd_line, i32 * pprocessId)
+int create_process3(const char * _cmd_line, int * pprocessId)
 {
 
    char *   exec_path_name;
@@ -93,7 +93,7 @@ i32 create_process3(const char * _cmd_line, i32 * pprocessId)
 
    char *      argv[1024 + 1];
 
-   i32		argc = 0;
+   int		argc = 0;
 
    prepare_argc_argv(argc, argv, cmd_line);
 
@@ -121,7 +121,7 @@ i32 create_process3(const char * _cmd_line, i32 * pprocessId)
 }
 
 
-i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+int daemonize_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 {
 
    string_array stra;
@@ -227,7 +227,7 @@ i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, i32 * pproce
 }
 
 
-i32 create_process4(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+int create_process4(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 {
 
    string_array stra;
@@ -301,7 +301,7 @@ i32 create_process4(const ::scoped_string & scopedstrCommandLine, i32 * pprocess
 }
 
 
-CLASS_DECL_APEX i32 call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+CLASS_DECL_APEX int call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -317,7 +317,7 @@ CLASS_DECL_APEX i32 call_async(const ::file::path & path, const ::scoped_string 
 
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
    {
@@ -345,7 +345,7 @@ CLASS_DECL_APEX i32 call_async(const ::file::path & path, const ::scoped_string 
 }
 
 
-CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -361,7 +361,7 @@ CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string &
 
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
    {
@@ -650,7 +650,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 }
 
 
-CLASS_DECL_APEX bool is_shared_library_busy(u32 processid, const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array & stra)
 {
 
    return false;
@@ -666,7 +666,7 @@ CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
 }
 
 
-CLASS_DECL_APEX i32 ca2_main();
+CLASS_DECL_APEX int ca2_main();
 
 
 

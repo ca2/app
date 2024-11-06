@@ -104,7 +104,7 @@
 //#ifdef MEMDLEAK
 //
 //
-//   void * default_heap::reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * pszFile, i32 iLine)
+//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::collection::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize)
+////::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -301,11 +301,11 @@
 ////   }
 ////
 ////
-////   i32 * piUse = (i32 *)malloc(sizeof(i32) * ca);
+////   int * piUse = (int *)malloc(sizeof(int) * ca);
 ////   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
 ////   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 ////   i64 * piStack = (i64 *)malloc(sizeof(i64) * ca);
-////   i32 * piLine = (i32 *)malloc(sizeof(i32) * ca);
+////   int * piLine = (int *)malloc(sizeof(int) * ca);
 ////   i64 * piSize = (i64 *)malloc(sizeof(i64) * ca);
 ////
 ////   ::collection::index i = 0;

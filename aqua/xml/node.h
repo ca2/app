@@ -97,7 +97,7 @@ namespace xml
       string get_text(disp_option * opt = nullptr) const;
 
       //bool consume(::const_ansi_range & rangeXml, const ::ansi_character * psz);
-      //bool consume_whitespaces(::const_ansi_range & rangeXml, i32 iMinimumCount = 1);
+      //bool consume_whitespaces(::const_ansi_range & rangeXml, int iMinimumCount = 1);
 
       void LoadOtherNodes(bool* pbRet,::ansi_range & rangeXml, parse_info * pparseinfo = nullptr);
 
@@ -143,7 +143,7 @@ namespace xml
       ::collection::count erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iIndex, ::collection::count iCount = 1, ::collection::index iDepth = 1);
 
       // search node
-      node *                  rear_find( const char * name, i32 iDepth = -1);
+      node *                  rear_find( const char * name, int iDepth = -1);
       node *                  rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth = -1);
       
       ::collection::index find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
@@ -189,7 +189,7 @@ namespace xml
       bool to_row_column_v2(string_array_array & straa);
 
       // operator overloads
-      node * operator [] ( i32 i ) { return child_at(i); }
+      node * operator [] ( int i ) { return child_at(i); }
 
 
       void close();

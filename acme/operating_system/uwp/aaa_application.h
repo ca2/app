@@ -58,23 +58,23 @@
 //
 //      // Loads a cursor resource.
 //      HCURSOR LoadCursor(const char * lpszResourceName) const;
-//      HCURSOR LoadCursor(::u32 nIDResource) const;
+//      HCURSOR LoadCursor(unsigned int nIDResource) const;
 //
 //      // Loads a stock cursor resource; for for IDC_* values.
 //      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
 //
 //      // Loads an OEM cursor; for all OCR_* values.
-//      HCURSOR LoadOEMCursor(::u32 nIDCursor) const;
+//      HCURSOR LoadOEMCursor(unsigned int nIDCursor) const;
 //
 //      // Loads an icon resource.
 //      HICON LoadIcon(const char * lpszResourceName) const;
-//      HICON LoadIcon(::u32 nIDResource) const;
+//      HICON LoadIcon(unsigned int nIDResource) const;
 //
 //      // Loads an icon resource; for stock IDI_ values.
 //      HICON LoadStandardIcon(const char * lpszIconName) const;
 //
 //      // Loads an OEM icon resource; for all OIC_* values.
-//      HICON LoadOEMIcon(::u32 nIDIcon) const;
+//      HICON LoadOEMIcon(unsigned int nIDIcon) const;
 //
 //      virtual string get_version();
 //
@@ -128,10 +128,10 @@
 //
 //      /*virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 //
-//      virtual bool begin(int nPriority = THREAD_PRIORITY_NORMAL, ::u32 nStackSize = 0,
-//         ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
+//      virtual bool begin(int nPriority = THREAD_PRIORITY_NORMAL, unsigned int nStackSize = 0,
+//         unsigned int dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
-//      bool CreateThread(::u32 dwCreateFlags = 0, ::u32 nStackSize = 0,
+//      bool CreateThread(unsigned int dwCreateFlags = 0, unsigned int nStackSize = 0,
 //         LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr);
 //
 //      virtual iptr get_os_data();
@@ -142,8 +142,8 @@
 //      bool SetThreadPriority(int nPriority);
 //
 //   
-//      ::u32 SuspendThread();
-//      ::u32 ResumeThread();
+//      unsigned int SuspendThread();
+//      unsigned int ResumeThread();
 //      bool post_message(::user::interaction * pguie, const ::atom & atom, WPARAM wParam, LPARAM lParam);
 //
 //      virtual bool PreInitInstance();
@@ -156,7 +156,7 @@
 //      // thread initialization
 //      virtual bool init_application();
 //
-//      virtual ::message::e_prototype GetMessagePrototype(const ::atom & atom, ::u32 uCode);
+//      virtual ::message::e_prototype GetMessagePrototype(const ::atom & atom, unsigned int uCode);
 //
 //      // running and idle processing
 //      virtual int run();
@@ -199,7 +199,7 @@
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
-//      virtual u32 get_thread_id();
+//      virtual unsigned int get_thread_id();
 //
 //      //::pointer<::user::printer>get_printer(const ::scoped_string & scopedstrDeviceName);
 //

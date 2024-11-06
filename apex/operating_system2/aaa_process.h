@@ -3,24 +3,24 @@
 //
 //#if !defined(UNIVERSAL_WINDOWS)
 //
-//CLASS_DECL_APEX i32 call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_APEX int call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 //
-//typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
+//typedef int CALLSYNCONRETRY(int iTry,uptr dwParam);
 //
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
-//CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 //
 //#endif
 //
 //
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //
-//CLASS_DECL_APEX i32 get_current_processor_index();
+//CLASS_DECL_APEX int get_current_processor_index();
 //
-//CLASS_DECL_APEX i32 get_current_process_maximum_affinity();
+//CLASS_DECL_APEX int get_current_process_maximum_affinity();
 //
-//CLASS_DECL_APEX i32 get_current_process_affinity_order();
+//CLASS_DECL_APEX int get_current_process_affinity_order();
 //
 //#endif
 //
@@ -65,13 +65,13 @@
 //#endif
 //
 //#ifndef UNIVERSAL_WINDOWS
-//CLASS_DECL_APEX bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_APEX bool process_contains_module(string & strImage, unsigned int processID, const ::scoped_string & scopedstrLibrary);
 //CLASS_DECL_APEX void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
 //#endif
 //
 //
 //
-//CLASS_DECL_APEX bool is_shared_library_busy(u32 processid, const string_array & stra);
+//CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array & stra);
 //CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra);
 //
 //
@@ -94,7 +94,7 @@
 //CLASS_DECL_APEX string executable_title_from_appid(string str);
 //
 //
-//CLASS_DECL_APEX ::u32 get_current_process_id();
+//CLASS_DECL_APEX unsigned int get_current_process_id();
 //
 //
 //

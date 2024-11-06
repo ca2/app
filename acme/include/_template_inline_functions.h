@@ -122,7 +122,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
 }
 //::pair<int, int> ia;
-//inline ::u64 make64_from32(::u32 l, ::u32 h)
+//inline ::u64 make64_from32(unsigned int l, unsigned int h)
 //{
 //
 //   return ((::u64)l) | (((::u64)h) << 32);
@@ -380,14 +380,14 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 //
-//inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+//inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+//inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
@@ -395,7 +395,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+//inline int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -430,7 +430,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+//inline unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -450,7 +450,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //   }
 //
-//   return (::u32) ul;
+//   return (unsigned int) ul;
 //
 //#endif
 //

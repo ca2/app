@@ -38,7 +38,7 @@
 
 
 #ifdef _WIN32
-typedef ::u32 itask_t;
+typedef unsigned int itask_t;
 #else
 typedef pthread_t itask_t;
 #endif
@@ -105,7 +105,7 @@ struct ca2rdp_context :
 
 
 #ifdef _WIN32
-   ::u32 mainThreadId;
+   unsigned int mainThreadId;
 #else
    pthread_t mainThreadId;
 #endif
@@ -126,8 +126,8 @@ struct ca2rdp_pointer
 {
    rdpPointer pointer;
    ::image::cursor * m_pcursor;
-   ::u32 xhot;
-   ::u32 yhot;
+   unsigned int xhot;
+   unsigned int yhot;
 };
 typedef struct ca2rdp_pointer ca2rdpPointer;
 

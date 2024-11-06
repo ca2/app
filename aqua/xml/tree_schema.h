@@ -21,8 +21,8 @@ namespace xml
       tree_schema();
       virtual ~tree_schema();
 
-      string get_node_name(i32 iNameIndex);
-      void set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrNodeName);
+      string get_node_name(int iNameIndex);
+      void set_node_name(int iNameIndex, const ::scoped_string & scopedstrNodeName);
 
 
 

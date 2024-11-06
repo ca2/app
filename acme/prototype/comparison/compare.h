@@ -65,7 +65,7 @@ namespace comparison
    template < >
    inline bool lt(unsigned long u, long i)
    {
-      return i < 0 ? false : u < (::u32) i;
+      return i < 0 ? false : u < (unsigned int) i;
    }
 
 
@@ -248,16 +248,16 @@ template < typename TYPE >
 [[nodiscard]]constexpr auto u16_constrained(TYPE t)
 {
 
-   return (::u16) constrain(t, 0, UINT16_MAX);
+   return (unsigned short) constrain(t, 0, UINT16_MAX);
 
 }
 
 
 template < typename TYPE >
-[[nodiscard]]constexpr ::u32 u32_constrained(TYPE t)
+[[nodiscard]]constexpr unsigned int u32_constrained(TYPE t)
 {
 
-   return (::u32) constrain(t, 0, UINT32_MAX);
+   return (unsigned int) constrain(t, 0, UINT32_MAX);
 
 }
 

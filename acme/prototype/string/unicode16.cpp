@@ -195,7 +195,7 @@ strsize ansi_to_wd16_len_len(const ::ansi_character * psz, strsize srclen)
 //   while (input_size != 0)
 //   {
 //
-//      u32 cp = *codepoints++;
+//      unsigned int cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -239,7 +239,7 @@ strsize ansi_to_wd16_len_len(const ::ansi_character * psz, strsize srclen)
 //   while (input_size != 0)
 //   {
 //
-//      u32 cp = *codepoints++;
+//      unsigned int cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -537,14 +537,14 @@ extern "C"
 
 
 // on Windows, wchar_t is 2 bytes, suitable for UTF-16
-//std::wstring Utf32ToUtf16(const std::vector<u32> &codepoints)
+//std::wstring Utf32ToUtf16(const std::vector<unsigned int> &codepoints)
 //{
 //   std::wstring result;
 //   int len = 0;
 //
-//   for (std::vector<u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
-//      u32 cp = *iter;
+//      unsigned int cp = *iter;
 //      if (cp < 0x10000) {
 //         ++len;
 //      }
@@ -562,9 +562,9 @@ extern "C"
 //      result.resize(len);
 //      len = 0;
 //
-//      for (std::vector<u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
-//         u32 cp = *iter;
+//         unsigned int cp = *iter;
 //         if (cp < 0x10000) {
 //            result[len++] = static_cast<wchar_t>(cp);
 //         }
@@ -644,7 +644,7 @@ extern "C"
 //{
 //   //unsigned short * pwsz = (unsigned short *)pwszParam;
 //   strsize c = 0;
-//   i32 n;
+//   int n;
 //   if (srclen < 0)
 //   {
 //
@@ -740,16 +740,16 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      ::wd32_character u32;
+      ::wd32_character unsigned int;
 
-      auto used_len = ansi_to_wd32_char(&u32, psz, srclen);
+      auto used_len = ansi_to_wd32_char(&unsigned int, psz, srclen);
 
-      if(u32 & I32_MINIMUM || used_len < 0)
+      if(unsigned int & I32_MINIMUM || used_len < 0)
       {
 
          used_len = 1;
 
-         u32 = 0xfffd;
+         unsigned int = 0xfffd;
 
       }
 
@@ -757,7 +757,7 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
 
       srclen -= used_len;
 
-      auto u16len = wd32_to_wd16_char(pwsz, u32);
+      auto u16len = wd32_to_wd16_char(pwsz, unsigned int);
 
       if(u16len < 0)
       {
@@ -811,7 +811,7 @@ strsize utf16_to_utf16_len(const ::wd16_character* codepoints, strsize input_siz
    while (input_size != 0)
    {
 
-      u32 cp = *codepoints++;
+      unsigned int cp = *codepoints++;
 
       input_size--;
 
@@ -855,7 +855,7 @@ strsize utf16_to_utf16(::wd16_character * p, const ::wd16_character* codepoints,
    while (input_size != 0)
    {
 
-      u32 cp = *codepoints++;
+      unsigned int cp = *codepoints++;
 
       input_size--;
 

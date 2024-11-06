@@ -22,7 +22,7 @@ protected:
 
   string *baseLocation;
   unsigned char *stream;
-  i32 len;
+  int len;
 };
 
 #endif

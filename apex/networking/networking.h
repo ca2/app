@@ -130,12 +130,12 @@ namespace networking
 
       virtual address_pointer create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
       virtual address_pointer create_ip4_address(int iIp, port_t port = 0);
-      //virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
-      //virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
+      //virtual bool convert(struct ::in_addr& l, const string& str, int ai_flags = 0);
+      //virtual bool convert(struct ::in6_addr& l, const string& str, int ai_flags = 0);
       //virtual bool convert(string& str, const struct ::in_addr& ip);
       //virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
 
-      //virtual i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
+      //virtual int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       //virtual void ResolveLocal();
 
@@ -161,11 +161,11 @@ namespace networking
       
       virtual string ip_reverse(const string & number);
 
-      virtual bool u2service(const string& name, i32& service, i32 ai_flags);
+      virtual bool u2service(const string& name, int& service, int ai_flags);
 
-      virtual i32 service_port(const string& str, i32 flags = 0);
+      virtual int service_port(const string& str, int flags = 0);
 
-      virtual string  service_name(i32 iPort, i32 flags = 0);
+      virtual string  service_name(int iPort, int flags = 0);
 
 
       virtual string canonical_name(::networking::address * address);
@@ -174,7 +174,7 @@ namespace networking
 
       virtual string reverse_name(::networking::address * address);
 
-      //virtual i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
+      //virtual int _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
 
       virtual ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
 

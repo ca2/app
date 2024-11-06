@@ -47,7 +47,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 
 
 
-//inline i32 unicode_index(const char *& input, strsize * psrclen)
+//inline int unicode_index(const char *& input, strsize * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -64,9 +64,9 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   }
 //
-//   ::wd32_character u32;
+//   ::wd32_character unsigned int;
 //
-//   strsize used_len = ansi_to_wd32_char(&u32, input, *psrclen);
+//   strsize used_len = ansi_to_wd32_char(&unsigned int, input, *psrclen);
 //
 //   if (used_len < 0)
 //   {
@@ -79,12 +79,12 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   *psrclen -= used_len;
 //
-//   return u32;
+//   return unsigned int;
 //
 //}
 //
 //
-//inline i32 unicode_index(const ::wd16_character *& input, strsize * psrclen)
+//inline int unicode_index(const ::wd16_character *& input, strsize * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -103,9 +103,9 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //
 //   int i = *input;
 //
-//   ::wd32_character u32;
+//   ::wd32_character unsigned int;
 //
-//   strsize used_len = wd16_to_wd32_char(&u32, input, *psrclen);
+//   strsize used_len = wd16_to_wd32_char(&unsigned int, input, *psrclen);
 //
 //   input += used_len;
 //
@@ -116,7 +116,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 //}
 
 
-inline i32 unicode_index_length(const ::wd32_character *& input, strsize * psrclen)
+inline int unicode_index_length(const ::wd32_character *& input, strsize * psrclen)
 {
 
    if (*input == 0)
@@ -144,7 +144,7 @@ inline i32 unicode_index_length(const ::wd32_character *& input, strsize * psrcl
 }
 
 
-inline i32 unicode_index_length(const ::ansi_character * pszUtf8, int & len)
+inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 {
 
    if (is_empty(pszUtf8))
@@ -156,7 +156,7 @@ inline i32 unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 
    }
 
-   i32 ch = 0;
+   int ch = 0;
 
    unsigned char c;
 
@@ -193,14 +193,14 @@ inline i32 unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 }
 
 
-inline i32 consume_unicode_index(const ::ansi_character *& pszUtf8)
+inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
 {
 
    int len = 0;
 
-   auto i32 = unicode_index_length(pszUtf8, len);
+   auto int = unicode_index_length(pszUtf8, len);
 
-   if(i32 < 0)
+   if(int < 0)
    {
 
       throw_parsing_exception("end of string or not valid character to parse");
@@ -209,12 +209,12 @@ inline i32 consume_unicode_index(const ::ansi_character *& pszUtf8)
 
    pszUtf8 += len;
 
-   return i32;
+   return int;
 
 }
 
 
-inline i32 unicode_index_length(const ::wd16_character * input, i32 & len)
+inline int unicode_index_length(const ::wd16_character * input, int & len)
 {
 
    if (input[0] == 0)
@@ -267,7 +267,7 @@ inline i32 unicode_index_length(const ::wd16_character * input, i32 & len)
 }
 
 
-inline bool is_legal_unicode_index(i32 iUnicodeIndex)
+inline bool is_legal_unicode_index(int iUnicodeIndex)
 {
 
    return iUnicodeIndex >= 0 && iUnicodeIndex < 65536 ? true : false;
@@ -281,7 +281,7 @@ inline int unicode_to_lower_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   ::u32 c1 = CHAR_PROP(i);
+   unsigned int c1 = CHAR_PROP(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (::wd32_character)i;
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return (::wd32_character)(i + 1);
    return ::wd32_character(i - (c1 >> 16));
@@ -292,7 +292,7 @@ inline int unicode_to_upper_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   u32 c1 = CHAR_PROP(i);
+   unsigned int c1 = CHAR_PROP(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return ::wd32_character(i - 1);
    return ::wd32_character(i - (c1 >> 16));
@@ -356,7 +356,7 @@ inline int unicode_to_title_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   u32 c1 = CHAR_PROP(i);
+   unsigned int c1 = CHAR_PROP(i);
    if (TITLE_CASE(c1))  // titlecase exists
    {
       if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i + 1);
@@ -370,11 +370,11 @@ inline int unicode_to_title_case(int i)
 }
 
 
-inline i32 unicode_to_numeric_value(i32 i, float * f)
+inline int unicode_to_numeric_value(int i, float * f)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   u32 c1 = CHAR_PROP(i);
+   unsigned int c1 = CHAR_PROP(i);
    if (!NUMBER(c1)) return false;
    *f = CHAR_PROP2(i);
    return true;
@@ -409,7 +409,7 @@ inline bool unicode_is_letter(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
+   unsigned int c1 = CHAR_CATEGORY(CHAR_PROP(i));
    return ((((1 << CHAR_CATEGORY_Lu) |
       (1 << CHAR_CATEGORY_Ll) |
       (1 << CHAR_CATEGORY_Lt) |
@@ -423,7 +423,7 @@ inline bool unicode_is_letter_or_digit(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
+   unsigned int c1 = CHAR_CATEGORY(CHAR_PROP(i));
    return ((((1 << CHAR_CATEGORY_Lu) |
       (1 << CHAR_CATEGORY_Ll) |
       (1 << CHAR_CATEGORY_Lt) |
@@ -434,7 +434,7 @@ inline bool unicode_is_letter_or_digit(int i)
 }
 
 
-inline bool unicode_is_digit(i32 i)
+inline bool unicode_is_digit(int i)
 {
 
    if (!is_legal_unicode_index(i))
@@ -445,7 +445,7 @@ inline bool unicode_is_digit(i32 i)
 }
 
 
-inline bool unicode_is_assigned(i32 i)
+inline bool unicode_is_assigned(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -453,7 +453,7 @@ inline bool unicode_is_assigned(i32 i)
 }
 
 
-inline bool unicode_is_space_char(i32 i)
+inline bool unicode_is_space_char(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -464,7 +464,7 @@ inline bool unicode_is_space_char(i32 i)
 }
 
 
-inline bool unicode_is_whitespace(i32 i)
+inline bool unicode_is_whitespace(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -483,7 +483,7 @@ inline bool unicode_is_whitespace(i32 i)
 }
 
 
-inline bool unicode_is_number(i32 i)
+inline bool unicode_is_number(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -491,7 +491,7 @@ inline bool unicode_is_number(i32 i)
 }
 
 
-inline ECharCategory unicode_get_category(i32 i)
+inline ECharCategory unicode_get_category(int i)
 {
    if (!is_legal_unicode_index(i))
       return CHAR_CATEGORY_LAST;
@@ -499,7 +499,7 @@ inline ECharCategory unicode_get_category(i32 i)
 }
 
 
-inline i32 unicode_get_combining_class(i32 i)
+inline int unicode_get_combining_class(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
@@ -507,7 +507,7 @@ inline i32 unicode_get_combining_class(i32 i)
 }
 
 
-inline bool unicode_is_mirrored(i32 i)
+inline bool unicode_is_mirrored(int i)
 {
 
    if (!is_legal_unicode_index(i))
@@ -518,7 +518,7 @@ inline bool unicode_is_mirrored(i32 i)
 }
 
 
-inline i32 unicode_size_of_tables()
+inline int unicode_size_of_tables()
 {
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
 }
@@ -883,7 +883,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 }
 
 
-//inline i32 unicode_index(const ::ansi_character *& pszUtf8)
+//inline int unicode_index(const ::ansi_character *& pszUtf8)
 //{
 //
 //   if (*pszUtf8 == '\0')
@@ -893,7 +893,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 //
 //   }
 //
-//   i32 ch = 0;
+//   int ch = 0;
 //
 //   unsigned char c;
 //
@@ -928,7 +928,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 //}
 //
 //
-//inline i32 unicode_index(const ::wd16_character *& input)
+//inline int unicode_index(const ::wd16_character *& input)
 //{
 //
 //   if (input[0] == 0)
@@ -979,7 +979,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 //}
 
 
-inline i32 ansichar_unicode_len(::wd32_character i)
+inline int ansichar_unicode_len(::wd32_character i)
 {
    if (i < 0)
    {
@@ -1197,7 +1197,7 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
 
 
-inline i32 unicode_len(const ::ansi_character * pszUtf8)
+inline int unicode_len(const ::ansi_character * pszUtf8)
 {
 
    int len;

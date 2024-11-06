@@ -102,5 +102,5 @@ private:
 
    enum { HashValues = HashBytes / 4 };
    /// hash, stored as integers
-   ::u32 m_hash[HashValues];
+   unsigned int m_hash[HashValues];
 };

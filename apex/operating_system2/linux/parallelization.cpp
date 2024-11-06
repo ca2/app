@@ -15,7 +15,7 @@
    CLASS_DECL_APEX bool set_process_priority(::enum_priority epriority)
    {
 
-      i32 iPolicy = SCHED_OTHER;
+      int iPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 

@@ -156,7 +156,7 @@ namespace file
       struct PROCESS_INFO_t
       {
          string csProcess;
-         u32 dwImageListIndex;
+         unsigned int dwImageListIndex;
       };
 
 
@@ -228,7 +228,7 @@ namespace file
       //#endif
 
          /*
-         string exception::get_friendly_message(P::u32 pnHelpContext) const
+         string exception::get_friendly_message(Punsigned int pnHelpContext) const
          {
 
          string str;
@@ -244,7 +244,7 @@ namespace file
 
 
     /*
-      bool exception::get_error_message(string & str, P::u32 pnHelpContext) const
+      bool exception::get_error_message(string & str, Punsigned int pnHelpContext) const
       {
 
       // if (pnHelpContext != nullptr)
@@ -442,7 +442,7 @@ namespace file
 //   }
 
 
-   //void throw ::file::exception(errno_status(errno), (i32 nErrno, const ::file::path & path /* = nullptr */)
+   //void throw ::file::exception(errno_status(errno), (int nErrno, const ::file::path & path /* = nullptr */)
 
    //{
 

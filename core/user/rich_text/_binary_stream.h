@@ -20,8 +20,8 @@
    stream << format.m_dFontSize;
    stream << format.m_colorForeground.m_u32;
    stream << format.m_colorBackground.m_u32;
-   stream << (i32)format.m_escript;
-   stream << (i32)format.m_elineheight;
+   stream << (int)format.m_escript;
+   stream << (int)format.m_elineheight;
 
    return stream;
 
@@ -38,8 +38,8 @@
    stream >> format.m_dFontSize;
    stream >> format.m_colorForeground.m_u32;
    stream >> format.m_colorBackground.m_u32;
-   stream >> (i32 &)format.m_escript;
-   stream >> (i32 &)format.m_elineheight;
+   stream >> (int &)format.m_escript;
+   stream >> (int &)format.m_elineheight;
 
    return stream;
 
@@ -52,7 +52,7 @@
 
    property_set set;
 
-   set["align"] = (i32)span.m_ealignNewLine;
+   set["align"] = (int)span.m_ealignNewLine;
 
    set["text"] = span.m_str;
 

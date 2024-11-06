@@ -441,7 +441,7 @@ namespace draw2d_cairo
 
       cairo_move_to(pgraphics, pitem->m_polygon[0].x(), pitem->m_polygon[0].y());
 
-      for(i32 i = 1; i < pitem->m_polygon.size(); i++)
+      for(int i = 1; i < pitem->m_polygon.size(); i++)
       {
 
          cairo_line_to(pgraphics, pitem->m_polygon[i].x(), pitem->m_polygon[i].y());
@@ -467,9 +467,9 @@ namespace draw2d_cairo
 
       }
 
-      i32 n = 0;
+      int n = 0;
 
-      for(i32 i = 0; i < pitem->m_polypolygon.size(); i++)
+      for(int i = 0; i < pitem->m_polypolygon.size(); i++)
       {
 
          auto ppolygon = pitem->m_polypolygon[i];
@@ -483,7 +483,7 @@ namespace draw2d_cairo
 
             n++;
 
-            for(i32 j = 1; j < polygon.size(); j++)
+            for(int j = 1; j < polygon.size(); j++)
             {
 
                cairo_line_to(pgraphics, polygon[n].x(), polygon[n].y());
@@ -839,7 +839,7 @@ namespace draw2d_cairo
 
    //   cairo_move_to(pgraphics, m_lppoints[0].x(), m_lppoints[0].y());
 
-   //   for(i32 i = 1; i < m_nCount; i++)
+   //   for(int i = 1; i < m_nCount; i++)
    //   {
 
    //      cairo_line_to(pgraphics, m_lppoints[i].x(), m_lppoints[i].y());

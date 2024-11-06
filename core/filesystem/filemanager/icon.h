@@ -13,7 +13,7 @@ namespace filemanager
    public:
 
 
-      i32         m_iIcon;
+      int         m_iIcon;
       string      m_strPath;
       string      m_strExtension;
 
@@ -22,7 +22,7 @@ namespace filemanager
       icon_key(const icon_key & key);
 
 
-      operator u32 () const
+      operator unsigned int () const
       {
          return m_iIcon;
       }
@@ -38,7 +38,7 @@ namespace filemanager
    public:
 
 
-      i32                 m_iImage;
+      int                 m_iImage;
       ::image::icon *        m_picon;
 
       icon();

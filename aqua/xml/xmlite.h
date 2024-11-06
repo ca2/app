@@ -40,7 +40,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //CLASS_DECL_AQUA char * _tcsechr(::const_ansi_range & rangeXml, i32 ch, i32 escape );
+   //CLASS_DECL_AQUA char * _tcsechr(::const_ansi_range & rangeXml, int ch, int escape );
 
    //========================================================
    // Name   : _tcselen
@@ -51,7 +51,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA i32 _tcselen( i32 escape, char * srt, char * end = nullptr ) ;
+   CLASS_DECL_AQUA int _tcselen( int escape, char * srt, char * end = nullptr ) ;
 
    //========================================================
    // Name   : _tcsecpy
@@ -62,7 +62,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA void _tcsecpy(char * psz, i32 escape, const char * srt, const char * end = nullptr);
+   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const char * srt, const char * end = nullptr);
    //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, const ::const_ansi_range & range);
 
    
@@ -75,7 +75,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA i32 _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
+   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, int escape );
 
    ////========================================================
    //// Name   : _tcsenistr
@@ -86,7 +86,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
+   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, int escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -97,7 +97,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const char * str, i32 escape );
+   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const char * str, int escape );
 
    //========================================================
    // Name   : _SetString
@@ -108,7 +108,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(::const_ansi_range range, string* ps, bool trim, i32 escape);
+   inline void _SetString(::const_ansi_range range, string* ps, bool trim, int escape);
    inline void _SetString(::const_ansi_range range, string* ps,bool trim); // no escape
    inline void _SetString(::const_ansi_range range, string* ps); // no trim, no escape
 
@@ -143,7 +143,7 @@ namespace xml
    }
 
 
-   void _defer_escape(string * ps, ::const_ansi_range & range, i32 escape)
+   void _defer_escape(string * ps, ::const_ansi_range & range, int escape)
    {
 
       if (escape)
@@ -174,7 +174,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(::const_ansi_range range,string* ps,bool trim,i32 escape)
+   inline void _SetString(::const_ansi_range range,string* ps,bool trim,int escape)
    {
 
       if(trim)
@@ -230,7 +230,7 @@ namespace xml
 namespace xml
 {
 
-//   inline i32 ch_ansi_char_isspace(uchar uch)
+//   inline int ch_ansi_char_isspace(uchar uch)
 //   {
 //      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
 //   }

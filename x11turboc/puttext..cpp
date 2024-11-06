@@ -74,7 +74,7 @@ puttext (int left, int top, int right, int bottom, void *source)
     goto Error;
   // Now we have all of the data, but we must translate it from the 
   // form provided by ncurses to the form needed in Turbo C.  
-  TurboData = (i8 *) source;
+  TurboData = (char *) source;
   for (Row = top, i = 0; Row <= bottom; Row++, i++)
     for (Col = left, j = 0; Col <= right; Col++, j++)
       {

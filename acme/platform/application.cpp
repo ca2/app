@@ -1197,7 +1197,7 @@ namespace platform
 
          auto ptextcontext = psession->text_context();
 
-         for (i32 i = 0; i < ptextcontext->localeschema().m_straLocale.get_count(); i++)
+         for (int i = 0; i < ptextcontext->localeschema().m_straLocale.get_count(); i++)
          {
 
             auto strLocale = ptextcontext->localeschema().m_straLocale[i];
@@ -1394,7 +1394,7 @@ namespace platform
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
       //
-      //::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_itask(), true);
+      //::AttachThreadInput(GetCurrentThreadId(), (unsigned int)psystem->get_itask(), true);
       //
       //}
       //

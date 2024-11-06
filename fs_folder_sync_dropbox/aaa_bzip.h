@@ -33,12 +33,12 @@ void main()
 char plainText[]="Plain text here";
 CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
 LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-i32 len=gzip.Length;      // Length is length of zipped data;
+int len=gzip.Length;      // Length is length of zipped data;
 
 CGZIP2A plain(pgzip,len);  // do decompressing here
 
 char *pplain=plain.psz;    // psz is plain data pointer
-i32  aLen=plain.Length;    // Length is length of unzipped data.
+int  aLen=plain.Length;    // Length is length of unzipped data.
 }
 //////////////////////////////////////////////////////////////////////////////
 */

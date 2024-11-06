@@ -74,7 +74,7 @@ namespace android
 
       rStatus.m_attribute = 0;
 
-      // get just the low ::u32 of the file size
+      // get just the low unsigned int of the file size
       //ASSERT(findFileData.nFileSizeHigh == 0);
       //rStatus.m_size = (int)findFileData.nFileSizeLow;
 
@@ -102,11 +102,11 @@ namespace android
    file::file()
    {
 
-      m_iFile = (::u32) hFileNull;
+      m_iFile = (unsigned int) hFileNull;
 
    }
 
-   //file::file(::particle * pparticle, i32 hFile) :
+   //file::file(::particle * pparticle, int hFile) :
    //   ::object(pparticle)
    //{
 
@@ -114,7 +114,7 @@ namespace android
 
    //}
 
-   //file::file(::particle * pparticle, const char * lpszFileName, ::u32 nOpenFlags) :
+   //file::file(::particle * pparticle, const char * lpszFileName, unsigned int nOpenFlags) :
    //   ::object(pparticle)
    //{
 
@@ -138,13 +138,13 @@ namespace android
    //   ASSERT_VALID(this);
    //   ASSERT(m_iFile != hFileNull);
 
-   //   i32 iNew = dup(m_iFile);
+   //   int iNew = dup(m_iFile);
 
    //   if(iNew == -1)
    //      return nullptr;
 
    //   file* pFile = aaa_primitive_new file(get_app(), iNew);
-   //   pFile->m_iFile = (::u32)iNew;
+   //   pFile->m_iFile = (unsigned int)iNew;
    //   ASSERT(pFile->m_iFile != hFileNull);
    //   return pFile;
    //}
@@ -172,7 +172,7 @@ namespace android
 
       }
 
-      m_iFile = (::u32)hFileNull;
+      m_iFile = (unsigned int)hFileNull;
       m_strFileName.empty();
 
       m_strFileName     = lpszFileName;
@@ -182,7 +182,7 @@ namespace android
 
       // ::collection::map read/write mode
       ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
-      ::u32 dwFlags =  0;
+      unsigned int dwFlags =  0;
       switch (eopen & 3)
       {
       case ::file::e_open_read:
@@ -200,7 +200,7 @@ namespace android
       }
 
       // ::collection::map share mode
-      //::u32 dwShareMode = 0;
+      //unsigned int dwShareMode = 0;
       switch (eopen & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
@@ -227,14 +227,14 @@ namespace android
             dwFlags |= O_TRUNC;
       }
 
-      ::u32 dwPermission = 0;
+      unsigned int dwPermission = 0;
 
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
 
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
-      i32 hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+      int hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       if(hFile == -1)
       {
 
@@ -300,7 +300,7 @@ namespace android
             }
          }
 
-         ::u32 dwLastError = ::get_last_error();
+         unsigned int dwLastError = ::get_last_error();
 
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
@@ -358,7 +358,7 @@ namespace android
             {*/
 
 
-            ::u32 dwLastError = ::get_last_error();
+            unsigned int dwLastError = ::get_last_error();
             //return __allocate ::file::exception(::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags);
             return ::os_error_to_status(dwLastError);
 
@@ -368,7 +368,7 @@ namespace android
 
       }
 
-      m_iFile = (i32)hFile;
+      m_iFile = (int)hFile;
 
       return ::success;
 
@@ -392,10 +392,10 @@ namespace android
       while(nCount > 0)
       {
          readNow = (size_t) minimum(I32_MAXIMUM, nCount);
-         i32 iRead = ::read(m_iFile, &((unsigned char *)lpBuf)[pos], readNow);
+         int iRead = ::read(m_iFile, &((unsigned char *)lpBuf)[pos], readNow);
          if(iRead < 0)
          {
-            i32 iError = errno;
+            int iError = errno;
             if(iError == EAGAIN)
             {
 
@@ -429,7 +429,7 @@ namespace android
       memsize pos = 0;
       while(nCount > 0)
       {
-         i32 iWrite = ::write(m_iFile, &((const unsigned char *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
+         int iWrite = ::write(m_iFile, &((const unsigned char *)lpBuf)[pos], (size_t) minimum(I32_MAXIMUM, nCount));
          if(iWrite < 0)
             ::file::throw_os_error( (int)::get_last_error(), m_strFileName);
          nCount -= iWrite;
@@ -459,7 +459,7 @@ namespace android
       int lLoOffset = lOff & 0xffffffff;
       //int lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
+      filesize posNew = ::lseek64(m_iFile, lLoOffset, (unsigned int)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          ::file::throw_os_error(::os_error_to_status((int)::get_last_error()));
@@ -512,7 +512,7 @@ namespace android
       if (m_iFile != hFileNull)
          bError = ::close(m_iFile) == -1;
 
-      m_iFile = (::u32) hFileNull;
+      m_iFile = (unsigned int) hFileNull;
       m_strFileName.empty();
 
       if (bError)
@@ -527,7 +527,7 @@ namespace android
    //   {
    //      // close but ignore errors
    //      ::close(m_iFile);
-   //      m_iFile = (::u32)hFileNull;
+   //      m_iFile = (unsigned int)hFileNull;
    //   }
    //   m_strFileName.empty();
    //}
@@ -584,7 +584,7 @@ namespace android
    }
 
    //// file does not support direct buffering (CMemFile does)
-   //u64 file::GetBufferPtr(::u32 nCommand, u64 /*nCount*/,
+   //u64 file::GetBufferPtr(unsigned int nCommand, u64 /*nCount*/,
    //                            void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
@@ -625,7 +625,7 @@ namespace android
    {
       ::file::file::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (::u32)m_iFile;
+      dumpcontext << "with handle " << (unsigned int)m_iFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
@@ -680,7 +680,7 @@ namespace android
    //      vfxThrowFileexception(file_exception::os_error_to_exception(lOsError), lOsError, lpszFileName);
    //}
 
-   //void PASCAL file_exception::ThrowErrno(::particle * pparticle, i32 nErrno, const char * lpszFileName /* = nullptr */)
+   //void PASCAL file_exception::ThrowErrno(::particle * pparticle, int nErrno, const char * lpszFileName /* = nullptr */)
    //{
    //   if (nErrno != 0)
    //      vfxThrowFileexception(file_exception::errno_status(nErrno), errno, lpszFileName);
@@ -803,7 +803,7 @@ bool CLASS_DECL_APEX windows_full_path(wstring & wstrFullPath, const wstring & w
 namespace android
 {
 
-   void PASCAL file_errno_to_exception(i32 nErrno)
+   void PASCAL file_errno_to_exception(int nErrno)
    {
       switch(nErrno)
       {

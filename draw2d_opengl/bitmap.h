@@ -167,23 +167,23 @@ namespace draw2d_opengl
 
 
       bool LoadBitmap(const ::string & lpszResourceName);
-      bool LoadBitmap(::u32 nIDResource);
-      bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
-      bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 stride);
+      bool LoadBitmap(unsigned int nIDResource);
+      bool LoadOEMBitmap(unsigned int nIDBitmap); // for OBM_/OCR_/OIC_
+      bool CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, unsigned int nPlanes, unsigned int nBitcount, const void * lpBits, int stride);
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
-      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
-      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
+      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
+      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
       
       void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan) override;
-      void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage) override;
+      void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void* pjBits, unsigned int iUsage) override;
 
 
-      i32 GetBitmap(BITMAP* pBitMap);
+      int GetBitmap(BITMAP* pBitMap);
 
 
-      u32 SetBitmapBits(u32 dwCount, const void * lpBits);
-      u32 GetBitmapBits(u32 dwCount, LPVOID lpBits) const;
-      ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);
+      unsigned int SetBitmapBits(unsigned int dwCount, const void * lpBits);
+      unsigned int GetBitmapBits(unsigned int dwCount, LPVOID lpBits) const;
+      ::size_i32 SetBitmapDimension(int nWidth, int nHeight);
       ::size_i32 GetBitmapDimension() const;
 
       // void dump(dump_context & dumpcontext) const override;

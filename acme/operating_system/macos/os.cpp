@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_ACME bool _istlead(i32 ch)
+CLASS_DECL_ACME bool _istlead(int ch)
 {
 
    return false;

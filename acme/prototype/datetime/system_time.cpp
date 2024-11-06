@@ -11,7 +11,7 @@
 //{
 //
 //
-//   void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
+//   void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
 //   {
 //
 //      throw ::interface_only();

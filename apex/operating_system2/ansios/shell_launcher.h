@@ -20,13 +20,13 @@ namespace ansios
 
 
    bool        m_bOk;
-   i32         m_dwResult;
-   i32         m_pid;
+   int         m_dwResult;
+   int         m_pid;
 
 protected:
 
 
-   i32         m_iMode;
+   int         m_iMode;
 
 
 public:

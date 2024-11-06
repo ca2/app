@@ -58,7 +58,7 @@ namespace ios
 
       //call the virtual callback function in a loop
 
-      i32 nAdapter = 0;
+      int nAdapter = 0;
 
       string str;
 

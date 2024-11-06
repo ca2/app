@@ -60,7 +60,7 @@ namespace file
 
 
 
-   enum fmtflags : ::u32
+   enum fmtflags : unsigned int
    {
       nofmtflags = 0,
       boolalpha = 0x00000001,

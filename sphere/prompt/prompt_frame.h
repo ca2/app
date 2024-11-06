@@ -16,7 +16,7 @@ namespace prompt
       ::user::message_queue_pointer   m_spqueue;
 
       bool                       m_bAutoHideOnOutClick;
-      i32                 m_iAnimateStep;
+      int                 m_iAnimateStep;
       ::image::image_list_pointer          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;

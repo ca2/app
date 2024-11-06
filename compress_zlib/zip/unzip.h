@@ -83,12 +83,12 @@ typedef voidp unzFile;
 /* tm_unz contain date/time info */
 typedef struct tm_unz_s
 {
-   u32 tm_sec;            /* seconds after the minute - [0,59] */
-   u32 tm_min;            /* minutes after the hour - [0,59] */
-   u32 tm_hour;           /* hours since midnight - [0,23] */
-   u32 tm_mday;           /* day of the month - [1,31] */
-   u32 tm_mon;            /* months since January - [0,11] */
-   u32 tm_year;           /* years - [1980..2044] */
+   unsigned int tm_sec;            /* seconds after the minute - [0,59] */
+   unsigned int tm_min;            /* minutes after the hour - [0,59] */
+   unsigned int tm_hour;           /* hours since midnight - [0,23] */
+   unsigned int tm_mday;           /* day of the month - [1,31] */
+   unsigned int tm_mon;            /* months since January - [0,11] */
+   unsigned int tm_year;           /* years - [1980..2044] */
 } tm_unz;
 
 /* unz_global_info structure contain global data about the ZIPfile
@@ -303,7 +303,7 @@ extern int CLASS_DECL_ACME unzCloseCurrentFile OF((unzFile file));
 
 extern int CLASS_DECL_ACME unzReadCurrentFile OF((unzFile file,
       voidp buf,
-      u32 len));
+      unsigned int len));
 /*
   read bytes from the current file (opened by unzOpenCurrentFile)
   buf contain buffer where data must be copied
@@ -327,7 +327,7 @@ extern int CLASS_DECL_ACME unzeof OF((unzFile file));
 
 extern int CLASS_DECL_ACME unzGetLocalExtrafield OF((unzFile file,
       voidp buf,
-      u32 len));
+      unsigned int len));
 /*
   read extra field from the current file (opened by unzOpenCurrentFile)
   This is the local-header version of the extra field (sometimes, there is

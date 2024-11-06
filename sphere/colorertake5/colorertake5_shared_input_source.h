@@ -19,12 +19,12 @@ public:
   static SharedInputSource *getInputSource(string path, stream & aura);
 
   /** Increments object counter */
-  i32 addref(){
+  int addref(){
     return ++ref_count;
   }
 
   /** Decrements object counter */
-  i32 delref(){
+  int delref(){
     if (ref_count == 0){
       CLR_ERROR("SharedInputSource", "delref: already zeroed references");
     }
@@ -67,7 +67,7 @@ private:
 
   stream & is;
   const unsigned char *stream;
-  i32 ref_count;
+  int ref_count;
 };
 
 #endif

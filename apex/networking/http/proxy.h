@@ -17,7 +17,7 @@ namespace http
       ::url::url        m_url;
       bool              m_bDirect;
       string            m_strProxy;
-      i32               m_iPort;
+      int               m_iPort;
       class ::time      m_timeLastChecked;
 
 

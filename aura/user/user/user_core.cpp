@@ -122,7 +122,7 @@ return {};
    //void core_user_layer::term_instance() override{}
 
 
-   void core_user_layer::LoadStdProfileSettings(::u32 nMaxMRU)
+   void core_user_layer::LoadStdProfileSettings(unsigned int nMaxMRU)
    {
    }
 
@@ -152,7 +152,7 @@ return nullptr;
    //void core_user_layer::initialize(::particle * pparticle) override{}
 
 
-   //bool core_user_layer::do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save"){}
+   //bool core_user_layer::do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save"){}
 
 
    void core_user_layer::initialize_userex()

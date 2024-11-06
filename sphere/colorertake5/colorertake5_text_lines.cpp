@@ -23,7 +23,7 @@ namespace colorertake5
 
    /*void text_lines::freeFile(){
    fileName.empty();
-   for(i32 i = 0; i < lines.get_size(); i++)
+   for(int i = 0; i < lines.get_size(); i++)
    delete lines.element_at(i);
    lines.set_size(0);
    };

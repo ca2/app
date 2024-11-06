@@ -13,7 +13,7 @@ protected:
    friend class plex_heap_alloc;
 
 
-   plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize = 64);
+   plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize = 64);
    virtual ~plex_heap_alloc_sync();
 
 
@@ -29,8 +29,8 @@ public:
 
 
    ::heap::allocator *              m_pallocator;
-   i32                              m_nAllocSize;  // size_i32 of each block from Alloc
-   i32                              m_nBlockSize;  // number of blocks to get at a time
+   int                              m_nAllocSize;  // size_i32 of each block from Alloc
+   int                              m_nBlockSize;  // number of blocks to get at a time
    plex_heap *                      m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
    node*                            m_pnodeFree;   // first free node (nullptr if no free nodes)
    ::critical_section               m_criticalsection;
@@ -39,7 +39,7 @@ public:
 
 
 
-   ::u32 GetAllocSize() { return m_nAllocSize; }
+   unsigned int GetAllocSize() { return m_nAllocSize; }
 
    void * Alloc();               // return a chunk of memory of nAllocSize
    void Free(void * p);          // free chunk of memory returned from Alloc

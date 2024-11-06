@@ -33,7 +33,7 @@ namespace sockets_bsd
       \lparam af Address family AF_INET / AF_INET6 / ...
       \lparam type SOCK_STREAM / SOCK_DGRAM / ...
       \lparam protocol "tcp" / "udp" / ... */
-      SOCKET CreateSocket(i32 af,i32 type,const string & protocol = "");
+      SOCKET CreateSocket(int af,int type,const string & protocol = "");
 
 
 
@@ -50,7 +50,7 @@ namespace sockets_bsd
 
       bool is_valid() override;
 
-      i32 close_socket(SOCKET s) override;
+      int close_socket(SOCKET s) override;
 
 
 

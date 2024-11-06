@@ -14,7 +14,7 @@ namespace write_text
    public:
 
 
-      ::u32   m_ui;
+      unsigned int   m_ui;
 
       array <point_i32_array, point_i32_array &> m_pointsets;
 //
@@ -34,7 +34,7 @@ namespace write_text
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      void Initialize(LPTTPOLYGONHEADER pph, u32 cbSize, int iFontHiHeight);
+//      void Initialize(LPTTPOLYGONHEADER pph, unsigned int cbSize, int iFontHiHeight);
 //
 //
 //#endif

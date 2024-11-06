@@ -177,7 +177,7 @@ namespace colorertake5
       {
          string textStart;
          strsize totalLength = 0;
-         for(i32 i = 0; i < 4; i++)
+         for(int i = 0; i < 4; i++)
          {
             string iLine = lineSource->getLine(i);
             if(iLine.is_empty())
@@ -198,7 +198,7 @@ namespace colorertake5
       return currentFileType;
    }
 
-   void base_editor::setBackParse(i32 backParse)
+   void base_editor::setBackParse(int backParse)
    {
       this->backParse = backParse;
    }
@@ -252,7 +252,7 @@ namespace colorertake5
 
    }
 
-   PairMatch * base_editor::getEnwrappedPairMatch(i32 lineNo, i32 pos)
+   PairMatch * base_editor::getEnwrappedPairMatch(int lineNo, int pos)
    {
       __UNREFERENCED_PARAMETER(lineNo);
       __UNREFERENCED_PARAMETER(pos);
@@ -264,7 +264,7 @@ namespace colorertake5
       delete pm;
    }
 
-   PairMatch *base_editor::searchLocalPair(i32 lineNo, i32 pos)
+   PairMatch *base_editor::searchLocalPair(int lineNo, int pos)
    {
       ::collection::index lno;
       ::collection::index end_line = getLastVisibleLine();
@@ -324,7 +324,7 @@ namespace colorertake5
       return pm;
    }
 
-   PairMatch *base_editor::searchGlobalPair(i32 lineNo, i32 pos)
+   PairMatch *base_editor::searchGlobalPair(int lineNo, int pos)
    {
       ::collection::index lno;
       ::collection::index end_line = lineCount;
@@ -554,7 +554,7 @@ namespace colorertake5
       }
    }
 
-   void base_editor::idleJob(i32 time)
+   void base_editor::idleJob(int time)
    {
       if(time < 0)
          time = 0;
@@ -581,7 +581,7 @@ namespace colorertake5
    void base_editor::endParsing(index lno)
    {
       lrSupport->endParsing(lno);
-      for(i32 idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(int idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->endParsing(lno);
    }
 
@@ -602,14 +602,14 @@ namespace colorertake5
    void base_editor::enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
    {
       lrSupport->enterScheme(lno, line, sx, ex, region, scheme);
-      for(i32 idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(int idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->enterScheme(lno, line, sx, ex, region, scheme);
    }
 
    void base_editor::leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
    {
       lrSupport->leaveScheme(lno, line, sx, ex, region, scheme);
-      for(i32 idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(int idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->leaveScheme(lno, line, sx, ex, region, scheme);
    }
 

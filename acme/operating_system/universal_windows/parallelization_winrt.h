@@ -246,7 +246,7 @@
 //
 //
 //template < typename T, typename PRED >
-//void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT)
+//void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT)
 //{
 //
 //   pparticle->fork([=]()
@@ -262,7 +262,7 @@
 //
 //
 //template < typename T, typename PRED >
-//inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+//inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
 //   auto waiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);
@@ -273,7 +273,7 @@
 //
 //
 //template < typename T >
-//inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+//inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > operation, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
 //   auto pwaiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);
@@ -284,7 +284,7 @@
 //
 //
 //template < typename T, typename T2 >
-//inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+//inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
 //   auto waiter = waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation);
@@ -294,7 +294,7 @@
 //}
 //
 //
-//inline ::winrt::Windows::Foundation::AsyncStatus wait(::winrt::Windows::Foundation::IAsyncAction action, ::u32 dwMillis = U32_INFINITE_TIMEOUT)
+//inline ::winrt::Windows::Foundation::AsyncStatus wait(::winrt::Windows::Foundation::IAsyncAction action, unsigned int dwMillis = U32_INFINITE_TIMEOUT)
 //{
 //
 //   ::winrt::Windows::Foundation::AsyncStatus status = ::winrt::Windows::Foundation::AsyncStatus::Canceled; // for time out

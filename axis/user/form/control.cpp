@@ -109,7 +109,7 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      ::u32 uNotificationCode = upper_u16(wparam);
+      unsigned int uNotificationCode = upper_u16(wparam);
 
       ::atom atom(lower_u16(wparam));
 
@@ -149,7 +149,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
+   bool form_control::OnCommandButton(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
 
    {
 
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
+   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
 
    {
 
@@ -207,7 +207,7 @@ namespace user
       //case BN_CLICKED:
       //{
       //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
-      //   i32 i = pbutton->get_check() != 0;
+      //   int i = pbutton->get_check() != 0;
       //   VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
       //}
       //break;
@@ -222,7 +222,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
+   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
 
    {
 
@@ -243,11 +243,11 @@ namespace user
       //case CBN_SELCHANGE:
       //{
       //   /* linux         ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
-      //   i32 iSel = pcombo->current_item();
+      //   int iSel = pcombo->current_item();
       //   if(iSel != CB_ERR)
       //   {
-      //   u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
-      //   VmsDataSet(pinteraction->m_dataid, 0, 0, (i32) dwData);
+      //   unsigned int dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
+      //   VmsDataSet(pinteraction->m_dataid, 0, 0, (int) dwData);
       //   }*/
       //}
       //break;
@@ -266,7 +266,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
+   bool form_control::OnCommandEdit(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
 
    {
 
@@ -678,10 +678,10 @@ namespace user
       if(pinteraction == nullptr)
          return;
       /* linux   ASSERT(pinteraction->get_type() == e_control_type_combo_box);
-      i32 i;
+      int i;
       if(VmsDataGet(pinteraction->m_dataid, 0, 0, i))
       {
-      iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((u32) i);
+      iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((unsigned int) i);
       if(iSel >= 0)
       {
       ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
@@ -742,7 +742,7 @@ namespace user
 //
 //            //      string str;
 //
-//            //      str.formatf("%d",payload.i32());
+//            //      str.formatf("%d",payload.int());
 //
 //            //      pinteraction->set_text(str,::e_source_database);
 //
@@ -843,7 +843,7 @@ namespace user
 
       }
 
-      //i32 i = bData ? 1 : 0;
+      //int i = bData ? 1 : 0;
 
       //datastream()->set(pinteraction->m_strDataKey,i);
 
@@ -1163,7 +1163,7 @@ namespace user
       ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>pinteraction->m_puserinteraction;
       pcombo->reset_content();
       string str;
-      for(i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
+      for(int i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
       {
       str = pinteraction->GetComboBox()->m_wstra[i];
       pcombo->AddString(str);
@@ -1177,7 +1177,7 @@ namespace user
    void form_control::_017OnAppLanguage()
    {
 
-      //for(i32 i = 0; i < m_controldescriptorset.get_size() ; i++)
+      //for(int i = 0; i < m_controldescriptorset.get_size() ; i++)
       //{
       //   class control_descriptor & descriptor = m_controldescriptorset(i);
       //   if(descriptor.m_type)
@@ -1623,7 +1623,7 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & payloadFile,unsigned int nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
 
    //{
 

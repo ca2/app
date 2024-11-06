@@ -225,7 +225,7 @@ namespace image
 //   virtual bool gradient_vertical_fill(::color::color clr1, ::color::color clr2)= 0;
 //
 //
-//   virtual u32 GetPixel(int x, int y)= 0;
+//   virtual unsigned int GetPixel(int x, int y)= 0;
 //   virtual bool Mask(::color::color crMask, ::color::color crInMask, ::color::color crOutMask)= 0;
 //   virtual bool channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel)= 0;
 //   virtual bool transparent_color(::color::color color)= 0;

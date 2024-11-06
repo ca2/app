@@ -7,7 +7,7 @@ class CLASS_DECL_ACME last_error
 public:
 
 
-   ::u32        m_uLastError;
+   unsigned int        m_uLastError;
 
 
 

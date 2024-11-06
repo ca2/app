@@ -23,7 +23,7 @@ CLASS_DECL_ACME void __seed_srand()
 //CLASS_DECL_ACME void sleep(const ::time& dur)
 //{
 //
-//   sleep((::u32)dur.total_milliseconds());
+//   sleep((unsigned int)dur.total_milliseconds());
 //
 //}
 
@@ -216,7 +216,7 @@ void copy(struct tm & tmUTC, const system_time & systemtimeUTC)
 //}
 //
 //
-//::posix_time as_posix_time(const ::file_time & filetime, i32 nDST)
+//::posix_time as_posix_time(const ::file_time & filetime, int nDST)
 //{
 //
 //   auto systemtime = as_system_time(filetime);

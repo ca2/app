@@ -14,7 +14,7 @@ public:
    STRING_CATCHER & m_stringCatcher;
 
 
-   wstring_adaptor(STRING_CATCHER & stringCatcher, i32 iAllocCount) :
+   wstring_adaptor(STRING_CATCHER & stringCatcher, int iAllocCount) :
       m_stringCatcher(stringCatcher)
    {
 

@@ -34,9 +34,9 @@ public:
 
    static inline ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
 
-   static inline integral_millisecond infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
+   static inline integral_millisecond infinite_milliseconds() { return numeric_info<unsigned int>::maximum(); }
 
-   constexpr WAIT infinite_nanoseconds() { return { numeric_info<::u32>::maximum() * 1'000'000'000 }; }
+   constexpr WAIT infinite_nanoseconds() { return { numeric_info<unsigned int>::maximum() * 1'000'000'000 }; }
 
    constexpr bool is_infinite() { return m_iNanosecond >= infinite_nanoseconds().m_iNanosecond; }
 

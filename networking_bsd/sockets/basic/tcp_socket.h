@@ -115,8 +115,8 @@ namespace sockets_bsd
       int m_socks4_state; ///< socks4 support
       char m_socks4_vn; ///< socks4 support, temporary ::payload
       char m_socks4_cd; ///< socks4 support, temporary ::payload
-      u16 m_socks4_dstport; ///< socks4 support
-      u32 m_socks4_dstip; ///< socks4 support
+      unsigned short m_socks4_dstport; ///< socks4 support
+      unsigned int m_socks4_dstip; ///< socks4 support
 
       string m_strConnectHost;
       ::networking::port_t m_iConnectPort;
@@ -267,7 +267,7 @@ namespace sockets_bsd
       virtual string get_connect_host() override;
       virtual ::networking::port_t get_connect_port() override;
 
-      virtual i32 Protocol() override;
+      virtual int Protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
       void SetTransferLimit(memsize sz) override;
@@ -335,7 +335,7 @@ namespace sockets_bsd
    };
 
    extern "C"
-   i32 tcp_socket_SSL_password_cb(char *buf,i32 num,i32 rwflag,void *userdata);
+   int tcp_socket_SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
 
 
 } // namespace sockets_bsd

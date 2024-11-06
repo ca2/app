@@ -54,7 +54,7 @@ BOOL xf_keyboard_key_pressed(xfContext* xfc, KeySym keysym);
 void xf_keyboard_send_key(xfContext* xfc, BOOL down, unsigned char keycode);
 int xf_keyboard_read_keyboard_state(xfContext* xfc);
 BOOL xf_keyboard_get_key_state(xfContext* xfc, int state, int keysym);
-::u32 xf_keyboard_get_toggle_keys_state(xfContext* xfc);
+unsigned int xf_keyboard_get_toggle_keys_state(xfContext* xfc);
 void xf_keyboard_focus_in(xfContext* xfc);
 BOOL xf_keyboard_handle_special_keys(xfContext* xfc, KeySym keysym);
 BOOL xf_keyboard_set_indicators(rdpContext* action_context, ::u3216 led_flags);

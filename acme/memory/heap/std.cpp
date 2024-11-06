@@ -185,7 +185,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate_debug(memsize size, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation = nullptr) override
+      void * aligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, memsize align, const char * pszAnnotation = nullptr) override
       {
 
          void * paligned;
@@ -258,7 +258,7 @@ namespace heap
       }
 
 
-      void * unaligned_allocate_debug(memsize size, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
+      void * unaligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
       {
 
          void * punaligned;
@@ -364,7 +364,7 @@ namespace heap
       }
 
 
-      void * allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
+      void * allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
       {
 
          // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -382,7 +382,7 @@ namespace heap
       }
 
 
-      void * reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr) override
+      void * reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
       {
 
          if (pmemory == nullptr)
@@ -543,7 +543,7 @@ namespace heap
       }
 
 
-      void free_debug(void * pmemory, i32 iBlockType) override
+      void free_debug(void * pmemory, int iBlockType) override
       {
 
          if ((iptr)pmemory < 1024)
@@ -654,7 +654,7 @@ namespace heap
       }
 
 
-      memsize size_debug(void * pmemory, i32 iBlockType) override
+      memsize size_debug(void * pmemory, int iBlockType) override
       {
 
          if (pmemory == nullptr)

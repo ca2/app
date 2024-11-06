@@ -30,7 +30,7 @@ namespace os
       ::rectangle_i32                     m_rectangleDesktop;
 
       XWindowAttributes          m_attr;
-      i32                    m_iDepth;
+      int                    m_iDepth;
       XVisualInfo                m_visualinfo;
       int                        m_iScreen;
 
@@ -74,12 +74,12 @@ namespace os
       virtual bool destroy_window();
 
 
-      virtual bool on_key_down(u32 uiKey);
-      virtual bool on_key_up(u32 uiKey);
+      virtual bool on_key_down(unsigned int uiKey);
+      virtual bool on_key_up(unsigned int uiKey);
 
 
-      virtual bool on_move(i32 x, i32 y);
-      virtual bool on_size(i32 cx, i32 cy);
+      virtual bool on_move(int x, int y);
+      virtual bool on_size(int cx, int cy);
 
 
       virtual void run_loop();
@@ -90,8 +90,8 @@ namespace os
       virtual void set_capture();
       virtual void release_capture();
 
-      virtual bool move_window(i32 x, i32 y);
-      virtual bool set_window_position(i32 x, i32 y, i32 cx, i32 cy, bool bShow);
+      virtual bool move_window(int x, int y);
+      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
 
    };
 

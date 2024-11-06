@@ -722,10 +722,10 @@ namespace crypto
    }
 
 
-   u32 crypto::crc32(u32 dwPrevious, const ::scoped_string & scopedstr)
+   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
    {
 
-      return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
+      return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(psz));
 
    }
 
@@ -1864,7 +1864,7 @@ stunCalculateIntegrity_longterm(char* hmac, const char* input, int length,
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   u32 resultSize = 0;
+   unsigned int resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
 
@@ -1882,7 +1882,7 @@ void
 stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   u32 resultSize = 0;
+   unsigned int resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
       (const uchar*)input, length,

@@ -1726,7 +1726,7 @@ namespace micro
    //}
 
 
-   //::collection::index main_window::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   //::collection::index main_window::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
    //{
 
    //   return -1;
@@ -1742,7 +1742,7 @@ namespace micro
    //}
 
 
-   //::collection::index main_window::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   //::collection::index main_window::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, int & x)
    //{
 
    //   return -1;
@@ -1758,7 +1758,7 @@ namespace micro
    //}
 
 
-   //strsize main_window::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
+   //strsize main_window::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
    //{
 
    //   return -1;

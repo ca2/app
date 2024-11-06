@@ -8,16 +8,16 @@
 //#include <math.h>
 #endif
 
-static i32 lastrand;
+static int lastrand;
 
 #ifdef WINDOWS
-//extern "C" i32 _fltused = 0;
+//extern "C" int _fltused = 0;
 #else
-i32 _fltused = 0;
+int _fltused = 0;
 #endif
 
 
-// CLASS_DECL_ACME i32 abs_dup(i32 i)
+// CLASS_DECL_ACME int abs_dup(int i)
 // {
 //    if(i < 0)
 //       return -i;
@@ -39,9 +39,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         fatan
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -64,9 +64,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         fsqrt
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -90,9 +90,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         fexp
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -105,9 +105,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         flog
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -120,9 +120,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         ftan
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -135,9 +135,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         fsin
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -150,9 +150,9 @@ i32 _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld u32 PTR [d]
+//         fld unsigned int PTR [d]
 //         fcos
-//         fstp u32 ptr[d]
+//         fstp unsigned int ptr[d]
 //     }
 //     return d;
 // #else
@@ -162,12 +162,12 @@ i32 _fltused = 0;
 
 // #endif
 
-// CLASS_DECL_ACME void srand_dup(u32 seed)
+// CLASS_DECL_ACME void srand_dup(unsigned int seed)
 // {
 // 	lastrand = seed;
 // }
 
-// CLASS_DECL_ACME  i32 rand_dup()
+// CLASS_DECL_ACME  int rand_dup()
 // {
 // 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 // }
@@ -194,13 +194,13 @@ i32 _fltused = 0;
 //    }
 // }*/
 
-// i32 ftol(double d)
+// int ftol(double d)
 // {
-//    i32 u = I32_MAXIMUM;
-//    i32 l = I32_MINIMUM;
+//    int u = I32_MAXIMUM;
+//    int l = I32_MINIMUM;
 //    double m;
 //    double delta;
-//    i32 i = 0;
+//    int i = 0;
 //    while(i < 128)
 //    {
 //       if(u <= l)

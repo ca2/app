@@ -579,10 +579,10 @@
 ////inline void __io(::binary_stream & s, bool & b) { s.io(b); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i8 & i) { s.io(i); }
+////inline void __io(::binary_stream & s, char & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i16 & i) { s.io(i); }
+////inline void __io(::binary_stream & s, short & i) { s.io(i); }
 ////
 ////
 ////inline void __io(::binary_stream & s, int & i) { s.io(i); }
@@ -594,10 +594,10 @@
 ////inline void __io(::binary_stream & s, unsigned char & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u16 & u) { s.io(u); }
+////inline void __io(::binary_stream & s, unsigned short & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u32 & u) { s.io(u); }
+////inline void __io(::binary_stream & s, unsigned int & u) { s.io(u); }
 ////
 ////
 ////inline void __io(::binary_stream & s, ::u64 & u) { s.io(u); }
@@ -794,9 +794,9 @@
 //
 //
 //
-//inline void __exchange(::binary_stream & s, i8 & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i16 & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i32 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream & s, char & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream & s, short & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream & s, int & i) { s.default_exchange(i); }
 //inline void __exchange(::binary_stream & s, i64 & i) { s.default_exchange(i); }
 //
 //#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
@@ -811,8 +811,8 @@
 //
 //
 //inline void __exchange(::binary_stream & s, unsigned char & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u16 & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u32 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, unsigned short & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, unsigned int & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, u64 & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, float & f) { s.default_exchange(f); }
 //inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }

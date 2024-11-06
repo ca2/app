@@ -288,7 +288,7 @@ bool tokenizer::get_next_smallest_token(string & strToken, const string_array & 
 
    const_iterator iterator;
 
-   for(i32 j = 0; j < straSeparator.get_size(); j++)
+   for(int j = 0; j < straSeparator.get_size(); j++)
    {
 
       iterator = find(straSeparator[j]);
@@ -461,10 +461,10 @@ bool tokenizer::_01Read(string &str)
 }
 
 
-bool tokenizer::_01Read(::u32 & user)
+bool tokenizer::_01Read(unsigned int & user)
 {
 
-   i32 i;
+   int i;
 
    if (!_01Read(i))
    {
@@ -473,14 +473,14 @@ bool tokenizer::_01Read(::u32 & user)
 
    }
 
-   user = (::u32) i;
+   user = (unsigned int) i;
 
    return true;
 
 }
 
 
-bool tokenizer::_01Read(i32 &i)
+bool tokenizer::_01Read(int &i)
 {
 
    string str;
@@ -499,10 +499,10 @@ bool tokenizer::_01Read(i32 &i)
 }
 
 
-bool tokenizer::_01ReadHex(::u32 & user)
+bool tokenizer::_01ReadHex(unsigned int & user)
 {
 
-   i32 i;
+   int i;
 
    if (!_01ReadHex(i))
    {
@@ -511,14 +511,14 @@ bool tokenizer::_01ReadHex(::u32 & user)
 
    }
 
-   user = (::u32) i;
+   user = (unsigned int) i;
 
    return true;
 
 }
 
 
-bool tokenizer::_01ReadHex(i32 &i)
+bool tokenizer::_01ReadHex(int &i)
 {
 
    string str;

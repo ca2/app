@@ -51,7 +51,7 @@ namespace ios
       zip::util *    m_pziputil;
       string         m_strFileName;
       wstring        m_wstrFileName;
-      i32            m_iFile;
+      int            m_iFile;
 
 
       file();
@@ -94,9 +94,9 @@ namespace ios
 //
 //
 //      void os_error_to_exception(int lOsError);
-//      void err_no_to_exception(i32 nErrno);
+//      void err_no_to_exception(int nErrno);
 //      void throw_os_error(::particle * pparticle, int lOsError, const char * lpszFileName = nullptr);
-//      void throw_err_no(::particle * pparticle, i32 nErrno, const char * lpszFileName = nullptr);
+//      void throw_err_no(::particle * pparticle, int nErrno, const char * lpszFileName = nullptr);
 //
 //
 //   }  // namespace file_exception

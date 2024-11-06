@@ -129,7 +129,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
 
 
-//bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, atom nID)
+//bool simple_toolbar::create(::user::interaction * puiParent, unsigned int uStyle, atom nID)
 //{
 //
 //   return create_toolbar(puiParent, 0, uStyle, nID);
@@ -137,7 +137,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //}
 
 
-//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, atom nID)
+//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, atom nID)
 //{
 //
 //   ASSERT_VALID(puiParent);   // must have a parent
@@ -193,7 +193,7 @@ void simple_toolbar::on_message_left_button_double_click(::message::message * pm
 size_i32 simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
 {
 
-   u32 dwMode = bStretch ? LM_STRETCH : 0;
+   unsigned int dwMode = bStretch ? LM_STRETCH : 0;
 
    dwMode |= bHorz ? LM_HORZ : 0;
 
@@ -765,7 +765,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto pmenucentral = puser->menu();
 
-   ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
+   unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
    
    auto estate = tool_item_user_state(iItem);
 
@@ -1798,7 +1798,7 @@ void simple_toolbar::_001OnImageListAttrib()
 //}
 //
 //
-//void simple_toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
+//void simple_toolbar::SetButtonStyle(index nIndex, unsigned int nStyle)
 //{
 //
 //   ::pointer<::user::tool_item>ptoolitem = m_useritema[nIndex];
@@ -2222,7 +2222,7 @@ struct ___CONTROLPOS
 };
 
 
-size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, ::collection::index nLength)
+size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
 {
 
    //::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
@@ -2451,7 +2451,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    TBIF_COMMAND
             //    | TBIF_STYLE
             //    | TBIF_SIZE;
-            // ::u32 uID = GetItemID(i);
+            // unsigned int uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
             // informationf("BUTTON.m_atom = %d\n", buttona.m_atom  );
             // informationf("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
@@ -2543,7 +2543,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 //}
 
 
-void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
+void simple_toolbar::OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle)
 {
 
    // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
@@ -2568,7 +2568,7 @@ void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
 }
 
 
-size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, u32 dwMode)
+size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int dwMode)
 {
 
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&

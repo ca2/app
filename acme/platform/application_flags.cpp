@@ -423,7 +423,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 #ifdef WINDOWS_DESKTOP
 
 
-//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
+//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(pCmdLine);
@@ -1617,7 +1617,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //#else
 //
 //
-////::u32 app_core::system_main()
+////unsigned int app_core::system_main()
 ////{
 ////
 ////   ::e_status estatus = psystem->__thread_procedure();

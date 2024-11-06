@@ -18,7 +18,7 @@ namespace gen
 
    bool Resource::ReadResource(
       memory & storage,
-      ::u32 nID,
+      unsigned int nID,
       const char * lpcszType)
    {
 
@@ -31,7 +31,7 @@ namespace gen
    bool Resource::ReadResource(
       HINSTANCE hinst,
       memory & storage,
-      ::u32 nID,
+      unsigned int nID,
       const char * lpcszType)
    {
 
@@ -44,11 +44,11 @@ namespace gen
        HGLOBAL hres = ::LoadResource(hinst, hrsrc);
       if(hres == nullptr)
          return false;
-       ::u32 dwResSize = ::SizeofResource(hinst, hrsrc);
+       unsigned int dwResSize = ::SizeofResource(hinst, hrsrc);
 
       if(hres != nullptr)
        {
-         ::u32 * lpnRes = (::u32 *)::LockResource(hres);
+         unsigned int * lpnRes = (unsigned int *)::LockResource(hres);
            try
            {
               // create the .mdb file

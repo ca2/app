@@ -53,15 +53,15 @@ public:
     BOOL Initialize(int nCmdShow);
    
 private:
-    static LRESULT CALLBACK _WndProc(HWND hWnd, ::u32 uMessage, WPARAM wParam, LPARAM lParam);
+    static LRESULT CALLBACK _WndProc(HWND hWnd, unsigned int uMessage, WPARAM wParam, LPARAM lParam);
     void _CleanupEditWnd(BOOL fNuke);
     LRESULT _OnCreate(VOID);
     LRESULT _OnDestroy(VOID);
-    LRESULT _OnCommand(::u16, ::u16, HWND);
+    LRESULT _OnCommand(unsigned short, unsigned short, HWND);
     LRESULT _OnSetFocus(VOID);
     LRESULT _OnKillFocus(VOID);
-    LRESULT _OnNotify(::u32, LPNMHDR);
-    LRESULT _OnSize(::u16, ::u16);
+    LRESULT _OnNotify(unsigned int, LPNMHDR);
+    LRESULT _OnSize(unsigned short, unsigned short);
     LRESULT _OnActivate(WPARAM);
     LRESULT _OnInitMenuPopup(WPARAM, LPARAM);
     BOOL _GetFileName(HWND hwndOwner, char * lpszFileName, ULONG uChars, BOOL fOpen);

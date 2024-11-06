@@ -31,7 +31,7 @@ namespace userex
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      bool create_pane(i32 iPane, bool bFixedSize, ::atom atom);
+      bool create_pane(int iPane, bool bFixedSize, ::atom atom);
 
       bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 

@@ -46,7 +46,7 @@ namespace draw2d_cairo
       void _draw_raw(const ::rectangle_i32 & rectangle, ::image::image *pimage, const ::point_i32 & point = ::point_i32()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
-      void SetIconMask(::image::icon * picon, i32 cx, i32 cy) override;
+      void SetIconMask(::image::icon * picon, int cx, int cy) override;
 
 
       //void write(::binary_stream & stream) const override;

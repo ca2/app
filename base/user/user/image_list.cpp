@@ -792,7 +792,7 @@ namespace user
 
       //   m_sizeImage = sizeImage;
 
-      //   //m_iWheelDeltaScroll = (i16) (sizeImage.cy() / 3);
+      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy() / 3);
 
       //   m_pimageaThumb->m_imagea.erase_all();
 

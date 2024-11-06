@@ -8,7 +8,7 @@ namespace prototype
 {
 
 
-   shared_file::shared_file(::particle * pparticle, ::u32 nAllocFlags, ::u32 nGrowBytes) :
+   shared_file::shared_file(::particle * pparticle, unsigned int nAllocFlags, unsigned int nGrowBytes) :
       ::object(pparticle)
    {
 

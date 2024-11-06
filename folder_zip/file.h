@@ -64,7 +64,7 @@ namespace folder_zip
       bool is_in_memory_file() const override { return true; }
 
 
-      //virtual bool zip_open(const char *,::u32);
+      //virtual bool zip_open(const char *,unsigned int);
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 

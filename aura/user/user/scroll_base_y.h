@@ -21,8 +21,8 @@ namespace user
       //scroll_state                  m_scrollstateaY[::user::e_layout_maximum_count];
       ::pointer<scroll_layout>      m_pscrolllayoutY;
       //scroll_design                 m_scrolldesignY;
-      i16                           m_iWheelDelta;
-      //i16                           m_iWheelDeltaScroll;
+      short                           m_iWheelDelta;
+      //short                           m_iWheelDeltaScroll;
 
 
       scroll_base_y();

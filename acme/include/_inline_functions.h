@@ -58,7 +58,7 @@ inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
 
 
 
-inline ::u64 make64_from32(::u32 l, ::u32 h)
+inline ::u64 make64_from32(unsigned int l, unsigned int h)
 {
 
    return ((::u64)l) | (((::u64)h) << 32);

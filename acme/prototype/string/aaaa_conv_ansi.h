@@ -79,10 +79,10 @@ inline void to_string(string& str, const ::ansi_character& ch);
 inline void to_string(string& str, const uchar& uch);
 
 
-inline void to_string(string& str, const i16& i);
-inline void to_string(string& str, const u16& i);
-inline void to_string(string& str, const i32& i);
-inline void to_string(string& str, const u32& u);
+inline void to_string(string& str, const short& i);
+inline void to_string(string& str, const unsigned short& i);
+inline void to_string(string& str, const int& i);
+inline void to_string(string& str, const unsigned int& u);
 inline void to_string(string& str, const i64& i);
 inline void to_string(string& str, const u64& u);
 

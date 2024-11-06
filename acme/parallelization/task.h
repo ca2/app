@@ -209,7 +209,7 @@ int m_iExitCode;
 
 #ifdef WINDOWS
 
-   static ::u32 WINDOWS_API s_os_task(void* p);
+   static unsigned int WINDOWS_API s_os_task(void* p);
 
 #else
 
@@ -287,8 +287,8 @@ int m_iExitCode;
 //   static ::task_pointer launch(
 //      ::matter* pmatter,
 //      ::enum_priority epriority = e_priority_normal,
-//      u32 nStackSize = 0,
-//      u32 dwCreateFlags = 0);
+//      unsigned int nStackSize = 0,
+//      unsigned int dwCreateFlags = 0);
 
 
    //virtual ::property_object * thread_parent();

@@ -16,12 +16,12 @@ public:
    union
    {
 
-      ::i8        m_i8;
+      char        m_i8;
       unsigned char        m_u8;
-      ::i16       m_i16;
-      ::u16       m_u16;
+      short       m_i16;
+      unsigned short       m_u16;
       int       m_i32;
-      ::u32       m_u32;
+      unsigned int       m_u32;
       ::i64       m_i64;
       ::u64       m_u64;
 
@@ -33,12 +33,12 @@ public:
    enum_number    m_enumber;
 
    number(enum_number enumber = e_number_none) { m_i64 = 0; m_enumber = enumber; }
-   number(i8 i) { m_i8 = i; m_enumber = e_number_i8; }
+   number(char i) { m_i8 = i; m_enumber = e_number_i8; }
    number(unsigned char u) { m_u8 = u; m_enumber = e_number_u8; }
-   number(i16 i) { m_i16 = i; m_enumber = e_number_i16; }
-   number(u16 u) { m_u16 = u; m_enumber = e_number_u16; }
-   number(i32 i) { m_i32 = i; m_enumber = e_number_i32; }
-   number(u32 u) { m_u32 = u; m_enumber = e_number_u32; }
+   number(short i) { m_i16 = i; m_enumber = e_number_i16; }
+   number(unsigned short u) { m_u16 = u; m_enumber = e_number_u16; }
+   number(int i) { m_i32 = i; m_enumber = e_number_i32; }
+   number(unsigned int u) { m_u32 = u; m_enumber = e_number_u32; }
    number(i64 i) { m_i64 = i; m_enumber = e_number_i64; }
    number(u64 u) { m_u64 = u; m_enumber = e_number_u64; }
    number(f32 f) { m_f32 = f; m_enumber = e_number_f32; }
@@ -95,22 +95,22 @@ public:
       case e_number_none:
          break;
       case e_number_i8:
-         m_i8 = (::i8) t;
+         m_i8 = (char) t;
          break;
       case e_number_u8:
          m_u8 = (unsigned char) t;
          break;
       case e_number_i16:
-         m_i16 = (::i16) t;
+         m_i16 = (short) t;
          break;
       case e_number_u16:
-         m_u16 = (::u16)t;
+         m_u16 = (unsigned short)t;
          break;
       case e_number_i32:
          m_i32 = (int)t;
          break;
       case e_number_u32:
-         m_u32 = (::u32)t;
+         m_u32 = (unsigned int)t;
          break;
       case e_number_i64:
          m_i64 = (::i64)t;
@@ -128,12 +128,12 @@ public:
 
    }
 
-   ::i8 get_i8() const { return get < ::i8>(); }
+   char get_i8() const { return get < char>(); }
    unsigned char get_u8() const { return get < unsigned char>(); }
-   ::i16 get_i16() const { return get < ::i16>(); }
-   ::u16 get_u16() const { return get < ::u16>(); }
+   short get_i16() const { return get < short>(); }
+   unsigned short get_u16() const { return get < unsigned short>(); }
    int get_i32() const { return get < int>(); }
-   ::u32 get_u32() const { return get < ::u32>(); }
+   unsigned int get_u32() const { return get < unsigned int>(); }
    ::i64 get_i64() const { return get < ::i64>(); }
    ::u64 get_u64() const { return get < ::u64>(); }
    ::f32 get_f32() const { return get < ::f32>(); }

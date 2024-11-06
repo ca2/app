@@ -37,9 +37,9 @@ void window_android::create(oswindow interaction_impl, i64 cxParam, i64 cyParam,
 
    //}
 
-   //i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
+   //int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
 
-   i32 iStride = iStrideParam;
+   int iStride = iStrideParam;
 
    //m_mem.set_size(iStride * cyParam);
 

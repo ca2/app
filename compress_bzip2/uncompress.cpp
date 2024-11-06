@@ -61,7 +61,7 @@ namespace compress_bzip2
       bz_stream zstream;
       zero(zstream);
       zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (u32)uRead;
+      zstream.avail_in = (unsigned int)uRead;
 
       class memory memory;
       memory.set_size(1024 * 256);
@@ -82,7 +82,7 @@ namespace compress_bzip2
          {
 
             zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (u32)memory.size();
+            zstream.avail_out = (unsigned int)memory.size();
 
             // Inflate another chunk.
             status = BZ2_bzDecompress(&zstream);
@@ -117,7 +117,7 @@ namespace compress_bzip2
 
          zstream.next_in = (char*)memIn.data();
 
-         zstream.avail_in = (u32)uRead;
+         zstream.avail_in = (unsigned int)uRead;
 
       }
 

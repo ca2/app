@@ -768,7 +768,7 @@ namespace user
          //      case ::type_int32:
          //      {
          //         string str;
-         //         str.formatf("%d", payload.i32());
+         //         str.formatf("%d", payload.int());
          //         ptext->set_text(str, ::e_source_database);
          //      }
          //      break;
@@ -1110,7 +1110,7 @@ namespace user
    }
 
 
-   bool form_list::_001OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom, lresult & iResult)
+   bool form_list::_001OnMouseActivate(::windowing::window * pDesktopWnd, unsigned int nHitTest, const ::atom & atom, lresult & iResult)
    {
 
       __UNREFERENCED_PARAMETER(pDesktopWnd);
@@ -1224,7 +1224,7 @@ namespace user
       //{
       //   _001SetEditControl(nullptr);
       //}
-      //for(i32 i = 0; i < m_controldescriptorset.get_count(); i++)
+      //for(int i = 0; i < m_controldescriptorset.get_count(); i++)
       //{
       //   class ::user::control_descriptor & descriptor = m_controldescriptorset(i);
       //   if(control.m_etype == e_control_type_edit
@@ -1319,8 +1319,8 @@ namespace user
 
       return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 
-      //i32 iEditItem;
-      //i32 iEditSubItem;
+      //int iEditItem;
+      //int iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -1450,8 +1450,8 @@ namespace user
    //
    //      //else if(emessage == e_message_left_button_up)
    //      //{
-   //      //i32 iItem;
-   //      //i32 iSubItem;
+   //      //int iItem;
+   //      //int iSubItem;
    //      //::user::range range;
    //      //get_selection(range);
    //      //if(_001DisplayHitTest(point, iItem, iSubItem))
@@ -1521,8 +1521,8 @@ namespace user
    //      //screen_to_client()(point);
    //      ///*      if(emessage == e_message_left_button_down)
    //      //      {
-   //      //      i32 iItem;
-   //      //      i32 iSubItem;
+   //      //      int iItem;
+   //      //      int iSubItem;
    //      //      ::user::range range;
    //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
@@ -1541,8 +1541,8 @@ namespace user
    //      //      }
    //      //      else if(emessage == e_message_left_button_up)
    //      //      {
-   //      //      i32 iItem;
-   //      //      i32 iSubItem;
+   //      //      int iItem;
+   //      //      int iSubItem;
    //      //      ::user::range range;
    //      //      get_selection(range);
    //      //      if(_001DisplayHitTest(point, iItem, iSubItem))

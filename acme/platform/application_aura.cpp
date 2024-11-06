@@ -138,15 +138,15 @@ namespace platform
    //::string aura_application_layer::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr) override{}
 
 
-   //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
-   //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
-   //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
+   //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
-   //void aura_application_layer::process_message_filter(i32 code, ::message::message * pmessage) override{}
+   //void aura_application_layer::process_message_filter(int code, ::message::message * pmessage) override{}
 
 
-   //void aura_application_layer::DoWaitCursor(i32 nCode) override{} // 0 => restore, 1=> begin, -1=> end
+   //void aura_application_layer::DoWaitCursor(int nCode) override{} // 0 => restore, 1=> begin, -1=> end
 
    // void aura_application_layer::_001TryCloseApplication() override{}
 
@@ -189,8 +189,8 @@ namespace platform
    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
-   //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
 
    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
@@ -347,11 +347,11 @@ namespace platform
    //virtual ::file::path defer_process_path(::file::path path){}
    //virtual ::file::path full_process_path(::file::path path){}
 
-   //void aura_application_layer::DoWaitCursor(i32 nCode){} // 0 => restore, 1=> begin, -1=> end
+   //void aura_application_layer::DoWaitCursor(int nCode){} // 0 => restore, 1=> begin, -1=> end
    //void aura_application_layer::show_wait_cursor(bool bShow = true) override{}
 
 
-   //void aura_application_layer::process_message_filter(i32 code,::message::message * pmessage) override{}
+   //void aura_application_layer::process_message_filter(int code,::message::message * pmessage) override{}
 
    //void aura_application_layer::on_thread_on_idle(::thread * pthread,int lCount) override{}
 
@@ -751,9 +751,9 @@ namespace platform
    //bool aura_application_layer::is_system() const override{}
    //bool aura_application_layer::is_session() const override{}
 
-   //virtual u32 guess_code_page(const string& str) override{}
+   //virtual unsigned int guess_code_page(const string& str) override{}
 
-   //virtual i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override{}
+   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override{}
 
    //bool aura_application_layer::is_serviceable() const override{}
    //
@@ -777,7 +777,7 @@ namespace platform
    //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
 
    //      void EnableModelessEx(bool bEnable){}
-   //      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage){}
+   //      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage){}
 
    //#ifdef WINDOWS
    //      bool aura_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}
@@ -786,7 +786,7 @@ namespace platform
    //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
    //#endif
 
-   bool  aura_application_layer::CreateFileFromRawResource(::u32 nID, const ::string& lcszType, const ::string& pcszFilePath)
+   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::string& lcszType, const ::string& pcszFilePath)
    {
       return false;
    }
@@ -808,7 +808,7 @@ namespace platform
    }
 
 
-   void aura_application_layer::SetRegistryKey(::u32 nIDRegistryKey)
+   void aura_application_layer::SetRegistryKey(unsigned int nIDRegistryKey)
    {
    }
 
@@ -877,7 +877,7 @@ namespace platform
    //
 
 
-    i32 aura_application_layer::track_popup_menu(::menu::track_popup* ptrackpopup)
+    int aura_application_layer::track_popup_menu(::menu::track_popup* ptrackpopup)
    {
       return 0;
    }
@@ -914,13 +914,13 @@ namespace platform
    //void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override{}
 
 
-   i32  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
+   int  aura_application_layer::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction> puserinteractionExcept)
    {
       return 0;
    }
 
 
-    i32  aura_application_layer::GetVisibleFrameCount()
+    int  aura_application_layer::GetVisibleFrameCount()
    {
       return 0;
    }

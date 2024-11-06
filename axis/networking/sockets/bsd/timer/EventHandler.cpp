@@ -106,7 +106,7 @@ namespace sockets
 
          tv -> tv_sec = static_cast<long>(diff / 1000000);
 
-         tv -> tv_usec = static_cast<i32>(diff % 1000000);
+         tv -> tv_usec = static_cast<int>(diff % 1000000);
 
          return true;
 

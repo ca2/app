@@ -32,11 +32,11 @@ namespace networking_bsd
 
 #else // !FREEBSD
 
-            u16 m_u16Family;
+            unsigned short m_u16Family;
 
 #endif // !FREEBSD
 
-            u16 m_port;
+            unsigned short m_port;
 
 #if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD)
 
@@ -82,7 +82,7 @@ namespace networking_bsd
 
       }
 
-      u16 get_family() const
+      unsigned short get_family() const
       {
 
          return m_u16Family;
@@ -186,13 +186,13 @@ namespace networking_bsd
       //string get_string() const;
 
 #ifdef BSD_STYLE_SOCKETS
-      inline void SetFlowinfo(u32 x);
-      inline u32 GetFlowinfo();
+      inline void SetFlowinfo(unsigned int x);
+      inline unsigned int GetFlowinfo();
 #endif
 
 #ifndef WINDOWS
-      inline void SetScopeId(u32 x);
-      inline u32 GetScopeId();
+      inline void SetScopeId(unsigned int x);
+      inline unsigned int GetScopeId();
 #endif
 
       void sync_os_address() override;
@@ -270,14 +270,14 @@ namespace networking_bsd
 #ifdef BSD_STYLE_SOCKETS
 
 
-   inline void address::SetFlowinfo(u32 x)
+   inline void address::SetFlowinfo(unsigned int x)
    {
       ASSERT(_is_ip6());
       u.m_addr6.sin6_flowinfo = x;
    }
 
 
-   inline u32 address::GetFlowinfo()
+   inline unsigned int address::GetFlowinfo()
    {
       ASSERT(_is_ip6());
       return u.m_addr6.sin6_flowinfo;
@@ -289,14 +289,14 @@ namespace networking_bsd
 
 #ifndef WINDOWS
 
-   inline void address::SetScopeId(u32 x)
+   inline void address::SetScopeId(unsigned int x)
    {
       ASSERT(_is_ip6());
       u.m_addr6.sin6_scope_id = x;
    }
 
 
-   inline u32 address::GetScopeId()
+   inline unsigned int address::GetScopeId()
    {
       ASSERT(_is_ip6());
       return u.m_addr6.sin6_scope_id;

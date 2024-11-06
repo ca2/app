@@ -31,8 +31,8 @@ struct pixmap
    struct image_header           m_header;
 #endif
 
-   i32                           m_iRedLower;
-   i32                           m_iScan;
+   int                           m_iRedLower;
+   int                           m_iScan;
    ::image32_t * m_pimage32;
    ::point_i32                   m_point;
    ::image32_t * m_pimage32Raw;
@@ -71,7 +71,7 @@ struct pixmap
    }
 
 
-   void init(const ::size_i32 & size, ::image32_t * pimage32, i32 iScan)
+   void init(const ::size_i32 & size, ::image32_t * pimage32, int iScan)
    {
 
       m_size = size;

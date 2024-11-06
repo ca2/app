@@ -64,7 +64,7 @@ namespace networking_bsd
    }
 
 
-   void sync_socket_handler::write(const void * pdata, i32 len)
+   void sync_socket_handler::write(const void * pdata, int len)
    {
 
       m_psocket->write(pdata, len);
@@ -72,7 +72,7 @@ namespace networking_bsd
    }
 
 
-   i32 sync_socket_handler::read(void * pdata, i32 len)
+   int sync_socket_handler::read(void * pdata, int len)
    {
 
       while(less_than(m_file.get_size(), len) && m_phandler->get_count() > 0)
@@ -82,7 +82,7 @@ namespace networking_bsd
 
       }
 
-      return (i32) m_file.erase_begin(pdata, len);
+      return (int) m_file.erase_begin(pdata, len);
 
    }
 
@@ -126,7 +126,7 @@ namespace networking_bsd
    }
 
 
-   void sync_socket_handler::read_payload_v1(string & xml_payload, i32 iTimeout)
+   void sync_socket_handler::read_payload_v1(string & xml_payload, int iTimeout)
    {
 
       if (iTimeout < 0)
@@ -136,7 +136,7 @@ namespace networking_bsd
 
       }
 
-      u32 uLen = 0;
+      unsigned int uLen = 0;
 
       if (read(&uLen, 4) != 4)
       {
@@ -163,14 +163,14 @@ namespace networking_bsd
    }
 
 
-   void sync_socket_handler::write_payload_v1(const char * xml_payload, i32 iTimeout)
+   void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout)
    {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
       strsize uLen = strlen(xml_payload);
-      u32 wf_total_length = htonl((u_long) uLen);
+      unsigned int wf_total_length = htonl((u_long) uLen);
       write(&wf_total_length, 4);
-      write( (char *) xml_payload, (i32) uLen);
+      write( (char *) xml_payload, (int) uLen);
    }
 
 } // namespace networking_bsd

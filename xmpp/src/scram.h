@@ -22,7 +22,7 @@
 #include "sha1.h"
 
 void SCRAM_SHA1_ClientKey(const unsigned char *password, size_t len,
-                          const unsigned char *salt, size_t salt_len, u32 i,
+                          const unsigned char *salt, size_t salt_len, unsigned int i,
                           unsigned char key[SHA1_DIGEST_SIZE]);
 
 void SCRAM_SHA1_ClientSignature(const unsigned char ClientKey[SHA1_DIGEST_SIZE],

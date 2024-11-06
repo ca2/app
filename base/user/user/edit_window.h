@@ -23,7 +23,7 @@ namespace user
 
       virtual LRESULT _OnCreate(VOID);
       virtual LRESULT _OnDestroy(VOID);
-      //LRESULT _OnCommand(::u16, ::u16, HWND);
+      //LRESULT _OnCommand(unsigned short, unsigned short, HWND);
       virtual LRESULT _OnSetFocus(VOID);
       virtual LRESULT _OnKillFocus(VOID);
 

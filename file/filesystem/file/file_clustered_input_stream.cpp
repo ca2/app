@@ -33,7 +33,7 @@ namespace file
             SeekToPhys();
          }
          _curRem = blockSize - offsetInBlock;
-         for (i32 i = 1; i < 64 && (virtBlock + i) < (u32)Vector.get_size() && phyBlock + i == Vector[(virtBlock + i)]; i++)
+         for (int i = 1; i < 64 && (virtBlock + i) < (unsigned int)Vector.get_size() && phyBlock + i == Vector[(virtBlock + i)]; i++)
             _curRem += (u64)((u64) 1 << (u64) BlockSizeLog);
          auto rem = Size - _virtPos;
          if (_curRem > rem)

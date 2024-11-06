@@ -3,7 +3,7 @@
 
 //
 //
-//extern i32 CLASS_DECL_ACME __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * lpCmdLine, i32 nCmdShow);
+//extern int CLASS_DECL_ACME __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * lpCmdLine, int nCmdShow);
 //
 
 

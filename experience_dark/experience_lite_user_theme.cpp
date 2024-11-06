@@ -125,11 +125,11 @@ namespace lite
 
       pgraphics->fill_rectangle(rcClient, crbk);
 
-      i32 iTab = -1;
+      int iTab = -1;
 
       ::draw2d::brush_pointer pbrushText;
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
@@ -533,7 +533,7 @@ namespace lite
 
       {
 
-         //         ::u32 dwTime2= ::time::now();
+         //         unsigned int dwTime2= ::time::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -587,11 +587,11 @@ namespace lite
 
       if(ptab->get_data()->m_bVertical)
       {
-         i32 iTabWidth = 16;
-         i32 iTabHeight = 8;
-         i32 cx;
-         i32 cy;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         int iTabWidth = 16;
+         int iTabHeight = 8;
+         int cx;
+         int cy;
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -675,8 +675,8 @@ namespace lite
       }
       else
       {
-         i32 iTabHeight = 16;
-         i32 cy;
+         int iTabHeight = 16;
+         int cy;
          ::draw2d::graphics_pointer graphics(e_create);
          pgraphics->CreateCompatibleDC(nullptr);
          ::draw2d::graphics_pointer & pgraphics = graphics;
@@ -687,8 +687,8 @@ namespace lite
          ptab->rectangle(rectangleX);
          int x = rectangleX.left();
 
-         i32 ixAdd;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         int ixAdd;
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -762,7 +762,7 @@ namespace lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -798,7 +798,7 @@ namespace lite
 
       }
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          if(iPane != ptab->_001GetSel())
@@ -834,7 +834,7 @@ namespace lite
    }
 
 
-   bool theme::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar)
+   bool theme::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
    {
 
       _001DrawLiteToolbarItem(pgraphics, iItem, ptoolbar);
@@ -844,7 +844,7 @@ namespace lite
    }
 
 
-   void theme::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar)
+   void theme::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -857,13 +857,13 @@ namespace lite
 
       ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+      unsigned int uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1148,7 +1148,7 @@ namespace lite
 
    }
 
-   void theme::_001DrawLiteToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar)
+   void theme::_001DrawLiteToolbarItem(::draw2d::graphics_pointer & pgraphics, int iItem, ::user::toolbar * ptoolbar)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1161,13 +1161,13 @@ namespace lite
 
       ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
-/*      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+/*      unsigned int uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;

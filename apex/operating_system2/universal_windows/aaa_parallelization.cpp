@@ -67,7 +67,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 }
 
 //
-//htask_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
+//htask_t start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iPriority);
@@ -167,10 +167,10 @@ CLASS_DECL_APEX DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDL
 }
 
 
-//CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dw::durations, ::u32 dwWakeMask, ::u32 dwFlags)
+//CLASS_DECL_APEX unsigned int WINAPI MsgWaitForMultipleObjectsEx(unsigned int nCount, const HANDLE* pHandles, unsigned int dw::durations, unsigned int dwWakeMask, unsigned int dwFlags)
 //{
 //
-//   ::u32 dwResult = 0;
+//   unsigned int dwResult = 0;
 //
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
@@ -223,7 +223,7 @@ void _on_os_htask_end()
 
 
 htask_t g_hMainThread = nullptr;
-::u32 g_iMainThread = -1;
+unsigned int g_iMainThread = -1;
 
 
 void set_main_user_htask(htask_t htask)
@@ -250,7 +250,7 @@ htask_t main_user_htask()
 }
 
 
-::u32 main_user_itask()
+unsigned int main_user_itask()
 {
 
    return g_iMainThread;

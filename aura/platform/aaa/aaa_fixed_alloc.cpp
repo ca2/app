@@ -3,7 +3,7 @@
 
 
 
-fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
+fixed_alloc_no_sync::fixed_alloc_no_sync(unsigned int nAllocSize, unsigned int nBlockSize)
 {
    if(nBlockSize <= 1)
       nBlockSize = 4;
@@ -59,7 +59,7 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, int iShareCount)
+fixed_alloc_sync::fixed_alloc_sync(unsigned int nAllocSize, unsigned int nBlockSize, int iShareCount)
 {
 
    m_i = 0;
@@ -150,7 +150,7 @@ void fixed_alloc_sync::FreeAll()
 // fixed_alloc
 //
 
-fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
+fixed_alloc::fixed_alloc(unsigned int nAllocSize, unsigned int nBlockSize)
 {
 
    m_i = 0;

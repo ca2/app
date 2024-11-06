@@ -14,8 +14,8 @@ namespace simpledb
    public:
 
 
-      u32                         m_dwBuildTimeWindow;
-      u32                         m_dwBuildTimeRandomWindow;
+      unsigned int                         m_dwBuildTimeWindow;
+      unsigned int                         m_dwBuildTimeRandomWindow;
 
       string_to_string          m_strmapFunUserKey;
 

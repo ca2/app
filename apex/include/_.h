@@ -195,30 +195,30 @@ extern CLASS_DECL_APEX int g_bApex;
 //
 //
 //
-//#define __u16(a, b)                                   ((::u16)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((::u16)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-//#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+//#define __u16(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
+//#define __u32(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 //
 //
 //#ifdef __cplusplus
 //
 //
-//#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//#define __u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //
 //#else
 //
-//#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-//#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
+//#define __u64(a, b)                                   (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
 //
 //#endif
 //
-//#define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-//#define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-//#define lower_u32(u)                                     ((::u32)(u))
-//#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+//#define lower_u16(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
+//#define upper_u16(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
+//#define lower_u32(u)                                     ((unsigned int)(u))
+//#define upper_u32(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
 //
-//#define u32_x(u)                                     ((::i16)lower_u16(u))
-//#define u32_y(u)                                     ((::i16)upper_u16(u))
+//#define u32_x(u)                                     ((short)lower_u16(u))
+//#define u32_y(u)                                     ((short)upper_u16(u))
 //
 //#define __u32xy(u)                                    u32_x(u), u32_y(u)
 //
@@ -229,16 +229,16 @@ extern CLASS_DECL_APEX int g_bApex;
 //
 //
 //#ifndef i32_x
-//#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
 //#endif
 //
 //
 //#ifndef i32_y
-//#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
 //#endif
 //
-//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_u32(lparam))
 //
 //
 //
@@ -624,12 +624,12 @@ namespace html
 
 // return - result - if not ok
 #ifndef RINOK
-#define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
+#define RINOK(x) { int __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
+#define TINOK(e, x) { int __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 

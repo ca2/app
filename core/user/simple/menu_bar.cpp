@@ -63,7 +63,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 
 
 
-bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
+bool simple_menu_bar::LoadMenuBar(unsigned int nIDResource)
 {
 
    m_uResourceId = nIDResource;
@@ -110,7 +110,7 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
    return true;
 }
 
-void simple_menu_bar::SetMenuID(::u32 uResourceId)
+void simple_menu_bar::SetMenuID(unsigned int uResourceId)
 {
    m_uResourceId = uResourceId;
 }
@@ -276,7 +276,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //      if (pmsg->message == e_message_mouse_move)
 //      {
 //
-//         u32 fwKeys = (u32)pmsg->wParam; // key flags
+//         unsigned int fwKeys = (unsigned int)pmsg->wParam; // key flags
 //
 //         auto point = ::point_i32((::lparam) pmsg->lParam); // horizontal position of cursor
 //
@@ -434,7 +434,7 @@ void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool
    /*   tool_command state;
       state.m_pOther = this;
 
-      state.m_nIndexMax = (::u32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      state.m_nIndexMax = (unsigned int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax; state.m_nIndex++)
       {
          // get buttons state
@@ -652,7 +652,7 @@ bool simple_menu_bar::ReloadMenuBar()
 }*/
 
 
-//bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::atom atom)
+//bool simple_menu_bar::create_window(::user::interaction * puiParent, unsigned int uStyle, ::atom atom)
 //{
 //
 //   return create_window_ex(puiParent, 0, uStyle, atom);
@@ -660,7 +660,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //}
 
 
-//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::atom atom)
+//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, ::atom atom)
 //{
 //
 //   ASSERT_VALID(puiParent);   // must have a parent
@@ -719,7 +719,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //   }
 //}
 
-/*size_i32 simple_menu_bar::CalcDynamicLayout(index nLength, u32 dwMode)
+/*size_i32 simple_menu_bar::CalcDynamicLayout(index nLength, unsigned int dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -729,7 +729,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return CalcLayout(dwMode, nLength);
 
 }
-size_i32 simple_menu_bar::CalcLayout(u32 dwMode, ::collection::index nLength)
+size_i32 simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nLength)
 {
    _001Layout();
    size_i32 sizeResult;
@@ -747,7 +747,7 @@ size_i32 simple_menu_bar::CalcLayout(u32 dwMode, ::collection::index nLength)
 
 size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
-   u32 dwMode = bStretch ? LM_STRETCH : 0;
+   unsigned int dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
 
    return CalcLayout(dwMode, -1);

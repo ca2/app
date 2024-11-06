@@ -33,7 +33,7 @@ namespace mail
 
       m_psocket->m_ppop3 = this;
 
-      i32 iPort = 995;
+      int iPort = 995;
 
       if(iPort == 995)
       {
@@ -102,17 +102,17 @@ namespace mail
       return "STAT";
    }
 
-   void pop3::set_stat_count(i32 iCount)
+   void pop3::set_stat_count(int iCount)
    {
       __UNREFERENCED_PARAMETER(iCount);
    }
 
-   void pop3::set_stat_size(i32 iSize)
+   void pop3::set_stat_size(int iSize)
    {
       __UNREFERENCED_PARAMETER(iSize);
    }
 
-   void pop3::set_list_size(i32 iSize)
+   void pop3::set_list_size(int iSize)
    {
       __UNREFERENCED_PARAMETER(iSize);
    }

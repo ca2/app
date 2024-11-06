@@ -324,7 +324,7 @@ menu::~menu()
 //   }
 //
 //
-//   ::menu::item * menu::GetSubMenu(i32 i)
+//   ::menu::item * menu::GetSubMenu(int i)
 //   {
 //
 //      return get_menu_item()->m_pmenuitema->element_at(i);
@@ -733,7 +733,7 @@ menu::~menu()
 //
 //   //   index iColumn = 0;
 //
-//   //   for (i32 i = 0; i < pmenuitema->get_size(); i++)
+//   //   for (int i = 0; i < pmenuitema->get_size(); i++)
 //   //   {
 //
 //   //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
@@ -794,7 +794,7 @@ menu::~menu()
 //
 //   //   ::pointer<::base::style>pbasestyle = pstyle;
 //
-//   //   for (i32 i = 0; i < iItemCount; i++)
+//   //   for (int i = 0; i < iItemCount; i++)
 //   //   {
 //
 //   //      ::menu::item * pitem = pmenuitema->element_at(i);
@@ -1372,7 +1372,7 @@ menu::~menu()
 //            //{
 //            //   ::message::command commandui(this);
 //            //   commandui.m_pitema          = pmenuitema;
-//            //   for(i32 i = 0; i < pmenuitema->get_size(); i++)
+//            //   for(int i = 0; i < pmenuitema->get_size(); i++)
 //            //   {
 //            //
 //            //      commandui.m_iIndex    = i;
@@ -1384,7 +1384,7 @@ menu::~menu()
 //            //      if(puiTarget != nullptr)
 //            //      {
 //            //         /* xxx if(puserinteractionParent->on_command(0,
-//            //          MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//            //          MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
 //            //          &commandui, nullptr))
 //            //          continue;*/
 //            //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1432,7 +1432,7 @@ menu::~menu()
 //      //       {
 //      //          ::message::command commandui(this);
 //      //          commandui.m_pitema          = pmenuitema;
-//      //          for(i32 i = 0; i < pmenuitema->get_size(); i++)
+//      //          for(int i = 0; i < pmenuitema->get_size(); i++)
 //      //          {
 //
 //      //             commandui.m_iIndex    = i;
@@ -1444,7 +1444,7 @@ menu::~menu()
 //      //             {
 //      //                /*
 //      //                 if(puserinteractionParent->on_command(0,
-//      //                 MAKELONG((i32)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//      //                 MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
 //      //                 &commandui, nullptr))
 //      //                 continue;
 //      //                 */
@@ -1998,7 +1998,7 @@ menu::~menu()
 //
 //         // Calculate buttons sizes
 //
-//         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+//         for (int i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2037,7 +2037,7 @@ menu::~menu()
 //
 //         int iRow = 0;
 //
-//         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+//         for (int i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2093,7 +2093,7 @@ menu::~menu()
 //
 //         }
 //
-//         for (i32 i = 0; i < pmenuitema->get_size(); i++)
+//         for (int i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2109,7 +2109,7 @@ menu::~menu()
 //
 //         //::size_i32 sizeSeparator;
 //
-//         //for (i32 i = 0; i < pmenuitema->get_size(); i++)
+//         //for (int i = 0; i < pmenuitema->get_size(); i++)
 //         //{
 //
 //         //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
@@ -2194,7 +2194,7 @@ menu::~menu()
 //
 //         ::pointer<::base::style>pbasestyle = pstyle;
 //
-//         for (i32 i = 0; i < iItemCount; i++)
+//         for (int i = 0; i < iItemCount; i++)
 //         {
 //
 //            ::menu::item * pitem = pmenuitema->element_at(i);

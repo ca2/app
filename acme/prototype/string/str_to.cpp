@@ -25,7 +25,7 @@ bool str::to(i64 & i, const ::string & str)
 }
 
 
-bool str::to(i32 & i, const ::string & str)
+bool str::to(int & i, const ::string & str)
 {
 
    const ::ansi_character * pszEnd = nullptr;
@@ -79,7 +79,7 @@ bool str::to(i64 & i, int iBase, const ::string & str)
 
 }
 
-bool str::to(i32 & i, i32 iBase, const ::string & str)
+bool str::to(int & i, int iBase, const ::string & str)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -104,14 +104,14 @@ bool str::to(i32 & i, i32 iBase, const ::string & str)
 
    }
 
-   if (iConversion > numeric_info< i32 >::maximum())
+   if (iConversion > numeric_info< int >::maximum())
    {
 
       return false;
 
    }
 
-   i = (i32)iConversion;
+   i = (int)iConversion;
 
    return true;
 
@@ -137,7 +137,7 @@ bool str::to(u64 & u, const ::string & str)
 
 }
 
-bool str::to(u32 & u, const ::string & str)
+bool str::to(unsigned int & u, const ::string & str)
 {
 
    const ::ansi_character * pszEnd = nullptr;
@@ -151,21 +151,21 @@ bool str::to(u32 & u, const ::string & str)
 
    }
 
-   if (uiConversion > numeric_info < u32 > ::maximum())
+   if (uiConversion > numeric_info < unsigned int > ::maximum())
    {
 
       return false;
 
    }
 
-   u = (u32)uiConversion;
+   u = (unsigned int)uiConversion;
 
    return true;
 
 }
 
 
-bool str::to(u64 & u, i32 iBase, const ::string & str)
+bool str::to(u64 & u, int iBase, const ::string & str)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -193,7 +193,7 @@ bool str::to(u64 & u, i32 iBase, const ::string & str)
 }
 
 
-bool str::to(u32 & u, i32 iBase, const ::string & str)
+bool str::to(unsigned int & u, int iBase, const ::string & str)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -205,7 +205,7 @@ bool str::to(u32 & u, i32 iBase, const ::string & str)
 
    const ::ansi_character * pszEnd = nullptr;
 
-   u32 uiConversion = ::ansi_to_u32(str, &pszEnd, iBase);
+   unsigned int uiConversion = ::ansi_to_u32(str, &pszEnd, iBase);
 
    if (pszEnd == str.c_str())
    {
@@ -214,7 +214,7 @@ bool str::to(u32 & u, i32 iBase, const ::string & str)
 
    }
 
-   if (uiConversion > numeric_info< u32 >::maximum())
+   if (uiConversion > numeric_info< unsigned int >::maximum())
    {
 
       return false;

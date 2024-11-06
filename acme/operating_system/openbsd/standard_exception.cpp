@@ -5,7 +5,7 @@
 
 
 
-standard_exception::standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip, void * caller_address) :
+standard_exception::standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip, void * caller_address) :
 ::exception(error_exception, nullptr, nullptr, iSkip, caller_address),
 m_iSignal(iSignal),
 m_psiginfo(siginfodup(psiginfo)),
@@ -20,7 +20,7 @@ m_ucontext(*((::ucontext_t *)pc))
 #if defined(ANDROID) || defined(RASPBERRYPIOS)
 
 
-standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
       ::standard_exception(signal, psiginfo, pc)
    {
 
@@ -30,7 +30,7 @@ standard_access_violation::standard_access_violation (i32 signal, void * psiginf
 #elif defined(OPENBSD)
 
 
-standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
    standard_exception(signal, psiginfo, pc, 3, (void *) pc)
 {
 
@@ -42,7 +42,7 @@ standard_access_violation::standard_access_violation (i32 signal, void * psiginf
 
 
 #ifdef LINUX
-standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
 #ifdef _LP64
 standard_exception(signal, psiginfo, pc, 6, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
 #else
@@ -104,7 +104,7 @@ void standard_exception::siginfofree(void * psiginfo)
 
 
 
-standard_sigfpe::standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
+standard_sigfpe::standard_sigfpe (int iSignal, siginfo_t * psiginfo, void * pc) :
    standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->sc_rip)
 {
 

@@ -330,7 +330,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) ((u32)m_fmtflags | (u32)flagsAdd);
+//   m_fmtflags = (::file::fmtflags) ((unsigned int)m_fmtflags | (unsigned int)flagsAdd);
 //
 //   return fmtflagsOld;
 //
@@ -342,7 +342,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) (((u32)m_fmtflags | (u32)flagsAdd) & (~(u32)flagsRemove));
+//   m_fmtflags = (::file::fmtflags) (((unsigned int)m_fmtflags | (unsigned int)flagsAdd) & (~(unsigned int)flagsRemove));
 //
 //   return fmtflagsOld;
 //
@@ -360,7 +360,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::atom::enum_type etype = atom.m_etype;
 //
-//   write(i8(etype));
+//   write(char(etype));
 //
 //   if (etype == ::atom::e_type_text)
 //   {
@@ -712,7 +712,7 @@ bool  stream_base::is_version(int i)
 //
 //
 //#endif
-//void stream::read(i8 & i)
+//void stream::read(char & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -720,7 +720,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(i16 & i)
+//void stream::read(short & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -728,7 +728,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(u16 & u)
+//void stream::read(unsigned short & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -736,7 +736,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(i32 & i)
+//void stream::read(int & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -744,7 +744,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(u32 & u)
+//void stream::read(unsigned int & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -1060,7 +1060,7 @@ bool  stream_base::is_version(int i)
 //
 
 
-//filesize stream_base::precision(i8 prec)
+//filesize stream_base::precision(char prec)
 //{
 //
 //   return m_precision = prec;
@@ -1075,7 +1075,7 @@ bool  stream_base::is_version(int i)
 //
 //}
 //
-//filesize stream_base::width(i8 prec)
+//filesize stream_base::width(char prec)
 //{
 //
 //   return m_width = prec;

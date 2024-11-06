@@ -128,7 +128,7 @@ namespace acme
       //      inline ::collection::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
       //      {
       //
-      //         for (::u32 u = 0; u < ivectorview->Size; u++)
+      //         for (unsigned int u = 0; u < ivectorview->Size; u++)
       //         {
       //
       //            if (ivectorview->GetAt(u) == item)
@@ -1288,22 +1288,22 @@ namespace acme
       A elema;
       A topermut;
       A2D perm2;
-      for (i32 i = 0; i < count; i++)
+      for (int i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for (i32 j = 0; j < i; j++)
+         for (int j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for (i32 j = i + 1; j < count; j++)
+         for (int j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
          array_permute(perm2, topermut);
-         for (i32 j = 0; j < perm2.get_count(); j++)
+         for (int j = 0; j < perm2.get_count(); j++)
          {
             perm.add(elema + perm2[j]);
          }
@@ -1322,22 +1322,22 @@ namespace acme
       A elema;
       A topermut;
       pointer_array < A > perm2;
-      for (i32 i = 0; i < count; i++)
+      for (int i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for (i32 j = 0; j < i; j++)
+         for (int j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for (i32 j = i + 1; j < count; j++)
+         for (int j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
          array_permute(perm2, topermut);
-         for (i32 j = 0; j < perm2.get_count(); j++)
+         for (int j = 0; j < perm2.get_count(); j++)
          {
             perm.add(__allocate A(elema + perm2[j]));
          }

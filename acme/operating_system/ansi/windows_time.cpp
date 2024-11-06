@@ -179,14 +179,14 @@ int TIME_GetBias(void);
  */
 typedef struct _RTL_SYSTEM_TIME
 {
-   ::u16 wYear;
-   ::u16 wMonth;
-   ::u16 wDayOfWeek;
-   ::u16 wDay;
-   ::u16 wHour;
-   ::u16 wMinute;
-   ::u16 wSecond;
-   ::u16 wMilliseconds;
+   unsigned short wYear;
+   unsigned short wMonth;
+   unsigned short wDayOfWeek;
+   unsigned short wDay;
+   unsigned short wHour;
+   unsigned short wMinute;
+   unsigned short wSecond;
+   unsigned short wMilliseconds;
 } RTL_SYSTEM_TIME, *PRTL_SYSTEM_TIME;
 
 
@@ -202,7 +202,7 @@ typedef struct _RTL_TIME_ZONE_INFORMATION
 } RTL_TIME_ZONE_INFORMATION, *PRTL_TIME_ZONE_INFORMATION;
 
 
-static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
+static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 
 //::pointer< ::mutex > g_pmutexTz = nullptr;
@@ -235,13 +235,13 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 #define TICKS_1601_TO_UNIX_MAX ((SECS_1601_TO_1970 + INT_MAX) * TICKSPERSEC)
 
 
-static const i32 MonthLengths[2][MONSPERYEAR] =
+static const int MonthLengths[2][MONSPERYEAR] =
 {
    { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
    { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
 };
 
-static inline i32 IsLeapYear(i32 Year)
+static inline int IsLeapYear(int Year)
 {
    return Year % 4 == 0 && (Year % 100 != 0 || Year % 400 == 0) ? 1 : 0;
 }
@@ -262,7 +262,7 @@ void RtlTimeToTimeFields(
 const LARGE_INTEGER *liTime,
 PTIME_FIELDS TimeFields)
 {
-   i32 SecondsInDay;
+   int SecondsInDay;
    u64 cleaps, years, yearday, months;
    u64 Days;
    ::i64 Time;
@@ -331,7 +331,7 @@ int_bool RtlTimeFieldsToTime(
 PTIME_FIELDS tfTimeFields,
 PLARGE_INTEGER Time)
 {
-   i32 month, year, cleaps, day;
+   int month, year, cleaps, day;
 
    /* FIXME: normalize the TIME_FIELDS structure here */
    /* No, native just returns 0 (error) if the fields are not */
@@ -405,7 +405,7 @@ int TIME_GetBias(void)
    if (utc != last_utc)
    {
       RTL_TIME_ZONE_INFORMATION tzi;
-      i32 is_dst = init_tz_info( &tzi );
+      int is_dst = init_tz_info( &tzi );
 
       last_utc = utc;
       last_bias = tzi.Bias;
@@ -480,14 +480,14 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *
  * RETURNS
  *   Success: true.
- *   Failure: false, if the resulting value will not fit in a ::u32.
+ *   Failure: false, if the resulting value will not fit in a unsigned int.
  */
 int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
    if (tmp > 0xffffffff) return false;
-   *Seconds = (::u32)tmp;
+   *Seconds = (unsigned int)tmp;
    return true;
 }
 
@@ -502,14 +502,14 @@ int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
  *
  * RETURNS
  *   Success: true.
- *   Failure: false, if the resulting value will not fit in a ::u32.
+ *   Failure: false, if the resulting value will not fit in a unsigned int.
  */
 int_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
    if (tmp > 0xffffffff) return false;
-   *Seconds = (::u32)tmp;
+   *Seconds = (unsigned int)tmp;
    return true;
 }
 
@@ -525,11 +525,11 @@ int_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
  * RETURNS
  *   Nothing.
  */
-void RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
+void RtlSecondsSince1970ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->u.LowPart  = (::u32)second;
-   Time->u.HighPart = (::u32)(second >> 32);
+   Time->u.LowPart  = (unsigned int)second;
+   Time->u.HighPart = (unsigned int)(second >> 32);
 }
 
 /******************************************************************************
@@ -544,11 +544,11 @@ void RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
  * RETURNS
  *   Nothing.
  */
-void RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
+void RtlSecondsSince1980ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-   Time->u.LowPart  = (::u32)second;
-   Time->u.HighPart = (::u32)(second >> 32);
+   Time->u.LowPart  = (unsigned int)second;
+   Time->u.HighPart = (unsigned int)(second >> 32);
 }
 
 /******************************************************************************
@@ -602,12 +602,12 @@ struct timezone2
 };
 
 //
-//i32 gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
+//int gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 //{
 //  FILETIME ft;
 //  ::i64 tmpres = 0;
 //  TIME_ZONE_INFORMATION tz_winapi;
-//  i32 rez=0;
+//  int rez=0;
 //
 //   ZeroMemory(&ft,sizeof(ft));
 //   ZeroMemory(&tz_winapi,sizeof(tz_winapi));
@@ -702,11 +702,11 @@ WINULONG NtGetTickCount(void)
  *
  * Note: year, day and month must be in unix format.
  */
-static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
+static int weekday_to_mday(int year, int day, int mon, int day_of_week)
 {
    struct tm date;
    time_t tmp;
-   i32 wday, mday;
+   int wday, mday;
 
    /* find first day in the month matching week day of the date */
    memory_set(&date, 0, sizeof(date));
@@ -743,7 +743,7 @@ static i32 weekday_to_mday(i32 year, i32 day, i32 mon, i32 day_of_week)
 
 int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
-   ::u16 wDay;
+   unsigned short wDay;
 
    if (st->wMonth != reg_st->wMonth) return false;
 
@@ -774,7 +774,7 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
 
 /*
 
-static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 type, void *data, ::u32 count)
+static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, unsigned int type, void *data, unsigned int count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -798,7 +798,7 @@ static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 
 */
 
 
-static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
+static time_t find_dst_change(time_t minimum, time_t maximum, int *is_dst)
 {
    time_t start;
    struct tm *tm;
@@ -821,13 +821,13 @@ static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
    return minimum;
 }
 
-static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
+static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 {
    static RTL_TIME_ZONE_INFORMATION cached_tzi;
-   static i32 current_year = -1;
+   static int current_year = -1;
    struct tm *tm;
    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
-   i32 is_dst, current_is_dst;
+   int is_dst, current_is_dst;
 
    critical_section_lock ml(::platform::get()->tz_critical_section());
 //    RtlEnterCriticalSection( &TIME_tz_section );
@@ -993,7 +993,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
    struct timeval tv;
    //time_t tm_t;
-   ::u32 sec, oldsec;
+   unsigned int sec, oldsec;
    LARGE_INTEGER tm;
 
    /* Return the old time if necessary */

@@ -21,7 +21,7 @@ namespace networking
    //   ~port_forward_change_callbacks() override;
 
 
-   //   virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );
+   //   virtual HRESULT OnNewNumberOfEntries( int lNewNumberOfEntries );
    //   virtual HRESULT OnNewExternalIPAddress(const ::scoped_string & scopedstr );
 
 

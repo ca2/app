@@ -76,10 +76,10 @@ struct CLASS_DECL_ACME oswindow_data
    }
 
 
-   i32 store_name(const ::scoped_string & scopedstr);
-   i32 select_input(i32 iInput);
-   i32 select_all_input();
-   i32 map_window();
+   int store_name(const ::scoped_string & scopedstr);
+   int select_input(int iInput);
+   int select_all_input();
+   int map_window();
 
    void set_user_interaction(::user::interaction_base * pinteraction);
    ::user::interaction_base * get_user_interaction();
@@ -96,8 +96,8 @@ struct CLASS_DECL_ACME oswindow_data
    bool is_iconic();
    bool is_window_visible();
    bool show_window(int nCmdShow);
-   int get_window_long(i32 nIndex);
-   int set_window_long(i32 nIndex, int l);
+   int get_window_long(int nIndex);
+   int set_window_long(int nIndex, int l);
    bool client_to_screen(POINT32 * lppoint);
    bool screen_to_client(POINT32 * lppoint);
 

@@ -14,7 +14,7 @@ using namespace NDirectory;*/
 namespace file
 {
 
-   static const u32 kTempBufSize = (1 << 20);
+   static const unsigned int kTempBufSize = (1 << 20);
 
    static const char * kTempFilePrefixString = "7zt";
 
@@ -76,7 +76,7 @@ namespace file
       _outFile->close();
 
       u64 size = 0;
-      u32 crc = CRC_INIT_VAL;
+      unsigned int crc = CRC_INIT_VAL;
 
       if (_bufPos > 0)
       {
@@ -92,7 +92,7 @@ namespace file
             return E_FAIL;
          while (size < _size)
          {
-            u32 processed;
+            unsigned int processed;
             throw "should implement below ReadPart from InFile";
             /*if (!inFile.ReadPart(m_memory.get_data(), kTempBufSize, processed))
                return E_FAIL;*/

@@ -6,7 +6,7 @@
 
 #include "acme/_operating_system.h"
 
-int_bool SetThreadName(::u32 dwThreadID, const char * threadName);
+int_bool SetThreadName(unsigned int dwThreadID, const char * threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -115,7 +115,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-i32 get_os_thread_priority(::enum_priority epriority)
+int get_os_thread_priority(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -145,7 +145,7 @@ i32 get_os_thread_priority(::enum_priority epriority)
 
 
 
-i32 get_os_priority_class(::enum_priority epriority)
+int get_os_priority_class(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -174,7 +174,7 @@ i32 get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_thread_scheduling_priority(i32 nPriority)
+::enum_priority get_os_thread_scheduling_priority(int nPriority)
 {
 
    ::enum_priority epriority;
@@ -213,7 +213,7 @@ i32 get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_class_scheduling_priority(i32 nPriority)
+::enum_priority get_os_class_scheduling_priority(int nPriority)
 {
 
    ::enum_priority epriority;
@@ -298,22 +298,22 @@ void task_set_name(const char * pszThreadName)
 }
 
 
-const ::u32 MS_VC_EXCEPTION = 0x406D1388;
+const unsigned int MS_VC_EXCEPTION = 0x406D1388;
 
 #pragma pack(push,8)
 
 typedef struct tagTHREADNAME_INFO
 {
-   ::u32 dwType; // Must be 0x1000.
+   unsigned int dwType; // Must be 0x1000.
    const char * szName; // Pointer to name (in user addr space).
-   ::u32 dwThreadID; // Thread ID (-1=caller thread).
-   ::u32 dwFlags; // Reserved for future use, must be zero.
+   unsigned int dwThreadID; // Thread ID (-1=caller thread).
+   unsigned int dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 #pragma pack(pop)
 
 
 
-int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
+int_bool SetThreadName(unsigned int dwThreadID, const char* threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;

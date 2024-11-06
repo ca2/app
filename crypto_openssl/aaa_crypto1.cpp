@@ -72,7 +72,7 @@
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES 1024
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH)
 
-string chunk_split(const string& body, i32 chunklen = 76, const string& end = "\r\n");
+string chunk_split(const string& body, int chunklen = 76, const string& end = "\r\n");
 namespace crypto
 {
 
@@ -130,14 +130,14 @@ namespace crypto
 
 
 
-   i32 crypto::key(memory& storage)
+   int crypto::key(memory& storage)
    {
       storage.set_size(16);
       for (memsize i = 0; i < storage.get_size(); i++)
       {
          storage.get_data()[i] = random<char>() & 0xff;
       }
-      return (i32)storage.get_size();
+      return (int)storage.get_size();
    }
 
    /**
@@ -166,15 +166,15 @@ namespace crypto
 #ifdef HAVE_OPENSSL
 
 
-      i32 plainlen = (i32)storageDecrypt.get_size();
+      int plainlen = (int)storageDecrypt.get_size();
 
-      i32 cipherlen, tmplen;
+      int cipherlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
       EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (i32)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
+      cipherlen = (int)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.set_size(cipherlen);
 
@@ -590,9 +590,9 @@ namespace crypto
 
 #else
 
-      i32 cipherlen = (i32)storageEncrypt.get_size();
+      int cipherlen = (int)storageEncrypt.get_size();
 
-      i32 plainlen, tmplen;
+      int plainlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
@@ -610,7 +610,7 @@ namespace crypto
 
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (i32)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
+      plainlen = (int)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.set_size(plainlen);
 
@@ -668,7 +668,7 @@ namespace crypto
    }
 
 
-   i32 crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
+   int crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
    {
       memory storageDecrypt;
       memory storageEncrypt;
@@ -686,7 +686,7 @@ namespace crypto
 
       pbase64->decode(storageKey, pszKey);
 
-      i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
+      int cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
 
       strEncrypt = pbase64->encode(storageEncrypt);
 
@@ -695,7 +695,7 @@ namespace crypto
    }
 
 
-   i32 crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
+   int crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
    {
 
       memory storageEncrypt;
@@ -712,7 +712,7 @@ namespace crypto
 
       pbase64->decode(storageKey, pszKey);
 
-      i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
+      int plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
       strDecrypt = storageDecrypt.get_string();
 
@@ -721,10 +721,10 @@ namespace crypto
    }
 
 
-   u32 crypto::crc32(u32 dwPrevious, const ::scoped_string & scopedstr)
+   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
    {
 
-      return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
+      return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(psz));
 
    }
 
@@ -991,7 +991,7 @@ namespace crypto
    {
       string strSalt;
       string strFormat;
-      for (i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
+      for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
       {
          i64 iDigit = random<char>();
          strFormat.formatf("%02x", iDigit);
@@ -1002,12 +1002,12 @@ namespace crypto
 
    // calculate the hash from a salt and a password
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iOrder)
+   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-      for (i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
+      for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
       {
          string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
@@ -1015,12 +1015,12 @@ namespace crypto
       return strSalt + strHash;
    }
 
-   string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iMaxOrder)
+   string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-      for (i32 i = 0; i < iMaxOrder; i++)
+      for (int i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
@@ -1028,7 +1028,7 @@ namespace crypto
       return strSalt + strHash;
    }
 
-   bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, i32 iOrder)
+   bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
    {
       string strHash(pszHash);
       string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
@@ -1043,7 +1043,7 @@ namespace crypto
       return ::str::has_all_v1(pszPassword);
    }
 
-   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, i32 iOrder)
+   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, int iOrder)
    {
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
@@ -1229,7 +1229,7 @@ namespace crypto
 //
 //      single_lock synchronouslock(mutex(), true);
 //
-//      i32 iRsaSize = 8192;
+//      int iRsaSize = 8192;
 //
 //      out.set_size(iRsaSize);
 //
@@ -1347,7 +1347,7 @@ namespace crypto
 //
 //#else
 //
-//      auto iInSize = (i32)in.get_size();
+//      auto iInSize = (int)in.get_size();
 //
 //      auto pInData = (const uchar*)(const char*)in.get_data();
 //
@@ -1355,7 +1355,7 @@ namespace crypto
 //
 //      auto prsa = m_prsa;
 //
-//      i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+//      int i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
 //
 //      strError = ERR_error_string(ERR_get_error(), nullptr);
 //
@@ -1387,7 +1387,7 @@ namespace crypto
 //
 //      single_lock synchronouslock(mutex(), true);
 //
-//      i32 iRsaSize = 8192;
+//      int iRsaSize = 8192;
 //
 //      out.set_size(iRsaSize);
 //
@@ -1569,7 +1569,7 @@ namespace crypto
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (i32)strSigner.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (int)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1578,7 +1578,7 @@ namespace crypto
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (i32)strKey.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (int)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1616,13 +1616,13 @@ namespace crypto
          }
          pstack509 = sk_X509_new_null();
 
-         for (i32 i = 0; i < xptra.get_count(); i++)
+         for (int i = 0; i < xptra.get_count(); i++)
          {
             sk_X509_push(pstack509, xptra[i]);
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char *)strSignature, (i32)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const char *)strSignature, (int)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1868,12 +1868,12 @@ namespace crypto
 
 
 void
-stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length,
+stunCalculateIntegrity_longterm(char* hmac, const char* input, int length,
    const char* username, const char* realm, const char* password)
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   u32 resultSize = 0;
+   unsigned int resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
 
@@ -1888,10 +1888,10 @@ stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length,
 }
 
 void
-stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, const char* key)
+stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   u32 resultSize = 0;
+   unsigned int resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
       (const uchar*)input, length,

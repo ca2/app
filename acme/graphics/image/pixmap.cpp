@@ -30,46 +30,46 @@ void pixmap::mult_alpha()
 
    while (size >= 8)
    {
-      dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) / 255);
-      dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) / 255);
-      dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) / 255);
+      dst[0] = byte_clip2(((int)dst[0] * (int)dst[3]) / 255);
+      dst[1] = byte_clip2(((int)dst[1] * (int)dst[3]) / 255);
+      dst[2] = byte_clip2(((int)dst[2] * (int)dst[3]) / 255);
 
-      dst[4 + 0] = byte_clip2(((i32)dst[4 + 0] * (i32)dst[4 + 3]) / 255);
-      dst[4 + 1] = byte_clip2(((i32)dst[4 + 1] * (i32)dst[4 + 3]) / 255);
-      dst[4 + 2] = byte_clip2(((i32)dst[4 + 2] * (i32)dst[4 + 3]) / 255);
+      dst[4 + 0] = byte_clip2(((int)dst[4 + 0] * (int)dst[4 + 3]) / 255);
+      dst[4 + 1] = byte_clip2(((int)dst[4 + 1] * (int)dst[4 + 3]) / 255);
+      dst[4 + 2] = byte_clip2(((int)dst[4 + 2] * (int)dst[4 + 3]) / 255);
 
-      dst[8 + 0] = byte_clip2(((i32)dst[8 + 0] * (i32)dst[8 + 3]) / 255);
-      dst[8 + 1] = byte_clip2(((i32)dst[8 + 1] * (i32)dst[8 + 3]) / 255);
-      dst[8 + 2] = byte_clip2(((i32)dst[8 + 2] * (i32)dst[8 + 3]) / 255);
+      dst[8 + 0] = byte_clip2(((int)dst[8 + 0] * (int)dst[8 + 3]) / 255);
+      dst[8 + 1] = byte_clip2(((int)dst[8 + 1] * (int)dst[8 + 3]) / 255);
+      dst[8 + 2] = byte_clip2(((int)dst[8 + 2] * (int)dst[8 + 3]) / 255);
 
-      dst[12 + 0] = byte_clip2(((i32)dst[12 + 0] * (i32)dst[12 + 3]) / 255);
-      dst[12 + 1] = byte_clip2(((i32)dst[12 + 1] * (i32)dst[12 + 3]) / 255);
-      dst[12 + 2] = byte_clip2(((i32)dst[12 + 2] * (i32)dst[12 + 3]) / 255);
+      dst[12 + 0] = byte_clip2(((int)dst[12 + 0] * (int)dst[12 + 3]) / 255);
+      dst[12 + 1] = byte_clip2(((int)dst[12 + 1] * (int)dst[12 + 3]) / 255);
+      dst[12 + 2] = byte_clip2(((int)dst[12 + 2] * (int)dst[12 + 3]) / 255);
 
-      dst[16 + 0] = byte_clip2(((i32)dst[16 + 0] * (i32)dst[16 + 3]) / 255);
-      dst[16 + 1] = byte_clip2(((i32)dst[16 + 1] * (i32)dst[16 + 3]) / 255);
-      dst[16 + 2] = byte_clip2(((i32)dst[16 + 2] * (i32)dst[16 + 3]) / 255);
+      dst[16 + 0] = byte_clip2(((int)dst[16 + 0] * (int)dst[16 + 3]) / 255);
+      dst[16 + 1] = byte_clip2(((int)dst[16 + 1] * (int)dst[16 + 3]) / 255);
+      dst[16 + 2] = byte_clip2(((int)dst[16 + 2] * (int)dst[16 + 3]) / 255);
 
-      dst[20 + 0] = byte_clip2(((i32)dst[20 + 0] * (i32)dst[20 + 3]) / 255);
-      dst[20 + 1] = byte_clip2(((i32)dst[20 + 1] * (i32)dst[20 + 3]) / 255);
-      dst[20 + 2] = byte_clip2(((i32)dst[20 + 2] * (i32)dst[20 + 3]) / 255);
+      dst[20 + 0] = byte_clip2(((int)dst[20 + 0] * (int)dst[20 + 3]) / 255);
+      dst[20 + 1] = byte_clip2(((int)dst[20 + 1] * (int)dst[20 + 3]) / 255);
+      dst[20 + 2] = byte_clip2(((int)dst[20 + 2] * (int)dst[20 + 3]) / 255);
 
-      dst[24 + 0] = byte_clip2(((i32)dst[24 + 0] * (i32)dst[24 + 3]) / 255);
-      dst[24 + 1] = byte_clip2(((i32)dst[24 + 1] * (i32)dst[24 + 3]) / 255);
-      dst[24 + 2] = byte_clip2(((i32)dst[24 + 2] * (i32)dst[24 + 3]) / 255);
+      dst[24 + 0] = byte_clip2(((int)dst[24 + 0] * (int)dst[24 + 3]) / 255);
+      dst[24 + 1] = byte_clip2(((int)dst[24 + 1] * (int)dst[24 + 3]) / 255);
+      dst[24 + 2] = byte_clip2(((int)dst[24 + 2] * (int)dst[24 + 3]) / 255);
 
-      dst[28 + 0] = byte_clip2(((i32)dst[28 + 0] * (i32)dst[28 + 3]) / 255);
-      dst[28 + 1] = byte_clip2(((i32)dst[28 + 1] * (i32)dst[28 + 3]) / 255);
-      dst[28 + 2] = byte_clip2(((i32)dst[28 + 2] * (i32)dst[28 + 3]) / 255);
+      dst[28 + 0] = byte_clip2(((int)dst[28 + 0] * (int)dst[28 + 3]) / 255);
+      dst[28 + 1] = byte_clip2(((int)dst[28 + 1] * (int)dst[28 + 3]) / 255);
+      dst[28 + 2] = byte_clip2(((int)dst[28 + 2] * (int)dst[28 + 3]) / 255);
 
       dst += 4 * 8;
       size -= 8 ;
    }
    while (size > 0)
    {
-      dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) / 255);
-      dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) / 255);
-      dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) / 255);
+      dst[0] = byte_clip2(((int)dst[0] * (int)dst[3]) / 255);
+      dst[1] = byte_clip2(((int)dst[1] * (int)dst[3]) / 255);
+      dst[2] = byte_clip2(((int)dst[2] * (int)dst[3]) / 255);
       dst += 4;
       size--;
    }

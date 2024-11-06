@@ -26,10 +26,10 @@ namespace universal_windows
 
       virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName) override;
       virtual ::file::path get_module_path(HMODULE hmodule) override;
-      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, u32 & dwPid) override;
-      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, u32 & dwPid) override;
+      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
+      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
       virtual void get_all_processes(u32_array & dwa) override;
-      virtual ::file::path get_process_path(u32 dwPid) override;
+      virtual ::file::path get_process_path(unsigned int dwPid) override;
 
 
       virtual ::payload connection_settings_get_auto_detect() override;
@@ -65,7 +65,7 @@ namespace universal_windows
 
       virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
-      virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
+      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
 
       virtual bool is_remote_session() override;
 

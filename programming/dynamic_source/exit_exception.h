@@ -13,11 +13,11 @@ namespace dynamic_source
    public:
 
 
-      i32     m_iCode;
+      int     m_iCode;
       ::payload         m_varRet;
 
 
-      exit_exception(i32 iCode);
+      exit_exception(int iCode);
 
 
    };

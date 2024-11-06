@@ -23,7 +23,7 @@ namespace simpledb
             }
             else
             {
-               for (i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
+               for (int i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
                {
                   ::database::field_definition_item & item = m_ptable->m_fielddefinition[i];
                   ::payload payload = payloada[i];
@@ -50,7 +50,7 @@ namespace simpledb
       {
          if (m_straFields.get_size() <= 0 || (m_straFields.get_size() == 1 && m_straFields[0] == "*"))
          {
-            for (i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
+            for (int i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {
                ::database::field_definition_item & item = m_ptable->m_fielddefinition[i];
                ::payload payload;

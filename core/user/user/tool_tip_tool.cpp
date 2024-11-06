@@ -53,7 +53,7 @@ namespace user
 
    }
 
-   i32 tool_tip_tool::BaseToolTipGetIndex()
+   int tool_tip_tool::BaseToolTipGetIndex()
    {
       return -1;
    }

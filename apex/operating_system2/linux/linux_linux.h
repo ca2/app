@@ -19,7 +19,7 @@
 
 
 
-//::u32 get_tick();
+//unsigned int get_tick();
 
 
 
@@ -30,11 +30,11 @@
 
 
 
-//CLASS_DECL_APEX ::u32 get_last_error();
-//CLASS_DECL_APEX void set_last_error(::u32 dw);
+//CLASS_DECL_APEX unsigned int get_last_error();
+//CLASS_DECL_APEX void set_last_error(unsigned int dw);
 
 
-CLASS_DECL_APEX bool _istlead(i32 ch);
+CLASS_DECL_APEX bool _istlead(int ch);
 
 
 

@@ -2,14 +2,14 @@
 //#include "src/turboc.h"
 
 
-i16 getch()
+short getch()
 {
 
    return get_console_application().console_prompt().getch();
 
 }
 
-void getch(i16 c)
+void getch(short c)
 {
 
    return get_console_application().console_prompt().ungetch(c);

@@ -70,7 +70,7 @@ public:
 
    constexpr ::i64 i64() const { return is_floating() ? (::i64)m_f64 : m_i64; }
    constexpr ::f64 f64() const { return is_floating() ? m_f64 : (::f64)m_i64; }
-   constexpr int i32() const { return (int) this->i64(); }
+   constexpr int int() const { return (int) this->i64(); }
    constexpr ::f32 f32() const { return (::f32) this->f64(); }
    constexpr ENUM eunit() const { return m_eunit; }
 

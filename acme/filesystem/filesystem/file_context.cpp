@@ -413,7 +413,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
 
 ::file::path
-file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPrefix, const string &pszSuffix,
+file_context::time(const ::file::path &psz, int iMaxLevel, const string &pszPrefix, const string &pszSuffix,
                    bool bTryDelete)
 {
 
@@ -443,7 +443,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    int iIncLevel = 0;
 
-   for (i32 i = 1; i <= iMaxLevel;)
+   for (int i = 1; i <= iMaxLevel;)
    {
 
       directory()->create(str);
@@ -462,7 +462,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       if (i < iMaxLevel)
       {
 
-         i32 iMax = filterex_time_square("", listing);
+         int iMax = filterex_time_square("", listing);
 
          if (iMax == -1)
          {
@@ -513,7 +513,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
          directory()->enumerate(listing);
 
-         i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
+         int iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
 
          do
          {
@@ -581,14 +581,14 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 }
 
 
-i32 file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array &stra)
+int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array &stra)
 {
 
-   i32 iMax = -1;
+   int iMax = -1;
 
-   i32 iIndex;
+   int iIndex;
 
-   for (i32 i = 0; i < stra.size(); i++)
+   for (int i = 0; i < stra.size(); i++)
    {
 
       string str = stra[i].name();
@@ -1659,7 +1659,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      for (i32 i = 0; i < listing.size(); i++)
+      for (int i = 0; i < listing.size(); i++)
       {
 
          strSrc = listing[i];
@@ -2068,7 +2068,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //#else
 //   if (::rename(psz, pszNew) != 0)
 //   {
-//      i32 err = errno;
+//      int err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
 //      throw ::exception(::exception(strError));
@@ -2120,7 +2120,7 @@ void file_context::erase(const ::file::path & path)
 //
 //   /*      if(!::DeleteFileW(utf8_to_unicode(string("\\\\?\\") + psz)))
 //   {
-//   u32 dwError = ::get_last_error();
+//   unsigned int dwError = ::get_last_error();
 //   if(dwError == 2) // the file does not exist, so delete "failed"
 //   return;
 //   string strError;
@@ -2133,7 +2133,7 @@ void file_context::erase(const ::file::path & path)
 //
 //   if (unlink(psz) != 0)
 //   {
-//      i32 err = errno;
+//      int err = errno;
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
 //      {
 //         string strError;
@@ -2154,7 +2154,7 @@ void file_context::erase(const ::file::path & path)
    string strNew;
    if (directory()->is(psz))
    {
-      i32 i = 1;
+      int i = 1;
       while (i <= 100)
       {
          strNew.formatf("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
@@ -2173,7 +2173,7 @@ void file_context::erase(const ::file::path & path)
       {
          strExt = "-" + strExt;
       }
-      i32 i = 1;
+      int i = 1;
       while (i <= 100)
       {
          strNew.formatf("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
@@ -2245,7 +2245,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    directory()->create(strDir);
 
-   for (i32 i = 0; i < stra.size(); i++)
+   for (int i = 0; i < stra.size(); i++)
    {
 
       transfer(strDir / stra[i].name(), stra[i]);
@@ -2314,7 +2314,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    directory()->enumerate(listing);
 
-   for (i32 i = 0; i < listing.size(); i++)
+   for (int i = 0; i < listing.size(); i++)
    {
 
       strOldName = listing[i].name();
@@ -2376,7 +2376,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   u32 dwAttrib = windows_get_file_attributes(psz);
+//   unsigned int dwAttrib = windows_get_file_attributes(psz);
 //
 //   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
 //   {
@@ -2432,7 +2432,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 
    char buf[30];
 
-   for (i32 i = 0; i < 1000; i++)
+   for (int i = 0; i < 1000; i++)
    {
 
       sprintf(buf, "%d", i);
@@ -2699,7 +2699,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   u64 iPos;
 //
-//   for (i32 i = 0; i < stra.size(); i++)
+//   for (int i = 0; i < stra.size(); i++)
 //   {
 //      if (case_insensitive_string_ends(stra[i], ".zip"))
 //      {
@@ -2714,7 +2714,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         throw ::exception(::exception("failed"));
-//      write_n_number(pfile, &ctx, (i32)pfile2->size());
+//      write_n_number(pfile, &ctx, (int)pfile2->size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
 //         pfile->write(buf, uRead);
@@ -2749,7 +2749,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   string strRelative;
 //   string strMd5;
 //   string strMd5New;
-//   i32 iBufSize = 1024 * 1024;
+//   int iBufSize = 1024 * 1024;
 //   memory buf;
 //   buf.set_size(iBufSize);
 //   i64 iLen;
@@ -2776,7 +2776,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         read_n_number(pfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uRead = pfile->read(buf, (::u32)(minimum(iBufSize, iLen)));
+//            uRead = pfile->read(buf, (unsigned int)(minimum(iBufSize, iLen)));
 //            if (uRead == 0)
 //               break;
 //            pfile2->write(buf, uRead);
@@ -2807,7 +2807,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   if (pctx != nullptr)
 //   {
 //
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
 //
 //   }
 //
@@ -2857,7 +2857,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   pfile->write((const char *)str);
 //   if (pctx != nullptr)
 //   {
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
 //   }
 //}
 
@@ -2874,7 +2874,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      i64 iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
-//         i32 iProcess = (i32)minimum(1024 * 1024, iLen - iProcessed);
+//         int iProcess = (int)minimum(1024 * 1024, iLen - iProcessed);
 //         MD5_Update((MD5_CTX *)pctx, &psz[iProcessed], iProcess);
 //
 //         iProcessed += iProcess;
@@ -4136,7 +4136,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 //
-//::file::path file_context::time(const ::file::path & pszBasePath, i32 iDepth, const string & pszPrefix, const string & pszSuffix)
+//::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const string & pszPrefix, const string & pszSuffix)
 //{
 //
 //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -4285,7 +4285,7 @@ bool file_context::is_link(const ::file::path & path)
 
 //
 //
-//::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
+//::file_pointer file_context::get_file(const ::payload & payloadFile, unsigned int nOpenFlags)
 //{
 //
 //   return file()->get_file(get_app(), payloadFile, nOpenFlags);

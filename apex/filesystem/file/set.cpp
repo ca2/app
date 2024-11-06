@@ -116,7 +116,7 @@ namespace file
 
       string strFilter;
 
-      i32 i;
+      int i;
 
       string strFile;
 

@@ -201,7 +201,7 @@ namespace heap
 
 
 
-      virtual void on_plex_new_block(::u32 nAllocSize);
+      virtual void on_plex_new_block(unsigned int nAllocSize);
      
    };
    

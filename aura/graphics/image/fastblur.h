@@ -76,8 +76,8 @@ namespace image
       void do_fastblur(image32_t * pdata,int w,int h,unsigned char * rectangle,unsigned char * g,unsigned char * b,unsigned char * a,unsigned char * dv,int stride,int * vmin,int * vmax,int cx,int cy,int bottomup);
       void do_fastblur(image32_t * pdata,int w,int h,rgba_t * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
 #if VECTOR3_SSE
-      void do_boxblur(vector4 * pdata,int w,int h,u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
-      void do_stackblur(vector4 * pdata,int w,int h,u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
+      void do_boxblur(vector4 * pdata,int w,int h,unsigned int * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
+      void do_stackblur(vector4 * pdata,int w,int h,unsigned int * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup);
 #endif // VECTOR3_SSE
 
 

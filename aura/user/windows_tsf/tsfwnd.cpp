@@ -171,7 +171,7 @@ void CTSFMainWnd::_CleanupEditWnd(BOOL fNuke)
 **************************************************************************/
 
 LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd, 
-                                        ::u32 uMessage,
+                                        unsigned int uMessage,
                                         WPARAM wParam, 
                                         LPARAM lParam)
 {
@@ -276,7 +276,7 @@ LRESULT CTSFMainWnd::_OnDestroy(VOID)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
+LRESULT CTSFMainWnd::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hWnd)
 {
     switch(wID)
     {
@@ -380,7 +380,7 @@ LRESULT CTSFMainWnd::_OnKillFocus(VOID)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnNotify(::u32, LPNMHDR)
+LRESULT CTSFMainWnd::_OnNotify(unsigned int, LPNMHDR)
 {
     return 0;
 }
@@ -391,7 +391,7 @@ LRESULT CTSFMainWnd::_OnNotify(::u32, LPNMHDR)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnSize(::u16 wWidth, ::u16 wHeight)
+LRESULT CTSFMainWnd::_OnSize(unsigned short wWidth, unsigned short wHeight)
 {
     //position the edit window to fill the client area
     MoveWindow(m_pTSFEditWnd->_GetWindow(), 0, 0, wWidth, wHeight, true);

@@ -103,7 +103,7 @@ lite_html_reader::lite_html_reader()
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 dwNewEventMask)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNewEventMask)
 {
    EventMaskEnum   oldMask = m_eventMask;
    m_eventMask = (EventMaskEnum)dwNewEventMask;
@@ -111,15 +111,15 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 dwNewEventMas
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 addFlags, u32 eraseFlags)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int addFlags, unsigned int eraseFlags)
 {
-   u32   dwOldMask = (u32)m_eventMask;
-   u32   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
+   unsigned int   dwOldMask = (unsigned int)m_eventMask;
+   unsigned int   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
    m_eventMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }
 
-strsize lite_html_reader::setAppData(u32 dwNewAppData)
+strsize lite_html_reader::setAppData(unsigned int dwNewAppData)
 {
    strsize   dwOldAppData = m_dwAppData;
    m_dwAppData = dwNewAppData;
@@ -338,7 +338,7 @@ char lite_html_reader::UngetChar()
 }
 
 
-bool lite_html_reader::getEventNotify(u32 dwEvent) const
+bool lite_html_reader::getEventNotify(unsigned int dwEvent) const
 {
    ASSERT(dwEvent == notifyStartStop  ||
           dwEvent == notifyTagStart   ||
@@ -370,7 +370,7 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
 
-   ::u32 nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
+   unsigned int nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
 
    if(!nRetVal)
       return false;
@@ -481,7 +481,7 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(pszBegin, i32(pszEnd - pszBegin));
+   string   strComment(pszBegin, int(pszEnd - pszBegin));
 
 
    // end of buffer?

@@ -26,7 +26,7 @@ namespace hellobase
 
       virtual string preferred_experience() override;
       virtual void init_instance() override;
-      virtual i32  exit_application() override;
+      virtual int  exit_application() override;
 
       virtual void on_request(::request * prequest) override;
 

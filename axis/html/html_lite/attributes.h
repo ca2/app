@@ -122,11 +122,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   u16 getPercentValue(u16 maximum = USHRT_MAX) const
+   unsigned short getPercentValue(unsigned short maximum = USHRT_MAX) const
    {
       ASSERT(maximum > 0);
       if (!isPercentValue())   return (0);
-      u16   percentVal = (u16)((i16)*this);
+      unsigned short   percentVal = (unsigned short)((short)*this);
       return ((percentVal > maximum ? maximum : percentVal));
    }
 
@@ -141,7 +141,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point, pc };
-   i16 getLengthValue(LengthUnitsEnum &rUnit) const
+   short getLengthValue(LengthUnitsEnum &rUnit) const
    {
       static const char   _szUnits[][4] =
       {
@@ -154,7 +154,7 @@ public:
       if (m_strValue.is_empty())
          return (0);
 
-      i32 i;
+      int i;
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
          if (m_strValue.right(::ansi_len(_szUnits[i])). \
@@ -183,7 +183,7 @@ public:
          return (true);
       if (m_strValue.case_insensitive_equals("false"))
          return (false);
-      return (((i16)*this ? true : false));
+      return (((short)*this ? true : false));
    }
 
    /**
@@ -205,13 +205,13 @@ public:
    { return (::strtod(m_strValue, nullptr)); }
 
    /**
-    * Converts attribute value to signed i16
+    * Converts attribute value to signed short
     * @return 0 on failure, otherwise, an integer value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator i16() const
-   { return ((i16)::atoi(m_strValue)); }
+   operator short() const
+   { return ((short)::atoi(m_strValue)); }
 
    /**
     * @return attribute value
@@ -296,7 +296,7 @@ public:
             m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
-            for (i32 iElem = 0; iElem < nElemCount; iElem++)
+            for (int iElem = 0; iElem < nElemCount; iElem++)
             {
                if ((pItem = __raw_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
@@ -349,13 +349,13 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   i32 getIndexFromName(const ::string & pszAttributeName) const
+   int getIndexFromName(const ::string & pszAttributeName) const
 
    {
       ASSERT(is_string_ok(pszAttributeName));
 
       LiteHTMLElemAttr   *pItem = nullptr;
-      for (i32 iElem = 0; iElem < getCount(); iElem++)
+      for (int iElem = 0; iElem < getCount(); iElem++)
       {
          if ((pItem = (*m_parrAttrib)[iElem]) == nullptr)   // just in case
             continue;
@@ -375,7 +375,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr operator[](i32 nIndex) const
+   LiteHTMLElemAttr operator[](int nIndex) const
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
       {
@@ -408,7 +408,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr getAttribute(i32 nIndex) const
+   LiteHTMLElemAttr getAttribute(int nIndex) const
    { return ((*this)[nIndex]); }
 
    /**
@@ -434,7 +434,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getName(i32 nIndex) const
+   string getName(int nIndex) const
    { return ((*this)[nIndex].m_strName); }
 
    /**
@@ -444,7 +444,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getValue(i32 nIndex) const
+   string getValue(int nIndex) const
    { return ((*this)[nIndex].m_strValue); }
 
    /**
@@ -491,7 +491,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool eraseAttribute(i32 nIndex)
+   bool eraseAttribute(int nIndex)
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
@@ -510,7 +510,7 @@ public:
    bool eraseAll()
    {
       LiteHTMLElemAttr   *pItem = nullptr;
-      for (i32 iElem = 0; iElem < getCount(); iElem++)
+      for (int iElem = 0; iElem < getCount(); iElem++)
       {
          pItem = (*m_parrAttrib)[iElem];
          ASSERT(pItem != nullptr);

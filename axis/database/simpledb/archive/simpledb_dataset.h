@@ -87,7 +87,7 @@ namespace simpledb
       virtual bool SetFieldValue(::collection::index iFieldIndex, const ::payload &value);
 
       virtual ::payload & FieldValueAt(::collection::index iFieldIndex);
-      virtual i32 GetFieldIndex(const ::string &f_name);
+      virtual int GetFieldIndex(const ::string &f_name);
 
       database * get_database();
 

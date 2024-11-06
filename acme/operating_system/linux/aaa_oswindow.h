@@ -2,11 +2,11 @@
 
 
 // define portable types for 32-bit / 64-bit OS
-//typedef i32 int_bool;
+//typedef int int_bool;
 typedef unsigned char unsigned char;
-//typedef u16 ::u16;
-typedef unsigned int u32;
-//typedef i32 int;
+//typedef unsigned short unsigned short;
+typedef unsigned int unsigned int;
+//typedef int int;
 
 
 
@@ -53,9 +53,9 @@ class ::pointer < ::mutex >;
 class oswindow_data;
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
-CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_AURA i32 oswindow_find(Window window);
+CLASS_DECL_AURA int oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
+CLASS_DECL_AURA int oswindow_find(Display * pdisplay, Window window);
+CLASS_DECL_AURA int oswindow_find(Window window);
 CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::windowing::window * puibaseMessageWindow);
 CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr, int iDepth = -1, int iScreen = -1, Colormap colormap = None);
 CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
@@ -138,7 +138,7 @@ public:
    static Atom s_atomLongStyle;
    static Atom s_atomLongStyleEx;
 
-   static Atom get_window_long_atom(i32 nIndex);
+   static Atom get_window_long_atom(int nIndex);
 
 
 
@@ -213,11 +213,11 @@ public:
    }
 
    void send_client_event(Atom atom, unsigned int numArgs, ...);
-   i32 store_name(const ::scoped_string & scopedstr);
-   i32 select_input(i32 iInput);
-   i32 select_all_input();
-   i32 map_window();
-   i32 unmap_window(bool bWithdraw);
+   int store_name(const ::scoped_string & scopedstr);
+   int select_input(int iInput);
+   int select_all_input();
+   int map_window();
+   int unmap_window(bool bWithdraw);
     void set_wm_class(const ::scoped_string & scopedstr);
 
    void exit_iconify();
@@ -243,8 +243,8 @@ public:
    bool is_iconic();
    bool is_window_visible();
    bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
-   iptr get_window_long_ptr(i32 nIndex);
-   iptr set_window_long_ptr(i32 nIndex, iptr l);
+   iptr get_window_long_ptr(int nIndex);
+   iptr set_window_long_ptr(int nIndex, iptr l);
    bool client_to_screen(::point_i32 * ppoint);
 
    bool screen_to_client(::point_i32 * ppoint);
@@ -258,8 +258,8 @@ public:
       return ::is_null(this);
    }
 
-   bool set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
-   bool _set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
+   bool set_window_position(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags);
+   bool _set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags);
 
    bool is_destroying();
 

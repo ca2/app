@@ -15,20 +15,20 @@
 #ifdef LINUX
 ////#include <ctype.h>
 #endif
-//bool is_high_surrogate(u16 u)
+//bool is_high_surrogate(unsigned short u)
 //{
 //   return u >= 0xD800 && u <= 0xDBFF;
 //
 //}
-//bool is_low_surrogate(u16 u)
+//bool is_low_surrogate(unsigned short u)
 //{
 //   return u >= 0xDC00 && u <= 0xDFFF;
 //}
-// bool is_surrogated(u32 character)
+// bool is_surrogated(unsigned int character)
 //{
 //   return 0x10000 <= character && character <= 0x10FFFF;
 //}
-// void str::encode_utf16_pair(u32 character, u16 *units)
+// void str::encode_utf16_pair(unsigned int character, unsigned short *units)
 //{
 //   unsigned int code;
 //   ASSERT(utf32_is_surrogated(character));
@@ -80,7 +80,7 @@
 
 
 ////template < >
-//i32 str::compare(const ::string & str1, const ::string & str2)
+//int str::compare(const ::string & str1, const ::string & str2)
 //{
 //
 //   return strcmp(str1, str2);
@@ -89,7 +89,7 @@
 //
 //
 ////template < >
-//i32 str::case_insensitive_order(const ::string & str1, const ::string & str2)
+//int str::case_insensitive_order(const ::string & str1, const ::string & str2)
 //{
 //
 //   return case_insensitive_ansi_compare(str1, str2);
@@ -610,7 +610,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 
    //   string strSuffix(pcszSuffix);
 
-   //   i32 iLen = strSuffix.length();
+   //   int iLen = strSuffix.length();
    //   if(str.right(iLen) == pcszSuffix)
 
    //   {
@@ -743,7 +743,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 
-   //void str::copy(string & str, const ::scoped_string & scopedstr, i32 iCount)
+   //void str::copy(string & str, const ::scoped_string & scopedstr, int iCount)
    //{
 
    //   string strCopy(pcsz, iCount);
@@ -1334,9 +1334,9 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
    ::collection::count iFindLen = strOld.length();
 
-   i32 len1;
+   int len1;
 
-   i32 len2;
+   int len2;
 
    const ::ansi_character * psz1 = str;
 
@@ -1467,9 +1467,9 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
  const char * pFin = strOld;
 
- i32 lenSrc;
+ int lenSrc;
 
- i32 lenFin;
+ int lenFin;
 
  while(*psz)
  {
@@ -2413,7 +2413,7 @@ const char * utf8_dec(const ::ansi_character * pszBeg, const ::ansi_character * 
 string get_utf8_char(const ::ansi_character * psz)
 {
 
-   i32 iLength;
+   int iLength;
    
    auto iIndex = unicode_index_length(psz, iLength);
 
@@ -2540,7 +2540,7 @@ string utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_characte
 }
 
 
-i32 str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos)
+int str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos)
 {
 
    retPos = pos;
@@ -2578,7 +2578,7 @@ i32 str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & r
 
             retPos += val_len + 2;
 
-            return (i32)hex;
+            return (int)hex;
 
          }
          else
@@ -2595,7 +2595,7 @@ i32 str::get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & r
 
             retPos += 2;
 
-            return (i32)hex;
+            return (int)hex;
 
          }
 
@@ -2978,7 +2978,7 @@ string str::pad(const ::string & strParam, ::collection::count iLen, const ::str
 
    }
 
-   i32 i = 0;
+   int i = 0;
 
    if (epad == e_pad_left)
    {
@@ -3085,7 +3085,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }*/
 
 
-i32 str::to_i32(const ::string & str)
+int str::to_i32(const ::string & str)
 {
 
    return ansi_to_i32(str);
@@ -3093,10 +3093,10 @@ i32 str::to_i32(const ::string & str)
 }
 
 
-u32 str::to_u32(const ::scoped_string & scopedstr)
+unsigned int str::to_u32(const ::scoped_string & scopedstr)
 {
 
-   return (u32)ansi_to_i64(scopedstr);
+   return (unsigned int)ansi_to_i64(scopedstr);
 
 }
 
@@ -3104,7 +3104,7 @@ u32 str::to_u32(const ::scoped_string & scopedstr)
 i64 str::to_i64(const ::string & str)
 {
 
-   i32 i = 0;
+   int i = 0;
 
    for (; i < str.length() && character_isspace(str[i]); i++);
 
@@ -3145,7 +3145,7 @@ i64 str::to_i64(const ::string & str)
 //i64 to_i64(const ::string & str)
 //{
 
-//   i32 i = 0;
+//   int i = 0;
 
 //   for (; *psz != '\0' && i < 30 && ansi_char_isspace(*psz); i++, psz++);
 
@@ -3171,7 +3171,7 @@ i64 str::to_i64(const ::string & str)
 u64 str::to_u64(const ::string & str)
 {
 
-   i32 i = 0;
+   int i = 0;
 
    for (; i < str.length() && character_isspace(str[i]); i++);
 
@@ -3189,7 +3189,7 @@ u64 str::to_u64(const ::string & str)
 //u64 to_u64(const ::string & strParam)
 //{
 
-//   i32 i = 0;
+//   int i = 0;
 
 //   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
@@ -3241,7 +3241,7 @@ void str::increment_digit_letter(string & str)
 //bool str::while_begins_with_chars_eat(string & str, const ::ansi_character * pszChars)
 //{
 //
-//   i32 i = 0;
+//   int i = 0;
 //   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, str[i]) == nullptr)
@@ -3257,7 +3257,7 @@ void str::increment_digit_letter(string & str)
 //bool str::case_insensitive_while_begins_with_chars_eat(string & str, const ::ansi_character * pszChars) // case insensitive
 //{
 //
-//   i32 i = 0;
+//   int i = 0;
 //   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, tolower(str[i])) == nullptr)
@@ -3879,14 +3879,14 @@ bool str::is_true(string str)
 
 
 
-string str::block(char ch, i32 iSize)
+string str::block(char ch, int iSize)
 {
 
    string str;
 
    auto psz = str.get_buffer(iSize);
 
-   for (i32 i = 0; i < iSize; i++)
+   for (int i = 0; i < iSize; i++)
    {
 
       psz[i] = ch;
@@ -3907,7 +3907,7 @@ void str::fill(string & str, char ch)
 
    auto psz = str.get_buffer();
 
-   for (i32 i = 0; i < len; i++)
+   for (int i = 0; i < len; i++)
    {
 
       psz[i] = ch;

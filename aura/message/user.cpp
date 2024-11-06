@@ -28,7 +28,7 @@
 //
 //   ::oswindow     m_oswindow;
 //   hdc            m_hdc;
-//   ::u32          m_nCtlType;
+//   unsigned int          m_nCtlType;
 //
 //
 //};
@@ -243,7 +243,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   m_nChar = static_cast<::u32>(wparam);
+   //   m_nChar = static_cast<unsigned int>(wparam);
 
    //   m_nRepCnt = first_u16(lparam);
 
@@ -289,7 +289,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   m_nType     = static_cast < ::u32 > (wparam);
+   //   m_nType     = static_cast < unsigned int > (wparam);
 
    //   m_size      = ::size_i32(x_i16(lparam), y_i16(lparam));
 
@@ -440,7 +440,7 @@ namespace message
    }
 
 
-   ::u32 mouse_activate::GetHitTest()
+   unsigned int mouse_activate::GetHitTest()
    {
 
       return lower_u16(m_lparam);
@@ -448,7 +448,7 @@ namespace message
    }
 
 
-   ::u32 mouse_activate::get_message()
+   unsigned int mouse_activate::get_message()
    {
 
       return upper_u16(m_lparam);
@@ -538,9 +538,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   m_ecommand = (enum_scroll_command) (i16)first_u16(wparam);
+   //   m_ecommand = (enum_scroll_command) (short)first_u16(wparam);
 
-   //   m_nPos = (i16)second_u16(wparam);
+   //   m_nPos = (short)second_u16(wparam);
 
    //}
 
@@ -552,7 +552,7 @@ namespace message
 
    //   m_bShow = wparam != false;
 
-   //   m_nStatus = static_cast<::u32>(lparam);
+   //   m_nStatus = static_cast<unsigned int>(lparam);
 
    //}
 
@@ -641,7 +641,7 @@ namespace message
    }
 
 
-   ::u32 mouse_wheel::GetFlags()
+   unsigned int mouse_wheel::GetFlags()
    {
 
       return lower_u16(m_wparam);
@@ -649,7 +649,7 @@ namespace message
    }
 
 
-//   i16 mouse_wheel::GetDelta()
+//   short mouse_wheel::GetDelta()
 //   {
 //
 //      return second_i16(m_wparam);

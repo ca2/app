@@ -262,7 +262,7 @@ namespace user
    }
 
 
-   //void impact::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
+   //void impact::CalcWindowRect(::rectangle_i32 * pClientRect, unsigned int nAdjustType)
 
    //{
    //   /* trans   ENSURE_ARG(pClientRect != nullptr);
@@ -274,7 +274,7 @@ namespace user
 
 
    //   // default behavior for in-place editing handles scrollbars
-   //   u32 uStyle = GetStyle();
+   //   unsigned int uStyle = GetStyle();
    //   if (uStyle & WS_VSCROLL)
    //   {
    //   int nAdjust = ::windows_definition::Data.cxVScroll;
@@ -591,7 +591,7 @@ namespace user
 
 
    /* trans
-   int impact::OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
+   int impact::OnMouseActivate(::windowing::window * pDesktopWnd, unsigned int nHitTest, const ::atom & atom)
    {
    int nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -625,7 +625,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact scrolling support
 
-   bool impact::OnScroll(::u32 /*nScrollCode*/, ::u32 /*nPos*/, bool /*bDoScroll*/)
+   bool impact::OnScroll(unsigned int /*nScrollCode*/, unsigned int /*nPos*/, bool /*bDoScroll*/)
    {
       return false;
    }
@@ -638,7 +638,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact drag/drop support
 
-   ///*DROPEFFECT impact::OnDragScroll(u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+   ///*DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
    //{
    //#ifndef ___NO_OLE_SUPPORT
    // return DROPEFFECT_SCROLL; // this means do the default
@@ -648,13 +648,13 @@ namespace user
    //}
 
    //DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-   // u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+   // unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
    //{
    // return 0;   // DROPEFFECT_NONE
    //}
 
    //DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-   //u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+   //unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
    //{
    //return 0;   // DROPEFFECT_NONE
    //}
@@ -727,7 +727,7 @@ namespace user
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
    }
 
-   bool impact::OnSplitCmd(::u32)
+   bool impact::OnSplitCmd(unsigned int)
    {
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
@@ -748,7 +748,7 @@ namespace user
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
-   bool impact::OnNextPaneCmd(::u32 nID)
+   bool impact::OnNextPaneCmd(unsigned int nID)
    {
       __UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
@@ -1367,7 +1367,7 @@ namespace user
 //   /////////////////////////////////////////////////////////////////////////////
 //   // ::user::impact drag/drop support
 //
-//   DROPEFFECT impact::OnDragScroll(u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+//   DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
 //   {
 //#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
@@ -1377,13 +1377,13 @@ namespace user
 //   }
 //
 //   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-//      u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+//      unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
 //
 //   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-//      u32 /*dwKeyState*/, point_i32 /*point_i32*/)
+//      unsigned int /*dwKeyState*/, point_i32 /*point_i32*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
@@ -1456,7 +1456,7 @@ namespace user
 
 
    /*
-   ::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID)
+   ::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, unsigned int nID)
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
@@ -1493,7 +1493,7 @@ namespace user
    }*/
 
 
-   /*::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID, ::user::interaction  * puserinteractionParent)
+   /*::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, unsigned int nID, ::user::interaction  * puserinteractionParent)
    {
    ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);

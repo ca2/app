@@ -4,11 +4,11 @@
 
 
 
-CLASS_DECL_ACME i32 mkint32(u32 u)
+CLASS_DECL_ACME int mkint32(unsigned int u)
 {
    if (u >= I32_MAXIMUM)
       throw_cast_overflow();
-   return (i32)u;
+   return (int)u;
 }
 
 CLASS_DECL_ACME  i64 mkint64(u64 ull)
@@ -19,11 +19,11 @@ CLASS_DECL_ACME  i64 mkint64(u64 ull)
 }
 
 
-CLASS_DECL_ACME u32 natural32(i32 i)
+CLASS_DECL_ACME unsigned int natural32(int i)
 {
    if (i < 0)
       return 0;
-   return (u32)i;
+   return (unsigned int)i;
 }
 
 CLASS_DECL_ACME  u64 natural64(i64 ll)

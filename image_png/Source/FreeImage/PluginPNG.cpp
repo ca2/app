@@ -116,7 +116,7 @@ static int_bool
          tag = FreeImage_CreateTag();
          if(!tag) return false;
 
-         ::u32 tag_length;
+         unsigned int tag_length;
 
          if(text_ptr[i].text_length & I32_MINIMUM)
          {
@@ -127,7 +127,7 @@ static int_bool
             }
             else
             {
-               tag_length = (::u32) text_ptr[i].itxt_length;
+               tag_length = (unsigned int) text_ptr[i].itxt_length;
             }
 #else
             continue;
@@ -136,13 +136,13 @@ static int_bool
 #ifdef PNG_iTXt_SUPPORTED
          else if(text_ptr[i].itxt_length & I32_MINIMUM)
          {
-            tag_length = (::u32) text_ptr[i].text_length;
+            tag_length = (unsigned int) text_ptr[i].text_length;
          }
 #endif
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (unsigned int) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif

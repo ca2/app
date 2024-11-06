@@ -22,7 +22,7 @@ namespace acme
 
 
 
-   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep)
    {
 
       auto pszFullString = scopedstrFullString.begin();
@@ -51,7 +51,7 @@ namespace acme
       const char* pchEnd = ansi_chr(pszFullString, chSep);
 
 
-      strsize nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (i32)(pchEnd - pszFullString);
+      strsize nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -88,10 +88,10 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0
 #endif
 
 
-void gen_CrtErrorCheck(i32 i);
+void gen_CrtErrorCheck(int i);
 
 
-void gen_CrtErrorCheck(i32 i)
+void gen_CrtErrorCheck(int i)
 {
    __UNREFERENCED_PARAMETER(i);
 }
@@ -161,14 +161,14 @@ CLASS_DECL_ACME int g_bAura = 0;
 
 
 
-CLASS_DECL_ACME u32 g_tickStartTime = 0;
+CLASS_DECL_ACME unsigned int g_tickStartTime = 0;
 
 
 
 //
 //
 //
-//void __post_quit_message(i32 nExitCode)
+//void __post_quit_message(int nExitCode)
 //{
 //
 //#ifdef WINDOWS_DESKTOP

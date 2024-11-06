@@ -26,7 +26,7 @@ namespace hi5
 
          string                                    m_strPin;
          string                                    m_strAuthorizationUrl;
-         i32                                   m_iImpact;
+         int                                   m_iImpact;
          ::pointer<::user::single_document_template>     m_ptemplatePane;
          ::pointer<::user::document>                     m_pdocument;
          ::pointer<::user::tab_impact>                     m_ptabimpact;

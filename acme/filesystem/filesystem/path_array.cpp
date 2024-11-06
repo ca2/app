@@ -150,7 +150,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
    //   }
    //}
 
-   //for (i32 i = 1; i < stra.get_size(); i++)
+   //for (int i = 1; i < stra.get_size(); i++)
    //{
    //   str /= stra[i];
    //   pathaFolder.add(str);

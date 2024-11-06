@@ -26,7 +26,7 @@ struct axisrdp_context:
    int client_y;
    int client_width;
    int client_height;
-   ::u32 bitmap_size;
+   unsigned int bitmap_size;
    unsigned char* bitmap_buffer;
 
    //axisrdp_bitmap* primary;

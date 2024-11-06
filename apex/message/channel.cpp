@@ -249,7 +249,7 @@ void channel::route_message(::message::message * pmessage)
 //
 //   zero(msg);
 //
-//   msg.message = (::u32) atom.m_emessage;
+//   msg.message = (unsigned int) atom.m_emessage;
 //   msg.wParam = wparam;
 //   msg.lParam = lparam;
 //

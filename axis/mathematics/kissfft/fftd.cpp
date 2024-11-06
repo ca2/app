@@ -7,7 +7,7 @@ namespace kissfft
 {
 
 
-   fftd::fftd(i32 iSize)
+   fftd::fftd(int iSize)
    {
 
       m_iSize = iSize;

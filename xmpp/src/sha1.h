@@ -16,8 +16,8 @@ extern "C" {
 #include "ostypes.h"
 
 typedef struct {
-    u32 state[5];
-    u32 count[2];
+    unsigned int state[5];
+    unsigned int count[2];
     unsigned char  buffer[64];
 } SHA1_CTX;
 

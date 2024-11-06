@@ -869,7 +869,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+//   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 //   {
 //
 //#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

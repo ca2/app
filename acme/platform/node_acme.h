@@ -419,7 +419,7 @@ namespace platform
       virtual string get_user_name();
 
 
-      virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
+      virtual void set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha);
 
 
       virtual void browse_for_folder(::file::path& pathFolder);
@@ -654,7 +654,7 @@ namespace platform
 
 
       //#if defined(ANDROID)
-      //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+      //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
       //#else
       virtual int get_call_stack_default_frame_count();
 
@@ -663,19 +663,19 @@ namespace platform
 
 
       virtual string get_call_stack_trace(const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                          i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                          int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
                                           int iCount = -1);
 
 
       virtual string get_call_stack_trace(void** stack, int frame_count,
                                           const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                          i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                          int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
                                           int iCount = -1);
 
 
       //#endif
       virtual string _get_call_stack_trace(const ::scoped_string& scopedstrFormat = call_stack_default_format(),
-                                           i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                           int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
                                            int iCount = -1);
 
 
@@ -685,13 +685,13 @@ namespace platform
       //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
 
 
-      virtual i32 get_current_processor_index();
+      virtual int get_current_processor_index();
 
 
-      virtual i32 get_current_process_maximum_affinity();
+      virtual int get_current_process_maximum_affinity();
 
 
-      virtual i32 get_current_process_affinity_order();
+      virtual int get_current_process_affinity_order();
 
 
       virtual ::u64 translate_processor_affinity(int i);
@@ -717,13 +717,13 @@ namespace platform
       //
       //#if !defined(UNIVERSAL_WINDOWS)
       //
-      //      //virtual i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      //      //virtual int call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
       //
-      //      typedef i32 CALLSYNCONRETRY(i32 iTry, uptr dwParam);
+      //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
       //
       //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
       //
-      //      //CLASS_DECL_ACME u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+      //      //CLASS_DECL_ACME unsigned int call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
       //
       //#endif
 
@@ -731,11 +731,11 @@ namespace platform
       //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
       //
       //
-      //      //virtual i32 get_current_processor_index();
+      //      //virtual int get_current_processor_index();
       //
-      //      //virtual i32 get_current_process_maximum_affinity();
+      //      //virtual int get_current_process_maximum_affinity();
       //
-      //      //virtual i32 get_current_process_affinity_order();
+      //      //virtual int get_current_process_affinity_order();
       //
       //
       //#endif
@@ -790,7 +790,7 @@ namespace platform
       virtual string executable_title_from_appid(const string& strAppId);
 
 
-      //CLASS_DECL_ACME ::u32 get_current_process_id();
+      //CLASS_DECL_ACME unsigned int get_current_process_id();
 
 
       //virtual string process_version_dir_name();
@@ -1013,7 +1013,7 @@ namespace platform
 
 
       //#ifdef WINDOWS
-      //      virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+      //      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
       //#endif
 
       virtual bool is_remote_session();
@@ -1260,7 +1260,7 @@ namespace platform
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
+      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status));
 
 #endif
 

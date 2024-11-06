@@ -376,7 +376,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
 
-   //static u32 s_thread_proc(void* p);
+   //static unsigned int s_thread_proc(void* p);
 
 
    // void to_string(const string_exchange & str) const 
@@ -975,7 +975,7 @@ void object::delete_this()
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
    //{
 
    //   return nullptr;

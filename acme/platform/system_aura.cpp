@@ -98,8 +98,8 @@ namespace platform
    //::string aura_system_layer::install_get_version() override{}
    //void aura_system_layer::install_set_version(const ::string & pszVersion) override{}
    //::string aura_system_layer::install_get_latest_build_number(const ::string & pszVersion) override{}
-   //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
-   //virtual i32 install_progress_app_add_up(int iAddUp = 1) override{}
+   //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
+   //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
 
    //virtual ::install::canvas * install_create_canvas(){}
    //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle){}
@@ -110,8 +110,8 @@ namespace platform
    //::string aura_system_layer::install_get_version() override{}
    //void aura_system_layer::install_set_version(const ::string & pszVersion) override{}
    //::string aura_system_layer::install_get_latest_build_number(const ::string & pszVersion) override{}
-   //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
-   //virtual i32 install_progress_app_add_up(int iAddUp = 1) override{}
+   //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
+   //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
 
    //virtual ::pointer<::factory::factory> & node_factory() override{}
 
@@ -167,7 +167,7 @@ namespace platform
 
    //virtual bool initialize_application() override{}
 
-   //virtual i32 exit_instance(){}
+   //virtual int exit_instance(){}
    //virtual bool destroy(){}
 
    //void aura_system_layer::destroy() override{}
@@ -201,7 +201,7 @@ namespace platform
    //void aura_system_layer::on_request(::request * prequest) override{}
 
 
-   //virtual u32 crc32(u32 dwPrevious, const ::string & psz){}
+   //virtual unsigned int crc32(unsigned int dwPrevious, const ::string & psz){}
 
 
    //::string aura_system_layer::::url::encode(const ::string & str) override{}
@@ -372,7 +372,7 @@ namespace platform
    //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override{}
 
 
-   //virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override{}
+   //virtual unsigned int os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override{}
 
 
    //void aura_system_layer::session_add(::collection::index iEdge, ::apex::session * psession) overr{}
@@ -468,11 +468,11 @@ namespace platform
        inline ::atom atom(const property & prop){}*/
 
 
-   //virtual i32 _001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args) override{}
-   //virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override{}
-   //virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine) override{}
+   //virtual int _001OnDebugReport(int i1, const ::string & psz1,int i2, const ::string & psz2, const ::string & psz3,va_list args) override{}
+   //virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override{}
+   //virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override{}
 
-   //virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine) override{}
+   //virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override{}
 
 
    //void aura_system_layer::initialize_log(const ::string & pszId) override{}
@@ -605,7 +605,7 @@ namespace platform
    //void aura_system_layer::process_machine_event_data(machine_event_data * pdata) override{}
 
 
-   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) const override{}
+   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) const override{}
 
 
    //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam){}
@@ -633,7 +633,7 @@ namespace platform
    //void aura_system_layer::term_system() override{}
 
 
-   //virtual i32 main(){}
+   //virtual int main(){}
    ///void aura_system_layer::InitApplication() override{}
 
    //void aura_system_layer::init() override{}
@@ -671,7 +671,7 @@ namespace platform
    //      virtual ::pointer<::handler>handler(){}
 
 
-   //virtual i32 main(){}
+   //virtual int main(){}
 
    //void aura_system_layer::on_allocation_error(const ::string& str, ::object* pobjectSometimes) override{}
 
@@ -700,7 +700,7 @@ namespace platform
    //bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr){}
 
 
-   //      u32 guess_code_page(const ::string & str){}
+   //      unsigned int guess_code_page(const ::string & str){}
 
    //#ifdef UNIVERSAL_WINDOWS
    //
@@ -793,8 +793,8 @@ namespace platform
    //virtual int install_canvas_increment_mode() override{}
 
 
-   //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor){}
-   //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma){}
+   //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor){}
+   //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma){}
    //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override{}
 
    //virtual ::collection::count get_monitor_count() override{}

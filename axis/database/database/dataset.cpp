@@ -121,7 +121,7 @@ namespace database
 
       //m_parameterlist.set_str(sql);
 
-      //i32 i;
+      //int i;
 
       //for (i=0; i< m_fielda.get_size(); i++)
       //{
@@ -139,7 +139,7 @@ namespace database
       //}
 
       //   string_list before_array, after_array;
-      //   i32 tag = 0;
+      //   int tag = 0;
       //   bool eol_reached = false,
       //        was_changed = false,
       //        flag = false;
@@ -232,7 +232,7 @@ namespace database
    void dataset::insert()
    {
 
-      for (i32 i=0; i<field_count(); i++)
+      for (int i=0; i<field_count(); i++)
       {
 
          m_row[i].set_type(::e_type_new);
@@ -391,7 +391,7 @@ namespace database
    //{
    //   if (m_edataset != dataset_none)
    //   {
-   //      for (i32 i=0; i < m_fielda.get_size(); i++)
+   //      for (int i=0; i < m_fielda.get_size(); i++)
    //      {
    //         if (m_fielda[i].m_properties.name == f_name)
    //         {
@@ -419,7 +419,7 @@ namespace database
    //   while (!eof())
    //   {
    //      result = true;
-   //      for (i32 i=0; i < m_parameterlist.get_size(); i++)
+   //      for (int i=0; i < m_parameterlist.get_size(); i++)
    //         if (fv(m_parameterlist.GetKey(i)).get_string() == m_parameterlist.GetFieldValue(i).get_string())
    //         {
    //            continue;
@@ -445,7 +445,7 @@ namespace database
    //   while (!eof())
    //   {
    //      result = true;
-   //      for (i32 i=0; i< m_parameterlist.get_size(); i++)
+   //      for (int i=0; i< m_parameterlist.get_size(); i++)
    //         if (fv(m_parameterlist.GetKey(i)).get_string() == m_parameterlist.GetFieldValue(i).get_string())
    //         {
    //            continue;
@@ -523,9 +523,9 @@ namespace database
    //      return 0;
    //}
 
-   //i32 dataset::fieldIndex(const ::string &fn)
+   //int dataset::fieldIndex(const ::string &fn)
    //{
-   //   for (i32 i=0; i < m_fielda.get_size(); i++)
+   //   for (int i=0; i < m_fielda.get_size(); i++)
    //   {
    //      if(m_fielda[i].m_properties.name == fn)
    //         return i;

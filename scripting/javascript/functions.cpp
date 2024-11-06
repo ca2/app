@@ -120,7 +120,7 @@ void scIsPlainHostName(CScriptVar *pvar, void *data)
 
    if(stra.get_count() == 4)
    {
-      for(i32 i = 0; i < stra.get_size(); i++)
+      for(int i = 0; i < stra.get_size(); i++)
       {
          if(!is_only_digits(stra[i]) || ansi_to_i32(stra[i]) > 255)
          {

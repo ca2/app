@@ -454,7 +454,7 @@ namespace database
    client_array::~client_array()
    {
 
-      for(i32 i = 0; i < this->get_count(); i++)
+      for(int i = 0; i < this->get_count(); i++)
       {
 
          this->element_at(i)->m_pdataserver = nullptr;

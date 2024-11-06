@@ -967,12 +967,12 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 ////
 //
 //#define IMPL_VAR_REF2(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, VAR)
-//IMPL_VAR_REF2(::i8, i8);
+//IMPL_VAR_REF2(char, char);
 //IMPL_VAR_REF2(unsigned char, unsigned char);
-//IMPL_VAR_REF2(::i16, i16);
-//IMPL_VAR_REF2(::u16, u16);
-//IMPL_VAR_REF2(int, i32);
-//IMPL_VAR_REF2(::u32, u32);
+//IMPL_VAR_REF2(short, short);
+//IMPL_VAR_REF2(unsigned short, unsigned short);
+//IMPL_VAR_REF2(int, int);
+//IMPL_VAR_REF2(unsigned int, unsigned int);
 //IMPL_VAR_REF2(::i64, i64);
 //IMPL_VAR_REF2(::u64, u64);
 //#undef IMPL_VAR_REF2

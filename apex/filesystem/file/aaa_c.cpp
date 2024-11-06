@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-/*void sprint_hex(char * sz, i32 iValue)
+/*void sprint_hex(char * sz, int iValue)
 {
-   i32 i = 8;
+   int i = 8;
    sz[i] = '\0';
    i--;
    for(; i >= 0; i--)

@@ -330,7 +330,7 @@
 ////{
 ////   if (m_pData != nullptr)
 ////   {
-////      for( i32 i = 0; i < m_nSize; i++ )
+////      for( int i = 0; i < m_nSize; i++ )
 ////         destruct_element(m_pData + i)->~TYPE();
 ////      delete[] (unsigned char*)m_pData;
 ////      m_pData     = nullptr;
@@ -386,7 +386,7 @@
 ////      // shrink to nothing
 ////      if (m_pData != nullptr)
 ////      {
-//////         for( i32 i = 0; i < m_nSize; i++ )
+//////         for( int i = 0; i < m_nSize; i++ )
 //////            (m_pData + i)->~TYPE();
 ////         delete[] (unsigned char*)m_pData;
 ////         m_pData = nullptr;
@@ -419,7 +419,7 @@
 ////      {
 ////         // initialize the aaa_primitive_new elements
 //////         memory_set((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+//////         for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
 //////            ::aaa_primitive_new( (void *)( m_pData + m_nSize + i ) ) TYPE;
 //////
@@ -427,7 +427,7 @@
 ////      else if (m_nSize > nNewSize)
 ////      {
 ////         // destroy the old elements
-//////         for( i32 i = 0; i < m_nSize-nNewSize; i++ )
+//////         for( int i = 0; i < m_nSize-nNewSize; i++ )
 ////  //          (m_pData + nNewSize + i)->~TYPE();
 ////      }
 ////      m_nSize = nNewSize;
@@ -468,7 +468,7 @@
 ////      // construct remaining elements
 ////      ASSERT(nNewSize > m_nSize);
 //////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+//////      for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
 //////         ::aaa_primitive_new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 //////

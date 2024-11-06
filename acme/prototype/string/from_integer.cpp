@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "from_integer.h"
 
-string i64toa_dup(i64 i, i32 iBase)
+string i64toa_dup(i64 i, int iBase)
 {
 
    char sz[128 + 64];
@@ -18,10 +18,10 @@ string i64toa_dup(i64 i, i32 iBase)
       i = -i;
       bNegative = true;
    }
-   i32 iIndex = 0;
+   int iIndex = 0;
    while(i > 0)
    {
-      i32 iDigit = (i % iBase);
+      int iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -57,7 +57,7 @@ string i64toa_dup(i64 i, i32 iBase)
 
 
 
- string ui64toa_dup(i64 i, i32 iBase)
+ string ui64toa_dup(i64 i, int iBase)
 {
 
    char sz[128 + 64];
@@ -68,10 +68,10 @@ string i64toa_dup(i64 i, i32 iBase)
       sz[1] = '\0';
       return sz;
    }
-   i32 iIndex = 0;
+   int iIndex = 0;
    while(i > 0)
    {
-      i32 iDigit = (i % iBase);
+      int iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -104,7 +104,7 @@ string i64toa_dup(i64 i, i32 iBase)
 
 
 
-// void ansi_from_u64(char * sz, u64 u, i32 iBase)
+// void ansi_from_u64(char * sz, u64 u, int iBase)
 //{
 //   if(u == 0)
 //   {
@@ -112,10 +112,10 @@ string i64toa_dup(i64 i, i32 iBase)
 //      sz[1] = '\0';
 //      return;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(u > 0)
 //   {
-//      i32 iDigit = (u % iBase);
+//      int iDigit = (u % iBase);
 //      char ch;
 //      if(iDigit <= 9)
 //      {
@@ -135,7 +135,7 @@ string i64toa_dup(i64 i, i32 iBase)
 //
 //
 //
-//void ansi_from_i64(char * sz, i64 i, i32 iBase)
+//void ansi_from_i64(char * sz, i64 i, int iBase)
 //{
 //   if(i == 0)
 //   {
@@ -149,10 +149,10 @@ string i64toa_dup(i64 i, i32 iBase)
 //      i = -i;
 //      bNegative = true;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(i > 0)
 //   {
-//      i32 iDigit = (i % iBase);
+//      int iDigit = (i % iBase);
 //      char ch;
 //      if(iDigit <= 9)
 //      {
@@ -201,7 +201,7 @@ string i64toa_dup(i64 i, i32 iBase)
 
 
 
-//void wide_from_u64_base(unichar * sz, u64 u, i32 iBase)
+//void wide_from_u64_base(unichar * sz, u64 u, int iBase)
 //{
 //   if(u == 0)
 //   {
@@ -209,10 +209,10 @@ string i64toa_dup(i64 i, i32 iBase)
 //      sz[1] = L'\0';
 //      return;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(u > 0)
 //   {
-//      i32 iDigit = (u % iBase);
+//      int iDigit = (u % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -232,7 +232,7 @@ string i64toa_dup(i64 i, i32 iBase)
 //
 //
 //
-//void wide_from_i64_base(unichar * sz, i64 i, i32 iBase)
+//void wide_from_i64_base(unichar * sz, i64 i, int iBase)
 //{
 //   if(i == 0)
 //   {
@@ -246,10 +246,10 @@ string i64toa_dup(i64 i, i32 iBase)
 //      i = -i;
 //      bNegative = true;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(i > 0)
 //   {
-//      i32 iDigit = (i % iBase);
+//      int iDigit = (i % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {

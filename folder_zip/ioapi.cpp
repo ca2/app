@@ -28,7 +28,7 @@
 extern "C" voidpf ZCALLBACK fopen_file_func OF((
       voidpf opaque,
       const char* filename,
-      i32 mode));
+      int mode));
 
 extern "C" uptr ZCALLBACK fread_file_func OF((
       voidpf opaque,
@@ -50,18 +50,18 @@ extern "C" long ZCALLBACK fseek_file_func OF((
       voidpf opaque,
       voidpf stream,
       uptr offset,
-      i32 origin));
+      int origin));
 
-extern "C" i32 ZCALLBACK fclose_file_func OF((
+extern "C" int ZCALLBACK fclose_file_func OF((
       voidpf opaque,
       voidpf stream));
 
-extern "C" i32 ZCALLBACK ferror_file_func OF((
+extern "C" int ZCALLBACK ferror_file_func OF((
       voidpf opaque,
       voidpf stream));
 
 
-extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, i32 mode)
+extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int mode)
 {
    FILE* file = nullptr;
    const char* mode_fopen = nullptr;
@@ -113,9 +113,9 @@ extern "C" long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
    return ret;
 }
 
-extern "C" long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uptr offset, i32 origin)
+extern "C" long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
 {
-   i32 fseek_origin=0;
+   int fseek_origin=0;
    long ret;
    switch (origin)
    {
@@ -131,29 +131,29 @@ extern "C" long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uptr of
    default: return -1;
    }
    ret = 0;
-   i32 iSeek = (i32) minimum((u32) INT_MAX, offset);
+   int iSeek = (int) minimum((unsigned int) INT_MAX, offset);
    fseek((FILE *)stream, iSeek, fseek_origin);
    while(true)
    {
       offset -= iSeek;
       if(offset <= 0)
          break;
-      iSeek = (i32) minimum((u32) INT_MAX, offset);
+      iSeek = (int) minimum((unsigned int) INT_MAX, offset);
       fseek((FILE *)stream, fseek_origin == ZLIB_FILEFUNC_SEEK_END ? -iSeek : iSeek, SEEK_CUR);
    }
    return ret;
 }
 
-extern "C" i32 ZCALLBACK fclose_file_func (voidpf opaque, voidpf stream)
+extern "C" int ZCALLBACK fclose_file_func (voidpf opaque, voidpf stream)
 {
-   i32 ret;
+   int ret;
    ret = fclose((FILE *)stream);
    return ret;
 }
 
-extern "C" i32 ZCALLBACK ferror_file_func  (voidpf opaque, voidpf stream)
+extern "C" int ZCALLBACK ferror_file_func  (voidpf opaque, voidpf stream)
 {
-   i32 ret;
+   int ret;
    ret = ferror((FILE *)stream);
    return ret;
 }

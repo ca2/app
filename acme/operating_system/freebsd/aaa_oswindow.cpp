@@ -159,7 +159,7 @@ void oswindow_data::set_wm_class(const ::scoped_string & scopedstr)
 }
 
 
-i32 oswindow_data::map_window()
+int oswindow_data::map_window()
 {
 
    int i = 0;
@@ -195,7 +195,7 @@ i32 oswindow_data::map_window()
 
 
 
-i32 oswindow_data::unmap_window(bool bWithdraw)
+int oswindow_data::unmap_window(bool bWithdraw)
 {
 
    windowing_output_debug_string("\noswindow_data::unmap_window");
@@ -230,7 +230,7 @@ oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 ::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 
-i32 oswindow_find_message_only_window(::windowing::window * pimpl)
+int oswindow_find_message_only_window(::windowing::window * pimpl)
 {
 
    if(pimpl == nullptr)
@@ -238,7 +238,7 @@ i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 
    single_lock slOsWindow(oswindow_data::s_pmutex, true);
 
-   for(i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
 
       if(::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
@@ -255,12 +255,12 @@ i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 
 }
 
-i32 oswindow_find(Display * pdisplay, Window window)
+int oswindow_find(Display * pdisplay, Window window)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   for(i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
       if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
             &&  ::oswindow_data::s_pdataptra->element_at(i)->m_osdisplay->display() == pdisplay
@@ -274,12 +274,12 @@ i32 oswindow_find(Display * pdisplay, Window window)
 
 }
 
-i32 oswindow_find(Window window)
+int oswindow_find(Window window)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   for(i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
       if(!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
             &&  ::oswindow_data::s_pdataptra->element_at(i)->m_window == window)
@@ -643,7 +643,7 @@ bool oswindow_data::set_icon(::image::image *pimage)
 }
 
 
-i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
+int oswindow_data::store_name(const ::scoped_string & scopedstr)
 {
 
    windowing_output_debug_string("\noswindow_data::store_name");
@@ -659,7 +659,7 @@ i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
 }
 
 
-i32 oswindow_data::select_input(i32 iInput)
+int oswindow_data::select_input(int iInput)
 {
 
    windowing_output_debug_string("\noswindow_data::select_input");
@@ -675,7 +675,7 @@ i32 oswindow_data::select_input(i32 iInput)
 }
 
 
-i32 oswindow_data::select_all_input()
+int oswindow_data::select_all_input()
 {
 
    windowing_output_debug_string("\noswindow_data::select_all_input");
@@ -1101,7 +1101,7 @@ void oswindow_data::exit_zoomed()
 }
 
 
-iptr oswindow_data::get_window_long_ptr(i32 nIndex)
+iptr oswindow_data::get_window_long_ptr(int nIndex)
 {
 
    return m_pimpl->get_window_long_ptr(nIndex);
@@ -1109,7 +1109,7 @@ iptr oswindow_data::get_window_long_ptr(i32 nIndex)
 }
 
 
-iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
+iptr oswindow_data::set_window_long_ptr(int nIndex, iptr i)
 {
 
    return m_pimpl->set_window_long_ptr(nIndex, i);
@@ -1169,9 +1169,9 @@ long oswindow_data::get_state()
 
    Atom actual_type = 0;
 
-   i32 actual_format = 0;
+   int actual_format = 0;
 
-   i32 status = 0;
+   int status = 0;
 
    unsigned char* point = nullptr;
 
@@ -1299,7 +1299,7 @@ bool oswindow_data::is_destroying()
 
 #undef SET_WINDOW_POS_LOG
 
-bool oswindow_data::set_window_position(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+bool oswindow_data::set_window_position(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
 {
 
    bool bOk = false;
@@ -1316,7 +1316,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, i32 x, i32 y, i32
 }
 
 
-bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
 {
 
    synchronous_lock synchronouslock(x11_mutex());

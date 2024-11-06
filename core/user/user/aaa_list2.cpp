@@ -1059,9 +1059,9 @@ namespace user
 
       ::collection::count iCount = m_nItemCount;
 
-      i32 iMaxWidth = 0;
+      int iMaxWidth = 0;
 
-      i32 iWidth;
+      int iWidth;
 
       if (m_bSingleColumnMode)
       {
@@ -1097,7 +1097,7 @@ namespace user
    }
 
 
-   bool list2::_001OnUpdateItemCount(u32 dwFlags)
+   bool list2::_001OnUpdateItemCount(unsigned int dwFlags)
    {
 
       __UNREFERENCED_PARAMETER(dwFlags);
@@ -1481,10 +1481,10 @@ namespace user
    }
 
 
-   i32 list2::_001CalcItemHeight(::user::style* pstyle, int iBaseHeight)
+   int list2::_001CalcItemHeight(::user::style* pstyle, int iBaseHeight)
    {
 
-      return (i32)(iBaseHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0));
+      return (int)(iBaseHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0));
 
    }
 
@@ -1612,7 +1612,7 @@ namespace user
 
 //      m_iVScrollOffset = m_dItemHeight;
 
-      m_iItemWidth = (i32)iItemWidth;
+      m_iItemWidth = (int)iItemWidth;
 
       if (m_bSingleColumnMode)
       {
@@ -1653,7 +1653,7 @@ namespace user
 
             hditem.lParam = (lparam)iColumn;
 
-            hditem.iOrder = (i32)iOrder;
+            hditem.iOrder = (int)iOrder;
 
          }
 
@@ -1662,7 +1662,7 @@ namespace user
    }
 
 
-   bool list2::_001SetColumnWidth(::collection::index iColumn, i32 iWidth)
+   bool list2::_001SetColumnWidth(::collection::index iColumn, int iWidth)
    {
 
       if (iColumn < 0)
@@ -2616,7 +2616,7 @@ namespace user
                //if (pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
                //{
 
-               //   i32 iOffset = (i32)((pdrawitem->m_iRectangleDisplayItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   int iOffset = (int)((pdrawitem->m_iRectangleDisplayItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
                //   pdrawitem->m_rectangleItem.top() -= iOffset;
 
@@ -2650,7 +2650,7 @@ namespace user
                //else
                //{
 
-               //   i32 iOffset = (i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   int iOffset = (int)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
                //   pdrawitem->m_rectangleItem.top() -= iOffset;
 
@@ -2668,7 +2668,7 @@ namespace user
 
                //      pdrawitem->m_iGroup--;
 
-               //      i32 dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
+               //      int dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
 
                //      pdrawitem->m_rectangleItem.top() -= dHeight;
 
@@ -3009,7 +3009,7 @@ namespace user
          if (eelement == ::user::list2::e_element_image)
          {
 
-            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
+            int iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
 
             pdrawlistsubitem->m_rectangleImage.left() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left() + iIconSize / 2;
             pdrawlistsubitem->m_rectangleImage.top() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top();
@@ -3022,7 +3022,7 @@ namespace user
          else if (eelement == ::user::mesh::e_element_text)
          {
 
-            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
+            int iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy();
 
             pdrawlistsubitem->m_rectangleText.left() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left();
             pdrawlistsubitem->m_rectangleText.top() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top() + iIconSize;
@@ -3048,7 +3048,7 @@ namespace user
 
       }
 
-      i32 x = pdrawlistsubitem->m_rectangleSubItem.left();
+      int x = pdrawlistsubitem->m_rectangleSubItem.left();
 
       //if (pdrawitem->m_iListItem == -1)
       {
@@ -3119,7 +3119,7 @@ namespace user
 
                   string strText = pdrawlistsubitem->m_strText;
 
-                  pdrawlistsubitem->m_pcolumn->m_pimagelist->get_image_info((i32)pdrawlistsubitem->m_iImage, &ii);
+                  pdrawlistsubitem->m_pcolumn->m_pimagelist->get_image_info((int)pdrawlistsubitem->m_iImage, &ii);
 
                   if (eelement == ::user::list2::e_element_image)
                   {
@@ -3198,9 +3198,9 @@ namespace user
       if (m_bGroup && m_bLateralGroup && (egroupelement == ::user::list2::e_group_element_image || egroupelement == ::user::list2::e_group_element_item_text))
       {
 
-         i32 x = pdrawlistgroup->m_rectangleGroup.left();
+         int x = pdrawlistgroup->m_rectangleGroup.left();
 
-         i32 iImageBottom = pdrawlistgroup->m_rectangleGroup.top();
+         int iImageBottom = pdrawlistgroup->m_rectangleGroup.top();
 
          if (m_pimagelistGroup != nullptr)
          {
@@ -3212,7 +3212,7 @@ namespace user
             if (pdrawlistgroup->m_bOk && pdrawlistgroup->m_iImage >= 0)
             {
 
-               m_pimagelistGroup->get_image_info((i32)pdrawlistgroup->m_iImage, &ii);
+               m_pimagelistGroup->get_image_info((int)pdrawlistgroup->m_iImage, &ii);
 
                if (egroupelement == ::user::list2::e_group_element_image)
                {
@@ -4237,7 +4237,7 @@ namespace user
 
          }
 
-         m_uiRButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
+         m_uiRButtonUpFlags = (unsigned int)pmouse->m_ebuttonstate;
 
          m_pointRButtonUp = pmouse->m_point;
 
@@ -5091,7 +5091,7 @@ namespace user
 
    //index list_column_array::subitem_visible_index(::collection::index iSubItem)
    //{
-   //   i32 iVisible = 0;
+   //   int iVisible = 0;
    //   for (::collection::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
@@ -5112,7 +5112,7 @@ namespace user
 
    //index list_column_array::NonVisibleMapSubItemToColumn(::collection::index iSubItem)
    //{
-   //   i32 iNonVisible = 0;
+   //   int iNonVisible = 0;
    //   for (::collection::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
@@ -5517,7 +5517,7 @@ namespace user
 
       }
 
-      if (pcolumn->m_uiSmallBitmap == (::u32)-1)
+      if (pcolumn->m_uiSmallBitmap == (unsigned int)-1)
       {
 
          return;
@@ -5731,19 +5731,19 @@ namespace user
    }
 
 
-   //i32 list2::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   //int list2::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    //{
 
    //   pgraphics->set_font(this, ::e_element_none);
 
    //   index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
 
-   //   return (i32)cx;
+   //   return (int)cx;
 
    //}
 
 
-   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::collection::index iItem, ::collection::index iSubItem)
+   int list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       pgraphics->set(pfont);
@@ -5753,7 +5753,7 @@ namespace user
    }
 
 
-   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   int list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::image::image_list::info ii;
@@ -5780,7 +5780,7 @@ namespace user
          if (psubitem->m_bOk && psubitem->m_iImage >= 0)
          {
 
-            psubitem->m_pcolumn->m_pimagelist->get_image_info((i32)psubitem->m_iImage, &ii);
+            psubitem->m_pcolumn->m_pimagelist->get_image_info((int)psubitem->m_iImage, &ii);
 
             rectangle = ii.m_rectangle;
 
@@ -5807,7 +5807,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      return (i32)(cx * get_double(pstyle, ::user::e_double_width_rate, ::user::e_state_none, 1.2));
+      return (int)(cx * get_double(pstyle, ::user::e_double_width_rate, ::user::e_state_none, 1.2));
 
    }
 
@@ -6389,7 +6389,7 @@ namespace user
 
       //}
 
-      //m_iFilter1Step = (i32)iFilter1Step;
+      //m_iFilter1Step = (int)iFilter1Step;
 
       //if (m_eview == impact_icon)
       //{
@@ -6629,7 +6629,7 @@ namespace user
    }
 
 
-   i32 list2::_001CalcListWidth(::draw2d::graphics_pointer& pgraphics)
+   int list2::_001CalcListWidth(::draw2d::graphics_pointer& pgraphics)
    {
 
       ASSERT(false);
@@ -6639,18 +6639,18 @@ namespace user
    }
 
 
-   i32 list2::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   int list2::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
 
       pgraphics->set_font(this, ::e_element_none);
 
-      i32 iMaxWidth = 0;
+      int iMaxWidth = 0;
 
       ::collection::count iCount = m_nItemCount;
 
-      i32 iWidth;
+      int iWidth;
 
       for (::collection::index i = 0; i < iCount; i++)
       {
@@ -6687,7 +6687,7 @@ namespace user
    }
 
 
-   i32 list2::get_wheel_scroll_delta()
+   int list2::get_wheel_scroll_delta()
    {
 
       return (int)(3. * m_dItemHeight);
@@ -7207,7 +7207,7 @@ namespace user
 
          ::collection::index iItemSize = iIconSize * 2;
 
-         return ::size_i32((i32)iItemSize, (i32)iItemSize);
+         return ::size_i32((int)iItemSize, (int)iItemSize);
 
       }
       else
@@ -7419,10 +7419,10 @@ namespace user
    }
 
 
-   i32 list2::_001GetGroupHeight(::collection::index iGroup)
+   int list2::_001GetGroupHeight(::collection::index iGroup)
    {
 
-      i32 iListHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
+      int iListHeight = (int)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
 
       return maximum(m_iGroupMinHeight, iListHeight);
 

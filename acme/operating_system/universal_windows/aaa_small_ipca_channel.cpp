@@ -17,7 +17,7 @@
 
       // extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
       // _In_ const ::atom & atom,
-      // _In_ ::u32 dwFlag);
+      // _In_ unsigned int dwFlag);
 
 
       base::base()

@@ -12,7 +12,7 @@ namespace sockets
    public:
 
 
-      i32                                      m_iErrorCode;
+      int                                      m_iErrorCode;
 
       SSLInitializer *                             m_psslinit;
 

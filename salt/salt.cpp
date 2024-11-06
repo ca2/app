@@ -73,12 +73,12 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
       { 
          ::LoadLibrary(straSourceSalt[i]); 
       } 
-      ::u32 dwNeeded = 0;
+      unsigned int dwNeeded = 0;
       if(!EnumProcessModules(::GetCurrentProcess(),  nullptr,  0,  &dwNeeded)) 
       { 
          return ""; 
       } 
-      ::u32 dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
+      unsigned int dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
       HMODULE * pmodulea = __allocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
       if(pmodulea == nullptr) 
          return ""; 
@@ -91,7 +91,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
       ex1::file_system_pointer fs(pparticle);
       string strModuleFolder(papp->system()->get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
-      for(::u32 dw = 0; dw < (dwNeeded / sizeof(HMODULE)); dw++)
+      for(unsigned int dw = 0; dw < (dwNeeded / sizeof(HMODULE)); dw++)
       { 
          strModule.empty();
          GetModuleFileName(pmodulea[dw], strModule.get_buffer(4096), 4096); 
@@ -126,7 +126,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
 static WINDOWS_DEFINITION_EXTENSION_MODULE VmscdadecDLL = { nullptr, nullptr };
 
 extern "C" int APIENTRY
-DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
+DllMain(HINSTANCE hInstance, unsigned int dwReason, LPVOID lpReserved)
 {
    // Remove this if you use lpReserved
    __UNREFERENCED_PARAMETER(lpReserved);

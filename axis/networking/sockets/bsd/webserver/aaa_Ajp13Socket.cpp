@@ -43,7 +43,7 @@ namespace sockets
    }
 
 
-   void Ajp13Socket::OnHeader( i16 atom, i16 len )
+   void Ajp13Socket::OnHeader( short atom, short len )
    {
 
       if (atom != 0x1234)
@@ -79,7 +79,7 @@ namespace sockets
       // request more body data
       if (m_body_size_left)
       {
-         i32 ptr = 4;
+         int ptr = 4;
          char msg[100];
          msg[0] = 'A';
          msg[1] = 'B';
@@ -94,7 +94,7 @@ namespace sockets
          put_byte(msg, ptr, 0x06); // GET_BODY_CHUNK;
          put_integer(msg, ptr, 1000); // request 1000 bytes
 
-         i16 len = htons((u16)( ptr - 4 ));
+         short len = htons((unsigned short)( ptr - 4 ));
          ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
@@ -115,7 +115,7 @@ namespace sockets
    {
       __UNREFERENCED_PARAMETER(sz);
       //
-      i32 ptr = 0;
+      int ptr = 0;
 
       get_byte(buf, ptr); // skip first unsigned char: prefix_code
       uchar method    = get_byte(buf, ptr);
@@ -124,7 +124,7 @@ namespace sockets
       string    strRemoteAddress   = get_string(buf, ptr);
       string    remote_host   = get_string(buf, ptr);
       string    server_name   = get_string(buf, ptr);
-      i16     server_port   = get_integer(buf, ptr);
+      short     server_port   = get_integer(buf, ptr);
       bool      is_ssl        = get_boolean(buf, ptr);
 
       //string method_str = as_string( method );
@@ -141,15 +141,15 @@ namespace sockets
       m_request.attr("https") = is_ssl;
 
       // get Headers
-      i16             num_headers = get_integer(buf, ptr);
-      for (i32 i = 0; i < num_headers; i++)
+      short             num_headers = get_integer(buf, ptr);
+      for (int i = 0; i < num_headers; i++)
       {
          string key;
          switch ( (uchar)buf[ptr]) // 0xa0
          {
          case 0xa0:
          {
-            u16 x = (u16)get_integer(buf, ptr);
+            unsigned short x = (unsigned short)get_integer(buf, ptr);
             if (!psystem->sockets().m_pajpaxissocketinit->header.lookup(x, key))
             {
                informationf("Unknown header key value: %x\n", x);
@@ -267,19 +267,19 @@ namespace sockets
 
       // Send Headers
       {
-         i32 ptr = 4;
+         int ptr = 4;
          put_byte(msg, ptr, 0x04); // send headers
-         put_integer(msg, ptr, (i16)(i32)m_response.attr("http_status_code"));
+         put_integer(msg, ptr, (short)(int)m_response.attr("http_status_code"));
          put_string(msg, ptr, m_response.attr("http_status"));
-         put_integer(msg, ptr, (i16)m_response.headers().get_count() );
+         put_integer(msg, ptr, (short)m_response.headers().get_count() );
          for(auto & name : m_response.m_propertysetHeader.names())
          {
             string strNameLower(name);
             strNameLower.make_lower();
-            i32 iValue;
+            int iValue;
             if(psystem->sockets().m_pajpaxissocketinit->ResponseHeader.lookup(strNameLower, iValue))
             {
-               put_integer(msg, ptr, (i16) iValue);
+               put_integer(msg, ptr, (short) iValue);
             }
             else
             {
@@ -292,7 +292,7 @@ namespace sockets
                {
                   for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
                   {
-                     Utility::ncmap<i32>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.find( __id(set-cookie) );
+                     Utility::ncmap<int>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.find( __id(set-cookie) );
                      if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.end())
                      {
                         put_integer(msg, ptr, it2 -> element2());
@@ -305,7 +305,7 @@ namespace sockets
                   }
                }*/
 
-         i16 len = htons((u_short) ( ptr - 4 ));
+         short len = htons((u_short) ( ptr - 4 ));
          ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
@@ -326,12 +326,12 @@ namespace sockets
       auto n = m_response.file()->read(msg + 7,  8100);
       while (n > 0)
       {
-         i32 ptr = 4;
+         int ptr = 4;
          put_byte(msg, ptr, 0x03); // send body chunk
-         put_integer(msg, ptr, (i16)n);
-         ptr += (i32)n;
+         put_integer(msg, ptr, (short)n);
+         ptr += (int)n;
 
-         i16 len = htons((u_short) ( ptr - 4 ));
+         short len = htons((u_short) ( ptr - 4 ));
          ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
@@ -347,7 +347,7 @@ namespace sockets
       if (!GetOutputLength()) // all body data sent and no data in output buffer - send end response
       {
          // End Response
-         i32 ptr = 4;
+         int ptr = 4;
          put_byte(msg, ptr, 0x05); // end response
          put_boolean(msg, ptr, false); // reuse
          /*
@@ -356,7 +356,7 @@ namespace sockets
             - also reset any AjpBaseSocket/Ajp13Socket specific states
          */
 
-         i16 len = htons((u_short) ( ptr - 4 ));
+         short len = htons((u_short) ( ptr - 4 ));
          ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );

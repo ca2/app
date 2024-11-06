@@ -185,9 +185,9 @@ void dialog::on_position_parent_frame()
 
    m_pframe->best_monitor(&rectangleOpen);
 
-   i32 iWidth = rectangleOpen.width();
+   int iWidth = rectangleOpen.width();
 
-   i32 iHeight = rectangleOpen.height();
+   int iHeight = rectangleOpen.height();
 
    rectangleOpen.deflate(iWidth / 5, iHeight / 5);
 
@@ -244,11 +244,11 @@ CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, strin
 {
 }
 
-CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, i32 iMax)
+CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, int iMax)
 {
 }
 
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, i32 & iBool)
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, int & iBool)
 {
 }
 

@@ -94,12 +94,12 @@ namespace filemanager
 
          ::file::path strCompare;
 
-         for(i32 i = 1; i < stra.get_size(); i++)
+         for(int i = 1; i < stra.get_size(); i++)
          {
             
             strCompare = stra[i].folder();
 
-            for(i32 j = 0; j < minimum(strCompare.length(),strBase.length()); j++)
+            for(int j = 0; j < minimum(strCompare.length(),strBase.length()); j++)
             {
 
                if(strCompare[j] != strBase[j])
@@ -609,7 +609,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      for(i32 i = 0; i < m_stra.get_size(); i++)
+      for(int i = 0; i < m_stra.get_size(); i++)
       {
 
          if(directory()->is(m_stra[i]) && !case_insensitive_string_ends(m_stra[i],".zip"))
@@ -653,15 +653,15 @@ namespace filemanager
    }
 
 
-   i32 operation::get_item_count()
+   int operation::get_item_count()
    {
 
-      return (i32)m_stra.get_size();
+      return (int)m_stra.get_size();
 
    }
 
 
-   string operation::get_item_message(i32 iItem)
+   string operation::get_item_message(int iItem)
    {
 
       string str;
@@ -673,7 +673,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_progress(i32 iItem)
+   double operation::get_item_progress(int iItem)
    {
 
       if(m_daSize[iItem] == 0.0)
@@ -699,7 +699,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_read(i32 iItem)
+   double operation::get_item_read(int iItem)
    {
 
       return m_daRead[iItem];
@@ -707,7 +707,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_size(i32 iItem)
+   double operation::get_item_size(int iItem)
    {
 
       return m_daSize[iItem];
@@ -904,7 +904,7 @@ namespace filemanager
       {
          i64 iValue = get_number_value(strName);
          string strFormat;
-         for(i32 i = 1; i < 1000; i++)
+         for(int i = 1; i < 1000; i++)
          {
             strFormat = set_number_value(strName, iValue + i);
             str = strDir /strFormat + strExtension;
@@ -916,7 +916,7 @@ namespace filemanager
       {
 
          string strFormat;
-         for(i32 i = 1; i < 1000; i++)
+         for(int i = 1; i < 1000; i++)
          {
             strFormat.formatf("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
@@ -939,7 +939,7 @@ namespace filemanager
 
       auto papp = get_app();
 
-      for(i32 i = 0; i < pathaExpand.get_size(); i++)
+      for(int i = 0; i < pathaExpand.get_size(); i++)
       {
 
          if(directory()->is(pathaExpand[i]) && !case_insensitive_string_ends(pathaExpand[i],".zip"))

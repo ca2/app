@@ -5,14 +5,14 @@
 #include "acme/prototype/datetime/system_time.h"
 
 
-posix_time::posix_time(const ::file_time & filetime, i32 nDST) :
+posix_time::posix_time(const ::file_time & filetime, int nDST) :
    posix_time(system_time(filetime), nDST)
 {
 
 }
 
 
-posix_time::posix_time(const system_time & systemtime, i32 nDST) :
+posix_time::posix_time(const system_time & systemtime, int nDST) :
    posix_time(::earth::gregorian_time(systemtime))
 {
 

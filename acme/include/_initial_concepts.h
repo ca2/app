@@ -599,7 +599,7 @@ template < typename T >
 concept bool_type = same_as < T, bool >;
 
 template < typename T >
-concept i8_type = same_as < T, ::i8 >;
+concept i8_type = same_as < T, char >;
 
 template < typename T >
 concept char_type = same_as < T, char >;

@@ -12,11 +12,11 @@
 #define _unlink   unlink
 
 
-#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((unsigned int   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((unsigned int   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 

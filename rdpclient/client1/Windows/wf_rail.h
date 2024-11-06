@@ -31,8 +31,8 @@ struct wf_rail_window
 
 	HWND hWnd;
 
-	::u32 dwStyle;
-	::u32 dwExStyle;
+	unsigned int dwStyle;
+	unsigned int dwExStyle;
 
 	int x;
 	int y;

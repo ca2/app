@@ -13,7 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 /* kiss_fft.h
-   defines kiss_fft_scalar as either i16 or a double type
+   defines kiss_fft_scalar as either short or a double type
    and defines
    typedef struct { kiss_fft_scalar r; kiss_fft_scalar i; }COMPLEXD; */
 #include "fft.h"
@@ -26,9 +26,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  */
 
 struct kiss_fft_state{
-    i32 nfft;
-    i32 inverse;
-    i32 factors[2*MAXFACTORS];
+    int nfft;
+    int inverse;
+    int factors[2*MAXFACTORS];
     COMPLEXD twiddles[1];
 };
 
@@ -44,7 +44,7 @@ struct kiss_fft_state{
 #ifdef FIXED_POINT
 
 #   define smul(a,b) ( (long)(a)*(b) )
-#   define sround( x )  (i16)( ( (x) + (1<<14) ) >>15 )
+#   define sround( x )  (short)( ( (x) + (1<<14) ) >>15 )
 
 #   define S_MUL(a,b) sround( smul(a,b) )
 

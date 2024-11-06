@@ -16,13 +16,13 @@ namespace xml
 
    }
 
-   string tree_schema::get_node_name(i32 iNameIndex)
+   string tree_schema::get_node_name(int iNameIndex)
    {
       return m_stra[iNameIndex];
    }
 
 
-   void tree_schema::set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrName)
+   void tree_schema::set_node_name(int iNameIndex, const ::scoped_string & scopedstrName)
    {
 
       m_stra.set_at_grow(iNameIndex, scopedstrName);

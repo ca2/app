@@ -96,7 +96,7 @@ namespace userex
       else if(m_pimpactdata->m_iExtendOnParent > 0)
       {
 
-         i32 i = m_pimpactdata->m_iExtendOnParent;
+         int i = m_pimpactdata->m_iExtendOnParent;
 
          ::pointer<::user::interaction>pinteraction = m_pimpactdata->m_puserinteraction;
 
@@ -519,7 +519,7 @@ namespace userex
 
       auto & panea = get_data()->m_tabpanea;
 
-      for(i32 iTab = 0; iTab < panea.get_count(); iTab++)
+      for(int iTab = 0; iTab < panea.get_count(); iTab++)
       {
 
          if(panea[iTab]->m_pplaceholder == pholder)

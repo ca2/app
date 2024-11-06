@@ -63,9 +63,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      {
 //
 //
-//         i32 _b;
-//         i32 _t;
-//         i32 _q;
+//         int _b;
+//         int _t;
+//         int _q;
 //         char * _buf;
 //         memory m_memory;
 //         int m_iTcpOuputCapacity;
@@ -79,7 +79,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            _buf = (char *)m_memory.get_data();
 //         }
 //
-//         output(int iTcpOutputCapacity, const char * buf, i32 len) :
+//         output(int iTcpOutputCapacity, const char * buf, int len) :
 //            m_iTcpOuputCapacity(iTcpOutputCapacity),
 //            _b(0), _t(len), _q(len)
 //         {
@@ -92,17 +92,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //         }
 //
-//         i32 Space()
+//         int Space()
 //         {
 //            return m_iTcpOuputCapacity - _t;
 //         }
-//         void add(const char * buf, i32 len)
+//         void add(const char * buf, int len)
 //         {
 //            ::memory_copy(_buf + _t, buf, len);
 //            _t += len;
 //            _q += len;
 //         }
-//         i32 erase(i32 len)
+//         int erase(int len)
 //         {
 //            _b += len;
 //            _q -= len;
@@ -112,7 +112,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //            return _buf + _b;
 //         }
-//         i32 Len()
+//         int Len()
 //         {
 //            return _q;
 //         }
@@ -133,16 +133,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //memsize m_output_length;
 //
 //      //bool     m_bReuseSession;
-//      //i32 m_socks4_state; ///< socks4 support
+//      //int m_socks4_state; ///< socks4 support
 //      //char m_socks4_vn; ///< socks4 support, temporary ::payload
 //      //char m_socks4_cd; ///< socks4 support, temporary ::payload
-//      //u16 m_socks4_dstport; ///< socks4 support
-//      //u32 m_socks4_dstip; ///< socks4 support
+//      //unsigned short m_socks4_dstport; ///< socks4 support
+//      //unsigned int m_socks4_dstip; ///< socks4 support
 //
 //      //string m_strConnectHost;
 //      //::networking::port_t m_iConnectPort;
 //
-//      //i32 m_resolver_id; ///< Resolver atom (if any) for current open call
+//      //int m_resolver_id; ///< Resolver atom (if any) for current open call
 //
 //      //bool m_bReconnect; ///< Reconnect on lost connection flag
 //      //bool m_bTryingReconnect; ///< Trying to reconnect
@@ -225,7 +225,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //#endif
 //
 //            /** Callback executed when resolver thread has finished a resolve request. */
-//            //void OnResolved(i32 atom, ::networking::address * addr) override;
+//            //void OnResolved(int atom, ::networking::address * addr) override;
 //            /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
 //      void OnSSLConnect() override;
 //      /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -248,7 +248,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //      void DisableInputBuffer(bool = true);
 //
-//      //void OnOptions(i32,i32,i32,socket_id) override;
+//      //void OnOptions(int,int,int,socket_id) override;
 //
 //      void SetLineProtocol(bool = true) override;
 //
@@ -258,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      virtual string get_connect_host();
 //      virtual ::networking::port_t get_connect_port();
 //
-//      virtual i32 Protocol() override;
+//      virtual int Protocol() override;
 //
 //      /** Trigger limit for callback OnTransferLimit. */
 //      void SetTransferLimit(memsize sz);
@@ -319,7 +319,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //   };
 //
 //   extern "C"
-//      i32 tcp_socket_SSL_password_cb(char * buf, i32 num, i32 rwflag, void * userdata);
+//      int tcp_socket_SSL_password_cb(char * buf, int num, int rwflag, void * userdata);
 //
 //
 //} // namespace sockets

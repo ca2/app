@@ -29,7 +29,7 @@ namespace filemanager
 
          string         m_strFolderPath;
          string         m_strName;
-         i32        m_iImage;
+         int        m_iImage;
 
 
       };
@@ -54,7 +54,7 @@ namespace filemanager
       };
 
       FolderArray                      m_foldera;
-      map < ::image::icon *, i32 >    m_iconmap;
+      map < ::image::icon *, int >    m_iconmap;
 
 
       folder_list ();

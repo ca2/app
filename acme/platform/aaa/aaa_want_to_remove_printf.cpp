@@ -13,21 +13,21 @@
 
 
 
-i32 printf_dup(const char *format, ...)
+int printf_dup(const char *format, ...)
 {
    va_list args;
    va_start(args, format);
-   i32 ret = vprintf_dup(format, args);
+   int ret = vprintf_dup(format, args);
    va_end(args);
 
    return ret;
 }
 
-i32 wprintf_dup(const ::wide_character *format, ...)
+int wprintf_dup(const ::wide_character *format, ...)
 {
    va_list args;
    va_start(args, format);
-   i32 ret = vwprintf_dup(format, args);
+   int ret = vwprintf_dup(format, args);
    va_end(args);
 
    return ret;
@@ -35,7 +35,7 @@ i32 wprintf_dup(const ::wide_character *format, ...)
 
 
 
-i32 vprintf_dup(const char *format, va_list args)
+int vprintf_dup(const char *format, va_list args)
 {
 
    return vprintf(format, args);
@@ -43,7 +43,7 @@ i32 vprintf_dup(const char *format, va_list args)
 }
 
 
-i32 vwprintf_dup(const ::wide_character *format, va_list args)
+int vwprintf_dup(const ::wide_character *format, va_list args)
 {
 
    return vwprintf(format, args);
@@ -55,7 +55,7 @@ i32 vwprintf_dup(const ::wide_character *format, va_list args)
 
 ::pointer< ::mutex > g_pmutexCvt = nullptr;
 
-i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
    synchronous_lock ml(g_pmutexCvt);
@@ -74,7 +74,7 @@ i32 ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz,
 
 }
 
-i32 fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+int fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
    synchronous_lock ml(g_pmutexCvt);

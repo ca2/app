@@ -5,14 +5,14 @@
 #include <fcntl.h>
 #include <sys/file.h>
 
-i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata);
-i32 _c_unlock(void ** pdata);
-string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, i32 * pfd);
+int _c_lock(const ::scoped_string & scopedstrName, void ** pdata);
+int _c_unlock(void ** pdata);
+string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, int * pfd);
 
-i32 _c_lock_is_active(const ::scoped_string & scopedstrName)
+int _c_lock_is_active(const ::scoped_string & scopedstrName)
 {
 
-   i32 * pfd;
+   int * pfd;
 
    if(_c_lock(pszName, (void **) &pfd))
    {
@@ -25,10 +25,10 @@ i32 _c_lock_is_active(const ::scoped_string & scopedstrName)
 }
 
 
-i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
+int _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
 {
 
-   i32 fd;
+   int fd;
 
    _ca_get_file_name(::file::path("/var/lib/apex/") / pszName, true, &fd);
 
@@ -51,7 +51,7 @@ i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
       }
    }
 
-   i32 * pi = ___new i32();
+   int * pi = ___new int();
    *pi = fd;
    *pdata = pi;
 
@@ -60,10 +60,10 @@ i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
 }
 
 
-i32 _c_unlock(void ** pdata)
+int _c_unlock(void ** pdata)
 {
 
-   i32 * pfd = (i32 *) *pdata;
+   int * pfd = (int *) *pdata;
 
    if(flock(*pfd, LOCK_EX | LOCK_NB | LOCK_UN) == -1)
    {
@@ -83,7 +83,7 @@ i32 _c_unlock(void ** pdata)
 }
 
 
-string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, i32 * pfd)
+string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, int * pfd)
 {
 
    string str(pszName);
@@ -99,7 +99,7 @@ string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, i3
 
    if(bCreate)
    {
-      i32 fd = open(str, O_CREAT | O_RDWR);
+      int fd = open(str, O_CREAT | O_RDWR);
       if(fd == -1)
          return "";
       if(pfd != nullptr)

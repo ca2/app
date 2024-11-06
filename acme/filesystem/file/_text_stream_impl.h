@@ -11,13 +11,13 @@
 //
 //inline void __string_exchange(text_stream & s, ::ansi_character & ansich) { s.string_exchange(ansich); }
 //inline void __string_exchange(text_stream & s, ::wide_character & widech) { s.string_exchange(widech); }
-//inline void __string_exchange(text_stream & s, i8 & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, i16 & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, i32 & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, char & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, short & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, int & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, i64 & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, unsigned char & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, u16 & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, u32 & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, unsigned short & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, unsigned int & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, u64 & u) { s.number_exchange(u); }
 //#if !defined(LINUX) && !defined(FREEBSD) && !defined(OPENBSD)
 //inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l); }

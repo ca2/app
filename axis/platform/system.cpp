@@ -52,7 +52,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::particle * 
 extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -558,7 +558,7 @@ namespace axis
 
 
 
-   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, unsigned int dwTemp);
 
 
    

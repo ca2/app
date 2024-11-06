@@ -26,9 +26,9 @@ void defer_term_ui()
 //}
 
 
-CLASS_DECL_ACME i32 oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
-//CLASS_DECL_ACME i32 oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_ACME i32 oswindow_find(Window window);
+CLASS_DECL_ACME int oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
+//CLASS_DECL_ACME int oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_ACME int oswindow_find(Window window);
 CLASS_DECL_ACME oswindow_data * oswindow_get_message_only_window(::windowing::window * puibaseMessageWindow);
 //CLASS_DECL_ACME oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
 //CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
@@ -80,7 +80,7 @@ oswindow_data::~oswindow_data()
 //::pointer< ::mutex > oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
 
 
-i32 oswindow_find_message_only_window(::windowing::window * pimpl)
+int oswindow_find_message_only_window(::windowing::window * pimpl)
 {
 
    if (pimpl == nullptr)
@@ -92,7 +92,7 @@ i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 
    synchronous_lock slOsWindow(oswindow_data::s_pmutex);
 
-   for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for (int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
 
       if (::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
@@ -111,12 +111,12 @@ i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 
 
 
-i32 oswindow_find(::windowing::window * pimpl)
+int oswindow_find(::windowing::window * pimpl)
 {
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
-   for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+   for (int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
       if (!::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
             &&  ::oswindow_data::s_pdataptra->element_at(i)->m_pimpl == pimpl)
@@ -308,7 +308,7 @@ bool oswindow_erase_message_only_window(::windowing::window * pinteraction)
 }
 
 
-i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
+int oswindow_data::store_name(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
@@ -328,7 +328,7 @@ i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
 }
 
 
-i32 oswindow_data::select_input(i32 iInput)
+int oswindow_data::select_input(int iInput)
 {
 
    synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());
@@ -348,7 +348,7 @@ i32 oswindow_data::select_input(i32 iInput)
 }
 
 
-i32 oswindow_data::select_all_input()
+int oswindow_data::select_all_input()
 {
 
    /*
@@ -364,7 +364,7 @@ i32 oswindow_data::select_all_input()
 }
 
 
-i32 oswindow_data::map_window()
+int oswindow_data::map_window()
 {
 
    /*
@@ -551,7 +551,7 @@ bool oswindow_data::show_window(::e_display edisplay)
 }
 
 
-LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
+LONG_PTR oswindow_data::get_window_long_ptr(int nIndex)
 {
 
    return m_pimpl->get_window_long_ptr(nIndex);
@@ -559,7 +559,7 @@ LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
 }
 
 
-LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
+LONG_PTR oswindow_data::set_window_long_ptr(int nIndex, LONG_PTR l)
 {
 
    return m_pimpl->set_window_long_ptr(nIndex, l);
@@ -951,7 +951,7 @@ int_bool GetCursorPos(POINT32 * lppt)
 
 
 
-//i32 IsWindowVisible(oswindow window)
+//int IsWindowVisible(oswindow window)
 //{
 //
 //   if (!IsWindow(window))
@@ -997,7 +997,7 @@ int_bool GetCursorPos(POINT32 * lppt)
 
 
 
-//i32 IsIconic(oswindow window)
+//int IsIconic(oswindow window)
 //{
 //
 //   if (!IsWindow(window))

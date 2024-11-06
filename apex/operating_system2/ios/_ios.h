@@ -5,7 +5,7 @@
 
 
 
-//string get_error_message(::u32 dwError);
+//string get_error_message(unsigned int dwError);
 
 ::platform::application *     ios_instantiate_application(::apex::application * pappSystem, const ::scoped_string & scopedstrId);
 
@@ -48,19 +48,19 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 // int_bool PeekMessage(
 // MESSAGE * lpMsg,
 // oswindow hWnd,
-// ::u32 wMsgFilterMin,
-// ::u32 wMsgFilterMax,
-// ::u32 wRemoveMsg);
+// unsigned int wMsgFilterMin,
+// unsigned int wMsgFilterMax,
+// unsigned int wRemoveMsg);
 
 // int_bool GetMessage(
 // MESSAGE * lpMsg,
 // oswindow hWnd,
-// ::u32 wMsgFilterMin,
-// ::u32 wMsgFilterMax);
+// unsigned int wMsgFilterMin,
+// unsigned int wMsgFilterMax);
 
 
 
-i32 CLASS_DECL_APEX __ios_main(i32 argc, char * argv[]);
+int CLASS_DECL_APEX __ios_main(int argc, char * argv[]);
 
 
 //CLASS_DECL_APEX void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const char * lpszFileName = nullptr);
@@ -77,7 +77,7 @@ i32 CLASS_DECL_APEX __ios_main(i32 argc, char * argv[]);
 //
 //   class IOS
 //   {
-//      i32 function();
+//      int function();
 //   };
 //
 //

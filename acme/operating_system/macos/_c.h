@@ -23,6 +23,6 @@
 //
 //
 //
-//i32 run_system();
-//i32 acme_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
+//int run_system();
+//int acme_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
 

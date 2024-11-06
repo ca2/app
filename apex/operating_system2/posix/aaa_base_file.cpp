@@ -24,7 +24,7 @@
 //void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 
 
-int_bool ensure_file_size_fd(i32 fd, size_t iSize)
+int_bool ensure_file_size_fd(int fd, size_t iSize)
 {
 
    if (ftruncate(fd, iSize) == -1)
@@ -35,7 +35,7 @@ int_bool ensure_file_size_fd(i32 fd, size_t iSize)
 }
 
 
-size_t get_file_size(i32 fd)
+size_t get_file_size(int fd)
 {
 
    struct stat st;
@@ -58,7 +58,7 @@ size_t get_file_size(i32 fd)
 int_bool file_set_length(const char * lpszName, size_t iSize)
 {
 
-   i32 fd = ::open(lpszName, O_RDONLY);
+   int fd = ::open(lpszName, O_RDONLY);
 
    int_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 
@@ -177,7 +177,7 @@ pdirectorysystem->create(::file_path_folder(path));
 
       }
 
-      size_t dwWritten = ::fwrite(contents, 1, (u32)dwWrite, file);
+      size_t dwWritten = ::fwrite(contents, 1, (unsigned int)dwWrite, file);
 
       bOk = dwWritten == dwWrite;
 
@@ -402,7 +402,7 @@ filesize file_length_dup(const ::file::path & path)
    wstring pszModuleFilePath(MAX_PATH * 8);
 
 
-   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
+   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (unsigned int)pszModuleFilePath.count()))
 
       return "";
 
@@ -424,12 +424,12 @@ filesize file_length_dup(const ::file::path & path)
 int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 {
 
-   i32 input, output;
+   int input, output;
    size_t filesize;
    void * source, * target;
 
 
-   i32 flags = O_RDWR | O_CREAT | O_TRUNC;
+   int flags = O_RDWR | O_CREAT | O_TRUNC;
    if (!bOverwrite)
       flags |= O_EXCL;
    if ((output = open(pszNew, flags, 0666)) == -1)
@@ -529,14 +529,14 @@ int_bool file_delete(const ::file::path & path)
 int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
 {
 
-   const i32 iBufSize = MAX_PATH * 8;
+   const int iBufSize = MAX_PATH * 8;
    wstring pwsz1 = utf8_to_unicode(psz1);
    wstring pwsz2 = utf8_to_unicode(psz2);
    //   unichar * pwszFile1;
       // unichar * pwszFile2;
    ::wide_character * pwszPath1 = aaa_primitive_new ::wide_character[iBufSize];
    ::wide_character * pwszPath2 = aaa_primitive_new ::wide_character[iBufSize];
-   i32 iCmp = -1;
+   int iCmp = -1;
    //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
       // {
       //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
@@ -561,14 +561,14 @@ int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path 
 
 
 
-i32 ansi_open(const ::scoped_string & scopedstr, i32 i)
+int ansi_open(const ::scoped_string & scopedstr, int i)
 {
 
    return open(psz, i);
 
 }
 
-void ansi_get_errno(i32 * perrno)
+void ansi_get_errno(int * perrno)
 {
    *perrno = errno;
 }

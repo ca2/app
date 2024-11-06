@@ -2,9 +2,9 @@
 
 
 #define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)
-#define INVALID_FILE_SIZE ((::u32)0xFFFFFFFF)
-#define INVALID_SET_FILE_POINTER ((::u32)-1)
-#define INVALID_FILE_ATTRIBUTES ((::u32)-1)
+#define INVALID_FILE_SIZE ((unsigned int)0xFFFFFFFF)
+#define INVALID_SET_FILE_POINTER ((unsigned int)-1)
+#define INVALID_FILE_ATTRIBUTES ((unsigned int)-1)
 
 #define FILE_BEGIN           0
 #define FILE_CURRENT         1
@@ -93,8 +93,8 @@
 #define FILE_ACTION_MODIFIED                0x00000003
 #define FILE_ACTION_RENAMED_OLD_NAME        0x00000004
 #define FILE_ACTION_RENAMED_NEW_NAME        0x00000005
-#define MAILSLOT_NO_MESSAGE             ((::u32)-1)
-#define MAILSLOT_WAIT_FOREVER           ((::u32)-1)
+#define MAILSLOT_NO_MESSAGE             ((unsigned int)-1)
+#define MAILSLOT_WAIT_FOREVER           ((unsigned int)-1)
 #define FILE_CASE_SENSITIVE_SEARCH          0x00000001
 #define FILE_CASE_PRESERVED_NAMES           0x00000002
 #define FILE_UNICODE_ON_DISK                0x00000004
@@ -135,7 +135,7 @@
 //      +-+-------------+---------------+-------------------------------+
 //
 //      typedef struct _ACCESS_MASK {
-//          ::u16   SpecificRights;
+//          unsigned short   SpecificRights;
 //          unsigned char  StandardRights;
 //          unsigned char  AccessSystemAcl : 1;
 //          unsigned char  Reserved : 3;
@@ -148,15 +148,15 @@
 //
 //  but to make life simple for programmer's we'll allow them to specify
 //  a desired access mask by simply OR'ing together mulitple single rights
-//  and treat an access mask as a ::u32.  For example
+//  and treat an access mask as a unsigned int.  For example
 //
 //      DesiredAccess = DELETE | READ_CONTROL
 //
-//  So we'll declare ACCESS_MASK as ::u32
+//  So we'll declare ACCESS_MASK as unsigned int
 //
 
 // begin_wdm
-typedef ::u32 ACCESS_MASK;
+typedef unsigned int ACCESS_MASK;
 typedef ACCESS_MASK *PACCESS_MASK;
 
 ////////////////////////////////////////////////////////////////////////

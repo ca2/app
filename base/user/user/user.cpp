@@ -554,10 +554,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & pWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);

@@ -28,10 +28,10 @@
       virtual ::file::path get_module_path(HMODULE hmodule);
 #endif
 
-      virtual bool get_pid_by_path(const ::string & lpszName, u32 & dwPid);
-      virtual bool get_pid_by_title(const ::string & lpszName, u32 & dwPid);
+      virtual bool get_pid_by_path(const ::string & lpszName, unsigned int & dwPid);
+      virtual bool get_pid_by_title(const ::string & lpszName, unsigned int & dwPid);
       virtual void get_all_processes(u32_array & dwa);
-      virtual ::file::path get_process_path(u32 dwPid);
+      virtual ::file::path get_process_path(unsigned int dwPid);
 
       virtual int get_pid();
 
@@ -78,7 +78,7 @@
       virtual bool stop_service(const ::string & strServiceName);
 
 #ifdef WINDOWS
-      virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 #endif
 
       virtual bool is_remote_session();

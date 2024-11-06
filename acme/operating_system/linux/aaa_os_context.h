@@ -24,10 +24,10 @@ namespace linux
       virtual void terminate_processes_by_title(const char * lpszName) override;
 
 
-      virtual bool get_pid_by_path(const char * lpszName, ::u32 & dwPid) override;
-      virtual bool get_pid_by_title(const char * lpszName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_path(const char * lpszName, unsigned int & dwPid) override;
+      virtual bool get_pid_by_title(const char * lpszName, unsigned int & dwPid) override;
       virtual void get_all_processes(u32_array & dwa) override;
-      virtual ::file::path get_process_path(::u32 dwPid) override;
+      virtual ::file::path get_process_path(unsigned int dwPid) override;
       virtual int get_pid() override;
 
       virtual ::payload connection_settings_get_auto_detect() override;
@@ -57,7 +57,7 @@ namespace linux
       virtual bool start_service(::particle * pparticle);
       virtual bool stop_service(::particle * pparticle);
 
-      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
+      void raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags);
 
       virtual bool is_remote_session() override;
 

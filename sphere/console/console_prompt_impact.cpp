@@ -300,7 +300,7 @@ namespace console
 
       pgraphics->SelectObject(f);
 
-      ::u32 dwAlpha = 123;
+      unsigned int dwAlpha = 123;
 
       color32_t crTopic;
 

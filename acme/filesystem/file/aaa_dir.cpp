@@ -200,7 +200,7 @@ namespace dir
 //
 //      }
 //
-//      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
+//      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
 //      {
 //
 //         return "";
@@ -211,7 +211,7 @@ namespace dir
 //
 //      LPWSTR pszModuleFileName;
 //
-//      if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//      if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //      {
 //
 //         return "";
@@ -363,7 +363,7 @@ namespace dir
 
       }
 
-      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (::u32) wstrModuleFilePath.length()))
+      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (unsigned int) wstrModuleFilePath.length()))
       {
 
          return "";
@@ -372,7 +372,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (::u32) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -400,7 +400,7 @@ namespace dir
    }
 
 
-// bool eat_end_level(string & str, i32 iLevelCount, const char * pSeparator)
+// bool eat_end_level(string & str, int iLevelCount, const char * pSeparator)
 // {
 
 //    strsize iLast = str.length() - 1;
@@ -411,7 +411,7 @@ namespace dir
 //    while(str[iLast] == '/' || str[iLast] == '\\')
 //       iLast--;
 
-//    for(i32 i = 0; i < iLevelCount; i++)
+//    for(int i = 0; i < iLevelCount; i++)
 //    {
 
 //       strsize iFind1 = str.rear_find('/', iLast);
@@ -797,7 +797,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       wstring path(get_buffer, MAX_PATH * 8);
 
-      if(!GetModuleFileNameW(nullptr, path, (::u32) path.size()))
+      if(!GetModuleFileNameW(nullptr, path, (unsigned int) path.size()))
       {
 
          return "";
@@ -1200,7 +1200,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       auto a = folder->GetItemsAsync().get();
 
-      for(u32 u = 0; u < a->Size; u++)
+      for(unsigned int u = 0; u < a->Size; u++)
       {
 
          string strPath = string(begin(a->GetAt(u)->Path));
@@ -1291,7 +1291,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(u32 u = 0; u < a->Size; u++)
+      for(unsigned int u = 0; u < a->Size; u++)
       {
          stra.add(begin(a->GetAt(u)->Path));
       }
@@ -1373,7 +1373,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(u32 u = 0; u < a->Size; u++)
+      for(unsigned int u = 0; u < a->Size; u++)
       {
          stra.add(begin(a->GetAt(u)->Path));
       }
@@ -1426,7 +1426,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       string strCandidate;
 
-      for(i32 i = 0; i < stra.get_count(); i++)
+      for(int i = 0; i < stra.get_count(); i++)
       {
 
          if(stra[i].is_empty())

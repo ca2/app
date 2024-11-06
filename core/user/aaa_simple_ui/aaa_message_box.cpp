@@ -89,7 +89,7 @@ namespace simple_ui
    }
 
 
-   i32 message_box::show()
+   int message_box::show()
    {
 
       ::rectangle_i32 rectangleDesktop;
@@ -490,7 +490,7 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption,u32 uFlags)
+//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption,unsigned int uFlags)
 //{
 //
 //   return auto pmessagebox = __initialize_new ::message_box(oswindow, pszText, pszCaption, uFlags, function);
@@ -530,10 +530,10 @@ pmessagebox->sync();
 //}
 
 
-//i32 ui_message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, u32 uFlags, const ::function_arg & function)
+//int ui_message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, unsigned int uFlags, const ::function_arg & function)
 //{
 //
-//   i32 iResult = 0;
+//   int iResult = 0;
 //
 //   {
 //

@@ -65,7 +65,7 @@ __BEGIN_DECLS
 
 //
 extern void gettime (struct time *timep);
-extern void delay (g::u32 gettime);
+extern void delay (gunsigned int gettime);
 
 __END_DECLS
 //--------------------------------------------------------------------------

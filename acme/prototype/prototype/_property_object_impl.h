@@ -104,12 +104,12 @@
 //
 //   }
 //
-//   return pproperty->i32(iDefault);
+//   return pproperty->int(iDefault);
 //
 //}
 //
 //
-//inline ::u32 property_object::find_u32(const ::atom & atom, ::u32 iDefault) const
+//inline unsigned int property_object::find_u32(const ::atom & atom, unsigned int iDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -128,7 +128,7 @@
 //
 //   }
 //
-//   return pproperty->u32(iDefault);
+//   return pproperty->unsigned int(iDefault);
 //
 //}
 //

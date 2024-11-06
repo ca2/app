@@ -63,7 +63,7 @@ bool exception_translator::detach()
 #ifdef WINDOWS
 
 
-string exception_translator::_get_standard_exception_name(u32 uiCode)
+string exception_translator::_get_standard_exception_name(unsigned int uiCode)
 {
 
    return "";
@@ -71,7 +71,7 @@ string exception_translator::_get_standard_exception_name(u32 uiCode)
 }
 
 
-string exception_translator::_get_standard_exception_description(u32 uiCode)
+string exception_translator::_get_standard_exception_description(unsigned int uiCode)
 {
 
    return "";

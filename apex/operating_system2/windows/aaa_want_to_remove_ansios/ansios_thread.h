@@ -11,13 +11,13 @@
 
 //CLASS_DECL_APEX ::pointer<message_queue>__get_mq(itask_t atom);
 
-//CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+//CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
 
-//CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+//CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg);
 
-//CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
 
-//CLASS_DECL_APEX ::u32 WINAPI GetThreadId(htask_t Thread);
+//CLASS_DECL_APEX unsigned int WINAPI GetThreadId(htask_t Thread);
 
 //CLASS_DECL_APEX htask_t GetCurrentThread();
 

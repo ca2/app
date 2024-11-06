@@ -31,7 +31,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr);
 
 int create_process2(const char * _cmd_line, int * pprocessId);
 
-i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 {
 
    string_array stra;
@@ -186,7 +186,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -255,7 +255,7 @@ string apple_app_module_path()
    char * psz = str.get_buffer(1024);
 
 
-   u32 size = 1024;
+   unsigned int size = 1024;
 
    if(_NSGetExecutablePath(psz, &size) == 0)
 
@@ -291,7 +291,7 @@ string apple_app_module_path()
 
 }
 
-CLASS_DECL_APEX bool is_shared_library_busy(u32 processid, const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array & stra)
 {
 
    return false;

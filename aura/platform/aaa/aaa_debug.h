@@ -248,13 +248,13 @@
 //
 //
 //
-//CLASS_DECL_AURA string FormatMessageFromSystem(u32 dwError);
+//CLASS_DECL_AURA string FormatMessageFromSystem(unsigned int dwError);
 //
 //
 //#ifdef MEMDLEAK
 //
 //CLASS_DECL_AURA string get_mem_info_report1();
-//CLASS_DECL_AURA ::collection::count get_mem_info(int ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_AURA ::collection::count get_mem_info(int ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
 //CLASS_DECL_AURA ::collection::count get_mem_info2(int ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize);
 //
 //

@@ -56,7 +56,7 @@ namespace platform
       //semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
-      ::u32                                           m_dwInstallGoodToCheckAgain;
+      unsigned int                                           m_dwInstallGoodToCheckAgain;
 
       //bool                                            m_bAppHasInstallerProtected;
       //bool                                            m_bAppHasInstallerChangedProtected;
@@ -95,7 +95,7 @@ namespace platform
 
       //string                                          m_strLicense;
 
-      //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //int                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
       //::pointer<::simpledb::server>                  m_psimpledb;
 
@@ -111,9 +111,9 @@ namespace platform
 //
 //#endif
 //
-//      u32                                             m_dwPromptContext;        // help action_context override for message box
+//      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
 //      // LKG
-//      u32                                             m_dwPolicies;            // block for storing boolean system policies
+//      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
 //
 //      // Support for Shift+F1 help mode.
 //      // true if we're in SHIFT+F1 mode.
@@ -125,11 +125,11 @@ namespace platform
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
+//      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
 //
 //      string                                          m_strId;
 
-//      i32                                             m_iResourceId;
+//      int                                             m_iResourceId;
 
       //::pointer<::experience::department>          m_pexperience;
       ::pointer<::aura::theme>                       m_ptheme;
@@ -138,7 +138,7 @@ namespace platform
       //string_array                                    m_straAppInterest;
       //string_map < oswindow, oswindow >               m_mapAppInterest;
 
-      //i32                                             m_iGcomBackgroundUpdateMillis;
+      //int                                             m_iGcomBackgroundUpdateMillis;
 
 
 
@@ -287,16 +287,16 @@ namespace platform
 
 
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      //virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
+      //virtual void process_message_filter(int code, ::message::message * pmessage) override;
 
 
 
-      //virtual void DoWaitCursor(i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       // virtual void _001TryCloseApplication() override;
 
@@ -332,8 +332,8 @@ namespace platform
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -495,12 +495,12 @@ namespace platform
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true) override;
 
 
 
-      //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
+      //virtual void process_message_filter(int code,::message::message * pmessage) override;
 
       //virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
 
@@ -881,9 +881,9 @@ namespace platform
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
 
-      //virtual u32 guess_code_page(const string& str) override;
+      //virtual unsigned int guess_code_page(const string& str) override;
 
-      //virtual i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
 
       //virtual bool is_serviceable() const override;
       //
@@ -908,7 +908,7 @@ namespace platform
       //virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
+//      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -917,7 +917,7 @@ namespace platform
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::string & pcszFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -929,7 +929,7 @@ namespace platform
       // profile member functions; prevents writing to an INI spfile->
       virtual void SetRegistryKey(const ::string & pszRegistryKey);
 
-      virtual void SetRegistryKey(::u32 nIDRegistryKey);
+      virtual void SetRegistryKey(unsigned int nIDRegistryKey);
 
 
       virtual void RegisterShellFileTypes(bool bCompat = false);
@@ -980,7 +980,7 @@ namespace platform
       //
 
 
-      virtual i32 track_popup_menu(::menu::track_popup* ptrackpopup);
+      virtual int track_popup_menu(::menu::track_popup* ptrackpopup);
 
       // virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
       // virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;
@@ -1002,8 +1002,8 @@ namespace platform
       //void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, ::topic * ptopic) override;
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);
-      virtual i32 GetVisibleFrameCount();
+      virtual int GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);
+      virtual int GetVisibleFrameCount();
 
       virtual void prepare_form(atom atom, ::form_document* pformdocument);
 

@@ -599,7 +599,7 @@ namespace html
       const style *     pstyle1           = nullptr;
       ::collection::index               i1                 = -1;
       ::payload var1 = color;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (u32 &) crW);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (unsigned int &) crW);
 
 
       const style *     pstyleCur;
@@ -827,16 +827,16 @@ namespace html
                string strParent;
                if(pelement->m_pparent->m_pstyle->get_text(rangeName, strSubClass, pdata, pelement->m_pparent, strParent))
                {
-                  str = ::as_string((i32)((double) atof(str) * atoi(strParent)));
+                  str = ::as_string((int)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = ::as_string((i32)((double) atof(str) * 12));
+                  str = ::as_string((int)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = ::as_string((i32)((double) atof(str) * 12));
+               str = ::as_string((int)((double) atof(str) * 12));
             }
          }
       }
@@ -1254,15 +1254,15 @@ namespace html
             range.consume_spaces(0);
             range.consume("(");
             range.consume_spaces(0);
-            i32 R = (i32) range.consume_natural(255);
+            int R = (int) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(",");
             range.consume_spaces(0);
-            i32 G = (i32) range.consume_natural(255);
+            int G = (int) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(",");
             range.consume_spaces(0);
-            i32 B = (i32) range.consume_natural(255);
+            int B = (int) range.consume_natural(255);
             range.consume_spaces(0);
             range.consume(")");
             color32 = argb(255, R, G, B);

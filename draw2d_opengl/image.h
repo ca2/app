@@ -58,90 +58,90 @@ namespace draw2d_opengl
       //void to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
 
 
-      //void SetIconMask(::image::icon * picon, i32 cx, i32 cy);
+      //void SetIconMask(::image::icon * picon, int cx, int cy);
 
       bool on_host_read_pixels(::pixmap* ppixmap) const override;
 
       //bool color_blend(color32_t color32, unsigned char bAlpha);
-      //bool Blend(imagepimage, ::image::image *pimageA, i32 A);
-      //void BitBlt(::image::image *pimage, i32 op);
+      //bool Blend(imagepimage, ::image::image *pimageA, int A);
+      //void BitBlt(::image::image *pimage, int op);
       //color32_t GetAverageColor();
-      //i32 cos(i32 i, i32 iAngle);
-      //i32 sin(i32 i, i32 iAngle);
-      //i32 cos10(i32 i, i32 iAngle);
-      //i32 sin10(i32 i, i32 iAngle);
+      //int cos(int i, int iAngle);
+      //int sin(int i, int iAngle);
+      //int cos10(int i, int iAngle);
+      //int sin10(int i, int iAngle);
 
       //bool is_rgb_black();
       //void xor(::image::image *pimage);
 
-      //void ToAlpha(i32 i);
-      //void ToAlphaAndFill(i32 i, color32_t color32);
+      //void ToAlpha(int i);
+      //void ToAlphaAndFill(int i, color32_t color32);
       //void GrayToARGB(color32_t color32);
 
       //void from_alpha();
       //void mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true);
-      //void set_rgb(i32 R, i32 G, i32 B);
+      //void set_rgb(int R, int G, int B);
 
       //void rotate(::image::image *pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image *pimage, double dAngle, double dScale);
       //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 
-      //void RadialFill(unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b, int x, int y, int iRadius);
       //void RadialFill(
       //   unsigned char a1, unsigned char r1, unsigned char g1, unsigned char b1, // center colors
       //   unsigned char a2, unsigned char r2, unsigned char g2, unsigned char b2, // border colors
-      //   i32 x, i32 y, i32 iRadius);
+      //   int x, int y, int iRadius);
 
-      //u32 GetPixel(i32 x, i32 y);
+      //unsigned int GetPixel(int x, int y);
       //void Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
       //void ::color::e_channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, color::color::color::rgba::echannel echannel);
       //void transparent_color(::color::color color);
-      //void DivideRGB(i32 iDivide);
-      //void DivideARGB(i32 iDivide);
-      //void DivideA(i32 iDivide);
-      //virtual void fill_channel(i32 C, color::color::color::rgba::echannel echannel);
-      //void Fill (i32 A, i32 R, i32 G, i32 B );
-      //void Fill ( i32 R, i32 G, i32 B );
-      //void FillGlass ( i32 R, i32 G, i32 B, i32 A );
-      //void FillStippledGlass ( i32 R, i32 G, i32 B );
+      //void DivideRGB(int iDivide);
+      //void DivideARGB(int iDivide);
+      //void DivideA(int iDivide);
+      //virtual void fill_channel(int C, color::color::color::rgba::echannel echannel);
+      //void Fill (int A, int R, int G, int B );
+      //void Fill ( int R, int G, int B );
+      //void FillGlass ( int R, int G, int B, int A );
+      //void FillStippledGlass ( int R, int G, int B );
       //void Invert();
       //void ::color::e_channel_invert(color::color::color::rgba::echannel echannel);
       //void ::color::e_channel_multiply(color::color::color::rgba::echannel echannel, double dRate);
 
-      //void Map (i32 ToRgb, i32 FromRgb );
+      //void Map (int ToRgb, int FromRgb );
 
       /*void copy( imageimage );
       void Paste ( imageimage );
 
-      void Blend ( imageimage, i32 A );
+      void Blend ( imageimage, int A );
       void Darken ( imageimage );
       void Difference ( imageimage );
       void Lighten ( imageimage );
       void Multiply ( imageimage );
       void Screen ( imageimage );
 
-      void copy ( imageimage, i32 x, i32 y );
-      void PasteRect ( imageimage, i32 x, i32 y );
+      void copy ( imageimage, int x, int y );
+      void PasteRect ( imageimage, int x, int y );
 
-      void FillRect ( i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B );
-      void FillGlassRect ( i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B, i32 A );
-      void FillStippledGlassRect ( i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B );
+      void FillRect ( int x, int y, int w, int h, int R, int G, int B );
+      void FillGlassRect ( int x, int y, int w, int h, int R, int G, int B, int A );
+      void FillStippledGlassRect ( int x, int y, int w, int h, int R, int G, int B );
 
-      void BlendRect ( imageimage, i32 x, i32 y, i32 A );
-      void DarkenRect ( imageimage, i32 x, i32 y );
-      void DifferenceRect ( imageimage, i32 x, i32 y );
-      void LightenRect ( imageimage, i32 x, i32 y );
-      void MultiplyRect ( imageimage, i32 x, i32 y );
-      void ScreenRect ( imageimage, i32 x, i32 y );
+      void BlendRect ( imageimage, int x, int y, int A );
+      void DarkenRect ( imageimage, int x, int y );
+      void DifferenceRect ( imageimage, int x, int y );
+      void LightenRect ( imageimage, int x, int y );
+      void MultiplyRect ( imageimage, int x, int y );
+      void ScreenRect ( imageimage, int x, int y );
 
-      void Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B );
-      void LineGlass ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A );*/
+      void Line ( int x1, int y1, int x2, int y2, int R, int G, int B );
+      void LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A );*/
 
-      //void create_frame(::size_i32 size, i32 iFrameCount);
-      //void set_frame2(void * lpdata, i32 iFrame, i32 iFrameCount);
-      //void set_frame1(void * lpdata, i32 iFrame, i32 iFrameCount);
-      //void get_frame(void * lpdata, i32 iFrame, i32 iFrameCount);
-      //void xor_image_frame2(void * lpdata, i32 iFrame, i32 iFrameCount);
+      //void create_frame(::size_i32 size, int iFrameCount);
+      //void set_frame2(void * lpdata, int iFrame, int iFrameCount);
+      //void set_frame1(void * lpdata, int iFrame, int iFrameCount);
+      //void get_frame(void * lpdata, int iFrame, int iFrameCount);
+      //void xor_image_frame2(void * lpdata, int iFrame, int iFrameCount);
 
 
       //double pi();

@@ -735,7 +735,7 @@ pdirectorysystem->system() / path;
 
 
 
-file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
+file_pointer context::friendly_get_file(::payload payloadFile, unsigned int nOpenFlags)
 {
 
    try

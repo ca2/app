@@ -250,7 +250,7 @@ inline ::u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range)
 
    }
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    while (range.m_begin < range.m_end) uHash = (uHash << 5) + *(range.m_begin++);
 

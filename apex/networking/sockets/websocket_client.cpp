@@ -32,7 +32,7 @@
 //* \return
 //*      Number of bytes required.
 //*/
-//static inline memsize u32_size(u32 v)
+//static inline memsize u32_size(unsigned int v)
 //{
 //   if (v < (1UL << 7))
 //   {
@@ -68,7 +68,7 @@
 //* \return
 //*      Number of bytes written to `out`.
 //*/
-//static inline memsize u32_pack(u32 value, unsigned char *out)
+//static inline memsize u32_pack(unsigned int value, unsigned char *out)
 //{
 //   unsigned rv = 0;
 //
@@ -287,7 +287,7 @@
 //
 //         frame[1] = 126;
 //
-//         *((i16*)&frame[2]) = htons((u16) (len));
+//         *((short*)&frame[2]) = htons((unsigned short) (len));
 //
 //      }
 //

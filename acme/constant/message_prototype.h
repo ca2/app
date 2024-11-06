@@ -9,7 +9,7 @@ namespace message
 {
 
 
-   enum enum_prototype : i32
+   enum enum_prototype : int
    {
 
       e_prototype_none,

@@ -79,10 +79,10 @@ namespace html
 
          }
 
-         for(i32 i = 0; i < get_table()->m_cellholdera.get_size(); i++)
+         for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
          {
 
-            for(i32 j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
+            for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
             {
 
                if(ptable->m_cellholdera[i][j].m_iRow == m_iRow)
@@ -182,7 +182,7 @@ namespace html
       void table_row::layout_phase1_end(html_data * pdata)
       {
 
-         for (i32 i = 0; i < m_cellholdera.get_size(); i++)
+         for (int i = 0; i < m_cellholdera.get_size(); i++)
          {
 
             cell * pcell = m_cellholdera[i].m_pcell;
@@ -193,14 +193,14 @@ namespace html
                if (pcell->height() > m_cyMax)
                {
 
-                  m_cyMax = (i32) pcell->height();
+                  m_cyMax = (int) pcell->height();
 
                }
 
                if (pcell->height() < m_cyMin || m_cyMin < 0)
                {
 
-                  m_cyMin = (i32)pcell->height();
+                  m_cyMin = (int)pcell->height();
 
                }
 
@@ -208,7 +208,7 @@ namespace html
 
          }
 
-         for (i32 i = 0; i < m_cellholdera.get_size(); i++)
+         for (int i = 0; i < m_cellholdera.get_size(); i++)
          {
 
             cell * pcell = m_cellholdera[i].m_pcell;

@@ -232,7 +232,7 @@ std_out_buffer::~std_out_buffer()
 //
 //   DWORD dw;
 //
-//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (unsigned int)nCount, &dw, nullptr);
 //
 //#else
 //

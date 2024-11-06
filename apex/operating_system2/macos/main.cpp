@@ -68,7 +68,7 @@ void ns_create_alias(const ::scoped_string & scopedstrTarget, const ::scoped_str
 
 
 // //
-// //::u32
+// //unsigned int
 // //
 // //namespace user
 // //{
@@ -207,14 +207,14 @@ void ns_create_alias(const ::scoped_string & scopedstrTarget, const ::scoped_str
 
 // int
 // FormatMessage(
-// ::u32 dwFlags,
+// unsigned int dwFlags,
 // const void * pSource,
 
-// ::u32 dwMessageId,
-// ::u32 dwLanguageId,
+// unsigned int dwMessageId,
+// unsigned int dwLanguageId,
 // char * pBuffer,
 
-// ::u32 nSize,
+// unsigned int nSize,
 // va_list *Arguments
 // )
 // {

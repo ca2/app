@@ -209,7 +209,7 @@
 //
 //            }
 //
-//            p->m_tick = (::u32) (dDelay * 1000.0);
+//            p->m_tick = (unsigned int) (dDelay * 1000.0);
 //
 //            if(p->m_tick < 90)
 //            {

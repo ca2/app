@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME ::wd16_character __wd16charlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-CLASS_DECL_ACME ::wd16_character __wd16charuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-CLASS_DECL_ACME i32 __wd16charisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
-CLASS_DECL_ACME i32 __wd16charisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-CLASS_DECL_ACME i32 __wd16charisalnum(i32 i) { return wd16_char_isalpha(i) || wd16_char_isdigit(i); }
-CLASS_DECL_ACME i32 __wd16charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME ::wd16_character __wd16charlowered(int i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::wd16_character __wd16charuppered(int i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME int __wd16charisdigit(int i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME int __wd16charisalpha(int i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME int __wd16charisalnum(int i) { return wd16_char_isalpha(i) || wd16_char_isdigit(i); }
+CLASS_DECL_ACME int __wd16charisspace(int ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
 
-CLASS_DECL_ACME i32 __wd16charisxdigit(i32 i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
+CLASS_DECL_ACME int __wd16charisxdigit(int i) { return wd16_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
 CLASS_DECL_ACME ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, strsize srclen)

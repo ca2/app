@@ -159,7 +159,7 @@ namespace imaging_freeimage
 
    ::aura::Resource resource;
 
-   if(!resource.ReadResource(*file.get_memory(), (::u32) MAKEINTRESOURCE(pszId), pszType))
+   if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(pszId), pszType))
 
    return false;
 
@@ -375,7 +375,7 @@ namespace imaging_freeimage
             // return pimage->m_estatus;
          }
 
-         pmem = FreeImage_OpenMemory(memory.data(), (::u32)memory.size());
+         pmem = FreeImage_OpenMemory(memory.data(), (unsigned int)memory.size());
 
          if (pmem == nullptr)
          {

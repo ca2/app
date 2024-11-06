@@ -106,10 +106,10 @@ public:
    }
 
 
-   inline ::u32 u32() const
+   inline unsigned int unsigned int() const
    {
 
-      return (::u32) (m_i % 0x100000000ULL);
+      return (unsigned int) (m_i % 0x100000000ULL);
 
    }
 
@@ -217,7 +217,7 @@ namespace acme
       inline TYPE default_value();
 
       template <  >
-      inline u32 default_value < u32 >()
+      inline unsigned int default_value < unsigned int >()
       {
 
          return 0;
@@ -240,7 +240,7 @@ namespace acme
 #define __prtick "%" PRtick " ms"
 
 
-#define U32_INFINITE_TIMEOUT ((u32)0xffffffffu)
+#define U32_INFINITE_TIMEOUT ((unsigned int)0xffffffffu)
 
 
 inline double __double(const ::millis & millis) { return (double) millis.m_i; }
@@ -249,7 +249,7 @@ inline double __double(const ::millis & millis) { return (double) millis.m_i; }
 inline auto __pr(const ::millis & millis) { return millis.m_i; }
 
 
-inline u32 __os(const ::millis & millis)
+inline unsigned int __os(const ::millis & millis)
 {
 
    if (millis.m_i > (i64) I32_MAXIMUM)
@@ -267,7 +267,7 @@ inline u32 __os(const ::millis & millis)
    else
    {
 
-      return (u32) millis.m_i;
+      return (unsigned int) millis.m_i;
 
    }
 

@@ -159,7 +159,7 @@ namespace interprocess_channel
 
 
 
-   // typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, ::u32 dwFlag);
+   // typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, unsigned int dwFlag);
 
 
    //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;

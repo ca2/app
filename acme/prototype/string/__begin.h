@@ -95,10 +95,10 @@ constexpr char __digit(int digit)
 constexpr int_bool utf16_is_1st_surrogate(::wd16_character _1stSurrogateCandidate) { return (_1stSurrogateCandidate & 0xfc00) == 0xd800; } // Sober Surrogay (Told Hi)
 constexpr int_bool utf16_is_2nd_surrogate(::wd16_character _2ndSurrogateCandidate) { return (_2ndSurrogateCandidate & 0xfc00) == 0xdc00; } // Marginal Surro-G (Told Lo, but much more drunk)
 constexpr int_bool utf16_is_surrogate(::wd16_character uc) { return utf16_is_1st_surrogate(uc) || utf16_is_2nd_surrogate(uc); }
-constexpr int_bool utf32_is_surrogated(u32 character) { return 0x10000 <= character && character <= 0x10FFFF; }
-constexpr u32 decode_utf16_pair(u16* units)
+constexpr int_bool utf32_is_surrogated(unsigned int character) { return 0x10000 <= character && character <= 0x10FFFF; }
+constexpr unsigned int decode_utf16_pair(unsigned short* units)
 {
-   u32 code;
+   unsigned int code;
    ASSERT(utf16_is_1st_surrogate(units[0]));
    ASSERT(utf16_is_2nd_surrogate(units[1]));
    code = 0x10000;

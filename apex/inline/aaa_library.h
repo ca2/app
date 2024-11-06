@@ -30,7 +30,7 @@
 ////#ifdef UNIVERSAL_WINDOWS
 ////[MTAThread]
 ////#endif
-//BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
+//BOOL WINAPI DllMain(HINSTANCE hinstance, unsigned int dwReason, LPVOID pReserved)
 //{
 //
 //   return _001DefaultDllMain(hinstance, dwReason, pReserved, LIBRARY_MAIN_DEBUG_BOX, LIBRARY_MAIN_INT_DELAY_MS);

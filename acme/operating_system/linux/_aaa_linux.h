@@ -14,7 +14,7 @@
 //#include <unistd.h>
 //
 //
-////string get_error_message(::u32 dwError);
+////string get_error_message(unsigned int dwError);
 //
 //
 ////CLASS_DECL_ACME MESSAGE * __get_current_message();
@@ -23,11 +23,11 @@
 //
 ////CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessage);
 //
-////int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+////int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg);
 //
-////::e_status mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+////::e_status mq_get_message(MESSAGE * pMsg, oswindow hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
 //
-////i32 CLASS_DECL_ACME __linux_main(i32 argc, char * argv[]);
+////int CLASS_DECL_ACME __linux_main(int argc, char * argv[]);
 //
 ////CLASS_DECL_ACME void os_shell_initialize();
 //

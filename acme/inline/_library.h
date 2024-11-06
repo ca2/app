@@ -27,10 +27,10 @@
 //#endif
 
 
-int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved);
+int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dwReason, LPVOID pReserved);
 
 
-BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
+BOOL WINAPI DllMain(HINSTANCE hinstance, unsigned int dwReason, LPVOID pReserved)
 {
 
    //return _001DefaultDllMain(hinstance, dwReason, pReserved, LIBRARY_MAIN_DEBUG_BOX, LIBRARY_MAIN_INT_DELAY_MS);

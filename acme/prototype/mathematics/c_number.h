@@ -229,8 +229,8 @@ class time;
 
 
 ////#ifdef WINDOWS
-//DEFINE_UNIT(CLASS_DECL_ACME, lock_time, u32)
-//DEFINE_UNIT(CLASS_DECL_ACME, tick_time, u32)
+//DEFINE_UNIT(CLASS_DECL_ACME, lock_time, unsigned int)
+//DEFINE_UNIT(CLASS_DECL_ACME, tick_time, unsigned int)
 ////#endif
 
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , u64)

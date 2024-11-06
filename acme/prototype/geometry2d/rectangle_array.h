@@ -102,7 +102,7 @@ template < primitive_number NUMBER >
 void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
-   for (i32 i = 0; i < this->get_size(); i++)
+   for (int i = 0; i < this->get_size(); i++)
    {
 
       ::rectangle_type < NUMBER > & rectangle = this->element_at(i);
@@ -132,7 +132,7 @@ template < primitive_number NUMBER >
 
    rectangleUnion = this->first();
 
-   for (i32 i = 1; i < this->get_size(); i++)
+   for (int i = 1; i < this->get_size(); i++)
    {
       
       rectangleUnion.unite(rectangleUnion, this->element_at(i));

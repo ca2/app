@@ -175,7 +175,7 @@ BOOL CProcessEnvReader::HasReadAccess(HANDLE hProcess,
 /**
 * Function to open the specified process to read or query information
 **/
-HANDLE CProcessEnvReader::OpenProcessToRead(::u32 dwPID)
+HANDLE CProcessEnvReader::OpenProcessToRead(unsigned int dwPID)
 {
    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION |
                                  PROCESS_VM_READ,false,dwPID);
@@ -250,7 +250,7 @@ string CProcessEnvReader::GetProcessNameFromHandle(HANDLE hProcess)
    return szProcessName;
 }
 
-string CProcessEnvReader::GetProcessNameFromID(::u32 dwPID)
+string CProcessEnvReader::GetProcessNameFromID(unsigned int dwPID)
 {
    HANDLE hProcess = OpenProcessToRead(dwPID);
    string csName = GetProcessNameFromHandle(hProcess);

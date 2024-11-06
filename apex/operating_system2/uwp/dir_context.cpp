@@ -172,7 +172,7 @@ pdirectorysystem->ca2roaming() / "home";
 
             ls_dir(dira, listing.m_pathFinal);
 
-            for(i32 i = 0; i < dira.get_count(); i++)
+            for(int i = 0; i < dira.get_count(); i++)
             {
 
                ::file::path directory_context = dira[i];
@@ -301,7 +301,7 @@ pdirectorysystem->ca2roaming() / "home";
       }
 
       /*
-      u32 dwAttrib;
+      unsigned int dwAttrib;
       dwAttrib = windows_get_file_attributes(utf8_to_unicode(strPath));
       /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
       {
@@ -476,7 +476,7 @@ pdirectorysystem->ca2roaming() / "home";
          if (!::dir::mkdir(pathDir))
          {
 
-            u32 dwError = ::GetLastError();
+            unsigned int dwError = ::GetLastError();
 
             if (dwError == ERROR_ALREADY_EXISTS)
             {

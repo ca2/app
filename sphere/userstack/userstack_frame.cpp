@@ -145,7 +145,7 @@ namespace userstack
 
    void frame::ShowControlBars(bool bShow)
    {
-      ::u32 nShow;
+      unsigned int nShow;
       if(bShow)
       {
          nShow = e_display_normal;
@@ -239,7 +239,7 @@ namespace userstack
       else if(pusermessage->m_atom == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
-         i32 iEdge = 0;
+         int iEdge = 0;
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
          if(pstruct->dwData == 2000)
          {
@@ -314,7 +314,7 @@ namespace userstack
       {
          string str = psystem->get_local_mutex_id();
          str.case_insensitive_begins_eat("bergedge");
-         i32 iEdge = atoi(str);
+         int iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
          else

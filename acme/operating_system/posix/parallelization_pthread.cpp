@@ -31,16 +31,16 @@
 //message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
 
 
-//CLASS_DECL_ACME void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+//CLASS_DECL_ACME void thread_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 //
-//CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+//CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 //
 //CLASS_DECL_ACME::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pparticle, const class ::time & timeWait, ::u32 dwWakeMask, ::u32 dwFlags)
+::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & timeWait, unsigned int dwWakeMask, unsigned int dwFlags)
 {
 
    class ::time start;
@@ -79,8 +79,8 @@
 
       while (true)
       {
-         i32 i;
-         i32 j;
+         int i;
+         int j;
          i = 0;
          for (; comparison::lt(i, dwSize);)
          {
@@ -140,7 +140,7 @@
    else
    {
 
-      i32 i;
+      int i;
 
       while (true)
       {
@@ -189,7 +189,7 @@
 }
 
 
-::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
+::e_status MsgWaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, unsigned int dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -197,7 +197,7 @@
 }
 
 
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -205,7 +205,7 @@
 }
 
 
-::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
+::e_status WaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -349,32 +349,32 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-i32 get_os_thread_priority(::enum_priority epriority)
+int get_os_thread_priority(::enum_priority epriority)
 {
 
-   return (i32)epriority;
+   return (int)epriority;
 
 }
 
 
 
-// LPVOID WINAPI thread_get_data(htask_t htask, ::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(htask_t htask, unsigned int dwIndex);
 
 
-// int_bool WINAPI thread_set_data(htask_t htask, ::u32 dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(htask_t htask, unsigned int dwIndex, LPVOID pTlsValue);
 
 
 
 
-::u32 g_dwDebug_post_thread_msg_time;
+unsigned int g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, unsigned int Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   synchronous_lock ml(pmq->synchronization());
@@ -444,10 +444,10 @@ void os_on_term_thread()
 }
 
 
-::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam);
+::enum_priority get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::enum_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -464,7 +464,7 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
 
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    int iOsPolicy;
@@ -532,7 +532,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 }
 
 
-void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void thread_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -667,7 +667,7 @@ namespace parallelization
    CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority)
    {
 
-      i32 iPolicy;
+      int iPolicy;
 
       sched_param schedparam;
 

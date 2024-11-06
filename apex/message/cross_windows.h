@@ -11,16 +11,16 @@
 //   HINSTANCE   hInstance;
 //   HMENU       hMenu;
 //   oswindow        hwndParent;
-//   i32         cy;
-//   i32         cx;
-//   i32         y;
-//   i32         x;
+//   int         cy;
+//   int         cx;
+//   int         y;
+//   int         x;
 //   int        style;
 //   const char *      lpszName;
 //
 //   const char *      lpszClass;
 //
-//   u32       dwExStyle;
+//   unsigned int       dwExStyle;
 //} CREATESTRUCTA,*LPCREATESTRUCTA;
 //
 //typedef struct tagCREATESTRUCTW
@@ -30,16 +30,16 @@
 //   HINSTANCE   hInstance;
 //   HMENU       hMenu;
 //   oswindow    hwndParent;
-//   i32         cy;
-//   i32         cx;
-//   i32         y;
-//   i32         x;
+//   int         cy;
+//   int         cx;
+//   int         y;
+//   int         x;
 //   int        style;
 //   const ::wide_character *     lpszName;
 //
 //   const ::wide_character *     lpszClass;
 //
-//   u32       dwExStyle;
+//   unsigned int       dwExStyle;
 //} CREATESTRUCTW,*LPCREATESTRUCTW;
 //
 //#ifdef UNICODE

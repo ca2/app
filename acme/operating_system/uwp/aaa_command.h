@@ -13,7 +13,7 @@
 //
 //      //HINSTANCE      m_hInstance;
 //      //HINSTANCE      m_hPrevInstance;
-//      //i32        m_nCmdShow;
+//      //int        m_nCmdShow;
 //
 //
 //   };

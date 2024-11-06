@@ -7,7 +7,7 @@ public:
 
 
    string      m_str;
-   ::u32       m_dwExpire;
+   unsigned int       m_dwExpire;
 
    bool expired();
    bool valid();

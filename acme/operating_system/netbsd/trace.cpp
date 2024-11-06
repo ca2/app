@@ -60,9 +60,9 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       char szFormat[80];
       szFormat[0] = '\0';
-      if (((::u32)0xC000 <= (::u32)pAdvise->cfFormat) &&
+      if (((unsigned int)0xC000 <= (unsigned int)pAdvise->cfFormat) &&
 
-            ((::u32)pAdvise->cfFormat <= (::u32)0xFFFF))
+            ((unsigned int)pAdvise->cfFormat <= (unsigned int)0xFFFF))
 
       {
          ::GetClipboardFormatName(pAdvise->cfFormat,
@@ -237,7 +237,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //   {
 //      // User message
-//      u32 uiValue = pmsg->message - WM_USER;
+//      unsigned int uiValue = pmsg->message - WM_USER;
 
 //      snprintf(szBuf, sizeof(szBuf), "WM_USER+0x%04X", uiValue);
 //      pszMsgName = szBuf;

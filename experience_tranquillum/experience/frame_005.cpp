@@ -519,10 +519,10 @@ namespace experience_tranquillum
 
 
       ::rectangle_i32 rectangle(rectangleParam);
-      i32 x = rectangle.left();
-      i32 y = rectangle.top();
-      i32 cx = rectangle.width();
-      i32 cy = rectangle.height();
+      int x = rectangle.left();
+      int y = rectangle.top();
+      int cx = rectangle.width();
+      int cy = rectangle.height();
 
       ::rectangle_i32 rectangleDraw;
 
@@ -627,7 +627,7 @@ namespace experience_tranquillum
    enum_grip egrip)
    {
 
-      const i32 size = 16;
+      const int size = 16;
 
       ::rectangle_i32 rectangleX(rectangleXParam);
 

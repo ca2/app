@@ -687,7 +687,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 
    property_set * pset = this;
 
-   i32 i = 0;
+   int i = 0;
 
    while (i < straKey.get_upper_bound())
    {
@@ -1318,7 +1318,7 @@ string property_set::_001Replace(const ::string & str) const
 
    ::collection::count count = 0;
 
-   for (i32 i = 0; i < stra.get_count(); i++)
+   for (int i = 0; i < stra.get_count(); i++)
    {
 
       count += erase_by_name(stra[i]);
@@ -1770,9 +1770,9 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 //
 //   erase_all();
 //
-//   i32 iCount = set.pair_set_interface_get_count();
+//   int iCount = set.pair_set_interface_get_count();
 //
-//   for (i32 i = 0; i < iCount; i++)
+//   for (int i = 0; i < iCount; i++)
 //   {
 //
 //      string strKey = set.pair_set_interface_get_key(i);
@@ -1798,9 +1798,9 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 //
 //   erase_all();
 //
-//   i32 iCount = set.str_str_interface_get_count();
+//   int iCount = set.str_str_interface_get_count();
 //
-//   for (i32 i = 0; i < iCount; i++)
+//   for (int i = 0; i < iCount; i++)
 //   {
 //
 //      string strKey = set.str_str_interface_get_key(i);

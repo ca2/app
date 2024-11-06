@@ -17,7 +17,7 @@ struct CLASS_DECL_ACME image32_t
    union
    {
 
-      ::u32    m_u32;
+      unsigned int    m_u32;
       unsigned char     m_ua[4];
 
    };
@@ -100,13 +100,13 @@ struct CLASS_DECL_ACME image32_t
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//constexpr ::u32 argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr unsigned int argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Blue
-//      | ((::u16)(u8Green) << 8)
-//      | (((::u32)(u8Red)) << 16)
-//      | (((::u32)(u8Opacity)) << 24);
+//      | ((unsigned short)(u8Green) << 8)
+//      | (((unsigned int)(u8Red)) << 16)
+//      | (((unsigned int)(u8Opacity)) << 24);
 //
 //}
 //
@@ -120,13 +120,13 @@ struct CLASS_DECL_ACME image32_t
 //#else
 //
 //
-//constexpr ::u32 argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr unsigned int argb_image32_u32(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Red
-//      | (((::u16)u8Green) << 8)
-//      | (((::u32)u8Blue) << 16)
-//      | (((::u32)u8Opacity) << 24);
+//      | (((unsigned short)u8Green) << 8)
+//      | (((unsigned int)u8Blue) << 16)
+//      | (((unsigned int)u8Opacity) << 24);
 //
 //}
 //

@@ -124,7 +124,7 @@ namespace experience
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         ::u32 nHitTest = HTCLIENT;
+//         unsigned int nHitTest = HTCLIENT;
 //
 //         switch(eframe)
 //         {
@@ -478,7 +478,7 @@ namespace experience
    }
 
 
-   //void size_manager::SetSWPFlags(::u32 uFlags)
+   //void size_manager::SetSWPFlags(unsigned int uFlags)
    //{
 
    //   m_uiSWPFlags = uFlags;

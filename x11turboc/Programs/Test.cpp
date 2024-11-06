@@ -46,11 +46,11 @@ void
 #endif
 main (void)
 {
-  g::u32 ::times;
+  gunsigned int ::times;
   int Handle;
   struct ftime ft;
   struct ffblk fblk;
-  u16 Buffer[20][40];
+  unsigned short Buffer[20][40];
   int i, j;
   gint k;
   char s[11], *ss;

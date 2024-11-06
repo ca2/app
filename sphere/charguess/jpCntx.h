@@ -16,9 +16,9 @@ class JapaneseContextAnalysis
 public:
   JapaneseContextAnalysis() {Reset();};
 
-  void HandleData(const ::string & aBuf, PR::u32 aLen);
+  void HandleData(const ::string & aBuf, PRunsigned int aLen);
 
-  void HandleOneChar(const ::string & aStr, PR::u32 aCharLen)
+  void HandleOneChar(const ::string & aStr, PRunsigned int aCharLen)
   {
     PRInt32 order;
 
@@ -43,21 +43,21 @@ public:
   PRBool GotEnoughData() {return mTotalRel > ENOUGH_REL_THRESHOLD;};
 
 protected:
-  virtual PRInt32 GetOrder(const ::string & str, PR::u32 *charLen) = 0;
+  virtual PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen) = 0;
   virtual PRInt32 GetOrder(const ::string & str) = 0;
 
   //category counters, each interger counts sequence in its category
-  PR::u32 mRelSample[NUM_OF_CATEGORY];
+  PRunsigned int mRelSample[NUM_OF_CATEGORY];
 
   //total sequence received
-  PR::u32 mTotalRel;
+  PRunsigned int mTotalRel;
   
   //The order of previous char
   PRInt32  mLastCharOrder;
 
   //if last unsigned char in current buffer is not the last unsigned char of a character, we
   //need to know how many unsigned char to skip in next buffer.
-  PR::u32 mNeedToSkipCharNum;
+  PRunsigned int mNeedToSkipCharNum;
 
   //If this flag is set to PR_TRUE, detection is done and conclusion has been made
   PRBool   mDone;
@@ -68,7 +68,7 @@ class SJISContextAnalysis : public JapaneseContextAnalysis
 {
   //SJISContextAnalysis(){};
 protected:
-  PRInt32 GetOrder(const ::string & str, PR::u32 *charLen);
+  PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen);
 
   PRInt32 GetOrder(const ::string & str)
   {
@@ -84,7 +84,7 @@ protected:
 class EUCJPContextAnalysis : public JapaneseContextAnalysis
 {
 protected:
-  PRInt32 GetOrder(const ::string & str, PR::u32 *charLen);
+  PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen);
   PRInt32 GetOrder(const ::string & str)
     //We only interested in Hiragana, so first unsigned char is '\244'
   {

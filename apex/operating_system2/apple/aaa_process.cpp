@@ -7,7 +7,7 @@
 #include "framework.h"
 
 
-void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
+void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
 {
 
    int iOsPriority;

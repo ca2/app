@@ -513,7 +513,7 @@ namespace universal_windows
 
          // Create a depth stencil impact for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_::u32,
+         DXGI_FORMAT_D24_UNORM_S8_unsigned int,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,

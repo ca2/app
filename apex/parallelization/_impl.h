@@ -18,7 +18,7 @@ inline CSingleLock::~CSingleLock()
 inline int_bool CSingleLock::IsLocked()
 { return m_bAcquired; }
 
-inline int_bool CMultiLock::IsLocked(::u32 dwObject)
+inline int_bool CMultiLock::IsLocked(unsigned int dwObject)
 {
    ASSERT(dwObject < m_dwCount);
    return m_bLockedArray[dwObject];
@@ -63,7 +63,7 @@ inline int_bool critical_section::Lock()
    }
    return true;
 }
-inline int_bool critical_section::Lock(::u32 tickTimeout)
+inline int_bool critical_section::Lock(unsigned int tickTimeout)
 { ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
 inline int_bool critical_section::Unlock()
 { ::LeaveCriticalSection(&m_sect); return true; }

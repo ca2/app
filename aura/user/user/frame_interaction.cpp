@@ -642,7 +642,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type_atom & typeatom)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;

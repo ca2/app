@@ -61,7 +61,7 @@ namespace mathematics
 
    void value::parse_numeric_formula(const ::scoped_string & scopedstr)
    {
-//      i32 iOpen               = 0;
+//      int iOpen               = 0;
       //    bool bLeft              = false;
       //  bool bNumber            = false;
       m_pimpl                 = __raw_new number();

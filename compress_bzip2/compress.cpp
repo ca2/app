@@ -120,7 +120,7 @@ namespace compress_bzip2
       zstream.bzfree = (bzfree)0;
       zstream.opaque = (void*)0;
       zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (u32)uRead;
+      zstream.avail_in = (unsigned int)uRead;
       zstream.next_out = nullptr;
       zstream.avail_out = 0;
       m_z_err = BZ_OK;
@@ -147,7 +147,7 @@ namespace compress_bzip2
          {
 
             zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (u32)memory.size();
+            zstream.avail_out = (unsigned int)memory.size();
 
             ret = BZ2_bzCompress(&zstream, iState);
 
@@ -183,7 +183,7 @@ namespace compress_bzip2
 
             zstream.next_in = (char*)nullptr;
 
-            zstream.avail_in = (u32)0;
+            zstream.avail_in = (unsigned int)0;
 
          }
          else
@@ -191,7 +191,7 @@ namespace compress_bzip2
 
             zstream.next_in = (char*)memIn.data();
 
-            zstream.avail_in = (u32)uRead;
+            zstream.avail_in = (unsigned int)uRead;
 
          }
 

@@ -5,11 +5,11 @@
 WINAPI
 create_file(
             const char * lpFileName,
-            ::u32 dwDesiredAccess,
-            ::u32 dwShareMode,
+            unsigned int dwDesiredAccess,
+            unsigned int dwShareMode,
             LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-            ::u32 dwCreationDisposition,
-            ::u32 dwFlagsAndAttributes,
+            unsigned int dwCreationDisposition,
+            unsigned int dwFlagsAndAttributes,
             HANDLE hTemplateFile
             )
 {
@@ -30,13 +30,13 @@ create_file(
 
 }
 
-::u32
+unsigned int
 WINAPI
 SetFilePointer(
                HANDLE hFile,
                int lDistanceToMove,
                PLONG lpDistanceToMoveHigh,
-               ::u32 dwMoveMethod
+               unsigned int dwMoveMethod
                )
 {
     if(hFile == INVALID_HANDLE_VALUE)
@@ -52,7 +52,7 @@ WINAPI
 WriteFile(
           HANDLE hFile,
           const void * lpBuffer,
-          ::u32 nNumberOfBytesToWrite,
+          unsigned int nNumberOfBytesToWrite,
           LPDWORD lpNumberOfBytesWritten,
           LPOVERLAPPED lpOverlapped
           )
@@ -63,7 +63,7 @@ WriteFile(
         return false;
     size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesWritten != nullptr)
-        *lpNumberOfBytesWritten = (u32) sizeWritten;
+        *lpNumberOfBytesWritten = (unsigned int) sizeWritten;
     return true;
 }
 
@@ -72,7 +72,7 @@ WINAPI
 ReadFile(
          HANDLE hFile,
          LPVOID lpBuffer,
-         ::u32 nNumberOfBytesToRead,
+         unsigned int nNumberOfBytesToRead,
          LPDWORD lpNumberOfBytesRead,
          LPOVERLAPPED lpOverlapped
          )
@@ -83,7 +83,7 @@ ReadFile(
         return false;
     size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesRead != nullptr)
-        *lpNumberOfBytesRead = (u32)sizeRead;
+        *lpNumberOfBytesRead = (unsigned int)sizeRead;
     return true;
 }
 

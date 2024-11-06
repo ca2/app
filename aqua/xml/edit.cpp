@@ -59,7 +59,7 @@ namespace xml
    //stream & edit_item::write(::stream & stream) const
    //{
 
-   //   stream << (i32 &) m_eaction;
+   //   stream << (int &) m_eaction;
    //   stream << m_iaPath;
    //   stream << m_strName;
    //   stream << m_strValue;
@@ -72,7 +72,7 @@ namespace xml
    //stream & edit_item::read(::stream & stream)
    //{
 
-   //   stream >> (i32 &)m_eaction;
+   //   stream >> (int &)m_eaction;
    //   stream >> m_iaPath;
    //   stream >> m_strName;
    //   stream >> m_strValue;

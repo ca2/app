@@ -25,8 +25,8 @@ namespace hotplugin
 
       window_rectangle(&rectangleWindow);
 
-      i32 cx = rectangleWindow.right() - rectangleWindow.left();
-      i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right() - rectangleWindow.left();
+      int cy = rectangleWindow.bottom() - rectangleWindow.top();
 
       ::rectangle_i32 rectangle_i32;
 
@@ -80,13 +80,13 @@ namespace hotplugin
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left() + 84, (i32)(rectangle.top() + 133 + 49 * 0.2), strProgress);
+      pgraphics->text_out(rectangle.left() + 84, (int)(rectangle.top() + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left() + 84, (i32)(rectangle.top() + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->text_out(rectangle.left() + 84, (int)(rectangle.top() + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

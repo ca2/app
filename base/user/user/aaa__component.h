@@ -284,17 +284,17 @@
 //
 //   virtual bool create(const ::string & pClassName, const ::string & lpWindowName,
 //
-//      u32 dwStyle, const ::rectangle_i32 & rectangle,
-//      ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
-//   virtual bool create_window_ex(u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName,
+//      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+//      ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
+//   virtual bool create_window_ex(unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName,
 //
-//      u32 dwStyle, const ::rectangle_i32 & rectangle,
-//      ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
+//      unsigned int dwStyle, const ::rectangle_i32 & rectangle,
+//      ::user::interaction_child* pParentWnd = nullptr, unsigned int nID = 0);
 //
 //
 //   bool OnNcActivate(bool bActive);
 //   LRESULT OnNcHitTest(const ::point_i32 & point);
-//   void OnSysCommand(::u32 nID, LPARAM lParam);
+//   void OnSysCommand(unsigned int nID, LPARAM lParam);
 //   void OnGetMinMaxInfo(MINMAXINFO* pMMI);
 //   LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
 //   LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
@@ -302,7 +302,7 @@
 //
 //
 //public:
-//   static void CalcBorders(::rectangle_i32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
+//   static void CalcBorders(::rectangle_i32 * pClientRect, unsigned int dwStyle = 0, unsigned int dwExStyle = 0);
 //
 //
 //protected:
@@ -318,7 +318,7 @@
 //#pragma warning( default: 4264 )
 //
 //
-//typedef u32 DROPEFFECT;
+//typedef unsigned int DROPEFFECT;
 //class COleDataObject;   // forward object (see ::windows_definition::ole.h)
 //
 //*/

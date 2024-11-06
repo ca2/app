@@ -100,7 +100,7 @@ int                 cy)
     */
 
    //   ::color::color                crOld;
-   //   ::u32                    uMode;
+   //   unsigned int                    uMode;
    ::size_f64                   sizeText;
    ::rectangle_i32                  rectangleText;
 
@@ -484,10 +484,10 @@ return pil;
 ////   const ::size_i32 & size = pitmap->get_size();
 
 ////
-////   ::u32 cbLine = ((size.cx() * 3 + 3) & ~3);
-////   ::u32 cbImage = size.cy() * cbLine;
+////   unsigned int cbLine = ((size.cx() * 3 + 3) & ~3);
+////   unsigned int cbImage = size.cy() * cbLine;
 ////
-////   ::u32 cbMask = size.cy() * ((size.cx() + 3) & ~3);
+////   unsigned int cbMask = size.cy() * ((size.cx() + 3) & ~3);
 ////
 ////
 ////   BITMAPINFO bmi;
@@ -521,7 +521,7 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   ::u32 uScanLines = size.cy();
+////   unsigned int uScanLines = size.cy();
 ////
 ////
 ////   if(!GetDIBits(
@@ -933,8 +933,8 @@ return pil;
 
 //   const rectangle_i32 & rectangleParam,
 //   int &iWidthParam,
-//   ::u32 & uiStartScanLineParam,
-//   ::u32 & uiScanLineCountParam,
+//   unsigned int & uiStartScanLineParam,
+//   unsigned int & uiScanLineCountParam,
 //   int & iLimitYParam)
 //{
 //   __UNREFERENCED_PARAMETER(pitmap);
@@ -1004,8 +1004,8 @@ return pil;
 //#endif
 //         //       ::point_i32 pointContext = pgraphics->get_origin();
 //
-//         ::u32 uStartScanLine = maximum(0,bm.bmHeight - y - cy);
-//         ::u32 uScanLines = cy + minimum(0,bm.bmHeight - y - cy);
+//         unsigned int uStartScanLine = maximum(0,bm.bmHeight - y - cy);
+//         unsigned int uScanLines = cy + minimum(0,bm.bmHeight - y - cy);
 //
 //         uiStartScanLineParam = uiStartScanLine;
 //         uiScanLineCountParam = uiScanLines;
@@ -1040,7 +1040,7 @@ return pil;
 //      }
 //      catch(int)
 //      {
-//         //         ::u32 user = get_last_error();
+//         //         unsigned int user = get_last_error();
 //         pgraphics->set(pmpOld);
 
 //         return false;
@@ -1066,8 +1066,8 @@ memory & memorystorage,
 ::rectangle_i32 * prectangle,
 
 int &iWidthParam,
-::u32 & uiStartScanLineParam,
-::u32 & uiScanLineCountParam,
+unsigned int & uiStartScanLineParam,
+unsigned int & uiScanLineCountParam,
 int & iLimitYParam)
 {
 
@@ -1136,8 +1136,8 @@ LPVOID pv = memorystorage.get_data();
 
 ::point_i32 pointContext = pgraphics->get_origin();
 
-::u32 uStartScanLine = 0;
-::u32 uScanLines = cy;
+unsigned int uStartScanLine = 0;
+unsigned int uScanLines = cy;
 
 uiStartScanLineParam = uiStartScanLine;
 uiScanLineCountParam = uiScanLines;
@@ -1159,7 +1159,7 @@ throw ::exception(::exception("integer_exception" + as_string($1)));
 }
 catch(int)
 {
-::u32 user = get_last_error();
+unsigned int user = get_last_error();
 pgraphics->set(pmpOld);
 
 return false;
@@ -1240,12 +1240,12 @@ LPVOID pv = memorystorage.get_data();
 
 ::point_i32 pointContext;
 pointContext = pgraphics->get_origin();
-::u32 uStartScanLine = bm.bmHeight;
+unsigned int uStartScanLine = bm.bmHeight;
 
 uiStartScanLineParam = uiStartScanLine;
 
-//::u32 uStartScanLine = bm.bmHeight - y - cy;
-::u32 uScanLines = cy;
+//unsigned int uStartScanLine = bm.bmHeight - y - cy;
+unsigned int uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
 int xOffset = (x + pointContext.x()) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
@@ -1336,11 +1336,11 @@ int w3)
       for(j = 0; j < cx; j++)
       {
 
-         pA[0] = (unsigned char)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)pB[0]) * ((u32)pC[0])))) / 255);
+         pA[0] = (unsigned char)(((((unsigned int)pA[0]) * ((unsigned int)(255 - pC[0])) + (((unsigned int)pB[0]) * ((unsigned int)pC[0])))) / 255);
 
-         pA[1] = (unsigned char)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)pB[1]) * ((u32)pC[1])))) / 255);
+         pA[1] = (unsigned char)(((((unsigned int)pA[1]) * ((unsigned int)(255 - pC[1])) + (((unsigned int)pB[1]) * ((unsigned int)pC[1])))) / 255);
 
-         pA[2] = (unsigned char)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)pB[2]) * ((u32)pC[2])))) / 255);
+         pA[2] = (unsigned char)(((((unsigned int)pA[2]) * ((unsigned int)(255 - pC[2])) + (((unsigned int)pB[2]) * ((unsigned int)pC[2])))) / 255);
 
          pA+=3;
 
@@ -1479,11 +1479,11 @@ unsigned char bAlpha)
 
 
       }
-      /*      pushDest = (u16 *) pDestParam;
+      /*      pushDest = (unsigned short *) pDestParam;
 
 
 
-      pushSrc = (u16 *) pSrcParam;
+      pushSrc = (unsigned short *) pSrcParam;
 
 
 
@@ -1511,7 +1511,7 @@ unsigned char bAlpha)
 
       for(;j < maxw; j++)
       {
-      *pDst++ = (unsigned char) (((u32) (*pSrc++ - *pDst) * ((u32) (bAlpha))) / 256) + *pDst;
+      *pDst++ = (unsigned char) (((unsigned int) (*pSrc++ - *pDst) * ((unsigned int) (bAlpha))) / 256) + *pDst;
 
 
 
@@ -1725,9 +1725,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
 
    ::point_i32 pointContext;
    pointContext = pgraphics->get_origin();
-   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
-   //::u32 uStartScanLine = bm.bmHeight - y - cy;
-   ::u32 uScanLines = cy;
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   //unsigned int uStartScanLine = bm.bmHeight - y - cy;
+   unsigned int uScanLines = cy;
    int xOffset = (x + pointContext.x()) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
@@ -1840,9 +1840,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    LPVOID pv = memstorageA.get_data();
 
    ::point_i32 pointContext = pgraphics->get_origin();
-   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
-   //::u32 uStartScanLine = bm.bmHeight - y - cy;
-   ::u32 uScanLines = cy;
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   //unsigned int uStartScanLine = bm.bmHeight - y - cy;
+   unsigned int uScanLines = cy;
    int xOffset = (x + pointContext.x()) * 3;
 
 
@@ -2334,10 +2334,10 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,int
 
    }
    }*/
-   u32 dwR;
-   u32 dwG;
-   u32 dwB;
-   u32 dwA;
+   unsigned int dwR;
+   unsigned int dwG;
+   unsigned int dwB;
+   unsigned int dwA;
 
    int iFilterXBegin;
    int iFilterXEnd;
@@ -2629,10 +2629,10 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
    //   int max3x2 = (maxx1 - 5) * 4;
    ///   int max3x3 = (maxx1 - 2) * 4;
    //   int w = cx * 3;
-   //u32 dwR;
-   //u32 dwG;
-   //u32 dwB;
-   //u32 dwA;
+   //unsigned int dwR;
+   //unsigned int dwG;
+   //unsigned int dwB;
+   //unsigned int dwA;
 
    int yL = 2;
    int yU = maxy1 - 2;
@@ -3156,7 +3156,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 
 
-   u32 dwI;
+   unsigned int dwI;
 
    int x,y;
    //int x2;
@@ -3453,7 +3453,7 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
 
 
 
-   u32 dwI;
+   unsigned int dwI;
 
    int x,y;
    //int x2;
@@ -3883,7 +3883,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
    }
    }*/
-   u32 dwI;
+   unsigned int dwI;
 
    int iFilterXBegin;
    int iFilterXEnd;
@@ -4306,7 +4306,7 @@ int w3)
 
       for(j = 0; j < cx; j++)
       {
-         pA[0] = (unsigned char)(((((u32)pA[0]) * ((u32)(255 - pC[0])) + (((u32)bB) * ((u32)pC[0])))) / 255);
+         pA[0] = (unsigned char)(((((unsigned int)pA[0]) * ((unsigned int)(255 - pC[0])) + (((unsigned int)bB) * ((unsigned int)pC[0])))) / 255);
 
 
 
@@ -4315,7 +4315,7 @@ int w3)
 
 
 
-         pA[1] = (unsigned char)(((((u32)pA[1]) * ((u32)(255 - pC[1])) + (((u32)bG) * ((u32)pC[1])))) / 255);
+         pA[1] = (unsigned char)(((((unsigned int)pA[1]) * ((unsigned int)(255 - pC[1])) + (((unsigned int)bG) * ((unsigned int)pC[1])))) / 255);
 
 
 
@@ -4324,7 +4324,7 @@ int w3)
 
 
 
-         pA[2] = (unsigned char)(((((u32)pA[2]) * ((u32)(255 - pC[2])) + (((u32)bR) * ((u32)pC[2])))) / 255);
+         pA[2] = (unsigned char)(((((unsigned int)pA[2]) * ((unsigned int)(255 - pC[2])) + (((unsigned int)bR) * ((unsigned int)pC[2])))) / 255);
 
 
 
@@ -4353,9 +4353,9 @@ int w3)
 //   if(size.cx() <= 0 || size.cy() <= 0)
 //      return true;
 //
-//   ::u32 user;
-//   ::u32 uStartScanLine;
-//   ::u32 uScanLineCount;
+//   unsigned int user;
+//   unsigned int uStartScanLine;
+//   unsigned int uScanLineCount;
 //
 //
 //   ::rectangle_i32 rectangleTarget(pointDst, size);
@@ -4531,9 +4531,9 @@ int w3)
 //   //   single_lock synchronouslock(&m_csMem, true);
 //
 //
-//   ::u32 user;
-//   ::u32 uStartScanLine;
-//   ::u32 uScanLineCount;
+//   unsigned int user;
+//   unsigned int uStartScanLine;
+//   unsigned int uScanLineCount;
 //
 //
 //   ::rectangle_i32 rectangleDest(pointDst, size);
@@ -4739,9 +4739,9 @@ void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int 
    //   int max3x2 = (maxx1 - iFilterHeight) * 3;
    //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //   int w = cx * 3;
-   u32 dwR;
-   u32 dwG;
-   u32 dwB;
+   unsigned int dwR;
+   unsigned int dwG;
+   unsigned int dwB;
 
    int iFilterXBegin;
    int iFilterXEnd;
@@ -4796,7 +4796,7 @@ void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int 
    int x1;
    int x2;
 
-   u32 bMin3 = bMin * 3;
+   unsigned int bMin3 = bMin * 3;
 
    //divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin);
 
@@ -4860,7 +4860,7 @@ void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int 
 
          if(bSpread)
          {
-            *((u32 *)pDestination) |= 0x00ffffff;
+            *((unsigned int *)pDestination) |= 0x00ffffff;
 
 
             pDestination += 3;
@@ -5348,7 +5348,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
          pDestination = pDst + (wDst  * y1) + x1 * 4;
 
-         if(*((u32 *)pDestination) != colorSpreadSetColor)
+         if(*((unsigned int *)pDestination) != colorSpreadSetColor)
          {
 
             for(; x1 <= xU; x1++)
@@ -5382,7 +5382,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
                pSource1 = pSource;
 
-               if (*((u32 *)pDestination) != colorSpreadSetColor)
+               if (*((unsigned int *)pDestination) != colorSpreadSetColor)
                {
 
                   for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
@@ -5398,7 +5398,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
                         if (*pFilter >= 1)
                         {
 
-                           if (*((u32 *)pSource2))
+                           if (*((unsigned int *)pSource2))
                            {
 
                               *((image32_t *)pDestination) = imageSpreadSetColor;
@@ -5481,7 +5481,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
          pFilter = pFilterData;
 
-         if(*((u32 *)pDestination) != 0xffffffff)
+         if(*((unsigned int *)pDestination) != 0xffffffff)
          {
 
             for(int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
@@ -5667,9 +5667,9 @@ breakFilter2:
 //   if(cx <= 0 || cy <= 0)
 //      return true;
 //
-//   ::u32 user;
-//   ::u32 uStartScanLine;
-//   ::u32 uScanLineCount;
+//   unsigned int user;
+//   unsigned int uStartScanLine;
+//   unsigned int uScanLineCount;
 //
 //
 //   memory memstorageA;
@@ -5905,9 +5905,9 @@ int      iSize)
    //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //int w = cx * 3;
 
-   u32 dwR;
-   u32 dwG;
-   u32 dwB;
+   unsigned int dwR;
+   unsigned int dwG;
+   unsigned int dwB;
 
    int iFilterXBegin;
    int iFilterXEnd;
@@ -6212,9 +6212,9 @@ int      iSize)
 //   memory memstorageC;
 //
 //
-//   ::u32 user;
-//   ::u32 uStartScanLine;
-//   ::u32 uScanLineCount;
+//   unsigned int user;
+//   unsigned int uStartScanLine;
+//   unsigned int uScanLineCount;
 //
 //
 //   ::rectangle_i32 rectangleDest;
@@ -6493,15 +6493,15 @@ int iAlpha)
    unsigned char *pSource2_2;
 
 
-   //   ::u16 *pDestination_2;
+   //   unsigned short *pDestination_2;
 
 
    //   unsigned char *pFilter;
 
-   //u32 *pConv;
+   //unsigned int *pConv;
 
    //   unsigned char pFilter[constFilterHeight *constFilterWidth];
-   //u32 pConv[constFilterHeight * constFilterWidth * 3];
+   //unsigned int pConv[constFilterHeight * constFilterWidth * 3];
    //   memory_set(pFilter, 1, constFilterHeight * constFilterWidth);
 
    int iFilterWidth = iSize;
@@ -6543,12 +6543,12 @@ int iAlpha)
 
    }
    }*/
-   u32 dwR1;
-   u32 dwG1;
-   u32 dwB1;
-   u32 dwR2;
-   u32 dwG2;
-   u32 dwB2;
+   unsigned int dwR1;
+   unsigned int dwG1;
+   unsigned int dwB1;
+   unsigned int dwR2;
+   unsigned int dwG2;
+   unsigned int dwB2;
 
    int iFilterXBegin;
    int iFilterXEnd;
@@ -6724,9 +6724,9 @@ int iAlpha)
    int iRate1 = iAlpha;
    int iRate2 = 255 - iAlpha;
 
-   u32 dwR;
-   u32 dwG;
-   u32 dwB;
+   unsigned int dwR;
+   unsigned int dwG;
+   unsigned int dwB;
 
    int cFilter  = wDest - iFilterWidth * 3;
    int cFilter1 = wSrc1 - iFilterWidth * 3;

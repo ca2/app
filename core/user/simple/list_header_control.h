@@ -10,7 +10,7 @@ class CLASS_DECL_CORE simple_list_header_control :
 public:
 
 
-   static const i32         s_iDividerWidth;
+   static const int         s_iDividerWidth;
 
 
    simple_list_header_control();
@@ -18,7 +18,7 @@ public:
 
 
    //using ::user::list_header::create_window;
-   //virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::atom atom);
+   //virtual bool create_window(unsigned int uStyle, ::user::interaction * puiParent, ::atom atom);
 
 
    void install_message_routing(::channel * pchannel) override;

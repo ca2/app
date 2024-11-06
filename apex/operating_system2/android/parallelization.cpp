@@ -232,7 +232,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 
 
 
-//void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 //{
 //
 //  int iOsPolicy;
@@ -297,7 +297,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //}
 //
 //
-//i32 get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+//int get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 //{
 //
 //   int iCa2Min;
@@ -339,7 +339,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //
 //   if(iOsMax == iOsMin)
 //   {
-//      iCa2Priority = (i32) ::e_priority_normal;
+//      iCa2Priority = (int) ::e_priority_normal;
 //   }
 //   else
 //   {
@@ -353,7 +353,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //}
 //
 //
-//void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//void thread_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 //{
 //
 //   get_os_priority(piPolicy, pparam, nCa2Priority);
@@ -361,7 +361,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //}
 //
 //
-//i32 thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+//int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 //{
 //
 //   return get_scheduling_priority(iOsPolicy, pparam);
@@ -369,7 +369,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //}
 //
 //
-//void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//void process_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 //{
 //
 //   get_os_priority(piPolicy, pparam, nCa2Priority);
@@ -377,7 +377,7 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //}
 //
 //
-//i32 process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+//int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 //{
 //
 //   return get_scheduling_priority(iOsPolicy, pparam);
@@ -392,10 +392,10 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 //namespace apex
 //{
 //
-//   CLASS_DECL_APEX bool set_priority_class(i32 priority)
+//   CLASS_DECL_APEX bool set_priority_class(int priority)
 //   {
 //
-//      i32 iPolicy = SCHED_OTHER;
+//      int iPolicy = SCHED_OTHER;
 //
 //      sched_param schedparam;
 //

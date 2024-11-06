@@ -993,7 +993,7 @@ namespace platform
    //    }
    //
    //
-   //    ::u32 system::crc32(::u32 uCrc, const ::block& block)
+   //    unsigned int system::crc32(unsigned int uCrc, const ::block& block)
    //    {
    //
    //       _synchronous_lock synchronouslock(this->synchronization());
@@ -4204,7 +4204,7 @@ return nullptr;
    // }
 
 
-   ::u32 acme_system_layer::crc32(::u32 uCrc, const ::block& block)
+   unsigned int acme_system_layer::crc32(unsigned int uCrc, const ::block& block)
    {
       return 0;
    }
@@ -4271,7 +4271,7 @@ return nullptr;
 
 #ifdef WINDOWS_DESKTOP
 
-   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
+   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, int nCmdShow)
    {
    }
 

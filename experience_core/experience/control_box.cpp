@@ -138,7 +138,7 @@ namespace experience_core
    }
 
 
-   i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_sizeButtonDefault={26, 26};

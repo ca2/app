@@ -20,27 +20,27 @@
 //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
 
 
-//bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const ::wide_character * scopedstr);
+//bool CLASS_DECL_ACME unicode_to_multibyte(unsigned int uCodePage, memory & str, const ::wide_character * scopedstr);
 //
 //
-//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr);
+//bool CLASS_DECL_ACME multibyte_to_multibyte(unsigned int uCodePageDest, memory & str, unsigned int uCodePageSrc, const ::scoped_string & scopedstr);
 //
-//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount);
+//bool CLASS_DECL_ACME multibyte_to_multibyte(unsigned int uCodePageDest, memory & str, unsigned int uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount);
 //
 //
-//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr);
+//bool CLASS_DECL_ACME multibyte_to_utf8(unsigned int uCodePageSrc, memory & str, const ::scoped_string & scopedstr);
 //
-//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr, strsize nCount);
+//bool CLASS_DECL_ACME multibyte_to_utf8(unsigned int uCodePageSrc, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 //
 
-//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr);
+//      bool CLASS_DECL_ACME OEMToMultiByte(unsigned int uCodePage, memory & str, const ::scoped_string & scopedstr);
 
-//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
+//      bool CLASS_DECL_ACME OEMToMultiByte(unsigned int uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 
 
-//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr);
+//bool CLASS_DECL_ACME utf8_to_multibyte(unsigned int uCodePage, memory & str, const ::scoped_string & scopedstr);
 //
-//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
+//bool CLASS_DECL_ACME utf8_to_multibyte(unsigned int uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 //
 
 //      bool CLASS_DECL_ACME OemToUtf8(memory & str, const ::scoped_string & scopedstr);
@@ -69,7 +69,7 @@
       }*/
 
 
-bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
+bool multibyte_to_utf8(unsigned int uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
 {
 
 #ifdef WINDOWS
@@ -85,7 +85,7 @@ throw ::exception(todo, "multibyte");
 }
 
 //
-//bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
+//bool multibyte_to_utf8(unsigned int uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
 //{
 //
 //#ifdef WINDOWS
@@ -116,7 +116,7 @@ throw ::exception(todo, "multibyte");
 //}
 
 
-string CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, const ::scoped_string & scopedstr)
+string CLASS_DECL_ACME utf8_to_multibyte(unsigned int uCodePage, const ::scoped_string & scopedstr)
 {
 
    string str;
@@ -133,14 +133,14 @@ string CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, const ::scoped_string 
 }
 
 
-bool utf8_to_multibyte(::u32 uCodePage, ::string & str, const ::scoped_string & scopedstr)
+bool utf8_to_multibyte(unsigned int uCodePage, ::string & str, const ::scoped_string & scopedstr)
 {
 
    return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, scopedstr);
 
 }
 
-//bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount)
+//bool utf8_to_multibyte(unsigned int uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount)
 //
 //{
 //return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, scopedstr, nCount);

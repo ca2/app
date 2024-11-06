@@ -119,7 +119,7 @@ namespace core
       //
       // //bool                                                  m_bMatterFromHttpCache;
       //
-      // //::u32                                                 m_dwLongPhRESSingTime;
+      // //unsigned int                                                 m_dwLongPhRESSingTime;
       //
       //
       // //::pointer<::userex::userex>                        m_puserex;
@@ -158,11 +158,11 @@ namespace core
 
       //virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
-      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-//      i32 track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, int iFlags, const ::point_i32 & pointCursor) override;
+//      int track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, int iFlags, const ::point_i32 & pointCursor) override;
 
 
       virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
@@ -199,7 +199,7 @@ namespace core
       virtual void term_instance() override;
 
 
-      //void LoadStdProfileSettings(::u32 nMaxMRU = 10);
+      //void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
 
 
       //::collection::count get_template_count() const;
@@ -214,7 +214,7 @@ namespace core
       virtual void initialize(::particle * pparticle) override;
 
 
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();
@@ -285,7 +285,7 @@ namespace core
 
       //// Long PhRESSing time
       //// time in ::times that a pressing is considered a double click
-      //virtual ::u32 get_Long_PhRESSing_time();
+      //virtual unsigned int get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();
 

@@ -426,7 +426,7 @@ namespace user
 
       int iDimension = get_normal_dimension();
 
-      u32 dwPosition;
+      unsigned int dwPosition;
 
       double dRate;
 
@@ -465,13 +465,13 @@ namespace user
 
                }
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dRate * iDimension));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dRate * iDimension));
 
             }
             else
             {
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (u32)(m_splitbara[i]->m_dwPosition));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dwPosition));
 
             }
 
@@ -489,9 +489,9 @@ namespace user
 
       ::pointer<::user::interaction>puserinteraction;
 
-      ::u32 uBaseFlags = SWP_NOZORDER;
+      unsigned int uBaseFlags = SWP_NOZORDER;
 
-      ::u32 uFlags = uBaseFlags;
+      unsigned int uFlags = uBaseFlags;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -609,7 +609,7 @@ namespace user
       m_splitbara[iIndex]->m_dRate         = dRate;
       m_splitbara[iIndex]->m_dMinimumRate  = dMinimumRate;
       m_splitbara[iIndex]->m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex]->m_dwPosition    = (u32) -1; // disable position evaluation at first on on_layout
+      m_splitbara[iIndex]->m_dwPosition    = (unsigned int) -1; // disable position evaluation at first on on_layout
 
    }
 
@@ -1150,8 +1150,8 @@ namespace user
       {
 
          int   fwKeys = (int) wParam;        // key flags
-//         int xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         int yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
+//         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
+//         int yPos = splitRect.top() + (short) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
@@ -1163,8 +1163,8 @@ namespace user
       else if(emessage == e_message_left_button_up)
       {
 //         int   fwKeys = wParam;        // key flags
-//         int xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
-//         int yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
+//         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
+//         int yPos = splitRect.top() + (short) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             psession->ReleaseCapture();
@@ -1177,8 +1177,8 @@ namespace user
       else if(emessage == e_message_mouse_move)
       {
          int   fwKeys = (int) wParam;        // key flags
-         int xPos = splitRect.left() + (i16) LOWORD(lParam);  // horizontal position of cursor
-         int yPos = splitRect.top() + (i16) HIWORD(lParam);  // vertical position of cursor
+         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
+         int yPos = splitRect.top() + (short) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             //cslock lock(m_pmutex);

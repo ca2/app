@@ -30,11 +30,11 @@ namespace user
       ::pointer<::draw2d::graphics_extension>   m_pgraphicsextension;
       ::collection::index                                     m_dwFirstVisibleItem;
       ::collection::index                                     m_iItemCount;
-      ::u32                                     m_uiLButtonUpFlags;
+      unsigned int                                     m_uiLButtonUpFlags;
       point_i32                                 m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       ::collection::index                                     m_iFirstVisibleItemProperIndex;
-      i32                                       m_iCurrentImpactWidth;
+      int                                       m_iCurrentImpactWidth;
       ::size_i32                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
@@ -98,9 +98,9 @@ namespace user
       void _001OnTreeDataChange();
       ::pointer<::data::tree_item>CalcFirstVisibleItem(::collection::index & iProperIndex);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual i32 _001CalcCurrentImpactWidth();
-      virtual i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
-      virtual i32 _001CalcTotalImpactHeight();
+      virtual int _001CalcCurrentImpactWidth();
+      virtual int _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
+      virtual int _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item * pitem);
       ::collection::count _001GetProperItemCount();
       ::collection::count _001GetVisibleItemCount();
@@ -132,7 +132,7 @@ namespace user
 
       virtual void perform_right_click(uptr uFlags, const ::point_i32 & point);
 
-      virtual i32 get_wheel_scroll_delta() override;
+      virtual int get_wheel_scroll_delta() override;
 
       //void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
 

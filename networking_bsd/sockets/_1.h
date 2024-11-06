@@ -160,7 +160,7 @@ namespace sockets
 #ifdef SOLARIS
 // ----------------------------------------
 // Solaris
-typedef u16 port_t;
+typedef unsigned short port_t;
 #ifdef sockets
 namespace sockets
 {
@@ -204,7 +204,7 @@ namespace sockets
 // ----------------------------------------
 // Mac App X
 #ifdef __DARWIN_UNIX03
-typedef u16 port_t;
+typedef unsigned short port_t;
 #else
 #include <mach/port.h>
 #endif // __DARWIN_UNIX03
@@ -248,8 +248,8 @@ CLASS_DECL_APEX const char * bsd_socket_error(int x);
 #else
 
 
-typedef u32 ipaddr_t;
-typedef u16 port_t;
+typedef unsigned int ipaddr_t;
+typedef unsigned short port_t;
 
 
 #endif

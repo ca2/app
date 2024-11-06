@@ -47,10 +47,10 @@ namespace draw2d
       inline bool is_modified(::collection::index iIndex) const { return !is_up_to_date(iIndex); }
 
 
-      virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
+      virtual void defer_update(::draw2d::graphics * pgraphics, char i) const;
       void destroy_os_data() override;
 
-      virtual void create(::draw2d::graphics * pgraphics, i8 iCreate);
+      virtual void create(::draw2d::graphics * pgraphics, char iCreate);
       void destroy() override;
 
       inline void set_modified() 
@@ -90,7 +90,7 @@ namespace draw2d
 
 
       template < typename POINTER >
-      inline POINTER get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
+      inline POINTER get_os_data(::draw2d::graphics* pgraphics, char i = 0) const
       {
 
          if (!m_baCalculated[i])
@@ -105,7 +105,7 @@ namespace draw2d
       }
 
 
-      inline void* get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
+      inline void* get_os_data(::draw2d::graphics* pgraphics, char i = 0) const
       {
 
          return get_os_data < void * >(pgraphics, i);
@@ -114,7 +114,7 @@ namespace draw2d
 
 
 
-      //virtual ::u32 GetObjectType() const;
+      //virtual unsigned int GetObjectType() const;
       //virtual bool CreateStockObject(int nIndex);
       ///virtual bool UnrealizeObject();
       //virtual bool operator==(const ::draw2d::object & obj) const;

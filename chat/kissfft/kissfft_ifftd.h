@@ -10,11 +10,11 @@ namespace kissfft
    {
    public:
 
-      i32                     m_iSize;
+      int                     m_iSize;
       kiss_fftr_cfg           m_cfg;
 
 
-      ifftd(i32 iSize);
+      ifftd(int iSize);
       virtual ~ifftd();
 
       void ifft(kiss_fft_cpx * pIn, double * pOut);

@@ -65,7 +65,7 @@ multiple_lock::~multiple_lock()
 }
 
 
-::e_status multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
+::e_status multiple_lock::lock(const class time & time, bool bWaitForAll, unsigned int dwWakeMask)
 {
 
    //if (m_synchronizationa.has_no_synchronization())
@@ -83,13 +83,13 @@ multiple_lock::~multiple_lock()
    //if (dwWakeMask == 0)
    //{
 
-   //   iResult = ::WaitForMultipleObjectsEx((u32) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), false);
+   //   iResult = ::WaitForMultipleObjectsEx((unsigned int) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), false);
 
    //}
    //else
    //{
 
-   //   iResult = ::MsgWaitForMultipleObjects((u32)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), dwWakeMask);
+   //   iResult = ::MsgWaitForMultipleObjects((unsigned int)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), dwWakeMask);
 
    //}
 

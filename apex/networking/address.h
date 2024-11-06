@@ -18,7 +18,7 @@ namespace networking
       
       address();
       //address(const address& address);
-      ////address(i32 family, ::networking::port_t port = 0);
+      ////address(int family, ::networking::port_t port = 0);
       //address(const ::string & strAddress, ::networking::port_t port = 0);
       //address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
 //#if defined(BSD_STYLE_SOCKETS)
@@ -55,14 +55,14 @@ namespace networking
       virtual  bool is_valid() const;
 
 
-      //virtual  i32 get_family() const;
+      //virtual  int get_family() const;
 
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
 //      inline sockaddr * sa();
 //      inline const sockaddr * sa() const;
-//      i32 sa_len() const;
+//      int sa_len() const;
 //
 //      void * addr_data();
 //
@@ -72,13 +72,13 @@ namespace networking
       //virtual string get_string() const;
 
 //#ifdef BSD_STYLE_SOCKETS
-//      virtual  void SetFlowinfo(u32 x);
-//      virtual  u32 GetFlowinfo();
+//      virtual  void SetFlowinfo(unsigned int x);
+//      virtual  unsigned int GetFlowinfo();
 //#endif
 //
 //#ifndef WINDOWS
-//      virtual  void SetScopeId(u32 x);
-//      virtual  u32 GetScopeId();
+//      virtual  void SetScopeId(unsigned int x);
+//      virtual  unsigned int GetScopeId();
 //#endif
 
       virtual void sync_os_address();
@@ -89,7 +89,7 @@ namespace networking
    };
 
 
-//   inline i32 address::get_family() const
+//   inline int address::get_family() const
 //   {
 //
 //#if defined(BSD_STYLE_SOCKETS)
@@ -209,14 +209,14 @@ namespace networking
 //#ifdef BSD_STYLE_SOCKETS
 //
 //
-//   inline void address::SetFlowinfo(u32 x)
+//   inline void address::SetFlowinfo(unsigned int x)
 //   {
 //      ASSERT(is_ipv6());
 //      u.m_addr6.sin6_flowinfo = x;
 //   }
 //
 //
-//   inline u32 address::GetFlowinfo()
+//   inline unsigned int address::GetFlowinfo()
 //   {
 //      ASSERT(is_ipv6());
 //      return u.m_addr6.sin6_flowinfo;
@@ -228,14 +228,14 @@ namespace networking
 //
 //#ifndef WINDOWS
 //
-//   inline void address::SetScopeId(u32 x)
+//   inline void address::SetScopeId(unsigned int x)
 //   {
 //      ASSERT(is_ipv6());
 //      u.m_addr6.sin6_scope_id = x;
 //   }
 //
 //
-//   inline u32 address::GetScopeId()
+//   inline unsigned int address::GetScopeId()
 //   {
 //      ASSERT(is_ipv6());
 //      return u.m_addr6.sin6_scope_id;
@@ -244,7 +244,7 @@ namespace networking
 //#endif
 ////
 //
-//   CLASS_DECL_APEX address ipv4(u32 u, ::networking::port_t port = 0);
+//   CLASS_DECL_APEX address ipv4(unsigned int u, ::networking::port_t port = 0);
 //
 //   CLASS_DECL_APEX address ipv6(void * p128bits, ::networking::port_t port = 0);
 

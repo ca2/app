@@ -77,13 +77,13 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < i8 > :
+   class CLASS_DECL_ACME numeric_info < char > :
       public numeric_integer_base
    {
    public:
 
-      typedef i8 TYPE;
-      typedef i8 OFFSET_TYPE;
+      typedef char TYPE;
+      typedef char OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -119,7 +119,7 @@ namespace numeric_info_internal
    public:
 
       typedef unsigned char TYPE;
-      typedef i8 OFFSET_TYPE;
+      typedef char OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -148,13 +148,13 @@ namespace numeric_info_internal
 
    };
    template < >
-   class CLASS_DECL_ACME numeric_info < i16 > :
+   class CLASS_DECL_ACME numeric_info < short > :
       public numeric_integer_base
    {
    public:
 
-      typedef i16 TYPE;
-      typedef i16 OFFSET_TYPE;
+      typedef short TYPE;
+      typedef short OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -184,13 +184,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < u16 > :
+   class CLASS_DECL_ACME numeric_info < unsigned short > :
       public numeric_integer_base
    {
    public:
 
-      typedef u16 TYPE;
-      typedef i16 OFFSET_TYPE;
+      typedef unsigned short TYPE;
+      typedef short OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -220,13 +220,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < i32 > :
+   class CLASS_DECL_ACME numeric_info < int > :
       public numeric_integer_base
    {
    public:
 
-      typedef i32 TYPE;
-      typedef i32 OFFSET_TYPE;
+      typedef int TYPE;
+      typedef int OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -302,13 +302,13 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < ::u32 > :
+   class CLASS_DECL_ACME numeric_info < unsigned int > :
       public numeric_integer_base
    {
    public:
 
-      typedef u32 TYPE;
-      typedef i32 OFFSET_TYPE;
+      typedef unsigned int TYPE;
+      typedef int OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -344,8 +344,8 @@ namespace numeric_info_internal
    {
    public:
 
-      typedef u32 TYPE;
-      typedef i32 OFFSET_TYPE;
+      typedef unsigned int TYPE;
+      typedef int OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {

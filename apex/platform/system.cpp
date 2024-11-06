@@ -107,7 +107,7 @@ extern "C"
 #include <sys/time.h>
 #endif
 
-CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -2025,7 +2025,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
+   unsigned int system::os_post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       post_to_all_threads(atom, wparam, lparam);
@@ -2043,7 +2043,7 @@ pdirectorysystem->create("/ca2core");
    // }
 
 
-   i32 system::_001OnDebugReport(i32 i1, const ::string & psz1, i32 i2, const ::string & psz2, const ::string & psz3, va_list args)
+   int system::_001OnDebugReport(int i1, const ::string & psz1, int i2, const ::string & psz2, const ::string & psz3, va_list args)
    {
 
       return _debug_logging_report(i1, psz1, i2, psz2, psz3, args);
@@ -2051,7 +2051,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   i32 system::_debug_logging_report(i32 iReportType, const ::string & strFileName, i32 iLineNumber, const ::string & strModuleName, const char * pszFormat, va_list list)
+   int system::_debug_logging_report(int iReportType, const ::string & strFileName, int iLineNumber, const ::string & strModuleName, const char * pszFormat, va_list list)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2139,7 +2139,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::assert_failed_line(const ::string & pszFileName, i32 iLine)
+   bool system::assert_failed_line(const ::string & pszFileName, int iLine)
    {
 
       __UNREFERENCED_PARAMETER(pszFileName);
@@ -2151,7 +2151,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::on_assert_failed_line(const ::string & pszFileName, i32 iLine)
+   bool system::on_assert_failed_line(const ::string & pszFileName, int iLine)
    {
 
       __UNREFERENCED_PARAMETER(pszFileName);
@@ -2331,7 +2331,7 @@ pdirectorysystem->create("/ca2core");
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
 
-//      for(i32 i = 0; i < appptra().get_size(); i++)
+//      for(int i = 0; i < appptra().get_size(); i++)
       //    {
       //     ::application * papp = appptra()(i);
       //   papp->load_string_table();
@@ -2348,7 +2348,7 @@ pdirectorysystem->create("/ca2core");
 
       rsl.wait(10_s);
 
-      //      for(i32 i = 0; i < appptra().get_size(); i++)
+      //      for(int i = 0; i < appptra().get_size(); i++)
       //     {
             //       ::application * papp = appptra()(i);
             //       papp->set_locale(pszLocale,context);
@@ -2365,7 +2365,7 @@ pdirectorysystem->create("/ca2core");
 
       rsl.wait(10_s);
 
-      //      for(i32 i = 0; i < appptra().get_size(); i++)
+      //      for(int i = 0; i < appptra().get_size(); i++)
             //    {
             //       ::application * papp = appptra()(i);
             //       papp->set_schema(pszStyle,context);
@@ -2641,7 +2641,7 @@ pdirectorysystem->create("/ca2core");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
-   ////      for(i32 i = 0; i < straTitle.get_count(); i++)
+   ////      for(int i = 0; i < straTitle.get_count(); i++)
    ////      {
    ////
    ////         strLibraryId = straTitle[i];
@@ -2788,7 +2788,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      strRoot += "/";
    //
-   //      for(i32 i = 0; i < stra.get_count(); i++)
+   //      for(int i = 0; i < stra.get_count(); i++)
    //      {
    //
    //         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
@@ -3325,7 +3325,7 @@ pdirectorysystem->create("/ca2core");
 
 
 
-   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
+   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
    //{
 
    //   if (m_ptracelog.is_null())
@@ -4251,7 +4251,7 @@ namespace apex
 {
 
 
-   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, ::u32 dwTemp);
+   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, unsigned int dwTemp);
 
 
    void system::discard_to_factory(::pointer<object>pca)
@@ -4642,7 +4642,7 @@ namespace apex
 
    //   plibrary->get_create_impact_id_list(ida);
 
-   //   for (i32 i = 0; i < ida.get_count(); i++)
+   //   for (int i = 0; i < ida.get_count(); i++)
    //   {
 
    //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);

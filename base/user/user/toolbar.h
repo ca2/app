@@ -42,7 +42,7 @@ namespace user
       ::size_i32               m_sizeImage;  // current image size_i32
       ::size_i32               m_sizeButton; // current button size_i32
       bool                 m_bSimpleLayout;
-//      string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
+//      string_to_ptr *      m_pStringMap;  // used as CMapStringTounsigned int
 //      //index                m_iButtonPressItem;
 
 
@@ -63,9 +63,9 @@ namespace user
 
 
       //using ::user::control_bar::create_interaction;
-      //virtual bool create_interaction(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR);
+      //virtual bool create_interaction(::user::interaction * puiParent,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR);
       //using ::user::control_bar::create_window_ex;
-      //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = __IDW_TOOLBAR);
+      //virtual bool create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = __IDW_TOOLBAR);
 
       void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
       // button size_i32 should be bigger than image
@@ -73,14 +73,14 @@ namespace user
       // call after SetSizes, height overrides bitmap size_i32
       //bool LoadToolBar(const ::string & pszResourceName);
 
-      //bool LoadToolBar(::u32 nIDResource);
+      //bool LoadToolBar(unsigned int nIDResource);
       //bool LoadBitmap(const ::string & pszResourceName);
 
-      //bool LoadBitmap(::u32 nIDResource);
+      //bool LoadBitmap(unsigned int nIDResource);
 //#ifdef WINDOWS_DESKTOP
 //      bool from(HBITMAP hbmImageWell);
 //#endif
-      bool SetButtons(const ::u32* pIDArray, ::collection::index nIDCount);
+      bool SetButtons(const unsigned int* pIDArray, ::collection::index nIDCount);
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
@@ -89,7 +89,7 @@ namespace user
       // standard control bar things
       //virtual ::collection::index atom_index(const ::atom & atom) const;
       
-      //::u32 GetItemID(index nIndex);
+      //unsigned int GetItemID(index nIndex);
       
 //      virtual void index_item_rectangle(index nIndex, ::rectangle_i32 * prectangle);
       
@@ -126,7 +126,7 @@ namespace user
 
       virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
       ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, u32 nMode) override;
+      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 
@@ -136,7 +136,7 @@ namespace user
 //#endif
 
 
-      void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
+      void OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle) override;
 
       virtual void load_xml_toolbar(const ::payload & payloadFile);
 
@@ -156,7 +156,7 @@ namespace user
 //      virtual void _GetButton(::collection::index nIndex, TBBUTTON* pButton) const;
 //      virtual void _SetButton(::collection::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 nMode, ::collection::index nLength = -1);
+      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int nMode, ::collection::index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
 //      virtual ::size_i32 CalcSize(TBBUTTON* pData, ::collection::index nCount);
 //      virtual ::collection::index WrapToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nWidth);

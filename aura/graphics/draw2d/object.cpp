@@ -134,7 +134,7 @@ namespace draw2d
 }*/
 
    
-//   ::u32 object::GetObjectType() const
+//   unsigned int object::GetObjectType() const
 //   {
 //      
 //      throw ::interface_only();
@@ -168,7 +168,7 @@ namespace draw2d
 //   }
 
 
-   void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const
+   void object::defer_update(::draw2d::graphics* pgraphics, char i) const
    {
 
       if(!is_up_to_date(i))
@@ -206,7 +206,7 @@ namespace draw2d
    }
 
 
-   void object::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void object::create(::draw2d::graphics * pgraphics, char iCreate)
    {
 
    }

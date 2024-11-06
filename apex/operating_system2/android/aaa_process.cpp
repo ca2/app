@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority);
+void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority);
 
 
-i32 create_process(const char * _cmd_line, i32 * pprocessId)
+int create_process(const char * _cmd_line, int * pprocessId)
 {
 
    char *   exec_path_name = nullptr;
@@ -28,7 +28,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
       // child
       const char     *pArg, *pPtr;
       const char     *argv[1024 + 1];
-      i32      argc;
+      int      argc;
       if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
          pArg++;
       else
@@ -74,7 +74,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 }
 
 
-CLASS_DECL_APEX i32 call_async(
+CLASS_DECL_APEX int call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
@@ -91,7 +91,7 @@ unsigned int * puiPid)
       strCmdLine += pszParam;
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 
@@ -118,7 +118,7 @@ CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string &
       strCmdLine += pszParam;
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -199,7 +199,7 @@ namespace process
    CLASS_DECL_APEX bool set_priority(::enum_priority epriority)
    {
 
-      i32 iPolicy = SCHED_OTHER;
+      int iPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 
@@ -244,7 +244,7 @@ CLASS_DECL_APEX bool shell_execute_sync(const ::file::path & path, const ::scope
 
    }
 
-   i32 processId;
+   int processId;
 
    if (!create_process(strCmdLine, &processId))
       return -1;

@@ -125,7 +125,7 @@ namespace user
       //index                                     m_iSubItem;
       ::index_map < ::pointer<mesh_subitem >>  m_mapSubItem;
 //      index                                   m_iListItem;
-      i32                                       m_iState;
+      int                                       m_iState;
       bool                                      m_bOk;
 
       ::collection::index                                     m_iGroupTopDisplayIndex;
@@ -167,7 +167,7 @@ namespace user
 
       ::collection::index                             m_iRectangleDisplayItem;
 
-      i32                                 m_iColumnWidth;
+      int                                 m_iColumnWidth;
 
 
 
@@ -215,7 +215,7 @@ namespace user
       //::index_map < ::pointer<mesh_subitem >>  m_mapSubitem;
       //      index                                   m_iListItem;
       ::collection::index                                   m_iImage;
-      i32                                       m_iState;
+      int                                       m_iState;
       bool                                      m_bOk;
 
       ::collection::index                                     m_iGroupTopDisplayIndex;
@@ -261,7 +261,7 @@ namespace user
 
       //index                               m_iItemRectItem;
 
-      //i32                                 m_iColumnWidth;
+      //int                                 m_iColumnWidth;
 
       //index                               m_iSubItemRectItem;
       //index                               m_iSubItemRectSubItem;

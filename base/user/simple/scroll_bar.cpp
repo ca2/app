@@ -64,7 +64,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest)
+//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest)
 //{
 //
 //   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, atom, pcreate))
@@ -79,7 +79,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 //}
 
 
-//bool simple_scroll_bar::create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom)
+//bool simple_scroll_bar::create_interaction(enum_orientation eorientation, unsigned int uStyle, ::user::interaction * puiParent, ::atom atom)
 //{
 //
 //   if(!::user::scroll_bar::create_interaction(eorientation, uStyle, puiParent, atom))
@@ -1675,11 +1675,11 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //if (m_bTracking || (bool)prop("tracking_on"))
    //{
 
-   //   ::u32 tickFadeIn = 300;
+   //   unsigned int tickFadeIn = 300;
 
-   //   ::u32 tickFadeOut = 300;
+   //   unsigned int tickFadeOut = 300;
 
-   //   unsigned char uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").u32()));
+   //   unsigned char uchAlpha = maximum(0, minimum(255, prop("tracking_alpha").unsigned int()));
 
    //   if (m_bTracking)
    //   {
@@ -1689,7 +1689,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //         prop("tracking_on") = true;
 
-   //         prop("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
+   //         prop("tracking_start") = (unsigned int)(::get_tick() + uchAlpha * tickFadeIn / 255);
 
    //         prop("tracking_fade_in") = true;
 
@@ -1727,7 +1727,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //         prop("tracking_fade_out") = true;
 
-   //         prop("tracking_start") = (u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+   //         prop("tracking_start") = (unsigned int)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
 
    //      }
 
@@ -1746,7 +1746,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //   if ((bool)prop("tracking_fade_in"))
    //   {
 
-   //      ::u32 dwFade = prop("tracking_start").u32().elapsed();
+   //      unsigned int dwFade = prop("tracking_start").unsigned int().elapsed();
 
    //      if (dwFade < tickFadeIn)
    //      {
@@ -1767,7 +1767,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //   else if ((bool)prop("tracking_fade_out"))
    //   {
 
-   //      ::u32 dwFade = prop("tracking_start").u32().elapsed();
+   //      unsigned int dwFade = prop("tracking_start").unsigned int().elapsed();
 
    //      if (dwFade < tickFadeOut)
    //      {

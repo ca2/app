@@ -18,7 +18,7 @@ void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_st
 
    CFOptionFlags result;  //result code from the message box
 
-   u32 uiType = (int) emessagebox & MB_TYPEMASK;
+   unsigned int uiType = (int) emessagebox & MB_TYPEMASK;
 
    string strButton1;
    string strButton2;

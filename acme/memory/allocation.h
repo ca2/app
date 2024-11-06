@@ -40,7 +40,7 @@ struct heap_memory_header
 #else
    const char *            m_pszMemoryAnnotationPadding;
 #endif
-   ::u32                   m_size;
+   unsigned int                   m_size;
 
 };
 
@@ -84,20 +84,20 @@ inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
 }
 
 
-inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
+inline static void * heap_memory_unaligned(void * p, memsize size, int blockuse, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));
 
    struct heap_memory * pheap = heap_memory_get(pmemory);
 
-   pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)p));
+   pheap->m_back = (int)(((iptr)pmemory) - ((iptr)p));
 
    pheap->m_blockuse = blockuse;
 
    pheap->m_align = 0;
 
-   pheap->m_size = (::u32) size;
+   pheap->m_size = (unsigned int) size;
 
    pheap->m_ememory = ememory;
 
@@ -106,20 +106,20 @@ inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse,
 }
 
 
-inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
+inline static void * heap_memory_aligned(void * p, memsize size, int blockuse, int iAlignByteCount, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((((iptr)p) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
 
    struct heap_memory * pheap = heap_memory_get(pmemory);
 
-   pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)p));
+   pheap->m_back = (int)(((iptr)pmemory) - ((iptr)p));
 
    pheap->m_blockuse = blockuse;
 
    pheap->m_align = iAlignByteCount;
 
-   pheap->m_size = (::u32) size;
+   pheap->m_size = (unsigned int) size;
 
    pheap->m_ememory = ememory;
 
@@ -142,7 +142,7 @@ inline static void * heap_memory_base_get(void * pmemory)
 }
 
 
-inline static i32 heap_memory_get_block_use(void * pmemory)
+inline static int heap_memory_get_block_use(void * pmemory)
 {
 
    return heap_memory_get(pmemory)->m_blockuse;

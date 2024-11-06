@@ -347,7 +347,7 @@ namespace platform
       // }
 
 
-      virtual ::u32 crc32(::u32 uCrc, const ::block & block);
+      virtual unsigned int crc32(unsigned int uCrc, const ::block & block);
 
 
       virtual void create_session(::collection::index iEdge = 0);
@@ -381,7 +381,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
+      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 

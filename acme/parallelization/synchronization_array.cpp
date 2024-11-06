@@ -22,9 +22,9 @@
 //
 //
 //
-////::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+////::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
 //
-////::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+////::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable);
 //
 //
 //#endif
@@ -193,7 +193,7 @@ void synchronization_array::erase(::collection::index index)
 }
 
 
-::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
+::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, unsigned int uWakeMask)
 {
 
    if (is_empty())
@@ -205,16 +205,16 @@ void synchronization_array::erase(::collection::index index)
 
 #ifdef WINDOWS
 
-   u32 windowsWaitResult;
+   unsigned int windowsWaitResult;
 
-   ::u32 uCount = (u32)m_hsynchronizationa.size();
+   unsigned int uCount = (unsigned int)m_hsynchronizationa.size();
 
 #if !defined(UNIVERSAL_WINDOWS)
 
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)uCount, m_hsynchronizationa.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((unsigned int)uCount, m_hsynchronizationa.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -286,14 +286,14 @@ void synchronization_array::erase(::collection::index index)
 //#define QS_ALLEVENTS 0xffffffffu
 //#endif
 
-            estatus = ::MsgWaitForMultipleObjectsEx((::u32) size(), m_hsynchronizationa.data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((unsigned int) size(), m_hsynchronizationa.data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((::u32) m_hsynchronizationa.size(), m_hsynchronizationa.data(), bWaitForAll, timeWait, true);
+            estatus = ::WaitForMultipleObjectsEx((unsigned int) m_hsynchronizationa.size(), m_hsynchronizationa.data(), bWaitForAll, timeWait, true);
 
          }
 
@@ -360,10 +360,10 @@ void synchronization_array::contains(const ::e_status & result) const
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)
    //   {
-   //      i32 res = ::WaitForSingleObjectEx(m_subparticlea[position], 0, false);
+   //      int res = ::WaitForSingleObjectEx(m_subparticlea[position], 0, false);
    //      if ( res == WAIT_TIMEOUT )
    //         continue;
-   //      return synchronization_result( static_cast<i32>(position), m_subparticlea.get_size() );
+   //      return synchronization_result( static_cast<int>(position), m_subparticlea.get_size() );
    //   }
    //}
 

@@ -217,7 +217,7 @@ namespace networking_bsd
 
       ::pointer<::networking::address> create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
 
-      ::pointer<address>create_ip4_address(u32 u, ::networking::port_t port = 0);
+      ::pointer<address>create_ip4_address(unsigned int u, ::networking::port_t port = 0);
 
       ::pointer<address>create_ip6_address(void * p128bits, ::networking::port_t port = 0);
 

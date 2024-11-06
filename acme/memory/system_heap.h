@@ -10,10 +10,10 @@ CLASS_DECL_ACME void *     memory_allocate_no_track(memsize size);
 
 
 
-CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
-CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
-CLASS_DECL_ACME void       memory_free_debug(void * p, i32 iBlockType);
-CLASS_DECL_ACME memsize    memory_size_debug(void* p, i32 iBlockType);
+CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine);
+CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, int nBlockUse, const char * szFileName, int nLine);
+CLASS_DECL_ACME void       memory_free_debug(void * p, int iBlockType);
+CLASS_DECL_ACME memsize    memory_size_debug(void* p, int iBlockType);
 
 
 
@@ -89,12 +89,12 @@ struct memdleak_block
 {
 
 
-   i32                           m_iBlockUse;
-   i32                           m_iEnabled;
+   int                           m_iBlockUse;
+   int                           m_iEnabled;
    const char *                  m_pszFileName;
    void *                        m_stacka[64];
    int                           m_iStack;
-   u32                           m_uiLine;
+   unsigned int                           m_uiLine;
    memsize                       m_size;
    struct memdleak_block *       m_pnext;
    struct memdleak_block *       m_pprevious;

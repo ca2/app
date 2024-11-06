@@ -288,7 +288,7 @@ namespace programming
 
 #ifdef WINDOWS_DESKTOP
 
-      u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = __raw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -459,7 +459,7 @@ namespace programming
       //
       //#ifdef WINDOWS_DESKTOP
       //   {
-      //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
+      //      unsigned int dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
       //      char * lpsz = ___new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
@@ -474,7 +474,7 @@ namespace programming
       //
       //   //   ::time tickStart= ::time::now();
       //
-      //   //   u32 dwExitCode;
+      //   //   unsigned int dwExitCode;
       //
       //   //   string strLog;
       //
@@ -503,8 +503,8 @@ namespace programming
       //   //      CProcessEnvReader::ReleaseHandle(hProcess);
       //   //   }
       //   //process->write("\n");
-      //   u32 dwExitCode;
-      //   ::u32 tickStart= ::time::now();
+      //   unsigned int dwExitCode;
+      //   unsigned int tickStart= ::time::now();
       //   while(::task_get_run() && task_get_run())
       //   {
       //
@@ -533,7 +533,7 @@ namespace programming
       //
       //   #ifdef WINDOWS_DESKTOP
       //   {
-      //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
+      //      unsigned int dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
       //      char * lpsz = ___new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;

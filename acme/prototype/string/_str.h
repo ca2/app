@@ -75,7 +75,7 @@ public:
 
 
 
-   //inline  i32 compare_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
+   //inline  int compare_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
    //inline  bool equal_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
 
 
@@ -89,13 +89,13 @@ public:
 
 
 
-   static inline  i32 compare_ignore_case(const string & left, const string & right, size_t len = 0);
+   static inline  int compare_ignore_case(const string & left, const string & right, size_t len = 0);
    static inline  bool equal_ignore_case(const string & left, const string & right, size_t len = 0);
 
 
    static void   increment_digit_letter(string & str);
 
-   static void   copy(string & str, const ::string & pcsz, i32 iCount);
+   static void   copy(string & str, const ::string & pcsz, int iCount);
 
    static string   replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
    static string   case_insensitive_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
@@ -155,7 +155,7 @@ public:
    //const ::ansi_character *    utf8_inc_copy_slide_back(strsize * pslideback, ::ansi_character * pchDst, const ::ansi_character * pchSrc);
    //const ::ansi_character *    utf8_inc_count(const ::ansi_character * psz, strsize * piCount);
 
-   static string block(::ansi_character ch, i32 iSize);
+   static string block(::ansi_character ch, int iSize);
    static void fill(string & str, ::ansi_character ch);
 
 
@@ -192,7 +192,7 @@ public:
 
    static string & zero_pad(string & str, strsize iPad);
    static string         zero_padded(const ::string & str, strsize iPad);
-   static i32            get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos);
+   static int            get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos);
    static bool           get_curly_content(const ::ansi_character * psz, string & str);
    static bool           is_simple_natural(const ::ansi_character * psz, strsize iCount = -1);
    static bool           is_natural(const ::string & str);
@@ -272,20 +272,20 @@ public:
 
 
    static bool to(i64 & i, const ::string & strParam);
-   static bool to(i32 & i, const ::string & strParam);
+   static bool to(int & i, const ::string & strParam);
    static bool to(u64 & u, const ::string & strParam);
-   static bool to(u32 & u, const ::string & strParam);
+   static bool to(unsigned int & u, const ::string & strParam);
 
 
-   static bool to(i32 & i, i32 iBase, const ::string & strParam);
+   static bool to(int & i, int iBase, const ::string & strParam);
    static bool to(i64 & i, int iBase, const ::string & strParam);
-   static bool to(u64 & u, i32 iBase, const ::string & strParam);
-   static bool to(u32 & u, i32 iBase, const ::string & strParam);
+   static bool to(u64 & u, int iBase, const ::string & strParam);
+   static bool to(unsigned int & u, int iBase, const ::string & strParam);
 
 
    static iptr         to_iptr(const ::string & psz);
-   static i32          to_i32(const ::string & psz);
-   static u32          to_u32(const ::scoped_string & scopedstr);
+   static int          to_i32(const ::string & psz);
+   static unsigned int          to_u32(const ::scoped_string & scopedstr);
 
 
    static i64           to_i64(const ::string & psz);
@@ -293,10 +293,10 @@ public:
 
 
 
-   static inline   i32 to_with_fallback(const ::string & psz, i32 iDefault);
+   static inline   int to_with_fallback(const ::string & psz, int iDefault);
    static inline   i64 to_with_fallback(const ::string & psz, i64 iDefault);
-   static inline   i32 to_with_fallback(const ::string & psz, i32 iDefault, i32 iBase);
-   static inline   i64 to_with_fallback(const ::string & psz, i64 iDefault, i32 iBase);
+   static inline   int to_with_fallback(const ::string & psz, int iDefault, int iBase);
+   static inline   i64 to_with_fallback(const ::string & psz, i64 iDefault, int iBase);
 
 
 

@@ -32,7 +32,7 @@ namespace compress_zlib
 
       class memory memIn;
 
-      ::u32 size = 0;
+      unsigned int size = 0;
 
       if (pfileGzFileCompressed->is_seekable())
       {
@@ -53,17 +53,17 @@ namespace compress_zlib
 
       memIn.set_size((memsize)minimum(1_MiB, pfileGzFileCompressed->right_size()));
 
-      u32 uRead;
+      unsigned int uRead;
 
-      uRead = (u32)(pfileGzFileCompressed->read(memIn));
+      uRead = (unsigned int)(pfileGzFileCompressed->read(memIn));
 
       z_stream zstream;
 
       zero(zstream);
       //zstream.next_in = (unsigned char*)memIn.data();
-      //zstream.avail_in = (u32)uRead;
+      //zstream.avail_in = (unsigned int)uRead;
       zstream.next_in = (unsigned char*)memIn.data();
-      zstream.avail_in = (u32)uRead;
+      zstream.avail_in = (unsigned int)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
       zstream.zfree = Z_NULL;
@@ -89,7 +89,7 @@ namespace compress_zlib
          {
 
             zstream.next_out = memory.data();
-            zstream.avail_out = (u32)memory.size();
+            zstream.avail_out = (unsigned int)memory.size();
 
             // Inflate another chunk.
             status = inflate(&zstream, Z_NO_FLUSH);
@@ -130,11 +130,11 @@ namespace compress_zlib
          //} while (zstream.avail_out == 0 || zstream.avail_in > 0);
          } while (zstream.avail_out == 0);
 
-         uRead = (u32)(pfileGzFileCompressed->read(memIn));
+         uRead = (unsigned int)(pfileGzFileCompressed->read(memIn));
 
          zstream.next_in = (unsigned char*)memIn.data();
 
-         zstream.avail_in = (u32)uRead;
+         zstream.avail_in = (unsigned int)uRead;
 
       }
 

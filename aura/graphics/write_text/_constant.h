@@ -5,7 +5,7 @@
 #include "acme/constant/character_set.h"
 
 
-enum enum_font_weight : ::i16
+enum enum_font_weight : short
 {
 
    e_font_weight_dont_care = 0,

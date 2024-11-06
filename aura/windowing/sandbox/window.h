@@ -84,8 +84,8 @@ namespace sandbox_windowing
       virtual bool screen_to_client(::point_i32* ppoint) override;
 
 
-      //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,::u32 nFlags);
-      //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,::u32 nFlags);
+      //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+      //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
 
 
       virtual bool is_destroying() override;
@@ -153,7 +153,7 @@ namespace sandbox_windowing
 
       //bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
 
-      bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags = 0) override;
+      bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0) override;
 
 
       //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);
@@ -197,7 +197,7 @@ namespace sandbox_windowing
       //virtual ::e_status x11_post_message(MESSAGE & msg);
       //virtual ::e_status post_ui_message(const MESSAGE & message);
       ////virtual bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie);
-      ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, int x, int y, int cx, int cy, ::u32 nFlags);
+      ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, int x, int y, int cx, int cy, unsigned int nFlags);
       //virtual ::e_status window_rectangle(windowing_android_WINDOW_MEMBER ::rectangle_i32 * prectangle);
       //virtual ::e_status this->rectangle(windowing_android_WINDOW_MEMBER  ::rectangle_i32 * prectangle);
       ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::rectangle_i32 & rectangle);

@@ -87,7 +87,7 @@ namespace simple_ui
 
       string str;
 
-      i32 iAttempt = 0;
+      int iAttempt = 0;
 
    restart:
 

@@ -5,7 +5,7 @@
 
 //
 //
-//::collection::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
+//::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
 //
@@ -114,7 +114,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine, memsize align)
 //{
 //
 //   void * p;
@@ -131,7 +131,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   void * p;
@@ -199,7 +199,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -218,7 +218,7 @@
 //
 //
 //
-//void * memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine)
 //{
 //
 //   memsize nAllocSize = size + sizeof(memdleak_block);
@@ -369,7 +369,7 @@
 //
 //
 //
-//void memory_free_debug(void * pmemory, i32 iBlockType)
+//void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
@@ -415,7 +415,7 @@
 //}
 //
 //
-//memsize memory_size_debug(void * pmemory, i32 iBlockType)
+//memsize memory_size_debug(void * pmemory, int iBlockType)
 //{
 //
 //
@@ -472,7 +472,7 @@
 //}
 //
 //
-//void* _memory_allocate_debug(memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine)
+//void* _memory_allocate_debug(memsize nSize, int nBlockUse, const char* szFileName, int nLine)
 //{
 //
 //   // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -490,7 +490,7 @@
 //}
 //
 //
-//void* _memory_reallocate_debug(void* pmemory, memsize size, i32 nBlockUse, const char* szFileName, i32 nLine)
+//void* _memory_reallocate_debug(void* pmemory, memsize size, int nBlockUse, const char* szFileName, int nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -643,7 +643,7 @@
 //}
 //
 //
-//void _memory_free_debug(void* pmemory, i32 iBlockType)
+//void _memory_free_debug(void* pmemory, int iBlockType)
 //{
 //
 //   system_heap_free(pmemory);
@@ -659,7 +659,7 @@
 //}
 //
 //
-//memsize _memory_size_debug(void* pmemory, i32 iBlockType)
+//memsize _memory_size_debug(void* pmemory, int iBlockType)
 //{
 //
 //#ifdef WINDOWS
@@ -750,7 +750,7 @@
 //   int * piUse = nullptr;
 //   const char ** pszFile = nullptr;
 //   const char ** pszCallStack = nullptr;
-//   u32 * puiLine = nullptr;
+//   unsigned int * puiLine = nullptr;
 //   memsize * psize = nullptr;
 //
 //   try
@@ -958,7 +958,7 @@
 //#if MEMDLEAK
 //
 //
-//::collection::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize)
+//::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize)
 //{
 //
 //   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
@@ -980,10 +980,10 @@
 //   }
 //
 //
-//   i32* piUse = (i32*)malloc(sizeof(i32) * ca);
+//   int* piUse = (int*)malloc(sizeof(int) * ca);
 //   const char** pszFile = (const char**)malloc(sizeof(const char*) * ca);
 //   const char** pszCallStack = (const char**)malloc(sizeof(const char*) * ca);
-//   u32* puiLine = (u32*)malloc(sizeof(u32) * ca);
+//   unsigned int* puiLine = (unsigned int*)malloc(sizeof(unsigned int) * ca);
 //   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
 //
 //   ::collection::index i = 0;

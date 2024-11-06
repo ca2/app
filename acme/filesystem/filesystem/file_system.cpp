@@ -661,7 +661,7 @@ void file_system::copy(const ::file::path & pathNew, const ::file::path & pathEx
       ::file::path strDirSrc(pathExisting);
       ::file::path strDirDst(pathNew);
 
-      for (i32 i = 0; i < listing.size(); i++)
+      for (int i = 0; i < listing.size(); i++)
       {
 
          strSrc = listing[i];
@@ -1347,7 +1347,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 //
 //   WCHAR pPathBuffer[MAX_PATH * 16];
 //
-//   ::u32 dwRetVal = GetTempPathW(sizeof(pPathBuffer) / sizeof(WCHAR), pPathBuffer);
+//   unsigned int dwRetVal = GetTempPathW(sizeof(pPathBuffer) / sizeof(WCHAR), pPathBuffer);
 //
 //   if (dwRetVal > sizeof(pPathBuffer) || (dwRetVal == 0))
 //   {
@@ -1413,18 +1413,18 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 //
 //   memsize pos = 0;
 //
-//   ::u32 dw = 0;
+//   unsigned int dw = 0;
 //
-//   ::u32 dwWrite;
+//   unsigned int dwWrite;
 //
 //   memsize uiWrittenTotal = 0;
 //
 //   while (pos < nCount)
 //   {
 //
-//      dwWrite = (::u32)minimum(nCount - uiWrittenTotal, 0xffffffffu);
+//      dwWrite = (unsigned int)minimum(nCount - uiWrittenTotal, 0xffffffffu);
 //
-//      dw = (::u32)(fwrite(&((unsigned char *)pdata)[pos], 1, dwWrite, file));
+//      dw = (unsigned int)(fwrite(&((unsigned char *)pdata)[pos], 1, dwWrite, file));
 //
 //      if (dw != dwWrite)
 //      {
@@ -1474,7 +1474,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 //
 //#else
 //
-//   ::u32 dw = 0;
+//   unsigned int dw = 0;
 //
 //   dw = ::fwrite(pdata, 1, (size_t)nCount, file);
 //

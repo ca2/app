@@ -6,7 +6,7 @@ namespace hex
 {
 
 
-   inline CLASS_DECL_ACME i32 to(char ch)
+   inline CLASS_DECL_ACME int to(char ch)
    {
 
       if (ch >= '0' && ch <= '9')

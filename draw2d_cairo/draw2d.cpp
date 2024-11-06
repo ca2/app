@@ -325,20 +325,20 @@ return g_pdraw2dcairo;
 //   }
 //
 //   void draw2d::alpha_spread__24CC(
-//   unsigned char * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-//   unsigned char * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-//   unsigned char bMin, i32 iRadius)
+//   unsigned char * lpbDst, int xDest, int yDest, int wDest, int cx, int cy,
+//   unsigned char * lpbSrc, int xSrc, int ySrc, int wSrc,
+//   unsigned char bMin, int iRadius)
 //   {
 //      __UNREFERENCED_PARAMETER(xDest);
 //      __UNREFERENCED_PARAMETER(yDest);
 //      __UNREFERENCED_PARAMETER(xSrc);
 //      __UNREFERENCED_PARAMETER(ySrc);
-//      i32 iFilterW = iRadius * 2 + 1;
-//      i32 iFilterH = iRadius * 2 + 1;
-//      i32 iFilterHalfW = iFilterW / 2;
-//      i32 iFilterHalfH = iFilterH / 2;
-//      i32 iFilterArea = iFilterW * iFilterH;
-//      i32 divisor;
+//      int iFilterW = iRadius * 2 + 1;
+//      int iFilterH = iRadius * 2 + 1;
+//      int iFilterHalfW = iFilterW / 2;
+//      int iFilterHalfH = iFilterH / 2;
+//      int iFilterArea = iFilterW * iFilterH;
+//      int divisor;
 //      unsigned char *lpbSource;
 //      unsigned char *lpbSource_1;
 //      unsigned char *lpbSource_2;
@@ -347,16 +347,16 @@ return g_pdraw2dcairo;
 //      unsigned char *pFilter;
 //
 //
-//      i32 i;
-//      i32 x;
-//      i32 y;
-//      i32 x1;
-//      i32 y1;
-//      i32 x2;
-//      i32 y2;
+//      int i;
+//      int x;
+//      int y;
+//      int x1;
+//      int y1;
+//      int x2;
+//      int y2;
 //
-//      i32 iRadius2 = iRadius * iRadius;
-//      i32 r2;
+//      int iRadius2 = iRadius * iRadius;
+//      int r2;
 //
 //      synchronous_lock synchronouslock(this->synchronization());
 //
@@ -418,25 +418,25 @@ return g_pdraw2dcairo;
 //
 //      synchronouslock.unlock();
 //
-//      i32 maxx1 = cx;
-//      i32 maxy1 = cy;
-//      i32 max3x1 = maxx1 * 3;
+//      int maxx1 = cx;
+//      int maxy1 = cy;
+//      int max3x1 = maxx1 * 3;
 //
 //
-//      u32 dwR;
-//      u32 dwG;
-//      u32 dwB;
+//      unsigned int dwR;
+//      unsigned int dwG;
+//      unsigned int dwB;
 //
 //
-//      i32 iFilterXLowerBound;
-//      i32 iFilterXUpperBound;
-//      i32 iFilterYLowerBound;
-//      i32 iFilterYUpperBound;
+//      int iFilterXLowerBound;
+//      int iFilterXUpperBound;
+//      int iFilterYLowerBound;
+//      int iFilterYUpperBound;
 //
-//      i32 yLowerBound[4];
-//      i32 yUpperBound[4];
-//      i32 xLowerBound[4];
-//      i32 xUpperBound[4];
+//      int yLowerBound[4];
+//      int yUpperBound[4];
+//      int xLowerBound[4];
+//      int xUpperBound[4];
 //
 //      // top
 //      xLowerBound[0] = 0;
@@ -462,13 +462,13 @@ return g_pdraw2dcairo;
 //      yLowerBound[3] = cy - iFilterHalfW;
 //      yUpperBound[3] = cy - 1;
 //
-//      i32 xL;
-//      i32 xU;
-//      i32 yL;
-//      i32 yU;
+//      int xL;
+//      int xU;
+//      int yL;
+//      int yU;
 //
 //      bool bSpread;
-//      u32 bMin3 = bMin * 3;
+//      unsigned int bMin3 = bMin * 3;
 //
 //
 //      for (i = 0; i < 4; i++)
@@ -530,11 +530,11 @@ return g_pdraw2dcairo;
 //               dwG = 0;
 //               dwB = 0;
 //               bSpread = false;
-//               for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+//               for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
 //               {
 //                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                  for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+//                  for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
 //                  {
 //                     if (*lpFilter >= 1)
 //                     {
@@ -544,7 +544,7 @@ return g_pdraw2dcairo;
 //
 //                        if (dwR + dwG + dwB > bMin3)
 //                        {
-//                           *((u32 *)lpwDestination) |= 0x00ffffff;
+//                           *((unsigned int *)lpwDestination) |= 0x00ffffff;
 //                           goto breakFilter;
 //                        }
 //                     }
@@ -567,8 +567,8 @@ return g_pdraw2dcairo;
 //      iFilterXLowerBound = 0;
 //      iFilterXUpperBound = iFilterH - 1;
 //
-//      i32 iFilterHalfWidth = iFilterW / 2;
-//      i32 iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+//      int iFilterHalfWidth = iFilterW / 2;
+//      int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 //
 //      yL = iFilterHalfWidth;
 //      yU = maxy1 - iFilterHalfWidth;
@@ -599,11 +599,11 @@ return g_pdraw2dcairo;
 //            dwG = 0;
 //            dwB = 0;
 //            bSpread = false;
-//            for (i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+//            for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
 //            {
 //               lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //               lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//               for (i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+//               for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
 //               {
 //                  if (*lpFilter >= 1)
 //                  {
@@ -624,7 +624,7 @@ return g_pdraw2dcairo;
 //
 //            if (bSpread)
 //            {
-//               *((u32 *)lpwDestination) |= 0x00ffffff;
+//               *((unsigned int *)lpwDestination) |= 0x00ffffff;
 //               lpwDestination += 3;
 //            }
 //            else
@@ -641,19 +641,19 @@ return g_pdraw2dcairo;
 //   }
 //
 //
-//   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor)
+//   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, color32_t crSpreadSetColor)
 //   {
 //
 //      pimageDst->map();
 //
 //      pimageSrc->map();
 //
-//      i32 iFilterW = iRadius * 2 + 1;
-//      i32 iFilterH = iRadius * 2 + 1;
-//      i32 iFilterHalfW = iRadius;
-//      i32 iFilterHalfH = iRadius;
-//      i32 iFilterArea = iFilterW * iFilterH;
-//      i32 divisor = iFilterW * iFilterH;
+//      int iFilterW = iRadius * 2 + 1;
+//      int iFilterH = iRadius * 2 + 1;
+//      int iFilterHalfW = iRadius;
+//      int iFilterHalfH = iRadius;
+//      int iFilterArea = iFilterW * iFilterH;
+//      int divisor = iFilterW * iFilterH;
 //      unsigned char *lpbSource;
 //      unsigned char *lpbSource_1;
 //      unsigned char *lpbSource_2;
@@ -661,16 +661,16 @@ return g_pdraw2dcairo;
 //      unsigned char *lpFilter;
 //      unsigned char * pFilter;
 //
-//      i32 i;
-//      i32 x;
-//      i32 y;
-//      i32 x1;
-//      i32 y1;
-//      i32 x2;
-//      i32 y2;
+//      int i;
+//      int x;
+//      int y;
+//      int x1;
+//      int y1;
+//      int x2;
+//      int y2;
 //
-//      i32 iRadiusSquare = iRadius * iRadius;
-//      i32 rSquare;
+//      int iRadiusSquare = iRadius * iRadius;
+//      int rSquare;
 //
 //
 //      synchronous_lock synchronouslock(this->synchronization());
@@ -704,8 +704,8 @@ return g_pdraw2dcairo;
 //
 //      synchronouslock.unlock();
 //
-//      i32 cx = pimageDst->width();
-//      i32 cy = pimageDst->height();
+//      int cx = pimageDst->width();
+//      int cy = pimageDst->height();
 //
 //      if (cx != pimageSrc->width() || cy != pimageSrc->height())
 //         return false;
@@ -713,33 +713,33 @@ return g_pdraw2dcairo;
 //      unsigned char * lpbDst = (unsigned char *)pimageDst->get_data();
 //      unsigned char * lpbSrc = (unsigned char *)pimageSrc->get_data();
 //
-//      //i32 wSrc = cx * 4;
-//      //i32 wDst = cx * 4;
-//      i32 wSrc = pimageSrc->scan_size();
-//      i32 wDst = pimageDst->scan_size();
+//      //int wSrc = cx * 4;
+//      //int wDst = cx * 4;
+//      int wSrc = pimageSrc->scan_size();
+//      int wDst = pimageDst->scan_size();
 //
-//      i32 maxx1 = cx;
-//      i32 maxy1 = cy;
-//      //   i32 maxy2 = cy - iFilterW;
-//      //   i32 maxy3 = cy - iFilterW / 2;
-//      i32 max3x1 = maxx1 * 4;
-//      //   i32 max3x2 = (maxx1 - iFilterH) * 4;
-//      //   i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
-//      //i32 w = cx * 4;
+//      int maxx1 = cx;
+//      int maxy1 = cy;
+//      //   int maxy2 = cy - iFilterW;
+//      //   int maxy3 = cy - iFilterW / 2;
+//      int max3x1 = maxx1 * 4;
+//      //   int max3x2 = (maxx1 - iFilterH) * 4;
+//      //   int max3x3 = (maxx1 - iFilterH / 2) * 4;
+//      //int w = cx * 4;
 //
 //      ::copy_image32(pimageDst, pimageSrc);
 //      //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 //
 //
-//      i32 iFilterXLowerBound;
-//      i32 iFilterXUpperBound;
-//      i32 iFilterYLowerBound;
-//      i32 iFilterYUpperBound;
+//      int iFilterXLowerBound;
+//      int iFilterXUpperBound;
+//      int iFilterYLowerBound;
+//      int iFilterYUpperBound;
 //
-//      i32 yLowerBound[4];
-//      i32 yUpperBound[4];
-//      i32 xLowerBound[4];
-//      i32 xUpperBound[4];
+//      int yLowerBound[4];
+//      int yUpperBound[4];
+//      int xLowerBound[4];
+//      int xUpperBound[4];
 //
 //      // top
 //      xLowerBound[0] = 0;
@@ -765,21 +765,21 @@ return g_pdraw2dcairo;
 //      yLowerBound[3] = cy - iFilterHalfH;
 //      yUpperBound[3] = cy - 1;
 //
-//      i32 xL;
-//      i32 xU;
-//      i32 yL;
-//      i32 yU;
+//      int xL;
+//      int xU;
+//      int yL;
+//      int yU;
 //
 //
-//      i32 xMax = cx - 1;
-//      i32 yMax = cy - 1;
+//      int xMax = cx - 1;
+//      int yMax = cy - 1;
 //
 //      // limits due the filter
-//      i32 xMaxFilterBound = xMax - iFilterHalfW;
-//      i32 yMaxFilterBound = yMax - iFilterHalfH;
+//      int xMaxFilterBound = xMax - iFilterHalfW;
+//      int yMaxFilterBound = yMax - iFilterHalfH;
 //
-//      i32 xFilterMax = iFilterW - 1;
-//      i32 yFilterMax = iFilterH - 1;
+//      int xFilterMax = iFilterW - 1;
+//      int yFilterMax = iFilterH - 1;
 //
 //      for (i = 0; i < 4; i++)
 //      {
@@ -814,7 +814,7 @@ return g_pdraw2dcairo;
 //            x1 = xL;
 //            x2 = (x1 - iFilterHalfW) * 4;
 //            lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
-//            if (*((u32 *)lpwDestination) != 0xffffffff)
+//            if (*((unsigned int *)lpwDestination) != 0xffffffff)
 //            {
 //               for (; x1 <= xU; x1++)
 //               {
@@ -838,17 +838,17 @@ return g_pdraw2dcairo;
 //                  lpbSource_1 = lpbSource + maximum(x2, 0) + iChannel;
 //
 //
-//                  for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+//                  for (int yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
 //                  {
 //                     lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                     lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                     for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+//                     for (int xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
 //                     {
 //                        if (*lpFilter >= 1)
 //                        {
 //                           if (lpbSource_2[0] > 0)
 //                           {
-//                              *((u32 *)lpwDestination) = crSpreadSetColor;
+//                              *((unsigned int *)lpwDestination) = crSpreadSetColor;
 //                              goto breakFilter;
 //                           }
 //                        }
@@ -871,8 +871,8 @@ return g_pdraw2dcairo;
 //      iFilterXLowerBound = 0;
 //      iFilterXUpperBound = iFilterH - 1;
 //
-//      i32 iFilterHalfWidth = iFilterW / 2;
-//      i32 iFilterHalfWidthBytes = iFilterHalfWidth * 4;
+//      int iFilterHalfWidth = iFilterW / 2;
+//      int iFilterHalfWidthBytes = iFilterHalfWidth * 4;
 //
 //      yL = iFilterHalfWidth;
 //      yU = maxy1 - iFilterHalfWidth;
@@ -899,19 +899,19 @@ return g_pdraw2dcairo;
 //            lpbSource_1 = lpbSource + x2;
 //            lpFilter = pFilter;
 //
-//            if (*((u32 *)lpwDestination) != 0xffffffff)
+//            if (*((unsigned int *)lpwDestination) != 0xffffffff)
 //            {
-//               for (i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+//               for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
 //               {
 //                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
 //                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
-//                  for (i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+//                  for (int xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
 //                  {
 //                     if (*lpFilter >= 1)
 //                     {
 //                        if (lpbSource_2[0] > 0)
 //                        {
-//                           *((u32 *)lpwDestination) = crSpreadSetColor;
+//                           *((unsigned int *)lpwDestination) = crSpreadSetColor;
 //                           goto breakFilter2;
 //                        }
 //                     }

@@ -23,6 +23,6 @@
 //
 //
 //
-//i32 run_system();
-//i32 apex_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
+//int run_system();
+//int apex_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
 

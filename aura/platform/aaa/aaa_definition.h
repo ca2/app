@@ -358,8 +358,8 @@ that we consider it dangerous to even throw ::exception( an exception
    Same comes true for those definitions of constants which use the above macros
 */
 #ifndef WINDOWS
-#define MAKEINTRESOURCEA(i) ((char *)((uptr)((::u16)(i))))
-#define MAKEINTRESOURCEW(i) ((unichar *)((uptr)((::u16)(i))))
+#define MAKEINTRESOURCEA(i) ((char *)((uptr)((unsigned short)(i))))
+#define MAKEINTRESOURCEW(i) ((unichar *)((uptr)((unsigned short)(i))))
 #endif
 #ifdef UNICODE
 #define MAKEINTRESOURCE  MAKEINTRESOURCEW

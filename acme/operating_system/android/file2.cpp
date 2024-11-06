@@ -11,7 +11,7 @@
 //#include <sys/stat.h>
 
 
-void fd_set_size(i32 fd, i64 iSize)
+void fd_set_size(int fd, i64 iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
@@ -20,7 +20,7 @@ void fd_set_size(i32 fd, i64 iSize)
 }
 
 
-i64 fd_get_file_size(i32 fd)
+i64 fd_get_file_size(int fd)
 {
 
    struct stat st;

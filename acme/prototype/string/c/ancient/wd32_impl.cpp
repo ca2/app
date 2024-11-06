@@ -2,14 +2,14 @@
 
 
 
-CLASS_DECL_ACME ::wd32_character __wd32charlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-CLASS_DECL_ACME ::wd32_character __wd32charuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-CLASS_DECL_ACME i32 __wd32charisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
-CLASS_DECL_ACME i32 __wd32charisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-CLASS_DECL_ACME i32 __wd32charisalnum(i32 i) { return wd32_char_isalpha(i) || wd32_char_isdigit(i); }
-CLASS_DECL_ACME i32 __wd32charisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME ::wd32_character __wd32charlowered(int i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::wd32_character __wd32charuppered(int i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME int __wd32charisdigit(int i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME int __wd32charisalpha(int i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME int __wd32charisalnum(int i) { return wd32_char_isalpha(i) || wd32_char_isdigit(i); }
+CLASS_DECL_ACME int __wd32charisspace(int ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
 
-CLASS_DECL_ACME i32 __wd32charisxdigit(i32 i) { return wd32_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
+CLASS_DECL_ACME int __wd32charisxdigit(int i) { return wd32_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
 CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const ::wd32_character * pszSrc, strsize srclen)

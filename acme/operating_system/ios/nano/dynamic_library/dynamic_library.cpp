@@ -52,7 +52,7 @@ library_t *__dl_______touch(const      char  ** image_name)
 ::file::path dynamic_library::module_path(library_t * plibrary)
 {
    
-   for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+   for (int i = _dyld_image_count(); i >= 0 ; i--)
    {
 
       ::string strMessage;
@@ -91,7 +91,7 @@ library_t * dynamic_library::module_by_name(const ::scoped_string & scopedstr)
    
    ::file::path pathImage;
    
-   for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+   for (int i = _dyld_image_count(); i >= 0 ; i--)
    {
       
       pathImage = _dyld_get_image_name(i);
@@ -134,7 +134,7 @@ library_t * dynamic_library::module_by_path(const ::file::path & path)
    
    ::file::path pathImage;
    
-   for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+   for (int i = _dyld_image_count(); i >= 0 ; i--)
    {
       
       pathImage = _dyld_get_image_name(i);

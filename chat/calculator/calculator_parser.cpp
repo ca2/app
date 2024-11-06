@@ -123,7 +123,7 @@ namespace calculator
          m_scanner.next();
          node                = new_node();
          node->m_ptoken      = m_scanner.m_ptoken;
-         i32 iCount;
+         int iCount;
          if(node->m_ptoken->m_str == "sqr")
          {
             iCount = 1;
@@ -177,7 +177,7 @@ namespace calculator
             throw ::exception(::exception("unknown function"));
          }
          expect(token::type_open_paren);
-         i32 iElem = 1;
+         int iElem = 1;
          if(iCount > 0)
          {
             while(true)

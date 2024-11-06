@@ -47,7 +47,7 @@ namespace user
       virtual void on_change_combo_sel(::collection::index iSel) override;
 
       //void attach_visual_font_list(::write_text::font_list * pdata);
-      //virtual void on_update_data(::write_text::font_list * pdata, i32 iHint);
+      //virtual void on_update_data(::write_text::font_list * pdata, int iHint);
 
       //virtual void font_list_update();
 

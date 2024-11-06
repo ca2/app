@@ -19,7 +19,7 @@ struct color32_t
    union
    {
 
-      ::u32 m_u32;
+      unsigned int m_u32;
 
       struct
       {
@@ -69,7 +69,7 @@ public:
    union
    {
 
-      ::u32       m_u32;
+      unsigned int       m_u32;
 
       struct
       {
@@ -100,7 +100,7 @@ public:
 #endif
 
 
-CLASS_DECL_ACME color32_t make_colorref(i32 a, i32 r, i32 g, i32 b);
+CLASS_DECL_ACME color32_t make_colorref(int a, int r, int g, int b);
 
 CLASS_DECL_ACME color32_t argb_swap_red_blue(color32_t color32);
 

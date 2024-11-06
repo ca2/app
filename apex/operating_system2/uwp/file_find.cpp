@@ -48,7 +48,7 @@ namespace universal_windows
       return;
    }
 
-   bool file_find::FindFile(const char * pstrName /* = nullptr */, ::u32 dwUnused /* = 0 */)
+   bool file_find::FindFile(const char * pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
    {
       UNUSED_ALWAYS(dwUnused);
       close();
@@ -65,7 +65,7 @@ namespace universal_windows
 
       if (m_hContext == INVALID_HANDLE_VALUE)
       {
-         ::u32 dwTemp = ::get_last_error();
+         unsigned int dwTemp = ::get_last_error();
          close();
          ::set_last_error(dwTemp);
          return false;
@@ -110,7 +110,7 @@ namespace universal_windows
       return true;
    }
 
-   bool file_find::MatchesMask(::u32 dwMask) const
+   bool file_find::MatchesMask(unsigned int dwMask) const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
@@ -324,7 +324,7 @@ namespace universal_windows
    void file_find::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
-      dumpcontext << "\nm_hContext = " << (::u32) m_hContext;
+      dumpcontext << "\nm_hContext = " << (unsigned int) m_hContext;
    }
 
    void file_find::assert_ok() const

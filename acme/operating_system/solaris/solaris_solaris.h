@@ -26,7 +26,7 @@
 
 
 
-::u32 ::get_tick();
+unsigned int ::get_tick();
 
 
 
@@ -36,17 +36,17 @@
 
 
 /*
-#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)
-#define STATUS_ABANDONED_WAIT_0  ((::u32   ) 0x00000080L)
-#define STATUS_USER_APC          ((::u32   ) 0x000000C0L)
-#define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
+#define STATUS_WAIT_0            ((unsigned int   ) 0x00000000L)
+#define STATUS_ABANDONED_WAIT_0  ((unsigned int   ) 0x00000080L)
+#define STATUS_USER_APC          ((unsigned int   ) 0x000000C0L)
+#define STATUS_TIMEOUT           ((unsigned int   ) 0x00000102L)
  */
 
-#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((unsigned int   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((unsigned int   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
@@ -54,7 +54,7 @@
 #define MAXIMUM_WAIT_OBJECTS      64
 
 //union semun {
-//    i32 val;
+//    int val;
 //    struct semid_ds * buf;
 //    USHORT * array;
 //
@@ -62,11 +62,11 @@
 
 
 
-//CLASS_DECL_ACME ::u32 get_last_error();
-//CLASS_DECL_ACME void set_last_error(::u32 dw);
+//CLASS_DECL_ACME unsigned int get_last_error();
+//CLASS_DECL_ACME void set_last_error(unsigned int dw);
 
 
-CLASS_DECL_ACME bool _istlead(i32 ch);
+CLASS_DECL_ACME bool _istlead(int ch);
 
 
 

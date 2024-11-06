@@ -1210,7 +1210,7 @@ int freerdp_detect_windows_style_command_line_syntax(int argc, char** argv,
 	int* count, BOOL ignoreUnknown)
 {
 	int status;
-	::u32 flags;
+	unsigned int flags;
 	int detect_status;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
@@ -1253,7 +1253,7 @@ int freerdp_detect_posix_style_command_line_syntax(int argc, char** argv,
 	int* count, BOOL ignoreUnknown)
 {
 	int status;
-	::u32 flags;
+	unsigned int flags;
 	int detect_status;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
@@ -1294,7 +1294,7 @@ int freerdp_detect_posix_style_command_line_syntax(int argc, char** argv,
 }
 
 static BOOL freerdp_client_detect_command_line(int argc, char** argv,
-	::u32* flags, BOOL ignoreUnknown)
+	unsigned int* flags, BOOL ignoreUnknown)
 {
 	int old_cli_status;
 	int old_cli_count;
@@ -1411,7 +1411,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 	char* str;
 	int length;
 	int status;
-	::u32 flags;
+	unsigned int flags;
 	BOOL compatibility;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
@@ -1571,7 +1571,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			if (arg->Flags & COMMAND_LINE_VALUE_PRESENT)
 			{
-				::u32 i;
+				unsigned int i;
 				char** p;
 				int count = 0;
 
@@ -1582,7 +1582,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 				if (count > 16)
 					count = 16;
 
-				settings->NumMonitorIds = (::u32) count;
+				settings->NumMonitorIds = (unsigned int) count;
 
 				for (i = 0; i < settings->NumMonitorIds; i++)
 				{
@@ -1671,7 +1671,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 					return COMMAND_LINE_STATUS_PRINT;
 			}
 
-			settings->KeyboardLayout = (::u32) atom;
+			settings->KeyboardLayout = (unsigned int) atom;
 		}
 		CommandLineSwitchCase(arg, "kbd-type")
 		{
@@ -1787,7 +1787,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 					type = TSC_PROXY_MODE_DEFAULT;
 			}
 
-			freerdp_set_gateway_usage_method(settings, (::u32) type);
+			freerdp_set_gateway_usage_method(settings, (unsigned int) type);
 		}
 		CommandLineSwitchCase(arg, "app")
 		{
@@ -1804,7 +1804,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			if (!(settings->LoadBalanceInfo = (unsigned char*) _strdup(arg->Value)))
 				return COMMAND_LINE_ERROR_MEMORY;
-			settings->LoadBalanceInfoLength = (::u32) strlen((char*) settings->LoadBalanceInfo);
+			settings->LoadBalanceInfoLength = (unsigned int) strlen((char*) settings->LoadBalanceInfo);
 		}
 		CommandLineSwitchCase(arg, "app-name")
 		{
@@ -2341,7 +2341,7 @@ int freerdp_client_load_static_channel_addin(rdpChannels* channels, rdpSettings*
 
 BOOL freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 {
-	::u32 index;
+	unsigned int index;
 	ADDIN_ARGV* args;
 
 	if ((freerdp_static_channel_collection_find(settings, "rdpsnd")) ||

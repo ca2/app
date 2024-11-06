@@ -80,10 +80,10 @@ tiny_http::~tiny_http()
  * before the end of line or the maximum.
  * cariage returns (CR) are ignored.
  */
-i32 tiny_http::t_read_line (i32 fd, char * buffer, i32 maximum)
+int tiny_http::t_read_line (int fd, char * buffer, int maximum)
 {
    /* not efficient on long lines (multiple unbuffered 1 char reads) */
-   i32 n=0;
+   int n=0;
    while (n<maximum)
    {
       if (read(fd,buffer,1)!=1)
@@ -107,9 +107,9 @@ i32 tiny_http::t_read_line (i32 fd, char * buffer, i32 maximum)
  * returns the number of bytes read. negative if a read error (EOF) occured
  * before the requested length.
  */
-i32 tiny_http::t_read_buffer (i32 fd, char * buffer, i32 length, void (*callback)(void *, i32, dword_ptr), void * callback_param)
+int tiny_http::t_read_buffer (int fd, char * buffer, int length, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
-   i32 n,r;
+   int n,r;
    for (n=0; n<length; n+=r)
    {
       r=read(fd,buffer,length-n);
@@ -143,19 +143,19 @@ i32 tiny_http::t_read_buffer (i32 fd, char * buffer, i32 length, void (*callback
 //char *additional_header;	/* additional header */
 //querymode mode; 		/* type of query */
 //char *data;  /* Data to send after header. If nullptr, not data is sent */
-//i32 length;  /* size_i32 of data */
-//i32 *pfd;    /* pointer to variable where to set file descriptor value */
+//int length;  /* size_i32 of data */
+//int *pfd;    /* pointer to variable where to set file descriptor value */
 
-tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * url,  const char * additional_header, querymode mode, char * data, i32 length, i32 * pfd)
+tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * url,  const char * additional_header, querymode mode, char * data, int length, int * pfd)
 {
-   i32                  s;
+   int                  s;
    struct hostent *     hp;
    struct sockaddr_in   server;
    char                 header[MAXBUF];
-   i32                  hlg;
+   int                  hlg;
    http_retcode         ret;
-   i32 proxy = (m_strProxyServer != nullptr && m_iHttpProxyPort != 0);
-   i32 port = proxy ? m_iHttpProxyPort : m_iHttpPort;
+   int proxy = (m_strProxyServer != nullptr && m_iHttpProxyPort != 0);
+   int port = proxy ? m_iHttpProxyPort : m_iHttpPort;
    if (pfd) * pfd = -1;
 
    /* get host info by name :*/
@@ -218,14 +218,14 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
       else
       {
          /* read result & check */
-         i32 iRet=t_read_line(s,header,MAXBUF-1);
+         int iRet=t_read_line(s,header,MAXBUF-1);
 #ifdef VERBOSE
          fputs(header,stderr);
          putc('\n',stderr);
 #endif
          if (iRet<=0)
             ret=ERRRDHD;
-         else if (sscanf(header,"HTTP/1.%*d %03d",(i32*)&ret)!=1)
+         else if (sscanf(header,"HTTP/1.%*d %03d",(int*)&ret)!=1)
             ret=ERRPAHD;
          else if (mode==KEEP_OPEN)
             return ret;
@@ -249,11 +249,11 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
  */
 //     char *filename;  /* name of the ressource to create */
 //   char *data;      /* pointer to the data to send   */
-//i32 length;      /* length of the data to send  */
-// i32 overwrite;   /* flag to request to overwrite the ressource if it
+//int length;      /* length of the data to send  */
+// int overwrite;   /* flag to request to overwrite the ressource if it
 // was already existing */
 //char *type;      /* type of the data, if nullptr default type is used */
-tiny_http::http_retcode tiny_http::t_put(const char * data, i32 length, i32 overwrite, void (*callback)(void *, i32, dword_ptr), void * callback_param)
+tiny_http::http_retcode tiny_http::t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
    char header[MAXBUF];
    if (m_strContentType.length() > 0)
@@ -286,18 +286,18 @@ tiny_http::http_retcode tiny_http::t_put(const char * data, i32 length, i32 over
 //     char *filename; /* name of the ressource to read */
 //   char **pdata; /* address of a pointer variable which will be set
 //	      to point_i32 toward allocated memory containing read data.*/
-//i32  *plength;/* address of integer variable which will be set to
+//int  *plength;/* address of integer variable which will be set to
 //		      length of the read data */
 //   char *typebuf; /* allocated buffer where the read data type is returned.
 //	    If nullptr, the type is not returned */
-tiny_http::http_retcode tiny_http::t_get(char ** pdata, i32 * plength, void (*callback)(void *, i32, dword_ptr), void * callback_param)
+tiny_http::http_retcode tiny_http::t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
    http_retcode ret;
 
    char header[MAXBUF];
    char *pc;
-   i32  fd;
-   i32  n,length=-1;
+   int  fd;
+   int  n,length=-1;
 
    if (!pdata) return ERRNULL; else *pdata=nullptr;
    if (plength) *plength=0;
@@ -359,19 +359,19 @@ tiny_http::http_retcode tiny_http::t_get(char ** pdata, i32 * plength, void (*ca
  * limitations: filename is truncated to first 256 characters
  */
 //     char *filename; /* name of the ressource to read */
-//   i32  *plength;/* address of integer variable which will be set to
+//   int  *plength;/* address of integer variable which will be set to
 //	      length of the data */
 //char *typebuf; /* allocated buffer where the data type is returned.
 //   If nullptr, the type is not returned */
-tiny_http::http_retcode tiny_http::t_head(i32 * plength)
+tiny_http::http_retcode tiny_http::t_head(int * plength)
 {
    /* mostly copied from http_get : */
    http_retcode ret;
 
    char header[MAXBUF];
    char *pc;
-   i32  fd;
-   i32  n,length=-1;
+   int  fd;
+   int  n,length=-1;
 
    if (plength) *plength=0;
    m_strContentType = "";
@@ -441,8 +441,8 @@ tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 #endif
       return ERRURLH;
    }
-   i32 iFind1 = strUrl.find(":");
-   i32 iFind2 = strUrl.find("/");
+   int iFind1 = strUrl.find(":");
+   int iFind2 = strUrl.find("/");
    if(iFind1 > 0)
    {
       if((iFind2 > 0 && iFind1 < iFind2) || iFind2 < 0)

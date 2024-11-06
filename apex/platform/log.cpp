@@ -247,7 +247,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const ::file::path & path,i32 iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const char *,const char * pszFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -308,7 +308,7 @@ namespace apex
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
    //{
 
    //   string str;
@@ -320,7 +320,7 @@ namespace apex
    //}
 
 
-//   void log::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstr) const
+//   void log::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
 //   {
 //
 //      //const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
@@ -476,7 +476,7 @@ namespace apex
 ////            fclose(m_pfile);
 ////            m_pfile = nullptr;
 ////         }
-////         i32 iRetry = 0;
+////         int iRetry = 0;
 ////      retry:
 ////
 ////         string strDatetime;
@@ -500,7 +500,7 @@ namespace apex
 ////
 ////            if (!(m_pfile = fopen(m_strLogPath, "at")))
 ////            {
-////               i32 iError = errno;
+////               int iError = errno;
 ////               if (iError == ENOENT)
 ////               {
 ////                  goto skip_further_possible_recursive_impossible_logging_in_file;
@@ -595,7 +595,7 @@ namespace apex
 ////
 ////      }
 ////
-////      for(i32 i = 0; i < stra.get_size(); i++)
+////      for(int i = 0; i < stra.get_size(); i++)
 ////      {
 ////
 ////         string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";

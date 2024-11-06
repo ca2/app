@@ -46,8 +46,8 @@
 // is much much greather than num, I'm willing to ignore it rather than 
 // correct for it.
 
-i16
-randomTurbo (i16 num)
+short
+randomTurbo (short num)
 {
   return (rand () % num);
 }

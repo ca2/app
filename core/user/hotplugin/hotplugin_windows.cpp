@@ -7,14 +7,14 @@
 namespace hotplugin
 {
 
-   u32 g_entry_hall_windows_on_paint_dwSync = 0;
-   i32 g_entry_hall_windows_on_paint_iDelta = 5000;
+   unsigned int g_entry_hall_windows_on_paint_dwSync = 0;
+   int g_entry_hall_windows_on_paint_iDelta = 5000;
 
 
    //// Create a hatched bit pattern.
-   ////::u16 HatchBits[8] ={0x55,0xAA,0x55,0xAA,0x55, 0xAA,0x55,0xAA};
-   ////::u16 HatchBits[8] ={0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
-   //::u16 HatchBits[8] ={0,0,0,0,0,0,0,0};
+   ////unsigned short HatchBits[8] ={0x55,0xAA,0x55,0xAA,0x55, 0xAA,0x55,0xAA};
+   ////unsigned short HatchBits[8] ={0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+   //unsigned short HatchBits[8] ={0,0,0,0,0,0,0,0};
 
    //// Use the bit pattern to create a bitmap.
    //HBITMAP hbm = ::CreateBitmap(8,8,1,1,HatchBits);

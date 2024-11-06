@@ -20,7 +20,7 @@ int g_iLastIsDebuggerAttached;
 int g_iLastIsDebuggerAttachedOptimizedCount;
 
 
-i32 __node_is_debugger_attached()
+int __node_is_debugger_attached()
 {
 
    if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
@@ -124,11 +124,11 @@ int gdb_check()
 
 
 /*
-i32 gdb_check()
+int gdb_check()
 {
-  i32 pid = fork();
-  i32 status;
-  i32 res;
+  int pid = fork();
+  int status;
+  int res;
 
   if (pid == -1)
     {
@@ -138,7 +138,7 @@ i32 gdb_check()
 
   if (pid == 0)
     {
-      i32 ppid = getppid();
+      int ppid = getppid();
 
       // Child
       if (ptrace(PTRACE_ATTACH, ppid, nullptr, nullptr) == 0)
@@ -177,7 +177,7 @@ i32 gdb_check()
 //   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
 //}
 //
-//i32
+//int
 //gdb_check(void)
 //{
 //
@@ -226,17 +226,17 @@ i32 gdb_check()
 
 
 
-//::u32
+//unsigned int
 //WINAPI
 //FormatMessage(
-//::u32 dwFlags,
+//unsigned int dwFlags,
 //const void * pSource,
 //
-//::u32 dwMessageId,
-//::u32 dwLanguageId,
+//unsigned int dwMessageId,
+//unsigned int dwLanguageId,
 //char * pBuffer,
 //
-//::u32 nSize,
+//unsigned int nSize,
 //va_list *Arguments
 //)
 //{
@@ -273,11 +273,11 @@ i32 gdb_check()
 //}
 
 
-//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 //
 //
 //
-//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 //{
 //   __UNREFERENCED_PARAMETER(uiCode);
 //   __UNREFERENCED_PARAMETER(ppointers);

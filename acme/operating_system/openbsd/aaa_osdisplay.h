@@ -54,7 +54,7 @@ public:
       return ::is_null(this);
    }
 
-   Atom get_window_long_atom(i32 nIndex);
+   Atom get_window_long_atom(int nIndex);
 
 
    Atom intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);

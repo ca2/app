@@ -18,7 +18,7 @@
 #include <errno.h>
 
 
-CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
+CLASS_DECL_ACME int_bool is_process_running(unsigned int pid)
 {
 
    int i = kill(pid, 0);
@@ -60,7 +60,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
 
 
-::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 {
 
    int iCa2Min;
@@ -101,7 +101,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
    if (iOsMax == iOsMin)
    {
-      iCa2Priority = (i32) ::e_priority_normal;
+      iCa2Priority = (int) ::e_priority_normal;
    }
    else
    {
@@ -115,11 +115,11 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 }
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
+void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 
-void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
+void process_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -127,7 +127,7 @@ void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priori
 }
 
 
-::enum_priority process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);

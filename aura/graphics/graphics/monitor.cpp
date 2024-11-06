@@ -279,7 +279,7 @@ interpolate_color(float a, const float * c1, const float * c2, float * r, float 
 
 
 
-CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp)
+CLASS_DECL_AURA void black_body(float * r, float * g, float * b, unsigned int dwTemp)
 {
 
    int temp_index = ((dwTemp - 1000) / 100) * 3;

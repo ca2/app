@@ -2,7 +2,7 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
+/*int_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(unsigned int nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -25,12 +25,12 @@
 }*/
 
 /*
-int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, ::u32 nStyle)
+int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, unsigned int nStyle)
 {
    if (hWnd == nullptr)
       return false;
    // do cheap style compare first
-   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((unsigned int)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return false;
 
    // do expensive classname compare next
@@ -56,7 +56,7 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (::u16)0 &&
+      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (unsigned short)0 &&
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if point_i32 hits the child ::interaction_impl
@@ -96,14 +96,14 @@ void CLASS_DECL_lnx ::windows_definition::cancelModes(oswindow hWndRcvr)
       return;     // let input go to ::interaction_impl with focus
 
    // focus is in part of a combo-box
-   if (!_::windows_definition::IsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWNLIST))
+   if (!_::windows_definition::IsComboBoxControl(hWndcancel, (unsigned int)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndcancel = ::get_parent(hWndcancel);   // parent of edit is combo
       if (hWndcancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!_::windows_definition::IsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWN))
+      if (!_::windows_definition::IsComboBoxControl(hWndcancel, (unsigned int)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -125,7 +125,7 @@ void CLASS_DECL_lnx ::windows_definition::GlobalFree(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   unsigned int nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

@@ -47,7 +47,7 @@ namespace user
 
       ::rectangle_i32 rectangleColumn = pdrawitem->rcItem;
 
-      i32 iColumn = pdrawitem->itemID;
+      int iColumn = pdrawitem->itemID;
 
       list * plist = m_plist;
 
@@ -166,7 +166,7 @@ namespace user
 
       }
 
-      i32 x;
+      int x;
 
       if(plist->m_bGroup && plist->m_bLateralGroup)
       {
@@ -181,9 +181,9 @@ namespace user
 
       }
       
-      i32 xLast = x;
+      int xLast = x;
       
-      for(i32 i = 0; i <= iItem; i++)
+      for(int i = 0; i <= iItem; i++)
       {
          
          xLast = x;
@@ -361,7 +361,7 @@ namespace user
    {
       list * plist = m_plist;
       ::rectangle_i32 rectangle;
-      for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(&rectangle, element_item_Box, iItem))
          {
@@ -389,7 +389,7 @@ namespace user
    {
       list * plist = m_plist;
       ::rectangle_i32 rectangle;
-      for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(&rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
          {
@@ -586,7 +586,7 @@ namespace user
                
                rectangle.right() = pointCursor.x();
                
-               i32 iNewWidth = rectangle.width();
+               int iNewWidth = rectangle.width();
                
                plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
                
@@ -663,7 +663,7 @@ namespace user
             
             rectangle.right() = pointCursor.x();
             
-            i32 iNewWidth = rectangle.width();
+            int iNewWidth = rectangle.width();
             
             plist->_001SetColumnWidth(m_iItemLButtonDown, maximum(0, iNewWidth));
             
@@ -937,7 +937,7 @@ namespace user
 
       ppen->create_solid(1.0, color);
 
-      for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
 
          drawitem.itemID = iItem;
@@ -961,7 +961,7 @@ namespace user
    }
 
 
-   i32 list_header::GetDividerWidth()
+   int list_header::GetDividerWidth()
    {
       return 4;
    }

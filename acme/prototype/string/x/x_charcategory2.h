@@ -94,7 +94,7 @@ static unsigned short arr_idxCharCategoryIdx[] = {
 };
 
 // char categories bit two stage tables
-static u32 arr_idxCharCategory[] = {
+static unsigned int arr_idxCharCategory[] = {
 
 
 // is_empty node

@@ -131,7 +131,7 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, i32 iCa2Priority);
+CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, int iCa2Priority);
 
 
 namespace apple
@@ -262,10 +262,10 @@ namespace apple
       }
 
 
-      if(epriority != (i32) ::e_priority_none)
+      if(epriority != (int) ::e_priority_none)
       {
 
-         i32 iOsPriority;
+         int iOsPriority;
          
          process_get_os_priority(&iOsPriority, epriority);
 
@@ -607,7 +607,7 @@ auto tickStart = ::duration::now();
       {
          sleep(100_ms);
       }
-      ::u32 dwExitCode = 0;
+      unsigned int dwExitCode = 0;
       if(!has_exited(&dwExitCode))
       {
          if(pbTimeOut != nullptr)
@@ -692,7 +692,7 @@ auto tickStart = ::duration::now();
 //          m_iPid = pptp_pid;
 auto tickStart = ::duration::now();
 
-      ::u32 tickTimeout = (::u32) durationTimeOut.get_total_milliseconds();
+      unsigned int tickTimeout = (unsigned int) durationTimeOut.get_total_milliseconds();
 
       char sz[1025];
 
@@ -846,7 +846,7 @@ auto tickStart = ::duration::now();
 
       }
 
-      ::u32 dwExitCode = 0;
+      unsigned int dwExitCode = 0;
 
       if(!has_exited())
       {

@@ -505,7 +505,7 @@ namespace sockets
 
 
 
-   //i32 base_socket::close_socket(socket_id s)
+   //int base_socket::close_socket(socket_id s)
    //{
 
    //   __UNREFERENCED_PARAMETER(s);

@@ -23,7 +23,7 @@ public:
    //point_f64                        m_pointaB[4]; // pontos da segunda seta
    ::draw2d::region_pointer         m_pregionA; // regiao da primeira seta
    ::draw2d::region_pointer         m_pregionB; // regiao da segunda seta
-   ::u32                            m_uiTimer;
+   unsigned int                            m_uiTimer;
    int                            m_iaScrollBarWidth[::user::e_layout_maximum_count];
 
 
@@ -32,7 +32,7 @@ public:
 
 
    virtual void pre_translate_message(::message::message * pmessage) override;
-   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest = nullptr) override;
+   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,unsigned int uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest = nullptr) override;
 
    void install_message_routing(::channel * pchannel) override;
 
@@ -83,7 +83,7 @@ public:
 
    bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
    bool on_drag_start(::point_i32 & point, ::user::mouse * pmouse, ::item * pitem) override;
-   //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
+   //virtual bool create_interaction(enum_orientation eorientation, unsigned int uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
    //int SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    //int GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);

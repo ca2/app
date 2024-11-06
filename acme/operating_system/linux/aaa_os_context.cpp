@@ -4,7 +4,7 @@
 #include "acme/operating_system/linux/gnome_gnome.h"
 #include <unistd.h>
 
-i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
+int daemonize_process(const char * _cmd_line, int * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
 
@@ -229,7 +229,7 @@ namespace linux
       //      if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
       //      SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
       //      {
-      //      ::u32 dwLastError = ::get_last_error();
+      //      unsigned int dwLastError = ::get_last_error();
       //      return false;
       //      }
             //reset the previlages
@@ -249,13 +249,13 @@ namespace linux
       throw ::not_implemented();
       return;
 
-      /*      ::u32 dwPid;
+      /*      unsigned int dwPid;
             while(get_pid_by_title(lpszName, dwPid))
             {
                HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                   PROCESS_VM_READ,
                   false, dwPid );
-               TerminateProcess(hProcess, (::u32) -1);
+               TerminateProcess(hProcess, (unsigned int) -1);
                Clos_contexteHandle(hProcess);
                ::EnumWindows((WNDENUMPROC)
                CKillProcessHelper::TerminateAppEnum,
@@ -275,11 +275,11 @@ namespace linux
       //  }
    }
 
-   bool os_context::get_pid_by_path(const char * lpszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const char * lpszName, unsigned int & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
-      for(i32 i = 0; i < dwa.get_count(); i++)
+      for(int i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).case_insensitive_order(lpszName) == 0)
          {
@@ -291,14 +291,14 @@ namespace linux
    }
 
 
-   bool os_context::get_pid_by_title(const char * lpszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const char * lpszName, unsigned int & dwPid)
    {
 
       u32_array dwa;
 
       get_all_processes(dwa);
 
-      for(i32 i = 0; i < dwa.get_count(); i++)
+      for(int i = 0; i < dwa.get_count(); i++)
       {
 
          if(get_process_path(dwa[i]).title().case_insensitive_order(lpszName) == 0)
@@ -317,7 +317,7 @@ namespace linux
    }
 
 
-   ::file::path os_context::get_process_path(::u32 dwPid)
+   ::file::path os_context::get_process_path(unsigned int dwPid)
    {
       throw ::not_implemented();
       return "";
@@ -332,18 +332,18 @@ namespace linux
 
       /*
             dwa.set_size(0);
-            ::u32 cbNeeded = 0;
+            unsigned int cbNeeded = 0;
             while(cbNeeded == natural(dwa.get_count()))
             {
                dwa.set_size(dwa.get_count() + 1024);
                if(!EnumProcesses(
                   dwa.get_data(),
-                  (::u32) (dwa.get_count() * sizeof(::u32)),
+                  (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
                   &cbNeeded))
                {
                   return;
                }
-               dwa.set_size(cbNeeded / sizeof(::u32));
+               dwa.set_size(cbNeeded / sizeof(unsigned int));
             }*/
    }
 
@@ -868,7 +868,7 @@ namespace linux
    }
 
 
-   void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
+   void os_context::raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
    {
 
       throw ::not_implemented();
@@ -1010,7 +1010,7 @@ namespace linux
 
          //::system("cd /; setsid \"" + strTarget + "\" </dev/null &>/dev/null");
 
-         //i32 daemonize_process(const char * _cmd_line, i32 * pprocessId)
+         //int daemonize_process(const char * _cmd_line, int * pprocessId)
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 

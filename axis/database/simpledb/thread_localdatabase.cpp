@@ -77,7 +77,7 @@ namespace simpledb
 
             bool bFound = false;
 
-            for (i32 i = 1; i < m_itema.get_size(); i++)
+            for (int i = 1; i < m_itema.get_size(); i++)
             {
 
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
@@ -152,7 +152,7 @@ namespace simpledb
 //                  if (pstorage->m_pstmtReplace == nullptr)
 //                  {
 //
-//                     i32 iResult = sqlite3_prepare_v2(
+//                     int iResult = sqlite3_prepare_v2(
 //                        (sqlite3 *)pdatabase->get_handle(),
 //                        "REPLACE INTO blobtable (atom, value) values (:atom, :value);",
 //                        -1,

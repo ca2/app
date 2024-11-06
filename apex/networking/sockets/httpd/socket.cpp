@@ -153,7 +153,7 @@ namespace httpd
       const char* months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
       };
-      i32 i;
+      int i;
       char s[40];
 
       /* 1997-12-16 09:50:40 */
@@ -293,7 +293,7 @@ namespace httpd
 
       on_send_response();
 
-      i32 iStatusCode;
+      int iStatusCode;
 
       string strStatus;
 
@@ -500,7 +500,7 @@ namespace httpd
 
    //      ::image::image_pointer pimage;
 
-   //      pimage = create_image({(i32)(pimage->width() * dRate),  (i32)(pimage->height() * dRate)});
+   //      pimage = create_image({(int)(pimage->width() * dRate),  (int)(pimage->height() * dRate)});
 
    //      pimage->stretch_image(pimage);
 
@@ -551,7 +551,7 @@ namespace httpd
 
             stra.explode(",", straItem[1]);
 
-            for (i32 i = 0; i < stra.get_count(); i++)
+            for (int i = 0; i < stra.get_count(); i++)
             {
 
                string_array straRange;

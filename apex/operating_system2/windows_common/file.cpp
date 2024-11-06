@@ -7,12 +7,12 @@
 //#endif
 
 
-//CLASS_DECL_APEX ::u32 windows_get_file_attributes(const ::file::path & path)
+//CLASS_DECL_APEX unsigned int windows_get_file_attributes(const ::file::path & path)
 //{
 //
 //   wstring wstr(path);
 //
-//   u32 dwFileAttributes = ::GetFileAttributesW(wstr);
+//   unsigned int dwFileAttributes = ::GetFileAttributesW(wstr);
 //
 //   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 //   {
@@ -66,7 +66,7 @@
 //
 //   wstring wstrPath(get_buffer, MAX_PATH * 16);
 //
-//   if (!GetModuleFileNameW(nullptr, wstrPath, (::u32)wstrPath.get_length()))
+//   if (!GetModuleFileNameW(nullptr, wstrPath, (unsigned int)wstrPath.get_length()))
 //   {
 //
 //      return "";
@@ -156,7 +156,7 @@
 //
 //      }
 //
-//      ::u32 dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
+//      unsigned int dw = GetFinalPathNameByHandleW(hfile, nullptr, 0, VOLUME_NAME_DOS);
 //
 //      if (dw > 0)
 //      {
@@ -213,7 +213,7 @@
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//      ::u32 dwLastError = ::get_last_error();
+//      unsigned int dwLastError = ::get_last_error();
 //
 //      string strPrefix;
 //

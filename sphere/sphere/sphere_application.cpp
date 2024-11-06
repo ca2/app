@@ -94,7 +94,7 @@ namespace sphere
 
 
 
-   u32 application::guess_code_page(const ::string & str)
+   unsigned int application::guess_code_page(const ::string & str)
    {
 
       return charguess(str)();
@@ -589,7 +589,7 @@ namespace sphere
    void application::initialize_bergedge_application_interface()
    {
 
-      //i32 iCount = 32; // todo: get from bergedge profile
+      //int iCount = 32; // todo: get from bergedge profile
 
       add_factory_item < ::userstack::document >();
       add_factory_item < ::userstack::impact >();
@@ -639,7 +639,7 @@ namespace sphere
             file.from_string(m_varTopicFile);
             COPYDATASTRUCT data;
             data.dwData = 2000;
-            data.cbData = (u32)file.get_length();
+            data.cbData = (unsigned int)file.get_length();
             data.lpData = file.get_data();
             ::oswindow oswindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
 

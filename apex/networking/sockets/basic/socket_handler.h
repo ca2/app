@@ -33,7 +33,7 @@ namespace sockets
       //fd_set                     m_rfds; ///< file descriptor set monitored for read events
       //fd_set                     m_wfds; ///< file descriptor set monitored for write events
       //fd_set                     m_efds; ///< file descriptor set monitored for exceptions
-      i32                        m_iPreviousError; ///< debug select() error
+      int                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
       posix_time                     m_tlast; ///< timeout control
 
@@ -49,12 +49,12 @@ namespace sockets
       ::networking::port_t                     m_socks4_port; ///< Socks4 server port number
       string                     m_socks4_userid; ///< Socks4 userid
       bool                       m_bTryDirect; ///< Try direct connection if socks4 server fails
-      //i32                        m_resolv_id; ///< Resolver atom counter
+      //int                        m_resolv_id; ///< Resolver atom counter
       //::task_pointer        m_resolver; ///< Resolver thread pointer
       //::networking::port_t                     m_resolver_port; ///< Resolver listen port
       //socket_flag_map            m_resolve_q; ///< resolve queue
       //bool                       m_bEnablePool; ///< Connection pool enabled if true
-      i32                        m_next_trigger_id; ///< Unique trigger atom counter
+      int                        m_next_trigger_id; ///< Unique trigger atom counter
       //socket_map                 m_trigger_src; ///< mapping trigger atom to source base_socket
       //socket_socket_flag_map     m_trigger_dst; ///< mapping trigger atom to destination sockets
       //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
@@ -97,13 +97,13 @@ namespace sockets
       //void set(socket_id s,bool bRead,bool bWrite,bool bException = true) override;
 
       /** Wait for events, generate callbacks. */
-      i32 select(i32 sec, i32 usec) override;
+      int select(int sec, int usec) override;
 
       /** This method will not return until an event has been detected. */
-      i32 select() override;
+      int select() override;
 
       /** Wait for events, generate callbacks. */
-      i32 select(const class time & timeWait) override;
+      int select(const class time & timeWait) override;
 
       /** Check that a base_socket really is handled by this base_socket handler. */
       bool Valid(base_socket *) override;
@@ -125,7 +125,7 @@ namespace sockets
 
       // Connection pool
       /** find available open connection (used by connection pool). */
-      //::pointer<pool_socket>FindConnection(i32 type,const string & protocol, ::networking::address * address) override;
+      //::pointer<pool_socket>FindConnection(int type,const string & protocol, ::networking::address * address) override;
       /** enable connection pool (by default disabled). */
       void EnablePool(bool x = true) override;
       /** Check pool status.
@@ -166,11 +166,11 @@ namespace sockets
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
-      //i32 Resolve(base_socket *,const string & host,::networking::port_t port) override;
-      //i32 Resolve6(base_socket *,const string & host,::networking::port_t port) override;
+      //int Resolve(base_socket *,const string & host,::networking::port_t port) override;
+      //int Resolve6(base_socket *,const string & host,::networking::port_t port) override;
       /** Do a reverse dns lookup. */
-      //i32 Resolve(base_socket *,in_addr a) override;
-      //i32 Resolve(base_socket *,in6_addr& a) override;
+      //int Resolve(base_socket *,in_addr a) override;
+      //int Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */
       //::networking::port_t GetResolverPort() override;
       /** Resolver thread ready for queries. */
@@ -179,17 +179,17 @@ namespace sockets
       //bool Resolving(base_socket *) override;
 
       /** Fetch unique trigger atom. */
-      i32 TriggerID(base_socket *src) override;
+      int TriggerID(base_socket *src) override;
       /** Subscribe base_socket to trigger atom. */
-      bool Subscribe(i32 atom, base_socket *dst) override;
+      bool Subscribe(int atom, base_socket *dst) override;
       /** Unsubscribe base_socket from trigger atom. */
-      bool Unsubscribe(i32 atom, base_socket *dst) override;
+      bool Unsubscribe(int atom, base_socket *dst) override;
       /** Execute OnTrigger for subscribed sockets.
       \lparam atom Trigger ID
       \lparam data Data passed from source to destination
       \lparam erase Empty trigger atom source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      //void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
+      //void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
       void SetSlave(bool x = true) override;

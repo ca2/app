@@ -252,7 +252,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    base64::base64()
    {
 
-      i32 i, j;
+      int i, j;
 
       // etable
       for (j = 0; j < 3; j++)
@@ -350,9 +350,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    void base64::encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode)
    {
 
-      i32 i,hiteof= false;
+      int i,hiteof= false;
       unsigned char igroup[3],ogroup[4];
-      i32 n;
+      int n;
       char ch;
 
       uchar * enc_table = this->etable[emode];
@@ -395,9 +395,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    void base64::encode(::file::file *pfileOutput, unsigned char * pdata, memsize size, e_mode emode)
    {
 
-      i32 i, hiteof = false;
+      int i, hiteof = false;
       unsigned char igroup[3], ogroup[4];
-      i32 n;
+      int n;
       char ch;
 
       uchar * enc_table = this->etable[emode];
@@ -444,7 +444,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
 
    bool base64::decode(::file::file * pfileOutput, ::file::file * pfileInput)
    {
-      i32 i;
+      int i;
       unsigned char a[4],b[4],o[3];
       uchar uch;
 
@@ -502,7 +502,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
 
    i64 base64::decode(const ::block & block, ::file::file * pfileInput)
    {
-      i32 i;
+      int i;
       unsigned char a[4],b[4],o[3];
       uchar uch;
       unsigned char * pdata = (unsigned char *)block.begin();
@@ -544,7 +544,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
          o[1]= (b[1]<<4)|(b[2]>>2);
          o[2]= (b[2]<<6)|b[3];
          i= a[2]=='='?1:(a[3]=='='?2:3);
-         i = minimum(i, (i32) rem);
+         i = minimum(i, (int) rem);
          for (::collection::index idx = 0; idx < i; idx++)
          {
             *pdata = o[idx];

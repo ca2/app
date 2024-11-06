@@ -31,13 +31,13 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
       *target = *source;
       break;
    case 2:
-      *(::u16 *)target = *(::u16 *)source;
+      *(unsigned short *)target = *(unsigned short *)source;
       break;
    case 3:
       *(::u24 *)target = *(::u24 *)source;
       break;
    case 4:
-      *(::u32 *)target = *(::u32 *)source;
+      *(unsigned int *)target = *(unsigned int *)source;
       break;
    case 5:
       *(::u40 *)target = *(::u40 *)source;
@@ -187,7 +187,7 @@ public:
 
       }
 
-      auto i = *(u16 *)&m_pmemory.m_p->data()[m_position];
+      auto i = *(unsigned short *)&m_pmemory.m_p->data()[m_position];
 
       m_position += 2;
 
@@ -196,10 +196,10 @@ public:
    }
 
 
-   inline u16 get_u16_unbounded()
+   inline unsigned short get_u16_unbounded()
    {
 
-      auto u = *(u16 *)(m_pbyte + m_position);
+      auto u = *(unsigned short *)(m_pbyte + m_position);
 
       m_position += 2;
 

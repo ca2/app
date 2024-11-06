@@ -4,10 +4,10 @@
 namespace colorertake5
 {
 
-   const i32 StyledRegion::RD_BOLD = 1;
-   const i32 StyledRegion::RD_ITALIC = 2;
-   const i32 StyledRegion::RD_UNDERLINE = 4;
-   const i32 StyledRegion::RD_STRIKEOUT = 8;
+   const int StyledRegion::RD_BOLD = 1;
+   const int StyledRegion::RD_ITALIC = 2;
+   const int StyledRegion::RD_UNDERLINE = 4;
+   const int StyledRegion::RD_STRIKEOUT = 8;
 
    StyledHRDMapper::StyledHRDMapper(::particle * pparticle) :
       object(pparticle),
@@ -56,10 +56,10 @@ namespace colorertake5
 
 
             bool bfore = ansi_char_isdigit(curel->attr("fore").first()) != false;
-            i32 fore = atoi((curel)->attr("fore"));
+            int fore = atoi((curel)->attr("fore"));
             bool bback = ansi_char_isdigit((curel)->attr("back").last()) != false;
-            i32 back = atoi((curel)->attr("back"));
-            i32 style = atoi((curel)->attr("style"));
+            int back = atoi((curel)->attr("back"));
+            int style = atoi((curel)->attr("style"));
             RegionDefine *rdef = ___new StyledRegion(bfore, bback, fore, back, style);
             regionDefines.set_at(name, rdef);
          }
@@ -111,7 +111,7 @@ namespace colorertake5
       regionDefines.set_at(name, rd_new);
 
       // Searches and replaces old region references
-      for(i32 idx = 0; idx < regionDefinesVector.get_size(); idx++)
+      for(int idx = 0; idx < regionDefinesVector.get_size(); idx++)
       {
          if (regionDefinesVector.element_at(idx) == rd_old)
          {

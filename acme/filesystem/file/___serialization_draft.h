@@ -42,16 +42,16 @@ class stream
 {
 public:
 
-   virtual void read(i8 & i) {}
+   virtual void read(char & i) {}
    virtual void read(string & i) {}
 
-   virtual void write(const i8 & i) {}
+   virtual void write(const char & i) {}
    virtual void write(const ::string & str) {}
 
    template < typename TYPE >
    void default_exchange(TYPE & t) { is_loading() ? read(t) : write(t); }
 
-   virtual void exchange(const ::atom & atom, i8 & i) { default_exchange(i); }
+   virtual void exchange(const ::atom & atom, char & i) { default_exchange(i); }
    virtual void exchange(const ::atom & atom, string & str) { default_exchange(str); }
 
    
@@ -95,16 +95,16 @@ public:
 
    ::payload & payload();
 
-   virtual void read(i8 & i) {}
+   virtual void read(char & i) {}
    virtual void read(string & i) {}
 
-   virtual void write(const i8 & i) {}
+   virtual void write(const char & i) {}
    virtual void write(const ::string & str) {}
 
    template < typename TYPE >
    void default_exchange(const ::atom & atom, TYPE & t) { is_loading() ? t = operator[atom] : operator[atom] = t; }
 
-   virtual void exchange(const ::atom & atom, i8 & i) { default_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, char & i) { default_exchange(atom, i); }
    virtual void exchange(const ::atom & atom, string & str) { default_exchange(atom, str); }
 
 
@@ -130,17 +130,17 @@ public:
    }
 
 };
-//void __exchange(stream & stream, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(stream & stream, char & i) { __exchange_blt(stream, i); }
 //void __exchange(stream & stream, string & str) { __exchange_string(stream, str); }
 //void __exchange(stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 //
 //
-//void __exchange(stream & stream, const ::atom & atom, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(stream & stream, const ::atom & atom, char & i) { __exchange_blt(stream, i); }
 //void __exchange(stream & stream, const ::atom & atom, string & str) { __exchange_string(stream, str); }
 //void __exchange(stream & stream, const ::atom & atom, in_addr & addr) { __exchange_stringable(stream, addr); }
 //
 //
-//void __exchange(payload_stream & stream, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(payload_stream & stream, char & i) { __exchange_blt(stream, i); }
 //void __exchange(payload_stream & stream, string & str) { __exchange_string(stream, str); }
 //void __exchange(payload_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 
@@ -150,7 +150,7 @@ class window :
 {
 public:
 
-   i8                   m_iVisible;
+   char                   m_iVisible;
    string               m_strTitle;
    in_addr              m_addr;
    ::pointer<::matter> m_pobject;
@@ -203,40 +203,40 @@ class exchanger
            {
 
 
-           read(atom, i8) throw not_implemented;
-           read(atom, i16) throw not_implemented;
-           read(atom, i32) throw not_implemented;
+           read(atom, char) throw not_implemented;
+           read(atom, short) throw not_implemented;
+           read(atom, int) throw not_implemented;
            read(atom, i64) throw not_implemented;
            read(atom, unsigned char) throw not_implemented;
-           read(atom, u16) throw not_implemented;
-           read(atom, u32) throw not_implemented;
+           read(atom, unsigned short) throw not_implemented;
+           read(atom, unsigned int) throw not_implemented;
            read(atom, u64) throw not_implemented;
 
-           read(i8) throw not_implemented;
-           read(i16) throw not_implemented;
-           read(i32) throw not_implemented;
+           read(char) throw not_implemented;
+           read(short) throw not_implemented;
+           read(int) throw not_implemented;
            read(i64) throw not_implemented;
            read(unsigned char) throw not_implemented;
-           read(u16) throw not_implemented;
-           read(u32) throw not_implemented;
+           read(unsigned short) throw not_implemented;
+           read(unsigned int) throw not_implemented;
            read(u64) throw not_implemented;
 
-           write(atom, i8) throw not_implemented;
-           write(atom, i16) throw not_implemented;
-           write(atom, i32) throw not_implemented;
+           write(atom, char) throw not_implemented;
+           write(atom, short) throw not_implemented;
+           write(atom, int) throw not_implemented;
            write(atom, i64) throw not_implemented;
            write(atom, unsigned char) throw not_implemented;
-           write(atom, u16) throw not_implemented;
-           write(atom, u32) throw not_implemented;
+           write(atom, unsigned short) throw not_implemented;
+           write(atom, unsigned int) throw not_implemented;
            write(atom, u64) throw not_implemented;
 
-           write(i8) throw not_implemented;
-           write(i16) throw not_implemented;
-           write(i32) throw not_implemented;
+           write(char) throw not_implemented;
+           write(short) throw not_implemented;
+           write(int) throw not_implemented;
            write(i64) throw not_implemented;
            write(unsigned char) throw not_implemented;
-           write(u16) throw not_implemented;
-           write(u32) throw not_implemented;
+           write(unsigned short) throw not_implemented;
+           write(unsigned int) throw not_implemented;
            write(u64) throw not_implemented;
 
 
@@ -247,40 +247,40 @@ class exchanger
            {
 
 
-           read(atom, i8) read(i8)
-           read(atom, i16) read(i16)
-           read(atom, i32) read(i32)
+           read(atom, char) read(char)
+           read(atom, short) read(short)
+           read(atom, int) read(int)
            read(atom, i64) read(i64)
            read(atom, unsigned char) read(unsigned char)
-           read(atom, u16) read(u16)
-           read(atom, u32) read(u32)
+           read(atom, unsigned short) read(unsigned short)
+           read(atom, unsigned int) read(unsigned int)
            read(atom, u64) read(u64)
 
-           read(i8) m_pfile->read(i8)
-           read(i16) m_pfile->read(i16)
-           read(i32) m_pfile->read(i32)
+           read(char) m_pfile->read(char)
+           read(short) m_pfile->read(short)
+           read(int) m_pfile->read(int)
            read(i64) m_pfile->read(i64)
            read(unsigned char) m_pfile->read(unsigned char)
-           read(u16) m_pfile->read(u16)
-           read(u32) m_pfile->read(u32)
+           read(unsigned short) m_pfile->read(unsigned short)
+           read(unsigned int) m_pfile->read(unsigned int)
            read(u64) m_pfile->read(u64)
 
-           write(atom, i8) write(i8)
-           write(atom, i16) write(i16)
-           write(atom, i32) write(i32)
+           write(atom, char) write(char)
+           write(atom, short) write(short)
+           write(atom, int) write(int)
            write(atom, i64) write(i64)
            write(atom, unsigned char) write(unsigned char)
-           write(atom, u16) write(u16)
-           write(atom, u32) write(u32)
+           write(atom, unsigned short) write(unsigned short)
+           write(atom, unsigned int) write(unsigned int)
            write(atom, u64) write(u64)
 
-           write(i8) m_pfile->write(i8)
-           write(i16) m_pfile->write(i16)
-           write(i32) m_pfile->write(i32)
+           write(char) m_pfile->write(char)
+           write(short) m_pfile->write(short)
+           write(int) m_pfile->write(int)
            write(i64) m_pfile->write(i64)
            write(unsigned char) m_pfile->write(unsigned char)
-           write(u16) m_pfile->write(u16)
-           write(u32) m_pfile->write(u32)
+           write(unsigned short) m_pfile->write(unsigned short)
+           write(unsigned int) m_pfile->write(unsigned int)
            write(u64) m_pfile->write(u64)
 
 
@@ -290,22 +290,22 @@ class exchanger
            {
 
 
-           write(atom, i8) write(i8)
-           write(atom, i16) write(i16)
-           write(atom, i32) write(i32)
+           write(atom, char) write(char)
+           write(atom, short) write(short)
+           write(atom, int) write(int)
            write(atom, i64) write(i64)
            write(atom, unsigned char) write(unsigned char)
-           write(atom, u16) write(u16)
-           write(atom, u32) write(u32)
+           write(atom, unsigned short) write(unsigned short)
+           write(atom, unsigned int) write(unsigned int)
            write(atom, u64) write(u64)
 
-           write(i8) m_pfile->write(i8)
-           write(i16) m_pfile->write(i16)
-           write(i32) m_pfile->write(i32)
+           write(char) m_pfile->write(char)
+           write(short) m_pfile->write(short)
+           write(int) m_pfile->write(int)
            write(i64) m_pfile->write(i64)
            write(unsigned char) m_pfile->write(unsigned char)
-           write(u16) m_pfile->write(u16)
-           write(u32) m_pfile->write(u32)
+           write(unsigned short) m_pfile->write(unsigned short)
+           write(unsigned int) m_pfile->write(unsigned int)
            write(u64) m_pfile->write(u64)
 
 
@@ -317,40 +317,40 @@ class exchanger
            stream
            {
 
-           read(atom, i8)i8 = m_ppayload->operator[](atom);
-           read(atom, i16) i16 = m_ppayload->operator[](atom);
-           read(atom, i32) i32 = m_ppayload->operator[](atom);
+           read(atom, char)char = m_ppayload->operator[](atom);
+           read(atom, short) short = m_ppayload->operator[](atom);
+           read(atom, int) int = m_ppayload->operator[](atom);
            read(atom, i64) i64 = m_ppayload->operator[](atom);
            read(atom, unsigned char) unsigned char = m_ppayload->operator[](atom);
-           read(atom, u16) u16 = m_ppayload->operator[](atom);
-           read(atom, u32) u32 = m_ppayload->operator[](atom);
+           read(atom, unsigned short) unsigned short = m_ppayload->operator[](atom);
+           read(atom, unsigned int) unsigned int = m_ppayload->operator[](atom);
            read(atom, u64) u64 = m_ppayload->operator[](atom);
 
-           read(i8) i8 = *m_ppayload
-           read(i16) i16 = *m_ppayload
-           read(i32) i32 = *m_ppayload
+           read(char) char = *m_ppayload
+           read(short) short = *m_ppayload
+           read(int) int = *m_ppayload
            read(i64) i64 = *m_ppayload
            read(unsigned char) unsigned char = *m_ppayload
-           read(u16) u16 = *m_ppayload
-           read(u32) u32 = *m_ppayload
+           read(unsigned short) unsigned short = *m_ppayload
+           read(unsigned int) unsigned int = *m_ppayload
            read(u64) u64 = *m_ppayload
 
-           write(atom, i8) write(i8)
-           write(atom, i16) write(i16)
-           write(atom, i32) write(i32)
+           write(atom, char) write(char)
+           write(atom, short) write(short)
+           write(atom, int) write(int)
            write(atom, i64) write(i64)
            write(atom, unsigned char) write(unsigned char)
-           write(atom, u16) write(u16)
-           write(atom, u32) write(u32)
+           write(atom, unsigned short) write(unsigned short)
+           write(atom, unsigned int) write(unsigned int)
            write(atom, u64) write(u64)
 
-           write(i8) m_pfile->write(i8)
-           write(i16) m_pfile->write(i16)
-           write(i32) m_pfile->write(i32)
+           write(char) m_pfile->write(char)
+           write(short) m_pfile->write(short)
+           write(int) m_pfile->write(int)
            write(i64) m_pfile->write(i64)
            write(unsigned char) m_pfile->write(unsigned char)
-           write(u16) m_pfile->write(u16)
-           write(u32) m_pfile->write(u32)
+           write(unsigned short) m_pfile->write(unsigned short)
+           write(unsigned int) m_pfile->write(unsigned int)
            write(u64) m_pfile->write(u64)
 
            }

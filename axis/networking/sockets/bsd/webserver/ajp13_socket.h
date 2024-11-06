@@ -16,7 +16,7 @@ namespace sockets
 
       Ajp13Socket();
 
-      void OnHeader( i16 atom, i16 len );
+      void OnHeader( short atom, short len );
       void OnPacket( const char *buf, memsize sz );
 
       virtual void Respond();

@@ -101,7 +101,7 @@ namespace experience
       case e_message_left_button_double_click:
       {
                               auto point = pusermessage->m_lparam.point();
-                              if(OnLButtonDblClk((::u32)pusermessage->m_wparam, point))
+                              if(OnLButtonDblClk((unsigned int)pusermessage->m_wparam, point))
                               {
 
                                  pusermessage->m_lresult = 0;
@@ -148,7 +148,7 @@ namespace experience
       }
    }
 
-   bool menu_manager::OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point)
+   bool menu_manager::OnLButtonDblClk(unsigned int nFlags, const ::point_i32 & point)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);

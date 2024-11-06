@@ -398,7 +398,7 @@
 //   //   }
 //
 //
-//   //   make_iterator operator ++ (i32)
+//   //   make_iterator operator ++ (int)
 //   //   {
 //
 //   //      auto it = *this;
@@ -1289,7 +1289,7 @@
 //
 //      //}
 //
-//      //return i <= options()["version"].i32();
+//      //return i <= options()["version"].int();
 //
 //   }
 //
@@ -2110,7 +2110,7 @@ public:
 ////
 ////      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 ////
-////      ///for(i32 i = 0; i < nNewSize - this->size(); i++)
+////      ///for(int i = 0; i < nNewSize - this->size(); i++)
 ////      // get rid of old stuff (note: no destructors called)
 ////      MEMORY::free(this->m_begin);
 ////

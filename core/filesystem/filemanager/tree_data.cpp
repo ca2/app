@@ -1162,7 +1162,7 @@ _001SelectItem(pchild);
 
       get_selection(itemptraSelected);
 
-      for(i32 i = 0; i < itemptraSelected.get_size(); i++)
+      for(int i = 0; i < itemptraSelected.get_size(); i++)
       {
 
          stra.add(((itemptraSelected[0]->m_pdataitem.cast < ::userfs::item > ()))->user_path());
@@ -1191,7 +1191,7 @@ _001SelectItem(pchild);
 
          /*
          ::rectangle_i32 rectangle;
-         i32 iArrange = (i32) lparam;
+         int iArrange = (int) lparam;
 
          if(_001IsItemVisible(iArrange))
          {
@@ -1253,7 +1253,7 @@ _001SelectItem(pchild);
 //      }
 //      else
 //      {
-//         i32 iCSIDL = MapToCSIDL(efolder);
+//         int iCSIDL = MapToCSIDL(efolder);
 //
 //         ASSERT(iCSIDL >= 0);
 //
@@ -1293,7 +1293,7 @@ _001SelectItem(pchild);
 //
 //   }
 
-   //i32 tree_data::MapToCSIDL(EFolder efolder)
+   //int tree_data::MapToCSIDL(EFolder efolder)
    //{
    //   switch(efolder)
    //   {

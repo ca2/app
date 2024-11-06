@@ -501,10 +501,10 @@ namespace networking_bsd
          }
          //         ::time tick2= ::time::now();
          /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         (u32)((unsigned char*)&pitem->m_ipaddr)[0],
-         (u32)((unsigned char*)&pitem->m_ipaddr)[1],
-         (u32)((unsigned char*)&pitem->m_ipaddr)[2],
-         (u32)((unsigned char*)&pitem->m_ipaddr)[3],
+         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
+         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
+         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
+         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
          (tick2 - tick1));*/
          return item.m_bOk;
       }
@@ -619,10 +619,10 @@ namespace networking_bsd
 
       //      ::time tick2= ::time::now();
       //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         //       (u32)((unsigned char*)&pitem->m_ipaddr)[0],
-         //     (u32)((unsigned char*)&pitem->m_ipaddr)[1],
-         //   (u32)((unsigned char*)&pitem->m_ipaddr)[2],
-         // (u32)((unsigned char*)&pitem->m_ipaddr)[3],
+         //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
+         //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
+         //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
+         // (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
          //(tick2 - tick1));
       l = item.m_ipaddr;
 
@@ -995,7 +995,7 @@ namespace networking_bsd
          }
          ::collection::index sz = vec.get_length(); // number of unsigned char pairs
          ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
-         u16 addr16[8];
+         unsigned short addr16[8];
          for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
          {
             string bytepair = *it;
@@ -1048,7 +1048,7 @@ namespace networking_bsd
          struct addrinfo* ai = res;
          int iSaSize = sizeof(sockaddr_in6);
          //char ipstringbuffer[46];
-         //::u32 ipbufferlength = 46;
+         //unsigned int ipbufferlength = 46;
          while (ai)
          {
             // The buffer length is changed by each call to WSAAddresstoString
@@ -1226,16 +1226,16 @@ namespace networking_bsd
          {
             char slask[100]; // l2ip temporary
             *slask = 0;
-            u32 prev = 0;
+            unsigned int prev = 0;
             bool skipped = false;
             bool ok_to_skip = true;
             {
-               u16 addr16[8];
+               unsigned short addr16[8];
                struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
                ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
                for (::collection::index i = 0; i < 8; i++)
                {
-                  u16 x = ntohs(addr16[i]);
+                  unsigned short x = ntohs(addr16[i]);
                   if (*slask && (x || !ok_to_skip || prev))
                      ansi_concatenate(slask, ":");
                   if (x || !ok_to_skip)
@@ -1892,10 +1892,10 @@ namespace networking_bsd
    //         }
    //         //         ::time tick2= ::time::now();
    //         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-   //         (u32)((unsigned char*)&pitem->m_ipaddr)[0],
-   //         (u32)((unsigned char*)&pitem->m_ipaddr)[1],
-   //         (u32)((unsigned char*)&pitem->m_ipaddr)[2],
-   //         (u32)((unsigned char*)&pitem->m_ipaddr)[3],
+   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
+   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
+   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
+   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
    //         (tick2 - tick1));*/
    //         return item.m_bOk;
    //      }
@@ -2010,10 +2010,10 @@ namespace networking_bsd
    //
    ////      ::time tick2= ::time::now();
    ////      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-   //   //       (u32)((unsigned char*)&pitem->m_ipaddr)[0],
-   //   //     (u32)((unsigned char*)&pitem->m_ipaddr)[1],
-   //   //   (u32)((unsigned char*)&pitem->m_ipaddr)[2],
-   //   // (u32)((unsigned char*)&pitem->m_ipaddr)[3],
+   //   //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
+   //   //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
+   //   //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
+   //   // (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
    //   //(tick2 - tick1));
    //   l = item.m_ipaddr;
    //
@@ -2067,13 +2067,13 @@ namespace networking_bsd
    //
    //   char slask[100]; // l2ip temporary
    //   *slask = 0;
-   //   u32 prev = 0;
+   //   unsigned int prev = 0;
    //   bool skipped = false;
    //   bool ok_to_skip = true;
    //   if (mixed)
    //   {
-   //      u16 x;
-   //      u16 addr16[8];
+   //      unsigned short x;
+   //      unsigned short addr16[8];
    //      ::memory_copy(addr16, &ip, sizeof(addr16));
    //      for (::collection::index i = 0; i < 6; i++)
    //      {
@@ -2354,7 +2354,7 @@ namespace networking_bsd
       //      }
       //      index sz = vec.get_length(); // number of unsigned char pairs
       //      ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
-      //      u16 addr16[8];
+      //      unsigned short addr16[8];
       //      for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
       //      {
       //         string bytepair = *it;
@@ -2407,7 +2407,7 @@ namespace networking_bsd
       //      struct addrinfo *ai = res;
       //      int iSaSize = sizeof(sockaddr_in6);
       //      //char ipstringbuffer[46];
-      //      ::u32 ipbufferlength = 46;
+      //      unsigned int ipbufferlength = 46;
       //      while (ai)
       //      {
       //         // The buffer length is changed by each call to WSAAddresstoString
@@ -2586,16 +2586,16 @@ namespace networking_bsd
       //      {
       //         char slask[100]; // l2ip temporary
       //         *slask = 0;
-      //         u32 prev = 0;
+      //         unsigned int prev = 0;
       //         bool skipped = false;
       //         bool ok_to_skip = true;
       //         {
-      //            u16 addr16[8];
+      //            unsigned short addr16[8];
       //            struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
       //            ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
       //            for (::collection::index i = 0; i < 8; i++)
       //            {
-      //               u16 x = ntohs(addr16[i]);
+      //               unsigned short x = ntohs(addr16[i]);
       //               if (*slask && (x || !ok_to_skip || prev))
       //                  ansi_concatenate(slask, ":");
       //               if (x || !ok_to_skip)
@@ -3273,7 +3273,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<address>networking::create_ip4_address(u32 u, ::networking::port_t port)
+   ::pointer<address>networking::create_ip4_address(unsigned int u, ::networking::port_t port)
    {
 
       auto paddress2 = __allocate address();

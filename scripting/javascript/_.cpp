@@ -294,7 +294,7 @@ string getJSString(const string &str)
       case '"': replaceWith = "\\\""; break;
       default:
       {
-         i32 nCh = ((i32)nStr[i]) &0xFF;
+         int nCh = ((int)nStr[i]) &0xFF;
          if (nCh<32 || nCh>127)
          {
             char buffer[5];
@@ -339,11 +339,11 @@ CScriptLex::CScriptLex(const string &input)
    data = ansi_dup(input.c_str());
    dataOwned = true;
    dataStart = 0;
-   dataEnd = (i32) ansi_len(data);
+   dataEnd = (int) ansi_len(data);
    reset();
 }
 
-CScriptLex::CScriptLex(CScriptLex *owner, i32 startChar, i32 endChar)
+CScriptLex::CScriptLex(CScriptLex *owner, int startChar, int endChar)
 {
    data = owner->data;
    dataOwned = false;
@@ -371,7 +371,7 @@ void CScriptLex::reset()
    getNextToken();
 }
 
-void CScriptLex::match(i32 expected_tk)
+void CScriptLex::match(int expected_tk)
 {
    if (token!=expected_tk)
    {
@@ -382,7 +382,7 @@ void CScriptLex::match(i32 expected_tk)
    getNextToken();
 }
 
-string CScriptLex::getTokenStr(i32 token)
+string CScriptLex::getTokenStr(int token)
 {
    if (token>32 && token<128)
    {
@@ -720,9 +720,9 @@ void CScriptLex::getNextToken()
    tokenEnd = dataPos-3;
 }
 
-string CScriptLex::getSubString(i32 lastPosition)
+string CScriptLex::getSubString(int lastPosition)
 {
-   i32 lastCharIdx = tokenLastEnd+1;
+   int lastCharIdx = tokenLastEnd+1;
    if (lastCharIdx < dataEnd)
    {
       /* save a memory alloc by using our data array to create the
@@ -740,20 +740,20 @@ string CScriptLex::getSubString(i32 lastPosition)
 }
 
 
-CScriptLex *CScriptLex::getSubLex(i32 lastPosition)
+CScriptLex *CScriptLex::getSubLex(int lastPosition)
 {
-   i32 lastCharIdx = tokenLastEnd+1;
+   int lastCharIdx = tokenLastEnd+1;
    if (lastCharIdx < dataEnd)
       return ___new CScriptLex(this, lastPosition, lastCharIdx);
    else
       return ___new CScriptLex(this, lastPosition, dataEnd );
 }
 
-string CScriptLex::getPosition(i32 pos)
+string CScriptLex::getPosition(int pos)
 {
    if (pos<0) pos=tokenLastEnd;
-   i32 line = 1,col = 1;
-   for (i32 i=0; i<pos; i++)
+   int line = 1,col = 1;
+   for (int i=0; i<pos; i++)
    {
       char ch;
       if (i < dataEnd)
@@ -822,11 +822,11 @@ void CScriptVarLink::replaceWith(CScriptVarLink *newVar)
       replaceWith(___new CScriptVar());
 }
 
-i32 CScriptVarLink::getIntName()
+int CScriptVarLink::getIntName()
 {
    return atoi(name.c_str());
 }
-void CScriptVarLink::setIntName(i32 n)
+void CScriptVarLink::setIntName(int n)
 {
    char sIdx[64];
    sprintf_s(sIdx, sizeof(sIdx), "%d", n);
@@ -857,7 +857,7 @@ CScriptVar::CScriptVar(const string &str)
 }
 
 
-CScriptVar::CScriptVar(const string &varData, i32 varFlags)
+CScriptVar::CScriptVar(const string &varData, int varFlags)
 {
    refs = 0;
 #if DEBUG_MEMORY
@@ -887,7 +887,7 @@ CScriptVar::CScriptVar(double val)
    setDouble(val);
 }
 
-CScriptVar::CScriptVar(i32 val)
+CScriptVar::CScriptVar(int val)
 {
    refs = 0;
 #if DEBUG_MEMORY
@@ -966,7 +966,7 @@ CScriptVarLink *CScriptVar::findChild(const string &childName)
 }
 
 
-CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, i32 varFlags)
+CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, int varFlags)
 {
 
    CScriptVarLink *l = findChild(childName);
@@ -1130,7 +1130,7 @@ void CScriptVar::eraseAllChildren()
    lastChild = 0;
 }
 
-CScriptVar *CScriptVar::getArrayIndex(i32 idx)
+CScriptVar *CScriptVar::getArrayIndex(int idx)
 {
    char sIdx[64];
    sprintf_s(sIdx, sizeof(sIdx), "%d", idx);
@@ -1139,7 +1139,7 @@ CScriptVar *CScriptVar::getArrayIndex(i32 idx)
    else return ___new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_NULL); // undefined
 }
 
-void CScriptVar::setArrayIndex(i32 idx, CScriptVar *value)
+void CScriptVar::setArrayIndex(int idx, CScriptVar *value)
 {
    char sIdx[64];
    sprintf_s(sIdx, sizeof(sIdx), "%d", idx);
@@ -1159,9 +1159,9 @@ void CScriptVar::setArrayIndex(i32 idx, CScriptVar *value)
    }
 }
 
-i32 CScriptVar::getArrayLength()
+int CScriptVar::getArrayLength()
 {
-   i32 highest = -1;
+   int highest = -1;
    if (!isArray()) return 0;
 
    CScriptVarLink *link = firstChild;
@@ -1169,7 +1169,7 @@ i32 CScriptVar::getArrayLength()
    {
       if (isNumber(link->name))
       {
-         i32 val = atoi(link->name.c_str());
+         int val = atoi(link->name.c_str());
          if (val > highest) highest = val;
       }
       link = link->nextSibling;
@@ -1177,9 +1177,9 @@ i32 CScriptVar::getArrayLength()
    return highest+1;
 }
 
-i32 CScriptVar::getChildren()
+int CScriptVar::getChildren()
 {
-   i32 n = 0;
+   int n = 0;
    CScriptVarLink *link = firstChild;
    while (link)
    {
@@ -1189,13 +1189,13 @@ i32 CScriptVar::getChildren()
    return n;
 }
 
-i32 CScriptVar::getInt()
+int CScriptVar::getInt()
 {
    /* strtol understands about hex and octal */
-   if (isInt()) return (i32) intData;
+   if (isInt()) return (int) intData;
    if (isNull()) return 0;
    if (isUndefined()) return 0;
-   if (isDouble()) return (i32)doubleData;
+   if (isDouble()) return (int)doubleData;
    return 0;
 }
 
@@ -1234,7 +1234,7 @@ const string &CScriptVar::getString()
    return data;
 }
 
-void CScriptVar::setInt(i32 val)
+void CScriptVar::setInt(int val)
 {
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_INTEGER;
    intData = val;
@@ -1287,7 +1287,7 @@ bool CScriptVar::equals(CScriptVar *v)
    return res;
 }
 
-CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
+CScriptVar *CScriptVar::mathsOp(CScriptVar *b, int op)
 {
    CScriptVar *a = this;
    // Type equality check
@@ -1315,8 +1315,8 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       if (!a->isDouble() && !b->isDouble())
       {
          // use ints
-         i32 da = a->getInt();
-         i32 db = b->getInt();
+         int da = a->getInt();
+         int db = b->getInt();
          switch (op)
          {
          case '+': return ___new CScriptVar(da+db);
@@ -1553,10 +1553,10 @@ void CScriptVar::getJSON(string &destination, const string linePrefix)
    {
       string indentedLinePrefix = linePrefix+"  ";
       destination += "[\n";
-      i32 len = getArrayLength();
+      int len = getArrayLength();
       if (len>10000) len=10000; // we don't want to get stuck here!
 
-      for (i32 i=0; i<len; i++)
+      for (int i=0; i<len; i++)
       {
          getArrayIndex(i)->getJSON(destination, indentedLinePrefix);
          if (i<len-1) destination  += ",\n";
@@ -1593,7 +1593,7 @@ void CScriptVar::unref()
    }
 }
 
-i32 CScriptVar::getRefs()
+int CScriptVar::getRefs()
 {
    return refs;
 }
@@ -1653,7 +1653,7 @@ void tinyjs::execute(const string &code)
       string msg;
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
-      for (i32 i=(i32)callstack.size()-1; i>=0; i--)
+      for (int i=(int)callstack.size()-1; i>=0; i--)
          msg += string("\n") + ::as_string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
@@ -1695,7 +1695,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
       string  msg;
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
-      for (i32 i=(i32)callstack.size()-1; i>=0; i--)
+      for (int i=(int)callstack.size()-1; i>=0; i--)
          msg += "\n" + ::as_string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
@@ -1779,7 +1779,7 @@ CScriptVarLink *tinyjs::parseFunctionDefinition()
    }
    CScriptVarLink *funcVar = ___new CScriptVarLink(___new CScriptVar (TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
    parseFunctionArguments(funcVar->payload);
-   i32 funcBegin = l->tokenStart;
+   int funcBegin = l->tokenStart;
    bool noexecute = false;
    block(noexecute);
    funcVar->payload->data = l->getSubString(funcBegin);
@@ -1942,7 +1942,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
    if (l->token==LEX_ID)
    {
       CScriptVarLink *a = execute ? findInScopes(l->tokenStr) : ___new CScriptVarLink (___new CScriptVar ());
-      //debug_print("0x%08X for %s at %s\n", (u32)a, l->tokenStr.c_str(), l->getPosition().c_str());
+      //debug_print("0x%08X for %s at %s\n", (unsigned int)a, l->tokenStr.c_str(), l->getPosition().c_str());
       /* The parent if we're executing a method call */
       CScriptVar *parent = 0;
 
@@ -1973,12 +1973,12 @@ CScriptVarLink *tinyjs::factor(bool &execute)
                      'length' properly */
                   if (a->payload->isArray() && name == "length")
                   {
-                     i32 l = a->payload->getArrayLength();
+                     int l = a->payload->getArrayLength();
                      child = ___new CScriptVarLink (___new CScriptVar (l));
                   }
                   else if (a->payload->isString() && name == "length")
                   {
-                     i32 l = (i32) a->payload->getString().size();
+                     int l = (int) a->payload->getString().size();
                      child = ___new CScriptVarLink (___new CScriptVar (l));
                   }
                   else
@@ -2051,7 +2051,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       CScriptVar *contents = ___new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_ARRAY);
       /* JSON-style array */
       l->match('[');
-      i32 idx = 0;
+      int idx = 0;
       while (l->token != ']')
       {
          if (execute)
@@ -2085,7 +2085,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       if(className.case_insensitive_order("array") == 0)
       {
          l->match(LEX_ID);
-         i32 idx = 0;
+         int idx = 0;
          CScriptVar *contents = ___new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
          /* JSON-style object definition */
          l->match('(');
@@ -2179,7 +2179,7 @@ CScriptVarLink *tinyjs::term(bool &execute)
    CScriptVarLink *a = unary(execute);
    while (l->token=='*' || l->token=='/' || l->token=='%')
    {
-      i32 op = l->token;
+      int op = l->token;
       l->match(l->token);
       CScriptVarLink *b = unary(execute);
       if (execute)
@@ -2211,7 +2211,7 @@ CScriptVarLink *tinyjs::expression(bool &execute)
    while (l->token=='+' || l->token=='-' ||
           l->token==LEX_PLUSPLUS || l->token==LEX_MINUSMINUS)
    {
-      i32 op = l->token;
+      int op = l->token;
       l->match(l->token);
       if (op==LEX_PLUSPLUS || op==LEX_MINUSMINUS)
       {
@@ -2246,16 +2246,16 @@ CScriptVarLink *tinyjs::shift(bool &execute)
    CScriptVarLink *a = expression(execute);
    if (l->token==LEX_LSHIFT || l->token==LEX_RSHIFT || l->token==LEX_RSHIFTUNSIGNED)
    {
-      i32 op = l->token;
+      int op = l->token;
       l->match(op);
       CScriptVarLink *b = axis(execute);
-      i32 shift = execute ? b->payload->getInt() : 0;
+      int shift = execute ? b->payload->getInt() : 0;
       CLEAN(b);
       if (execute)
       {
          if (op==LEX_LSHIFT) a->payload->setInt(a->payload->getInt() << shift);
          if (op==LEX_RSHIFT) a->payload->setInt(a->payload->getInt() >> shift);
-         if (op==LEX_RSHIFTUNSIGNED) a->payload->setInt(((u32)a->payload->getInt()) >> shift);
+         if (op==LEX_RSHIFTUNSIGNED) a->payload->setInt(((unsigned int)a->payload->getInt()) >> shift);
       }
    }
    return a;
@@ -2270,7 +2270,7 @@ CScriptVarLink *tinyjs::condition(bool &execute)
           l->token==LEX_LEQUAL || l->token==LEX_GEQUAL ||
           l->token=='<' || l->token=='>')
    {
-      i32 op = l->token;
+      int op = l->token;
       l->match(l->token);
       b = shift(execute);
       if (execute)
@@ -2290,11 +2290,11 @@ CScriptVarLink *tinyjs::logic(bool &execute)
    while (l->token=='&' || l->token=='|' || l->token=='^' || l->token==LEX_ANDAND || l->token==LEX_OROR)
    {
       bool noexecute = false;
-      i32 op = l->token;
+      int op = l->token;
       l->match(l->token);
       bool shortCircuit = false;
       bool boolean = false;
-      // if we have i16-circuit ops, then if we know the outcome
+      // if we have short-circuit ops, then if we know the outcome
       // we don't bother to execute the other op. Even if not
       // we need to tell mathsOp it's an & or |
       if (op==LEX_ANDAND)
@@ -2382,7 +2382,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
             informationf("Trying to assign to an un-named type");
       }
 
-      i32 op = l->token;
+      int op = l->token;
       l->match(l->token);
       CScriptVarLink *rhs = axis(execute);
       if (execute)
@@ -2420,7 +2420,7 @@ void tinyjs::block(bool &execute)
    else
    {
       // fast skip of blocks
-      i32 brackets = 1;
+      int brackets = 1;
       while (l->token && brackets)
       {
          if (l->token == '{') brackets++;
@@ -2512,18 +2512,18 @@ void tinyjs::statement(bool &execute)
       // there's definitely some opportunity for optimisation here
       l->match(LEX_R_WHILE);
       l->match('(');
-      i32 whileCondStart = l->tokenStart;
+      int whileCondStart = l->tokenStart;
       bool noexecute = false;
       CScriptVarLink *cond = axis(execute);
       bool loopCond = execute && cond->payload->getBool();
       CLEAN(cond);
       CScriptLex *whileCond = l->getSubLex(whileCondStart);
       l->match(')');
-      i32 whileBodyStart = l->tokenStart;
+      int whileBodyStart = l->tokenStart;
       statement(loopCond ? execute : noexecute);
       CScriptLex *whileBody = l->getSubLex(whileBodyStart);
       CScriptLex *oldLex = l;
-      i32 loopCount = TINYJS_LOOP_MAX_ITERATIONS;
+      int loopCount = TINYJS_LOOP_MAX_ITERATIONS;
       while (loopCond && loopCount-->0)
       {
          whileCond->reset();
@@ -2555,18 +2555,18 @@ void tinyjs::statement(bool &execute)
       l->match('(');
       statement(execute); // initialisation
       //l->match(';');
-      i32 forCondStart = l->tokenStart;
+      int forCondStart = l->tokenStart;
       bool noexecute = false;
       CScriptVarLink *cond = axis(execute); // condition
       bool loopCond = execute && cond->payload->getBool();
       CLEAN(cond);
       CScriptLex *forCond = l->getSubLex(forCondStart);
       l->match(';');
-      i32 forIterStart = l->tokenStart;
+      int forIterStart = l->tokenStart;
       CLEAN(axis(noexecute)); // iterator
       CScriptLex *forIter = l->getSubLex(forIterStart);
       l->match(')');
-      i32 forBodyStart = l->tokenStart;
+      int forBodyStart = l->tokenStart;
       statement(loopCond ? execute : noexecute);
       CScriptLex *forBody = l->getSubLex(forBodyStart);
       CScriptLex *oldLex = l;
@@ -2576,7 +2576,7 @@ void tinyjs::statement(bool &execute)
          l = forIter;
          CLEAN(axis(execute));
       }
-      i32 loopCount = TINYJS_LOOP_MAX_ITERATIONS;
+      int loopCount = TINYJS_LOOP_MAX_ITERATIONS;
       while (execute && loopCond && loopCount-->0)
       {
          forCond->reset();
@@ -2680,7 +2680,7 @@ bool tinyjs::setVariable(const string &path, const string &varData)
    if (payload)
    {
       if (payload->isInt())
-         payload->setInt((i32)strtol(varData.c_str(),0,0));
+         payload->setInt((int)strtol(varData.c_str(),0,0));
       else if (payload->isDouble())
          payload->setDouble(strtod(varData.c_str(),0));
       else
@@ -2694,7 +2694,7 @@ bool tinyjs::setVariable(const string &path, const string &varData)
 /// Finds a child, looking recursively up the scopes
 CScriptVarLink *tinyjs::findInScopes(const string &childName)
 {
-   for (i32 s=(i32) scopes.size()-1; s>=0; s--)
+   for (int s=(int) scopes.size()-1; s>=0; s--)
    {
       CScriptVarLink *v = scopes[s]->findChild(childName);
       if (v) return v;

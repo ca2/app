@@ -166,7 +166,7 @@ namespace filemanager
 
          datastream()->get(::atom(), straFolderPath);
 
-         for (i32 i = 0; i < stra.get_count(); i++)
+         for (int i = 0; i < stra.get_count(); i++)
          {
 
             if (!straFolderPath.contains(stra[i]))
@@ -205,7 +205,7 @@ namespace filemanager
 
          datastream()->get("recursive", iaRecursive);
 
-         for (i32 i = 0; i < stra.get_count(); i++)
+         for (int i = 0; i < stra.get_count(); i++)
          {
 
             if (!straFolderPath.contains(stra[i]))
@@ -275,7 +275,7 @@ namespace filemanager
 
          ::collection::index iFind;
 
-         for (i32 i = 0; i < stra.get_count(); i++)
+         for (int i = 0; i < stra.get_count(); i++)
          {
 
             while ((iFind = straFolderPath.find_first(stra[i])) >= 0)

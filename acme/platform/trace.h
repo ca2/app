@@ -85,14 +85,14 @@ public:
    }
 
 
-   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 nLine, const ::scoped_string & scopedstr) override;
+   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::file::path & path, int nLine, const ::scoped_string & scopedstr) override;
 
 
 };
 
 
 
-CLASS_DECL_ACME const char * get_windows_message_name(::u32 nMsg);
+CLASS_DECL_ACME const char * get_windows_message_name(unsigned int nMsg);
 
 
 

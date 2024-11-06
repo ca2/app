@@ -163,7 +163,7 @@ CLASS_DECL_AURA int g_bAura = 0;
 
 
 
-CLASS_DECL_AURA u32 g_tickStartTime = 0;
+CLASS_DECL_AURA unsigned int g_tickStartTime = 0;
 
 
 

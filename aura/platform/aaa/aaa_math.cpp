@@ -35,9 +35,9 @@ CLASS_DECL_AURA double atan_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         fatan
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -60,9 +60,9 @@ CLASS_DECL_AURA double sqrt_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         fsqrt
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -86,9 +86,9 @@ CLASS_DECL_AURA double exp_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         fexp
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -101,9 +101,9 @@ CLASS_DECL_AURA double log_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         flog
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -116,9 +116,9 @@ CLASS_DECL_AURA double tan_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         ftan
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -131,9 +131,9 @@ CLASS_DECL_AURA double sin_dup(double d)
 #ifdef X86
     _asmxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         fsin
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -146,9 +146,9 @@ CLASS_DECL_AURA double cos_dup(double d)
 #ifdef X86
     _asmxxxx
     {
-        fld u32 PTR [d]
+        fld unsigned int PTR [d]
         fcos
-        fstp u32 ptr[d]
+        fstp unsigned int ptr[d]
     }
     return d;
 #else
@@ -158,7 +158,7 @@ CLASS_DECL_AURA double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_AURA void srand_dup(u32 seed)
+CLASS_DECL_AURA void srand_dup(unsigned int seed)
 {
 	lastrand = seed;
 }

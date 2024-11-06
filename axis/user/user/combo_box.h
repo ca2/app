@@ -157,11 +157,11 @@ namespace user
   //    LCID SetLocale(LCID nNewLocale);
       ::collection::index GetTopIndex();
       ::collection::index SetTopIndex(::collection::index nIndex);
-      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
-      void SetHorizontalExtent(::u32 nExtent);
-      ::u32 GetHorizontalExtent();
-      i32 SetDroppedWidth(::u32 nWidth);
-      i32 GetDroppedWidth();
+      ::collection::index InitStorage(::collection::count nItems, unsigned int nBytes);
+      void SetHorizontalExtent(unsigned int nExtent);
+      unsigned int GetHorizontalExtent();
+      int SetDroppedWidth(unsigned int nWidth);
+      int GetDroppedWidth();
 
 //#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
 //      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -182,11 +182,11 @@ namespace user
       void GetLBText(::collection::index nIndex, string & rString);
       strsize GetLBTextLen(::collection::index nIndex);
 
-      i32 SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
-      i32 GetItemHeight(::collection::index nIndex);
+      int SetItemHeight(::collection::index nIndex, unsigned int cyItemHeight);
+      int GetItemHeight(::collection::index nIndex);
       ::collection::index FindStringExact(::collection::index nIndexStart, const ::string & pszFind);
 
-      i32 SetExtendedUI(bool bExtended = true);
+      int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(::rectangle_i32 * prectangle);
 
@@ -223,7 +223,7 @@ namespace user
 //
 //      virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
 //
-//      virtual i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+//      virtual int CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
 //
 //      virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
 //

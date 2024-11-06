@@ -1787,7 +1787,7 @@ public:
    /// bro      2002-10-29
    ///========================================================
 
-   void escape_skip_to_character(i32 ch, i32 escape);
+   void escape_skip_to_character(int ch, int escape);
 
    ///========================================================
    /// Name   : _tcsepbrk
@@ -1798,7 +1798,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_skip_to_first_character_in(const char * chset, i32 escape);
+   void escape_skip_to_first_character_in(const char * chset, int escape);
 
 
    ///========================================================
@@ -1810,7 +1810,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, i32 escape);
+   void escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape);
 
 
 };

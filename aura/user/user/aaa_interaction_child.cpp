@@ -247,7 +247,7 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
@@ -259,9 +259,9 @@ namespace user
 //
 //      pusersystem->set_rect(&rectangle);
 //
-//      ::u32 nExStyle = 0;
+//      unsigned int nExStyle = 0;
 //
-//      ::u32 nStyle = 0;
+//      unsigned int nStyle = 0;
 //
 //      __synthesizes_creates_styles(pinteraction, nExStyle, nStyle);
 //
@@ -345,19 +345,19 @@ namespace user
    }
 
 
-   void interaction_child::__synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle)
+   void interaction_child::__synthesizes_creates_styles(::user::interaction * pinteraction, unsigned int & nExStyle, unsigned int & nStyle)
    {
 
    }
 
 
-   //void interaction_child::CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType)
+   //void interaction_child::CalcWindowRect(::rectangle_i32 * pClientRect, unsigned int nAdjustType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pClientRect);
 
    //   __UNREFERENCED_PARAMETER(nAdjustType);
-   //   //u32 dwExStyle = GetExStyle();
+   //   //unsigned int dwExStyle = GetExStyle();
    //   //if (nAdjustType == 0)
    //   //   dwExStyle &= ~WS_EX_CLIENTEDGE;
    //   //::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);
@@ -424,7 +424,7 @@ namespace user
    //}
 
 
-   //u32 interaction_child::GetStyle() const
+   //unsigned int interaction_child::GetStyle() const
    //{
 
    //   return ::user::primitive_impl::GetStyle();
@@ -432,7 +432,7 @@ namespace user
    //}
 
 
-   //u32 interaction_child::GetExStyle() const
+   //unsigned int interaction_child::GetExStyle() const
    //{
 
    //   return ::user::primitive_impl::GetExStyle();
@@ -857,7 +857,7 @@ namespace user
    }
 
 
-   void interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();

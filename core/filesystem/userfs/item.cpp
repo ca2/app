@@ -52,7 +52,7 @@ namespace userfs
 
    }
 
-   i32 item::get_index() const
+   int item::get_index() const
    {
       return m_iIndex;
    }

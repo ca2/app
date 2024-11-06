@@ -17,13 +17,13 @@ namespace draw2d_cairo
       //delete_object();
    }
 
-   i32 object::get_object(i32 nCount, void * lpObject) const
+   int object::get_object(int nCount, void * lpObject) const
    {
       //return ::GetObject(get_handle(), nCount, lpObject);
       return 0;
    }
 
-//   bool object::CreateStockObject(i32 nIndex)
+//   bool object::CreateStockObject(int nIndex)
 //   {
 //      //return (set_handle(::GetStockObject(nIndex))) != nullptr;
 //      return 0;
@@ -33,9 +33,9 @@ namespace draw2d_cairo
 //      //ASSERT(get_handle() != nullptr); return ::UnrealizeObject(get_handle());
 //      return 0;
 //   }
-//   ::u32 object::GetObjectType() const
+//   unsigned int object::GetObjectType() const
 //   {
-//      //return (::u32)::GetObjectType(get_handle());
+//      //return (unsigned int)::GetObjectType(get_handle());
 //      return 0;
 //   }
 //   bool object::operator==(const object& obj) const

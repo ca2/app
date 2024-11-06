@@ -17,7 +17,7 @@ inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * 
 
    }
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    strsize i = 1;
 
@@ -27,7 +27,7 @@ inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * 
       if (i % 4 == 3)
       {
 
-         uHash = (uHash << 5) + ((u32*)psz)[i>>2];
+         uHash = (uHash << 5) + ((unsigned int*)psz)[i>>2];
 
       }
 
@@ -62,7 +62,7 @@ inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * 
 
    }
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    strsize i = 1;
 
@@ -72,7 +72,7 @@ inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * 
       if (i % 2 == 1)
       {
 
-         uHash = (uHash << 5) + ((u32*)psz)[i >> 1];
+         uHash = (uHash << 5) + ((unsigned int*)psz)[i >> 1];
 
       }
 
@@ -107,7 +107,7 @@ inline ::u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * 
 
    }
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    for (; *psz; psz++)
    {

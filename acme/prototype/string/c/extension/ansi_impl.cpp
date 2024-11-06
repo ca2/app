@@ -2,18 +2,18 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME ::ansi_character ansi_char_tolower(i32 i) { return __ansitolower(i); }
-CLASS_DECL_ACME ::ansi_character ansi_char_toupper(i32 i) { return __ansitoupper(i); }
+CLASS_DECL_ACME ::ansi_character ansi_char_tolower(int i) { return __ansitolower(i); }
+CLASS_DECL_ACME ::ansi_character ansi_char_toupper(int i) { return __ansitoupper(i); }
 
 
-CLASS_DECL_ACME i32 ansi_char_isdigit(i32 i) { return __ansicharisdigit(i); }
-CLASS_DECL_ACME i32 ansi_char_isalpha(i32 i) { return __ansicharisalpha(i); }
-CLASS_DECL_ACME i32 ansi_char_isalnum(i32 i) { return __ansicharisalnum(i); }
-CLASS_DECL_ACME i32 ansi_char_isspace(i32 i) { return __ansicharisspace(i); }
-CLASS_DECL_ACME i32 ansi_char_isxdigit(i32 i) { return __ansicharisxdigit(i); }
+CLASS_DECL_ACME int ansi_char_isdigit(int i) { return __ansicharisdigit(i); }
+CLASS_DECL_ACME int ansi_char_isalpha(int i) { return __ansicharisalpha(i); }
+CLASS_DECL_ACME int ansi_char_isalnum(int i) { return __ansicharisalnum(i); }
+CLASS_DECL_ACME int ansi_char_isspace(int i) { return __ansicharisspace(i); }
+CLASS_DECL_ACME int ansi_char_isxdigit(int i) { return __ansicharisxdigit(i); }
 
 
-CLASS_DECL_ACME i32 ansi_char_is_hexadecimal(i32 i) { return __ansicharishexadecimal(i); }
+CLASS_DECL_ACME int ansi_char_is_hexadecimal(int i) { return __ansicharishexadecimal(i); }
 
 
 CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_character * psz);
@@ -281,7 +281,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string
 }
 
 
-CLASS_DECL_ACME i32 ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
   if (::is_null(psz))
@@ -317,7 +317,7 @@ CLASS_DECL_ACME i32 ansi_compare(const ::ansi_character * psz, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
   if (::is_null(psz))
@@ -353,7 +353,7 @@ CLASS_DECL_ACME i32 case_insensitive_ansi_compare(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME i32 ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
   if (len < 0)
@@ -396,7 +396,7 @@ CLASS_DECL_ACME i32 ansi_count_compare(const ::ansi_character * psz, const ::ans
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
   if (len < 0)
@@ -440,7 +440,7 @@ CLASS_DECL_ACME i32 case_insensitive_ansi_count_compare(const ::ansi_character *
 
 
 
-CLASS_DECL_ACME i32 ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
   if (::is_null(psz))
@@ -476,7 +476,7 @@ CLASS_DECL_ACME i32 ansi_collate(const ::ansi_character * psz, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
   if (::is_null(psz))
@@ -512,7 +512,7 @@ CLASS_DECL_ACME i32 case_insensitive_ansi_collate(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME i32 ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
   if (len < 0)
@@ -555,7 +555,7 @@ CLASS_DECL_ACME i32 ansi_count_collate(const ::ansi_character * psz, const ::ans
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 {
 
   if (len < 0)
@@ -665,7 +665,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_next_token(const ::ansi_character * deli
 }
 
 
-CLASS_DECL_ACME i32 ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
   if (::is_null(psz)) return false;
@@ -686,7 +686,7 @@ CLASS_DECL_ACME i32 ansi_begins(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
   if (::is_null(psz)) return false;
@@ -740,7 +740,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const 
 }
 
 
-CLASS_DECL_ACME i32 ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
   if (::is_null(psz)) return false;
@@ -763,7 +763,7 @@ CLASS_DECL_ACME i32 ansi_ends(const ::ansi_character * psz, const ::ansi_charact
 }
 
 
-CLASS_DECL_ACME i32 case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
   if (::is_null(psz)) return false;
@@ -810,7 +810,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_cha
 //CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
 
 
-CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -820,7 +820,7 @@ CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, i32 iBase, enum
 }
 
 
-CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -830,7 +830,7 @@ CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, i32 iBase, enum
 }
 
 
-CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -840,7 +840,7 @@ CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, u32 u, i32 iBase, enum
 }
 
 
-CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -850,7 +850,7 @@ CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, i32 i, i32 iBase, enum
 }
 
 
-CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
+CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
 {
 
   auto len = ansi_length(psz);
@@ -892,7 +892,7 @@ CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi
 }
 
 
-CLASS_DECL_ACME i32 ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
+CLASS_DECL_ACME int ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
 {
 
   auto len = ansi_length(psz);
@@ -1184,7 +1184,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 
 
 
-//CLASS_DECL_ACME void                   ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, i32 * numargs, i32 * numchars);
+//CLASS_DECL_ACME void                   ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, int * numargs, int * numchars);
 
 
 

@@ -29,7 +29,7 @@ namespace file
      unsigned char *_bufferBase;
      reader * _stream;
      u64 _processedSize;
-     u32 _bufferSize;
+     unsigned int _bufferSize;
      bool _wasFinished;
 
      bool ReadBlock();
@@ -41,7 +41,7 @@ namespace file
      in_buffer();
      ~in_buffer() { Free(); }
 
-     bool Create(u32 bufferSize);
+     bool Create(unsigned int bufferSize);
      void Free();
 
      void SetStream(reader *stream);
@@ -65,16 +65,16 @@ namespace file
          return ReadBlock2();
        return *_buffer++;
      }
-     u32 ReadBytes(unsigned char *buf, u32 size_i32)
+     unsigned int ReadBytes(unsigned char *buf, unsigned int size_i32)
      {
-       if ((u32)(_bufferLimit - _buffer) >= size_i32)
+       if ((unsigned int)(_bufferLimit - _buffer) >= size_i32)
        {
-         for (u32 i = 0; i < size; i++)
+         for (unsigned int i = 0; i < size; i++)
            buf[i] = _buffer[i];
          _buffer += size;
          return size;
        }
-       for (u32 i = 0; i < size; i++)
+       for (unsigned int i = 0; i < size; i++)
        {
          if (_buffer >= _bufferLimit)
            if (!ReadBlock())

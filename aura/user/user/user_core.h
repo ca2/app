@@ -114,7 +114,7 @@ namespace user
 
       //bool                                                  m_bMatterFromHttpCache;
 
-      //::u32                                                 m_dwLongPhRESSingTime;
+      //unsigned int                                                 m_dwLongPhRESSingTime;
 
 
       //::pointer<::userex::userex>                        m_puserex;
@@ -167,7 +167,7 @@ namespace user
       //virtual virtual void term_instance() override;
 
 
-      virtual void LoadStdProfileSettings(::u32 nMaxMRU = 10);
+      virtual void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
 
       virtual ::collection::count get_template_count() const;
       virtual ::pointer<::user::impact_system>get_template(::collection::index index) const;
@@ -181,7 +181,7 @@ namespace user
       //virtual void initialize(::particle * pparticle) override;
 
 
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();

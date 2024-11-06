@@ -644,7 +644,7 @@ void directory_system::set_path_install_folder(const string & strPath)
 
    string strCandidate;
 
-   for (i32 i = 0; i < patha.get_count(); i++)
+   for (int i = 0; i < patha.get_count(); i++)
    {
 
       strCandidate = patha[i] / pszTopic;

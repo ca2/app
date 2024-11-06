@@ -41,12 +41,12 @@ public:
 
    ::rectangle_i32                                 m_rectangle;
 
-   i32                              m_iIndent;
+   int                              m_iIndent;
    bool                             m_bPendingLayoutUpdate;
    bool                             m_bVisible;
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
-   i32                              m_iAlign;
+   int                              m_iAlign;
    ::user::interaction *            m_puserinteraction;
    xfplayer_impact_linea *              m_pContainer;
 
@@ -77,12 +77,12 @@ public:
 
 
    double                           m_dXfplayerImpactLineBlend;
-   i32                              m_nFont;
+   int                              m_nFont;
    ::rectangle_i32                           m_rectangleInvalidate;
-   i32                              m_iAnimateType;
+   int                              m_iAnimateType;
    double                           m_dAnimateProgress;
    double                           m_dAnimateProgressIncrement;
-   i32                              m_iTextEffect;
+   int                              m_iTextEffect;
    ::draw2d::pen *                      m_lpPenEmboss;
    ::color::color                         m_colorForeground;
    ::draw2d::pen *                      m_ppenLyricLeft;
@@ -126,9 +126,9 @@ public:
    ::draw2d::graphics_pointer & pgraphics,
    const string & str,
 
-   i32 left,
-   i32 top,
-   i32 ignore1,
+   int left,
+   int top,
+   int ignore1,
    ::color32_t color32,
    ::color::color crOutline,
    strsize iLen,
@@ -138,9 +138,9 @@ public:
    ::draw2d::graphics_pointer & pgraphics,
    ::image::image *pimageCache,
    const ::scoped_string & scopedstr,
-   i32 iLeft,
-   i32 iTop,
-   i32 iWidth,
+   int iLeft,
+   int iTop,
+   int iWidth,
    ::color32_t color32,
    ::color::color crOutline,
    strsize iLen,
@@ -156,21 +156,21 @@ public:
    void Validate(const ::rectangle_i32 & rectangle = {});
    void Invalidate(const ::rectangle_i32 & rectangle = {});
    //void AddVmsFont(::write_text::font * pfont);
-   //i32 GetVmsFontCount();
+   //int GetVmsFontCount();
    void SetPlacement(const ::rectangle_i32 & rectangle);
-   i32 SetLyricColors(::color::color colorLeft, ::color::color colorRight);
-   i32 SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
+   int SetLyricColors(::color::color colorLeft, ::color::color colorRight);
+   int SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
-   i32 MapToFontEffect(i32 iLineEffect);
+   int MapToFontEffect(int iLineEffect);
 
 
    void SetForegroundColor(::color32_t color32);
    void SetEmbossPen(::draw2d::pen * pPen);
 
-   void SetTextEffect(i32 iTextEffect);
+   void SetTextEffect(int iTextEffect);
 
-   void SetAnimateType(i32 iAnimateType);
+   void SetAnimateType(int iAnimateType);
 
    void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, rectangle_i32_array &   rectaModified);
 
@@ -179,15 +179,15 @@ public:
    void GetPlacement(::rectangle_i32 * prectangle);
 
    void SetPlaement(const ::rectangle_i32 & rectangle);
-   void SetAlign(i32 iAlign);
-   static const i32 AlignLeft;
-   static const i32 AlignRight;
+   void SetAlign(int iAlign);
+   static const int AlignLeft;
+   static const int AlignRight;
 
    void SetAutoSize(bool bAutoSize);
 
 
 
-   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle);
+   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, int flags, const ::rectangle_i32 & rectangle);
 
 
    void add_char(::wide_character wch, strsize &index);

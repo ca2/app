@@ -6,8 +6,8 @@
 //
 //#ifdef __cplusplus
 //
-//CLASS_DECL_APEX void * __thread_get_data(itask_t thread,u32 dwIndex);
-//CLASS_DECL_APEX int_bool __thread_set_data(itask_t thread,u32 dwIndex,void * lpTlsValue);
+//CLASS_DECL_APEX void * __thread_get_data(itask_t thread,unsigned int dwIndex);
+//CLASS_DECL_APEX int_bool __thread_set_data(itask_t thread,unsigned int dwIndex,void * lpTlsValue);
 //
 //#endif
 

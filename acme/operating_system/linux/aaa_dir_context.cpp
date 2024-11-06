@@ -245,7 +245,7 @@ namespace linux
 
             straDir.ls_dir(listing.m_pathFinal);
 
-            for(i32 i = 0; i < straDir.get_count(); i++)
+            for(int i = 0; i < straDir.get_count(); i++)
             {
 
                string strDir = straDir[i];
@@ -305,7 +305,7 @@ namespace linux
 
          ::dir::ls(stra, listing.m_pathFinal);
 
-         for(i32 i = 0; i < stra.get_count(); i++)
+         for(int i = 0; i < stra.get_count(); i++)
          {
 
             auto & strPath = stra[i];
@@ -535,7 +535,7 @@ pdirectorysystem->is(path))
          if(!::dir::mkdir(stra[i]))
          {
 
-            ::u32 dwError = ::get_last_error();
+            unsigned int dwError = ::get_last_error();
 
             if(dwError == ERROR_ALREADY_EXISTS)
             {
@@ -613,7 +613,7 @@ pdirectorysystem->is(path))
 
          straPath.ls(psz);
 
-         for(i32 i = 0; i < straPath.get_count(); i++)
+         for(int i = 0; i < straPath.get_count(); i++)
          {
 
             if(is(straPath[i]))

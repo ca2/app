@@ -193,7 +193,7 @@ namespace fs_folder_sync_dropbox
    //}
 
 
-   //string folder_sync::eat_end_level(const ::file::path & path, i32 iCount)
+   //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
    //{
 
    //   string strPath(pszPath);

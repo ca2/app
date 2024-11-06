@@ -1748,7 +1748,7 @@ this->m_erange = e_range_none;
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   ::std::strong_ordering escape_case_insensitive_count_order(const ::scoped_string& scopedstr, i32 escape) const;
+   ::std::strong_ordering escape_case_insensitive_count_order(const ::scoped_string& scopedstr, int escape) const;
 
 
 

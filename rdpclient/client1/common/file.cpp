@@ -203,7 +203,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::string & n
 		file->lines[index].name = _strdup(name);
 		if (!file->lines[index].name)
 			return -1;
-		file->lines[index].iValue = (::u32) value;
+		file->lines[index].iValue = (unsigned int) value;
 
 		file->lines[index].flags = RDP_FILE_LINE_FLAG_FORMATTED;
 		file->lines[index].flags |= RDP_FILE_LINE_FLAG_TYPE_INTEGER;
@@ -907,7 +907,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 			return false;
 
 		if (port > 0)
-			freerdp_set_param_uint32(settings, FreeRDP_ServerPort, (::u32) port);
+			freerdp_set_param_uint32(settings, FreeRDP_ServerPort, (unsigned int) port);
 
 		free(host);
 	}
@@ -1029,7 +1029,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 			return false;
 
 		if (port > 0)
-			freerdp_set_param_uint32(settings, FreeRDP_GatewayPort, (::u32) port);
+			freerdp_set_param_uint32(settings, FreeRDP_GatewayPort, (unsigned int) port);
 
 		free(host);
 	}

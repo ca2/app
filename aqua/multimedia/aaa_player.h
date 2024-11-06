@@ -22,7 +22,7 @@ namespace wave
       enum_device_state                            m_edevicestate;
       enum_decoder_state                           m_epluginstate;
       enum_player_state                            m_eplayerstate;
-      i32                                          m_iBufferId;
+      int                                          m_iBufferId;
       enum_purpose                                 m_epurpose;
       ::pointer<::iaudio::wave_stream_effect>     m_pstreameffectOut;
 

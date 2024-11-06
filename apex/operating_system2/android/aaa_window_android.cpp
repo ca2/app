@@ -38,9 +38,9 @@ bool window_android::create_buffer(const ::size & size,int iStrideParam)
 
    //}
 
-   //i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
+   //int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cxParam);
 
-   i32 iStride = iStrideParam;
+   int iStride = iStrideParam;
 
    //m_mem.set_size(iStride * cyParam);
 

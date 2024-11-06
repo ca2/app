@@ -27,12 +27,12 @@ public:
    //operator enum_check () const { return m_payload.echeck(); }
 
    operator bool() const { return m_payload.get_bool(); }
-   operator i8 ()const { return m_payload.as_i8(); }
+   operator char ()const { return m_payload.as_i8(); }
    operator unsigned char ()const { return m_payload.as_u8(); }
-   operator i16 () const { return m_payload.as_i16(); }
-   operator u16 ()const { return m_payload.as_u16(); }
-   operator i32 () const { return m_payload.as_i32(); }
-   operator u32 ()const { return m_payload.as_u32(); }
+   operator short () const { return m_payload.as_i16(); }
+   operator unsigned short ()const { return m_payload.as_u16(); }
+   operator int () const { return m_payload.as_i32(); }
+   operator unsigned int ()const { return m_payload.as_u32(); }
    operator i64 () const { return m_payload.as_i64(); }
    operator u64 ()const { return m_payload.as_u64(); }
 

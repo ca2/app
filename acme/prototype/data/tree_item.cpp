@@ -378,7 +378,7 @@ namespace data
 
          }
 
-         if (ptreeitem->m_dwUser == (u32)iUserData)
+         if (ptreeitem->m_dwUser == (unsigned int)iUserData)
          {
 
             return ptreeitem;
@@ -1142,7 +1142,7 @@ namespace data
    ::collection::index tree_item::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
    {
       
-      i32 iIndex = 0;
+      int iIndex = 0;
 
       if (piLevel)
       {

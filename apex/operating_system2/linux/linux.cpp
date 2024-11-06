@@ -6,13 +6,13 @@
 namespace linux
 {
 
-   i32 function()
+   int function()
    {
       return 0;
    }
 
 
-//   ::u32 GetTempPath(string & str)
+//   unsigned int GetTempPath(string & str)
 //   {
 //      return ::GetTempPathW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
 //   }

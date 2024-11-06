@@ -118,7 +118,7 @@ namespace prompt
 
                         string strMin;
 
-                        strMin.formatf("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.formatf("%d", ((int)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
@@ -154,7 +154,7 @@ namespace prompt
 
                         string strMin;
 
-                        strMin.formatf("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.formatf("%d", ((int)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
@@ -170,7 +170,7 @@ namespace prompt
 
                         m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
 
-                        papp->send_simple_command("winactionareaview::show_calendar(\""+ as_string((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        papp->send_simple_command("winactionareaview::show_calendar(\""+ as_string((int) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
                         bOk = true;
 

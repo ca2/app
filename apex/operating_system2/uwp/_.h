@@ -12,7 +12,7 @@
 #include <shlobj.h>
 
 
-//string get_error_message(::u32 dwError);
+//string get_error_message(unsigned int dwError);
 
 
 

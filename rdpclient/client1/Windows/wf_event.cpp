@@ -39,7 +39,7 @@ static HWND g_focus_hWnd;
 #define X_POS(lParam) ((::u3216) (lParam & 0xFFFF))
 #define Y_POS(lParam) ((::u3216) ((lParam >> 16) & 0xFFFF))
 
-BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop);
+BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, unsigned int rop);
 void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y);
 
 static BOOL g_flipping_in;
@@ -54,7 +54,7 @@ static BOOL alt_ctrl_down()
 LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	wfContext* wfc;
-	::u32 rdp_scancode;
+	unsigned int rdp_scancode;
 	rdpInput* input;
 	PKBDLLHOOKSTRUCT p;
 
@@ -187,7 +187,7 @@ void wf_event_focus_in(wfContext* wfc)
 		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x(), (::u3216)point.y());
 }
 
-static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 {
 	int delta;
 	int flags;
@@ -247,7 +247,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 
 }
 
-//LRESULT CALLBACK wf_event_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK wf_event_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //{
 //	HDC hdc;
 //	LONG_PTR ptr;
@@ -615,7 +615,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	return 0;
 //}
 //
-//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, ::u32 rop)
+//BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, unsigned int rop)
 //{
 //	int ww, wh, dw, dh;
 //

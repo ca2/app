@@ -436,7 +436,7 @@ namespace html
 
          m_pimpl->implement_phase1(phtmldata, this);
 
-         for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+         for (int i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->implement_phase1(phtmldata);
@@ -506,7 +506,7 @@ namespace html
             && etag != tag_tr)
       {
 
-         for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+         for (int i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->layout_phase0(phtmldata);
@@ -555,7 +555,7 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate1.m_cy = 0.f;
 
-         for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+         for (int i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->layout_phase1(phtmldata);
@@ -690,7 +690,7 @@ namespace html
 
       m_pimpl->layout_phase2(phtmldata);
 
-      for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+      for (int i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          m_elementalptra[i]->layout_phase2(phtmldata);
@@ -862,7 +862,7 @@ namespace html
       if (m_pstyle->m_edisplay == display_table)
       {
 
-         for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+         for (int i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->_001OnDraw(phtmldata);
@@ -887,7 +887,7 @@ namespace html
 
          }
 
-         for (i32 i = 0; i < m_elementalptra.get_size(); )
+         for (int i = 0; i < m_elementalptra.get_size(); )
          {
 
             element * pelemental = m_elementalptra[i];
@@ -962,7 +962,7 @@ namespace html
 
          m_atomTagName = ptag->get_name();
 
-         for (i32 i = 0; i < ptag->attra().get_size(); i++)
+         for (int i = 0; i < ptag->attra().get_size(); i++)
          {
 
             m_propertyset[ptag->attra()[i]->get_name()] = ptag->attra()[i]->get_value();
@@ -1016,7 +1016,7 @@ namespace html
 
          }
 
-         for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
+         for (int i = 0; i < ptag->baseptra().get_size(); i++)
          {
             auto pelemental  = __allocate ::html::element();
 
@@ -1380,7 +1380,7 @@ namespace html
 
       element * pelemental = nullptr;
 
-      for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+      for (int i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          pelemental = m_elementalptra[i]->get_element_by_name(atom);
@@ -1420,7 +1420,7 @@ namespace html
 
       element * pelemental = nullptr;
 
-      for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+      for (int i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          pelemental = m_elementalptra[i]->get_element_by_id(atom);
@@ -1474,7 +1474,7 @@ namespace html
 
             element * pelemental;
 
-            for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+            for (int i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                pelemental = m_elementalptra[i]->hit_test(phtmldata, point);
@@ -1550,7 +1550,7 @@ namespace html
 
             dMin = d;
 
-            for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+            for (int i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                element * pelemental = m_elementalptra[i]->bound_hit_test(phtmldata, point, dMin);
@@ -1714,7 +1714,7 @@ namespace html
       try
       {
 
-         for(i32 i = 0; i < m_elementalptra.get_size(); i++)
+         for(int i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             try
@@ -1844,7 +1844,7 @@ namespace html
          else
          {
 
-            for (i32 i = 0; i < m_elementalptra.get_size(); i++)
+            for (int i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                string strHtml;

@@ -14,7 +14,7 @@ public:
    char *         m_pszBuffer;
 
 
-   stringtow(wstring & str, i32 iAllocCount = 0);
+   stringtow(wstring & str, int iAllocCount = 0);
    ~stringtow();
 
 

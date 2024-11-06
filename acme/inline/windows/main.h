@@ -2,10 +2,10 @@
 #pragma once
 
 
-i32 WINAPI acme_win_main(::platform::application* papp, HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow);
+int WINAPI acme_win_main(::platform::application* papp, HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow);
 
 
-i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 {
 
 	auto papp = __allocate APPLICATION::application();

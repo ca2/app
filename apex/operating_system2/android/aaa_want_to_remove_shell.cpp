@@ -2,7 +2,7 @@
 //#include "android.h"
 
 /***
-*i32 _validdrive( unsigned drive ) -
+*int _validdrive( unsigned drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -14,7 +14,7 @@
 *
 *******************************************************************************/
 /*
-i32 __cdecl _validdrive (
+int __cdecl _validdrive (
     unsigned drive
     )
 {
@@ -37,9 +37,9 @@ i32 __cdecl _validdrive (
 }*/
 
 /*WCHAR * __cdecl _wgetdcwd (
-        i32 drive,
+        int drive,
         WCHAR *pnbuf,
-        i32 maxlen
+        int maxlen
         );
 
         */
@@ -64,7 +64,7 @@ i32 __cdecl _validdrive (
 *
 *Entry:
 *       _TSCHAR *pnbuf = pointer to a buffer maintained by the ::account::user;
-*       i32 maxlen = length of the buffer pointed to by pnbuf;
+*       int maxlen = length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -77,7 +77,7 @@ i32 __cdecl _validdrive (
 
 /*WCHAR * __cdecl _wgetcwd (
         WCHAR *pnbuf,
-        i32 maxlen
+        int maxlen
         )
 {
         WCHAR *retval;
@@ -104,10 +104,10 @@ i32 __cdecl _validdrive (
 *       side effects: no global data is used or affected
 *
 *Entry:
-*       i32 drive   - number of the drive being inquired about
+*       int drive   - number of the drive being inquired about
 *                     0 = default, 1 = 'a:', 2 = 'b:', etc.
 *       _TSCHAR *pnbuf - pointer to a buffer maintained by the ::account::user;
-*       i32 maxlen  - length of the buffer pointed to by pnbuf;
+*       int maxlen  - length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -120,15 +120,15 @@ i32 __cdecl _validdrive (
 
 
 /*WCHAR * __cdecl _wgetdcwd (
-        i32 drive,
+        int drive,
         WCHAR *pnbuf,
-        i32 maxlen
+        int maxlen
         )
 {
         WCHAR *p;
         WCHAR dirbuf[_MAX_PATH];
         WCHAR drvstr[4];
-        i32 len;
+        int len;
         WCHAR *pname; /* only used as argument to GetFullPathName */
 
 /*
@@ -201,7 +201,7 @@ i32 __cdecl _validdrive (
 /*#ifndef WPRFLAG
 
 /***
-*i32 _validdrive( unsigned drive ) -
+*int _validdrive( unsigned drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -213,7 +213,7 @@ i32 __cdecl _validdrive (
 *
 *******************************************************************************/
 
-/*i32 __cdecl _validdrive (
+/*int __cdecl _validdrive (
     unsigned drive
     )
 {
@@ -259,21 +259,21 @@ namespace android
    {
 
       /*
-      ::u32 dwVersion = GetVersion();
+      unsigned int dwVersion = GetVersion();
 
       // get the Windows version.
 
-      ::u32 dwWindowsMajorVersion =  (::u32)(lower_u8(LOWORD(dwVersion)));
-      //   ::u32 dwWindowsMinorVersion =  (::u32)(HIBYTE(LOWORD(dwVersion)));
+      unsigned int dwWindowsMajorVersion =  (unsigned int)(lower_u8(LOWORD(dwVersion)));
+      //   unsigned int dwWindowsMinorVersion =  (unsigned int)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
 
-      ::u32 dwBuild;
+      unsigned int dwBuild;
 
       if (dwVersion < I32_MINIMUM)              // Windows NT
-          dwBuild = (::u32)(HIWORD(dwVersion));
+          dwBuild = (unsigned int)(HIWORD(dwVersion));
       else if (dwWindowsMajorVersion < 4)      // Win32s
-          dwBuild = (::u32)(HIWORD(dwVersion) & ~0x8000);
+          dwBuild = (unsigned int)(HIWORD(dwVersion) & ~0x8000);
       else                                     // Windows Me/98/95
           dwBuild =  0;
 
@@ -439,9 +439,9 @@ namespace android
    }
 
 
-   ::u32 WINAPI shell::_GetFullPathName(
+   unsigned int WINAPI shell::_GetFullPathName(
    const unichar * lpFileName,
-   ::u32 nBufferLength,
+   unsigned int nBufferLength,
    unichar * lpBuffer,
    unichar ** lpFilePart)
    {
@@ -450,22 +450,22 @@ namespace android
    string str;
    char * lpsz = str.GetBuffer(nBufferLength * 2);
    char * lpszFilePart;
-   ::u32 dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
+   unsigned int dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
    str.ReleaseBuffer();
    ACPToUnicode(lpBuffer, nBufferLength, str);
-   *lpFilePart = lpBuffer + ((i32) (lpszFilePart - lpsz));
+   *lpFilePart = lpBuffer + ((int) (lpszFilePart - lpsz));
    return dw;
    }
 
    int_bool WINAPI shell::_GetVolumeInformation(
      const unichar * lpRootPathName,           // root directory
      unichar * lpVolumeNameBuffer,        // volume name buffer
-     ::u32 nVolumeNameSize,            // length of name buffer
+     unsigned int nVolumeNameSize,            // length of name buffer
      LPDWORD lpVolumeSerialNumber,     // volume serial number
      LPDWORD lpMaximumComponentLength, // maximum file name length
      LPDWORD lpFileSystemFlags,        // file system options
      unichar * lpFileSystemNameBuffer,    // file system name buffer
-     ::u32 nFileSystemNameSize)         // length of file system name buffer
+     unsigned int nFileSystemNameSize)         // length of file system name buffer
    {
    string strRootPathName;
    string strVolumeNameBuffer;
@@ -496,10 +496,10 @@ namespace android
 
    DWORD_PTR shell::_SHGetFileInfo(
    const unichar * pszPath,
-   ::u32 dwFileAttributes,
+   unsigned int dwFileAttributes,
    SHFILEINFOW *psfi,
-   ::u32 cbFileInfo,
-   ::u32 uFlags)
+   unsigned int cbFileInfo,
+   unsigned int uFlags)
    {
    __UNREFERENCED_PARAMETER(cbFileInfo);
    string strPath;
@@ -524,12 +524,12 @@ namespace android
 
    int_bool shell::_GetStringTypeEx(
    LCID uCodePage,
-   ::u32 dwInfoType,
+   unsigned int dwInfoType,
    const unichar * lpSrcStr,
-   i32 cchSrc,
+   int cchSrc,
    LPWORD lpCharType)
    {
-   i32 iCount = cchSrc;
+   int iCount = cchSrc;
    if(iCount < 0)
      iCount = unicode_to_multibyte_count(uCodePage, lpSrcStr);
    string str;
@@ -551,21 +551,21 @@ namespace android
    }
 
 
-   ::u32 shell::_GetTempPath(
-     ::u32 nBufferLength,
+   unsigned int shell::_GetTempPath(
+     unsigned int nBufferLength,
      unichar * lpBuffer)
    {
    string str;
-   ::u32 dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
+   unsigned int dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
    str.ReleaseBuffer();
    ACPToUnicode(lpBuffer, nBufferLength, str);
    return dw;
    }
 
-   ::u32 shell::_GetTempFileName(
+   unsigned int shell::_GetTempFileName(
    const unichar * lpPathName,
    const unichar * lpPrefixString,
-   ::u32 uUnique,
+   unsigned int uUnique,
    unichar * lpTempFileName)
    {
    string strPathName;
@@ -573,7 +573,7 @@ namespace android
    string strTempFileName;
    UnicodeToACP(strPathName, lpPathName);
    UnicodeToACP(strPrefixString, lpPrefixString);
-   ::u32 user = ::GetTempFileNameA(
+   unsigned int user = ::GetTempFileNameA(
      strPathName,
      strPrefixString,
      uUnique,
@@ -593,11 +593,11 @@ namespace android
 
    HANDLE shell::_CreateFile(
    const unichar * lpFileName,
-   ::u32 dwDesiredAccess,
-   ::u32 dwShareMode,
+   unsigned int dwDesiredAccess,
+   unsigned int dwShareMode,
    LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-   ::u32 dwCreationDisposition,
-   ::u32 dwFlagsAndAttributes,
+   unsigned int dwCreationDisposition,
+   unsigned int dwFlagsAndAttributes,
    HANDLE hTemplateFile
    )
    {
@@ -615,14 +615,14 @@ namespace android
    }
 
 
-   ::u32 shell::_GetModuleFileName(
+   unsigned int shell::_GetModuleFileName(
    HMODULE hModule,
    unichar * lpFilename,
-   ::u32 nSize
+   unsigned int nSize
    )
    {
    string str;
-   ::u32 dw = ::GetModuleFileNameA(hModule, str.GetBuffer(nSize * 2), nSize * 2);
+   unsigned int dw = ::GetModuleFileNameA(hModule, str.GetBuffer(nSize * 2), nSize * 2);
    str.ReleaseBuffer();
    ACPToUnicode(lpFilename, nSize, str);
    return dw;
@@ -637,7 +637,7 @@ namespace android
 
    string strClassName;
    const char * lpszClassName;
-   if(((::u32) lpClassName) >> 16 == 0)
+   if(((unsigned int) lpClassName) >> 16 == 0)
    {
      lpszClassName = (const char *) lpClassName;
    }
@@ -659,7 +659,7 @@ namespace android
    lpWndClass->hCursor = wndclass.hCursor;
    lpWndClass->hbrBackground = wndclass.hbrBackground;
 
-   /*   if(((::u32) wndclass) >> 16 == 0)
+   /*   if(((unsigned int) wndclass) >> 16 == 0)
    {
      lpszClassName = (const char *) lpClassName;
    }
@@ -705,14 +705,14 @@ namespace android
 
 
    oswindow shell::_CreateWindowEx(
-      ::u32 dwExStyle,
+      unsigned int dwExStyle,
       const unichar * lpClassName,
       const unichar * lpWindowName,
-      ::u32 dwStyle,
-      i32 x,
-      i32 y,
-      i32 nWidth,
-      i32 nHeight,
+      unsigned int dwStyle,
+      int x,
+      int y,
+      int nWidth,
+      int nHeight,
       oswindow hWndParent,
       HMENU hMenu,
       HINSTANCE hInstance,
@@ -720,7 +720,7 @@ namespace android
    {
       string strClassName;
       const char * lpszClassName;
-      if(((::u32) lpClassName) >> 16 == 0)
+      if(((unsigned int) lpClassName) >> 16 == 0)
       {
          lpszClassName = (const char *) lpClassName;
       }

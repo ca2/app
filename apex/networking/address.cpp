@@ -45,7 +45,7 @@ namespace networking
    }
 
 //
-//   address::address(i32 family, ::networking::port_t port)
+//   address::address(int family, ::networking::port_t port)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS
@@ -603,7 +603,7 @@ namespace networking
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
-//   i32 address::sa_len() const
+//   int address::sa_len() const
 //   {
 //
 //      int iFamilyLen = u.s.get_family_len();
@@ -638,7 +638,7 @@ namespace networking
    //}
 
 
-//   address ipv4(u32 u, ::networking::port_t port)
+//   address ipv4(unsigned int u, ::networking::port_t port)
 //   {
 //
 //      address a;

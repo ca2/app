@@ -127,7 +127,7 @@
 //CLASS_DECL_APEX bool task_set_name(htask_t htask, const ::scoped_string & scopedstrName);
 
 // Use instead of PostQuitMessage in OLE server applications
-//CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(int nExitCode);
 
 //typedef void     (*__THREADPROC)(void *);
 
@@ -162,10 +162,10 @@ class thread_startup;
 //
 //   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
 //
-//   //CLASS_DECL_APEX i32 priority();
+//   //CLASS_DECL_APEX int priority();
 //
 //
-//   //inline i32 get_priority_none()
+//   //inline int get_priority_none()
 //   //{
 //
 //   //   return e_priority_none;
@@ -173,7 +173,7 @@ class thread_startup;
 //   //}
 //
 //
-//   //inline i32 get_priority_normal()
+//   //inline int get_priority_normal()
 //   //{
 //
 //   //   return e_priority_normal;
@@ -243,7 +243,7 @@ class thread_startup;
 
 
 
-//CLASS_DECL_APEX u32 random_processor_index_generator();
+//CLASS_DECL_APEX unsigned int random_processor_index_generator();
 
 
 //CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam);
@@ -285,7 +285,7 @@ CLASS_DECL_ACME string get_task_name(htask_t htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications
-//CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(int nExitCode);
 
 
 //#if !defined(UNIVERSAL_WINDOWS)

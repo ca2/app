@@ -15,7 +15,7 @@ inline bool __QPDecode(
    int nSrcLen,
    char * szDest,
    int * pnDestLen,
-   ::u32 uFlags = 0)
+   unsigned int uFlags = 0)
 {
    
    if (!pbSrcData || !szDest || !pnDestLen)

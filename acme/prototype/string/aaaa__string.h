@@ -44,9 +44,9 @@
 ////CLASS_DECL_ACME ::string as_string(const uchar & uch);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const u16 & i);
-////CLASS_DECL_ACME ::string as_string(const i32 & i);
-////CLASS_DECL_ACME ::string as_string(const u32 & u);
+////CLASS_DECL_ACME ::string as_string(const unsigned short & i);
+////CLASS_DECL_ACME ::string as_string(const int & i);
+////CLASS_DECL_ACME ::string as_string(const unsigned int & u);
 ////CLASS_DECL_ACME ::string as_string(const i64 & i);
 ////CLASS_DECL_ACME ::string as_string(const u64 & u);
 ////

@@ -82,9 +82,9 @@
 //            GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
 //
 //
-//            ::u32 dw;
+//            unsigned int dw;
 //
-//            ::u32 dwResSize = GetFileVersionInfoSize(
+//            unsigned int dwResSize = GetFileVersionInfoSize(
 //               pszModuleFilePath,
 //
 //               &dw);
@@ -102,10 +102,10 @@
 //                  pdata))
 //
 //               {
-//                  ::u32 cbTranslate;
+//                  unsigned int cbTranslate;
 //                  struct LANGANDCODEPAGE {
-//                     ::u16 wLanguage;
-//                     ::u16 wCodePage;
+//                     unsigned short wLanguage;
+//                     unsigned short wCodePage;
 //                  } *pTranslate;
 //
 //
@@ -120,11 +120,11 @@
 //
 //                  string strKey;
 //                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-//                  for(i32 i=0; i < 1; i++ )
+//                  for(int i=0; i < 1; i++ )
 //                  {
 //                     char * psz;
 //
-//                     ::u32 uSize;
+//                     unsigned int uSize;
 //
 //                     strKey.formatf(
 //                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
@@ -245,7 +245,7 @@
 //      //m_pimpl->m_bRun = false;
 //      //LNX_THREAD(m_pimpl->::thread_pointer::m_p)->m_bRun = false;
 //
-//      //i32 iRet = ::application::term_instance();
+//      //int iRet = ::application::term_instance();
 //
 //      //::ca2pointer<::ca2::application>::destroy();
 //
@@ -262,7 +262,7 @@
 
 
       // Advanced: handling messages sent to message filter hook
-      bool application::ProcessMessageFilter(i32 code, MESSAGE * pMsg)
+      bool application::ProcessMessageFilter(int code, MESSAGE * pMsg)
 
       {
          return  ::win::thread::ProcessMessageFilter(code, pMsg);
@@ -358,7 +358,7 @@
 //
 //      // get path of executable
 //   /*   char szBuff[_MAX_PATH];
-//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      unsigned int dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //         throw ::exception(apex_exception());*/

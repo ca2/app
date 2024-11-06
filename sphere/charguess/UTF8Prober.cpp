@@ -28,11 +28,11 @@ void  nsUTF8Prober::Reset(void)
   mState = eDetecting;
 }
 
-nsProbingState nsUTF8Prober::HandleData(const ::string & aBuf, PR::u32 aLen)
+nsProbingState nsUTF8Prober::HandleData(const ::string & aBuf, PRunsigned int aLen)
 {
   nsSMState codingState;
 
-  for (PR::u32 i = 0; i < aLen; i++)
+  for (PRunsigned int i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -66,7 +66,7 @@ float nsUTF8Prober::GetConfidence(void)
 
   if (mNumOfMBChar < 6)
   {
-    for (PR::u32 i = 0; i < mNumOfMBChar; i++)
+    for (PRunsigned int i = 0; i < mNumOfMBChar; i++)
       unlike *= ONE_CHAR_PROB;
     return (float)1.0 - unlike;
   }

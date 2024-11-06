@@ -48,7 +48,7 @@ namespace colorertake5
       @param index index of type.
       @return Requested type, or nullptr, if #index is too big
       */
-      virtual file_type *enumerateFileTypes(i32 index) = 0;
+      virtual file_type *enumerateFileTypes(int index) = 0;
 
       /** @param name Requested type name.
       @return File type, or nullptr, there are no type with specified name.
@@ -63,14 +63,14 @@ namespace colorertake5
       @param typeNo Sequential number of type, if more than one type
       satisfy these input parameters.
       */
-      virtual file_type *chooseFileType(const ::string & fileName, const ::string & firstLine, i32 typeNo = 0) = 0;
+      virtual file_type *chooseFileType(const ::string & fileName, const ::string & firstLine, int typeNo = 0) = 0;
 
       /** Total number of declared regions
       */
       virtual ::collection::count getRegionCount() = 0;
       /** Returns region by internal atom
       */
-      virtual class region *getRegion(i32 atom) = 0;
+      virtual class region *getRegion(int atom) = 0;
       /** Returns region by name
       @note Also loads referred type, if it is not yet loaded.
       */

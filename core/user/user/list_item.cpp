@@ -157,7 +157,7 @@ namespace user
 
          ::image::icon * picon;
 
-         if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
+         if (m_pcolumn->m_mapIcon.lookup((int)m_iImage, picon))
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -223,7 +223,7 @@ namespace user
 
                pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
 
-               get_image_list()->draw(pimage->g(), (i32)m_iImage,
+               get_image_list()->draw(pimage->g(), (int)m_iImage,
                   point_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::point_i32(), 0);
 
                if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0)
@@ -308,7 +308,7 @@ namespace user
 
                m_pitem->m_pmesh->m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               get_image_list()->draw(m_pitem->m_pmesh->m_plist->m_pimageTime->get_graphics(), (i32)m_iImage,
+               get_image_list()->draw(m_pitem->m_pmesh->m_plist->m_pimageTime->get_graphics(), (int)m_iImage,
                   rect2.top_left(),
                   rectangle.size(), rectangle.top_left(), 0);
 
@@ -353,12 +353,12 @@ namespace user
 
             //auto ret = 
 
-            pimagelist->_draw(m_pitem->m_pdrawlistitem->m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+            pimagelist->_draw(m_pitem->m_pdrawlistitem->m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
 
             //auto pimageDebug = create_image(m_rectangleImage.size());
             //{
 
-            //   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
+            //   auto ret = get_image_list()->draw(pimageDebug->g(), (int)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
             //   auto pimage32 = pimageDebug->get_data();
             //   informationf("imageDebug");
 
@@ -385,7 +385,7 @@ namespace user
 
       //return 
 
-      m_pmesh->m_plist->m_pimagelistGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+      m_pmesh->m_plist->m_pimagelistGroup->draw(m_pgraphics, (int)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
 
    }
 

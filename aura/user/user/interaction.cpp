@@ -5837,7 +5837,7 @@ namespace user
 
       return strClass;
 
-      //u32 uStyle = get_window_default_style();
+      //unsigned int uStyle = get_window_default_style();
 
       //string strIcon = get_window_icon_matter();
 
@@ -6207,7 +6207,7 @@ namespace user
    ////
    ////      return strClass;
    ////
-   ////      //u32 uStyle = get_window_default_style();
+   ////      //unsigned int uStyle = get_window_default_style();
    ////
    ////      //string strIcon = get_window_icon_matter();
    ////
@@ -7208,7 +7208,7 @@ namespace user
 //         if (colorBackground.m_u8Opacity != 127)
 //         {
 //
-//            information() << "Opacity: " << (::u32) colorBackground.u8_opacity();
+//            information() << "Opacity: " << (unsigned int) colorBackground.u8_opacity();
 //
 //         }
 
@@ -11099,7 +11099,7 @@ namespace user
    //}
 
 
-   void interaction::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void interaction::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       //if (window() == nullptr)
@@ -11131,7 +11131,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point, unsigned int nFlags)
    {
 
       //if (window() == nullptr)
@@ -11330,7 +11330,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_wnd(::u32 nCmd)
+   ::user::interaction * interaction::get_wnd(unsigned int nCmd)
    {
 
       //if (window() == nullptr)
@@ -12240,7 +12240,7 @@ namespace user
    }
 
 
-   //void interaction::CalcWindowRect(::rectangle_i32 * prectangle, ::u32 nAdjustType)
+   //void interaction::CalcWindowRect(::rectangle_i32 * prectangle, unsigned int nAdjustType)
    //{
 
    //   if (window() == nullptr)
@@ -12275,7 +12275,7 @@ namespace user
    }
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
+   void interaction::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeft, unsigned int nFlags,
                                     ::rectangle_i32 * prectParam, const ::rectangle_i32 & rectangleX,
                                     bool bStretch)
    {
@@ -15617,7 +15617,7 @@ namespace user
    }
 
 
-   //atom interaction::run_modal_loop(::user::interaction * pinteraction, u32 dwFlags)
+   //atom interaction::run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags)
    //{
 
    //   return pinteraction->_001RunModalLoop(dwFlags);
@@ -15625,7 +15625,7 @@ namespace user
    //}
 
 
-   //atom interaction::RunModalLoop(u32 dwFlags)
+   //atom interaction::RunModalLoop(unsigned int dwFlags)
    //{
 
    //   set_need_redraw();
@@ -15637,7 +15637,7 @@ namespace user
    //}
 
 
-   //atom interaction::_001RunModalLoop(u32 dwFlags)
+   //atom interaction::_001RunModalLoop(unsigned int dwFlags)
    //{
 
    //   ASSERT(!m_bModal);
@@ -17861,7 +17861,7 @@ namespace user
 
             // ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<::u32>(wparam);
+            pmessage->m_nChar = static_cast<unsigned int>(wparam);
 
             pmessage->m_nRepCnt = lower_u16(lparam);
 
@@ -17884,7 +17884,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uEvent = static_cast<::u32>(wparam);
+         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
 
       }
       break;
@@ -17893,7 +17893,7 @@ namespace user
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<::u32>(lparam);
+         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
 
       }
       break;
@@ -17932,9 +17932,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
 
-         pmessage->m_dPosition = (::f64)(i16)upper_u16(wparam);
+         pmessage->m_dPosition = (::f64)(short)upper_u16(wparam);
 
       }
       break;
@@ -18021,7 +18021,7 @@ namespace user
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <::u32> (wparam);
+         pmessage->m_nType = static_cast <unsigned int> (wparam);
 
          pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
       }
@@ -19308,7 +19308,7 @@ namespace user
    }
 
 
-   u32 interaction::get_window_default_style()
+   unsigned int interaction::get_window_default_style()
    {
 
       return 0;
@@ -29005,7 +29005,7 @@ namespace user
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 
-      ::u32 nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+      unsigned int nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
                   ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
           nNewStyle |= TBBS_CHECKED;

@@ -34,9 +34,9 @@ namespace draw2d_opengl
    }
 
 /*
-   i32 region::GetRegionData(LPRGNDATA lpRgnData, i32 nDataSize) const
-   { ASSERT(get_os_data() != nullptr); return (i32)::GetRegionData((HRGN)get_os_data(), nDataSize, lpRgnData); }
-   void region::SetRectRgn(i32 x1, i32 y1, i32 x2, i32 y2)
+   int region::GetRegionData(LPRGNDATA lpRgnData, int nDataSize) const
+   { ASSERT(get_os_data() != nullptr); return (int)::GetRegionData((HRGN)get_os_data(), nDataSize, lpRgnData); }
+   void region::SetRectRgn(int x1, int y1, int x2, int y2)
    { ASSERT(get_os_data() != nullptr); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2); }
    
    void region::SetRectRgn(const ::rectangle_i32 & rectangle)
@@ -44,10 +44,10 @@ namespace draw2d_opengl
       ::SetRectRgn((HRGN)get_os_data(), rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom()); 
    }
 
-   i32 region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, i32 nCombineMode)
+   int region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int nCombineMode)
    { ASSERT(get_os_data() != nullptr); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgn1->get_os_data(),
    (HRGN)pRgn2->get_os_data(), nCombineMode); }
-   i32 region::CopyRgn(const ::draw2d::region* pRgnSrc)
+   int region::CopyRgn(const ::draw2d::region* pRgnSrc)
    { ASSERT(get_os_data() != nullptr); return ::CombineRgn((HRGN)get_os_data(), (HRGN)pRgnSrc->get_os_data(), nullptr, RGN_COPY); }
 
    bool region::EqualRgn(const ::draw2d::region* pRgn) const
@@ -59,9 +59,9 @@ namespace draw2d_opengl
 
    }
 
-   i32 region::OffsetRgn(i32 x, i32 y)
+   int region::OffsetRgn(int x, int y)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
-   i32 region::OffsetRgn(const ::point_i32 & point)
+   int region::OffsetRgn(const ::point_i32 & point)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x(), point.y()); }
 
    */
@@ -84,7 +84,7 @@ namespace draw2d_opengl
 
    }
    /*
-   bool region::PtInRegion(i32 x, i32 y) const
+   bool region::PtInRegion(int x, int y) const
    { 
 
       plusplus::PointF point_f32((plusplus::REAL) x, (plusplus::REAL) y);
@@ -229,7 +229,7 @@ namespace draw2d_opengl
 
    //   array < plusplus::PointF > pa;
 
-   //   for(i32 i = 0; i < m_nCount; i++)
+   //   for(int i = 0; i < m_nCount; i++)
    //   {
    //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x(), (plusplus::REAL) m_lppoints[i].y()));
    //   }
@@ -243,7 +243,7 @@ namespace draw2d_opengl
    //      path.SetFillMode(plusplus::FillModeWinding);
    //   }
 
-   //   path.AddPolygon(pa.get_data(), (i32) pa.get_count());
+   //   path.AddPolygon(pa.get_data(), (int) pa.get_count());
 
    //   return ___new plusplus::Region (&path);
 
@@ -264,18 +264,18 @@ namespace draw2d_opengl
    //      path.SetFillMode(plusplus::FillModeWinding);
    //   }
 
-   //   i32 n = 0;
+   //   int n = 0;
 
-   //   for(i32 i = 0; i < m_nCount; i++)
+   //   for(int i = 0; i < m_nCount; i++)
    //   {
-   //      i32 jCount = m_lppolycounts[i];
+   //      int jCount = m_lppolycounts[i];
    //      pa.erase_all();
-   //      for(i32 j = 0; j < jCount; j++)
+   //      for(int j = 0; j < jCount; j++)
    //      {
    //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x(), (plusplus::REAL) m_lppoints[n].y()));
    //         n++;
    //      }
-   //      path.AddPolygon(pa.get_data(), (i32) pa.get_count());
+   //      path.AddPolygon(pa.get_data(), (int) pa.get_count());
    //      path.CloseFigure();
    //   }
 

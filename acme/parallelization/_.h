@@ -99,7 +99,7 @@ namespace parallelization
    CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
 
 
-   //inline i32 get_priority_none()
+   //inline int get_priority_none()
    //{
 
    //   return e_priority_none;
@@ -107,7 +107,7 @@ namespace parallelization
    //}
 
 
-   //inline i32 get_priority_normal()
+   //inline int get_priority_normal()
    //{
 
    //   return e_priority_normal;

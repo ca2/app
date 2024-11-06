@@ -74,11 +74,11 @@ struct ::rectangle_f64;
 
 
 
-//inline float i32muldiv(float f, i32 iNum, i32 iDen);
-//inline double i32muldiv(double d, i32 iNum, i32 iDen);
-//inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen);
+//inline float i32muldiv(float f, int iNum, int iDen);
+//inline double i32muldiv(double d, int iNum, int iDen);
+//inline int i32muldiv(int i, int iNum, int iDen);
 //#ifndef WINDOWS
-//inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen);
+//inline i64 MulDiv(i64 nNumber, int iNum, int iDen);
 //#endif
 //inline i64 i32muldiv(i64 i, i64 iNum, i64 iDen);
 

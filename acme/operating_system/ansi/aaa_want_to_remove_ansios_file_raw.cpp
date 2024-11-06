@@ -9,7 +9,7 @@
 //
 //#ifdef WINDOWS
 //
-//   u32 dwFileAttributes = GetFileAttributesA(path1);
+//   unsigned int dwFileAttributes = GetFileAttributesA(path1);
 //
 //   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
 //      return false;
@@ -150,7 +150,7 @@ string file_system()->line(const ::file::path & path, ::collection::index iLine)
    if (file == nullptr)
    {
 
-      ::u32 dw = ::get_last_error();
+      unsigned int dw = ::get_last_error();
 
       return "";
 
@@ -232,7 +232,7 @@ pdirectorysystem->create(path.folder());
    if (file == nullptr)
    {
 
-      ::u32 dw = ::get_last_error();
+      unsigned int dw = ::get_last_error();
 
       return false;
 

@@ -373,7 +373,7 @@ public:
    //
    //    }
 
-       //write_text_stream& operator <<(i32 i)
+       //write_text_stream& operator <<(int i)
        //{
 
        //   write_integer(i);
@@ -385,7 +385,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(u32 u)
+       //write_text_stream& operator <<(unsigned int u)
        //{
 
        //   write_natural(u);
@@ -617,11 +617,11 @@ public:
 //#ifdef WINDOWS
 //   text_stream& operator >>(unichar& wch);
 //#endif
-//   text_stream& operator >>(i8& i);
-//   text_stream& operator >>(i16& sh);
-//   text_stream& operator >>(u16& u);
-//   text_stream& operator >>(i32& i);
-//   text_stream& operator >>(u32& u);
+//   text_stream& operator >>(char& i);
+//   text_stream& operator >>(short& sh);
+//   text_stream& operator >>(unsigned short& u);
+//   text_stream& operator >>(int& i);
+//   text_stream& operator >>(unsigned int& u);
 //   text_stream& operator >>(i64& i);
 //   text_stream& operator >>(u64& u);
 //   text_stream& operator >>(float& f);

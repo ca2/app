@@ -150,13 +150,13 @@
 //   inline ::rectangle_i32 * ::rectangle_f32::get(::rectangle_i32 * prectangle) const
 //
 //   {
-//      prectangle->left()      = (i32) left;
+//      prectangle->left()      = (int) left;
 //
-//      prectangle->right()     = (i32) right;
+//      prectangle->right()     = (int) right;
 //
-//      prectangle->top()       = (i32) top;
+//      prectangle->top()       = (int) top;
 //
-//      prectangle->bottom()    = (i32) bottom;
+//      prectangle->bottom()    = (int) bottom;
 //
 //      return prectangle;
 //

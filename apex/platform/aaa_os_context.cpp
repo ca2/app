@@ -402,7 +402,7 @@
 //
 ////#ifdef WINDOWS
 ////
-////   DECLSPEC_NO_RETURN void os_context::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
+////   DECLSPEC_NO_RETURN void os_context::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
 ////   {
 ////
 ////
@@ -880,7 +880,7 @@
 //   void os_context::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
 //   {
 //
-//      ASSERT(sizeof(::u32) == sizeof(u32));
+//      ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
 //
 //      uaPid = this->processes_identifiers();
 //

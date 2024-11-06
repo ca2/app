@@ -83,13 +83,13 @@ namespace filemanager
       ::pointer<::user::message>pusermessage(pmessage);
       if(pusermessage->m_wparam == e_main_post_file_operation)
       {
-         m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
-         m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
+         m_pinfoview->OnFileOperationStep((int)pusermessage->m_lparam,false);
+         m_plistview->OnFileOperationStep((int)pusermessage->m_lparam,false);
       }
       else if(pusermessage->m_wparam == e_main_post_file_operation_final)
       {
-         m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,true);
-         m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,true);
+         m_pinfoview->OnFileOperationStep((int)pusermessage->m_lparam,true);
+         m_plistview->OnFileOperationStep((int)pusermessage->m_lparam,true);
       }
    }
 

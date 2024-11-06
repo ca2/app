@@ -5,7 +5,7 @@
 //#ifdef LINUX
 //
 //
-//inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const ::scoped_string & scopedstrFormat, ...)
+//inline int _stprintf_s(char * pszBuffer, int iBufferLen, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iBufferLen);
@@ -30,7 +30,7 @@
 //#endif
 //
 //
-//i32 dump_context::GetDepth() const
+//int dump_context::GetDepth() const
 //{
 //   
 //   return m_nDepth;
@@ -38,7 +38,7 @@
 //}
 //
 //
-//void dump_context::SetDepth(i32 nNewDepth)
+//void dump_context::SetDepth(int nNewDepth)
 //{
 //   
 //   m_nDepth = nNewDepth;
@@ -186,7 +186,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("%d", (i32) i);
+////   str.formatf("%d", (int) i);
 ////
 ////   output_string(str);
 ////
@@ -200,7 +200,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("%u", (i32) u);
+////   str.formatf("%u", (int) u);
 ////
 ////   output_string(str);
 ////
@@ -209,12 +209,12 @@
 ////}
 ////
 ////
-////void dump_context::write(i16 i)
+////void dump_context::write(short i)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%d", (i32) i);
+////   str.formatf("%d", (int) i);
 ////
 ////   output_string(str);
 ////
@@ -223,12 +223,12 @@
 ////}
 ////
 ////
-////void dump_context::write(u16 u)
+////void dump_context::write(unsigned short u)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("%u", (u16) u);
+////   str.formatf("%u", (unsigned short) u);
 ////
 ////   output_string(str);
 ////
@@ -237,7 +237,7 @@
 ////}
 ////
 ////
-////void dump_context::write(i32 i)
+////void dump_context::write(int i)
 ////{
 ////
 ////   string str;
@@ -251,7 +251,7 @@
 ////}
 ////
 ////
-////void dump_context::write(u32 u)
+////void dump_context::write(unsigned int u)
 ////{
 ////
 ////   string str;
@@ -293,12 +293,12 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(i8 i)
+////void dump_context::hex_dump(char i)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("0x%02x", (u32) i);
+////   str.formatf("0x%02x", (unsigned int) i);
 ////
 ////   output_string(str);
 ////
@@ -312,7 +312,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("0x%02x", (u32)u);
+////   str.formatf("0x%02x", (unsigned int)u);
 ////
 ////   output_string(str);
 ////
@@ -321,12 +321,12 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(i16 i)
+////void dump_context::hex_dump(short i)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("0x%04x", (u32) i);
+////   str.formatf("0x%04x", (unsigned int) i);
 ////
 ////   output_string(str);
 ////
@@ -335,12 +335,12 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(u16 u)
+////void dump_context::hex_dump(unsigned short u)
 ////{
 ////
 ////   string str;
 ////
-////   str.formatf("0x%04x", (u32) u);
+////   str.formatf("0x%04x", (unsigned int) u);
 ////
 ////   output_string(str);
 ////
@@ -349,7 +349,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(i32 i)
+////void dump_context::hex_dump(int i)
 ////{
 ////
 ////   string str;
@@ -363,7 +363,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(u32 u)
+////void dump_context::hex_dump(unsigned int u)
 ////{
 ////
 ////   string str;
@@ -500,7 +500,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 ////// Formatted output
 ////
-////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, unsigned char* pby, i32 nBytes, i32 nWidth)
+////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, unsigned char* pby, int nBytes, int nWidth)
 ////// do a simple hex-dump (8 per line) to a dump_context
 //////  the "pszLine" is a string to print at the start of each line
 //////    (%lx should be used to expand the current address)
@@ -537,7 +537,7 @@
 ////   if( pby == nullptr )
 ////      throw ::exception(error_bad_argument);
 ////
-////   i32 nRow = 0;
+////   int nRow = 0;
 ////   string str;
 ////
 ////

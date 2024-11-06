@@ -13,7 +13,7 @@ public:
 	bool m_bActive;
 
 	/// internal member holding the socket handle
-	u32 m_iSocket;
+	unsigned int m_iSocket;
 
 	/// internal member which is true if this event is used by a thread
 	/// which waits for socket connections
@@ -22,7 +22,7 @@ public:
 	///  \brief		constructor with passed socket handle and read state
 	///  \lparam		socket socket handle (default: -1)
 	///  \lparam		read true if socket should be ready to read (default: true)
-	socket_event(::particle * pparticle, u32 socket = -1, bool read = true);
+	socket_event(::particle * pparticle, unsigned int socket = -1, bool read = true);
 
 	///  \brief		destructor
 	virtual ~socket_event();
@@ -34,7 +34,7 @@ public:
 
 	///  \brief		socket handle setter
 	///  \lparam		socket socket handle
-	void SetSocketHandle(u32 socket);
+	void SetSocketHandle(unsigned int socket);
 	//void SetSocketHandle(const SocketBase& socket) { socket_ = socket.get_handle_(); }   // MBO: alternative solution
 	//void ChangeSocketHandle(socket_id socket);
 

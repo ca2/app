@@ -60,7 +60,7 @@ void simple_printer_list_impact::on_message_create(::message::message * pmessage
 //
 //   string_array stra;
 //
-//   for(u32 i = 0; i < cbReturned; i++)
+//   for(unsigned int i = 0; i < cbReturned; i++)
 //   {
 //
 //      stra.add(string(infoa[i].pName));

@@ -40,7 +40,7 @@ namespace opengl
 }
 
 
-BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,::u32 FontType,LPVOID p);
+BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p);
 
 
 class draw2d_opengl_enum_fonts
@@ -234,9 +234,9 @@ namespace draw2d_opengl
 
       //LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
       //LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-      ////::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-      //::u32 dwExStyle = 0;
-      //::u32 dwStyle = WS_OVERLAPPEDWINDOW;
+      ////unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+      //unsigned int dwExStyle = 0;
+      //unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
       //dwStyle |= WS_POPUP;
       ////dwStyle |= WS_VISIBLE;
       ////dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
@@ -417,7 +417,7 @@ namespace draw2d_opengl
       return point;
    }
 
-   point_i32 graphics::SetBrushOrg(i32 x, i32 y)
+   point_i32 graphics::SetBrushOrg(int x, int y)
    {
       // ASSERT(m_hdc != nullptr);
       ::point_i32 point;
@@ -433,7 +433,7 @@ namespace draw2d_opengl
    }
 
 
-   int graphics::EnumObjects(i32 nObjectType, i32 (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+   int graphics::EnumObjects(int nObjectType, int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::EnumObjects(m_hdc, nObjectType, (GOBJENUMPROC)lpfn, lpData);
@@ -482,7 +482,7 @@ namespace draw2d_opengl
    //HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for nullptr handles
    //{
 
-   //   ::u32 uType = GetObjectType(hObject);
+   //   unsigned int uType = GetObjectType(hObject);
 
    //   if(uiType == OBJ_BITMAP)
    //   {
@@ -542,7 +542,7 @@ namespace draw2d_opengl
    }
 
 
-   ::u32 graphics::RealizePalette()
+   unsigned int graphics::RealizePalette()
    {
       //return ::RealizePalette(m_hdc);
       return 0;
@@ -554,7 +554,7 @@ namespace draw2d_opengl
    }
 
    
-   i32 graphics::GetPolyFillMode() const
+   int graphics::GetPolyFillMode() const
    {
       //return ::GetPolyFillMode(m_hdc);
       return 0;
@@ -686,7 +686,7 @@ namespace draw2d_opengl
    }
 
    
-   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, i32 nWidth, i32 nHeight)
+   bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int nWidth, int nHeight)
    {
 
       //return ::FrameRgn(m_hdc, (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != false;
@@ -716,7 +716,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool graphics::PtVisible(i32 x, i32 y) const
+   bool graphics::PtVisible(int x, int y) const
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -935,7 +935,7 @@ namespace draw2d_opengl
 
    //}
 
-   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon, double cx, double cy, unsigned int istepIfAniCur, HBRUSH hbrFlickerFreeDraw, unsigned int diFlags)
    //{
 
    //   //try
@@ -997,7 +997,7 @@ namespace draw2d_opengl
    //   //   {
 
    //   //      bool bAllZeroAlpha = true;
-   //   //      bool bTheres::u32 = false;
+   //   //      bool bTheresunsigned int = false;
 
    //   //      int area = cx * cy;
 
@@ -1008,7 +1008,7 @@ namespace draw2d_opengl
    //   //      {
    //   //         if(*pc != 0)
    //   //         {
-   //   //            bTheres::u32 = true;
+   //   //            bTheresunsigned int = true;
    //   //         }
    //   //         if(*pA != 0)
    //   //         {
@@ -1019,7 +1019,7 @@ namespace draw2d_opengl
    //   //         pA +=4;
    //   //      }
 
-   //   //      if(bAllZeroAlpha && bTheres::u32)
+   //   //      if(bAllZeroAlpha && bTheresunsigned int)
    //   //      {
 
    //   //         pc = pimage32;
@@ -1070,7 +1070,7 @@ namespace draw2d_opengl
 
    //}
 
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1079,7 +1079,7 @@ namespace draw2d_opengl
 //
 //   }
 
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, ::draw2d::bitmap* pBitmap, unsigned int nFlags, ::draw2d::brush* pBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1089,7 +1089,7 @@ namespace draw2d_opengl
 //
 //   }
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, ::u32 nFlags, HBRUSH hBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, unsigned int nFlags, HBRUSH hBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1100,7 +1100,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, unsigned int nFlags, ::draw2d::brush* pBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1110,7 +1110,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, double nTextLen, HBRUSH hBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, double nTextLen, HBRUSH hBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1120,7 +1120,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, double nTextLen, ::draw2d::brush* pBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, double nTextLen, ::draw2d::brush* pBrush)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1130,7 +1130,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, HBRUSH hBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, unsigned int nFlags, HBRUSH hBrush)
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, hBrush,
@@ -1140,7 +1140,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush)
+//   bool graphics::DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc, LPARAM lData, unsigned int nFlags, ::draw2d::brush* pBrush)
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
@@ -1150,7 +1150,7 @@ namespace draw2d_opengl
 //   }
 //
 
-//   bool graphics::DrawEdge(const ::rectangle_f64 & rectangleParam,::u32 nEdge,::u32 nFlags)
+//   bool graphics::DrawEdge(const ::rectangle_f64 & rectangleParam,unsigned int nEdge,unsigned int nFlags)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1160,7 +1160,7 @@ namespace draw2d_opengl
 //   }
 //
 
-//   bool graphics::DrawFrameControl(const ::rectangle_f64 & rectangleParam,::u32 nType,::u32 nState)
+//   bool graphics::DrawFrameControl(const ::rectangle_f64 & rectangleParam,unsigned int nType,unsigned int nState)
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawFrameControl(m_hdc,(::rectangle_f64 *) &rectangleParam,nType,nState) != false;
@@ -1169,7 +1169,7 @@ namespace draw2d_opengl
 //   }
 
 
-   bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
+   bool graphics::Chord(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::Chord(m_hdc, x1, y1, x2, y2, x3, y3, x4, y4) != false;
@@ -1843,7 +1843,7 @@ namespace draw2d_opengl
 //   }
 
 
-   ::color::color graphics::GetPixel(i32 x, i32 y) const
+   ::color::color graphics::GetPixel(int x, int y) const
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetPixel(m_hdc, x, y);
@@ -1889,7 +1889,7 @@ namespace draw2d_opengl
 //   }
 //
 //
-//   bool graphics::ExtFloodFill(double x, double y, color32_t crColor, ::u32 nFillType)
+//   bool graphics::ExtFloodFill(double x, double y, color32_t crColor, unsigned int nFillType)
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
@@ -1953,7 +1953,7 @@ namespace draw2d_opengl
    //}
 
 
-   ::u32 graphics::GetTextAlign()
+   unsigned int graphics::GetTextAlign()
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2087,7 +2087,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const
+   //bool graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetCharWidth(m_hdc, nFirstChar, nLastChar, lpBuffer) != false;
@@ -2097,7 +2097,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const
+   //bool graphics::GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetCharWidth(m_hdc, nFirstChar, nLastChar, lpBuffer) != false;
@@ -2106,7 +2106,7 @@ namespace draw2d_opengl
    //}
 
 
-   u32 graphics::GetFontLanguageInfo() const
+   unsigned int graphics::GetFontLanguageInfo() const
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetFontLanguageInfo(m_hdc);
@@ -2116,7 +2116,7 @@ namespace draw2d_opengl
    }
 
 
-   //u32 graphics::GetCharacterPlacement(const ::string & lpString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) const
+   //unsigned int graphics::GetCharacterPlacement(const ::string & lpString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags) const
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2127,7 +2127,7 @@ namespace draw2d_opengl
    //}
 
 
-   //u32 graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) const
+   //unsigned int graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags) const
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2162,7 +2162,7 @@ namespace draw2d_opengl
 
 
    // Printer Escape Functions
-   i32 graphics::Escape(i32 nEscape, i32 nCount, const ::scoped_string & lpszInData, LPVOID lpOutData)
+   int graphics::Escape(int nEscape, int nCount, const ::scoped_string & lpszInData, LPVOID lpOutData)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::Escape(m_hdc, nEscape, nCount, lpszInData, lpOutData);
@@ -2172,7 +2172,7 @@ namespace draw2d_opengl
 
 
    // graphics 3.1 Specific functions
-   ::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags)
+   unsigned int graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, unsigned int flags)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetBoundsRect(m_hdc, &rectangleBounds, flags);
@@ -2181,7 +2181,7 @@ namespace draw2d_opengl
    }
 
 
-   ::u32 graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags)
+   unsigned int graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, unsigned int flags)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetBoundsRect(m_hdc, rectangleBounds, flags);
@@ -2210,7 +2210,7 @@ namespace draw2d_opengl
    //}
 
 
-   //::u32 graphics::GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW lpotm) const
+   //unsigned int graphics::GetOutlineTextMetrics(unsigned int cbData, LPOUTLINETEXTMETRICW lpotm) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetOutlineTextMetricsW(m_hdc, cbData, lpotm);
@@ -2218,7 +2218,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC lpabc) const
+   //bool graphics::GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar, LPABC lpabc) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetCharABCWidths(m_hdc, nFirstChar, nLastChar, lpabc) != false;
@@ -2227,8 +2227,8 @@ namespace draw2d_opengl
    //}
 
 
-   //u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData,
-   //                               u32 cbData) const
+   //unsigned int graphics::GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID lpData,
+   //                               unsigned int cbData) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetFontData(m_hdc, dwTable, dwOffset, lpData, cbData);
@@ -2246,8 +2246,8 @@ namespace draw2d_opengl
    //}
 
 
-   //u32 graphics::GetGlyphOutline(::u32 nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,
-   //                                   u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+   //unsigned int graphics::GetGlyphOutline(unsigned int nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS lpgm,
+   //                                   unsigned int cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetGlyphOutline(m_hdc, nChar, nFormat,
@@ -2258,7 +2258,7 @@ namespace draw2d_opengl
 
 
    // ::user::document handling functions
-   i32 graphics::StartDoc(LPDOCINFO lpDocInfo)
+   int graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2269,7 +2269,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::StartPage()
+   int graphics::StartPage()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2285,7 +2285,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::EndPage()
+   int graphics::EndPage()
    {
 
       /* ASSERT(m_hdc != nullptr);
@@ -2299,7 +2299,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
+   int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2310,7 +2310,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::AbortDoc()
+   int graphics::AbortDoc()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2321,7 +2321,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::EndDoc()
+   int graphics::EndDoc()
    {
 
       //ASSERT(m_hdc != nullptr);
@@ -2382,7 +2382,7 @@ namespace draw2d_opengl
 
 
 
-   void graphics::SetPixelV(i32 x, i32 y, ::color::color crColor)
+   void graphics::SetPixelV(int x, int y, ::color::color crColor)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetPixelV(m_hdc, x, y, crColor) != false;
@@ -2421,7 +2421,7 @@ namespace draw2d_opengl
    }
 
 
-   //i32 graphics::GetArcDirection() const
+   //int graphics::GetArcDirection() const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   // return ::GetArcDirection(m_hdc);
@@ -2435,7 +2435,7 @@ namespace draw2d_opengl
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::poly_polyline(m_hdc, lpPoints, (LPDWORD) lpPolyPoints, (::u32) nCount) != false;
+      //return ::poly_polyline(m_hdc, lpPoints, (LPDWORD) lpPolyPoints, (unsigned int) nCount) != false;
       //return false;
 
    }
@@ -2491,13 +2491,13 @@ namespace draw2d_opengl
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::poly_bezier(m_hdc, lpPoints, (::u32) nCount) != false;
+      //return ::poly_bezier(m_hdc, lpPoints, (unsigned int) nCount) != false;
       //return false;
 
    }
 
 
-   i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const ::scoped_string & lpszInputData)
+   int graphics::DrawEscape(int nEscape, int nInputSize, const ::scoped_string & lpszInputData)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2509,7 +2509,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::Escape(i32 nEscape, i32 nInputSize, __in_bcount(nInputSize) const char * lpszInputData,  i32 nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData)
+   int graphics::Escape(int nEscape, int nInputSize, __in_bcount(nInputSize) const char * lpszInputData,  int nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::ExtEscape(m_hdc, nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
@@ -2518,7 +2518,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar,
+   //bool graphics::GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar,
    //                                LPABCFLOAT lpABCF) const
    //{
    //   // ASSERT(m_hdc != nullptr);
@@ -2527,7 +2527,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer) const
+   //bool graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, float* lpFloatBuffer) const
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GetCharWidthFloat(m_hdc, nFirstChar, nLastChar, lpFloatBuffer) != false;
@@ -2733,7 +2733,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData)
+   //void graphics::AddMetaFileComment(unsigned int nDataSize, const unsigned char* pCommentData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::GdiComment(m_hdc, nDataSize, pCommentData) != false;
@@ -2744,8 +2744,8 @@ namespace draw2d_opengl
 
    /*bool CALLBACK metaCallback(
       EmfPlusRecordType recordType,
-      u32 flags,
-      u32 dataSize,
+      unsigned int flags,
+      unsigned int dataSize,
       const uchar* pStr,
       void* callbackData)
    {
@@ -3025,7 +3025,7 @@ namespace draw2d_opengl
    }*/
 
 
-   //bool graphics::TransparentBlt(double xDest, double yDest, double nDestWidth, double nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight, ::u32 crTransparent)
+   //bool graphics::TransparentBlt(double xDest, double yDest, double nDestWidth, double nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, double nSrcWidth, double nSrcHeight, unsigned int crTransparent)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -3037,7 +3037,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, u32 dwMode)
+   //bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, unsigned int dwMode)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -3096,7 +3096,7 @@ namespace draw2d_opengl
    }
 
 
-   inline bool graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc) const
+   inline bool graphics::GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc) const
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetCharABCWidthsI(m_hdc, giFirst, cgi, pgi, lpabc) != false;
@@ -3105,7 +3105,7 @@ namespace draw2d_opengl
    }
 
 
-   inline bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer) const
+   inline bool graphics::GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer) const
    {
       // ASSERT(m_hdc != nullptr);
       //return ::GetCharWidthI(m_hdc, giFirst, cgi, pgi, lpBuffer) != false;
@@ -3232,9 +3232,9 @@ namespace draw2d_opengl
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
             {
-               ::u16 grayPattern[8];
+               unsigned short grayPattern[8];
                for (double i = 0; i < 8; i++)
-                  grayPattern[i] = (::u16)(0x5555 << (i & 1));
+                  grayPattern[i] = (unsigned short)(0x5555 << (i & 1));
                HBITMAP grayBitmap = CreateBitmap(8, 8, 1, 1, grayPattern);
                if (grayBitmap != nullptr)
                {
@@ -3890,7 +3890,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::ModifyWorldTransform(const XFORM* pXform,u32 iMode)
+   bool graphics::ModifyWorldTransform(const XFORM* pXform,unsigned int iMode)
    {
       bool nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
@@ -4028,7 +4028,7 @@ namespace draw2d_opengl
    //}
 
 
-   //size_i32 graphics::scale_context_extents(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   //size_i32 graphics::scale_context_extents(int xNum, int xDenom, int yNum, int yDenom)
    //{
 
    //   return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
@@ -4042,7 +4042,7 @@ namespace draw2d_opengl
    //}
 
    
-   point_i32 graphics::SetWindowOrg(i32 x, i32 y)
+   point_i32 graphics::SetWindowOrg(int x, int y)
    {
       
       ::point_i32 point;
@@ -4055,7 +4055,7 @@ namespace draw2d_opengl
    }
 
    
-   point_i32 graphics::offset_window_org(i32 nWidth, i32 nHeight)
+   point_i32 graphics::offset_window_org(int nWidth, int nHeight)
    {
       
       ::point_i32 point;
@@ -4068,7 +4068,7 @@ namespace draw2d_opengl
    }
 
    
-   size_i32 graphics::set_window_ext(i32 x, i32 y)
+   size_i32 graphics::set_window_ext(int x, int y)
    {
    
       size_i32 size(0, 0);
@@ -4081,7 +4081,7 @@ namespace draw2d_opengl
    }
 
 
-   size_i32 graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   size_i32 graphics::scale_window_ext(int xNum, int xDenom, int yNum, int yDenom)
    {
    
       size_i32 size(0, 0);
@@ -4094,7 +4094,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::get_clip_box(::rectangle_f64 * prectangle) const
+   int graphics::get_clip_box(::rectangle_f64 * prectangle) const
    {
 
       //plusplus::rectangle_f64 ::rectangle_f64;
@@ -4111,7 +4111,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
+   int graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
       //if(pregion == nullptr)
@@ -4134,7 +4134,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+   int graphics::ExcludeClipRect(int x1, int y1, int x2, int y2)
    {
 
       //double nRetVal = ERROR;
@@ -4150,7 +4150,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::ExcludeClipRect(const ::rectangle_i32 & rectangleParam)
+   int graphics::ExcludeClipRect(const ::rectangle_i32 & rectangleParam)
    {
       
       //double nRetVal = ERROR;
@@ -4169,12 +4169,12 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+   int graphics::IntersectClipRect(int x1, int y1, int x2, int y2)
    {
       
       //double nRetVal = ERROR;
 
-      i32 nRetVal = 0;
+      int nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::IntersectClipRect(m_hdc, x1, y1, x2, y2);
@@ -4186,7 +4186,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::IntersectClipRect(const ::rectangle_i32 & rectangleBounds)
+   int graphics::IntersectClipRect(const ::rectangle_i32 & rectangleBounds)
    {
       
       int nRetVal = 0;
@@ -4201,7 +4201,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::OffsetClipRgn(i32 x, i32 y)
+   int graphics::OffsetClipRgn(int x, int y)
    {
       
       int nRetVal = 0;
@@ -4216,7 +4216,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
+   int graphics::OffsetClipRgn(const ::size_i32 & size)
    {
       
       int nRetVal =0;
@@ -4231,10 +4231,10 @@ namespace draw2d_opengl
    }
 
 
-   ::u32 graphics::SetTextAlign(::u32 nFlags)
+   unsigned int graphics::SetTextAlign(unsigned int nFlags)
    {
       
-      ::u32 nRetVal = GDI_ERROR;
+      unsigned int nRetVal = GDI_ERROR;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   ::SetTextAlign(m_hdc, nFlags);
@@ -4246,7 +4246,7 @@ namespace draw2d_opengl
    }
 
 
-   //i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
+   //int graphics::SetTextJustification(int nBreakExtra, int nBreakCount)
    //{
    // 
    //   double nRetVal = 0;
@@ -4278,12 +4278,12 @@ namespace draw2d_opengl
    //}
 
 
-   //u32 graphics::SetMapperFlags(u32 dwFlag)
+   //unsigned int graphics::SetMapperFlags(unsigned int dwFlag)
    //{
    //   
    //   // ASSERT(m_hdc != nullptr);
 
-   //   u32 dwRetVal = GDI_ERROR;
+   //   unsigned int dwRetVal = GDI_ERROR;
 
    //   //if(m_hdc != nullptr && m_hdc != m_hdc)
    //   //   dwRetVal = ::SetMapperFlags(m_hdc, dwFlag);
@@ -4295,17 +4295,17 @@ namespace draw2d_opengl
    //}
 
 
-   typedef u32 (CALLBACK* __GDIGETLAYOUTPROC)(HDC);
-   typedef u32 (CALLBACK* __GDISETLAYOUTPROC)(HDC, u32);
+   typedef unsigned int (CALLBACK* __GDIGETLAYOUTPROC)(HDC);
+   typedef unsigned int (CALLBACK* __GDISETLAYOUTPROC)(HDC, unsigned int);
 
-   u32 graphics::GetLayout() const
+   unsigned int graphics::GetLayout() const
    {
       
       HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
 
       ASSERT(hInst != nullptr);
 
-      /*      u32 dwGetLayout = LAYOUT_LTR;
+      /*      unsigned int dwGetLayout = LAYOUT_LTR;
             __GDIGETLAYOUTPROC pfn;
             pfn = (__GDIGETLAYOUTPROC) GetProcAddress(hInst, "GetLayout");
             // if they API is available, just call it. If it is not
@@ -4325,11 +4325,11 @@ namespace draw2d_opengl
    }
 
 
-   u32 graphics::SetLayout(u32 dwSetLayout)
+   unsigned int graphics::SetLayout(unsigned int dwSetLayout)
    {
       /*HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
       ASSERT(hInst != nullptr);
-      u32 dwGetLayout = LAYOUT_LTR;
+      unsigned int dwGetLayout = LAYOUT_LTR;
       __GDISETLAYOUTPROC pfn;
       pfn = (__GDISETLAYOUTPROC) GetProcAddress(hInst, "SetLayout");
       // If the API is availalbe, just call it. If it's not available,
@@ -4416,7 +4416,7 @@ namespace draw2d_opengl
    {
       // ASSERT(m_hdc != nullptr);
       //bool bResult = false;
-      //bool bResult = ::polyline_to(m_hdc, lpPoints, (::u32) nCount) != false;
+      //bool bResult = ::polyline_to(m_hdc, lpPoints, (unsigned int) nCount) != false;
       //if (m_hdc != m_hdc)
       //{
       //   ::point_i32 point;
@@ -4442,7 +4442,7 @@ namespace draw2d_opengl
    void graphics::poly_bezier_to(const ::point_f64* lpPoints, ::collection::count nCount)
    {
       // ASSERT(m_hdc != nullptr);
-      //bool bResult = false;      //bool bResult = ::poly_bezier_to(m_hdc, lpPoints, (::u32) nCount) != false;
+      //bool bResult = false;      //bool bResult = ::poly_bezier_to(m_hdc, lpPoints, (unsigned int) nCount) != false;
       //if (m_hdc != m_hdc)
       //{
       //   ::point_i32 point;
@@ -4453,7 +4453,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::SelectClipPath(i32 nMode)
+   void graphics::SelectClipPath(int nMode)
    {
       // ASSERT(m_hdc != nullptr);
 
@@ -4479,7 +4479,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::SelectClipRgn(::draw2d::region* pregion, i32 nMode)
+   int graphics::SelectClipRgn(::draw2d::region* pregion, int nMode)
    {
 
       //if(pregion == nullptr)
@@ -4543,43 +4543,43 @@ namespace draw2d_opengl
 //      {
 //      // these records have effects different for each graphics derived class
 //      case META_SETMAPMODE:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetMapMode((double)(i16)pMetaRec->rdParm[0]);
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetMapMode((double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWEXT:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_window_ext(
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWORG:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetWindowOrg(
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTEXT:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_context_extents(
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTORG:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_origin(
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEWINDOWEXT:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_window_ext(
-//         (double)(i16)pMetaRec->rdParm[3], (double)(i16)pMetaRec->rdParm[2],
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEVIEWPORTEXT:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_context_extents(
-//         (double)(i16)pMetaRec->rdParm[3], (double)(i16)pMetaRec->rdParm[2],
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_OFFSETVIEWPORTORG:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->offset_origin(
-//         (double)(i16)pMetaRec->rdParm[1], (double)(i16)pMetaRec->rdParm[0]);
+//         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SAVEDC:
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SaveDC();
 //         break;
 //      case META_RESTOREDC:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->RestoreDC((double)(i16)pMetaRec->rdParm[0]);
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->RestoreDC((double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETBKCOLOR:
 //      {
@@ -4600,7 +4600,7 @@ namespace draw2d_opengl
 //      case META_SELECTOBJECT:
 //      {
 //         HGDIOBJ hObject = pHandleTable->objectHandle[pMetaRec->rdParm[0]];
-//         ::u32 nObjType = GetObjectType(hObject);
+//         unsigned int nObjType = GetObjectType(hObject);
 //         if (nObjType == 0)
 //         {
 //            // object type is unknown, determine if it is a font
@@ -5273,7 +5273,7 @@ namespace draw2d_opengl
    }
 
 
-   ::draw2d::object* graphics::set_stock_object(i32 nIndex)
+   ::draw2d::object* graphics::set_stock_object(int nIndex)
    {
 
       return nullptr;
@@ -5947,7 +5947,7 @@ namespace draw2d_opengl
 
 
 
-BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,::u32 FontType,LPVOID p)
+BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p)
 {
 
    draw2d_opengl_enum_fonts * pfonts = (draw2d_opengl_enum_fonts *) p;

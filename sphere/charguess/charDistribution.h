@@ -31,10 +31,10 @@ public:
   CharDistributionAnalysis() {Reset();};
 
   //feed a block of data and do distribution analysis
-  void HandleData(const ::string & aBuf, PR::u32 aLen) {};
+  void HandleData(const ::string & aBuf, PRunsigned int aLen) {};
   
   //Feed a character with known length
-  void HandleOneChar(const ::string & aStr, PR::u32 aCharLen)
+  void HandleOneChar(const ::string & aStr, PRunsigned int aCharLen)
   {
     PRInt32 order;
 
@@ -45,7 +45,7 @@ public:
     {
       mTotalChars++;
       //order is valid
-      if ((PR::u32)order < mTableSize)
+      if ((PRunsigned int)order < mTableSize)
       {
         if (512 > mCharToFreqOrder[order])
           mFreqChars++;
@@ -82,16 +82,16 @@ protected:
   PRBool   mDone;
 
   //The number of characters whose frequency order is less than 512
-  PR::u32 mFreqChars;
+  PRunsigned int mFreqChars;
 
   //Total character encounted.
-  PR::u32 mTotalChars;
+  PRunsigned int mTotalChars;
 
   //Mapping table to get frequency order from char order (get from GetOrder())
   const PRInt16  *mCharToFreqOrder;
 
   //Size of above table
-  PR::u32 mTableSize;
+  PRunsigned int mTableSize;
 
   //This is a constant value varies from language to language, it is used in 
   //calculating confidence. See my paper for further detail.

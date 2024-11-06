@@ -6,8 +6,8 @@
 #if OSBIT == 32
 
 
-using iptr = i32;
-using uptr = u32;
+using iptr = int;
+using uptr = unsigned int;
 
 
 #define IPTR_MAXIMUM I32_MAXIMUM
@@ -57,9 +57,9 @@ using uptr = u64;
 //
 //#else
 //
-//typedef u32              rtptr;
-//typedef u32              ulong_ptr;
-//typedef u32              dword_ptr;
+//typedef unsigned int              rtptr;
+//typedef unsigned int              ulong_ptr;
+//typedef unsigned int              dword_ptr;
 //
 //#endif
 

@@ -17,7 +17,7 @@
 namespace mathematics
 {
    random_number_generator::random_number_generator() : 
-      m_uSeed((::u32) ::std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count()),
+      m_uSeed((unsigned int) ::std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count()),
       m_generator(m_uSeed),
       m_distributionU32(0, U32_MAXIMUM),
       m_distributionU8(0, U8_MAXIMUM)
@@ -26,7 +26,7 @@ namespace mathematics
    }
 
    
-   void random_number_generator::seed(i32 iTwistLen, u32 seed)
+   void random_number_generator::seed(int iTwistLen, unsigned int seed)
    {
       
       iTwistLen = maximum(TWIST_IA + 10, iTwistLen);
@@ -35,7 +35,7 @@ namespace mathematics
       
       m_uinta[0]= seed & 0xffffffffUL;
       
-      for (i32 i = 1; i < m_uinta.get_count(); i++)
+      for (int i = 1; i < m_uinta.get_count(); i++)
       {
          
          m_uinta[i] = (1812433253UL * (m_uinta[i - 1] ^ (m_uinta[i - 1] >> 30)) + i);
@@ -47,7 +47,7 @@ namespace mathematics
 
 /* generates a random number on [0,0xffffffff]-interval */
 
-   u32 random_number_generator::get_u32()
+   unsigned int random_number_generator::get_u32()
    {
       return m_distributionU32(m_generator);
    }
@@ -57,27 +57,27 @@ namespace mathematics
       return m_distributionU8(m_generator);
    }
 
-   u32 random_number_generator::_get()
+   unsigned int random_number_generator::_get()
    {
       if(m_uinta.get_size() == 0)
          return 0;
       m_iAccess++;
-      u32 val = m_uinta[m_value % m_uinta.get_size()];
+      unsigned int val = m_uinta[m_value % m_uinta.get_size()];
       ++m_value;
       if (m_value == TWIST_LEN)
       {
-         i32 i = 0;
+         int i = 0;
          for (i = 0; i < TWIST_IB; ++i)
          {
-            u32 s = TWIST(m_uinta, i, i + 1);
+            unsigned int s = TWIST(m_uinta, i, i + 1);
             m_uinta[i] = m_uinta[i + TWIST_IA] ^ (s >> 1) ^ MAGIC_TWIST(s);
          }
          for (; i < TWIST_LEN - 1; ++i)
          {
-            u32 s = TWIST(m_uinta, i, i + 1);
+            unsigned int s = TWIST(m_uinta, i, i + 1);
             m_uinta[i] = m_uinta[i - TWIST_IB] ^ (s >> 1) ^ MAGIC_TWIST(s);
          }
-         u32 s = TWIST(m_uinta, TWIST_LEN - 1, 0);
+         unsigned int s = TWIST(m_uinta, TWIST_LEN - 1, 0);
          m_uinta[TWIST_LEN - 1] = m_uinta[TWIST_IA - 1] ^ (s >> 1) ^ MAGIC_TWIST(s);
 
          m_value = 0;
@@ -117,7 +117,7 @@ namespace mathematics
    }
 
 
-   i32 random_context_entropy(i32 iLevel)
+   int random_context_entropy(int iLevel)
    {
 
       if (iLevel <= 0)

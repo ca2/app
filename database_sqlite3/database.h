@@ -40,7 +40,7 @@ namespace sqlite
       //virtual ::pointer<::database::dataset>dataset() override;
       ::database::enum_connection connection_status() override;
 
-      void set_error_code(i32 iErrorCode) override;
+      void set_error_code(int iErrorCode) override;
 
       void * get_handle() override;
       string get_error_message() override;

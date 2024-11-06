@@ -14,13 +14,13 @@ namespace file
       class encoder
       {
          TOutByte m_Stream;
-         u32 m_BitPos;
+         unsigned int m_BitPos;
          unsigned char m_CurByte;
       public:
-         bool Create(u32 bufferSize) { return m_Stream.Create(bufferSize); }
+         bool Create(unsigned int bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
-         u32 GetBitPosition() const { return (8 - m_BitPos); }
+         unsigned int GetBitPosition() const { return (8 - m_BitPos); }
          u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) /8; }
          void Init()
          {
@@ -40,7 +40,7 @@ namespace file
             m_BitPos = 8;
             m_CurByte = 0;
          }
-         void WriteBits(u32 value, u32 numBits)
+         void WriteBits(unsigned int value, unsigned int numBits)
          {
             while (numBits > 0)
             {

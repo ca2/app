@@ -10,8 +10,8 @@
 #define _gen_InterlockedIncrement(ptr) atomic_inc_64(ptr)
 #define _gen_InterlockedDecrement(ptr) atomic_dec_64(ptr)
 #else
-#define _gen_InterlockedIncrement(ptr) atomic_inc_32((volatile u32 *) ptr)
-#define _gen_InterlockedDecrement(ptr) atomic_dec_32((volatile u32 *) ptr)
+#define _gen_InterlockedIncrement(ptr) atomic_inc_32((volatile unsigned int *) ptr)
+#define _gen_InterlockedDecrement(ptr) atomic_dec_32((volatile unsigned int *) ptr)
 #endif
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #if (defined(RASPBERRYPIOS)) && defined(OS32BIT)

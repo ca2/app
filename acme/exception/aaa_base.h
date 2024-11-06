@@ -21,11 +21,11 @@
 //      virtual ~base();
 //
 //
-//      virtual bool get_error_message(string & str, P::u32 pnHelpContext = nullptr);
-//      virtual string get_message(P::u32 pnHelpContext = nullptr);
+//      virtual bool get_error_message(string & str, Punsigned int pnHelpContext = nullptr);
+//      virtual string get_message(Punsigned int pnHelpContext = nullptr);
 //
 //
-//      virtual i32 ReportError(::u32 nType = e_message_box_ok, const ::scoped_string & scopedstrMessageID = nullptr);
+//      virtual int ReportError(unsigned int nType = e_message_box_ok, const ::scoped_string & scopedstrMessageID = nullptr);
 //
 //
 //      virtual const char * getMessage() const noexcept;

@@ -13,7 +13,7 @@
 ///  \brief		constructor with passed socket handle and read state
 ///  \lparam		socket socket handle (default: -1)
 ///  \lparam		read true if socket should be ready to read (default: true)
-socket_event::socket_event(::particle * pparticle, u32 socket, bool read) :
+socket_event::socket_event(::particle * pparticle, unsigned int socket, bool read) :
    ::matter(pparticle),
 	event(papp, false, true),
 	m_bRead(read),
@@ -40,7 +40,7 @@ void socket_event::set_active(bool active)
 
 ///  \brief		socket handle setter
 ///  \lparam		socket socket handle
-void socket_event::SetSocketHandle(u32 socket)
+void socket_event::SetSocketHandle(unsigned int socket)
 {
    m_iSocket = socket;
 }
@@ -64,14 +64,14 @@ void socket_event::init_wait ()
 		set_active();
 		internal::g_globals->socketWaiterThread_.AddEvent(this);
 	}*/
-	//std_cout << "init wait " << static_cast<i32>(m_iSocket) << std::endl;
+	//std_cout << "init wait " << static_cast<int>(m_iSocket) << std::endl;
 };
 
 void socket_event::exit_wait ()
 {
 /*xxx	if ( internal::g_globals && m_bActive )
 		internal::g_globals->socketWaiterThread_.RemoveEvent(this); */
-	//std_cout << "exit wait " << static_cast<i32>(m_iSocket) << std::endl;
+	//std_cout << "exit wait " << static_cast<int>(m_iSocket) << std::endl;
 };
 
 //void socket_event::ChangeSocketHandle (socket_id socket)

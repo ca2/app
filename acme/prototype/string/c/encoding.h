@@ -13,7 +13,7 @@ inline int utf8_unicode_length(int c) { return trailingBytesForUTF8(c) + 1; }
 
 
 // return UTF8 offset
-inline i32 utf8_o(char cExtraBytes);
+inline int utf8_o(char cExtraBytes);
 
 
 inline char utf8_e(unsigned char c);
@@ -108,7 +108,7 @@ inline strsize replacement_utf8_char(char * psz)
 // or if your font support a cad library with 512-bit wide encoding, you can __create <matter type="cad/application-x">512-bit wide of honda civic tweaked by john peter etcetra and used by ann (brakes light dimmed (don't tell the police))</test>
 
 
-//inline int_bool utf16_is_surrogate(::wd16_character u16) { return (u16 - 0xd800u) < 2048u; }
+//inline int_bool utf16_is_surrogate(::wd16_character unsigned short) { return (unsigned short - 0xd800u) < 2048u; }
 //inline int utf16_is_high_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xd800; }
 //inline int utf16_is_low_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xdc00; }
 
@@ -160,4 +160,4 @@ inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, 
 inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen);
 
 
-inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character u32);
+inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character unsigned int);

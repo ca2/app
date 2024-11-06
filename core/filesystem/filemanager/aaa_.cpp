@@ -12,7 +12,7 @@ namespace core
 {
 
 
-   bool user::do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument, const ::atom & atomFileManager)
+   bool user::do_prompt_file_name(::payload & payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument, const ::atom & atomFileManager)
    {
 
       if (::is_set(pdocument))

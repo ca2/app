@@ -233,17 +233,17 @@ namespace simple_ui
          pgraphics->text_out(left,y,strExtent1);
 
          size_f64 size1(0.0,0.0);
-         pgraphics->get_text_extent(size1,strLine,(i32)strLine.length(),(i32)iStart);
+         pgraphics->get_text_extent(size1,strLine,(int)strLine.length(),(int)iStart);
          size_f64 sizeb(0.0,0.0);
          pgraphics->get_text_extent(sizeb,strLine,iEnd);
          size_f64 size2(0.0,0.0);
-         pgraphics->get_text_extent(size2,strLine,(i32)strLine.length(),(i32)iEnd);
+         pgraphics->get_text_extent(size2,strLine,(int)strLine.length(),(int)iEnd);
          size2.cx() -= size1.cx();
 
          if(iEnd > iStart)
          {
 
-            auto rectangleFill = ::rectangle_f64_dimension((i32)(left + size1.cx()), (i32)y, (i32)size2.cx(), (i32)size2.cy());
+            auto rectangleFill = ::rectangle_f64_dimension((int)(left + size1.cx()), (int)y, (int)size2.cx(), (int)size2.cy());
             pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
             pbrushText->create_solid(crSel);
             pgraphics->set(pbrushText);

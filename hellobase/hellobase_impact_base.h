@@ -24,7 +24,7 @@ namespace hellobase
       color32_t                m_colorDrawStatus;
 
       ::frequency                  m_frequencyFramesPerSecond;
-      ::u32                   m_dwRoll;
+      unsigned int                   m_dwRoll;
 
       string                  m_strHoverFont;
       string                  m_strNewFont;

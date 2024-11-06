@@ -21,7 +21,7 @@ CLASS_DECL_ACME void MyFree(void *address);
 
 #ifndef ___NO_DEBUG_CRT
 
-CLASS_DECL_ACME void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const ::file::path & path, i32 nLine);
+CLASS_DECL_ACME void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const ::file::path & path, int nLine);
 
 CLASS_DECL_ACME void __free_memory_debug(void * pbData, bool bIsObject);
 
@@ -34,7 +34,7 @@ typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, int lRequestNumber);
 //CLASS_DECL_ACME __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 
-CLASS_DECL_ACME i32 __cdecl __alloc_alloc_hook(i32 nAllocType, void * pvData, size_t nSize, i32 nBlockUse, long lRequest, const uchar * szFilename, i32 nLine);
+CLASS_DECL_ACME int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const uchar * szFilename, int nLine);
 CLASS_DECL_ACME __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
 CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
@@ -61,7 +61,7 @@ CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic memory routines
 
-CLASS_DECL_ACME i32 c_cdecl __allocate_handler(size_t /* nSize */);
+CLASS_DECL_ACME int c_cdecl __allocate_handler(size_t /* nSize */);
 
 
 

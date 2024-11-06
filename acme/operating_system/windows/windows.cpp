@@ -163,7 +163,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH * 8);
 
-   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
    {
 
       return "";
@@ -336,7 +336,7 @@ found:
 //
 //   auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH *8);
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
 //   {
 //
 //      return "";
@@ -392,7 +392,7 @@ void __node_acme_pos_term()
 }
 
 
-string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)
+string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)
 {
 
    HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(scopedstrType));
@@ -413,7 +413,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string
 
    }
 
-   u32 dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
+   unsigned int dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
 
    string str;
 
@@ -422,7 +422,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string
    if (hres != nullptr)
    {
 
-      ::u32 * pnRes = (::u32 *)::LockResource(hres);
+      unsigned int * pnRes = (unsigned int *)::LockResource(hres);
 
       iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (strsize)dwResSize);
 

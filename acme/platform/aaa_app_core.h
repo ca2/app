@@ -67,7 +67,7 @@ public:
 
    bool on_result(const ::e_status & estatus);
 
-   //static ::u32 WINAPI MAIN(void * pvoid);
+   //static unsigned int WINAPI MAIN(void * pvoid);
 
    //bool system_beg();
 
@@ -111,7 +111,7 @@ public:
 
 //CLASS_DECL_ACME bool node_fill(system * pappcore);
 
-//CLASS_DECL_APEX i32 apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
+//CLASS_DECL_APEX int apex_entry_point(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 
 //CLASS_DECL_APEX int apex_entry_point(int argc, char* argv[], char* pszCommandLin, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication = nullptr, PFN_NEW_APEX_LIBRARY pfnNewLibrary = nullptr);
 

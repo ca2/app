@@ -188,7 +188,7 @@ namespace hi5
       string get_response();
 
       /* Internal cURL related methods */
-      i32 saveLastWebResponse(char*& data, size_t size);
+      int saveLastWebResponse(char*& data, size_t size);
 
 
 

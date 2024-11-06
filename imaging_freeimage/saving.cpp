@@ -43,7 +43,7 @@ namespace imaging_freeimage
       }
       // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
       // So we save these infos below. This is needed for palettized images only.
-      i32 nColors = FreeImage_GetColorsUsed(fi);
+      int nColors = FreeImage_GetColorsUsed(fi);
       //HDC hdc = ::CreateCompatibleDC(nullptr);
 
       int iWidth;

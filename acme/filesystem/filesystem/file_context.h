@@ -92,7 +92,7 @@ public:
    virtual ::file::path module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
    ::file::path time_square(const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr);
    ::file::path time_log(const ::string & str);
 
@@ -160,7 +160,7 @@ public:
    //}
 
 
-   virtual i32 filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra);
+   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -311,7 +311,7 @@ public:
   // virtual ::payload length(const ::file::path & pszPath);
 
 
-   //::file::path time(const ::file::path & pszBasePath, i32 iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
+   //::file::path time(const ::file::path & pszBasePath, int iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
@@ -380,7 +380,7 @@ public:
    string sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension);
 
 
-   //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
+   //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & psz);

@@ -4,7 +4,7 @@
 
 
 #define BYTE_ALIGN (8)
-#define INT_ALIGN (BYTE_ALIGN * sizeof(i32))
+#define INT_ALIGN (BYTE_ALIGN * sizeof(int))
 
 
 namespace acme
@@ -12,25 +12,25 @@ namespace acme
    namespace bit
    {
 
-      void int_aligned_copy(i32 * pDest, i32 iDest, i32 * pSrc, i32 iSrc, i32 iCount)
+      void int_aligned_copy(int * pDest, int iDest, int * pSrc, int iSrc, int iCount)
       {
          
          if((iDest % INT_ALIGN) != (iSrc %INT_ALIGN))
          {
 
-            throw ::exception(error_bad_argument, "i32 aligned only");
+            throw ::exception(error_bad_argument, "int aligned only");
 
          }
 
-         i32 * pFullDest = &pDest[iDest / INT_ALIGN];
-         i32 * pFullSrc = &pSrc[iSrc / INT_ALIGN];
+         int * pFullDest = &pDest[iDest / INT_ALIGN];
+         int * pFullSrc = &pSrc[iSrc / INT_ALIGN];
          if((iDest % INT_ALIGN) > 0)
          {
             pFullDest++;            
             pFullSrc++;
          }
-         i32 iFullCount1 = iCount - (iDest % INT_ALIGN);
-         i32 iFullCount2 = iFullCount1 / INT_ALIGN;
+         int iFullCount1 = iCount - (iDest % INT_ALIGN);
+         int iFullCount2 = iFullCount1 / INT_ALIGN;
          ::memory_copy(pFullDest, pFullSrc, iFullCount2);
          if(pFullDest > pDest)
          {
@@ -42,22 +42,22 @@ namespace acme
          }
       }
 
-      void int_aligned_copy(i32 * pDest, i32 * pSrc, i32 start, i32 end)
+      void int_aligned_copy(int * pDest, int * pSrc, int start, int end)
       {
-         for(i32 i = start; i <= end; i++)
+         for(int i = start; i <= end; i++)
          {
             if((*pSrc >> i) & 1)
             {
-               *pDest |= (i32) (1 << i);
+               *pDest |= (int) (1 << i);
             }
             else
             {
-               *pDest &= (i32) ~(1 << i);
+               *pDest &= (int) ~(1 << i);
             }
          }
       }
 
-      void set(void * p, bool b, i32 start, i32 end)
+      void set(void * p, bool b, int start, int end)
       {
          uchar * pDest = (uchar *) p;
          uchar * pFullDestStart = &pDest[start / BYTE_ALIGN];
@@ -81,20 +81,20 @@ namespace acme
          }
       }
 
-      void byte_set(uchar * pDest, bool b, i32 start, i32 end)
+      void byte_set(uchar * pDest, bool b, int start, int end)
       {
          if(b)
          {
-            for(i32 i = start; i <= end; i++)
+            for(int i = start; i <= end; i++)
             {
-               *pDest |= (i32) (1 << i);
+               *pDest |= (int) (1 << i);
             }
          }
          else
          {
-            for(i32 i = start; i <= end; i++)
+            for(int i = start; i <= end; i++)
             {
-               *pDest &= (i32) ~(1 << i);
+               *pDest &= (int) ~(1 << i);
             }
          }
       }

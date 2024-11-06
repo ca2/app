@@ -122,7 +122,7 @@ namespace apex
 //      set_os_data(nullptr);
 //
 //
-//      //i32 iRet = ::application::term_instance();
+//      //int iRet = ::application::term_instance();
 //
 //
 //      int iRet = 0;
@@ -152,7 +152,7 @@ namespace apex
 
 
    // Advanced: handling messages sent to message filter hook
-   bool application::ProcessMessageFilter(i32 code, MESSAGE * lpMsg)
+   bool application::ProcessMessageFilter(int code, MESSAGE * lpMsg)
    {
    return  ::win::thread::ProcessMessageFilter(code, lpMsg);
    }
@@ -208,7 +208,7 @@ namespace apex
 //      if(puserinteraction != nullptr)
 //         return puserinteraction;
 //      user::interaction_ptr_array wndptra = ::apexacmesystem()->frames();
-//      for(i32 i = 0; i < wndptra.get_count(); i++)
+//      for(int i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
 //         {
@@ -249,7 +249,7 @@ namespace apex
 //
 //      // get path of executable
 //      /*   char szBuff[_MAX_PATH];
-//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      unsigned int dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //      throw ::exception(user_exception());*/

@@ -3,7 +3,7 @@
 #include "apex/platform/app_core.h"
 
 
-// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, ::u32 dwFlag);
+// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, unsigned int dwFlag);
 
 
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
@@ -153,7 +153,7 @@
 
             DWORD_PTR dwptr;
 
-            if (!::SendMessageTimeout((HWND)m_oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&cds, SMTO_ABORTIFHUNG, (::u32)(durationTimeout.u32_millis()), &dwptr))
+            if (!::SendMessageTimeout((HWND)m_oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&cds, SMTO_ABORTIFHUNG, (unsigned int)(durationTimeout.u32_millis()), &dwptr))
             {
 
                return false;
@@ -208,7 +208,7 @@
 
             DWORD_PTR dwptr;
 
-            if (!::SendMessageTimeout((HWND)m_oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&cds, SMTO_BLOCK, (::u32)(durationTimeout.u32_millis()), &dwptr))
+            if (!::SendMessageTimeout((HWND)m_oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&cds, SMTO_BLOCK, (unsigned int)(durationTimeout.u32_millis()), &dwptr))
             {
 
                return false;
@@ -444,7 +444,7 @@
       }
 
 
-      LRESULT rx::message_queue_proc(::u32 message,wparam wparam,lparam lparam)
+      LRESULT rx::message_queue_proc(unsigned int message,wparam wparam,lparam lparam)
       {
 
          if(message == WM_USER + 100)

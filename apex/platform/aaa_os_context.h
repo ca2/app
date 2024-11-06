@@ -82,7 +82,7 @@
 //   virtual void stop_service(const ::string & strServiceName);
 //
 ////#ifdef WINDOWS
-////      virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+////      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 ////#endif
 //
 //   virtual bool is_remote_session();

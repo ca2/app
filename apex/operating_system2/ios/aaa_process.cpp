@@ -123,7 +123,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -190,7 +190,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
 
 
-CLASS_DECL_APEX bool is_shared_library_busy(u32 processid, const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array & stra)
 {
 
    return false;

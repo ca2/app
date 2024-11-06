@@ -58,7 +58,7 @@ namespace graphics
 
       dH *= 6.0;
 
-      double dA = dH - (double)((i32)dH);
+      double dA = dH - (double)((int)dH);
 
       if (dH >= 3.0)
       {
@@ -186,7 +186,7 @@ namespace graphics
 
       ::collection::count h = pimage->height();
 
-      ::u32 uScan = pimage->scan_size();
+      unsigned int uScan = pimage->scan_size();
 
       unsigned char * pline;
 
@@ -233,7 +233,7 @@ namespace graphics
 
       auto dh = (double)h;
 
-      ::u32 uScan;
+      unsigned int uScan;
 
       //dS = 1.0 - ((double)j / dh);
 
@@ -245,7 +245,7 @@ namespace graphics
 
       dH *= 6.0;
 
-      double dA = dH - (double)((i32)dH);
+      double dA = dH - (double)((int)dH);
 
       if (dH >= 3.0)
       {

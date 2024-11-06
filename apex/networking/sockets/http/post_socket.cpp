@@ -456,7 +456,7 @@ namespace sockets
 
             memory m;
 
-            m.set_size((u32) (content_length));
+            m.set_size((unsigned int) (content_length));
 
             pair.element2().m_spfile->read(m);
 

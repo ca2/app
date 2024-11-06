@@ -10,11 +10,11 @@ namespace file
    namespace bitl
    {
 
-      const u32 kNumBigValueBits = 8 * 4;
-      const u32 kNumValueBytes = 3;
-      const u32 kNumValueBits = 8  * kNumValueBytes;
+      const unsigned int kNumBigValueBits = 8 * 4;
+      const unsigned int kNumValueBytes = 3;
+      const unsigned int kNumValueBits = 8  * kNumValueBytes;
 
-      const u32 kMask = (1 << kNumValueBits) - 1;
+      const unsigned int kMask = (1 << kNumValueBits) - 1;
 
       extern unsigned char kInvertTable[256];
 
@@ -22,12 +22,12 @@ namespace file
       class base_decoder
       {
       protected:
-         u32 m_BitPos;
-         u32 m_Value;
+         unsigned int m_BitPos;
+         unsigned int m_Value;
          TInByte m_Stream;
       public:
-         u32 NumExtraBytes;
-         bool Create(u32 bufferSize) { return m_Stream.Create(bufferSize); }
+         unsigned int NumExtraBytes;
+         bool Create(unsigned int bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(reader *inStream) { m_Stream.SetStream(inStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
          void Init()
@@ -53,10 +53,10 @@ namespace file
             }
          }
 
-         u32 ReadBits(u32 numBits)
+         unsigned int ReadBits(unsigned int numBits)
          {
             Normalize();
-            u32 res = m_Value & ((1 << numBits) - 1);
+            unsigned int res = m_Value & ((1 << numBits) - 1);
             m_BitPos += numBits;
             m_Value >>= numBits;
             return res;
@@ -66,7 +66,7 @@ namespace file
          {
             if (NumExtraBytes == 0)
                return false;
-            return ((u32)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
+            return ((unsigned int)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
          }
       };
 
@@ -74,7 +74,7 @@ namespace file
       class decoder :
          public base_decoder < TInByte >
       {
-         u32 m_NormalValue;
+         unsigned int m_NormalValue;
 
       public:
          void Init()
@@ -98,22 +98,22 @@ namespace file
             }
          }
 
-         u32 GetValue(u32 numBits)
+         unsigned int GetValue(unsigned int numBits)
          {
             Normalize();
             return ((this->m_Value >> (8 - this->m_BitPos)) & kMask) >> (kNumValueBits - numBits);
          }
 
-         void MovePos(u32 numBits)
+         void MovePos(unsigned int numBits)
          {
             this->m_BitPos += numBits;
             m_NormalValue >>= numBits;
          }
 
-         u32 ReadBits(u32 numBits)
+         unsigned int ReadBits(unsigned int numBits)
          {
             Normalize();
-            u32 res = m_NormalValue & ((1 << numBits) - 1);
+            unsigned int res = m_NormalValue & ((1 << numBits) - 1);
             MovePos(numBits);
             return res;
          }

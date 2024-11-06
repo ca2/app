@@ -165,7 +165,7 @@ namespace sandbox_windowing
 
             //::Window * pchildren = nullptr;
 
-            //u32 ncount = 0;
+            //unsigned int ncount = 0;
 
             //XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
 
@@ -1791,7 +1791,7 @@ namespace sandbox_windowing
 #undef SET_WINDOW_POS_LOG
 
 
-   //   bool window::set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
+   //   bool window::set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
    //   {
    //
    //      bool bOk = false;
@@ -2078,7 +2078,7 @@ namespace sandbox_windowing
 
 
    //bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
-   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, ::u32 nOverrideFlags)
+   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
       //synchronous_lock sl(user_synchronization());
@@ -2819,7 +2819,7 @@ namespace sandbox_windowing
    //         ::Window root = 0;
    //         ::Window parent = 0;
    //         ::Window * pchildren = nullptr;
-   //         u32 numItems = 0;
+   //         unsigned int numItems = 0;
 
    //         int status = XQueryTree(Display(), Window(),
    //            &root, &parent, &pchildren, &numItems);
@@ -2847,7 +2847,7 @@ namespace sandbox_windowing
    //      ::Window root = 0;
    //      ::Window parent = 0;
    //      ::Window * pchildren = nullptr;
-   //      u32 numItems = 0;
+   //      unsigned int numItems = 0;
 
    //      int status = XQueryTree(Display(), Window(),
    //         &root, &parent, &pchildren, &numItems);

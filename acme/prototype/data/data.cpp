@@ -24,7 +24,7 @@ namespace data
 
       listener_array listenera = m_listenera;
 
-      for(i32 i = 0; i < listenera.get_count(); i++)
+      for(int i = 0; i < listenera.get_count(); i++)
       {
 
          listenera[i]->listen(this, false);
@@ -134,10 +134,10 @@ namespace data
    }
 
 
-   void data::on_update_data(i32 iHint)
+   void data::on_update_data(int iHint)
    {
 
-      for(i32 i = 0; i < m_listenera.get_count(); i++)
+      for(int i = 0; i < m_listenera.get_count(); i++)
       {
 
          m_listenera[i]->on_update_data(this, iHint);

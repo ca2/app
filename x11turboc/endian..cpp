@@ -42,7 +42,7 @@
 
 // Converts a 16-bit integer between little-endian and the natural CPU format.
 void
-FixLittle16 (u16 * n)
+FixLittle16 (unsigned short * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
 #elif BYTE_ORDER == BIG_ENDIAN
@@ -57,7 +57,7 @@ FixLittle16 (u16 * n)
 
 // Converts a 32-bit integer between little-endian and the natural CPU format.
 void
-FixLittle32 (u32 * n)
+FixLittle32 (unsigned int * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
 #elif BYTE_ORDER == BIG_ENDIAN
@@ -76,7 +76,7 @@ FixLittle32 (u32 * n)
 
 // Converts a 16-bit integer between big-endian and the natural CPU format.
 void
-FixBig16 (u16 * n)
+FixBig16 (unsigned short * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
   unsigned char c;
@@ -91,7 +91,7 @@ FixBig16 (u16 * n)
 
 // Converts a 32-bit integer between big-endian and the natural CPU format.
 void
-FixBig32 (u32 * n)
+FixBig32 (unsigned int * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
   unsigned char c;

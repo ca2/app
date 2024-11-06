@@ -18,7 +18,7 @@ namespace universal_windows
       virtual bool FullPath(string & str, const ::scoped_string & scopedstrFileIn);
 
       virtual bool FullPath(wstring & wstrFullPath, const wstring & wstrPath);
-      virtual ::u32 GetFileName(const ::file::path & pathName, string & str);
+      virtual unsigned int GetFileName(const ::file::path & pathName, string & str);
 
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 

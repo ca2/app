@@ -12,14 +12,14 @@ bool CLASS_DECL_ACME __internal_pump_message();
 LRESULT CLASS_DECL_ACME __internal_process_wnd_proc_exception(::exception*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
-//__STATIC void CLASS_DECL_ACME __pre_init_dialog(::pointer<::user::interaction>pWnd, ::rectangle_i32 * lpRectOld, u32* pdwStyleOld);
-//__STATIC void CLASS_DECL_ACME __post_init_dialog(::pointer<::user::interaction>pWnd, const RECT32& rectangleOld, u32 dwStyleOld);
+//__STATIC void CLASS_DECL_ACME __pre_init_dialog(::pointer<::user::interaction>pWnd, ::rectangle_i32 * lpRectOld, unsigned int* pdwStyleOld);
+//__STATIC void CLASS_DECL_ACME __post_init_dialog(::pointer<::user::interaction>pWnd, const RECT32& rectangleOld, unsigned int dwStyleOld);
 
 
 //__declspec(thread) HHOOK t_hHookOldMsgFilter = nullptr;
 //
 //
-//LRESULT CALLBACK __message_filter_hook(i32 code,WPARAM wParam,LPARAM lParam);
+//LRESULT CALLBACK __message_filter_hook(int code,WPARAM wParam,LPARAM lParam);
 
 
 void CLASS_DECL_ACME __init_thread()

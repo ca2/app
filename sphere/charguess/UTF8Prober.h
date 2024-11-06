@@ -30,7 +30,7 @@ public:
                 mCodingSM = ___new nsCodingStateMachine(&UTF8SMModel);
                 Reset(); };
   virtual ~nsUTF8Prober(){delete mCodingSM;};
-  nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
   const char* GetCharSetName() {return "UTF-8";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
@@ -40,7 +40,7 @@ public:
 protected:
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;
-  PR::u32 mNumOfMBChar;
+  PRunsigned int mNumOfMBChar;
 };
 
 #endif /* nsUTF8Prober_h__ */

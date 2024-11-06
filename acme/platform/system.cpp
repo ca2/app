@@ -1567,7 +1567,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::u32 system::crc32(::u32 uCrc, const ::block& block)
+   unsigned int system::crc32(unsigned int uCrc, const ::block& block)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

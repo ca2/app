@@ -90,7 +90,7 @@
 
 
 
-               i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
+               int iInflate = 5; // raio 2 pixels + centro 1 pixel
 
                rectangleInflate = rectangleX;
                rectangleInflate.inflate(iInflate, iInflate);
@@ -227,10 +227,10 @@
             }
 
 
-            frame::enum_element operator++(frame::enum_element & eelement, i32 i)
+            frame::enum_element operator++(frame::enum_element & eelement, int i)
             {
                __UNREFERENCED_PARAMETER(i);
-               return (frame::enum_element) (*((i32*)&eelement))++;
+               return (frame::enum_element) (*((int*)&eelement))++;
             }
 
             bool frame::get_element_rectangle(::rectangle_i32 * lprect, enum_element eelement)
@@ -445,10 +445,10 @@
             {
 
                ::rectangle_i32 rectangle(rectangleParam);
-               i32 x = rectangle.left();
-               i32 y = rectangle.top();
-               i32 cx = rectangle.width();
-               i32 cy = rectangle.height();
+               int x = rectangle.left();
+               int y = rectangle.top();
+               int cx = rectangle.width();
+               int cy = rectangle.height();
 
 
 

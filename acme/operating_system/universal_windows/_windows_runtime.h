@@ -11,7 +11,7 @@ namespace universal_windows
 {
 
 
-   CLASS_DECL_ACME bool __initialize(bool bDLL, ::u32 dwVersion);
+   CLASS_DECL_ACME bool __initialize(bool bDLL, unsigned int dwVersion);
 
    CLASS_DECL_ACME uptr keycode_to_char(uptr n);
 

@@ -14,7 +14,7 @@ namespace simpledb
    }
 
 
-   i32 database::connect()
+   int database::connect()
    {
       string strMetaPath;
 
@@ -78,7 +78,7 @@ namespace simpledb
       return create_dataset();
    }
 
-   i32 database::setErr(i32 err_code)
+   int database::setErr(int err_code)
    {
       m_iErrorCode = err_code;
       return m_iErrorCode;
@@ -90,7 +90,7 @@ namespace simpledb
       __UNREFERENCED_PARAMETER(sname);
       if (!active)
          return DB_UNEXPECTED_RESULT;
-      /*i32 atom;
+      /*int atom;
       database::result_set res;
       char sqlcmd[512];
       sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table, sname);
@@ -107,7 +107,7 @@ namespace simpledb
       }
       else
       {
-         atom = res.records[0][0].i32()+1;
+         atom = res.records[0][0].int()+1;
          sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table,atom,sname);
          if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,nullptr,nullptr,nullptr) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return atom;

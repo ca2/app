@@ -28,8 +28,8 @@ namespace menu
 //      bool                                   m_bAutoDelete;
 //      double                                 m_dHeaderHeight;
 //      ::pointer<::menu::item>           m_pitemClose;
-//      i32                                    m_iHoverSubMenu;
-//      u32                                    m_dwOut;
+//      int                                    m_iHoverSubMenu;
+//      unsigned int                                    m_dwOut;
 //      ::pointer<menu>                        m_pmenuSubMenu;
 //      point_i32                              m_pointTrack;
 //      bool                                   m_bUsePositionHint;
@@ -53,7 +53,7 @@ namespace menu
 //
 //      virtual ::channel * get_notify_channel();
 //
-//      ::menu::item * GetSubMenu(i32 i);
+//      ::menu::item * GetSubMenu(int i);
 //
 //      virtual void defer_initialize_user_menu();
 //      virtual void initialize_user_menu();
@@ -125,8 +125,8 @@ namespace menu
 //
 //      virtual void update_command(::menu::item * pitemParent);
 //
-//      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
-//      void layout_buttons(::menu::item * pitem, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
+//      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
+//      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 //
 //
 //

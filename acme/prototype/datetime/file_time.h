@@ -75,7 +75,7 @@ public:
 extern CLASS_DECL_ACME const char * const szInvalidDateTime;
 extern CLASS_DECL_ACME const char * const szInvalidDateTimeSpan;
 
-const i32 maxTimeBufferSize = 128;
+const int maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;
 
 

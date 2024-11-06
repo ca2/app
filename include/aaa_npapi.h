@@ -158,8 +158,8 @@ typedef struct _NPStream
    void*    pdata; /* plug-in private data */
    void*    ndata; /* netscape private data */
    const    char* url;
-   ::u32 end;
-   ::u32 lastmodified;
+   unsigned int end;
+   unsigned int lastmodified;
    void*    notifyData;
    const    char* headers; /* Response headers from host.
                            * Exists only for >= NPVERS_HAS_RESPONSE_HEADERS.
@@ -176,7 +176,7 @@ typedef struct _NPStream
 typedef struct _NPByteRange
 {
    int32_t  offset; /* negative offset means from the end */
-   ::u32 length;
+   unsigned int length;
    struct _NPByteRange* next;
 } NPByteRange;
 
@@ -411,8 +411,8 @@ typedef struct _NPWindow
    /* OS/2: y - relative to visible netscape window */
    int32_t  x;      /* Position of top left corner relative */
    int32_t  y;      /* to a netscape page. */
-   ::u32 width;  /* Maximum window size_i32 */
-   ::u32 height;
+   unsigned int width;  /* Maximum window size_i32 */
+   unsigned int height;
    NPRect   clipRect; /* Clipping rectangle_i32 in port coordinates */
    /* Used by MAC only. */
 #if defined(XP_UNIX) && !defined(XP_MACOSX)
@@ -428,8 +428,8 @@ typedef struct _NPImageExpose
 /*   int32_t  depth;      /* Depth of image pointer */
    int32_t  x;          /* Expose x */
    int32_t  y;          /* Expose y */
-   ::u32 width;      /* Expose width */
-   ::u32 height;     /* Expose height */
+   unsigned int width;      /* Expose width */
+   unsigned int height;     /* Expose height */
    NPSize   dataSize;   /* Data buffer size_i32 */
    float    translateX; /* translate X matrix value */
    float    translateY; /* translate Y matrix value */
@@ -467,15 +467,15 @@ typedef EventRecord NPEvent;
 typedef struct _NPEvent
 {
    ::u3216_t event;
-   ::u32 wParam;
-   ::u32 lParam;
+   unsigned int wParam;
+   unsigned int lParam;
 } NPEvent;
 #elif defined(XP_OS2)
 typedef struct _NPEvent
 {
-   ::u32 event;
-   ::u32 wParam;
-   ::u32 lParam;
+   unsigned int event;
+   unsigned int wParam;
+   unsigned int lParam;
 } NPEvent;
 #elif defined (XP_UNIX) && defined(MOZ_X11)
 typedef XEvent NPEvent;
@@ -662,11 +662,11 @@ NPError     NP_LOADDS NPN_GetURLNotify(NPP instance, const ::string & url,
 NPError     NP_LOADDS NPN_GetURL(NPP instance, const ::string & url,
                                  const char* target);
 NPError     NP_LOADDS NPN_PostURLNotify(NPP instance, const ::string & url,
-                                        const char* target, ::u32 len,
+                                        const char* target, unsigned int len,
                                         const char* buf, NPBool file,
                                         void* notifyData);
 NPError     NP_LOADDS NPN_PostURL(NPP instance, const ::string & url,
-                                  const char* target, ::u32 len,
+                                  const char* target, unsigned int len,
                                   const char* buf, NPBool file);
 NPError     NP_LOADDS NPN_RequestRead(NPStream* stream, NPByteRange* rangeList);
 NPError     NP_LOADDS NPN_NewStream(NPP instance, NPMIMEType type,
@@ -677,9 +677,9 @@ NPError     NP_LOADDS NPN_DestroyStream(NPP instance, NPStream* stream,
                                         NPReason reason);
 void        NP_LOADDS NPN_Status(NPP instance, const ::string & message);
 const char* NP_LOADDS NPN_UserAgent(NPP instance);
-void*       NP_LOADDS NPN_MemAlloc(::u32 size_i32);
+void*       NP_LOADDS NPN_MemAlloc(unsigned int size_i32);
 void        NP_LOADDS NPN_MemFree(void* ptr);
-::u32    NP_LOADDS NPN_MemFlush(::u32 size_i32);
+unsigned int    NP_LOADDS NPN_MemFlush(unsigned int size_i32);
 void        NP_LOADDS NPN_ReloadPlugins(NPBool reloadPages);
 NPError     NP_LOADDS NPN_GetValue(NPP instance, NPNVariable variable,
                                    void *value);
@@ -696,18 +696,18 @@ void        NP_LOADDS NPN_PluginThreadAsyncCall(NPP instance,
       void *userData);
 NPError     NP_LOADDS NPN_GetValueForURL(NPP instance, NPNURLVariable variable,
       const char *url, char **value,
-      ::u32 *len);
+      unsigned int *len);
 NPError     NP_LOADDS NPN_SetValueForURL(NPP instance, NPNURLVariable variable,
       const char *url, const ::string &value,
-      ::u32 len);
+      unsigned int len);
 NPError     NP_LOADDS NPN_GetAuthenticationInfo(NPP instance,
       const char *protocol,
       const char *host, int32_t port,
       const char *scheme,
       const char *realm,
-      char **username, ::u32 *ulen,
+      char **username, unsigned int *ulen,
       char **password,
-      ::u32 *plen);
+      unsigned int *plen);
 
 #ifdef __cplusplus
 }  /* end extern "C" */

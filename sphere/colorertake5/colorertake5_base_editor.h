@@ -71,7 +71,7 @@ namespace colorertake5
       * @param backParse Number of lines. If <= 0, dropped into default
       * value.
       */
-      void setBackParse(i32 backParse);
+      void setBackParse(int backParse);
 
       /**
       * Initial HRC type, used for parse processing.
@@ -123,7 +123,7 @@ namespace colorertake5
       *        Paired region is found, if it includes specified position
       *        or ends directly at one char before line position.
       */
-      PairMatch *searchLocalPair(i32 lineNo, i32 pos);
+      PairMatch *searchLocalPair(int lineNo, int pos);
 
       /**
       * Searches pair match in all available text, possibly,
@@ -132,7 +132,7 @@ namespace colorertake5
       *        Paired region is found, if it includes specified position
       *        or ends directly at one char before line position.
       */
-      PairMatch *searchGlobalPair(i32 lineNo, i32 pos);
+      PairMatch *searchGlobalPair(int lineNo, int pos);
 
       /**
       * Searches and creates pair match object of first enwrapping block.
@@ -144,7 +144,7 @@ namespace colorertake5
       * @param lineNo Line number, where to search paired region.
       * @param pos position in line, where paired region to be searched.
       */
-      PairMatch *getEnwrappedPairMatch(i32 lineNo, i32 pos);
+      PairMatch *getEnwrappedPairMatch(int lineNo, int pos);
 
       /**
       * Frees previously allocated PairMatch object.
@@ -186,7 +186,7 @@ namespace colorertake5
       * @param time integer between 0 and 100, shows an abount of time,
       *             available for this job.
       */
-      void idleJob(i32 time);
+      void idleJob(int time);
 
       /**
       * Informs base_editor object about text modification event.
@@ -254,7 +254,7 @@ namespace colorertake5
       address_array < RegionHandler * > regionHandlers;
       address_array < EditorListener * > editorListeners;
 
-      i32 backParse;
+      int backParse;
       // window area
       ::collection::index wStart;
       ::collection::count wSize;

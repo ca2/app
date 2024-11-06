@@ -100,7 +100,7 @@ namespace colorertake5
       }
    }
 
-   file_type *HRCParserImpl::chooseFileType(const ::string &fileName, const ::string &firstLine, i32 typeNo)
+   file_type *HRCParserImpl::chooseFileType(const ::string &fileName, const ::string &firstLine, int typeNo)
    {
       file_type_impl *best = nullptr;
       double max_prior = 0;
@@ -144,7 +144,7 @@ namespace colorertake5
       return fileTypeHash[name];
    }
 
-   file_type *HRCParserImpl::enumerateFileTypes(i32 index)
+   file_type *HRCParserImpl::enumerateFileTypes(int index)
    {
       if (index < fileTypeVector.get_size()) return fileTypeVector.element_at(index);
       return nullptr;
@@ -155,7 +155,7 @@ namespace colorertake5
       return regionNamesVector.get_size();
    }
 
-   class region *HRCParserImpl::getRegion(i32 atom)
+   class region *HRCParserImpl::getRegion(int atom)
    {
       if (atom < 0 || atom >= regionNamesVector.get_size())
       {
@@ -320,7 +320,7 @@ namespace colorertake5
                delete matchRE;
                continue;
             };
-            i32 ctype = content->get_name() == "filename" ? 0 : 1;
+            int ctype = content->get_name() == "filename" ? 0 : 1;
             double prior = content->get_name() == "filename" ? 2 : 1;
             if(content->find_attr("weight") != nullptr)
             {
@@ -753,7 +753,7 @@ namespace colorertake5
             next->kwList = ___new KeywordList();
             for(::pointer<::xml::node>eywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
             {
-               if (keywrd_count->get_name() == "u16" ||
+               if (keywrd_count->get_name() == "unsigned short" ||
                      keywrd_count->get_name() == "symb")
                {
                   next->kwList->num++;
@@ -770,7 +770,7 @@ namespace colorertake5
             for(::pointer<::xml::node>eywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling())
             {
                strsize type = 0;
-               if (keywrd->get_name() == "u16") type = 1;
+               if (keywrd->get_name() == "unsigned short") type = 1;
                if (keywrd->get_name() == "symb") type = 2;
                if (!type)
                {

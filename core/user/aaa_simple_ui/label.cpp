@@ -56,11 +56,11 @@ namespace simple_ui
 
       ::write_text::font_pointer f(e_create);
 
-      /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectangleX.height() * 0.7);
+      /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)rectangleX.height() * 0.7);
 
       float fMargin = (rectangleX.height() * ((1.0f - 0.7f) / 2.0f));*/
 
-      f->create_pixel_font(pnode->font_name(e_font_sans), (i32)rectangleX.height() * .84);
+      f->create_pixel_font(pnode->font_name(e_font_sans), (int)rectangleX.height() * .84);
 
       float fMargin = 0.0;
 
@@ -72,7 +72,7 @@ namespace simple_ui
 
       get_window_text(strText);
 
-      pgraphics->text_out(rectangleX.left(), (i32)(rectangleX.top() + fMargin), strText);
+      pgraphics->text_out(rectangleX.left(), (int)(rectangleX.top() + fMargin), strText);
 
    }
 

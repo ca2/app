@@ -24,19 +24,19 @@ namespace draw2d
 
 
       virtual int GetEntryCount();
-      //virtual ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors) const;
+      //virtual unsigned int GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors) const;
 
-      //virtual ::u32 SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
-
-
+      //virtual unsigned int SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors);
 
 
 
 
-      //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
 
-      virtual ::u32 GetNearestPaletteIndex(const ::color::color & color) const;
-      //virtual bool ResizePalette(::u32 nNumEntries);
+
+      //virtual void AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors);
+
+      virtual unsigned int GetNearestPaletteIndex(const ::color::color & color) const;
+      //virtual bool ResizePalette(unsigned int nNumEntries);
 
 
    };

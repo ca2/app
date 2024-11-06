@@ -152,7 +152,7 @@
 // // #ifdef WINDOWS_DESKTOP
 
 
-// // bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+// // bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, unsigned int * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 // // {
 
 // // #ifdef WORK_AROUND_SRCLINE_BUG
@@ -161,7 +161,7 @@
 // //    // line addresses (after the first lookup) that fall exactly on
 // //    // a zero displacement. I'll walk backward 100 bytes to
 // //    // find the line and return the proper displacement.
-// //    u32 dwDisplacement = 0;
+// //    unsigned int dwDisplacement = 0;
 
 // //    while (!OS_SymGetLineFromAddr(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // //    {
@@ -189,7 +189,7 @@
 
 // // #else
 
-// //    return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (u32 *)puiDisplacement, pline);
+// //    return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (unsigned int *)puiDisplacement, pline);
 
 // // #endif
 
@@ -198,7 +198,7 @@
 
 
 
-// // index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, u32 * pline, u32 * pdisplacement = 0)
+// // index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, unsigned int * pline, unsigned int * pdisplacement = 0)
 // // {
 
 // //    OS_IMAGEHLP_LINE img_line = {};
@@ -207,7 +207,7 @@
 
 // //    HANDLE hprocess = SymGetProcessHandle();
 
-// //    ::u32 displacement = 0;
+// //    unsigned int displacement = 0;
 
 // //    if (!engine_get_line_from_address(hprocess, dwAddress, &displacement, &img_line))
 // //    {
@@ -264,7 +264,7 @@
 // //    return strlen(sz);
 // // }
 // // #else
-// // size_t engine_symbol(char * sz, int n, ::u32 * pdisplacement, ::u32 dwAddress)
+// // size_t engine_symbol(char * sz, int n, unsigned int * pdisplacement, unsigned int dwAddress)
 // // {
 
 // //    unsigned char symbol[4096];
@@ -274,7 +274,7 @@
 // //    pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
 
 // //    HANDLE hprocess = SymGetProcessHandle();
-// //    ::u32 displacement = 0;
+// //    unsigned int displacement = 0;
 // //    int r = SymGetSymFromAddr(hprocess, dwAddress, &displacement, pSym);
 // //    if (!r) return 0;
 // //    if (pdisplacement)
@@ -308,7 +308,7 @@
 // //                                         DWORD64     qwBaseAddress,
 // //                                         PVOID       pBuffer,
 
-// //                                         ::u32       nSize,
+// //                                         unsigned int       nSize,
 // //                                         LPDWORD     pNumberOfBytesRead
 
 // //                                        );
@@ -327,7 +327,7 @@
 // // _In_ DWORD64 qwBaseAddress,
 // // _Out_writes_bytes_(nSize) PVOID pBuffer,
 
-// // _In_ u32 nSize,
+// // _In_ unsigned int nSize,
 // // _Out_ LPDWORD pNumberOfBytesRead
 
 // // );*/
@@ -338,7 +338,7 @@
 // // DWORD64     qwBaseAddress,
 // // PVOID       pBuffer,
 
-// // ::u32       nSize,
+// // unsigned int       nSize,
 // // LPDWORD     pNumberOfBytesRead
 
 // // )
@@ -351,7 +351,7 @@
 // //    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
 
 // //       return false;
-// //    *pNumberOfBytesRead = (u32) size;
+// //    *pNumberOfBytesRead = (unsigned int) size;
 
 
 // //    return true;
@@ -362,7 +362,7 @@
 
 // // #ifndef FAST_STACK_TRACE
 
-// // int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
+// // int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, unsigned int qwBaseAddress, PVOID pBuffer, unsigned int nSize, LPDWORD lpNumberOfBytesRead)
 
 // // {
 
@@ -374,7 +374,7 @@
 
 // //       return false;
 // // #endif
-// //    *pNumberOfBytesRead = (u32)size;
+// //    *pNumberOfBytesRead = (unsigned int)size;
 
 
 // //    return true;
@@ -385,7 +385,7 @@
 
 // // /*
 // // #else
-// // int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
+// // int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, unsigned int nSize, SIZE_T * lpNumberOfBytesRead)
 
 // // {
 // // return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != false;
@@ -411,7 +411,7 @@
 // //    DWORD64     qwBaseAddress,
 // //    PVOID       pBuffer,
 
-// //    u32       nSize,
+// //    unsigned int       nSize,
 // //    LPDWORD     pNumberOfBytesRead,
 
 // //    LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
@@ -472,7 +472,7 @@
 // // #ifdef WINDOWS_DESKTOP
 
 
-// //    size_t engine::symbol(char * psz, int nCount, ::u32 * pdisplacement)
+// //    size_t engine::symbol(char * psz, int nCount, unsigned int * pdisplacement)
 // //    {
 
 // //       if (!check())
@@ -486,7 +486,7 @@
 
 // //    }
 
-// //    index engine::fileline (char * psz, int nCount, u32 * pline, u32 * pdisplacement)
+// //    index engine::fileline (char * psz, int nCount, unsigned int * pline, unsigned int * pdisplacement)
 // //    {
 
 // //       if (!check())
@@ -528,13 +528,13 @@
 // //       m_stackframe.AddrFrame.Offset    = pcontext->Ebp;
 // //       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 // // #else
-// //       m_stackframe.AddrPC.offset       = (u32)pcontext->Fir;
+// //       m_stackframe.AddrPC.offset       = (unsigned int)pcontext->Fir;
 // //       m_stackframe.AddrPC.Mode         = AddrModeFlat;
-// //       m_stackframe.AddrReturn.offset   = (u32)pcontext->IntRa;
+// //       m_stackframe.AddrReturn.offset   = (unsigned int)pcontext->IntRa;
 // //       m_stackframe.AddrReturn.Mode     = AddrModeFlat;
-// //       m_stackframe.AddrStack.offset    = (u32)pcontext->IntSp;
+// //       m_stackframe.AddrStack.offset    = (unsigned int)pcontext->IntSp;
 // //       m_stackframe.AddrStack.Mode      = AddrModeFlat;
-// //       m_stackframe.AddrFrame.offset    = (u32)pcontext->IntFp;
+// //       m_stackframe.AddrFrame.offset    = (unsigned int)pcontext->IntFp;
 // //       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 // // #endif
 
@@ -551,7 +551,7 @@
 
 // // #if FAST_STACK_TRACE
 
-// //       ::u32 maxframes = c;
+// //       unsigned int maxframes = c;
 // //       ULONG BackTraceHash;
 // //       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pinteraction), &BackTraceHash);
 
@@ -561,7 +561,7 @@
 // //    {
 
 // // #if FAST_STACK_TRACE
-// //       ::u32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
+// //       unsigned int maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
 // //       ULONG BackTraceHash;
 // //       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
 // // #else
@@ -579,7 +579,7 @@
 // //          set_last_error(0);
 // //          HANDLE hprocess = SymGetProcessHandle();
 
-// //          u32 dwType;
+// //          unsigned int dwType;
 
 // //          bool bRetry;
 
@@ -591,7 +591,7 @@
 
 // // #if OSBIT == 64
 // //          bool r = StackWalk64(
-// //                   dwType,   // __in      u32 MachineType,
+// //                   dwType,   // __in      unsigned int MachineType,
 // //                   hprocess,        // __in      HANDLE hProcess,
 // //                   current_htask(),         // __in       htask,
 // //                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
@@ -604,7 +604,7 @@
 // //                   ) != false;
 // // #else
 // //          bool r = StackWalk(
-// //                   dwType,   // __in      u32 MachineType,
+// //                   dwType,   // __in      unsigned int MachineType,
 // //                   hprocess,        // __in      HANDLE hProcess,
 // //                   current_htask(),         // __in      htask_t htask,
 // //                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
@@ -687,7 +687,7 @@
 // //    }
 
 
-// //    bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+// //    bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, unsigned int * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 // //    {
 
 // //       return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -697,7 +697,7 @@
 // // //      // line addresses (after the first lookup) that fall exactly on
 // // //      // a zero displacement. I'll walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
-// // //      u32 dwDisplacement = 0 ;
+// // //      unsigned int dwDisplacement = 0 ;
 // // //      while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // // //      {
 // // //         if (100 == ++dwDisplacement)
@@ -711,11 +711,11 @@
 // // //         *puiDisplacement = dwDisplacement;
 // // //      return true;
 // // //#else
-// // //      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (u32 *) puiDisplacement, pline);
+// // //      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (unsigned int *) puiDisplacement, pline);
 // // //#endif
 // //    }
 // // //#else
-// // //   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, ::u32 * puiDisplacement, IMAGEHLP_LINE64 * pline)
+// // //   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, unsigned int * puiDisplacement, IMAGEHLP_LINE64 * pline)
 // // //   {
 // // //
 // // //      return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -725,7 +725,7 @@
 // // //      // line addresses (after the first lookup) that fall exactly on
 // // //      // a zero displacement. I'll walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
-// // //      u32 dwDisplacement = 0;
+// // //      unsigned int dwDisplacement = 0;
 // // //      while (!SymGetLineFromAddr64(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // // //      {
 // // //         if (100 == ++dwDisplacement)
@@ -739,7 +739,7 @@
 // // //         *puiDisplacement = dwDisplacement;
 // // //      return true;
 // // //#else
-// // //      return 0 != SymGetLineFromAddr64(hprocess, uiAddress, (u32 *)puiDisplacement, pline);
+// // //      return 0 != SymGetLineFromAddr64(hprocess, uiAddress, (unsigned int *)puiDisplacement, pline);
 // // //#endif
 // // //   }
 // // //#endif
@@ -747,7 +747,7 @@
 // //    size_t engine::get_module_name (HMODULE hmodule, char * psz, int nCount)
 // //    {
 
-// //       for (i32 i = 0; i < m_iMa; i++)
+// //       for (int i = 0; i < m_iMa; i++)
 // //       {
 // //          if (m_ma[i] == hmodule)
 // //          {
@@ -771,7 +771,7 @@
 // //       m_ma[m_iMa] = hmodule;
 // //       m_szaModule[m_iMa] = strdup(filename);
 // //       ansi_count_copy(psz, m_szaModule[m_iMa++], nCount);
-// //       //u32 r = GetModuleFileNameA(hmodule, psz, nCount);
+// //       //unsigned int r = GetModuleFileNameA(hmodule, psz, nCount);
 
 // //       //if(!r)
 // //       // return 0;
@@ -834,29 +834,29 @@
 // //       return true;
 
 // // //      HANDLE hprocess = SymGetProcessHandle();
-// // //      u32  dwPid = get_current_process_id();
+// // //      unsigned int  dwPid = get_current_process_id();
 // // //
 // // //      // enumerate modules
 // // //      if (is_windows_nt())
 // // //      {
-// // //         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, u32, LPDWORD);
+// // //         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, unsigned int, LPDWORD);
 // // //
 // // //         HINSTANCE hInst = LoadLibrary("psapi.dll");
 // // //         if (hInst)
 // // //         {
 // // //            ENUMPROCESSMODULES fnEnumProcessModules =
 // // //            (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-// // //            ::u32 cbNeeded = 0;
+// // //            unsigned int cbNeeded = 0;
 // // //            if (fnEnumProcessModules &&
 // // //                  fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
 // // //                  cbNeeded)
 // // //            {
 // // //               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-// // //               ::u32 cb = cbNeeded;
+// // //               unsigned int cb = cbNeeded;
 // // //               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
 // // //               {
 // // //                  m_iRef = 0;
-// // //                  for (u32 i = 0; i < cb / sizeof (HMODULE); ++i)
+// // //                  for (unsigned int i = 0; i < cb / sizeof (HMODULE); ++i)
 // // //                  {
 // // //                     if (!load_module(hprocess, pmod[i]))
 // // //                     {
@@ -882,7 +882,7 @@
 // // //      }
 // // //      else
 // // //      {
-// // //         typedef HANDLE (WINAPI *CREATESNAPSHOT)(u32, u32);
+// // //         typedef HANDLE (WINAPI *CREATESNAPSHOT)(unsigned int, unsigned int);
 // // //         typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
 // // //
 // // //         HMODULE hMod = GetModuleHandle("kernel32");
@@ -1041,7 +1041,7 @@
 // //       }
 
 // //       HANDLE hprocess = SymGetProcessHandle();
-// //       u32  dwPid = get_current_process_id();
+// //       unsigned int  dwPid = get_current_process_id();
 
 // //       // initializes
 // //       //SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
@@ -1049,7 +1049,7 @@
 // //       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
 // //       if (!::SymInitialize(hprocess, 0, true))
 // //       {
-// //          ::u32 dw = ::GetLastError();
+// //          unsigned int dw = ::GetLastError();
 // //          informationf("Last Error = " + as_string(dw));
 // //          ASSERT(0);
 
@@ -1176,7 +1176,7 @@
 // //    bool engine::load_module(HANDLE hProcess, HMODULE hMod)
 // //    {
 
-// //       for(i32 i = 0; i < m_iHa; i++)
+// //       for(int i = 0; i < m_iHa; i++)
 // //       {
 // //          if(m_ha[i] == hMod)
 // //             return true;
@@ -1258,10 +1258,10 @@
 //    struct current_context : CONTEXT
 //    {
 //       HANDLE   thread;
-//       volatile i32 signal;
+//       volatile int signal;
 //    };
 
-//    u32 WINAPI engine::stack_trace_ThreadProc(void * pvoidParam)
+//    unsigned int WINAPI engine::stack_trace_ThreadProc(void * pvoidParam)
 
 //    {
 
@@ -1273,8 +1273,8 @@
 //       {
 //          // Konstantin, 14.01.2002 17:21:32
 //          // must wait in spin lock until Main thread will leave a ResumeThread (must return back to ::account::user context)
-//          i32 iInverseAgility = 26 + 33; // former iPatienceQuota
-//          i32 iPatience = iInverseAgility;
+//          int iInverseAgility = 26 + 33; // former iPatienceQuota
+//          int iPatience = iInverseAgility;
 //          while(pcontext->signal && iPatience > 0)
 //          {
 //             if(!SwitchToThread())
@@ -1393,7 +1393,7 @@
 
 // //       void * array[64];
 
-// //       i32 size = ::xxxbacktrace(array, 64);
+// //       int size = ::xxxbacktrace(array, 64);
 
 // //       if(caller_address != nullptr)
 // //       {
@@ -1487,7 +1487,7 @@
 //    }
 
 // #if OSBIT == 32
-//    char * engine::xxxstack_trace(::u32 * pinteraction, int c, const ::scoped_string & scopedstrFormat)
+//    char * engine::xxxstack_trace(unsigned int * pinteraction, int c, const ::scoped_string & scopedstrFormat)
 // #else
 //    char * engine::xxxstack_trace(DWORD64 * pinteraction, int c, const ::scoped_string & scopedstrFormat)
 // #endif
@@ -1541,10 +1541,10 @@
 //       *_strFile = '\0';
 //       *_strSymbol = '\0';
 
-//       u32 uiLineDisplacement = 0;
-//       u32 uiLineNumber = 0;
+//       unsigned int uiLineDisplacement = 0;
+//       unsigned int uiLineNumber = 0;
 // #if OSBIT == 32
-//       ::u32 uiSymbolDisplacement = 0;
+//       unsigned int uiSymbolDisplacement = 0;
 // #else
 //       DWORD64 uiSymbolDisplacement = 0;
 // #endif
@@ -1657,7 +1657,7 @@
 
 //       cslock csl(&m_cs);
 
-//       ::u32 maxframes = c;
+//       unsigned int maxframes = c;
 
 //       c = ::backtrace(pinteraction, maxframes);
 
@@ -1678,7 +1678,7 @@
 //       const char * file;
 //       unsigned iLine;
 
-//       for (i32 i = 1; i < c && messages != nullptr; ++i)
+//       for (int i = 1; i < c && messages != nullptr; ++i)
 //       {
 
 //          char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
@@ -1761,7 +1761,7 @@
 
 //       synchronous_lock synchronouslock(this->synchronization());
 
-//       ::u32 maxframes = c;
+//       unsigned int maxframes = c;
 
 //       c = ::backtrace(ppui, maxframes);
 
@@ -1782,7 +1782,7 @@
 //       const char * file;
 //       unsigned iLine;
 
-//       for (i32 i = 1; i < c && messages != nullptr; ++i)
+//       for (int i = 1; i < c && messages != nullptr; ++i)
 //       {
 // #ifdef __USE_BFD
 
@@ -1835,7 +1835,7 @@
 //             *offset_begin++ = '\0';
 //             *offset_end++ = '\0';
 
-//             i32 status;
+//             int status;
 
 //             char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 

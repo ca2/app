@@ -30,7 +30,7 @@
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
 #define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a int
-#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
+#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a unsigned int (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
 
@@ -66,18 +66,18 @@ namespace user
       public:
 
 
-         ::u32                mask;
-         i32                  cxy;
+         unsigned int                mask;
+         int                  cxy;
          string               m_strTextText;
          ::image::image_pointer      m_pimage;
-         i32                  cchTextMax;
-         i32                  fmt;
+         int                  cchTextMax;
+         int                  fmt;
          lparam               lParam;
-         i32                  iImage;        // index of bitmap in ImageList
-         i32                  iOrder;
-         ::u32                type;           // [in] filter type (defined what pvFilter is a pointer to)
+         int                  iImage;        // index of bitmap in ImageList
+         int                  iOrder;
+         unsigned int                type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *               pvFilter;       // [in] fillter data see above
-         ::u32                state;
+         unsigned int                state;
       };
 
 
@@ -120,7 +120,7 @@ namespace user
       virtual ::collection::index MapItemToOrder(::collection::index iItem);
       virtual ::collection::index ItemToColumnKey(::collection::index iItem);
 
-      virtual i32 GetDividerWidth();
+      virtual int GetDividerWidth();
 
 
       bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, ::collection::index iItem);

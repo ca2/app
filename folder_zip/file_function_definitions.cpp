@@ -7,20 +7,20 @@
 #include "acme/filesystem/file/file.h"
 
 
-voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, i32 mode);
+voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, int mode);
 uptr  c_zip_file_read_file_func(voidpf opaque, voidpf stream, void* buf, uptr size);
 uptr  c_zip_file_write_file_func(voidpf opaque, voidpf stream, const void* buf, uptr size);
 long   c_zip_file_tell_file_func(voidpf opaque, voidpf stream);
-long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, i32 origin);
-i32    c_zip_file_close_file_func(voidpf opaque, voidpf stream);
-i32 c_zip_file_testerror_file_func(voidpf opaque, voidpf stream);
+long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, int origin);
+int    c_zip_file_close_file_func(voidpf opaque, voidpf stream);
+int c_zip_file_testerror_file_func(voidpf opaque, voidpf stream);
 zlib_filefunc_def* zip_filefuncdef_malloc();
 
 
 void zip_filefuncdef_set_file(zlib_filefunc_def* pParam, ::file::file* pfile);
 
 
-voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, i32 mode)
+voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, int mode)
 {
    
    __UNREFERENCED_PARAMETER(mode);
@@ -67,7 +67,7 @@ long c_zip_file_tell_file_func(voidpf opaque, voidpf stream)
 }
 
 
-long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, i32 origin)
+long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, int origin)
 {
 
    __UNREFERENCED_PARAMETER(stream);
@@ -92,7 +92,7 @@ long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, i32 
 }
 
 
-i32 c_zip_file_close_file_func(voidpf opaque, voidpf stream)
+int c_zip_file_close_file_func(voidpf opaque, voidpf stream)
 {
 
    __UNREFERENCED_PARAMETER(opaque);
@@ -106,7 +106,7 @@ i32 c_zip_file_close_file_func(voidpf opaque, voidpf stream)
 }
 
 
-i32 c_zip_file_testerror_file_func(voidpf opaque, voidpf stream)
+int c_zip_file_testerror_file_func(voidpf opaque, voidpf stream)
 {
 
    __UNREFERENCED_PARAMETER(opaque);

@@ -167,7 +167,7 @@ namespace userfs
 
       __UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-      //   i32 iItem;
+      //   int iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
 //      ::user::tree_data::screen_to_client(&point);
@@ -333,7 +333,7 @@ namespace userfs
       pinteraction->m_atom = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
-      i32 iControl =  _001AddControl(control);
+      int iControl =  _001AddControl(control);
 
       CColumn column;
 
@@ -356,7 +356,7 @@ namespace userfs
 
       get_selection(itemptraSelected);
 
-      for (i32 i = 0; i < itemptraSelected.get_size(); i++)
+      for (int i = 0; i < itemptraSelected.get_size(); i++)
       {
 
          stra.add(itemptraSelected[0]->m_pdataitem.cast < ::userfs::item >()->user_path());
@@ -383,7 +383,7 @@ namespace userfs
    }
    else
    {
-   i32 iCSIDL = MapToCSIDL(efolder);
+   int iCSIDL = MapToCSIDL(efolder);
 
    ASSERT(iCSIDL >= 0);
 
@@ -422,7 +422,7 @@ namespace userfs
    }
    }*/
 
-   /*   i32 tree_data::MapToCSIDL(EFolder efolder)
+   /*   int tree_data::MapToCSIDL(EFolder efolder)
    {
    switch(efolder)
    {

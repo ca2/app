@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //
-//CLASS_DECL_APEX bool _istlead(i32 ch)
+//CLASS_DECL_APEX bool _istlead(int ch)
 //{
 //
 //   return false;

@@ -235,22 +235,22 @@ public:
 
    inline bool operator == (const wstring & wstr) const;
 
-   inline i32 Compare(const unichar * psz) const
+   inline int Compare(const unichar * psz) const
    {
       return wide_compare(m_pwsz, psz);
    }
 
-   inline i32 Compare(const wstring &str) const
+   inline int Compare(const wstring &str) const
    {
       return wide_compare(m_pwsz, str);
    }
 
-   inline i32 CompareNoCase(const unichar * psz) const
+   inline int CompareNoCase(const unichar * psz) const
    {
       return wide_compare_case_insensitive(m_pwsz, psz);
    }
 
-   inline i32 CompareNoCase(const wstring &str) const
+   inline int CompareNoCase(const wstring &str) const
    {
       return wide_compare_case_insensitive(m_pwsz, str);
    }

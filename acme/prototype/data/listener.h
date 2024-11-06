@@ -29,7 +29,7 @@ namespace data
       bool listen(data * pdata, bool bListen = true);
 
 
-      virtual void on_update_data(data * pdata, i32 iHint);
+      virtual void on_update_data(data * pdata, int iHint);
 
    };
 

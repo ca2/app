@@ -110,7 +110,7 @@ namespace http
 
       strNameLow.make_lower();
 
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->m_strNameLow == strNameLow)
@@ -128,7 +128,7 @@ namespace http
 
    ::collection::index cookies::lowfind_cookie(const char * name)
    {
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i)->m_strNameLow == name)
          {
@@ -196,7 +196,7 @@ namespace http
       //stra.add_tokens(psz, ";", true);
       auto psz = scopedstr.begin();
       bool bRun = true;
-      i32 i = 0;
+      int i = 0;
       while(bRun)
       {
          const ::ansi_character * pszEnd = ansi_chr(psz, ';');

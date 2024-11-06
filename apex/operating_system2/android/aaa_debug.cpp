@@ -43,15 +43,15 @@
 //
 
 
-//::u32
+//unsigned int
 //WINAPI
 //FormatMessage(
-//::u32 dwFlags,
+//unsigned int dwFlags,
 //const void * lpSource,
-//::u32 dwMessageId,
-//::u32 dwLanguageId,
+//unsigned int dwMessageId,
+//unsigned int dwLanguageId,
 //char * lpBuffer,
-//::u32 nSize,
+//unsigned int nSize,
 //va_list *Arguments
 //)
 //{

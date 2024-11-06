@@ -10,7 +10,7 @@
 // #include <sys/ptrace.h>
 // #include <sys/wait.h>
 //    int   gdb_check(   )   ;
-// i32 __node_is_debugger_attached()
+// int __node_is_debugger_attached()
 // {
 
 //    return gdb_check();
@@ -20,11 +20,11 @@
 
 
 // /*
-// i32 gdb_check()
+// int gdb_check()
 // {
-//   i32 pid = fork();
-//   i32 status;
-//   i32 res;
+//   int pid = fork();
+//   int status;
+//   int res;
 
 //   if (pid == -1)
 //     {
@@ -34,7 +34,7 @@
 
 //   if (pid == 0)
 //     {
-//       i32 ppid = getppid();
+//       int ppid = getppid();
 
 //       // Child
 //       if (ptrace(PTRACE_ATTACH, ppid, nullptr, nullptr) == 0)
@@ -73,7 +73,7 @@
 //    return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
 // }
 
-// i32
+// int
 // gdb_check(void)
 // {
 
@@ -122,17 +122,17 @@
 
 
 
-// ::u32
+// unsigned int
 // WINAPI
 // FormatMessage(
-// ::u32 dwFlags,
+// unsigned int dwFlags,
 // const void * pSource,
 
-// ::u32 dwMessageId,
-// ::u32 dwLanguageId,
+// unsigned int dwMessageId,
+// unsigned int dwLanguageId,
 // char * pBuffer,
 
-// ::u32 nSize,
+// unsigned int nSize,
 // va_list *Arguments
 // )
 // {

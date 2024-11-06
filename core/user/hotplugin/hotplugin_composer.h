@@ -92,7 +92,7 @@ namespace hotplugin
 
       virtual ::aura::system * get_composer_system();
       virtual bool defer_start_composer_system();
-      static u32 c_cdecl composer_system_main(LPVOID pVoid);
+      static unsigned int c_cdecl composer_system_main(LPVOID pVoid);
 
       virtual void defer_stop_composer_system();
 

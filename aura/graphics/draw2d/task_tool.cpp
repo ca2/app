@@ -586,7 +586,7 @@ restart:
                      else
                      {
 
-                        unsigned char bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        unsigned char bA3 = ((unsigned short)~((unsigned short)bA2 * (unsigned short)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
@@ -635,7 +635,7 @@ restart:
                      else
                      {
 
-                        unsigned char bA3 = ((u16)~((u16)bA2 * (u16)bA)) >> 8;
+                        unsigned char bA3 = ((unsigned short)~((unsigned short)bA2 * (unsigned short)bA)) >> 8;
                         pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
                         pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
                         pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;

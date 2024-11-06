@@ -41,8 +41,8 @@ class CLASS_DECL_APEX service_status
 public:
 
 
-   u32       dwServiceType;
-   u32       dwServiceState;
+   unsigned int       dwServiceType;
+   unsigned int       dwServiceState;
 
 
    service_status()

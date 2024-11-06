@@ -48,13 +48,13 @@ inline constexpr bool __lt(const SIGNED1 & a, const SIGNED2 & b) { return a < b;
 template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
 inline constexpr bool __le(const SIGNED1 & a, const SIGNED2 & b) { return a <= b; }
 template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
-inline constexpr bool __lt(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
+inline constexpr bool __lt(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a < static_cast < unsigned int > (b); }
 template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
-inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
+inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a <= static_cast <unsigned int> (b); }
 
 
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
-inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
+inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
 inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
 

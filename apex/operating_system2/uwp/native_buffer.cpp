@@ -208,7 +208,7 @@ namespace universal_windows
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
       rStatus.m_attribute = (unsigned char)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
-      // get just the low ::u32 of the native_buffer size_i32
+      // get just the low unsigned int of the native_buffer size_i32
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
       rStatus.m_size = (int)findnative_bufferData.nnative_bufferSizeLow;
 
@@ -341,7 +341,7 @@ namespace universal_windows
       }
 
       m_bCloseOnDelete = false;
-      //m_hnative_buffer = (::u32)hnative_bufferNull;
+      //m_hnative_buffer = (unsigned int)hnative_bufferNull;
       m_strFileName.empty();
 
       m_strFileName  = path;
@@ -351,7 +351,7 @@ namespace universal_windows
       ASSERT(::file::e_open_share_compat == 0);
 
       ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
-      ::u32 dwAccess = 0;
+      unsigned int dwAccess = 0;
       switch(eopen & 3)
       {
       case ::file::e_open_read:
@@ -549,11 +549,11 @@ namespace universal_windows
    //void native_buffer::Abort()
    //{
    //   //ASSERT_VALID(this);
-   //   //if(m_hnative_buffer != (::u32)hnative_bufferNull)
+   //   //if(m_hnative_buffer != (unsigned int)hnative_bufferNull)
    //   //{
    //   //   // close but ignore errors
    //   //   ::CloseHandle((HANDLE)m_hnative_buffer);
-   //   //   m_hnative_buffer = (::u32)hnative_bufferNull;
+   //   //   m_hnative_buffer = (unsigned int)hnative_bufferNull;
    //   //}
    //   //m_strFileName.empty();
    //}
@@ -561,7 +561,7 @@ namespace universal_windows
    void native_buffer::lock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
       ////       WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
@@ -570,7 +570,7 @@ namespace universal_windows
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
       ////   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
@@ -579,7 +579,7 @@ namespace universal_windows
    void native_buffer::set_size(filesize dwNewLen)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       //seek((int)dwNewLen,(::enum_seek)::e_seek_set);
 
@@ -605,7 +605,7 @@ namespace universal_windows
    }
 
    //// native_buffer does not support direct buffering (CMemnative_buffer does)
-   //u64 native_buffer::GetBufferPtr(::u32 nCommand,u64 /*nCount*/,
+   //u64 native_buffer::GetBufferPtr(unsigned int nCommand,u64 /*nCount*/,
    //                                     void ** /*ppBufStart*/,void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);

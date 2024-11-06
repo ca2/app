@@ -21,7 +21,7 @@ int get_processor_count()
 
    size_t len = 4;
 
-   u32 count;
+   unsigned int count;
 
    nm[0] = CTL_HW;
 

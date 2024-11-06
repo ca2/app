@@ -55,7 +55,7 @@ namespace regular_expression_pcre2
 
       }
 
-      ::u32 uRangeCount = 0;
+      unsigned int uRangeCount = 0;
 
       auto iResult = pcre2_pattern_info(m_pcode, PCRE2_INFO_CAPTURECOUNT, &uRangeCount);
 //    may return:

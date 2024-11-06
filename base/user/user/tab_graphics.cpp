@@ -1020,7 +1020,7 @@ namespace user
 
       {
 
-         //               ::u32 dwTime2= ::time::now();
+         //               unsigned int dwTime2= ::time::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

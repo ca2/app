@@ -211,7 +211,7 @@ namespace aura
       //virtual void on_request(::request * prequest) override;
 
 
-      //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
+      //virtual unsigned int crc32(unsigned int dwPrevious, const ::string & psz);
 
 
       //virtual string ::url::encode(const ::string & str) override;
@@ -376,7 +376,7 @@ namespace aura
       //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override;
 
 
-      //virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
+      //virtual unsigned int os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;
@@ -680,7 +680,7 @@ namespace aura
 
 
 
-      //      u32 guess_code_page(const ::string & str);
+      //      unsigned int guess_code_page(const ::string & str);
 
 //#ifdef UNIVERSAL_WINDOWS
 //
@@ -770,8 +770,8 @@ namespace aura
 
 
 
-      //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
-      //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
+      //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
 
       //virtual ::collection::count get_monitor_count() override;

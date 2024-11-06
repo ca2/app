@@ -44,7 +44,7 @@ namespace user
       const char *                              m_pszInteractionImplBaseDebug;
 
       bool                                      m_bPendingRedraw;
-      u32                                       m_uiLastRedraw;
+      unsigned int                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
       ::rectangle_i32                           m_rectangle;
@@ -113,7 +113,7 @@ namespace user
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(int x, int y);
 
@@ -221,7 +221,7 @@ namespace user
 
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point);
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, unsigned int nFlags);
 
 
       virtual ::user::interaction* GetLastActivePopup();
@@ -299,7 +299,7 @@ namespace user
       virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
-      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
+      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
 
 
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
@@ -340,10 +340,10 @@ namespace user
       virtual void viewport_screen_to_client(::rectangle_i32 & rectangle);
 
 
-      //virtual u32 GetStyle() const;
-      //virtual u32 GetExStyle() const;
-      //virtual void ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
-      //virtual void ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      //virtual unsigned int GetStyle() const;
+      //virtual unsigned int GetExStyle() const;
+      //virtual void ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
+      //virtual void ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
 
       //virtual int get_window_long(int nIndex) const;
       //virtual int set_window_long(int nIndex,int lValue);
@@ -363,7 +363,7 @@ namespace user
       virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
 
 
-      virtual ::u32 ArrangeIconicWindows();
+      virtual unsigned int ArrangeIconicWindows();
       //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
 
@@ -375,7 +375,7 @@ namespace user
 
 
 //      virtual ::user::interaction * get_wnd();
-      virtual ::user::interaction * get_wnd(::u32 nCmd);
+      virtual ::user::interaction * get_wnd(unsigned int nCmd);
 
 
       virtual ::user::frame_interaction * frame();

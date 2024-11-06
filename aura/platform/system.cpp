@@ -110,7 +110,7 @@ void dappy(const ::string & psz);
 //string get_user_name()
 //{
 //   WCHAR wsz[1024];
-//   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
+//   unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
 //   ::GetUserNameW(wsz,&dwSize);
 //   return string(wsz);
 //}
@@ -2156,7 +2156,7 @@ namespace aura
    }
 
 
-   //::u32 system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
+   //unsigned int system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
    //{
 
    //   post_to_all_threads(atom, wparam, lparam);
@@ -5091,7 +5091,7 @@ namespace aura
 
 //#include <HighLevelMonitorConfigurationAPI.h>
 //
-//::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+//unsigned int mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 //{
 //   switch (e)
 //   {
@@ -5116,7 +5116,7 @@ namespace aura
 //   }
 //}
 
-//MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
+//MC_COLOR_TEMPERATURE kelvin_mc_color(unsigned int kelvin)
 //{
 //   if (kelvin < 4500)
 //   {
@@ -5184,7 +5184,7 @@ namespace aura
 namespace aura
 {
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp);
 
    /*  bool system::on_application_menu_action(const ::string & pszCommand)
      {
@@ -5804,7 +5804,7 @@ if(!m_pimaging)
    //   set_enum_name(::e_type_empty     , "is_empty");
    //   set_enum_name(::e_type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
-   //   set_enum_name(::type_::u32     , "ulong");
+   //   set_enum_name(::type_unsigned int     , "ulong");
    //   set_enum_name(::e_type_element       , "ca2");
    //   set_enum_name(::e_type_bool      , "bool");
    //   set_enum_name(::e_type_f64    , "double");*/
@@ -6754,7 +6754,7 @@ if(!m_pimaging)
    }
 
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp)
    //{
 
    //   int temp_index = ((dwTemp - 1000) / 100) * 3;

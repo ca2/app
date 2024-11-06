@@ -22,7 +22,7 @@ namespace colorertake5
       string keyword;
       bool isSymbol;
       class region* region;
-      i32  ssShorter;
+      int  ssShorter;
 
 ////#define CNAME "KeywordInfo"
 //#include "memory_operator.h"
@@ -35,8 +35,8 @@ namespace colorertake5
    class KeywordList
    {
    public:
-      i32 num;
-      i32 matchCase;
+      int num;
+      int matchCase;
       strsize minKeywordLength;
       ::str::ch_class *firstChar;
       KeywordInfo *kwList;
@@ -142,7 +142,7 @@ namespace colorertake5
       };
       ~scheme_impl()
       {
-         for (i32 idx = 0; idx < nodes.get_size(); idx++)
+         for (int idx = 0; idx < nodes.get_size(); idx++)
             delete nodes.element_at(idx);
       };
    };
@@ -160,7 +160,7 @@ namespace colorertake5
           @param prior Priority of this rule
           @param re Associated regular expression
       */
-      FileTypeChooser(i32 type, double prior, cregexp *re)
+      FileTypeChooser(int type, double prior, cregexp *re)
       {
          this->type = type;
          this->prior = prior;
@@ -180,7 +180,7 @@ namespace colorertake5
       /** Returns associated regular expression */
       cregexp *getRE() const { return re; };
    private:
-      i32 type;
+      int type;
       double prior;
       cregexp *re;
    };

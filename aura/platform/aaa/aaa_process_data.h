@@ -21,8 +21,8 @@ public:
       For the other arguments, see MSDN documentation for OpenProcess and
       VirtualAllocEx.
    */
-   process_data(u32 dwProcessId = 0, u32 dwDesiredAccess = PROCESS_ALL_ACCESS,
-      u32 flAllocationType = MEM_COMMIT, u32 flProtect = PAGE_READWRITE)
+   process_data(unsigned int dwProcessId = 0, unsigned int dwDesiredAccess = PROCESS_ALL_ACCESS,
+      unsigned int flAllocationType = MEM_COMMIT, unsigned int flProtect = PAGE_READWRITE)
    {
       m_hProcess = OpenProcess(dwDesiredAccess, false,
          dwProcessId ? dwProcessId : GetCurrentProcessId());

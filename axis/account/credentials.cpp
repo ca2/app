@@ -90,7 +90,7 @@ namespace account
 
       string strFormat;
 
-      for(i32 i = 0; i < 64; i += 2)
+      for(int i = 0; i < 64; i += 2)
       {
 
          char iDigit = mathematics()->random_char();
@@ -496,7 +496,7 @@ namespace account
 
       set["post"]["source"] = straHash.implode(";");
 
-      for(i32 i = 0; i < 3; i++)
+      for(int i = 0; i < 3; i++)
       {
 
          try

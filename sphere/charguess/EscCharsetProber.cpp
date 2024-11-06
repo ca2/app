@@ -34,24 +34,24 @@ nsEscCharSetProber::nsEscCharSetProber(void)
 
 nsEscCharSetProber::~nsEscCharSetProber(void)
 {
-  for (PR::u32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
+  for (PRunsigned int i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     delete mCodingSM[i];
 }
 
 void nsEscCharSetProber::Reset(void)
 {
   mState = eDetecting;
-  for (PR::u32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
+  for (PRunsigned int i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     mCodingSM[i]->Reset();
   mActiveSM = NUM_OF_ESC_CHARSETS;
   mDetectedCharset = nsnull;
 }
 
-nsProbingState nsEscCharSetProber::HandleData(const ::string & aBuf, PR::u32 aLen)
+nsProbingState nsEscCharSetProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
 {
   nsSMState codingState;
   PRInt32 j;
-  PR::u32 i;
+  PRunsigned int i;
 
   for ( i = 0; i < aLen && mState == eDetecting; i++)
   {

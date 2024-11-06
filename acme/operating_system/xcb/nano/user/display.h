@@ -97,7 +97,7 @@ namespace nano
 
 
 
-         ::e_status _select_input(xcb_window_t window, i32 iInput);
+         ::e_status _select_input(xcb_window_t window, int iInput);
 
 
          //void wait_timer_or_event();

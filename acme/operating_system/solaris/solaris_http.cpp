@@ -6,7 +6,7 @@
 #endif
 
 tiny_http g_tinyhttp;
-::u32 g_MsDownloadSize = 1024 * 128;
+unsigned int g_MsDownloadSize = 1024 * 128;
 char * g_MsDownloadBuffer = nullptr;
 
 void prepare_http()
@@ -19,7 +19,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile, bool bProgress, bool bUrlEncode, i32 * piStatus, void (*callback)(void *, i32, dword_ptr), void * callback_param )
+bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, dword_ptr), void * callback_param )
 {
 
    if(piStatus != nullptr)
@@ -50,7 +50,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
       callback(callback_param, -1, 0);
    }
 
-   i32 iCol = 3;
+   int iCol = 3;
 
 
    strUrl = pszUrl;
@@ -70,7 +70,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   ::u32 dwSize = 0;
+   unsigned int dwSize = 0;
    char * pszOutBuffer;
    int_bool  bResults = false;
 
@@ -81,7 +81,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
    g_tinyhttp.t_parse_url(strUrl);
 
    char * buffer;
-   i32 len;
+   int len;
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
@@ -94,7 +94,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
 
 
 
-vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*callback)(void *, i32, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -107,8 +107,8 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   ::u32 dwSize = 0;
-   ::u32 dwDownloaded = 0;
+   unsigned int dwSize = 0;
+   unsigned int dwDownloaded = 0;
    char * pszOutBuffer;
    int_bool  bResults = false;
 
@@ -117,7 +117,7 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
    g_tinyhttp.t_parse_url(strUrl);
 
    char * buffer;
-   i32 len;
+   int len;
 
    tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
@@ -181,23 +181,23 @@ vsstring ms_post(const ::scoped_string & scopedstrUrl, const ::scoped_string & s
 vsstring strUrl(pszUrl);
 vsstring strHost;
 vsstring strReq;
-i32 iPort;
+int iPort;
 if(strUrl.substr(0, 7) == "http://")
 {
-i32 iPos = strUrl.find("/", 8);
+int iPos = strUrl.find("/", 8);
 strHost = strUrl.substr(7, iPos - 7);
 strReq = strUrl.substr(iPos);
 iPort = 80;
 }
 else if(strUrl.substr(0, 8) == "https://")
 {
-i32 iPos = strUrl.find("/", 9);
+int iPos = strUrl.find("/", 9);
 strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;
 }
-::u32 dwSize = 0;
-::u32 dwDownloaded = 0;
+unsigned int dwSize = 0;
+unsigned int dwDownloaded = 0;
 char * pszOutBuffer;
 int_bool  bResults = false;
 HINTERNET  hSession = nullptr,
@@ -266,7 +266,7 @@ WINHTTP_NO_ADDITIONAL_HEADERS,
 0, WINHTTP_NO_REQUEST_DATA, 0,
 strlen(pszPost), 0);
 
-::u32 dwUploaded;
+unsigned int dwUploaded;
 if (bResults)
 if (! (bResults = WinHttpWriteData( hRequest, (LPVOID)pszPost,
 strlen(pszPost), &dwUploaded)))
@@ -320,7 +320,7 @@ delete [] pszOutBuffer;
 } while (dwSize>0);
 }
 
-::u32 dw = get_last_error();
+unsigned int dw = get_last_error();
 // Report any errors.
 if (!bResults)
 printf("Error %d has occurred.\n",dw);
@@ -344,7 +344,7 @@ WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
 memory_set(szPac, 0, sizeof(szPac));
-::u32 lcbPac;
+unsigned int lcbPac;
 HKEY hkey;
 memory_set(&apop, 0, sizeof(apop));
 bool bGot = false;
@@ -354,7 +354,7 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 &hkey) == ERROR_SUCCESS)
 {
 int l;
-::u32 dw;
+unsigned int dw;
 if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (unsigned char *) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {

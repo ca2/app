@@ -1,7 +1,7 @@
 #pragma once
 
 
-void __dump_stack(u32 dwFlags = __stack_dump_TARGET_DEFAULT);
+void __dump_stack(unsigned int dwFlags = __stack_dump_TARGET_DEFAULT);
 
 #include "dump_context.h"
 

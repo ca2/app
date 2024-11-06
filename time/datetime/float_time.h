@@ -22,7 +22,7 @@ typedef struct
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
 
 
-CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, u32 dwFlags, UDATE *lpUdate);
+CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, unsigned int dwFlags, UDATE *lpUdate);
 CLASS_DECL_CA2_TIME int_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
 CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 
@@ -32,9 +32,9 @@ CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTE
 
 CLASS_DECL_CA2_TIME int32_t SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
 CLASS_DECL_CA2_TIME int32_t FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * pstr, LCID lcid, u32 dwFlags, FLOAT_DATE * pdateOut);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, u32 dwFlags, FLOAT_DATE *pDateOut);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32 dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * pstr, LCID lcid, unsigned int dwFlags, FLOAT_DATE * pdateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, unsigned int dwFlags, FLOAT_DATE *pDateOut);
 
 
 namespace datetime
@@ -131,7 +131,7 @@ namespace datetime
 
       // formatting
       string Format(LPCTSTR pFormat) const;
-      string Format(::u32 nID) const;
+      string Format(unsigned int nID) const;
 
       
       void check_range();
@@ -167,7 +167,7 @@ namespace datetime
       int32_t nHour,
       int32_t nMin,
       int32_t nSec) RELEASENOTHROW;
-      float_time(::u16 wDosDate, ::u16 wDosTime) RELEASENOTHROW;
+      float_time(unsigned short wDosDate, unsigned short wDosTime) RELEASENOTHROW;
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       float_time(const DBTIMESTAMP& dbts) RELEASENOTHROW;
       _Success_(return != false) bool GetAsDBTIMESTAMP(DBTIMESTAMP& dbts) const RELEASENOTHROW;
@@ -242,13 +242,13 @@ namespace datetime
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef APPLEOS
-      bool ParseDateTime(const ::string & lpszDate, ::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
+      bool ParseDateTime(const ::string & lpszDate, unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting
-      string Format(::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
+      string Format(unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
       string Format(LPCTSTR lpszFormat) const;
-      string Format(::u32 nFormatID) const;
+      string Format(unsigned int nFormatID) const;
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
    protected:
@@ -582,8 +582,8 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    inline float_time::float_time(
-   ::u16 wDosDate,
-   ::u16 wDosTime) RELEASENOTHROW
+   unsigned short wDosDate,
+   unsigned short wDosTime) RELEASENOTHROW
    {
       m_estatus = ::DosDateTimeToVariantTime(wDosDate, wDosTime, &m_dt) ?
       e_status_valid : e_status_invalid;
@@ -717,13 +717,13 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #endif
 
-      timeDest.wYear = (::u16) (1900 + ttm.tm_year);
-      timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
-      timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
-      timeDest.wDay = (::u16) ttm.tm_mday;
-      timeDest.wHour = (::u16) ttm.tm_hour;
-      timeDest.wMinute = (::u16) ttm.tm_min;
-      timeDest.wSecond = (::u16) ttm.tm_sec;
+      timeDest.wYear = (unsigned short) (1900 + ttm.tm_year);
+      timeDest.wMonth = (unsigned short) (1 + ttm.tm_mon);
+      timeDest.wDayOfWeek = (unsigned short) ttm.tm_wday;
+      timeDest.wDay = (unsigned short) ttm.tm_mday;
+      timeDest.wHour = (unsigned short) ttm.tm_hour;
+      timeDest.wMinute = (unsigned short) ttm.tm_min;
+      timeDest.wSecond = (unsigned short) ttm.tm_sec;
       timeDest.wMilliseconds = 0;
 
       return true;
@@ -794,13 +794,13 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #endif
 
-      timeDest.wYear = (::u16) (1900 + ttm.tm_year);
-      timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
-      timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
-      timeDest.wDay = (::u16) ttm.tm_mday;
-      timeDest.wHour = (::u16) ttm.tm_hour;
-      timeDest.wMinute = (::u16) ttm.tm_min;
-      timeDest.wSecond = (::u16) ttm.tm_sec;
+      timeDest.wYear = (unsigned short) (1900 + ttm.tm_year);
+      timeDest.wMonth = (unsigned short) (1 + ttm.tm_mon);
+      timeDest.wDayOfWeek = (unsigned short) ttm.tm_wday;
+      timeDest.wDay = (unsigned short) ttm.tm_mday;
+      timeDest.wHour = (unsigned short) ttm.tm_hour;
+      timeDest.wMinute = (unsigned short) ttm.tm_min;
+      timeDest.wSecond = (unsigned short) ttm.tm_sec;
       timeDest.wMilliseconds = 0;
 
       return true;
@@ -969,12 +969,12 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       SYSTEMTIME st;
       ::memory_set(&st, 0, sizeof(SYSTEMTIME));
 
-      st.wYear = ::u16(nYear);
-      st.wMonth = ::u16(nMonth);
-      st.wDay = ::u16(nDay);
-      st.wHour = ::u16(nHour);
-      st.wMinute = ::u16(nMin);
-      st.wSecond = ::u16(nSec);
+      st.wYear = unsigned short(nYear);
+      st.wMonth = unsigned short(nMonth);
+      st.wDay = unsigned short(nDay);
+      st.wHour = unsigned short(nHour);
+      st.wMinute = unsigned short(nMin);
+      st.wSecond = unsigned short(nSec);
 
       m_estatus = ConvertSystemTimeToFloatTime(st) ? e_status_valid : e_status_invalid;
       return m_estatus;
@@ -1033,7 +1033,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 #ifndef APPLEOS
-   inline bool float_time::ParseDateTime(const ::string & strDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool float_time::ParseDateTime(const ::string & strDate, unsigned int dwFlags, LCID lcid) RELEASENOTHROW
    {
 
       const char * pszDate = strDate;
@@ -1089,7 +1089,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #if defined(_UNICODE) || !defined(_CSTRING_DISABLE_NARROW_WIDE_CONVERSION)
    inline string float_time::Format(
-   ::u32 dwFlags,
+   unsigned int dwFlags,
    LCID lcid) const
    {
       // If NULL, return empty string
@@ -1164,7 +1164,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return strDate;
    }
 
-   inline string float_time_span::Format(::u32 nFormatID) const
+   inline string float_time_span::Format(unsigned int nFormatID) const
    {
       string strFormat;
       if (!strFormat.LoadString(nFormatID))
@@ -1172,7 +1172,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return Format(strFormat);
    }
 
-   inline string float_time::Format(::u32 nFormatID) const
+   inline string float_time::Format(unsigned int nFormatID) const
    {
       string strFormat;
       ATLENSURE(strFormat.LoadString(nFormatID));
@@ -1184,12 +1184,12 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       SYSTEMTIME st;
       ::ZeroMemory(&st, sizeof(SYSTEMTIME));
 
-      st.wYear = ::u16(dbts.year);
-      st.wMonth = ::u16(dbts.month);
-      st.wDay = ::u16(dbts.day);
-      st.wHour = ::u16(dbts.hour);
-      st.wMinute = ::u16(dbts.minute);
-      st.wSecond = ::u16(dbts.second);
+      st.wYear = unsigned short(dbts.year);
+      st.wMonth = unsigned short(dbts.month);
+      st.wDay = unsigned short(dbts.day);
+      st.wHour = unsigned short(dbts.hour);
+      st.wMinute = unsigned short(dbts.minute);
+      st.wSecond = unsigned short(dbts.second);
 
       m_estatus = ::SystemTimeToVariantTime(&st, &m_dt) ? e_status_valid : e_status_invalid;
    }

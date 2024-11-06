@@ -1118,7 +1118,7 @@ string merge_colon_args(const array < string_array >& straa)
 #if !defined(WINDOWS_DESKTOP)
 
 
-CLASS_DECL_ACME i32 get_current_processor_index()
+CLASS_DECL_ACME int get_current_processor_index()
 {
 
    return 0;
@@ -1126,7 +1126,7 @@ CLASS_DECL_ACME i32 get_current_processor_index()
 }
 
 
-CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
+CLASS_DECL_ACME int get_current_process_maximum_affinity()
 {
 
    return 0;
@@ -1137,7 +1137,7 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
 #if !defined(__APPLE__) && !defined(WINDOWS)
 
 
-CLASS_DECL_ACME i32 get_current_process_affinity_order()
+CLASS_DECL_ACME int get_current_process_affinity_order()
 {
 
    return 1;

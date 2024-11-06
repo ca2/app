@@ -2206,8 +2206,8 @@ void object::sleep(const class time & time)
 //::pointer<thread>object::start(
 //   ::particle * pparticle,
 //   ::enum_priority epriority = e_priority_normal,
-//   u32 nStackSize = 0,
-//   u32 dwCreateFlags = 0)
+//   unsigned int nStackSize = 0,
+//   unsigned int dwCreateFlags = 0)
 //{
 //
 //   auto pthread = __create_new< ::thread >();
@@ -3030,7 +3030,7 @@ void object::initialize(::particle * pparticle)
 
 
 
-//static u32 s_thread_proc(void* p);
+//static unsigned int s_thread_proc(void* p);
 
 
 // void to_string(const string_exchange & str) const 
@@ -3629,7 +3629,7 @@ bool object::IsSerializable() const
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
    //{
 
    //   return nullptr;

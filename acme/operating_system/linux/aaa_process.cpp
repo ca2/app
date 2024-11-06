@@ -143,7 +143,7 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
+CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 namespace ansios
@@ -185,7 +185,7 @@ namespace ansios
       if(epriority != ::e_priority_normal && epriority != ::e_priority_none)
       {
 
-         i32 iPolicy = SCHED_OTHER;
+         int iPolicy = SCHED_OTHER;
 
          sched_param schedparam;
 
@@ -423,7 +423,7 @@ auto tickStart = ::duration::now();
 
       }
 
-      ::u32 dwExitCode = 0;
+      unsigned int dwExitCode = 0;
 
       if(!has_exited())
       {

@@ -20,28 +20,28 @@
 //
 //#pragma warning (disable:4273)
 //
-//CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE * pHandles, BOOL fWaitAll, ::u32 dw::times, ::u32 dwWakeMask);
+//CLASS_DECL_APEX unsigned int WINAPI MsgWaitForMultipleObjects(unsigned int nCount, const HANDLE * pHandles, BOOL fWaitAll, unsigned int dw::times, unsigned int dwWakeMask);
 //
-//CLASS_DECL_APEX ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dw::times, ::u32 dwWakeMask, ::u32 dwFlags);
+//CLASS_DECL_APEX unsigned int WINAPI MsgWaitForMultipleObjectsEx(unsigned int nCount, const HANDLE* pHandles, unsigned int dw::times, unsigned int dwWakeMask, unsigned int dwFlags);
 //
 //#else
 //
-////::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+////unsigned int WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable);
 ////
-////::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout);
+////unsigned int WaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout);
 ////
-////::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
+////unsigned int MsgWaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout, unsigned int dwWakeMask);
 ////
-////::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+////unsigned int MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
 //
 //#endif
 //
 //
 //#ifndef UNIVERSAL_WINDOWS
 //
-//::u32 WaitForSingleObject(hsynchronization hsynchronization, ::u32 dw::times);
+//unsigned int WaitForSingleObject(hsynchronization hsynchronization, unsigned int dw::times);
 //
-//::u32 WaitForSingleObjectEx(hsynchronization hsynchronization, ::u32 dw::times, int_bool bAlertable);
+//unsigned int WaitForSingleObjectEx(hsynchronization hsynchronization, unsigned int dw::times, int_bool bAlertable);
 //
 //#endif
 //
@@ -72,18 +72,18 @@
 //// class message_queue;
 //
 //
-//// CLASS_DECL_APEX int_bool WINAPI GetMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+//// CLASS_DECL_APEX int_bool WINAPI GetMessage(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
 //
-//// CLASS_DECL_APEX int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+//// CLASS_DECL_APEX int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg);
 //
-//// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
+//// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
 //
 //// CLASS_DECL_APEX void mq_clear(itask_t htask);
 //
 //
 //// #ifndef UNIVERSAL_WINDOWS
 //
-//// CLASS_DECL_APEX ::u32 WINAPI GetThreadId(htask_t Thread);
+//// CLASS_DECL_APEX unsigned int WINAPI GetThreadId(htask_t Thread);
 //
 //// CLASS_DECL_APEX htask_t GetCurrentThread();
 //

@@ -8,7 +8,7 @@ namespace extended
 {
 
 
-    i32 g_iSkipCallStack = SKIP_CALLSTACK;
+    int g_iSkipCallStack = SKIP_CALLSTACK;
 
 
 
@@ -129,7 +129,7 @@ namespace extended
     //}
 
 
-    //void status::set_skip_callstack(i32 iSkip)
+    //void status::set_skip_callstack(int iSkip)
     //{
 
     //    g_iSkipCallStack = iSkip;
@@ -137,7 +137,7 @@ namespace extended
     //}
 
 
-    //i32 status::get_skip_callstack()
+    //int status::get_skip_callstack()
     //{
 
     //    return g_iSkipCallStack;

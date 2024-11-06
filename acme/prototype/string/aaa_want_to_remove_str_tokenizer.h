@@ -17,7 +17,7 @@ namespace str
 
 
       tokenizer(const ::string & strSrc);
-      tokenizer(const char * pch, i32 nLength );
+      tokenizer(const char * pch, int nLength );
 
       tokenizer();
       virtual ~tokenizer();
@@ -26,10 +26,10 @@ namespace str
       bool ReadLine(string & str,
                     bool bWithSeparator = false);
       // _01Read read a token if find one of \n\r\t or space
-      bool _01Read(i32 & i);
-      bool _01Read(::u32 & user);
-      bool _01ReadHex(i32 & i);
-      bool _01ReadHex(::u32 & user);
+      bool _01Read(int & i);
+      bool _01Read(unsigned int & user);
+      bool _01ReadHex(int & i);
+      bool _01ReadHex(unsigned int & user);
       //bool _01Read(char * psz);
 
       bool _01Read(string & str);

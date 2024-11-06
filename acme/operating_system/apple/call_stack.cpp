@@ -25,7 +25,7 @@
 //   }
 //
 //
-//   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+//   string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
 //   {
 //
 //      const size_t iMaximumFramesToCapture = 64;
@@ -113,7 +113,7 @@
 //   if (pszMangledName && pszAddress && pszMangledName > pszAddress)
 //   {
 //
-//      i32 status;
+//      int status;
 //
 //      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 //
@@ -225,7 +225,7 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
       *pszMangledNameEnd = '\0';
 
-      i32 status;
+      int status;
 
       acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 

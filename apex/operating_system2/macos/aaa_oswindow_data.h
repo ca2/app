@@ -144,14 +144,14 @@ bool oswindow_erase(nswindow window);
 //   return window->show_window(nCmdShow);
 //}
 
-//inline i32 GetWindowLongA(::oswindow window, i32 nIndex)
+//inline int GetWindowLongA(::oswindow window, int nIndex)
 //{
-//   return (i32) window->get_window_long(nIndex);
+//   return (int) window->get_window_long(nIndex);
 //}
 //
-//inline i32 SetWindowLongA(::oswindow window, i32 nIndex, i32 l)
+//inline int SetWindowLongA(::oswindow window, int nIndex, int l)
 //{
-//   return (i32) window->set_window_long(nIndex, l);
+//   return (int) window->set_window_long(nIndex, l);
 //}
 //
 //inline int client_to_screen(::oswindow window, POINT32 * ppoint)
@@ -168,12 +168,12 @@ bool oswindow_erase(nswindow window);
 
 //}
 //
-//inline i32 is_iconic(::oswindow window)
+//inline int is_iconic(::oswindow window)
 //{
 //   return window->is_iconic();
 //}
 //
-//inline i32 IsWindowVisible(::oswindow window)
+//inline int IsWindowVisible(::oswindow window)
 //{
 //   return window->is_window_visible();
 //}

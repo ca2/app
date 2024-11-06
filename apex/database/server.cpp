@@ -96,7 +96,7 @@ namespace database
       //signal.m_strDataKey = atom;
       //signal.m_pupdate = pchange;
 
-      for(i32 i = 0; i < m_clienta.get_count(); i++)
+      for(int i = 0; i < m_clienta.get_count(); i++)
       {
 
          //bool bOk = 
@@ -125,7 +125,7 @@ namespace database
       //signal.m_strDataKey          = atom;
       //signal.m_pupdate = pchange;
 
-      for(i32 i = 0; i < m_clienta.get_count(); i++)
+      for(int i = 0; i < m_clienta.get_count(); i++)
       {
 
          if (::is_set(ptopic))

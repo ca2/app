@@ -138,7 +138,7 @@ semaphore::semaphore(int lInitialCount, int lMaxCount, const char * pstrName, se
 
    semctl_arg.val = lInitialCount;
 
-   semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
+   semctl(static_cast < int > (m_hsync), 0, SETVAL, semctl_arg);
 
 #endif
 
@@ -212,7 +212,7 @@ bool semaphore::_wait(const class time & timeWait)
    if(timeWait.is_infinite())
    {
 
-      iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
+      iRet = semop(static_cast < int > (m_hsync), &sb, 1);
 
    }
    else
@@ -223,9 +223,9 @@ bool semaphore::_wait(const class time & timeWait)
       timespec += timeWait;
 
 #if defined(__BSD__)
-      iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
+      iRet = _semtimedop(static_cast < int > (m_hsync), &sb, 1, &timespec);
 #else
-      iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
+      iRet = semtimedop(static_cast < int > (m_hsync), &sb, 1, &timespec);
 
 #endif
 
@@ -309,7 +309,7 @@ bool semaphore::_wait(const class time & timeWait)
       sb.sem_op   = -1;
       sb.sem_flg  = 0;
 
-      int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
+      int i = semop(static_cast < int > (m_hsync), &sb, 1);
       
       if(i != 0)
       {
@@ -335,7 +335,7 @@ bool semaphore::_wait(const class time & timeWait)
    while(true)
    {
 
-      int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
+      int i = semop(static_cast < int > (m_hsync), &sb, 1);
 
       if(i == 0)
       {
@@ -429,7 +429,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
    sb.sem_op   = 1;
    sb.sem_flg  = 0;
 
-   int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
+   int i = semop(static_cast < int > (m_hsync), &sb, 1);
 
    return i == 0 ? true : false;
 
@@ -437,7 +437,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
    semun semctl_arg;
 
-   semctl(static_cast < i32 > (m_hsync), 0, GETVAL, semctl_arg);
+   semctl(static_cast < int > (m_hsync), 0, GETVAL, semctl_arg);
 
    if(pPrevCount !=  nullptr)
 
@@ -457,7 +457,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
    semctl_arg.val += lCount;
 
-   semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
+   semctl(static_cast < int > (m_hsync), 0, SETVAL, semctl_arg);
 
    //return true;
 

@@ -29,7 +29,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int nPlanes, unsigned int nBitcount, const void * pdata, int iStrideParam)
    {
 
       informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
@@ -51,7 +51,7 @@ namespace draw2d_cairo
 
       destroy();
 
-      i32 iStride = stride_for_width(cx);
+      int iStride = stride_for_width(cx);
 
       m_mem.set_size(iStride * cy);
 
@@ -71,9 +71,9 @@ namespace draw2d_cairo
          if(iStrideParam != iStride)
          {
 
-            i32 iW = cx * 4;
+            int iW = cx * 4;
 
-            for(i32 i = 0; i < cy; i++)
+            for(int i = 0; i < cy; i++)
             {
 
                ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) pdata)[iStrideParam * i], iW);
@@ -213,9 +213,9 @@ namespace draw2d_cairo
             if(iSourceStride != iStride)
             {
 
-               i32 iW = minimum(iStride, iSourceStride);
+               int iW = minimum(iStride, iSourceStride);
 
-               for(i32 i = 0; i < size.cy(); i++)
+               for(int i = 0; i < size.cy(); i++)
                {
 
                   ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iSourceStride * i], iW);
@@ -313,7 +313,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, unsigned int iUsage)
    {
 
       //return false;
@@ -368,9 +368,9 @@ namespace draw2d_cairo
 //         if(size.cx() * 4 != iStride)
 //         {
 //
-//            i32 iW = size.cx() * 4;
+//            int iW = size.cx() * 4;
 //
-//            for(i32 i = 0; i < size.cy(); i++)
+//            for(int i = 0; i < size.cy(); i++)
 //            {
 //
 //               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iW * i], iW);
@@ -471,7 +471,7 @@ namespace draw2d_cairo
    }
 
 
-   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
+   unsigned int bitmap::SetBitmapBits(unsigned int dwCount, const void * lpBits)
    {
 
       return 0;
@@ -479,7 +479,7 @@ namespace draw2d_cairo
    }
 
 
-   ::u32 bitmap::GetBitmapBits(::u32 dwCount, void * lpBits) const
+   unsigned int bitmap::GetBitmapBits(unsigned int dwCount, void * lpBits) const
    {
 
       return false;
@@ -495,7 +495,7 @@ namespace draw2d_cairo
    }
 
 
-   size_i32 bitmap::SetBitmapDimension(i32 nWidth, i32 nHeight)
+   size_i32 bitmap::SetBitmapDimension(int nWidth, int nHeight)
    {
 
       throw ::interface_only();
@@ -520,7 +520,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadBitmap(::u32 nIDResource)
+   bool bitmap::LoadBitmap(unsigned int nIDResource)
    {
 
       return false;
@@ -528,7 +528,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
+   bool bitmap::LoadOEMBitmap(unsigned int nIDBitmap)
    {
 
       return false;
@@ -536,7 +536,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int cx, int cy)
    {
 
       if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
@@ -551,7 +551,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
    {
 
       //return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
@@ -564,7 +564,7 @@ namespace draw2d_cairo
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   i32 bitmap::GetBitmap(BITMAP* pBitMap)
+//   int bitmap::GetBitmap(BITMAP* pBitMap)
 //   {
 //
 //      return 0;

@@ -98,8 +98,8 @@ class xfplayer_impact_line;
 
 CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, atom idControl, ::user::interaction & control);
 CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, string & str);
-CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, i32 iMax);
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, i32 & iBool);
+CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, int iMax);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, int & iBool);
 CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, bool & b);
 
 

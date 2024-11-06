@@ -73,12 +73,12 @@
 //		{
 //			size_t            lo;
 //			size_t            hi;
-//			u32             a;
-//			u32             b;
-//			u32             c;
-//			u32             d;
+//			unsigned int             a;
+//			unsigned int             b;
+//			unsigned int             c;
+//			unsigned int             d;
 //			uchar             buffer[64];
-//			u32             block[16];
+//			unsigned int             block[16];
 //		} action_context;
 //
 //
@@ -95,7 +95,7 @@
 //		const unsigned char *   
 //                        digest();
 //		string			   to_string();
-//		const void *		body(const void *data, u32 size_i32);
+//		const void *		body(const void *data, unsigned int size_i32);
 //      void              get(memory & mem);
 //
 //

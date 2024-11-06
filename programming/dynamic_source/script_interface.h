@@ -25,7 +25,7 @@ namespace dynamic_source
       ::pointer<script_interface>         m_pinstanceParent2;
       ::pointer<script>                   m_pscript2;
 
-      i32                                 m_iDebug;
+      int                                 m_iDebug;
 
       ::payload                           m_varRet;
 

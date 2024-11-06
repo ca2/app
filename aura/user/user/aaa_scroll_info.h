@@ -10,8 +10,8 @@
 //   public:
 //
 //
-//      //::u32     cbSize;
-//      //::u32     fMask;
+//      //unsigned int     cbSize;
+//      //unsigned int     fMask;
 //      int            m_iMinimum;
 //      int            m_iMaximum;
 //      int            m_iPage;

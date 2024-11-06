@@ -119,7 +119,7 @@ namespace turboc
 
       //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
-//      i32 iCount = 30;
+//      int iCount = 30;
 
       ::draw2d::brush_pointer pbrushText(this_create);
 
@@ -152,9 +152,9 @@ namespace turboc
 
 //      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      //i32 i= ::time::now()  / 100 % iCount;
+      //int i= ::time::now()  / 100 % iCount;
 
-      //i32 iBlur;
+      //int iBlur;
 
       //if(i <= (iCount / 2))
       //   iBlur = i;

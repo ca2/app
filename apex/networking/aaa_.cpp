@@ -12,25 +12,25 @@
 #include <netdb.h>
 #endif
 
-u32 c_inet_to_ui(const char * src)
+unsigned int c_inet_to_ui(const char * src)
 {
 
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (u32) ansi_to_i64(&src[2], nullptr, 16);
+      return (unsigned int) ansi_to_i64(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (u32) ansi_to_i64(&src[1], nullptr, 16);
+      return (unsigned int) ansi_to_i64(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (u32) ansi_to_i64(src, nullptr, 10);
+      return (unsigned int) ansi_to_i64(src, nullptr, 10);
 
    }
 
@@ -84,13 +84,13 @@ static const uchar index_hex[256] =
 CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * string)
 {
    const uchar *s = (const uchar *)(const char *) string;
-   i32 department = 0;        /* index of the current department (a 16-bit
+   int department = 0;        /* index of the current department (a 16-bit
                            * piece of the address */
-   i32 double_colon = -1;  /* index of the department after the first
+   int double_colon = -1;  /* index of the department after the first
                            * 16-bit group of zeros represented by
                            * the double colon */
-   u32 val = 0;
-   i32 len;
+   unsigned int val = 0;
+   int len;
 
    /* Handle initial (double) colon */
    if (*s == ':')
@@ -134,7 +134,7 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
          throw parsing_exception("to in6_addr (bad character)"); /* bad character */
 
       }
-      addr.pr_s6_addr16[department++] = htons((u16)val);
+      addr.pr_s6_addr16[department++] = htons((unsigned short)val);
    }
 
    if (*s == '.')
@@ -190,8 +190,8 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
    if (double_colon != -1)
    {
       /* Stretch the double colon */
-      i32 tosection;
-      i32 ncopy = department - double_colon;
+      int tosection;
+      int ncopy = department - double_colon;
       for (tosection = 7; ncopy--; tosection--)
       {
          addr.pr_s6_addr16[tosection] =
@@ -204,7 +204,7 @@ CLASS_DECL_APEX void from_string(in6_addr & addr, const ::ansi_character * strin
    }
    else if (department != 8)
    {
-      throw parsing_exception("to in6_addr (too i16)"); /* too i16 */
+      throw parsing_exception("to in6_addr (too short)"); /* too short */
    }
 }
 
@@ -227,15 +227,15 @@ CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
 
 #define STUFF(c) { str += ((char)(c)); }
 
-   i32 double_colon = -1;          /* index of the first 16-bit
+   int double_colon = -1;          /* index of the first 16-bit
                                  * group of zeros represented
                                  * by the double colon */
-   i32 double_colon_length = 1;    /* use double colon only if
+   int double_colon_length = 1;    /* use double colon only if
                                  * there are two or more 16-bit
                                  * groups of zeros */
-   i32 zero_length;
-   i32 department;
-   u32 val;
+   int zero_length;
+   int department;
+   unsigned int val;
 
    /* Scan to find the placement of the double colon */
    for (department = 0; department < 8; department++)
@@ -344,7 +344,7 @@ struct c_in_addr
          unsigned char	s_b4;
       } S_un_b;
 
-      u32 S_addr;
+      unsigned int S_addr;
    } S_un;
 };
 
@@ -364,22 +364,22 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
    if(stra.get_count() != 4)
       throw parsing_exception("to in_addr (stra.get_count() != 4)");
 
-   i32 i1 = ansi_to_i32(stra[0]);
+   int i1 = ansi_to_i32(stra[0]);
 
    if(i1 < 0 || i1 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (I)");
 
-   i32 i2 = ansi_to_i32(stra[1]);
+   int i2 = ansi_to_i32(stra[1]);
 
    if(i2 < 0 || i2 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (II)");
 
-   i32 i3 = ansi_to_i32(stra[2]);
+   int i3 = ansi_to_i32(stra[2]);
 
    if(i3 < 0 || i3 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (III)");
 
-   i32 i4 = ansi_to_i32(stra[3]);
+   int i4 = ansi_to_i32(stra[3]);
 
    if(i4 < 0 || i4 > 255)
       throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (IV)");
@@ -532,7 +532,7 @@ CLASS_DECL_APEX void from_string(const sockaddr & addr, string & str)
 //} // namespace str
 
 
-CLASS_DECL_APEX i32 c_inet_pton(i32 af, const char *src, void *dst)
+CLASS_DECL_APEX int c_inet_pton(int af, const char *src, void *dst)
 {
 
    if(af == AF_INET)
@@ -565,7 +565,7 @@ CLASS_DECL_APEX i32 c_inet_pton(i32 af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_APEX string c_inet_ntop(i32 af, const void *src)
+CLASS_DECL_APEX string c_inet_ntop(int af, const void *src)
 {
 
    string str;
@@ -591,7 +591,7 @@ CLASS_DECL_APEX string c_inet_ntop(i32 af, const void *src)
 
 }
 
-CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32 cnt)
+CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int cnt)
 {
 
    if(dst == nullptr)
@@ -611,9 +611,9 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 
 }
 
-//#define C_INADDR_NONE ((u32) -1)
+//#define C_INADDR_NONE ((unsigned int) -1)
 //
-//CLASS_DECL_APEX u32 c_inet_addr(const char * src)
+//CLASS_DECL_APEX unsigned int c_inet_addr(const char * src)
 //{
 //
 //   try
@@ -638,7 +638,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 //
 //      c_in_addr addr;
 //
-//      u32 ul;
+//      unsigned int ul;
 //
 //      if(stra.get_count() == 2)
 //      {
@@ -873,7 +873,7 @@ namespace net
 {
 
 
-   i32 family_len(i32 family)
+   int family_len(int family)
    {
 
       if (family == AF_INET)

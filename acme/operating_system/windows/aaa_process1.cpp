@@ -18,9 +18,9 @@ CLASS_DECL_ACME::u64 translate_processor_affinity(int iOrder)
    {
       return 0;
    }
-   i32 j = 0;
+   int j = 0;
    uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if ((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -39,7 +39,7 @@ CLASS_DECL_ACME::u64 translate_processor_affinity(int iOrder)
 
 
 
-i32 get_current_process_affinity_order()
+int get_current_process_affinity_order()
 {
 
 
@@ -53,9 +53,9 @@ i32 get_current_process_affinity_order()
 
    }
 
-   i32 iCount = 0;
+   int iCount = 0;
    uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if ((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -73,7 +73,7 @@ i32 get_current_process_affinity_order()
 
 
 
-i32 get_current_process_maximum_affinity()
+int get_current_process_maximum_affinity()
 {
 
    DWORD_PTR dwProcessAffinityMask;
@@ -82,9 +82,9 @@ i32 get_current_process_maximum_affinity()
    {
       return 0;
    }
-   i32 iMax = -1;
+   int iMax = -1;
    uptr dwMask = 1;
-   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if ((dwMask & dwProcessAffinityMask) != 0)
       {

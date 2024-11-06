@@ -4,7 +4,7 @@
 CLASS_DECL_ACME int trailingBytesForUTF8(::ansi_character ch);
 
 
-typedef i32 HRes;
+typedef int HRes;
 
 
 #include "character.h"

@@ -10,7 +10,7 @@ extern ::app_core * g_pappcore;
 void os_post_quit();
 Display * x11_get_display();
 
-CLASS_DECL_APEX i32 ca2_main();
+CLASS_DECL_APEX int ca2_main();
 
 */
 
@@ -30,7 +30,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //#ifdef WINDOWS
 //
 //
-//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 //{
 //
 //   __UNREFERENCED_PARAMETER(uiCode);
@@ -122,7 +122,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //}
 //#ifdef LINUX
-//i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent);
+//int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //#endif
 
 

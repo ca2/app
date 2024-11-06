@@ -22,10 +22,10 @@ namespace mail
       string                  m_strHost;
       string                  m_strTransaction;
 
-      i32                     m_iStatCount;
-      i32                     m_iStatSize;
+      int                     m_iStatCount;
+      int                     m_iStatSize;
 
-      i32                     m_iListSize;
+      int                     m_iListSize;
 
 
       simple_pop3(::particle * pparticle);
@@ -36,10 +36,10 @@ namespace mail
       virtual string get_host();
       virtual string get_transaction();
 
-      virtual void set_stat_count(i32 iCount);
-      virtual void set_stat_size(i32 iSize);
+      virtual void set_stat_count(int iCount);
+      virtual void set_stat_size(int iSize);
 
-      virtual void set_list_size(i32 iSize);
+      virtual void set_list_size(int iSize);
 
       void store();
 

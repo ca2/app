@@ -45,7 +45,7 @@ namespace earth
 
       constexpr time(const posix_time & time) noexcept;
 
-      time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
+      time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec,
            const class ::time &timeshift = {});
       time(const release_time_for_project & release_time_for_project);
       explicit time(const ::earth::gregorian_time & gregoriantime,
@@ -56,7 +56,7 @@ namespace earth
          const class ::time & timeshift = {});
 
 #ifdef WINDOWS
-      time(::u16 wDosDate, ::u16 wDosTime, i32 nDST = -1);
+      time(unsigned short wDosDate, unsigned short wDosTime, int nDST = -1);
 #endif
 
 
@@ -124,19 +124,19 @@ namespace earth
 
       posix_time get_time() const noexcept;
 
-      i32 year(const class ::time &timeshift = {}) const noexcept;
+      int year(const class ::time &timeshift = {}) const noexcept;
 
-      i32 month(const class ::time &timeshift = {}) const noexcept;
+      int month(const class ::time &timeshift = {}) const noexcept;
 
-      i32 day(const class ::time &timeshift = {}) const noexcept;
+      int day(const class ::time &timeshift = {}) const noexcept;
 
-      i32 hour(const class ::time &timeshift = {}) const noexcept;
+      int hour(const class ::time &timeshift = {}) const noexcept;
 
-      i32 minute(const class ::time &timeshift = {}) const noexcept;
+      int minute(const class ::time &timeshift = {}) const noexcept;
 
-      i32 second(const class ::time &timeshift = {}) const noexcept;
+      int second(const class ::time &timeshift = {}) const noexcept;
 
-      i32 day_of_week(const class ::time &timeshift = {}) const noexcept; // 1 = Sunday, 7 = Saturday
+      int day_of_week(const class ::time &timeshift = {}) const noexcept; // 1 = Sunday, 7 = Saturday
 
 
       time get_sunday(const class ::time &timeshift = {}) const;

@@ -13,7 +13,7 @@
 #define DISABLE_BACKTRACE 1
 
 
-string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
 {
 
 #if DISABLE_BACKTRACE
@@ -49,7 +49,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   }
 
 
-//   const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, i32 iSkip, int iCount)
+//   const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
 //   {
 //
 //      return nullptr;
@@ -138,7 +138,7 @@ void netbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNam
 
       strModule = pszModuleName;
 
-      i32 status = 0;
+      int status = 0;
 
       auto psynchronization = pparticle->platform()->system()->synchronization();
 

@@ -24,7 +24,7 @@
 //   }
 //
 //
-//   ::extended::status stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
+//   ::extended::status stdio_file::open(const ::file::path & lpszFileName, unsigned int nOpenFlags)
 //   {
 //      ASSERT(lpszFileName != nullptr);
 //      //ASSERT(::windows_definition::IsValidString(lpszFileName));
@@ -39,7 +39,7 @@
 //      // return false;
 //
 //      char szMode[4]; // C-runtime open string
-//      i32 nMode = 0;
+//      int nMode = 0;
 //
 //      // determine read/write mode depending on file_pointer mode
 //      if (nOpenFlags & ::file::e_open_create)
@@ -63,7 +63,7 @@
 //      }
 //
 //      // will be inverted if not necessary
-//      i32 nFlags = O_RDONLY;
+//      int nFlags = O_RDONLY;
 //      if(nOpenFlags & (::file::e_open_write | ::file::e_open_read_write))
 //         nFlags ^= O_RDONLY;
 //
@@ -74,7 +74,7 @@
 //      szMode[nMode++] = '\0';
 //
 //      // open a C-runtime low-level file handle
-//      //i32 nHandle = _open_osfhandle(m_hFile, nFlags);
+//      //int nHandle = _open_osfhandle(m_hFile, nFlags);
 //
 //      // open a C-runtime stream from that handle
 //      //if (nHandle != -1)
@@ -110,7 +110,7 @@
 //
 ////   ASSERT(fx_is_valid_address(lpBuf, nCount));
 //
-//      ::u32 nRead = 0;
+//      unsigned int nRead = 0;
 //
 //      if ((nRead = fread(lpBuf, sizeof(unsigned char), nCount, m_pStream)) == 0 && !feof(m_pStream))
 //         throw ::file::exception(error_file, errno, m_strFileName);
@@ -143,7 +143,7 @@
 //   }
 //
 //
-//   char * stdio_file::read_string(char * lpsz, ::u32 nMax)
+//   char * stdio_file::read_string(char * lpsz, unsigned int nMax)
 //   {
 //
 //      ASSERT(lpsz != nullptr);
@@ -173,10 +173,10 @@
 //
 //      //rString = &::windows_definition::WchNil;    // is_empty string without deallocating
 //      rString.empty();
-//      const i32 nMaxSize = 128;
+//      const int nMaxSize = 128;
 //      char * lpsz = rString.get_buffer(nMaxSize);
 //      char * lpszResult;
-//      i32 nLen = 0;
+//      int nLen = 0;
 //      for (;;)
 //      {
 //
@@ -220,7 +220,7 @@
 //         throw ::file::exception(error_diskFull, errno, m_strFileName);
 //   }*/
 //
-//   /*unichar * stdio_file::read_string(unichar * lpsz, ::u32 nMax)
+//   /*unichar * stdio_file::read_string(unichar * lpsz, unsigned int nMax)
 //   {
 //      ASSERT(lpsz != nullptr);
 //      ASSERT(fx_is_valid_address(lpsz, nMax));
@@ -241,7 +241,7 @@
 //      ASSERT(eseek == ::e_seek_set || eseek== ::e_seek_end || eseek== ::e_seek_current);
 //      ASSERT(m_pStream != nullptr);
 //
-//      i32 nFrom;
+//      int nFrom;
 //      switch(eseek)
 //      {
 //      case ::e_seek_set:
@@ -291,7 +291,7 @@
 //      ASSERT_VALID(this);
 //      ASSERT(m_pStream != nullptr);
 //
-//      i32 nErr = 0;
+//      int nErr = 0;
 //
 //      if (m_pStream != nullptr)
 //         nErr = fclose(m_pStream);

@@ -9,9 +9,9 @@ CLASS_DECL_ACME void memory_free(void * p);
 CLASS_DECL_ACME memsize memory_size(void * p);
 
 
-CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation = nullptr);
-CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation = nullptr);
-CLASS_DECL_ACME void memory_free_debug(void * p, i32 nType);
+CLASS_DECL_ACME void * memory_allocate_debug(memsize size, int nType, const char* pszFileName, int nLine, const char * pszAnnotation = nullptr);
+CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, int nType, const char* pszFileName, int nLine, const char * pszAnnotation = nullptr);
+CLASS_DECL_ACME void memory_free_debug(void * p, int nType);
 
 
 //CLASS_DECL_ACME void* manage_memory_reallocate(enum_memory_heap eheap, void* p, memsize nSize);

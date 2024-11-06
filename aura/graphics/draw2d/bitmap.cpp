@@ -44,7 +44,7 @@ namespace draw2d
    }
 
 
-   void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,int stride)
+   void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,unsigned int nPlanes,unsigned int nBitcount,const void * pBits,int stride)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -68,7 +68,7 @@ namespace draw2d
 //   }
 
 
-//   void bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
+//   void bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,unsigned int usage,void **ppvBits,int * stride,HANDLE hSection,unsigned int offset)
 //   {
 
 //      __UNREFERENCED_PARAMETER(pgraphics);
@@ -83,7 +83,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   void bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, ::u32 usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
+//   void bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, unsigned int usage, void * ppvBits, int stride, HANDLE hSection, unsigned int offset)
 
 //   {
 //      __UNREFERENCED_PARAMETER(pgraphics);
@@ -99,7 +99,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,::u32 iUsage)
+//   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,unsigned int flInit,const void *pjBits,const BITMAPINFO *pbmi,unsigned int iUsage)
 //   {
 //      __UNREFERENCED_PARAMETER(pgraphics);
 //      __UNREFERENCED_PARAMETER(pbmih);
@@ -141,7 +141,7 @@ namespace draw2d
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,unsigned int flInit,const void *pjBits, unsigned int iUsage)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(cx);
@@ -161,7 +161,7 @@ namespace draw2d
 
    }
 
-   u32 bitmap::SetBitmapBits(u32 dwCount,const void * pBits)
+   unsigned int bitmap::SetBitmapBits(unsigned int dwCount,const void * pBits)
 
    {
       __UNREFERENCED_PARAMETER(dwCount);
@@ -172,7 +172,7 @@ namespace draw2d
    }
 
 
-   u32 bitmap::GetBitmapBits(u32 dwCount,void * pBits) const
+   unsigned int bitmap::GetBitmapBits(unsigned int dwCount,void * pBits) const
    {
 
       __UNREFERENCED_PARAMETER(dwCount);

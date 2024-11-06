@@ -145,24 +145,24 @@ informationf("fixed_string_log::OnReallocateSpill");
 */
 
 //
-//i32 __cdecl char_traits::is_digit(const char * pch) noexcept
+//int __cdecl char_traits::is_digit(const char * pch) noexcept
 //{
 //   return unicode_is_digit(pch) ? 1 : 0;
 //}
 //
-//i32 __cdecl char_traits::is_space(const char * pch) noexcept
+//int __cdecl char_traits::is_space(const char * pch) noexcept
 //{
 //   return unicode_is_whitespace(pch) ? 1 : 0;
 //}
 //
 //
 //
-//i32 __cdecl char_traits::string_collate(const ::scoped_string & scopedstrA,const ::scoped_string & scopedstrB) noexcept
+//int __cdecl char_traits::string_collate(const ::scoped_string & scopedstrA,const ::scoped_string & scopedstrB) noexcept
 //{
 //   return strcmp(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
 //
-//i32 __cdecl char_traits::case_insensitive_string_collate(const ::scoped_string & scopedstrA,const ::scoped_string & scopedstrB) noexcept
+//int __cdecl char_traits::case_insensitive_string_collate(const ::scoped_string & scopedstrA,const ::scoped_string & scopedstrB) noexcept
 //{
 //   return case_insensitive_ansi_compare(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
@@ -437,7 +437,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //strsize __cdecl char_traits::get_char_length(const unichar * pszSource,strsize nLength) noexcept
 //{
 //   // Returns required buffer length in XCHARs
-//   return ::WideCharToMultiByte2(_gen_GetConversionACP(),0,pszSource,(i32)nLength,nullptr,0,nullptr,nullptr);
+//   return ::WideCharToMultiByte2(_gen_GetConversionACP(),0,pszSource,(int)nLength,nullptr,0,nullptr,nullptr);
 //}
 //
 //
@@ -461,7 +461,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //void __cdecl char_traits::ConvertTochar(char * pszDest, strsize nDestLength, const unichar * pszSrc, strsize nSrcLength) noexcept
 //{
 //   // nLen is in XCHARs
-//   ::WideCharToMultiByte2(CP_UTF8,0,pszSrc, (i32) nSrcLength,pszDest,(i32)nDestLength,nullptr,nullptr);
+//   ::WideCharToMultiByte2(CP_UTF8,0,pszSrc, (int) nSrcLength,pszDest,(int)nDestLength,nullptr,nullptr);
 //}
 //
 //
@@ -506,13 +506,13 @@ informationf("fixed_string_log::OnReallocateSpill");
 //BSTR __cdecl char_traits::AllocSysString(const char* pchData,strsize nDataLength) noexcept
 //{
 //
-//   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,nullptr,0);
+//   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
 //
-//   BSTR bstr = ::SysAllocStringLen(nullptr,(::u32)nLen);
+//   BSTR bstr = ::SysAllocStringLen(nullptr,(unsigned int)nLen);
 //
 //   if(bstr != nullptr)
 //   {
-//      ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,bstr,(i32)nLen);
+//      ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,bstr,(int)nLen);
 //   }
 //
 //   return bstr;
@@ -522,13 +522,13 @@ informationf("fixed_string_log::OnReallocateSpill");
 //bool __cdecl char_traits::ReAllocSysString(const char* pchData,BSTR* pbstr,strsize nDataLength) noexcept
 //{
 //
-//   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,nullptr,0);
+//   strsize nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
 //
-//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(::u32)nLen) != 0;
+//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(unsigned int)nLen) != 0;
 //
 //   if(bSuccess)
 //   {
-//      ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(i32)nDataLength,*pbstr,(i32)nLen);
+//      ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,*pbstr,(int)nLen);
 //   }
 //
 //   return bSuccess;
@@ -537,7 +537,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //#endif
 //
-//u32 __cdecl char_traits::format_message(u32 dwFlags,const void * pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
+//unsigned int __cdecl char_traits::format_message(unsigned int dwFlags,const void * pSource,unsigned int dwMessageID,unsigned int dwLanguageID,char * pszBuffer,unsigned int nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -554,7 +554,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //}
 //
-//u32 __cdecl char_traits::format_message(u32 dwFlags,const void * pSource,u32 dwMessageID,u32 dwLanguageID,char * pszBuffer,u32 nSize,va_list* pArguments) noexcept
+//unsigned int __cdecl char_traits::format_message(unsigned int dwFlags,const void * pSource,unsigned int dwMessageID,unsigned int dwLanguageID,char * pszBuffer,unsigned int nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -598,7 +598,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return  ::str::get_utf8_char(pch).get_length();
 //}
 //
-//u32 __cdecl char_traits::xxxget_environment_variable(const ::scoped_string & scopedstrVar, char * pszBuffer,u32 dwSize )
+//unsigned int __cdecl char_traits::xxxget_environment_variable(const ::scoped_string & scopedstrVar, char * pszBuffer,unsigned int dwSize )
 //{
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -620,10 +620,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      }
 //      else
 //      {
-//         return (u32)strlen(pszEnv);
+//         return (unsigned int)strlen(pszEnv);
 //      }
 //   }
-//   return (u32)strlen(ansi_count_copy(pszBuffer,pszEnv,dwSize));
+//   return (unsigned int)strlen(ansi_count_copy(pszBuffer,pszEnv,dwSize));
 //
 //#endif
 //
@@ -637,10 +637,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows u32 size_i32
+//      // API only allows unsigned int size_i32
 //      throw ::exception(error_bad_argument);
 //   }
-//   u32 dwSize=static_cast<u32>(size);
+//   unsigned int dwSize=static_cast<unsigned int>(size);
 //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
@@ -659,10 +659,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows u32 size_i32
+//      // API only allows unsigned int size_i32
 //      throw ::exception(error_bad_argument);
 //   }
-//   u32 dwSize=static_cast<u32>(size);
+//   unsigned int dwSize=static_cast<unsigned int>(size);
 //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
@@ -1103,7 +1103,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return operator = (string(ca,n));
 //}
 //
-//string & string::assign(i32 n,i32 ca)
+//string & string::assign(int n,int ca)
 //{
 //   return assign((u64)n,(u64)ca);
 //}
@@ -1113,7 +1113,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return assign((u64)n,(u64)ca);
 //}
 //
-//string & string::assign(u32 n,u32 ca)
+//string & string::assign(unsigned int n,unsigned int ca)
 //{
 //   return assign((u64)n,(u64)ca);
 //}
@@ -1133,59 +1133,59 @@ informationf("fixed_string_log::OnReallocateSpill");
 //// Comparison
 //
 //
-//i32 string::collate(const ::scoped_string & scopedstr) const noexcept
+//int string::collate(const ::scoped_string & scopedstr) const noexcept
 //{
 //   //ASSERT(is_string_ok(psz));
 //   return(::str::string_collate(m_psz,psz));
 //}
 //
-//i32 string::case_insensitive_collate(const ::scoped_string & scopedstr) const noexcept
+//int string::case_insensitive_collate(const ::scoped_string & scopedstr) const noexcept
 //{
 //   //ASSERT(is_string_ok(psz));
 //   return(::str::case_insensitive_string_collate(m_psz,psz));
 //}
 //
-////i32 string::compare(const ::scoped_string & scopedstr) const
+////int string::compare(const ::scoped_string & scopedstr) const
 ////{
 ////   return compare(psz);
 ////}
 ////
-////i32 string::compare_no_case(const ::scoped_string & scopedstr) const noexcept
+////int string::compare_no_case(const ::scoped_string & scopedstr) const noexcept
 ////{
 ////   return case_insensitive_order(psz);
 ////}
 //
-////i32 string::collate(const ::scoped_string & scopedstr) const noexcept
+////int string::collate(const ::scoped_string & scopedstr) const noexcept
 ////{
 ////   return Collate(psz);
 ////}
 ////
-////i32 string::collate_no_case(const ::scoped_string & scopedstr) const noexcept
+////int string::collate_no_case(const ::scoped_string & scopedstr) const noexcept
 ////{
 ////   return CollateNoCase(psz);
 ////}
 //
-//i32 string::compare(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
+//int string::compare(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
 //{
 //   return substr(iStart,nCount).compare(psz);
 //}
 //
-//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
+//int string::case_insensitive_order(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
 //{
 //   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
-//i32 string::collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
+//int string::collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
 //{
 //   return substr(iStart,nCount).collate(psz);
 //}
 //
-//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
+//int string::case_insensitive_collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr) const
 //{
 //   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
-//i32 string::compare(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
+//int string::compare(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).compare(string(psz).substr(start2,count2));
@@ -1193,7 +1193,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
+//int string::case_insensitive_order(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).case_insensitive_order(string(psz).substr(start2,count2));
@@ -1201,14 +1201,14 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//i32 string::collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
+//int string::collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).collate(string(psz).substr(start2,count2));
 //
 //}
 //
-//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
+//int string::case_insensitive_collate(strsize iStart,strsize nCount,const ::scoped_string & scopedstr,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).case_insensitive_collate(string(psz).substr(start2,count2));
@@ -1232,7 +1232,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::contains(i32 i,strsize iStart,strsize nCount) const // utf8 char index
+//bool string::contains(int i,strsize iStart,strsize nCount) const // utf8 char index
 //{
 //
 //   return find_w(::str::uni_to_utf8(i),iStart,nCount) >= 0;
@@ -1311,7 +1311,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::case_insensitive_contains(i32 i,strsize iStart,strsize nCount) const// utf8 char index
+//bool string::case_insensitive_contains(int i,strsize iStart,strsize nCount) const// utf8 char index
 //{
 //
 //   return unicode_case_insensitive_find(::str::uni_to_utf8(i),iStart,nCount) >= 0;
@@ -1383,7 +1383,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::unicode_case_insensitive_contains(i32 i,strsize iStart,strsize nCount) const// utf8 char index
+//bool string::unicode_case_insensitive_contains(int i,strsize iStart,strsize nCount) const// utf8 char index
 //{
 //
 //   return unicode_case_insensitive_find(::str::uni_to_utf8(i),iStart,nCount) >= 0;
@@ -1606,7 +1606,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //{
 //   strsize nCount = 0;
 //
-//   // i16-circuit the nop case
+//   // short-circuit the nop case
 //   if(chOld != chNew)
 //   {
 //      // otherwise modify each character that matches in the string
@@ -1896,7 +1896,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      return -1;
 //
 //   const ::scoped_string & scopedstr = m_psz + iStart;
-//   for(i32 i = 0; i < nCount; i++)
+//   for(int i = 0; i < nCount; i++)
 //   {
 //      if(psz[i] == ch)
 //      {
@@ -1929,7 +1929,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      return -1;
 //
 //   const ::scoped_string & scopedstr = m_psz + iStart;
-//   for(i32 i = 0; i < nCount; i++)
+//   for(int i = 0; i < nCount; i++)
 //   {
 //      if(tolower(psz[i]) == tolower(ch))
 //      {
@@ -2000,10 +2000,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      return -1;
 //
 //   const ::scoped_string & scopedstr = m_psz + iStart;
-//   for(i32 i = 0; i <= nCount; i++)
+//   for(int i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
-//      i32 j;
+//      int j;
 //      for(j = 0; j < nLength2; j++)
 //      {
 //         if(psz[j] != pszSub[j])
@@ -2052,10 +2052,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   if(nCount < 0)
 //      return -1;
 //
-//   i32 j;
+//   int j;
 //
 //   const ::scoped_string & scopedstr = m_psz + iStart;
-//   for(i32 i = 0; i <= nCount; i++)
+//   for(int i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
 //      for(j = 0; j < nLength2; j++)
@@ -3024,7 +3024,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   char * pszTemp;
 //
-//   u32 dwResult = ::str::format_message(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER,pszFormat,0,0,reinterpret_cast<char *>(&pszTemp),0,pArgList);
+//   unsigned int dwResult = ::str::format_message(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER,pszFormat,0,0,reinterpret_cast<char *>(&pszTemp),0,pArgList);
 //
 //   if(dwResult == 0)
 //   {
@@ -3080,7 +3080,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //bool string::xxxget_environment_variable(const ::scoped_string & scopedstrVar)
 //{
 //
-//   u32 nLength = ::str::xxxget_environment_variable(pszVar,nullptr,0);
+//   unsigned int nLength = ::str::xxxget_environment_variable(pszVar,nullptr,0);
 //   bool bRetVal = false;
 //
 //   if(nLength == 0)
@@ -3111,7 +3111,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 ////bool load_string(atom atom);
 //
 //// Load the string from resource 'nID' in module 'hInstance'
-///*    bool load_string(HINSTANCE hInstance,::u32 nID )
+///*    bool load_string(HINSTANCE hInstance,unsigned int nID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 //if( pImage == nullptr )
@@ -3128,7 +3128,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}*/
 //
 //// Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-///*bool load_string(HINSTANCE hInstance,::u32 nID,::u16 wLanguageID )
+///*bool load_string(HINSTANCE hInstance,unsigned int nID,unsigned short wLanguageID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 //if( pImage == nullptr )

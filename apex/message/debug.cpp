@@ -7,7 +7,7 @@
 
 //#define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
 //
-//CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
+//CLASS_DECL_APEX string get_message_text(unsigned int uMessage, bool bWithNumbers)
 //{
 //   string str;
 //   if (uMessage == -1)
@@ -159,17 +159,17 @@
 //
 //}
 
-::u32 g_puiaMessageMouseMove[] =
+unsigned int g_puiaMessageMouseMove[] =
 {
 
    e_message_mouse_move,
    e_message_set_cursor,
    e_message_non_client_hit_test,
    e_message_non_client_mouse_move,
-   (::u32)-1
+   (unsigned int)-1
 };
 
-::u32 g_puiaMessageWindowDeactivating[] =
+unsigned int g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
    e_message_non_client_activate,
@@ -180,10 +180,10 @@
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
 #endif
-   (::u32)-1
+   (unsigned int)-1
 };
 
-::u32 g_puiaMessageWindowActivating[] =
+unsigned int g_puiaMessageWindowActivating[] =
 {
    // 2019-06-28-00-33
    e_message_window_position_changing,
@@ -197,10 +197,10 @@
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
 #endif
-   (::u32)-1
+   (unsigned int)-1
 };
 
-::u32 f[] =
+unsigned int f[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Viagem da Mummi... : Yakissoba delicioso!!
@@ -230,20 +230,20 @@
    WM_GETICON,
    WM_DWMNCRENDERINGCHANGED,
 #endif
-   (::u32)-1
+   (unsigned int)-1
 };
 
 
-::u32 g_puiaMessageWindowCreated[] =
+unsigned int g_puiaMessageWindowCreated[] =
 {
 #ifdef WINDOWS
    WM_GETICON,
 #endif
-   (::u32)-1
+   (unsigned int)-1
 };
 
 
-::u32 g_puiaMessageInputLanguageChange[] =
+unsigned int g_puiaMessageInputLanguageChange[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Mummi no nibus... already missing!!
@@ -255,7 +255,7 @@
    WM_INPUTLANGCHANGE,
    WM_IME_NOTIFY,
 #endif
-   (::u32)-1
+   (unsigned int)-1
 };
 
 

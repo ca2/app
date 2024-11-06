@@ -224,7 +224,7 @@ namespace axis
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //i32 iStyle = 1;
+      //int iStyle = 1;
 
       ////rectangleX.left()--;
 

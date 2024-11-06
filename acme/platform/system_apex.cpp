@@ -230,7 +230,7 @@ namespace platform
    // }
 
 
-   ::u32 apex_system_layer::os_post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
+   unsigned int apex_system_layer::os_post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
    {
       return 0;
    }
@@ -277,7 +277,7 @@ namespace platform
    // }
 
 
-   i32 apex_system_layer::_001OnDebugReport(i32 i1, const ::string& psz1, i32 i2, const ::string& psz2,
+   int apex_system_layer::_001OnDebugReport(int i1, const ::string& psz1, int i2, const ::string& psz2,
                                             const ::string& psz3,
                                             va_list args)
    {
@@ -285,20 +285,20 @@ namespace platform
    }
 
 
-   i32 apex_system_layer::_debug_logging_report(i32 iReportType, const ::string& pszFilename, i32 iLinenumber,
+   int apex_system_layer::_debug_logging_report(int iReportType, const ::string& pszFilename, int iLinenumber,
                                                 const ::string& iModuleName, const char* pszFormat, va_list list)
    {
       return 0;
    }
 
 
-   bool apex_system_layer::assert_failed_line(const ::string& pszFileName, i32 iLine)
+   bool apex_system_layer::assert_failed_line(const ::string& pszFileName, int iLine)
    {
       return false;
    }
 
 
-   bool apex_system_layer::on_assert_failed_line(const ::string& pszFileName, i32 iLine)
+   bool apex_system_layer::on_assert_failed_line(const ::string& pszFileName, int iLine)
    {
       return false;
    }

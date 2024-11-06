@@ -496,14 +496,14 @@ template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
 class numeric_array;
 
 
-using i8_array = numeric_array < i8 >;
-using i16_array = numeric_array < i16 >;
-using i32_array = numeric_array < i32 >;
+using i8_array = numeric_array < char >;
+using i16_array = numeric_array < short >;
+using i32_array = numeric_array < int >;
 using i64_array = numeric_array < i64 >;
 
 using u8_array = numeric_array < unsigned char >;
-using u16_array = numeric_array < u16 >;
-using u32_array = numeric_array < u32 >;
+using u16_array = numeric_array < unsigned short >;
+using u32_array = numeric_array < unsigned int >;
 using u64_array = numeric_array < u64 >;
 
 using f32_array = numeric_array < f32 >;
@@ -520,10 +520,10 @@ using index_array = numeric_array < ::collection::index >;
 using count_array = numeric_array < ::collection::count >;
 
 
-using u32_array = numeric_array < ::u32 >;
+using u32_array = numeric_array < unsigned int >;
 
 
-using unique_i32_sort_array = unique_number_sort_array < i32 >;
+using unique_i32_sort_array = unique_number_sort_array < int >;
 using unique_i64_sort_array = unique_number_sort_array < i64 >;
 
 
@@ -628,7 +628,7 @@ template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB
 class spreadset;
 
 
-using i32_spreadset = spreadset < i32, i32, unique_i32_sort_array, unique_i32_sort_array >;
+using i32_spreadset = spreadset < int, int, unique_i32_sort_array, unique_i32_sort_array >;
 
 using i64_spreadset = spreadset < i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
 

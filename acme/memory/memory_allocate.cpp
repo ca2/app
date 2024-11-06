@@ -102,7 +102,7 @@ CLASS_DECL_ACME memsize memory_size(void * p)
 }
 
 
-CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation)
+CLASS_DECL_ACME void * memory_allocate_debug(memsize size, int nType, const char* pszFileName, int nLine, const char * pszAnnotation)
 {
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
@@ -140,7 +140,7 @@ CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char
 }
 
 
-CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType, const char* pszFileName, i32 nLine, const char * pszAnnotation)
+CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, int nType, const char* pszFileName, int nLine, const char * pszAnnotation)
 {
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
@@ -180,7 +180,7 @@ CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType
 }
 
 
-CLASS_DECL_ACME void memory_free_debug(void * p, i32 nType)
+CLASS_DECL_ACME void memory_free_debug(void * p, int nType)
 {
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);

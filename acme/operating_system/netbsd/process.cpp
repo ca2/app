@@ -26,7 +26,7 @@
 //
 //
 //
-//i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+//int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
 //   string_array stra;
@@ -87,7 +87,7 @@
 //}
 //
 //
-//i32 create_process3(const char * _cmd_line, i32 * pprocessId)
+//int create_process3(const char * _cmd_line, int * pprocessId)
 //{
 //
 //   char *   exec_path_name;
@@ -107,7 +107,7 @@
 //
 //   char *      argv[1024 + 1];
 //
-//   i32		argc = 0;
+//   int		argc = 0;
 //
 //   prepare_argc_argv(argc, argv, cmd_line);
 //
@@ -135,7 +135,7 @@
 //}
 //
 //
-//i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+//int daemonize_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
 //   string_array stra;
@@ -241,7 +241,7 @@
 //}
 //
 //
-//i32 create_process4(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
+//int create_process4(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
 //   string_array stra;
@@ -331,7 +331,7 @@
 //
 //   }
 //
-//   i32 processId;
+//   int processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //   {
@@ -375,7 +375,7 @@
 //
 //   }
 //
-//   i32 processId;
+//   int processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //   {
@@ -663,7 +663,7 @@
 //      }
 //
 //
-//      bool node::is_shared_library_busy(u32 processid, const string_array & stra)
+//      bool node::is_shared_library_busy(unsigned int processid, const string_array & stra)
 //      {
 //
 //         return false;
@@ -699,7 +699,7 @@
 //
 //
 //
-//CLASS_DECL_ACME i32 ca2_main();
+//CLASS_DECL_ACME int ca2_main();
 //
 //
 //
@@ -796,7 +796,7 @@
 //
 
 
-::u32 get_current_process_id()
+unsigned int get_current_process_id()
 {
 
    return getpid();

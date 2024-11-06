@@ -5,7 +5,7 @@
 
 const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {
   const char * name = nullptr;
-  i32 region_code2 = -1;
+  int region_code2 = -1;
   if (region_code == nullptr) { return nullptr; }
 
   if (   ((region_code[0] >= 48) && (region_code[0] < (48 + 10)))

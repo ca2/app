@@ -90,7 +90,7 @@ string_to_string * g_pmapFontPath;
 //
 //};
 //
-//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
+//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, unsigned int dwFontType, LPVOID p)
 //{
 //
 //   font_fam_callback * pc = (font_fam_callback *)p;
@@ -481,7 +481,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, polygon[0].x(), polygon[0].y());
 
-      for (i32 i = 1; i < polygon.get_count(); i++)
+      for (int i = 1; i < polygon.get_count(); i++)
       {
 
          //cairo_line_to(m_pdc, polygon[i].x() + m_pointAddShapeTranslate.x(), polygon[i].y() + m_pointAddShapeTranslate.y());
@@ -495,7 +495,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::GetDevicecaps(i32 nIndex)
+   int graphics::GetDevicecaps(int nIndex)
    {
 
       throw ::interface_only();
@@ -535,7 +535,7 @@ namespace draw2d_cairo
    }
 
 //
-//i32 graphics::EnumObjects(i32 nObjectType, i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+//int graphics::EnumObjects(int nObjectType, int(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
 //{
 //
 //    throw ::interface_only();
@@ -597,7 +597,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//::u32 graphics::RealizePalette()
+//unsigned int graphics::RealizePalette()
 //{
 //
 //    return 0;
@@ -611,7 +611,7 @@ namespace draw2d_cairo
 //}
 //
 
-//i32 graphics::GetPolyFillMode()
+//int graphics::GetPolyFillMode()
 //{
 //
 //    _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -630,7 +630,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::GetROP2()
+//int graphics::GetROP2()
 //{
 //
 //    return 0;
@@ -638,7 +638,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::GetStretchBltMode()
+//int graphics::GetStretchBltMode()
 //{
 //
 //    return 0;
@@ -646,7 +646,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::GetMapMode()
+//int graphics::GetMapMode()
 //{
 //
 //    return 0;
@@ -654,7 +654,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::GetGraphicsMode()
+//int graphics::GetGraphicsMode()
 //{
 //
 //    return 0;
@@ -1010,7 +1010,7 @@ namespace draw2d_cairo
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void graphics::draw(::image::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+//void graphics::draw(::image::icon * picon, int cx, int cy, unsigned int istepIfAniCur, HBRUSH hbrFlickerFreeDraw, unsigned int diFlags)
 //{
 //
 //
@@ -1136,7 +1136,7 @@ namespace draw2d_cairo
 //#endif
 
 
-//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1146,7 +1146,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, unsigned int nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1156,7 +1156,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1166,7 +1166,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1176,7 +1176,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::DrawEdge(const ::rectangle_i32 & rectangle, ::u32 nEdge, ::u32 nFlags)
+//void graphics::DrawEdge(const ::rectangle_i32 & rectangle, unsigned int nEdge, unsigned int nFlags)
 //{
 //
 //    throw ::interface_only();
@@ -1186,7 +1186,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawFrameControl(const ::rectangle_i32 & rectangle, ::u32 nType, ::u32 nState)
+//void graphics::DrawFrameControl(const ::rectangle_i32 & rectangle, unsigned int nType, unsigned int nState)
 //{
 //
 //    throw ::interface_only();
@@ -1374,7 +1374,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
 
-      for (i32 i = 1; i < nCount; i++)
+      for (int i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
@@ -1404,7 +1404,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
 
-      for (i32 i = 1; i < nCount; i++)
+      for (int i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
@@ -1434,7 +1434,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
 
-      for (i32 i = 1; i < nCount; i++)
+      for (int i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
@@ -1843,7 +1843,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
+//void graphics::ExtFloodFill(double x, double y, const ::color::color & color, unsigned int nFillType)
 //{
 //
 //    throw ::interface_only();
@@ -1868,7 +1868,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & lpszString, strsize nCount, int * lpDxWidths)
+//void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & lpszString, strsize nCount, int * lpDxWidths)
 //{
 //
 //    throw ::interface_only();
@@ -1878,7 +1878,7 @@ namespace draw2d_cairo
 //}
 
 
-//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1888,7 +1888,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1938,7 +1938,7 @@ namespace draw2d_cairo
 //}
 //
 
-//void graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight)
+//void graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight)
 //{
 //
 //    throw ::interface_only();
@@ -1948,7 +1948,7 @@ namespace draw2d_cairo
 //}
 
 
-   ::u32 graphics::GetTextAlign()
+   unsigned int graphics::GetTextAlign()
    {
 
       throw ::interface_only();
@@ -1958,7 +1958,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::GetTextFace(count nCount, char * lpszFacename)
+//int graphics::GetTextFace(count nCount, char * lpszFacename)
 //{
 //
 //    throw ::interface_only();
@@ -1968,7 +1968,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::GetTextFace(string & rString)
+//int graphics::GetTextFace(string & rString)
 //{
 //
 //    throw ::interface_only();
@@ -2126,7 +2126,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::GetTextCharacterExtra()
+//int graphics::GetTextCharacterExtra()
 //{
 //
 //    throw ::interface_only();
@@ -2136,7 +2136,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
+//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2146,7 +2146,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
+//void graphics::GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2156,7 +2156,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//u32 graphics::GetFontLanguageInfo()
+//unsigned int graphics::GetFontLanguageInfo()
 //{
 //
 //    throw ::interface_only();
@@ -2176,7 +2176,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::ScrollDC(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate)
+//void graphics::ScrollDC(int Δx, int Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, ::rectangle_i32 * lpRectUpdate)
 //{
 //
 //    throw ::interface_only();
@@ -2187,7 +2187,7 @@ namespace draw2d_cairo
 //
 //
 //// Printer Escape Functions
-//i32 graphics::Escape(i32 nEscape, i32 nCount, const ::string & lpszInData, LPVOID lpOutData)
+//int graphics::Escape(int nEscape, int nCount, const ::string & lpszInData, LPVOID lpOutData)
 //{
 //
 //    throw ::interface_only();
@@ -2198,7 +2198,7 @@ namespace draw2d_cairo
 
 
 // graphics 3.1 Specific functions
-   ::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags)
+   unsigned int graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, unsigned int flags)
    {
 
       throw ::interface_only();
@@ -2208,7 +2208,7 @@ namespace draw2d_cairo
    }
 
 
-   ::u32 graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags)
+   unsigned int graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, unsigned int flags)
    {
 
       throw ::interface_only();
@@ -2218,7 +2218,7 @@ namespace draw2d_cairo
    }
 
 
-//u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData)
+//unsigned int graphics::GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID lpData, unsigned int cbData)
 //{
 //
 //    throw ::interface_only();
@@ -2228,7 +2228,7 @@ namespace draw2d_cairo
 //}
 //
 //
-   i32 graphics::StartPage()
+   int graphics::StartPage()
    {
 
       throw ::interface_only();
@@ -2238,7 +2238,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::EndPage()
+   int graphics::EndPage()
    {
 
       throw ::interface_only();
@@ -2248,7 +2248,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
+//int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
 //{
 //
 //    throw ::interface_only();
@@ -2258,7 +2258,7 @@ namespace draw2d_cairo
 //}
 
 
-   i32 graphics::AbortDoc()
+   int graphics::AbortDoc()
    {
 
       throw ::interface_only();
@@ -2268,7 +2268,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::EndDoc()
+   int graphics::EndDoc()
    {
 
       throw ::interface_only();
@@ -2288,7 +2288,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::PlgBlt(::point_f64 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
+//void graphics::PlgBlt(::point_f64 * lpPoint, ::draw2d::graphics * pgraphicsSrc, int nXSrc, int nYSrc, double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
 //{
 //
 //    if (::is_null(m_pdc))
@@ -2585,7 +2585,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::GetArcDirection()
+//int graphics::GetArcDirection()
 //{
 //
 //   throw ::interface_only();
@@ -2655,7 +2655,7 @@ namespace draw2d_cairo
    }
 //
 //
-//i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData)
+//int graphics::DrawEscape(int nEscape, int nInputSize, const ::string & lpszInputData)
 //{
 //
 //    throw ::interface_only();
@@ -2665,7 +2665,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::Escape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData, i32 nOutputSize, char * lpszOutputData)
+//int graphics::Escape(int nEscape, int nInputSize, const ::string & lpszInputData, int nOutputSize, char * lpszOutputData)
 //{
 //
 //    throw ::interface_only();
@@ -2675,7 +2675,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer)
+//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, float* lpFloatBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2755,7 +2755,7 @@ namespace draw2d_cairo
    }
 
 //
-//i32 graphics::GetPath(::point_f64 * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
+//int graphics::GetPath(::point_f64 * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
 //{
 //
 //    throw ::interface_only();
@@ -2998,7 +2998,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
+//void graphics::TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, int nSrcWidth, int nSrcHeight, unsigned int crTransparent)
 //{
 //
 //    throw ::interface_only();
@@ -3008,7 +3008,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
+//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, unsigned int dwMode)
 //{
 //
 //    throw ::interface_only();
@@ -3068,7 +3068,7 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //
-//void graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
+//void graphics::GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc)
 //{
 //
 //    throw ::interface_only();
@@ -3078,7 +3078,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
+//void graphics::GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -3094,7 +3094,7 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //
-//void graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
+//void graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
 //{
 //
 //    throw ::interface_only();
@@ -3104,7 +3104,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32)
+//void graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE32 LPSIZE32)
 //{
 //
 //    throw ::interface_only();
@@ -3186,7 +3186,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::StartDoc(const ::string & lpszDocName)
+//int graphics::StartDoc(const ::string & lpszDocName)
 //{
 //
 //    throw ::interface_only();
@@ -3196,7 +3196,7 @@ namespace draw2d_cairo
 //}
 
 
-   i32 graphics::save_graphics_context()
+   int graphics::save_graphics_context()
    {
 
       _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
@@ -3210,7 +3210,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::restore_graphics_context(i32 iSavedContext)
+   void graphics::restore_graphics_context(int iSavedContext)
    {
 
       _synchronous_lock synchronouslock(::draw2d_cairo::mutex());
@@ -3240,7 +3240,7 @@ namespace draw2d_cairo
    }
 
 
-   ::draw2d::object * graphics::set_stock_object(i32 nIndex)
+   ::draw2d::object * graphics::set_stock_object(int nIndex)
    {
 
       return nullptr;
@@ -3301,7 +3301,7 @@ namespace draw2d_cairo
 //}
 //
 
-//i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
+//int graphics::SetPolyFillMode(int nPolyFillMode)
 //{
 //
 //    throw ::interface_only();
@@ -3311,7 +3311,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::SetROP2(i32 nDrawMode)
+//int graphics::SetROP2(int nDrawMode)
 //{
 //
 //    throw ::interface_only();
@@ -3364,7 +3364,7 @@ namespace draw2d_cairo
 
 
 
-//i32 graphics::SetGraphicsMode(i32 iMode)
+//int graphics::SetGraphicsMode(int iMode)
 //{
 //
 //    throw ::interface_only();
@@ -3384,7 +3384,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
+//void graphics::ModifyWorldTransform(const XFORM* pXform, unsigned int iMode)
 //{
 //
 //    throw ::interface_only();
@@ -3394,7 +3394,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::SetMapMode(i32 nMapMode)
+//int graphics::SetMapMode(int nMapMode)
 //{
 //
 //    return 0;
@@ -3484,7 +3484,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::get_clip_box(::rectangle_f64 & rectangle)
+   int graphics::get_clip_box(::rectangle_f64 & rectangle)
    {
 
       return 0;
@@ -3492,7 +3492,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::SelectClipRgn(::draw2d::region * pregion)
+//int graphics::SelectClipRgn(::draw2d::region * pregion)
 //{
 //
 //   _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -3515,7 +3515,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
+//int graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
 //{
 //
 //    //throw ::interface_only();
@@ -3525,7 +3525,7 @@ namespace draw2d_cairo
 //}
 //
 
-//i32 graphics::ExcludeClipRect(const ::rectangle_i32 & rectangle)
+//int graphics::ExcludeClipRect(const ::rectangle_i32 & rectangle)
 //{
 //
 //    throw ::interface_only();
@@ -3535,7 +3535,7 @@ namespace draw2d_cairo
 //}
 //
 
-//i32 graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
+//int graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
 //{
 //
 //   _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -3549,7 +3549,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::IntersectClipRect(const ::rectangle_i32 & rectangle)
+//int graphics::IntersectClipRect(const ::rectangle_i32 & rectangle)
 //{
 //
 //   return IntersectClipRect(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
@@ -3557,7 +3557,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::OffsetClipRgn(double x, double y)
+//int graphics::OffsetClipRgn(double x, double y)
 //{
 //
 //   return ::draw2d::graphics::OffsetClipRgn(x, y);
@@ -3572,7 +3572,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::OffsetClipRgn(const ::size_f64 & size_f64)
+//int graphics::OffsetClipRgn(const ::size_f64 & size_f64)
 //{
 //
 //    //throw ::interface_only();
@@ -3616,7 +3616,7 @@ namespace draw2d_cairo
    }
 
 
-   ::u32 graphics::SetTextAlign(::u32 nFlags)
+   unsigned int graphics::SetTextAlign(unsigned int nFlags)
    {
 
       return 0;
@@ -3624,7 +3624,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
+//int graphics::SetTextJustification(int nBreakExtra, int nBreakCount)
 //{
 //
 //    throw ::interface_only();
@@ -3634,7 +3634,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
+//int graphics::SetTextCharacterExtra(int nCharExtra)
 //{
 //
 //    throw ::interface_only();
@@ -3644,7 +3644,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//u32 graphics::SetMapperFlags(u32 dwFlag)
+//unsigned int graphics::SetMapperFlags(unsigned int dwFlag)
 //{
 //
 //    throw ::interface_only();
@@ -3654,7 +3654,7 @@ namespace draw2d_cairo
 //}
 //
 //
-   u32 graphics::GetLayout()
+   unsigned int graphics::GetLayout()
    {
 
       throw ::interface_only();
@@ -3664,7 +3664,7 @@ namespace draw2d_cairo
    }
 
 
-   u32 graphics::SetLayout(u32 dwSetLayout)
+   unsigned int graphics::SetLayout(unsigned int dwSetLayout)
    {
 
       throw ::interface_only();
@@ -3684,7 +3684,7 @@ namespace draw2d_cairo
 //}
 
 
-//i32 graphics::SetArcDirection(i32 nArcDirection)
+//int graphics::SetArcDirection(int nArcDirection)
 //{
 //
 //    throw ::interface_only();
@@ -3724,7 +3724,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::SelectClipPath(i32 nMode)
+   void graphics::SelectClipPath(int nMode)
    {
 
       throw ::interface_only();
@@ -3734,7 +3734,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
+//int graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
 //{
 //
 //    return SelectClipRgn(pRgn);
@@ -4400,7 +4400,7 @@ namespace draw2d_cairo
       if (iIndex < 0)
       {
 
-         iIndex = (i32) scopedstr.size();
+         iIndex = (int) scopedstr.size();
 
       }
 
@@ -4511,7 +4511,7 @@ namespace draw2d_cairo
       if (iIndex < 0)
       {
 
-         iIndex = (i32) nCount;
+         iIndex = (int) nCount;
 
       }
 
@@ -4911,9 +4911,9 @@ namespace draw2d_cairo
       // Released into the public domain.
 
       // get width, height
-      i32 width = cairo_image_surface_get_width(surface);
+      int width = cairo_image_surface_get_width(surface);
 
-      i32 height = cairo_image_surface_get_height(surface);
+      int height = cairo_image_surface_get_height(surface);
 
       unsigned char * dst = (unsigned char *) malloc(width * height * 4);
 
@@ -4923,13 +4923,13 @@ namespace draw2d_cairo
 
       double mul = 1.f / ((radius * 2) * (radius * 2));
 
-      i32 channel;
+      int channel;
 
       // The number of times to perform the averaging. According to wikipedia,
       // three iterations is good enough to pass for a gaussian.
-      const i32 MAX_ITERATIONS = 3;
+      const int MAX_ITERATIONS = 3;
 
-      i32 iteration;
+      int iteration;
 
       ::memory_copy(dst, src, width * height * 4);
 
@@ -4954,7 +4954,7 @@ namespace draw2d_cairo
                for (x = 0; x < width; x++)
                {
 
-                  i32 tot = pix[0];
+                  int tot = pix[0];
 
                   if (x > 0) tot += pre[-1];
 
@@ -4971,23 +4971,23 @@ namespace draw2d_cairo
             }
 
             // blur step.
-            pix = dst + (i32) radius * width * 4 + (i32) radius * 4 + channel;
+            pix = dst + (int) radius * width * 4 + (int) radius * 4 + channel;
 
-            for (y = (i32) radius; y < height - radius; y++)
+            for (y = (int) radius; y < height - radius; y++)
             {
 
-               for (x = (i32) radius; x < width - radius; x++)
+               for (x = (int) radius; x < width - radius; x++)
                {
 
-                  i32 l = (i32) (x < radius ? 0 : x - radius);
+                  int l = (int) (x < radius ? 0 : x - radius);
 
-                  i32 t = (i32) (y < radius ? 0 : y - radius);
+                  int t = (int) (y < radius ? 0 : y - radius);
 
-                  i32 r = (i32) (x + radius >= width ? width - 1 : x + radius);
+                  int r = (int) (x + radius >= width ? width - 1 : x + radius);
 
-                  i32 b = (i32) (y + radius >= height ? height - 1 : y + radius);
+                  int b = (int) (y + radius >= height ? height - 1 : y + radius);
 
-                  i32 tot = precalc[r + b * width] + precalc[l + t * width] -
+                  int tot = precalc[r + b * width] + precalc[l + t * width] -
                             precalc[l + b * width] - precalc[r + t * width];
 
                   *pix = (unsigned char) (tot * mul);
@@ -4996,7 +4996,7 @@ namespace draw2d_cairo
 
                }
 
-               pix += (i32) radius * 2 * 4;
+               pix += (int) radius * 2 * 4;
 
             }
 
@@ -5702,7 +5702,7 @@ namespace draw2d_cairo
 
       }
 
-      for (i32 i = 0; i < ppath->m_itema.get_count(); i++)
+      for (int i = 0; i < ppath->m_itema.get_count(); i++)
       {
 
          _set(ppath->m_itema[i]);

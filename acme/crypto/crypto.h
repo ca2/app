@@ -46,7 +46,7 @@ namespace crypto
       //virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const ::scoped_string & scopedstrSalt);
 
 
-      virtual i32 key(memory & storage);
+      virtual int key(memory & storage);
 
       virtual string strkey();
       virtual void encrypt(string & str, const block & blockDecrypt, const block & blockKey);
@@ -59,7 +59,7 @@ namespace crypto
       virtual int get_nessie_digest_length() const;
 
 
-      //virtual u32 crc32(u32 dwPrevious, const ::scoped_string & scopedstr) = 0;
+      //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr) = 0;
       //virtual string md5(const ::scoped_string & scopedstr);
       //virtual string sha1(const ::scoped_string & scopedstr);
       //virtual string nessie(const ::scoped_string & scopedstr);
@@ -91,14 +91,14 @@ namespace crypto
       // but we future proof it anyway with substr()
       virtual string v5_get_password_salt();
       // calculate the hash from a salt and a password
-      virtual string v5_get_password_hash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,i32 iOrder = 0);
-      virtual string v5_get_passhash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,i32 iMaxOrder = 0);
-      virtual bool v5_compare_password(const ::scoped_string & scopedstrPassword,const ::scoped_string & scopedstrHash,i32 iOrder = 0);
+      virtual string v5_get_password_hash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,int iOrder = 0);
+      virtual string v5_get_passhash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,int iMaxOrder = 0);
+      virtual bool v5_compare_password(const ::scoped_string & scopedstrPassword,const ::scoped_string & scopedstrHash,int iOrder = 0);
       // if iOrder == 0 password is plain
       // if iOrder == 1 password is the first hash
       // if iOrder == (n > 0) password is the nth hash
       virtual bool v5_validate_plain_password(const ::scoped_string & scopedstrPassword);
-      virtual string v5_get_password_hash(const ::scoped_string & scopedstrPassword,i32 iOrder = 0);
+      virtual string v5_get_password_hash(const ::scoped_string & scopedstrPassword,int iOrder = 0);
 
       virtual ::file::path get_crypt_key_file_path();
       virtual ::memory defer_get_cryptkey();
@@ -145,9 +145,9 @@ namespace crypto
 
 
 
-CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length, const char *username, const char *realm, const char *password);
+CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const char* input, int length, const char *username, const char *realm, const char *password);
 
-CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, const char* key);
+CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key);
 
 
 CLASS_DECL_ACME void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

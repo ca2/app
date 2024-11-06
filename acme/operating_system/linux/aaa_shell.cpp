@@ -3,7 +3,7 @@
 #include "_linux.h"
 
 /***
-*i32 _validdrive( unsigned drive ) -
+*int _validdrive( unsigned drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -15,7 +15,7 @@
 *
 *******************************************************************************/
 /*
-i32 __cdecl _validdrive (
+int __cdecl _validdrive (
     unsigned drive
     )
 {
@@ -38,9 +38,9 @@ i32 __cdecl _validdrive (
 }*/
 
 /*WCHAR * __cdecl _wgetdcwd (
-        i32 drive,
+        int drive,
         WCHAR *pnbuf,
-        i32 maxlen
+        int maxlen
         );
 
         */
@@ -65,7 +65,7 @@ i32 __cdecl _validdrive (
 *
 *Entry:
 *       _TSCHAR *pnbuf = pointer to a buffer maintained by the ::account::user;
-*       i32 maxlen = length of the buffer pointed to by pnbuf;
+*       int maxlen = length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -78,7 +78,7 @@ i32 __cdecl _validdrive (
 
 /*WCHAR * __cdecl _wgetcwd (
         WCHAR *pnbuf,
-        i32 maxlen
+        int maxlen
         )
 {
         WCHAR *retval;
@@ -105,10 +105,10 @@ i32 __cdecl _validdrive (
 *       side effects: no global data is used or affected
 *
 *Entry:
-*       i32 drive   - number of the drive being inquired about
+*       int drive   - number of the drive being inquired about
 *                     0 = default, 1 = 'a:', 2 = 'b:', etc.
 *       _TSCHAR *pnbuf - pointer to a buffer maintained by the ::account::user;
-*       i32 maxlen  - length of the buffer pointed to by pnbuf;
+*       int maxlen  - length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -121,15 +121,15 @@ i32 __cdecl _validdrive (
 
 
 //WCHAR * __cdecl _wgetdcwd (
-//        i32 drive,
+//        int drive,
 //        WCHAR *pnbuf,
-//        i32 maxlen
+//        int maxlen
 //        )
 //{
 //        WCHAR *point;
 //        WCHAR dirbuf[_MAX_PATH];
 //        WCHAR drvstr[4];
-//        i32 len;
+//        int len;
 //        WCHAR *pname; only used as argument to GetFullPathName
 //
 //
@@ -200,7 +200,7 @@ i32 __cdecl _validdrive (
 //#ifndef WPRFLAG
 //
 //
-//i32 _validdrive( unsigned drive ) -
+//int _validdrive( unsigned drive ) -
 //
 //Purpose: returns non zero if drive is a valid drive number.
 //
@@ -212,7 +212,7 @@ i32 __cdecl _validdrive (
 //
 
 
-//i32 __cdecl _validdrive (
+//int __cdecl _validdrive (
 //    unsigned drive
 //    )
 //{

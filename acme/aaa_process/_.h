@@ -11,7 +11,7 @@
 
 //CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
-//typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
+//typedef int CALLSYNCONRETRY(int iTry,uptr dwParam);
 
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
@@ -20,9 +20,9 @@
 #endif
 
 
-CLASS_DECL_ACME i32 get_current_processor_index();
-CLASS_DECL_ACME i32 get_current_process_maximum_affinity();
-CLASS_DECL_ACME i32 get_current_process_affinity_order();
+CLASS_DECL_ACME int get_current_processor_index();
+CLASS_DECL_ACME int get_current_process_maximum_affinity();
+CLASS_DECL_ACME int get_current_process_affinity_order();
 
 
 //CLASS_DECL_ACME string expand_env(string str);
@@ -47,7 +47,7 @@ CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_platform_name();
 CLASS_DECL_ACME string process_version_dir_name();
 
-//CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
+//CLASS_DECL_ACME int_bool is_process_running(unsigned int pid);
 
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 
@@ -70,13 +70,13 @@ CLASS_DECL_ACME string process_version_dir_name();
 #endif
 
 #ifndef UNIVERSAL_WINDOWS
-//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, unsigned int processID, const ::scoped_string & scopedstrLibrary);
 //CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif
 
 
 
-//CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra);
 //CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
 
 
@@ -89,7 +89,7 @@ CLASS_DECL_ACME string process_version_dir_name();
 CLASS_DECL_ACME string executable_title_from_appid(string str);
 
 
-CLASS_DECL_ACME ::u32 get_current_process_id();
+CLASS_DECL_ACME unsigned int get_current_process_id();
 
 
 

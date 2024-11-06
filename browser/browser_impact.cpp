@@ -825,7 +825,7 @@ namespace browser
    {
    }
 
-   //void impact::OnSize(::u32 nType, int cx, int cy)
+   //void impact::OnSize(unsigned int nType, int cx, int cy)
    //{
    //   CImpact::OnSize(nType, cx, cy);
 

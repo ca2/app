@@ -51,7 +51,7 @@ namespace simpledb
 
       stra = psystem->m_psimpledb->db().data_load(nullptr, "simpledb").stra();
 
-      for(i32 i = 0; i < stra.get_size(); i++)
+      for(int i = 0; i < stra.get_size(); i++)
       {
 
          m_threadptra.add(__begin_thread < socket_thread > (this));

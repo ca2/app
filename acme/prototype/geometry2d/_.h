@@ -949,7 +949,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //template < primitive_point POINT1, primitive_point POINT2 >
-//inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
+//inline bool polygon_contains(const POINT1 * ppPolygon, int iCount, const POINT2 & point)
 //{
 //
 //   int i, j = iCount - 1;
@@ -1083,11 +1083,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //using rectangle = ::rectangle_f64;
 //
 //
-////inline float i32muldiv(float f, i32 iNum, i32 iDen);
-////inline double i32muldiv(double d, i32 iNum, i32 iDen);
-////inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen);
+////inline float i32muldiv(float f, int iNum, int iDen);
+////inline double i32muldiv(double d, int iNum, int iDen);
+////inline int i32muldiv(int i, int iNum, int iDen);
 ////#ifndef WINDOWS
-////inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen);
+////inline i64 MulDiv(i64 nNumber, int iNum, int iDen);
 ////#endif
 ////inline i64 i32muldiv(i64 i, i64 iNum, i64 iDen);
 //
@@ -1323,7 +1323,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////      rect.right() = lppoint[0].x();
 ////      rect.bottom() = lppoint[0].y();
 ////
-////      for (i32 i = 1; i < count; i++)
+////      for (int i = 1; i < count; i++)
 ////      {
 ////         if (lppoint[i].x() < rect.left())
 ////            rect.left() = lppoint[i].x();
@@ -1398,7 +1398,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline rectangle_i32 rectangle_i32_dimension(X x, Y y, W w, H h)
 ////{
 ////
-////   return rectangle_i32((i32)(x), (i32)(y), (i32)(x + w), (i32)(y + h));
+////   return rectangle_i32((int)(x), (int)(y), (int)(x + w), (int)(y + h));
 ////
 ////}
 ////
@@ -1453,24 +1453,24 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////inline auto ::point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
-////inline auto ::point_i32(const ::u32 u) noexcept { return ::point_i32((int)u32_x(u), (int)u32_y(u)); }
+////inline auto ::point_i32(const unsigned int u) noexcept { return ::point_i32((int)u32_x(u), (int)u32_y(u)); }
 ////inline auto ::point_i32(const ::u64 u) noexcept { return ::point_i32((int)u64_x(u), (int)u64_y(u)); }
 ////inline auto ::point_i32(const ::size_i32 & size) noexcept { return ::point_i32(size.cx(), size.cy()); }
 ////
 ////inline auto __point64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
-////inline auto __point64(const ::u32 u) noexcept { return ::point_i64((i64)u32_x(u), (i64)u32_y(u)); }
+////inline auto __point64(const unsigned int u) noexcept { return ::point_i64((i64)u32_x(u), (i64)u32_y(u)); }
 ////inline auto __point64(const ::u64 u) noexcept { return ::point_i64((i64)u64_x(u), (i64)u64_y(u)); }
 ////inline auto __point64(const ::size_i64 & size) noexcept { return ::point_i64(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointf(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
-////inline auto __pointf(const ::u32 u) noexcept { return ::point_f32((float)u32_x(u), (float)u32_y(u)); }
+////inline auto __pointf(const unsigned int u) noexcept { return ::point_f32((float)u32_x(u), (float)u32_y(u)); }
 ////inline auto __pointf(const ::u64 u) noexcept { return ::point_f32((float)u64_x(u), (float)u64_y(u)); }
 ////inline auto __pointf(const ::size_f32 & size) noexcept { return ::point_f32(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointd(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
-////inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)u32_x(u), (double)u32_y(u)); }
+////inline auto __pointd(const unsigned int u) noexcept { return ::point_f64((double)u32_x(u), (double)u32_y(u)); }
 ////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)u64_x(u), (double)u64_y(u)); }
 ////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx(), size.cy()); }
 //

@@ -25,7 +25,7 @@ int app_common_term(int iError, ::apex::system* psystem, app_core& appcore);
 
 
 
-CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
+CLASS_DECL_APEX int __cdecl _memory_type(const void* p);
 
 
 bool __node_apex_pre_term()

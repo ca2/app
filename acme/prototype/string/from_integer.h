@@ -3,14 +3,14 @@
 
 #include <string.h>
 
-CLASS_DECL_ACME string i64toa_dup(i64 i, i32 iBase);
+CLASS_DECL_ACME string i64toa_dup(i64 i, int iBase);
 CLASS_DECL_ACME string i64toa_dup(i64 i);
 
-CLASS_DECL_ACME string ui64toa_dup(i64 i, i32 iBase);
+CLASS_DECL_ACME string ui64toa_dup(i64 i, int iBase);
 CLASS_DECL_ACME string ui64toa_dup(i64 i);
 
 template < primitive_integer INTEGER >
-::string string_from(INTEGER i, i32 iBase = 10)
+::string string_from(INTEGER i, int iBase = 10)
 {
 
    return i64toa_dup(i, iBase);
@@ -24,8 +24,8 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase = 10, enum_digit
 
 
 
-inline void wide_from_i64_base(::wide_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
-inline void wide_from_u64_base(::wide_character * sz, u64 i, i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_i64_base(::wide_character * sz, i64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_u64_base(::wide_character * sz, u64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 inline string ansi_string_from_i64(i64 i, int iBase, enum_digit_case edigitcase)
@@ -50,7 +50,7 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase, enum_digit_case
 }
 
 
-inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
+inline string ansi_string_from_i32(int i, int iBase, enum_digit_case edigitcase)
 {
    char sz[16];
 //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)

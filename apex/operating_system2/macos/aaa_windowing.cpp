@@ -581,7 +581,7 @@ bool oswindow_data::is_null() const
 #include <CoreFoundation/CoreFoundation.h>
 
 
-int_bool set_need_redraw(oswindow hWnd, LPCRECT32 pcrect, HRGN hrgnUpdate, ::u32 flags)
+int_bool set_need_redraw(oswindow hWnd, LPCRECT32 pcrect, HRGN hrgnUpdate, unsigned int flags)
 {
 
    return true;

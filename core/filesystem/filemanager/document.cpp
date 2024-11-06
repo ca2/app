@@ -98,7 +98,7 @@ namespace filemanager
    // }
 
 
-   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
    {
 
       __UNREFERENCED_PARAMETER(nIDSTitle);
@@ -115,8 +115,8 @@ namespace filemanager
       //      oswindow oswindowDesktop = ::get_desktop_window();
       //      ::rectangle_i32 rectangleOpen;
       //      ::GetWindowRect(oswindowDesktop, rectangleOpen);
-      //      i32 iWidth = rectangleOpen.width();
-      //      i32 iHeight = rectangleOpen.width();
+      //      int iWidth = rectangleOpen.width();
+      //      int iHeight = rectangleOpen.width();
       //      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
       //      pimpact->get_parent_frame()->order(e_zorder_top);
       //      pimpact->get_parent_frame()->place(rectangleOpen);

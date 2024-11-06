@@ -13,7 +13,7 @@ namespace user
    {
 
       m_bNew = true;
-      m_uiSmallBitmap = (::u32)-1;
+      m_uiSmallBitmap = (unsigned int)-1;
       m_iOrder = -1;
       m_iColumn = -1;
       m_bVisible = true;

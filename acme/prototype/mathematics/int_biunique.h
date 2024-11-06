@@ -666,7 +666,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //      t1 key;
 //      t3 value;
 //      m.erase_all();
-//      for(i32 i = 0; i < iCount; i++)
+//      for(int i = 0; i < iCount; i++)
 //      {
 //         istream >> key;
 //         istream >> value;
@@ -820,7 +820,7 @@ public:
 
 
 class CLASS_DECL_ACME int_biunique :
-   public biunique < i32, int_to_int >
+   public biunique < int, int_to_int >
 {
 public:
 

@@ -22,10 +22,10 @@ namespace universal_windows
       virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
 
 
-      virtual i32 impl_get_file_image(const image_key & imagekey) override;
+      virtual int impl_get_file_image(const image_key & imagekey) override;
 
 
-      i32 get_image_by_extension(const image_key & key, color32_t crBk);
+      int get_image_by_extension(const image_key & key, color32_t crBk);
 
 
       virtual void do_initialize() override;

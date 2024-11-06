@@ -35,7 +35,7 @@ namespace aura
       void *      m_lpIDList;       // in, valid when SEE_MASK_IDLIST is specified, PCIDLIST_ABSOLUTE, for use with SEE_MASK_IDLIST & SEE_MASK_INVOKEIDLIST
       const char *      m_vssClass;       // in, valid when SEE_MASK_CLASSNAME is specified
       HKEY        m_hkeyClass;      // in, valid when SEE_MASK_CLASSKEY is specified
-      u32       m_dwHotKey;       // in, valid when SEE_MASK_HOTKEY is specified
+      unsigned int       m_dwHotKey;       // in, valid when SEE_MASK_HOTKEY is specified
       union
       {
          HANDLE   m_hIcon;          // not used

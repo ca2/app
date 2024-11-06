@@ -428,7 +428,7 @@ namespace user
    //   {
    //      strSql += " order by ";
 
-   //      for (i32 i = 0; i < m_sortinfo.m_useritema.get_size(); i++)
+   //      for (int i = 0; i < m_sortinfo.m_useritema.get_size(); i++)
    //      {
    //         CSortInfoItem& item = m_sortinfo.m_useritema[i];
    //         switch (item.m_iSubItem)
@@ -495,7 +495,7 @@ namespace user
    //   MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   i32 iFind;
+   //   int iFind;
    //   if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
    //   {
    //   mediamanager::GetMediaManager()->album_build().add(wstrPath, pdocument->m_fileinfo.m_timeaAdd[iFind]);
@@ -546,18 +546,18 @@ namespace user
    //   else
    //   {
    //   KillTimer(1124);
-   //   i32 iTopIndex = _001GetTopIndex();
+   //   int iTopIndex = _001GetTopIndex();
    //   if(m_buildhelper.m_iTopIndex != iTopIndex)
    //   {
    //   m_buildhelper.m_iTopIndex = iTopIndex;
    //   m_buildhelper.m_iStep = 0;
    //   }
-   //   i32 iItem;
+   //   int iItem;
 
 
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+   //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
    //   ::i32_array iaRemove;
    //   while(true)
@@ -579,7 +579,7 @@ namespace user
    //   string wstrPath;
    //   wstrPath = pds->fv("filepath").get_asString();
 
-   //   i32 iFind;
+   //   int iFind;
    //   if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
    //   {
    //   PostFillTask(wstrPath, uEvent);
@@ -612,7 +612,7 @@ namespace user
    //   MediaLibraryDoc * pdocument = get_document();
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-   //   i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+   //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
    //   ::i32_array iaRemove;
    //   auto pFind = 0;
@@ -740,7 +740,7 @@ namespace user
 
    //}
 
-   //void list2::start_build(i32 iItem)
+   //void list2::start_build(int iItem)
    //{
    //   __UNREFERENCED_PARAMETER(iItem);
    //   auto iTopIndex = m_iTopDisplayIndex;
@@ -821,7 +821,7 @@ namespace user
    //   // method 3: Selected Childs with GetChilds()
    //   // Result: Person, Person, Person
    //   index iNode = 0;
-   //   for (i32 i = 0; i < pnodeFolder->get_children_count(); i++)
+   //   for (int i = 0; i < pnodeFolder->get_children_count(); i++)
    //   {
 
    //      auto pnodeItem = pnodeFolder->child_at(i);
@@ -868,7 +868,7 @@ namespace user
 
    //   auto pnodeFile = pxmldocument->get_child("file");
 
-   //   for (i32 i = 0; i < pnodeFile->get_children_count(); i++)
+   //   for (int i = 0; i < pnodeFile->get_children_count(); i++)
    //   {
    //      auto pnodeItem = pnodeFile->child_at(i);
    //      if (pnodeItem->get_name() == "file")
@@ -896,10 +896,10 @@ namespace user
    //}
 
 
-   /*i32 ItemArray::FindAbsolute(const ::string & pszId)
+   /*int ItemArray::FindAbsolute(const ::string & pszId)
 
    {
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i).m_atom == pszId)
 
@@ -1026,7 +1026,7 @@ namespace user
 
    //   //str = http()->get(strGetUrl, set);
 
-   //   //auto iHttpStatusCode = set["http_status_code"].i32();
+   //   //auto iHttpStatusCode = set["http_status_code"].int();
 
    //   //synchronous_lock synchronouslock(this->synchronization());
 

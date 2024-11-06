@@ -109,7 +109,7 @@ namespace text
 
          string_array straFailedLocale;
 
-         for(i32 i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
+         for(int i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
          {
 
             auto & strLocale = m_plocaleschema->m_straLocale[i];
@@ -303,7 +303,7 @@ namespace text
                return table;
          }
 
-         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -454,7 +454,7 @@ namespace text
                stra.add(table);
          }
 
-         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -646,7 +646,7 @@ namespace text
 //
 //      string table;
 //
-//      //i32 i = 0;
+//      //int i = 0;
 //
 //      strsize start;
 //
@@ -891,7 +891,7 @@ namespace text
                return true;
          }
 
-         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -960,7 +960,7 @@ namespace text
                return true;
          }
 
-         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -1029,7 +1029,7 @@ namespace text
                return true;
          }
 
-         for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
@@ -1080,7 +1080,7 @@ namespace text
 
    //   auto psystem = system();
 
-   //   for(i32 i = 0; i < straCandstrate.get_count(); i++)
+   //   for(int i = 0; i < straCandstrate.get_count(); i++)
    //   {
 
    //      string strCandstrate = straCandstrate[i];

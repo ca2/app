@@ -133,7 +133,7 @@ namespace message
    //}
 
 
-   ::u32 translate_to_os_message(const ::atom& atom)
+   unsigned int translate_to_os_message(const ::atom& atom)
    {
 
       return atom.as_u32();

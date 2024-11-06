@@ -146,7 +146,7 @@ namespace sockets
             strBody.replace_with("\n", "\r\n");
             string_array stra;
             stra.add_tokens(strBody, "\n", true);
-            for(i32 i = 0; i < stra.get_count(); i++)
+            for(int i = 0; i < stra.get_count(); i++)
             {
                if(stra[i].substr(0, 1) == ".")
                {

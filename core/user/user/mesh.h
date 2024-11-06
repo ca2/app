@@ -85,7 +85,7 @@ namespace user
 
 
          index_array       m_iaDisplayToStrict;
-         i32               m_iWidth;
+         int               m_iWidth;
 
       };
 
@@ -105,9 +105,9 @@ namespace user
       };
 
 
-      static const ::u32 MESSAGE_ENDCOLUMNHEADERDRAG;
-      static const ::u32 MESSAGE_COLUMNHEADERTRACK;
-      static const ::u32 MESSAGE_ENDCOLUMNHEADERTRACK;
+      static const unsigned int MESSAGE_ENDCOLUMNHEADERDRAG;
+      static const unsigned int MESSAGE_COLUMNHEADERTRACK;
+      static const unsigned int MESSAGE_ENDCOLUMNHEADERTRACK;
 
       // Simple Filter Implementation
       // Base Mesh Side
@@ -184,7 +184,7 @@ namespace user
       ::collection::index                                        m_iDisplayItemFocus;
 
       bool                                         m_bLockImpactUpdate;
-      i32                                          m_iItemWidth;
+      int                                          m_iItemWidth;
 
       //index                                        m_iDisplayItemHover;
       //index                                        m_iSubItemHover;
@@ -204,10 +204,10 @@ namespace user
       uptr                                         m_uiLButtonDownFlags;
       uptr                                         m_uiLButtonUpFlags;
       point_i32                                    m_pointLButtonUp;
-      ::u32                                        m_uiRButtonUpFlags;
+      unsigned int                                        m_uiRButtonUpFlags;
       point_i32                                    m_pointRButtonUp;
       ::regular_expression_pointer                 m_pregexFilter1;
-      i32                                          m_iFilter1Step;
+      int                                          m_iFilter1Step;
       bool                                         m_bFilter1;
 
       bool                                         m_bTopText;
@@ -240,8 +240,8 @@ namespace user
       ::image::image_list_pointer                      m_pimagelistGroupHover;
       bool                                         m_bGroup;
       bool                                         m_bLateralGroup;
-      i32                                          m_iLateralGroupWidth;
-      i32                                          m_iGroupMinHeight;
+      int                                          m_iLateralGroupWidth;
+      int                                          m_iGroupMinHeight;
       ::collection::index                                        m_iGroupHover;
 
       //draw_mesh_item *                 m_pdrawmeshitem;
@@ -258,8 +258,8 @@ namespace user
       ::pointer<simple_mesh_data>               m_psimplemeshdata;
 
 
-      i32                                          m_iLeftMargin;
-      i32                                          m_iTopMargin;
+      int                                          m_iLeftMargin;
+      int                                          m_iTopMargin;
 
       index_map < ::pointer<mesh_item >>          m_mapItem;
       index_map < ::pointer<mesh_group >>         m_mapGroup;
@@ -277,8 +277,8 @@ namespace user
 
 
 
-      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
+      //virtual int _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      //int _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
 
 
       // ::core::application* get_app();
@@ -303,9 +303,9 @@ namespace user
       virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      virtual i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
+      virtual int _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      virtual int _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
+      virtual int _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();
 
 
@@ -343,7 +343,7 @@ namespace user
 
       virtual ::collection::index _001CalcDisplayTopIndex();
       virtual ::collection::count _001CalcDisplayItemCount();
-      virtual i32 _001GetGroupHeight(::collection::index iGroup);
+      virtual int _001GetGroupHeight(::collection::index iGroup);
 
 
       virtual void FilterInclude(::i32_array & array);
@@ -462,7 +462,7 @@ namespace user
       virtual void  index_element_rectangle(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
       virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
-      virtual bool  _001SetColumnWidth(::collection::index iColumn,i32 iWidth);
+      virtual bool  _001SetColumnWidth(::collection::index iColumn,int iWidth);
 
       //virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
@@ -580,7 +580,7 @@ namespace user
       virtual EImpact  _001GetImpact();
 
 
-      virtual i32 get_wheel_scroll_delta() override;
+      virtual int get_wheel_scroll_delta() override;
 
       //virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_change_context_offset(::user::enum_layout elayout) override;

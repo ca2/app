@@ -12,12 +12,12 @@
 
 //#ifndef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_APEX void WINAPI sleep(::u32 dw::times);
+//CLASS_DECL_APEX void WINAPI sleep(unsigned int dw::times);
 //
 //#endif
 
 /*#define GetAValue(rgb)      (lower_u8((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((::u16)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|(((unsigned int)(unsigned char)(a))<<24)))*/
 
 
 //CLASS_DECL_APEX int_bool os_initialize();
@@ -33,7 +33,7 @@
 
 
 //CLASS_DECL_APEX htask_t main_user_htask();
-//CLASS_DECL_APEX ::u32 main_user_itask();
+//CLASS_DECL_APEX unsigned int main_user_itask();
 
 //CLASS_DECL_APEX oswindow get_focus();
 //CLASS_DECL_APEX oswindow set_focus(oswindow oswindow);
@@ -43,7 +43,7 @@
 //CLASS_DECL_APEX void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_APEX ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
+//CLASS_DECL_APEX unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::times );
 
 
 
@@ -54,6 +54,6 @@
 //CLASS_DECL_APEX HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ const ::wide_character * lpName    );
 
 
-//CLASS_DECL_APEX HANDLE hfile_create(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_APEX HANDLE hfile_create(const char * lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 

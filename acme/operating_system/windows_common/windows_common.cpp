@@ -137,7 +137,7 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{
 //
 //
-//   ::u32 color::u32_COLORREF() const
+//   unsigned int color::u32_COLORREF() const
 //   {
 //
 //      return RGB(red, green, blue);
@@ -171,14 +171,14 @@ namespace windows
    }
 
 
-   string last_error_message(u32 dwError)
+   string last_error_message(unsigned int dwError)
    {
    
       wstring wstr;
    
       unichar* p = nullptr;
    
-      ::u32 dw = FormatMessageW(
+      unsigned int dw = FormatMessageW(
          FORMAT_MESSAGE_FROM_SYSTEM 
          | FORMAT_MESSAGE_ALLOCATE_BUFFER,
          nullptr,

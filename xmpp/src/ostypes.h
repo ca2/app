@@ -18,14 +18,14 @@
 #define __LIBSTROPHE_OSTYPES_H__
 
 #if defined (_MSC_VER) && _MSC_VER < 1600
-typedef signed char i8;
-typedef short int i16;
-typedef int i32;
+typedef signed char char;
+typedef short int short;
+typedef int int;
 typedef ::i64 i64;
 
 typedef unsigned char unsigned char;
-typedef unsigned short int u16;
-typedef unsigned int u32;
+typedef unsigned short int unsigned short;
+typedef unsigned int unsigned int;
 typedef ::u64 u64;
 #else
 #include "_stdint.h"

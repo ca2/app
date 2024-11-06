@@ -31,7 +31,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 
    MessageDialog^ msg = ref aaa_primitive_new MessageDialog(text, caption);
 
-   u32 uiType = uFlags & MB_TYPEMASK;
+   unsigned int uiType = uFlags & MB_TYPEMASK;
 
    switch(uiType)
    {
@@ -177,7 +177,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 
 
 
-i32 WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,u32 uFlags)
+int WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,unsigned int uFlags)
 {
 
    __UNREFERENCED_PARAMETER(interaction_impl);

@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize);
+CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize);
 CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
 CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
 CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);

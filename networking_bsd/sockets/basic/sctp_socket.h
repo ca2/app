@@ -45,22 +45,22 @@ namespace sockets_bsd
       /** SctpSocket constructor.
          \lparam h Owner
          \lparam type SCTP_STREAM or SCTP_SEQPACKET */
-      SctpSocket(i32 type);
+      SctpSocket(int type);
       ~SctpSocket();
 
       /** bind() */
-      i32 Bind(const string &,::networking::port_t);
-      i32 Bind(::networking::address * address);
+      int Bind(const string &,::networking::port_t);
+      int Bind(::networking::address * address);
       /** sctp_bindx() */
-      i32 AddAddress(const string &,::networking::port_t);
-      i32 AddAddress(::networking::address * address);
+      int AddAddress(const string &,::networking::port_t);
+      int AddAddress(::networking::address * address);
       /** sctp_bindx() */
-      i32 RemoveAddress(const string &,::networking::port_t);
-      i32 RemoveAddress(::networking::address * address);
+      int RemoveAddress(const string &,::networking::port_t);
+      int RemoveAddress(::networking::address * address);
 
       /** connect() */
-      i32 open(const string &,::networking::port_t);
-      i32 open(::networking::address * address);
+      int open(const string &,::networking::port_t);
+      int open(::networking::address * address);
 
       /** Connect timeout callback. */
       void on_connection_timeout();
@@ -71,30 +71,30 @@ namespace sockets_bsd
 
    #ifndef SOLARIS
       /** sctp_connectx() */
-      i32 AddConnection(const string &,::networking::port_t);
-      i32 AddConnection(::networking::address * address);
+      int AddConnection(const string &,::networking::port_t);
+      int AddConnection(::networking::address * address);
    #endif
 
       /** get peer addresses of an association. */
-      i32 getpaddrs(sctp_assoc_t atom,list<string>&);
+      int getpaddrs(sctp_assoc_t atom,list<string>&);
       /** get all bound addresses of an association. */
-      i32 getladdrs(sctp_assoc_t atom,list<string>&);
+      int getladdrs(sctp_assoc_t atom,list<string>&);
 
       /** sctp_peeloff */
-      i32 PeelOff(sctp_assoc_t atom);
+      int PeelOff(sctp_assoc_t atom);
 
       /** recvmsg callback */
-      virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,i32 msg_flags) = 0;
+      virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
 
-      void OnOptions(i32,i32,i32,SOCKET) {}
+      void OnOptions(int,int,int,SOCKET) {}
 
-      virtual i32 Protocol();
+      virtual int Protocol();
 
       SctpSocket(const SctpSocket& s) : stream_socket(s) {}
       void OnRead();
       void OnWrite();
 
-      i32 m_type; ///< SCTP_STREAM or SCTP_SEQPACKET
+      int m_type; ///< SCTP_STREAM or SCTP_SEQPACKET
       char *m_buf; ///< Temporary receive buffer
    };
 

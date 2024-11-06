@@ -55,7 +55,7 @@
 //      };
 //
 //      ::file::path   m_strFileName;
-//      i32        m_iFile;
+//      int        m_iFile;
 //
 //
 //      file();
@@ -100,7 +100,7 @@
 //
 //      virtual bool is_opened() const override;
 //
-//      //virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+//      //virtual u64 GetBufferPtr(unsigned int nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 //
 //
 //   };
@@ -111,9 +111,9 @@
 //
 //
 //   //   void PASCAL OsErrorToException(int lOsError);
-//   //   void PASCAL ErrnoToException(i32 nErrno);
+//   //   void PASCAL ErrnoToException(int nErrno);
 //   //   void PASCAL ThrowOsError(::particle * pparticle, int lOsError, const char * lpszFileName = nullptr);
-//   //   void PASCAL ThrowErrno(::particle * pparticle, i32 nErrno, const char * lpszFileName = nullptr);
+//   //   void PASCAL ThrowErrno(::particle * pparticle, int nErrno, const char * lpszFileName = nullptr);
 //
 //
 //   //}  // namespace file_exception

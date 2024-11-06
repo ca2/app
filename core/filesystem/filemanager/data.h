@@ -78,7 +78,7 @@ namespace filemanager
       ::pointer<file_list_callback>          m_pfilelistcallback;
 
       string                                 m_strLevelUp;
-      i32                                    m_iIconSize;
+      int                                    m_iIconSize;
       bool                                   m_bListText;
       bool                                   m_bListSelection;
       bool                                   m_bFileSize;
@@ -108,7 +108,7 @@ namespace filemanager
       //virtual ::filemanager::document * document();
       
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       //virtual bool open_document(::user::document * pdocument);
 

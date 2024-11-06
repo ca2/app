@@ -19,11 +19,11 @@ namespace android
       virtual bool shutdown(bool bPowerOff) override;
 
       virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName) override;
-      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid) override;
-      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
+      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid) override;
       virtual int get_pid() override;
       virtual void get_all_processes(::u32_array & dwa) override;
-      virtual ::file::path get_process_path(::u32 dwPid) override;
+      virtual ::file::path get_process_path(unsigned int dwPid) override;
 
       virtual ::payload connection_settings_get_auto_detect() override;
       virtual ::payload connection_settings_get_auto_config_url() override;

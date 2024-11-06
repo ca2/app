@@ -196,8 +196,8 @@ public:
 //      ::draw2d::bitmap * pbitmap,
 //      const ::rectangle_i32 & rectangle,
 //      int & iWidth,
-//      ::u32 & uiStartScanLine,
-//      ::u32 & uiScanLineCount,
+//      unsigned int & uiStartScanLine,
+//      unsigned int & uiScanLineCount,
 //      int & iLimitYParam);
 //
 //

@@ -19,7 +19,7 @@ namespace filemanager
       //string_array        m_straPath;
       //string_array        m_straTitle;
       //i64_array    m_iaSize;
-      i32        m_iCurFile;
+      int        m_iCurFile;
 
       thumbnail();
       virtual ~thumbnail();

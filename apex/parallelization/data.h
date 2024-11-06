@@ -12,7 +12,7 @@
 //
 //#else
 //
-//   ::u32                m_dwIndex;
+//   unsigned int                m_dwIndex;
 //
 //#endif
 //

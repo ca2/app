@@ -96,10 +96,10 @@ typedef struct
    uptr stream_initialised;   /* flag set if stream structure is initialised*/
 
    uptr offset_local_extrafield;/* offset of the static extra field */
-   u32  size_local_extrafield;/* size_i32 of the static extra field */
+   unsigned int  size_local_extrafield;/* size_i32 of the static extra field */
    uptr pos_local_extrafield;   /* position in the static extra field in read*/
 
-   u32 crc32;                /* crc32 of all data uncompressed */
+   unsigned int crc32;                /* crc32 of all data uncompressed */
    uptr crc32_wait;           /* crc32 we must obtain after decompress all */
    uptr rest_read_compressed; /* number of unsigned char to be decompressed */
    uptr rest_read_uncompressed;/*number of unsigned char to be obtained after decomp*/
@@ -134,7 +134,7 @@ typedef struct
                                         file if we are decompressing it */
    int encrypted;
 #    ifndef NOUNCRYPT
-   u32 keys[3];     /* keys defining the pseudo-random sequence */
+   unsigned int keys[3];     /* keys defining the pseudo-random sequence */
 #if defined(WINDOWS) || defined(LINUX)
    const z_crc_t * pcrc_32_tab;
 #else
@@ -548,13 +548,13 @@ tm_unz* ptm)
 {
    uptr uDate;
    uDate = (uptr)(ulDosDate>>16);
-   ptm->tm_mday = (u32)(uDate&0x1f) ;
-   ptm->tm_mon =  (u32)((((uDate)&0x1E0)/0x20)-1) ;
-   ptm->tm_year = (u32)(((uDate&0x0FE00)/0x0200)+1980) ;
+   ptm->tm_mday = (unsigned int)(uDate&0x1f) ;
+   ptm->tm_mon =  (unsigned int)((((uDate)&0x1E0)/0x20)-1) ;
+   ptm->tm_year = (unsigned int)(((uDate&0x0FE00)/0x0200)+1980) ;
 
-   ptm->tm_hour = (u32) ((ulDosDate &0xF800)/0x800);
-   ptm->tm_min =  (u32) ((ulDosDate&0x7E0)/0x20) ;
-   ptm->tm_sec =  (u32) (2*(ulDosDate&0x1f)) ;
+   ptm->tm_hour = (unsigned int) ((ulDosDate &0xF800)/0x800);
+   ptm->tm_min =  (unsigned int) ((ulDosDate&0x7E0)/0x20) ;
+   ptm->tm_sec =  (unsigned int) (2*(ulDosDate&0x1f)) ;
 }
 
 /*
@@ -961,9 +961,9 @@ unz_file_pos* file_pos)
 */
 static int unzlocal_CheckCurrentFileCoherencyHeader (
 unz_s* s,
-u32* piSizeVar,
+unsigned int* piSizeVar,
 uptr *poffset_local_extrafield,
-u32  *psize_local_extrafield)
+unsigned int  *psize_local_extrafield)
 {
    uptr uMagic,uData,uFlags;
    uptr size_filename;
@@ -1038,15 +1038,15 @@ u32  *psize_local_extrafield)
    else if ((err==UNZ_OK) && (size_filename!=s->cur_file_info.size_filename))
       err=UNZ_BADZIPFILE;
 
-   *piSizeVar += (u32)size_filename;
+   *piSizeVar += (unsigned int)size_filename;
 
    if (unzlocal_getShort(&s->z_filefunc, s->filestream,&size_extra_field) != UNZ_OK)
       err=UNZ_ERRNO;
    *poffset_local_extrafield= s->cur_file_info_internal.offset_curfile +
                               SIZEZIPLOCALHEADER + size_filename;
-   *psize_local_extrafield = (u32)size_extra_field;
+   *psize_local_extrafield = (unsigned int)size_extra_field;
 
-   *piSizeVar += (u32)size_extra_field;
+   *piSizeVar += (unsigned int)size_extra_field;
 
    return err;
 }
@@ -1058,11 +1058,11 @@ u32  *psize_local_extrafield)
 extern int CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, int * method, int * level, int raw, const char * password)
 {
    int err=UNZ_OK;
-   u32 iSizeVar;
+   unsigned int iSizeVar;
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
    uptr offset_local_extrafield;  /* offset of the static extra field */
-   u32  size_local_extrafield;    /* size_i32 of the static extra field */
+   unsigned int  size_local_extrafield;    /* size_i32 of the static extra field */
 #    ifndef NOUNCRYPT
    char source[12];
 #    else
@@ -1162,7 +1162,7 @@ extern int CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, int * method, int 
    s->cur_file_info_internal.offset_curfile + SIZEZIPLOCALHEADER +
    iSizeVar;
 
-   pfile_in_zip_read_info->stream.avail_in = (u32)0;
+   pfile_in_zip_read_info->stream.avail_in = (unsigned int)0;
 
    s->pfile_in_zip_read = pfile_in_zip_read_info;
 
@@ -1227,7 +1227,7 @@ int raw)
 extern int CLASS_DECL_ACME unzReadCurrentFile  (
 unzFile file,
 voidp buf,
-u32 len)
+unsigned int len)
 {
    int err=UNZ_OK;
    uptr iRead = 0;
@@ -1249,20 +1249,20 @@ u32 len)
 
    pfile_in_zip_read_info->stream.next_out = (unsigned char*)buf;
 
-   pfile_in_zip_read_info->stream.avail_out = (u32)len;
+   pfile_in_zip_read_info->stream.avail_out = (unsigned int)len;
 
    if (len>pfile_in_zip_read_info->rest_read_uncompressed)
       pfile_in_zip_read_info->stream.avail_out =
-      (u32)pfile_in_zip_read_info->rest_read_uncompressed;
+      (unsigned int)pfile_in_zip_read_info->rest_read_uncompressed;
 
    while (pfile_in_zip_read_info->stream.avail_out>0)
    {
       if ((pfile_in_zip_read_info->stream.avail_in==0) &&
             (pfile_in_zip_read_info->rest_read_compressed>0))
       {
-         u32 uReadThis = UNZ_BUFSIZE;
+         unsigned int uReadThis = UNZ_BUFSIZE;
          if (pfile_in_zip_read_info->rest_read_compressed<uReadThis)
-            uReadThis = (u32)pfile_in_zip_read_info->rest_read_compressed;
+            uReadThis = (unsigned int)pfile_in_zip_read_info->rest_read_compressed;
          if (uReadThis == 0)
             return UNZ_EOF;
          if (ZSEEK(pfile_in_zip_read_info->z_filefunc,
@@ -1281,7 +1281,7 @@ u32 len)
 #            ifndef NOUNCRYPT
          if(s->encrypted)
          {
-            u32 i;
+            unsigned int i;
             for(i=0; i<uReadThis; i++)
                pfile_in_zip_read_info->read_buffer[i] =
                zdecode(s->keys,s->pcrc_32_tab,
@@ -1296,7 +1296,7 @@ u32 len)
 
          pfile_in_zip_read_info->stream.next_in =
          (unsigned char*)pfile_in_zip_read_info->read_buffer;
-         pfile_in_zip_read_info->stream.avail_in = (u32)uReadThis;
+         pfile_in_zip_read_info->stream.avail_in = (unsigned int)uReadThis;
       }
 
       if ((pfile_in_zip_read_info->compression_method==0) || (pfile_in_zip_read_info->raw))
@@ -1317,12 +1317,12 @@ u32 len)
             *(pfile_in_zip_read_info->stream.next_out+i) =
             *(pfile_in_zip_read_info->stream.next_in+i);
 
-         pfile_in_zip_read_info->crc32 = (u32) crc32(pfile_in_zip_read_info->crc32,
+         pfile_in_zip_read_info->crc32 = (unsigned int) crc32(pfile_in_zip_read_info->crc32,
                                          pfile_in_zip_read_info->stream.next_out,
-                                         (u32) uDoCopy);
+                                         (unsigned int) uDoCopy);
          pfile_in_zip_read_info->rest_read_uncompressed-=uDoCopy;
-         pfile_in_zip_read_info->stream.avail_in -= (::u32) uDoCopy;
-         pfile_in_zip_read_info->stream.avail_out -= (::u32) uDoCopy;
+         pfile_in_zip_read_info->stream.avail_in -= (unsigned int) uDoCopy;
+         pfile_in_zip_read_info->stream.avail_out -= (unsigned int) uDoCopy;
          pfile_in_zip_read_info->stream.next_out += uDoCopy;
          pfile_in_zip_read_info->stream.next_in += uDoCopy;
          pfile_in_zip_read_info->stream.total_out += (uLong) uDoCopy;
@@ -1349,14 +1349,14 @@ u32 len)
          uTotalOutAfter = pfile_in_zip_read_info->stream.total_out;
          uOutThis = uTotalOutAfter-uTotalOutBefore;
 
-         pfile_in_zip_read_info->crc32 = (u32)
+         pfile_in_zip_read_info->crc32 = (unsigned int)
                                          crc32(pfile_in_zip_read_info->crc32,bufBefore,
-                                               (u32)(uOutThis));
+                                               (unsigned int)(uOutThis));
 
          pfile_in_zip_read_info->rest_read_uncompressed -=
          uOutThis;
 
-         iRead += (u32)(uTotalOutAfter - uTotalOutBefore);
+         iRead += (unsigned int)(uTotalOutAfter - uTotalOutBefore);
 
          if (err==Z_STREAM_END)
             return (iRead==0) ? UNZ_EOF : (int) iRead;
@@ -1430,11 +1430,11 @@ unzFile file)
 extern int CLASS_DECL_ACME unzGetLocalExtrafield (
 unzFile file,
 voidp buf,
-u32 len)
+unsigned int len)
 {
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
-   u32 read_now;
+   unsigned int read_now;
    uptr size_to_read;
 
    if (file==nullptr)
@@ -1452,9 +1452,9 @@ u32 len)
       return (int)size_to_read;
 
    if (len>size_to_read)
-      read_now = (u32)size_to_read;
+      read_now = (unsigned int)size_to_read;
    else
-      read_now = (u32)len ;
+      read_now = (unsigned int)len ;
 
    if (read_now==0)
       return 0;

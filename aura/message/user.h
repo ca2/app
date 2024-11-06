@@ -99,7 +99,7 @@ namespace message
    public:
 
 
-      ::u32          m_nType;
+      unsigned int          m_nType;
       ::size_i32     m_size;
 
       size() { }
@@ -184,13 +184,13 @@ namespace message
    {
    public:
 
-      i16 m_Δ;
+      short m_Δ;
 
       mouse_wheel();
 
-      ::u32 GetFlags();
+      unsigned int GetFlags();
 
-      //i16 GetDelta();
+      //short GetDelta();
 
       point_i32 GetPoint();
 
@@ -208,8 +208,8 @@ namespace message
 
 
       ::user::interaction_base *                 m_pWnd;
-      ::u32                               m_nHitTest;
-      ::u32                               m_message;
+      unsigned int                               m_nHitTest;
+      unsigned int                               m_message;
       
 
 
@@ -232,9 +232,9 @@ namespace message
 
       ::user::interaction * get_desktop_window();
 
-      ::u32 GetHitTest();
+      unsigned int GetHitTest();
 
-      ::u32 get_message();
+      unsigned int get_message();
 
    };
 
@@ -259,7 +259,7 @@ namespace message
 
 
       bool m_bShow;
-      ::u32  m_nStatus;
+      unsigned int  m_nStatus;
 
 
       show_window() { }
@@ -408,7 +408,7 @@ namespace message
 
       void * m_hbrush;
       ::draw2d::graphics * m_pdc;
-      ::u32                      m_nCtlType;
+      unsigned int                      m_nCtlType;
 
       ctl_color() { }
 
@@ -512,8 +512,8 @@ namespace message
       //
       //      IDataObject *  pDataObj;// [in] DragEnter, Drop
       //      POINTL         point_i32; // [in] DragEnter, DragOver, Drop
-      //      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
-      //      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
+      //      unsigned int          grfKeyState; // [in] DragEnter, DragOver, Drop
+      //      unsigned int          dwEffect; // [in][out] DragEnter, DragOver, Drop
       //
       //#endif
 

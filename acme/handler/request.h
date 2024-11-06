@@ -55,7 +55,7 @@ public:
    bool                             m_bShowSplash;
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
-   i32                              m_nCmdShow;
+   int                              m_nCmdShow;
    ::interlocked_count              m_countStack;
 
    // not ok for file_new

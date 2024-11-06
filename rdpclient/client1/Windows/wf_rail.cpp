@@ -35,7 +35,7 @@
 
 struct _WINDOW_STYLE
 {
-	::u32 style;
+	unsigned int style;
 	const char* name;
 	BOOL multi;
 };
@@ -98,7 +98,7 @@ static const WINDOW_STYLE EXTENDED_WINDOW_STYLES[] =
 	{ WS_EX_WINDOWEDGE, "WS_EX_WINDOWEDGE", false }
 };
 
-void PrintWindowStyles(::u32 style)
+void PrintWindowStyles(unsigned int style)
 {
 	int i;
 	
@@ -118,7 +118,7 @@ void PrintWindowStyles(::u32 style)
 	}
 }
 
-void PrintExtendedWindowStyles(::u32 style)
+void PrintExtendedWindowStyles(unsigned int style)
 {
 	int i;
 	
@@ -221,7 +221,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 	{
-		::u32 index;
+		unsigned int index;
 		RECTANGLE_16* rectangle_i32;
 
 		WLog_INFO(TAG, "\tnumWindowRects: %d", windowState->numWindowRects);
@@ -243,7 +243,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
 	{
-		::u32 index;
+		unsigned int index;
 		RECTANGLE_16* rectangle_i32;
 
 		WLog_INFO(TAG, "\tnumVisibilityRects: %d", windowState->numVisibilityRects);
@@ -281,16 +281,16 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 	WLog_INFO(TAG, "}");
 }
 
-//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
 //{
 //	HDC hDC;
 //	int x, y;
 //	int width;
 //	int height;
-//	::u32 xPos;
-//	::u32 yPos;
+//	unsigned int xPos;
+//	unsigned int yPos;
 //	PAINTSTRUCT ps;
-//	::u32 inputFlags;
+//	unsigned int inputFlags;
 //	wfContext* wfc = nullptr;
 //	rdpInput* input = nullptr;
 //	rdpContext* context = nullptr;
@@ -425,7 +425,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	wfRailWindow* railWindow = nullptr;
 //	wfContext* wfc = (wfContext*) context;
 //	RailClientContext* rail = wfc->rail;
-//	::u32 fieldFlags = orderInfo->fieldFlags;
+//	unsigned int fieldFlags = orderInfo->fieldFlags;
 //
 //	PrintRailWindowState(orderInfo, windowState);
 //
@@ -609,7 +609,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 //	{
-//		::u32 index;
+//		unsigned int index;
 //		HRGN hWndRect;
 //		HRGN hWndRects;
 //		RECTANGLE_16* rectangle_i32;

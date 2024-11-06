@@ -32,7 +32,7 @@ inline T FormatArgument(T value) noexcept
 
 
 #ifdef WINDOWS
-inline ::u32 _gen_GetConversionACP()
+inline unsigned int _gen_GetConversionACP()
 {
 
    //return CP_UTF8;

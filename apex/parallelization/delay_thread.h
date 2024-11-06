@@ -70,7 +70,7 @@
 //   PRED &      m_predicate;
 //   
 //   
-//   predicate_delay_thread(::particle * pparticle, PRED pred, ::u32 dwSleep = 1000) :
+//   predicate_delay_thread(::particle * pparticle, PRED pred, unsigned int dwSleep = 1000) :
 //      m_predicate(pred),
 //      delay_thread(dwSleep)
 //   {

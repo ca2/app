@@ -15,10 +15,10 @@ namespace colorertake5
 
    static FILE * log = 0;
 
-   static void file_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
+   static void file_logger(int level, const ::string &cname, const ::string &msg,va_list v)
    {
 
-      i32 idx = 0;
+      int idx = 0;
 
       while(log == 0 && idx < 10)
       {
@@ -40,9 +40,9 @@ namespace colorertake5
 
       fflush(log);
    }
-   void console_logger(i32 level, const ::string &cname, const ::string &msg,va_list v);
+   void console_logger(int level, const ::string &cname, const ::string &msg,va_list v);
 
-   void console_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
+   void console_logger(int level, const ::string &cname, const ::string &msg,va_list v)
    {
 
       debug_print("[%s][%s] ",levelNames[level],cname);
@@ -98,12 +98,12 @@ namespace colorertake5
 
 
 
-   void colorer_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
+   void colorer_logger(int level, const ::string &cname, const ::string &msg,va_list v)
    {
 
       bool found = false;
 
-      for(i32 idx = 0; idx < sizeof(toTrace) / sizeof(toTrace[0]); idx++)
+      for(int idx = 0; idx < sizeof(toTrace) / sizeof(toTrace[0]); idx++)
       {
          if(case_insensitive_ansi_compare(toTrace[idx],cname) == 0)
          {

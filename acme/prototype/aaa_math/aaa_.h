@@ -2,24 +2,24 @@
 
 //// SIGNED SIGNED
 //inline constexpr bool __lt(const i64 & a, const i64 & b) { return a < b; }
-//inline constexpr bool __lt(const i32 & a, const i64 & b) { return a < b; }
-//inline constexpr bool __lt(const i64 & a, const i32 & b) { return a < b; }
+//inline constexpr bool __lt(const int & a, const i64 & b) { return a < b; }
+//inline constexpr bool __lt(const i64 & a, const int & b) { return a < b; }
 //
 //// UNSIGNED SIGNED
-//inline constexpr bool __lt(const ::u32 & a, const int & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
+//inline constexpr bool __lt(const unsigned int & a, const int & b) { return b < 0 ? false : a < static_cast < unsigned int > (b); }
 //inline constexpr bool __lt(const size_t & a, const i64 & b) { return b < 0 ? false : a < static_cast < u64 > (b); }
 //
 //// SIGNED UNSIGNED
-//inline constexpr bool __lt(const int & a, const ::u32 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
+//inline constexpr bool __lt(const int & a, const unsigned int & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
 //inline constexpr bool __lt(const i64 & a, const size_t & b) { return a < 0 ? true : static_cast <u64> (a) < b; }
 //
 //
 //// UNSIGNED SIGNED
-//inline constexpr bool __le(const ::u32 & a, const int & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
+//inline constexpr bool __le(const unsigned int & a, const int & b) { return b < 0 ? false : a <= static_cast <unsigned int> (b); }
 //inline constexpr bool __le(const size_t & a, const i64 & b) { return b < 0 ? false : a <= static_cast <u64> (b); }
 //
 //// SIGNED UNSIGNED
-//inline constexpr bool __le(const int & a, const ::u32 & b) { return a < 0 ? false : static_cast <u32> (a) <= b; }
+//inline constexpr bool __le(const int & a, const unsigned int & b) { return a < 0 ? false : static_cast <unsigned int> (a) <= b; }
 //inline constexpr bool __le(const i64 & a, const size_t & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
 //
 //
@@ -31,20 +31,20 @@
 //
 //
 //// UNSIGNED SIGNED
-//constexpr int minimum(const ::u32 & a, const int & b) { return __lt(a, b) ? (i32) a : b; }
+//constexpr int minimum(const unsigned int & a, const int & b) { return __lt(a, b) ? (int) a : b; }
 //constexpr i64 minimum(const size_t & a, const i64 & b) { return __lt(a, b) ? (i64) a : b; }
 //
 //// SIGNED UNSIGNED
-//constexpr int minimum(const int & a, const ::u32 & b) { return __lt(a, b) ? a : (i32) b; }
+//constexpr int minimum(const int & a, const unsigned int & b) { return __lt(a, b) ? a : (int) b; }
 //constexpr i64 minimum(const i64 & a, const size_t & b) { return __lt(a, b) ? a : (i64) b; }
 //
 //
 //// UNSIGNED SIGNED
-//constexpr ::u32 maximum(const ::u32 & a, const int & b) { return __lt(b, a) ? a : (::u32) b; }
+//constexpr unsigned int maximum(const unsigned int & a, const int & b) { return __lt(b, a) ? a : (unsigned int) b; }
 //constexpr size_t maximum(const size_t & a, const i64 & b) { return __lt(b, a) ? a : (size_t) b; }
 //
 //// SIGNED UNSIGNED
-//constexpr ::u32 maximum(const int & a, const ::u32 & b) { return __lt(b, a) ? (::u32) a : b; }
+//constexpr unsigned int maximum(const int & a, const unsigned int & b) { return __lt(b, a) ? (unsigned int) a : b; }
 //constexpr size_t maximum(const i64 & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
 //
 //

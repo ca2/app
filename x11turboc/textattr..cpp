@@ -58,7 +58,7 @@ int
 TranslateTurboColor (int newattr)
 {
   int i, Mask = 0;
-  i16 dFore, dBack, Fore, Back;
+  short dFore, dBack, Fore, Back;
   if (LastNewattr == newattr)
     return (LastTranslated);
   LastNewattr = newattr;

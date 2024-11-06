@@ -31,7 +31,7 @@ namespace calculator
    
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void OnTimer(::u32 uEvent);
+      void OnTimer(unsigned int uEvent);
 
    };
 

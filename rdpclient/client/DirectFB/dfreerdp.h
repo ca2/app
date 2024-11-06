@@ -47,8 +47,8 @@ struct df_pointer
 {
 	rdpPointer pointer;
 	IDirectFBSurface* surface;
-	::u32 xhot;
-	::u32 yhot;
+	unsigned int xhot;
+	unsigned int yhot;
 };
 typedef struct df_pointer dfPointer;
 

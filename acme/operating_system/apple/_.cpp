@@ -94,7 +94,7 @@ void ReleaseDispatch(void * p)
 static bool g_bRunSystem = false;
 
 
-i32 defer_run_system()
+int defer_run_system()
 {
 
    if(g_bRunSystem)
@@ -113,7 +113,7 @@ i32 defer_run_system()
 }
 
 
-//i32 defer_run_system(const ::file::path & path)
+//int defer_run_system(const ::file::path & path)
 //{
 //
 //   return __start_system_with_file(pszFileName);
@@ -121,7 +121,7 @@ i32 defer_run_system()
 //}
 //
 //
-//i32 defer_run_system(char ** pszaFileName, int iFileCount)
+//int defer_run_system(char ** pszaFileName, int iFileCount)
 //{
 //
 //   return __start_system_with_file((const char **) pszaFileName, iFileCount);
@@ -425,7 +425,7 @@ i64 oswindow_id(oswindow w)
 //
 //   }
 //
-//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
 //   {
 //
 //      return "";
@@ -436,7 +436,7 @@ i64 oswindow_id(oswindow w)
 //
 //   LPWSTR pszModuleFileName;
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //   {
 //
 //      return "";

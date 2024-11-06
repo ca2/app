@@ -78,7 +78,7 @@ namespace user
 
    }
    
-   //LRESULT _OnCommand(::u16, ::u16, HWND);
+   //LRESULT _OnCommand(unsigned short, unsigned short, HWND);
 
    LRESULT edit_window::_OnSetFocus(VOID)
    {

@@ -2,7 +2,7 @@
 ////#include "acme/exception/exception.h"
 
 
-CLASS_DECL_ACME int is_surrogated(u32 character)
+CLASS_DECL_ACME int is_surrogated(unsigned int character)
 {
 
    return 0x10000 <= character && character <= 0x10FFFF;
@@ -156,14 +156,14 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 
 
 // on Windows, wchar_t is 2 bytes, suitable for UTF-16
-//std::wstring Utf32ToUtf16(const std::vector<u32> &codepoints)
+//std::wstring Utf32ToUtf16(const std::vector<unsigned int> &codepoints)
 //{
 //   std::wstring result;
 //   int len = 0;
 //
-//   for (std::vector<u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
-//      u32 cp = *iter;
+//      unsigned int cp = *iter;
 //      if (cp < 0x10000) {
 //         ++len;
 //      }
@@ -181,9 +181,9 @@ strsize wd16_to_wd32_len(const ::wd16_character * input, strsize input_size)
 //      result.resize(len);
 //      len = 0;
 //
-//      for (std::vector<u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
-//         u32 cp = *iter;
+//         unsigned int cp = *iter;
 //         if (cp < 0x10000) {
 //            result[len++] = static_cast<wchar_t>(cp);
 //         }

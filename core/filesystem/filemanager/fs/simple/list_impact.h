@@ -32,9 +32,9 @@ namespace filemanager
             string      m_strTitle;
             string      m_strFileName;
             string      m_strExtension;
-            i32         m_iId;
+            int         m_iId;
             EItemType   m_etype;
-            i32         m_iImage;
+            int         m_iImage;
 
             bool IsFolder();
          };
@@ -43,7 +43,7 @@ namespace filemanager
             public pointer_array < Item >
          {
          public:
-            //i32 FindAbsolute(const ::string & pszId);
+            //int FindAbsolute(const ::string & pszId);
 
          };
 
@@ -80,7 +80,7 @@ namespace filemanager
             public:
 
                string             m_strFile;
-               ::u32              m_uiTimer;
+               unsigned int              m_uiTimer;
 
             };
 
@@ -110,9 +110,9 @@ namespace filemanager
             ::pointer<::filemanager::fs::simple::impact>     m_pserver;
 
 
-            i32                                             m_iIconFolder;
-            i32                                             m_iIconArtist;
-            i32                                             m_iIconSong;
+            int                                             m_iIconFolder;
+            int                                             m_iIconArtist;
+            int                                             m_iIconSong;
             ItemArray                                       m_itema;
 
             BuildHelper                                     m_buildhelper;
@@ -136,7 +136,7 @@ namespace filemanager
 
             void parse(const ::string & pszSource);
 
-            void start_build(i32 iItem = -1);
+            void start_build(int iItem = -1);
 
             void PostFillTask(string & strFile, uptr uiTimer);
 

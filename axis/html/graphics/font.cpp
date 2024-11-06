@@ -30,7 +30,7 @@ namespace html
 
       __construct(m_pfont);
 
-      i32 iWeight;
+      int iWeight;
 
       m_strWeight.trim();
 
@@ -64,7 +64,7 @@ namespace html
 
       string_array stra;
       stra.add_tokens(m_strFamily,",", false);
-      for(i32 i = 0; i < stra.get_size(); i++)
+      for(int i = 0; i < stra.get_size(); i++)
       {
          stra[i].trim();
          if(stra[i].case_insensitive_order("fixed-width") == 0)

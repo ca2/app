@@ -132,7 +132,7 @@ public:
 //      }
 //
 //
-//      make_iterator operator ++ (i32)
+//      make_iterator operator ++ (int)
 //      {
 //
 //         make_iterator iterator = this->m_pnode;
@@ -217,7 +217,7 @@ public:
 
 
    node_set();
-   node_set(node singles[], i32 iCount);
+   node_set(node singles[], int iCount);
    node_set(const ::std::initializer_list < NODE > & list);
    node_set(const node_set & m);
    virtual ~node_set();
@@ -373,7 +373,7 @@ public:
    //iterator get_next(const iteratorpnodeRet);
 
    //advanced features for derived classes
-   ::u32 GetHashTableSize() const
+   unsigned int GetHashTableSize() const
    {
       
       return m_hashtable.GetHashTableSize();
@@ -381,7 +381,7 @@ public:
    }
    
    
-   void InitHashTable(::u32 hashSize,bool bAllocNow = true);
+   void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
 
 
    ITEM get(ARG_ITEM argkey, ARG_ITEM valueDefault);
@@ -439,7 +439,7 @@ public:
 
    iterator new_node(ARG_ITEM item);
    void free_node(iterator iterator);
-   iterator find_item(ARG_ITEM, ::u32&, ::u32&) const;
+   iterator find_item(ARG_ITEM, unsigned int&, unsigned int&) const;
 
 
    //// void assert_ok() const override;
@@ -721,10 +721,10 @@ node_set < NODE >::node_set(const ::std::initializer_list < NODE > & list)
 }
 
 template < typename NODE >
-node_set < NODE >::node_set(node singles[], i32 iCount)
+node_set < NODE >::node_set(node singles[], int iCount)
 {
    construct();
-   for(i32 i = 0; i < iCount; i++)
+   for(int i = 0; i < iCount; i++)
    {
       set_at(singles[i].item());
    }
@@ -920,7 +920,7 @@ void node_set < NODE >::free_node(iterator iterator)
 
 template < typename NODE >
 typename node_set < NODE >::iterator
-node_set < NODE >::find_item(ARG_ITEM item, ::u32& nHashBucket, ::u32& nHashValue) const
+node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
 {
 
    nHashValue = ::u32_hash(item).m_u;
@@ -955,7 +955,7 @@ template < typename NODE >
 bool node_set < NODE >::lookup(ARG_ITEM item, ITEM& rValue) const
 {
 
-   ::u32 nHashBucket, nHashValue;
+   unsigned int nHashBucket, nHashValue;
 
    auto p = find_item(item, nHashBucket, nHashValue);
 
@@ -999,7 +999,7 @@ template < typename NODE >
 typename node_set < NODE >::iterator node_set < NODE >::plookup(ARG_ITEM item)
 {
 
-   ::u32 nHashBucket, nHashValue;
+   unsigned int nHashBucket, nHashValue;
 
    auto p = find_item(item, nHashBucket, nHashValue);
 
@@ -1030,7 +1030,7 @@ template < typename NODE >
 inline typename node_set < NODE >::iterator node_set < NODE >::find_item(ARG_ITEM item) 
 {
 
-   ::u32 nHashBucket, nHashValue;
+   unsigned int nHashBucket, nHashValue;
 
    return ((node_set *)this)->find_item(item, nHashBucket, nHashValue);
 
@@ -1042,7 +1042,7 @@ template < typename NODE >
 inline typename node_set < NODE >::const_iterator node_set < NODE >::find_item(ARG_ITEM item) const
 {
 
-   ::u32 nHashBucket, nHashValue;
+   unsigned int nHashBucket, nHashValue;
 
    return find_item(item, nHashBucket, nHashValue);
 
@@ -1053,7 +1053,7 @@ template < typename NODE >
 typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
 {
 
-   ::u32 nHashBucket, nHashValue;
+   unsigned int nHashBucket, nHashValue;
 
    auto p = find_item(item, nHashBucket, nHashValue);
 
@@ -1236,7 +1236,7 @@ get(ARG_ITEM argkey, ARG_ITEM valueDefault)
 
 using double_set = set < double >;
 
-using dword_set = set < ::u32 >;
+using dword_set = set < unsigned int >;
 
 using uptr_set = set < ::uptr >;
 
@@ -1310,7 +1310,7 @@ using string_set = set < string >;
 
 template < typename NODE >
 void node_set < NODE >::InitHashTable(
-   ::u32 nHashSize, bool bAllocNow)
+   unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table size_i32 of (which is fairly small)

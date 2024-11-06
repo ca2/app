@@ -104,7 +104,7 @@ namespace heap
     }
 
 
-   void * heap::aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
+   void * heap::aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, memsize align, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -129,7 +129,7 @@ namespace heap
 
   
 
-    void * heap::unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
+    void * heap::unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -199,7 +199,7 @@ namespace heap
 #endif
 
 
-    //void * heap::allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+    //void * heap::allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
     //{
 
 
@@ -210,7 +210,7 @@ namespace heap
     //}
 
 
-    void * heap::reallocate_debug(void * p, memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
+    void * heap::reallocate_debug(void * p, memsize nSize, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -220,7 +220,7 @@ namespace heap
     }
 
 
-    void heap::free_debug(void * p, i32 iBlockType)
+    void heap::free_debug(void * p, int iBlockType)
     {
 
        throw ::interface_only();
@@ -228,7 +228,7 @@ namespace heap
     }
 
 
-    memsize   heap::size_debug(void * p, i32 iBlockType)
+    memsize   heap::size_debug(void * p, int iBlockType)
     {
 
        throw ::interface_only();
@@ -244,7 +244,7 @@ namespace heap
 
 
 //typedef DWORD64[64]
-//::collection::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize)
+//::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize)
 //{
 //
 //#ifndef MEMDLEAK
@@ -269,11 +269,11 @@ namespace heap
 //   }
 //
 //
-//   i32 * piUse = (i32 *)malloc(sizeof(i32) * ca);
+//   int * piUse = (int *)malloc(sizeof(int) * ca);
 //   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
 //   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 //   i64 * piStack = (i64 *)malloc(sizeof(i64) * ca);
-//   i32 * piLine = (i32 *)malloc(sizeof(i32) * ca);
+//   int * piLine = (int *)malloc(sizeof(int) * ca);
 //   i64 * piSize = (i64 *)malloc(sizeof(i64) * ca);
 //
 //   ::collection::index i = 0;

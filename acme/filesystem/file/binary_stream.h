@@ -176,14 +176,14 @@ public:
       {
 
          operator <<((unsigned char)255);
-         operator <<((::u16)u);
+         operator <<((unsigned short)u);
 
       }
       else
       {
 
          operator <<((unsigned char)255);
-         operator <<((::u16)65535);
+         operator <<((unsigned short)65535);
          operator <<((::u64)u);
 
       }
@@ -210,7 +210,7 @@ public:
       else
       {
 
-         ::u16 uRead;
+         unsigned short uRead;
 
          operator >>(uRead);
 
@@ -243,13 +243,13 @@ public:
    binary_stream & operator <<(uchar uch) {
       raw_write(uch);  return *this;
    }
-   binary_stream & operator <<(i8 i) {
+   binary_stream & operator <<(char i) {
       raw_write(i);  return *this;
    }
-   binary_stream & operator <<(i16 i) {
+   binary_stream & operator <<(short i) {
       raw_write(i);  return *this;
    }
-   binary_stream & operator <<(u16 u) {
+   binary_stream & operator <<(unsigned short u) {
       raw_write(u); return *this;
    }
 #ifdef WINDOWS
@@ -258,10 +258,10 @@ public:
    }
 #endif
    binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
-   binary_stream & operator <<(i32 i) {
+   binary_stream & operator <<(int i) {
       raw_write(i);  return *this;
    }
-   binary_stream & operator <<(u32 u) {
+   binary_stream & operator <<(unsigned int u) {
       raw_write(u);  return *this;
    }
    binary_stream & operator <<(i64 i) {
@@ -324,19 +324,19 @@ public:
       raw_read(wch); return *this;
    }
 #endif
-   binary_stream & operator >>(i8 & i) {
+   binary_stream & operator >>(char & i) {
       raw_read(i); return *this;
    }
-   binary_stream & operator >>(i16 & i) {
+   binary_stream & operator >>(short & i) {
       raw_read(i); return *this;
    }
-   binary_stream & operator >>(u16 & u) {
+   binary_stream & operator >>(unsigned short & u) {
       raw_read(u); return *this;
    }
-   binary_stream & operator >>(i32 & i) {
+   binary_stream & operator >>(int & i) {
       raw_read(i); return *this;
    }
-   binary_stream & operator >>(u32 & u) {
+   binary_stream & operator >>(unsigned int & u) {
       raw_read(u); return *this;
    }
    binary_stream & operator >>(i64 & i) {
@@ -530,14 +530,14 @@ public:
       {
 
          operator <<((unsigned char)255);
-         operator <<((::u16)u);
+         operator <<((unsigned short)u);
 
       }
       else
       {
 
          operator <<((unsigned char)255);
-         operator <<((::u16)65535);
+         operator <<((unsigned short)65535);
          operator <<((::u64)u);
 
       }
@@ -548,14 +548,14 @@ public:
    inline ::u64 read_buffer_length_unbounded_part2()
    {
 
-      ::u16 u16;
+      unsigned short unsigned short;
 
-      u16 = m_pfile->get_u16_unbounded();
+      unsigned short = m_pfile->get_u16_unbounded();
 
-      if (u16 < 65535)
+      if (unsigned short < 65535)
       {
 
-         return u16;
+         return unsigned short;
 
       }
       else

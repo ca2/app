@@ -1031,7 +1031,7 @@ namespace user
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
    {
-      /*      ASSERT(is_window()); u32 dw = u32(send_message( CB_GETEDITSEL, 0, 0));
+      /*      ASSERT(is_window()); unsigned int dw = unsigned int(send_message( CB_GETEDITSEL, 0, 0));
             nStartChar = LOWORD(dw);
             nEndChar = LOWORD(dw);*/
       return true;
@@ -1256,7 +1256,7 @@ namespace user
 
    }
 
-   int combo_box::SetItemHeight(index nIndex, ::u32 cyItemHeight)
+   int combo_box::SetItemHeight(index nIndex, unsigned int cyItemHeight)
    {
 
       //ASSERT(is_window());
@@ -1379,7 +1379,7 @@ namespace user
 
    }
 
-   ::collection::count combo_box::InitStorage(::collection::count nItems, ::u32 nBytes)
+   ::collection::count combo_box::InitStorage(::collection::count nItems, unsigned int nBytes)
    {
 
       //ASSERT(is_window());
@@ -1390,7 +1390,7 @@ namespace user
 
    }
 
-   void combo_box::SetHorizontalExtent(::u32 nExtent)
+   void combo_box::SetHorizontalExtent(unsigned int nExtent)
    {
 
       //ASSERT(is_window());
@@ -1399,18 +1399,18 @@ namespace user
 
    }
 
-   ::u32 combo_box::GetHorizontalExtent()
+   unsigned int combo_box::GetHorizontalExtent()
    {
 
       //ASSERT(is_window());
 
-      //return (::u32)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
+      //return (unsigned int)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
 
       return 0;
 
    }
 
-   int combo_box::SetDroppedWidth(::u32 nWidth)
+   int combo_box::SetDroppedWidth(unsigned int nWidth)
    {
 
 //      ASSERT(is_window());

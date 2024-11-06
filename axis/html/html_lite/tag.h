@@ -79,7 +79,7 @@ public:
 // Parsing Helpers
 public:
    // parses tag information from the given string
-   ::u32 parseFromStr(
+   unsigned int parseFromStr(
       lite_html_reader * preader,
       const ::string & strString, 
       strsize iPos,

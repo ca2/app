@@ -67,7 +67,7 @@
 //#ifdef UNIVERSAL_WINDOWS
 //[Platform::MTAThread]
 //#endif
-//BOOL WINAPI DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
+//BOOL WINAPI DllMain(HINSTANCE hInstance,unsigned int dwReason,LPVOID lpReserved)
 //{
 //
 //   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",e_message_box_ok);

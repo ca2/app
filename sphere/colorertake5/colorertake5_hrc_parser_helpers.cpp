@@ -4,8 +4,8 @@
 namespace colorertake5
 {
 
-   i32 kwCompare(const void *e1, const void *e2);
-   i32 kwCompareI(const void *e1, const void *e2);
+   int kwCompare(const void *e1, const void *e2);
+   int kwCompareI(const void *e1, const void *e2);
    /*
    KeywordInfo::KeywordInfo(){
      keyword = nullptr;
@@ -17,7 +17,7 @@ namespace colorertake5
      string _keyword = keyword;
      bool _isSymbol = isSymbol;
      const class region *_region = region;
-     i32 _ssShorter = ssShorter;
+     int _ssShorter = ssShorter;
      keyword   = kwi->keyword;
      isSymbol  = kwi->isSymbol;
      region    = kwi->region;
@@ -57,18 +57,18 @@ namespace colorertake5
    };
    KeywordList::~KeywordList()
    {
-//  for(i32 idx = 0; idx < num; idx++) {
+//  for(int idx = 0; idx < num; idx++) {
 //    delete kwList[idx].keyword;
 //  }
       delete[] kwList;
       delete   firstChar;
    };
 
-   i32 kwCompare(const void *e1, const void *e2)
+   int kwCompare(const void *e1, const void *e2)
    {
       return ((KeywordInfo*)e1)->keyword.compare(((KeywordInfo*)e2)->keyword);
    };
-   i32 kwCompareI(const void *e1, const void *e2)
+   int kwCompareI(const void *e1, const void *e2)
    {
       return ((KeywordInfo*)e1)->keyword.case_insensitive_order(((KeywordInfo*)e2)->keyword);
    };
@@ -90,8 +90,8 @@ namespace colorertake5
    */
    void KeywordList::substrIndex()
    {
-      for(i32 i = num-1; i > 0; i--)
-         for(i32 ii = i-1; ii != 0; ii--)
+      for(int i = num-1; i > 0; i--)
+         for(int ii = i-1; ii != 0; ii--)
          {
             if ((kwList[ii].keyword)[0] != (kwList[i].keyword)[0]) break;
             if (kwList[ii].keyword.get_length() < kwList[i].keyword.get_length() &&
@@ -139,7 +139,7 @@ namespace colorertake5
       };
       if (type == SNT_INHERIT)
       {
-         for(i32 idx = 0; idx < virtualEntryVector.get_size(); idx++)
+         for(int idx = 0; idx < virtualEntryVector.get_size(); idx++)
             delete virtualEntryVector.element_at(idx);
       };
    };

@@ -467,7 +467,7 @@ namespace draw2d
       //  int ox, oy;
       int Δx, Δy;
       int x, y;
-      u32 ca;
+      unsigned int ca;
 
       int offset=m_iWidth + 1;
 
@@ -508,7 +508,7 @@ namespace draw2d
       //  int ox, oy;
       int Δx, Δy;
       int x, y;
-      u32 ca;
+      unsigned int ca;
 
       int offset=m_iWidth + 1;
       long lIndex;

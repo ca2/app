@@ -34,7 +34,7 @@ HANDLE dup_handle(HANDLE h)
 //   u64  Reserved3;
 //} PROCESS_BASIC_INFORMATION64;
 
-//typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, u32 ProcessInformationClass, PVOID ProcessInformation, u32 ProcessInformationLength, PDWORD ReturnLength);
+//typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, unsigned int ProcessInformationClass, PVOID ProcessInformation, unsigned int ProcessInformationLength, PDWORD ReturnLength);
 //
 //PPEB GetPebAddress(HANDLE handleProcess);
 //
@@ -79,7 +79,7 @@ HANDLE dup_handle(HANDLE h)
 
 
 
-//string get_display_error(u32 NTStatusMessage);
+//string get_display_error(unsigned int NTStatusMessage);
 //
 //PPEB GetPebAddress(HANDLE handleProcess)
 //{
@@ -88,7 +88,7 @@ HANDLE dup_handle(HANDLE h)
 //   memory_set(&pbi, 0, sizeof(pbi));
 //   DWORD dwInLen = sizeof(pbi);
 //   DWORD dwOutLen = 0xffffffff;
-//   u32 dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
+//   unsigned int dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
 //   string strError = get_display_error(dwStatus);
 //   if ((dwStatus & 3) == 3)
 //   {
@@ -353,7 +353,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
    }
 
-   set["pid"] = (::u32) ::GetProcessId(infoa.hProcess);
+   set["pid"] = (unsigned int) ::GetProcessId(infoa.hProcess);
 
    DWORD dwExitCode = (DWORD) -1;
 
@@ -395,7 +395,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
          auto TerminateProcess_GetLastError = ::GetLastError();
 
          set["TerminateProcess_return"] = TerminateProcess_return;
-         set["TerminateProcess_GetLastError"] = (::u32) TerminateProcess_GetLastError;
+         set["TerminateProcess_GetLastError"] = (unsigned int) TerminateProcess_GetLastError;
 
       }
 
@@ -430,7 +430,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
 
 
-//i32 get_current_processor_index()
+//int get_current_processor_index()
 //{
 //
 //
@@ -439,7 +439,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 //
-//i32 get_current_process_maximum_affinity()
+//int get_current_process_maximum_affinity()
 //{
 //
 //   DWORD_PTR dwProcessAffinityMask;
@@ -448,9 +448,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //   {
 //      return 0;
 //   }
-//   i32 iMax = -1;
+//   int iMax = -1;
 //   uptr dwMask = 1;
-//   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -463,7 +463,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 //
-//i32 get_current_process_affinity_order()
+//int get_current_process_affinity_order()
 //{
 //
 //
@@ -477,9 +477,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //   }
 //
-//   i32 iCount = 0;
+//   int iCount = 0;
 //   uptr dwMask = 1;
-//   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -503,9 +503,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //   {
 //      return 0;
 //   }
-//   i32 j = 0;
+//   int j = 0;
 //   uptr dwMask = 1;
-//   for (i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -522,7 +522,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 
-CLASS_DECL_ACME::u32 get_current_process_id()
+CLASS_DECL_ACMEunsigned int get_current_process_id()
 {
 
    return ::GetCurrentProcessId();
@@ -550,7 +550,7 @@ CLASS_DECL_ACME::u32 get_current_process_id()
 //} // namespace process
 
 
-//CLASS_DECL_ACME_WINDOWS_COMMON::u32 get_current_process_id()
+//CLASS_DECL_ACME_WINDOWS_COMMONunsigned int get_current_process_id()
 //{
 //
 //   return ::GetCurrentProcessId();

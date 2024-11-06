@@ -102,7 +102,7 @@ namespace platform
 
    // Long PhRESSing time
    // time in ::times that a pressing is considered a double click
-   ::u32 apex_session_layer::get_Long_PhRESSing_time()
+   unsigned int apex_session_layer::get_Long_PhRESSing_time()
    {
 
       return 0;

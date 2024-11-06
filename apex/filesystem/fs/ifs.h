@@ -32,9 +32,9 @@ public:
    string_map < dir_listing >    m_map;
 
 
-   //file_path_map < u32 >    m_mapdirTimeout;
-   //file_path_map < u32 >    m_mapfileTimeout;
-   //file_path_map < u32 >    m_maplsTimeout;
+   //file_path_map < unsigned int >    m_mapdirTimeout;
+   //file_path_map < unsigned int >    m_mapfileTimeout;
+   //file_path_map < unsigned int >    m_maplsTimeout;
    //filepathmap(::file::path_array)    m_mapdirFile;
    //filepathmap(::file::path_array)    m_mapdirFolder;
    //filepathmap(::file::path_array)    m_mapdirFileName;

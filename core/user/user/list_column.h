@@ -45,9 +45,9 @@ namespace user
       ::user::list_column_array *            m_pcontainer;
       ::collection::index                                  m_iOrder;
       ::text::text                           m_text;
-      ::u32                                  m_uiSmallBitmap;
+      unsigned int                                  m_uiSmallBitmap;
       ::color::color                         m_colorSmallMask;
-      i32                                    m_iSmallImageWidth;
+      int                                    m_iSmallImageWidth;
       ::collection::index                                  m_iSubItem;
       ::collection::index                                  m_iColumn;
       ::image::image_list_pointer                m_pimagelist;

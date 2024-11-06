@@ -73,7 +73,7 @@ namespace message
    }
 
 
-//   ::u32 translate_to_os_message(const ::atom & atom)
+//   unsigned int translate_to_os_message(const ::atom & atom)
 //   {
 //
 ////#ifdef WINDOWS
@@ -81,7 +81,7 @@ namespace message
 ////      if (atom.m_etype == ::atom::e_type_message)
 ////      {
 ////
-////         return (::u32) atom.m_emessage;
+////         return (unsigned int) atom.m_emessage;
 ////
 ////      }
 ////
@@ -105,7 +105,7 @@ namespace message
 //   }
 
 
-   enum_prototype get_message_prototype(enum_message emessage, ::u32 /* uCode */ )
+   enum_prototype get_message_prototype(enum_message emessage, unsigned int /* uCode */ )
    {
 
       switch (emessage)

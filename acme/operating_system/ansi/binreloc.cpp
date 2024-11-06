@@ -88,7 +88,7 @@ _br_find_exe (BrInitError *error)
 
    while (1)
    {
-      i32 i;
+      int i;
 
       size = readlink (path2, path, buf_size - 1);
       if (size == -1)
@@ -148,7 +148,7 @@ _br_find_exe (BrInitError *error)
    }
 
    /* The first entry should be the executable name. */
-   result = fgets (line, (i32) buf_size, f);
+   result = fgets (line, (int) buf_size, f);
    if (result == nullptr)
    {
       fclose (f);
@@ -326,7 +326,7 @@ static char *exe = (char *) nullptr;
  *
  * @returns 1 on success, 0 if BinReloc failed to initialize.
  */
-i32
+int
 br_init (BrInitError *error)
 {
    exe = _br_find_exe (error);
@@ -354,7 +354,7 @@ void br_init_set_symbol(const ::scoped_string & scopedstr)
  *
  * @returns 1 on success, 0 if a filename cannot be found.
  */
-i32
+int
 br_init_lib (BrInitError *error)
 {
    exe = _br_find_exe_for_symbol ((const void *) g_psz_br_init_symbol, error);
@@ -727,7 +727,7 @@ br_build_path (const char *dir, const char *file)
 {
    char *dir2, *result;
    size_t len;
-   i32 must_free = 0;
+   int must_free = 0;
 
    len = strlen (dir);
    if (len > 0 && dir[len - 1] != '/')

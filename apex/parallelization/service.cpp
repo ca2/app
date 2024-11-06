@@ -55,7 +55,7 @@ void service::stop_service()
 
 
 //
-//void service::start_service(u32 control)
+//void service::start_service(unsigned int control)
 //{
 //
 //   m_estatus = e_status_starting;
@@ -65,7 +65,7 @@ void service::stop_service()
 //}
 //
 //
-//void service::stop_service(u32 control)
+//void service::stop_service(unsigned int control)
 //{
 //
 //   m_estatus = e_status_stopping;

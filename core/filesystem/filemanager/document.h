@@ -70,11 +70,11 @@ namespace filemanager
       //virtual void defer_check_manager_id(string strNewManagerId = "");
       virtual void on_request(::request * prequest) override;
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 
-      //virtual void Initialize(i32 iTemplate, const ::string & pszMatter);
+      //virtual void Initialize(int iTemplate, const ::string & pszMatter);
 
       void browse_initial_path(const ::action_context & actioncontext) override;
 

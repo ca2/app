@@ -14,7 +14,7 @@ namespace acme
  namespace solaris
  {
 
-i32 create_process(const char * _cmd_line, i32 * pprocessId)
+int create_process(const char * _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
@@ -31,7 +31,7 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
       // child
       char		*pArg, *pPtr;
       char		*argv[1024 + 1];
-      i32		 argc;
+      int		 argc;
       if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
          pArg++;
       else
@@ -72,11 +72,11 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 
  }// namespace acme
 
-CLASS_DECL_ACME i32 call_async(
+CLASS_DECL_ACME int call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
-i32 iShow)
+int iShow)
 {
    vsstring strCmdLine;
 
@@ -87,7 +87,7 @@ i32 iShow)
       strCmdLine += pszParam;
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -96,7 +96,7 @@ i32 iShow)
 
 }
 
-CLASS_DECL_ACME u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 
@@ -107,7 +107,7 @@ CLASS_DECL_ACME u32 call_sync(const ::file::path & path, const ::scoped_string &
       strCmdLine += pszParam;
    }
 
-   i32 processId;
+   int processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;

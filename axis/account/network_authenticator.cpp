@@ -305,7 +305,7 @@ namespace account
 
       string strNode;
 
-      i32 iRetry = 2;
+      int iRetry = 2;
 
       auto timeStart = ::time::now();
 
@@ -422,7 +422,7 @@ namespace account
    }
 
 
-//string department::get_server(::file::path pathUrl, i32 iRetry)
+//string department::get_server(::file::path pathUrl, int iRetry)
 //{
 //
 //   string strHost(purl->get_server(pszUrl));
@@ -466,7 +466,7 @@ namespace account
 //   try
 //   {
 //
-//      ::u32 dwBeg= ::time::now();
+//      unsigned int dwBeg= ::time::now();
 //
 //      ::property_set set;
 //
@@ -478,7 +478,7 @@ namespace account
 //
 //      strNode = http()->get(strGetFontopus, set);
 //
-//      ::u32 tickEnd= ::time::now();
+//      unsigned int tickEnd= ::time::now();
 //
 //      informationf("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //

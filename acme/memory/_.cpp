@@ -150,10 +150,10 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 }
 
 
-CLASS_DECL_ACME::u32 __u32_hash(const ::scoped_string & scopedstr)
+CLASS_DECL_ACMEunsigned int __u32_hash(const ::scoped_string & scopedstr)
 {
 
-   ::u32 u = 0;
+   unsigned int u = 0;
 
    auto psz = scopedstr.begin();
 
@@ -266,7 +266,7 @@ CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSi
 }
 
 
-CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize)
+CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize)
 {
 
    if (iSize <= 0)

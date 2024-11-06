@@ -533,7 +533,7 @@ namespace lite
 
       {
 
-         //         ::u32 dwTime2= ::time::now();
+         //         unsigned int dwTime2= ::time::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -857,13 +857,13 @@ namespace lite
 
       ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+      unsigned int uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1161,13 +1161,13 @@ namespace lite
 
       ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
       ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
-/*      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+/*      unsigned int uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;

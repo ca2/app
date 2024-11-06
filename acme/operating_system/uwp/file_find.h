@@ -40,7 +40,7 @@ namespace universal_windows
       virtual bool GetLastAccessTime(::earth::time& refTime) const;
       virtual bool GetCreationTime(::earth::time& refTime) const;
 
-      virtual bool MatchesMask(::u32 dwMask) const;
+      virtual bool MatchesMask(unsigned int dwMask) const;
 
       virtual bool IsDots() const;
       // these aren't virtual because they all use MatchesMask(), which is
@@ -55,7 +55,7 @@ namespace universal_windows
 
       
       void close();
-      virtual bool FindFile(const char * pstrName = nullptr, ::u32 dwUnused = 0);
+      virtual bool FindFile(const char * pstrName = nullptr, unsigned int dwUnused = 0);
       virtual bool FindNextFile();
 
       virtual void CloseContext();

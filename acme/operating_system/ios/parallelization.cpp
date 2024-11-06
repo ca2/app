@@ -2,7 +2,7 @@
 #include <sys/resource.h>
 
 //
-//void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//void thread_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 //{
 //
 //   int iOsPolicy;
@@ -74,7 +74,7 @@
 //
 //}
 
-//i32 thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+//int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 //{
 //
 //   int iCa2Min;
@@ -117,7 +117,7 @@
 //
 //   if(iOsMax == iOsMin)
 //   {
-//      iCa2Priority = (i32) ::e_priority_normal;
+//      iCa2Priority = (int) ::e_priority_normal;
 //   }
 //   else
 //   {
@@ -131,14 +131,14 @@
 //}
 
 
-//void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//void process_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 //{
 //
 //   throw ::exception(error_wrong_state, "not applicable in Mac OS");
 //
 //}
 
-//i32 process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+//int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 //{
 //
 //   throw ::exception(::exception("not applicable in Mac OS"));
@@ -149,7 +149,7 @@
 
 
 
-i32 process_get_scheduling_priority(i32 iOsPriority)
+int process_get_scheduling_priority(int iOsPriority)
 {
 
    if(iOsPriority < -15)
@@ -176,7 +176,7 @@ i32 process_get_scheduling_priority(i32 iOsPriority)
 }
 
 
-i32 process_get_os_priority(i32 nCa2Priority);
+int process_get_os_priority(int nCa2Priority);
 
 
 namespace parallelization
@@ -184,7 +184,7 @@ namespace parallelization
 
 
 
-   bool set_priority_class(i32 iCa2Priority)
+   bool set_priority_class(int iCa2Priority)
    {
 
       int iOsPriority = process_get_os_priority(iCa2Priority);

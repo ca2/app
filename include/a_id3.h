@@ -62,7 +62,7 @@ ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Update               (ID3Tag *tag
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_UpdateByTagType      (ID3Tag *tag, flags_t type);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Strip                (ID3Tag *tag, flags_t ulTagFlags);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithID      (const ID3Tag *tag, ID3_FrameID atom);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithINT     (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, u32 data);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithINT     (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, unsigned int data);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithASCII   (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, const char * data);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithUNICODE (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, const unicode_t *data);
 ID3_C_EXPORT size_t               CCONV ID3Tag_NumFrames            (const ID3Tag *tag);
@@ -90,8 +90,8 @@ ID3_C_EXPORT bool                 CCONV ID3Frame_GetCompression     (const ID3Fr
 ID3_C_EXPORT void                 CCONV ID3Field_Clear              (ID3Field *field);
 ID3_C_EXPORT size_t               CCONV ID3Field_Size               (const ID3Field *field);
 ID3_C_EXPORT size_t               CCONV ID3Field_GetNumTextItems    (const ID3Field *field);
-ID3_C_EXPORT void                 CCONV ID3Field_SetINT             (ID3Field *field, u32 data);
-ID3_C_EXPORT u32               CCONV ID3Field_GetINT             (const ID3Field *field);
+ID3_C_EXPORT void                 CCONV ID3Field_SetINT             (ID3Field *field, unsigned int data);
+ID3_C_EXPORT unsigned int               CCONV ID3Field_GetINT             (const ID3Field *field);
 ID3_C_EXPORT void                 CCONV ID3Field_SetUNICODE         (ID3Field *field, const unicode_t *string);
 ID3_C_EXPORT size_t               CCONV ID3Field_GetUNICODE         (const ID3Field *field, unicode_t *buffer, size_t maxChars);
 ID3_C_EXPORT size_t               CCONV ID3Field_GetUNICODEItem     (const ID3Field *field, unicode_t *buffer, size_t maxChars, size_t itemNum);

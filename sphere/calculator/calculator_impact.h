@@ -40,7 +40,7 @@ namespace calculator
       DECLARE_MESSAGE_HANDLER(_001OnShowEncoding);
       DECLARE_MESSAGE_HANDLER(_001OnWavePlayerEvent);
 
-      virtual void _001OnTabClick(i32 iTab);
+      virtual void _001OnTabClick(int iTab);
 
    };
 

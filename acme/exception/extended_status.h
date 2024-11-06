@@ -45,8 +45,8 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //      ~status();
 //
 //
-//      static void set_skip_callstack(i32 iStack);
-//      static i32 get_skip_callstack();
+//      static void set_skip_callstack(int iStack);
+//      static int get_skip_callstack();
 //
 //      void set(const ::e_status & estatus);
 //

@@ -1668,7 +1668,7 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //i32 x;
+               //int x;
                //index iLine = SelToLineX(m_iSelEnd, x);
 
                //::rectangle_i32 rectangleX;
@@ -1701,7 +1701,7 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //i32 x;
+               //int x;
 
                //index iLine = SelToLineX(m_iSelEnd, x);
 
@@ -2128,7 +2128,7 @@ namespace user
 
                   }
 
-                  i32 iChar = (i32)pkey->m_nChar;
+                  int iChar = (int)pkey->m_nChar;
 
                   if (iChar == '\r')
                   {
@@ -2144,7 +2144,7 @@ namespace user
 
                   }
 
-                  //i32 iCode = pkey->m_nFlags & 0xff;
+                  //int iCode = pkey->m_nFlags & 0xff;
 
                   //if (bShift)
                   //{

@@ -38,12 +38,12 @@
 
 #if defined(_WIN32) && !defined(__MINGW32__)
 
-typedef signed char i8;
+typedef signed char char;
 typedef unsigned char unsigned char;
-typedef short i16;  // NOLINT
-typedef unsigned short u16;  // NOLINT
-typedef int i32;
-typedef unsigned int u32;
+typedef short short;  // NOLINT
+typedef unsigned short unsigned short;  // NOLINT
+typedef int int;
+typedef unsigned int unsigned int;
 typedef ::i64 i64;
 typedef ::u64 u64;
 // intptr_t and friends are defined in crtdefs.h through stdio.h.

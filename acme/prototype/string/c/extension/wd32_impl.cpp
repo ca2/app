@@ -3,17 +3,17 @@
 #include <wchar.h>
 #include <errno.h>
 
-CLASS_DECL_ACME ::wd32_character wd32_char_tolower(i32 i) { return __wd32tolower(i); }
-CLASS_DECL_ACME ::wd32_character wd32_char_toupper(i32 i) { return __wd32toupper(i); }
+CLASS_DECL_ACME ::wd32_character wd32_char_tolower(int i) { return __wd32tolower(i); }
+CLASS_DECL_ACME ::wd32_character wd32_char_toupper(int i) { return __wd32toupper(i); }
 
 
-CLASS_DECL_ACME i32 wd32_char_isdigit(i32 i) { return __wd32charisdigit(i); }
-CLASS_DECL_ACME i32 wd32_char_isalpha(i32 i) { return __wd32charisalpha(i); }
-CLASS_DECL_ACME i32 wd32_char_isalnum(i32 i) { return __wd32charisalnum(i); }
-CLASS_DECL_ACME i32 wd32_char_isspace(i32 i) { return __wd32charisspace(i); }
+CLASS_DECL_ACME int wd32_char_isdigit(int i) { return __wd32charisdigit(i); }
+CLASS_DECL_ACME int wd32_char_isalpha(int i) { return __wd32charisalpha(i); }
+CLASS_DECL_ACME int wd32_char_isalnum(int i) { return __wd32charisalnum(i); }
+CLASS_DECL_ACME int wd32_char_isspace(int i) { return __wd32charisspace(i); }
 
 
-CLASS_DECL_ACME i32 wd32_char_isxdigit(i32 i) { return __wd32charisxdigit(i); }
+CLASS_DECL_ACME int wd32_char_isxdigit(int i) { return __wd32charisxdigit(i); }
 
 
 CLASS_DECL_ACME const ::wd32_character * wd32_const_last_char(const ::wd32_character * psz)
@@ -223,7 +223,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_count_find_string_case_insensitive
 }
 
 
-CLASS_DECL_ACME i32 wd32_compare(const ::wd32_character * psz, const ::wd32_character * sz2)
+CLASS_DECL_ACME int wd32_compare(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -259,7 +259,7 @@ CLASS_DECL_ACME i32 wd32_compare(const ::wd32_character * psz, const ::wd32_char
 }
 
 
-CLASS_DECL_ACME i32 wd32_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
+CLASS_DECL_ACME int wd32_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -295,7 +295,7 @@ CLASS_DECL_ACME i32 wd32_compare_case_insensitive(const ::wd32_character * psz, 
 }
 
 
-CLASS_DECL_ACME i32 wd32_count_compare(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
+CLASS_DECL_ACME int wd32_count_compare(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -338,7 +338,7 @@ CLASS_DECL_ACME i32 wd32_count_compare(const ::wd32_character * psz, const ::wd3
 }
 
 
-CLASS_DECL_ACME i32 wd32_count_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
+CLASS_DECL_ACME int wd32_count_compare_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -381,7 +381,7 @@ CLASS_DECL_ACME i32 wd32_count_compare_case_insensitive(const ::wd32_character *
 }
 
 
-CLASS_DECL_ACME i32 wd32_collate(const ::wd32_character * psz, const ::wd32_character * sz2)
+CLASS_DECL_ACME int wd32_collate(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -417,7 +417,7 @@ CLASS_DECL_ACME i32 wd32_collate(const ::wd32_character * psz, const ::wd32_char
 }
 
 
-CLASS_DECL_ACME i32 wd32_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
+CLASS_DECL_ACME int wd32_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2)
 {
 
    if (::is_null(psz))
@@ -453,7 +453,7 @@ CLASS_DECL_ACME i32 wd32_collate_case_insensitive(const ::wd32_character * psz, 
 }
 
 
-CLASS_DECL_ACME i32 wd32_count_collate(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
+CLASS_DECL_ACME int wd32_count_collate(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -496,7 +496,7 @@ CLASS_DECL_ACME i32 wd32_count_collate(const ::wd32_character * psz, const ::wd3
 }
 
 
-CLASS_DECL_ACME i32 wd32_count_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
+CLASS_DECL_ACME int wd32_count_collate_case_insensitive(const ::wd32_character * psz, const ::wd32_character * sz2, strsize len)
 {
 
    if (len < 0)
@@ -594,7 +594,7 @@ CLASS_DECL_ACME ::wd32_character * wd32_next_token(const ::wd32_character * deli
 }
 
 
-CLASS_DECL_ACME i32 wd32_begins(const ::wd32_character * psz, const ::wd32_character * prefix)
+CLASS_DECL_ACME int wd32_begins(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -615,7 +615,7 @@ CLASS_DECL_ACME i32 wd32_begins(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME i32 wd32_begins_case_insensitive(const ::wd32_character * psz, const ::wd32_character * prefix)
+CLASS_DECL_ACME int wd32_begins_case_insensitive(const ::wd32_character * psz, const ::wd32_character * prefix)
 {
 
    if (::is_null(psz)) return false;
@@ -669,7 +669,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_begins_eat_case_insensitive(const 
 }
 
 
-CLASS_DECL_ACME i32 wd32_ends(const ::wd32_character * psz, const ::wd32_character * suffix)
+CLASS_DECL_ACME int wd32_ends(const ::wd32_character * psz, const ::wd32_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -692,7 +692,7 @@ CLASS_DECL_ACME i32 wd32_ends(const ::wd32_character * psz, const ::wd32_charact
 }
 
 
-CLASS_DECL_ACME i32 wd32_ends_case_insensitive(const ::wd32_character * psz, const ::wd32_character * suffix)
+CLASS_DECL_ACME int wd32_ends_case_insensitive(const ::wd32_character * psz, const ::wd32_character * suffix)
 {
 
    if (::is_null(psz)) return false;
@@ -739,7 +739,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_find_char_reverse(const ::wd32_cha
 //CLASS_DECL_ACME const ::wd32_character * wd32_concatenate_duplicate_and_free(const ::wd32_character * psz1, ::wd32_character * psz2);
 
 
-CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, u64 u, int iBase, enum_digit_case edigitcase)
 {
 
    wd32_character * pend = nullptr;
@@ -749,7 +749,7 @@ CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, u64 u, i32 iBase,
 }
 
 
-CLASS_DECL_ACME void wd32_from_i64_base(::wd32_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd32_from_i64_base(::wd32_character * sz, i64 i, int iBase, enum_digit_case edigitcase)
 {
 
    wd32_character * pend = nullptr;
@@ -762,7 +762,7 @@ CLASS_DECL_ACME void wd32_from_i64_base(::wd32_character * sz, i64 i, i32 iBase,
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32toi64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -770,7 +770,7 @@ CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32tou64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -778,7 +778,7 @@ CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME int wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32toi32(psz, (::wd32_character **) ppszEnd, iBase);
@@ -786,7 +786,7 @@ CLASS_DECL_ACME i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME unsigned int wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32tou32(psz, (::wd32_character **) ppszEnd, iBase);
@@ -795,7 +795,7 @@ CLASS_DECL_ACME u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_chara
 #else
 
 
-CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return wcstoll(psz, (::wd32_character **) ppszEnd, iBase);
@@ -803,7 +803,7 @@ CLASS_DECL_ACME i64 wd32_to_i64(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return wcstoull(psz, (::wd32_character **) ppszEnd, iBase);
@@ -811,7 +811,7 @@ CLASS_DECL_ACME u64 wd32_to_u64(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME int wd32_to_i32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
    
 #ifdef WINDOWS
@@ -845,7 +845,7 @@ CLASS_DECL_ACME i32 wd32_to_i32(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME unsigned int wd32_to_u32(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -865,7 +865,7 @@ CLASS_DECL_ACME u32 wd32_to_u32(const ::wd32_character * psz, const ::wd32_chara
       
    }
 
-   return (::u32) ul;
+   return (unsigned int) ul;
    
 #endif
 

@@ -102,7 +102,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return nullptr;
 //}
-//HBITMAP WINAPI CreateDIBSection(HDC hdc, int cx, int cy, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
+//HBITMAP WINAPI CreateDIBSection(HDC hdc, int cx, int cy, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset)
 //{
 //   return nullptr;
 //}
@@ -857,7 +857,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 // {
 //     return nullptr;
 // }
-// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset)
+// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset)
 
 // {
 //     return nullptr;
@@ -1313,10 +1313,10 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
    long bytesPerRow = bytesPerPixel * width;
    long bitsPerComponent = 8;
 
-   ::u32 * pixels;
-   pixels = (::u32 *) calloc(height * width, sizeof(::u32));
+   unsigned int * pixels;
+   pixels = (unsigned int *) calloc(height * width, sizeof(unsigned int));
    
-   iScan = width * sizeof(::u32);
+   iScan = width * sizeof(unsigned int);
 
    // 3.
    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

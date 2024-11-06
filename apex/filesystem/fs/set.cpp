@@ -78,7 +78,7 @@ namespace fs
 
       ::file::listing listingFsPath;
 
-      for(i32 i = 0; i < m_spafsdata.get_count(); i++)
+      for(int i = 0; i < m_spafsdata.get_count(); i++)
       {
 
          listingFsPath.clear_results();
@@ -93,7 +93,7 @@ namespace fs
 
          listing.add_listing(listingFsPath);
 
-         for(i32 j = 0; j < listing.get_size(); j++)
+         for(int j = 0; j < listing.get_size(); j++)
          {
 
             m_fsdatamap[listing[j]] = m_spafsdata[i];
@@ -438,7 +438,7 @@ namespace fs
    //}
 
 
-   //string set::eat_end_level(const ::scoped_string & scopedstr, i32 iLevel)
+   //string set::eat_end_level(const ::scoped_string & scopedstr, int iLevel)
    //{
 
    //   ::fs::data * pdata = path_data(psz);

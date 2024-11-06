@@ -27,8 +27,8 @@ public:
 
    void pre_finalize();
 
-   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 iLine);
-   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, i32 nBlockUse, const char * szFileName, i32 iLine);
+   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int iLine);
+   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, int nBlockUse, const char * szFileName, int iLine);
    void free_debug(void * p, memsize nAllocSize);
 
    //static plex_heap_alloc_array * new_plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);
@@ -36,7 +36,7 @@ public:
    //static void delete_plex_heap_alloc_array(plex_heap_alloc_array * p);
 
 
-   //plex_heap_alloc * new_plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize = 64);
+   //plex_heap_alloc * new_plex_heap_alloc(memsize nAllocSize, unsigned int nBlockSize = 64);
    //void delete_plex_heap_alloc(plex_heap_alloc * pplexheapalloc);
 
 

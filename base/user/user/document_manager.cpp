@@ -19,7 +19,7 @@
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-::u32 __get_file_title(const ::wide_character * pszPathName, ::wide_character * pszTitle, ::u32 nMax);
+unsigned int __get_file_title(const ::wide_character * pszPathName, ::wide_character * pszTitle, unsigned int nMax);
 
 
 bool _set_reg_key(const ::wide_character * pszKey, const ::wide_character * pszValue, const ::wide_character * pszValueName = nullptr);
@@ -512,7 +512,7 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();

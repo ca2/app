@@ -594,7 +594,7 @@ namespace text
 //               idSchema2 = "std";
 //            }
 //
-//            for(i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
+//            for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
 //            {
 //               if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
 //                  goto step2;
@@ -616,7 +616,7 @@ namespace text
 //            idSchema2 = "std";
 //         }
 //
-//         for(i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
+//         for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
 //         {
 //            if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
 //               return bAdded;

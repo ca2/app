@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::atom atom)
+   //bool toolbar::create_interaction(::user::interaction * puiParent,unsigned int uStyle, ::atom atom)
    //{
 
    //   return create_toolbar(puiParent, 0, uStyle, atom);
@@ -221,7 +221,7 @@ namespace user
    //}
 
 
-//   bool toolbar::create_toolbar(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, atom nID)
+//   bool toolbar::create_toolbar(::user::interaction * puiParent,unsigned int dwCtrlStyle,unsigned int uStyle, atom nID)
 //   {
 //
 //      ASSERT_VALID(puiParent);   // must have a parent
@@ -365,7 +365,7 @@ namespace user
    //            {
    //               TBADDBITMAP addBitmap;
    //               addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
-   //               addBitmap.nID = (::u32)hbmImageWell;
+   //               addBitmap.nID = (unsigned int)hbmImageWell;
    //               bResult =  default_window_procedure(TB_ADDBITMAP,
    //                  bitmap.bmWidth / m_sizeImage.cx(), (LPARAM)&addBitmap) == 0;
    //            }
@@ -373,9 +373,9 @@ namespace user
    //            {
    //               TBREPLACEBITMAP replaceBitmap;
    //               replaceBitmap.hInstOld = nullptr;
-   //               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
+   //               replaceBitmap.nIDOld = (unsigned int)m_hbmImageWell;
    //               replaceBitmap.hInstNew = nullptr;
-   //               replaceBitmap.nIDNew = (::u32)hbmImageWell;
+   //               replaceBitmap.nIDNew = (unsigned int)hbmImageWell;
    //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx();
    //               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
    //            }
@@ -393,7 +393,7 @@ namespace user
    //
    //#endif
 
-   bool toolbar::SetButtons(const ::u32 * pIDArray, ::collection::index nIDCount)
+   bool toolbar::SetButtons(const unsigned int * pIDArray, ::collection::index nIDCount)
    {
 
       //#ifdef WINDOWS_DESKTOP
@@ -402,7 +402,7 @@ namespace user
       //
       //      ASSERT(nIDCount >= 1);  // must be at least one of them
       //
-      //      ASSERT(pIDArray == nullptr || is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount, false));
+      //      ASSERT(pIDArray == nullptr || is_memory_segment_ok(pIDArray, sizeof(unsigned int) * nIDCount, false));
       //
       //      // delete all existing buttons
       //      index nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
@@ -498,7 +498,7 @@ namespace user
    ////      if (__memcmp(pButton, &button, sizeof(TBBUTTON)) != 0)
    ////      {
    ////         // don't redraw everything while setting the button
-   ////         u32 uStyle = GetStyle();
+   ////         unsigned int uStyle = GetStyle();
    ////         ModifyStyle(WS_VISIBLE, 0);
    ////         VERIFY(default_window_procedure(TB_DELETEBUTTON, (WPARAM) nIndex, 0));
    ////         VERIFY(default_window_procedure(TB_INSERTBUTTON, (WPARAM) nIndex, (LPARAM)pButton));
@@ -533,7 +533,7 @@ namespace user
    ////
    ////#endif
    ////
-   ////   index toolbar::CommandToIndex(::u32 nIDFind)
+   ////   index toolbar::CommandToIndex(unsigned int nIDFind)
    ////   {
    ////      ASSERT_VALID(this);
    ////      ASSERT(is_window());
@@ -546,7 +546,7 @@ namespace user
    ////#endif
    //   }
 
-   //   ::u32 toolbar::GetItemID(index nIndex)
+   //   unsigned int toolbar::GetItemID(index nIndex)
    //   {
    //      ASSERT_VALID(this);
    //      ASSERT(is_window());
@@ -748,7 +748,7 @@ namespace user
    //
    //      //::size_i32 sizeResult(0,0);
    //
-   //      //u32 dwExtendedStyle = (u32) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
+   //      //unsigned int dwExtendedStyle = (unsigned int) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
    //
    //      //for (::collection::index i = 0; i < nCount; i++)
    //      //{
@@ -979,7 +979,7 @@ namespace user
    };
 
 
-   size_i32 toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, ::collection::index nLength)
+   size_i32 toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_VALID(this);
@@ -1145,7 +1145,7 @@ namespace user
       //
       //               buttona.dwMask = TBIF_COMMAND | TBIF_STYLE | TBIF_SIZE;
       //
-      //               ::u32 uID = GetItemID(i);
+      //               unsigned int uID = GetItemID(i);
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
@@ -1215,7 +1215,7 @@ namespace user
    size_i32 toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
    {
 
-      u32 dwMode = bStretch ? LM_STRETCH : 0;
+      unsigned int dwMode = bStretch ? LM_STRETCH : 0;
 
       dwMode |= bHorz ? LM_HORZ : 0;
 
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, u32 dwMode)
+   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, unsigned int dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1275,7 +1275,7 @@ namespace user
    }
 
 
-   //   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, ::collection::index iImage)
+   //   void toolbar::SetButtonInfo(const ::atom & atom, unsigned int nID, unsigned int nStyle, ::collection::index iImage)
    //   {
    //      ASSERT_VALID(this);
    ////#ifdef WINDOWS_DESKTOP
@@ -1343,7 +1343,7 @@ namespace user
       //   TBBUTTONINFOW button;
       //   memory_set(&button, 0, sizeof(button));
       //   button.cbSize = sizeof(button);
-      //   ::u32 uID = GetItemID(nIndex);
+      //   unsigned int uID = GetItemID(nIndex);
       //   button.pszText = (unichar *) (const unichar *) wstrText;
       //   button.cchText = wstrText.length();
       //   button.dwMask |= TBIF_TEXT;
@@ -1474,7 +1474,7 @@ namespace user
 #endif
    }
 
-   void toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
+   void toolbar::OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle)
    {
       // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
@@ -1509,7 +1509,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       ::pointer<::message::window_pos>pwindowpos(pmessage);
       // not necessary to invalidate the borders
-      u32 uStyle = m_dwStyle;
+      unsigned int uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
       //::user::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pmessage->previous();
@@ -1623,12 +1623,12 @@ namespace user
    //
    ////#ifdef WINDOWS_DESKTOP
    ////      bool bModify = false;
-   ////      u32 uStyle = GetStyle();
+   ////      unsigned int uStyle = GetStyle();
    ////      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
    ////
    ////      lResult = default_window_procedure();
    ////      if (lResult)
-   ////         size = (u32) lParam;
+   ////         size = (unsigned int) lParam;
    ////
    ////      if (bModify)
    ////         set_window_long(GWL_STYLE, uStyle);
@@ -1651,7 +1651,7 @@ namespace user
       //#ifdef LRESULT
       //
       //      bool bModify = false;
-      //      u32 uStyle = 0;
+      //      unsigned int uStyle = 0;
       //      uStyle = GetStyle();
       //      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
       //
@@ -1688,7 +1688,7 @@ namespace user
       tool_command state;
       state.m_pOther = this;
 
-      state.m_iCount = (::u32)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
+      state.m_iCount = (unsigned int)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          // get buttons state
@@ -1739,9 +1739,9 @@ namespace user
 //   {
 //      ::user::control_bar::dump(dumpcontext);
 //
-//      ////      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
-//      ////      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
-//      ////      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
+//      ////      dumpcontext << "m_hbmImageWell = " << (unsigned int)m_hbmImageWell;
+//      ////      dumpcontext << "\nm_hInstImageWell = " << (unsigned int)m_hInstImageWell;
+//      ////      dumpcontext << "\nm_hRsrcImageWell = " << (unsigned int)m_hRsrcImageWell;
 //      //dumpcontext << "\nm_sizeButton = " << m_sizeButton;
 //      //dumpcontext << "\nm_sizeImage = " << m_sizeImage;
 //
@@ -1868,9 +1868,9 @@ namespace user
    //{
    //   return *(toolbar_control *)this;
    //}
-   /*bool toolbar::LoadToolBar(::u32 nIDResource)
+   /*bool toolbar::LoadToolBar(unsigned int nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
-   bool toolbar::LoadBitmap(::u32 nIDResource)
+   bool toolbar::LoadBitmap(unsigned int nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 

@@ -86,7 +86,7 @@
 //
 //      synchronous_lock synchronouslock(this->synchronization());
 //
-//      i32 wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+//      int wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 //
 //      if (wd < 0)
 //      {
@@ -128,7 +128,7 @@
 //         for(::collection::index index = 0; index < stra.get_count(); index++)
 //         {
 //
-//            i32 inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+//            int inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 //
 //            if(inaw < 0)
 //            {
@@ -236,7 +236,7 @@
 //
 //      FD_SET(mFD, (fd_set *) m_pDescriptorSet);
 //
-//      i32 ret = ::select(mFD + 1,(fd_set *)m_pDescriptorSet,nullptr,nullptr,&mTimeOut);
+//      int ret = ::select(mFD + 1,(fd_set *)m_pDescriptorSet,nullptr,nullptr,&mTimeOut);
 //
 //      if(ret < 0)
 //      {

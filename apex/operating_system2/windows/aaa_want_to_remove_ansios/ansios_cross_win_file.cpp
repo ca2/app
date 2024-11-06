@@ -5,11 +5,11 @@
 //WINAPI
 //create_file(
 //            char const * lpFileName,
-//            ::u32 dwDesiredAccess,
-//            ::u32 dwShareMode,
+//            unsigned int dwDesiredAccess,
+//            unsigned int dwShareMode,
 //            LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-//            ::u32 dwCreationDisposition,
-//            ::u32 dwFlagsAndAttributes,
+//            unsigned int dwCreationDisposition,
+//            unsigned int dwFlagsAndAttributes,
 //            HANDLE hTemplateFile
 //            )
 //{
@@ -50,13 +50,13 @@
 //
 //}
 //
-//::u32
+//unsigned int
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
 //               int lDistanceToMove,
 //               PLONG lpDistanceToMoveHigh,
-//               ::u32 dwMoveMethod
+//               unsigned int dwMoveMethod
 //               )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
@@ -72,7 +72,7 @@
 //WriteFile(
 //          HANDLE hFile,
 //          const void * lpBuffer,
-//          ::u32 nNumberOfBytesToWrite,
+//          unsigned int nNumberOfBytesToWrite,
 //          LPDWORD lpNumberOfBytesWritten,
 //          LPOVERLAPPED lpOverlapped
 //          )
@@ -83,7 +83,7 @@
 //        return false;
 //    size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
 //    if(lpNumberOfBytesWritten != nullptr)
-//        *lpNumberOfBytesWritten = (::u32) sizeWritten;
+//        *lpNumberOfBytesWritten = (unsigned int) sizeWritten;
 //    return true;
 //}
 //
@@ -92,7 +92,7 @@
 //ReadFile(
 //         HANDLE hFile,
 //         LPVOID lpBuffer,
-//         ::u32 nNumberOfBytesToRead,
+//         unsigned int nNumberOfBytesToRead,
 //         LPDWORD lpNumberOfBytesRead,
 //         LPOVERLAPPED lpOverlapped
 //         )
@@ -103,7 +103,7 @@
 //        return false;
 //    size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
 //    if(lpNumberOfBytesRead != nullptr)
-//        *lpNumberOfBytesRead = (::u32)sizeRead;
+//        *lpNumberOfBytesRead = (unsigned int)sizeRead;
 //    return true;
 //}
 //
@@ -157,10 +157,10 @@
 //
 //
 //
-//::u32
+//unsigned int
 //WINAPI
 //GetTempPathW(
-//    ::u32 nBufferLength,
+//    unsigned int nBufferLength,
 //    LPWSTR lpBuffer
 //    )
 //{
@@ -176,6 +176,6 @@
 //      lpBuffer[iLen] = '\0';
 //   }
 //
-//   return (::u32) iLen;
+//   return (unsigned int) iLen;
 //
 //}

@@ -63,7 +63,7 @@ namespace image
    }
 
 
-   bool image_list::create(int cx, int cy, ::u32 nFlags, int nInitial, int nGrow)
+   bool image_list::create(int cx, int cy, unsigned int nFlags, int nInitial, int nGrow)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);

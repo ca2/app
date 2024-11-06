@@ -62,7 +62,7 @@ namespace HEAP_NAMESPACE
 
    }
 
-   void on_plex_new_block(::u32 nAllocSize)
+   void on_plex_new_block(unsigned int nAllocSize)
    {
 
 

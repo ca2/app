@@ -90,10 +90,10 @@ inline stream & operator >>(stream & s, ::in_addr & addr)
 }
 
 
-CLASS_DECL_APEX u32 c_inet_addr(const char *src);
-CLASS_DECL_APEX i32 c_inet_pton(i32 af,const char *src,void *dst);
-CLASS_DECL_APEX const char * c_inet_ntop(i32 af,const void *src,char *dst,i32 cnt);
-CLASS_DECL_APEX string c_inet_ntop(i32 af,const void *src);
+CLASS_DECL_APEX unsigned int c_inet_addr(const char *src);
+CLASS_DECL_APEX int c_inet_pton(int af,const char *src,void *dst);
+CLASS_DECL_APEX const char * c_inet_ntop(int af,const void *src,char *dst,int cnt);
+CLASS_DECL_APEX string c_inet_ntop(int af,const void *src);
 
 
 

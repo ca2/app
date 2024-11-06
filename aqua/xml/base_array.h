@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   template < i32 m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = ::pointer_array < TYPE > >
+   template < int m_iNodeNameIndex, class TYPE, class ARG_TYPE = const TYPE &, class ARRAY = ::pointer_array < TYPE > >
    class array :
       public ARRAY,
       public exportable,
@@ -25,13 +25,13 @@ namespace xml
    };
 
 
-   template < i32 m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
+   template < int m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
    array()
    {
    }
 
-   template < i32 m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
+   template < int m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
    array(const array & xmla) :
       ARRAY (xmla)
@@ -40,13 +40,13 @@ namespace xml
 
 
 
-   template < i32 m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
+   template < int m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    void
    array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
    xml_export(output_tree & xmlof)
    {
       xmlof.set_attribute("count", this->get_size());
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex), this->element_at(i));
          pnode->set_attribute("array_index", i);
@@ -54,15 +54,15 @@ namespace xml
    }
 
 
-   template < i32 m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
+   template < int m_iNodeNameIndex, class TYPE, class ARG_TYPE, class ARRAY >
    void
    array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
    xml_import(input_tree & xmlif)
    {
-      i32 iSize;
+      int iSize;
       iSize = xmlif.attribute("count");
       ARRAY::set_size(iSize);
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          property_set set;
          set.set_at("array_index", i);

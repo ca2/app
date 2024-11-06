@@ -142,7 +142,7 @@ namespace hotplugin
    }
 
 
-   i32 host::start_ca2_system()
+   int host::start_ca2_system()
    {
 
       if(m_pplugin != nullptr)
@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //::u32 dwTime1= ::time::now();
+            //unsigned int dwTime1= ::time::now();
 
             m_pplugin->on_paint(pgraphics, rectangle);
 
-            //::u32 dwTime9= ::time::now();
+            //unsigned int dwTime9= ::time::now();
 
             //informationf("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //::u32 dwTime1= ::time::now();
+         //unsigned int dwTime1= ::time::now();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //::u32 dwTime9= ::time::now();
+         //unsigned int dwTime9= ::time::now();
 
          //informationf("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //::u32 dwTime1= ::time::now();
+      //unsigned int dwTime1= ::time::now();
 
       deferred_prodevian_redraw();
-      //::u32 dwTime9= ::time::now();
+      //unsigned int dwTime9= ::time::now();
 
       //informationf("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
@@ -354,7 +354,7 @@ namespace hotplugin
    }
 
 
-   i32 host::start_app_install(const ::string & pszCommandLine)
+   int host::start_app_install(const ::string & pszCommandLine)
    {
 
       return start_app_install(pszCommandLine, get_app(), this);
@@ -362,7 +362,7 @@ namespace hotplugin
    }
 
 
-   i32 host::s_start_app_install(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   int host::s_start_app_install(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->start_app_install(pszCommandLine, papp, pplugin);
@@ -370,7 +370,7 @@ namespace hotplugin
    }
 
 
-   i32 host::start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int host::start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if(m_bHostStarterStart)
@@ -395,7 +395,7 @@ namespace hotplugin
    }
 
 
-   i32 host::s_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   int host::s_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->host_starter_start_sync(pszCommandLine, papp, pplugin);
@@ -403,7 +403,7 @@ namespace hotplugin
    }
 
 
-   i32 host::host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int host::host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if (m_bHostStarterStart)
@@ -703,7 +703,7 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_position(class ::user::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
+   //bool host::set_window_position(class ::user::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
    //{
 
    //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);

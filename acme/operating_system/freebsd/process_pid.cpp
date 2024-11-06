@@ -5,12 +5,12 @@
 #include <stdio.h>
 
 
-i32 get_process_pid(const char * procNameParam)
+int get_process_pid(const char * procNameParam)
 {
 
    string procName(procNameParam);
 
-   i32 pid = -1;
+   int pid = -1;
 
    // Open the /proc directory
    DIR *dp = opendir("/proc");
@@ -21,7 +21,7 @@ i32 get_process_pid(const char * procNameParam)
       while (pid < 0 && (dirp = readdir(dp)))
       {
          // Skip non-numeric entries
-         i32 atom = atoi(dirp->d_name);
+         int atom = atoi(dirp->d_name);
          if (atom > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file

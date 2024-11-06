@@ -134,7 +134,7 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE>& text_stream < FILE >::operator >>(i8& ch)
+//text_stream < FILE>& text_stream < FILE >::operator >>(char& ch)
 //{
 //
 //   m_gcount = m_pfile->read(&ch, 1);
@@ -197,7 +197,7 @@ public:
 //text_stream < FILE >& text_stream < FILE >::operator <<(uchar uch)
 //{
 //
-//   operator <<((u32)uch);
+//   operator <<((unsigned int)uch);
 //
 //   return *this;
 //
@@ -205,10 +205,10 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(i16 i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(short i)
 //{
 //
-//   operator <<((i32)i);
+//   operator <<((int)i);
 //
 //   return *this;
 //
@@ -216,10 +216,10 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(u16 u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned short u)
 //{
 //
-//   operator <<((u32)u);
+//   operator <<((unsigned int)u);
 //
 //   return *this;
 //
@@ -274,7 +274,7 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(i32 i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(int i)
 //{
 //
 //   print_number(as_string(i));
@@ -285,7 +285,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(u32 u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned int u)
 //{
 //
 //   print_number(as_string(u));
@@ -490,7 +490,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(i16& sh)
+//text_stream < FILE >& text_stream < FILE >::operator >>(short& sh)
 //{
 //
 //   m_pfile->read(&sh, sizeof(sh));
@@ -501,7 +501,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(u16& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned short& u)
 //{
 //
 //   m_pfile->read(&u, sizeof(u));
@@ -512,7 +512,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(i32& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(int& i)
 //{
 //
 //   number_read(i);
@@ -523,7 +523,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(u32& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned int& u)
 //{
 //
 //   number_read(u);

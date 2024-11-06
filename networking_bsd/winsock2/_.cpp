@@ -21,7 +21,7 @@ namespace networking_bsd
       {
 
          /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
-         ::u16 wVersionRequested = MAKEWORD(byteHi, byteLo);
+         unsigned short wVersionRequested = MAKEWORD(byteHi, byteLo);
 
          g_iWsaStartupError = WSAStartup(wVersionRequested, &g_wsadata);
 

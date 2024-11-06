@@ -117,10 +117,10 @@ struct CLASS_DECL_ACME oswindow_data
    }
 
 
-   i32 store_name(const ::scoped_string & scopedstr);
-   i32 select_input(i32 iInput);
-   i32 select_all_input();
-   i32 map_window();
+   int store_name(const ::scoped_string & scopedstr);
+   int select_input(int iInput);
+   int select_all_input();
+   int map_window();
 
    void set_impl(::windowing::window * pimpl);
    ::windowing::window * get_impl();
@@ -139,8 +139,8 @@ struct CLASS_DECL_ACME oswindow_data
    bool is_iconic();
    bool is_window_visible();
    bool show_window(::e_display edisplay);
-   LONG_PTR get_window_long_ptr(i32 nIndex);
-   LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
+   LONG_PTR get_window_long_ptr(int nIndex);
+   LONG_PTR set_window_long_ptr(int nIndex, LONG_PTR l);
    bool client_to_screen(POINT32 * lppoint);
    bool screen_to_client(POINT32 * lppoint);
 
@@ -170,11 +170,11 @@ struct CLASS_DECL_ACME oswindow_data
 
 
 // define portable types for 32-bit / 64-bit OS
-//typedef i32 int_bool;
+//typedef int int_bool;
 typedef unsigned char unsigned char;
-//typedef u16 ::u16;
-typedef u32 ::u32;
-//typedef i32 int;
+//typedef unsigned short unsigned short;
+typedef unsigned int unsigned int;
+//typedef int int;
 
 
 #undef

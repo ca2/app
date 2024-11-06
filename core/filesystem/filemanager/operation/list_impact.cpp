@@ -60,7 +60,7 @@ namespace filemanager
       if(psubitem->m_iSubItem == 0)
       {
 
-         psubitem->m_strText = get_document()->m_poperationthread->get_item_message((i32)psubitem->m_pitem->m_iItem);
+         psubitem->m_strText = get_document()->m_poperationthread->get_item_message((int)psubitem->m_pitem->m_iItem);
          
          psubitem->m_bOk = true;
 
@@ -70,7 +70,7 @@ namespace filemanager
          
          double d;
          
-         d = get_document()->m_poperationthread->get_item_progress((i32)psubitem->m_pitem->m_iItem);
+         d = get_document()->m_poperationthread->get_item_progress((int)psubitem->m_pitem->m_iItem);
 
          psubitem->m_strText.formatf("%0.1f%%",d * 100.0);
 
@@ -139,7 +139,7 @@ namespace filemanager
    }
 
 
-   void operation_list_impact::OnFileOperationStep(i32 iOperation,bool bFinal)
+   void operation_list_impact::OnFileOperationStep(int iOperation,bool bFinal)
    {
 
       __UNREFERENCED_PARAMETER(iOperation);
@@ -155,7 +155,7 @@ namespace filemanager
 
          ::collection::count iItem = 0;
 
-         for(i32 i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
+         for(int i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
          {
 
             iItem += get_document()->m_poperationthread->m_fileoperationa.get_size();

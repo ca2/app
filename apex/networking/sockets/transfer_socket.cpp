@@ -57,7 +57,7 @@ namespace sockets
    }
 
 
-   //bool transfer_socket_exception::GetErrorMessage(string & strError, P::u32 /*pnHelpContext = nullptr*/)
+   //bool transfer_socket_exception::GetErrorMessage(string & strError, Punsigned int /*pnHelpContext = nullptr*/)
    //{
    //   if (m_nError == 0)
    //   {
@@ -70,7 +70,7 @@ namespace sockets
    //   return true;
    //}
 
-   //string transfer_socket_exception::GetErrorMessage(P::u32 /*pnHelpContext = nullptr*/)
+   //string transfer_socket_exception::GetErrorMessage(Punsigned int /*pnHelpContext = nullptr*/)
    //{
    //   string str;
    //   GetErrorMessage(str);
@@ -314,7 +314,7 @@ namespace sockets
 
    //   int nBytesReceived = 0;
 
-   //   ::u32 tickStart= ::time::now();
+   //   unsigned int tickStart= ::time::now();
 
    //   int iRead = 0;
 

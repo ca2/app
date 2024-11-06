@@ -57,7 +57,7 @@ condition::condition()
          semctl_arg.val = 0;
       }
 
-      semctl((i32) m_hsync, 0, SETVAL, semctl_arg);
+      semctl((int) m_hsync, 0, SETVAL, semctl_arg);
 
    */
 
@@ -106,7 +106,7 @@ bool condition::SetEvent()
    sb.sem_num = 0;
    sb.sem_flg = SEM_UNDO;
 
-   return semop((i32)m_hsync, &sb, 1) == 0;
+   return semop((int)m_hsync, &sb, 1) == 0;
 
 #endif
 }
@@ -159,7 +159,7 @@ bool condition::pulse()
    sb.sem_num = 0;
    sb.sem_flg = SEM_UNDO;
 
-   return semop((i32)m_hsync, &sb, 1) == 0;
+   return semop((int)m_hsync, &sb, 1) == 0;
 
 #endif
 }
@@ -203,7 +203,7 @@ bool condition::pulse()
    sb.sem_num = 0;
    sb.sem_flg = 0;
 
-   int iError = semop((i32)m_hsync, &sb, 1);
+   int iError = semop((int)m_hsync, &sb, 1);
 
    if(iError != 0)
    {
@@ -252,7 +252,7 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   //u32 timeout = wait;
+   //unsigned int timeout = wait;
 
    pthread_mutex_lock(&m_mutex);
 
@@ -302,7 +302,7 @@ bool condition::pulse()
       sb.sem_num = 0;
       sb.sem_flg = IPC_NOWAIT;
 
-      i32 ret = semop((i32)m_hsync, &sb, 1);
+      int ret = semop((int)m_hsync, &sb, 1);
 
       if (ret < 0)
       {
@@ -403,7 +403,7 @@ bool condition::is_signaled() const
 //
 //#else
 //
-//   u32 timeout = timeTimeout.u32_millis();
+//   unsigned int timeout = timeTimeout.u32_millis();
 //
 //   auto start = ::time::now();
 //
@@ -420,7 +420,7 @@ bool condition::is_signaled() const
 //      sb.sem_num = 0;
 //      sb.sem_flg = IPC_NOWAIT;
 //
-//      i32 ret = semop((i32)m_hsync, &sb, 1);
+//      int ret = semop((int)m_hsync, &sb, 1);
 //
 //      if (ret < 0)
 //      {

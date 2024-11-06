@@ -28,7 +28,7 @@ namespace datetime
 #define IsLeapYear(y) (((y % 4) == 0) && (((y % 100) != 0) || ((y % 400) == 0)))
 
 /* Determine if a day is valid in a given month of a given year */
-static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
+static int_bool FLOATTIME_IsValidMonthDay(unsigned int day, unsigned int month, unsigned int year)
 {
   static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -51,16 +51,16 @@ static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 
 typedef struct tagDATEPARSE
 {
-    ::u32 dwCount;      /* Number of fields found so far (maximum 6) */
-    ::u32 dwParseFlags; /* Global parse flags (DP_ Flags above) */
-    ::u32 dwFlags[6];   /* Flags for each field */
-    ::u32 dwValues[6];  /* Value of each field */
+    unsigned int dwCount;      /* Number of fields found so far (maximum 6) */
+    unsigned int dwParseFlags; /* Global parse flags (DP_ Flags above) */
+    unsigned int dwFlags[6];   /* Flags for each field */
+    unsigned int dwValues[6];  /* Value of each field */
 } DATEPARSE;
 
 
 
 
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offset, SYSTEMTIME *st);
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, unsigned int iDate, unsigned int offset, SYSTEMTIME *st);
 
 /***********************************************************************
  *              SystemTimeToVariantTime [OLEAUT32.184]
@@ -218,7 +218,7 @@ static inline int32_t FLOATTIME_DateFromJulian(int32_t dateIn)
 }*/
 
 /* Convert Day/Month/Year to a Julian date - from PostgreSQL */
-static inline double FLOATTIME_JulianFromDMY(u16 year, u16 month, u16 day)
+static inline double FLOATTIME_JulianFromDMY(unsigned short year, unsigned short month, unsigned short day)
 {
   int32_t m12 = (month - 14) / 12;
 
@@ -244,7 +244,7 @@ static inline double FLOATTIME_JulianFromDMY(u16 year, u16 month, u16 day)
  *  This function uses the United States English locale for the conversion. Use
  *  VarDateFromUdateEx() for alternate locales.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, u32 dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwFlags, DATE *pDateOut)
 {
   LCID lcid = MAKELCID(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT);
 
@@ -267,7 +267,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, u32 dwFlags, DAT
  *  Success: S_OK. *pDateOut contains the converted value.
  *  Failure: E_INVALIDARG, if pUdateIn cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32 dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, unsigned int dwFlags, DATE *pDateOut)
 {
   UDATE ud;
   double dateVal, dateSign;
@@ -331,9 +331,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
  *  the date is invalid in that format, in which the most compatible format
  *  that produces a valid date will be used.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 dwFlags, DATE* pdateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, unsigned int dwFlags, DATE* pdateOut)
 {
-  static const u16 ParseDateTokens[] =
+  static const unsigned short ParseDateTokens[] =
   {
     LOCALE_SMONTHNAME1, LOCALE_SMONTHNAME2, LOCALE_SMONTHNAME3, LOCALE_SMONTHNAME4,
     LOCALE_SMONTHNAME5, LOCALE_SMONTHNAME6, LOCALE_SMONTHNAME7, LOCALE_SMONTHNAME8,
@@ -357,10 +357,10 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
   };
-  ::u32 i;
+  unsigned int i;
   BSTR tokens[sizeof(ParseDateTokens)/sizeof(ParseDateTokens[0])];
   DATEPARSE dp;
-  ::u32 dwDateSeps = 0, iDate = 0;
+  unsigned int dwDateSeps = 0, iDate = 0;
   HRESULT hRet = S_OK;
 
   if ((dwFlags & (VAR_TIMEVALUEONLY|VAR_DATEVALUEONLY)) ==
@@ -421,9 +421,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {
-//xxx        ::u32 dwLen = strlenW(tokens[i]);
-// xxx         ::u32 dwLen = strlen(tokens[i]);
-         ::u32 dwLen = -1;
+//xxx        unsigned int dwLen = strlenW(tokens[i]);
+// xxx         unsigned int dwLen = strlen(tokens[i]);
+         unsigned int dwLen = -1;
 //xxx        if (dwLen && !strncmpiW(strIn, tokens[i], dwLen))
         //if (dwLen && !strnicmp_dup(strIn, tokens[i], dwLen))
 //         if(dwLen && 0)
@@ -521,7 +521,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
   if (SUCCEEDED(hRet))
   {
     SYSTEMTIME st;
-    ::u32 dwOffset = 0; /* Start of date fields in dp.dwValues */
+    unsigned int dwOffset = 0; /* Start of date fields in dp.dwValues */
 
     st.wDayOfWeek = st.wHour = st.wMinute = st.wSecond = st.wMilliseconds = 0;
 
@@ -547,8 +547,8 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 2 && dp.dwCount != 4 && dp.dwCount != 5)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour = (::u16) dp.dwValues[0];
-      st.wMinute  = (::u16) dp.dwValues[1];
+      st.wHour = (unsigned short) dp.dwValues[0];
+      st.wMinute  = (unsigned short) dp.dwValues[1];
       dp.dwCount -= 2;
       dwOffset = 2;
       break;
@@ -560,9 +560,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 3 && dp.dwCount != 5 && dp.dwCount != 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (::u16) dp.dwValues[0];
-      st.wMinute = (::u16) dp.dwValues[1];
-      st.wSecond = (::u16) dp.dwValues[2];
+      st.wHour   = (unsigned short) dp.dwValues[0];
+      st.wMinute = (unsigned short) dp.dwValues[1];
+      st.wSecond = (unsigned short) dp.dwValues[2];
       dwOffset = 3;
       dp.dwCount -= 3;
       break;
@@ -572,15 +572,15 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
 
-      st.wHour = (::u16) dp.dwValues[2];
-      st.wMinute  = (::u16) dp.dwValues[3];
+      st.wHour = (unsigned short) dp.dwValues[2];
+      st.wMinute  = (unsigned short) dp.dwValues[3];
       dp.dwCount -= 2;
       break;
 
    case 0x0: /* T DD DDD TDDD TDDD */
       if (dp.dwCount == 1 && (dp.dwParseFlags & (DP_AM|DP_PM)))
       {
-        st.wHour = (::u16) dp.dwValues[0]; /* T */
+        st.wHour = (unsigned short) dp.dwValues[0]; /* T */
         dp.dwCount = 0;
         break;
       }
@@ -593,14 +593,14 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDD */
         {
           dp.dwCount = 2;
-          st.wHour = (::u16) dp.dwValues[0];
+          st.wHour = (unsigned short) dp.dwValues[0];
           dwOffset = 1;
           break;
         }
         if (dp.dwFlags[2] & (DP_AM|DP_PM)) /* DDT */
         {
           dp.dwCount = 2;
-          st.wHour = (::u16) dp.dwValues[2];
+          st.wHour = (unsigned short) dp.dwValues[2];
           break;
         }
         else if (dp.dwParseFlags & (DP_AM|DP_PM))
@@ -611,12 +611,12 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         dp.dwCount = 3;
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDDD */
         {
-          st.wHour = (::u16) dp.dwValues[0];
+          st.wHour = (unsigned short) dp.dwValues[0];
           dwOffset = 1;
         }
         else if (dp.dwFlags[3] & (DP_AM|DP_PM)) /* DDDT */
         {
-          st.wHour = (::u16) dp.dwValues[3];
+          st.wHour = (unsigned short) dp.dwValues[3];
         }
         else
           hRet = DISP_E_TYPEMISMATCH;
@@ -630,8 +630,8 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
            (dp.dwFlags[1] & (DP_AM|DP_PM)) || (dp.dwFlags[2] & (DP_AM|DP_PM)))) ||
            dp.dwCount == 4 || dp.dwCount == 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (::u16) dp.dwValues[3];
-      st.wMinute = (::u16) dp.dwValues[4];
+      st.wHour   = (unsigned short) dp.dwValues[3];
+      st.wMinute = (unsigned short) dp.dwValues[4];
       if (dp.dwCount == 5)
         dp.dwCount -= 2;
       break;
@@ -640,9 +640,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
       if (dp.dwCount != 5 ||
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (::u16) dp.dwValues[2];
-      st.wMinute = (::u16) dp.dwValues[3];
-      st.wSecond = (::u16) dp.dwValues[4];
+      st.wHour   = (unsigned short) dp.dwValues[2];
+      st.wMinute = (unsigned short) dp.dwValues[3];
+      st.wSecond = (unsigned short) dp.dwValues[4];
       dp.dwCount -= 3;
       break;
 
@@ -650,9 +650,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
       if ((dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)) ||
           (dp.dwFlags[2] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = (::u16) dp.dwValues[3];
-      st.wMinute = (::u16) dp.dwValues[4];
-      st.wSecond = (::u16) dp.dwValues[5];
+      st.wHour   = (unsigned short) dp.dwValues[3];
+      st.wMinute = (unsigned short) dp.dwValues[4];
+      st.wSecond = (unsigned short) dp.dwValues[5];
       dp.dwCount -= 3;
       break;
 
@@ -694,9 +694,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
 #define ORDER_MYD 0x10 /* Synthetic order, used only for funky 2 digit dates */
 
 /* Determine a date for a particular locale, from 3 numbers */
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offset, SYSTEMTIME *st)
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, unsigned int iDate, unsigned int offset, SYSTEMTIME *st)
 {
-  ::u32 dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
+  unsigned int dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
 
   if (!dp->dwCount)
   {
@@ -749,7 +749,7 @@ VARIANT_MakeDate_Start:
 
   while (dwAllOrders)
   {
-    ::u32 dwTemp;
+    unsigned int dwTemp;
 
     if (dwCount == 0)
     {
@@ -858,14 +858,14 @@ VARIANT_MakeDate_OK:
     st->wHour = 0;
 //xxx  informationf("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
 
-  st->wDay = (::u16) v1;
-  st->wMonth = (::u16) v2;
+  st->wDay = (unsigned short) v1;
+  st->wMonth = (unsigned short) v2;
   /* FIXME: For 2 digit dates, I'm not sure if 30 is hard coded or not. It may
    * be retrieved from:
    * HKCU\Control Panel\International\Calendars\TwoDigitYearMax
    * But Wine doesn't have/use that key as at the time of writing.
    */
-  st->wYear = (::u16) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
+  st->wYear = (unsigned short) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
 //xxx  informationf("Returning date %d/%d/%d\n", v1, v2, st->wYear);
   return S_OK;
 }
@@ -874,7 +874,7 @@ VARIANT_MakeDate_OK:
 #ifndef WINDOWS
 
 static inline int VARIANT_JulianFromDate(int dateIn);
-static inline void VARIANT_DMYFromJulian(int jd, u16 *year, u16 *month, u16 *day);
+static inline void VARIANT_DMYFromJulian(int jd, unsigned short *year, unsigned short *month, unsigned short *day);
 static HRESULT VARIANT_RollUdate(UDATE *lpUd);
 
 /* Convert a VT_DATE value to a Julian Date */
@@ -891,7 +891,7 @@ static inline int VARIANT_JulianFromDate(int dateIn)
 
 
 /* Convert a Julian date to Day/Month/Year - from PostgreSQL */
-static inline void VARIANT_DMYFromJulian(int jd, u16 *year, u16 *month, u16 *day)
+static inline void VARIANT_DMYFromJulian(int jd, unsigned short *year, unsigned short *month, unsigned short *day)
 {
   int j, i, l, n;
 
@@ -991,10 +991,10 @@ static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 *  Success: S_OK. *lpUdate contains the converted value.
 *  Failure: E_INVALIDARG, if dateIn is too large or small.
 */
-HRESULT WINAPI VarUdateFromDate(DATE dateIn, u32 dwFlags, UDATE *lpUdate)
+HRESULT WINAPI VarUdateFromDate(DATE dateIn, unsigned int dwFlags, UDATE *lpUdate)
 {
   /* Cumulative totals of days per month */
-  static const u16 cumulativeDays[] =
+  static const unsigned short cumulativeDays[] =
   {
     0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
   };
@@ -1155,13 +1155,13 @@ inline bool GetAsSystemTimeHelper(const posix_time& timeSrc, SYSTEMTIME& timeDes
     
 #endif
     
-    timeDest.wYear = (::u16) (1900 + ttm.tm_year);
-    timeDest.wMonth = (::u16) (1 + ttm.tm_mon);
-    timeDest.wDayOfWeek = (::u16) ttm.tm_wday;
-    timeDest.wDay = (::u16) ttm.tm_mday;
-    timeDest.wHour = (::u16) ttm.tm_hour;
-    timeDest.wMinute = (::u16) ttm.tm_min;
-    timeDest.wSecond = (::u16) ttm.tm_sec;
+    timeDest.wYear = (unsigned short) (1900 + ttm.tm_year);
+    timeDest.wMonth = (unsigned short) (1 + ttm.tm_mon);
+    timeDest.wDayOfWeek = (unsigned short) ttm.tm_wday;
+    timeDest.wDay = (unsigned short) ttm.tm_mday;
+    timeDest.wHour = (unsigned short) ttm.tm_hour;
+    timeDest.wMinute = (unsigned short) ttm.tm_min;
+    timeDest.wSecond = (unsigned short) ttm.tm_sec;
     timeDest.wMilliseconds = 0;
     
     return true;

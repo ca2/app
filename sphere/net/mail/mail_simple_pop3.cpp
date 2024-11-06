@@ -38,17 +38,17 @@ namespace mail
       return m_strTransaction;
    }
 
-   void simple_pop3::set_stat_count(i32 iCount)
+   void simple_pop3::set_stat_count(int iCount)
    {
       m_iStatCount = iCount;
    }
 
-   void simple_pop3::set_stat_size(i32 iSize)
+   void simple_pop3::set_stat_size(int iSize)
    {
       m_iStatSize = iSize;
    }
 
-   void simple_pop3::set_list_size(i32 iSize)
+   void simple_pop3::set_list_size(int iSize)
    {
       m_iListSize = iSize;
    }

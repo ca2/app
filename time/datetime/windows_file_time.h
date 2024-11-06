@@ -9,11 +9,11 @@ namespace windows
    {
 
 
-      bool DosTimeToFileTime(::u32 dosTime, FILETIME & fileTime);
-      bool FileTimeToDosTime(const FILETIME & fileTime, ::u32 & dosTime);
-      void UnixTimeToFileTime(::u32 unixTime, FILETIME & fileTime);
-      bool FileTimeToUnixTime(const FILETIME & fileTime, ::u32 & unixTime);
-      bool GetSecondsSince1601(::u32 year, ::u32 month, ::u32 day, ::u32 hour, ::u32 minimum, ::u32 sec, uint64_t &resSeconds);
+      bool DosTimeToFileTime(unsigned int dosTime, FILETIME & fileTime);
+      bool FileTimeToDosTime(const FILETIME & fileTime, unsigned int & dosTime);
+      void UnixTimeToFileTime(unsigned int unixTime, FILETIME & fileTime);
+      bool FileTimeToUnixTime(const FILETIME & fileTime, unsigned int & unixTime);
+      bool GetSecondsSince1601(unsigned int year, unsigned int month, unsigned int day, unsigned int hour, unsigned int minimum, unsigned int sec, uint64_t &resSeconds);
 
 #if defined(WINDOWS)
 

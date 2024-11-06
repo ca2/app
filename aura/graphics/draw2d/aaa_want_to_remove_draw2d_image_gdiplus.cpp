@@ -30,9 +30,9 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   ::u32 uWidth;
+   unsigned int uWidth;
 
-   ::u32 uHeight;
+   unsigned int uHeight;
 
    hr = piBmp->GetSize(&uiWidth, &uiHeight);
 
@@ -61,7 +61,7 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   ::u32 cbStride;
+   unsigned int cbStride;
 
    piLock->GetStride(&cbStride);
 
@@ -72,7 +72,7 @@ bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource *
 
    }
 
-   ::u32 uArea;
+   unsigned int uArea;
 
    unsigned char * pData;
 
@@ -133,7 +133,7 @@ bool imaging::load_image(::particle * pparticle, ::image::image *pimage, const :
 
       }
 
-      hr = piStream->InitializeFromMemory(mem.get_data(), (::u32) mem.get_size());
+      hr = piStream->InitializeFromMemory(mem.get_data(), (unsigned int) mem.get_size());
 
       if (FAILED(hr))
       {
@@ -273,7 +273,7 @@ throw ::interface_only();
 
 ::aura::Resource resource;
 
-if(!resource.ReadResource(*file.get_memory(), (::u32) MAKEINTRESOURCE(pszId), pszType))
+if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(pszId), pszType))
 
 return false;
 
@@ -442,8 +442,8 @@ bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_ima
    comptr < IPropertyBag2 > pPropertybag = nullptr;
 
    comptr < IWICStream > piStream = nullptr;
-   ::u32 uWidth = pimage->width();
-   ::u32 uHeight = pimage->height();
+   unsigned int uWidth = pimage->width();
+   unsigned int uHeight = pimage->height();
 
    HRESULT hr = CoCreateInstance(
                 CLSID_WICImagingFactory,

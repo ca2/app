@@ -36,7 +36,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_BOOT unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -54,7 +54,7 @@ CLASS_DECL_BOOT u32 call_sync(const ::file::path & path, const ::scoped_string &
 
    ::ShellExecuteExA(&infoa);
 
-   ::u32 dwExitCode;
+   unsigned int dwExitCode;
 
    int iTry = 0;
 
@@ -155,12 +155,12 @@ int get_current_process_affinity_order()
 
 #ifdef WINDOWS_DESKTOP
 
-bool process_modules(string_array & stra, ::u32 processID)
+bool process_modules(string_array & stra, unsigned int processID)
 {
 
    HANDLE hProcess;
 
-   ::u32 cbNeeded;
+   unsigned int cbNeeded;
 
    unsigned int i;
 

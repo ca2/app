@@ -19,7 +19,7 @@ namespace xml
       bool                 m_bReferenceValue;   // do convert from entity to object ( < -> &lt; )
       char                 m_chQuote;           // val="" (default value quotation mark "
       ::pointer<entities> m_pentities;         // entity table for entity encode
-      i32                  m_iTabBase;          // internal usage
+      int                  m_iTabBase;          // internal usage
       
       
       disp_option(entities * pentities);

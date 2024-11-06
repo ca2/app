@@ -19,7 +19,7 @@ namespace filemanager
    }
 
 
-   void context_menu::GetMessageString(::u32 nID, string &rstrMessage)
+   void context_menu::GetMessageString(unsigned int nID, string &rstrMessage)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -50,7 +50,7 @@ namespace filemanager
    }
 
 
-   void context_menu::GetVerb(::u32 nID, string & rwstrMessage)
+   void context_menu::GetVerb(unsigned int nID, string & rwstrMessage)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -81,7 +81,7 @@ namespace filemanager
    }
 
 
-   void context_menu::OnCommand(::u32 uId)
+   void context_menu::OnCommand(unsigned int uId)
    {
 #ifdef WINDOWS_DESKTOP
       //if(m_pcontextmenu.is_null())

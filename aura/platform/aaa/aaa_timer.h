@@ -37,7 +37,7 @@ public:
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
-         sleep(::u32(uWait / 1000000LL));
+         sleep(unsigned int(uWait / 1000000LL));
 
       }
       else
@@ -127,7 +127,7 @@ public:
    bool                                m_bPeriodic;
    void *                              m_pvoidData;
    bool                                m_bRunning;
-   ::u32                               m_dwMillis;
+   unsigned int                               m_dwMillis;
    ::user::interaction *               m_puserinteraction;
    bool                                m_bHandling;
 

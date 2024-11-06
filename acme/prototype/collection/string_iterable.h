@@ -200,14 +200,14 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
    }
    else if (payload.get_type() == ::type_vara)
    {
-      for (i32 i = 0; i < payload.payloada().get_count(); i++)
+      for (int i = 0; i < payload.payloada().get_count(); i++)
       {
          add((Type) payload.payloada()[i].get_string());
       }
    }
    else if (payload.get_type() == ::e_type_i32_array)
    {
-      for (i32 i = 0; i < payload.inta().get_count(); i++)
+      for (int i = 0; i < payload.inta().get_count(); i++)
       {
          add((Type) as_string(payload.inta()[i]));
       }

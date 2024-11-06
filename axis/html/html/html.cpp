@@ -254,7 +254,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) unicode_index(psz);
+         int iChar = (int) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -306,7 +306,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) unicode_index(psz);
+         int iChar = (int) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -344,7 +344,7 @@ namespace html
    }
 
 
-   i32 html::resolve_entity(const ::string & pszEntity, string& strChar)
+   int html::resolve_entity(const ::string & pszEntity, string& strChar)
    {
 
       return m_pentitysolver->resolveEntity(pszEntity, strChar);

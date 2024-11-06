@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-//::u32 get_last_error()
+//unsigned int get_last_error()
 //{
 //   
-//   return ::get_task()->payload("last_error").u32();
+//   return ::get_task()->payload("last_error").unsigned int();
 //   
 //}
 //
 //   
-//void set_last_error(::u32 uLastError)
+//void set_last_error(unsigned int uLastError)
 //{
 //   
 //   ::get_task()->payload("last_error") = uLastError;
@@ -20,7 +20,7 @@
 
 //
 //
-//void sleep(::u32 dwMillis)
+//void sleep(unsigned int dwMillis)
 //{
 //    
 //    timespec ts;

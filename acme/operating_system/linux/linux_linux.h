@@ -19,7 +19,7 @@
 
 
 
-//::u32 get_tick();
+//unsigned int get_tick();
 
 
 
@@ -34,7 +34,7 @@ CLASS_DECL_ACME void get_last_status();
 CLASS_DECL_ACME void set_last_status(::e_status estatus);
 
 
-CLASS_DECL_ACME bool _istlead(i32 ch);
+CLASS_DECL_ACME bool _istlead(int ch);
 
 
 

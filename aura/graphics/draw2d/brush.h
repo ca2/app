@@ -47,9 +47,9 @@ namespace draw2d
 
       virtual bool CreatePatternBrush(::image::image *pimage, const ::size_f64 & size = {});
 //#ifdef WINDOWS
-//      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage);
+//      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, unsigned int nUsage);
 //#endif
-      virtual bool CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage);
+      virtual bool CreateDIBPatternBrush(const void * pPackedDIB, unsigned int nUsage);
 
       virtual bool CreateSysColorBrush(int nIndex);
 

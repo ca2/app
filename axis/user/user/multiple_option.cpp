@@ -703,7 +703,7 @@ namespace user
 //   { ASSERT(false); }
 //   void multiple_option::MeasureItem(LPMEASUREITEMSTRUCT)
 //   { ASSERT(false); }
-//   i32 multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
+//   int multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
 //   { ASSERT(false); return 0; }
 //   void multiple_option::DeleteItem(LPDELETEITEMSTRUCT)
 //   { /* default to nothing */ }
@@ -770,7 +770,7 @@ namespace user
 
       //ASSERT(is_window());
 
-      //return (i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
+      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
       //auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
       //return iIndex;

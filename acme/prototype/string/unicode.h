@@ -27,35 +27,35 @@ string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_char
 string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
 CLASS_DECL_ACME utf8_character         unicode_to_utf8(i64 ch);
 CLASS_DECL_ACME strsize        unicode_to_utf8_length(i64 ch);
-i32            unicode_to_utf8_2_or_more(::ansi_character * dest, i32 ch);
+int            unicode_to_utf8_2_or_more(::ansi_character * dest, int ch);
 
 
 CLASS_DECL_ACME const ::ansi_character * utf8_dec(const ::ansi_character * pszBeg, const ::ansi_character * psz);
 
 
-//inline i32 unicode_index(const ::ansi_character *& input, strsize * psrclen);
-//inline i32 unicode_index(const ::wd16_character *& input, strsize * psrclen);
-//inline i32 unicode_index(const ::wd32_character *& input, strsize * psrclen);
+//inline int unicode_index(const ::ansi_character *& input, strsize * psrclen);
+//inline int unicode_index(const ::wd16_character *& input, strsize * psrclen);
+//inline int unicode_index(const ::wd32_character *& input, strsize * psrclen);
 
 
 // return Unicode Index and
 // number of characters need to be consumed to parse a Unicode Character
-inline i32 unicode_index_length(const ::ansi_character * pszChar, i32 & len);
-inline i32 unicode_index_length(const ::wd16_character * pszChar, i32 & len);
-inline i32 unicode_index_length(const ::wd32_character * pszChar, i32 & len) { len = *pszChar != 0; return *pszChar; }
+inline int unicode_index_length(const ::ansi_character * pszChar, int & len);
+inline int unicode_index_length(const ::wd16_character * pszChar, int & len);
+inline int unicode_index_length(const ::wd32_character * pszChar, int & len) { len = *pszChar != 0; return *pszChar; }
 
 
-inline i32 consume_unicode_index_length(const ::ansi_character * & pszChar);
-inline i32 consume_unicode_index_length(const ::wd16_character * & pszChar);
-inline i32 consume_unicode_index_length(const ::wd32_character * & pszChar) { return *pszChar++; }
+inline int consume_unicode_index_length(const ::ansi_character * & pszChar);
+inline int consume_unicode_index_length(const ::wd16_character * & pszChar);
+inline int consume_unicode_index_length(const ::wd32_character * & pszChar) { return *pszChar++; }
 
 
-inline i32 unicode_index(const ::ansi_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
-inline i32 unicode_index(const ::wd16_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
-inline i32 unicode_index(const ::wd32_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
+inline int unicode_index(const ::ansi_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
+inline int unicode_index(const ::wd16_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
+inline int unicode_index(const ::wd32_character * pszChar) { int len = 0; return unicode_index_length(pszChar, len); }
 
 
-inline bool is_legal_unicode_index(i32 iUnicodeIndex);
+inline bool is_legal_unicode_index(int iUnicodeIndex);
 
 
 CLASS_DECL_ACME int unicode_to_lower_case(int i);
@@ -101,10 +101,10 @@ UNI_IMPLEMENT_IS_FUNCTION(unicode_is_mirrored);
 
 
 inline int unicode_to_title_case(int i);
-inline i32 unicode_to_numeric_value(i32 i, float * f);
-inline ECharCategory unicode_get_category(i32 i);
-inline i32 unicode_get_combining_class(i32 i);
-inline i32 unicode_size_of_tables();
+inline int unicode_to_numeric_value(int i, float * f);
+inline ECharCategory unicode_get_category(int i);
+inline int unicode_get_combining_class(int i);
+inline int unicode_size_of_tables();
 
 
 CLASS_DECL_ACME int unicode_to_lower_case(int i);
@@ -120,7 +120,7 @@ CLASS_DECL_ACME int unicode_to_upper_case(int i);
 //inline const CHARACTER * string_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockCharacters) noexcept;
 
 
-inline i32 ansichar_unicode_len(::wd32_character i);
+inline int ansichar_unicode_len(::wd32_character i);
 
 
 
@@ -324,30 +324,30 @@ inline bool is_trimmed_empty(const ::wd32_character * p) { return is_trimmed_str
 #pragma
 
 // return number of characters need to be consumed to parse a Unicode Character
-inline i32 unicode_len(const ::ansi_character * pszChar);
-inline i32 unicode_len(const ::wd16_character * pszChar) { return utf16_is_1st_surrogate(*pszChar) ? 2 : 1; }
-inline i32 unicode_len(const ::wd32_character * pszChar) { return 1; }
+inline int unicode_len(const ::ansi_character * pszChar);
+inline int unicode_len(const ::wd16_character * pszChar) { return utf16_is_1st_surrogate(*pszChar) ? 2 : 1; }
+inline int unicode_len(const ::wd32_character * pszChar) { return 1; }
 
 
-inline i32 ansichar_unicode_len(::wd32_character i);
-inline i32 wd16char_unicode_len(::wd32_character i) { return utf32_is_surrogated(i) ? 2 : 1; }
-inline i32 wd32char_unicode_len(::wd32_character i) { return 1; }
+inline int ansichar_unicode_len(::wd32_character i);
+inline int wd16char_unicode_len(::wd32_character i) { return utf32_is_surrogated(i) ? 2 : 1; }
+inline int wd32char_unicode_len(::wd32_character i) { return 1; }
 
 // return number of characters needed to represent the Unicode Character
-inline i32 char_unicode_len(const ::ansi_character *, ::wd32_character i) { return ansichar_unicode_len(i); }
-inline i32 char_unicode_len(const ::wd16_character *, ::wd32_character i) { return wd16char_unicode_len(i); }
-inline i32 char_unicode_len(const ::wd32_character *, ::wd32_character i) { return wd32char_unicode_len(i); }
+inline int char_unicode_len(const ::ansi_character *, ::wd32_character i) { return ansichar_unicode_len(i); }
+inline int char_unicode_len(const ::wd16_character *, ::wd32_character i) { return wd16char_unicode_len(i); }
+inline int char_unicode_len(const ::wd32_character *, ::wd32_character i) { return wd32char_unicode_len(i); }
 
 
 
 
 
-inline bool unicode_is_whitespace(i32 i);
-inline bool unicode_is_space_char(i32 i);
-inline i32 unicode_to_lower_case(i32 i);
-inline i32 unicode_to_upper_case(i32 i);
-inline i32 unicode_to_title_case(i32 i);
-inline i32 unicode_to_numeric_value(i32 i, float * f);
+inline bool unicode_is_whitespace(int i);
+inline bool unicode_is_space_char(int i);
+inline int unicode_to_lower_case(int i);
+inline int unicode_to_upper_case(int i);
+inline int unicode_to_title_case(int i);
+inline int unicode_to_numeric_value(int i, float * f);
 
 
 inline bool unicode_is_lower_case(int iUniIndex);
@@ -366,17 +366,17 @@ inline bool unicode_is_space_char(int iUniIndex);
 bool unicode_is_number(const ::scoped_string & scopedstrUtf8Char);
 //       bool to_numeric_value(const ::scoped_string & scopedstrUtf8Char, float *f);
 
-inline ECharCategory unicode_get_category(i32 i);
-inline i32 unicode_get_combining_class(i32 i);
-inline bool unicode_is_mirrored(i32 i);
+inline ECharCategory unicode_get_category(int i);
+inline int unicode_get_combining_class(int i);
+inline bool unicode_is_mirrored(int i);
 
 string unicode_get_category_name(const ::scoped_string & scopedstrUtf8Char);
 ECharCategory unicode_get_category(const ::scoped_string & scopedstrUtf8Char);
 
-i32 unicode_get_combining_class(const ::scoped_string & scopedstrUtf8Char);
+int unicode_get_combining_class(const ::scoped_string & scopedstrUtf8Char);
 bool unicode_is_mirrored(const ::scoped_string & scopedstrUtf8Char);
 
-i32 unicode_size_of_tables();
+int unicode_size_of_tables();
 
 
 inline  bool unicode_is_kanji(i64 i) { return i >= 0x4E00 && i <= 0x9FBF; }
@@ -392,8 +392,8 @@ inline  bool unicode_is_japanese(const ::ansi_character * pszUtf8) { return unic
 void * unicode_char_bidi_names_non_usage_warning();
 
 
-i32 unicode_ref_tables();
-const char * unicode_get_category_name(i32 i);
+int unicode_ref_tables();
+const char * unicode_get_category_name(int i);
 
 
 //template < typename POINTER >

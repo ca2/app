@@ -44,7 +44,7 @@ public:
 //#elif defined(MUTEX_NAMED_VSEM)
 //
 //   key_t                   m_key;
-//   i32                     m_semid;
+//   int                     m_semid;
 //
 //#endif
 //
@@ -60,7 +60,7 @@ public:
 //#elif defined(MUTEX_NAMED_FD)
 //   mutex(enum_create_new ecreatenew, const char * pstrName, int iFd, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_VSEM)
-//   mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, i32 semid, bool bOwner = true);
+//   mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, int semid, bool bOwner = true);
 //#endif
    //mutex(::particle * pparticle, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
    //mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);

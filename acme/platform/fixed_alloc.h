@@ -23,17 +23,17 @@ public:
    };
 
    ::heap::allocator * m_pallocator;
-   ::u32 m_nAllocSize;   // size_i32 of each block from Alloc
-   ::u32 m_nBlockSize;   // number of blocks to get at a time
+   unsigned int m_nAllocSize;   // size_i32 of each block from Alloc
+   unsigned int m_nBlockSize;   // number of blocks to get at a time
    ::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
-   fixed_alloc_no_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc_no_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
    ~fixed_alloc_no_sync();
 
 
-   ::u32 GetAllocSize() { return m_nAllocSize; }
+   unsigned int GetAllocSize() { return m_nAllocSize; }
 
 
    inline void * Alloc();  // return a chunk of memory of nAllocSize
@@ -77,13 +77,13 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   i32                                       m_i;
-   i32                                       m_iShareCount;
+   int                                       m_i;
+   int                                       m_iShareCount;
    ::array < ::critical_section >            m_criticalsectiona;
    address_array < fixed_alloc_no_sync * >   m_allocptra;
 
 
-   fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64, i32 iShareCount = 2);
+   fixed_alloc_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64, int iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -103,12 +103,12 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   i32                                         m_i;
-   i32                                         m_iShareCount;
+   int                                         m_i;
+   int                                         m_iShareCount;
    address_array < fixed_alloc_sync * >            m_allocptra;
 
 
-   fixed_alloc(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
    ~fixed_alloc();
 
 
@@ -151,8 +151,8 @@ public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const char *, i32) { return s_palloc->Alloc(); } \
-   void operator delete(void * p, const char *, i32) { s_palloc->Free(p); } \
+   void * operator new(size_t, const char *, int) { return s_palloc->Alloc(); } \
+   void operator delete(void * p, const char *, int) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
 

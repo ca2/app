@@ -1361,7 +1361,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   ::u32 window::ArrangeIconicWindows()
+   unsigned int window::ArrangeIconicWindows()
    {
 
       throw ::interface_only();
@@ -1551,7 +1551,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   //bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    //{
 
    //   throw ::interface_only();
@@ -1666,7 +1666,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   ::windowing::window * window::get_next_window(::u32 nFlag)
+   ::windowing::window * window::get_next_window(unsigned int nFlag)
    {
 
       throw ::interface_only();
@@ -1686,7 +1686,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   ::windowing::window * window::get_window(::u32 nCmd)
+   ::windowing::window * window::get_window(unsigned int nCmd)
    {
 
       throw ::interface_only();
@@ -2024,7 +2024,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-   void window::on_redraw_window(::u32 flags)
+   void window::on_redraw_window(unsigned int flags)
    {
 
    }
@@ -2257,7 +2257,7 @@ m_puserinteraction = m_pacmeuserinteraction;
 
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
                                      const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                     ::e_display edisplay, ::u32 nOverrideFlags)
+                                     ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
       return true;
@@ -3552,7 +3552,7 @@ bMove = false;
 //#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
 //
 //
-//    ::windowing::window * window::GetAncestor(::u32 gaFlags) const
+//    ::windowing::window * window::GetAncestor(unsigned int gaFlags) const
 //    {
 //
 //       __UNREFERENCED_PARAMETER(gaFlags);
@@ -3564,7 +3564,7 @@ bMove = false;
 //    }
 //
 //
-//    //void window::AnimateWindow(::time ::time,u32 dwFlags)
+//    //void window::AnimateWindow(::time ::time,unsigned int dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(::time);
 //    //   __UNREFERENCED_PARAMETER(dwFlags);
@@ -3572,7 +3572,7 @@ bMove = false;
 //    //   return false;
 //    //}
 //
-//    //void window::FlashWindowEx(u32 dwFlags,::u32 uCount,::time tickTimeout)
+//    //void window::FlashWindowEx(unsigned int dwFlags,unsigned int uCount,::time tickTimeout)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(dwFlags);
 //    //   __UNREFERENCED_PARAMETER(uCount);
@@ -3581,7 +3581,7 @@ bMove = false;
 //    //   return false;
 //    //}
 //
-//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,u32 dwFlags)
+//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,unsigned int dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(crKey);
 //    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -3591,7 +3591,7 @@ bMove = false;
 //    //}
 //
 //    //void window::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::point_i32 * pptDst,::size_i32 * psize,
-//    //      ::draw2d::graphics * pDCSrc,::point_i32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
+//    //      ::draw2d::graphics * pDCSrc,::point_i32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,unsigned int dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pDCDst);
 //    //   __UNREFERENCED_PARAMETER(pptDst);
@@ -3607,7 +3607,7 @@ bMove = false;
 //    //}
 //
 //
-//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,u32 * pdwFlags) const
+//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,unsigned int * pdwFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pcrKey);
 //    //   __UNREFERENCED_PARAMETER(pbAlpha);
@@ -3617,7 +3617,7 @@ bMove = false;
 //    //   return false;
 //    //}
 //
-//    //void window::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
+//    //void window::PrintWindow(::draw2d::graphics_pointer & pgraphics,unsigned int nFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pgraphics);
 //    //   __UNREFERENCED_PARAMETER(nFlags);
@@ -5047,7 +5047,7 @@ bMove = false;
 
 
    bool
-      window::__windows_message_bypass(::windowing::window * pwindow, ::u32 message, wparam wparam, lparam lparam,
+      window::__windows_message_bypass(::windowing::window * pwindow, unsigned int message, wparam wparam, lparam lparam,
                                                  lresult & lresult)
    {
 
@@ -6463,7 +6463,7 @@ bMove = false;
    }
 
 
-   //int window::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
+   //int window::message_box(const ::string & pszText, const ::string & pszCaption,unsigned int nType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pszText);
@@ -6560,7 +6560,7 @@ bMove = false;
 //   }
 //
 //
-//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
+//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,unsigned int nMask)
 //
 //   {
 //
@@ -6602,7 +6602,7 @@ bMove = false;
    //}
 
 
-   //void window::CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType)
+   //void window::CalcWindowRect(::rectangle_i32 * pClientRect,unsigned int nAdjustType)
    //{
 
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -6616,7 +6616,7 @@ bMove = false;
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool window::HandleFloatingSysCommand(::u32 nID, lparam lParam)
+   bool window::HandleFloatingSysCommand(unsigned int nID, lparam lParam)
    {
 
       __UNREFERENCED_PARAMETER(nID);
@@ -6676,7 +6676,7 @@ bMove = false;
    //      throw ::interface_only();
    //   }
    //
-   //   void window::OnSettingChange(::u32 uFlags, const ::string & pszSection)
+   //   void window::OnSettingChange(unsigned int uFlags, const ::string & pszSection)
 
    //   {
    //      __UNREFERENCED_PARAMETER(uFlags);
@@ -6716,13 +6716,13 @@ bMove = false;
    //      throw ::interface_only();
    //   }
 
-   /*   void window::OnHScroll(::u32, ::u32, CScrollBar* pScrollBar)
+   /*   void window::OnHScroll(unsigned int, unsigned int, CScrollBar* pScrollBar)
    {
    __UNREFERENCED_PARAMETER(pScrollBar);
    throw ::interface_only();
    }
 
-   void window::OnVScroll(::u32, ::u32, CScrollBar* pScrollBar)
+   void window::OnVScroll(unsigned int, unsigned int, CScrollBar* pScrollBar)
    {
    __UNREFERENCED_PARAMETER(pScrollBar);
    throw ::interface_only();
@@ -6753,12 +6753,12 @@ bMove = false;
       throw ::interface_only();
    }
 
-   //void window::OnEnterIdle(::u32 /*nWhy*/,::windowing::window * /*pWho*/)
+   //void window::OnEnterIdle(unsigned int /*nWhy*/,::windowing::window * /*pWho*/)
    //{
    //   throw ::interface_only();
    //}
 
-   //void * window::OnCtlColor(::draw2d::graphics *,::windowing::window * pwindow,::u32)
+   //void * window::OnCtlColor(::draw2d::graphics *,::windowing::window * pwindow,unsigned int)
    //{
    //   __UNREFERENCED_PARAMETER(pwindow);
    //   throw ::interface_only();
@@ -6845,7 +6845,7 @@ bMove = false;
 
    //}
 
-   //void window::SubclassDlgItem(::u32 nID,::windowing::window * pParent)
+   //void window::SubclassDlgItem(unsigned int nID,::windowing::window * pParent)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(pParent);
@@ -7083,7 +7083,7 @@ bMove = false;
    //}
 
 
-   //u32 window::GetStyle() const
+   //unsigned int window::GetStyle() const
    //{
 
    //   return ::windowing::window_base::GetStyle();
@@ -7091,7 +7091,7 @@ bMove = false;
    //}
 
 
-   //u32 window::GetExStyle() const
+   //unsigned int window::GetExStyle() const
    //{
 
    //   return ::windowing::window_base::GetExStyle();
@@ -7099,7 +7099,7 @@ bMove = false;
    //}
 
 
-   //void window::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void window::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
    //{
 
    //   if (!_is_window())
@@ -7109,7 +7109,7 @@ bMove = false;
 
    //   }
 
-   //   ::u32 dw = get_window_long(GWL_STYLE);
+   //   unsigned int dw = get_window_long(GWL_STYLE);
 
    //   dw &= ~dwRemove;
 
@@ -7122,7 +7122,7 @@ bMove = false;
    //}
 
 
-   //void window::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //void window::ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
    //{
 
    //   if (!_is_window())
@@ -7132,7 +7132,7 @@ bMove = false;
 
    //   }
 
-   //   ::u32 dw = get_window_long(GWL_EXSTYLE);
+   //   unsigned int dw = get_window_long(GWL_EXSTYLE);
 
    //   dw &= ~dwRemove;
 
@@ -7395,7 +7395,7 @@ bMove = false;
    }
 
 
-   //::u32 window::ArrangeIconicWindows()
+   //unsigned int window::ArrangeIconicWindows()
    //{
 
    //   throw ::interface_only();
@@ -7406,7 +7406,7 @@ bMove = false;
 
 
    void
-      window::MapWindowPoints(::windowing::window * puserinteractionTo, ::point_i32 * pPoint, ::u32 nCount)
+      window::MapWindowPoints(::windowing::window * puserinteractionTo, ::point_i32 * pPoint, unsigned int nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -7524,7 +7524,7 @@ bMove = false;
    //}
 
 
-   /*::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip,u32 flags)
+   /*::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip,unsigned int flags)
    {
       __UNREFERENCED_PARAMETER(prgnClip);
       __UNREFERENCED_PARAMETER(flags);
@@ -7836,7 +7836,7 @@ bMove = false;
 
 
    bool
-      window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+      window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -7846,7 +7846,7 @@ bMove = false;
    }
 
 
-   //void window::EnableScrollBar(int nSBFlags,::u32 nArrowFlags)
+   //void window::EnableScrollBar(int nSBFlags,unsigned int nArrowFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(nSBFlags);
@@ -7934,7 +7934,7 @@ bMove = false;
    //}
 
 
-   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags)
+   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,unsigned int uFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -7994,7 +7994,7 @@ bMove = false;
    //}
 
 
-   //void window::CheckDlgButton(int nIDButton,::u32 nCheck)
+   //void window::CheckDlgButton(int nIDButton,unsigned int nCheck)
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   __UNREFERENCED_PARAMETER(nCheck);
@@ -8009,7 +8009,7 @@ bMove = false;
    //   throw ::interface_only();
    //}
 
-   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,::u32 nFileType)
+   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,unsigned int nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8021,7 +8021,7 @@ bMove = false;
    //   return 0;
    //}
 
-   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,::u32 nFileType)
+   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,unsigned int nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8058,7 +8058,7 @@ bMove = false;
    //   return false;
    //}
 
-   //::u32 window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
+   //unsigned int window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8109,7 +8109,7 @@ bMove = false;
    //}
 
 
-   //::u32 window::IsDlgButtonChecked(int nIDButton) const
+   //unsigned int window::IsDlgButtonChecked(int nIDButton) const
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   throw ::interface_only();
@@ -8118,7 +8118,7 @@ bMove = false;
    //}
 
 
-   //lparam window::SendDlgItemMessage(int nID, ::u32 message, wparam wParam,lparam lParam)
+   //lparam window::SendDlgItemMessage(int nID, unsigned int message, wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8132,7 +8132,7 @@ bMove = false;
    //}
 
 
-   //void window::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
+   //void window::SetDlgItemInt(int nID,unsigned int nValue,bool bSigned)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(nValue);
@@ -8153,7 +8153,7 @@ bMove = false;
    //int window::ScrollWindowEx(int Δx,int Δy,
    //                                     const ::rectangle_i32 * prectScroll,
    //                                       const ::rectangle_i32 * prectClip,
-   //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,::u32 flags)
+   //                                     ::draw2d::region* prgnUpdate,::rectangle_i32 * pRectUpdate,unsigned int flags)
    //{
 
    //   __UNREFERENCED_PARAMETER(Δx);
@@ -8171,7 +8171,7 @@ bMove = false;
    //}
 
 
-   //void window::ShowScrollBar(::u32 nBar,bool bShow)
+   //void window::ShowScrollBar(unsigned int nBar,bool bShow)
    //{
 
    //   __UNREFERENCED_PARAMETER(nBar);
@@ -8194,7 +8194,7 @@ bMove = false;
    }
 
 
-   ::user::interaction * window::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
+   ::user::interaction * window::ChildWindowFromPoint(const ::point_i32 & point, unsigned int nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -8208,7 +8208,7 @@ bMove = false;
    }
 
 
-   //   ::user::interaction * window::get_next_window(::u32 nFlag)
+   //   ::user::interaction * window::get_next_window(unsigned int nFlag)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(nFlag);
@@ -8337,7 +8337,7 @@ bMove = false;
    //}
 
 
-   //void window::SendNotifyMessage(::u32 message,wparam wParam,lparam lParam)
+   //void window::SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(message);
@@ -8351,7 +8351,7 @@ bMove = false;
    //}
 
 
-   void window::Print(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const
+   void window::Print(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8362,7 +8362,7 @@ bMove = false;
    }
 
 
-   void window::PrintClient(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const
+   void window::PrintClient(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8373,7 +8373,7 @@ bMove = false;
    }
 
 
-   //void window::SetWindowContextHelpId(u32 dwContextHelpId)
+   //void window::SetWindowContextHelpId(unsigned int dwContextHelpId)
    //{
 
    //   __UNREFERENCED_PARAMETER(dwContextHelpId);
@@ -8385,7 +8385,7 @@ bMove = false;
    //}
 
 
-   //u32 window::GetWindowContextHelpId() const
+   //unsigned int window::GetWindowContextHelpId() const
    //{
 
    //   throw ::interface_only();
@@ -8887,7 +8887,7 @@ bMove = false;
    //}
 
 
-   //void window::_EnableToolTips(bool bEnable,::u32 nFlag)
+   //void window::_EnableToolTips(bool bEnable,unsigned int nFlag)
    //{
 
    //   __UNREFERENCED_PARAMETER(bEnable);
@@ -11410,7 +11410,7 @@ bMove = false;
    //
    //      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
    //
-   //      //::u32 uFlags = 0;
+   //      //unsigned int uFlags = 0;
    //
    //      //bool bLayered = GetExStyle() & WS_EX_LAYERED;
    //
@@ -13332,7 +13332,7 @@ bMove = false;
    //   }
 
 
-      //void window::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
+      //void window::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
       //{
 
       //   if (!_is_window())
@@ -13986,7 +13986,7 @@ bMove = false;
 //
 //            // ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 //
-//            pmessage->m_nChar = static_cast<::u32>(wparam);
+//            pmessage->m_nChar = static_cast<unsigned int>(wparam);
 //
 //            pmessage->m_nRepCnt = lower_u16(lparam);
 //
@@ -14009,7 +14009,7 @@ bMove = false;
 //
 //         _NEW_MESSAGE(::message::timer);
 //
-//         pmessage->m_uEvent = static_cast<::u32>(wparam);
+//         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
 //
 //      }
 //      break;
@@ -14018,7 +14018,7 @@ bMove = false;
 //         _NEW_MESSAGE(::message::show_window);
 //         pmessage->m_bShow = wparam != false;
 //
-//         pmessage->m_nStatus = static_cast<::u32>(lparam);
+//         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
 //
 //      }
 //      break;
@@ -14057,9 +14057,9 @@ bMove = false;
 //
 //         //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 //
-//         pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
+//         pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
 //
-//         pmessage->m_dPosition = (::f64)(i16)upper_u16(wparam);
+//         pmessage->m_dPosition = (::f64)(short)upper_u16(wparam);
 //
 //      }
 //      break;
@@ -14146,7 +14146,7 @@ bMove = false;
 //      {
 //         _NEW_MESSAGE(::message::size);
 //
-//         pmessage->m_nType = static_cast <::u32> (wparam);
+//         pmessage->m_nType = static_cast <unsigned int> (wparam);
 //
 //         pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
 //      }
@@ -14308,7 +14308,7 @@ bMove = false;
       //}
 
 
-      //::user::interaction * window::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
+      //::user::interaction * window::ChildWindowFromPoint(const ::point_i32 & point, unsigned int nFlags)
       //{
 
       //   return nullptr;
@@ -14537,7 +14537,7 @@ bMove = false;
    //}
 
 
-   //bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    //{
 
    //   if (!m_puserinteraction)
@@ -14554,7 +14554,7 @@ bMove = false;
    //}
 
 
-   //u32 window::GetStyle() const
+   //unsigned int window::GetStyle() const
    //{
 
    //   return get_window_long(GWL_STYLE);
@@ -14562,7 +14562,7 @@ bMove = false;
    //}
 
 
-   //u32 window::GetExStyle() const
+   //unsigned int window::GetExStyle() const
    //{
 
    //   return get_window_long(GWL_EXSTYLE);
@@ -14570,7 +14570,7 @@ bMove = false;
    //}
 
 
-   //void window::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void window::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
    //{
 
    //   int l = GetStyle();
@@ -14588,7 +14588,7 @@ bMove = false;
    //}
 
 
-   //void window::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void window::ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -14791,7 +14791,7 @@ bMove = false;
    }
 
 
-   //::u32 window::ArrangeIconicWindows()
+   //unsigned int window::ArrangeIconicWindows()
    //{
 
    //   //      return m_puserinteraction->ArrangeIconicWindows();
@@ -14906,7 +14906,7 @@ bMove = false;
    }
 
 
-   ::user::interaction * window::get_wnd(::u32 nCmd)
+   ::user::interaction * window::get_wnd(unsigned int nCmd)
    {
 
       if (!m_puserinteraction)

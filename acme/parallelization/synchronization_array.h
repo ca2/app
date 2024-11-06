@@ -84,7 +84,7 @@ public:
 
    ::e_status wait() override;
 
-   virtual ::e_status wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::e_status wait(const class time & timeWait, bool waitForAll = true, unsigned int uWaitMask = 0);
 
    virtual void unlock_item(::collection::index index);
 

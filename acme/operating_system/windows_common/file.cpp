@@ -516,7 +516,7 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 
    DWORD dw;
 
-   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
+   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (unsigned int)nCount, &dw, nullptr);
 
 #else
 

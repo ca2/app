@@ -886,11 +886,11 @@ namespace experience_tranquillum
 
       if (ptab->get_data()->m_bVertical)
       {
-         i32 iTabWidth = 16;
-         i32 iTabHeight = 8;
-         i32 cx;
-         i32 cy;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         int iTabWidth = 16;
+         int iTabHeight = 8;
+         int cx;
+         int cy;
+         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -977,16 +977,16 @@ namespace experience_tranquillum
       }
       else
       {
-         i32 iTabHeight = 16;
-         i32 cy;
+         int iTabHeight = 16;
+         int cy;
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::rectangle_i32 rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
          int x = rectangleX.left();
 
-         i32 ixAdd;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         int ixAdd;
+         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1069,7 +1069,7 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1109,7 +1109,7 @@ namespace experience_tranquillum
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if (iPane != ptab->get_current_tab_index())
@@ -1205,7 +1205,7 @@ namespace experience_tranquillum
 
       auto ppenBorder = __create < ::draw2d::pen >();
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          auto& pane = *ptab->get_data()->m_tabpanea[iPane];
@@ -1723,11 +1723,11 @@ namespace experience_tranquillum
 
       //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      //   unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
+      //   unsigned int uImage = psession->userex()->menu()->command_image(item.m_atom);
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -2029,11 +2029,11 @@ namespace experience_tranquillum
 
       //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
+      //   unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
+      //   unsigned int uImage = psession->userex()->menu()->command_image(item.m_atom);
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;

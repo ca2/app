@@ -24,7 +24,7 @@ void colorer_logger_warn(const ::string &cname, const ::string &msg, ...);
 void colorer_logger_trace(const ::string &cname, const ::string &msg, ...);
 void colorer_logger_info(const ::string &cname, const ::string &msg, ...);
 
-void colorer_logger(i32 level, const ::string &cname, const ::string &msg, va_list v);
+void colorer_logger(int level, const ::string &cname, const ::string &msg, va_list v);
 
 void colorer_logger_set_target(const ::string &logfile);
 

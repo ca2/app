@@ -80,7 +80,7 @@ namespace datetime
 //      const ::scoped_string & scopedstr = str;
 //      string strNumber;
 //      string strText1;
-//      for(i32 i = 0; *psz; unicode_increment(psz))
+//      for(int i = 0; *psz; unicode_increment(psz))
 //      {
 //         string strChar = ::str::get_utf8_char(psz);
 //         if(unicode_is_whitespace(psz))
@@ -264,7 +264,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,i32 & iPath,i32 & iPathCount,bool bUTC)
+//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,int & iPath,int & iPathCount,bool bUTC)
 //   {
 //      ::earth::time time;
 //      string str(psz);
@@ -272,7 +272,7 @@ namespace datetime
 //      str += " ";
 //      property_set set;
 //      bool bBaseTime = false;
-//      i32 iStart = 0;
+//      int iStart = 0;
 //
 //      // if is international date time 2009-04-31 21:45:59
 //      // or
@@ -297,9 +297,9 @@ namespace datetime
 //               atm.tm_sec = set["second"];
 //               atm.tm_min = set["minute"];
 //               atm.tm_hour = set["hour"];
-//               atm.tm_mday = set["day"].i32();
-//               atm.tm_mon = set["month"].i32() - 1;        // tm_mon is 0 based
-//               atm.tm_year = set["year"].i32() - 1900;     // tm_year is 1900 based
+//               atm.tm_mday = set["day"].int();
+//               atm.tm_mon = set["month"].int() - 1;        // tm_mon is 0 based
+//               atm.tm_year = set["year"].int() - 1900;     // tm_year is 1900 based
 //               atm.tm_isdst = -1;
 //               /*posix_time now = _time64(nullptr);
 //               posix_time nowUtc = mktime(gmtime(&now));
@@ -404,9 +404,9 @@ namespace datetime
 //      if(!bBaseTime && pcre1->matches(stra, str) >= 5)
 //      {
 //         time = ::earth::time::now();
-//         i32 i1 = atoi(stra[2]);
-//         i32 i2 = atoi(stra[3]);
-//         i32 iCount = 0;
+//         int i1 = atoi(stra[2]);
+//         int i2 = atoi(stra[3]);
+//         int iCount = 0;
 //         bool bFirst = false;
 //         if(i1 != i2
 //               && i1 >= 1 && i1 <= 12
@@ -426,16 +426,16 @@ namespace datetime
 //         {
 //            if((iCount == 1 && bFirst) || (iCount == 2 && (iPath % iCount) == 0))
 //            {
-//               i32 iDay = i2;
-//               i32 iMonth = i1;
+//               int iDay = i2;
+//               int iMonth = i1;
 //               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
 //               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //            }
 //            else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
 //            {
-//               i32 iDay = i1;
-//               i32 iMonth = i2;
+//               int iDay = i1;
+//               int iMonth = i2;
 //               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
 //               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -598,7 +598,7 @@ CLASS_DECL_ACME ::i64 _first_nano()
 }
 
 
-CLASS_DECL_ACME ::u32 get_fast_tick_count()
+CLASS_DECL_ACME unsigned int get_fast_tick_count()
 {
 
 #ifdef WINDOWS
@@ -616,7 +616,7 @@ CLASS_DECL_ACME ::u32 get_fast_tick_count()
 
    }
 
-   return (::u32)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+   return (unsigned int)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 
 #endif
 

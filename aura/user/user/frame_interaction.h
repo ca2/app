@@ -125,7 +125,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
+      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
 
 
       virtual void on_create_bars();

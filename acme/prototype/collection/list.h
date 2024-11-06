@@ -97,7 +97,7 @@ public:
    //   }
 
 
-   //   make_iterator operator ++ (i32)
+   //   make_iterator operator ++ (int)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -118,7 +118,7 @@ public:
    //   }
 
 
-   //   make_iterator operator -- (i32)
+   //   make_iterator operator -- (int)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -2331,10 +2331,10 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 //inline stream& operator >>(stream& stream, string_list& list)
 //{
 //
-//   i32 iSize;
+//   int iSize;
 //   stream >> iSize;
 //   string str;
-//   for (i32 i = 0; i < iSize; i++)
+//   for (int i = 0; i < iSize; i++)
 //   {
 //      stream >> str;
 //      list.add_tail(str);

@@ -68,10 +68,10 @@ namespace os
 
 
       /*
-      virtual bool on_lbutton_up(i32 x, i32 y);
-      virtual bool on_lbutton_down(i32 x, i32 y);
-      virtual bool on_mouse_move(i32 x, i32 y);
-      virtual bool on_char(i32 iKey, const ::string & strChar);
+      virtual bool on_lbutton_up(int x, int y);
+      virtual bool on_lbutton_down(int x, int y);
+      virtual bool on_mouse_move(int x, int y);
+      virtual bool on_char(int iKey, const ::string & strChar);
       */
 
       //virtual bool on_windows_key_down(wparam wparam, lparam lparam);

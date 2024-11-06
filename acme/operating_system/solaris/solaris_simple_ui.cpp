@@ -510,7 +510,7 @@ namespace os
       ::user::interaction::screen_to_client(ppt);
    }
 
-   bool simple_ui::on_key_down(u32 uiKey)
+   bool simple_ui::on_key_down(unsigned int uiKey)
    {
       if (uiKey == 12) // VKSHIFT
       {
@@ -525,7 +525,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_key_up(u32 uiKey)
+   bool simple_ui::on_key_up(unsigned int uiKey)
    {
 
       string str;
@@ -557,9 +557,9 @@ namespace os
       sz[0] = uiKey;
       sz[1]  = '\0';
 
-      //i32 iRet = ToUnicodeEx((::u32)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      //int iRet = ToUnicodeEx((unsigned int)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
       str = sz;
-      on_char(static_cast<::u32>(uiKey), str);
+      on_char(static_cast<unsigned int>(uiKey), str);
 
       if (m_bShiftKey && uiKey == VK_SHIFT)
       {
@@ -651,46 +651,46 @@ namespace os
 
          while (size >= 8)
          {
-            dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
+            dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
+            dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
 
-            dst[4 + 0] = lower_u8(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 1] = lower_u8(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 2] = lower_u8(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 0] = lower_u8(((int)dst[4 + 0] * (int)dst[4 + 3]) >> 8);
+            dst[4 + 1] = lower_u8(((int)dst[4 + 1] * (int)dst[4 + 3]) >> 8);
+            dst[4 + 2] = lower_u8(((int)dst[4 + 2] * (int)dst[4 + 3]) >> 8);
 
-            dst[8 + 0] = lower_u8(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 1] = lower_u8(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 2] = lower_u8(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 0] = lower_u8(((int)dst[8 + 0] * (int)dst[8 + 3]) >> 8);
+            dst[8 + 1] = lower_u8(((int)dst[8 + 1] * (int)dst[8 + 3]) >> 8);
+            dst[8 + 2] = lower_u8(((int)dst[8 + 2] * (int)dst[8 + 3]) >> 8);
 
-            dst[12 + 0] = lower_u8(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 1] = lower_u8(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 2] = lower_u8(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 0] = lower_u8(((int)dst[12 + 0] * (int)dst[12 + 3]) >> 8);
+            dst[12 + 1] = lower_u8(((int)dst[12 + 1] * (int)dst[12 + 3]) >> 8);
+            dst[12 + 2] = lower_u8(((int)dst[12 + 2] * (int)dst[12 + 3]) >> 8);
 
-            dst[16 + 0] = lower_u8(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 1] = lower_u8(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 2] = lower_u8(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 0] = lower_u8(((int)dst[16 + 0] * (int)dst[16 + 3]) >> 8);
+            dst[16 + 1] = lower_u8(((int)dst[16 + 1] * (int)dst[16 + 3]) >> 8);
+            dst[16 + 2] = lower_u8(((int)dst[16 + 2] * (int)dst[16 + 3]) >> 8);
 
-            dst[20 + 0] = lower_u8(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 1] = lower_u8(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 2] = lower_u8(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 0] = lower_u8(((int)dst[20 + 0] * (int)dst[20 + 3]) >> 8);
+            dst[20 + 1] = lower_u8(((int)dst[20 + 1] * (int)dst[20 + 3]) >> 8);
+            dst[20 + 2] = lower_u8(((int)dst[20 + 2] * (int)dst[20 + 3]) >> 8);
 
-            dst[24 + 0] = lower_u8(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 1] = lower_u8(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 2] = lower_u8(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 0] = lower_u8(((int)dst[24 + 0] * (int)dst[24 + 3]) >> 8);
+            dst[24 + 1] = lower_u8(((int)dst[24 + 1] * (int)dst[24 + 3]) >> 8);
+            dst[24 + 2] = lower_u8(((int)dst[24 + 2] * (int)dst[24 + 3]) >> 8);
 
-            dst[28 + 0] = lower_u8(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 1] = lower_u8(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 2] = lower_u8(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 0] = lower_u8(((int)dst[28 + 0] * (int)dst[28 + 3]) >> 8);
+            dst[28 + 1] = lower_u8(((int)dst[28 + 1] * (int)dst[28 + 3]) >> 8);
+            dst[28 + 2] = lower_u8(((int)dst[28 + 2] * (int)dst[28 + 3]) >> 8);
 
             dst += 4 * 8;
             size -= 8;
          }
          while (size--)
          {
-            dst[0] = lower_u8(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = lower_u8(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = lower_u8(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = lower_u8(((int)dst[0] * (int)dst[3]) >> 8);
+            dst[1] = lower_u8(((int)dst[1] * (int)dst[3]) >> 8);
+            dst[2] = lower_u8(((int)dst[2] * (int)dst[3]) >> 8);
             dst += 4;
          }
 
@@ -700,7 +700,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_move(i32 x, i32 y)
+   bool simple_ui::on_move(int x, int y)
    {
 
       m_point.x() = x;
@@ -715,7 +715,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_size(i32 cx, i32 cy)
+   bool simple_ui::on_size(int cx, int cy)
    {
 
       m_size.cx() = cx;
@@ -770,7 +770,7 @@ namespace os
    }
 
 
-   bool simple_ui::move_window(i32 x, i32 y)
+   bool simple_ui::move_window(int x, int y)
    {
 
       ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -788,7 +788,7 @@ namespace os
    }
 
 
-   bool simple_ui::set_window_position(i32 x, i32 y, i32 cx, i32 cy, bool bShow)
+   bool simple_ui::set_window_position(int x, int y, int cx, int cy, bool bShow)
    {
 
       ::set_window_position(m_window, nullptr, x, y, cx, cy, SWP_NOZORDER | (bShow ? SWP_SHOWWINDOW : 0));

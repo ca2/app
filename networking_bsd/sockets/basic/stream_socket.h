@@ -21,11 +21,11 @@ namespace sockets_bsd
       bool m_bConnecting; ///< Flag indicating connection in progress
       //::second m_secsConnectionTimeout; ///< Connection timeout (seconds)
       bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
-      i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
-      i32 m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
+      int m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
+      int m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
       bool m_bCallOnConnect; ///< OnConnect will be called next base_socket_handler cycle if true
       bool m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
-      i32 m_iShutdownStatus; ///< Shutdown status
+      int m_iShutdownStatus; ///< Shutdown status
 
 
       stream_socket();
@@ -46,7 +46,7 @@ namespace sockets_bsd
 
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */
-      //void set_maximum_connection_time(i32 x);
+      //void set_maximum_connection_time(int x);
 
       /** Return number of seconds to wait for a connection.
       \return Connection timeout (seconds) */
@@ -64,16 +64,16 @@ namespace sockets_bsd
       n = 0 - no retry
       n > 0 - number of retries
       n = -1 - unlimited retries */
-      void SetMaximumConnectionRetryCount(i32 n) override;
+      void SetMaximumConnectionRetryCount(int n) override;
 
       /** get number of maximum connection retries (tcp only). */
-      i32 GetMaximumConnectionRetryCount() override;
+      int GetMaximumConnectionRetryCount() override;
 
       /** Increase number of actual connection retries (tcp only). */
       void IncrementConnectionRetryCount() override;
 
       /** get number of actual connection retries (tcp only). */
-      i32 GetConnectionRetryCount() override;
+      int GetConnectionRetryCount() override;
 
       /** Reset actual connection retries (tcp only). */
       void ResetConnectionRetryCount() override;
@@ -98,13 +98,13 @@ namespace sockets_bsd
 
 
       /** set shutdown status. */
-      void SetShutdownStatus(i32) override;
+      void SetShutdownStatus(int) override;
 
       /** get shutdown status. */
-      i32 GetShutdownStatus() override;
+      int GetShutdownStatus() override;
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-      i32 Protocol() override;
+      int Protocol() override;
 
    };
 

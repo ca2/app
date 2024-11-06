@@ -85,8 +85,8 @@ void CliprdrEnumFORMATETC_Delete(CliprdrEnumFORMATETC* This);
 
 struct format_mapping
 {
-	::u32 remote_format_id;
-	::u32 local_format_id;
+	unsigned int remote_format_id;
+	unsigned int local_format_id;
 	void* name; /* Unicode or ASCII characters with nullptr terminator */
 };
 typedef struct format_mapping formatMapping;
@@ -98,13 +98,13 @@ struct wf_clipboard
 	CliprdrClientContext* action_context;
 
 	BOOL synchronization;
-	::u32 capabilities;
+	unsigned int capabilities;
 
 	int map_size;
 	int map_capacity;
 	formatMapping* format_mappings;
 
-	::u32 requestedFormatId;
+	unsigned int requestedFormatId;
 
 	HWND hwnd;
 	HANDLE hmem;
@@ -130,10 +130,10 @@ struct wf_clipboard
 void wf_cliprdr_init(wfContext* wfc, CliprdrClientContext* cliprdr);
 void wf_cliprdr_uninit(wfContext* wfc, CliprdrClientContext* cliprdr);
 
-int cliprdr_send_data_request(wfClipboard* clipboard, ::u32 format);
+int cliprdr_send_data_request(wfClipboard* clipboard, unsigned int format);
 int cliprdr_send_lock(wfClipboard* clipboard);
 int cliprdr_send_unlock(wfClipboard* clipboard);
 int cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
-		int index, int flag, ::u32 positionhigh, ::u32 positionlow, ULONG request);
+		int index, int flag, unsigned int positionhigh, unsigned int positionlow, ULONG request);
 
 #endif /* __WF_CLIPRDR_H */

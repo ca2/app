@@ -89,7 +89,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       return;
    }
    const char * pszPreTopLevel = m_pszTopLevel - 2;
-   i32 iLenPreTopLevel = 0;
+   int iLenPreTopLevel = 0;
    while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
    {
       pszPreTopLevel--;
@@ -106,9 +106,9 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
 
    }
    const char * pszPreTopLevel2 = nullptr;
-   i32 iLenPreTopLevel2 = 0;
+   int iLenPreTopLevel2 = 0;
    const char * pszPreTopLevel3 = nullptr;
-   //      i32 iLenPreTopLevel3 = 0;
+   //      int iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
       pszPreTopLevel2 = pszPreTopLevel - 2;
@@ -1083,10 +1083,10 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, co
 
 /*      bool url_domain_in(string str, string url)
 {
-i32 iPos = url.rear_find('.');
+int iPos = url.rear_find('.');
 if(iPos < 0)
 return false;
-i32 iLen = str.length();
+int iLen = str.length();
 if(url.get_length() < iLen + 1)
 return false;
 if(url[iLen] != '.')
@@ -1101,11 +1101,11 @@ return false;
 
 void url_domain_prefix(string suffix, string url, string & prefix)
 {
-i32 iLen = url.get_length();
-i32 iSufLen = suffix.get_length();
+int iLen = url.get_length();
+int iSufLen = suffix.get_length();
 if(iLen < iSufLen)
 return false;
-i32 iPos = iLen - iSufLen;
+int iPos = iLen - iSufLen;
 if(strsubstr($str, $pos) != $suffix)
 return false;
 if($pos == 0)

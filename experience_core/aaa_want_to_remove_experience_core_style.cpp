@@ -46,11 +46,11 @@ namespace experience_lite
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      i32 iTab = -1;
+      int iTab = -1;
 
       ::draw2d::brush_pointer pbrushText;
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
@@ -388,7 +388,7 @@ namespace experience_lite
 
       {
 
-         //         ::u32 dwTime2= ::duration::now();
+         //         unsigned int dwTime2= ::duration::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -407,11 +407,11 @@ namespace experience_lite
 
       if(ptab->get_data()->m_bVertical)
       {
-         i32 iTabWidth = 16;
-         i32 iTabHeight = 8;
-         i32 cx;
-         i32 cy;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         int iTabWidth = 16;
+         int iTabHeight = 8;
+         int cx;
+         int cy;
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -495,8 +495,8 @@ namespace experience_lite
       }
       else
       {
-         i32 iTabHeight = 16;
-         i32 cy;
+         int iTabHeight = 16;
+         int cy;
          ::draw2d::graphics_pointer graphics(this_create);
          pgraphics->CreateCompatibleDC(NULL);
          ::draw2d::graphics_pointer & pgraphics = graphics;
@@ -506,8 +506,8 @@ namespace experience_lite
          ptab->GetClientRect(rectangleX);
          int x = rectangleX.left();
 
-         i32 ixAdd;
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         int ixAdd;
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -578,7 +578,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -613,7 +613,7 @@ namespace experience_lite
          //TRACE0("rectangleHosting");
       }
 
-      for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          if(iPane != ptab->_001GetSel())
@@ -684,11 +684,11 @@ namespace experience_lite
       if (pbar->m_bTracking || (bool)pbar->prop("tracking_on"))
       {
 
-         ::u32 tickFadeIn = 490;
+         unsigned int tickFadeIn = 490;
 
-         ::u32 tickFadeOut = 490;
+         unsigned int tickFadeOut = 490;
 
-         unsigned char uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
+         unsigned char uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").unsigned int()));
 
          if (pbar->m_bTracking)
          {
@@ -697,7 +697,7 @@ namespace experience_lite
             {
 
                pbar->prop("tracking_on") = true;
-               pbar->prop("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
+               pbar->prop("tracking_start") = (unsigned int)(::get_tick() + uchAlpha * tickFadeIn / 255);
                pbar->prop("tracking_fade_in") = true;
                pbar->prop("tracking_fade_out") = false;
                pbar->prop("tracking_simple") = random(1, 2) == 1;
@@ -710,7 +710,7 @@ namespace experience_lite
             {
                pbar->prop("tracking_fade_in") = false;
                pbar->prop("tracking_fade_out") = true;
-               pbar->prop("tracking_start") = (u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+               pbar->prop("tracking_start") = (unsigned int)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
             }
 
          }
@@ -731,7 +731,7 @@ namespace experience_lite
 
          if ((bool)pbar->prop("tracking_fade_in"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
+            unsigned int dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeIn)
             {
                uchAlpha = (unsigned char)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
@@ -745,7 +745,7 @@ namespace experience_lite
          }
          else if ((bool)pbar->prop("tracking_fade_out"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
+            unsigned int dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeOut)
             {
                uchAlpha = (unsigned char)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
@@ -780,7 +780,7 @@ namespace experience_lite
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-            i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
+            int iArea = (int)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 

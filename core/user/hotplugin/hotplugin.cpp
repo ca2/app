@@ -13,7 +13,7 @@ namespace hotplugin
    int g_iSystemCount = 0;
 
 
-   u32 c_cdecl base_system_main(LPVOID pVoid);
+   unsigned int c_cdecl base_system_main(LPVOID pVoid);
 
 
 
@@ -102,11 +102,11 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
    }
 
 
-   //u32 c_cdecl base_system_main(LPVOID pVoid)
+   //unsigned int c_cdecl base_system_main(LPVOID pVoid)
 
    //{
 
-   //   //i32 iReturnCode = 0;
+   //   //int iReturnCode = 0;
 
    //   try
    //   {

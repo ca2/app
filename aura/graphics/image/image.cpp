@@ -3149,9 +3149,9 @@ void image::GrayToARGB(::color::color color)
 
    i64 size = scan_area();
 
-   ::u32 dwB = color.u8_blue();
-   ::u32 dwG = color.u8_green();
-   ::u32 dwR = color.u8_red();
+   unsigned int dwB = color.u8_blue();
+   unsigned int dwG = color.u8_green();
+   unsigned int dwR = color.u8_red();
 
    while (size-- > 0)
    {
@@ -3420,7 +3420,7 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
       for (int x = 0; x < width(); x++)
       {
 
-         int i = (unsigned char)(((u32)*pb1_2 * (u32)*pb2_2) / 255);
+         int i = (unsigned char)(((unsigned int)*pb1_2 * (unsigned int)*pb2_2) / 255);
 
          *pb2 = i;
 
@@ -3990,13 +3990,13 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 
    i64 size = scan_area();
 
-   ::u32 dwB = color.u8_blue();
-   ::u32 dwG = color.u8_green();
-   ::u32 dwR = color.u8_red();
+   unsigned int dwB = color.u8_blue();
+   unsigned int dwG = color.u8_green();
+   unsigned int dwR = color.u8_red();
 
-   u32 dwB_ = dwB << 8;
-   u32 dwG_ = dwG << 8;
-   u32 dwR_ = dwR << 8;
+   unsigned int dwB_ = dwB << 8;
+   unsigned int dwG_ = dwG << 8;
+   unsigned int dwR_ = dwR << 8;
 
    while (size--)
    {
@@ -5240,9 +5240,9 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 
    map();
 
-   ::u32 u32 = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_u32;
+   unsigned int unsigned int = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_u32;
 
-   unsigned char* p = (unsigned char*)&u32;
+   unsigned char* p = (unsigned char*)&unsigned int;
 
    int iOpacity = p[m_colorindexes.m_u8IndexOpacity];
 
@@ -5303,7 +5303,7 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
 
 
    unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
-   u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+   unsigned int dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
    int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
@@ -5414,7 +5414,7 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
 
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
-      u32 dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+      unsigned int dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
       //         i64 size = area();
 
       int Δx, Δy;
@@ -5475,7 +5475,7 @@ void image::RadialFill(
 
 
    unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
-   u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+   unsigned int dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
    int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
@@ -5591,7 +5591,7 @@ void image::RadialFill(
 
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
-      u32 dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
+      unsigned int dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
       //         i64 size = area();
 
       double Δx, Δy;
@@ -6909,9 +6909,9 @@ void image::do_xor(::image::image* pimage)
    }
 
    int iCount = width() * height();
-   ::u32* pd1 = (::u32*)data();
+   unsigned int* pd1 = (unsigned int*)data();
 
-   ::u32* pd2 = (::u32*)pimage->data();
+   unsigned int* pd2 = (unsigned int*)pimage->data();
 
    for (int i = 0; i < iCount; i++)
    {
@@ -7358,8 +7358,8 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
             scale.Scale(
                &image32()[x + y * m_iScan / sizeof(image32_t)],
                color_indexes(),
-               (::u32)cx,
-               (::u32)cy,
+               (unsigned int)cx,
+               (unsigned int)cy,
                m_iScan,
                pimage->data(),
                cxSource,

@@ -13,7 +13,7 @@ namespace write_text
 
       enum_font_weight        m_efontweight;
       /// m_iFontWeight maybe "fraction" of a font weight
-      ::i16                   m_iFontWeight;
+      short                   m_iFontWeight;
 
 
    public:
@@ -124,11 +124,11 @@ namespace write_text
 
 
       constexpr enum_font_weight efontweight() const { return m_efontweight; }
-      constexpr int i32() const { return m_iFontWeight; }
+      constexpr int int() const { return m_iFontWeight; }
 
 
       constexpr operator enum_font_weight() const { return efontweight(); }
-      constexpr operator int() const { return i32(); }
+      constexpr operator int() const { return int(); }
 
 
       constexpr ::std::weak_ordering operator <=>(const enum_font_weight efontweight) const

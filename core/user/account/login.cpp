@@ -166,15 +166,15 @@ namespace account
 
       double ry = m_dRateY;
 
-      i32 x1 = (int) (49 * rx);
+      int x1 = (int) (49 * rx);
 
-      i32 w2 = (int) ((rectangleX.width() - 49 * 2 * rx));
+      int w2 = (int) ((rectangleX.width() - 49 * 2 * rx));
 
-      i32 h1 = (int) (23 * ry);
+      int h1 = (int) (23 * ry);
 
-      i32 pad = (int) (5 * ry);
+      int pad = (int) (5 * ry);
 
-      i32 y = (int) ((49 + 86) * ry);
+      int y = (int) ((49 + 86) * ry);
 
       m_pstillUser->place(::rectangle_i32_dimension(x1,y,w2,h1));
       m_pstillUser->display(::e_display_normal, e_activation_no_activate);
@@ -308,7 +308,7 @@ namespace account
          ::image::image_source imagesource(m_pimage);
 
          auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
-                                                        i32 (m_pimage->width() * r), i32 (m_pimage->height() * r));
+                                                        int (m_pimage->width() * r), int (m_pimage->height() * r));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -324,7 +324,7 @@ namespace account
 
          ::write_text::font_pointer f(e_create, this);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleX) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)height(rectangleX) * 0.7);
 
          float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 

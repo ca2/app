@@ -123,7 +123,7 @@ namespace acme
 //      set_os_data(nullptr);
 //
 //
-//      //i32 iRet = ::platform::application::term_instance();
+//      //int iRet = ::platform::application::term_instance();
 //
 //
 //      int iRet = 0;
@@ -153,7 +153,7 @@ namespace acme
 
 
    // Advanced: handling messages sent to message filter hook
-   bool application::ProcessMessageFilter(i32 code, LPMESSAGE lpMsg)
+   bool application::ProcessMessageFilter(int code, LPMESSAGE lpMsg)
    {
    return  ::win::thread::ProcessMessageFilter(code, lpMsg);
    }
@@ -209,7 +209,7 @@ namespace acme
 //      if(puserinteraction != nullptr)
 //         return puserinteraction;
 //      user::interaction_ptr_array wndptra = ::acmeacmesystem()->frames();
-//      for(i32 i = 0; i < wndptra.get_count(); i++)
+//      for(int i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
 //         {
@@ -250,7 +250,7 @@ namespace acme
 //
 //      // get path of executable
 //      /*   char szBuff[_MAX_PATH];
-//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      unsigned int dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //      throw ::exception(user_exception());*/

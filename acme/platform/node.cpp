@@ -1468,7 +1468,7 @@ namespace platform
   }
 
 
-   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+   void node::set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha)
    {
 
 
@@ -1521,7 +1521,7 @@ namespace platform
    //}
 
 
-   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, i32 nDST)
+   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
    //{
 
    //   throw ::interface_only();
@@ -2556,7 +2556,7 @@ return false;
    //}
 
 
-   //string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   //string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
    //{
 
    //   return {};
@@ -3517,7 +3517,7 @@ bool node::_is_smart_git_installed()
 
 #if defined(__BSD__) || defined(__APPLE__)
 
-   void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const char * status))
+   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const char * status))
    {
       
       
@@ -3526,7 +3526,7 @@ bool node::_is_smart_git_installed()
 #endif
 
 
-   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
    {
       
       int frame_count = get_call_stack_default_frame_count();
@@ -4011,7 +4011,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
 //#ifdef WINDOWS
 //
-//   DECLSPEC_NO_RETURN void node::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
+//   DECLSPEC_NO_RETURN void node::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
 //   {
 //
 //
@@ -4451,7 +4451,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    void node::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
    {
 
-      ASSERT(sizeof(::u32) == sizeof(u32));
+      ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
 
       uaPid = this->processes_identifiers();
 

@@ -241,7 +241,7 @@ namespace apex
 
 
 
-      virtual ::u32 os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0) override;
+      virtual unsigned int os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0) override;
 
 
 
@@ -273,11 +273,11 @@ namespace apex
 
 
 
-      virtual i32 _001OnDebugReport(i32 i1,const ::string & psz1,i32 i2,const ::string & psz2,const ::string & psz3,va_list args) override;
-      virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list) override;
-       virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine) override;
+      virtual int _001OnDebugReport(int i1,const ::string & psz1,int i2,const ::string & psz2,const ::string & psz3,va_list args) override;
+      virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list) override;
+       virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override;
 
-      virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine) override;
+      virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override;
 
 
 

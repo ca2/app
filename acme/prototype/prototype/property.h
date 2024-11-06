@@ -24,29 +24,29 @@ namespace xml
 
 //::string CLASS_DECL_ACME operator + (const ::scoped_string & scopedstr, const property & prop);
 //
-//::payload CLASS_DECL_ACME operator - (i32 i, const property & prop);
-//::payload CLASS_DECL_ACME operator - (u32 user, const property & prop);
+//::payload CLASS_DECL_ACME operator - (int i, const property & prop);
+//::payload CLASS_DECL_ACME operator - (unsigned int user, const property & prop);
 //::payload CLASS_DECL_ACME operator - (i64 i, const property & prop);
 //::payload CLASS_DECL_ACME operator - (u64 u, const property & prop);
 //::payload CLASS_DECL_ACME operator - (double d, const property & prop);
 //::payload CLASS_DECL_ACME operator - (const ::payload & payload, const property & prop);
 
-//::payload CLASS_DECL_ACME operator + (i32 i, const property & prop);
-//::payload CLASS_DECL_ACME operator + (u32 user, const property & prop);
+//::payload CLASS_DECL_ACME operator + (int i, const property & prop);
+//::payload CLASS_DECL_ACME operator + (unsigned int user, const property & prop);
 //::payload CLASS_DECL_ACME operator + (i64 i, const property & prop);
 //::payload CLASS_DECL_ACME operator + (u64 u, const property & prop);
 //::payload CLASS_DECL_ACME operator + (double d, const property & prop);
 //::payload CLASS_DECL_ACME operator + (const ::payload & payload, const property & prop);
 
-//::payload CLASS_DECL_ACME operator / (i32 i, const property & prop);
-//::payload CLASS_DECL_ACME operator / (u32 user, const property & prop);
+//::payload CLASS_DECL_ACME operator / (int i, const property & prop);
+//::payload CLASS_DECL_ACME operator / (unsigned int user, const property & prop);
 //::payload CLASS_DECL_ACME operator / (i64 i, const property & prop);
 //::payload CLASS_DECL_ACME operator / (u64 u, const property & prop);
 //::payload CLASS_DECL_ACME operator / (double d, const property & prop);
 //::payload CLASS_DECL_ACME operator / (const ::payload & payload, const property & prop);
 
-//::payload CLASS_DECL_ACME operator * (i32 i, const property & prop);
-//::payload CLASS_DECL_ACME operator * (u32 user, const ::property & prop);
+//::payload CLASS_DECL_ACME operator * (int i, const property & prop);
+//::payload CLASS_DECL_ACME operator * (unsigned int user, const ::property & prop);
 //::payload CLASS_DECL_ACME operator * (i64 i, const property & prop);
 //::payload CLASS_DECL_ACME operator * (u64 u, const property & prop);
 //::payload CLASS_DECL_ACME operator * (double d, const property & prop);
@@ -234,29 +234,29 @@ using property_array = ::array < ::property >;
 
 
 
-//inline ::payload CLASS_DECL_ACME operator - (i32 i, const property& prop) { return operator - (i, (const ::payload &) prop); }
-//inline ::payload CLASS_DECL_ACME operator - (u32 user, const property& prop) { return operator - (user, (const ::payload &)prop); }
+//inline ::payload CLASS_DECL_ACME operator - (int i, const property& prop) { return operator - (i, (const ::payload &) prop); }
+//inline ::payload CLASS_DECL_ACME operator - (unsigned int user, const property& prop) { return operator - (user, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator - (i64 i, const property& prop) { return operator - (i, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator - (u64 u, const property& prop) { return operator - (u, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator - (double d, const property& prop) { return operator - (d, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator - (const ::payload & payload, const property& prop) { return operator - (payload, (const ::payload &)prop); }
 
-//inline ::payload CLASS_DECL_ACME operator + (i32 i, const property& prop) { return operator + (i, (const ::payload &) prop); }
-//inline ::payload CLASS_DECL_ACME operator + (u32 user, const property& prop) { return operator + (user, (const ::payload &)prop); }
+//inline ::payload CLASS_DECL_ACME operator + (int i, const property& prop) { return operator + (i, (const ::payload &) prop); }
+//inline ::payload CLASS_DECL_ACME operator + (unsigned int user, const property& prop) { return operator + (user, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator + (i64 i, const property& prop) { return operator + (i, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator + (u64 u, const property& prop) { return operator + (u, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator + (double d, const property& prop) { return operator + (d, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator + (const ::payload & payload, const property& prop) { return payload, (const ::payload &)prop); }
 
-//inline ::payload CLASS_DECL_ACME operator / (i32 i, const property& prop) { return operator / (i, (const ::payload &)prop); }
-//inline ::payload CLASS_DECL_ACME operator / (u32 user, const property& prop) { return operator / (user, (const ::payload &)prop); }
+//inline ::payload CLASS_DECL_ACME operator / (int i, const property& prop) { return operator / (i, (const ::payload &)prop); }
+//inline ::payload CLASS_DECL_ACME operator / (unsigned int user, const property& prop) { return operator / (user, (const ::payload &)prop); }
 //inline ::payload CLASS_DECL_ACME operator / (i64 i, const property& prop) { return operator / (i, (const ::payload&)prop); }
 //inline ::payload CLASS_DECL_ACME operator / (u64 u, const property& prop) { return operator / (u, (const ::payload&)prop); }
 //inline ::payload CLASS_DECL_ACME operator / (double d, const property& prop) { return operator / (d, (const ::payload&) prop); }
 //inline ::payload CLASS_DECL_ACME operator / (const ::payload & payload, const property& prop) { return operator / (payload, (const ::payload&) prop); }
 
-//inline ::payload CLASS_DECL_ACME operator * (i32 i, const property& prop) { return operator * (i, (const ::payload&) prop); }
-//inline ::payload CLASS_DECL_ACME operator * (u32 user, const ::property& prop) { return operator * (user, (const ::payload&) prop); }
+//inline ::payload CLASS_DECL_ACME operator * (int i, const property& prop) { return operator * (i, (const ::payload&) prop); }
+//inline ::payload CLASS_DECL_ACME operator * (unsigned int user, const ::property& prop) { return operator * (user, (const ::payload&) prop); }
 //inline ::payload CLASS_DECL_ACME operator * (i64 i, const property& prop) { return operator * (i, (const ::payload&) prop); }
 //inline ::payload CLASS_DECL_ACME operator * (u64 u, const property& prop) { return operator * (u, (const ::payload&)prop); }
 //inline ::payload CLASS_DECL_ACME operator * (double d, const property& prop) { return operator * (d, (const ::payload&)prop); }

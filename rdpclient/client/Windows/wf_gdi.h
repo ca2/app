@@ -24,9 +24,9 @@
 
 #include "wf_client.h"
 
-void wf_invalidate_region(wfContext* wfc, ::u32 x, ::u32 y, ::u32 width,
-                          ::u32 height);
-wfBitmap* wf_image_new(wfContext* wfc, ::u32 width, ::u32 height, ::u32 bpp,
+void wf_invalidate_region(wfContext* wfc, unsigned int x, unsigned int y, unsigned int width,
+                          unsigned int height);
+wfBitmap* wf_image_new(wfContext* wfc, unsigned int width, unsigned int height, unsigned int bpp,
                        const unsigned char* data);
 /*void wf_image_free(wfBitmap* pimage);
 void wf_update_offset(wfContext* wfc);

@@ -56,7 +56,7 @@ namespace user
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
-      virtual i32 _001GetItemHeight() const;
+      virtual int _001GetItemHeight() const;
 
       virtual void on_change_combo_sel(::collection::index iSel);
 

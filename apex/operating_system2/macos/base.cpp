@@ -3,8 +3,8 @@
 #include <string.h>
 
 
-::u32 GetTempPathA(
-::u32 nBufferLength,
+unsigned int GetTempPathA(
+unsigned int nBufferLength,
 char * pBuffer
 
 )
@@ -16,7 +16,7 @@ char * pBuffer
    {
       ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
-      return (::u32) strlen(ptmpdir);
+      return (unsigned int) strlen(ptmpdir);
    }
 
    ptmpdir = P_tmpdir;
@@ -25,7 +25,7 @@ char * pBuffer
    {
       ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
-      return (::u32) strlen(ptmpdir);
+      return (unsigned int) strlen(ptmpdir);
    }
 
    ansi_count_copy(pBuffer, "/tmp", minimum(nBufferLength, 5));

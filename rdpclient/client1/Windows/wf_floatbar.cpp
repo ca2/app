@@ -210,7 +210,7 @@ static int floatbar_animation(FloatBar* floatbar, BOOL show)
 	return 0;
 }
 
-LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 {
 	static int dragging = false;
 	static int lbtn_dwn = false;

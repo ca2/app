@@ -74,7 +74,7 @@ bool __os_term_thread();
 //}
 
 //
-//htask_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
+//htask_t start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iPriority);
@@ -175,7 +175,7 @@ bool __os_term_thread()
 //CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dw::times, DWORD dwWakeMask, DWORD dwFlags)
 //{
 //
-//   ::u32 dwResult = 0;
+//   unsigned int dwResult = 0;
 //
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {

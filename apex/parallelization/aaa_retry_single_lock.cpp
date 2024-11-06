@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // retry_single_lock
 
-retry_single_lock::retry_single_lock(::particle * pparticle, duration durationLock, duration durationSleep, i32 iRetry, bool bInitialLock)
+retry_single_lock::retry_single_lock(::particle * pparticle, duration durationLock, duration durationSleep, int iRetry, bool bInitialLock)
 {
 
    m_psync     = psync;
@@ -28,7 +28,7 @@ bool retry_single_lock::lock()
    if(m_psync == nullptr)
       return false;
 
-   i32 iRetry = 0;
+   int iRetry = 0;
 
    try
    {

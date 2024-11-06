@@ -54,7 +54,7 @@ namespace networking_bsd
    }
 
 
-   //bool transfer_socket_exception::GetErrorMessage(string & strError, P::u32 /*pnHelpContext = nullptr*/)
+   //bool transfer_socket_exception::GetErrorMessage(string & strError, Punsigned int /*pnHelpContext = nullptr*/)
    //{
    //   if (m_nError == 0)
    //   {
@@ -67,7 +67,7 @@ namespace networking_bsd
    //   return true;
    //}
 
-   //string transfer_socket_exception::GetErrorMessage(P::u32 /*pnHelpContext = nullptr*/)
+   //string transfer_socket_exception::GetErrorMessage(Punsigned int /*pnHelpContext = nullptr*/)
    //{
    //   string str;
    //   GetErrorMessage(str);
@@ -309,7 +309,7 @@ namespace networking_bsd
 
    //   int nBytesReceived = 0;
 
-   //   ::u32 tickStart= ::duration::now();
+   //   unsigned int tickStart= ::duration::now();
 
    //   int iRead = 0;
 

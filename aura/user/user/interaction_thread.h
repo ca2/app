@@ -89,7 +89,7 @@ namespace user
 
 
 //#ifdef WINDOWS_DESKTOP
-//      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
+//      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax) override;
 //#endif
 
       //bool task_get_run() const override;

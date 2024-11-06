@@ -32,8 +32,8 @@ namespace html
 
 
             holder();
-            holder(i32 iCol, i32 iRow);
-            holder(cell * pcell, i32 iCol, i32 iRow);
+            holder(int iCol, int iRow);
+            holder(cell * pcell, int iCol, int iRow);
             holder(const class holder & holder);
             ::html::impl::cell *   m_pcell;
 

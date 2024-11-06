@@ -245,7 +245,7 @@ namespace sockets
 
       }
 
-      for(i32 i = 0; i < m_response.cookies().size(); i++)
+      for(int i = 0; i < m_response.cookies().size(); i++)
       {
 
          m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
@@ -357,7 +357,7 @@ namespace sockets
    //string http_base_socket::set-cookie(
    //const char * name,
    //::payload payload,
-   //i32 iExpire,
+   //int iExpire,
    //const ::file::path & path,
    //const char * domain,
    //bool bSecure)
@@ -659,7 +659,7 @@ namespace sockets
             
             mem.set_size(128 * 1024 * 1024);
 
-            for (i32 i = 0; i < prangea->get_count(); i++)
+            for (int i = 0; i < prangea->get_count(); i++)
             {
                
                memsize iStart = prangea->element_at(i)->element_at(0);

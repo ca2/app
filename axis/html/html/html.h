@@ -7,7 +7,7 @@
 #include "acme/exception/status.h"
 
 
-inline status < ::color::color > __indexed_color(::u32 u32Index)
+inline status < ::color::color > __indexed_color(unsigned int u32Index)
 {
 
    ::color::color color;
@@ -38,7 +38,7 @@ namespace html
 
 
       ::color::color                         m_clrInvalid;   // an invalid color
-      u16                                    m_percentMax;   // maximum allowable percentage value
+      unsigned short                                    m_percentMax;   // maximum allowable percentage value
       named_color                            m_namedcolor;   // collection of named colors
       ::pointer<LiteHTMLEntityResolver>      m_pentitysolver;
 
@@ -53,7 +53,7 @@ namespace html
       string special_chars(const ::string & psz);
       string entities(const ::string & psz);
       string htmlpre(const ::string & psz);
-      i32 resolve_entity(const ::string & pszEntity,string & strChar);
+      int resolve_entity(const ::string & pszEntity,string & strChar);
 
       string resolve_entities(const ::string & str);
 

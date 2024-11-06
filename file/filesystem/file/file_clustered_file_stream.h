@@ -17,7 +17,7 @@ namespace file
       istream * Stream;
       u64 StartOffset;
       u64 Size;
-      i32 BlockSizeLog;
+      int BlockSizeLog;
       u64_array Vector;
 
       u64 SeekToPhys()

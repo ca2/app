@@ -13,7 +13,7 @@
 #endif
 
 
-i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pCmdLine, int nCmdShow)
+int WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pCmdLine, int nCmdShow)
 {
 
    ::main main;

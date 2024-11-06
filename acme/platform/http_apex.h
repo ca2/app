@@ -56,8 +56,8 @@ namespace platform
       virtual ::url::url get_effective_url(const ::url::url & url);
 
       virtual void defer_auto_initialize_proxy_configuration();
-      virtual void auto_config_proxy(i32 i);
-      virtual i32 auto_config_proxy_count();
+      virtual void auto_config_proxy(int i);
+      virtual int auto_config_proxy_count();
       virtual void config_proxy(const ::url::url & url, ::sockets::http_tunnel * psocket);
       virtual void config_proxy(const ::url::url & url, ::http::proxy * pproxy);
       virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, ::http::proxy * pproxy);

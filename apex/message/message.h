@@ -75,9 +75,9 @@ namespace message
       //virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam);
 
 
-      ::u32 GetNotifyCode() const { return __hiword(m_wparam.m_number); }
+      unsigned int GetNotifyCode() const { return __hiword(m_wparam.m_number); }
 
-      ::u32 GetId() const { return __loword(m_wparam.m_number); }
+      unsigned int GetId() const { return __loword(m_wparam.m_number); }
 
       oswindow get_oswindow() const { return m_oswindow; }
 

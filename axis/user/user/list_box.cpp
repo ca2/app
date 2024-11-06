@@ -728,7 +728,7 @@ namespace user
    }
 
 
-   i32 list_box::_001GetItemHeight() const
+   int list_box::_001GetItemHeight() const
    {
 
       return (int)(m_dItemHeight + m_iPadding * 2);

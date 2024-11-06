@@ -35,9 +35,9 @@ namespace ftp
 
       virtual string GetLocalStreamName() const override;
 
-      virtual ::u32 GetLocalStreamSize() const override;
+      virtual unsigned int GetLocalStreamSize() const override;
 
-      virtual void SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream) override;
+      virtual void SetLocalStreamOffset(unsigned int dwOffsetFromBeginOfStream) override;
 
       virtual void OnBytesReceived(const memory & vBuffer, long lReceivedBytes) override;
 

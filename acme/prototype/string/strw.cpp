@@ -8,14 +8,14 @@
 #define DQUOTEWCHAR  L'\"'
 
 
-CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_character **argv, ::wide_character *args, i32 * numargs, i32 * numchars)
+CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_character **argv, ::wide_character *args, int * numargs, int * numchars)
 {
 
    ::wide_character *p;
    ::wide_character c;
-   i32 inquote;                    /* 1 = inside quotes */
-   i32 copychar;                   /* 1 = copy char to *args */
-   u32 numslash;              /* num of backslashes seen */
+   int inquote;                    /* 1 = inside quotes */
+   int copychar;                   /* 1 = copy char to *args */
+   unsigned int numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
@@ -191,7 +191,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //
 //
 
-//void wide_from_u64_base(unichar * sz, u32 u, i32 iBase)
+//void wide_from_u64_base(unichar * sz, unsigned int u, int iBase)
 //{
 //   if(u == 0)
 //   {
@@ -199,10 +199,10 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //      sz[1] = L'\0';
 //      return;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(u > 0)
 //   {
-//      i32 iDigit = (u % iBase);
+//      int iDigit = (u % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -222,7 +222,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 
 
 
-//void wide_from_i32_base(unichar * sz, i32 i, i32 iBase)
+//void wide_from_i32_base(unichar * sz, int i, int iBase)
 //{
 //   if(i == 0)
 //   {
@@ -236,10 +236,10 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //      i = -i;
 //      bNegative = true;
 //   }
-//   i32 iIndex = 0;
+//   int iIndex = 0;
 //   while(i > 0)
 //   {
-//      i32 iDigit = (i % iBase);
+//      int iDigit = (i % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {

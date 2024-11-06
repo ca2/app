@@ -90,10 +90,10 @@ public:
 //#ifdef WINDOWS
 //   text_stream& operator <<(unichar wch);
 //#endif
-//   text_stream& operator <<(i16 sh);
-//   text_stream& operator <<(u16 u);
-//   text_stream& operator <<(i32 i);
-//   text_stream& operator <<(u32 u);
+//   text_stream& operator <<(short sh);
+//   text_stream& operator <<(unsigned short u);
+//   text_stream& operator <<(int i);
+//   text_stream& operator <<(unsigned int u);
 //   text_stream& operator <<(i64 i);
 //   text_stream& operator <<(u64 u);
 //   text_stream& operator <<(float f);
@@ -197,7 +197,7 @@ public:
    //}
 
 #endif
-    read_sz_stream& operator >>(i8& i);
+    read_sz_stream& operator >>(char& i);
 //    {
 //
 //       return operator >>((char&)i);
@@ -205,7 +205,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(i16& sh);
+    read_sz_stream& operator >>(short& sh);
 //    {
 //
 //       auto iRead = read_integer();
@@ -223,14 +223,14 @@ public:
 //
 //       }
 //
-//       sh = (::i16)iRead;
+//       sh = (short)iRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(u16& u);
+    read_sz_stream& operator >>(unsigned short& u);
 //    {
 //
 //       auto uRead = read_natural();
@@ -242,14 +242,14 @@ public:
 //
 //       }
 //
-//       u = (::u16)uRead;
+//       u = (unsigned short)uRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(i32& i);
+    read_sz_stream& operator >>(int& i);
 //    {
 //
 //       auto iRead = read_integer();
@@ -274,7 +274,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(u32& u);
+    read_sz_stream& operator >>(unsigned int& u);
 //    {
 //
 //       auto uRead = read_natural();
@@ -286,7 +286,7 @@ public:
 //
 //       }
 //
-//       u = (::u32) uRead;
+//       u = (unsigned int) uRead;
 //
 //       return *this;
 //

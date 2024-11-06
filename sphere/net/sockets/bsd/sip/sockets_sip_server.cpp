@@ -11,7 +11,7 @@ namespace sockets
    {
    }
 
-   i32 sip_server::run()
+   int sip_server::run()
    {
       return 0;
    }

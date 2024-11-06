@@ -42,11 +42,11 @@ CLASS_DECL_ACME string normalize_path(const char* lpcszPath);
 
 
 void CLASS_DECL_ACME __cdecl _ca2_purecall();
-void CLASS_DECL_ACME __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS* ppointers);
+void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS* ppointers);
 bool CLASS_DECL_ACME __windows_init();
 
 
-CLASS_DECL_ACME HANDLE hfile_create(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_ACME HANDLE hfile_create(const char * lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 
 //CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
@@ -96,12 +96,12 @@ namespace user
 
 //#ifndef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_ACME void WINAPI sleep(::u32 dw::times);
+//CLASS_DECL_ACME void WINAPI sleep(unsigned int dw::times);
 //
 //#endif
 
 /*#define GetAValue(rgb)      (lower_u8((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((::u16)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|(((unsigned int)(unsigned char)(a))<<24)))*/
 
 
 //CLASS_DECL_ACME int_bool os_initialize();
@@ -125,7 +125,7 @@ CLASS_DECL_ACME itask_t main_itask();
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
+//CLASS_DECL_ACME unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::times );
 
 
 

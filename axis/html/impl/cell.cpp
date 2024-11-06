@@ -552,7 +552,7 @@ namespace html
          if(prow != nullptr)
          {
 
-            for(i32 i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
+            for(int i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
 
                ::html::element * pelement = prow->m_pelemental->m_elementalptra[i];
@@ -605,7 +605,7 @@ namespace html
       }
 
 
-      cell::holder::holder(i32 iCol, i32 iRow)
+      cell::holder::holder(int iCol, int iRow)
       {
 
          m_pcell     = nullptr;
@@ -615,7 +615,7 @@ namespace html
       }
 
 
-      cell::holder::holder(cell * pcell, i32 iCol, i32 iRow)
+      cell::holder::holder(cell * pcell, int iCol, int iRow)
       {
 
          m_pcell     = pcell;

@@ -14,7 +14,7 @@ namespace networking_bsd
    }
 
 
-   void http_batch_buffer::open(const ::file::path & path, ::u32 nOpenFlags)
+   void http_batch_buffer::open(const ::file::path & path, unsigned int nOpenFlags)
    {
 
       m_strPath = pszFileName;

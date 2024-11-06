@@ -78,7 +78,7 @@ public:
 protected:
 
 
-   i32 create_font(::html::element* pelemental);
+   int create_font(::html::element* pelemental);
 
 
 

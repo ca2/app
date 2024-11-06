@@ -2,7 +2,7 @@
 //#include "db_str_set.h"
 
 
-i32 g_idbchange;
+int g_idbchange;
 
 
 
@@ -160,7 +160,7 @@ pdirectorysystem->system() / "database.sqlite";
 
    m_pstrset      = __allocate db_str_set(this);
 
-   i32 iBufferSize = 128 * 1024;
+   int iBufferSize = 128 * 1024;
 
    ::pointer<::handler>commandthread = psystem->handler();
 

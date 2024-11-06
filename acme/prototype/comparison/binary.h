@@ -25,12 +25,12 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_ACME binary < i32 >
+   class CLASS_DECL_ACME binary < int >
    {
    public:
 
 
-      inline static iptr CompareElements(const i32 * pElement1, const i32 * pElement2)
+      inline static iptr CompareElements(const int * pElement1, const int * pElement2)
       {
          return *pElement1 - *pElement2;
       }

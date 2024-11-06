@@ -677,7 +677,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
       ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
-      ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
+      ///for(int i = 0; i < nNewSize - m_nSize; i++)
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
 

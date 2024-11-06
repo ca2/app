@@ -80,18 +80,18 @@ void scMathRand(CScriptVar * ca, void *) {
 }
 
 void scMathRandInt(CScriptVar * ca, void *) {
-   i32 minimum = ca->getParameter("minimum")->getInt();
-   i32 maximum = ca->getParameter("maximum")->getInt();
-   i32 val = minimum + (i32)((long)rand() * (1 + maximum - minimum) / RAND_MAX);
+   int minimum = ca->getParameter("minimum")->getInt();
+   int maximum = ca->getParameter("maximum")->getInt();
+   int val = minimum + (int)((long)rand() * (1 + maximum - minimum) / RAND_MAX);
    if (val > maximum) val = maximum;
    ca->getReturnVar()->setInt(val);
 }
 
 void scCharToInt(CScriptVar * ca, void *) {
    string str = ca->getParameter("ch")->getString();;
-   i32 val = 0;
+   int val = 0;
    if (str.length() > 0)
-      val = (i32)str.c_str()[0];
+      val = (int)str.c_str()[0];
    ca->getReturnVar()->setInt(val);
 }
 
@@ -99,13 +99,13 @@ void scStringIndexOf(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
    string search = ca->getParameter("search")->getString();
    strsize iPosition = str.find_index(search);
-   i32 val = (i32)((iPosition < 0) ? -1 : iPosition);
+   int val = (int)((iPosition < 0) ? -1 : iPosition);
    ca->getReturnVar()->setInt(val);
 }
 
 void scStringSubstring(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
-   i32 lo = ca->getParameter("lo")->getInt();
+   int lo = ca->getParameter("lo")->getInt();
    strsize hi;
    if (ca->findChild("hi") == nullptr)
    {
@@ -117,7 +117,7 @@ void scStringSubstring(CScriptVar * ca, void *) {
    }
 
    strsize l = hi - lo;
-   if (l > 0 && lo >= 0 && lo + l <= (i32)str.length())
+   if (l > 0 && lo >= 0 && lo + l <= (int)str.length())
       ca->getReturnVar()->setString(str.substr(lo, l));
    else
       ca->getReturnVar()->setString("");
@@ -134,8 +134,8 @@ void scStringToUpperCase(CScriptVar * ca, void *) {
 
 void scStringCharAt(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
-   i32 iPosition = ca->getParameter("pos")->getInt();
-   if (iPosition >= 0 && iPosition < (i32)str.length())
+   int iPosition = ca->getParameter("pos")->getInt();
+   if (iPosition >= 0 && iPosition < (int)str.length())
       ca->getReturnVar()->setString(str.substr(iPosition, 1));
    else
       ca->getReturnVar()->setString("");
@@ -143,8 +143,8 @@ void scStringCharAt(CScriptVar * ca, void *) {
 
 void scStringCharCodeAt(CScriptVar * ca, void *) {
    string str = ca->getParameter("this")->getString();
-   i32 iPosition = ca->getParameter("pos")->getInt();
-   if (iPosition >= 0 && iPosition < (i32)str.length())
+   int iPosition = ca->getParameter("pos")->getInt();
+   if (iPosition >= 0 && iPosition < (int)str.length())
       ca->getReturnVar()->setInt(str[iPosition]);
    else
       ca->getReturnVar()->setInt(0);
@@ -155,7 +155,7 @@ void scStringSplit(CScriptVar * ca, void *) {
    string sep = ca->getParameter("separator")->getString();
    CScriptVar * result = ca->getReturnVar();
    result->setArray();
-   i32 length = 0;
+   int length = 0;
 
    strsize pos = str.find_index(sep);
    while (pos >= 0) {
@@ -177,14 +177,14 @@ void scStringFromCharCode(CScriptVar * ca, void *) {
 
 void scIntegerParseInt(CScriptVar * ca, void *) {
    string str = ca->getParameter("str")->getString();
-   i32 val = (i32)strtol(str.c_str(), 0, 0);
+   int val = (int)strtol(str.c_str(), 0, 0);
    ca->getReturnVar()->setInt(val);
 }
 
 void scIntegerValueOf(CScriptVar * ca, void *) {
    string str = ca->getParameter("str")->getString();
 
-   i32 val = 0;
+   int val = 0;
    if (str.length() == 1)
       val = str[0];
    ca->getReturnVar()->setInt(val);
@@ -251,8 +251,8 @@ void scArrayRemove(CScriptVar * ca, void * data)
    // renumber
    v = ca->getParameter("this")->firstChild;
    while (v) {
-      i32 n = v->getIntName();
-      i32 newn = n;
+      int n = v->getIntName();
+      int newn = n;
       for (strsize i = 0; i < erasedIndices.get_size(); i++)
          if (n >= erasedIndices[i])
             newn--;
@@ -267,8 +267,8 @@ void scArrayJoin(CScriptVar * ca, void * data) {
    CScriptVar * arr = ca->getParameter("this");
 
    string sstr;
-   i32 l = arr->getArrayLength();
-   for (i32 i = 0; i < l; i++) {
+   int l = arr->getArrayLength();
+   for (int i = 0; i < l; i++) {
       if (i > 0) sstr += sep;
       sstr += arr->getArrayIndex(i)->getString();
    }
@@ -285,7 +285,7 @@ void registerFunctions(tinyjs * tinyJS) {
    tinyJS->addNative("function Object.clone()", scObjectClone, 0);
    tinyJS->addNative("function Math.rand()", scMathRand, 0);
    tinyJS->addNative("function Math.randInt(minimum, maximum)", scMathRandInt, 0);
-   tinyJS->addNative("function charToInt(ch)", scCharToInt, 0); //  convert a character to an i32 - get its value
+   tinyJS->addNative("function charToInt(ch)", scCharToInt, 0); //  convert a character to an int - get its value
    tinyJS->addNative("function String.indexOf(search)", scStringIndexOf, 0); // find the position of a string in a string, -1 if not
    tinyJS->addNative("function String.substring(lo,hi)", scStringSubstring, 0);
    tinyJS->addNative("function String.charAt(pos)", scStringCharAt, 0);
@@ -294,7 +294,7 @@ void registerFunctions(tinyjs * tinyJS) {
    tinyJS->addNative("function String.toUpperCase()", scStringToUpperCase, 0);
    tinyJS->addNative("function String.toLowerCase()", scStringToLowerCase, 0);
    tinyJS->addNative("function String.split(separator)", scStringSplit, 0);
-   tinyJS->addNative("function Integer.parseInt(str)", scIntegerParseInt, 0); // string to i32
+   tinyJS->addNative("function Integer.parseInt(str)", scIntegerParseInt, 0); // string to int
    tinyJS->addNative("function Integer.valueOf(str)", scIntegerValueOf, 0); // value of a single character
    tinyJS->addNative("function JSON.stringify(obj, replacer)", scJSONStringify, 0); // convert to JSON. replacer is ignored at the moment
    // JSON.parse is left out as you can (unsafely!) use eval instead

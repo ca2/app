@@ -59,7 +59,7 @@ namespace acme
 //      inline ::collection::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
 //      {
 //
-//         for (::u32 u = 0; u < ivectorview->Size; u++)
+//         for (unsigned int u = 0; u < ivectorview->Size; u++)
 //         {
 //
 //            if (ivectorview->GetAt(u) == item)

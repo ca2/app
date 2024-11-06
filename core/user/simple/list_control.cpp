@@ -71,7 +71,7 @@ void simple_list_control::pre_subclass_window()
 }
 
 
-bool simple_list_control::erase_item(i32 iItem)
+bool simple_list_control::erase_item(int iItem)
 {
    
    if (!m_psimplelistdata->erase_item(iItem))

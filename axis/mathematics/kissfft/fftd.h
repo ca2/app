@@ -15,11 +15,11 @@ namespace kissfft
    public:
 
 
-      i32                           m_iSize;
+      int                           m_iSize;
       kiss_fftr_cfg                 m_cfg;
 
 
-      fftd(i32 iSize);
+      fftd(int iSize);
       ~fftd() override;
 
       void fft(double * pIn, COMPLEXD * pOut);

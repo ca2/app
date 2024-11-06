@@ -508,22 +508,22 @@ double dS)
 
 }
 
-u32 color::get_rgb() const
+unsigned int color::get_rgb() const
 {
    return m_iR | (m_iG << 8) | (m_iB << 16);
 }
 
-u32 color::get_bgr() const
+unsigned int color::get_bgr() const
 {
    return m_iB | (m_iG << 8) | (m_iR << 16);
 }
 
-u32 color::get_rgba() const
+unsigned int color::get_rgba() const
 {
    return m_iR | (m_iG << 8) | (m_iB << 16) | (m_iA << 24);
 }
 
-u32 color::get_bgra() const
+unsigned int color::get_bgra() const
 {
    return m_iB | (m_iG << 8) | (m_iR << 16) | (m_iA << 24);
 }
@@ -610,7 +610,7 @@ void color::hue_offset(double dRadians)
 }
 
 
-void color::set_bgr(u32 bgr)
+void color::set_bgr(unsigned int bgr)
 {
    m_iR = bgr_u8_red(bgr);
    m_iG = bgr_u8_green(bgr);
@@ -844,7 +844,7 @@ void CColor::set_hls(
 
 }
 
-u32 CColor::get_rgb()
+unsigned int CColor::get_rgb()
 {
    return rgb(m_bRed, m_bGreen, m_bBlue);
 }*/

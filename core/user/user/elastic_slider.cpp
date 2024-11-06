@@ -269,7 +269,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      i32 iWidth = 16;
+      int iWidth = 16;
       
       rectangle.top() = rectangleX.top();
       

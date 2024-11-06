@@ -74,8 +74,8 @@ namespace http
       virtual ::url::url get_effective_url(const ::url::url & url) override;
 
       virtual void defer_auto_initialize_proxy_configuration() override;
-      virtual void auto_config_proxy(i32 i) override;
-      virtual i32 auto_config_proxy_count() override;
+      virtual void auto_config_proxy(int i) override;
+      virtual int auto_config_proxy_count() override;
       virtual void config_proxy(const ::url::url & url, ::sockets::http_tunnel * psocket) override;
       virtual void config_proxy(const ::url::url & url, proxy * pproxy) override;
       virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, proxy * pproxy) override;

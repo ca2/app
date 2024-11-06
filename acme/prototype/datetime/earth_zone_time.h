@@ -20,20 +20,20 @@ namespace earth
       zone_time() noexcept;
       zone_time(const zone_time & zonetime) noexcept;
       zone_time(posix_time zonetime, class ::time timeshift) noexcept;
-      zone_time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset);
+      zone_time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int iZoneOffset);
 
 
       static zone_time get_current_time(class ::time timeshift) noexcept;
 
       ::earth::gregorian_time get_zone_time() const;
 
-      i32 GetZoneYear() const noexcept;
-      i32 GetZoneMonth() const noexcept;
-      i32 GetZoneDay() const noexcept;
-      i32 GetZoneHour() const noexcept;
-      i32 GetZoneMinute() const noexcept;
-      i32 GetZoneSecond() const noexcept;
-      i32 GetZoneDayOfWeek() const noexcept; // 1 = Sunday, 7 = Saturday
+      int GetZoneYear() const noexcept;
+      int GetZoneMonth() const noexcept;
+      int GetZoneDay() const noexcept;
+      int GetZoneHour() const noexcept;
+      int GetZoneMinute() const noexcept;
+      int GetZoneSecond() const noexcept;
+      int GetZoneDayOfWeek() const noexcept; // 1 = Sunday, 7 = Saturday
 
       posix_time GetZoneTimeOfDay() const noexcept;
       i64 GetZoneDaySig() const noexcept;

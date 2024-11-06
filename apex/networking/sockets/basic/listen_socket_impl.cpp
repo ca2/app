@@ -85,7 +85,7 @@ namespace sockets
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_impl::Bind(::networking::port_t port, i32 depth)
+   int listen_socket_impl::Bind(::networking::port_t port, int depth)
    {
       //if (IsIpv6())
       //{
@@ -100,7 +100,7 @@ namespace sockets
       return 0;
    }
 
-   i32 listen_socket_impl::Bind(::networking::address* ad, i32 depth)
+   int listen_socket_impl::Bind(::networking::address* ad, int depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket*>(m_creator))
@@ -115,7 +115,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_impl::Bind(::networking::port_t port, const string& protocol, i32 depth)
+   int listen_socket_impl::Bind(::networking::port_t port, const string& protocol, int depth)
    {
       /*if (IsIpv6())
       {
@@ -134,7 +134,7 @@ namespace sockets
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_impl::Bind(const string& intf, ::networking::port_t port, i32 depth)
+   int listen_socket_impl::Bind(const string& intf, ::networking::port_t port, int depth)
    {
 
       throw interface_only();
@@ -163,7 +163,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_impl::Bind(const string& intf, ::networking::port_t port, const string& protocol, i32 depth)
+   int listen_socket_impl::Bind(const string& intf, ::networking::port_t port, const string& protocol, int depth)
    {
       //::networking::address ad(intf, port);
       //if (ad.is_valid())
@@ -182,7 +182,7 @@ namespace sockets
    //   \lparam a Ipv4 interface address
    //   \lparam port Port (0 is random)
    //   \lparam depth Listen queue depth */
-   //   i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,i32 depth)
+   //   int listen_socket_impl::Bind(in_addr a,::networking::port_t port,int depth)
    //   {
    //      ::networking::address ad(a, port);
    //#ifdef USE_SCTP
@@ -198,7 +198,7 @@ namespace sockets
    //   \lparam port Port (0 is random)
    //   \lparam protocol Network protocol
    //   \lparam depth Listen queue depth */
-   //   i32 listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
+   //   int listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,int depth)
    //   {
    //      ::networking::address ad(a, port);
    //      return Bind(ad, protocol, depth);
@@ -208,7 +208,7 @@ namespace sockets
    //   \lparam a Ipv6 interface address
    //   \lparam port Port (0 is random)
    //   \lparam depth Listen queue depth */
-   //   i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,i32 depth)
+   //   int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,int depth)
    //   {
    //      ::networking::address ad(a, port);
    //#ifdef USE_SCTP
@@ -224,7 +224,7 @@ namespace sockets
    //   \lparam port Port (0 is random)
    //   \lparam protocol Network protocol
    //   \lparam depth Listen queue depth */
-   //   i32 listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
+   //   int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,int depth)
    //   {
    //      ::networking::address ad(a, port);
    //      return Bind(ad, protocol, depth);
@@ -234,7 +234,7 @@ namespace sockets
       \lparam ad Interface address
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-   i32 listen_socket_impl::Bind(::networking::address* ad, const string& protocol, i32 depth)
+   int listen_socket_impl::Bind(::networking::address* ad, const string& protocol, int depth)
    {
 
       //socket_id s;
@@ -318,7 +318,7 @@ namespace sockets
    //   }
 
    /** Return listen queue depth. */
-   i32 listen_socket_impl::GetDepth()
+   int listen_socket_impl::GetDepth()
    {
       return m_depth;
    }
@@ -358,7 +358,7 @@ namespace sockets
       //      if (socket_handler()->get_count() >= FD_SETSIZE)
       //      {
       //
-      //         fatal() <<"accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
+      //         fatal() <<"accept " << (int)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
       //
       //         close_socket(a_s);
       //
@@ -450,7 +450,7 @@ namespace sockets
       return false;
    }
 
-   //void listen_socket_impl::OnOptions(i32,i32,i32,socket_id)
+   //void listen_socket_impl::OnOptions(int,int,int,socket_id)
    //{
    //   SetSoReuseaddr(true);
    //}

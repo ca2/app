@@ -47,7 +47,7 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
+   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 

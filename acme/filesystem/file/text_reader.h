@@ -127,7 +127,7 @@ public:
 #endif
 
 
-   text_reader & operator >>(i8 & i)
+   text_reader & operator >>(char & i)
    {
 
       i = *m_psz++;
@@ -139,7 +139,7 @@ public:
 
 
 
-   text_reader & operator >>(i16 & sh)
+   text_reader & operator >>(short & sh)
    {
 
       read_integer(sh, m_psz);
@@ -149,7 +149,7 @@ public:
    }
 
 
-   text_reader & operator >>(u16 & u)
+   text_reader & operator >>(unsigned short & u)
    {
 
       read_natural(u, m_psz);
@@ -159,7 +159,7 @@ public:
    }
 
 
-   text_reader & operator >>(i32 & i)
+   text_reader & operator >>(int & i)
    {
 
       read_integer(i, m_psz);
@@ -169,7 +169,7 @@ public:
    }
 
 
-   text_reader & operator >>(u32 & u)
+   text_reader & operator >>(unsigned int & u)
    {
 
       read_natural(u, m_psz);

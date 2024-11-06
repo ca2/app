@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom)
+   //bool toolbar_control::create_window(unsigned int uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom)
    //{
    //   
    //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, atom);
@@ -22,14 +22,14 @@ namespace user
    //}
 
 
-//   i32 toolbar_control::AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap)
+//   int toolbar_control::AddBitmap(int nNumButtons, ::draw2d::bitmap* pBitmap)
 //   {
 ////#ifdef WINDOWS_DESKTOP
 ////      ASSERT(is_window());
 ////      TBADDBITMAP tbab;
 ////      tbab.hInst = nullptr;
 ////      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
-////      return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
+////      return (int) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
 ////         (LPARAM)&tbab);
 ////#else
 ////      throw ::exception(todo);
@@ -106,14 +106,14 @@ namespace user
 
    struct CToolBarCtrlData
    {
-      ::u16 wVersion;
-      ::u16 wWidth;
-      ::u16 wHeight;
-      ::u16 wItemCount;
-      //::u16 aItems[wItemCount]
+      unsigned short wVersion;
+      unsigned short wWidth;
+      unsigned short wHeight;
+      unsigned short wItemCount;
+      //unsigned short aItems[wItemCount]
 
-      ::u16* items()
-      { return (::u16*)(this+1); }
+      unsigned short* items()
+      { return (unsigned short*)(this+1); }
    };
 
    /*bool toolbar_control::LoadToolBar(const ::string & pszResourceName)
@@ -140,8 +140,8 @@ namespace user
    return false;
    ASSERT(pData->wVersion == 1);
 
-   ::u32* pItems = ___new ::u32[pData->wItemCount];
-   for (i32 i = 0; i < pData->wItemCount; i++)
+   unsigned int* pItems = ___new unsigned int[pData->wItemCount];
+   for (int i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);
    delete[] pItems;
@@ -154,7 +154,7 @@ namespace user
    //      SetSizes(sizeButton, sizeImage);
 
    // load bitmap now that sizes are known by the toolbar control
-   LoadImages((i32)(::u16) (long *)pszResourceName, __get_resource_handle());
+   LoadImages((int)(unsigned short) (long *)pszResourceName, __get_resource_handle());
 
    }
 
@@ -164,18 +164,18 @@ namespace user
    return bResult;
    }*/
 
-   bool toolbar_control::SetButtons(const ::u32* pIDArray, i32 nIDCount)
+   bool toolbar_control::SetButtons(const unsigned int* pIDArray, int nIDCount)
    {
 
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
-         is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount));
+         is_memory_segment_ok(pIDArray, sizeof(unsigned int) * nIDCount));
 
 
       // delete all existing buttons
-      /* linux i32 nCount = (i32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      /* linux int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       while (nCount--)
       VERIFY(DefWindowProc(TB_DELETEBUTTON, 0, 0));
 
@@ -185,8 +185,8 @@ namespace user
 
       {
       // add ___new buttons to the common control
-      i32 iImage = 0;
-      for (i32 i = 0; i < nIDCount; i++)
+      int iImage = 0;
+      for (int i = 0; i < nIDCount; i++)
       {
       button.fsState = TBSTATE_ENABLED;
       if ((button.idCommand = *pIDArray++) == 0)
@@ -215,20 +215,20 @@ namespace user
       {
       // add 'blank' buttons
       button.fsState = TBSTATE_ENABLED;
-      for (i32 i = 0; i < nIDCount; i++)
+      for (int i = 0; i < nIDCount; i++)
       {
       ASSERT(button.fsStyle == TBSTYLE_BUTTON);
       if (!DefWindowProc(TB_ADDBUTTONSW, 1, (LPARAM)&button))
       return false;
       }
       }
-      //   m_nCount = (i32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      //   m_nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       //   m_bDelayedButtonLayout = true; */
 
       return true;
    }
 
-   i32 toolbar_control::GetButtonText(::u32 uId, string &str)
+   int toolbar_control::GetButtonText(unsigned int uId, string &str)
    {
       
       return 0;
@@ -240,7 +240,7 @@ namespace user
 //      tbbi.cbSize = sizeof(tbbi);
 //      tbbi.dwMask = TBIF_TEXT;
 //
-//      //      i32 nSize = 256;
+//      //      int nSize = 256;
 //      while(true)
 //      {
 //         /*         tbbi.pszText = str.GetBuffer(nSize);
@@ -263,7 +263,7 @@ namespace user
 
    toolbar_control::toolbar_control()
    { }
-   bool toolbar_control::EnableButton(i32 nID, bool bEnable)
+   bool toolbar_control::EnableButton(int nID, bool bEnable)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != false;
@@ -274,7 +274,7 @@ namespace user
       return false;
 
    }
-   bool toolbar_control::CheckButton(i32 nID, bool bCheck)
+   bool toolbar_control::CheckButton(int nID, bool bCheck)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != false;
@@ -285,7 +285,7 @@ namespace user
       return false;
 
    }
-   bool toolbar_control::PressButton(i32 nID, bool bPress)
+   bool toolbar_control::PressButton(int nID, bool bPress)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != false;
@@ -298,7 +298,7 @@ namespace user
    }
 
 
-   bool toolbar_control::HideButton(i32 nID, bool bHide)
+   bool toolbar_control::HideButton(int nID, bool bHide)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -312,7 +312,7 @@ namespace user
    }
 
 
-   bool toolbar_control::Indeterminate(i32 nID, bool bIndeterminate)
+   bool toolbar_control::Indeterminate(int nID, bool bIndeterminate)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != false;
@@ -325,7 +325,7 @@ namespace user
    }
 
 
-   bool toolbar_control::IsButtonEnabled(i32 nID)
+   bool toolbar_control::IsButtonEnabled(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != false;
@@ -339,7 +339,7 @@ namespace user
 
 
 
-   bool toolbar_control::IsButtonChecked(i32 nID)
+   bool toolbar_control::IsButtonChecked(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != false;
@@ -352,7 +352,7 @@ namespace user
    }
 
 
-   bool toolbar_control::IsButtonPressed(i32 nID)
+   bool toolbar_control::IsButtonPressed(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != false;
@@ -365,7 +365,7 @@ namespace user
    }
 
 
-   bool toolbar_control::IsButtonHidden(i32 nID)
+   bool toolbar_control::IsButtonHidden(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != false;
@@ -378,7 +378,7 @@ namespace user
    }
 
 
-   bool toolbar_control::IsButtonIndeterminate(i32 nID)
+   bool toolbar_control::IsButtonIndeterminate(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != false;
@@ -391,7 +391,7 @@ namespace user
    }
 
 
-   bool toolbar_control::set_state(i32 nID, ::u32 nState)
+   bool toolbar_control::set_state(int nID, unsigned int nState)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); 
@@ -405,10 +405,10 @@ namespace user
    }
 
 
-   i32 toolbar_control::GetState(i32 nID)
+   int toolbar_control::GetState(int nID)
    {
 //#ifdef WINDOWS_DESKTOP
-//      ASSERT(is_window()); return (i32) send_message( TB_GETSTATE, nID);
+//      ASSERT(is_window()); return (int) send_message( TB_GETSTATE, nID);
 //#else
 //      throw ::exception(todo);
 //#endif
@@ -419,7 +419,7 @@ namespace user
 
 
 //#ifdef WINDOWS_DESKTOP
-//   bool toolbar_control::AddButtons(i32 nNumButtons, LPTBBUTTON pButtons)
+//   bool toolbar_control::AddButtons(int nNumButtons, LPTBBUTTON pButtons)
 //
 //   {
 //#ifdef WINDOWS_DESKTOP
@@ -429,7 +429,7 @@ namespace user
 //      throw ::exception(todo);
 //#endif
 //   }
-//   bool toolbar_control::InsertButton(i32 nIndex, LPTBBUTTON pButton)
+//   bool toolbar_control::InsertButton(int nIndex, LPTBBUTTON pButton)
 //
 //   {
 //#ifdef WINDOWS_DESKTOP
@@ -442,7 +442,7 @@ namespace user
 //#endif
 //
 //
-//   bool toolbar_control::DeleteButton(i32 nIndex)
+//   bool toolbar_control::DeleteButton(int nIndex)
 //   {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != false;
@@ -455,7 +455,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::GetButton(i32 nIndex, LPTBBUTTON pButton)
+//   bool toolbar_control::GetButton(int nIndex, LPTBBUTTON pButton)
 //
 //   {
 //
@@ -469,10 +469,10 @@ namespace user
 
 
 
-   i32 toolbar_control::GetButtonCount()
+   int toolbar_control::GetButtonCount()
    {
 //#ifdef WINDOWS_DESKTOP
-//      ASSERT(is_window()); return (i32) send_message( TB_BUTTONCOUNT);
+//      ASSERT(is_window()); return (int) send_message( TB_BUTTONCOUNT);
 //
 //#else
 //
@@ -486,12 +486,12 @@ namespace user
 
 
 
-   ::u32 toolbar_control::CommandToIndex(::u32 nID)
+   unsigned int toolbar_control::CommandToIndex(unsigned int nID)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (::u32) send_message( TB_COMMANDTOINDEX, nID);
+//   ASSERT(is_window()); return (unsigned int) send_message( TB_COMMANDTOINDEX, nID);
 //
 //#else
 //
@@ -522,12 +522,12 @@ namespace user
 
    // pszStrings are separated by zeroes, last one is marked by two zeroes
 
-   i32 toolbar_control::AddStrings(const ::string & pszStrings)
+   int toolbar_control::AddStrings(const ::string & pszStrings)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (i32) send_message( TB_ADDSTRING, 0, (LPARAM)pszStrings);
+//   ASSERT(is_window()); return (int) send_message( TB_ADDSTRING, 0, (LPARAM)pszStrings);
 //
 //
 //#else
@@ -541,7 +541,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetItemRect(i32 nIndex, ::rectangle_i32 * prectangle)
+   bool toolbar_control::GetItemRect(int nIndex, ::rectangle_i32 * prectangle)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -559,7 +559,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetButtonStructSize(i32 nSize)
+   void toolbar_control::SetButtonStructSize(int nSize)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -650,7 +650,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetRows(i32 nRows, bool bLarger, ::rectangle_i32 * prectangle)
+   void toolbar_control::SetRows(int nRows, bool bLarger, ::rectangle_i32 * prectangle)
 
    {
 
@@ -668,7 +668,7 @@ namespace user
    }
 
 
-   i32 toolbar_control::GetRows()
+   int toolbar_control::GetRows()
    {
 
       return 0;
@@ -676,7 +676,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (i32) send_message( TB_GETROWS);
+//   ASSERT(is_window()); return (int) send_message( TB_GETROWS);
 //
 //#else
 //
@@ -687,7 +687,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetCmdID(i32 nIndex, ::u32 nID)
+   bool toolbar_control::SetCmdID(int nIndex, unsigned int nID)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -705,12 +705,12 @@ namespace user
    }
 
 
-   ::u32 toolbar_control::GetBitmapFlags()
+   unsigned int toolbar_control::GetBitmapFlags()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (::u32) send_message( TB_GETBITMAPFLAGS);
+//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETBITMAPFLAGS);
 //
 //#else
 //
@@ -723,12 +723,12 @@ namespace user
    }
 
 
-   i32 toolbar_control::hit_test(::point_i32 * ppt)
+   int toolbar_control::hit_test(::point_i32 * ppt)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (i32) send_message( TB_HITTEST, 0, (LPARAM)ppt);
+//   ASSERT(is_window()); return (int) send_message( TB_HITTEST, 0, (LPARAM)ppt);
 //
 //#else
 //
@@ -741,12 +741,12 @@ namespace user
    }
 
 
-   u32 toolbar_control::GetExtendedStyle()
+   unsigned int toolbar_control::GetExtendedStyle()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (u32) send_message( TB_GETEXTENDEDSTYLE);
+//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETEXTENDEDSTYLE);
 //
 //#else
 //
@@ -759,12 +759,12 @@ namespace user
    }
 
 
-   u32 toolbar_control::SetExtendedStyle(u32 dwExStyle)
+   unsigned int toolbar_control::SetExtendedStyle(unsigned int dwExStyle)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      ASSERT(is_window()); return (u32) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
+//      ASSERT(is_window()); return (unsigned int) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
 //
 //#else
 //
@@ -815,12 +815,12 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   u32 toolbar_control::get_button_size()
+   unsigned int toolbar_control::get_button_size()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (u32) send_message( TB_GETBUTTONSIZE);
+//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETBUTTONSIZE);
 //
 //#else
 //
@@ -887,12 +887,12 @@ namespace user
    }
 
 
-   u32 toolbar_control::GetStyle()
+   unsigned int toolbar_control::GetStyle()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (u32) send_message( TB_GETSTYLE);
+//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETSTYLE);
 //
 //#else
 //
@@ -925,7 +925,7 @@ namespace user
    }
 
 
-   bool toolbar_control::GetRect(i32 nID, ::rectangle_i32 * prectangle)
+   bool toolbar_control::GetRect(int nID, ::rectangle_i32 * prectangle)
 
    {
 
@@ -945,7 +945,7 @@ namespace user
    }
 
 
-   bool toolbar_control::IsButtonHighlighted(i32 nID)
+   bool toolbar_control::IsButtonHighlighted(int nID)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -966,7 +966,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   void toolbar_control::LoadImages(i32 iBitmapID, HINSTANCE hinst)
+//   void toolbar_control::LoadImages(int iBitmapID, HINSTANCE hinst)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -985,7 +985,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::SetButtonWidth(i32 cxMin, i32 cxMax)
+   bool toolbar_control::SetButtonWidth(int cxMin, int cxMax)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -1062,7 +1062,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetIndent(i32 iIndent)
+   bool toolbar_control::SetIndent(int iIndent)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1079,7 +1079,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetMaxTextRows(i32 iMaxRows)
+   bool toolbar_control::SetMaxTextRows(int iMaxRows)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1096,7 +1096,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetStyle(u32 dwStyle)
+   void toolbar_control::SetStyle(unsigned int dwStyle)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1112,7 +1112,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFO* ptbbi)
+//   bool toolbar_control::GetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
 //   {
 //
 //      ASSERT(is_window()); return send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi) != false;
@@ -1124,7 +1124,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
+//   bool toolbar_control::GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
 //   {
 //
 //      ASSERT(is_window()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
@@ -1136,7 +1136,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFO* ptbbi)
+//   bool toolbar_control::SetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
 //   {
 //
 //      ASSERT(is_window()); return send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi) != false;
@@ -1148,7 +1148,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
+//   bool toolbar_control::SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
 //   {
 //
 //      ASSERT(is_window()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
@@ -1159,12 +1159,12 @@ namespace user
 //#endif
 
 
-   u32 toolbar_control::SetDrawTextFlags(u32 dwMask, u32 dwDTFlags)
+   unsigned int toolbar_control::SetDrawTextFlags(unsigned int dwMask, unsigned int dwDTFlags)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      ASSERT(is_window()); return (u32) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
+//      ASSERT(is_window()); return (unsigned int) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
 //
 //#else
 //
@@ -1211,11 +1211,11 @@ namespace user
    }
 
 
-   i32 toolbar_control::GetHotItem()
+   int toolbar_control::GetHotItem()
    {
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (i32) send_message( TB_GETHOTITEM);
+//   ASSERT(is_window()); return (int) send_message( TB_GETHOTITEM);
 //
 //#else
 //
@@ -1228,11 +1228,11 @@ namespace user
    }
 
 
-   i32 toolbar_control::SetHotItem(i32 nHot)
+   int toolbar_control::SetHotItem(int nHot)
    {
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (i32) send_message( TB_SETHOTITEM, nHot);
+//   ASSERT(is_window()); return (int) send_message( TB_SETHOTITEM, nHot);
 //
 //#else
 //
@@ -1300,7 +1300,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::MapAccelerator(char chAccel, ::u32* pIDBtn)
+   bool toolbar_control::MapAccelerator(char chAccel, unsigned int* pIDBtn)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1317,7 +1317,7 @@ namespace user
    }
 
 
-   bool toolbar_control::MarkButton(i32 nID, bool bHighlight)
+   bool toolbar_control::MarkButton(int nID, bool bHighlight)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1334,7 +1334,7 @@ namespace user
    }
 
 
-   bool toolbar_control::MoveButton(::u32 nOldPos, ::u32 nNewPos)
+   bool toolbar_control::MoveButton(unsigned int nOldPos, unsigned int nNewPos)
    {
 
 //#ifdef WINDOWS_DESKTOP

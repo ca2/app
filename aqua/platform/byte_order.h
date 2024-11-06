@@ -24,7 +24,7 @@ namespace h2n2h_helper
    struct Endian
    {
    private:
-      static constexpr ::u32 uint32_ = 0x01020304;
+      static constexpr unsigned int uint32_ = 0x01020304;
       static constexpr unsigned char magic_ = (const unsigned char&)uint32_;
    public:
       static constexpr bool little = magic_ == 0x04;

@@ -480,7 +480,7 @@ namespace write_text
 //   bool font::AddGlyph(WCHAR wchar)
 //   {
 //
-//      return AddGlyph((::u32)wchar);
+//      return AddGlyph((unsigned int)wchar);
 //
 //   }
 //
@@ -488,12 +488,12 @@ namespace write_text
 //   bool font::AddGlyph(char tch)
 //   {
 //
-//      return AddGlyph((::u32)tch);
+//      return AddGlyph((unsigned int)tch);
 //
 //   }
 //
 //
-//   bool font::AddGlyph(::u32 user)
+//   bool font::AddGlyph(unsigned int user)
 //   {
 //
 //      //   single_lock synchronouslock(m_pmutex);
@@ -520,7 +520,7 @@ namespace write_text
 //      mat2.eM22.fract = 0;
 //      GLYPHMETRICS gm;
 //
-//      u32 cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, nullptr, &mat2);
+//      unsigned int cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, nullptr, &mat2);
 //
 //      if (cbBuffer == GDI_ERROR)
 //         return FALSE;
@@ -586,15 +586,15 @@ namespace write_text
 //
 //   glyph * font::GetGlyph(char ch)
 //   {
-//      return GetGlyph((::u32)ch);
+//      return GetGlyph((unsigned int)ch);
 //   }
 //
 //   glyph * font::GetGlyph(WCHAR wch)
 //   {
-//      return GetGlyph((::u32)wch);
+//      return GetGlyph((unsigned int)wch);
 //   }
 //
-//   glyph * font::GetGlyph(::u32 user)
+//   glyph * font::GetGlyph(unsigned int user)
 //   {
 //      return m_glyphset.GetGlyph(user);
 //   }
@@ -914,7 +914,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * prect, ::u32 format)
+//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * prect, unsigned int format)
 //
 //{
 //

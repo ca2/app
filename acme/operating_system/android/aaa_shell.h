@@ -55,8 +55,8 @@ namespace android
       //virtual void open_folder(oswindow oswindow, const ::string & strFolder);
       //virtual void close_folder(const ::string & strFolder);
 
-      virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
-      virtual i32 impl_get_file_image( const image_key& imagekey) override;
+      virtual int get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+      virtual int impl_get_file_image( const image_key& imagekey) override;
 
       virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath) override;
       virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
@@ -73,21 +73,21 @@ namespace android
 
 
       //virtual bool do_call();
-      //i32 calc_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
-      //i32 calc_get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      //int calc_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      //int calc_get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
 
 
 
 
-      i32 get_image(per_fork * pfork, image_key key, const ::wide_character * lpcszExtra, color32_t crBk);
-      i32 get_image_by_extension(per_fork * pfork, image_key & key, color32_t crBk);
+      int get_image(per_fork * pfork, image_key key, const ::wide_character * lpcszExtra, color32_t crBk);
+      int get_image_by_extension(per_fork * pfork, image_key & key, color32_t crBk);
       //bool get_icon(oswindow oswindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
-      //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const ::file::path & path, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
-      //         i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk);
-      //         //i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk);
-      i32 get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, color32_t crBk);
+      //         int get_image(oswindow oswindow, IShellFolder * lpsf, const ::file::path & path, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
+      //         int get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk);
+      //         //int get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk);
+      int get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, color32_t crBk);
 
 
 
@@ -108,7 +108,7 @@ namespace android
       //
       //         //      string CLASS_DECL_ACME _017FilePathGetParent(const ::scoped_string & scopedstr);
       //
-      //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, i32 cx, i32 cy);
+      //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int cx, int cy);
       //         bool _017HasSubFolder(::particle * pparticle, LPITEMIDLIST lpiidl, const char * lpcszExtra);
       //         //      void CLASS_DECL_ACME GetChildren(string_array & stra, const char * lpcszPath);
       //         LPITEMIDLIST _017ItemIDListGetLast(per_fork * pfork, LPITEMIDLIST lpiidl);

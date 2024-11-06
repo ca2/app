@@ -250,7 +250,7 @@ namespace aura
 {
 
 
-   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,u32 dwCategory,u32 nLevel, const ::string & pszFmt,va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::string & pszFmt,va_list args);
 
 
    namespace trace
@@ -344,8 +344,8 @@ namespace aura
 
       //CLASS_DECL_AURA void __cdecl information(const ::string & pszFormat,...);
       //CLASS_DECL_AURA void __cdecl information(const unichar * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel, const ::string & pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel,const unichar * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel, const ::string & pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel,const unichar * pszFormat,...);
 
    } // namespace trace
 
@@ -353,7 +353,7 @@ namespace aura
 };  // namespace aura
 
 
-CLASS_DECL_AURA const char * get_windows_message_name(::u32 nMsg);
+CLASS_DECL_AURA const char * get_windows_message_name(unsigned int nMsg);
 
 
 

@@ -380,17 +380,17 @@ auto pwindowing = windowing();
 
          }
 
-         i32 iBorderH = rectangleX.height() / 2;
+         int iBorderH = rectangleX.height() / 2;
 
          auto pbrush = __create < ::draw2d::brush > ();
 
          pbrush->CreateLinearGradientBrush(point_i32(rectangleX.left(), rectangleX.top() - 1), point_i32(rectangleX.left(), rectangleX.top() + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + 1, (i32)rectangleX.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + 1, (int)rectangleX.width(), iBorderH), br);
 
          pbrush->CreateLinearGradientBrush(point_i32(rectangleX.left(), rectangleX.top() + iBorderH - 1), point_i32(rectangleX.left(), rectangleX.top() + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + iBorderH, rectangleX.left() + (i32)rectangleX.width(), rectangleX.top() + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + iBorderH, rectangleX.left() + (int)rectangleX.width(), rectangleX.top() + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen ppen1(crBorderOut);
 
@@ -400,7 +400,7 @@ auto pwindowing = windowing();
 
          ppen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + 1, rectangleX.left() + (i32)rectangleX.width() - 2, rectangleX.top() + iBorderH * 2 - 2), ppen);
+         pgraphics->draw_rectangle(::rectangle_i32(rectangleX.left() + 1, rectangleX.top() + 1, rectangleX.left() + (int)rectangleX.width() - 2, rectangleX.top() + iBorderH * 2 - 2), ppen);
 
       }
 
@@ -469,11 +469,11 @@ auto pwindowing = windowing();
 
       float fMargin = (rectangleX.height() * ((1.0f - 0.84f) / 2.0f));
 
-      rectangleX.deflate((i32) fMargin, (i32) fMargin);
+      rectangleX.deflate((int) fMargin, (int) fMargin);
 
       ::write_text::font_pointer f(e_create);
 
-      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectangleX.height()* 0.7);
+      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)rectangleX.height()* 0.7);
 
       pgraphics->set(f);
 

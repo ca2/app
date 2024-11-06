@@ -25,8 +25,8 @@ namespace account
 {
 
 
-   //::u32 c_cdecl thread_proc_pre_login(void * p);
-   //   ::u32 c_cdecl thread_proc_defer_translate_login(void * p);
+   //unsigned int c_cdecl thread_proc_pre_login(void * p);
+   //   unsigned int c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    impact::impact()
@@ -204,12 +204,12 @@ namespace account
 
       double ry = m_dRateY;
 
-      i32 x1 = (int)(49 * rx);
-      i32 w2 = (int)((rectangleX.width() - 49 * 2 * rx));
-      i32 h1 = (int)(23 * ry);
-      i32 pad = (int)(5 * ry);
+      int x1 = (int)(49 * rx);
+      int w2 = (int)((rectangleX.width() - 49 * 2 * rx));
+      int h1 = (int)(23 * ry);
+      int pad = (int)(5 * ry);
 
-      i32 y = (int)((49 + 86) * ry);
+      int y = (int)((49 + 86) * ry);
       m_pstillUser->place(x1, y, w2, h1);
       y += h1 + pad;
       m_peditUser->place(x1, y, w2, h1);
@@ -330,7 +330,7 @@ namespace account
 
          ::write_text::font_pointer f(e_create, this);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleX) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)height(rectangleX) * 0.7);
 
          float fMargin = (height(rectangleX) * ((1.0f - 0.7f) / 2.0f));*/
 
@@ -474,7 +474,7 @@ namespace account
 
 
 
-   //::u32 c_cdecl thread_proc_pre_login(void * p)
+   //unsigned int c_cdecl thread_proc_pre_login(void * p)
    //{
 
    //   ::aura::application * papp = (::aura::application *) point_i32;

@@ -71,7 +71,7 @@ namespace simple_ui
 
    /*
 
-   CLASS_DECL_CORE char ansi_upper(i32 ch)
+   CLASS_DECL_CORE char ansi_upper(int ch)
    {
 
    if(ch >= 'a' && ch <= 'z')

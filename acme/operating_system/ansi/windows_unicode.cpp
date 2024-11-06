@@ -14,7 +14,7 @@
 
 #ifndef UNIVERSAL_WINDOWS
 
-string iconv_charset_from_windows_code_page(::u32 CodePage)
+string iconv_charset_from_windows_code_page(unsigned int CodePage)
 {
 
    switch(CodePage)
@@ -31,14 +31,14 @@ string iconv_charset_from_windows_code_page(::u32 CodePage)
 }
 
 
-i32
+int
 MultiByteToWideChar2(
-::u32     CodePage,
-::u32    dwFlags,
+unsigned int     CodePage,
+unsigned int    dwFlags,
 const char *   pMultiByteStr,
-i32      cbMultiByte,
+int      cbMultiByte,
 ::wd16_character *   pWideCharStr,
-i32      cchWideChar)
+int      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
 
@@ -55,15 +55,15 @@ i32      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (i32) (wstr.length() + 1);
+           return (int) (wstr.length() + 1);
         }
         else
         {
-           return (i32) wstr.length();
+           return (int) wstr.length();
         }
      }
 
-     i32 iLen = (i32) minimum(cchWideChar, wstr.length());
+     int iLen = (int) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -127,7 +127,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(::wd16_character)) + (cbMultiByte < 0 ? 1 : 0));
+        return (int) (((sOutIn - sOut) / sizeof(::wd16_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
@@ -147,7 +147,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(::wd16_character))  + (cbMultiByte < 0 ? 1 : 0));
+        return (int) (((sOutIn - sOut) / sizeof(::wd16_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -156,14 +156,14 @@ i32      cchWideChar)
 }
 
 
-i32
+int
 MultiByteToWideChar2(
-::u32     CodePage,
-::u32    dwFlags,
+unsigned int     CodePage,
+unsigned int    dwFlags,
 const char *   pMultiByteStr,
-i32      cbMultiByte,
+int      cbMultiByte,
 ::wd32_character *   pWideCharStr,
-i32      cchWideChar)
+int      cchWideChar)
 {
   string str(pMultiByteStr, cbMultiByte);
 
@@ -180,15 +180,15 @@ i32      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (i32) (wstr.length() + 1);
+           return (int) (wstr.length() + 1);
         }
         else
         {
-           return (i32) wstr.length();
+           return (int) wstr.length();
         }
      }
 
-     i32 iLen = (i32) minimum(cchWideChar, wstr.length());
+     int iLen = (int) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -252,7 +252,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(::wd32_character)) + (cbMultiByte < 0 ? 1 : 0));
+        return (int) (((sOutIn - sOut) / sizeof(::wd32_character)) + (cbMultiByte < 0 ? 1 : 0));
 
      }
      else
@@ -272,7 +272,7 @@ i32      cchWideChar)
 
         iconv_close(iconvPlease);
 
-        return (i32) (((sOutIn - sOut) / sizeof(::wd32_character))  + (cbMultiByte < 0 ? 1 : 0));
+        return (int) (((sOutIn - sOut) / sizeof(::wd32_character))  + (cbMultiByte < 0 ? 1 : 0));
 
      }
 
@@ -281,13 +281,13 @@ i32      cchWideChar)
 }
 
 
-i32  WideCharToMultiByte2(
-::u32     CodePage,
-::u32    dwFlags,
+int  WideCharToMultiByte2(
+unsigned int     CodePage,
+unsigned int    dwFlags,
 const ::wide_character *  pWideCharStr,
-i32      cchWideChar,
+int      cchWideChar,
 char *   pMultiByteStr,
-i32      cbMultiByte,
+int      cbMultiByte,
 const char *   pDefaultChar,
 int_bool *  pUsedDefaultChar)
 {
@@ -333,15 +333,15 @@ int_bool *  pUsedDefaultChar)
   {
      if(cchWideChar < 0)
      {
-        return (i32) str.length() + 1;
+        return (int) str.length() + 1;
      }
      else
      {
-        return (i32) str.length();
+        return (int) str.length();
      }
   }
 
-  i32 iLen = (i32) minimum(cbMultiByte, str.length());
+  int iLen = (int) minimum(cbMultiByte, str.length());
 
   if(pMultiByteStr != nullptr)
 
@@ -372,7 +372,7 @@ int_bool *  pUsedDefaultChar)
 }
 
 
-//CLASS_DECL_ACME string ::windows::last_error_message(u32 dwError)
+//CLASS_DECL_ACME string ::windows::last_error_message(unsigned int dwError)
 //{
 //
 //   string str;

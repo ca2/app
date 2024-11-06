@@ -22,7 +22,7 @@ public:
    union
    {
 
-      ::u32       m_uError;
+      unsigned int       m_uError;
 
       struct
       {
@@ -185,8 +185,8 @@ public:
 
 
    //inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }
-   //inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((::u32)(m_ematter) | (::u32)(ematter)); }
-   //inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((::u32)(m_ematter) & (~(::u32)(ematter))); }
+   //inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((unsigned int)(m_ematter) | (unsigned int)(ematter)); }
+   //inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((unsigned int)(m_ematter) & (~(unsigned int)(ematter))); }
 
 
    //inline bool is_finishing() const { return is(e_element_finishing); }
@@ -228,11 +228,11 @@ public:
 
 
    //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const;
-   //virtual void __tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, ...) const;
-   //virtual void __tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
+   //virtual void __tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...) const;
+   //virtual void __tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
 
-   //virtual void __simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
-   //virtual void __simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 iLine, const ::scoped_string & scopedstr) const;
+   //virtual void __simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
+   //virtual void __simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, int iLine, const ::scoped_string & scopedstr) const;
 
 
 

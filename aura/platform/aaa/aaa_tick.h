@@ -85,10 +85,10 @@ public:
 
    }
 
-   inline ::u32 u32() const
+   inline unsigned int unsigned int() const
    {
 
-      return (::u32) (m_i % 0x100000000ULL);
+      return (unsigned int) (m_i % 0x100000000ULL);
 
    }
 
@@ -184,7 +184,7 @@ namespace papaya
       inline TYPE default_value();
 
       template <  >
-      inline u32 default_value < u32 >()
+      inline unsigned int default_value < unsigned int >()
       {
 
          return 0;
@@ -214,7 +214,7 @@ inline double __double(const ::duration & duration) { return (double) ::duration
 
 inline auto __pr(const ::duration & duration) { return ::duration.m_i; }
 
-inline u32 __os(const ::duration & duration) { return ::duration.m_i > (i64) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (u32) ::duration.m_i; }
+inline unsigned int __os(const ::duration & duration) { return ::duration.m_i > (i64) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (unsigned int) ::duration.m_i; }
 
 inline int __i32(const ::duration & duration) { return (int) ::duration.m_i; }
 

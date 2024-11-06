@@ -27,7 +27,7 @@ namespace draw2d
 //#ifdef WINDOWS
 //
 //
-//   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)
+//   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, unsigned int nUsage)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(hPackedDIB);
@@ -152,7 +152,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage)
+   bool brush::CreateDIBPatternBrush(const void * pPackedDIB, unsigned int nUsage)
    {
 
       __UNREFERENCED_PARAMETER(pPackedDIB);

@@ -188,7 +188,7 @@ void apex_main_data::on_system_construct()
 #ifdef WINDOWS_DESKTOP
 
 
-//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
+//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(pCmdLine);

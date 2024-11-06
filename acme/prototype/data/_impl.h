@@ -22,13 +22,13 @@
 //
 //      iLevel = ptreeitem->m_iLevel;
 //
-//      s << (i32)iLevel;
+//      s << (int)iLevel;
 //
 //      __save_object(s, ptreeitem->m_pdataitem);
 //
 //   }
 //
-//   s << (i32)-1;
+//   s << (int)-1;
 //
 //   return s;
 //
@@ -41,9 +41,9 @@
 //
 //   auto ptreeitem = tree.get_base_item();
 //
-//   i32 iPreviousLevel = 0;
+//   int iPreviousLevel = 0;
 //
-//   i32 iLevel = 0;
+//   int iLevel = 0;
 //
 //   while (true)
 //   {

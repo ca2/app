@@ -262,7 +262,7 @@ namespace sockets
    //   //if (m_socketmapAdd.lookup(psocket->get_socket_id(), plookup))
    //   //{
 
-   //   //   INFO(psocket, "add", (i32)psocket->get_socket_id(), "Attempt to add socket_id already in add queue");
+   //   //   INFO(psocket, "add", (int)psocket->get_socket_id(), "Attempt to add socket_id already in add queue");
 
    //   //   //m_delete.add_tail(psocket);
    //   //   return;
@@ -410,7 +410,7 @@ namespace sockets
    //}
 
 
-   i32 socket_handler::select(i32 lSeconds, i32 lMicroseconds)
+   int socket_handler::select(int lSeconds, int lMicroseconds)
    {
 
       //struct timeval timeval;
@@ -424,7 +424,7 @@ namespace sockets
    }
 
 
-   i32 socket_handler::select()
+   int socket_handler::select()
    {
 
       return -1;
@@ -494,7 +494,7 @@ namespace sockets
       //     if (!m_socketmap.lookup(socket_id, psocket)) // not found
       //     {
 
-      //        warning() <<"get_socket_id/handler/4 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(4)";
+      //        warning() <<"get_socket_id/handler/4 " << (int)socket_id << " Did not find expected socket_id using file descriptor(4)";
 
       //        socket_id_list_erase(psocket->get_socket_id(), e_list_call_on_connect);
 
@@ -578,13 +578,13 @@ namespace sockets
    }
 
 
-  i32 socket_handler::select(const class time & timeWait)
+  int socket_handler::select(const class time & timeWait)
   {
 
      throw interface_only();
 
      return -1;
-//     i32 n = system()->networking()->_select(this, wait);
+//     int n = system()->networking()->_select(this, wait);
 //
 //
 //     auto tick2 = ::time::now();
@@ -606,7 +606,7 @@ namespace sockets
 //
 //           information() << "select" << m_iSelectErrno << ", " << bsd_socket_error(m_iSelectErrno);
 //
-//           i32 iError = m_iSelectErrno;
+//           int iError = m_iSelectErrno;
 //
 //#if defined(LINUX) || defined(MACOS)
 //
@@ -720,14 +720,14 @@ namespace sockets
 //
 //                    tv.tv_usec = 0;
 //
-//                    i32 n = ::select((i32)(it->m_socket_id + 1), &fds, nullptr, nullptr, &tv);
+//                    int n = ::select((int)(it->m_socket_id + 1), &fds, nullptr, nullptr, &tv);
 //
 //                    if (n == -1)
 //                    {
 //
 //                       // %! bad fd, erase
 //
-//                       it->m_psocket, " Select " << (i32)it->m_socket_id << "Bad fd in fd_set (2)"); // ->error() << LOG_LEVEL_ERROR);
+//                       it->m_psocket, " Select " << (int)it->m_socket_id << "Bad fd in fd_set (2)"); // ->error() << LOG_LEVEL_ERROR);
 //
 //                       m_socketidlistErase.add(it->m_socket_id);
 //
@@ -775,7 +775,7 @@ namespace sockets
 //
 //                          // %! none set
 //
-//                          it->m_psocket, "Select " << (i32)it->m_socket_id << " No fd in fd_set"); // ->error() << LOG_LEVEL_ERROR);
+//                          it->m_psocket, "Select " << (int)it->m_socket_id << " No fd in fd_set"); // ->error() << LOG_LEVEL_ERROR);
 //
 //                          m_socketidlistErase.add(it->m_socket_id);
 //
@@ -789,7 +789,7 @@ namespace sockets
 //
 //                    // %! mismatch
 //
-//                    it->m_psocket, "Select" << (i32)it->m_socket_id << "Bad fd in fd_set (3)"); // ->error() << LOG_LEVEL_ERROR);
+//                    it->m_psocket, "Select" << (int)it->m_socket_id << "Bad fd in fd_set (3)"); // ->error() << LOG_LEVEL_ERROR);
 //
 //                    m_socketidlistErase.add(it->m_socket_id);
 //
@@ -801,7 +801,7 @@ namespace sockets
 //
 //                 // general error
 //
-//                 it->m_psocket, "Select" << (i32)it->m_socket_id << "Bad fd in fd_set (3)"); // ->error() << LOG_LEVEL_ERROR);
+//                 it->m_psocket, "Select" << (int)it->m_socket_id << "Bad fd in fd_set (3)"); // ->error() << LOG_LEVEL_ERROR);
 //
 //                 m_socketidlistErase.add(it->m_socket_id);
 //
@@ -866,7 +866,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 warning() <<"get_socket_id/handler/1 " << (i32)socket_id << "Did not find expected socket_id using file descriptor(1)";
+//                 warning() <<"get_socket_id/handler/1 " << (int)socket_id << "Did not find expected socket_id using file descriptor(1)";
 //
 //              }
 //
@@ -900,7 +900,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 warning() <<"get_socket_id/handler/2" << (i32)socket_id << "Did not find expected socket_id using file descriptor(2)";
+//                 warning() <<"get_socket_id/handler/2" << (int)socket_id << "Did not find expected socket_id using file descriptor(2)";
 //
 //              }
 //
@@ -926,7 +926,7 @@ namespace sockets
 //                    if (ppairsocket_id->m_psocket->is_connecting())
 //                    {
 //
-//                       warning() <<"get_socket_id/handler/3" << (i32)socket_id << "stream_socket_id on_connection_timeout (3)";
+//                       warning() <<"get_socket_id/handler/3" << (int)socket_id << "stream_socket_id on_connection_timeout (3)";
 //
 //                       ppairsocket_id->m_psocket->on_connection_timeout();
 //
@@ -934,7 +934,7 @@ namespace sockets
 //                    else
 //                    {
 //
-//                       warning() <<"get_socket_id/handler/3 " << (i32)socket_id << " socket_id on_timeout(3)";
+//                       warning() <<"get_socket_id/handler/3 " << (int)socket_id << " socket_id on_timeout(3)";
 //
 //                       ppairsocket_id->m_psocket->on_timeout();
 //
@@ -952,7 +952,7 @@ namespace sockets
 //              else
 //              {
 //
-//                 warning() <<"get_socket_id/handler/3 " << (i32)socket_id << " Did not find expected socket_id using file descripto(3)r";
+//                 warning() <<"get_socket_id/handler/3 " << (int)socket_id << " Did not find expected socket_id using file descripto(3)r";
 //
 //              }
 //
@@ -1059,7 +1059,7 @@ namespace sockets
 //                 if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //                 {
 //
-//                    warning() <<"get_socket_id/handler/6 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(f)";
+//                    warning() <<"get_socket_id/handler/6 " << (int)socket_id << " Did not find expected socket_id using file descriptor(f)";
 //
 //                    m_socketidlistTimeout.erase(socket_id);
 //
@@ -1080,7 +1080,7 @@ namespace sockets
 //                    if (ppairsocket_id->m_psocket->is_connecting())
 //                    {
 //
-//                       warning() <<"get_socket_id/handler/7 " << (i32)socket_id << "stream_socket_id on_connection_timeout (g)";
+//                       warning() <<"get_socket_id/handler/7 " << (int)socket_id << "stream_socket_id on_connection_timeout (g)";
 //
 //                       ppairsocket_id->m_psocket->on_connection_timeout();
 //
@@ -1088,7 +1088,7 @@ namespace sockets
 //                    else
 //                    {
 //
-//                       warning() <<"get_socket_id/handler/7 " << (i32)socket_id << " socket_id on_timeout (g)";
+//                       warning() <<"get_socket_id/handler/7 " << (int)socket_id << " socket_id on_timeout (g)";
 //
 //                       ppairsocket_id->m_psocket->on_timeout();
 //
@@ -1124,7 +1124,7 @@ namespace sockets
 //           if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //           {
 //
-//              warning() <<"get_socket_id/handler/7 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(g)";
+//              warning() <<"get_socket_id/handler/7 " << (int)socket_id << " Did not find expected socket_id using file descriptor(g)";
 //
 //           }
 //
@@ -1201,7 +1201,7 @@ namespace sockets
 //              if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
 //              {
 //
-//                 warning() <<"get_socket_id/handler/8 " << (i32)socket_id << " Did not find expected socket_id using file descriptor(8)";
+//                 warning() <<"get_socket_id/handler/8 " << (int)socket_id << " Did not find expected socket_id using file descriptor(8)";
 //
 //              }
 //              else
@@ -1238,7 +1238,7 @@ namespace sockets
 //                    if (ptcpsocket->GetOutputLength())
 //                    {
 //
-//                       ptcpsocket->information() << "Closing " << (i32)ptcpsocket->GetOutputLength() << " Sending all data before closing";
+//                       ptcpsocket->information() << "Closing " << (int)ptcpsocket->GetOutputLength() << " Sending all data before closing";
 //
 //                    }
 //                    else // shutdown write when output buffer is is_empty
@@ -1305,7 +1305,7 @@ namespace sockets
 //                    if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
 //                    {
 //
-//                       psocket->warning() << "Closing " << (i32)ptcpsocket->GetOutputLength() << " Closing socket_id while data still left to send";
+//                       psocket->warning() << "Closing " << (int)ptcpsocket->GetOutputLength() << " Closing socket_id while data still left to send";
 //
 //                    }
 //
@@ -1565,7 +1565,7 @@ namespace sockets
    //}
 
 
-//   i32 socket_handler::Resolve(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
+//   int socket_handler::Resolve(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
 //   {
 //
 //      // check cache
@@ -1602,7 +1602,7 @@ namespace sockets
 //   }
 
 
-//   i32 socket_handler::Resolve6(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
+//   int socket_handler::Resolve6(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
 //   {
 //
 //      // check cache
@@ -1637,7 +1637,7 @@ namespace sockets
 //   }
 
 
-//   i32 socket_handler::Resolve(base_socket * pbasesocket_id, in_addr a)
+//   int socket_handler::Resolve(base_socket * pbasesocket_id, in_addr a)
 //   {
 //
 //      // check cache
@@ -1672,7 +1672,7 @@ namespace sockets
 //   }
 
 
-//   i32 socket_handler::Resolve(base_socket * pbasesocket_id, in6_addr& a)
+//   int socket_handler::Resolve(base_socket * pbasesocket_id, in6_addr& a)
 //   {
 //
 //      // check cache
@@ -1790,7 +1790,7 @@ namespace sockets
 //   }
 
 
-   //::pointer<base_socket_handler::pool_socket_id>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
+   //::pointer<base_socket_handler::pool_socket_id>socket_handler::FindConnection(int type, const string & protocol, ::networking::address * ad)
    //{
 
    //   auto psystem = system();
@@ -2068,9 +2068,9 @@ namespace sockets
 
 
 
-   i32 socket_handler::TriggerID(base_socket * src)
+   int socket_handler::TriggerID(base_socket * src)
    {
-      //i32 atom = m_next_trigger_id++;
+      //int atom = m_next_trigger_id++;
       //m_trigger_src[atom] = src;
       // return atom;
       return -1;
@@ -2078,7 +2078,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Subscribe(i32 atom, base_socket * psocket_idDst)
+   bool socket_handler::Subscribe(int atom, base_socket * psocket_idDst)
    {
       //if (m_trigger_src.plookup(atom) != nullptr)
       //{
@@ -2100,7 +2100,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Unsubscribe(i32 atom, base_socket * psocket_idDst)
+   bool socket_handler::Unsubscribe(int atom, base_socket * psocket_idDst)
    {
 
       //if (m_trigger_src.plookup(atom) != nullptr)
@@ -2127,7 +2127,7 @@ namespace sockets
    }
 
 
-   //void socket_handler::Trigger(i32 atom, socket_id::trigger_data& data, bool bErase)
+   //void socket_handler::Trigger(int atom, socket_id::trigger_data& data, bool bErase)
    //{
 
    //   //if (m_trigger_src.contains(atom))

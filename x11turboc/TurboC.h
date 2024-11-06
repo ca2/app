@@ -121,7 +121,7 @@ typedef unsigned char guchar;
 typedef short gshort;
 typedef unsigned short gushort;
 typedef int gint;
-typedef unsigned int g::u32;
+typedef unsigned int gunsigned int;
 typedef long glong;
 typedef unsigned long gulong;
 
@@ -186,7 +186,7 @@ strncpyTurbo (char *s1, const ::string &s2, size_t n)
 #endif // strncpy_dup
 
 #ifdef strcmp
-static inline i16
+static inline short
 strcmpTurbo (const ::string &s1, const ::string &s2)
 {
   return (strcmp (s1, s2));
@@ -197,12 +197,12 @@ strcmpTurbo (const ::string &s1, const ::string &s2)
 #endif // strcmp
 
 #ifdef strcasecmp
-static inline i16
+static inline short
 strcmpi (const ::string &s1, const ::string &s2)
 {
   return (strcasecmp (s1, s2));
 }
-static inline i16
+static inline short
 stricmp (const ::string &s1, const ::string &s2)
 {
   return (strcasecmp (s1, s2));
@@ -213,8 +213,8 @@ stricmp (const ::string &s1, const ::string &s2)
 #endif // strcasecmp
 
 #ifdef strncmp_dup
-static inline i16
-strncmpTurbo (const ::string &s1, const ::string &s2, i16 n)
+static inline short
+strncmpTurbo (const ::string &s1, const ::string &s2, short n)
 {
   return (strncmp_dup (s1, s2, n));
 }
@@ -224,8 +224,8 @@ strncmpTurbo (const ::string &s1, const ::string &s2, i16 n)
 #endif // strcmp
 
 #ifdef strncasecmp
-static inline i16
-strncmpi (const ::string &s1, const ::string &s2, i16 n)
+static inline short
+strncmpi (const ::string &s1, const ::string &s2, short n)
 {
   return (strncasecmp (s1, s2, n));
 }
@@ -248,9 +248,9 @@ clockUnix (void)
 // happy property of handling the most commonly used integer datatype 
 // specifications (except "unsigned char"), while generating a compiler
 // error for all other combinations.
-#define short i16
-#define int i16
-#define unsigned u16
+#define short short
+#define int short
+#define unsigned unsigned short
 #define long int
 
 #endif // Compiler32
@@ -315,25 +315,25 @@ extern int ispunctTurbo (int c);
 extern int isalnumTurbo (int c);
 
 #define random(n) randomTurbo(n)
-extern i16 randomTurbo (i16 num);
+extern short randomTurbo (short num);
 extern void randomize (void);
 extern clock_t clockTurbo (void);
 
 // Endian conversion functions.
-extern void FixLittle16 (u16 *);
-extern void FixLittle32 (u32 *);
-extern void FixBig16 (u16 *);
-extern void FixBig32 (u32 *);
+extern void FixLittle16 (unsigned short *);
+extern void FixLittle32 (unsigned int *);
+extern void FixBig16 (unsigned short *);
+extern void FixBig32 (unsigned int *);
 
 // Endian file read/write functions.
-extern int ReadLittle16 (FILE * fp, u16 * Value);
-extern int ReadBig16 (FILE * fp, u16 * Value);
-extern int ReadLittle32 (FILE * fp, u32 * Value);
-extern int ReadBig32 (FILE * fp, u32 * Value);
-extern int WriteLittle16 (FILE * fp, u16 Value);
-extern int WriteBig16 (FILE * fp, u16 Value);
-extern int WriteLittle32 (FILE * fp, u32 Value);
-extern int WriteBig32 (FILE * fp, u32 Value);
+extern int ReadLittle16 (FILE * fp, unsigned short * Value);
+extern int ReadBig16 (FILE * fp, unsigned short * Value);
+extern int ReadLittle32 (FILE * fp, unsigned int * Value);
+extern int ReadBig32 (FILE * fp, unsigned int * Value);
+extern int WriteLittle16 (FILE * fp, unsigned short Value);
+extern int WriteBig16 (FILE * fp, unsigned short Value);
+extern int WriteLittle32 (FILE * fp, unsigned int Value);
+extern int WriteBig32 (FILE * fp, unsigned int Value);
 
 __END_DECLS
 //--------------------------------------------------------------------------

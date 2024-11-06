@@ -7,8 +7,8 @@
 #include "acme/prototype/numeric/types.h"
 
 
-typedef u32 dword;
-typedef i32 int_bool;
+typedef unsigned int dword;
+typedef int int_bool;
 
 
 typedef unsigned char         uchar;

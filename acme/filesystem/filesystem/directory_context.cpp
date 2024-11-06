@@ -978,7 +978,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //         bool bHasSubFolder;
 
-   //         u32 dwLastError;
+   //         unsigned int dwLastError;
 
             //if (!m_isdirmap.lookup(pcszPath, bHasSubFolder, dwLastError))
 
@@ -1444,7 +1444,7 @@ bool directory_context::name_is(const ::file::path& strPath)
       }
 
       //      zip_context zip(this);
-            //            u32 dwLastError;
+            //            unsigned int dwLastError;
                         //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                         //   return bHasSubFolder;
         //    bHasSubFolder = zip.has_sub_folder(strPath);
@@ -1465,15 +1465,15 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, u32 & dwLastError)
+//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
 //      {
 //
-//         return lookup(path, bIsDir, dwLastError, (i32) path.length());
+//         return lookup(path, bIsDir, dwLastError, (int) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, u32 &dwLastError, i32 iLastChar)
+//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)
@@ -1512,7 +1512,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, u32 & dwLastError, i32 iLastChar)
+//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError, int iLastChar)
 //      {
 //
 //         is_dir * pdir = this;
@@ -1588,7 +1588,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,u32 &dwLastError, i32 iLastChar)
+//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,unsigned int &dwLastError, int iLastChar)
 //      {
 //
 //         const ::ansi_character * pszEnd = path.c_str() + iLastChar;
@@ -1749,7 +1749,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      void directory_context::is_dir_map::set(const ::file::path & path,bool bIsDir,u32 dwLastError)
+//      void directory_context::is_dir_map::set(const ::file::path & path,bool bIsDir,unsigned int dwLastError)
 //      {
 //
 //         critical_section_lock synchronouslock(m_criticalsection);
@@ -3099,7 +3099,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //
 //   string strCandidate;
 //
-//   for (i32 i = 0; i < stra.get_count(); i++)
+//   for (int i = 0; i < stra.get_count(); i++)
 //   {
 //
 //      strCandidate = stra[i] / pszTopic;

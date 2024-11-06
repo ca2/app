@@ -283,15 +283,15 @@ namespace platform
    }
 
 
-   //bool apex_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
-   //bool apex_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
-   //user bool apex_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //bool apex_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
+   //bool apex_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //user bool apex_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
-   //void apex_application_layer::process_message_filter(i32 code, ::message::message * pmessage) override{}
+   //void apex_application_layer::process_message_filter(int code, ::message::message * pmessage) override{}
 
 
-   void apex_application_layer::DoWaitCursor(i32 nCode)
+   void apex_application_layer::DoWaitCursor(int nCode)
    {
    } // 0 => restore, 1=> begin, -1=> end
 
@@ -524,11 +524,11 @@ namespace platform
    //::file::path apex_application_layer::defer_process_path(::file::path path){}
    //::file::path apex_application_layer::full_process_path(::file::path path){}
 
-   //void apex_application_layer::DoWaitCursor(i32 nCode){} // 0 => restore, 1=> begin, -1=> end
+   //void apex_application_layer::DoWaitCursor(int nCode){} // 0 => restore, 1=> begin, -1=> end
    //void apex_application_layer::show_wait_cursor(bool bShow){}
 
 
-   //void apex_application_layer::process_message_filter(i32 code,::message::message * pmessage) override{}
+   //void apex_application_layer::process_message_filter(int code,::message::message * pmessage) override{}
 
    //void apex_application_layer::on_thread_on_idle(::thread * pthread, int lCount) override{}
 
@@ -1147,9 +1147,9 @@ namespace platform
    //virtual ::application * get_app() const override{}
 
 
-   //virtual u32 guess_code_page(const string& str){}
+   //virtual unsigned int guess_code_page(const string& str){}
 
-   //virtual i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle) override{}
+   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle) override{}
 
 
    //void apex_application_layer::pre_translate_message(::message::message* pmessage) override{}
@@ -1213,9 +1213,9 @@ namespace platform
 
    //      void EnableModelessEx(bool bEnable){}
    ////#ifdef WINDOWS
-   ////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource){}
+   ////      HENHMETAFILE LoadEnhMetaFile(unsigned int uResource){}
    ////#endif
-   //      bool GetResourceData(::u32 nID, const ::string apex_application_layer::& lcszType, memory& storage){}
+   //      bool GetResourceData(unsigned int nID, const ::string apex_application_layer::& lcszType, memory& storage){}
 
    //#ifdef WINDOWS
    //      bool apex_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}
@@ -1224,9 +1224,9 @@ namespace platform
    //      bool apex_application_layer::OnX11WindowMessage(void* pev){}
    //#endif
 
-   //bool CreateFileFromRawResource(::u32 nID, const ::string apex_application_layer::& lcszType, const ::string apex_application_layer::& pcszFilePath){}
+   //bool CreateFileFromRawResource(unsigned int nID, const ::string apex_application_layer::& lcszType, const ::string apex_application_layer::& pcszFilePath){}
 
-   //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam){}
+   //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam){}
 
 
    //void OnUpdateRecentFileMenu(::message::command* pcommand){}
@@ -1242,8 +1242,8 @@ namespace platform
    //void EnableHtmlHelp(){}
 
 
-   //virtual i32 sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,::u32 fuStyle = e_message_box_ok) override{}
-   //virtual i32 sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, ::u32 fuStyle = e_message_box_ok) override{}
+   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override{}
+   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = e_message_box_ok) override{}
 
 
    //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override{}
@@ -1268,7 +1268,7 @@ namespace platform
    // profile member functions{} prevents writing to an INI spfile->
    //void SetRegistryKey(const ::string apex_application_layer::& pszRegistryKey){}
 
-   //void SetRegistryKey(::u32 nIDRegistryKey){}
+   //void SetRegistryKey(unsigned int nIDRegistryKey){}
 
 
    //void RegisterShellFileTypes(bool bCompat = false){}
@@ -1312,7 +1312,7 @@ namespace platform
    //void apex_application_layer::close(::apex::e_end eend) override{} // close documents before exiting
 
    // Advanced: to override message boxes and other hooks
-   //virtual i32 DoMessageBox(const ::string apex_application_layer::& pszPrompt,::u32 nType,::u32 nIDPrompt){}
+   //virtual int DoMessageBox(const ::string apex_application_layer::& pszPrompt,unsigned int nType,unsigned int nIDPrompt){}
 
 
    // Advanced: process async DDE request

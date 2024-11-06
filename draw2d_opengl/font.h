@@ -37,7 +37,7 @@ namespace draw2d_opengl
       // void dump(dump_context & dumpcontext) const override;
 
 
-      void create(::draw2d::graphics* pgraphics, i8 iCreate) override;
+      void create(::draw2d::graphics* pgraphics, char iCreate) override;
       void destroy() override;
 
 

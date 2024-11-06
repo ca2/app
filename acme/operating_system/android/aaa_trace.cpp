@@ -40,7 +40,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    else if (lpmsg->message >= WM_USER)
    {
       // User message
-      u32 uiValue = lpmsg->message - WM_USER;
+      unsigned int uiValue = lpmsg->message - WM_USER;
       snprintf(szBuf, sizeof(szBuf), "WM_USER+0x%04X", uiValue);
       lpszMsgName = szBuf;
    }

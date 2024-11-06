@@ -194,7 +194,7 @@ namespace nano
 
          get_display();
 
-         ::u32 uEventMask =       XCB_EVENT_MASK_PROPERTY_CHANGE
+         unsigned int uEventMask =       XCB_EVENT_MASK_PROPERTY_CHANGE
                                 | XCB_EVENT_MASK_EXPOSURE
                                 | XCB_EVENT_MASK_BUTTON_PRESS
                                 | XCB_EVENT_MASK_BUTTON_RELEASE
@@ -218,7 +218,7 @@ namespace nano
          int cx = m_pinterface->m_rectangle.width();
          int cy = m_pinterface->m_rectangle.height();
 
-         ::u32 uaValueList[5];
+         unsigned int uaValueList[5];
 
          uaValueList[0] = 0; // XCB_CW_BACK_PIXMAP
          uaValueList[1] = 0; // XCB_CW_BORDER_PIXEL
@@ -408,12 +408,12 @@ namespace nano
       //}
 
       //#ifndef i32_x
-      //#define i32_x(lparam)                          ((i32)(i16)LOWORD(lparam))
+      //#define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
       //#endif
       //
       //
       //#ifndef i32_y
-      //#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
+      //#define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
       //#endif
       //
       ////LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)

@@ -443,7 +443,7 @@ namespace experience
    }
 
 
-   bool move_manager::_001OnTimer(::u32 uEvent)
+   bool move_manager::_001OnTimer(unsigned int uEvent)
    {
 
       return false;

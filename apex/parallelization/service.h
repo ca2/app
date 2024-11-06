@@ -21,22 +21,22 @@ class CLASS_DECL_APEX service :
 public:
 
 
-   //::u32                      m_dwStopTimeout;
+   //unsigned int                      m_dwStopTimeout;
    string                     m_strServiceName;
    //manual_reset_event         m_stopped;
    ////bool                       m_bStopping;
-   //i32                        m_iPid;
+   //int                        m_iPid;
    //enum_service_status        m_estatus;
-   //u32                        m_uControlStart;
-   //u32                        m_uControlStop;
+   //unsigned int                        m_uControlStart;
+   //unsigned int                        m_uControlStop;
    
    service();
    virtual ~service();
 
 
-   //virtual void control_start(u32 control);
+   //virtual void control_start(unsigned int control);
 
-   //virtual void control_stop(u32 control);
+   //virtual void control_stop(unsigned int control);
 
    //virtual string get_service_name() const;
 

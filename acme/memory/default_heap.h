@@ -21,7 +21,7 @@
 //      memsize allocation_size(void * p) override;
 //
 //
-//      void * reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * pszFile, i32 iLine) override;
+//      void * reallocate_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine) override;
 //
 //
 //      void free(void * p) override;

@@ -39,7 +39,7 @@ namespace sockets
    public:
 
 
-      i32      m_iContentLength;
+      int      m_iContentLength;
 
       http_base_socket();
       ~http_base_socket();
@@ -62,7 +62,7 @@ namespace sockets
       //string set_cookie(
       //const char * name,
       //::payload payload,
-      //i32 iExpire,
+      //int iExpire,
       //const ::file::path & path,
       //const char * domain,
       //bool bSecure);

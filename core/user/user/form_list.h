@@ -83,7 +83,7 @@ namespace user
       void _001UpdateEdit(::user::interaction * pinteraction) override;
       bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      bool _001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
+      bool _001OnMouseActivate(::windowing::window * pDesktopWnd,unsigned int nHitTest,const ::atom & atom,lresult & iResult) override;
 
 
       void install_message_routing(::channel * pchannel) override;

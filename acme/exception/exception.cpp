@@ -24,7 +24,7 @@ exception::exception()
 
 
 //#ifdef ANDROID
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address) :
+exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, int iSkip, void * caller_address) :
 exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, pszDetails, iSkip, caller_address)
 {
    
@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, psz
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, int iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {
@@ -256,11 +256,11 @@ string exception::get_consolidated_details(::particle * pparticle) const
 
 
 
-//   i32 exception::report_error(::u32 nType /* = e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
+//   int exception::report_error(unsigned int nType /* = e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
-//      i32     nDisposition;
-////      ::u32    nHelpContext;
+//      int     nDisposition;
+////      unsigned int    nHelpContext;
 //
 //      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 //      strErrorMessage = get_message();
@@ -429,7 +429,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //}
 
 //
-//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address)
+//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, int iSkip, void * caller_address)
 //{
 //
 //   throw ::exception(estatus, pszMessage, pszDetails, iSkip, caller_address);
@@ -495,7 +495,7 @@ void throw_exception(enum_status estatus)
 }
 
 
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip)
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, int iSkip)
 {
 
    throw exception(estatus, scopedstrMessage, scopedstrDetails, iSkip);

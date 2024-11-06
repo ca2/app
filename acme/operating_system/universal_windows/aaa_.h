@@ -12,12 +12,12 @@
 
 //#ifndef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_ACME void WINAPI sleep(::u32 dw::durations);
+//CLASS_DECL_ACME void WINAPI sleep(unsigned int dw::durations);
 //
 //#endif
 
 /*#define GetAValue(rgb)      (lower_u8((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((::u16)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|(((unsigned int)(unsigned char)(a))<<24)))*/
 
 
 //CLASS_DECL_ACME int_bool os_initialize();
@@ -41,7 +41,7 @@ CLASS_DECL_ACME itask_t main_itask();
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations );
+//CLASS_DECL_ACME unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::durations );
 
 
 

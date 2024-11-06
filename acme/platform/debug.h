@@ -92,7 +92,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifndef ENSURE_RETURN_HR
 #define ENSURE_RETURN_HR(expr, hr)          \
 do {                                           \
-   i32 __atl_condVal=!!(expr);                \
+   int __atl_condVal=!!(expr);                \
    ASSERT(__atl_condVal);                  \
    if(!(__atl_condVal)) return hr;            \
 } while (0)
@@ -119,19 +119,19 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 #define _NORMAL_BLOCK 1
 
 
-CLASS_DECL_ACME i32 DECL_C debug_report(
-i32 _ReportType,
+CLASS_DECL_ACME int DECL_C debug_report(
+int _ReportType,
 const char * _Filename,
-i32 _LineNumber,
+int _LineNumber,
 const char * _ModuleName,
 const char * _Format,
 ...);
 
 
-CLASS_DECL_ACME i32 DECL_C debug_report(
-i32 _ReportType,
+CLASS_DECL_ACME int DECL_C debug_report(
+int _ReportType,
 const wchar_t * _Filename,
-i32 _LineNumber,
+int _LineNumber,
 const wchar_t * _ModuleName,
 const wchar_t * _Format,
 ...);
@@ -313,11 +313,11 @@ typedef struct _MEMORY_STATE
 
 
 
-// CLASS_DECL_ACME i32 FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, i32 iFlags);
+// CLASS_DECL_ACME int FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags);
 
-// CLASS_DECL_ACME i32 FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags);
+// CLASS_DECL_ACME int FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags);
 
-// inline i32 FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, i32 iFlags)
+// inline int FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags)
 // {
 
 //    __UNREFERENCED_PARAMETER(pszMessage);
@@ -328,7 +328,7 @@ typedef struct _MEMORY_STATE
 
 // }
 
-// inline i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags)
+// inline int FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags)
 // {
 
 //    __UNREFERENCED_PARAMETER(pszMessage);
@@ -354,7 +354,7 @@ typedef struct _MEMORY_STATE
 
 
 
-//CLASS_DECL_ACME string FormatMessageFromSystem(u32 dwError);
+//CLASS_DECL_ACME string FormatMessageFromSystem(unsigned int dwError);
 
 
 
@@ -368,8 +368,8 @@ typedef struct _MEMORY_STATE
 //
 //
 //
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, i32 iError, const ::string & strContext) override;
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, i32 iError, const ::string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
 //
 //
 //};

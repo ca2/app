@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME i32 random_context_entropy(i32 iLevel= 3);
+CLASS_DECL_ACME int random_context_entropy(int iLevel= 3);
 
 #include <random>
 //#include "acme/prototype/collection/numeric_array.h"
@@ -27,19 +27,19 @@ namespace mathematics
    public:
       random_number_generator();
 
-      ::u32 m_uSeed;
+      unsigned int m_uSeed;
       std::default_random_engine m_generator;
-      std::uniform_int_distribution<u32> m_distributionU32;
-      std::uniform_int_distribution<u32> m_distributionU8;
+      std::uniform_int_distribution<unsigned int> m_distributionU32;
+      std::uniform_int_distribution<unsigned int> m_distributionU8;
 
 
-      void seed(i32 iTwistLen, u32 seed);
-      u32 get_u32();
+      void seed(int iTwistLen, unsigned int seed);
+      unsigned int get_u32();
       unsigned char get_u8();
 
    private:
-      u32 _get();
-      i32 m_value;
+      unsigned int _get();
+      int m_value;
       u32_array m_uinta;
       ::i64 m_iAccess = 0;
    };

@@ -151,7 +151,7 @@ namespace httpd
    //   const char * months[] = { "Jan","Feb","Mar","Apr","May","Jun",
    //                            "Jul","Aug","Sep","Oct","Nov","Dec"
    //   };
-   //   i32 i;
+   //   int i;
    //   char s[40];
 
    //   /* 1997-12-16 09:50:40 */

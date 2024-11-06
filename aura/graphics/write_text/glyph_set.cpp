@@ -20,7 +20,7 @@ namespace write_text
    }
 
 
-   glyph * glyph_set::GetGlyph(::u32 user)
+   glyph * glyph_set::GetGlyph(unsigned int user)
    {
 
       ::collection::index i = find_first(user);
@@ -41,7 +41,7 @@ namespace write_text
    }
 
 
-   ::collection::index glyph_set::find_first(::u32 user)
+   ::collection::index glyph_set::find_first(unsigned int user)
    {
 
       ::collection::index iLoBound = 0;

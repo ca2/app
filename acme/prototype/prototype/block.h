@@ -417,7 +417,7 @@ inline ::u32hash u32_hash < const ::block & >(const ::block & b)
 
    auto psz = b.begin();
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    strsize i = 1;
 
@@ -429,7 +429,7 @@ inline ::u32hash u32_hash < const ::block & >(const ::block & b)
       if (i % 4 == 3)
       {
 
-         uHash = (uHash << 5) + ((u32 *)psz)[i >> 2];
+         uHash = (uHash << 5) + ((unsigned int *)psz)[i >> 2];
 
       }
 

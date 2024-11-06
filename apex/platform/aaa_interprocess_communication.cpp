@@ -303,7 +303,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
    
 #ifdef MACOS
 
-   strKey += "/" + as_string(idPid.i32());
+   strKey += "/" + as_string(idPid.int());
 
 #endif
 
@@ -595,7 +595,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
          papp->on_additional_local_instance(
             (bool &) payload["handled"],
             strModule, 
-            propertyset["pid"].i32(),
+            propertyset["pid"].int(),
             strCommandLine);
 
          propertyset["continue"] = true;
@@ -754,7 +754,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    pathModule /= m_strApp + ".module_list";
    
-   ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
+   ::file::path pathPid = pnode->module_path_from_pid((unsigned int)idPid.i64());
 
    string strModuleList = file_system()->as_string(pathModule);
 

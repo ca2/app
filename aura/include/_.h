@@ -292,7 +292,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 0
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(r))<<16)|(((u32)lower_u8(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(b)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(r))<<16)|(((unsigned int)lower_u8(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_u8((rgb)>>16))
@@ -310,7 +310,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define IMAGE_B_BYTE_INDEX 2
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(b))<<16)|(((u32)lower_u8(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_u8((rgb)))
@@ -329,7 +329,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#define color32_u8_green(rgb)    (lower_u8((rgb)>>8))
 ////#define color32_u8_blue(rgb)    (lower_u8((rgb)>>16))
 ////#define color32_u8_opacity(rgb)    (lower_u8((rgb)>>24))
-////#define RGBA(r, g, b, a)         ((::color::color)((lower_u8(r)|((::u16)(lower_u8(g))<<8))|(((u32)lower_u8(b))<<16)|(((u32)lower_u8(a))<<24)))
+////#define RGBA(r, g, b, a)         ((::color::color)((lower_u8(r)|((unsigned short)(lower_u8(g))<<8))|(((unsigned int)lower_u8(b))<<16)|(((unsigned int)lower_u8(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////
@@ -412,10 +412,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#else
 ////
 ////#ifndef lower_u32
-////#define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
+////#define lower_u32(l)                                    ((unsigned int)(((::u64)(l)) & 0xffffffff))
 ////#endif
 ////#ifndef upper_u32
-////#define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
+////#define upper_u32(l)                                    ((unsigned int)((((::u64)(l)) >> 32) & 0xffffffff))
 ////#endif
 ////
 ////#endif
@@ -423,29 +423,29 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////
-////#define __u16(a, b)                                   ((::u16)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((::u16)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-////#define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+////#define __u16(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
+////#define __u32(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 ////
 ////
 ////#ifdef __cplusplus
 ////
-////#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
-////#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define __u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#else
 ////
-////#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-////#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
+////#define __u64(a, b)                                   (((u64)(((unsigned int)(((u64)(a)) & 0xffffffff)) | ((u64)((unsigned int)(((u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#endif
 ////
-////#define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-////#define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-////#define lower_u32(u)                                     ((::u32)(u))
-////#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
+////#define lower_u16(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
+////#define upper_u16(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
+////#define lower_u32(u)                                     ((unsigned int)(u))
+////#define upper_u32(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
 ////
-////#define u32_x(u)                                     ((::i16)lower_u16(u))
-////#define u32_y(u)                                     ((::i16)upper_u16(u))
+////#define u32_x(u)                                     ((short)lower_u16(u))
+////#define u32_y(u)                                     ((short)upper_u16(u))
 ////
 ////#define __u32xy(u)                                    u32_x(u), u32_y(u)
 ////
@@ -456,16 +456,16 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////#ifndef i32_x
-////#define i32_x(lparam)                          ((int)(i16)LOWORD(lparam))
+////#define i32_x(lparam)                          ((int)(short)LOWORD(lparam))
 ////#endif
 ////
 ////
 ////#ifndef i32_y
-////#define i32_y(lparam)                          ((int)(i16)HIWORD(lparam))
+////#define i32_y(lparam)                          ((int)(short)HIWORD(lparam))
 ////#endif
 ////
-////#define GET_X_LPARAM64(lparam)                        ((int)(i16)lower_u32(lparam))
-////#define GET_Y_LPARAM64(lparam)                        ((int)(i16)upper_u32(lparam))
+////#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_u32(lparam))
+////#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_u32(lparam))
 ////
 ////
 //////CLASS_DECL_AURA int get_aura_init();
@@ -497,13 +497,13 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////CLASS_DECL_AURA void    ansi_unlink(const ::string & psz);
 ////
 ////
-////CLASS_DECL_AURA ::u32 get_last_error();
-////CLASS_DECL_AURA void set_last_error(::u32 dw);
+////CLASS_DECL_AURA unsigned int get_last_error();
+////CLASS_DECL_AURA void set_last_error(unsigned int dw);
 ////
 ////typedef char ::ansi_character;
 ////
-////int CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character * pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const ::ansi_character * pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -572,7 +572,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////}
 ////
 ////
-////CLASS_DECL_AURA extern u32 g_tickStartTime;
+////CLASS_DECL_AURA extern unsigned int g_tickStartTime;
 ////
 ////#define ALOG_CONTEXT context_trace_object()
 ////

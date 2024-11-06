@@ -17,7 +17,7 @@ namespace ftp
       output();
       virtual ~output();
 
-      virtual void OnInternalError(const string& strErrorMsg, const string& strFileName, ::u32 dwLineNr);
+      virtual void OnInternalError(const string& strErrorMsg, const string& strFileName, unsigned int dwLineNr);
       virtual void OnSendCommand(const command& strComamnd, const string_array& straArguments);
       virtual void OnResponse(const reply & Reply);
 

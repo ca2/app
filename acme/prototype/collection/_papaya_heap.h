@@ -12,7 +12,7 @@ namespace acme
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;
-      //   u32 t;
+      //   unsigned int t;
 
       if(last - first >= 2)
       {
@@ -88,7 +88,7 @@ namespace acme
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;
-      //   u32 t;
+      //   unsigned int t;
 
       if(last - first >= 2)
       {
@@ -207,7 +207,7 @@ namespace acme
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;
-      //   u32 t;
+      //   unsigned int t;
 
       if(last - first >= 2)
       {
@@ -282,7 +282,7 @@ namespace acme
       RandomAccessIterator iLowerBound;
       RandomAccessIterator iUpperBound;
       RandomAccessIterator iLPos, iUPos, iMPos;
-      //   u32 t;
+      //   unsigned int t;
 
       if(last - first >= 2)
       {

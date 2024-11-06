@@ -119,7 +119,7 @@ pdirectorysystem->create(::file_path_folder(path));
 
       }
 
-      size_t dwWritten = ::fwrite(contents, 1, (::u32) dwWrite, file);
+      size_t dwWritten = ::fwrite(contents, 1, (unsigned int) dwWrite, file);
 
       bOk = dwWritten == dwWrite;
 

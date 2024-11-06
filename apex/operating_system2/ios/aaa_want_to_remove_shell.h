@@ -20,50 +20,50 @@ namespace ios
       // xxx   static HANDLE WINAPI _FindFirstFile(const unichar * pcsz, WIN32_FIND_DATAW * lpdata);
       // xxx   static int_bool WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
       /*   static int_bool WINAPI _MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
-       static ::u32 WINAPI _GetFullPathName(const unichar * lpFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+       static unsigned int WINAPI _GetFullPathName(const unichar * lpFileName, unsigned int nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
        static WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
        static int_bool WINAPI _GetVolumeInformation(
        const unichar * lpRootPathName,           // root directory
        unichar * lpVolumeNameBuffer,        // volume name buffer
-       ::u32 nVolumeNameSize,            // length of name buffer
+       unsigned int nVolumeNameSize,            // length of name buffer
        LPDWORD lpVolumeSerialNumber,     // volume serial number
        LPDWORD lpMaximumComponentLength, // maximum file name length
        LPDWORD lpFileSystemFlags,        // file system options
        unichar * lpFileSystemNameBuffer,    // file system name buffer
-       ::u32 nFileSystemNameSize);         // length of file system name buffer
+       unsigned int nFileSystemNameSize);         // length of file system name buffer
        // xxx   static DWORD_PTR __stdcall _SHGetFileInfo(
        // xxx const unichar * pszPath,
-       // xxx ::u32 dwFileAttributes,
+       // xxx unsigned int dwFileAttributes,
        // xxx SHFILEINFOW *psfi,
-       // xxx ::u32 cbFileInfo,
-       // xxx ::u32 uFlags);
+       // xxx unsigned int cbFileInfo,
+       // xxx unsigned int uFlags);
        static int_bool __stdcall _GetStringTypeEx(
        LCID Locale,
-       ::u32 dwInfoType,
+       unsigned int dwInfoType,
        const unichar * lpSrcStr,
-       i32 cchSrc,
+       int cchSrc,
        LPWORD lpCharType);
-       static ::u32 WINAPI  _GetTempPath(
-       ::u32 nBufferLength,
+       static unsigned int WINAPI  _GetTempPath(
+       unsigned int nBufferLength,
        unichar * lpBuffer);
-       static ::u32 WINAPI _GetTempFileName(
+       static unsigned int WINAPI _GetTempFileName(
        const unichar * lpPathName,
        const unichar * lpPrefixString,
-       ::u32 uUnique,
+       unsigned int uUnique,
        unichar * lpTempFileName);
        static HANDLE WINAPI _CreateFile(
        const unichar * lpFileName,
-       ::u32 dwDesiredAccess,
-       ::u32 dwShareMode,
+       unsigned int dwDesiredAccess,
+       unsigned int dwShareMode,
        LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-       ::u32 dwCreationDisposition,
-       ::u32 dwFlagsAndAttributes,
+       unsigned int dwCreationDisposition,
+       unsigned int dwFlagsAndAttributes,
        HANDLE hTemplateFile
        );
-       static ::u32 WINAPI _GetModuleFileName(
+       static unsigned int WINAPI _GetModuleFileName(
        HMODULE hModule,
        unichar * lpFilename,
-       ::u32 nSize
+       unsigned int nSize
        );
        // xxx    static int_bool WINAPI _GetClassInfo(
        // xxx        HINSTANCE hInstance ,
@@ -73,14 +73,14 @@ namespace ios
        // xxx const WNDCLASSW *lpWndClass);
        
        static oswindow WINAPI _CreateWindowEx(
-       ::u32 dwExStyle,
+       unsigned int dwExStyle,
        const unichar * lpClassName,
        const unichar * lpWindowName,
-       ::u32 uStyle,
-       i32 x,
-       i32 y,
-       i32 nWidth,
-       i32 nHeight,
+       unsigned int uStyle,
+       int x,
+       int y,
+       int nWidth,
+       int nHeight,
        oswindow hWndParent,
        HMENU hMenu,
        HINSTANCE hInstance,
@@ -95,51 +95,51 @@ namespace ios
        // xxx    int_bool (WINAPI * m_pfnFindNextFile)(HANDLE handle, WIN32_FIND_DATAW * lpdata);
        int_bool (WINAPI * m_pfnMoveFile)(const unichar * lpExistingFileName, const unichar * lpNewFileName);
        WCHAR * (__cdecl * m_pfn_fullpath)(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-       ::u32 (WINAPI * m_pfnGetFullPathName)(const unichar * lpFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+       unsigned int (WINAPI * m_pfnGetFullPathName)(const unichar * lpFileName, unsigned int nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
        int_bool (WINAPI * m_pfnGetVolumeInformation)(
        const unichar * lpRootPathName,           // root directory
        unichar * lpVolumeNameBuffer,        // volume name buffer
-       ::u32 nVolumeNameSize,            // length of name buffer
+       unsigned int nVolumeNameSize,            // length of name buffer
        LPDWORD lpVolumeSerialNumber,     // volume serial number
        LPDWORD lpMaximumComponentLength, // maximum file name length
        LPDWORD lpFileSystemFlags,        // file system options
        unichar * lpFileSystemNameBuffer,    // file system name buffer
-       ::u32 nFileSystemNameSize);         // length of file system name buffer
+       unsigned int nFileSystemNameSize);         // length of file system name buffer
        
        // xxx    DWORD_PTR (__stdcall * m_pfnSHGetFileInfo)(
        // xxx       const unichar * pszPath,
-       // xxx       ::u32 dwFileAttributes,
+       // xxx       unsigned int dwFileAttributes,
        // xxx       SHFILEINFOW *psfi,
-       // xxx       ::u32 cbFileInfo,
-       // xxx       ::u32 uFlags);
+       // xxx       unsigned int cbFileInfo,
+       // xxx       unsigned int uFlags);
        int_bool (__stdcall * m_pfnGetStringTypeEx)(
        LCID Locale,
-       ::u32 dwInfoType,
+       unsigned int dwInfoType,
        const unichar * lpSrcStr,
-       i32 cchSrc,
+       int cchSrc,
        LPWORD lpCharType);
-       ::u32 (WINAPI * m_pfnGetTempPath)(
-       ::u32 nBufferLength,
+       unsigned int (WINAPI * m_pfnGetTempPath)(
+       unsigned int nBufferLength,
        unichar * lpBuffer);
-       ::u32 (WINAPI * m_pfnGetTempFileName)(
+       unsigned int (WINAPI * m_pfnGetTempFileName)(
        const unichar * lpPathName,
        const unichar * lpPrefixString,
-       ::u32 uUnique,
+       unsigned int uUnique,
        unichar * lpTempFileName);
        HANDLE (WINAPI * m_pfnCreateFile)(
        const unichar * lpFileName,
-       ::u32 dwDesiredAccess,
-       ::u32 dwShareMode,
+       unsigned int dwDesiredAccess,
+       unsigned int dwShareMode,
        LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-       ::u32 dwCreationDisposition,
-       ::u32 dwFlagsAndAttributes,
+       unsigned int dwCreationDisposition,
+       unsigned int dwFlagsAndAttributes,
        HANDLE hTemplateFile
        );
        
-       ::u32 (WINAPI * m_pfnGetModuleFileName)(
+       unsigned int (WINAPI * m_pfnGetModuleFileName)(
        HMODULE hModule,
        unichar * lpFilename,
-       ::u32 nSize
+       unsigned int nSize
        );
        
        // xxx    int_bool (WINAPI * m_pfnGetClassInfo)(
@@ -151,14 +151,14 @@ namespace ios
        // xxx const WNDCLASSW *lpWndClass);
        
        oswindow (WINAPI * m_pfnCreateWindowEx)(
-       ::u32 dwExStyle,
+       unsigned int dwExStyle,
        const unichar * lpClassName,
        const unichar * lpWindowName,
-       ::u32 uStyle,
-       i32 x,
-       i32 y,
-       i32 nWidth,
-       i32 nHeight,
+       unsigned int uStyle,
+       int x,
+       int y,
+       int nWidth,
+       int nHeight,
        oswindow hWndParent,
        HMENU hMenu,
        HINSTANCE hInstance,
@@ -177,54 +177,54 @@ namespace ios
        // xxx    static int_bool WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
        static int_bool MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
        static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-       static ::u32 GetFullPathName(const unichar * lpFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
+       static unsigned int GetFullPathName(const unichar * lpFileName, unsigned int nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
        static int_bool GetVolumeInformation(
        const unichar * lpRootPathName,           // root directory
        unichar * lpVolumeNameBuffer,        // volume name buffer
-       ::u32 nVolumeNameSize,            // length of name buffer
+       unsigned int nVolumeNameSize,            // length of name buffer
        LPDWORD lpVolumeSerialNumber,     // volume serial number
        LPDWORD lpMaximumComponentLength, // maximum file name length
        LPDWORD lpFileSystemFlags,        // file system options
        unichar * lpFileSystemNameBuffer,    // file system name buffer
-       ::u32 nFileSystemNameSize);         // length of file system name buffer
+       unsigned int nFileSystemNameSize);         // length of file system name buffer
        
-       // xxx    static WH_SHSTDAPI(::u32) SHGetFileInfo(
+       // xxx    static WH_SHSTDAPI(unsigned int) SHGetFileInfo(
        // xxx       const unichar * pszPath,
-       // xxx       ::u32 dwFileAttributes,
+       // xxx       unsigned int dwFileAttributes,
        // xxx       SHFILEINFOW *psfi,
-       // xxx       ::u32 cbFileInfo,
-       // xxx       ::u32 uFlags);
+       // xxx       unsigned int cbFileInfo,
+       // xxx       unsigned int uFlags);
        
        static int_bool  GetStringTypeEx(
        LCID Locale,
-       ::u32 dwInfoType,
+       unsigned int dwInfoType,
        const char * lpSrcStr,
-       i32 cchSrc,
+       int cchSrc,
        LPWORD lpCharType);
        
-       static ::u32 GetTempPathW(
-       ::u32 nBufferLength,
+       static unsigned int GetTempPathW(
+       unsigned int nBufferLength,
        unichar * lpBuffer);
        
-       static ::u32 GetTempFileNameW(
+       static unsigned int GetTempFileNameW(
        const unichar * lpPathName,
        const unichar * lpPrefixString,
-       ::u32 uUnique,
+       unsigned int uUnique,
        unichar * lpTempFileName);
        
        static HANDLE CreateFile(
        const unichar * lpFileName,
-       ::u32 dwDesiredAccess,
-       ::u32 dwShareMode,
+       unsigned int dwDesiredAccess,
+       unsigned int dwShareMode,
        LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-       ::u32 dwCreationDisposition,
-       ::u32 dwFlagsAndAttributes,
+       unsigned int dwCreationDisposition,
+       unsigned int dwFlagsAndAttributes,
        HANDLE hTemplateFile);
        
-       static ::u32 WINAPI GetModuleFileName(
+       static unsigned int WINAPI GetModuleFileName(
        HMODULE hModule,
        unichar * lpFilename,
-       ::u32 nSize
+       unsigned int nSize
        );
        
        // xxx    static int_bool WINAPI GetClassInfo(
@@ -236,33 +236,33 @@ namespace ios
        // xxx          const WNDCLASSW *lpWndClass);
        
        static oswindow WINAPI CreateWindowEx(
-       ::u32 dwExStyle,
+       unsigned int dwExStyle,
        const unichar * lpClassName,
        const unichar * lpWindowName,
-       ::u32 uStyle,
-       i32 x,
-       i32 y,
-       i32 nWidth,
-       i32 nHeight,
+       unsigned int uStyle,
+       int x,
+       int y,
+       int nWidth,
+       int nHeight,
        oswindow hWndParent,
        HMENU hMenu,
        HINSTANCE hInstance,
        LPVOID lpParam);
        
        
-       // xxx    static WH_SHSTDAPI(::u32) SHGetFileInfo(
+       // xxx    static WH_SHSTDAPI(unsigned int) SHGetFileInfo(
        // xxx       const ::file::path & path,
-       // xxx       ::u32 dwFileAttributes,
+       // xxx       unsigned int dwFileAttributes,
        // xxx       SHFILEINFO *psfi,
-       // xxx       ::u32 cbFileInfo,
-       // xxx       ::u32 uFlags);
+       // xxx       unsigned int cbFileInfo,
+       // xxx       unsigned int uFlags);
        
-       static ::u32 GetTempPath(string & str);
+       static unsigned int GetTempPath(string & str);
        
-       static ::u32 GetTempFileName(
+       static unsigned int GetTempFileName(
        const char * lpPathName,
        const char * lpPrefixString,
-       ::u32 uUnique,
+       unsigned int uUnique,
        string & str);
        
        static int_bool MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
@@ -310,7 +310,7 @@ namespace ios
     return (*theLinuxShell.m_pfn_fullpath)(UserBuf, path, maxlen);
     }
     
-    inline ::u32 shell::GetFullPathName(const unichar * lpFileName, ::u32 nBufferLength, unichar * lpBuffer, unichar ** lpFilePart)
+    inline unsigned int shell::GetFullPathName(const unichar * lpFileName, unsigned int nBufferLength, unichar * lpBuffer, unichar ** lpFilePart)
     {
     return (*theLinuxShell.m_pfnGetFullPathName)(lpFileName, nBufferLength, lpBuffer, lpFilePart);
     }
@@ -324,12 +324,12 @@ namespace ios
     inline int_bool shell::GetVolumeInformation(
     const unichar * lpRootPathName,           // root directory
     unichar * lpVolumeNameBuffer,        // volume name buffer
-    ::u32 nVolumeNameSize,            // length of name buffer
+    unsigned int nVolumeNameSize,            // length of name buffer
     LPDWORD lpVolumeSerialNumber,     // volume serial number
     LPDWORD lpMaximumComponentLength, // maximum file name length
     LPDWORD lpFileSystemFlags,        // file system options
     unichar * lpFileSystemNameBuffer,    // file system name buffer
-    ::u32 nFileSystemNameSize)         // length of file system name buffer
+    unsigned int nFileSystemNameSize)         // length of file system name buffer
     {
     return (*theLinuxShell.m_pfnGetVolumeInformation)(
     lpRootPathName,           // root directory
@@ -343,12 +343,12 @@ namespace ios
     }
     
     
-    inline ::u32 shell::SHGetFileInfo(
+    inline unsigned int shell::SHGetFileInfo(
     const unichar * pszPath,
-    ::u32 dwFileAttributes,
+    unsigned int dwFileAttributes,
     SHFILEINFOW *psfi,
-    ::u32 cbFileInfo,
-    ::u32 uFlags)
+    unsigned int cbFileInfo,
+    unsigned int uFlags)
     {
     return (*theLinuxShell.m_pfnSHGetFileInfo)(
     pszPath,
@@ -359,8 +359,8 @@ namespace ios
     }
     */
    /*
-    inline ::u32 shell::GetTempPathW(
-    ::u32 nBufferLength,
+    inline unsigned int shell::GetTempPathW(
+    unsigned int nBufferLength,
     unichar * lpBuffer)
     {
     return (*theLinuxShell.m_pfnGetTempPath)(
@@ -368,10 +368,10 @@ namespace ios
     lpBuffer);
     }
     
-    inline ::u32 shell::GetTempFileNameW(
+    inline unsigned int shell::GetTempFileNameW(
     const unichar * lpPathName,
     const unichar * lpPrefixString,
-    ::u32 uUnique,
+    unsigned int uUnique,
     unichar * lpTempFileName)
     {
     return (*theLinuxShell.m_pfnGetTempFileName)(
@@ -383,11 +383,11 @@ namespace ios
     
     inline HANDLE shell::CreateFile(
     const unichar * lpFileName,
-    ::u32 dwDesiredAccess,
-    ::u32 dwShareMode,
+    unsigned int dwDesiredAccess,
+    unsigned int dwShareMode,
     LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    ::u32 dwCreationDisposition,
-    ::u32 dwFlagsAndAttributes,
+    unsigned int dwCreationDisposition,
+    unsigned int dwFlagsAndAttributes,
     HANDLE hTemplateFile)
     {
     return (*theLinuxShell.m_pfnCreateFile)(
@@ -400,10 +400,10 @@ namespace ios
     hTemplateFile);
     }
     
-    inline ::u32 shell::GetModuleFileName(
+    inline unsigned int shell::GetModuleFileName(
     HMODULE hModule,
     unichar * lpFilename,
-    ::u32 nSize
+    unsigned int nSize
     )
     {
     return (*theLinuxShell.m_pfnGetModuleFileName)(
@@ -431,14 +431,14 @@ namespace ios
     }*/
    /*
     inline oswindow shell::CreateWindowEx(
-    ::u32 dwExStyle,
+    unsigned int dwExStyle,
     const unichar * lpClassName,
     const unichar * lpWindowName,
-    ::u32 uStyle,
-    i32 x,
-    i32 y,
-    i32 nWidth,
-    i32 nHeight,
+    unsigned int uStyle,
+    int x,
+    int y,
+    int nWidth,
+    int nHeight,
     oswindow hWndParent,
     HMENU hMenu,
     HINSTANCE hInstance,
@@ -460,22 +460,22 @@ namespace ios
     
     }
     
-    inline ::u32 shell::GetTempPath(string & str)
+    inline unsigned int shell::GetTempPath(string & str)
     {
     unichar * pwsz = (unichar *) malloc(sizeof(unichar) * MAX_PATH * 4);
-    ::u32 dwResult = (*theLinuxShell.m_pfnGetTempPath)(sizeof(unichar) * MAX_PATH * 4, pwsz);
+    unsigned int dwResult = (*theLinuxShell.m_pfnGetTempPath)(sizeof(unichar) * MAX_PATH * 4, pwsz);
     gen::international::unicode_to_utf8(str, pwsz);
     free(pwsz);
     return dwResult;
     }
     
-    inline ::u32 shell::GetTempFileName(const char * lpPathName, const char * lpPrefixString, ::u32 uUnique, string & str)
+    inline unsigned int shell::GetTempFileName(const char * lpPathName, const char * lpPrefixString, unsigned int uUnique, string & str)
     {
     wstring wstrPathName = gen::international::utf8_to_unicode(lpPathName);
     wstring wstrPrefixString = gen::international::utf8_to_unicode(lpPrefixString);
     wstring wstr;
     wstr.get_buffer(MAX_PATH * 4);
-    ::u32 uResult = (*theLinuxShell.m_pfnGetTempFileName)(
+    unsigned int uResult = (*theLinuxShell.m_pfnGetTempFileName)(
     wstrPathName,
     wstrPrefixString,
     uUnique,

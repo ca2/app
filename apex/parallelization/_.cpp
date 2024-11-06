@@ -891,7 +891,7 @@ namespace apex
    //}
 
 
-//   void __post_quit_message(i32 nExitCode)
+//   void __post_quit_message(int nExitCode)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

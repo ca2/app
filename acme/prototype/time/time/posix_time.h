@@ -15,8 +15,8 @@ struct CLASS_DECL_ACME posix_time
    template < primitive_integral INTEGRAL >
    constexpr posix_time(posix_time_t, INTEGRAL iSecond) : m_iSecond(iSecond) {}
    constexpr posix_time(const posix_time &) = default;
-   explicit posix_time(const ::file_time & pfile_time, i32 nDST = -1);
-   explicit posix_time(const system_time & systemtime, i32 nDST = -1);
+   explicit posix_time(const ::file_time & pfile_time, int nDST = -1);
+   explicit posix_time(const system_time & systemtime, int nDST = -1);
    explicit posix_time(const ::earth::gregorian_time & gregoriantime);
    posix_time(now_t);
 
@@ -125,7 +125,7 @@ constexpr posix_time operator * (INTEGRAL i, const ::posix_time & time)
 
 
 constexpr posix_time operator "" _posix_time(unsigned long long int u) {
-   return { posix_time_t{}, ::u16(u) };
+   return { posix_time_t{}, unsigned short(u) };
 }
 
 

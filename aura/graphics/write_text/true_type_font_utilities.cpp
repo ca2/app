@@ -16,37 +16,37 @@
 
 typedef struct _tagTT_OFFSET_TABLE
 {
-   u16	uMajorVersion;
-   u16	uMinorVersion;
-   u16	uNumOfTables;
-   u16	uSearchRange;
-   u16	uEntrySelector;
-   u16	uRangeShift;
+   unsigned short	uMajorVersion;
+   unsigned short	uMinorVersion;
+   unsigned short	uNumOfTables;
+   unsigned short	uSearchRange;
+   unsigned short	uEntrySelector;
+   unsigned short	uRangeShift;
 } TT_OFFSET_TABLE;
 
 typedef struct _tagTT_TABLE_DIRECTORY
 {
    char	szTag[4];			//table name
-   u32	uCheckSum;			//Check sum
-   u32	uOffset;			//Offset from beginning of file
-   u32	uLength;			//length of the table in bytes
+   unsigned int	uCheckSum;			//Check sum
+   unsigned int	uOffset;			//Offset from beginning of file
+   unsigned int	uLength;			//length of the table in bytes
 } TT_TABLE_DIRECTORY;
 
 typedef struct _tagTT_NAME_TABLE_HEADER
 {
-   u16	uFSelector;			//format selector. Always 0
-   u16	uNRCount;			//Name Records count
-   u16	uStorageOffset;		//Offset for strings storage, from start of the table
+   unsigned short	uFSelector;			//format selector. Always 0
+   unsigned short	uNRCount;			//Name Records count
+   unsigned short	uStorageOffset;		//Offset for strings storage, from start of the table
 } TT_NAME_TABLE_HEADER;
 
 typedef struct _tagTT_NAME_RECORD
 {
-   u16	uPlatformID;
-   u16	uEncodingID;
-   u16	uLanguageID;
-   u16	uNameID;
-   u16	uStringLength;
-   u16	uStringOffset;	//from start of storage area
+   unsigned short	uPlatformID;
+   unsigned short	uEncodingID;
+   unsigned short	uLanguageID;
+   unsigned short	uNameID;
+   unsigned short	uStringLength;
+   unsigned short	uStringOffset;	//from start of storage area
 } TT_NAME_RECORD;
 
 

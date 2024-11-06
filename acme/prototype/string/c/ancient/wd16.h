@@ -4,15 +4,15 @@
 
 
 
-CLASS_DECL_ACME ::wd16_character               __wd16charlowered(i32 i);
-CLASS_DECL_ACME ::wd16_character               __wd16charuppered(i32 i);
-CLASS_DECL_ACME i32                    __wd16charisdigit(i32 i);
-CLASS_DECL_ACME i32                    __wd16charisalpha(i32 i);
-CLASS_DECL_ACME i32                    __wd16charisalnum(i32 i);
-CLASS_DECL_ACME i32                    __wd16charisspace(i32 i);
+CLASS_DECL_ACME ::wd16_character               __wd16charlowered(int i);
+CLASS_DECL_ACME ::wd16_character               __wd16charuppered(int i);
+CLASS_DECL_ACME int                    __wd16charisdigit(int i);
+CLASS_DECL_ACME int                    __wd16charisalpha(int i);
+CLASS_DECL_ACME int                    __wd16charisalnum(int i);
+CLASS_DECL_ACME int                    __wd16charisspace(int i);
 
 
-CLASS_DECL_ACME i32                    __wd16charisxdigit(i32 i);
+CLASS_DECL_ACME int                    __wd16charisxdigit(int i);
 
 
 CLASS_DECL_ACME strsize __wd16len(const ::wd16_character * psz);
@@ -75,10 +75,10 @@ CLASS_DECL_ACME strsize __wd16spn(const ::wd16_character * psz1, const ::wd16_ch
 
 CLASS_DECL_ACME strsize __wd16cspn(const ::wd16_character * psz1, const ::wd16_character * psz2);
 
-CLASS_DECL_ACME i64 __wd16toi64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u64 __wd16tou64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME i32 __wd16toi32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u32 __wd16tou32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 __wd16toi64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME u64 __wd16tou64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int __wd16toi32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int __wd16tou32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
 
 
 

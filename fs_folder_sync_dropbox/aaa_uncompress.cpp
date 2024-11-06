@@ -51,7 +51,7 @@ namespace compress_bzip2
 
       bool done = false;
 
-      i32 status;
+      int status;
 
       class memory memIn;
       memIn.set_size(1024 * 8);
@@ -61,7 +61,7 @@ namespace compress_bzip2
       bz_stream zstream;
       zero(zstream);
       zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (u32)uRead;
+      zstream.avail_in = (unsigned int)uRead;
 
       class memory memory;
       memory.set_size(1024 * 256);
@@ -82,7 +82,7 @@ namespace compress_bzip2
          {
 
             zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (u32)memory.size();
+            zstream.avail_out = (unsigned int)memory.size();
 
             // Inflate another chunk.
             status = BZ2_bzDecompress(&zstream);
@@ -117,7 +117,7 @@ namespace compress_bzip2
 
          zstream.next_in = (char*)memIn.data();
 
-         zstream.avail_in = (u32)uRead;
+         zstream.avail_in = (unsigned int)uRead;
 
       }
 
@@ -140,12 +140,12 @@ namespace compress_bzip2
    }
 
 
-   //const i32 g_iGzUncompressLen = 1024 * 1024;
+   //const int g_iGzUncompressLen = 1024 * 1024;
    //char * g_pchGzUncompressBuffer = nullptr;
    //
    //
    //
-   //i32 bzuncompress(const ::string & pcszUncompressed, const ::string & lpcszGzFileCompressed)
+   //int bzuncompress(const ::string & pcszUncompressed, const ::string & lpcszGzFileCompressed)
 
    //{
    //   if (g_pchGzUncompressBuffer == nullptr)
@@ -168,7 +168,7 @@ namespace compress_bzip2
    //      BZ2_bzclose(file);
    //      return -1;
    //   }
-   //   i32 uncomprLen;
+   //   int uncomprLen;
    //   while ((uncomprLen = BZ2_bzread(file, g_pchGzUncompressBuffer, g_iGzUncompressLen)) > 0)
    //   {
    //      fwrite_dup(g_pchGzUncompressBuffer, 1, uncomprLen, fileUn);

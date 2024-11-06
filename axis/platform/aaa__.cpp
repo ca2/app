@@ -26,7 +26,7 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //
 //
 //
-//   bool extract_sub_string(string& rString, const ::string & strFullString, i32 iSubString, char chSep)
+//   bool extract_sub_string(string& rString, const ::string & strFullString, int iSubString, char chSep)
 //   {
 //
 //      const ::scoped_string & scopedstrFullString = strFullString;
@@ -55,7 +55,7 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //      const char* pchEnd = strchr(pszFullString, chSep);
 //
 //
-//      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (i32)(pchEnd - pszFullString);
+//      strsize nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
 //
 //
 //      ASSERT(nLen >= 0);

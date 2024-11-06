@@ -71,7 +71,7 @@ private:
    serial_impl * pimpl_;
 };
 
-serial::serial(::particle * pparticle, const string & port, u32 baudrate, serial::Timeout timeout,
+serial::serial(::particle * pparticle, const string & port, unsigned int baudrate, serial::Timeout timeout,
    enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
    : ::object(pparticle),
@@ -84,7 +84,7 @@ serial::~serial()
 {
 }
 
-serial::Timeout Timeout::simpleTimeout(u32 timeout)
+serial::Timeout Timeout::simpleTimeout(unsigned int timeout)
 {
 #ifdef WINDOWS
    return Timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
@@ -321,15 +321,15 @@ serial::getTimeout() const
 }
 
 void
-serial::setBaudrate(u32 baudrate)
+serial::setBaudrate(unsigned int baudrate)
 {
    pimpl_->setBaudrate(baudrate);
 }
 
-u32
+unsigned int
 serial::getBaudrate() const
 {
-   return u32(pimpl_->getBaudrate());
+   return unsigned int(pimpl_->getBaudrate());
 }
 
 void

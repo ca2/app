@@ -679,9 +679,9 @@ public:
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
    inline int as_i32() const { return (int) as_i64(); }
-   inline ::u32 as_u32() const { return (::u32) as_i64(); }
+   inline unsigned int as_u32() const { return (unsigned int) as_i64(); }
    inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
-   inline ::u32 as_umessage() const { return u32(); }
+   inline unsigned int as_umessage() const { return unsigned int(); }
    inline ::enum_message as_emessage() const;
    inline ::enum_id as_eid() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
@@ -762,12 +762,12 @@ public:
    {
 
       return { 
-         (((::u32)m_etype) << 24)
+         (((unsigned int)m_etype) << 24)
          ^
          (
             is_text() ? 
             ::u32_hash(m_str.c_str()).m_u : 
-            ((((::u32)m_uLargest) >> 8) & 0xffffffffu)
+            ((((unsigned int)m_uLargest) >> 8) & 0xffffffffu)
          ) 
       };
 

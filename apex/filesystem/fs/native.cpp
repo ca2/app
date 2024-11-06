@@ -123,7 +123,7 @@ namespace fs
    //}
 
 
-   //string native::eat_end_level(const ::file::path & path, i32 iCount)
+   //string native::eat_end_level(const ::file::path & path, int iCount)
    //{
 
    //   string strPath(pszPath);

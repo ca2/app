@@ -3,7 +3,7 @@
 
 template < typename KEY, typename PAYLOAD, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 void map < KEY, PAYLOAD, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
-   ::u32 nHashSize, bool bAllocNow)
+   unsigned int nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
    //   hash table size_i32 of (which is fairly small)

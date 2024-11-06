@@ -812,7 +812,7 @@ namespace windowing
    }
 
 
-   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const ::string & pszMatter)
+   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::string & pszMatter)
    {
    
       return "windows_interaction_impl";

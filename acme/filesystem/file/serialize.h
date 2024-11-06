@@ -43,8 +43,8 @@ enum e_set_version
 //
 //   virtual filesize get_position() const;
 //
-////      void read(i32 & i);
-////      void read(u32 & u);
+////      void read(int & i);
+////      void read(unsigned int & u);
 ////      void read(i64 & i);
 ////      void read(u64 & u);
 //
@@ -55,11 +55,11 @@ enum e_set_version
 //#ifdef WINDOWS
 //   virtual stream & read (unichar & wch) override;
 //#endif
-//   virtual stream & read(i8 & I) override;
-//   virtual stream & read (i16 & sh) override;
-//   virtual stream & read (u16 & u) override;
-//   virtual stream & read (i32 & i) override;
-//   virtual stream & read (u32 & u) override;
+//   virtual stream & read(char & I) override;
+//   virtual stream & read (short & sh) override;
+//   virtual stream & read (unsigned short & u) override;
+//   virtual stream & read (int & i) override;
+//   virtual stream & read (unsigned int & u) override;
 //   virtual stream & read (i64 & i) override;
 //   virtual stream & read (u64 & u) override;
 //   virtual stream & read (float & f) override;
@@ -77,15 +77,15 @@ enum e_set_version
 //   using stream::write;
 //   virtual stream & write(char ch) override;
 //   virtual stream & write(uchar uch) override;
-//   virtual stream & write(i8 i) override;
-//   virtual stream & write (i16 sh) override;
-//   virtual stream & write (u16 u) override;
+//   virtual stream & write(char i) override;
+//   virtual stream & write (short sh) override;
+//   virtual stream & write (unsigned short u) override;
 //#ifdef WINDOWS
 //   virtual stream & write (unichar wch) override;
 //#endif
 //   virtual stream & write (bool b) override;
-//   virtual stream & write (i32 i) override;
-//   virtual stream & write (u32 u) override;
+//   virtual stream & write (int i) override;
+//   virtual stream & write (unsigned int u) override;
 //   virtual stream & write (i64 i) override;
 //   virtual stream & write (u64 u) override;
 //   virtual stream & write (float f) override;

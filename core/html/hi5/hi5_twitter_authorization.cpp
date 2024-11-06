@@ -223,9 +223,9 @@ namespace hi5
 
          m_ptabimpact->parent_frame()->best_top_level_parent(rectangleOpen);
 
-         i32 iWidth = rectangleOpen.width();
+         int iWidth = rectangleOpen.width();
 
-         i32 iHeight = rectangleOpen.height();
+         int iHeight = rectangleOpen.height();
 
          rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 

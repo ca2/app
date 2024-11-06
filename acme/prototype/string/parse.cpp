@@ -81,7 +81,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const ::ansi_character *s,strsize iLen, ::range < const ::ansi_character * > splits,i16 nospace)
+   parse::parse(const ::ansi_character *s,strsize iLen, ::range < const ::ansi_character * > splits,short nospace)
    :m_psz(s)
    ,pa_splits(splits)
    ,m_strWord("")
@@ -104,9 +104,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    #define C ((m_iPos<m_iLen) ? m_psz[m_iPos] : 0)
 //#define CPREV ((m_iPos-1 >=0)&&(m_iPos-1<m_str.length()) ? (m_str.get_at(m_iPos-1) : 0)
 
-   i16 parse::issplit(const char ca)
+   short parse::issplit(const char ca)
    {
-      for (i32 i = 0; i < pa_splits.length(); i++)
+      for (int i = 0; i < pa_splits.length(); i++)
          if (pa_splits[i] == ca)
             return 1;
       return 0;
@@ -115,9 +115,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    void parse::getsplitword()
    {
       ::collection::index x;
-      i32 disabled = 0;
-      i32 quote = 0;
-      i32 rem = 0;
+      int disabled = 0;
+      int quote = 0;
+      int rem = 0;
 
       if (C == '=')
       {
@@ -249,9 +249,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    string parse::getword()
    {
       ::collection::index x;
-      i32 disabled = 0;
-      i32 quote = 0;
-      i32 rem = 0;
+      int disabled = 0;
+      int quote = 0;
+      int rem = 0;
 
       if (pa_nospace)
       {
@@ -355,7 +355,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
 
-   void parse::getword(string &s,string &fill,i32 l)
+   void parse::getword(string &s,string &fill,int l)
    {
       parse::getword();
       s = "";
@@ -401,7 +401,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       pa_breakchar = ca;
    }
 
-   i32 parse::getwordlen()
+   int parse::getwordlen()
    {
       ::collection::index x,y = m_iPos,len;
 
@@ -420,10 +420,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          m_iPos++;
       len = m_iPos - x;
       m_iPos = y;
-      return (i32)maximum(0,len);
+      return (int)maximum(0,len);
    }
 
-   i32 parse::getrestlen()
+   int parse::getrestlen()
    {
       ::collection::index y = m_iPos;
       ::collection::index len;
@@ -432,7 +432,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          m_iPos++;
       len = m_iLen - m_iPos;
       m_iPos = y;
-      return (i32)maximum(0, len);
+      return (int)maximum(0, len);
    }
 
 

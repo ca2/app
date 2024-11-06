@@ -3,7 +3,7 @@
 #include "create_task_attributes.h"
 
 
-create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 uStackSize, ::u32 uCreateFlags, security_attributes * psecurityattributes) :
+create_task_attributes::create_task_attributes(::enum_priority epriority, unsigned int uStackSize, unsigned int uCreateFlags, security_attributes * psecurityattributes) :
    m_psecurityattributes(psecurityattributes)
 {
    

@@ -48,7 +48,7 @@ CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoll(psz, (::ansi_character **)ppszEnd, iBase);
@@ -56,7 +56,7 @@ CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoull(psz, (::ansi_character **)ppszEnd, iBase);
@@ -64,7 +64,7 @@ CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -104,7 +104,7 @@ CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_chara
 
 
 
-CLASS_DECL_ACME ::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
+CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -124,7 +124,7 @@ CLASS_DECL_ACME ::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_cha
 
    }
 
-   return (::u32) ul;
+   return (unsigned int) ul;
 
 #endif
 
@@ -200,7 +200,7 @@ CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::a
 
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const char * right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const char * left, const char * right, size_t len)
 {
 
 if (len)
@@ -243,7 +243,7 @@ return strcasecmp(left, right);
 }
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const string & right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const string & right, size_t len)
 {
 
    if (len)
@@ -287,7 +287,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const string & righ
 
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const string & right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right, size_t len)
 {
 
    if (len)
@@ -330,7 +330,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const string & right,
 }
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const char * right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right, size_t len)
 {
 
    if (len)
@@ -619,7 +619,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -655,7 +655,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -691,7 +691,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -734,7 +734,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -778,7 +778,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //
 //
-//CLASS_DECL_ACME i32 ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -814,7 +814,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -850,7 +850,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -893,7 +893,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -1003,7 +1003,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+//CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1024,7 +1024,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+//CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1078,7 +1078,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+//CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1101,7 +1101,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+//CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1148,7 +1148,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
 //
 //
-//CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, i32 iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_u64(::ansi_character * sz, u64 u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1158,7 +1158,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, i32 iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_i64(::ansi_character * sz, i64 i, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1168,7 +1168,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, u32 u, i32 iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_u32(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1178,7 +1178,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, i32 i, i32 iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_i32(::ansi_character * sz, int i, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1188,7 +1188,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
+//CLASS_DECL_ACME i64 ansi_count_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
 //{
 //
 //   auto len = ansi_length(psz);
@@ -1230,7 +1230,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase, strsize srclen)
+//CLASS_DECL_ACME int ansi_count_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, strsize srclen)
 //{
 //
 //   auto len = ansi_length(psz);
@@ -1522,7 +1522,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //
 //
-////CLASS_DECL_ACME void                   ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, i32 * numargs, i32 * numchars);
+////CLASS_DECL_ACME void                   ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, int * numargs, int * numchars);
 //
 //
 //

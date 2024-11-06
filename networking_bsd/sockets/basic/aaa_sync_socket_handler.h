@@ -15,7 +15,7 @@ namespace sockets_bsd
          socket *                         m_psocket;
          ::memory_file                    m_file;
          ::pointer<socket_handler>       m_phandler;
-         i32                              m_iDefaultTimeout;
+         int                              m_iDefaultTimeout;
 
 
          sync_socket_handler(::apex::log *log = nullptr);
@@ -28,14 +28,14 @@ namespace sockets_bsd
          virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr);
 
          virtual void write(string & str);
-         virtual void write(const void * pdata, i32 len);
-         virtual i32 read(void * pdata, i32 len);
+         virtual void write(const void * pdata, int len);
+         virtual int read(void * pdata, int len);
          virtual string read_line();
          virtual void read_full_string(string & str);
 
 
-         virtual void read_payload_v1(string & strPayload, i32 timeout = -1);
-         virtual void write_payload_v1(const char * szPayload, i32 timeout = -1);
+         virtual void read_payload_v1(string & strPayload, int timeout = -1);
+         virtual void write_payload_v1(const char * szPayload, int timeout = -1);
 
    };
 

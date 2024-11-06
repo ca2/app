@@ -36,7 +36,7 @@ namespace filemanager
       virtual ::collection::count _001GetItemCount() override;
       virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
-      void OnFileOperationStep(i32 iOperation,bool bFinal);
+      void OnFileOperationStep(int iOperation,bool bFinal);
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;

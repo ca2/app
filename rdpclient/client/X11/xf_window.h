@@ -95,34 +95,34 @@ struct xf_app_window
 	int height;
 	char* title;
 
-	::u32 windowId;
-	::u32 ownerWindowId;
+	unsigned int windowId;
+	unsigned int ownerWindowId;
 
-	::u32 dwStyle;
-	::u32 dwExStyle;
-	::u32 showState;
+	unsigned int dwStyle;
+	unsigned int dwExStyle;
+	unsigned int showState;
 
 	INT32 clientOffsetX;
 	INT32 clientOffsetY;
-	::u32 clientAreaWidth;
-	::u32 clientAreaHeight;
+	unsigned int clientAreaWidth;
+	unsigned int clientAreaHeight;
 
 	INT32 windowOffsetX;
 	INT32 windowOffsetY;
 	INT32 windowClientDeltaX;
 	INT32 windowClientDeltaY;
-	::u32 windowWidth;
-	::u32 windowHeight;
-	::u32 numWindowRects;
+	unsigned int windowWidth;
+	unsigned int windowHeight;
+	unsigned int numWindowRects;
 	RECTANGLE_16* windowRects;
 
 	INT32 visibleOffsetX;
 	INT32 visibleOffsetY;
-	::u32 numVisibilityRects;
+	unsigned int numVisibilityRects;
 	RECTANGLE_16* visibilityRects;
 
-	::u32 localWindowOffsetCorrX;
-	::u32 localWindowOffsetCorrY;
+	unsigned int localWindowOffsetCorrX;
+	unsigned int localWindowOffsetCorrY;
 
 	GC gc;
 	int shmid;
@@ -160,8 +160,8 @@ void xf_MoveWindow(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int wid
 void xf_ShowWindow(xfContext* xfc, xfAppWindow* appWindow, unsigned char state);
 //void xf_SetWindowIcon(xfContext* xfc, xfAppWindow* appWindow, rdpIcon* icon);
 void xf_SetWindowRects(xfContext* xfc, xfAppWindow* appWindow, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, ::u32 rectsOffsetX, ::u32 rectsOffsetY, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, ::u32 style, ::u32 ex_style);
+void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, unsigned int rectsOffsetX, unsigned int rectsOffsetY, RECTANGLE_16* rects, int nrects);
+void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, unsigned int style, unsigned int ex_style);
 void xf_UpdateWindowArea(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int width, int height);
 void xf_DestroyWindow(xfContext* xfc, xfAppWindow* appWindow);
 void xf_SetWindowMinMaxInfo(xfContext* xfc, xfAppWindow* appWindow,

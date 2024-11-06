@@ -694,8 +694,8 @@ static int_bool
       {
          FreeImage_SetTagID(tag, JPEG_APP0+1);	// 0xFFE1
          FreeImage_SetTagKey(tag, g_TagLib_XMPFieldName);
-         FreeImage_SetTagLength(tag, (::u32)length);
-         FreeImage_SetTagCount(tag, (::u32)length);
+         FreeImage_SetTagLength(tag, (unsigned int)length);
+         FreeImage_SetTagCount(tag, (unsigned int)length);
          FreeImage_SetTagType(tag, FIDT_ASCII);
          FreeImage_SetTagValue(tag, profile);
 
@@ -965,13 +965,13 @@ static int_bool
          // XMP signature is 29 bytes long
          unsigned int xmp_header_size = (unsigned int)strlen(xmp_signature) + 1;
 
-         ::u32 tag_length = FreeImage_GetTagLength(tag_xmp);
+         unsigned int tag_length = FreeImage_GetTagLength(tag_xmp);
 
          unsigned char *profile = (unsigned char*)malloc((tag_length + xmp_header_size) * sizeof(unsigned char));
          if(profile == nullptr) return false;
          ::memory_copy(profile, xmp_signature, xmp_header_size);
 
-         for(::u32 i = 0; i < tag_length; i += 65504L)
+         for(unsigned int i = 0; i < tag_length; i += 65504L)
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
@@ -1014,12 +1014,12 @@ static int_bool
 
       if(nullptr != tag_value)
       {
-         ::u32 tag_length = FreeImage_GetTagLength(tag_exif);
+         unsigned int tag_length = FreeImage_GetTagLength(tag_exif);
 
          unsigned char *profile = (unsigned char*)malloc(tag_length * sizeof(unsigned char));
          if(profile == nullptr) return false;
 
-         for(::u32 i = 0; i < tag_length; i += 65504L)
+         for(unsigned int i = 0; i < tag_length; i += 65504L)
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
@@ -1078,14 +1078,14 @@ static int_bool
    }
 
    unsigned char* thData = nullptr;
-   ::u32 thSize = 0;
+   unsigned int thSize = 0;
 
    FreeImage_AcquireMemory(stream, &thData, &thSize);
 
    unsigned char id_length = 5; //< "JFXX"
    unsigned char type = JFXX_TYPE_JPEG;
 
-   ::u32 totalsize = id_length + sizeof(type) + thSize;
+   unsigned int totalsize = id_length + sizeof(type) + thSize;
    jpeg_write_m_header(cinfo, JPEG_APP0, totalsize);
 
    jpeg_write_m_byte(cinfo, 'J');
@@ -1167,8 +1167,8 @@ static void
       sprintf(buffer, "%d", (int)width);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGWidth");
-      FreeImage_SetTagLength(tag, (::u32)length);
-      FreeImage_SetTagCount(tag, (::u32)length);
+      FreeImage_SetTagLength(tag, (unsigned int)length);
+      FreeImage_SetTagCount(tag, (unsigned int)length);
       FreeImage_SetTagType(tag, FIDT_ASCII);
       FreeImage_SetTagValue(tag, buffer);
 /*      FreeImage_SetMetadata(FIMD_COMMENTS, pimage, FreeImage_GetTagKey(tag), tag);
@@ -1176,8 +1176,8 @@ static void
       sprintf(buffer, "%d", (int)height);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGHeight");
-      FreeImage_SetTagLength(tag, (::u32)length);
-      FreeImage_SetTagCount(tag, (::u32)length);
+      FreeImage_SetTagLength(tag, (unsigned int)length);
+      FreeImage_SetTagCount(tag, (unsigned int)length);
       FreeImage_SetTagType(tag, FIDT_ASCII);
       FreeImage_SetTagValue(tag, buffer);
 /*      FreeImage_SetMetadata(FIMD_COMMENTS, pimage, FreeImage_GetTagKey(tag), tag);
@@ -1448,7 +1448,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
                for(unsigned x = 0; x < cinfo.output_width; x++)
                {
-                  ::u16 K = (::u16)src[3];
+                  unsigned short K = (unsigned short)src[3];
                   dst[FI_RGBA_RED]   = (unsigned char)((K * src[0]) / 255);	// C -> R
                   dst[FI_RGBA_GREEN] = (unsigned char)((K * src[1]) / 255);	// M -> G
                   dst[FI_RGBA_BLUE]  = (unsigned char)((K * src[2]) / 255);	// Y -> B
@@ -1559,7 +1559,7 @@ static int_bool DLL_CALLCONV
          const char *sError = "only 24-bit highcolor or 8-bit greyscale/palette bitmaps can be saved as JPEG";
 
 /*         FREE_IMAGE_COLOR_TYPE color_type = FreeImage_GetColorType(pimage);
-/*         ::u16 bpp = (::u16)FreeImage_GetBPP(pimage);
+/*         unsigned short bpp = (unsigned short)FreeImage_GetBPP(pimage);
 
          if ((bpp != 24) && (bpp != 8))
          {

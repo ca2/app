@@ -123,10 +123,10 @@ public:
 
 
    bool ReadLine(::string & str, bool bWithSeparator = false);
-   bool _01Read(i32 & i);
-   bool _01Read(::u32 & user);
-   bool _01ReadHex(i32 & i);
-   bool _01ReadHex(::u32 & user);
+   bool _01Read(int & i);
+   bool _01Read(unsigned int & user);
+   bool _01ReadHex(int & i);
+   bool _01ReadHex(unsigned int & user);
 
    bool _01Read(::string & str);
    bool ExtractFolderPath(const ::scoped_string & scopedstrFilePath);

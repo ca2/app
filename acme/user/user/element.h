@@ -296,9 +296,9 @@ namespace user
 
       virtual void update_dialog_controls(channel * ptarget);
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      //virtual atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
-      //virtual atom RunModalLoop(u32 dwFlags = 0);
-      //virtual atom _001RunModalLoop(u32 dwFlags = 0);
+      //virtual atom run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags = 0);
+      //virtual atom RunModalLoop(unsigned int dwFlags = 0);
+      //virtual atom _001RunModalLoop(unsigned int dwFlags = 0);
 
       // Dialog data support
       virtual void update_data(bool bSaveAndValidate = true);
@@ -366,7 +366,7 @@ namespace user
       virtual void create_child(::user::interaction * puserinteractionParent);
 
       //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,unsigned int nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -379,7 +379,7 @@ namespace user
 
       //#ifdef WINDOWS
 
-        //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+        //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
 
       //#else
 
@@ -419,8 +419,8 @@ namespace user
 
       virtual void post_simple_command(const enum_simple_command & ecommand, lparam lParam = 0);
 
-      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
-      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      //virtual bool ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
+      //virtual bool ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
       //virtual bool _display(::e_display edisplay);
 
       //virtual void SetWindowDisplayChanged();
@@ -510,13 +510,13 @@ namespace user
 
       virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr);
 
-      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1);
+      virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
+      virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
 
 
       virtual ::user::interaction * get_wnd();
-      virtual ::user::interaction * get_wnd(::u32 nCmd);
+      virtual ::user::interaction * get_wnd(unsigned int nCmd);
       //virtual ::windowing::window * get_impl() const;
       //virtual ::task * get_task() override;
 
@@ -544,20 +544,20 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage);
 
 
-      virtual i32 get_descendant_level(::user::element * puserelement);
+      virtual int get_descendant_level(::user::element * puserelement);
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {}, bool bStretch = true);
+      virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {}, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, unsigned int nFlags);
 
 
       //#ifdef WINDOWS_DESKTOP
-        //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
+        //    virtual ::user::interaction * get_next_window(unsigned int nFlag = GW_HWNDNEXT);
       //#else
-            //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
+            //virtual ::user::interaction * get_next_window(unsigned int nFlag = 0);
 
       virtual ::user::interaction * get_next_sibling_window();
 
@@ -624,7 +624,7 @@ namespace user
 
       virtual string get_window_default_matter();
       virtual string get_window_icon_matter();
-      virtual u32 get_window_default_style();
+      virtual unsigned int get_window_default_style();
       virtual enum_window_type get_window_type();
 
 
@@ -750,7 +750,7 @@ namespace user
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::element * pfocus);
-      virtual void keyboard_focus_OnTimer(i32 iTimer);
+      virtual void keyboard_focus_OnTimer(int iTimer);
       virtual void keyboard_focus_OnChar(::message::message * pmessage);
       virtual void keyboard_focus_OnSysChar(::message::message * pmessage);
       virtual void keyboard_focus_OnKeyDown(::message::message * pmessage);
@@ -841,10 +841,10 @@ namespace user
 
 #endif
 
-      //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
 
 
-      virtual i32 get_total_page_count(::context * pcontext);
+      virtual int get_total_page_count(::context * pcontext);
 
 
       virtual void edit_on_text(string str);

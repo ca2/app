@@ -257,7 +257,7 @@ namespace user
    void menu_button::_001DrawCheck(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::u32 uImage = 0xffffffffu;
+      unsigned int uImage = 0xffffffffu;
 
       if(m_pmenuitem != nullptr)
       {

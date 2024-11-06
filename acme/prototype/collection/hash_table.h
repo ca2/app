@@ -22,7 +22,7 @@ public:
 
    iterator          m_pHashDefault[DEFAULT_HASH_TABLE_SIZE];
    iterator *        m_ppHash;
-   ::u32             m_nHashTableSize;
+   unsigned int             m_nHashTableSize;
 
 
    set_dynamic_hash_table()
@@ -35,7 +35,7 @@ public:
    }
 
 
-   ::u32 GetHashTableSize() const
+   unsigned int GetHashTableSize() const
    {
 
       return m_nHashTableSize;
@@ -43,7 +43,7 @@ public:
    }
 
 
-   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
+   void InitHashTable(unsigned int nHashSize, bool bAllocNow = true)
    {
 
       if (nHashSize <= 0)
@@ -129,7 +129,7 @@ public:
    }
 
 
-   ::u32 GetHashTableSize() const
+   unsigned int GetHashTableSize() const
    {
 
       return m_nHashTableSize;
@@ -137,7 +137,7 @@ public:
    }
 
 
-   void InitHashTable(::u32 hashSize, bool bAllocNow = true) {  }
+   void InitHashTable(unsigned int hashSize, bool bAllocNow = true) {  }
 
 
    void erase_all()

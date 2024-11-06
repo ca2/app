@@ -2,7 +2,7 @@
 //#include "acme/operating_system.h"
 //
 //
-//retry_multi_lock::retry_multi_lock(const synchronization_array & synca, duration durationLock, duration durationSleep, i32 iRetry, bool bInitialLock)
+//retry_multi_lock::retry_multi_lock(const synchronization_array & synca, duration durationLock, duration durationSleep, int iRetry, bool bInitialLock)
 //{
 //
 //   if (synca.is_empty())
@@ -37,7 +37,7 @@
 //}
 //
 //
-//synchronization_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
+//synchronization_result retry_multi_lock::lock(bool bWaitForAll, unsigned int dwWakeMask /* = 0 */)
 //{
 //
 //#ifdef WINDOWS
@@ -51,9 +51,9 @@
 //
 //#endif
 //
-//   i32 iResult;
+//   int iResult;
 //
-//   i32 iRetry = 0;
+//   int iRetry = 0;
 //
 //   while (true)
 //   {
@@ -61,7 +61,7 @@
 //      if (dwWakeMask == 0)
 //      {
 //
-//         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
+//         iResult = ::WaitForMultipleObjectsEx((unsigned int)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
 //
 //      }
 //#ifdef UNIVERSAL_WINDOWS
@@ -75,7 +75,7 @@
 //      else
 //      {
 //
-//         iResult = ::MsgWaitForMultipleObjects((u32)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), dwWakeMask);
+//         iResult = ::MsgWaitForMultipleObjects((unsigned int)m_hsynchronizationa.get_count(), m_hsynchronizationa.get_data(), bWaitForAll, m_durationLock.u32_millis(), dwWakeMask);
 //
 //      }
 //#endif

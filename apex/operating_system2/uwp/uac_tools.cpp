@@ -231,7 +231,7 @@ namespace VistaTools
          return hResult;
       }
 
-      ::u32 dwReturnLength = 0;
+      unsigned int dwReturnLength = 0;
 
       if ( !::GetTokenInformation(
             hToken,
@@ -272,7 +272,7 @@ namespace VistaTools
       }
 
       TOKEN_ELEVATION te = { 0 };
-      ::u32 dwReturnLength = 0;
+      unsigned int dwReturnLength = 0;
 
       if ( !::GetTokenInformation(
             hToken,
@@ -333,7 +333,7 @@ namespace VistaTools
    HHOOK   hVEHook                     = nullptr;
 
    __declspec(allocate("ve_shared"))
-   ::u32   uVEMsg                     = 0;
+   unsigned int   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
    bool   bVESuccess                  = false;
@@ -389,7 +389,7 @@ namespace VistaTools
    bool
    (WINAPI
     *PGetModuleHandleExW)(
-    __in        ::u32    dwFlags,
+    __in        unsigned int    dwFlags,
     __in_opt    const unichar * lpModuleName,
     __out HMODULE* phModule
     );

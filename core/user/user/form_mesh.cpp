@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,unsigned int nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
@@ -445,8 +445,8 @@ namespace user
       //return ::is_set(m_pitemControl)
         // && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iEditSubItem;
 
-      //i32 iEditItem;
-      //i32 iEditSubItem;
+      //int iEditItem;
+      //int iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -473,7 +473,7 @@ namespace user
    //void form_mesh::_001OnColumnChange()
    //{
    //   ::user::mesh::_001OnColumnChange();
-   //   for(i32 i = 0; i < m_columna.get_size(); i++)
+   //   for(int i = 0; i < m_columna.get_size(); i++)
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
@@ -512,9 +512,9 @@ namespace user
    //   //if(pmouse->m_atom == e_message_left_button_down)
    //   //{
    //   //
-   //   //   i32 iItem;
+   //   //   int iItem;
    //   //
-   //   //   i32 iSubItem;
+   //   //   int iSubItem;
    //   //
    //   //   ::user::range range;
    //   //
@@ -538,8 +538,8 @@ namespace user
    //   //}
    //   //else if(emessage == e_message_left_button_up)
    //   //{
-   //   //i32 iItem;
-   //   //i32 iSubItem;
+   //   //int iItem;
+   //   //int iSubItem;
    //   //::user::range range;
    //   //get_selection(range);
    //   //if(_001DisplayHitTest(point, iItem, iSubItem))

@@ -10,7 +10,7 @@ void * g_pDebugPointer = nullptr;
 //#include "acme/platform/acme.h"
 
 
-plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize) :
+plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize) :
    m_pallocator(pallocator)
 {
 
@@ -278,7 +278,7 @@ void plex_heap_alloc_sync::NewBlock()
 
    critical_section_lock synchronouslock(&m_criticalsection);
 
-   ::u32 nAllocSize = m_nAllocSize;
+   unsigned int nAllocSize = m_nAllocSize;
 
    m_pallocator->m_pacme->heap()->on_plex_new_block(nAllocSize);
 
@@ -290,7 +290,7 @@ void plex_heap_alloc_sync::NewBlock()
 
    auto nBlockSize = m_nBlockSize;
 
-   for (i32 i = 0; i < nBlockSize; i++)
+   for (int i = 0; i < nBlockSize; i++)
    {
 
       pnode->m_pnext = pnodeNext;

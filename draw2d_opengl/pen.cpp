@@ -23,19 +23,19 @@ namespace draw2d_opengl
       }*/
    }
 
-   /*bool pen::CreatePen(i32 nPenStyle, i32 nWidth, color32_t crColor)
+   /*bool pen::CreatePen(int nPenStyle, int nWidth, color32_t crColor)
    { return attach(::CreatePen(nPenStyle, nWidth, crColor)); }
    bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return attach(::CreatePenIndirect(lpLogPen)); }
-   bool pen::CreatePen(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const ::u32* lpStyle)
+   bool pen::CreatePen(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
+      int nStyleCount, const unsigned int* lpStyle)
    { return attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }
-   i32 pen::GetExtLogPen(EXTLOGPEN* pLogPen)
+   int pen::GetExtLogPen(EXTLOGPEN* pLogPen)
    { ASSERT(get_handle() != nullptr);
    return ::GetObject(get_handle(), sizeof(EXTLOGPEN), pLogPen); }
    
-   i32 pen::GetLogPen(LOGPEN* pLogPen)
+   int pen::GetLogPen(LOGPEN* pLogPen)
    { 
       if(get_handle() == nullptr)
          return 0;
@@ -43,7 +43,7 @@ namespace draw2d_opengl
    }
 
 
-   void pen::construct(i32 nPenStyle, double dWidth, color32_t crColor)
+   void pen::construct(int nPenStyle, double dWidth, color32_t crColor)
    {
       
       if(m_ppen == nullptr)
@@ -56,8 +56,8 @@ namespace draw2d_opengl
 
    }
 
-   void pen::construct(i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
-      i32 nStyleCount, const ::u32* lpStyle)
+   void pen::construct(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
+      int nStyleCount, const unsigned int* lpStyle)
    {
       if (!attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
@@ -127,7 +127,7 @@ namespace draw2d_opengl
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const ::u32   CP_ROP = 0xE20746;
+      const unsigned int   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
@@ -175,7 +175,7 @@ namespace draw2d_opengl
       }
    }
 
-   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
+   void __draw_gray_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, int x, int y, const ::draw2d::bitmap &rSrc, color32_t crBackground)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
@@ -185,7 +185,7 @@ namespace draw2d_opengl
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const ::u32   CP_ROP = 0xE20746;
+      const unsigned int   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
@@ -234,7 +234,7 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush pbrushChecker;
-      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(nullptr) &&
          graphicsMask->CreateCompatibleDC(nullptr) &&
@@ -292,7 +292,7 @@ namespace draw2d_opengl
       }
    }
 
-   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, i32 x, i32 y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
+   void __draw_dithered_bitmap(::particle * pparticle, ::draw2d::graphics * pgraphics, int x, int y, const ::draw2d::bitmap &rSrc, color32_t cr1, color32_t cr2)
    {
       ASSERT(pgraphics);
       ASSERT_KINDOF(::draw2d::graphics_pointer, pgraphics);
@@ -303,7 +303,7 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush pbrushChecker;
-      static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+      static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(pgraphics) &&
          graphicsMask->CreateCompatibleDC(pgraphics) &&

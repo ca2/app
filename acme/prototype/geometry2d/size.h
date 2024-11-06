@@ -72,7 +72,7 @@ public:
    //size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
 //   template < primitive_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
-   //size_type(::u32 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
+   //size_type(unsigned int u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
    //size_type(::i64 i) noexcept { this->cx() = (UNIT_TYPE) i; this->cy() = (UNIT_TYPE) i; }
    //size_type(::u64 u) noexcept { this->cx() = (UNIT_TYPE) u; this->cy() = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx() = (UNIT_TYPE) f; this->cy() = (UNIT_TYPE) f; }
@@ -122,7 +122,7 @@ public:
    inline bool has_area() const noexcept { return is_set(); }
 
 
-   ::u32          u32() const noexcept { return __u32(this->cx(), this->cy()); }
+   unsigned int          unsigned int() const noexcept { return __u32(this->cx(), this->cy()); }
    ::u64          u64() const noexcept { return __u64(this->cx(), this->cy()); }
    class lparam   lparam() const noexcept { return make_u32(this->cx(), this->cy()); }
 

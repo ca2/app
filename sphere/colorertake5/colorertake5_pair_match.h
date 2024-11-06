@@ -36,7 +36,7 @@ namespace colorertake5
       /**
       * Internal pair search counter
       */
-      i32 pairBalance;
+      int pairBalance;
 
       /**
       * Default constructor.

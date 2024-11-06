@@ -82,9 +82,9 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points placed into the pPts const point_i32 & array.
 //   ****************************************************************************/
-//   ::u32 MakeBezierFromLine( ::point_i32 *pPts, const point_i32 & startpt, const point_i32 & endpt )
+//   unsigned int MakeBezierFromLine( ::point_i32 *pPts, const point_i32 & startpt, const point_i32 & endpt )
 //   {
-//      ::u32 cTotal = 0;
+//      unsigned int cTotal = 0;
 //
 //      // starting point_i32 of Bezier
 //      pPts[cTotal] = startpt;
@@ -116,12 +116,12 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points placed into the pPts const point_i32 & array.
 //   ****************************************************************************/
-//   ::u32 MakeBezierFromQBSpline( ::point_i32 *pPts, POINTFX *pSpline )
+//   unsigned int MakeBezierFromQBSpline( ::point_i32 *pPts, POINTFX *pSpline )
 //   {
 //      ::point_i32 point0;         // Quadratic on curve start point_i32
 //      ::point_i32 point1;         // Quadratic control point_i32
 //      ::point_i32 point2;         // Quadratic on curve end point_i32
-//      ::u32 cTotal = 0;
+//      unsigned int cTotal = 0;
 //
 //      // Convert the Quadratic points to integer
 //      point0.x() = IntFromFixed( pSpline[0].x() );
@@ -166,17 +166,17 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendPolyLineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //unsigned int AppendPolyLineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
-//   ::u32 AppendPolyLineToBezier(
+//   unsigned int AppendPolyLineToBezier(
 //   point_i32_array      &pointsset,
 //   POINTFX         start,
 //   LPTTPOLYCURVE   pCurve,
 //
-//   ::u32         cTotal )
+//   unsigned int         cTotal )
 //   {
 //      int     i;
-//      //    ::u32    cTotal = 0;
+//      //    unsigned int    cTotal = 0;
 //      ::point_i32   endpt;
 //      ::point_i32   startpt;
 //      ::point_i32   bezier[4];
@@ -226,18 +226,18 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendQuadBSplineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //unsigned int AppendQuadBSplineToBezier( ::point_i32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
-//   ::u32 AppendQuadBSplineToBezier(
+//   unsigned int AppendQuadBSplineToBezier(
 //   point_i32_array & pointset,
 //   POINTFX start,
 //   LPTTPOLYCURVE pCurve,
 //
-//   ::u32 cTotal )
+//   unsigned int cTotal )
 //
 //   {
-//      ::u16                i;
-//      //    ::u32                cTotal = 0;
+//      unsigned short                i;
+//      //    unsigned int                cTotal = 0;
 //      POINTFX             spline[3];  // a Quadratic is defined by 3 points
 //      ::point_i32               bezier[4];  // a Cubic by 4
 //
@@ -307,10 +307,10 @@ namespace write_text
 //   *
 //   *  RETURNS    : number of points aded to the point_i32 const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 CloseContour( ::point_i32 * point, ::u32 cTotal )
-//   ::u32 CloseContour(
+//   //unsigned int CloseContour( ::point_i32 * point, unsigned int cTotal )
+//   unsigned int CloseContour(
 //   point_i32_array & pointset,
-//   ::u32 cTotal )
+//   unsigned int cTotal )
 //   {
 //      ::point_i32               endpt;
 //      ::point_i32                 startpt;    // definition of a line
@@ -355,20 +355,20 @@ namespace write_text
 //   *
 //   *  RETURNS    : none.
 //   ****************************************************************************/
-//   void glyph::Initialize(LPTTPOLYGONHEADER pHeader, u32 size, int iFontHiHeight)
+//   void glyph::Initialize(LPTTPOLYGONHEADER pHeader, unsigned int size, int iFontHiHeight)
 //
 //   {
 //
-//      ::u16                i;
-//      ::u32                cTotal = 0; // Total points in a contour.
+//      unsigned short                i;
+//      unsigned int                cTotal = 0; // Total points in a contour.
 //      LPTTPOLYGONHEADER   pStart;    // the start of the buffer
 //
 //      LPTTPOLYCURVE       pCurve;    // the current curve of a contour
 //
 //      //  ::point_i32 *             point_i32;         // the bezier buffer
 //      POINTFX             pointStart;    // The starting point_i32 of a curve
-//      u32               dwMaxPts = size_i32/sizeof(POINTFX); // maximum possible pts.
-//      u32               dwBuffSize;
+//      unsigned int               dwMaxPts = size_i32/sizeof(POINTFX); // maximum possible pts.
+//      unsigned int               dwBuffSize;
 //
 //      dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.
 //                   sizeof(const point_i32 &) * // sizeof buffer matter
@@ -382,7 +382,7 @@ namespace write_text
 //      // Loop until we have processed the entire buffer of contours.
 //      // The buffer may contain one or more contours that begin with
 //      // a TTPOLYGONHEADER. We have them all when we the end of the buffer.
-//      //while ((u32)pHeader < (u32)(((char *)pStart) + size) && point != nullptr)
+//      //while ((unsigned int)pHeader < (unsigned int)(((char *)pStart) + size) && point != nullptr)
 //
 //      while ((uptr)pHeader < (uptr)(((char *)pStart) + size))
 //

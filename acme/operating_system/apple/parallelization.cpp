@@ -29,7 +29,7 @@ void ns_main_post(dispatch_block_t block);
 
 //    size_t len = 4;
 
-//    u32 count;
+//    unsigned int count;
 
 //    nm[0] = CTL_HW;
 
@@ -60,7 +60,7 @@ void ns_main_post(dispatch_block_t block);
 // }
 
 
-i32 process_get_os_priority(i32 nCa2Priority);
+int process_get_os_priority(int nCa2Priority);
 
 
 //bool set_process_priority(::enum_priority epriority)
@@ -138,7 +138,7 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
-i32 process_get_os_priority(i32 nCa2Priority)
+int process_get_os_priority(int nCa2Priority)
 {
 
    if(nCa2Priority <= (int) ::e_priority_none)

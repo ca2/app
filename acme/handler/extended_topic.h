@@ -19,8 +19,8 @@ public:
    ::user::interaction *                  m_ptab;
    u64                                    m_uiEvent;
    enum_timer                             m_etimer;
-   u32                                    m_uiVKey;
-   u32                                    m_uiFlags;
+   unsigned int                                    m_uiVKey;
+   unsigned int                                    m_uiFlags;
    ::earth::time                          m_timeOuterBeg;
    ::earth::time                          m_timeOuterEnd;
    ::earth::time                          m_timeBeg;

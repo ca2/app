@@ -5,11 +5,11 @@
 typedef struct{
   const uchar *stream;
   memsize get_length;
-  i32 pointer;
-  i32 error;
+  int pointer;
+  int error;
 } MemoryFile;
 
-voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const ::string &filename, i32 mode)
+voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const ::string &filename, int mode)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   mf->error = 0;
@@ -21,7 +21,7 @@ uptr ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uptr
 
   MemoryFile *mf = (MemoryFile*)opaque;
 
-  if (mf->pointer+(i32)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
+  if (mf->pointer+(int)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
   memory_transfer(buf, mf->stream+mf->pointer, this->get_size);
   mf->pointer += this->get_size;
   return this->get_size;
@@ -40,10 +40,10 @@ long ZCALLBACK mem_tell_file_func (voidpf opaque, voidpf stream)
   return mf->pointer;
 }
 
-long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, i32 origin)
+long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
-  i32 cpointer;
+  int cpointer;
 
   switch (origin){
     case ZLIB_FILEFUNC_SEEK_CUR :
@@ -70,12 +70,12 @@ long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uptr offset, i3
   return 0;
 }
 
-i32 ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
+int ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
 {
   return 0;
 }
 
-i32 ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
+int ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   return mf->error;

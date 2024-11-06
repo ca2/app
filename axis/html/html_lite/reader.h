@@ -194,7 +194,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(u32 dwNewEventMask);
+   EventMaskEnum setEventMask(unsigned int dwNewEventMask);
 
    /**
     * Changes the current event mask by adding and removing
@@ -207,7 +207,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(u32 addFlags, u32 eraseFlags);
+   EventMaskEnum setEventMask(unsigned int addFlags, unsigned int eraseFlags);
 
    /**
     * Returns a 32-bit application-specific data
@@ -230,7 +230,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   strsize setAppData(u32 dwNewAppData);
+   strsize setAppData(unsigned int dwNewAppData);
 
    /**
     * Returns a pointer to an event handler registered with
@@ -343,7 +343,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool getEventNotify(u32 dwEvent) const ;
+   bool getEventNotify(unsigned int dwEvent) const ;
 
    /**
     * Determines if the character specified by ch is

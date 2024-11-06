@@ -132,7 +132,7 @@ namespace html
 
          float cx = 0.f;
 
-         for (i32 i = 0; i < m_columna.get_size(); i++)
+         for (int i = 0; i < m_columna.get_size(); i++)
          {
 
             cx += m_columna[i].m_cxMax;
@@ -224,7 +224,7 @@ namespace html
 
          float x = m_box.left() + m_iCellSpacing;
 
-         for (i32 i = 0; i < m_columna.get_size(); i++)
+         for (int i = 0; i < m_columna.get_size(); i++)
          {
 
             m_columna[i].m_x = x;
@@ -235,7 +235,7 @@ namespace html
 
          }
 
-         for (i32 i = 0; i < m_rowptra.get_size(); i++)
+         for (int i = 0; i < m_rowptra.get_size(); i++)
          {
 
             //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;
@@ -291,7 +291,7 @@ namespace html
 
          float x = m_box.left() + m_iCellSpacing + m_border.left() + m_margin.left();
 
-         for (i32 i = 0; i < m_columna.get_size(); i++)
+         for (int i = 0; i < m_columna.get_size(); i++)
          {
 
             m_columna[i].m_x = x;
@@ -300,7 +300,7 @@ namespace html
 
          }
 
-         //for (i32 i = 0; i < m_rowptra.get_size(); i++)
+         //for (int i = 0; i < m_rowptra.get_size(); i++)
          //{
 
          //   //   cy += m_rowptra[i]->m_box.get_cy() + m_iCellSpacing + 1;

@@ -58,12 +58,12 @@ namespace colorertake5
          /**
           * Enumerates all declared hrd classes
           */
-         //string enumerateHRDClasses(i32 idx);
+         //string enumerateHRDClasses(int idx);
 
          /**
           * Enumerates all declared hrd instances of specified class
           */
-         //string enumerateHRDInstances(const string &classID, i32 idx);
+         //string enumerateHRDInstances(const string &classID, int idx);
 
          /**
           * Returns description of HRD instance, pointed by classID and nameID parameters.

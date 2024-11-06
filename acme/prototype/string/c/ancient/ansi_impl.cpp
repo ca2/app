@@ -2,16 +2,16 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME ::ansi_character __ansicharlowered(i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-CLASS_DECL_ACME ::ansi_character __ansicharuppered(i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-CLASS_DECL_ACME i32 __ansicharisdigit(i32 i) { return i >= L'0' && i <= L'9'; }
-CLASS_DECL_ACME i32 __ansicharisalpha(i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-CLASS_DECL_ACME i32 __ansicharisalnum(i32 i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
-CLASS_DECL_ACME i32 __ansicharisspace(i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
-CLASS_DECL_ACME i32 __ansicharisxdigit(i32 i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
+CLASS_DECL_ACME ::ansi_character __ansicharlowered(int i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::ansi_character __ansicharuppered(int i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME int __ansicharisdigit(int i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME int __ansicharisalpha(int i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME int __ansicharisalnum(int i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
+CLASS_DECL_ACME int __ansicharisspace(int ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME int __ansicharisxdigit(int i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-CLASS_DECL_ACME i32 __ansicharishexadecimal(i32 i) { return __ansicharisxdigit(i); }
+CLASS_DECL_ACME int __ansicharishexadecimal(int i) { return __ansicharisxdigit(i); }
 
 
 CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, strsize srclen)
@@ -570,7 +570,7 @@ CLASS_DECL_ACME strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_c
 }
 
 
-CLASS_DECL_ACME  ::ansi_character lower_char(i32 ch)
+CLASS_DECL_ACME  ::ansi_character lower_char(int ch)
 {
    if (ch >= 'A' && ch <= 'Z')
    {
@@ -580,7 +580,7 @@ CLASS_DECL_ACME  ::ansi_character lower_char(i32 ch)
 }
 
 
-CLASS_DECL_ACME ::ansi_character upper_char(i32 ch)
+CLASS_DECL_ACME ::ansi_character upper_char(int ch)
 {
    if (ch >= 'a' && ch <= 'z')
    {

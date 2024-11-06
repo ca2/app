@@ -135,7 +135,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-   u32 dwFlags = 0;
+   unsigned int dwFlags = 0;
 
    if(bInitiallyOwn)
    {
@@ -181,7 +181,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
       pthread_mutexattr_t  attr;
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-      i32 rc;
+      int rc;
       m_pmutex = ___new pthread_mutex_t();
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
@@ -294,7 +294,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
       }
 
-      semctl((i32) m_sem, 0, SETVAL, semctl_arg);
+      semctl((int) m_sem, 0, SETVAL, semctl_arg);
 
    }
 
@@ -556,7 +556,7 @@ bool event::SetEvent()
       sb.sem_num  = 0;
       sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
-      return semop((i32) m_sem, &sb, 1) == 0;
+      return semop((int) m_sem, &sb, 1) == 0;
 
    }
 
@@ -585,7 +585,7 @@ bool event::SetEvent()
 //   sb.sem_num  = 0;
 //   sb.sem_flg  = SEM_UNDO;
 //
-//   return semop((i32) m_hsynchronization, &sb, 1) == 0;
+//   return semop((int) m_hsynchronization, &sb, 1) == 0;
 //
 //#endif
 //
@@ -708,7 +708,7 @@ void event::_wait ()
    if(m_bManualEvent)
    {
 
-      i32 iSignal = m_iSignalId;
+      int iSignal = m_iSignalId;
 
       while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
@@ -768,7 +768,7 @@ void event::_wait ()
       sb.sem_num  = 0;
       sb.sem_flg  = 0;
 
-      semop((i32) m_sem, &sb, 1);
+      semop((int) m_sem, &sb, 1);
 
    }
 
@@ -855,7 +855,7 @@ bool event::_wait (const class time & timeWait)
 
       end += timeWait;
 
-      i32 iSignal = m_iSignalId;
+      int iSignal = m_iSignalId;
 
       while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
@@ -918,7 +918,7 @@ bool event::_wait (const class time & timeWait)
          while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
          {
 
-            i32 error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
+            int error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
             if(error != 0)
             {
@@ -1122,7 +1122,7 @@ bool event::_wait (const class time & timeWait)
          sb.sem_num  = 0;
          sb.sem_flg  = IPC_NOWAIT;
 
-         i32 ret = semop((i32) m_sem, &sb, 1);
+         int ret = semop((int) m_sem, &sb, 1);
 
          if(ret < 0)
          {
@@ -1234,7 +1234,7 @@ bool event::is_signaled() const
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      i32 ret = semop((i32) m_sem, &sb, 1);
+      int ret = semop((int) m_sem, &sb, 1);
 
       if(ret < 0)
       {
@@ -1274,7 +1274,7 @@ bool event::is_signaled() const
 //
 ////#ifdef WINDOWS
 ////
-////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
+////   unsigned int dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
 ////
 ////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 ////      return true;
@@ -1291,7 +1291,7 @@ bool event::is_signaled() const
 ////   if(m_bManualEvent)
 ////   {
 ////
-////      i32 iSignal = m_iSignalId;
+////      int iSignal = m_iSignalId;
 ////
 ////      while(!m_bSignaled && iSignal == m_iSignalId)
 ////      {
@@ -1338,9 +1338,9 @@ bool event::is_signaled() const
 ////   else
 ////   {
 ////
-////      u32 timeout = timeTimeout.u32_millis();
+////      unsigned int timeout = timeTimeout.u32_millis();
 ////
-////      u32 start= ::time::now();
+////      unsigned int start= ::time::now();
 ////
 ////      while(start.elapsed() < timeout)
 ////      {
@@ -1351,7 +1351,7 @@ bool event::is_signaled() const
 ////         sb.sem_num  = 0;
 ////         sb.sem_flg  = IPC_NOWAIT;
 ////
-////         i32 ret = semop((i32) m_hsynchronization, &sb, 1);
+////         int ret = semop((int) m_hsynchronization, &sb, 1);
 ////
 ////         if(ret < 0)
 ////         {

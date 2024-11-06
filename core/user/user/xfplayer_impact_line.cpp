@@ -19,8 +19,8 @@
 #include "core/platform/system.h"
 
 
-const i32 xfplayer_impact_line::AlignLeft = 1;
-const i32 xfplayer_impact_line::AlignRight = 2;
+const int xfplayer_impact_line::AlignLeft = 1;
+const int xfplayer_impact_line::AlignRight = 2;
 
 
 xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction)
@@ -113,7 +113,7 @@ xfplayer_impact_line::~xfplayer_impact_line()
 }
 
 
-bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle)
+bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, int flags, const ::rectangle_i32 & rectangle)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -376,15 +376,15 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    break;
    case AnimateRHL:
    {
-      i32 iLeft = m_iaPosition.element_at(0);
-      i32 iLeftDiff = 0;
-      i32 iLastLeftDiff = 0;
-      i32 i;
+      int iLeft = m_iaPosition.element_at(0);
+      int iLeftDiff = 0;
+      int iLastLeftDiff = 0;
+      int i;
       for (i = 0; i < m_iaPosition.get_size(); i++)
       {
          iLastLeftDiff = iLeftDiff;
          iLeftDiff = m_iaPosition.element_at(i) - iLeft;
-         if ((i32)m_dAnimateProgress <= iLeftDiff)
+         if ((int)m_dAnimateProgress <= iLeftDiff)
          {
             //i--;
             break;
@@ -396,9 +396,9 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       string strFinal(m_str);
       string strLeft = strFinal.right(strFinal.length() - i);
       
-      i32 iLeftOffset;
+      int iLeftOffset;
       
-      iLeftOffset = iLastLeftDiff - (i32)m_dAnimateProgress;
+      iLeftOffset = iLastLeftDiff - (int)m_dAnimateProgress;
       
       ::rectangle_i32 rectangleTextOut;
       
@@ -417,12 +417,12 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                          dBlend);
          
       }
-      i32 iMaxCounter = maximum((i32)m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right() - m_rectangle.left());
-      i32 iRight = iMaxCounter - (i32)m_dAnimateProgress;
+      int iMaxCounter = maximum((int)m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right() - m_rectangle.left());
+      int iRight = iMaxCounter - (int)m_dAnimateProgress;
       if (iRight < m_rectangle.right())
       {
-         i32 iRightEnd;
-         i32 i;
+         int iRightEnd;
+         int i;
          for (i = 0; i < m_iaPosition.get_size(); i++)
          {
             iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
@@ -539,15 +539,15 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    {
       if (m_iaPosition.get_size() <= 0)
          break;
-      //         i32 iLeft = m_iaPosition.element_at(0);
-      i32 iLeftDiff = 0;
-      //i32 iLastLeftDiff = 0;
-      i32 i = 0;
-      /*            for(i32 i = 0; i < m_iaPosition.get_size(); i++)
+      //         int iLeft = m_iaPosition.element_at(0);
+      int iLeftDiff = 0;
+      //int iLastLeftDiff = 0;
+      int i = 0;
+      /*            for(int i = 0; i < m_iaPosition.get_size(); i++)
                   {
                       iLastLeftDiff = iLeftDiff;
                       iLeftDiff = m_iaPosition.element_at(i) - iLeft;
-                      if(iLeftDiff >= (i32) m_dAnimateProgress)
+                      if(iLeftDiff >= (int) m_dAnimateProgress)
                       {
                           break;
                       }
@@ -555,8 +555,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       string strFinal(m_str);
       string strLeft = strFinal.right(strFinal.length() - i);
-      i32 iLeftOffset;
-      iLeftOffset = iLeftDiff - (i32)m_dAnimateProgress;
+      int iLeftOffset;
+      iLeftOffset = iLeftDiff - (int)m_dAnimateProgress;
 
       pgraphics->set(sppen);
       auto pbrushText = __create < ::draw2d::brush > ();
@@ -588,15 +588,15 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                       m_iaPosition.get_size(),
                     0,
                       MapToFontEffect(m_iTextEffect));   */
-      i32 iSpacing = 100;
-      i32 iMaxCounter = maximum(
-                            (i32)m_iaPosition.element_at(m_str.length())
+      int iSpacing = 100;
+      int iMaxCounter = maximum(
+                            (int)m_iaPosition.element_at(m_str.length())
                             - m_iaPosition.element_at(0) + iSpacing, m_rectangle.right() - m_rectangle.left());
-      i32 iRight = iMaxCounter - (i32)m_dAnimateProgress;
+      int iRight = iMaxCounter - (int)m_dAnimateProgress;
       if (iRight < m_rectangle.right())
       {
-         /*    i32 iRightEnd;
-             for(i32 i = 0; i < m_iaPosition.get_size(); i++)
+         /*    int iRightEnd;
+             for(int i = 0; i < m_iaPosition.get_size(); i++)
              {
                  iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
                  if(iRightEnd >= m_rectangle.right())
@@ -649,7 +649,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       return;
    if(pFonts->get_size() > 0)
    {
-      i32 i, nFont, iFontFound, iMaxExtent, iLeft;
+      int i, nFont, iFontFound, iMaxExtent, iLeft;
       ::size_i32 size;
       ::rectangle_i32 clientRect;
       nFont = 0;
@@ -743,7 +743,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    else
    {
-      i32 i; //, width;
+      int i; //, width;
       ::size_i32 size;
          m_iaPosition[0] = m_rectangle.left();
          for(i = 1; i <= m_str.length(); i++)
@@ -784,7 +784,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
    }
 
-   i32 i;
+   int i;
    
    ::size_f64 size;
    
@@ -984,7 +984,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       return;
     ::write_text::font * pfontOriginal = pdcForeground->get_current_font();
    pdcForeground->set(pFont->GetFont());
-   i32 i, iLeft, iRight, iMaxExtent;
+   int i, iLeft, iRight, iMaxExtent;
    ::size_i32 size;
    ::rectangle_i32 rectangleX(rectangle);
 
@@ -1089,7 +1089,7 @@ void xfplayer_impact_line::SetAutoSize(bool bAutoSize)
    m_bAutoSizeY = bAutoSize;
 }
 
-void xfplayer_impact_line::SetAlign(i32 iAlign)
+void xfplayer_impact_line::SetAlign(int iAlign)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1168,7 +1168,7 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
          m_dAnimateProgress += m_dAnimateProgressIncrement;
          if (m_iaPosition.get_size() > 0)
          {
-            if ((i32)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right() - m_rectangle.left()))
+            if ((int)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right() - m_rectangle.left()))
                m_dAnimateProgress = 0.0;
             
             ::rectangle_i32 rectangle;
@@ -1193,7 +1193,7 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
    }
 }
 
-void xfplayer_impact_line::SetAnimateType(i32 iAnimateType)
+void xfplayer_impact_line::SetAnimateType(int iAnimateType)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1203,7 +1203,7 @@ void xfplayer_impact_line::SetAnimateType(i32 iAnimateType)
 
 }
 
-void xfplayer_impact_line::SetTextEffect(i32 iTextEffect)
+void xfplayer_impact_line::SetTextEffect(int iTextEffect)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1235,7 +1235,7 @@ void xfplayer_impact_line::SetForegroundColor(::color32_t color32)
     return &m_fonts;
 }
 */
-i32 xfplayer_impact_line::MapToFontEffect(i32 iLineEffect)
+int xfplayer_impact_line::MapToFontEffect(int iLineEffect)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1259,7 +1259,7 @@ void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
    m_dAnimateProgressIncrement = dIncrement;
 }
 
-//void xfplayer_impact_line::SetRedrawMode(i32 iMode)
+//void xfplayer_impact_line::SetRedrawMode(int iMode)
 //{
 //  m_iRedrawMode = iMode;
 //}
@@ -1275,7 +1275,7 @@ void xfplayer_impact_line::SetRenderCriticalSection(critical_section * pcs)
    //    m_pcsRender =   pcs;
 }
 
-i32 xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
+int xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1285,7 +1285,7 @@ i32 xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen *
    return true;
 }
 
-i32 xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::color colorRight)
+int xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::color colorRight)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1309,7 +1309,7 @@ void xfplayer_impact_line::SetPlacement(const ::rectangle_i32 & rectangle)
 }
 
 
-//i32 xfplayer_impact_line::GetVmsFontCount()
+//int xfplayer_impact_line::GetVmsFontCount()
 /*{
    return m_fonts.get_size();
 }
@@ -1391,7 +1391,7 @@ bool xfplayer_impact_line::IsVisible()
 }
 
 
-void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1412,7 +1412,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 }
 
 
-void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image::image *pimageCache, const ::scoped_string & scopedstr, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image::image *pimageCache, const ::scoped_string & scopedstr, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1639,13 +1639,13 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
       
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
       
-      m_pgraphicsextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
+      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_floatRateX * 4.0)) / 2), (int)1 * (int)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy(), m_strPrefix, s);
       
       pdcCache->set(m_pfont);
 
-      int x = (i32) (s.cx() + (s.cx() / m_strPrefix.length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      int x = (int) (s.cx() + (s.cx() / m_strPrefix.length()) + (int)(int)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      int y = (i32) (1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      int y = (int) (1 * (int)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       m_pgraphicsextension->text_out(pdcCache, x, y, m_strRoot, s);
 
@@ -1653,17 +1653,17 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
    else
    {
 
-      m_pgraphicsextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
+      m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_floatRateX * 8.0)) / 2), (int)1 * (int)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
 
    }
 
    auto psystem = system();
 
-   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.5)));
+   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, int(maximum(1.0, m_floatRateX * 2.5)));
 
    pimageCache->clear(::color::transparent);
 
@@ -1834,7 +1834,7 @@ bool xfplayer_impact_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 
    int x = point.x() - rectanglePlacement.left();
 
-   for (i32 i = 0; i < m_iaPosition.get_size() - 1; i++)
+   for (int i = 0; i < m_iaPosition.get_size() - 1; i++)
    {
 
       int iL = m_iaPosition[i];
@@ -1895,8 +1895,8 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
    {
 
       bool bInside;
-      i32 iToken;
-      i32 iChar;
+      int iToken;
+      int iChar;
       ::rectangle_i32 rectanglePlacement;
 
       GetPlacement(rectanglePlacement);
@@ -1920,7 +1920,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
       }
       else // bInside == true
       {
-         u32 fwKeys = user; // key flags
+         unsigned int fwKeys = user; // key flags
          if(m_tokenaMain.get_size() <= 0)
             return false;
          if(CalcChar(point, iToken, iChar))

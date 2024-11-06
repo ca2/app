@@ -56,7 +56,7 @@ namespace userfs
    ::collection::index list_item_array::find_item_by_path(const ::file::path & path)
    {
 
-      for(i32 i = 0; i < this->get_count(); i++)
+      for(int i = 0; i < this->get_count(); i++)
       {
 
          if(element_at(i)->final_path() == path)

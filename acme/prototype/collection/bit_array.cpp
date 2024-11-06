@@ -17,7 +17,7 @@ bit_array::~bit_array()
       delete[] m_pdata;
 }
 
-void bit_array::ensure_size(i32 iSize, bool bSet)
+void bit_array::ensure_size(int iSize, bool bSet)
 {
    if(m_pdata == nullptr
    || ::collection::index(m_pdata) == 1
@@ -27,21 +27,21 @@ void bit_array::ensure_size(i32 iSize, bool bSet)
    }
 }
 
-void bit_array::set_size(i32 iBitCount, bool bSet)
+void bit_array::set_size(int iBitCount, bool bSet)
 {
-   i32 * pdataOld       = m_pdata;
-//   i32 iOldDataCount    = m_iDataCount;
-   i32 iOldBitCount     = m_iBitCount;
+   int * pdataOld       = m_pdata;
+//   int iOldDataCount    = m_iDataCount;
+   int iOldBitCount     = m_iBitCount;
    m_iBitCount          = iBitCount;
-   m_iDataCount         = (i32) ceil_div(m_iBitCount, (i32) 8 * sizeof(i32));
+   m_iDataCount         = (int) ceil_div(m_iBitCount, (int) 8 * sizeof(int));
    if(m_iDataCount > 0)
    {
-      m_pdata              = __raw_new i32[m_iDataCount];
+      m_pdata              = __raw_new int[m_iDataCount];
       if(m_pdata != nullptr)
       {
          if(::collection::index(pdataOld) == 1)
          {
-            ::acme::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(i32) - 1);
+            ::acme::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int) - 1);
          }
          else if(pdataOld != nullptr)
          {
@@ -58,7 +58,7 @@ void bit_array::set_size(i32 iBitCount, bool bSet)
    {
       if(bSet)
       {
-         m_pdata = (i32 *) 1;
+         m_pdata = (int *) 1;
       }
       else
       {
@@ -67,12 +67,12 @@ void bit_array::set_size(i32 iBitCount, bool bSet)
    }
 }
 
-i32 bit_array::get_size()
+int bit_array::get_size()
 {
    return m_iBitCount;
 }
 
-void bit_array::set_bit(i32 pos)
+void bit_array::set_bit(int pos)
 {
    if(::collection::index(m_pdata)== 1)
       return;
@@ -80,7 +80,7 @@ void bit_array::set_bit(i32 pos)
    m_pdata[pos>>5] |= 1 << (pos&0x1f);
 }
 
-void bit_array::clear_bit(i32 pos)
+void bit_array::clear_bit(int pos)
 {
    if(m_pdata == nullptr)
       return;
@@ -88,16 +88,16 @@ void bit_array::clear_bit(i32 pos)
    m_pdata[pos>>5] &= ~(1 << (pos&0x1f));
 }
 
-void bit_array::add_range(i32 s, i32 e)
+void bit_array::add_range(int s, int e)
 {
    if(::collection::index(m_pdata) == 1)
       return;
    ensure_size(e + 1);
-   i32 cs = s>>5;
-   i32 ce = e >> 5;
+   int cs = s>>5;
+   int ce = e >> 5;
    if (s&0x1f)
    {
-      i32 fillbytes = 0xffffffff << (s& 0x1f);
+      int fillbytes = 0xffffffff << (s& 0x1f);
       if(cs == ce)
          fillbytes &= 0xffffffff >> (0x1f - (e & 0x1f));
       m_pdata[cs] |= fillbytes;
@@ -108,25 +108,25 @@ void bit_array::add_range(i32 s, i32 e)
       m_pdata[ce] |= 0xffffffff >> ((0x1F - e) & 0x1F);
       ce--;
    }
-   for(i32 idx = cs; idx <= ce; idx++)
+   for(int idx = cs; idx <= ce; idx++)
       m_pdata[idx] = 0xffffffff;
    if (cs == 0 && ce == m_iDataCount-1)
    {
       delete[] m_pdata;
-      m_pdata = (i32*)1;
+      m_pdata = (int*)1;
    }
 }
 
-void bit_array::clear_range(i32 s, i32 e)
+void bit_array::clear_range(int s, int e)
 {
    if(m_pdata == nullptr)
       return;
    ensure_size(e + 1, true);
-   i32 cs = s >> 5;
-   i32 ce = e >> 5;
+   int cs = s >> 5;
+   int ce = e >> 5;
    if (s&0x1f)
    {
-      i32 fillbytes = 0xffffffff << (s& 0x1f);
+      int fillbytes = 0xffffffff << (s& 0x1f);
       if(cs == ce)
          fillbytes &= 0xffffffff >> (0x1f - (e & 0x1f));
       m_pdata[cs] &= ~fillbytes;
@@ -137,12 +137,12 @@ void bit_array::clear_range(i32 s, i32 e)
       m_pdata[ce] &= ~(0xffffffff >> (0x1f - (e & 0x1f)));
       ce--;
    }
-   for(i32 idx = cs; idx <= ce; idx++)
+   for(int idx = cs; idx <= ce; idx++)
       m_pdata[idx] = 0x0;
-   if(cs == 0 && ce == m_iDataCount - 1 && m_pdata != 0 && m_pdata != (i32 *) 1)
+   if(cs == 0 && ce == m_iDataCount - 1 && m_pdata != 0 && m_pdata != (int *) 1)
    {
       delete[] m_pdata;
-      m_pdata = (i32*)0;
+      m_pdata = (int*)0;
    }
 }
 
@@ -154,11 +154,11 @@ void bit_array::add_bit_array(bit_array & ba)
       return;
    if(::collection::index(ba.m_pdata) == 1)
    {
-      m_pdata = (i32*)1;
+      m_pdata = (int*)1;
       return;
    }
    ensure_size(ba.get_size());
-   for(i32 i = 0; i < m_iDataCount; i++)
+   for(int i = 0; i < m_iDataCount; i++)
       m_pdata[i] |= ba.m_pdata[i];
 }
 
@@ -187,7 +187,7 @@ void bit_array::clear_bit_array(bit_array & ba)
     return;
   }
   ensure_size(ba.get_size(), true);
-  for(i32 i = 0; i < ba.m_iDataCount && i < m_iDataCount; i++)
+  for(int i = 0; i < ba.m_iDataCount && i < m_iDataCount; i++)
    m_pdata[i] &= ~ba.m_pdata[i];
 }
 
@@ -204,28 +204,28 @@ void bit_array::intersect_bit_array(bit_array & ba)
    if(::collection::index(ba.m_pdata) == 1)
       return;
    ensure_size(ba.get_size(), true);
-   for(i32 i = 0; i < ba.m_iDataCount && i < m_iDataCount; i++)
+   for(int i = 0; i < ba.m_iDataCount && i < m_iDataCount; i++)
       m_pdata[i] &= ba.m_pdata[i];
 }
 
-void bit_array::add_bit_array(char *bits, i32 count)
+void bit_array::add_bit_array(char *bits, int count)
 {
    if (::collection::index(m_pdata) == 1) return;
    ensure_size(count * 8);
-   for(i32 i = 0; i < count && i < m_iDataCount*4;i++)
+   for(int i = 0; i < count && i < m_iDataCount*4;i++)
       ((char*)m_pdata)[i] |= bits[i];
 }
 
-void bit_array::clear_bit_array(char *bits, i32 count)
+void bit_array::clear_bit_array(char *bits, int count)
 {
    if(m_pdata == nullptr)
       return;
    ensure_size(count * 8, true);
-   for(i32 i = 0; i < count && i < m_iDataCount*4;i++)
+   for(int i = 0; i < count && i < m_iDataCount*4;i++)
       ((char*)m_pdata)[i] &= ~bits[i];
 }
 
-bool bit_array::get_bit(i32 pos) const
+bool bit_array::get_bit(int pos) const
 {
    if(m_pdata == nullptr)
       return false;

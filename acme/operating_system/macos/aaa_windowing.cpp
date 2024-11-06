@@ -586,7 +586,7 @@ void ns_main_async(dispatch_block_t block);
 //#include <CoreFoundation/CoreFoundation.h>
 //
 //
-//int_bool set_need_redraw(oswindow hWnd, const ::rectangle_i32 * pcrect, HRGN hrgnUpdate, ::u32 flags)
+//int_bool set_need_redraw(oswindow hWnd, const ::rectangle_i32 * pcrect, HRGN hrgnUpdate, unsigned int flags)
 //{
 //
 //   return true;

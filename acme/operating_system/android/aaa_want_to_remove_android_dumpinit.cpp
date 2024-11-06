@@ -47,7 +47,7 @@
 //    }
 // }
 
-// i32 __cdecl __crt_report_hook(i32 nRptType, char *szMsg, i32* pResult)
+// int __cdecl __crt_report_hook(int nRptType, char *szMsg, int* pResult)
 // {
 //    // no hook on asserts or when m_pFile is nullptr
 //    if (nRptType == _CRT_ASSERT || ::acmeacmesystem()->m_pdumpcontext->m_pfile == nullptr)

@@ -17,21 +17,21 @@ namespace user
       virtual ~tool_command();
 
       virtual void enable(bool bOn);
-      virtual void SetCheck(i32 nCheck);
+      virtual void SetCheck(int nCheck);
       virtual void SetText(const ::string & pszText);
 
    };
 
    struct toolbar_data
    {
-      ::u16 wVersion;
-      ::u16 wWidth;
-      ::u16 wHeight;
-      ::u16 wItemCount;
-      //::u16 aItems[wItemCount]
+      unsigned short wVersion;
+      unsigned short wWidth;
+      unsigned short wHeight;
+      unsigned short wItemCount;
+      //unsigned short aItems[wItemCount]
 
-      ::u16* items()
-         { return (::u16*)(this+1); }
+      unsigned short* items()
+         { return (unsigned short*)(this+1); }
    };
 
 } // namespace user

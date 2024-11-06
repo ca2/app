@@ -89,7 +89,7 @@ in read operations - helps on ECOS */
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some psystem's will already have one or more of the type defined.
-typedef i32 SOCKET;
+typedef int SOCKET;
 //#define Errno errno
 //#define bsd_socket_error strerror
 
@@ -128,7 +128,7 @@ namespace sockets
 #ifdef SOLARIS
 // ----------------------------------------
 // Solaris
-typedef u16 port_t;
+typedef unsigned short port_t;
 #ifdef sockets
 namespace sockets
 {
@@ -172,7 +172,7 @@ namespace sockets
 // ----------------------------------------
 // Mac App X
 #ifdef __DARWIN_UNIX03
-typedef u16 port_t;
+typedef unsigned short port_t;
 #else
 #include <mach/port.h>
 #endif // __DARWIN_UNIX03
@@ -203,11 +203,11 @@ namespace sockets
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-//CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
+//CLASS_DECL_APEX const char * bsd_socket_error(int x);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-//CLASS_DECL_APEX const char *bsd_socket_error(i32 x);
+//CLASS_DECL_APEX const char *bsd_socket_error(int x);
 #define Errno get_last_error()
 
 
@@ -216,8 +216,8 @@ namespace sockets
 
 // ----------------------------------------
 // LINUX
-typedef u32 ipaddr_t;
-typedef u16 port_t;
+typedef unsigned int ipaddr_t;
+typedef unsigned short port_t;
 
 namespace sockets
 {

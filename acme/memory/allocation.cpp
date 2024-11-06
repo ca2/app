@@ -195,7 +195,7 @@ void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
    // 8 bytes + padding
    // 16 bytes?
 
-   ::u32 iSize = pheapmemory->m_size;
+   unsigned int iSize = pheapmemory->m_size;
 
    auto ppaddingAfter = pbyte + iStructSize + iSize;
 

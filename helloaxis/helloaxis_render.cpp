@@ -134,7 +134,7 @@ namespace helloaxis
    }
 
 
-   i32 render::run()
+   int render::run()
    {
 
       return ::helloaura::render::run();
@@ -258,7 +258,7 @@ namespace helloaxis
 //
 //      //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 //
-//      //      i32 iCount = 30;
+//      //      int iCount = 30;
 //
 //      auto pbrushText = __create < ::draw2d::brush > ();
 //
@@ -500,7 +500,7 @@ namespace helloaxis
 //      if (rectangleX.area() <= 0)
 //         return;
 //
-//      //      i32 iCount = 30;
+//      //      int iCount = 30;
 //
 //      auto pbrushText = __create < ::draw2d::brush > ();
 //
@@ -619,7 +619,7 @@ namespace helloaxis
 //            else
 //            {
 //
-//               for (i32 i = 0; i < dBlur * 2; i++)
+//               for (int i = 0; i < dBlur * 2; i++)
 //               {
 //
 //                  m_pimage->blur(m_rectangleX->width(), m_rectangleX->height());
@@ -702,7 +702,7 @@ namespace helloaxis
 //
 //         FT_Face & face = (FT_Face &)papp->m_faceAi;
 //
-//         i32 error;
+//         int error;
 //
 //         error = FT_Set_Char_Size(face,        /* handle to face object */
 //                                  0,          /* char_width in 1/64th of points */
@@ -720,7 +720,7 @@ namespace helloaxis
 //
 //               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
-//               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
+//               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //
 //               error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 //
@@ -771,7 +771,7 @@ namespace helloaxis
 //
 //               i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
-//               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
+//               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //
 //               error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 //
@@ -858,7 +858,7 @@ namespace helloaxis
 //
 //               t = (m_tick23.elapsed());
 //
-//               u32 uiCurrent23 = (t) / period;
+//               unsigned int uiCurrent23 = (t) / period;
 //
 //               t %= period;
 //
@@ -1025,7 +1025,7 @@ namespace helloaxis
 //
 //      }
 //
-//      //::u32 dw= ::time::now();
+//      //unsigned int dw= ::time::now();
 //
 //      if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
 //      {

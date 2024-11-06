@@ -5,16 +5,16 @@
 
 
 
-CLASS_DECL_ACME ::wd32_character               __wd32charlowered(i32 i);
-CLASS_DECL_ACME ::wd32_character               __wd32charuppered(i32 i);
-CLASS_DECL_ACME i32                    __wd32charisdigit(i32 i);
-CLASS_DECL_ACME i32                    __wd32charisalpha(i32 i);
-CLASS_DECL_ACME i32                    __wd32charisalnum(i32 i);
-CLASS_DECL_ACME i32                    __wd32charisspace(i32 i);
+CLASS_DECL_ACME ::wd32_character               __wd32charlowered(int i);
+CLASS_DECL_ACME ::wd32_character               __wd32charuppered(int i);
+CLASS_DECL_ACME int                    __wd32charisdigit(int i);
+CLASS_DECL_ACME int                    __wd32charisalpha(int i);
+CLASS_DECL_ACME int                    __wd32charisalnum(int i);
+CLASS_DECL_ACME int                    __wd32charisspace(int i);
 
 
 
-CLASS_DECL_ACME i32                    __wd32charisxdigit(i32 i);
+CLASS_DECL_ACME int                    __wd32charisxdigit(int i);
 
 
 CLASS_DECL_ACME strsize __wd32len(const ::wd32_character * psz);
@@ -77,10 +77,10 @@ CLASS_DECL_ACME strsize __wd32spn(const ::wd32_character * psz1, const ::wd32_ch
 
 CLASS_DECL_ACME strsize __wd32cspn(const ::wd32_character * psz1, const ::wd32_character * psz2);
 
-CLASS_DECL_ACME i64 __wd32toi64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u64 __wd32tou64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME i32 __wd32toi32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u32 __wd32tou32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 __wd32toi64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME u64 __wd32tou64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int __wd32toi32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int __wd32tou32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
 
 
 

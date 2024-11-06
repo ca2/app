@@ -72,7 +72,7 @@ namespace earth
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const class ::time & timeshift)
+   time::time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, const class ::time & timeshift)
    {
 
 
@@ -131,7 +131,7 @@ namespace earth
 #ifdef WINDOWS
 
 
-   time::time(::u16 wDosDate, ::u16 wDosTime, i32 nDST)
+   time::time(unsigned short wDosDate, unsigned short wDosTime, int nDST)
    {
 
       struct tm atm;
@@ -309,7 +309,7 @@ namespace earth
    }
 
 
-   i32 time::year(const class ::time & timeshift) const noexcept
+   int time::year(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -324,7 +324,7 @@ namespace earth
    }
 
 
-   i32 time::month(const class ::time& timeshift) const noexcept
+   int time::month(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -340,7 +340,7 @@ namespace earth
    }
 
 
-   i32 time::day(const class ::time& timeshift) const noexcept
+   int time::day(const class ::time& timeshift) const noexcept
    {
 
       //struct tm ttm;
@@ -357,7 +357,7 @@ namespace earth
    }
 
 
-   i32 time::hour(const class ::time& timeshift) const noexcept
+   int time::hour(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -373,7 +373,7 @@ namespace earth
    }
 
 
-   i32 time::minute(const class ::time& timeshift) const noexcept
+   int time::minute(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -389,7 +389,7 @@ namespace earth
    }
 
 
-   i32 time::second(const class ::time& timeshift) const noexcept
+   int time::second(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -405,7 +405,7 @@ namespace earth
    }
 
 
-   i32 time::day_of_week(const class ::time & timeshift) const noexcept
+   int time::day_of_week(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -421,7 +421,7 @@ namespace earth
    }
 
 
-   //i32 time::GetGmtYear() const noexcept
+   //int time::GetGmtYear() const noexcept
    //{
 
    //   struct tm ttm;
@@ -435,7 +435,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtMonth() const noexcept
+   //int time::GetGmtMonth() const noexcept
    //{
 
    //   struct tm ttm;
@@ -449,7 +449,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtDay() const noexcept
+   //int time::GetGmtDay() const noexcept
    //{
 
    //   struct tm ttm;
@@ -463,7 +463,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtHour() const noexcept
+   //int time::GetGmtHour() const noexcept
    //{
 
    //   struct tm ttm;
@@ -477,7 +477,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtMinute() const noexcept
+   //int time::GetGmtMinute() const noexcept
    //{
 
    //   struct tm ttm;
@@ -491,7 +491,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtSecond() const noexcept
+   //int time::GetGmtSecond() const noexcept
    //{
 
    //   struct tm ttm;
@@ -505,7 +505,7 @@ namespace earth
    //}
 
 
-   //i32 time::GetGmtDayOfWeek() const noexcept
+   //int time::GetGmtDayOfWeek() const noexcept
    //{
 
    //   struct tm ttm;

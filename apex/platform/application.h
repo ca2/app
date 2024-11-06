@@ -66,7 +66,7 @@ namespace apex
       //       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       //       string_array                                 m_straActivationMessage;
       //
-      //       ::u32                                        m_dwInstallGoodToCheckAgain;
+      //       unsigned int                                        m_dwInstallGoodToCheckAgain;
       //
       //       bool                                         m_bAppHasInstallerProtected;
       //       bool                                         m_bAppHasInstallerChangedProtected;
@@ -111,7 +111,7 @@ namespace apex
       //
       //       string                                       m_strLicense;
       //
-      //       i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //       int                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
       //
       //       //::pointer<::simpledb::server>              m_psimpledb;
       //
@@ -127,9 +127,9 @@ namespace apex
       //       //
       //       //#endif
       //
-      //       u32                                          m_dwPromptContext;        // help action_context override for message box
+      //       unsigned int                                          m_dwPromptContext;        // help action_context override for message box
       //       // LKG
-      //       u32                                          m_dwPolicies;            // block for storing boolean system policies
+      //       unsigned int                                          m_dwPolicies;            // block for storing boolean system policies
       //
       //       // Support for Shift+F1 help mode.
       //       // true if we're in SHIFT+F1 mode.
@@ -144,11 +144,11 @@ namespace apex
       //       //      ATOM                                 m_atomSystemTopic;   // for DDE open
       //       //#endif
       //
-      //       ::u32                                        m_nNumThumbnailPages; // number of default printed pages
+      //       unsigned int                                        m_nNumThumbnailPages; // number of default printed pages
       //
       //       string                                       m_strId;
       //
-      //       i32                                          m_iResourceId;
+      //       int                                          m_iResourceId;
       //
       //       //::pointer<::experience::department>        m_pexperience;
       //       //::pointer<::apex::theme>                   m_ptheme;
@@ -380,15 +380,15 @@ namespace apex
       virtual string matter_as_string(const ::string& pszMatter, const ::string& pszMatter2 = nullptr) override;
 
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
+      virtual void process_message_filter(int code, ::message::message * pmessage) override;
 
 
-      virtual void DoWaitCursor(i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       void _001TryCloseApplication() override;
 
@@ -545,11 +545,11 @@ namespace apex
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true);
 
 
-      //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
+      //virtual void process_message_filter(int code,::message::message * pmessage) override;
 
       virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
 
@@ -1008,9 +1008,9 @@ namespace apex
       //virtual ::application * get_app() const override;
 
 
-      //virtual u32 guess_code_page(const string& str);
+      //virtual unsigned int guess_code_page(const string& str);
 
-      //virtual i32 _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -1065,9 +1065,9 @@ namespace apex
 
       //      void EnableModelessEx(bool bEnable);
       ////#ifdef WINDOWS
-      ////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
+      ////      HENHMETAFILE LoadEnhMetaFile(unsigned int uResource);
       ////#endif
-      //      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
+      //      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
 
       //#ifdef WINDOWS
       //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -1076,9 +1076,9 @@ namespace apex
       //      virtual bool OnX11WindowMessage(void* pev);
       //#endif
 
-      //bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
+      //bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::string & pcszFilePath);
 
-      //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
 
 
       //void OnUpdateRecentFileMenu(::message::command* pcommand);
@@ -1094,8 +1094,8 @@ namespace apex
       //void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,::u32 fuStyle = e_message_box_ok) override;
-      //virtual i32 sync_message_box(::user::interaction_base * puiOwner,const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
+      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override;
+      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle = e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
@@ -1120,7 +1120,7 @@ namespace apex
       // profile member functions; prevents writing to an INI spfile->
       //void SetRegistryKey(const ::string & pszRegistryKey);
 
-      //void SetRegistryKey(::u32 nIDRegistryKey);
+      //void SetRegistryKey(unsigned int nIDRegistryKey);
 
 
       //void RegisterShellFileTypes(bool bCompat = false);
@@ -1161,7 +1161,7 @@ namespace apex
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual i32 DoMessageBox(const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
+      //virtual int DoMessageBox(const ::string & pszPrompt,unsigned int nType,unsigned int nIDPrompt);
 
 
       // Advanced: process async DDE request

@@ -236,7 +236,7 @@ public:
 
 
 template < typename T, typename PRED >
-void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
+void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    pparticle->fork([=]()
@@ -252,7 +252,7 @@ void fork_then(::particle * pparticle, ::winrt::Windows::Foundation::IAsyncOpera
 
 
 template < typename T, typename PRED >
-inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref aaa_primitive_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
@@ -263,7 +263,7 @@ inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > ^ oper
 
 
 template < typename T >
-inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref aaa_primitive_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
@@ -274,7 +274,7 @@ inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, :
 
 
 template < typename T, typename T2 >
-inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
+inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    auto pwaiter = ref aaa_primitive_new waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation, callbackcontext);
@@ -284,7 +284,7 @@ inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 
 }
 
 
-inline ::winrt::Windows::Foundation::AsyncStatus wait(::winrt::Windows::Foundation::IAsyncAction ^ action,  ::u32 dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
+inline ::winrt::Windows::Foundation::AsyncStatus wait(::winrt::Windows::Foundation::IAsyncAction ^ action,  unsigned int dwMillis = U32_INFINITE_TIMEOUT, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    ::winrt::Windows::Foundation::AsyncStatus status = ::winrt::Windows::Foundation::AsyncStatus::Canceled; // for time out

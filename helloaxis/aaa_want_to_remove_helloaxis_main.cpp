@@ -11,8 +11,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(::particle * pparticle, HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
+LRESULT CALLBACK    WndProc(HWND, unsigned int, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, unsigned int, WPARAM, LPARAM);
 
 int my_main(::particle * pparticle)
 {
@@ -105,7 +105,7 @@ BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
 }
 
 //
-//  FUNCTION: WndProc(HWND, ::u32, WPARAM, LPARAM)
+//  FUNCTION: WndProc(HWND, unsigned int, WPARAM, LPARAM)
 //
 //  PURPOSE:  Processes messages for the main window.
 //

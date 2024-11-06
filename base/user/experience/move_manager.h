@@ -21,7 +21,7 @@ namespace experience
       point_i32                        m_pointWindowOrigin;
       point_i32                        m_pointMove;
       bool                             m_bMoving;
-      //::u32                          m_uiSWPFlags;
+      //unsigned int                          m_uiSWPFlags;
       ::user::layout_state             m_stateBefore;
       int                              m_iConsiderMove;
 
@@ -38,7 +38,7 @@ namespace experience
       bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
       //bool on_message_set_cursor(::message::set_cursor * psetcursor);
-      bool _001OnTimer(::u32 uEvent);
+      bool _001OnTimer(unsigned int uEvent);
 
 
       void SetBorderMask(const e_border & emask);
@@ -49,7 +49,7 @@ namespace experience
       virtual void cancel_moving();
       
       //void MoveWindow(void * oswindow, const ::point_i32 & point);
-      //void SetSWPFlags(::u32 uFlags);
+      //void SetSWPFlags(unsigned int uFlags);
 
 
       bool consider_move();

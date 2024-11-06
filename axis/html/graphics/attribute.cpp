@@ -44,7 +44,7 @@ namespace html
    ::pointer<attribute>attribute_array::get(atom idName)
    {
 
-      for(i32 i = 0; i < this->get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->get_name() == idName)

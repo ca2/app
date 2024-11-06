@@ -26,7 +26,7 @@ namespace universal_windows
 
 
          string_map < Agile < ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer > >        m_synth;
-         string_map < ::u32 >                                                       m_time;
+         string_map < unsigned int >                                                       m_time;
          string_map < bool >                                                        m_tts;
 
 

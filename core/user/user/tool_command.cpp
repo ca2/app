@@ -50,7 +50,7 @@ namespace user
 
    }
 
-   void tool_command::SetCheck(i32 nCheck)
+   void tool_command::SetCheck(int nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
 

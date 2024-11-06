@@ -934,7 +934,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int& x)
 //   {
 //
 //      return -1;
@@ -950,7 +950,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, int& x)
 //   {
 //
 //      return -1;
@@ -966,7 +966,7 @@
 //   }
 //
 //
-//   strsize interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, i32 x)
+//   strsize interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x)
 //   {
 //
 //      return -1;

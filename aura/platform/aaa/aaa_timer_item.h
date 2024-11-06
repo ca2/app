@@ -13,8 +13,8 @@
 //
 //      ::user::interaction_base *     m_puserinteraction;
 //      uptr                m_uiId;
-//      ::u32                    m_uiElapse;
-//      ::u32                    m_uiLastSent;
+//      unsigned int                    m_uiElapse;
+//      unsigned int                    m_uiLastSent;
 //
 //
 //      timer_item(::particle * pparticle);

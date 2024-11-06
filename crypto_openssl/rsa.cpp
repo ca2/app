@@ -246,11 +246,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      i32 i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -272,7 +272,7 @@ namespace crypto_openssl
 #else
 
 
-      i32 i = RSA_public_encrypt((i32)in.size(), (const uchar*)(const char*)in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
+      int i = RSA_public_encrypt((int)in.size(), (const uchar*)(const char*)in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
@@ -318,11 +318,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      i32 i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -346,7 +346,7 @@ namespace crypto_openssl
 
       single_lock sl(this->synchronization(), true);
 
-      i32 iRsaSize = 8192;
+      int iRsaSize = 8192;
 
       out.set_size(iRsaSize);
 
@@ -463,7 +463,7 @@ namespace crypto_openssl
 
 #elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      //auto iInSize = (i32)in.size();
+      //auto iInSize = (int)in.size();
 
       //auto pInData = (const uchar*)(const char*)in.data();
 
@@ -487,11 +487,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      i32 i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (i32)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -512,7 +512,7 @@ namespace crypto_openssl
 
 #else
 
-      auto iInSize = (i32)in.size();
+      auto iInSize = (int)in.size();
 
       auto pInData = (const uchar*)(const char*)in.data();
 
@@ -520,7 +520,7 @@ namespace crypto_openssl
 
       auto prsa = m_prsa;
 
-      i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+      int i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
@@ -596,7 +596,7 @@ namespace crypto_openssl
 
       single_lock sl(this->synchronization(), true);
 
-      i32 iRsaSize = 8192;
+      int iRsaSize = 8192;
 
       out.set_size(iRsaSize);
 

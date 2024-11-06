@@ -60,7 +60,7 @@ namespace html
 
       if(pTag->getAttributes() != nullptr)
       {
-         for(i32 i = 0; i < pTag->getAttributes()->getCount(); i++)
+         for(int i = 0; i < pTag->getAttributes()->getCount(); i++)
          {
             m_ptag->attra().add(__allocate attribute());
             attribute * pattr = m_ptag->attra().last_pointer();

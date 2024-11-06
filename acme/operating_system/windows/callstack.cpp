@@ -138,7 +138,7 @@ namespace platform
 
 
 
-   string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
+   string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, int iSkip, void* caller_address, int iCount)
    {
 
       critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
@@ -156,7 +156,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
+   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, int iSkip, void* caller_address, int iCount)
    {
 
       critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());

@@ -10,12 +10,12 @@ class single_lock;
 
 //#ifdef WINDOWS
 //
-//typedef u32 itask_t;
-//typedef ::u32 thread_data_index;
+//typedef unsigned int itask_t;
+//typedef unsigned int thread_data_index;
 //
 //#else
 //
-//using thread_data_index = ::u32;
+//using thread_data_index = unsigned int;
 //
 //#endif
 
@@ -67,7 +67,7 @@ class single_lock;
 
 
 
-//typedef ::u32(c_cdecl *__THREADPROC)(LPVOID);
+//typedef unsigned int(c_cdecl *__THREADPROC)(LPVOID);
 
 
 //CLASS_DECL_APEX bool do_events();
@@ -84,7 +84,7 @@ class single_lock;
 //   CLASS_DECL_APEX ::enum_priority priority();
 //
 //
-//   inline i32 get_priority_none()
+//   inline int get_priority_none()
 //   {
 //
 //      return e_priority_none;
@@ -92,7 +92,7 @@ class single_lock;
 //   }
 //
 //
-//   inline i32 get_priority_normal()
+//   inline int get_priority_normal()
 //   {
 //
 //      return e_priority_normal;
@@ -180,4 +180,4 @@ namespace prototype
 //
 
 
-//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, int epriority = ::e_priority_normal, unsigned int nStackSize = 0, unsigned int dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

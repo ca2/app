@@ -72,7 +72,7 @@ namespace experience_tranquillum
 
       return;
 
-      //i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
+      //int iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       //rectangleInflate = rectangleX;
       //rectangleInflate.inflate(iInflate, iInflate);
@@ -419,10 +419,10 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left();
-      i32 y = rectangle.top();
-      i32 cx = rectangle.width() - 1;
-      i32 cy = rectangle.height() - 1;
+      int x = rectangle.left();
+      int y = rectangle.top();
+      int cx = rectangle.width() - 1;
+      int cy = rectangle.height() - 1;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

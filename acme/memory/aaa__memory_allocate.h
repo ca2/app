@@ -13,10 +13,10 @@
 #endif
 
 
-   CLASS_DECL_ACME void* _memory_allocate_debug(memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine);
-   CLASS_DECL_ACME void* _memory_reallocate_debug(void* p, memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine);
-   CLASS_DECL_ACME void       _memory_free_debug(void* p, i32 iBlockType);
-   CLASS_DECL_ACME memsize    _memory_size_debug(void* p, i32 iBlockType);
+   CLASS_DECL_ACME void* _memory_allocate_debug(memsize nSize, int nBlockUse, const char* szFileName, int nLine);
+   CLASS_DECL_ACME void* _memory_reallocate_debug(void* p, memsize nSize, int nBlockUse, const char* szFileName, int nLine);
+   CLASS_DECL_ACME void       _memory_free_debug(void* p, int iBlockType);
+   CLASS_DECL_ACME memsize    _memory_size_debug(void* p, int iBlockType);
 
 
 

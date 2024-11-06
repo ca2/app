@@ -14,16 +14,16 @@ struct u32hash
 {
 
 
-   ::u32 m_u;
+   unsigned int m_u;
 
 
    u32hash() : m_u(0) {};
    template < typename T >
-   u32hash(const T * p) : m_u((::u32)(::uptr)p) {};
+   u32hash(const T * p) : m_u((unsigned int)(::uptr)p) {};
    template < primitive_integral INTEGRAL >
-   constexpr u32hash(INTEGRAL i) : m_u((::u32)i) { }
+   constexpr u32hash(INTEGRAL i) : m_u((unsigned int)i) { }
    template < primitive_enum ENUM >
-   constexpr u32hash(ENUM e) : m_u((::u32)e) { }
+   constexpr u32hash(ENUM e) : m_u((unsigned int)e) { }
    template < primitive_floating FLOATING >
    constexpr u32hash(FLOATING f) : u32hash(&f, sizeof(f)) { }
    template < typename T >
@@ -52,19 +52,19 @@ template < typename T >
 //struct u32hash
 //{
 //
-//   ::u32 m_u;
+//   unsigned int m_u;
 //
 //
 //   template < typename T >
-//   u32hash(const T* p) : m_u((::u32)(::uptr)p) {}
+//   u32hash(const T* p) : m_u((unsigned int)(::uptr)p) {}
 //   template < primitive_integral INTEGRAL >
-//   u32hash(INTEGRAL i) : m_u((::u32)i) {}
+//   u32hash(INTEGRAL i) : m_u((unsigned int)i) {}
 //   template < a_enum ENUM >
-//   u32hash(const ::enumeration < ENUM > & e) : m_u((::u32)e.m_eenum) {}
-//   u32hash(::f32 f) : m_u(*(::u32 *)&f) {}
-//   u32hash(::f64 d) : m_u(((::u32*)&d)[0]| ((::u32*)&d)[1]) {}
+//   u32hash(const ::enumeration < ENUM > & e) : m_u((unsigned int)e.m_eenum) {}
+//   u32hash(::f32 f) : m_u(*(unsigned int *)&f) {}
+//   u32hash(::f64 d) : m_u(((unsigned int*)&d)[0]| ((unsigned int*)&d)[1]) {}
 //   template < typename T >
-//   u32hash(const ::pointer < T >& t) : m_u((::u32)(::uptr)t.m_p) {}
+//   u32hash(const ::pointer < T >& t) : m_u((unsigned int)(::uptr)t.m_p) {}
 //   u32hash(const ::u32hash& u32hash) : m_u(u32hash.m_u) {}
 //   u32hash() {}
 //

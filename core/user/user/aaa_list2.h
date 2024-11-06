@@ -81,9 +81,9 @@ namespace user
 
 
 
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::collection::index iItem, ::collection::index iSubItem);
-      virtual i32 _001CalcItemHeight(::user::style* pstyle, int iBaseHeight);
+      virtual int _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      virtual int _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::collection::index iItem, ::collection::index iSubItem);
+      virtual int _001CalcItemHeight(::user::style* pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(enum_list eview);
       virtual ::e_draw_text get_draw_text_flags(enum_list eview);
 
@@ -118,9 +118,9 @@ namespace user
       void PreSubClassWindow() override;
       virtual void _OnDraw(::draw2d::graphics_pointer& pgraphics);
       virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
-      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      virtual i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
+      //virtual int _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem) override;
+      virtual int _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
+      virtual int _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();
 
 
@@ -151,7 +151,7 @@ namespace user
 
       virtual ::collection::index _001CalcDisplayTopIndex();
       virtual count _001CalcDisplayItemCount();
-      virtual i32 _001GetGroupHeight(::collection::index iGroup);
+      virtual int _001GetGroupHeight(::collection::index iGroup);
 
 
       //void FilterInclude(::i32_array& array) override;
@@ -245,7 +245,7 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer& pgraphics) override;
 
-      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      bool _001OnUpdateItemCount(unsigned int dwFlags = 0) override;
 
       void on_change_impact_size(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -266,7 +266,7 @@ namespace user
 
       virtual void _001OnColumnChange();
 
-      bool _001SetColumnWidth(::collection::index iColumn, i32 iWidth) override;
+      bool _001SetColumnWidth(::collection::index iColumn, int iWidth) override;
 
       //virtual int _001GetColumnWidth(::collection::index iColumn);
 
@@ -395,7 +395,7 @@ namespace user
       enum_list _001GetImpact() override;
 
 
-      virtual i32 get_wheel_scroll_delta() override;
+      virtual int get_wheel_scroll_delta() override;
 
       virtual void on_change_context_offset(::draw2d::graphics_pointer& pgraphics) override;
 

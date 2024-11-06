@@ -5,7 +5,7 @@
 #include "acme/platform/system_setup.h"
 
 
-i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 {
 
    auto papp = ::app_factory::new_app();

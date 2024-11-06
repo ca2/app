@@ -12,7 +12,7 @@ namespace install
    }
 
 
-   ::u32 starter_start::start()
+   unsigned int starter_start::start()
    {
 
       bool bHostStarterStartFoo = false;
@@ -85,7 +85,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       keep_true keepStarting(m_bStarting);
 
-      i32 i = 0;
+      int i = 0;
 
       string strBuild;
 
@@ -148,14 +148,14 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
    }
 
 
-   u32 _ca2_starter_start(void * p)
+   unsigned int _ca2_starter_start(void * p)
    {
 
 
       starter_start * pstart = (starter_start *)pvoid;
 
 
-      ::u32 uRet = pstart->start();
+      unsigned int uRet = pstart->start();
 
 
       if (uiRet != 0)

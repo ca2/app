@@ -196,7 +196,7 @@ namespace calculator
          node                = new_node();
          node->m_ptoken      = m_scanner.m_ptoken;
 
-         i32 iCount;
+         int iCount;
 
          if(node->m_ptoken->m_str == "sqr")
          {
@@ -279,7 +279,7 @@ namespace calculator
 
          expect(token::type_open_paren);
 
-         i32 iElem = 1;
+         int iElem = 1;
 
          if(iCount > 0)
          {

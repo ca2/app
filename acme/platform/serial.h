@@ -108,9 +108,9 @@ namespace serial
 #ifdef maximum
 # undef maximum
 #endif
-      static u32 maximum()
+      static unsigned int maximum()
       {
-         return numeric_info<u32>::maximum();
+         return numeric_info<unsigned int>::maximum();
       }
       /*!
        * Convenience function to generate timeout structs using a
@@ -130,20 +130,20 @@ namespace serial
       /*! A multiplier against the number of requested bytes to wait after
        *  method read.
        */
-      u32 m_uReadTimeoutMultiplier;
+      unsigned int m_uReadTimeoutMultiplier;
       /*! A constant number of ::times to wait after method write. */
       class ::time m_timeWriteTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method write.
        */
-      u32 m_uWriteTimeoutMultiplier;
+      unsigned int m_uWriteTimeoutMultiplier;
 
 
       explicit timeout (const class time & timeInterByteTimeout=0_ms,
          const class time & timeReadTimeoutConstant=0_ms,
-                        u32 uReadTimeoutMultiplier=0,
+                        unsigned int uReadTimeoutMultiplier=0,
          const class time & timeWriteTimeoutConstant=0_ms,
-                        u32 uWriteTimeoutMultiplier=0)
+                        unsigned int uWriteTimeoutMultiplier=0)
          : m_timeInterByteTimeout(timeInterByteTimeout),
            m_timeReadTimeoutConstant(timeReadTimeoutConstant),
            m_uReadTimeoutMultiplier(uReadTimeoutMultiplier),
@@ -205,7 +205,7 @@ namespace serial
 
       virtual void initialize_serial(
          const string &port = "",
-         u32 baudrate = 9600,
+         unsigned int baudrate = 9600,
          struct timeout timeout = nullptr,
          enum_byte_size ebytesize = e_byte_size_eight,
          enum_parity eparity = e_parity_none,
@@ -493,8 +493,8 @@ namespace serial
       virtual void set_timeout (const struct timeout &timeout);
       /*! Sets the timeout for reads and writes. */
       virtual void set_timeout(const class ::time & inter_byte_timeout, const class ::time & read_timeout_constant,
-                  u32 read_timeout_multiplier, const class ::time & write_timeout_constant,
-                  u32 write_timeout_multiplier)
+                  unsigned int read_timeout_multiplier, const class ::time & write_timeout_constant,
+                  unsigned int write_timeout_multiplier)
       {
          struct timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
@@ -524,7 +524,7 @@ namespace serial
        * \throw ::exception( invalid_argument
        */
       virtual void
-      setBaudrate (u32 baudrate);
+      setBaudrate (unsigned int baudrate);
 
       /*! Gets the baudrate for the serial port.
        *
@@ -534,7 +534,7 @@ namespace serial
        *
        * \throw ::exception( invalid_argument
        */
-      virtual u32
+      virtual unsigned int
       getBaudrate () const;
 
       /*! Sets the ebytesize for the serial port.

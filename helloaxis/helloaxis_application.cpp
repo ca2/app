@@ -70,7 +70,7 @@ namespace helloaxis
    }
 
 
-   i32 application::exit_application()
+   int application::exit_application()
    {
 
       ::helloaura::application::exit_application();

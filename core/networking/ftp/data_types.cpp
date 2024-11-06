@@ -134,7 +134,7 @@ namespace ftp
       m_puser->m_strLogin = ANONYMOUS_USER;
    }
 
-   logon::logon(const string& strHostname, ::u16 ushHostport, const string& strUsername,
+   logon::logon(const string& strHostname, unsigned short ushHostport, const string& strUsername,
                 const string& strPassword, const string& strAccount) :
       //storage_client(Sess(pparticle).account()->storage()),
       //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
@@ -148,9 +148,9 @@ namespace ftp
       m_strPassword = strPassword;
    }
 
-   logon::logon( const string& strHostname, ::u16 ushHostport, const string& strUsername, const string& strPassword,
+   logon::logon( const string& strHostname, unsigned short ushHostport, const string& strUsername, const string& strPassword,
                 const string& strAccount, const string& strFwHostname, const string& strFwUsername,
-                const string& strFwPassword, ::u16 ushFwPort, const firewall_type& crFwType) :
+                const string& strFwPassword, unsigned short ushFwPort, const firewall_type& crFwType) :
       //storage_client(Sess(pparticle).account()->storage()),
       //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
       m_strHostname(strHostname),
@@ -167,7 +167,7 @@ namespace ftp
 
    }
 
-   void logon::SetHost(const string& strHostname, ::u16 ushHostport, const string& strUsername,
+   void logon::SetHost(const string& strHostname, unsigned short ushHostport, const string& strUsername,
                        const string& strPassword, const string& strAccount)
    {
       m_strHostname = strHostname;
@@ -178,7 +178,7 @@ namespace ftp
    }
 
    void logon::SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-                           ::u16 ushFwPort, const firewall_type& crFwType)
+                           unsigned short ushFwPort, const firewall_type& crFwType)
    {
       m_strFwHostname = strFwHostname;
       m_strFwUsername = strFwUsername;
@@ -191,8 +191,8 @@ namespace ftp
 
    command::info2 * command::info2::g_pTheOneAndOnly = nullptr;
 
-   void command::info2::insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, ::u32 uNumberOfParameters,
-                               ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType)
+   void command::info2::insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, unsigned int uNumberOfParameters,
+                               unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType)
    {
       set_at(enCommand, ___new  extended_info (strServerString, strCompleteServerStringSyntax, uNumberOfParameters,
                                 uNumberOfOptionalParameters, enSpecification, enType));

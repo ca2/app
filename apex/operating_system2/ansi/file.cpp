@@ -8,12 +8,12 @@
 //create_file(
 //            char const * pFileName,
 
-//            ::u32 dwDesiredAccess,
-//            ::u32 dwShareMode,
+//            unsigned int dwDesiredAccess,
+//            unsigned int dwShareMode,
 //            LPSECURITY_ATTRIBUTES pSecurityAttributes,
 
-//            ::u32 dwCreationDisposition,
-//            ::u32 dwFlagsAndAttributes,
+//            unsigned int dwCreationDisposition,
+//            unsigned int dwFlagsAndAttributes,
 //            HANDLE hTemplateFile
 //            )
 //{
@@ -57,14 +57,14 @@
 //
 //}
 //
-//::u32
+//unsigned int
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
 //               int lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
-//               ::u32 dwMoveMethod
+//               unsigned int dwMoveMethod
 //               )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
@@ -81,7 +81,7 @@
 //          HANDLE hFile,
 //          const void * pBuffer,
 
-//          ::u32 nNumberOfBytesToWrite,
+//          unsigned int nNumberOfBytesToWrite,
 //          LPDWORD pNumberOfBytesWritten,
 
 //          LPOVERLAPPED pOverlapped
@@ -96,7 +96,7 @@
 
 //    if(pNumberOfBytesWritten != nullptr)
 
-//        *pNumberOfBytesWritten = (u32) sizeWritten;
+//        *pNumberOfBytesWritten = (unsigned int) sizeWritten;
 
 //    return true;
 //}
@@ -107,7 +107,7 @@
 //         HANDLE hFile,
 //         LPVOID pBuffer,
 
-//         ::u32 nNumberOfBytesToRead,
+//         unsigned int nNumberOfBytesToRead,
 //         LPDWORD pNumberOfBytesRead,
 
 //         LPOVERLAPPED pOverlapped
@@ -122,7 +122,7 @@
 
 //    if(pNumberOfBytesRead != nullptr)
 
-//        *pNumberOfBytesRead = (u32)sizeRead;
+//        *pNumberOfBytesRead = (unsigned int)sizeRead;
 
 //    return true;
 //}
@@ -177,10 +177,10 @@
 //
 //
 //
-//::u32
+//unsigned int
 //WINAPI
 //GetTempPathW(
-//    ::u32 nBufferLength,
+//    unsigned int nBufferLength,
 //    LPWSTR pBuffer
 
 //    )
@@ -199,7 +199,7 @@
 
 //   }
 //
-//   return (::u32) iLen;
+//   return (unsigned int) iLen;
 //
 //}
 

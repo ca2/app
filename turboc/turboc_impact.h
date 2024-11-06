@@ -55,7 +55,7 @@ namespace turboc
       class ::time                   m_timeAnime;
       bool                    m_bNewLayout;
       class ::time m_timeLastFast;
-      ::u32                   m_timeFastAnime;
+      unsigned int                   m_timeFastAnime;
       bool                    m_bFast;
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;
@@ -101,7 +101,7 @@ namespace turboc
       virtual void turboc_draw();
       virtual void full_render();
 
-      static ::u32 thread_proc_render(void * pparam);
+      static unsigned int thread_proc_render(void * pparam);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

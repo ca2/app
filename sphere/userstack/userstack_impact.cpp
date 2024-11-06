@@ -139,7 +139,7 @@ namespace userstack
       m_straImagePath.m_pprovider = get_app();
       m_straImagePath.rls(strImageDir);
 
-      for(i32 i = 0; i < m_straImagePath.get_size();)
+      for(int i = 0; i < m_straImagePath.get_size();)
       {
          if(directory()->is(m_straImagePath[i]))
          {
@@ -182,7 +182,7 @@ namespace userstack
 
    }
 
-   void impact::_001OnTabClick(i32 iTab)
+   void impact::_001OnTabClick(int iTab)
    {
       if(iTab == 1)
       {
@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void impact::GetAreaThumbRect(::rectangle_i32 * lprect, i32 iArea)
+   void impact::GetAreaThumbRect(::rectangle_i32 * lprect, int iArea)
    {
       
       ::rectangle_i32 rectangleX = this->rectangle();
@@ -347,14 +347,14 @@ namespace userstack
    }
 
 
-   ::u32 c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
+   unsigned int c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
    {
       __UNREFERENCED_PARAMETER(lpparam);
       return 0;
    }
 
 
-   void impact::mt_show_window(oswindow oswindow, i32 iShow)
+   void impact::mt_show_window(oswindow oswindow, int iShow)
    {
       __UNREFERENCED_PARAMETER(oswindow);
       __UNREFERENCED_PARAMETER(iShow);

@@ -25,10 +25,10 @@ namespace filemanager
       double                     m_dRead;
       file_pointer               m_fileSrc;
       file_pointer               m_fileDst;
-      i32                        m_iFile;
+      int                        m_iFile;
       bool                       m_bReplaceAll;
       char *                     m_pchBuffer;
-      i32                        m_iBufferSize;
+      int                        m_iBufferSize;
       ::user::interaction *      m_oswindowCallback;
       atom                         m_atom;
       wparam                     m_wparamCallback;
@@ -44,11 +44,11 @@ namespace filemanager
       //   virtual double size();
       //   virtual double progress();
 
-      i32 get_item_count();
-      string get_item_message(i32 iItem);
-      double get_item_progress(i32 iItem);
-      double get_item_read(i32 iItem);
-      double get_item_size(i32 iItem);
+      int get_item_count();
+      string get_item_message(int iItem);
+      double get_item_progress(int iItem);
+      double get_item_read(int iItem);
+      double get_item_size(int iItem);
 
       void expand(::file::listing & straExpanded,::file::path_array & straExpand);
 

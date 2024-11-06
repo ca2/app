@@ -59,7 +59,7 @@ namespace userstack
 
       add_tab("menu", CONTEXT_MENU_IMPACT);
 
-      for(i32 i = 0; i < papp->m_varTopicQuery["app"].stra().get_count(); i++)
+      for(int i = 0; i < papp->m_varTopicQuery["app"].stra().get_count(); i++)
       {
 
          string strId = papp->m_varTopicQuery["app"].stra()[i];
@@ -73,7 +73,7 @@ namespace userstack
 
       }
 
-      for (i32 i = 0; i < papp->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
+      for (int i = 0; i < papp->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
       {
 
          set_current_tab_by_id("app:" + papp->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
@@ -273,7 +273,7 @@ namespace userstack
    {
       if(itema.get_size() > 0)
       {
-         i32 i = (i32) ::ShellExecuteW(
+         int i = (int) ::ShellExecuteW(
             get_top_level()->get_handle(),
             nullptr,
             L"\"" + utf8_to_unicode(itema[0].m_strPath) + L"\"",
@@ -297,7 +297,7 @@ namespace userstack
 
       straPath.rls(directory()->commonprograms());
 
-      for(i32 i = 0; i < straPath.get_size(); i++)
+      for(int i = 0; i < straPath.get_size(); i++)
       {
 
          ::file::path str = psz/straPath[i].relative();
@@ -312,7 +312,7 @@ namespace userstack
 
       straPath.rls(directory()->userprograms(nullptr));
 
-      for(i32 i = 0; i < straPath.get_size(); i++)
+      for(int i = 0; i < straPath.get_size(); i++)
 
       {
          ::file::path str = psz / straPath[i].relative();
@@ -365,7 +365,7 @@ namespace userstack
             string_array straRelative;
             straPath.erase_all();
             directory()->rls(directory()->userquicklaunch(), &straPath, nullptr, &straRelative);
-            for(i32 i = 0; i < straPath.get_size(); i++)
+            for(int i = 0; i < straPath.get_size(); i++)
             {
                string str = directory()->path(psz, straRelative[i]);
                directory()->create(directory()->name(str));
@@ -393,7 +393,7 @@ namespace userstack
 //         if(wcslen(buf) > 0)
 //         {
 //            listing.rls(buf);
-//            for(i32 i = 0; i < listing.get_size(); i++)
+//            for(int i = 0; i < listing.get_size(); i++)
 //            {
 //
 //               ::file::path str = psz / listing[i].relative();
@@ -417,7 +417,7 @@ namespace userstack
 //         {
 //            listing.clear_results();
 //            listing.rls(buf);
-//            for(i32 i = 0; i < listing.get_size(); i++)
+//            for(int i = 0; i < listing.get_size(); i++)
 //            {
 //               ::file::path str = psz / listing[i].relative();
 //               directory()->create(listing[i].folder());
@@ -477,7 +477,7 @@ namespace userstack
 
 
 
-   void pane_impact::set_display(i32 iDisplay)
+   void pane_impact::set_display(int iDisplay)
    {
       m_iDisplay = iDisplay;
    }

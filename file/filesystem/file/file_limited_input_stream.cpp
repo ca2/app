@@ -17,7 +17,7 @@ namespace file
       }
       memsize rem = _size - _virtPos;
       if (rem < size_i32)
-         size = (u32)rem;
+         size = (unsigned int)rem;
       u64 newPos = _startOffset + _virtPos;
       if (newPos != _physPos)
       {

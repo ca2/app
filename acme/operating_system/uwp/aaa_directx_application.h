@@ -15,7 +15,7 @@ namespace universal_windows
 
       ::winrt::Windows::Foundation::Point                m_pointLastCursor;
 
-      ::u32                                     m_dwMouseMoveThrottle;
+      unsigned int                                     m_dwMouseMoveThrottle;
 
       ::duration m_durationLastMouseMove;
 

@@ -17,7 +17,7 @@
 //   }
 //
 //
-//   i32 app::main()
+//   int app::main()
 //   {
 //
 //
@@ -175,7 +175,7 @@
 //   }
 //
 //
-//   i32 app::refrain()
+//   int app::refrain()
 //   {
 //
 //      while(true)
@@ -215,7 +215,7 @@
 //   }
 //
 //
-//   i32 app::simple_app_pre_run()
+//   int app::simple_app_pre_run()
 //   {
 //
 //      return 0;

@@ -135,7 +135,7 @@ struct chldstatus
 //}
 //
 //
-//CLASS_DECL_APEX void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
+//CLASS_DECL_APEX void process_get_os_priority(int * piOsPolicy, sched_param * pparam, int iCa2Priority);
 
 
 //namespace ansios
@@ -154,7 +154,7 @@ struct chldstatus
 //   }
 //
 //
-//   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,i32 iCa2Priority)
+//   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,int iCa2Priority)
 //   {
 //
 //      if(!::operating_system::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
@@ -201,7 +201,7 @@ struct chldstatus
 //
 //         char *      argv[1024 + 1];
 //
-//         i32		argc = 0;
+//         int		argc = 0;
 //
 //         prepare_argc_argv(argc, argv, cmd_line);
 //
@@ -386,7 +386,7 @@ struct chldstatus
 //         // child
 //         char     *pArg, *pPtr;
 //         char     *argv[1024 + 1];
-//         i32      argc;
+//         int      argc;
 //         if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
 //            pArg++;
 //         else

@@ -200,7 +200,7 @@ namespace user
 
       GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleX);
 
-      i32 halfm = (prectangle->right() - prectangle->left() - 2) / 2;
+      int halfm = (prectangle->right() - prectangle->left() - 2) / 2;
 
       prectangle->left() +=  halfm;
 

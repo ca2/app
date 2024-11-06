@@ -41,10 +41,10 @@
 
 //#include "conio.h"
 
-extern const i32 ForegroundColors[16];
-extern const i32 ForegroundFlags[16];
-extern const i32 BackgroundColors[8];
-extern const i32 BackgroundFlags[16];
+extern const int ForegroundColors[16];
+extern const int ForegroundFlags[16];
+extern const int BackgroundColors[8];
+extern const int BackgroundFlags[16];
 
 //------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ int
 gettextTurboC (int left, int top, int right, int bottom, void *dest)
 {
 //  unsigned char *TurboData;
-//  u16 dFore, dBack;
+//  unsigned short dFore, dBack;
 //  int Row, Col, i, j, k;
 //  chtype ch;
 //  gint Char, Color, Flag;
@@ -90,7 +90,7 @@ gettextTurboC (int left, int top, int right, int bottom, void *dest)
 //    goto Error;
 //  // Now we have all of the data, but we must translate it from the 
 //  // form provided by ncurses to the form needed in Turbo C.  
-//  TurboData = (i8 *) dest;
+//  TurboData = (char *) dest;
 //  for (Row = top, i = 0; Row <= bottom; Row++, i++)
 //    for (Col = left, j = 0; Col <= right; Col++, j++)
 //      {

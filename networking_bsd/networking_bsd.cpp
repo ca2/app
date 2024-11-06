@@ -19,25 +19,25 @@
 #include <netdb.h>
 #endif
 
-u32 c_inet_to_ui(const char * src)
+unsigned int c_inet_to_ui(const char * src)
 {
 
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (u32) ansi_to_i64(&src[2], nullptr, 16);
+      return (unsigned int) ansi_to_i64(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (u32) ansi_to_i64(&src[1], nullptr, 16);
+      return (unsigned int) ansi_to_i64(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (u32) ansi_to_i64(src, nullptr, 10);
+      return (unsigned int) ansi_to_i64(src, nullptr, 10);
 
    }
 
@@ -100,7 +100,7 @@ static const uchar index_hex[256] =
 //   int double_colon = -1;  /* index of the department after the first
 //                           * 16-bit group of zeros represented by
 //                           * the double colon */
-//   u32 val = 0;
+//   unsigned int val = 0;
 //   int len;
 //
 //   /* Handle initial (double) colon */
@@ -145,7 +145,7 @@ static const uchar index_hex[256] =
 //         throw parsing_exception("to in6_addr (bad character)"); /* bad character */
 //
 //      }
-//      addr.pr_s6_addr16[department++] = htons((u16)val);
+//      addr.pr_s6_addr16[department++] = htons((unsigned short)val);
 //   }
 //
 //   if (*s == '.')
@@ -215,7 +215,7 @@ static const uchar index_hex[256] =
 //   }
 //   else if (department != 8)
 //   {
-//      throw parsing_exception("to in6_addr (too i16)"); /* too i16 */
+//      throw parsing_exception("to in6_addr (too short)"); /* too short */
 //   }
 //}
 //
@@ -246,7 +246,7 @@ static const uchar index_hex[256] =
 //                                 * groups of zeros */
 //   int zero_length;
 //   int department;
-//   u32 val;
+//   unsigned int val;
 //
 //   /* Scan to find the placement of the double colon */
 //   for (department = 0; department < 8; department++)
@@ -355,7 +355,7 @@ struct c_in_addr
          unsigned char	s_b4;
       } S_un_b;
 
-      u32 S_addr;
+      unsigned int S_addr;
    } S_un;
 };
 

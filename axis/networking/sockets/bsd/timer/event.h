@@ -55,8 +55,8 @@ namespace sockets
       
       IEventOwner *     m_from;
       EventTime         m_time;
-      static i32        m_unique_id;
-      i32               m_atom;
+      static int        m_unique_id;
+      int               m_atom;
       
       
       
@@ -64,7 +64,7 @@ namespace sockets
       ~Event();
 
 
-      i32 GetID();
+      int GetID();
       const EventTime & get_time() const;
       IEventOwner * GetFrom();
 

@@ -197,7 +197,7 @@ namespace universal_windows
 
          //   string strPath(pathParam);
 
-         //   u32 uiError;
+         //   unsigned int uiError;
 
          //   void* plibrary = nullptr;
 

@@ -210,7 +210,7 @@ memory::memory(const ::string & str):
 }
 
 
-memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
+memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, unsigned int nAllocFlags)
 {
 
    __UNREFERENCED_PARAMETER(nAllocFlags);

@@ -65,7 +65,7 @@ namespace ios
 
             dira.ls_dir(listing.m_pathFinal);
 
-            for(i32 i = 0; i < dira.get_count(); i++)
+            for(int i = 0; i < dira.get_count(); i++)
             {
 
                ::file::path directory_context = dira[i];
@@ -288,7 +288,7 @@ pdirectorysystem->is(stra[i]))
    //         string_array straPath;
    //         string_array straTitle;
    //         ls(papp, psz, &straPath, &straTitle);
-   //         for(i32 i = 0; i < straPath.get_count(); i++)
+   //         for(int i = 0; i < straPath.get_count(); i++)
    //         {
    //            if(is(straPath[i], papp))
    //            {

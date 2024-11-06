@@ -21,7 +21,7 @@ namespace userfs
 
       bool                                   m_bCreateImageList;
       bool                                   m_bCreateImageListRedraw;
-      i32                                    m_iAnimate;
+      int                                    m_iAnimate;
       bool                                   m_bTimer123;
       string_array                           m_straUpdatePtrFilter;
 
@@ -94,7 +94,7 @@ namespace userfs
       void _001OnTimer(::timer * ptimer);
 
 
-      void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
+      void RenameFile(int iLine, string & str, const ::action_context & action_context);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

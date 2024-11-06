@@ -53,7 +53,7 @@ namespace colorertake5
          markupWriter << "</span>";
          pos += end - l1->start;
       }
-      if ((u32) pos < strlen(line))
+      if ((unsigned int) pos < strlen(line))
       {
          textWriter.write(&line[pos], strlen(line) - pos);
       }
@@ -115,7 +115,7 @@ namespace colorertake5
 
       }
 
-      if((u32) pos < strlen(line))
+      if((unsigned int) pos < strlen(line))
       {
          textWriter.write(&line[pos], strlen(line) - pos);
       }
@@ -148,7 +148,7 @@ namespace colorertake5
          ::collection::index end = l1->end;
 
          if (end == -1)
-            end = i32(strlen(line));
+            end = int(strlen(line));
 
          if (l1->start > pos)
          {
@@ -157,15 +157,15 @@ namespace colorertake5
          }
 
          if (docLinkHash->get_size() > 0)
-            writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (i32)(end - l1->start)), true);
+            writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int)(end - l1->start)), true);
          writeStart(markupWriter, l1->styled());
          textWriter.write(&line[pos], end - l1->start);
          writeEnd(markupWriter, l1->styled());
          if (docLinkHash->get_size() > 0)
-            writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (i32)(end - l1->start)), false);
+            writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int)(end - l1->start)), false);
          pos += end - l1->start;
       }
-      if((u32) pos < strlen(line))
+      if((unsigned int) pos < strlen(line))
       {
          textWriter.write(&line[pos], strlen(line) - pos);
       }
@@ -176,7 +176,7 @@ namespace colorertake5
    void ParsedLineWriter::writeStyle(stream & writer, const StyledRegion *lr)
    {
       static char span[256];
-      i32 cp = 0;
+      int cp = 0;
       if (lr->bfore) cp += sprintf(span, "color:#%.6x; ", lr->fore);
       if (lr->bback) cp += sprintf(span+cp, "background:#%.6x; ", lr->back);
       if (lr->style&StyledRegion::RD_BOLD) cp += sprintf(span+cp, "font-weight:bold; ");

@@ -139,7 +139,7 @@ namespace user
    }
 
 
-   /*bool tab::add_tab(::u32 uIdTitle, int iId)
+   /*bool tab::add_tab(unsigned int uIdTitle, int iId)
    {
       get_pane get_pane;
       ppane->m_uiId = uiIdTitle;
@@ -1521,7 +1521,7 @@ namespace user
    }
 
    /*
-   bool tab::create(::user::interaction * pchannel, ::u32 uId)
+   bool tab::create(::user::interaction * pchannel, unsigned int uId)
    {
       if(!m_puserinteraction->create(
          pchannel,

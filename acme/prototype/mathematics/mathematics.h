@@ -32,7 +32,7 @@ namespace mathematics
 
       double         m_dPi;
       float          m_fPi;
-      u32            dwMode;
+      unsigned int            dwMode;
       unsigned char           pbData[16];
 
    public:
@@ -49,18 +49,18 @@ namespace mathematics
       virtual void destroy() override;
 
 
-      i32 LinearMap(i32 iMin, i32 iMax, i32 iValue, i32 iValueMin, i32 iValueMax);
+      int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
 
       double LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax);
       inline double get_pi() const { return m_dPi; }
       inline float get_pi_f() const { return m_fPi; }
 
       static bool IsPowerOfTwo(u64 uiValue);
-      static u32 ReverseBits(u32 index, u32 NumBits);
+      static unsigned int ReverseBits(unsigned int index, unsigned int NumBits);
       static inline void MaxClip(double * pnClipValue, double nMaxValue);
       static inline void MinClip(double * pnClipValue, double nMinValue);
 
-      i32 RangeRate(i32 iMin, i32 iMax, double dRate);
+      int RangeRate(int iMin, int iMax, double dRate);
 
 
 
@@ -209,7 +209,7 @@ namespace mathematics
       //float random(float f1, float f2);
       //double random(double d1, double d2);
       //i64 random(i64 i1, i64 i2);
-      //i32 random(i32 i1, i32 i2);
+      //int random(int i1, int i2);
       //template < typename int >
       //int __random_int(int i1, int i2);
 
@@ -227,10 +227,10 @@ namespace mathematics
 
       char random_char();
       unsigned char random_u8();
-      u32 random_u32();
+      unsigned int random_u32();
       u64 random_u64();
 
-      i32 rand_max();
+      int rand_max();
 
 
       //template < typename TYPE >

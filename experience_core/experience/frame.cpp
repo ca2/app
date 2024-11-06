@@ -156,7 +156,7 @@ namespace experience_core
       }
 
 
-      i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
+      int iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       rectangleInflate = rectangleX;
 
@@ -613,10 +613,10 @@ namespace experience_core
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      i32 x = rectangle.left();
-      i32 y = rectangle.top();
-      i32 cx = rectangle.width();
-      i32 cy = rectangle.height();
+      int x = rectangle.left();
+      int y = rectangle.top();
+      int cx = rectangle.width();
+      int cy = rectangle.height();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -87,20 +87,20 @@ namespace hotplugin
 
       virtual void start_plugin() override;
 
-      virtual i32  start_ca2_system() override;
+      virtual int  start_ca2_system() override;
 
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle) override;
 
 
-      virtual i32 start_app_install(const ::string & pszCommandLine);
+      virtual int start_app_install(const ::string & pszCommandLine);
 
-      static i32 s_start_app_install(const ::string & pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
+      static int s_start_app_install(const ::string & pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
 
-      i32 start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
-      static i32 s_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
+      static int s_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
 
-      i32 host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
       virtual void deferred_prodevian_redraw() override;
 

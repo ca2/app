@@ -33,7 +33,7 @@ message_queue::~message_queue()
 }
 
 
-int_bool message_queue::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPARAM lParam)
+int_bool message_queue::post_message(oswindow oswindow, unsigned int uMessage, WPARAM wParam, LPARAM lParam)
 {
 
    if(m_bQuit)
@@ -78,13 +78,13 @@ int_bool message_queue::post_message(const MESSAGE & message)
 }
 
 
-int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (::u32)-1;
+      wMsgFilterMax = (unsigned int)-1;
 
    }
 
@@ -165,13 +165,13 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 }
 
 
-int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax,unsigned int wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (::u32)-1;
+      wMsgFilterMax = (unsigned int)-1;
 
    }
 
@@ -477,7 +477,7 @@ CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::atom & at
 }
 
 
-//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+//CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
 //{
 //
 //   auto pmq = ::get_message_queue(::current_itask(), false);
@@ -501,7 +501,7 @@ CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::atom & at
 //}
 
 
-CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
    auto pmq = ::get_message_queue(::current_itask(), true);

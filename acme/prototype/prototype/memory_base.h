@@ -8,10 +8,10 @@
 
 
 template < typename N >
-inline i32 msb(N n)
+inline int msb(N n)
 {
 
-   i32 i = sizeof(N) * 8;
+   int i = sizeof(N) * 8;
 
    do
    {
@@ -57,7 +57,7 @@ public:
    unsigned char *                  m_beginStorage;
    memsize                 m_sizeStorage;
    double                  m_dAllocationRateUp;
-   ::u32                   m_dwAllocationAddUp;
+   unsigned int                   m_dwAllocationAddUp;
 
    memory_container *      m_pcontainer;
 
@@ -339,7 +339,7 @@ public:
 
    memory_base & prefix_der_uint_content();
    memory_base & prefix_der_length();
-   memory_base & prefix_der_type(i32 iType);
+   memory_base & prefix_der_type(int iType);
 
    memory_base & prefix_der_uint();
    memory_base & prefix_der_sequence();

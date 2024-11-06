@@ -58,7 +58,7 @@ namespace xml
 
       //virtual bool load_attr(const ::scoped_string & scopedstrName, double & d);
 
-      //virtual bool load_attr(const ::scoped_string & scopedstrName, i32 & iValue);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, int & iValue);
 
       //virtual bool get_attr(const ::scoped_string & scopedstrName, string & strValue, string strDefault = "");
 
@@ -66,7 +66,7 @@ namespace xml
 
       //virtual bool get_attr(const ::scoped_string & scopedstrName, double & d, double dDefault = 0.0);
 
-      //virtual bool get_attr(const ::scoped_string & scopedstrName, i32 & iValue, int iDefault = 0);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, int & iValue, int iDefault = 0);
 
       virtual void get_value(string & strValue);
 

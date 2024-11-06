@@ -23,17 +23,17 @@ namespace draw2d_opengl
 
       
       operator HPALETTE() const;
-      i32 GetEntryCount();
-      ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
+      int GetEntryCount();
+      unsigned int GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
                              LPPALETTEENTRY lpPaletteColors) const;
-      ::u32 SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
+      unsigned int SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
                              LPPALETTEENTRY lpPaletteColors);
 
       
-      void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
+      void AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries,
                           LPPALETTEENTRY lpPaletteColors);
-      ::u32 GetNearestPaletteIndex(color32_t crColor) const;
-      bool ResizePalette(::u32 nNumEntries);
+      unsigned int GetNearestPaletteIndex(color32_t crColor) const;
+      bool ResizePalette(unsigned int nNumEntries);
 
 
    };

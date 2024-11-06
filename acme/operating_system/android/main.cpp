@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME i32 ca2_main();
+CLASS_DECL_ACME int ca2_main();
 
 void CLASS_DECL_ACME __cdecl _ca2_purecall()
 {
@@ -11,19 +11,19 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 
 #ifdef WINDOWS
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 
 #endif
 
 
 
-//i32 CLASS_DECL_ACME __android_main(::platform::system * psystem, i32 argc, char * argv[])
+//int CLASS_DECL_ACME __android_main(::platform::system * psystem, int argc, char * argv[])
 //{
 //
 //   if(!defer_au_init())
 //      return -1;
 //
-//   i32 nReturnCode = 0;
+//   int nReturnCode = 0;
 //
 //
 //   ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
@@ -36,7 +36,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //      pinitmaindata->m_strCommandLine     = argv[0];
 //   }
 //   bool bColon = false;
-//   for(i32 i = 1; i < argc; i++)
+//   for(int i = 1; i < argc; i++)
 //   {
 //      if(bColon || (bColon = (strcmp(argv[i], ":") == 0)))
 //      {
@@ -77,14 +77,14 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 //
 //
-//i32 CLASS_DECL_ACME ca2_main(::platform::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, i32 nCmdShow)
+//int CLASS_DECL_ACME ca2_main(::platform::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {
 //
 //      ASSERT(hPrevInstance == nullptr);
 //
-//      i32 nReturnCode = 0;
+//      int nReturnCode = 0;
 //
 //      ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
 //
@@ -128,7 +128,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 #ifdef WINDOWS
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
    __UNREFERENCED_PARAMETER(uiCode);

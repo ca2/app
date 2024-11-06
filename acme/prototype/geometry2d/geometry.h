@@ -13,10 +13,10 @@ namespace geometry
    public:
       double   m_dCosPhi;
       double   m_dSinPhi;
-      i32      m_iXCenter;
-      i32      m_iYCenter;
+      int      m_iXCenter;
+      int      m_iYCenter;
 
-      void rotate(::point_i32 * ppoint, i32 iCount);
+      void rotate(::point_i32 * ppoint, int iCount);
 
    };
 
@@ -36,13 +36,13 @@ namespace geometry
 
       double rotate_y(double x, double y, double phi);
       double rotate_x(double x, double y, double phi);
-      void rotate(i32 x, i32 y, ::point_i32 * ppoint, i32 iCount, double phi);
+      void rotate(int x, int y, ::point_i32 * ppoint, int iCount, double phi);
 
-      void rotate(i32 x, i32 y, ::point_i32 * ppoint, i32 iCount, double cosphi, double sinphi);
+      void rotate(int x, int y, ::point_i32 * ppoint, int iCount, double cosphi, double sinphi);
 
-      void rotate(i32 x, i32 y, ::point_f64 * ppoint, i32 iCount, double phi);
+      void rotate(int x, int y, ::point_f64 * ppoint, int iCount, double phi);
 
-      void rotate(i32 x, i32 y, ::point_f64 * ppoint, i32 iCount, double cosphi, double sinphi);
+      void rotate(int x, int y, ::point_f64 * ppoint, int iCount, double cosphi, double sinphi);
 
 
 

@@ -24,8 +24,8 @@
 //      u64                              m_uiEvent;
 //      enum_timer                       m_etimer;
 //      ::action_context                 m_actioncontext;
-//      u32                              m_uiVKey;
-//      u32                              m_uiFlags;
+//      unsigned int                              m_uiVKey;
+//      unsigned int                              m_uiFlags;
 //      bool                             m_bRet;
 //      bool                             m_bOk;
 //      ::earth::time                 m_timeOuterBeg;

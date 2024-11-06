@@ -83,7 +83,7 @@ inline i64 atomic_increment64(i64 * pi)
 
 #else
    
-inline i32 atomic_assign32(i32* pi, int i)
+inline int atomic_assign32(int* pi, int i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -107,7 +107,7 @@ inline i32 atomic_assign32(i32* pi, int i)
 
 #else
    
-inline i32 atomic_increment32(i32* pi)
+inline int atomic_increment32(int* pi)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -156,7 +156,7 @@ inline i32 atomic_increment32(i32* pi)
 
 #else
    
-   inline i32 atomic_decrement32(i32 * pi)
+   inline int atomic_decrement32(int * pi)
    {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -206,7 +206,7 @@ inline i64 atomic_add64(i64* pi, i64 i)
 
 #else
 
-inline i32 atomic_add32(i32* pi, i32 i)
+inline int atomic_add32(int* pi, int i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -256,7 +256,7 @@ inline i32 atomic_add32(i32* pi, i32 i)
 
 #else
 
-inline i32 atomic_subtract32(i32* pi, i32 i)
+inline int atomic_subtract32(int* pi, int i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)

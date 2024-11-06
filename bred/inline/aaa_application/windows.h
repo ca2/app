@@ -3,7 +3,7 @@
 #include "apex/inline/application/windows.h"
 
 
-// i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+// int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
 // {
 
 //    auto psystem = platform_create_system(hinstance);

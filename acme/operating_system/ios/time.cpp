@@ -2,20 +2,20 @@
 
 #include <sys/time.h>
 
-::u32 GetTickCount()
+unsigned int GetTickCount()
 {
    timeval ts;
    gettimeofday(&ts,0);
-   return (::u32) ((ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu);
+   return (unsigned int) ((ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu);
 
 }
 
 
 
-//::u32 ::get_tick()
+//unsigned int ::get_tick()
 //{
 //
-//   return (::u32) GetTickCount();
+//   return (unsigned int) GetTickCount();
 //
 //}
 //

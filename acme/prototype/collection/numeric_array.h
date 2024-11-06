@@ -302,7 +302,7 @@ public:
    const numeric_array  < TYPE > & array1,
    const numeric_array  < TYPE > & array2);*/
 
-   //void divide(i32 i);
+   //void divide(int i);
 
    //void ElementDiff(
    // const numeric_array  < TYPE > & array1,
@@ -310,9 +310,9 @@ public:
 
    //TYPE GetMean();
 
-   //void set(const TYPE & t, i32 iStart = 0, i32 iEnd = -1);
+   //void set(const TYPE & t, int iStart = 0, int iEnd = -1);
 
-   //i32 Cmp(const numeric_array  < TYPE > & array1);
+   //int Cmp(const numeric_array  < TYPE > & array1);
 
 
    /*virtual void quick_sort(bool bAsc = true)
@@ -541,7 +541,7 @@ numeric_array < TYPE, t_etypeContainer > numeric_array < TYPE, t_etypeContainer 
 
    numeric_array < TYPE, t_etypeContainer > a;
 
-   for(i32 i = 0; i < this->get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }
@@ -556,7 +556,7 @@ void numeric_array < TYPE, t_etypeContainer >::unique()
 
    numeric_array < TYPE, t_etypeContainer > a;
 
-   for(i32 i = 0; i < this->get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }

@@ -27,7 +27,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 inline const void * _memory_find_u8(const void* l, int i, memsize len)
 {
 
-    auto u = (unsigned char) (*((::u32*)(&i)) & 0xff);
+    auto u = (unsigned char) (*((unsigned int*)(&i)) & 0xff);
 
     auto p = (const unsigned char*)l;
 
@@ -74,7 +74,7 @@ inline const void * memory_find_u8(const void* l, int i, memsize len)
 
 
 
-CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize);
+CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize);
 CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
 CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
 CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);

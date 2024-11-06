@@ -879,7 +879,7 @@ repeat:
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
+      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.i64());
 
       string strModuleList = file_system()->as_string(pathModule);
 

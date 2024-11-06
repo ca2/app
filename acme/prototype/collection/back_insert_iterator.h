@@ -17,6 +17,6 @@ public:
     { return *this; }
   back_insert_iterator<Container>& operator++ ()
     { return *this; }
-  back_insert_iterator<Container> operator++ (i32)
+  back_insert_iterator<Container> operator++ (int)
     { return *this; }
 };

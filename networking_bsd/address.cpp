@@ -614,7 +614,7 @@ namespace networking_bsd
    }
 
 
-//   address ipv4(u32 u, ::networking::port_t port)
+//   address ipv4(unsigned int u, ::networking::port_t port)
 //   {
 //
 //      address a;

@@ -78,9 +78,9 @@ namespace acme
             return false;
 
          /* The length is essentially the size of the structure minus sizeof(mtype) */
-         i32 length = sizeof(data_struct) - sizeof(long);
+         int length = sizeof(data_struct) - sizeof(long);
 
-         i32 result;
+         int result;
          /*
             if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
             {
@@ -91,10 +91,10 @@ namespace acme
       }
 
 
-      bool tx::send(i32 message,void * pdata,i32 len,duration durationTimeout)
+      bool tx::send(int message,void * pdata,int len,duration durationTimeout)
       {
 
-         if(message == (i32) I32_MINIMUM)
+         if(message == (int) I32_MINIMUM)
             return false;
 
 
@@ -110,7 +110,7 @@ namespace acme
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
-         data.size         = (i32)ansi_length(pszMessage);
+         data.size         = (int)ansi_length(pszMessage);
 
          ::collection::count cPos = 0;
 
@@ -128,12 +128,12 @@ namespace acme
             if(c > 0)
                data.size = 512;
             else
-               data.size = (i32)cSend;
+               data.size = (int)cSend;
 
             /* The length is essentially the size of the structure minus sizeof(mtype) */
-            i32 length = sizeof(data_struct) - sizeof(long);
+            int length = sizeof(data_struct) - sizeof(long);
 
-            i32 result;
+            int result;
             /*
             if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
             {
@@ -191,7 +191,7 @@ namespace acme
       bool rx::destroy()
       {
 
-         i32 iRetry = 23;
+         int iRetry = 23;
          while(m_bRunning && iRetry > 0)
          {
             m_bRun = false;
@@ -248,7 +248,7 @@ namespace acme
       // {
       // }
 
-      // void rx::receiver::on_ipc_receive(rx * prx,i32 message,void * pdata,memsize len)
+      // void rx::receiver::on_ipc_receive(rx * prx,int message,void * pdata,memsize len)
       // {
       // }
 
@@ -272,7 +272,7 @@ namespace acme
 
       }
 
-      void * rx::on_ipc_receive(rx * prx,i32 message,void * pdata,memsize len)
+      void * rx::on_ipc_receive(rx * prx,int message,void * pdata,memsize len)
       {
 
          if(m_preceiver != nullptr)
@@ -334,7 +334,7 @@ namespace acme
 
             ssize_t  result;
 
-            //i32 length;
+            //int length;
 
             data_struct data;
 

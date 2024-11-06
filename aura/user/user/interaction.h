@@ -1314,9 +1314,9 @@ namespace user
       virtual void update_dialog_controls(channel* ptarget) override;
       virtual void CenterWindow(::user::interaction* pAlternateOwner = nullptr) override;
       virtual void _001Emphasize(int cx, int cy);
-      //virtual atom   run_modal_loop(::user::interaction* pinteraction, u32 dwFlags = 0) override;
-      //virtual atom   RunModalLoop(u32 dwFlags = 0) override;
-      //virtual atom   _001RunModalLoop(u32 dwFlags = 0) override;
+      //virtual atom   run_modal_loop(::user::interaction* pinteraction, unsigned int dwFlags = 0) override;
+      //virtual atom   RunModalLoop(unsigned int dwFlags = 0) override;
+      //virtual atom   _001RunModalLoop(unsigned int dwFlags = 0) override;
       //virtual bool ContinueModal() override;
       //virtual void EndModalLoop(atom nResult) override;
 
@@ -1435,11 +1435,11 @@ namespace user
       /// returns true if set_need_redraw was posted
       virtual bool post_pending_set_need_redraw();
 
-      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
+      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      //virtual void CalcWindowRect(::rectangle_i32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32* pClientRect, unsigned int nAdjustType = adjustBorder) override;
 
 
       virtual bool IsTopParentActive();
@@ -1476,13 +1476,13 @@ namespace user
 //
 //      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
 //         ::draw2d::region* prgnUpdate = nullptr,
-//         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
+//         unsigned int flags = RDW_INVALIDATE | RDW_ERASE) override;
 //
 //#else
 
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = {},
          ::draw2d::region* prgnUpdate = nullptr,
-         ::u32 flags = 0);
+         unsigned int flags = 0);
 
 //#endif
 
@@ -1509,10 +1509,10 @@ namespace user
 
       virtual bool is_composite() override;
 
-      //virtual u32 GetStyle() override;
-      //virtual u32 GetExStyle() override;
-      //virtual void ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
-      //virtual void ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
+      //virtual unsigned int GetStyle() override;
+      //virtual unsigned int GetExStyle() override;
+      //virtual void ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags = 0) override;
+      //virtual void ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags = 0) override;
 
       void post_message(::message::message* pmessage) override;
       
@@ -1726,7 +1726,7 @@ namespace user
       //virtual ::windowing::window * window();
 
 
-      //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
+      //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, unsigned int flags = 0);
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       ////      virtual void Invalidate(bool bErase = true);
       //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
@@ -1869,7 +1869,7 @@ namespace user
       virtual bool recursively_contains(element* puiIsChild, bool bIncludeSelf);
 
       ::user::interaction* get_wnd() override;
-      ::user::interaction* get_wnd(::u32 nCmd) override;
+      ::user::interaction* get_wnd(unsigned int nCmd) override;
 
       ::user::interaction_base * set_parent(::user::interaction_base * pinteraction) override;
       ::user::interaction_base * set_owner(::user::interaction_base * pinteraction) override;
@@ -1930,11 +1930,11 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleX = {
+      void RepositionBars(unsigned int nIDFirst = 0, unsigned int nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, unsigned int nFlag = reposDefault, ::rectangle_i32* prectParam = nullptr, const ::rectangle_i32& rectangleX = {
          }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, unsigned int nFlags) override;
 
       virtual ::user::interaction* get_next_sibling_window() override;
 
@@ -1992,7 +1992,7 @@ namespace user
 
       virtual string get_window_default_matter() override;
       virtual string get_window_icon_matter() override;
-      virtual u32 get_window_default_style() override;
+      virtual unsigned int get_window_default_style() override;
       //virtual enum_type get_window_type() override;
 
 
@@ -2511,7 +2511,7 @@ namespace user
       //bool operator == (const class control& control);
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
-      //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
+      //virtual void BaseControlExOnMouseMove(unsigned int nFlags, const ::point_i32 & point);
       //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

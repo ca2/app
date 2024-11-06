@@ -74,7 +74,7 @@ namespace sockets_bsd
    //}
 
 
-   i32 socket::close_socket(SOCKET s)
+   int socket::close_socket(SOCKET s)
    {
 
       return ::closesocket(s);
@@ -99,7 +99,7 @@ namespace sockets_bsd
 
       }
 
-      i32 n;
+      int n;
 
       if ((n = close_socket(m_socketid)) == -1)
       {
@@ -135,7 +135,7 @@ namespace sockets_bsd
    }
 
 
-   SOCKET socket::CreateSocket(i32 af, i32 iType, const ::string & strProtocol)
+   SOCKET socket::CreateSocket(int af, int iType, const ::string & strProtocol)
    {
 
       SOCKET s;
@@ -146,7 +146,7 @@ namespace sockets_bsd
       
       m_strSocketProtocol = strProtocol;
 
-      i32 protno;
+      int protno;
 
 #ifdef ANDROID
 
@@ -269,7 +269,7 @@ namespace sockets_bsd
    {
 #ifdef _WIN32
       u_long l = bNb ? 1 : 0;
-      i32 n = ioctlsocket(s, FIONBIO, &l);
+      int n = ioctlsocket(s, FIONBIO, &l);
       if (n != 0)
       {
 

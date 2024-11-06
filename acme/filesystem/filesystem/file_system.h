@@ -78,23 +78,23 @@ public:
    virtual ::memory get_documents_cloud_data(const ::file::path & path);
 
    //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);
-   //virtual i32 FILE_printf(FILE * fp, const scoped_string & s, ...);
-   //virtual i32 FILE_close(FILE * fp);
-   //virtual i32 FILE_eof(FILE * fp);
-   //virtual filesize FILE_seek(FILE * str, filesize offset, i32 origin);
+   //virtual int FILE_printf(FILE * fp, const scoped_string & s, ...);
+   //virtual int FILE_close(FILE * fp);
+   //virtual int FILE_eof(FILE * fp);
+   //virtual filesize FILE_seek(FILE * str, filesize offset, int origin);
    //virtual filesize FILE_tell(FILE * fp);
    //virtual filesize FILE_read(void * buffer, memsize size, memsize count, FILE * str);
    //virtual filesize FILE_write(const void * buffer, memsize size, memsize count, FILE * str);
    //virtual char * FILE_gets(char * str, strsize n, FILE * s);
-   //virtual i32 FILE_getc(FILE * s);
-   //virtual i32 FILE_ungetc(i32 c, FILE * s);
-   //virtual i32 FILE_error(FILE * s);
-   //virtual i32 FILE_flush(FILE * s);
+   //virtual int FILE_getc(FILE * s);
+   //virtual int FILE_ungetc(int c, FILE * s);
+   //virtual int FILE_error(FILE * s);
+   //virtual int FILE_flush(FILE * s);
 
    //#ifdef WINDOWS
    //virtual FILE *_wfopen_dup(const unichar *path, const unichar *attrs, int iShare);
-   //virtual i32 fwprintf_dup(FILE *fp, const unichar *s, ...);
-   //virtual unichar *fgetws_dup(unichar *str, i32 n, FILE *s);
+   //virtual int fwprintf_dup(FILE *fp, const unichar *s, ...);
+   //virtual unichar *fgetws_dup(unichar *str, int n, FILE *s);
    //virtual wint_t fgetwc_dup(FILE *s);
    //virtual wint_t ungetwc_dup(wint_t w, FILE *s);
    //#endif

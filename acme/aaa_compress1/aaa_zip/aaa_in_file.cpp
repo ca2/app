@@ -32,7 +32,7 @@ namespace zip
 
 
 
-   bool in_file::zip_open(const ::file::path & path,::u32)
+   bool in_file::zip_open(const ::file::path & path,unsigned int)
    {
 
       m_filea.erase_all();
@@ -90,7 +90,7 @@ namespace zip
 
       string str;
 
-      i32 i;
+      int i;
 
       for(i = 1; i < m_straPath.get_size(); i++)
       {
@@ -169,7 +169,7 @@ namespace zip
 
       string str;
 
-      i32 i;
+      int i;
 
       for(i = 0; i < m_straPath.get_upper_bound(); i++)
       {
@@ -370,11 +370,11 @@ namespace zip
 
       ASSERT(is_memory_segment_ok(pdata,(uptr)nCount));
 
-      auto iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pdata,(u32)nCount);
+      auto iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pdata,(unsigned int)nCount);
 
       m_iPosition += iRead;
 
-      return (::u32)iRead;
+      return (unsigned int)iRead;
    }
 
    void in_file::write(const void * pdata,memsize nCount)
@@ -448,7 +448,7 @@ namespace zip
 
          i64 iGet;
 
-         i32 iRead;
+         int iRead;
 
          unsigned char pbBuf[1024];
 
@@ -457,7 +457,7 @@ namespace zip
 
             iGet = minimum(iRemain,1024);
 
-            iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pbBuf,(u32)iGet);
+            iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pbBuf,(unsigned int)iGet);
 
             iRemain -= iRead;
 
@@ -663,7 +663,7 @@ namespace zip
       while((uRead = pfile->read(mem,mem.get_size())) > 0)
       {
 
-         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(u32)uRead);
+         zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(unsigned int)uRead);
 
       }
 

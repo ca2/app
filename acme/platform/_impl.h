@@ -362,7 +362,7 @@ const char * memory_counter_id(T * pthis)
 //} // namespace acme
 //
 //
-////inline float i32muldiv(float f, i32 iNum, i32 iDen)
+////inline float i32muldiv(float f, int iNum, int iDen)
 ////{
 ////
 ////   return (float) (f * iNum / iDen);
@@ -370,7 +370,7 @@ const char * memory_counter_id(T * pthis)
 ////}
 ////
 ////
-////inline double i32muldiv(double d, i32 iNum, i32 iDen)
+////inline double i32muldiv(double d, int iNum, int iDen)
 ////{
 ////
 ////   return (double) (d * iNum / iDen);
@@ -378,10 +378,10 @@ const char * memory_counter_id(T * pthis)
 ////}
 ////
 ////
-////inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
+////inline int i32muldiv(int i, int iNum, int iDen)
 ////{
 ////
-////   return (i32) ::MulDiv(i, iNum, iDen);
+////   return (int) ::MulDiv(i, iNum, iDen);
 ////
 ////}
 ////
@@ -389,7 +389,7 @@ const char * memory_counter_id(T * pthis)
 //#ifndef WINDOWS
 //
 //
-//inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
+//inline i64 MulDiv(i64 nNumber, int iNum, int iDen)
 //{
 //
 //   return nNumber * iNum / iDen;

@@ -44,7 +44,7 @@ namespace draw2d_gdiplus
       return false;
 
    }
-   ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
+   unsigned int palette::GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
                                    LPPALETTEENTRY pPaletteColors) const
 
    {
@@ -52,7 +52,7 @@ namespace draw2d_gdiplus
                                             nNumEntries, pPaletteColors);
 
    }
-   ::u32 palette::SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
+   unsigned int palette::SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries,
                                    LPPALETTEENTRY pPaletteColors)
 
    {
@@ -60,7 +60,7 @@ namespace draw2d_gdiplus
                                             nNumEntries, pPaletteColors);
 
    }
-   void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
+   void palette::AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries,
                                 LPPALETTEENTRY pPaletteColors)
 
    {
@@ -68,19 +68,19 @@ namespace draw2d_gdiplus
             pPaletteColors);
 
    }
-   ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
+   unsigned int palette::GetNearestPaletteIndex(color32_t crColor) const
    { ASSERT(get_os_data() != nullptr); return ::GetNearestPaletteIndex((HPALETTE)get_os_data(), crColor); }
 
-   bool palette::ResizePalette(::u32 nNumEntries)
+   bool palette::ResizePalette(unsigned int nNumEntries)
    {
       ASSERT(get_os_data() != nullptr);
       return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != false;
    }
 
-   i32 palette::GetEntryCount()
+   int palette::GetEntryCount()
    {
-      ASSERT(get_os_data() != nullptr); ::u16 nEntries;
-      ::GetObject((HANDLE) get_os_data(), sizeof(::u16), &nEntries); return (i32)nEntries;
+      ASSERT(get_os_data() != nullptr); unsigned short nEntries;
+      ::GetObject((HANDLE) get_os_data(), sizeof(unsigned short), &nEntries); return (int)nEntries;
    }
 
 } // namespace draw2d_gdiplus

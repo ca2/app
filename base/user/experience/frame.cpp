@@ -891,7 +891,7 @@ namespace experience
    }
 
 
-   bool frame::_001OnTimer(::u32 uEvent)
+   bool frame::_001OnTimer(unsigned int uEvent)
    {
 
       __UNREFERENCED_PARAMETER(uEvent);
@@ -901,7 +901,7 @@ namespace experience
    }
 
 
-   //bool frame::on_message_size(u32 nType,int cx,int cy)
+   //bool frame::on_message_size(unsigned int nType,int cx,int cy)
    //{
 
    //   __UNREFERENCED_PARAMETER(cx);

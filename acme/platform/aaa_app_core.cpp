@@ -1090,7 +1090,7 @@ bool app_core::has_apex_application_factory() const
 #else
 
 
-//::u32 app_core::system_main()
+//unsigned int app_core::system_main()
 //{
 //
 //   ::e_status estatus = psystem->__thread_procedure();

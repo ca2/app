@@ -35,9 +35,9 @@ namespace apex
       bool                                m_bInitialized;
       string                              m_strLogPath;
       atom                                  m_atom;
-      i32                                 m_iYear;
-      i32                                 m_iMonth;
-      i32                                 m_iDay;
+      int                                 m_iYear;
+      int                                 m_iMonth;
+      int                                 m_iDay;
 
 
       log();
@@ -57,7 +57,7 @@ namespace apex
 
       void process_init() override;
 
-      //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 iLine, const ::scoped_string & scopedstr) const override;
+      //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, int iLine, const ::scoped_string & scopedstr) const override;
 
       void set_trace_category(enum_trace_category etracecategory, enum_trace_level etracelevelMinimum);
 
@@ -69,7 +69,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32, const char *, i32, const char *, const char * pszFormat, va_list list);
+   CLASS_DECL_APEX int SimpleDebugReport(int, const char *, int, const char *, const char * pszFormat, va_list list);
 
 
 } // namespace apex

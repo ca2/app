@@ -67,7 +67,7 @@ namespace aura
 //       //semaphore                                       m_semCompiler;
 //       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 //
-//       ::u32                                           m_dwInstallGoodToCheckAgain;
+//       unsigned int                                           m_dwInstallGoodToCheckAgain;
 //
 //       //bool                                            m_bAppHasInstallerProtected;
 //       //bool                                            m_bAppHasInstallerChangedProtected;
@@ -122,9 +122,9 @@ namespace aura
 // //
 // //#endif
 // //
-// //      u32                                             m_dwPromptContext;        // help action_context override for message box
+// //      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
 // //      // LKG
-// //      u32                                             m_dwPolicies;            // block for storing boolean system policies
+// //      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
 // //
 // //      // Support for Shift+F1 help mode.
 // //      // true if we're in SHIFT+F1 mode.
@@ -136,7 +136,7 @@ namespace aura
 // //
 // //      ATOM                                            m_atomApp;
 // //      ATOM                                            m_atomSystemTopic;   // for DDE open
-// //      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
+// //      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
 // //
 // //      string                                          m_strId;
 //
@@ -301,9 +301,9 @@ namespace aura
 
 
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual void process_message_filter(int code, ::message::message * pmessage) override;
@@ -896,9 +896,9 @@ void initialize_context() override;
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
 
-      //virtual u32 guess_code_page(const string& str) override;
+      //virtual unsigned int guess_code_page(const string& str) override;
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -923,7 +923,7 @@ void initialize_context() override;
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
+//      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -932,7 +932,7 @@ void initialize_context() override;
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::string & pcszFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -944,7 +944,7 @@ void initialize_context() override;
       // profile member functions; prevents writing to an INI spfile->
       virtual void SetRegistryKey(const ::string & pszRegistryKey) override;
 
-      virtual void SetRegistryKey(::u32 nIDRegistryKey) override;
+      virtual void SetRegistryKey(unsigned int nIDRegistryKey) override;
 
 
       virtual void RegisterShellFileTypes(bool bCompat = false) override;
@@ -1084,7 +1084,7 @@ void initialize_context() override;
 
 
 
-//CLASS_DECL_AURA ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
+//CLASS_DECL_AURA unsigned int c_cdecl application_thread_procedure(LPVOID pvoid);
 
 //typedef ::pointer<::aura::application>(*LPFN_instantiate_application)(::pointer<::aura::application>appParent, const ::string & pszId);
 

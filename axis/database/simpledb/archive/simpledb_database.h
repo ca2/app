@@ -14,13 +14,13 @@ namespace simpledb
       file_pointer                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
       string_map < table *, table * > m_mapTable;
-      i32                           m_iErrorCode;
+      int                           m_iErrorCode;
 
 
       database(::particle * pparticle);
 
 
-      virtual i32 connect();
+      virtual int connect();
 
       virtual class ::simpledb::dataset * create_dataset();
 
@@ -30,7 +30,7 @@ namespace simpledb
 
       // class ::database::database
       virtual class ::database::dataset * create_dataset();
-      virtual i32 setErr(i32 err_code);
+      virtual int setErr(int err_code);
       virtual long nextid(const ::string & sname);
 
 

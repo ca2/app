@@ -41,7 +41,7 @@ const char* GuessChardet(charguess_det p, const ::string & str)
    nsUniversalDetector* det = (nsUniversalDetector*) p;
 
    det->Reset();
-   det->HandleData(str, (PR::u32) str.length());
+   det->HandleData(str, (PRunsigned int) str.length());
    det->DataEnd();
 
    return det->GetCharset();
@@ -76,7 +76,7 @@ extern "C" void CharGuessDestroy(charguess_det p)
 
 
 
-u32 charguess::get_code_page(const ::string & str)
+unsigned int charguess::get_code_page(const ::string & str)
 {
    if(str.is_empty())
    {

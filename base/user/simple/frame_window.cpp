@@ -1458,7 +1458,7 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame)
+void simple_frame_window::ImpactOnActivateFrame(::pointer<::user::impact>pimpact, unsigned int user, ::pointer<::user::interaction>frame)
 {
    __UNREFERENCED_PARAMETER(pimpact);
    __UNREFERENCED_PARAMETER(user);
@@ -2171,7 +2171,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+bool simple_frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
 //   if (pusersystem->m_atom.is_set())
@@ -2381,7 +2381,7 @@ void simple_frame_window::_001OnDdeInitiate(::message::message * pmessage)
 
    //::pointer<::user::message>pusermessage(pmessage);
 
-   //pusermessage->set_lresult(default_window_procedure((u32)pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->get_lresult()));
+   //pusermessage->set_lresult(default_window_procedure((unsigned int)pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->get_lresult()));
 
 }
 
@@ -3305,7 +3305,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::request * prequest)
+//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, unsigned int dwExStyle, ::request * prequest)
 //{
 //
 //   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
@@ -3328,13 +3328,13 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //{
 //
 //   set_active_window();      // activate us first !
-//   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
+//   unsigned int nFiles = ::DragQueryFile(hDropInfo, (unsigned int)-1, nullptr, 0);
 //
 //   ::file::path_array patha;
 //
 //   natural_wstring pwszFileName(char_count, _MAX_PATH);
 //
-//   for (::u32 iFile = 0; iFile < nFiles; iFile++)
+//   for (unsigned int iFile = 0; iFile < nFiles; iFile++)
 //   {
 //
 //      if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
@@ -3455,7 +3455,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
 //                 //IA64: Assume DDE LPARAMs are still 32-bit
 //                 ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-//                                (::u32)0x8000, (uptr)hData));
+//                                (unsigned int)0x8000, (uptr)hData));
 //
 //   // don't execute the command when the u is disabled
 //   if (!is_window_enabled())
@@ -3502,7 +3502,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //}
 //
 //
-//void simple_frame_window::NotifyFloatingWindows(u32 dwFlags)
+//void simple_frame_window::NotifyFloatingWindows(unsigned int dwFlags)
 //{
 //   ASSERT_VALID(this);
 //   // trans   ASSERT(get_handle() != nullptr);
@@ -4158,7 +4158,7 @@ void simple_frame_window::on_simple_command(::message::simple_command * psimplec
 }
 
 
-class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(u32 uStyle)
+class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(unsigned int uStyle)
 {
 
    __UNREFERENCED_PARAMETER(uStyle);
@@ -4295,7 +4295,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 }
 
 
-//void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
+//void simple_frame_window::OnNotifyIconContextMenu(unsigned int uNotifyIcon)
 //{
 //
 //}
@@ -4303,7 +4303,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 
 
 //
-//void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
+//void simple_frame_window::OnNotifyIconLButtonDblClk(unsigned int uNotifyIcon)
 //{
 //
 //   __UNREFERENCED_PARAMETER(uNotifyIcon);
@@ -4311,7 +4311,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //}
 //
 //
-//void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
+//void simple_frame_window::OnNotifyIconLButtonDown(unsigned int uNotifyIcon)
 //{
 //
 //   default_notify_icon_topic();

@@ -265,7 +265,7 @@ namespace heap
 
 
 
-   void management::on_plex_new_block(::u32 nAllocSize)
+   void management::on_plex_new_block(unsigned int nAllocSize)
    {
 
 

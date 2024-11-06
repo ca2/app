@@ -241,7 +241,7 @@ iptr oswindow_data::get_window_long_ptr(iptr iIndex)
    if(is_null())
       return 0;
 
-   return m_pimpl->m_puserinteraction->get_window_long_ptr((i32)iIndex);
+   return m_pimpl->m_puserinteraction->get_window_long_ptr((int)iIndex);
 
 }
 
@@ -252,7 +252,7 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
    if(is_null())
       return 0;
 
-   return m_pimpl->m_puserinteraction->set_window_long_ptr((i32)iIndex, iNewLong);
+   return m_pimpl->m_puserinteraction->set_window_long_ptr((int)iIndex, iNewLong);
 
 }
 

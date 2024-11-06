@@ -27,7 +27,7 @@ void * platform::operating_system_library_touch(const ::file::path & path, strin
    
    auto strLibTitle = "lib" + strTitle;
 
-   for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+   for (int i = _dyld_image_count(); i >= 0 ; i--)
    {
 
       const char *image_name = _dyld_get_image_name(i);

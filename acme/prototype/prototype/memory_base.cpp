@@ -54,7 +54,7 @@ memory_base::~memory_base()
 
 memory_base & memory_base::prefix_der_length()
 {
-   i32 msb = ::msb(size());
+   int msb = ::msb(size());
    if(msb < 7)
    {
       move_and_grow(1);
@@ -62,12 +62,12 @@ memory_base & memory_base::prefix_der_length()
    }
    else
    {
-      i32 iLen = (msb + 8) / 8;
+      int iLen = (msb + 8) / 8;
       move_and_grow(1 + iLen);
       data()[0] = 0x80 | iLen;
       auto s = size() - 1 - iLen;
       unsigned char * p = (unsigned char *)&s;
-      for(i32 i = 1; i <= iLen; i++)
+      for(int i = 1; i <= iLen; i++)
       {
          data()[i] = p[iLen - i];
       }
@@ -89,7 +89,7 @@ memory_base & memory_base::prefix_der_uint_content()
    return *this;
 }
 
-memory_base & memory_base::prefix_der_type(i32 iType)
+memory_base & memory_base::prefix_der_type(int iType)
 {
 
    move_and_grow(1);
@@ -530,7 +530,7 @@ void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSiz
 //         if(::ferror(pfile))
 //         {
 //
-//            i32 iErrNo = errno;
+//            int iErrNo = errno;
 //            
 //            auto errorcode = cerrornumber.error_code();
 //            
@@ -610,7 +610,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //
 //   }
 //
-//   return ::SHCreateMemStream(data(),(::u32)size());
+//   return ::SHCreateMemStream(data(),(unsigned int)size());
 //
 //}
 
@@ -652,7 +652,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[2],size() - 2));
 
-      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(i32)(size() - 2));
+      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(int)(size() - 2));
 
       return { (const char *)mem.data(), mem.size() };
 
@@ -664,7 +664,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[3],size() - 3));
 
-      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(i32)(size() - 3));
+      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(int)(size() - 3));
 
       return { (const char *)mem.data(), mem.size() };
 
@@ -729,11 +729,11 @@ string memory_base::as_utf8() const
          && data()[1] == 60)
    {
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
+      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (::wd16_character *)&data()[2], (i32)(size() - 2));
+      utf_to_utf(p, (::wd16_character *)&data()[2], (int)(size() - 2));
 
       strResult.release_buffer();
 
@@ -752,11 +752,11 @@ string memory_base::as_utf8() const
       //}
 #endif
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
+      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (const ::wd16_character *)&data()[2], (i32)(size() - 2));
+      utf_to_utf(p, (const ::wd16_character *)&data()[2], (int)(size() - 2));
 
       strResult.release_buffer();
 
@@ -767,13 +767,13 @@ string memory_base::as_utf8() const
             && data()[2] == 0xbf)
    {
 
-      strResult = string((const char *)&data()[3], (i32)(size() - 3));
+      strResult = string((const char *)&data()[3], (int)(size() - 3));
 
    }
    else
    {
 
-      strResult = string((const char *)data(), (i32)size());
+      strResult = string((const char *)data(), (int)size());
 
    }
 

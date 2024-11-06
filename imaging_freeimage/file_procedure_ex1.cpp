@@ -5,7 +5,7 @@
 #include <FreeImage.h>
 
 
-u32 _stdcall ___Ex1File__WriteProc(void * buffer, u32 size, u32 count, fi_handle handle)
+unsigned int _stdcall ___Ex1File__WriteProc(void * buffer, unsigned int size, unsigned int count, fi_handle handle)
 {
 
    file_pointer  pfile = (::file::file *) handle;
@@ -28,7 +28,7 @@ u32 _stdcall ___Ex1File__WriteProc(void * buffer, u32 size, u32 count, fi_handle
 }
 
 
-i32 _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, i32 origin)
+int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
 {
 
    file_pointer  pfile = (::file::file *) handle;

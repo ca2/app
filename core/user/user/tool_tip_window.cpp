@@ -81,7 +81,7 @@ namespace user
 
 
    void tool_tip_window::ShowTip(
-   i32 iTool,    // [in] item selected
+   int iTool,    // [in] item selected
    bool bForce)
    {
       if(!IsTipEnabled())
@@ -342,7 +342,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnTimer(::u32 uEvent)
+   void tool_tip_window::OnTimer(unsigned int uEvent)
    {
       switch(uEvent)
       {
@@ -391,7 +391,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnSize(::u32 nType, i32 cx, i32 cy)
+   void tool_tip_window::OnSize(unsigned int nType, int cx, int cy)
    {
       update_drawing_objects();
    }
@@ -574,7 +574,7 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(i32 iTool, ::rectangle_i32 * prectangle)
+   bool tool_tip_window::GetToolRect(int iTool, ::rectangle_i32 * prectangle)
 
    {
       GetTool(iTool)->BaseToolTipGetRect(prectangle);
@@ -595,7 +595,7 @@ namespace user
       set_at(ptool->BaseToolTipGetIndex(), ptool);
    }
 
-   bool tool_tip_window::GetToolText(i32 iTool, string &str)
+   bool tool_tip_window::GetToolText(int iTool, string &str)
    {
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 
@@ -629,7 +629,7 @@ namespace user
       return true;
    }
 
-   ::user::tool_tip_tool * tool_tip_window::GetTool(i32 iTool)
+   ::user::tool_tip_tool * tool_tip_window::GetTool(int iTool)
    {
       return m_toolmap[iTool];
    }

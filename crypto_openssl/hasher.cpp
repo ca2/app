@@ -101,14 +101,14 @@
 //
 
 
-//i32 crypto_encrypt(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
+//int crypto_encrypt(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 //{
-//   i32 plainlen = (i32)storageDecrypt.size();
-//   i32 cipherlen, tmplen;
+//   int plainlen = (int)storageDecrypt.size();
+//   int cipherlen, tmplen;
 //   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 //   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
-//   cipherlen = (i32)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
+//   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
 //   storageEncrypt.set_size(cipherlen);
 //   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 //   {
@@ -124,14 +124,14 @@
 //   return cipherlen;
 //}
 //
-//i32 crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+//int crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
-//   i32 cipherlen = (i32)storageEncrypt.size();
-//   i32 plainlen, tmplen;
+//   int cipherlen = (int)storageEncrypt.size();
+//   int plainlen, tmplen;
 //   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 //   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char*)key.data(), iv);
-//   plainlen = (i32)storageEncrypt.size();
+//   plainlen = (int)storageEncrypt.size();
 //   storageDecrypt.set_size(plainlen);
 //   if (!EVP_DecryptUpdate(pctx, (unsigned char*)storageDecrypt.data(), &plainlen, (const unsigned char*)storageEncrypt.data(), cipherlen))
 //   {
@@ -314,14 +314,14 @@
 //
 //
 //
-////i32 crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
+////int crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 ////{
-////   i32 plainlen = (i32)storageDecrypt.size();
-////   i32 cipherlen, tmplen;
+////   int plainlen = (int)storageDecrypt.size();
+////   int cipherlen, tmplen;
 ////   const char* iv = "skdfjghsdlkfjghs";
 ////   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 ////   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
-////   cipherlen = (i32)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
+////   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key size_i32
 ////   storageEncrypt.allocate(cipherlen);
 ////   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 ////   {
@@ -337,7 +337,7 @@
 ////   return cipherlen;
 ////}
 //
-//CLASS_DECL_APEX i32 crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+//CLASS_DECL_APEX int crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
 //   const char* iv = "skdajhgbmvkbjghs";
 //   EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
@@ -379,7 +379,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX i32 crypto_encrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+//CLASS_DECL_APEX int crypto_encrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
 //   const char* iv = "skdajhgbmvkbjghs";
 //   EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();

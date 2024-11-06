@@ -10,18 +10,18 @@
 //CLASS_DECL_ACME char * strdup2(const char * psz1, const char * psz2);
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-
-
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACMEint ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME::u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACMEint ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+
+
+CLASS_DECL_ACMEunsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
 
@@ -43,13 +43,13 @@ CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
-CLASS_DECL_ACME i32 ansi_open(const ::scoped_string & scopedstr, i32 i);
+CLASS_DECL_ACME int ansi_open(const ::scoped_string & scopedstr, int i);
 
 //CLASS_DECL_ACME FILE* ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 
 CLASS_DECL_ACME int ansi_file_flag(int iFlag);
 
-CLASS_DECL_ACME void ansi_get_errno(i32* perrno);
+CLASS_DECL_ACME void ansi_get_errno(int* perrno);
 
 CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 
@@ -67,13 +67,13 @@ int ftruncate(int file, filesize len);
 #endif
 
 
-CLASS_DECL_ACME i32 get_os_thread_priority(::enum_priority epriority);
+CLASS_DECL_ACME int get_os_thread_priority(::enum_priority epriority);
 
-CLASS_DECL_ACME i32 get_os_priority_class(::enum_priority epriority);
+CLASS_DECL_ACME int get_os_priority_class(::enum_priority epriority);
 
-CLASS_DECL_ACME::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
+CLASS_DECL_ACME::enum_priority get_os_thread_scheduling_priority(int iCa2Priority);
 
-CLASS_DECL_ACME::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
+CLASS_DECL_ACME::enum_priority get_os_class_scheduling_priority(int iCa2Priority);
 
 
 CLASS_DECL_ACME const ::particle * general_trace_object();
@@ -83,7 +83,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category ecategory, 
 inline const ::particle * context_trace_object();
 
 
-//CLASS_DECL_ACME extern u32 g_tickStartTime;
+//CLASS_DECL_ACME extern unsigned int g_tickStartTime;
 
 
 
@@ -110,12 +110,12 @@ inline void assign(unsigned long& l, const ::payload& r);
 
 
 inline void assign(bool& l, const ::payload& r);
-inline void assign(::i8& i8, const ::payload& r);
+inline void assign(char& char, const ::payload& r);
 inline void assign(unsigned char& unsigned char, const ::payload& r);
-inline void assign(::i16& i16, const ::payload& r);
-inline void assign(::u16& u16, const ::payload& r);
-inline void assign(int& i32, const ::payload& r);
-inline void assign(::u32& u32, const ::payload& r);
+inline void assign(short& short, const ::payload& r);
+inline void assign(unsigned short& unsigned short, const ::payload& r);
+inline void assign(int& int, const ::payload& r);
+inline void assign(unsigned int& unsigned int, const ::payload& r);
 inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
 
@@ -184,11 +184,11 @@ CLASS_DECL_ACME bool is_font_sel(const ::atom& atom);
 //inline void dump_elements(dump_context& dumpcontext, const TYPE* pElements, ::collection::count nCount);
 
 
-i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character* pMultByteStr, i32 cbMultiByte,
-   ::wide_character* pWideCharStr, i32 cchWideChar);
+int CLASS_DECL_ACME MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const ::ansi_character* pMultByteStr, int cbMultiByte,
+   ::wide_character* pWideCharStr, int cchWideChar);
 
-i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character* pWideCharStr, i32 cchWideChar,
-   ::ansi_character* pMultByteStr, i32 cbMultiByte, const char* pDefaultChar,
+int CLASS_DECL_ACME WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character* pWideCharStr, int cchWideChar,
+   ::ansi_character* pMultByteStr, int cbMultiByte, const char* pDefaultChar,
    int_bool* pUsedDefaultChar);
 
 
@@ -213,7 +213,7 @@ namespace acme
 
 
 
-inline ::u64 make64_from32(::u32 l, ::u32 h);
+inline ::u64 make64_from32(unsigned int l, unsigned int h);
 
 
 inline bool is_memory_segment_ok(void * p, memsize s);
@@ -231,7 +231,7 @@ inline bool is_string_ok(::ansi_character * p, ::strsize s);
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
 
 
-CLASS_DECL_ACME::u32 __u32_hash(const ::scoped_string & scopedstr);
+CLASS_DECL_ACMEunsigned int __u32_hash(const ::scoped_string & scopedstr);
 
 
 template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p);
@@ -275,10 +275,10 @@ inline bool exists(const ::file::enum_type& etype);
 // CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME i32 ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_i32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
 
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);

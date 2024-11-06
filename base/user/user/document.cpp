@@ -2149,7 +2149,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,unsigned int nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdata);

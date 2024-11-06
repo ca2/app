@@ -31,7 +31,7 @@ namespace sockets
       \lparam af Address family AF_INET / AF_INET6 / ...
       \lparam type SOCK_STREAM / SOCK_DGRAM / ...
       \lparam protocol "tcp" / "udp" / ... */
-      //socket_id CreateSocket(i32 af,i32 type,const string & protocol = "");
+      //socket_id CreateSocket(int af,int type,const string & protocol = "");
 
 
       /** close connection immediately - internal use.
@@ -47,7 +47,7 @@ namespace sockets
 
       virtual bool is_ok();
 
-      //virtual i32 close_socket(socket_id s);
+      //virtual int close_socket(socket_id s);
 
 
 

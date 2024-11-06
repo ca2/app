@@ -74,13 +74,13 @@ namespace xml
 {
 
 
-//   template < i32 m_iNodeNameIndex,class TYPE >
+//   template < int m_iNodeNameIndex,class TYPE >
 //   void
 //   pointer_array<m_iNodeNameIndex,TYPE>::
 //   xml_export(output_tree & xmlof)
 //   {
 //      xmlof.set_attr("count",this->get_size());
-//      for(i32 i = 0; i < this->get_size(); i++)
+//      for(int i = 0; i < this->get_size(); i++)
 //      {
 //         node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator()(i));
 //         pnode->add_attr("array_index",i);
@@ -88,15 +88,15 @@ namespace xml
 //   }
 //
 //
-//   template < i32 m_iNodeNameIndex,class TYPE >
+//   template < int m_iNodeNameIndex,class TYPE >
 //   void
 //   pointer_array<m_iNodeNameIndex,TYPE>::
 //   xml_import(input_tree & xmlif)
 //   {
-//      i32 iSize;
+//      int iSize;
 //      xmlif.get_attr("count",iSize);
 //      this->set_size_create(this, iSize);
-//      for(i32 i = 0; i < this->get_size(); i++)
+//      for(int i = 0; i < this->get_size(); i++)
 //      {
 //         attr_array attra(this->get_app());
 //         attra.set_at("array_index",i);
@@ -117,13 +117,13 @@ namespace xml
 {
 
 
-   template < i32 m_iNodeNameIndex, class TYPE >
+   template < int m_iNodeNameIndex, class TYPE >
    void
       pointer_array<m_iNodeNameIndex, TYPE>::
       xml_export(output_tree & xmlof)
    {
       xmlof.set_attribute("count", this->get_size());
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (int i = 0; i < this->get_size(); i++)
       {
          node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex), this->operator()(i));
          pnode->set_attribute("array_index", i);
@@ -131,15 +131,15 @@ namespace xml
    }
 
 
-   template < i32 m_iNodeNameIndex, class TYPE >
+   template < int m_iNodeNameIndex, class TYPE >
    void
       pointer_array<m_iNodeNameIndex, TYPE>::
       xml_import(input_tree & xmlif)
    {
-      i32 iSize;
+      int iSize;
       iSize = xmlif.attribute("count");
       this->set_size(iSize);
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (int i = 0; i < this->get_size(); i++)
       {
          auto & pitem = this->sp_at(i);
          pitem->create(this);

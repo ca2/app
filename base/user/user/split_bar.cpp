@@ -21,7 +21,7 @@ namespace user
       m_dMaximumRate                            = 0.9;
       m_dRate                                   = -1.0;
       m_dwPosition                              = 1;
-      m_dwMaxPosition                           = (u32) -1;
+      m_dwMaxPosition                           = (unsigned int) -1;
 
    }
 

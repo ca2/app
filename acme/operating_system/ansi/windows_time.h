@@ -10,13 +10,13 @@
 
 
 
-using WORD = ::u16;
+using WORD = unsigned short;
 using LONG = int;
-using WINULONG = ::u32;
+using WINULONG = unsigned int;
 using LONGLONG = ::i64;
 using ULONGLONG = ::u64;
 using NTSTATUS = int;
-using DWORD = ::u32;
+using DWORD = unsigned int;
 using LPDWORD = ::DWORD *;
 
 

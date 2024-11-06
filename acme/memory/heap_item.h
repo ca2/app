@@ -11,7 +11,7 @@ public:
 #ifdef UNIVERSAL_WINDOWS
    DWORD64     m_dwTickCount;
 #else
-   u32       m_dwTickCount;
+   unsigned int       m_dwTickCount;
 #endif
 
 
@@ -25,7 +25,7 @@ public:
 #ifdef UNIVERSAL_WINDOWS
    inline heap_item(void * p,memsize iSize,DWORD64 class ::time)
 #else
-   inline heap_item(void * p,memsize iSize,u32 class ::time)
+   inline heap_item(void * p,memsize iSize,unsigned int class ::time)
 #endif
    {
       m_pbStart = (unsigned char *)point_i32;

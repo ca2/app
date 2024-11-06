@@ -59,7 +59,7 @@ namespace sockets
    //}
 
 
-   //i32 socket::close_socket(socket_id s)
+   //int socket::close_socket(socket_id s)
    //{
 
    //   return ::closesocket(s);
@@ -85,7 +85,7 @@ namespace sockets
 
       //}
 
-      //i32 n;
+      //int n;
 
       //if ((n = close_socket(m_socket)) == -1)
       //{
@@ -119,7 +119,7 @@ namespace sockets
    }
 
 
-//   socket_id socket::CreateSocket(i32 af, i32 iType, const ::string & strProtocol)
+//   socket_id socket::CreateSocket(int af, int iType, const ::string & strProtocol)
 //   {
 //
 //      socket_id s;
@@ -128,7 +128,7 @@ namespace sockets
 //
 //      m_strSocketProtocol = strProtocol;
 //
-//      i32 protno;
+//      int protno;
 //
 //#ifdef ANDROID
 //
@@ -223,7 +223,7 @@ namespace sockets
 //   {
 //#ifdef _WIN32
 //      u_long l = bNb ? 1 : 0;
-//      i32 n = ioctlsocket(s, FIONBIO, &l);
+//      int n = ioctlsocket(s, FIONBIO, &l);
 //      if (n != 0)
 //      {
 //

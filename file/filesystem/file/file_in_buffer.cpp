@@ -18,9 +18,9 @@ namespace file
    {
    }
 
-   bool in_buffer::Create(u32 bufferSize)
+   bool in_buffer::Create(unsigned int bufferSize)
    {
-      const u32 kMinBlockSize = 1;
+      const unsigned int kMinBlockSize = 1;
       if (bufferSize < kMinBlockSize)
          bufferSize = kMinBlockSize;
       if (_bufferBase != 0 && _bufferSize == bufferSize)

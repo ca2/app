@@ -21,7 +21,7 @@
 
 #ifdef LINUX
 //#include <unistd.h>
-i32 create_process(const ::string & pszCommandLine, i32 * pprocessId);
+int create_process(const ::string & pszCommandLine, int * pprocessId);
 #elif defined(MACOS)
 #include <unistd.h>
 #endif
@@ -48,7 +48,7 @@ string vs_build(::particle * pparticle)
 #endif
 
 
-//::u32 RunSilent(const ::string & strFunct, const ::string & strstrParams);
+//unsigned int RunSilent(const ::string & strFunct, const ::string & strstrParams);
 
 
 namespace introjection

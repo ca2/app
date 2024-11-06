@@ -5,7 +5,7 @@
 #include "aura/message/user.h"
 
 
-const i32 simple_list_header_control::s_iDividerWidth = 4;
+const int simple_list_header_control::s_iDividerWidth = 4;
 
 simple_list_header_control::simple_list_header_control()
 {
@@ -34,7 +34,7 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_list_header_control::on_message_mouse_move);
 }
 
-/*i32 simple_list_header_control::GetItemWidth(i32 iItem)
+/*int simple_list_header_control::GetItemWidth(int iItem)
 {
    HDITEM hditem;
 
@@ -147,7 +147,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
 }*/
 
-/*LPARAM simple_list_header_control::GetItemLParam(i32 iItem)
+/*LPARAM simple_list_header_control::GetItemLParam(int iItem)
 {
    HDITEM hditem;
 
@@ -159,7 +159,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 }*/
 
 
-//bool simple_list_header_control::create_window(u32 nStyle, ::user::interaction * puiParent, ::atom atom)
+//bool simple_list_header_control::create_window(unsigned int nStyle, ::user::interaction * puiParent, ::atom atom)
 //{
 //
 //   return ::user::interaction::create_window(nullptr, nullptr, nStyle, puiParent, atom);

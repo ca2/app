@@ -91,20 +91,20 @@ namespace user
       virtual bool IsSelected(const ::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      virtual bool OnScroll(unsigned int nScrollCode, unsigned int nPos, bool bDoScroll = true);
       //virtual bool OnScrollBy(::size_i32 sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
       /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      u32 dwKeyState, const ::point_i32 & point);
+      unsigned int dwKeyState, const ::point_i32 & point);
       virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      u32 dwKeyState, const ::point_i32 & point);
+      unsigned int dwKeyState, const ::point_i32 & point);
       virtual void OnDragLeave();
       virtual bool OnDrop(COleDataObject* pDataObject,
       DROPEFFECT dropEffect, const ::point_i32 & point);
       virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
       DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point_i32 & point);
-      virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point_i32 & point);*/
+      virtual DROPEFFECT OnDragScroll(unsigned int dwKeyState, const ::point_i32 & point);*/
 
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
@@ -137,7 +137,7 @@ namespace user
 
 
 
-      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect, unsigned int nAdjustType = adjustBorder) override;
 
 
 
@@ -169,9 +169,9 @@ namespace user
 
 
       void OnUpdateSplitCmd(::message::command* pCmdUI);
-      bool OnSplitCmd(::u32 nID);
+      bool OnSplitCmd(unsigned int nID);
       void OnUpdateNextPaneMenu(::message::command* pCmdUI);
-      bool OnNextPaneCmd(::u32 nID);
+      bool OnNextPaneCmd(unsigned int nID);
 
       // not mapped commands - must be mapped in derived class
       void OnFilePrint();
@@ -194,26 +194,26 @@ namespace user
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      //      virtual bool OnScroll(unsigned int nScrollCode, unsigned int nPos, bool bDoScroll = true);
       //    virtual bool OnScrollBy(const ::size_i32 & sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
 #ifndef ANDROID
       //virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      //   u32 dwKeyState, const ::point_i32 & point);
+      //   unsigned int dwKeyState, const ::point_i32 & point);
       //virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      //   u32 dwKeyState, const ::point_i32 & point);
+      //   unsigned int dwKeyState, const ::point_i32 & point);
       //virtual void OnDragLeave();
       //virtual bool OnDrop(COleDataObject* pDataObject,
       //   DROPEFFECT dropEffect, const ::point_i32 & point);
       //virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
       //   DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point_i32 & point);
-      //virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point_i32 & point);
+      //virtual DROPEFFECT OnDragScroll(unsigned int dwKeyState, const ::point_i32 & point);
 #endif
 
 
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
-      //virtual void OnActivateFrame(::u32 nState, ::pointer<::user::frame_window>pFrameWnd);
+      //virtual void OnActivateFrame(unsigned int nState, ::pointer<::user::frame_window>pFrameWnd);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

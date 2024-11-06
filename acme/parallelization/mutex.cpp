@@ -562,7 +562,7 @@
 ////
 ////#elif defined(MUTEX_NAMED_VSEM)
 ////
-////mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool bOwner):
+////mutexmutex(e_create_new enew, const char * pstrName, key_t key, int semid, bool bOwner):
 ////   ::matter(pparticle),
 ////   synchronization(pstrName)
 ////{
@@ -720,7 +720,7 @@ mutex::~mutex()
 //
 //      delay.tv_nsec = time.m_i;
 //
-//      i32 ret = sem_timedwait(m_psem, &delay);
+//      int ret = sem_timedwait(m_psem, &delay);
 //
 //      if(ret == 0)
 //      {
@@ -882,7 +882,7 @@ mutex::~mutex()
 //      operation[0].sem_num = 0;
 //      operation[0].sem_flg = 0;
 //
-//      i32 ret = semtimedop(m_semid, operation, 1, &timeout);
+//      int ret = semtimedop(m_semid, operation, 1, &timeout);
 //
 //      if(ret == 0)
 //      {
@@ -1114,7 +1114,7 @@ mutex::~mutex()
 //
 //      timespec delay;
 //
-//      i32 ret = sem_wait(m_psem);
+//      int ret = sem_wait(m_psem);
 //
 //      if (ret == 0)
 //      {
@@ -1283,7 +1283,7 @@ mutex::~mutex()
 //      operation[0].sem_num = 0;
 //      operation[0].sem_flg = 0;
 //
-//      i32 ret = semop(m_semid, operation, 1);
+//      int ret = semop(m_semid, operation, 1);
 //
 //      if(ret < 0)
 //      {
@@ -1699,7 +1699,7 @@ mutex::~mutex()
 //
 //   key_t key = ftok(strName, 0); //Generate a unique key or supply a value
 //
-//   i32 semid = semget(
+//   int semid = semget(
 //               key, // a unique identifier to identify semaphore set
 //               1,  // number of semaphore in the semaphore set
 //               0666 // permissions (rwxrwxrwx) on the ___new

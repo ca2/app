@@ -75,13 +75,13 @@ namespace user
 
       bool OnCommand(wparam wparam, lparam lparam);
 
-      bool OnCommandButton(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
+      bool OnCommandButton(interaction * pinteraction, unsigned int uNotificationCode, lparam lparam);
 
-      bool OnCommandCheckBox(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
+      bool OnCommandCheckBox(interaction * pinteraction, unsigned int uNotificationCode, lparam lparam);
 
-      bool OnCommandComboBox(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
+      bool OnCommandComboBox(interaction * pinteraction, unsigned int uNotificationCode, lparam lparam);
 
-      bool OnCommandEdit(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
+      bool OnCommandEdit(interaction * pinteraction, unsigned int uNotificationCode, lparam lparam);
 
 
 

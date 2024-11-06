@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const char * right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const char * left, const char * right, size_t len);
 
 
 CLASS_DECL_ACME bool equal_ignore_case(const char * left, const char * right, size_t len)
@@ -49,7 +49,7 @@ CLASS_DECL_ACME bool str::trimmed_is_empty(const ::scoped_string & scopedstr)
 
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const string & right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const string & right, size_t len);
 
 
 CLASS_DECL_ACME bool equal_ignore_case(const string & left, const string & right, size_t len)
@@ -60,7 +60,7 @@ CLASS_DECL_ACME bool equal_ignore_case(const string & left, const string & right
 }
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const string & right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right, size_t len);
 
 
 CLASS_DECL_ACME bool equal_ignore_case(const char * left, const string & right, size_t len)
@@ -71,7 +71,7 @@ CLASS_DECL_ACME bool equal_ignore_case(const char * left, const string & right, 
 }
 
 
-CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const char * right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right, size_t len);
 
 
 CLASS_DECL_ACME bool equal_ignore_case(const string & left, const char * right, size_t len)
@@ -85,23 +85,23 @@ CLASS_DECL_ACME bool equal_ignore_case(const string & left, const char * right, 
 
 
 
-CLASS_DECL_ACME void from_string(i8 & i, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(char & i, const ::ansi_character * psz)
 {
 
-   i = (i8)atoi(psz);
+   i = (char)atoi(psz);
 
 }
 
 
-CLASS_DECL_ACME void from_string(i16 & i, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(short & i, const ::ansi_character * psz)
 {
 
-   i = (i16)atoi(psz);
+   i = (short)atoi(psz);
 
 }
 
 
-CLASS_DECL_ACME void from_string(i32 & i, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(int & i, const ::ansi_character * psz)
 {
 
    i = atoi(psz);
@@ -117,7 +117,7 @@ CLASS_DECL_ACME void from_string(i64 & i, const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(i32 & i, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(int & i, int iBase, const ::ansi_character * psz)
 {
 
    i = ansi_to_i32(psz, nullptr, iBase);
@@ -125,7 +125,7 @@ CLASS_DECL_ACME void from_string(i32 & i, i32 iBase, const ::ansi_character * ps
 }
 
 
-CLASS_DECL_ACME void from_string(i64 & i, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(i64 & i, int iBase, const ::ansi_character * psz)
 {
 
    i = ansi_to_i64(psz, nullptr, iBase);
@@ -141,15 +141,15 @@ CLASS_DECL_ACME void from_string(unsigned char & u, const ::ansi_character * psz
 }
 
 
-CLASS_DECL_ACME void from_string(u16 & u, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(unsigned short & u, const ::ansi_character * psz)
 {
 
-   u = (u16)ansi_to_u32(psz, nullptr, 10);
+   u = (unsigned short)ansi_to_u32(psz, nullptr, 10);
 
 }
 
 
-CLASS_DECL_ACME void from_string(u32 & u, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(unsigned int & u, const ::ansi_character * psz)
 {
 
    u = ansi_to_u32(psz, nullptr, 10);
@@ -165,7 +165,7 @@ CLASS_DECL_ACME void from_string(u64 & u, const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(u32 & u, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(unsigned int & u, int iBase, const ::ansi_character * psz)
 {
 
    u = ansi_to_u32(psz, nullptr, iBase);
@@ -173,7 +173,7 @@ CLASS_DECL_ACME void from_string(u32 & u, i32 iBase, const ::ansi_character * ps
 }
 
 
-CLASS_DECL_ACME void from_string(u64 & u, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(u64 & u, int iBase, const ::ansi_character * psz)
 {
 
    u = ansi_to_u64(psz, nullptr, iBase);
@@ -200,14 +200,14 @@ CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
 
-CLASS_DECL_ACME void from_string(long & l, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * psz)
 {
 
    l = ansi_to_i64(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
-CLASS_DECL_ACME void from_string(long & l, i32 iBase, const ::ansi_character * psz)
+CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * psz)
 {
 
    l = ansi_to_i32(psz, nullptr, 10);
@@ -216,7 +216,7 @@ CLASS_DECL_ACME void from_string(long & l, i32 iBase, const ::ansi_character * p
 #endif
 
 
-CLASS_DECL_ACME void from_string(i32 & i, const ::wd16_character * psz)
+CLASS_DECL_ACME void from_string(int & i, const ::wd16_character * psz)
 {
 
    i = wd16_to_i32(psz);
@@ -232,7 +232,7 @@ CLASS_DECL_ACME void from_string(i64 & i, const ::wd16_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(i32 & i, const ::wd32_character * psz)
+CLASS_DECL_ACME void from_string(int & i, const ::wd32_character * psz)
 {
 
    i = wd32_to_i32(psz);

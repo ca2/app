@@ -365,7 +365,7 @@ inline ::u32hash _scoped_string_u32_hash(const ::scoped_string_base<const CHARAC
 
    }
 
-   u32 uHash = 0;
+   unsigned int uHash = 0;
 
    auto p = scopedstr.m_begin;
 

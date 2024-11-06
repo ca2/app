@@ -51,8 +51,8 @@ namespace windows
       docinfo.cbSize = sizeof(docinfo);
       pgraphics->StartDocW(&docinfo);
 
-      i32 iPageCount = m_puserinteraction->get_total_page_count(this);
-      i32 iPageEnd = -1;
+      int iPageCount = m_puserinteraction->get_total_page_count(this);
+      int iPageEnd = -1;
       if (m_iPageStart < 0)
          m_iPageStart = 0;
       if (m_iPageCount >= 0)

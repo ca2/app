@@ -36,7 +36,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, ::point_i32 * ppoint, i32 iCount, double phi)
+   void geometry::rotate(int xParam, int yParam, ::point_i32 * ppoint, int iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -46,15 +46,15 @@ namespace geometry
    }
 
    void geometry::rotate(
-      i32 xParam,
-      i32 yParam,
+      int xParam,
+      int yParam,
       ::point_i32 * ppoint,
 
-      i32 iCount,
+      int iCount,
       double phicos,
       double phisin)
    {
-      for (i32 i = 0; i < iCount; i++)
+      for (int i = 0; i < iCount; i++)
       {
          double x = ppoint[i].x() - xParam;
 
@@ -67,7 +67,7 @@ namespace geometry
       }
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, ::point_f64 * ppoint, i32 iCount, double phi)
+   void geometry::rotate(int xParam, int yParam, ::point_f64 * ppoint, int iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -77,15 +77,15 @@ namespace geometry
    }
 
    void geometry::rotate(
-      i32 xParam,
-      i32 yParam,
+      int xParam,
+      int yParam,
       ::point_f64 * ppoint,
 
-      i32 iCount,
+      int iCount,
       double phicos,
       double phisin)
    {
-      for (i32 i = 0; i < iCount; i++)
+      for (int i = 0; i < iCount; i++)
       {
          double x = ppoint[i].x() - xParam;
 
@@ -145,10 +145,10 @@ namespace geometry
    //}
 
 
-   void rotation::rotate(::point_i32 * ppoint, i32 iCount)
+   void rotation::rotate(::point_i32 * ppoint, int iCount)
 
    {
-      for (i32 i = 0; i < iCount; i++)
+      for (int i = 0; i < iCount; i++)
       {
          long x = ppoint[i].x() - m_iXCenter;
 

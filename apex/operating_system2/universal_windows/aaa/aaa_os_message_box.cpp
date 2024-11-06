@@ -80,7 +80,7 @@ void message_box_w::show(String ^ text,String ^ caption, const ::e_message_box &
 
    MessageDialog ^ msg = ref aaa_primitive_new MessageDialog(text, caption);
 
-   u32 uiType = emessagebox & MB_TYPEMASK;
+   unsigned int uiType = emessagebox & MB_TYPEMASK;
 
    int iCancel = -1;
 

@@ -30,7 +30,7 @@ public:
    /// Private Mutexes
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   i32               m_iSignalId;  // meaningful only when m_bManualEvent
+   int               m_iSignalId;  // meaningful only when m_bManualEvent
    void *            m_pcond; // pthread_cond_t
    void *            m_pmutex; // pthread_mutex_t;
 

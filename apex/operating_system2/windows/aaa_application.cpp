@@ -7,9 +7,9 @@
 //#define TGA_SUCCESS_KILL 2
 //#define TGA_SUCCESS_16 3
 //
-//::u32 TerminateGuiApp(::u32 dwPID, ::u32 tickTimeout);
-////::u32 WINAPI Terminate16App(::u32 dwPID, ::u32 dwThread,
-////   ::u16 w16Task, ::u32 tickTimeout);
+//unsigned int TerminateGuiApp(unsigned int dwPID, unsigned int tickTimeout);
+////unsigned int WINAPI Terminate16App(unsigned int dwPID, unsigned int dwThread,
+////   unsigned short w16Task, unsigned int tickTimeout);
 //
 ////#endif
 //int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::apex::application * papp);
@@ -36,7 +36,7 @@
 //   m_bBlocked = ::BlockInput(true) != false;
 //   //{
 //
-//   //   ::u32 dw = ::GetLastError();
+//   //   unsigned int dw = ::GetLastError();
 //   //   m_bBlocked = false;
 //   //   goto repeat;
 //   //}
@@ -93,11 +93,11 @@
 //   //   App(papp).message_box_timeout(nullptr, "Quiting browser...", seconds(3), MB_ICONASTERISK);
 //   block_input blockinput(papp);
 //
-//   ::u32 u;
-//   ::u32 character_count;
-//   ::u16 vka[3];
+//   unsigned int u;
+//   unsigned int character_count;
+//   unsigned short vka[3];
 //   char text[3];
-//   ::u32 flag[3];
+//   unsigned int flag[3];
 //
 //   vka[0] = VK_CONTROL;
 //   vka[1] = VK_SHIFT;
@@ -124,7 +124,7 @@
 //      return 0;
 //
 //   INPUT input;
-//   ::u32 ::duration = 0;
+//   unsigned int ::duration = 0;
 //
 //   character_count = 3;
 //   for (u = 0; u < character_count; u++)
@@ -215,10 +215,10 @@
 //      //keystroke[i + character_count].ki.dwFlags = flag[character_count - i - 1] | KEYEVENTF_KEYUP;
 //      //keystroke[i + character_count].ki.time = ::duration;
 //      //keystroke[i + character_count].ki.dwExtraInfo = GetMessageExtraInfo();
-//      //      SendInput((::u32)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//      //      SendInput((unsigned int)keystrokes_to_send, keystroke, sizeof(*keystroke));
 //   }
 //
-//   //keystrokes_sent = SendInput((::u32)keystrokes_to_send, keystroke, sizeof(*keystroke));
+//   //keystrokes_sent = SendInput((unsigned int)keystrokes_to_send, keystroke, sizeof(*keystroke));
 //
 //   //Send the keystrokes.
 //   //delete[] keystroke;
@@ -755,7 +755,7 @@
 //////
 //////
 //////   const SHORT Vk = VkKeyScanExW(ch, hkl);
-//////   //const ::u32 VKey = ::MapVirtualKey(lower_u8(Vk), 0);
+//////   //const unsigned int VKey = ::MapVirtualKey(lower_u8(Vk), 0);
 //////
 //////   if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 //////   {
@@ -816,7 +816,7 @@
 //////   sleep(iSleep);
 //////
 //////   //const SHORT Vk = VkKeyScanExW(ch, hkl);
-//////   ////const ::u32 VKey = ::MapVirtualKey(lower_u8(Vk), 0);
+//////   ////const unsigned int VKey = ::MapVirtualKey(lower_u8(Vk), 0);
 //////
 //////   //if (HIBYTE(Vk) == 1) // Check if shift key needs to be pressed for this key
 //////   //{
@@ -916,10 +916,10 @@
 //
 //BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam);
 //
-//::u32 TerminateGuiApp(::u32 dwPID, ::u32 tickTimeout)
+//unsigned int TerminateGuiApp(unsigned int dwPID, unsigned int tickTimeout)
 //{
 //   HANDLE   hProc;
-//   ::u32   dwRet;
+//   unsigned int   dwRet;
 //
 //   // If we can't open the process with PROCESS_TERMINATE rights,
 //   // then we give up immediately.
@@ -951,11 +951,11 @@
 //
 //BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 //{
-//   ::u32 dwID;
+//   unsigned int dwID;
 //
 //   GetWindowThreadProcessId(hwnd, &dwID);
 //
-//   if (dwID == (::u32)lParam)
+//   if (dwID == (unsigned int)lParam)
 //   {
 //      PostMessage(hwnd, e_message_close, 0, 0);
 //   }

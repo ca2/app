@@ -22,12 +22,12 @@ osdisplay_data::osdisplay_data()
 
 
 
-i32 osdisplay_find(Display * pdisplay)
+int osdisplay_find(Display * pdisplay)
 {
 
    single_lock synchronouslock(user_synchronization(), true);
 
-   for(i32 i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
+   for(int i = 0; i < osdisplay_data::s_pdataptra->get_count(); i++)
    {
       if(osdisplay_data::s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
       {
@@ -80,7 +80,7 @@ bool osdisplay_erase(Display * pdisplay)
 
 }
 
-Atom osdisplay_data::get_window_long_atom(i32 nIndex)
+Atom osdisplay_data::get_window_long_atom(int nIndex)
 {
 
    if(this == nullptr)

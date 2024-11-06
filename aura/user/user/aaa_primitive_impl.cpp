@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
+   //void primitive_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::rectangle_i32 * prectParam, const rectangle_i32 & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -863,7 +863,7 @@ namespace user
 
             // ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<::u32>(wparam);
+            pmessage->m_nChar = static_cast<unsigned int>(wparam);
 
             pmessage->m_nRepCnt = lower_u16(lparam);
 
@@ -886,7 +886,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uEvent = static_cast<::u32>(wparam);
+         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
 
       }
       break;
@@ -895,7 +895,7 @@ namespace user
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<::u32>(lparam);
+         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
 
       }
       break;
@@ -934,9 +934,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(i16)lower_u16(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(short)lower_u16(wparam);
 
-         pmessage->m_dPosition = (::f64) (i16)upper_u16(wparam);
+         pmessage->m_dPosition = (::f64) (short)upper_u16(wparam);
 
       }
       break;
@@ -1023,7 +1023,7 @@ namespace user
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <::u32> (wparam);
+         pmessage->m_nType = static_cast <unsigned int> (wparam);
 
          pmessage->m_size = ::size_i32(i32_x(lparam), i32_y(lparam));
       }
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags)
+   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point, unsigned int nFlags)
    {
 
       return nullptr;
@@ -1414,7 +1414,7 @@ namespace user
    }
 
 
-   void primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
    {
 
       if (!m_puserinteraction)
@@ -1431,7 +1431,7 @@ namespace user
    }
 
 
-   //u32 primitive_impl::GetStyle() const
+   //unsigned int primitive_impl::GetStyle() const
    //{
 
    //   return get_window_long(GWL_STYLE);
@@ -1439,7 +1439,7 @@ namespace user
    //}
 
 
-   //u32 primitive_impl::GetExStyle() const
+   //unsigned int primitive_impl::GetExStyle() const
    //{
 
    //   return get_window_long(GWL_EXSTYLE);
@@ -1447,7 +1447,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void primitive_impl::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
    //{
 
    //   int l = GetStyle();
@@ -1465,7 +1465,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void primitive_impl::ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -1668,7 +1668,7 @@ namespace user
    }
 
 
-   ::u32 primitive_impl::ArrangeIconicWindows()
+   unsigned int primitive_impl::ArrangeIconicWindows()
    {
 
       //      return m_puserinteraction->ArrangeIconicWindows();
@@ -1783,7 +1783,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_wnd(::u32 nCmd)
+   ::user::interaction * primitive_impl::get_wnd(unsigned int nCmd)
    {
 
       if (!m_puserinteraction)

@@ -31,7 +31,7 @@
 * This table contains as many values as there might be trailing bytes
 * in a UTF-8 sequence.
 */
-static const u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                                              0x03C82080UL, 0xFA082080UL, 0x82082080UL
                                            };
 
@@ -58,7 +58,7 @@ static const u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL
 
 
 
-i32 uni_to_utf8(char * dest, i32 ch)
+int uni_to_utf8(char * dest, int ch)
 {
    if (ch < 0x80)
    {
@@ -90,7 +90,7 @@ i32 uni_to_utf8(char * dest, i32 ch)
 
 }
 
-i32 uni_to_utf8_2_or_more(char * dest, i32 ch)
+int uni_to_utf8_2_or_more(char * dest, int ch)
 {
    if (ch < 0x800)
    {
@@ -122,7 +122,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
-   i32 count = 0;
+   int count = 0;
    while(*psz != 0)
    {
       psz++;
@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
-   i32 count = 0;
+   int count = 0;
    while((psz = unicode_next(psz)) != nullptr)
    {
       count++;
@@ -148,7 +148,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
-   i32 count = 0;
+   int count = 0;
    while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
    {
       count++;
@@ -264,12 +264,12 @@ WCHAR * ansi_to_wd16(const ::ansi_character * psz)
 
 }*/
 
-i32 utf8_len(const ::wide_character * pwsz)
+int utf8_len(const ::wide_character * pwsz)
 {
    if(pwsz == nullptr)
       return -1;
-   i32 count = 0;
-   i32 n;
+   int count = 0;
+   int n;
    char sz[16];
    while(*pwsz != L'\0')
    {
@@ -282,12 +282,12 @@ i32 utf8_len(const ::wide_character * pwsz)
    return count;
 }
 
-i32 utf8_len_len(const ::wide_character * pwsz, strsize srclen)
+int utf8_len_len(const ::wide_character * pwsz, strsize srclen)
 {
    if(pwsz == nullptr)
       return -1;
-   i32 count = 0;
-   i32 n;
+   int count = 0;
+   int n;
    char sz[16];
    while(srclen > 0 && *pwsz != L'\0')
    {
@@ -302,7 +302,7 @@ i32 utf8_len_len(const ::wide_character * pwsz, strsize srclen)
 }
 
 
-i32 x_size_of_tables()
+int x_size_of_tables()
 {
 
    return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);

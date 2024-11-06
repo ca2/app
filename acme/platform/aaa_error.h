@@ -10,7 +10,7 @@ class c_error
 {
 public:
 
-   inline static ::u32 get_last_error()
+   inline static unsigned int get_last_error()
    {
 
       return errno;
@@ -33,7 +33,7 @@ class CLASS_DECL_ACME sys_error
 {
 public:
 
-   static ::u32 get_last_error() { return ::get_last_status(); }
+   static unsigned int get_last_error() { return ::get_last_status(); }
 
    static string GetErrorDescription(int iErrorCode = get_last_error())
    {

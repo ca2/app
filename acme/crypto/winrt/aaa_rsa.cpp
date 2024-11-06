@@ -42,7 +42,7 @@ namespace winrt
 
             //    memVer.from_hex("00");
 
-            //  memVer.prefix_der_::u32();
+            //  memVer.prefix_der_unsigned int();
 
       memfile.write(&blob, sizeof(blob));
 
@@ -56,7 +56,7 @@ namespace winrt
 
 
 
-      //memMod.prefix_der_::u32();
+      //memMod.prefix_der_unsigned int();
 
       memory memExp;
 
@@ -68,7 +68,7 @@ namespace winrt
 
       memfile.write(memMod.get_data(), memMod.get_size());
 
-      //memExp.prefix_der_::u32();
+      //memExp.prefix_der_unsigned int();
 
       ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ cipher =
       

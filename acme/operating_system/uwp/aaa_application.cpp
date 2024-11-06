@@ -64,9 +64,9 @@ namespace acme
       char lpszModuleFilePath[MAX_PATH + 1];
       GetModuleFileName(nullptr, lpszModuleFilePath, MAX_PATH + 1);
 
-      ::u32 dw;
+      unsigned int dw;
 
-      ::u32 dwResSize = GetFileVersionInfoSize(
+      unsigned int dwResSize = GetFileVersionInfoSize(
                         lpszModuleFilePath,
                         &dw);
 
@@ -80,11 +80,11 @@ namespace acme
                dwResSize,
                lpdata))
          {
-            ::u32 cbTranslate;
+            unsigned int cbTranslate;
             struct LANGANDCODEPAGE
             {
-               ::u16 wLanguage;
-               ::u16 wCodePage;
+               unsigned short wLanguage;
+               unsigned short wCodePage;
             } *lpTranslate;
 
             // read the list of languages and code pages.
@@ -99,7 +99,7 @@ namespace acme
             for(int i=0; i < 1; i++ )
             {
                char * lpsz;
-               ::u32 uSize;
+               unsigned int uSize;
 
                strKey.formatf(
                TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
@@ -170,7 +170,7 @@ namespace acme
    //   // avoid calling CloseHandle() on our own thread handle
    //   // during the thread destructor
    //   set_os_data(nullptr);
-   //   //i32 iRet = ::platform::application::term_instance();
+   //   //int iRet = ::platform::application::term_instance();
 
    //   //::pointer<application_base>:destroy();
 
@@ -304,7 +304,7 @@ namespace acme
 //   }
 
 
-   //u32 application::get_thread_id()
+   //unsigned int application::get_thread_id()
    //{
 
    //   return ::GetCurrentThreadId();

@@ -5,5 +5,5 @@
 //CLASS_DECL_ACME int get_process_pid(const char * csProcessName);
 
 
-i32 process_get_os_priority(i32 nCa2Priority);
-i32 process_get_scheduling_priority(i32 iOsPriority);
+int process_get_os_priority(int nCa2Priority);
+int process_get_scheduling_priority(int iOsPriority);

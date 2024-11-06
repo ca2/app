@@ -26,9 +26,9 @@ namespace hotplugin
       bool                          m_bInitialized;
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
-      i32                       m_iHealingSurface;
-      u32                      m_last_redraw;
-      i32                       m_iEdge;
+      int                       m_iHealingSurface;
+      unsigned int                      m_last_redraw;
+      int                       m_iEdge;
       bool                          m_bAppStarted;
       manual_reset_event            m_evReady;
       bool                          m_bApp;
@@ -55,7 +55,7 @@ namespace hotplugin
       ::point_i32                         m_pointCursorPhase;
 
       class ::time m_timeSync;
-      i32                       m_iDelta;
+      int                       m_iDelta;
 
 
       plugin();
@@ -125,7 +125,7 @@ namespace hotplugin
 
       virtual void start_plugin();
 
-      virtual i32  start_ca2_system();
+      virtual int  start_ca2_system();
 
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & prectangle);
 
@@ -137,7 +137,7 @@ namespace hotplugin
 
 #if !defined(WINDOWS) && !defined(APPLEOS) && !defined(ANDROID)
       using ::user::interaction::message_handler;
-      virtual i32 x11_message_handler(void * pevent);
+      virtual int x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::user::message * pusermessage) override;
       virtual void plugin_message_handler(const ::atom & atom, wparam wparam, lparam lparam, bool bEnsureTx);
@@ -180,7 +180,7 @@ namespace hotplugin
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      virtual void get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, i32 iProfile);
+      virtual void get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, int iProfile);
 
       virtual void on_host_timer();
 

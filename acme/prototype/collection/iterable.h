@@ -1553,7 +1553,7 @@ end:
       {
          str = get_at(0);
       }
-      for (i32 i = 1; i < iterable.m_nSize; i++)
+      for (int i = 1; i < iterable.m_nSize; i++)
       {
          str += lpcszSeparator + get_at(i);
       }
@@ -1568,12 +1568,12 @@ end:
    {
    ITERABLE  strArray;
    u32_array dwa;
-   for(i32 i = 0; i < iterable.m_nSize; i++)
+   for(int i = 0; i < iterable.m_nSize; i++)
    {
    strArray.add_tokens(get_at(i), "/", false);
    if(strArray.get_size() > 1)
    {
-   for(i32 j = 0; j < strArray.get_size(); j++)
+   for(int j = 0; j < strArray.get_size(); j++)
    {
    add_unique(strArray.get_at(j));
    }
@@ -2736,7 +2736,7 @@ end:
       ITYPE istring(psz);
 
       // 1 = st // 2 = str
-      i32 status = 1;
+      int status = 1;
       char to = '\0';
 
       add("");
@@ -2787,7 +2787,7 @@ end:
    void replace(ITERABLE & iterable, const ITYPE & lpszSearch, const ITYPE & lpszReplace)
    {
 
-      for (i32 i = 0; i < iterable.get_size(); i++)
+      for (int i = 0; i < iterable.get_size(); i++)
       {
 
          iterable.element_at(i).replace(lpszSearch, lpszReplace);
@@ -3445,7 +3445,7 @@ end:
 
    //   array < atom > ida;
 
-   //   for (i32 i = 0; i < get_count(); i++)
+   //   for (int i = 0; i < get_count(); i++)
    //   {
    //      iterable2.add(element_at(i));
    //   }
@@ -3461,12 +3461,12 @@ end:
    ITYPE encode_v16(const ITERABLE & iterable)
    {
       ITYPE strEncode;
-      for (i32 u = 0; u < iterable.get_count(); u++)
+      for (int u = 0; u < iterable.get_count(); u++)
       {
          ITYPE & str = iterable.element_at(u);
          strEncode += hex::lower_from((const char*)str);
          strEncode += "00";
-         /*      for(i32 uj = 0; uj < str.length(); uj++)
+         /*      for(int uj = 0; uj < str.length(); uj++)
          {
          char sz[32];
          ansi_from_i64(sz, str[uj], 16);
@@ -3495,7 +3495,7 @@ end:
    template < typename ITERABLE, typename ITYPE >
    void decode_v16(const ITERABLE & iterable, const ITYPE & psz)
    {
-      i32 iSize = 1024;
+      int iSize = 1024;
       char * str = nullptr;
       if (psz == nullptr)
          return;
@@ -3509,7 +3509,7 @@ end:
          sz[1] = psz[0];
          sz[2] = '\0';
          const ITYPE & pszEnd;
-         i32 iConversion = ::ansi_to_i32(sz, &pszEnd, 16);
+         int iConversion = ::ansi_to_i32(sz, &pszEnd, 16);
          char ch = static_cast <char> (iConversion);
          if (ch == '\0')
          {

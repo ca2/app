@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 
-extern "C" i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols);
+extern "C" int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char** cols);
 
 
 namespace sqlite
@@ -77,7 +77,7 @@ namespace sqlite
    }
 
 
-   void database::set_error_code(i32 iErrorCode)
+   void database::set_error_code(int iErrorCode)
    {
 
       switch (iErrorCode)
@@ -159,7 +159,7 @@ namespace sqlite
 
       char * errmsg = nullptr;
 
-      i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, nullptr, nullptr, &errmsg);
+      int iResult = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, nullptr, nullptr, &errmsg);
 
       set_error_code(iResult);
 
@@ -380,7 +380,7 @@ namespace sqlite
          //cout << "Connected!\n";
          char * err = nullptr;
 
-         i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
+         int iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
                                     &err);
 
          set_error_code(iResult);
@@ -528,7 +528,7 @@ namespace sqlite
 
    //   }
 
-   //   i32 atom;
+   //   int atom;
 
    //   database::result_set res;
 
@@ -562,7 +562,7 @@ namespace sqlite
    //   else
    //   {
 
-   //      atom = res.m_records[0][0].i32() + 1;
+   //      atom = res.m_records[0][0].int() + 1;
 
    //      sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table.c_str(),atom,sname);
 
@@ -736,7 +736,7 @@ namespace sqlite
             if (m_pstmtReplace == nullptr)
             {
 
-               i32 iResult = sqlite3_prepare_v2(
+               int iResult = sqlite3_prepare_v2(
                   (sqlite3 *) get_handle(),
                   "REPLACE INTO blobtable (id, value) values (:id, :value);",
                   -1,
@@ -815,7 +815,7 @@ namespace sqlite
       if (m_pstmtSelect == nullptr)
       {
 
-         i32 iResult = sqlite3_prepare_v2(
+         int iResult = sqlite3_prepare_v2(
             (sqlite3 *) get_handle(),
             "select `value` FROM `blobtable` WHERE `id` = :id;",
             -1,
@@ -915,7 +915,7 @@ namespace sqlite
 
 
 extern "C"
-i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
+int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char** cols)
 {
 
    database::result_set * presultset = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
@@ -983,7 +983,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
       ::collection::count iMaxColumn = minimum_non_negative((::collection::count) ncol, presultset->m_iMaxColumnCount);
 
-      for (i32 i = 0; i < iMaxColumn; i++)
+      for (int i = 0; i < iMaxColumn; i++)
       {
 
          if (reslt[i] == nullptr)

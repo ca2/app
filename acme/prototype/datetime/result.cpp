@@ -127,10 +127,10 @@ datetime::result operator + (const datetime::result & val1, const datetime::resu
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      i32 iTotalSecond = val1.m_iSecond + val2.m_iSecond;
-      i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
-      i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
-      i32 iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
+      int iTotalSecond = val1.m_iSecond + val2.m_iSecond;
+      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
+      int iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
+      int iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -172,10 +172,10 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      i32 iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      i32 iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -194,12 +194,12 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    else
    {
       val.m_bSpan = true;
-      i32 iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      i32 iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      i32 iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      i32 iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
-      i32 iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
-      i32 iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
+      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      int iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
+      int iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -221,10 +221,10 @@ datetime::result operator * (const datetime::result & val1, double d)
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;
       double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (i32) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (i32) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (i32) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (i32) dTotalDay;
+      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (int) dTotalDay;
    }
    else
    {
@@ -251,10 +251,10 @@ datetime::result operator / (const datetime::result & val1, double d)
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;
       double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (i32) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (i32) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (i32) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (i32) dTotalDay;
+      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (int) dTotalDay;
 
    }
    else

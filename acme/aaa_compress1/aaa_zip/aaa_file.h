@@ -44,13 +44,13 @@ namespace zip
 
 
 
-void *         c_zip_file_open_file_func        (void * opaque, const char* filename, i32 mode);
+void *         c_zip_file_open_file_func        (void * opaque, const char* filename, int mode);
 uptr       c_zip_file_read_file_func        (void * opaque, void * stream, void * buf, uptr size);
 uptr       c_zip_file_write_file_func       (void * opaque, void * stream, const void * buf, uptr size);
 long           c_zip_file_tell_file_func        (void * opaque, void * stream);
-long           c_zip_file_seek_file_func        (void * opaque, void * stream, uptr offset, i32 origin);
-i32        c_zip_file_close_file_func       (void * opaque, void * stream);
-i32        c_zip_file_testerror_file_func   (void * opaque, void * stream);
+long           c_zip_file_seek_file_func        (void * opaque, void * stream, uptr offset, int origin);
+int        c_zip_file_close_file_func       (void * opaque, void * stream);
+int        c_zip_file_testerror_file_func   (void * opaque, void * stream);
 
 
 

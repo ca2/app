@@ -42,7 +42,7 @@ namespace macos
       ::file::path dynamic_library::module_path(library_t * plibrary)
       {
          
-         for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+         for (int i = _dyld_image_count(); i >= 0 ; i--)
          {
             
             ::string strMessage;
@@ -80,7 +80,7 @@ namespace macos
          
          strLibTitle = "lib" + strLibTitle;
          
-         for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+         for (int i = _dyld_image_count(); i >= 0 ; i--)
          {
             
             path = _dyld_get_image_name(i);
@@ -123,7 +123,7 @@ namespace macos
          
          ::file::path pathInProcess;
          
-         for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+         for (int i = _dyld_image_count(); i >= 0 ; i--)
          {
             
             pathInProcess = _dyld_get_image_name(i);

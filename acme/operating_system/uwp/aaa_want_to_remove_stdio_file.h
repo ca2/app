@@ -24,13 +24,13 @@ namespace universal_windows
 
 
       virtual void write_string(const char * lpsz);
-      virtual char * read_string(char * lpsz, ::u32 nMax);
+      virtual char * read_string(char * lpsz, unsigned int nMax);
       virtual bool read_string(string & rString);
 
       virtual ~stdio_file();
       void dump(dump_context & dumpcontext) const;
       virtual filesize get_position() const;
-      virtual ::extended::status open(const ::file::path & lpszFileName,::u32 nOpenFlags);
+      virtual ::extended::status open(const ::file::path & lpszFileName,unsigned int nOpenFlags);
       virtual memsize read(void * lpBuf, memsize nCount);
       virtual void write(const void * lpBuf, memsize nCount);
       virtual filesize seek(filesize lOff, ::enum_seek eseek);

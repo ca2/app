@@ -261,7 +261,7 @@ class synchronous_lock;
 //   return psync->wait(duration);
 //}
 //
-//void wait(i32 numberOfItems, synchronization* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
+//void wait(int numberOfItems, synchronization* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
 //
 //#else
 //

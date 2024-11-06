@@ -70,11 +70,11 @@ namespace simple_ui
       for (j = 0; j < jCount; j++)
       {
       double dPhase = fmod((((double) ::get_tick() * 360 * 0.5984 / 1000.0) + (i * 360.0 / (double)iCount) + (j * 360.0 / (double)jCount) + ((double)(sin(((double) ::get_tick() * 3.1415 * 2.0  *0.0484 / 1000.0) + i * 3.1415 * 2.0 * 2.0 / (double)(iCount)) * sin(((double) ::get_tick() * 3.1415 * 2.0  * 0.0484 / 1000.0) + j * 3.1415 * 2.0 * 2.0 / (double)(jCount)) * 360))), 360.0);
-      i32 iR;
-      i32 iG;
-      i32 iB;
+      int iR;
+      int iG;
+      int iB;
       double dRate = fmod(dPhase, 60.0) / 60.0;
-      i32 iColor = (i32)(dRate * 155.0);
+      int iColor = (int)(dRate * 155.0);
       if (dPhase < 60)
       {
       // purple to blue
@@ -400,21 +400,21 @@ namespace simple_ui
 
       }
 
-      i32 iBorderH = minimum(rectangle.height() / 2, 49);
+      int iBorderH = minimum(rectangle.height() / 2, 49);
 
       auto pbrush = __create < ::draw2d::brush > ();
 
       pbrush->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 
-      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top(), (i32)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top(), (int)rectangle.width(), iBorderH), pbrush);
 
       pbrush->create_solid(crIn);
 
-      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top() + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), pbrush);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.top() + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), pbrush);
 
       pbrush->CreateLinearGradientBrush(point_i32(rectangle.left(), rectangle.bottom() - iBorderH), rectangle.bottom_left(), crIn, crOut);
 
-      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.bottom() - iBorderH, (i32)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left(), rectangle.bottom() - iBorderH, (int)rectangle.width(), iBorderH), pbrush);
 
    }
 

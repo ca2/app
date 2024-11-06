@@ -53,8 +53,8 @@ typedef enum {
 
 
 #endif
-i32   br_init             (BrInitError *error);
-i32   br_init_lib         (BrInitError *error);
+int   br_init             (BrInitError *error);
+int   br_init_lib         (BrInitError *error);
 
 char *br_find_exe         (const char *default_exe);
 char *br_find_exe_dir     (const char *default_dir);

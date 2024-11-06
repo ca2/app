@@ -263,7 +263,7 @@ namespace axis
 
 
 
-   //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
+   //void application::DoWaitCursor(int nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
    //   __UNREFERENCED_PARAMETER(nCode);

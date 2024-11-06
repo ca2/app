@@ -52,20 +52,20 @@ public:
 struct tagEXTLOGPEN :
    public gdi_object
 {
-    ::u32       elpPenStyle;
-    ::u32       elpWidth;
-    ::u32        elpBrushStyle;
+    unsigned int       elpPenStyle;
+    unsigned int       elpWidth;
+    unsigned int        elpBrushStyle;
     color32_t    elpColor;
     ulong_ptr   elpHatch;
-    ::u32       elpNumEntries;
-    ::u32       elpStyleEntry[1];
+    unsigned int       elpNumEntries;
+    unsigned int       elpStyleEntry[1];
 };
 
 
 struct tagEXTLOGBRUSH :
    public gdi_object
 {
-	::u32        lbStyle;
+	unsigned int        lbStyle;
 	color32_t    lbColor;
 	ulong_ptr   lbHatch;
 };
@@ -75,7 +75,7 @@ struct tagEXTLOGBRUSH :
 struct tagLOGRGN :
    public gdi_object
 {
-	::u32        m_uiSize;
+	unsigned int        m_uiSize;
 	unsigned char *      m_puchData;
 };
 

@@ -14,7 +14,7 @@ namespace html
 
    tag::~tag()
    {
-      for(i32 i = 0; i < m_baseptra.get_size(); i++)
+      for(int i = 0; i < m_baseptra.get_size(); i++)
       {
          delete m_baseptra[i];
       }

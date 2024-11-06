@@ -33,7 +33,7 @@ pmessagebox->sync();
 
 
 
-string FormatMessageFromSystem(u32 dwError)
+string FormatMessageFromSystem(unsigned int dwError)
 {
 
 

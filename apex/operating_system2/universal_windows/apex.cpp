@@ -57,7 +57,7 @@
 //
 //
 //
-//VOID WINAPI sleep(::u32 dw::times)
+//VOID WINAPI sleep(unsigned int dw::times)
 //{
 //   static HANDLE singletonEvent = nullptr;
 //
@@ -89,7 +89,7 @@
 // typedef bool
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
 // _In_ const ::atom & atom,
-// _In_ ::u32 dwFlag);
+// _In_ unsigned int dwFlag);
 
 
 // LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
@@ -101,7 +101,7 @@ LSTATUS
     HKEY hkey,
     const ::wide_character * lpSubKey,
     const ::wide_character * lpValue,
-    ::u32 dwFlags,
+    unsigned int dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -307,11 +307,11 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 
 
-//string get_last_error_message(u32 dwError)
+//string get_last_error_message(unsigned int dwError)
 //{
 //   wstring wstr;
 //   unichar * p = wstr.get_buffer(64 * 1024 / sizeof(unichar));
-//   ::u32 dw = FormatMessageW(
+//   unsigned int dw = FormatMessageW(
 //              FORMAT_MESSAGE_FROM_SYSTEM,
 //              nullptr,
 //              dwError,
@@ -328,7 +328,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 
 
-//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times )
+//unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::times )
 //{
 //
 //   return ::WaitForSingleObjectEx(hHandle, dw::times, false);

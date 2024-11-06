@@ -16,7 +16,7 @@ namespace networking_bsd
       virtual ~http_buffer();
 
 
-      virtual ::extended::status open(const ::file::path & pszFileName, ::u32 nOpenFlags);
+      virtual ::extended::status open(const ::file::path & pszFileName, unsigned int nOpenFlags);
 
 
 

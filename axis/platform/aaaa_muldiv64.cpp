@@ -35,8 +35,8 @@
        AD || BD
  AC || CB || 0
 
- where A and B are the high and low i16 words of V1,
- C and D are the i16 words of V2, AD is the product of
+ where A and B are the high and low short words of V1,
+ C and D are the short words of V2, AD is the product of
  A and D, and X || Y is (X << 16) + Y.
  Since the algorithm is programmed in C, we need to be
  careful not to overflow.
@@ -95,7 +95,7 @@ void mul64(i64 v1, i64 v2, i64 & hi, u64 & lo)
 }
 
 
-// http://stackoverflow.com/questions/1870158/u32-128-bit-division-on-64-bit-machine
+// http://stackoverflow.com/questions/1870158/unsigned int-128-bit-division-on-64-bit-machine
    //64t hi, lo;
    //32t div;
 
@@ -151,21 +151,21 @@ i64 div128_64(i64 hi, u64 lo, i64 div, u64 & remainder)
 
 /** the two 32 bit parts of an 64 bit integer */
 struct  u64_u32{
-    u32 l : 32;
-    u32 h : 32;
+    unsigned int l : 32;
+    unsigned int h : 32;
 };
 
 /**
  * determine the msb of a value in O(log log n)
  * @author Sean Eron Anderson
  */
-inline u32 msb(u64 value)
+inline unsigned int msb(u64 value)
 {
-    const i32 MAX_LOGLOG = 6;
+    const int MAX_LOGLOG = 6;
     const u64 BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
-    const u32 EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
-    u32 r = 0;
-    for (i32 i = MAX_LOGLOG-1; i >= 0; i--)  {
+    const unsigned int EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
+    unsigned int r = 0;
+    for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
         if (value & BIT_LL[i])  {
             value >>= EXP_LL[i];
             r |= EXP_LL[i];
@@ -279,7 +279,7 @@ i64 _stdcall muldiv64(i64 number, i64 numerator, i64 denominator)
 //       pushfd
 //    }
 
-//    // Take absolute values because algorithm is for u32 only
+//    // Take absolute values because algorithm is for unsigned int only
 //    operant      = ABS64(operant);
 //    multiplier   = ABS64(multiplier);
 

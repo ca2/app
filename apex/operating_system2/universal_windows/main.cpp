@@ -25,7 +25,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //::application *     win_application_create(::apex::application * pappSystem, const ::scoped_string & scopedstrId);
 //::application *     win_instantiate_application(::apex::application * pappSystem, const ::scoped_string & scopedstrId);
 //int                     win_application_procedure(::apex::application * pappSystem)
-//::u32 c_cdecl          win_application_thread_proc(LPVOID);
+//unsigned int c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
 // Standard WinMain implementation
 //  Can be replaced as long as '::ca2::WinInit' is called first

@@ -3,7 +3,7 @@
 #include "serialization.h"
 
 
-serialization_exception::serialization_exception(::e_status estatus, const ::scoped_string & scopedstrMessage, i32 iSkip) :
+serialization_exception::serialization_exception(::e_status estatus, const ::scoped_string & scopedstrMessage, int iSkip) :
    ::exception(estatus, scopedstrMessage, nullptr, iSkip)
 {
 

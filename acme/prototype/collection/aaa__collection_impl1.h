@@ -31,7 +31,7 @@ namespace gen
           pvar->parray = SafeArrayCreate(vt, 1, rgsabound);
           if(pvar->parray == nullptr)
               return false;
-          for(i32 i = 0; i < get_size(); i++)
+          for(int i = 0; i < get_size(); i++)
           {
               SafeArrayPutElement(pvar->parray, (long *) &i, &ar.element_at(i));
           }
@@ -43,7 +43,7 @@ namespace gen
       //    WINDOWS_DEFINITION_MANAGE_STATE(::windows_definition::GetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));
           ar.erase_all();
-          ::u32 uDim;
+          unsigned int uDim;
 
           if(1 != (uiDim = SafeArrayGetDim(pvar->parray)))
           {
@@ -65,8 +65,8 @@ namespace gen
               return false;
           }
 
-          ::u32 dw;
-          for(i32 i = lLBound; i <= lUBound; i++)
+          unsigned int dw;
+          for(int i = lLBound; i <= lUBound; i++)
           {
               SafeArrayGetElement(pvar->parray, (long *) &i, &dw);
               ar.add(dw);

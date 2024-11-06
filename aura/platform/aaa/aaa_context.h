@@ -83,7 +83,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual file_pointer friendly_get_file(::payload payloadFile, ::u32 nOpenFlags);
+   virtual file_pointer friendly_get_file(::payload payloadFile, unsigned int nOpenFlags);
 
 
    virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::interaction_base * pinteraction, bool bNoUI = false, bool bNoMount = false);

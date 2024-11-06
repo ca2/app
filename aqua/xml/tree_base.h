@@ -25,7 +25,7 @@ namespace xml
       tree_base();
       virtual ~tree_base();
 
-      string get_node_name(i32 iNameIndex);
+      string get_node_name(int iNameIndex);
 
       void set_schema(tree_schema * pschema);
       tree_schema & get_schema();

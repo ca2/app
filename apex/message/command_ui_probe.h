@@ -60,7 +60,7 @@
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
 //   const ::scoped_string & scopedstrParams;      // member parameter description
 
-//   ::u16 vt;                // return value type / or type of property
+//   unsigned short vt;                // return value type / or type of property
 //   __PMSG pfn;           // normal member On<membercall> or, OnGet<property>
 //   __PMSG pfnSet;        // special member for OnSet<property>
 //   size_t nPropOffset;     // property offset
@@ -71,8 +71,8 @@
 //struct CLASS_DECL_APEX __EVENTSINKMAP_ENTRY
 //{
 //   __DISPMAP_ENTRY dispEntry;
-//   ::u32 nCtrlIDFirst;
-//   ::u32 nCtrlIDLast;
+//   unsigned int nCtrlIDFirst;
+//   unsigned int nCtrlIDLast;
 //};
 //
 //// DSC Sink state/reason codes passed to apex API ::account::user event handlers

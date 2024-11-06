@@ -39,21 +39,21 @@
 #define A_BLINK 2
 
 // Translates conio foreground/background colors to ncurses colors.
-const i32 ForegroundColors[16] = {
+const int ForegroundColors[16] = {
   COLOR_BLACK, COLOR_BLUE, COLOR_GREEN, COLOR_CYAN, COLOR_RED, COLOR_MAGENTA,
   COLOR_YELLOW, COLOR_WHITE, COLOR_BLACK, COLOR_BLUE, COLOR_GREEN, COLOR_CYAN,
   COLOR_RED, COLOR_MAGENTA, COLOR_YELLOW, COLOR_WHITE
 };
-const i32 ForegroundFlags[16] = {
+const int ForegroundFlags[16] = {
   A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL,
   A_NORMAL,
   A_BOLD, A_BOLD, A_BOLD, A_BOLD, A_BOLD, A_BOLD, A_BOLD, A_BOLD
 };
-const i32 BackgroundColors[8] = {
+const int BackgroundColors[8] = {
   COLOR_BLACK, COLOR_BLUE, COLOR_GREEN, COLOR_CYAN, COLOR_RED, COLOR_MAGENTA,
   COLOR_YELLOW, COLOR_WHITE
 };
-const i32 BackgroundFlags[16] = {
+const int BackgroundFlags[16] = {
   A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL, A_NORMAL,
   A_NORMAL,
   A_BLINK, A_BLINK, A_BLINK, A_BLINK, A_BLINK, A_BLINK, A_BLINK, A_BLINK
@@ -63,14 +63,14 @@ const i32 BackgroundFlags[16] = {
 // A utility of my own that does all of the actual work of translating
 // Turbo C colors to ncurses colors.
 
-static i32 LastTranslated = -1;
+static int LastTranslated = -1;
 static int LastNewattr = -1;
 
-i32
+int
 TranslateTurboColor (int newattr)
 {
- // i32 i, Mask = 0;
- // i16 dFore, dBack, Fore, Back;
+ // int i, Mask = 0;
+ // short dFore, dBack, Fore, Back;
  // if (LastNewattr == newattr)
  //   return (LastTranslated);
  // LastNewattr = newattr;
@@ -107,8 +107,8 @@ TranslateTurboColor (int newattr)
 void
 textattr (int newattr)
 {
-  i32 High, Low;
-  i32 NcursesAttr;
+  int High, Low;
+  int NcursesAttr;
   if (!ConioInitialized)
     textmode (LASTMODE);
   if (newattr < 0 || newattr > 255)

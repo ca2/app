@@ -27,7 +27,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
       t1 key;
       t3 value;
       m.erase_all();
-      for (i32 i = 0; i < iCount; i++)
+      for (int i = 0; i < iCount; i++)
       {
          istream >> key;
          istream >> value;

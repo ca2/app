@@ -28,9 +28,9 @@ using dword_array = ::numeric_array < DWORD >;
 
 
 //CLASS_DECL_ACME string get_mem_info_report1();
-//CLASS_DECL_ACME::collection::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const char *** ppszFile, const char *** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
 #ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
+CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, int ** ppiLine, i64 ** ppiSize);
 #endif
 
 

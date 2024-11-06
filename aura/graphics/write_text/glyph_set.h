@@ -24,9 +24,9 @@ namespace write_text
 
       void quick_sort();
 
-      ::collection::index find_first(::u32 user);
+      ::collection::index find_first(unsigned int user);
 
-      glyph * GetGlyph(::u32 user);
+      glyph * GetGlyph(unsigned int user);
 
 
    };

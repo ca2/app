@@ -215,10 +215,10 @@
 //
 //
 //template < primitive_point POINT1, primitive_point POINT2 >
-//inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point);
+//inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point);
 //
 //template < primitive_point POINT1, primitive_point POINT2 >
-//inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, bool bUseHoles, float epsilon = 0.00001f);
+//inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, bool bUseHoles, float epsilon = 0.00001f);
 //
 //template < primitive_point POINT, primitive_point POINT2 >
 //inline POINT & operator -= (POINT & point, const POINT2 & pointOffset);
@@ -1186,7 +1186,7 @@ inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rec
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
+inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point)
 {
 
    int i, j = iCount - 1;
@@ -1223,7 +1223,7 @@ inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const
 
 /* intersection function */
 template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
+inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
 {
 
    using UNIT_TYPE = largest_number < ::decay <typename  POINT1::UNIT_TYPE >, ::decay<typename POINT2::UNIT_TYPE > >;

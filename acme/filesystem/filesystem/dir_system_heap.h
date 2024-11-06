@@ -18,7 +18,7 @@ namespace file
 
          bool           m_bIsDir;
          class ::time m_timeLastCheck;
-         u32       m_dwError;
+         unsigned int       m_dwError;
 
 
       };
@@ -37,9 +37,9 @@ namespace file
          is_dir_map(::particle * pparticle);
 
 
-         bool lookup(const ::file::path & strPath, bool &bIsDir, u32 & dwLastError);
-         bool lookup(const ::file::path & strPath, bool &bIsDir, u32 & dwLastError, i32 iLast);
-         void set(const ::file::path & strPath, bool bIsDir, u32 dwLastError);
+         bool lookup(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError);
+         bool lookup(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError, int iLast);
+         void set(const ::file::path & strPath, bool bIsDir, unsigned int dwLastError);
 
 
       };

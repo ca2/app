@@ -453,7 +453,7 @@ namespace core
       //         // current application startup won't be
       //         // exited by timeout.
       //
-      //         i32 iRetry = 1;
+      //         int iRetry = 1;
       //
       //retry_license:
       //
@@ -785,7 +785,7 @@ namespace core
    //}
 
 //
-//   i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
+//   int user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(pszMatter);
@@ -905,7 +905,7 @@ namespace core
       //::color::color crCustColors[16];
 
       //// init-int this array did not affect the mouse problem
-      //// ::u32 idx ;
+      //// unsigned int idx ;
       //// for (idx=0; idx<16; idx++) {
       //// crCustColors[idx] = rgb(idx, idx, idx) ;
       //// }
@@ -1293,9 +1293,9 @@ namespace core
    //   wstring  wstr;
 
    //   wstr.get_buffer(MAX_PATH * 8);
-   //   //::u32 uLen = pwsz.memsize();
+   //   //unsigned int uLen = pwsz.memsize();
 
-   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
+   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (unsigned int)wstr.get_storage_length(), wstr.m_pdata, 0))
    //   {
    //      return "";
 
@@ -1592,7 +1592,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
+   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, unsigned int fuStyle)
    //{
 
    //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -1605,7 +1605,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
+   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, unsigned int fuStyle)
    //{
 
    //   if (user() == nullptr)
@@ -1690,7 +1690,7 @@ namespace core
    //void user::initialize_bergedge_application_interface()
    //{
 
-   //   //      i32 iCount = 32; // todo: get from bergedge profile
+   //   //      int iCount = 32; // todo: get from bergedge profile
 
    //   //m_pdocs->m_pnaturedocument = nullptr;
 
@@ -1855,7 +1855,7 @@ namespace core
    }
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

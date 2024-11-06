@@ -471,8 +471,8 @@ SizingNone:;
 
    void frame_002::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_grip egrip)
    {
-      //            const i32 size1 = 14;
-      //      const i32 size2 = 15;
+      //            const int size1 = 14;
+      //      const int size2 = 15;
 
       ::rectangle_i32 rectangleX(rectangleXParam);
       //            ::rectangle_i32 rectangleXB(rectangleX);

@@ -89,7 +89,7 @@ namespace file
    bool RefreshWatch(watch_ref ^ pWatch, bool _clear = false);
 
 /// Unpacks events and passes them to a user defined callback.
-   /*void CALLBACK WatchCallback(::u32 dwErrorCode, ::u32 dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
+   /*void CALLBACK WatchCallback(unsigned int dwErrorCode, unsigned int dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
    {
    	TCHAR szFile[MAX_PATH];
    	PFILE_NOTIFY_INFORMATION pNotify;

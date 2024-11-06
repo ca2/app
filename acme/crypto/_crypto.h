@@ -28,9 +28,9 @@
 
 #include "_.h"
 
-CLASS_DECL_APEX i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
+CLASS_DECL_APEX int crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 
-CLASS_DECL_APEX i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
+CLASS_DECL_APEX int crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
 
 
 

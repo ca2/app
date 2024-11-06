@@ -145,14 +145,14 @@ namespace platform
    }
 
 
-   void apex_http_layer::auto_config_proxy(i32 i)
+   void apex_http_layer::auto_config_proxy(int i)
    {
 
 
    }
 
 
-   i32 apex_http_layer::auto_config_proxy_count()
+   int apex_http_layer::auto_config_proxy_count()
    {
 
       return 0;

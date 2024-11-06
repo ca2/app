@@ -33,8 +33,8 @@
 ////::pointer<task>material_object::branch(
 ////   ::matter* pmatter,
 ////   ::enum_priority epriority,
-////   u32 nStackSize,
-////   u32 dwCreateFlags
+////   unsigned int nStackSize,
+////   unsigned int dwCreateFlags
 ////   ARG_SEC_ATTRS)
 ////{
 ////

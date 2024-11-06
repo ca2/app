@@ -136,7 +136,7 @@
 
 
 
-// i32 FillRect(HDC hdc, const ::rectangle_i32 * lprc, HBRUSH hbr)
+// int FillRect(HDC hdc, const ::rectangle_i32 * lprc, HBRUSH hbr)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -175,9 +175,9 @@
 
 //    Window root_return;
 //    Window child_return;
-//    i32 win_x_return;
-//    i32 win_y_return;
-//    u32 mask_return;
+//    int win_x_return;
+//    int win_y_return;
+//    unsigned int mask_return;
 
 //    xdisplay display;
 
@@ -194,7 +194,7 @@
 
 
 
-// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i32 cx, i32 cy, ::u32 uFlags)
+// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -203,7 +203,7 @@
 //    xdisplay display(hwnd->display());
 
 
-//    i32 value_mask = 0;
+//    int value_mask = 0;
 
 //    XWindowChanges values;
 
@@ -256,7 +256,7 @@
 
 
 
-i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }

@@ -404,7 +404,7 @@ namespace color
 
       dH *= 6.0;
 
-      double dA = dH - (double)((i32)dH);
+      double dA = dH - (double)((int)dH);
 
       if (dH >= 3.0)
       {
@@ -570,7 +570,7 @@ namespace color
    }
 
 
-   //void color::set_bgr(::u32 bgr)
+   //void color::set_bgr(unsigned int bgr)
    //{
 
    //   m_u8Red   = bgr_u8_red(bgr);
@@ -872,7 +872,7 @@ namespace color
 
    }
 
-   u32 CColor::get_rgb()
+   unsigned int CColor::get_rgb()
    {
       return rgb(m_bRed, m_bGreen, m_bBlue);
    }*/
@@ -911,14 +911,14 @@ namespace color
       {
          if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
          {
-            i32 iA, iR, iG, iB;
+            int iA, iR, iG, iB;
             sscanf(str.c_str(), "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
             set(argb(iA, iR, iG, iB));
             return true;
          }
          else if (!ishexdigit(str[7]))
          {
-            i32 iR, iG, iB;
+            int iR, iG, iB;
             sscanf(str.c_str(), "#%02x%02x%02x", &iR, &iG, &iB);
             set(argb(255, iR, iG, iB));
             return true;
@@ -928,7 +928,7 @@ namespace color
       {
          if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
          {
-            i32 iA, iR, iG, iB;
+            int iA, iR, iG, iB;
             sscanf(str.c_str(), "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
             set(argb(
                          duplicate_color_nible(iA),

@@ -13,15 +13,15 @@
 #define DQUOTECHAR  '\"'
 
 
-void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, i32 * numargs, i32 * numchars)
+void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * numargs, int * numchars)
 {
 
 
    char * p;
    char c;
-   i32 inquote;                    /* 1 = inside quotes */
-   i32 copychar;                   /* 1 = copy char to *args */
-   u32 numslash;              /* num of backslashes seen */
+   int inquote;                    /* 1 = inside quotes */
+   int copychar;                   /* 1 = copy char to *args */
+   unsigned int numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
@@ -1081,7 +1081,7 @@ string merge_colon_args(const array < string_array >& straa)
 #if !defined(WINDOWS_DESKTOP)
 
 
-CLASS_DECL_ACME i32 get_current_processor_index()
+CLASS_DECL_ACME int get_current_processor_index()
 {
 
    return 0;
@@ -1089,7 +1089,7 @@ CLASS_DECL_ACME i32 get_current_processor_index()
 }
 
 
-CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
+CLASS_DECL_ACME int get_current_process_maximum_affinity()
 {
 
    return 0;
@@ -1100,7 +1100,7 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity()
 //#if !defined(__APPLE__) && !defined(WINDOWS)
 //
 //
-//CLASS_DECL_ACME i32 get_current_process_affinity_order()
+//CLASS_DECL_ACME int get_current_process_affinity_order()
 //{
 //
 //   return 1;

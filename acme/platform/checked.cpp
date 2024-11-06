@@ -11,10 +11,10 @@ namespace acme
 #ifdef WINDOWS
 
 
-   CLASS_DECL_ACME i32 get_errno()
+   CLASS_DECL_ACME int get_errno()
    {
 
-      i32 nErrNo;
+      int nErrNo;
 
       errno_t iErrNo = ::_get_errno(&nErrNo);
 
@@ -29,7 +29,7 @@ namespace acme
    }
 
 
-   CLASS_DECL_ACME void set_errno(i32 _Value)
+   CLASS_DECL_ACME void set_errno(int _Value)
    {
 
       errno_t iErrNo = ::_set_errno(_Value);
@@ -47,7 +47,7 @@ namespace acme
 #else
 
 
-   CLASS_DECL_ACME i32 get_errno()
+   CLASS_DECL_ACME int get_errno()
    {
 
       return errno;
@@ -55,7 +55,7 @@ namespace acme
    }
 
 
-   CLASS_DECL_ACME void set_errno(i32 _Value)
+   CLASS_DECL_ACME void set_errno(int _Value)
    {
 
       errno = _Value;

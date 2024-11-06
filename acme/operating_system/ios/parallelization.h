@@ -17,6 +17,6 @@ int get_thread_int(const ::scoped_string & scopedstrKey);
 void set_thread_int(const ::scoped_string & scopedstrKey, int i);
 
 
-i32 process_get_os_priority(i32 nCa2Priority);
+int process_get_os_priority(int nCa2Priority);
 
-i32 process_get_scheduling_priority(i32 iOsPriority);
+int process_get_scheduling_priority(int iOsPriority);

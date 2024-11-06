@@ -1237,7 +1237,7 @@ namespace html
 
          bool bOk = false;
 
-         for (i32 i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         for (int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
 
             element* pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;

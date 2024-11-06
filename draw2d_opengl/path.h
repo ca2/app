@@ -32,10 +32,10 @@ namespace draw2d_opengl
       virtual bool internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode);
       virtual bool internal_end_figure(bool bClose);
 
-      virtual bool internal_add_line(i32 x1, i32 y1, i32 x2, i32 y2);
-      virtual bool internal_add_rect(i32 x,i32 y,i32 cx,i32 cy);
-      virtual bool internal_add_line(i32 x, i32 y);
-      virtual bool internal_add_move(i32 x,i32 y);
+      virtual bool internal_add_line(int x1, int y1, int x2, int y2);
+      virtual bool internal_add_rect(int x,int y,int cx,int cy);
+      virtual bool internal_add_line(int x, int y);
+      virtual bool internal_add_move(int x,int y);
 
       virtual bool internal_add_rect(double x,double y,double cx,double cy);
       virtual bool internal_add_move(double x,double y);

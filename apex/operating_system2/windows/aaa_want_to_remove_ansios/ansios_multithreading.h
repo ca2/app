@@ -20,38 +20,38 @@ void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE lpMsg,oswi
 class sync_object;
 
 
-::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+unsigned int WaitForMultipleObjectsEx(unsigned int dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable);
 
-::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout);
+unsigned int WaitForMultipleObjects(unsigned int dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, unsigned int tickTimeout);
 
 #if !defined(UNIVERSAL_WINDOWS)
 
-::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
+unsigned int MsgWaitForMultipleObjects(unsigned int dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, unsigned int tickTimeout, unsigned int dwWakeMask);
 
-::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pwaitableptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+unsigned int MsgWaitForMultipleObjectsEx(unsigned int dwSize, sync_object ** pwaitableptra, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
 
 #endif
 
-::u32 WaitForSingleObject(sync_object * pwaitable, ::u32 dw::durations);
+unsigned int WaitForSingleObject(sync_object * pwaitable, unsigned int dw::durations);
 
-::u32 WaitForSingleObjectEx(sync_object * pwaitable, ::u32 dw::durations, int_bool bAlertable);
+unsigned int WaitForSingleObjectEx(sync_object * pwaitable, unsigned int dw::durations, int_bool bAlertable);
 
 
 #endif
 
 
 /*
-#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)
-#define STATUS_ABANDONED_WAIT_0  ((::u32   ) 0x00000080L)
-#define STATUS_USER_APC          ((::u32   ) 0x000000C0L)
-#define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
+#define STATUS_WAIT_0            ((unsigned int   ) 0x00000000L)
+#define STATUS_ABANDONED_WAIT_0  ((unsigned int   ) 0x00000080L)
+#define STATUS_USER_APC          ((unsigned int   ) 0x000000C0L)
+#define STATUS_TIMEOUT           ((unsigned int   ) 0x00000102L)
  */
 
-#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((unsigned int   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((unsigned int   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 

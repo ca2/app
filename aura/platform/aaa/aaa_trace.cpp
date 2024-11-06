@@ -24,8 +24,8 @@ namespace aura
       }
 
 
-      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
       CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
 
@@ -105,7 +105,7 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args)
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
       {
 
          __UNREFERENCED_PARAMETER(pszFileName);
@@ -121,7 +121,7 @@ namespace aura
 
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args)
+      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
       {
       ::auraacmesystem()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
@@ -142,7 +142,7 @@ struct MAP_WM_MESSAGE
 {
 
 
-   ::u32              nMsg;
+   unsigned int              nMsg;
    const char *      pszMsg;
 
 
@@ -336,7 +336,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_AURA const char *  get_windows_message_name(::u32 nMsg)
+CLASS_DECL_AURA const char *  get_windows_message_name(unsigned int nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;

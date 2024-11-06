@@ -184,7 +184,7 @@ if(pkey->m_uiMessage == e_message_key_down ||
       pkey->m_ekey = ::user::e_key_space;
       break;
    default:
-      pkey->m_ekey = m_mapKey[(i32)pkey->m_nChar];
+      pkey->m_ekey = m_mapKey[(int)pkey->m_nChar];
       break;
    }
 

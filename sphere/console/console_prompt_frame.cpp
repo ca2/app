@@ -46,7 +46,7 @@ namespace console
 
       simple_frame_window::_001OnTimer(ptimer);;
 
-//      ::u32 uEvent = ptimer->m_uEvent;
+//      unsigned int uEvent = ptimer->m_uEvent;
 //      static float theta;
 //      if(uEvent == 3)
 //      {
@@ -146,7 +146,7 @@ namespace console
 
    void prompt_frame::ShowControlBars(bool bShow)
    {
-      ::u32 nShow;
+      unsigned int nShow;
       if(bShow)
       {
          nShow = e_display_normal;
@@ -227,7 +227,7 @@ namespace console
       if(pmessage->m_bRet)
          return;
 
-      if(!datastream()->get("&data_source=local&DockPosition", (i32 &) m_eposition))
+      if(!datastream()->get("&data_source=local&DockPosition", (int &) m_eposition))
       {
 
          m_eposition = e_position_left;
@@ -316,7 +316,7 @@ namespace console
                m_eposition = e_position_right;
             }
          }
-         datastream()->set("DockPosition", (i32) m_eposition);
+         datastream()->set("DockPosition", (int) m_eposition);
       }*/
    }
 

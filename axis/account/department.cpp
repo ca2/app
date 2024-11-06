@@ -196,24 +196,24 @@ namespace account
    }
 
 
-//   string department::get_server(::file::path pathUrl, i32 iRetry)
+//   string department::get_server(::file::path pathUrl, int iRetry)
 //   {
 //
 //   }
 //
 //
-//   string department::_get_server(::file::path pathUrl, i32 iRetry)
+//   string department::_get_server(::file::path pathUrl, int iRetry)
 //   {
 //
 //   }
 
 
-//   string department::get_account_server(::file::path pathUrl, i32 iRetry)
+//   string department::get_account_server(::file::path pathUrl, int iRetry)
 //   {
 //
 //      string strRequestingServer = purl->get_server(pathUrl);
 //
-//      ::u32 dwGetFontopusBeg= ::time::now();
+//      unsigned int dwGetFontopusBeg= ::time::now();
 //
 //      string strGetFontopus;
 //
@@ -240,7 +240,7 @@ namespace account
 //      if(strRequestingServer == "ca2.software")
 //         return "ca2.software";
 //
-//      ::u32 dwGetFontopusEnd= ::time::now();
+//      unsigned int dwGetFontopusEnd= ::time::now();
 //
 //      informationf("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //

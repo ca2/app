@@ -76,7 +76,7 @@ namespace file_watcher
    //--------
    atom os_file_watcher::add_watch(const vsstring & directory,  file_watch_listener * pwatcher, bool bRecursive)
    {
-      i32 wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+      int wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
       if (wd < 0)
       {
          if(errno == ENOENT)
@@ -104,7 +104,7 @@ namespace file_watcher
          for(::collection::index index = 0; index < stra.get_count(); index++)
          {
 
-            i32 inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+            int inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 
             if(inaw < 0)
             {
@@ -178,7 +178,7 @@ namespace file_watcher
 
       FD_SET(mFD, &mDescriptorSet);
 
-      i32 ret = select(mFD + 1, &mDescriptorSet, nullptr, nullptr, &mTimeOut);
+      int ret = select(mFD + 1, &mDescriptorSet, nullptr, nullptr, &mTimeOut);
 
       if(ret < 0)
       {
@@ -207,7 +207,7 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::handle_action(watch_struct* watch, const char * filename, u32 action)
+   void os_file_watcher::handle_action(watch_struct* watch, const char * filename, unsigned int action)
    {
 
       if(!watch)

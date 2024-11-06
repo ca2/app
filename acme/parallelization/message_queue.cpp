@@ -124,7 +124,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time)
+::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
 {
 
    if (wMsgFilterMax == 0)
@@ -236,7 +236,7 @@ void message_queue::kick_idle()
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax, bool bRemoveMessage)
+bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)
@@ -273,7 +273,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
    ::collection::count count = m_messagea.get_count();
 
-   for(i32 i = 0; i < count; i++)
+   for(int i = 0; i < count; i++)
    {
 
       MESSAGE & msg = m_messagea[i];

@@ -13,7 +13,7 @@ using htask_t = void *;
 using itask_t = iptr;
 
 
-using thread_data_index = ::u32;
+using thread_data_index = unsigned int;
 
 
 CLASS_DECL_ACME int itask_equals(itask_t a, itask_t b);

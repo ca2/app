@@ -47,7 +47,7 @@ namespace file
 //
 //
 //#ifdef WINDOWS
-//inline ::u32 _gen_GetConversionACP()
+//inline unsigned int _gen_GetConversionACP()
 //{
 //
 //   //return CP_UTF8;
@@ -947,7 +947,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //void string_range < ITERATOR_TYPE >::consume_spaces(::collection::count iMinimumCount)
 //{
 //
-//   i32 i = 0;
+//   int i = 0;
 //
 //   while (unicode_is_whitespace(this->m_begin))
 //   {
@@ -991,7 +991,7 @@ u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
 
    auto pszStart = this->m_begin;
 
-   i32 i = 0;
+   int i = 0;
 
    u64 u;
 
@@ -1035,7 +1035,7 @@ u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
 //void string_base < ITERATOR_TYPE >::consume_spaces(::collection::count iMinimumCount)
 //{
 //
-//   i32 i = 0;
+//   int i = 0;
 //
 //   while (unicode_is_whitespace(this->m_begin))
 //   {
@@ -1679,7 +1679,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string * pstrOut)
 
             this->m_begin++;
 
-            u16 u16a[2];
+            unsigned short u16a[2];
 
             u16a[0] = ::hex::parse_u16_exc(*this);
 
@@ -1840,7 +1840,7 @@ template < typename ITERATOR_TYPE >
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_skip_to_character(i32 ch, i32 escape)
+void string_range < ITERATOR_TYPE >::escape_skip_to_character(int ch, int escape)
 {
 
   while (this->has_char() && *this->m_begin)
@@ -1876,7 +1876,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_character(i32 ch, i32 escape
   // bro      2002-10-29
   //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const char * chset, i32 escape)
+void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const char * chset, int escape)
 {
   
   const char * prev_escape = nullptr;
@@ -1918,7 +1918,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 // bro      2002-10-29
 //========================================================
  template < typename ITERATOR_TYPE >
-::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string & scopedstr, i32 escape) const
+::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string & scopedstr, int escape) const
 {
 
   auto rangeCompare = scopedstr();
@@ -1975,7 +1975,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, i32 escape)
+void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape)
 {
   
   const char * prev_escape = nullptr;

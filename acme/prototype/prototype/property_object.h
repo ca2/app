@@ -136,7 +136,7 @@ public:
 
    int find_i32(const ::atom & atom, int iDefault = 0) const;
 
-   ::u32 find_u32(const ::atom & atom, ::u32 iDefault = 0) const;
+   unsigned int find_u32(const ::atom & atom, unsigned int iDefault = 0) const;
 
    template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 

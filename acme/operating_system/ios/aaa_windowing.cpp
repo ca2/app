@@ -257,7 +257,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//i32 oswindow_data::get_window_long(i32 iIndex)
+//int oswindow_data::get_window_long(int iIndex)
 //{
 //
 //   if(::is_null(*this))
@@ -271,7 +271,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//i32 oswindow_data::set_window_long(i32 iIndex, i32 iNewLong)
+//int oswindow_data::set_window_long(int iIndex, int iNewLong)
 //{
 //
 //   if(::is_null(*this))
@@ -280,7 +280,7 @@ bool oswindow_erase(UIWindow * window)
 //   if(m_plongmap == nullptr)
 //      return 0;
 //
-//   i32 iLong = m_plongmap->operator[](iIndex);
+//   int iLong = m_plongmap->operator[](iIndex);
 //
 //   m_plongmap->operator[](iIndex) = iNewLong;
 //
@@ -443,7 +443,7 @@ oswindow set_active_window(oswindow window)
 
 
 
-int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
+int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
 {
    
    main_async([=]()

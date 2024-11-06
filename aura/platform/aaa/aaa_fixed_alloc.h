@@ -17,17 +17,17 @@ public:
       node* pNext;   // only valid when in free list
    };
 
-   ::u32 m_nAllocSize;   // size of each block from Alloc
-   ::u32 m_nBlockSize;   // number of blocks to get at a time
+   unsigned int m_nAllocSize;   // size of each block from Alloc
+   unsigned int m_nBlockSize;   // number of blocks to get at a time
    plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
-   fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc_no_sync(unsigned int nAllocSize, unsigned int nBlockSize = 64);
    ~fixed_alloc_no_sync();
 
 
-   ::u32 GetAllocSize() { return m_nAllocSize; }
+   unsigned int GetAllocSize() { return m_nAllocSize; }
 
 
    inline void * Alloc();  // return a chunk of memory of nAllocSize
@@ -77,7 +77,7 @@ public:
    address_array < fixed_alloc_no_sync * >      m_allocptra;
 
 
-   fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize = 64, int iShareCount = 2);
+   fixed_alloc_sync(unsigned int nAllocSize, unsigned int nBlockSize = 64, int iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -101,7 +101,7 @@ public:
    address_array < fixed_alloc_sync * >            m_allocptra;
 
 
-   fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize = 64);
+   fixed_alloc(unsigned int nAllocSize, unsigned int nBlockSize = 64);
    ~fixed_alloc();
 
 

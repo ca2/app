@@ -16,10 +16,10 @@
 
 
 // #ifndef i32_x
-// #define i32_x(lp)                        ((i32)(i16)LOWORD(lp))
+// #define i32_x(lp)                        ((int)(short)LOWORD(lp))
 // #endif
 // #ifndef i32_y
-// #define i32_y(lp)                        ((i32)(i16)HIWORD(lp))
+// #define i32_y(lp)                        ((int)(short)HIWORD(lp))
 // #endif
 
 
@@ -31,7 +31,7 @@
 
 #ifdef WINDOWS
 
-void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw ::exception(::exception("integer_exception" + as_string($1)));
 }
@@ -359,9 +359,9 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(i32)m_phost->m_pbasecomposer->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(int)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (i32)m_phost->m_memory.get_size());
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int)m_phost->m_memory.get_size());
 
             }
             catch(...)
@@ -394,7 +394,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 
 
-   i32 plugin::thread_start_ca2::run()
+   int plugin::thread_start_ca2::run()
    {
 
 
@@ -461,7 +461,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       bool bTimedOut = false;
 
-      u32 dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
+      unsigned int dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {
@@ -689,7 +689,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                set["raw_http"] = true;
 
-               for(i32 iAttempt = 0; iAttempt < 3; iAttempt++)
+               for(int iAttempt = 0; iAttempt < 3; iAttempt++)
                {
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
@@ -841,14 +841,14 @@ run_install:
 
 #else
 
-      //::u32 dwTime1= ::time::now();
+      //unsigned int dwTime1= ::time::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //::u32 dwTime3= ::time::now();
+         //unsigned int dwTime3= ::time::now();
 
          //informationf("eval1 %d",dwTime3 - dwTime1);
 
@@ -856,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //::u32 dwTime5= ::time::now();
+            //unsigned int dwTime5= ::time::now();
 
             //informationf("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -946,14 +946,14 @@ run_install:
 
             }
 
-            //::u32 dwTime7= ::time::now();
+            //unsigned int dwTime7= ::time::now();
 
             //informationf("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //::u32 dwTime9= ::time::now();
+            //unsigned int dwTime9= ::time::now();
 
             //informationf("blend %d",dwTime9 - dwTime7);
 
@@ -991,8 +991,8 @@ run_install:
 
       window_rectangle(&rectangleWindow);
 
-      i32 cx = rectangleWindow.right() - rectangleWindow.left();
-      i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right() - rectangleWindow.left();
+      int cy = rectangleWindow.bottom() - rectangleWindow.top();
 
       rectangle.left()         = 0;
       rectangle.top()          = 0;
@@ -1181,7 +1181,7 @@ run_install:
    double plugin::extract_spa_progress_rate()
    {
 
-      ::u32 dwRead;
+      unsigned int dwRead;
 
       HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
@@ -1194,10 +1194,10 @@ run_install:
       if(hfile != INVALID_HANDLE_VALUE)
       {
 
-         i32 iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
+         int iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
          iTell--;
          string strLine;
-         i32 iSkip = 0;
+         int iSkip = 0;
          bool bStatus2 = false;
          char ch = '\0';
          bool bFirst = true;
@@ -1295,7 +1295,7 @@ run_install:
 #ifndef UNIVERSAL_WINDOWS
 
 
-   void plugin::on_receive(::aura::ipc::rx * prx, i32 message, void * pdata, i32 len)
+   void plugin::on_receive(::aura::ipc::rx * prx, int message, void * pdata, int len)
    {
 
       if(prx == &m_rx)
@@ -1352,7 +1352,7 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
+   bool plugin::set_window_position(iptr z,int x,int y,int cx,int cy,unsigned int nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::set_window_position(z, x, y, cx, cy, nFlags);
@@ -1406,7 +1406,7 @@ run_install:
          else
          {
 
-            i32 iTry = 0;
+            int iTry = 0;
 
 retry_get_prompt:
 
@@ -1529,9 +1529,9 @@ retry_get_prompt:
 
       string str;
 
-      i32 iAttemptStream = 0;
-      i32 iAttemptUrl = 0;
-      i32 iAttempt = 0;
+      int iAttemptStream = 0;
+      int iAttemptUrl = 0;
+      int iAttempt = 0;
 
 restart:
 

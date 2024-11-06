@@ -102,7 +102,7 @@ namespace user
       //   if (::windows_definition::Data.bWin4 && (m_dwStyle & CBRS_BORDER_3D) == 0)
       if ((m_dwStyle & CBRS_BORDER_3D) == 0)
       {
-         u32 dwNewStyle = 0;
+         unsigned int dwNewStyle = 0;
          switch (m_dwStyle & (CBRS_BORDER_ANY|CBRS_ALIGN_ANY))
          {
          case CBRS_LEFT:
@@ -134,19 +134,19 @@ namespace user
       return true;
    }
 
-   void control_bar::SetBarStyle(u32 uStyle)
+   void control_bar::SetBarStyle(unsigned int uStyle)
    {
       ASSERT((uStyle & CBRS_ALL) == uStyle);
 
       if (m_dwStyle != uStyle)
       {
-         u32 dwOldStyle = m_dwStyle;
+         unsigned int dwOldStyle = m_dwStyle;
          m_dwStyle = uStyle;
          OnBarStyleChange(dwOldStyle, uStyle);
       }
    }
 
-   void control_bar::OnBarStyleChange(u32, u32)
+   void control_bar::OnBarStyleChange(unsigned int, unsigned int)
    {
       // can be overridden in derived classes
    }
@@ -227,7 +227,7 @@ namespace user
       return size;
    }
 
-   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, u32 nMode)
+   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, unsigned int nMode)
    {
       return CalcFixedLayout(pgraphics, (nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -243,7 +243,7 @@ namespace user
 #define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
 #define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(::u32 nEvent, const class time & time)
+   void control_bar::ResetTimer(unsigned int nEvent, const class time & time)
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
@@ -253,7 +253,7 @@ namespace user
    void control_bar::_001OnTimer(::timer * ptimer)
    {
       __UNREFERENCED_PARAMETER(ptimer);
-//      ::u32 uEvent = ptimer->m_uEvent;
+//      unsigned int uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       
 
@@ -313,7 +313,7 @@ namespace user
 
 //      ::pointer<::user::message>pmessage(pmessage);
 //
-//      ::u32 message;
+//      unsigned int message;
 //
 //      message = pmessage->m_atom.umessage();
 //
@@ -377,7 +377,7 @@ namespace user
 //
 //      lresult lResult;
 //
-//      ::u32 message;
+//      unsigned int message;
 //
 //      message = pmessage->m_atom.umessage();
 //
@@ -667,12 +667,12 @@ namespace user
    }
 
 
-   u32 control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
+   unsigned int control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
    {
 
 //      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
 
-      u32 uStyleVisible = 0;
+      unsigned int uStyleVisible = 0;
 
       //if (GetStyle() & WS_VISIBLE)
       //{
@@ -681,14 +681,14 @@ namespace user
 
       //}
 
-      u32 uStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) | uStyleVisible;
+      unsigned int uStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) | uStyleVisible;
 
       return uStyle;
 
 //      ASSERT(playout != nullptr);
 //
 //
-//      u32 dwStyleVisible = (GetStyle() & WS_VISIBLE);
+//      unsigned int dwStyleVisible = (GetStyle() & WS_VISIBLE);
 //
 //      if (is_this_visible())
 //      {
@@ -698,13 +698,13 @@ namespace user
 //      }
 //
 //      // resize and reposition this control bar based on styles
-//      u32 uStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) |
+//      unsigned int uStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) |
 //                         dwStyleVisible;
 //
 //      // handle delay hide/show
 ////      if (m_nStateFlags & (delayHide|delayShow))
 //      {
-//         ::u32 swpFlags = 0;
+//         unsigned int swpFlags = 0;
 //         //if (m_nStateFlags & delayHide)
 //         //{
 //         //   ASSERT((m_nStateFlags & delayShow) == 0);
@@ -755,7 +755,7 @@ namespace user
 
       size_parent_layout * playout = (size_parent_layout *) pmessage->m_lparam.m_lparam;
 
-      u32 uStyle = RecalcDelayShow(playout);
+      unsigned int uStyle = RecalcDelayShow(playout);
 
       bool bIsThisVisible = is_this_visible(e_layout_sketch);
 
@@ -770,7 +770,7 @@ namespace user
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
          // get maximum requested size_i32
-         u32 dwMode = playout->m_bStretch ? LM_STRETCH : 0;
+         unsigned int dwMode = playout->m_bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
          {
@@ -940,7 +940,7 @@ namespace user
 
       ASSERT_VALID(pgraphics);
 
-      u32 uStyle = m_dwStyle;
+      unsigned int uStyle = m_dwStyle;
       if (!(uStyle & CBRS_BORDER_ANY))
          return;
 
@@ -1150,7 +1150,7 @@ namespace user
    void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const
    {
       ASSERT_VALID(this);
-      u32 uStyle = m_dwStyle;
+      unsigned int uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)
 //         rectangle.left() += ::windows_definition::Data.cxBorder2;
@@ -1237,7 +1237,7 @@ namespace user
    }
 
 
-   u32 control_bar::GetBarStyle()
+   unsigned int control_bar::GetBarStyle()
    {
 
       return m_dwStyle;

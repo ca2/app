@@ -23,30 +23,30 @@
 
 constexpr unsigned char lower_u8(::iptr i) { return (unsigned char)((::uptr)(i) & 0xff); }
 constexpr unsigned char upper_u8(::iptr i) { return (unsigned char)(((::uptr)(i) >> 8) & 0xff); }
-constexpr ::u16 lower_u16(::iptr i) { return (::u16)((::uptr)(i) & 0xffff); }
-constexpr ::u16 upper_u16(::iptr i) { return (::u16)(((::uptr)(i) >> 16) & 0xffff); }
-constexpr ::i16 upper_i16(::iptr i) { return (::i16)(((::uptr)(i) >> 16) & 0xffff); }
-constexpr ::u32 lower_u32(::u64 u) { return (::u32)(u); }
-constexpr ::u32 upper_u32(::u64 u) { return (::u32)((u >> 32) & 0xffffffff); }
+constexpr unsigned short lower_u16(::iptr i) { return (unsigned short)((::uptr)(i) & 0xffff); }
+constexpr unsigned short upper_u16(::iptr i) { return (unsigned short)(((::uptr)(i) >> 16) & 0xffff); }
+constexpr short upper_i16(::iptr i) { return (short)(((::uptr)(i) >> 16) & 0xffff); }
+constexpr unsigned int lower_u32(::u64 u) { return (unsigned int)(u); }
+constexpr unsigned int upper_u32(::u64 u) { return (unsigned int)((u >> 32) & 0xffffffff); }
 
 
-constexpr int i32_x(::iptr i) { return (int)(::i16)lower_u16(i); }
-constexpr int i32_y(::iptr i) { return (int)(::i16)upper_u16(i); }
-constexpr int u32_x(::uptr u) { return (int)(::i16)lower_u16(u); }
-constexpr int u32_y(::uptr u) { return (int)(::i16)upper_u16(u); }
+constexpr int i32_x(::iptr i) { return (int)(short)lower_u16(i); }
+constexpr int i32_y(::iptr i) { return (int)(short)upper_u16(i); }
+constexpr int u32_x(::uptr u) { return (int)(short)lower_u16(u); }
+constexpr int u32_y(::uptr u) { return (int)(short)upper_u16(u); }
 constexpr int u64_x(::u64 u) { return (int)lower_u32(u); }
 constexpr int u64_y(::u64 u) { return (int)upper_u32(u); }
 
 
-constexpr ::u16 make_u16(::iptr a, ::iptr b) { return (::u16)((unsigned char)a) | ((::u16)((unsigned char)b) << 8); }
-constexpr int make_i32(::iptr a, ::iptr b) { return (int)((::u16)a) | ((::u32)((::u16)b) << 16); }
-constexpr ::u32 make_u32(::iptr a, ::iptr b) { return (::u32) make_i32(a, b); }
-constexpr ::u32 make_u32(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return make_u32(make_u16(a, b), make_u16(c, d)); }
-constexpr ::u64 make_u64(::u32 a, ::u32 b) { return ((::u64)a) | (((::u64)b) << 32ull); }
+constexpr unsigned short make_u16(::iptr a, ::iptr b) { return (unsigned short)((unsigned char)a) | ((unsigned short)((unsigned char)b) << 8); }
+constexpr int make_i32(::iptr a, ::iptr b) { return (int)((unsigned short)a) | ((unsigned int)((unsigned short)b) << 16); }
+constexpr unsigned int make_u32(::iptr a, ::iptr b) { return (unsigned int) make_i32(a, b); }
+constexpr unsigned int make_u32(::iptr a, ::iptr b, ::iptr c, ::iptr d) { return make_u32(make_u16(a, b), make_u16(c, d)); }
+constexpr ::u64 make_u64(unsigned int a, unsigned int b) { return ((::u64)a) | (((::u64)b) << 32ull); }
 
 
-constexpr ::u16 swap_u16(::u16 u) { return make_u16(upper_u8(u), lower_u8(u)); }
-constexpr ::u32 swap_u32(::u32 u) { return make_u32(swap_u16(upper_u16(u)), swap_u16(lower_u16(u))); }
+constexpr unsigned short swap_u16(unsigned short u) { return make_u16(upper_u8(u), lower_u8(u)); }
+constexpr unsigned int swap_u32(unsigned int u) { return make_u32(swap_u16(upper_u16(u)), swap_u16(lower_u16(u))); }
 
 
 

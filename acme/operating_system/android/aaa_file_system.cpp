@@ -7,7 +7,7 @@ struct PROCESS_INFO_t
 
 
    string csProcess;
-   u32 dwImageListIndex;
+   unsigned int dwImageListIndex;
 
 
 };

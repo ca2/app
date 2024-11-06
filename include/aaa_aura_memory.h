@@ -4,8 +4,8 @@
 #if OSBIT == 32
 
 
-typedef i32 iptr;
-typedef u32 uptr;
+typedef int iptr;
+typedef unsigned int uptr;
 
 
 #elif OSBIT == 64
@@ -47,9 +47,9 @@ typedef u64              dword_ptr;
 
 #else
 
-typedef u32              rtptr;
-typedef u32              ulong_ptr;
-typedef u32              dword_ptr;
+typedef unsigned int              rtptr;
+typedef unsigned int              ulong_ptr;
+typedef unsigned int              dword_ptr;
 
 #endif
 

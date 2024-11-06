@@ -43,7 +43,7 @@ namespace image
 
 
       virtual bool create(int cx, int cy);
-      virtual bool create(int cx, int cy, ::u32 nFlags, int nInitial, int nGrow);
+      virtual bool create(int cx, int cy, unsigned int nFlags, int nInitial, int nGrow);
       virtual void realize(::draw2d::graphics * pgraphics) const;
 
 

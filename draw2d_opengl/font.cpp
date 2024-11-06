@@ -83,7 +83,7 @@ namespace draw2d_opengl
    }
 
 
-   void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void font::create(::draw2d::graphics * pgraphics, char iCreate)
    {
 
       if (m_hdcFont == nullptr || is_modified(iCreate))
@@ -96,7 +96,7 @@ namespace draw2d_opengl
 
          ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 
-         ((font *)this)->m_hfont = CreateFont(-m_fontsize.i32(),							// Height Of Font
+         ((font *)this)->m_hfont = CreateFont(-m_fontsize.int(),							// Height Of Font
             0,								// Width Of Font
             0,								// Angle Of Escapement
             0,								// Orientation Angle

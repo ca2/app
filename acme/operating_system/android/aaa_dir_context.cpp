@@ -102,7 +102,7 @@ namespace android
 
             straDir.ls_dir(listing.m_pathFinal);
 
-            for (i32 i = 0; i < straDir.get_count(); i++)
+            for (int i = 0; i < straDir.get_count(); i++)
             {
 
                string strDir = straDir[i];
@@ -159,7 +159,7 @@ namespace android
 
          ::dir::ls(stra, listing.m_pathFinal);
 
-         for (i32 i = 0; i < stra.get_count(); i++)
+         for (int i = 0; i < stra.get_count(); i++)
          {
 
             ::file::path strPath = stra[i];
@@ -235,7 +235,7 @@ namespace android
 
    //   ::directory_context::ls_dir(straDir, lpcsz);
 
-   //   for(i32 i = 0; i < straDir.get_count(); i++)
+   //   for(int i = 0; i < straDir.get_count(); i++)
    //   {
 
    //      string strDir = straDir[i];
@@ -279,7 +279,7 @@ namespace android
 
    //   ::directory_context::ls(stra, lpcsz);
 
-   //   for(i32 i = 0; i < stra.get_count(); i++)
+   //   for(int i = 0; i < stra.get_count(); i++)
    //   {
 
    //      string strPath = stra[i];
@@ -378,7 +378,7 @@ namespace android
    //   }
 
 
-   //   for(i32 i = 0; i < stra.get_count(); i++)
+   //   for(int i = 0; i < stra.get_count(); i++)
    //   {
 
    //      string strPath = stra[i];
@@ -466,7 +466,7 @@ namespace android
    //   }
 
 
-   //   for(i32 i = 0; i < stra.get_count(); i++)
+   //   for(int i = 0; i < stra.get_count(); i++)
    //   {
 
    //      string strPath = stra[i];
@@ -524,7 +524,7 @@ namespace android
    //   }
 
 
-   //   for(i32 i = 0; i < stra.get_count(); i++)
+   //   for(int i = 0; i < stra.get_count(); i++)
    //   {
 
    //      string strPath = stra[i];
@@ -585,7 +585,7 @@ namespace android
    //   }
 
 
-   //   for(i32 i = 0; i < stra.get_count(); i++)
+   //   for(int i = 0; i < stra.get_count(); i++)
    //   {
 
    //      string strPath = stra[i];
@@ -696,7 +696,7 @@ namespace android
 
    //   bool bIsDir;
 
-   //   ::u32 dwLastError;
+   //   unsigned int dwLastError;
 
    //   if(m_isdirmap.lookup(strPath, bIsDir, dwLastError))
    //   {
@@ -878,7 +878,7 @@ namespace android
 
       lpcsz.ascendants_path(stra);
 
-      for (i32 i = 0; i < stra.get_size(); i++)
+      for (int i = 0; i < stra.get_size(); i++)
       {
 
          if (!is(stra[i]))
@@ -886,7 +886,7 @@ namespace android
 
             if (!::dir::_mk(stra[i]))
             {
-               ::u32 dwError = ::get_last_error();
+               unsigned int dwError = ::get_last_error();
                if (dwError == ERROR_ALREADY_EXISTS)
                {
                   string str;
@@ -954,7 +954,7 @@ namespace android
 
          straPath.ls(psz);
 
-         for (i32 i = 0; i < straPath.get_count(); i++)
+         for (int i = 0; i < straPath.get_count(); i++)
          {
 
             if (is(straPath[i]))

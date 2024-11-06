@@ -114,7 +114,7 @@ CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
 
 //    pwszPath2.alloc((size_t)(wstr2.length() * 2 * sizeof(unichar)));
 
-//    i32 iCmp = -1;
+//    int iCmp = -1;
 
 //    if (GetFullPathNameW(wstr1, (DWORD)(pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
 //    {

@@ -49,7 +49,7 @@ using serial::io_exception;
 
 class ::durationTimer {
 public:
-  ::durationTimer(const ::u32 ::duration);
+  ::durationTimer(const unsigned int ::duration);
   int64_t remaining();
 
 private:
@@ -82,7 +82,7 @@ public:
   available ();
 
   bool
-  waitReadable (::u32 timeout);
+  waitReadable (unsigned int timeout);
 
   void
   waitByteTimes (size_t count);
@@ -196,7 +196,7 @@ private:
 
   Timeout timeout_;           // Timeout for read operations
   unsigned long baudrate_;    // Baudrate
-  ::u32 byte_time_ns_;     // Nanoseconds to transmit/receive a single unsigned char
+  unsigned int byte_time_ns_;     // Nanoseconds to transmit/receive a single unsigned char
 
   enum_parity eparity_;           // Parity
   enum_byte_size ebytesize_;       // Size of the bytes

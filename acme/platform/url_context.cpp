@@ -815,7 +815,7 @@ namespace url
    //}
 
 
-   //i32 url::get_port(const ::string & strParam, i32 iDefault)
+   //int url::get_port(const ::string & strParam, int iDefault)
    //{
 
    //   string strRoot = get_root(strParam);
@@ -1352,7 +1352,7 @@ namespace url
 ////      else
 ////      {
 ////         strsize iFinalLen = pszQuery - strUrlParam;
-//////         i32 pPos = 0;
+//////         int pPos = 0;
 ////         ansi_count_copy(psz, strUrlParam, iFinalLen);
 ////         psz[iFinalLen] = '?';
 ////         iFinalLen++;
@@ -2357,7 +2357,7 @@ namespace url
 //   }
 //
 //
-//   inline bool character_isalnum(i32 i)
+//   inline bool character_isalnum(int i)
 //   {
 //
 //      return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');

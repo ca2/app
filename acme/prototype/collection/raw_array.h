@@ -452,7 +452,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //{
 //   if (m_begin != nullptr)
 //   {
-//      for( i32 i = 0; i < m_nSize; i++ )
+//      for( int i = 0; i < m_nSize; i++ )
 //         destruct_element(m_begin + i)->~TYPE();
 //      delete[] (unsigned char*)m_begin;
 //      m_begin     = nullptr;
@@ -508,7 +508,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      // shrink to nothing
 //      if (m_begin != nullptr)
 //      {
-////         for( i32 i = 0; i < m_nSize; i++ )
+////         for( int i = 0; i < m_nSize; i++ )
 ////            (m_begin + i)->~TYPE();
 //         delete[] (unsigned char*)m_begin;
 //         m_begin = nullptr;
@@ -541,7 +541,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      {
 //         // initialize the ___new elements
 ////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+////         for( int i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////            ::__allocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
 ////
@@ -549,7 +549,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      else if (m_nSize > nNewSize)
 //      {
 //         // destroy the old elements
-////         for( i32 i = 0; i < m_nSize-nNewSize; i++ )
+////         for( int i = 0; i < m_nSize-nNewSize; i++ )
 //  //          (m_begin + nNewSize + i)->~TYPE();
 //      }
 //      m_nSize = nNewSize;
@@ -590,7 +590,7 @@ raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array
 //      // construct remaining elements
 //      ASSERT(nNewSize > m_nSize);
 ////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+////      for( int i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 ////
@@ -1173,7 +1173,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////{
 ////   if (m_begin != nullptr)
 ////   {
-////      for( i32 i = 0; i < m_nSize; i++ )
+////      for( int i = 0; i < m_nSize; i++ )
 ////         destruct_element(m_begin + i)->~TYPE();
 ////      delete[] (unsigned char*)m_begin;
 ////      m_begin     = nullptr;
@@ -1229,7 +1229,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      // shrink to nothing
 ////      if (m_begin != nullptr)
 ////      {
-//////         for( i32 i = 0; i < m_nSize; i++ )
+//////         for( int i = 0; i < m_nSize; i++ )
 //////            (m_begin + i)->~TYPE();
 ////         delete[] (unsigned char*)m_begin;
 ////         m_begin = nullptr;
@@ -1262,7 +1262,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      {
 ////         // initialize the ___new elements
 //////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+//////         for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
 //////            ::__allocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
 //////
@@ -1270,7 +1270,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      else if (m_nSize > nNewSize)
 ////      {
 ////         // destroy the old elements
-//////         for( i32 i = 0; i < m_nSize-nNewSize; i++ )
+//////         for( int i = 0; i < m_nSize-nNewSize; i++ )
 ////  //          (m_begin + nNewSize + i)->~TYPE();
 ////      }
 ////      m_nSize = nNewSize;
@@ -1311,7 +1311,7 @@ inline raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & ra
 ////      // construct remaining elements
 ////      ASSERT(nNewSize > m_nSize);
 //////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
+//////      for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
 //////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 //////

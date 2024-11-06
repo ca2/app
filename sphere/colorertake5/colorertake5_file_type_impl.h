@@ -32,7 +32,7 @@ namespace colorertake5
       }
 
 
-      string enumerateParameters(i32 idx)
+      string enumerateParameters(int idx)
       {
 
          if (idx >= paramVector.get_size() || idx < 0)
@@ -85,7 +85,7 @@ namespace colorertake5
       {
          SMatches match;
          double cur_prior = 0;
-         for(i32 idx = 0; idx < chooserVector.get_size(); idx++)
+         for(int idx = 0; idx < chooserVector.get_size(); idx++)
          {
             FileTypeChooser *ftc = chooserVector.element_at(idx);
             if (fileName != nullptr && ftc->isFileName() && ftc->getRE()->parse(fileName, &match))

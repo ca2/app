@@ -80,7 +80,7 @@ namespace draw2d
    //   pen_pointer(const ::allocer & allocer, double dWidth, ::color::color crColor);
    //   /*
    //         pen_pointer(::particle * pparticle, int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-   //            int nStyleCount = 0, const u32* pStyle = nullptr) :
+   //            int nStyleCount = 0, const unsigned int* pStyle = nullptr) :
 
    //            ::pointer<pen>(pparticle)
    //         {

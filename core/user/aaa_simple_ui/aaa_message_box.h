@@ -14,7 +14,7 @@ namespace simple_ui
       string_array                     m_stra;
       pointer_array < tap >             m_tapaA;
       pointer_array < tap >             m_tapaB;
-      i32                              m_iResult;
+      int                              m_iResult;
       string                           m_strMessage;
       string                           m_strTitle;
       ::e_message_box                  m_emessagebox;
@@ -27,7 +27,7 @@ namespace simple_ui
       virtual ~message_box();
 
 
-      i32 show();
+      int show();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -60,7 +60,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_CORE i32 simple_ui_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption, u32 uFlags);
+CLASS_DECL_CORE int simple_ui_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption, unsigned int uFlags);
 
 
 

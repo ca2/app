@@ -167,7 +167,7 @@ namespace draw2d
 
 
       template < typename T >
-      inline T * get_os_data(i8 i = 0) const
+      inline T * get_os_data(char i = 0) const
       {
 
          return (T *)m_osdata[i];
@@ -175,7 +175,7 @@ namespace draw2d
       }
 
 
-      inline void * get_os_data(i8 i = 0) const
+      inline void * get_os_data(char i = 0) const
       {
 
          return get_os_data < void >(i);
@@ -283,8 +283,8 @@ namespace draw2d
 
 
       // for bidi and mirrored localization
-      virtual u32 GetLayout();
-      virtual u32 SetLayout(u32 dwLayout);
+      virtual unsigned int GetLayout();
+      virtual unsigned int SetLayout(unsigned int dwLayout);
 
       // Constructors
       virtual void create_device_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
@@ -303,8 +303,8 @@ namespace draw2d
 
       // Device-Context Functions
       virtual int GetDeviceCaps(int nIndex);
-      virtual ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags);
-      virtual ::u32 GetBoundsRect(::rectangle_f64 * rectdBounds, ::u32 flags);
+      virtual unsigned int SetBoundsRect(const ::rectangle_f64 & rectangleBounds, unsigned int flags);
+      virtual unsigned int GetBoundsRect(::rectangle_f64 * rectdBounds, unsigned int flags);
 
 
       virtual void resize(const ::size_i32 & sizeWindow);
@@ -339,7 +339,7 @@ namespace draw2d
       // color and color Palette Functions
       //virtual ::color::color GetNearestColor(const ::color::color & color);
       //virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, void bForceBackground);
-      //virtual ::u32 RealizePalette();
+      //virtual unsigned int RealizePalette();
       //virtual void UpdateColors();
 
       // Drawing-Attribute Functions
@@ -398,7 +398,7 @@ namespace draw2d
 //      // World transform
 //#ifdef WINDOWS
 //      virtual void SetWorldTransform(const XFORM* pXform);
-//      virtual void ModifyWorldTransform(const XFORM* pXform,u32 iMode);
+//      virtual void ModifyWorldTransform(const XFORM* pXform,unsigned int iMode);
 //      virtual void GetWorldTransform(XFORM* pXform);
 //#endif
 
@@ -611,25 +611,25 @@ namespace draw2d
       virtual void frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pbrush);
       virtual void invert_rectangle(const ::rectangle_f64 & rectangle);
       
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush = nullptr);
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, ::draw2d::bitmap* pBitmap, unsigned int nFlags,::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, ::u32 nFlags, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, unsigned int nFlags, HBRUSH hBrush = nullptr);
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
 //#endif
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, ::u32 nFlags,
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, unsigned int nFlags,
 
   //                           void bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr);
-//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, ::u32 nFlags,
+//      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, unsigned int nFlags,
 //
 //                             void bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS_DESKTOP
 //      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, DRAWSTATEPROC pDrawProc,
 //
-//                             lparam lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
+//                             lparam lData, unsigned int nFlags, HBRUSH hBrush = nullptr);
 //      virtual void DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, DRAWSTATEPROC pDrawProc,
 //
-//                             lparam lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
+//                             lparam lData, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
 //#endif
       // Ellipse and Polygon Functions
       virtual void Chord(double x1, double y1, double x2, double y2, double x3, double y3,
@@ -844,20 +844,20 @@ namespace draw2d
       virtual ::color::color SetPixel(const ::point_f64 & point, const ::color::color & color);
       virtual ::color::color blend_pixel(const ::point_f64 & point, const ::color::color & color);
 //      virtual void FloodFill(double x, double y, const ::color::color & color);
-//      virtual void ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType);
+//      virtual void ExtFloodFill(double x, double y, const ::color::color & color, unsigned int nFillType);
 //      virtual void MaskBlt(double x, double y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                           double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
-//                           u32 dwRop);
+//                           unsigned int dwRop);
 //      virtual void PlgBlt(::point_f64 * pPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
 //
 //                          int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask);
       virtual void SetPixelV(double x, double y, const ::color::color & color);
       virtual void SetPixelV(const ::point_f64 & point, const ::color::color & color);
       //virtual void GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
-      //void * pMesh, WINULONG nMeshElements, u32 dwMode);
+      //void * pMesh, WINULONG nMeshElements, unsigned int dwMode);
 //      virtual void TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight,
 //                                  ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, int nSrcWidth, int nSrcHeight,
-//                                  ::u32 clrTransparent);
+//                                  unsigned int clrTransparent);
 
 
 
@@ -872,9 +872,9 @@ namespace draw2d
       }
 
       virtual void text_out(double x, double y, const ::scoped_string & scopedstr);
-      //virtual void ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, int * lpDxWidths);
 
-      //virtual void ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::rectangle_f64 & rectangle, const ::string & str, int * lpDxWidths);
 
       //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin);
 
@@ -937,8 +937,8 @@ namespace draw2d
 
       //virtual void GrayString(::draw2d::brush* pBrush, void (CALLBACK* pfnOutput)(HDC, lparam, int), lparam lpData, int nCount, double x, double y, int nWidth, int nHeight);
 
-      virtual ::u32 GetTextAlign();
-      virtual ::u32 SetTextAlign(::u32 nFlags);
+      virtual unsigned int GetTextAlign();
+      virtual unsigned int SetTextAlign(unsigned int nFlags);
       //virtual int GetTextFace(count nCount, char * pszFacename);
 
       //virtual int GetTextFace(string & rString);
@@ -955,9 +955,9 @@ namespace draw2d
 
 // #ifdef WINDOWS_DESKTOP
 
-//       virtual u32 GetCharacterPlacement(const ::string & pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags);
+//       virtual unsigned int GetCharacterPlacement(const ::string & pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags);
 
-//       virtual u32 GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags);
+//       virtual unsigned int GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, unsigned int dwFlags);
 
 
 // #endif
@@ -974,9 +974,9 @@ namespace draw2d
 //
 //
 //  /*    // Advanced Drawing
-//      virtual void DrawEdge(const ::rectangle_f64 & prectd,::u32 nEdge,::u32 nFlags);
+//      virtual void DrawEdge(const ::rectangle_f64 & prectd,unsigned int nEdge,unsigned int nFlags);
 //
-//      virtual void DrawFrameControl(const ::rectangle_f64 & prectd,::u32 nType,::u32 nState);
+//      virtual void DrawFrameControl(const ::rectangle_f64 & prectd,unsigned int nType,unsigned int nState);
 //*/
 
       //// Scolorolling Functions
@@ -986,47 +986,47 @@ namespace draw2d
 
 
       // font Functions
-//      virtual void GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, int * pBuffer);
+//      virtual void GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, int * pBuffer);
 
-//      virtual void GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, int * pBuffer);
+//      virtual void GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, int * pBuffer);
 
-//      virtual u32 SetMapperFlags(u32 dwFlag);
+//      virtual unsigned int SetMapperFlags(unsigned int dwFlag);
 //      virtual ::size_f64 GetAspectRatioFilter();
 
 // #ifdef WINDOWS_DESKTOP
 
-//       virtual void GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC pabc);
+//       virtual void GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar, LPABC pabc);
 
 
 // #endif
 
-//      virtual u32 GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData, u32 cbData);
+//      virtual unsigned int GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID pData, unsigned int cbData);
 
 
 // #ifdef WINDOWS_DESKTOP
 
 //       virtual int GetKerningPairs(int nPairs, LPKERNINGPAIR pkrnpair);
 
-//       virtual ::u32 GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW potm);
+//       virtual unsigned int GetOutlineTextMetrics(unsigned int cbData, LPOUTLINETEXTMETRICW potm);
 
-//       virtual u32 GetGlyphOutline(::u32 nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS pgm, u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
+//       virtual unsigned int GetGlyphOutline(unsigned int nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS pgm, unsigned int cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2);
 
 
-//       virtual void GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABCFLOAT pABCF);
+//       virtual void GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar, LPABCFLOAT pABCF);
 
 
 // #endif
 
-      // virtual void GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float * pFloatBuffer);
+      // virtual void GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, float * pFloatBuffer);
 
 
-      // virtual u32 GetFontLanguageInfo();
+      // virtual unsigned int GetFontLanguageInfo();
 
 //#if defined(WINDOWS_DESKTOP) && (_WIN32_WINNT >= 0x0500)
 //
-//      virtual void GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC pabc);
+//      virtual void GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC pabc);
 //
-//      virtual void GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, int * pBuffer);
+//      virtual void GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, int * pBuffer);
 //
 //
 //#endif
@@ -1062,7 +1062,7 @@ namespace draw2d
 //      virtual void PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 &  pBounds);
 //
 //#endif
-      virtual void AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData);
+      virtual void AddMetaFileComment(unsigned int nDataSize, const unsigned char* pCommentData);
       // can be used for enhanced metafiles only
 
       virtual void abort_path();

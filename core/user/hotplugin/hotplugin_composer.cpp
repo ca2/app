@@ -471,13 +471,13 @@ namespace hotplugin
    }
 
 
-   u32 c_cdecl composer::composer_system_main(LPVOID pVoid)
+   unsigned int c_cdecl composer::composer_system_main(LPVOID pVoid)
 
    {
 
       throw_todo();
 
-      ////i32 iReturnCode = 0;
+      ////int iReturnCode = 0;
 
       //::axis::system * paxissystem = (::axis::system *) pVoid;
 

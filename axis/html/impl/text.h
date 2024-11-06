@@ -51,9 +51,9 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         virtual i32 hit_test(html_data * pdocument, const ::point_f32 & point);
+         virtual int hit_test(html_data * pdocument, const ::point_f32 & point);
 
-         virtual strsize char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y);
+         virtual strsize char_hit_test(::draw2d::graphics_pointer & pgraphics, int x, int y);
 
          virtual float get_first_line_height();
          virtual float get_last_line_height();

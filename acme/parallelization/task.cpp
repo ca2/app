@@ -1063,7 +1063,7 @@ bool task::is_thread() const
 
 
 #ifdef WINDOWS
-::u32 WINAPI task::s_os_task(void * p)
+unsigned int WINAPI task::s_os_task(void * p)
 #else
 void * task::s_os_task(void * p)
 #endif
@@ -1702,8 +1702,8 @@ bool task::has_message() const
 //void task::branch(
 //   ::particle * pparticle,
 //   ::enum_priority epriority,
-//   u32 nStackSize,
-//   u32 uCreateFlags ARG_SEC_ATTRS)
+//   unsigned int nStackSize,
+//   unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   m_pelement = pelement;
@@ -1836,7 +1836,7 @@ void task::on_before_branch()
 
       dwDisplacement = 0;
 
-      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
 
       ULONG BackTraceHash;
 
@@ -1848,7 +1848,7 @@ void task::on_before_branch()
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 
-      u32 uiLine = 0;
+      unsigned int uiLine = 0;
 
       {
          critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2041,7 +2041,7 @@ void task::on_before_branch()
 //
 //      dwDisplacement = 0;
 //
-//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+//      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
 //
 //      ULONG BackTraceHash;
 //
@@ -2053,7 +2053,7 @@ void task::on_before_branch()
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //
-//      u32 uiLine = 0;
+//      unsigned int uiLine = 0;
 //
 //      {
 //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2198,7 +2198,7 @@ void task::on_before_branch()
    //
    //      dwDisplacement = 0;
    //
-   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+   //      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
    //
    //      ULONG BackTraceHash;
    //
@@ -2210,7 +2210,7 @@ void task::on_before_branch()
    //
    //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
    //
-   //      u32 uiLine = 0;
+   //      unsigned int uiLine = 0;
    //
    //      {
    //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2418,7 +2418,7 @@ void task::on_before_destroy_task()
 }
 
 
-//void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __allocate task();

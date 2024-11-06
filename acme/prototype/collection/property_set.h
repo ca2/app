@@ -120,8 +120,8 @@ public:
 
 //#ifdef OS64BIT
 //
-//   inline property & operator[](i32 iIndex) { return payload(iIndex); }
-//   inline const property & operator[](i32 iIndex) const { return payload(iIndex); }
+//   inline property & operator[](int iIndex) { return payload(iIndex); }
+//   inline const property & operator[](int iIndex) const { return payload(iIndex); }
 //
 //#endif
 

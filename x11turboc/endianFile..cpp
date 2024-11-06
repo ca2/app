@@ -30,7 +30,7 @@
 // The reading functions.  All return 0 on success.
 
 int
-ReadLittle16 (FILE * fp, u16 * Value)
+ReadLittle16 (FILE * fp, unsigned short * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -40,7 +40,7 @@ ReadLittle16 (FILE * fp, u16 * Value)
 }
 
 int
-ReadBig16 (FILE * fp, u16 * Value)
+ReadBig16 (FILE * fp, unsigned short * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -50,7 +50,7 @@ ReadBig16 (FILE * fp, u16 * Value)
 }
 
 int
-ReadLittle32 (FILE * fp, u32 * Value)
+ReadLittle32 (FILE * fp, unsigned int * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -60,7 +60,7 @@ ReadLittle32 (FILE * fp, u32 * Value)
 }
 
 int
-ReadBig32 (FILE * fp, u32 * Value)
+ReadBig32 (FILE * fp, unsigned int * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -73,28 +73,28 @@ ReadBig32 (FILE * fp, u32 * Value)
 // The writing functions.  All return 0 on success.
 
 int
-WriteLittle16 (FILE * fp, u16 Value)
+WriteLittle16 (FILE * fp, unsigned short Value)
 {
   FixLittle16 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));
 }
 
 int
-WriteBig16 (FILE * fp, u16 Value)
+WriteBig16 (FILE * fp, unsigned short Value)
 {
   FixBig16 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));
 }
 
 int
-WriteLittle32 (FILE * fp, u32 Value)
+WriteLittle32 (FILE * fp, unsigned int Value)
 {
   FixLittle32 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));
 }
 
 int
-WriteBig32 (FILE * fp, u32 Value)
+WriteBig32 (FILE * fp, unsigned int Value)
 {
   FixBig32 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));

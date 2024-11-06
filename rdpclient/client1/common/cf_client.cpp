@@ -350,7 +350,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	item_info.wID = SYSCOMMAND_ID_SMARTSIZING;
 //	item_info.fType = MFT_STRING;
 //	item_info.dwTypeData = _wcsdup(_T("Smart sizing"));
-//	item_info.cch = (::u32) _wcslen(_T("Smart sizing"));
+//	item_info.cch = (unsigned int) _wcslen(_T("Smart sizing"));
 //	item_info.dwItemData = (ULONG_PTR) wfc;
 //
 //	InsertMenuItem(hMenu, 6, true, &item_info);
@@ -364,7 +364,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //BOOL af_post_connect(freerdp* instance)
 //{
 //	rdpGdi* gdi;
-//	::u32 dwStyle;
+//	unsigned int dwStyle;
 //	rdpCache* cache;
 //	wfContext* wfc;
 //	rdpContext* context;
@@ -439,7 +439,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //	if (!wfc->hwnd)
 //	{
-//		wfc->hwnd = CreateWindowEx((::u32) nullptr, wfc->wndClassName, lpWindowName, dwStyle,
+//		wfc->hwnd = CreateWindowEx((unsigned int) nullptr, wfc->wndClassName, lpWindowName, dwStyle,
 //			0, 0, 0, 0, wfc->hWndParent, nullptr, wfc->hInstance, nullptr);
 //
 //		SetWindowLongPtr(wfc->hwnd, GWLP_USERDATA, (LONG_PTR) wfc);
@@ -511,8 +511,8 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //
 //	//BOOL fSave;
-//	//::u32 status;
-//	//::u32 dwFlags;
+//	//unsigned int status;
+//	//unsigned int dwFlags;
 //	//char UserName[CREDUI_MAX_USERNAME_LENGTH + 1];
 //	//char Password[CREDUI_MAX_PASSWORD_LENGTH + 1];
 //	//char User[CREDUI_MAX_USERNAME_LENGTH + 1];
@@ -587,9 +587,9 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //BOOL af_verify_certificate(freerdp* instance, char* topic, char* issuer, char* fingerprint)
 //{
 //#if 0
-//	::u32 mode;
+//	unsigned int mode;
 //	int read_size;
-//	::u32 read_count;
+//	unsigned int read_count;
 //	TCHAR answer[2];
 //	TCHAR* read_buffer;
 //	HANDLE input_handle;
@@ -617,8 +617,8 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //{
 //	wfContext* wfc = (wfContext *)instance->context;
 //
-//	::u32 num_retries = 0;
-//	::u32 max_retries = instance->settings->AutoReconnectMaxRetries;
+//	unsigned int num_retries = 0;
+//	unsigned int max_retries = instance->settings->AutoReconnectMaxRetries;
 //
 //	/* Only auto reconnect on network disconnects. */
 //	if (freerdp_error_info(instance) != 0)
@@ -687,14 +687,14 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	return nullptr;
 //}
 
-//::u32 WINAPI af_client_thread(LPVOID lpParam)
+//unsigned int WINAPI af_client_thread(LPVOID lpParam)
 //{
 //	MSG msg;
 //	int width;
 //	int height;
 //	BOOL msg_ret;
 //	int quit_msg;
-//	::u32 nCount;
+//	unsigned int nCount;
 //	HANDLE handles[64];
 //	wfContext* wfc;
 //	freerdp* instance;
@@ -741,7 +741,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //		if (!async_pointer)
 //		{
-//			::u32 tmp = freerdp_get_event_handles(context, &handles[nCount], 64 - nCount);
+//			unsigned int tmp = freerdp_get_event_handles(context, &handles[nCount], 64 - nCount);
 //
 //			if (tmp == 0)
 //			{
@@ -833,7 +833,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	return 0;
 //}
 //
-//::u32 WINAPI af_keyboard_thread(LPVOID lpParam)
+//unsigned int WINAPI af_keyboard_thread(LPVOID lpParam)
 //{
 //   MSG msg;
 //   BOOL status;
@@ -870,7 +870,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //   WLog_DBG(TAG,"Keyboard thread exited.");
 //   ExitThread(0);
-//   return (::u32)nullptr;
+//   return (unsigned int)nullptr;
 //}
 
 
@@ -906,7 +906,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //   if((width != wfc->client_width) || (height != wfc->client_height))
 //   {
-//      postthreadmessage(wfc->mainThreadId,e_message_size,SIZE_RESTORED,((::u32)height << 16) | (::u32)width);
+//      postthreadmessage(wfc->mainThreadId,e_message_size,SIZE_RESTORED,((unsigned int)height << 16) | (unsigned int)width);
 //   }
 //
 //   return 0;
@@ -946,7 +946,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //   return 0;
 //}
 //
-//void af_size_scrollbars(wfContext* wfc,::u32 client_width,::u32 client_height)
+//void af_size_scrollbars(wfContext* wfc,unsigned int client_width,unsigned int client_height)
 //{
 //   if(wfc->disablewindowtracking)
 //      return;

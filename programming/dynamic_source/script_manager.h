@@ -84,7 +84,7 @@ namespace dynamic_source
       string_to_string                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
-      i32                                                   m_iTunnelPluginCount;
+      int                                                   m_iTunnelPluginCount;
       ::pointer < ::mutex >                                 m_pmutexOutLink;
       string_map < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
       ::pointer < ::mutex >                                 m_pmutexInLink;
@@ -178,7 +178,7 @@ namespace dynamic_source
 
       virtual void clear_include_matches(::file::path path);
       virtual void clear_include_matches();
-      //static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       virtual ::file::path real_path(const ::file::path & str);
       virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);

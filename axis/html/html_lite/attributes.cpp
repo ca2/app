@@ -109,7 +109,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
    while (true);
 
    // extract attribute name
-   string   strAttrName(pszBegin, i32(pszEnd - pszBegin));
+   string   strAttrName(pszBegin, int(pszEnd - pszBegin));
 
 
    // skip leading white-space characters
@@ -198,7 +198,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          // this will automatically normalize data before
          // assigning according to the specs and will
          // also resolve entity references!!!
-         putValue(preader, string(pszBegin,i32(pszEnd - pszBegin)));
+         putValue(preader, string(pszBegin,int(pszEnd - pszBegin)));
 
 
       // calculate and return the ::collection::count of characters successfully parsed
@@ -440,7 +440,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
       if (m_strValue.length() > 1)
       {
 
-         for (i32 i = 1; i < m_strValue.length(); i++)
+         for (int i = 1; i < m_strValue.length(); i++)
          {
 
             if (!::character_isdigit(m_strValue[i]))
@@ -488,7 +488,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
    else if (isHexColorValue())
    {
 
-      color.m_u32 = (::u32) ::strtoul(m_strValue.substr(1), nullptr, 16);
+      color.m_u32 = (unsigned int) ::strtoul(m_strValue.substr(1), nullptr, 16);
 
       color.m_estatus = ::success;
 

@@ -110,7 +110,7 @@ namespace acme
    //}
 
 
-   //string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   //string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
    //{
 
    //   return {};
@@ -293,7 +293,7 @@ namespace acme
 
 
 
-      string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+      string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
       {
 
          critical_section_lock synchronouslock(sym_dbg_help_critical_section());
@@ -311,7 +311,7 @@ namespace acme
       }
 
 
-      string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+      string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
       {
 
          critical_section_lock synchronouslock(sym_dbg_help_critical_section());

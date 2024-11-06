@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 typedef signed long   PRInt32;
-typedef unsigned long PR::u32;
+typedef unsigned long PRunsigned int;
 typedef signed short    PRInt16;
 typedef unsigned short  PR::u3216;
 typedef signed char   PRInt8;

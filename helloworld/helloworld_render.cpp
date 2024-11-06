@@ -1007,7 +1007,7 @@ namespace helloworld
 
    //            t = (m_tick23.elapsed());
 
-   //            u32 uiCurrent23 = (t) / period;
+   //            unsigned int uiCurrent23 = (t) / period;
 
    //            t %= period;
 
@@ -1172,7 +1172,7 @@ namespace helloworld
 
    //   }
 
-   //   //::u32 dw= ::time::now();
+   //   //unsigned int dw= ::time::now();
 
    //   if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
    //   {

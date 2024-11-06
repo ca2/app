@@ -156,10 +156,10 @@ namespace colorertake5
 
 
 
-   //string ParserFactory::enumerateHRDClasses(i32 idx){
+   //string ParserFactory::enumerateHRDClasses(int idx){
    //return hrdLocations.key(idx);
    //};
-   //string ParserFactory::enumerateHRDInstances(const string &classID, i32 idx){
+   //string ParserFactory::enumerateHRDInstances(const string &classID, int idx){
    //string_map<pointer_object<string_array>> *hash = hrdLocations.pget(classID);
    //if (hash == nullptr) return "";
    //return hash->key(idx);
@@ -175,7 +175,7 @@ namespace colorertake5
          return hrcParser;
       hrcParser = ___new HRCParserImpl(this);
       hrcParser->setErrorHandler(fileErrorHandler);
-      for(i32 idx = 0; idx < hrcLocations.get_size(); idx++)
+      for(int idx = 0; idx < hrcLocations.get_size(); idx++)
       {
          string relPath = hrcLocations.element_at(idx);
          string path;
@@ -200,7 +200,7 @@ namespace colorertake5
             ::file::listing patha(get_app());
             patha.rls(path);
             file_pointer spfile(e_create);
-            for(i32 i = 0; i < patha.get_count(); i++)
+            for(int i = 0; i < patha.get_count(); i++)
             {
                if(!directory()->is(patha[i]))
                {
@@ -294,7 +294,7 @@ namespace colorertake5
 
       ::file::path strDir = this->catalogPath.folder();
 
-      for(i32 idx = 0; idx < hrdLocV->get_size(); idx++)
+      for(int idx = 0; idx < hrdLocV->get_size(); idx++)
       {
          if (hrdLocV->element_at(idx).has_char())
          {
@@ -344,7 +344,7 @@ namespace colorertake5
          throw ::exception(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
       TextHRDMapper *mapper = ___new TextHRDMapper(this);
-      for(i32 idx = 0; idx < hrdLocV->get_size(); idx++)
+      for(int idx = 0; idx < hrdLocV->get_size(); idx++)
       {
          if (hrdLocV->element_at(idx).has_char())
          {

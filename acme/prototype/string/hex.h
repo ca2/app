@@ -19,9 +19,9 @@ namespace hex
 
    CLASS_DECL_ACME u64 to_u64(const string & pcsz);
 
-   CLASS_DECL_ACME u32 to_u32(const ::string & str);
+   CLASS_DECL_ACME unsigned int to_u32(const ::string & str);
 
-   inline CLASS_DECL_ACME i32 to_nibble(char ch)
+   inline CLASS_DECL_ACME int to_nibble(char ch)
    {
 
       return (ch >= '0' && ch <= '9') ? ch - '0' :
@@ -203,14 +203,14 @@ namespace hex
    }
 
 
-   inline void to(u32 & u,const ::string & str) { u = to_u32(str); }
+   inline void to(unsigned int & u,const ::string & str) { u = to_u32(str); }
    inline void to(u64 & u,const ::string & str) { u = to_u64(str); }
 #ifdef __APPLE__
    inline void to(unsigned long & u,const ::string & str) { u = to_u64(str); }
 #endif
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 
-   u16 parse_u16_exc(::const_ansi_range & range);
+   unsigned short parse_u16_exc(::const_ansi_range & range);
 
 
 } // namespace hex

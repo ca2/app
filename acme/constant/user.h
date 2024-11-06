@@ -4,7 +4,7 @@
 
 
 
-//#define make_i32(a, b)      ((int)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define make_i32(a, b)      ((int)(((unsigned short)(((dword_ptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 

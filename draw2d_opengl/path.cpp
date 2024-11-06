@@ -90,7 +90,7 @@ namespace draw2d_opengl
       return true;
    }
 
-   bool path::internal_add_line(i32 x1, i32 y1, i32 x2, i32 y2)
+   bool path::internal_add_line(int x1, int y1, int x2, int y2)
    {
 
       ////bool bOk1 = true;
@@ -115,7 +115,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::internal_add_rect(i32 x,i32 y,i32 cx,i32 cy)
+   bool path::internal_add_rect(int x,int y,int cx,int cy)
    {
 
       //plusplus::rectangle_i32 rectangle_i32(x,y,cx,cy);
@@ -128,7 +128,7 @@ namespace draw2d_opengl
       return true;
    }
 
-   bool path::internal_add_line(i32 x, i32 y)
+   bool path::internal_add_line(int x, int y)
    {
 
       //bool bOk1 = true;
@@ -159,7 +159,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::internal_add_move(i32 x, i32 y)
+   bool path::internal_add_move(int x, int y)
    {
 
       m_pointLast.x() = x;

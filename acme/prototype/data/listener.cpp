@@ -54,7 +54,7 @@ namespace data
    }
 
 
-   void listener::on_update_data(data *, i32)
+   void listener::on_update_data(data *, int)
    {
 
    }

@@ -11,8 +11,8 @@ namespace hi5
    namespace oAuthLibDefaults
    {
       /* Constants */
-      const i32 OAUTHLIB_BUFFSIZE = 1024;
-//       const i32 OAUTHLIB_BUFFSIZE_LARGE = 1024;
+      const int OAUTHLIB_BUFFSIZE = 1024;
+//       const int OAUTHLIB_BUFFSIZE_LARGE = 1024;
 
 
    };
@@ -38,7 +38,7 @@ namespace hi5
 
       string escaped;
       ::collection::count maximum = ca.get_length();
-      for(i32 i=0; i<maximum; i++)
+      for(int i=0; i<maximum; i++)
       {
          if ( (48 <= ca[i] && ca[i] <= 57) ||//0-9
                (65 <= ca[i] && ca[i] <= 90) ||//ABC...XYZ
@@ -313,14 +313,14 @@ namespace hi5
       char szRand[oAuthLibDefaults::OAUTHLIB_BUFFSIZE];
       memory_set( szTime, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       memory_set( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
-      srand((::u32) time( nullptr ) );
+      srand((unsigned int) time( nullptr ) );
       sprintf( szRand, "%x", rand()%1000 );
 #ifdef WINDOWS
-      sprintf( szTime, "%ld", (i32) time( nullptr ) );
+      sprintf( szTime, "%ld", (int) time( nullptr ) );
 #elif defined __LP64
       sprintf( szTime, "%ld", (i64) time( nullptr ) );
 #else
-      sprintf( szTime, "%d", (i32) time( nullptr ) );
+      sprintf( szTime, "%d", (int) time( nullptr ) );
 #endif
 
       m_nonce = szTime;
@@ -622,7 +622,7 @@ namespace hi5
 
             keyValueList.sort();
 
-            for(i32 i = 0; i < keyValueList.get_count(); i++)
+            for(int i = 0; i < keyValueList.get_count(); i++)
             {
 
                auto pFind = keyValueList[i].find("=");

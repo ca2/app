@@ -114,7 +114,7 @@ namespace colorertake5
       regionDefines.set_at(name, new_region);
 
       // Searches and replaces old region references
-      for(i32 idx = 0; idx < regionDefinesVector.get_size(); idx++)
+      for(int idx = 0; idx < regionDefinesVector.get_size(); idx++)
          if (regionDefinesVector.element_at(idx) == rd_old)
          {
             regionDefinesVector.set_at(idx, new_region);

@@ -627,7 +627,7 @@ public:
 
 
 
-CLASS_DECL_ACME u32 processor_index_generator();
+CLASS_DECL_ACME unsigned int processor_index_generator();
 
 
 //template < typename PRED >

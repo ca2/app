@@ -155,7 +155,7 @@ bool ifs::enumerate(::file::listing & listing)
    //if(strSource.is_empty())
    //{
 
-   //   dir.m_uiLsTimeout = (u32) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -164,7 +164,7 @@ bool ifs::enumerate(::file::listing & listing)
    //if(!doc.load(strSource))
    //{
 
-   //   dir.m_uiLsTimeout = (u32) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -173,7 +173,7 @@ bool ifs::enumerate(::file::listing & listing)
    //if(doc.root()->get_name() != "folder")
    //{
 
-   //   dir.m_uiLsTimeout = (u32) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -221,7 +221,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //}
 
-   //dir.m_uiTimeout = (u32) (::get_tick() + ((1000) * 4));
+   //dir.m_uiTimeout = (unsigned int) (::get_tick() + ((1000) * 4));
 
 
 
@@ -266,7 +266,7 @@ bool ifs::enumerate(::file::listing & listing)
 
 
 
-   //dir.m_uiLsTimeout = (u32) (::get_tick() + ((1000) * 4));
+   //dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((1000) * 4));
 
    return listing;
 

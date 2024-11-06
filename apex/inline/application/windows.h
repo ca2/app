@@ -4,7 +4,7 @@
 //CLASS_DECL_ACME void set_main_user_thread();
 //
 //
-//i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
+//int WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
 //{
 //
 //

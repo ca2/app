@@ -5,7 +5,7 @@
 
 
 template < class PAYLOAD >
-using i32_map = map < i32, PAYLOAD >;
+using i32_map = map < int, PAYLOAD >;
 
 template < class PAYLOAD >
 using i64_map = map < i64, PAYLOAD >;

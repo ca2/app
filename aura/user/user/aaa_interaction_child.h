@@ -36,12 +36,12 @@ namespace user
       virtual void message_handler(::message::message * pusermessage) override;
 
       //using ::user::interaction_base::set_window_position;
-      //virtual bool set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_window_position(iptr z,int x,int y,int cx,int cy,unsigned int nFlags = SWP_SHOWWINDOW) override;
 
 
       // Advanced: virtual AdjustWindowRect
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,unsigned int nAdjustType = adjustBorder) override;
 
 
 
@@ -51,8 +51,8 @@ namespace user
 
       void destroy_window() override;
 
-      //virtual u32 GetStyle() const override;
-      //virtual u32 GetExStyle() const override;
+      //virtual unsigned int GetStyle() const override;
+      //virtual unsigned int GetExStyle() const override;
 
 
       //virtual lresult default_window_procedure() override;
@@ -74,10 +74,10 @@ namespace user
       virtual void _002InstallMessageHandling(::channel * pchannel);
 
 
-      virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle);
+      virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, unsigned int & nExStyle, unsigned int & nStyle);
 
       //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::interaction_base * pparent, atom atom) override;
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, unsigned int uExStyle, unsigned int uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
 
       
       void create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent) override;
@@ -115,7 +115,7 @@ namespace user
 
       void set_origin(::draw2d::graphics_pointer & pgraphics) override;
 
-      void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
+      void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,unsigned int flags) override;
 
       ::user::interaction_base * set_owner(::user::interaction_base * pinteraction) override;
       ::user::interaction * get_owner() override;

@@ -3,8 +3,8 @@
 
 
 
-//CLASS_DECL_AURA ::u32 get_last_error();
-//CLASS_DECL_AURA void set_last_error(::u32 dw);
+//CLASS_DECL_AURA unsigned int get_last_error();
+//CLASS_DECL_AURA void set_last_error(unsigned int dw);
 
 
 
@@ -14,7 +14,7 @@ class CLASS_DECL_AURA c_error
 {
 public:
 
-   inline static ::u32 get_last_error()
+   inline static unsigned int get_last_error()
    {
 
       return errno;
@@ -37,7 +37,7 @@ class CLASS_DECL_AURA sys_error
 {
 public:
 
-   static ::u32 get_last_error() { return ::get_last_error(); }
+   static unsigned int get_last_error() { return ::get_last_error(); }
 
    static string GetErrorDescription(int iErrorCode = get_last_error())
    {

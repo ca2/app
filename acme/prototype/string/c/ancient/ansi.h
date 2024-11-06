@@ -3,16 +3,16 @@
 
 
 
-CLASS_DECL_ACME ::ansi_character       __ansicharlowered(i32 i);
-CLASS_DECL_ACME ::ansi_character       __ansicharuppered(i32 i);
-CLASS_DECL_ACME i32                    __ansicharisdigit(i32 i);
-CLASS_DECL_ACME i32                    __ansicharisalpha(i32 i);
-CLASS_DECL_ACME i32                    __ansicharisalnum(i32 i);
-CLASS_DECL_ACME i32                    __ansicharisspace(i32 i);
-CLASS_DECL_ACME i32                    __ansicharisxdigit(i32 i);
+CLASS_DECL_ACME ::ansi_character       __ansicharlowered(int i);
+CLASS_DECL_ACME ::ansi_character       __ansicharuppered(int i);
+CLASS_DECL_ACME int                    __ansicharisdigit(int i);
+CLASS_DECL_ACME int                    __ansicharisalpha(int i);
+CLASS_DECL_ACME int                    __ansicharisalnum(int i);
+CLASS_DECL_ACME int                    __ansicharisspace(int i);
+CLASS_DECL_ACME int                    __ansicharisxdigit(int i);
 
 
-CLASS_DECL_ACME i32                    __ansicharishexadecimal(i32 i);
+CLASS_DECL_ACME int                    __ansicharishexadecimal(int i);
 
 
 
@@ -76,14 +76,14 @@ CLASS_DECL_ACME strsize __ansispn(const ::ansi_character * psz1, const ::ansi_ch
 CLASS_DECL_ACME strsize __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
 
-CLASS_DECL_ACME i64 __ansitoi64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u64 __ansitou64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME i32 __ansitoi32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
-CLASS_DECL_ACME u32 __ansitou32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, i32 iBase);
+CLASS_DECL_ACME i64 __ansitoi64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME u64 __ansitou64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int __ansitoi32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int __ansitou32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME ::ansi_character lower_char(i32 ch);
-CLASS_DECL_ACME ::ansi_character upper_char(i32 ch);
+CLASS_DECL_ACME ::ansi_character lower_char(int ch);
+CLASS_DECL_ACME ::ansi_character upper_char(int ch);
 CLASS_DECL_ACME void make_lower(::ansi_character * psz);
 
 

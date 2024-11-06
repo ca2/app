@@ -41,7 +41,7 @@ public:
    constexpr e_status(::enum_status estatus): m_eenum(estatus){}
    constexpr e_status(const ::e_status & estatus): m_eenum(estatus.m_eenum){}
    constexpr explicit e_status(bool b) : m_eenum(b ? success : error_failed){}
-   constexpr explicit e_status(i32 i) : m_eenum((::enum_status) i) {}
+   constexpr explicit e_status(int i) : m_eenum((::enum_status) i) {}
    constexpr explicit e_status(i64 i) : m_eenum((::enum_status) i) {}
 
 

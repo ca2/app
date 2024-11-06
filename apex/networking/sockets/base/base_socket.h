@@ -21,7 +21,7 @@ namespace sockets
    public:
 
       //void * m_p2;
-      i32      m_iKeepAliveCount = 0;
+      int      m_iKeepAliveCount = 0;
 
       
       ::networking::enum_address_type       m_eaddresstypePreferred;
@@ -279,7 +279,7 @@ namespace sockets
       virtual bool is_end() const;
 
 
-      //virtual i32 close_socket(socket_id s);
+      //virtual int close_socket(socket_id s);
 
 
       virtual ::networking::port_t get_bind_port() const;
@@ -803,7 +803,7 @@ virtual string GetSocks4Host();
       //virtual bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, int err, const ::string & strMessage);
 
       virtual string get_short_description();
 

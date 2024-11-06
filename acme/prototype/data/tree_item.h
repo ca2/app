@@ -386,7 +386,7 @@ namespace data
       ::collection::index                            m_iLevel;
       ::pointer<::data::item>          m_pdataitem;
       uptr                             m_dwUser;
-      u32                              m_dwState;
+      unsigned int                              m_dwState;
       uptr                             m_dwMetaData;
 
 

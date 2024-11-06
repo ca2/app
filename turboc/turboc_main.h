@@ -22,7 +22,7 @@ namespace turboc
       virtual ~main();
 
 
-      virtual i32 run();
+      virtual int run();
 
 
    };

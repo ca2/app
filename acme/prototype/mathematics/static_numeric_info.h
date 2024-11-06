@@ -13,7 +13,7 @@ class static_numeric_info
 
 
 template <>
-class CLASS_DECL_ACME static_numeric_info < u32 >
+class CLASS_DECL_ACME static_numeric_info < unsigned int >
 {
    public:
 

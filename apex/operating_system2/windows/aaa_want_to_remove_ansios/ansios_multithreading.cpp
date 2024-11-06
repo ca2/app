@@ -10,12 +10,12 @@ CLASS_DECL_APEX int32_t thread_get_scheduling_priority(int iOsPolicy, const sche
 CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object * * pobjectptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+//unsigned int MsgWaitForMultipleObjectsEx(unsigned int dwSize, sync_object * * pobjectptra, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags)
 //{
 //
-//   ::u32 start = 0;
+//   unsigned int start = 0;
 //
-//   if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT)
+//   if(tickTimeout != (unsigned int) U32_INFINITE_TIMEOUT)
 //   {
 //
 //      start= ::duration::now();
@@ -68,7 +68,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //
 //            }
 //
-//            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            if(tickTimeout != (unsigned int) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
 //            {
 //
 //               for(j = 0; j < i; j++)
@@ -127,7 +127,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //
 //            }
 //
-//            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            if(tickTimeout != (unsigned int) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
 //            {
 //
 //               return WAIT_TIMEOUT;
@@ -152,7 +152,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //}
 
 
-//::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+//unsigned int MsgWaitForMultipleObjects(unsigned int dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, unsigned int tickTimeout, unsigned int dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -160,7 +160,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //}
 
 
-//::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+//unsigned int WaitForMultipleObjectsEx(unsigned int dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -168,7 +168,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //}
 
 
-::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout)
+unsigned int WaitForMultipleObjects(unsigned int dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, unsigned int tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, tickTimeout, false);
@@ -176,7 +176,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 }
 
 
-::u32 WaitForSingleObjectEx(sync_object * pparticle, ::u32 tickTimeout, int_bool bAlertable)
+unsigned int WaitForSingleObjectEx(sync_object * pparticle, unsigned int tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &pparticle, true, tickTimeout, bAlertable);
@@ -184,7 +184,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 }
 
 
-::u32 WaitForSingleObject(sync_object * pparticle, ::u32 tickTimeout)
+unsigned int WaitForSingleObject(sync_object * pparticle, unsigned int tickTimeout)
 {
 
    return WaitForSingleObjectEx(pparticle, tickTimeout, false);
@@ -356,15 +356,15 @@ CLASS_DECL_APEX void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-// LPVOID WINAPI thread_get_data(htask_t htask,::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(htask_t htask,unsigned int dwIndex);
 
-// int_bool WINAPI thread_set_data(htask_t htask,::u32 dwIndex,LPVOID lpTlsValue);
+// int_bool WINAPI thread_set_data(htask_t htask,unsigned int dwIndex,LPVOID lpTlsValue);
 
-::u32 g_dwDebug_post_thread_msg_time;
+unsigned int g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
-CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,unsigned int Msg,WPARAM wParam,LPARAM lParam)
 {
 
    ::pointer<message_queue>pmq = __get_mq(iThreadId);

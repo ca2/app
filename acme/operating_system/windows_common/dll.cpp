@@ -105,7 +105,7 @@ WCHAR * module_debug_wcsdup(hinstance hinstance, const WCHAR * pwszPrefix = null
 
       wcscat(pwsz, L"\'");
 
-      ::GetModuleFileNameW((HINSTANCE)hinstance, &pwsz[wcslen(pwsz)], (::u32)module_len);
+      ::GetModuleFileNameW((HINSTANCE)hinstance, &pwsz[wcslen(pwsz)], (unsigned int)module_len);
 
       wcscat(pwsz, L"\'");
 
@@ -195,9 +195,9 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 //#ifdef UNIVERSAL_WINDOWS
 //[MTAThread]
 //#endif
-//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
-//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox)
-int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved)
+//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
+//int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dwReason, LPVOID pReserved, int iLibMainDebugBox)
+int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dwReason, LPVOID pReserved)
 {
 
    __UNREFERENCED_PARAMETER(pReserved);

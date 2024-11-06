@@ -87,7 +87,7 @@ namespace filehandler
 
       plibrary->get_extension_list(straExtension);
 
-      for(i32 i = 0; i < straExtension.get_count(); i++)
+      for(int i = 0; i < straExtension.get_count(); i++)
       {
 
          auto ptreeitem = get_extension_tree_item(straExtension[i], true);
@@ -118,7 +118,7 @@ namespace filehandler
 
       plibrary->get_mime_type_list(straMimeType);
 
-      for(i32 i = 0; i < straMimeType.get_count(); i++)
+      for(int i = 0; i < straMimeType.get_count(); i++)
       {
 
          auto ptreeitem = get_extension_tree_item(straMimeType[i], true);
@@ -154,7 +154,7 @@ namespace filehandler
 
       plibrary->get_extension_list(straExtension);
 
-      for(i32 i = 0; i < straExtension.get_count(); i++)
+      for(int i = 0; i < straExtension.get_count(); i++)
       {
 
          auto ptreeitem = get_extension_tree_item(straExtension[i], true);
@@ -185,7 +185,7 @@ namespace filehandler
 
       plibrary->get_mime_type_list(straMimeType);
 
-      for(i32 i = 0; i < straMimeType.get_count(); i++)
+      for(int i = 0; i < straMimeType.get_count(); i++)
       {
 
          auto ptreeitem = get_mime_type_tree_item(straMimeType[i], true);

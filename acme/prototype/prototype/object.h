@@ -367,7 +367,7 @@ public:
 
 
 
-   //static u32 s_thread_proc(void* p);
+   //static unsigned int s_thread_proc(void* p);
 
 
    //virtual void to_string(const string_exchange & str) const override;
@@ -608,8 +608,8 @@ public:
    //template < typename TYPE >
    //inline ::pointer<task>branch_procedure(void (TYPE::* pfnMemberProcedure)(),
    //   ::enum_priority epriority = e_priority_normal,
-   //   ::u32 nStackSize = 0,
-   //   ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
+   //   unsigned int nStackSize = 0,
+   //   unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
    //{
 
    //   return fork([this, pfnMemberProcedure]()
@@ -871,7 +871,7 @@ public:
 
 
 
-   //static u32 s_thread_proc(void* p);
+   //static unsigned int s_thread_proc(void* p);
 
 
    string as_string() const override;
@@ -1204,8 +1204,8 @@ public:
 
    //::task_pointer begin(
    //   ::enum_priority epriority = ::e_priority_normal,
-   //   ::u32 nStackSize = 0,
-   //   u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   //   unsigned int nStackSize = 0,
+   //   unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    //::task_pointer defer_fork(string strThread = "");
 

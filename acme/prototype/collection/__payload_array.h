@@ -34,12 +34,12 @@ public:
    inline ::collection::index add(const ::string & str) { return add((const ::payload &) str); }
    inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
 
-   inline ::collection::index add(i8 i) { return add((const ::payload &) i); }
+   inline ::collection::index add(char i) { return add((const ::payload &) i); }
    inline ::collection::index add(unsigned char u) { return add((const ::payload &) u); }
-   inline ::collection::index add(i16 i) { return add((const ::payload &) i); }
-   inline ::collection::index add(u16 u) { return add((const ::payload &) u); }
-   inline ::collection::index add(i32 i) { return add((const ::payload &) i); }
-   inline ::collection::index add(u32 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(short i) { return add((const ::payload &) i); }
+   inline ::collection::index add(unsigned short u) { return add((const ::payload &) u); }
+   inline ::collection::index add(int i) { return add((const ::payload &) i); }
+   inline ::collection::index add(unsigned int u) { return add((const ::payload &) u); }
    inline ::collection::index add(i64 i) { return add((const ::payload &) i); }
    inline ::collection::index add(u64 u) { return add((const ::payload &) u); }
 

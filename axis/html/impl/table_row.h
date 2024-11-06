@@ -18,8 +18,8 @@ namespace html
 
 
          ::collection::index                               m_iRow;
-         i32                             m_cyMin;
-         i32                             m_cyMax;
+         int                             m_cyMin;
+         int                             m_cyMax;
          array < cell::holder >        m_cellholdera;
 
 

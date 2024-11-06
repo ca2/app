@@ -21,7 +21,7 @@ void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,i6
 #endif
 
 
-//void fastblur(u32 * pdata, i32 w, i32 h, i32 radius);
+//void fastblur(unsigned int * pdata, int w, int h, int radius);
 
 
 namespace hotplugin
@@ -240,7 +240,7 @@ namespace hotplugin
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-   i32 plugin::x11_message_handler(void  * pevent)
+   int plugin::x11_message_handler(void  * pevent)
    {
       return 0;
    }
@@ -248,7 +248,7 @@ namespace hotplugin
 #endif
 
 
-   i32 plugin::start_ca2_system()
+   int plugin::start_ca2_system()
    {
       return -1;
    }
@@ -309,7 +309,7 @@ namespace hotplugin
    /*double cos_prec_dup(double x,double prec)
    {
    double t , s ;
-   i32 point_i32;
+   int point_i32;
    point = 0;
    s = 1.0;
    t = 1.0;
@@ -368,7 +368,7 @@ namespace hotplugin
 
    }
 
-   void plugin::get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, i32 iProfile)
+   void plugin::get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, int iProfile)
    {
       double dH = dRate; // blue ==> red => green
       double dL;
@@ -622,25 +622,25 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleWindow(rectangleParam);
 
-      i32 cx = rectangleWindow.right() - rectangleWindow.left();
+      int cx = rectangleWindow.right() - rectangleWindow.left();
 
-      i32 cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cy = rectangleWindow.bottom() - rectangleWindow.top();
 
       double dRate = get_progress_rate();
 
-      i32 iLineCount = 25;
+      int iLineCount = 25;
 
-      i32 x;
+      int x;
 
-      i32 y = rectangleWindow.top();
+      int y = rectangleWindow.top();
 
-      i32 pcx = cx;
+      int pcx = cx;
 
-      i32 pcy = cy / iLineCount;
+      int pcy = cy / iLineCount;
 
       ::rectangle_i32 rectangleP;
 
-      for(i32 iLine = 0; iLine < iLineCount; iLine++)
+      for(int iLine = 0; iLine < iLineCount; iLine++)
       {
 
          double dStart = (double) iLine / (double) iLineCount;
@@ -653,7 +653,7 @@ namespace hotplugin
             if(dRate < dStart)
                x = rectangleWindow.left();
             else
-               x = (i32) (rectangleWindow.left() + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
+               x = (int) (rectangleWindow.left() + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
 
             if(iLine >= (iLineCount - 1))
                pcy = rectangleWindow.bottom() - y;
@@ -769,7 +769,7 @@ namespace hotplugin
          //m_memB
          //{
          //   my_munmap(m_pcolorref, m_hfileBitmap);
-         //   m_pcolorref = (u32 *)get_map_failed();
+         //   m_pcolorref = (unsigned int *)get_map_failed();
          //}
 
                   auto psystem = system();
@@ -778,7 +778,7 @@ namespace hotplugin
 
 pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
-         //i32 iOpen;
+         //int iOpen;
 
 //         if(bCreateFile)
 //         {
@@ -834,7 +834,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //
 //
 //#ifdef WINDOWS
-//         u32 dwError = get_last_error();
+//         unsigned int dwError = get_last_error();
 //         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
 //#else
 //         if(m_hfileBitmap == -1)
@@ -1080,7 +1080,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
       lparam lparam;
 
 
-      message = (::u32) (LPARAM) pusermessage->m_atom.i64();
+      message = (unsigned int) (LPARAM) pusermessage->m_atom.i64();
 
       wparam     = pusermessage->m_wparam;
 

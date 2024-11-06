@@ -7,7 +7,7 @@
 #define _Session get_session()
 
 
-CLASS_DECL_APEX bool __initialize(bool bDLL, ::u32 dwVersion);
+CLASS_DECL_APEX bool __initialize(bool bDLL, unsigned int dwVersion);
 
 CLASS_DECL_APEX uptr keycode_to_char(uptr n);
 

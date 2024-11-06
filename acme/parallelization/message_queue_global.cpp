@@ -154,7 +154,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 }
 
 
-//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
 //{
 //
 //   auto pmessagequeue = ::aaa_get_message_queue(::current_itask(), false);
@@ -178,7 +178,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 //}
 
 
-CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
    auto pmessagequeue = ::system()->task_message_queue()->current_task_message_queue(true);

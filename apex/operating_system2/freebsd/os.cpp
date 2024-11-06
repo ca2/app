@@ -4,7 +4,7 @@
 #include <sys/types.h>
 
 
-CLASS_DECL_APEX bool _istlead(i32 ch)
+CLASS_DECL_APEX bool _istlead(int ch)
 {
 
    return false;
@@ -12,7 +12,7 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 }
 
 
-//void sleep(::u32 dwMillis)
+//void sleep(unsigned int dwMillis)
 //{
 //   timespec t;
 //   t.tv_sec = dwMillis / 1000;

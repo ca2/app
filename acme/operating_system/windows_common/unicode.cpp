@@ -2,9 +2,9 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME i32 MultiByteToWideChar2(
-   ::u32 CodePage, ::u32 uFlags, const char * pMultiByteStr,
-   i32 cbMultiByte, LPWSTR  pWideCharStr, i32 cchWideChar)
+CLASS_DECL_ACME int MultiByteToWideChar2(
+   unsigned int CodePage, unsigned int uFlags, const char * pMultiByteStr,
+   int cbMultiByte, LPWSTR  pWideCharStr, int cchWideChar)
 {
 
    return MultiByteToWideChar(CodePage, uFlags, pMultiByteStr, cbMultiByte, pWideCharStr, cchWideChar);
@@ -13,9 +13,9 @@ CLASS_DECL_ACME i32 MultiByteToWideChar2(
 }
 
 
-CLASS_DECL_ACME i32 WideCharToMultiByte2(
-   ::u32 CodePage, ::u32 uFlags, const ::wide_character *  pWideCharStr,
-   i32 cchWideChar, char * pMultiByteStr, i32 cbMultiByte,
+CLASS_DECL_ACME int WideCharToMultiByte2(
+   unsigned int CodePage, unsigned int uFlags, const ::wide_character *  pWideCharStr,
+   int cchWideChar, char * pMultiByteStr, int cbMultiByte,
    const char * pDefaultChar, int_bool * pUsedDefaultChar)
 {
 

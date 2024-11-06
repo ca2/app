@@ -487,7 +487,7 @@ namespace experience_tranquillum
    void frame_011::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleXParam, enum_grip egrip)
    {
 
-      const i32 size = 16;
+      const int size = 16;
 
       ::rectangle_i32 rectangleX(rectangleXParam);
 

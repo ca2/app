@@ -203,7 +203,7 @@ namespace file
       inline unsigned char get_u8_unbounded() { return get_u8(); }
 
       virtual int get_u16(); // 0-255 - -1 if eof otherwise exception?
-      inline u16 get_u16_unbounded() { return get_u16(); }
+      inline unsigned short get_u16_unbounded() { return get_u16(); }
 
       virtual bool get_u64(u64 & u64); // 0-255 - -1 if eof otherwise exception?
       inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }

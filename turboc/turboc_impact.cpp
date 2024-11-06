@@ -517,7 +517,7 @@ namespace turboc
          {
 
 
-            //          ::u32 dwTime2= ::time::now();
+            //          unsigned int dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 //            informationf("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
@@ -568,7 +568,7 @@ namespace turboc
          }
          {
 
-//            ::u32 dwTime2= ::time::now();
+//            unsigned int dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //informationf("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -700,7 +700,7 @@ namespace turboc
    }
 
 
-   ::u32 impact::thread_proc_render(void * pparam)
+   unsigned int impact::thread_proc_render(void * pparam)
    {
 
       impact * pviewParam = (impact *)pparam;

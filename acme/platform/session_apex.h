@@ -111,7 +111,7 @@ namespace platform
 
       bool                                                  m_bMatterFromHttpCache;
 
-      ::u32                                                 m_dwLongPhRESSingTime;
+      unsigned int                                                 m_dwLongPhRESSingTime;
 
 
    };
@@ -201,7 +201,7 @@ namespace platform
 
       // Long PhRESSing time
       // time in ::times that a pressing is considered a double click
-      virtual ::u32 get_Long_PhRESSing_time();
+      virtual unsigned int get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();
 

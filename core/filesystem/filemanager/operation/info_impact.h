@@ -28,7 +28,7 @@ namespace filemanager
 
       ::pointer<operation_document>get_document();
 
-      void OnFileOperationStep(i32 iOperation,bool bFinal);
+      void OnFileOperationStep(int iOperation,bool bFinal);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;

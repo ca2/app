@@ -293,7 +293,7 @@ namespace colorertake5
          if (lowlen < gx+kwlen)
             kwlen = lowlen-gx;
 
-         i32 color32;
+         int color32;
          if (node->kwList->matchCase)
             color32 = node->kwList->kwList[pos].keyword.compare(string(&((const ::string &)str)[gx], kwlen));
          else
@@ -312,7 +312,7 @@ namespace colorertake5
                }
                else
                {
-                  // custom check for u16 bound
+                  // custom check for unsigned short bound
                   if (gx && !node->worddiv->in_class(&((const ::string &)str)[gx-1])) badbound = true;
                   if (gx + kwlen < lowlen &&
                         !node->worddiv->in_class(&((const ::string &)str)[gx + kwlen])) badbound = true;
@@ -452,7 +452,7 @@ namespace colorertake5
             bool zeroLength;
 
             scheme_impl *o_scheme = baseScheme;
-            //i32 o_schemeStart = schemeStart;
+            //int o_schemeStart = schemeStart;
             SMatches o_matchend = matchend;
             //        SMatches *o_match;
             //      string *o_str;
@@ -558,7 +558,7 @@ namespace colorertake5
          endLine = gy;
 
          // searches for the end of parent block
-         i32 res = 0;
+         int res = 0;
          if (root_end_re) res = root_end_re->parse(str, gx, len, &matchend, &schemeStart);
          if (!res) matchend.s[0] = matchend.e[0] = len;
 
@@ -572,7 +572,7 @@ namespace colorertake5
             len = matchend.s[0];
          }
 
-         i32 ret = LINE_NEXT;
+         int ret = LINE_NEXT;
          for (; gx <= matchend.s[0];)   //    '<' or '<=' ???
          {
             if (breakParsing)
@@ -582,7 +582,7 @@ namespace colorertake5
             };
             if (picked != nullptr && gx+11 <= matchend.s[0] && ((const ::string &)str)[gx] == 'C')
             {
-               i32 ci;
+               int ci;
                static char atom[] = "fnq%Qtrjhg";
                for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != atom[ci]-5) break;
                if (ci == 10)
@@ -592,7 +592,7 @@ namespace colorertake5
                   continue;
                };
             };
-//            i32 ox = gx;
+//            int ox = gx;
             ::collection::index oy = gy;
             ::collection::index re_result = searchRE(baseScheme, gy, matchend.s[0], len);
             if ((re_result == MATCH_SCHEME && (oy != gy || matchend.s[0] < gx)) ||

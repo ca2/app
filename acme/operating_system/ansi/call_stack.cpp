@@ -198,7 +198,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+   string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
    {
       
       return _get_call_stack_trace(scopedstrFormat, iSkip, caller_address, iCount);
@@ -206,7 +206,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
+   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
    {
 
       auto psynchronization = this->platform()->system()->synchronization();

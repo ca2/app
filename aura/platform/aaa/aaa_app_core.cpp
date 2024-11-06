@@ -1779,7 +1779,7 @@ bool app_core::has_aura_application_factory() const
 #else
 
 
-//::u32 app_core::system_main()
+//unsigned int app_core::system_main()
 //{
 //
 //   ::e_status estatus = ::auraacmesystem()->__thread_procedure();
@@ -2014,7 +2014,7 @@ bool app_core::has_aura_application_factory() const
 
    WCHAR wsz[1024];
 
-   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
+   unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
 
    GetUserNameW(wsz, &dwSize);
 

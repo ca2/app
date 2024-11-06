@@ -94,7 +94,7 @@ namespace compress_zlib
       zero(zstream);
 
       zstream.next_in = (unsigned char*)memIn.data();
-      zstream.avail_in = (u32)uRead;
+      zstream.avail_in = (unsigned int)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
       zstream.zfree = Z_NULL;
@@ -125,12 +125,12 @@ namespace compress_zlib
 
             zstream.next_out = memory.data();
 
-            zstream.avail_out = (u32)memory.size();
+            zstream.avail_out = (unsigned int)memory.size();
 
             // Inflate another chunk.
             status = deflate(&zstream, iFlush);
 
-            auto amountToWrite = (u32)memory.size() - zstream.avail_out;
+            auto amountToWrite = (unsigned int)memory.size() - zstream.avail_out;
 
             pfileOut->write(memory.data(), amountToWrite);
 
@@ -177,7 +177,7 @@ namespace compress_zlib
 
             zstream.next_in = (unsigned char*) nullptr;
 
-            zstream.avail_in = (u32)0;
+            zstream.avail_in = (unsigned int)0;
 
          }
          else
@@ -185,7 +185,7 @@ namespace compress_zlib
 
             zstream.next_in = (unsigned char*)memIn.data();
 
-            zstream.avail_in = (u32)uRead;
+            zstream.avail_in = (unsigned int)uRead;
 
          }
 
@@ -207,10 +207,10 @@ namespace compress_zlib
    }
 
 
-   ::u32 compress::crc32(::u32 uCrc, const ::block& block)
+   unsigned int compress::crc32(unsigned int uCrc, const ::block& block)
    {
 
-      return (::u32)::crc32(uCrc, (const Bytef *) block.data(), (uInt) block.size());
+      return (unsigned int)::crc32(uCrc, (const Bytef *) block.data(), (uInt) block.size());
 
    }
 

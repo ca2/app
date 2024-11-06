@@ -297,7 +297,7 @@ namespace user
          //      auto f = 1.0 / dwHoverIn;
          //      auto omega = -pi * f; // omega pi
          //      auto t = m_timeHoverStart;
-         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      unsigned int dwCurve = (unsigned int)(255.0 * (1.0 - exp(omega * t)));
          //      if (m_uchHoverAlphaInit + dwCurve > 255)
          //         m_uchHoverAlpha = 255;
          //      else
@@ -325,7 +325,7 @@ namespace user
          //      auto f = 1.0 / dwHoverOut;
          //      auto omega = -pi * f; // omega pi
          //      auto t = m_timeHoverStart;
-         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+         //      unsigned int dwCurve = (unsigned int)(255.0 * (1.0 - exp(omega * t)));
          //      if (m_uchHoverAlphaInit < dwCurve)
          //         m_uchHoverAlpha = 0;
          //      else
@@ -496,7 +496,7 @@ namespace user
 
             _001GetItemElementRect(&rectangle, data, e_tree_element_expand_box);
 
-            i32 iImage;
+            int iImage;
 
             if (data.m_pitem->m_dwState & ::data::e_tree_item_state_expanded)
             {
@@ -504,13 +504,13 @@ namespace user
                if (pstyle->m_bDarkMode)
                {
 
-                  iImage = (i32)ptree->m_iImageCollapseDark;
+                  iImage = (int)ptree->m_iImageCollapseDark;
 
                }
                else
                {
 
-                  iImage = (i32)ptree->m_iImageCollapse;
+                  iImage = (int)ptree->m_iImageCollapse;
                }
 
             }
@@ -520,13 +520,13 @@ namespace user
                if (pstyle->m_bDarkMode)
                {
 
-                  iImage = (i32)ptree->m_iImageExpandDark;
+                  iImage = (int)ptree->m_iImageExpandDark;
 
                }
                else
                {
 
-                  iImage = (i32)ptree->m_iImageExpand;
+                  iImage = (int)ptree->m_iImageExpand;
 
                }
 
@@ -603,7 +603,7 @@ namespace user
       if (pimagelistItem != nullptr)
       {
 
-         i32 iImage = (i32)data.m_pitem->get_image();
+         int iImage = (int)data.m_pitem->get_image();
 
          if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
@@ -786,7 +786,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
+      m_uiLButtonUpFlags = (unsigned int)pmouse->m_ebuttonstate;
 
       m_pointLButtonUp = pmouse->m_pointHost;
 
@@ -947,8 +947,8 @@ namespace user
       if (item_height != 0)
       {
 
-         //iItem = (i32)((iy + pointOffset.y()) / item_height);
-         iItem = (i32)((iy) / item_height);
+         //iItem = (int)((iy + pointOffset.y()) / item_height);
+         iItem = (int)((iy) / item_height);
 
       }
 
@@ -972,8 +972,8 @@ namespace user
 
       ::collection::index iLevel = pitem->m_iLevel;
 
-      //index x = (i32)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
-      ::collection::index x = (i32)(point.x() - _001GetIndentation() * (iLevel));
+      //index x = (int)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
+      ::collection::index x = (int)(point.x() - _001GetIndentation() * (iLevel));
       if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
       if (x >= 18 && x < 34)
@@ -1569,16 +1569,16 @@ namespace user
    }
 
 
-   i32 tree::_001CalcCurrentImpactWidth()
+   int tree::_001CalcCurrentImpactWidth()
    {
 
       auto rectangleX = this->rectangle();
 
       ::collection::count iCount = _001GetVisibleItemCount();
 
-      i32 iMaxWidth = rectangleX.width();
+      int iMaxWidth = rectangleX.width();
 
-      i32 iWidth;
+      int iWidth;
 
       ::collection::index iIndent = _001GetIndentation();
 
@@ -1591,10 +1591,10 @@ namespace user
 
       }
 
-      for (i32 i = 0; i < iCount; i++)
+      for (int i = 0; i < iCount; i++)
       {
 
-         iWidth = (i32)(200 + iIndent * pitem->m_iLevel);
+         iWidth = (int)(200 + iIndent * pitem->m_iLevel);
 
          if (iWidth > iMaxWidth)
          {
@@ -1694,7 +1694,7 @@ namespace user
    }
 
 
-   i32 tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics)
+   int tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::collection::index nOffset;
@@ -1789,7 +1789,7 @@ namespace user
 
          size_f64 s = pgraphics->get_text_extent(strText);
 
-         iWidth = (i32)(48 + s.cx() + iIndent * (iLevel + 1));
+         iWidth = (int)(48 + s.cx() + iIndent * (iLevel + 1));
 
          if (iWidth > iMaxWidth)
          {
@@ -1888,7 +1888,7 @@ namespace user
    }
 
 
-   i32 tree::get_wheel_scroll_delta()
+   int tree::get_wheel_scroll_delta()
    {
 
       return (int)(3.0 * m_dItemHeight);
@@ -1918,7 +1918,7 @@ namespace user
 
       ::collection::count count = 0;
 
-      for (i32 i = 0; i < itemptra.get_count(); i++)
+      for (int i = 0; i < itemptra.get_count(); i++)
       {
 
          if (selection_add(itemptra[i]))
@@ -1979,7 +1979,7 @@ namespace user
 
       ::collection::count count = 0;
 
-      for (i32 i = 0; i < itemptra.get_count(); i++)
+      for (int i = 0; i < itemptra.get_count(); i++)
       {
 
          if (contains(itemptra[i]) && m_pitemptraSelected->add_unique(itemptra[i]))
@@ -2055,7 +2055,7 @@ namespace user
 
       ::collection::count count = 0;
 
-      for (i32 i = 0; i < itemptra.get_count(); i++)
+      for (int i = 0; i < itemptra.get_count(); i++)
       {
 
          if (m_pitemptraSelected->erase(itemptra[i]))
@@ -2140,7 +2140,7 @@ namespace user
 
       }
 
-      for (i32 i = 0; i < m_pitemptraSelected->get_count(); i++)
+      for (int i = 0; i < m_pitemptraSelected->get_count(); i++)
       {
 
          if (m_pitemptraSelected->element_at(i)->m_pdataitem == pitemdata)

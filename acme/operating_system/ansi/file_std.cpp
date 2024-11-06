@@ -23,7 +23,7 @@ FILE * FILE_open(const char *path, const char *attr, int iShare)
 }
 
 
-i32 FILE_close(FILE *fp)
+int FILE_close(FILE *fp)
 {
 
    return fclose(fp);
@@ -31,7 +31,7 @@ i32 FILE_close(FILE *fp)
 }
 
 
-i32 FILE_eof(FILE *fp)
+int FILE_eof(FILE *fp)
 {
 
    return feof(fp);
@@ -39,7 +39,7 @@ i32 FILE_eof(FILE *fp)
 }
 
 
-i32 FILE_flush(FILE * fp)
+int FILE_flush(FILE * fp)
 {
 
    return fflush(fp);
@@ -47,7 +47,7 @@ i32 FILE_flush(FILE * fp)
 }
 
 
-filesize FILE_seek(FILE *fp, filesize offset, i32 origin)
+filesize FILE_seek(FILE *fp, filesize offset, int origin)
 {
 
    return fseek(fp, (long) (offset), origin);
@@ -87,7 +87,7 @@ char * FILE_gets(char * str, strsize n, FILE *s)
 }
 
 
-i32 FILE_getc(FILE * s)
+int FILE_getc(FILE * s)
 {
 
    return ::getc(s);
@@ -103,11 +103,11 @@ i32 FILE_getc(FILE * s)
 
    FILE_read(&c, 1, sizeof(uchar), s);
 
-   return (i32)c;*/
+   return (int)c;*/
 }
 
 
-i32 FILE_ungetc(i32 c, FILE *s)
+int FILE_ungetc(int c, FILE *s)
 {
 
    return ::ungetc(c, s);
@@ -121,12 +121,12 @@ i32 FILE_ungetc(i32 c, FILE *s)
 
    //FILE_seek(s, -1, SEEK_CUR);
 
-   //return (i32)c;
+   //return (int)c;
 
 }
 
 
-i32 FILE_error(FILE *fp)
+int FILE_error(FILE *fp)
 {
 
    return ferror(fp);
@@ -192,7 +192,7 @@ filesize FILE_get_size(FILE * fp)
 #endif
 
 
-i32 file_touch(const ::scoped_string & scopedstr)
+int file_touch(const ::scoped_string & scopedstr)
 {
 
    FILE * pfile = ::fopen(scopedstr.c_str(), "a");

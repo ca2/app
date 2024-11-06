@@ -25,7 +25,7 @@ public:
 #elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 
    int         m_lMaxCount;
-   i32           m_hsync;
+   int           m_hsync;
 
 #endif
 

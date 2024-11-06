@@ -158,7 +158,7 @@ namespace datetime
       return *m_str;
    }*/
 
-   i32 datetime::get_month_day_count(i32 year, i32 month)
+   int datetime::get_month_day_count(int year, int month)
    {
       switch (month)
       {
@@ -195,7 +195,7 @@ namespace datetime
 
 
    // 0 is Sunday
-   i32 datetime::get_weekday(i32 year, i32 month, i32 day)
+   int datetime::get_weekday(int year, int month, int day)
    {
 
       ::earth::time time(year, month, day, 0, 0, 0);
@@ -205,7 +205,7 @@ namespace datetime
    }
 
 
-   i64 datetime::get_timestamp(i32 year, i32 month, i32 day)
+   i64 datetime::get_timestamp(int year, int month, int day)
    {
       
       ::earth::time time(year, month, day, 0, 0, 0);
@@ -215,7 +215,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const class ::time & timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, int iPath, int & iPathCount, const class ::time & timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -247,7 +247,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, i32 iPath, i32 & iPathCount, const class ::time& timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, int iPath, int & iPathCount, const class ::time& timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -270,7 +270,7 @@ namespace datetime
    }
 
 
-   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, i32 iPath, i32 & iPathCount)
+   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
    //{
 
    //   if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -647,7 +647,7 @@ namespace datetime
 //   }
 //
 
-   posix_time datetime::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const class ::time& timeshift)
+   posix_time datetime::s_mktime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear, const class ::time& timeshift)
    {
 
        earth::gregorian_time time;
@@ -676,7 +676,7 @@ namespace datetime
    }
 
 
-   //posix_time datetime::s_utc_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
+   //posix_time datetime::s_utc_mktime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear)
    //{
 
    //   struct ::tm tm;
@@ -695,7 +695,7 @@ namespace datetime
    //}
 
 
-   string datetime::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
+   string datetime::get_week_day_str(const ::text::context * pcontext, int iWeekDay) // 1 - domingo
    {
       
       return system()->texttable()->get(pcontext, "datetimestr_weekday_long[" + ::as_string(iWeekDay - 1) + "]");
@@ -703,7 +703,7 @@ namespace datetime
    }
 
 
-   string datetime::get_tiny_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
+   string datetime::get_tiny_week_day_str(const ::text::context * pcontext, int iWeekDay) // 1 - domingo
    {
 
       return system()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]");
@@ -711,7 +711,7 @@ namespace datetime
    }
 
 
-   string datetime::get_month_str(const ::text::context * pcontext, i32 iMonth)
+   string datetime::get_month_str(const ::text::context * pcontext, int iMonth)
    {
    
       return system()->texttable()->get(pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]");
@@ -719,7 +719,7 @@ namespace datetime
    }
 
 
-   string datetime::get_short_month_str(const ::text::context * pcontext, i32 iMonth)
+   string datetime::get_short_month_str(const ::text::context * pcontext, int iMonth)
    {
 
       return system()->texttable()->get(pcontext, "datetimestr_month_short[" + ::as_string(iMonth - 1) + "]");
@@ -727,7 +727,7 @@ namespace datetime
    }
 
 
-   //::earth::time datetime::from_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)
+   //::earth::time datetime::from_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
    //{
 
    //   return s_utc_mktime(iYear, iMonth, iDay, iHour, iMinute, iSecond);
@@ -759,7 +759,7 @@ namespace datetime
    //The simple week number we define such that
    //    week 1 starts on January 1st of a given year,
    //    week n+1 starts 7 days after week n
-   i32 datetime::SWN(i32 y, i32 m, i32 d)
+   int datetime::SWN(int y, int m, int d)
    {
       return 1 + (DP(y, m) + d - 1) / 7;
    }
@@ -767,7 +767,7 @@ namespace datetime
    //where DP ("Days Passed") is given by:
    //   DP( y, 1 ) = 0
    //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-   i32 datetime::DP(i32 y, i32 m)
+   int datetime::DP(int y, int m)
    {
       if (m == 1)
          return 0;
@@ -775,7 +775,7 @@ namespace datetime
          return DP(y, m - 1) + ML(y, m - 1);
    }
 
-   i32 datetime::ML(i32 y, i32 m)
+   int datetime::ML(int y, int m)
    {
       switch (m)
       {
@@ -810,7 +810,7 @@ namespace datetime
 
    }
 
-   i32 datetime::LEAP(i32 y)
+   int datetime::LEAP(int y)
    {
       if ((y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0)))
          return 1;
@@ -821,27 +821,27 @@ namespace datetime
 
    // Use this elegant code by Tomohiko Sakamoto:
 
-   i32 datetime::dayofweek(i32 y, i32 m, i32 d)	/* 0 = Sunday */
+   int datetime::dayofweek(int y, int m, int d)	/* 0 = Sunday */
    {
-      static i32 t[] = { 0,3,2,5,0,3,5,1,4,6,2,4 };
+      static int t[] = { 0,3,2,5,0,3,5,1,4,6,2,4 };
       y -= m < 3;
       return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
    }
 
-   i32 datetime::SDOW(i32 y, i32 m, i32 d) // ( 0 = Monday, ..., 6 = Sunday )
+   int datetime::SDOW(int y, int m, int d) // ( 0 = Monday, ..., 6 = Sunday )
    {
       return (DP(y, m) + d - 1) % 7;
    }
 
 
-   i32 datetime::DOW(i32 y, i32 m, i32 d)
+   int datetime::DOW(int y, int m, int d)
    {
       //return SDOW(y, m, d);
       return getDayOfWeek(m, d, y, 0);
    }
 
 
-   i32 datetime::getDayOfWeek(i32 month, i32 day, i32 year, i32 CalendarSystem)
+   int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
    {
       // CalendarSystem = 1 for Gregorian Calendar
       if (month < 3)
@@ -852,11 +852,11 @@ namespace datetime
       return (
              day
              + (2 * month)
-             + i32(6 * (month + 1) / 10)
+             + int(6 * (month + 1) / 10)
              + year
-             + i32(year / 4)
-             - i32(year / 100)
-             + i32(year / 400)
+             + int(year / 4)
+             - int(year / 100)
+             + int(year / 400)
              + CalendarSystem
              ) % 7;
    }
@@ -870,7 +870,7 @@ namespace datetime
 
    If we adapt approximation SWN5 for the simple week number to reflect the differences between the definitions of both week numbers, we arrive at the final solution, adopted for the week number wristapp:
    */
-   /*i32 ISO_WN(i32  y, i32 m, i32 d, i32 dow, i32 dow0101 )
+   /*int ISO_WN(int  y, int m, int d, int dow, int dow0101 )
    {
    dow     = DOW( y, m, d );
    dow0101 = DOW( y, 1, 1 );
@@ -898,10 +898,10 @@ namespace datetime
    }*/
 
 
-   i32 datetime::ISO_WN(i32  y, i32 m, i32 d)
+   int datetime::ISO_WN(int  y, int m, int d)
    {
-      i32 dow = DOW(y, m, d);
-      i32 dow0101 = DOW(y, 1, 1);
+      int dow = DOW(y, m, d);
+      int dow0101 = DOW(y, 1, 1);
 
       if (m == 1 && 3 < dow0101 && dow0101 < (7 - (d - 1)))
       {
@@ -1357,7 +1357,7 @@ namespace datetime
       string strNumber;
       string strText1;
       string strChar;
-      for (i32 i = 0; *psz; psz += strChar.length())
+      for (int i = 0; *psz; psz += strChar.length())
       {
          strChar = get_utf8_char(psz);
          if (unicode_is_whitespace(psz))
@@ -1547,7 +1547,7 @@ namespace datetime
    }
 
 
-   result datetime::parse_time(const ::text::context* pcontext, const string & strParam, i32& iPath, i32& iPathCount, const class ::time& timeshift)
+   result datetime::parse_time(const ::text::context* pcontext, const string & strParam, int& iPath, int& iPathCount, const class ::time& timeshift)
    {
       ::earth::time time;
       string str(strParam);
@@ -1555,7 +1555,7 @@ namespace datetime
       str += " ";
       property_set set;
       bool bBaseTime = false;
-      i32 iStart = 0;
+      int iStart = 0;
 
       // if is international date time 2009-04-31 21:45:59
       // or
@@ -1710,11 +1710,11 @@ namespace datetime
 
          time = ::earth::time::now();
 
-         i32 i1 = atoi(presult->get_match(2).c_str());
+         int i1 = atoi(presult->get_match(2).c_str());
 
-         i32 i2 = atoi(presult->get_match(3).c_str());
+         int i2 = atoi(presult->get_match(3).c_str());
 
-         i32 iCount = 0;
+         int iCount = 0;
 
          bool bFirst = false;
 
@@ -1736,16 +1736,16 @@ namespace datetime
          {
             if ((iCount == 1 && bFirst) || (iCount == 2 && (iPath % iCount) == 0))
             {
-               i32 iDay = i2;
-               i32 iMonth = i1;
+               int iDay = i2;
+               int iMonth = i1;
                time = ::earth::time(time.year(timeshift), iMonth, iDay,
                   time.hour(timeshift), time.minute(timeshift), time.second(timeshift));
                time = ::earth::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
             }
             else if ((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
             {
-               i32 iDay = i1;
-               i32 iMonth = i2;
+               int iDay = i1;
+               int iMonth = i2;
                time = ::earth::time(time.year(timeshift), iMonth, iDay,
                   time.hour(timeshift), time.minute(timeshift), time.second(timeshift));
                time = ::earth::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);

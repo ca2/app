@@ -86,7 +86,7 @@
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
+//   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, int nCmdShow);
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //
@@ -109,7 +109,7 @@
 //
 //   bool on_result(const ::e_status& estatus);
 //
-//   //static ::u32 WINAPI MAIN(void * pvoid);
+//   //static unsigned int WINAPI MAIN(void * pvoid);
 //
 //   //bool system_beg();
 //
@@ -154,7 +154,7 @@
 //
 //
 //   CLASS_DECL_ACME void create_system();
-//   CLASS_DECL_ACME i32 run_system();
+//   CLASS_DECL_ACME int run_system();
 //
 //
 //} // namespace acme

@@ -46,7 +46,7 @@
       throw ::interface_only("this is an interface");
    }
 
-   bool os_context::get_pid_by_path(const ::string & lpszName, u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::string & lpszName, unsigned int & dwPid)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
@@ -54,7 +54,7 @@
       return false;
    }
 
-   bool os_context::get_pid_by_title(const ::string & lpszName, u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & lpszName, unsigned int & dwPid)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
@@ -68,7 +68,7 @@
       return -1;
    }
 
-   ::file::path os_context::get_process_path(u32 dwPid)
+   ::file::path os_context::get_process_path(unsigned int dwPid)
    {
       __UNREFERENCED_PARAMETER(dwPid);
       throw ::interface_only("this is an interface");
@@ -359,7 +359,7 @@
 
 #ifdef WINDOWS
 
-   DECLSPEC_NO_RETURN void os_context::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
+   DECLSPEC_NO_RETURN void os_context::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
    {
 
 

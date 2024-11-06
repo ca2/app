@@ -36,25 +36,25 @@
 //CLASS_DECL_ACME void _init_FILE();
 //
 //CLASS_DECL_ACME FILE * FILE_open(const char *path, const char *attrs, int iShare);
-//CLASS_DECL_ACME i32 FILE_printf(FILE *fp, const char *s, ...);
-//CLASS_DECL_ACME i32 FILE_close(FILE *fp);
-//CLASS_DECL_ACME i32 FILE_eof(FILE *fp);
-//CLASS_DECL_ACME filesize FILE_seek(FILE *str, filesize offset, i32 origin);
+//CLASS_DECL_ACME int FILE_printf(FILE *fp, const char *s, ...);
+//CLASS_DECL_ACME int FILE_close(FILE *fp);
+//CLASS_DECL_ACME int FILE_eof(FILE *fp);
+//CLASS_DECL_ACME filesize FILE_seek(FILE *str, filesize offset, int origin);
 //CLASS_DECL_ACME filesize FILE_tell(FILE *fp);
 //CLASS_DECL_ACME filesize FILE_read(void * buffer, memsize size, memsize count, FILE * str);
 //CLASS_DECL_ACME filesize FILE_write(const void * buffer, memsize size, memsize count, FILE * str);
 //CLASS_DECL_ACME char * FILE_gets(char * str, strsize n, FILE *s);
-//CLASS_DECL_ACME i32 FILE_getc(FILE *s);
-//CLASS_DECL_ACME i32 FILE_ungetc(i32 c,FILE *s);
-//CLASS_DECL_ACME i32 FILE_error(FILE *s);
-//CLASS_DECL_ACME i32 FILE_flush(FILE *s);
+//CLASS_DECL_ACME int FILE_getc(FILE *s);
+//CLASS_DECL_ACME int FILE_ungetc(int c,FILE *s);
+//CLASS_DECL_ACME int FILE_error(FILE *s);
+//CLASS_DECL_ACME int FILE_flush(FILE *s);
 //CLASS_DECL_ACME filesize FILE_get_size(FILE *s);
-//CLASS_DECL_ACME i32 FILE_touch(const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME int FILE_touch(const ::scoped_string & scopedstr);
 //
 //
 //#ifdef WINDOWS
 //CLASS_DECL_ACME FILE *FILE_wopen(const unichar * path, const unichar * attrs, int iShare);
-//CLASS_DECL_ACME i32 FILE_wprintf(FILE * fp, const unichar * s, ...);
+//CLASS_DECL_ACME int FILE_wprintf(FILE * fp, const unichar * s, ...);
 //CLASS_DECL_ACME unichar *FILE_getws(unichar * str, strsize n, FILE * s);
 //CLASS_DECL_ACME wint_t FILE_getwc(FILE * s);
 //CLASS_DECL_ACME wint_t FILE_ungetwc(wint_t w, FILE * s);
@@ -63,7 +63,7 @@
 //
 //CLASS_DECL_ACME filesize FILE_size(FILE * f);
 //
-//CLASS_DECL_ACME int_bool fd_set_size(i32 fd,size_t iSize);
+//CLASS_DECL_ACME int_bool fd_set_size(int fd,size_t iSize);
 //CLASS_DECL_ACME int_bool FILE_set_size(FILE * file,size_t iSize);
 //
 //

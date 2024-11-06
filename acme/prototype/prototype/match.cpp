@@ -109,7 +109,7 @@ namespace match
          return true;
       else
       {
-         for (i32 i = 0; i < m_itema.get_count(); i++)
+         for (int i = 0; i < m_itema.get_count(); i++)
          {
             if (m_itema.element_at(i)->matches(payload))
                return true;

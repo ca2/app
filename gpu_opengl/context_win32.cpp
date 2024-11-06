@@ -61,9 +61,9 @@ namespace opengl
 
          LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
          LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-         //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-         ::u32 dwExStyle = 0;
-         ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
+         //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+         unsigned int dwExStyle = 0;
+         unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
          dwStyle |= WS_POPUP;
          //dwStyle |= WS_VISIBLE;
          //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;

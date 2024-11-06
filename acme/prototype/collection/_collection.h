@@ -194,9 +194,9 @@ class pointer_list;             // list of void *
 class object_list;              // list of matter*
 
 //   // Maps (aka Dictionaries)
-//   class CMapWordToOb;         // map from ::u16 to matter*
-//   class CMapWordToPtr;        // map from ::u16 to void *
-//   class CMapPtrToWord;        // map from void * to ::u16
+//   class CMapWordToOb;         // map from unsigned short to matter*
+//   class CMapWordToPtr;        // map from unsigned short to void *
+//   class CMapPtrToWord;        // map from void * to unsigned short
 //   class map_ptr_to_ptr;         // map from void * to void *
 //
 //   // Special string variants
@@ -211,13 +211,13 @@ class object_list;              // list of matter*
 #include "string_list.h"
 
 
-using map_u16_to_ptr = map < ::u16, ::u16, void *, void * >;
+using map_u16_to_ptr = map < unsigned short, unsigned short, void *, void * >;
 
-using map_ptr_to_u16 = map < void *, void *, ::u16, ::u16 >;
+using map_ptr_to_u16 = map < void *, void *, unsigned short, unsigned short >;
 
 using map_ptr_to_ptr = map < void *, void *, void *, void * >;
 
-using map_word_to_ob = map < ::u16, ::u16, matter *, matter * >;
+using map_word_to_ob = map < unsigned short, unsigned short, matter *, matter * >;
 
 using map_string_to_ptr = map < string, const string &, void *, void * >;
 

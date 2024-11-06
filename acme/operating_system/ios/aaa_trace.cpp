@@ -7,7 +7,7 @@
 //
 //struct CLASS_DECL_ACME __MAP_MESSAGE
 //{
-//   ::u32    nMsg;
+//   unsigned int    nMsg;
 //   const char *  lpszMsg;
 //};
 
@@ -63,8 +63,8 @@
 
  char szFormat[80];
  szFormat[0] = '\0';
- if (((::u32)0xC000 <= (::u32)lpAdvise->cfFormat) &&
- ((::u32)lpAdvise->cfFormat <= (::u32)0xFFFF))
+ if (((unsigned int)0xC000 <= (unsigned int)lpAdvise->cfFormat) &&
+ ((unsigned int)lpAdvise->cfFormat <= (unsigned int)0xFFFF))
  {
  ::GetClipboardFormatName(lpAdvise->cfFormat,
  szFormat, _countof(szFormat));

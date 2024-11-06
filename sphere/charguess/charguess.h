@@ -34,9 +34,9 @@ class CLASS_DECL_SPHERE charguess
          return m_strDet = GuessChardet(m_pdet,str);
       }
 
-      u32 operator () (void) { return get_code_page(m_strDet); }
+      unsigned int operator () (void) { return get_code_page(m_strDet); }
 
-      static u32 get_code_page(const ::string & strDet);
+      static unsigned int get_code_page(const ::string & strDet);
 
 };
 

@@ -323,7 +323,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //      return -1;
 //
 //   const unichar* psz = m_psz + iStart;
-//   for (i32 i = 0; i < nCount; i++)
+//   for (int i = 0; i < nCount; i++)
 //   {
 //      if (psz[i] == ch)
 //      {
@@ -362,10 +362,10 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //      return -1;
 //
 //   const unichar* psz = m_psz + iStart;
-//   for (i32 i = 0; i <= nCount; i++)
+//   for (int i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
-//      i32 j;
+//      int j;
 //      for (j = 0; j < nLength2; j++)
 //      {
 //         if (psz[j] != pszSub[j])

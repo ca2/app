@@ -408,7 +408,7 @@ namespace user
 
       //      index iDelta = m_iWheelDelta / WHEEL_DELTA;
       //
-      //      m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
+      //      m_iWheelDelta -= (short)(WHEEL_DELTA * iDelta);
       //
       //      index nPos = m_pscrollbarY->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
       //

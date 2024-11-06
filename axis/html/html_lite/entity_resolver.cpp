@@ -148,7 +148,7 @@ LiteHTMLEntityResolver::LiteHTMLEntityResolver()
 }
 
 
-i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & strChar)
+int LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & strChar)
 
 {
    if (m_CharEntityRefs.get_count() <= 0)
@@ -196,7 +196,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
       chTemp = *pszBegin;
 
-      i32   aura = (::character_isdigit(chTemp) ? 10 :
+      int   aura = (::character_isdigit(chTemp) ? 10 :
                         (chTemp == 'x' ||
                          chTemp == 'X' ? 16 : 0));
       if (aura)
@@ -205,10 +205,10 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
             pszBegin++;
 
 
-         u32  ulNum = (u32) ::strtoul(pszBegin, nullptr, aura);
+         unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
 
          strChar = unicode_to_utf8(ulNum);
-         return (i32) (pszEnd - pszEntity + 1);
+         return (int) (pszEnd - pszEntity + 1);
 
       }
    }
@@ -216,7 +216,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
    // character entity object?
    else
    {
-      string   strKey(pszBegin, (i32)(pszEnd - pszBegin));
+      string   strKey(pszBegin, (int)(pszEnd - pszBegin));
 
 
       // because some character entity references are
@@ -267,7 +267,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
          } u{};
          u.sz[0] = chTemp;
          strChar = u.wd32ch;
-         return (i32) (pszEnd - pszEntity + 1);
+         return (int) (pszEnd - pszEntity + 1);
 
       }
    }

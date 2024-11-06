@@ -198,9 +198,9 @@ inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
 
    int len = 0;
 
-   auto int = unicode_index_length(pszUtf8, len);
+   auto i = unicode_index_length(pszUtf8, len);
 
-   if(int < 0)
+   if(i < 0)
    {
 
       throw_parsing_exception("end of string or not valid character to parse");
@@ -209,7 +209,7 @@ inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
 
    pszUtf8 += len;
 
-   return int;
+   return i;
 
 }
 

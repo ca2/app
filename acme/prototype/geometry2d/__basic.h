@@ -62,7 +62,7 @@ struct ::rectangle_i64;
 //::rectangle_i64;
 //::rectangle_f64;
 
-typedef uchar      unsigned char;
+typedef uchar      uch;
 
 struct ::point_i64;
 struct ::size_i64;

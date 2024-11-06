@@ -144,8 +144,8 @@ public:
    //operator const POINT_BASE_TYPE*() const noexcept { return this; }
    //operator ::lparam() const { return lparam(); }
 
-   unsigned int as_unsigned_int() const noexcept { return __u32(this->x(), this->y()); }
-   ::u64 as_u64() const noexcept { return __u64(this->x(), this->y()); }
+   unsigned int as_unsigned_int() const noexcept { return as_unsigned_int(this->x(), this->y()); }
+   ::u64 as_u64() const noexcept { return as_u64(this->x(), this->y()); }
    //::lparam lparam() const noexcept { return { this->x(), this->y() }; }
 
    point_type& Null() { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE) 0;  return *this; }

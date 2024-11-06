@@ -152,7 +152,7 @@ void memory_file::put_byte_back(unsigned char uch)
 
    m_position--;
 
-   m_pmemory.m_p->data()[m_position] = unsigned char;
+   m_pmemory.m_p->data()[m_position] = uch;
 
 }
 

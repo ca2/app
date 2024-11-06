@@ -17,7 +17,7 @@ The following makes PROTOTYPES default to 0 if it has not already
 typedef uchar *POINTER;
 
 /* unsigned short defines a two unsigned char unsigned short */
-typedef unsigned short unsigned short;
+typedef unsigned short ush;
 
 /* unsigned int defines a four unsigned char unsigned short */
 typedef unsigned int unsigned int;

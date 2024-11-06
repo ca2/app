@@ -41,7 +41,7 @@
 typedef signed char char;
 typedef unsigned char uch;
 typedef short short;  // NOLINT
-typedef unsigned short unsigned short;  // NOLINT
+typedef unsigned short ush;  // NOLINT
 typedef int int;
 typedef unsigned int unsigned int;
 typedef ::i64 i64;

@@ -306,12 +306,8 @@ public:
       raw_read(l); return *this;
    }
 #endif
-   binary_stream & operator >>(float & f) {
-      raw_read(f); return *this;
-   }
-   binary_stream & operator >>(double & d) {
-      raw_read(d); return *this;
-   }
+   binary_stream & operator >>(float & f) { raw_read(f); return *this; }
+   binary_stream & operator >>(double & d) { raw_read(d); return *this; }
    // void read(::point_i32 & point) { raw_read(point); }
    //// void read(::size_i32 & size) { raw_read(size); }
    //// void read(::rectangle_i32 & rectangle) { raw_read(rectangle); }
@@ -501,14 +497,14 @@ public:
    inline ::u64 read_buffer_length_unbounded_part2()
    {
 
-      unsigned short unsigned short;
+      unsigned short ush;
 
-      unsigned short = m_pfile->get_u16_unbounded();
+      ush = m_pfile->get_u16_unbounded();
 
-      if (unsigned short < 65535)
+      if (ush < 65535)
       {
 
-         return unsigned short;
+         return ush;
 
       }
       else
@@ -530,7 +526,7 @@ public:
 
       unsigned char uch = m_pfile->get_byte_unbounded();
 
-      return unsigned char < 255 ? unsigned char : read_buffer_length_unbounded_part2();
+      return uch < 255 ? uch : read_buffer_length_unbounded_part2();
 
    }
 

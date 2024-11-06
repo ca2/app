@@ -293,7 +293,7 @@ biosprint (int cmd, int unsigned char, int port)
       fd = open_printer (port);
       sprintf (pom, "%c%c", unsigned char, N_C);
       write_printer (fd, pom);
-//      write (fd, &unsigned char, sizeof(int) );
+//      write (fd, &uch, sizeof(int) );
       close_printer (fd);
 /*	  f = fopen (PRINT_FILE, "a+t");
 	  fprintf (f, "%c", unsigned char);

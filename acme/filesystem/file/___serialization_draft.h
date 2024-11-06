@@ -330,7 +330,7 @@ class exchanger
            read(short) short = *m_ppayload
            read(int) int = *m_ppayload
            read(i64) i64 = *m_ppayload
-           read(unsigned char) unsigned char = *m_ppayload
+           read(unsigned char) uch = *m_ppayload
            read(unsigned short) unsigned short = *m_ppayload
            read(unsigned int) unsigned int = *m_ppayload
            read(u64) u64 = *m_ppayload

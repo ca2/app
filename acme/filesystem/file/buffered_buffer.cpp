@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      m_storage.data()[m_uiPosition] = (unsigned char) unsigned char;
+      m_storage.data()[m_uiPosition] = (unsigned char) uch;
 
    }
 

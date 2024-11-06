@@ -17,13 +17,13 @@
 */
 
 /*typedef signed char s8;
-typedef uchar unsigned char;
+typedef uchar uch;
 
 #if UINT_MAX >= 4294967295UL
 
 typedef short s16;
 typedef int s32;
-typedef unsigned short unsigned short;
+typedef unsigned short ush;
 typedef unsigned int unsigned int;
 
 #define ONE32   0xffffffffU

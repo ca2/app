@@ -107,13 +107,13 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 // #define __u16(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-// #define __u32(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
 
 // #ifdef __cplusplus
 
 
-// #define __u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define as_u64(a, b)                                   (((::u64)(((unsigned int)(((::u64)(a)) & 0xffffffff)) | ((::u64)((unsigned int)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 
 // #else

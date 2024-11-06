@@ -3701,7 +3701,7 @@ static int stbi__parse_huffman_block(stbi__zbuf * a)
             zout = a->zout;
          }
          p = (stbi_uc *)(zout - dist);
-         if (dist == 1) { // run of one unsigned char; common in images.
+         if (dist == 1) { // run of one uch; common in images.
             stbi_uc v = *p;
             if (len) { do *zout++ = v; while (--len); }
          }

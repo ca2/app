@@ -172,7 +172,7 @@ struct CLASS_DECL_ACME oswindow_data
 // define portable types for 32-bit / 64-bit OS
 //typedef int int_bool;
 typedef unsigned char uch;
-//typedef unsigned short unsigned short;
+//typedef unsigned short ush;
 typedef unsigned int unsigned int;
 //typedef int int;
 

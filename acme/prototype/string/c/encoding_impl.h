@@ -163,42 +163,42 @@ inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, 
    case 5:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
-      unsigned int <<= 6;
+      wd32ch += c;
+      wd32ch <<= 6;
       input++;
    case 4:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
-      unsigned int <<= 6;
+      wd32ch += c;
+      wd32ch <<= 6;
       input++;
    case 3:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
-      unsigned int <<= 6;
+      wd32ch += c;
+      wd32ch <<= 6;
       input++;
    case 2:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
-      unsigned int <<= 6;
+      wd32ch += c;
+      wd32ch <<= 6;
       input++;
    case 1:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
-      unsigned int <<= 6;
+      wd32ch += c;
+      wd32ch <<= 6;
       input++;
    case 0:
       c = *input;
       if (c == '\0') return -1;
-      unsigned int += c;
+      wd32ch += c;
       input++;
    }
 
-   unsigned int -= (::wd32_character)utf8_o(extraBytesToRead);
-   *output = unsigned int;
+   wd32ch -= (::wd32_character)utf8_o(extraBytesToRead);
+   *output = wd32ch;
 
    return len;
 
@@ -208,9 +208,9 @@ inline strsize ansi_to_wd32_char(::wd32_character * output, const char * input, 
 inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 {
 
-   ::wd32_character unsigned int = 0;
+   ::wd32_character wd32ch = 0;
 
-   auto used_len = ansi_to_wd32_char(&unsigned int, *ppsz, *psrclen);
+   auto used_len = ansi_to_wd32_char(&wd32ch, *ppsz, *psrclen);
 
    if (used_len < 0)
    {
@@ -223,7 +223,7 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 
    *psrclen -= used_len;
 
-   return unsigned int;
+   return wd32ch;
 
 }
 
@@ -289,19 +289,19 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 // }
 
 
-inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character unsigned int)
+inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character wd32ch)
 {
 
    const int halfShift = 10; /* used for shifting by 10 bits */
    const ::wd32_character halfBase = 0x0010000UL;
    const ::wd32_character halfMask = 0x3FFUL;
 
-   if (unsigned int <= UNI_MAX_BMP)
+   if (wd32ch <= UNI_MAX_BMP)
    {
 
       /* Target is a character <= 0xFFFF */
       /* UTF-16 surrogate values are illegal in UTF-32; 0xffff or 0xfffe are both reserved values */
-      if (unsigned int >= UNI_SUR_HIGH_START && unsigned int <= UNI_SUR_LOW_END)
+      if (wd32ch >= UNI_SUR_HIGH_START && wd32ch <= UNI_SUR_LOW_END)
       {
 
          //if (flags == strictConversion) {
@@ -311,23 +311,23 @@ inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character uns
 
       }
 
-      *target = (::wd16_character)unsigned int; /* normal case */
+      *target = (::wd16_character)wd32ch; /* normal case */
 
       return 1;
 
    }
-   else if (unsigned int > UNI_MAX_LEGAL_UTF32)
+   else if (wd32ch > UNI_MAX_LEGAL_UTF32)
    {
 
       return -1;
 
    }
 
-   unsigned int -= halfBase;
+   wd32ch -= halfBase;
 
-   *target++ = (::wd16_character)((unsigned int >> halfShift) + UNI_SUR_HIGH_START);
+   *target++ = (::wd16_character)((wd32ch >> halfShift) + UNI_SUR_HIGH_START);
 
-   *target = (::wd16_character)((unsigned int & halfMask) + UNI_SUR_LOW_START);
+   *target = (::wd16_character)((wd32ch & halfMask) + UNI_SUR_LOW_START);
 
    return 2;
 
@@ -337,9 +337,9 @@ inline strsize wd32_to_wd16_char(::wd16_character * target, ::wd32_character uns
 inline strsize wd16_to_ansi_char_len(const ::wd16_character ** ppu16a, strsize * plen)
 {
 
-   ::wd32_character unsigned int;
+   ::wd32_character wd32ch;
 
-   auto used_len = wd16_to_wd32_char(&unsigned int, *ppu16a, *plen);
+   auto used_len = wd16_to_wd32_char(&wd32ch, *ppu16a, *plen);
 
    if (used_len < 0)
    {
@@ -352,7 +352,7 @@ inline strsize wd16_to_ansi_char_len(const ::wd16_character ** ppu16a, strsize *
 
    *ppu16a += used_len;
 
-   return wd32_to_ansi_char_len(unsigned int);
+   return wd32_to_ansi_char_len(wd32ch);
 
 }
 
@@ -360,9 +360,9 @@ inline strsize wd16_to_ansi_char_len(const ::wd16_character ** ppu16a, strsize *
 inline strsize wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, strsize * plen)
 {
 
-   ::wd32_character unsigned int;
+   ::wd32_character wd32ch;
 
-   auto used_len = wd16_to_wd32_char(&unsigned int, *ppu16a, *plen);
+   auto used_len = wd16_to_wd32_char(&wd32ch, *ppu16a, *plen);
 
    if (used_len < 0)
    {
@@ -375,7 +375,7 @@ inline strsize wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, s
 
    *ppu16a += used_len;
 
-   return wd32_to_ansi_char(psz, unsigned int);
+   return wd32_to_ansi_char(psz, wd32ch);
 
 }
 

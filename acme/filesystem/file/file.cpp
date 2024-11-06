@@ -151,7 +151,7 @@ namespace file
 
       unsigned char uch = 0;
 
-      auto iRead = read({ &unsigned char, 1 });
+      auto iRead = read({ &uch, 1 });
 
       if (iRead <= 0)
       {
@@ -160,7 +160,7 @@ namespace file
 
       }
 
-      return unsigned char;
+      return uch;
 
    }
 
@@ -502,14 +502,14 @@ namespace file
 
       unsigned char uch = 0;
 
-      if (read(&unsigned char) != 1)
+      if (read(&uch) != 1)
       {
 
          return -1;
 
       }
 
-      return unsigned char;
+      return uch;
 
    }
 

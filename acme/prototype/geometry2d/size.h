@@ -122,8 +122,8 @@ public:
    inline bool has_area() const noexcept { return is_set(); }
 
 
-   unsigned int          unsigned int() const noexcept { return __u32(this->cx(), this->cy()); }
-   ::u64          u64() const noexcept { return __u64(this->cx(), this->cy()); }
+   unsigned int   as_unsigned_int() const noexcept { return as_unsigned_int(this->cx(), this->cy()); }
+   ::u64          u64() const noexcept { return as_u64(this->cx(), this->cy()); }
    class lparam   lparam() const noexcept { return make_u32(this->cx(), this->cy()); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx(); }

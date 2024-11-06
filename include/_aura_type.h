@@ -14,7 +14,7 @@ typedef int int_bool;
 typedef unsigned char         uchar;
 
 
-//typedef unsigned char         unsigned char;
+//typedef unsigned char         uch;
 
 
 

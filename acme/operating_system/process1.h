@@ -59,7 +59,7 @@
 
 
 
-//CLASS_DECL_ACMEunsigned int get_current_process_id();
+//CLASS_DECL_ACME unsigned int get_current_process_id();
 
 
 // it was extracted from macOS code base

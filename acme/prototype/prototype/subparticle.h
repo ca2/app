@@ -214,6 +214,7 @@ public:
 
    //void operator delete(void* p);
 
+   virtual void call_member(enum_id eid);
 
 
    virtual void write_to_stream(::binary_stream & stream);

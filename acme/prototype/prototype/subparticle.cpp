@@ -379,6 +379,13 @@ void subparticle::delete_this()
 //#endif
 
 
+void subparticle::call_member(enum_id eid)
+{
+
+
+}
+
+
 void subparticle::write_to_stream(::binary_stream & stream)
 {
 

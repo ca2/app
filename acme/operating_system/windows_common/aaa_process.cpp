@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-//CLASS_DECL_ACMEunsigned int get_current_process_id()
+//CLASS_DECL_ACME unsigned int get_current_process_id()
 //{
 //
 //   return ::GetCurrentProcessId();

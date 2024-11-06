@@ -150,7 +150,7 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 }
 
 
-CLASS_DECL_ACMEunsigned int __unsigned_int_hash(const ::scoped_string & scopedstr)
+CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr)
 {
 
    unsigned int u = 0;

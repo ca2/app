@@ -267,6 +267,13 @@ return {};
 
    //void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override{}
 
+   ::pointer<::form_document>  base_user_layer::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload)
+   {
+
+      return {};
+
+   }
+
 
    bool base_user_layer::create_impact_system(const ::atom& atom)
    {

@@ -113,7 +113,7 @@ namespace platform
       virtual ::path_system * path_system() override;
 
 
-      virtual ::file::watcher * file_watcher() override;
+      //virtual ::file::watcher * file_watcher() override;
 
 
       virtual ::payload file_payload(const ::payload & payloadFile) override;

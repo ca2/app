@@ -110,23 +110,35 @@ void payload::_set_element(::subparticle * pelement)
       return;
 
    }
+
+#if REFERENCING_DEBUGGING 
+
+   ::reference_referer * preferencereferer = nullptr;
    
    if(pelement->is_referencing_debugging_enabled())
    {
 
-      m_preferer = __refdbg_add_referer_for(pelement);
+      preferencereferer = __refdbg_add_referer_for(pelement);
 
    }
    else
    {
 
-      m_preferer = nullptr;
+      preferencereferer = nullptr;
 
    }
+
+#endif
 
    ::increment_reference_count(pelement);
 
    logical_release();
+
+#if REFERENCING_DEBUGGING 
+
+   m_preferer = preferencereferer;
+
+#endif
 
    //if (m_etype == ::e_type_payload_pointer)
    //{

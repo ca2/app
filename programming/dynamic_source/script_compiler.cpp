@@ -113,7 +113,7 @@ namespace dynamic_source
 
       auto pdirectorysystem = directory_system();
 
-      directory()->create(pdirectorysystem->system() / "netnode_desktop/symbols");
+      directory()->create(pdirectorysystem->userconfig() / "netnode_desktop/symbols");
 
 
       ::programming::compiler::prepare_compile_and_link_environment();
@@ -378,7 +378,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = ::as_string(::i64_millisecond() % 1000);
+      strMillis = ::as_string(::huge_integer_millisecond() % 1000);
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
@@ -961,7 +961,7 @@ namespace dynamic_source
 
          auto pdirectorysystem = directory_system();
 
-         strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->system() / "netnode_desktop\\symbols") / strSymbolName;
+         strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->userconfig() / "netnode_desktop\\symbols") / strSymbolName;
 
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 

@@ -963,7 +963,7 @@
       <Filter>Header Files\filesystem\filemanager\fs\simple</Filter>
     </ClInclude>
     <ClInclude Include="_.h">
-      <Filter>Header Files\user</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1479,6 +1479,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\fs\simple\tree.cpp">
       <Filter>Source Files\filesystem\filemanager\fs\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\rich_text\_factory.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

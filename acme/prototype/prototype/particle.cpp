@@ -531,7 +531,7 @@ class ::user::user * particle::user() const
 ::file::watcher * particle::file_watcher() const
 {
 
-   return m_papplication->file_watcher();
+   return system()->file_watcher();
 
 }
 

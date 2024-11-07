@@ -522,7 +522,7 @@ namespace base
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").int();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_int();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
@@ -1771,6 +1771,15 @@ namespace base
 
       //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+
+   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload)
+   {
+
+      return create_typed_child_form(pparticle, typeatom, pimpactdata->m_pplaceholder, payload);
+
+   }
+
+
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
@@ -1850,7 +1859,7 @@ namespace base
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").int();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_int();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 

@@ -121,6 +121,8 @@ namespace platform
 
       virtual ::xml::xml * xml() override;
 
+      virtual ::file::watcher * file_watcher() const;
+
       virtual ::file_system * file_system() const;
 
       virtual ::directory_system * directory_system() const;

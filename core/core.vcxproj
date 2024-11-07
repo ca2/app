@@ -740,6 +740,7 @@
     <ClCompile Include="user\rich_text\selection.cpp" />
     <ClCompile Include="user\rich_text\span.cpp" />
     <ClCompile Include="user\rich_text\text_format.cpp" />
+    <ClCompile Include="user\rich_text\_factory.cpp" />
     <ClCompile Include="user\simple\form_list_impact.cpp" />
     <ClCompile Include="user\simple\form_impact.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />

@@ -742,7 +742,7 @@ namespace user
 //
 //            //      string str;
 //
-//            //      str.formatf("%d",payload.int());
+//            //      str.formatf("%d",payload.as_int());
 //
 //            //      pinteraction->set_text(str,::e_source_database);
 //

@@ -509,7 +509,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #ifdef MACOS
 
-      strKey += "/" + as_string(idPid.int());
+      strKey += "/" + as_string(idPid.as_int());
 
 #endif
 

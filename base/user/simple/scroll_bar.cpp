@@ -1697,7 +1697,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //         prop("tracking_type") = random(1, 2);
 
-   //         if (prop("tracking_simple").int() == 2)
+   //         if (prop("tracking_simple").as_int() == 2)
    //         {
 
    //            int iDeflate = rectangleTrack.size().get_normal(m_eorientation);
@@ -1794,7 +1794,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   ::int_rectangle rectangleMachineThumb;
 
-   //   int iType = prop("tracking_type").int();
+   //   int iType = prop("tracking_type").as_int();
 
    //   if (iType == 1)
    //   {

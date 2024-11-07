@@ -45,6 +45,7 @@ namespace platform
 
       virtual void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none);
 
+      virtual void initialize_xml();
 
       virtual void create_audio();
 

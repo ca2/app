@@ -1971,13 +1971,13 @@ pdirectorysystem->create("/ca2core");
    // }
 
 
-   ::file::watcher * system::file_watcher()
+   ::file::watcher * system::file_watcher() const
    {
 
       if (!m_pfilewatcher)
       {
 
-         __construct(m_pfilewatcher);
+         ((system*)this)->__construct(((system *)this)->m_pfilewatcher);
 
       }
 
@@ -4173,9 +4173,9 @@ pmessagebox->sync();
    void system::initialize_crypto()
    {
 
-      auto & pfactoryCrypto = factory("crypto", "openssl");
+      m_pfactoryCrypto = factory("crypto", "openssl");
 
-      __construct(m_pcrypto, pfactoryCrypto);
+      __construct(m_pcrypto, m_pfactoryCrypto);
       
    }
 

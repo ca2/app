@@ -107,7 +107,7 @@ namespace simpledb
       }
       else
       {
-         atom = res.records[0][0].int()+1;
+         atom = res.records[0][0].as_int()+1;
          sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table,atom,sname);
          if (last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,nullptr,nullptr,nullptr) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return atom;

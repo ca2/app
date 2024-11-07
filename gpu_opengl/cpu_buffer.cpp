@@ -2,6 +2,7 @@
 #include "cpu_buffer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/gpu/context.h"
 
 
 namespace opengl
@@ -83,16 +84,33 @@ namespace opengl
       //m_pixmap.mult_alpha();
       
 #else
+
+
       glReadBuffer(GL_FRONT);
       
+      if (m_pgpucontext->is_mesa())
+      {
 
-      glReadnPixels(
-         0, 0,
-         cx, cy,
-         GL_BGRA,
-         GL_UNSIGNED_BYTE,
-         cx * cy * 4,
-         data);
+         glReadPixels(
+            0, 0,
+            cx, cy,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
+            m_pixmap.m_pimage32Raw);
+
+      }
+      else
+      {
+
+         glReadnPixels(
+            0, 0,
+            cx, cy,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
+            cx * cy * 4,
+            data);
+
+      }
 
       int iError = glGetError();
 

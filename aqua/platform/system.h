@@ -63,6 +63,7 @@ namespace aqua
 
       virtual ::aqua::audio_mixer * get_audio_mixer() override;
 
+      void initialize_xml() override;
 
     ::aqua::audio * audio()  override;
 

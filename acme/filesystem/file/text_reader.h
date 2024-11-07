@@ -127,14 +127,14 @@ public:
 #endif
 
 
-   text_reader & operator >>(char & i)
-   {
+   //text_reader & operator >>(char & i)
+   //{
 
-      i = *m_psz++;
+   //   i = *m_psz++;
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
 

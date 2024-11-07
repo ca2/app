@@ -31,15 +31,16 @@ object::~object()
 huge_integer object::increment_reference_count()
 {
 
-   auto c = m_countReference++;
-
-#if REFERENCING_DEBUGGING
-
-   add_reference_item(m_bIncludeCallStackTrace);
-
-#endif
-
-   return c;
+   return ::subparticle::increment_reference_count();
+//   auto c = m_countReference++;
+//
+//#if REFERENCING_DEBUGGING
+//
+//   add_reference_item(m_bIncludeCallStackTrace);
+//
+//#endif
+//
+//   return c;
 
 }
 
@@ -47,20 +48,21 @@ huge_integer object::increment_reference_count()
 huge_integer object::decrement_reference_count()
 {
 
-   auto c = --m_countReference;
-
-#if REFERENCING_DEBUGGING
-
-   if (c >= 0)
-   {
-
-      erase_reference_item();
-
-   }
-
-#endif
-
-   return c;
+   return ::subparticle::decrement_reference_count();
+//   auto c = --m_countReference;
+//
+//#if REFERENCING_DEBUGGING
+//
+//   if (c >= 0)
+//   {
+//
+//      erase_reference_item();
+//
+//   }
+//
+//#endif
+//
+//   return c;
 
 }
 

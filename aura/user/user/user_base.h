@@ -158,6 +158,8 @@ namespace user
       //
       // }
 
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument));
+
 
       //::pointer<::user::plain_edit> create_calculator_edit() override;
 

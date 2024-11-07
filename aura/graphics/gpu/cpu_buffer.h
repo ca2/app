@@ -13,8 +13,10 @@ namespace gpu
    {
    public:
 
-      ::memory          m_memory;
-      ::pixmap          m_pixmap;
+
+      ::memory                         m_memory;
+      ::pixmap                         m_pixmap;
+      ::pointer < ::gpu::context >     m_pgpucontext;
 
 
       cpu_buffer();

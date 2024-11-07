@@ -10390,6 +10390,15 @@ namespace apex
 //   
 //   }
 
+   
+   //::file::watcher * application::file_watcher()
+   //{
+
+   //   return;
+
+   //}
+
+
    void application::show_about_box()
    {
 

@@ -96,7 +96,7 @@ namespace draw2d_opengl
 
          ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 
-         ((font *)this)->m_hfont = CreateFont(-m_fontsize.int(),							// Height Of Font
+         ((font *)this)->m_hfont = CreateFont(-m_fontsize.as_int(),							// Height Of Font
             0,								// Width Of Font
             0,								// Angle Of Escapement
             0,								// Orientation Angle

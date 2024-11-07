@@ -562,7 +562,7 @@ namespace sqlite
    //   else
    //   {
 
-   //      atom = res.m_records[0][0].int() + 1;
+   //      atom = res.m_records[0][0].as_int() + 1;
 
    //      sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table.c_str(),atom,sname);
 

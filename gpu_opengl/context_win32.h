@@ -14,7 +14,7 @@ namespace opengl
    public:
 
 
-
+      bool                             m_bMesa;
       HGLRC                            m_hrc;
       HDC                              m_hdc;
       HWND                             m_hwnd;
@@ -34,6 +34,8 @@ namespace opengl
       void destroy_offscreen_buffer() override;
 
       void make_current() override;
+
+      bool is_mesa() override;
 
       void render();
 

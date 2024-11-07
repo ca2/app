@@ -146,13 +146,16 @@ namespace base
       ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
 
-      template < typename FORM >
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
-      {
+      //template < typename FORM >
+      //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
+      //{
 
-         return create_typed_child_form(pparticle, ::type < FORM >(), pimpactdata->m_pplaceholder, payload);
+      //   return create_typed_child_form(pparticle, ::type < FORM >(), pimpactdata->m_pplaceholder, payload);
 
-      }
+      //}
+
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument));
+
 
       
       ::pointer<::user::plain_edit> create_calculator_edit() override;

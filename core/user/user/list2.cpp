@@ -1026,7 +1026,7 @@ namespace user
 
    //   //str = http()->get(strGetUrl, set);
 
-   //   //auto iHttpStatusCode = set["http_status_code"].int();
+   //   //auto iHttpStatusCode = set["http_status_code"].as_int();
 
    //   //synchronous_lock synchronouslock(this->synchronization());
 

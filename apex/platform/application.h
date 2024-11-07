@@ -244,6 +244,9 @@ namespace apex
       bool is_user_service() const override;
 
 
+      //::file::watcher * file_watcher() override;
+
+
       virtual ::pointer<::service> create_service() override;
 
 

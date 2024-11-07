@@ -6254,7 +6254,7 @@ namespace user
    void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_pacmewindowingwindow)
+      if (m_pacmewindowingwindow && !get_parent())
       {
 
          window()->defer_do_graphics(pgraphics);

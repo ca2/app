@@ -25,6 +25,13 @@ namespace platform
    }
 
 
+   void aqua_system_layer::initialize_xml()
+   {
+
+
+   }
+
+
    void aqua_system_layer::create_audio()
    {
    }

@@ -49,7 +49,7 @@ namespace draw2d
            if(::is_set(paurasystem))
            {
                
-               auto pdraw2d = paurasystem->draw2d();
+               auto pdraw2d = paurasystem->m_pdraw2d;
                
                if(::is_set(pdraw2d))
                {

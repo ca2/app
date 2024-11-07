@@ -38,6 +38,7 @@ public:
    //bool           m_bInternalImageList;
    //bool             m_bDelayedButtonLayout;
    ::image::image_pointer     m_pimageDraft;
+   ::pointer < ::user::interaction >      m_puserinteractionCommandTarget;
 
 
    simple_toolbar();

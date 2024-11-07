@@ -303,7 +303,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
    
 #ifdef MACOS
 
-   strKey += "/" + as_string(idPid.int());
+   strKey += "/" + as_string(idPid.as_int());
 
 #endif
 
@@ -595,7 +595,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
          papp->on_additional_local_instance(
             (bool &) payload["handled"],
             strModule, 
-            propertyset["pid"].int(),
+            propertyset["pid"].as_int(),
             strCommandLine);
 
          propertyset["continue"] = true;

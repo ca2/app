@@ -26,6 +26,7 @@ namespace aqua
       common_construct();
 
       factory()->add_factory_item < ::aqua::session, ::apex::session >();
+      factory()->add_factory_item < ::xml::xml >();
 
 
    }
@@ -247,6 +248,18 @@ namespace aqua
       }
 
       return m_paudiomixer;
+
+   }
+
+
+   void system::initialize_xml()
+   {
+
+      __construct(m_pxml);
+
+      m_pxml->init();
+
+      m_pxml->init1();
 
    }
 

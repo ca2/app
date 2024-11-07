@@ -22,6 +22,8 @@ namespace opengl
    context_win32::context_win32()
    {
 
+      m_bMesa = false;
+
       m_emode = e_mode_system;
 
       m_estatus = error_not_initialized;
@@ -31,6 +33,14 @@ namespace opengl
 
    context_win32::~context_win32()
    {
+
+   }
+
+
+   bool context_win32::is_mesa()
+   {
+
+      return m_bMesa;
 
    }
 
@@ -224,6 +234,14 @@ namespace opengl
          auto pszVersion = (const char *)glGetString(GL_VERSION);
          //::e_status estatus = 
 
+         ::string strVersion(pszVersion);
+
+         if (strVersion.case_insensitive_contains("mesa"))
+         {
+
+            m_bMesa = true;
+
+         }
 
          //if (!estatus)
          //{

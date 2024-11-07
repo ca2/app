@@ -532,12 +532,12 @@ namespace platform
    }
 
 
-   ::file::watcher* context::file_watcher()
-   {
+   //::file::watcher* context::file_watcher()
+   //{
 
-      return application()->file_watcher();
+   //   return application()->file_watcher();
 
-   }
+   //}
 
 
    ::platform::http * context::http()

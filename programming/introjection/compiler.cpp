@@ -1074,7 +1074,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
 
       auto pdirectorysystem = directory_system();
 
-      strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->system() / "netnode_desktop\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath = ::file::path(pdirectorysystem->userconfig() / "netnode_desktop\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");
       directory()->create(::file::path(strHmhLctvWildPdbPath).folder());
       str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);

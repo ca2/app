@@ -98,6 +98,7 @@ namespace gpu
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
 
+      virtual bool is_mesa();
 
       inline const ::draw3d::matrix & view_matrix() const { return m_matrixImpact; }
       inline ::draw3d::matrix & view_matrix() { return m_matrixImpact; }

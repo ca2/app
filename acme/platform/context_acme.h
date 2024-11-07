@@ -103,7 +103,7 @@ namespace platform
       virtual ::path_system * path_system();
 
 
-      virtual ::file::watcher * file_watcher();
+      //virtual ::file::watcher * file_watcher();
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

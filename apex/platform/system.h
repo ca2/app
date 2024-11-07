@@ -146,7 +146,9 @@ namespace apex
 
       //::apex::node * node();
 
-      ::file::watcher * file_watcher() override;
+      
+      ::file::watcher * file_watcher() const override;
+
 
       virtual ::input::input * input() override;
 

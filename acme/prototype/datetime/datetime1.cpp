@@ -297,9 +297,9 @@ namespace datetime
 //               atm.tm_sec = set["second"];
 //               atm.tm_min = set["minute"];
 //               atm.tm_hour = set["hour"];
-//               atm.tm_mday = set["day"].int();
-//               atm.tm_mon = set["month"].int() - 1;        // tm_mon is 0 based
-//               atm.tm_year = set["year"].int() - 1900;     // tm_year is 1900 based
+//               atm.tm_mday = set["day"].as_int();
+//               atm.tm_mon = set["month"].as_int() - 1;        // tm_mon is 0 based
+//               atm.tm_year = set["year"].as_int() - 1900;     // tm_year is 1900 based
 //               atm.tm_isdst = -1;
 //               /*posix_time now = _time64(nullptr);
 //               posix_time nowUtc = mktime(gmtime(&now));

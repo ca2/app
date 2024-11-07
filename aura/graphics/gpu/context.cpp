@@ -236,6 +236,8 @@ namespace gpu
 
          __defer_construct(m_pcpubuffer);
 
+         m_pcpubuffer->m_pgpucontext = this;
+
          //m_pbuffer->m_pimage = image()->create_image(size);
 
          m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
@@ -378,6 +380,15 @@ namespace gpu
       return strFragment;
 
    }
+
+
+   bool context::is_mesa()
+   {
+
+      return false;
+
+   }
+
 
    string context::load_fragment(const ::string & pszPath, enum_shader_source & eshadersource)
    {

@@ -1518,7 +1518,7 @@ namespace crypto_openssl
    {
 
       //auto estatus = 
-      __defer_construct(m_pinitializer);
+      __defer_construct(m_pinitializer, system()->m_pfactoryCrypto);
 
       //if (!estatus)
       //{

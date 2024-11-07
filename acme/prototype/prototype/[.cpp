@@ -1776,7 +1776,7 @@ int payload::case_insensitive_order(const class ::payload & payload) const
       else
       {
          //payload = var1;
-         //payload.ia().erase(payload2.int());
+         //payload.ia().erase(payload2.as_int());
       }
    }
    else if(m_etype == ::e_type_string_array)
@@ -1815,7 +1815,7 @@ int payload::case_insensitive_order(const class ::payload & payload) const
    }
    else if(is_integer() || payload.is_integer())
    {
-      return int() - payload.int();
+      return int() - payload.as_int();
    }
    else if(is_natural() || payload.is_natural())
    {
@@ -1846,7 +1846,7 @@ int payload::compare(const class ::payload & payload) const
       else
       {
          //payload = var1;
-         //payload.ia().erase(payload2.int());
+         //payload.ia().erase(payload2.as_int());
       }
    }
    else if(m_etype == ::e_type_string_array)
@@ -1885,7 +1885,7 @@ int payload::compare(const class ::payload & payload) const
    }
    else if(is_integer() || payload.is_integer())
    {
-      return int() - payload.int();
+      return int() - payload.as_int();
    }
    else if(is_natural() || payload.is_natural())
    {
@@ -3686,7 +3686,7 @@ string_array & payload::stra_reference()
          for (::collection::index i = 0; i < c; i++)
          {
 
-            ia.add(at(i).int());
+            ia.add(at(i).as_int());
 
          }
 
@@ -3739,7 +3739,7 @@ string_array & payload::stra_reference()
          for(::collection::index i = 0; i < c; i++)
          {
 
-            pia->add(at(i).int());
+            pia->add(at(i).as_int());
 
          }
 
@@ -4667,7 +4667,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload operator / (int i, const class ::payload & payload)
 //{
-//   return i / payload.int();
+//   return i / payload.as_int();
 //}
 //
 //::payload operator / (unsigned int user, const class ::payload & payload)
@@ -4785,7 +4785,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //
 //::payload operator * (int i, const class ::payload & payload)
 //{
-//   return i * payload.int();
+//   return i * payload.as_int();
 //}
 //
 //::payload operator * (unsigned int user, const class ::payload & payload)

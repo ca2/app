@@ -103,10 +103,10 @@ namespace platform
    }
 
 
-   ::file::watcher* acme_context_layer::file_watcher()
-   {
-      return nullptr;
-   }
+   //::file::watcher* acme_context_layer::file_watcher()
+   //{
+   //   return nullptr;
+   //}
 
 
    // ::platform::http* acme_context_layer::http()

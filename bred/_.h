@@ -7,6 +7,10 @@
 #include "base/_.h"
 
 
+
+#undef PLATFORM_LAYER_NAME
+#define PLATFORM_LAYER_NAME bred
+
 #if defined(_bred_project)
 #define CLASS_DECL_BRED  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING

@@ -91,7 +91,7 @@ image::~image()
       if(::is_set(paurasystem))
       {
          
-         auto pdraw2d = paurasystem->draw2d();
+         auto pdraw2d = paurasystem->m_pdraw2d;
          
          if(::is_set(pdraw2d))
          {
@@ -9828,7 +9828,7 @@ void image::on_exif_orientation()
 //   else
 //   {
 //
-//      m_iQuality = varOptions["quality"].int();
+//      m_iQuality = varOptions["quality"].as_int();
 //
 //   }
 //
@@ -10390,6 +10390,8 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
    auto pimage = this->__create<::image::image>();
 
    pimage->copy_from((::image::image *) this);
+
+   __refdbg_add_referer
 
    pimage->increment_reference_count();
 

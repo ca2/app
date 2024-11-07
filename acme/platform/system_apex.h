@@ -47,6 +47,8 @@ namespace platform
 
       ::pointer < ::input::input >                          m_pinput;
 
+      ::pointer < ::factory::factory >                      m_pfactoryCrypto;
+
       string_array                                          m_straCommandLineAccumul;
       string_array                                          m_straCommandLineExtra;
       class ::time                                          m_timeCommandLineLast;
@@ -121,11 +123,15 @@ namespace platform
 
       //virtual bool task_get_run() const;
 
+      
       virtual void create_os_node();
 
+      
       //::apex::node * node();
 
-      virtual ::file::watcher * file_watcher();
+
+      virtual ::file::watcher * file_watcher() const;
+
 
       virtual ::input::input * input();
 

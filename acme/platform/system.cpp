@@ -1478,6 +1478,14 @@ namespace platform
       return m_pgeometry;
    }
 
+   
+   ::file::watcher * system::file_watcher() const
+   {
+
+      return m_pfilewatcher;
+
+   }
+
 
    file_system* system::file_system() const
    {
@@ -1495,6 +1503,13 @@ namespace platform
 
    xml::xml* system::xml()
    {
+
+      if (!m_pxml)
+      {
+
+         initialize_xml();
+
+      }
 
       return m_pxml;
    }
@@ -3349,6 +3364,8 @@ particle* system::matter_mutex()
          m_pfactoryitemUncompressZlib = pfactory->get_factory_item<::uncompress>();
 
       }
+
+      __refdbg_add_referer
 
       auto puncompress = m_pfactoryitemUncompressZlib->__call__create_particle();
 

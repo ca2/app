@@ -226,7 +226,7 @@ namespace draw2d_cairo
 
       pango_font_description_set_style(m_pdesc, m_bItalic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL);
 
-      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.int());
+      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.as_int());
 
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {

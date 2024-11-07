@@ -14,6 +14,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
+#include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/style.h"
 #include "base/user/menu/central.h"
 #include "base/user/user/user.h"
@@ -1640,12 +1641,19 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 bool simple_toolbar::on_click(::item * pitem)
 {
 
-   ::pointer<::user::interaction>puserinteraction = get_owner();
-
    if (!::is_set(pitem))
    {
 
       return false;
+
+   }
+
+   auto puserinteraction = m_puserinteractionCommandTarget;
+
+   if (!puserinteraction)
+   {
+
+      puserinteraction = parent_frame();
 
    }
 

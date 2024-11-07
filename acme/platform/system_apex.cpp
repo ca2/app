@@ -78,9 +78,12 @@ namespace platform
 
    //::apex::node * node(){}
 
-   ::file::watcher* apex_system_layer::file_watcher()
+   
+   ::file::watcher* apex_system_layer::file_watcher() const
    {
+   
       return nullptr;
+
    }
 
 

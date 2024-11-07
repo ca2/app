@@ -768,7 +768,7 @@ namespace user
          //      case ::type_int32:
          //      {
          //         string str;
-         //         str.formatf("%d", payload.int());
+         //         str.formatf("%d", payload.as_int());
          //         ptext->set_text(str, ::e_source_database);
          //      }
          //      break;

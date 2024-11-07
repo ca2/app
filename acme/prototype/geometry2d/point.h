@@ -19,7 +19,7 @@ public:
    ///using sequence_type < NUMBER, 2 >::sequence_type;
    
    
-   point_type() {}
+   constexpr point_type() {}
    point_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
    //point_type(nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
@@ -29,7 +29,7 @@ public:
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
    template < primitive_number A >
-   point_type(A a)
+   constexpr point_type(A a)
    {
    
       this->set_all(a);
@@ -37,19 +37,22 @@ public:
    }
    
    template < primitive_number X, primitive_number Y >
-   point_type(X x, Y y)
+   constexpr point_type(X x, Y y)
    {
       this->m_coordinatea[0] = (UNIT_TYPE) x;
       this->m_coordinatea[1] = (UNIT_TYPE) y;
    }
    
    template < primitive_number NUMBER1 >
-   point_type(const sequence_type < NUMBER1, 2 > & sequence) :
+   constexpr point_type(const sequence_type < NUMBER1, 2 > & sequence) :
       sequence_type < UNIT_TYPE, 2 >(sequence)
    {
       
    }
    
+
+   constexpr point_type(const lparam & lparam);
+
 
 //   sequence_type(COORDINATE s) {
 //      for (size_t i = 0; i < SIZE; ++i)
@@ -398,3 +401,37 @@ inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::po
                                                               (largest_number < NUMBER1, NUMBER2 >)(point1.y() - point2.y()));
    
 }
+
+
+
+
+
+#include "acme/platform/lparam.h"
+
+
+template < primitive_number NUMBER >
+constexpr point_type < NUMBER >::point_type(const lparam & lparam) :
+   sequence_type < UNIT_TYPE, 2 >(lparam.x(), lparam.y())
+{
+
+
+}
+
+
+template < primitive_point POINT >
+constexpr lparam::lparam(const POINT & point) : lparam((int)point.x(), (int)point.y())
+{
+
+
+}
+
+
+constexpr ::int_point lparam::point() const
+{
+
+   return { (int)this->x(), (int)this->y() };
+
+}
+
+
+

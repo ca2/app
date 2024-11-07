@@ -3466,7 +3466,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 
       MSG msg;
 
-      if (::PeekMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax,
+      if (::PeekMessageW(&msg, as_hwnd(oswindow), wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
@@ -3846,7 +3846,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       }
 
-      iRet = ::GetMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+      iRet = ::GetMessageW(&msg, as_hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
 
       if (iRet == -1)
       {
@@ -3920,7 +3920,7 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
    if (m_htask && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(__hwnd(oswindow), atom.as_unsigned_int(), wparam, lparam))
+      if (::PostMessage(as_hwnd(oswindow), atom.as_unsigned_int(), wparam, lparam))
       {
 
          return;

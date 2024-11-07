@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/geometry2d/point.h"
+//#include "acme/prototype/geometry2d/point.h"
 #include "acme/prototype/prototype/pointer.h"
 
 
@@ -20,7 +20,7 @@ public:
    template < primitive_size SIZE >
    lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
    template < primitive_point POINT >
-   lparam(const POINT & point) : lparam((int)point.x(), (int)point.y()) {}
+   constexpr lparam(const POINT & point);
    lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }
 
 
@@ -133,12 +133,7 @@ public:
 
    }
 
-   ::int_point point() const
-   {
-      
-      return {(int) this->x(), (int) this->y()};
-      
-   }
+   constexpr ::int_point point() const;
 
 };
 

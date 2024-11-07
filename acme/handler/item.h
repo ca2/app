@@ -76,7 +76,7 @@ struct item_t
    }
 
 
-   operator u32hash() const { return { (const void *)this, sizeof(item_t) }; }
+   operator hash32() const { return { (const void *)this, sizeof(item_t) }; }
 
    //constexpr ::collection::index menu_impact_index() const { return (::collection::index) m_iItem; }
    //constexpr ::collection::index menu_impact_group() const { return (::collection::index) m_iSubItem; }

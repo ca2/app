@@ -66,10 +66,10 @@ namespace micro
 
       hide();
 
-      on_sequence();
-
       destroy_window();
       
+      on_sequence();
+
    }
 
 

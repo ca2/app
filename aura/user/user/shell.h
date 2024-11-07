@@ -71,16 +71,16 @@ namespace user
          void set_path(const ::string & strPath, bool bSetExtension = true);
          void set_extension(const ::string & strPath);
 
-         inline operator ::u32hash() const
+         inline operator ::hash32() const
          {
             // default identity hash - works for most primitive values
             return
-               unsigned_int_hash(m_strPath) +
-               unsigned_int_hash(m_strShellThemePrefix) +
-               unsigned_int_hash(m_strExtension) +
-               unsigned_int_hash(((int)m_eicon)) +
-               unsigned_int_hash(((int)m_eattribute)) +
-               unsigned_int_hash(((int)m_iIcon));
+               as_hash32(m_strPath) +
+               as_hash32(m_strShellThemePrefix) +
+               as_hash32(m_strExtension) +
+               as_hash32(((int)m_eicon)) +
+               as_hash32(((int)m_eattribute)) +
+               as_hash32(((int)m_iIcon));
          }
 
 

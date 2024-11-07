@@ -22,7 +22,7 @@
 
 
 constexpr unsigned char lower_byte(::iptr i) { return (unsigned char)((::uptr)(i) & 0xff); }
-constexpr unsigned char upper_unsigned_char(::iptr i) { return (unsigned char)(((::uptr)(i) >> 8) & 0xff); }
+constexpr unsigned char upper_byte(::iptr i) { return (unsigned char)(((::uptr)(i) >> 8) & 0xff); }
 constexpr unsigned short lower_unsigned_short(::iptr i) { return (unsigned short)((::uptr)(i) & 0xffff); }
 constexpr unsigned short upper_unsigned_short(::iptr i) { return (unsigned short)(((::uptr)(i) >> 16) & 0xffff); }
 constexpr short upper_short(::iptr i) { return (short)(((::uptr)(i) >> 16) & 0xffff); }
@@ -45,7 +45,7 @@ constexpr unsigned int make_unsigned_int(::iptr a, ::iptr b, ::iptr c, ::iptr d)
 constexpr huge_natural make_huge_natural(unsigned int a, unsigned int b) { return ((huge_natural)a) | (((huge_natural)b) << 32ull); }
 
 
-constexpr unsigned short swap_unsigned_short(unsigned short u) { return make_unsigned_short(upper_unsigned_char(u), lower_byte(u)); }
+constexpr unsigned short swap_unsigned_short(unsigned short u) { return make_unsigned_short(upper_byte(u), lower_byte(u)); }
 constexpr unsigned int swap_unsigned_int(unsigned int u) { return make_unsigned_int(swap_unsigned_short(upper_unsigned_short(u)), swap_unsigned_short(lower_unsigned_short(u))); }
 
 

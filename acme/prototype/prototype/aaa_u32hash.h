@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/prototype/prototype/u32hash.h"
+#include "acme/prototype/prototype/hash32.h"
 
 
 

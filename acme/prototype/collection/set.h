@@ -923,7 +923,7 @@ typename node_set < NODE >::iterator
 node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
 {
 
-   nHashValue = ::unsigned_int_hash(item).m_u;
+   nHashValue = ::as_hash32(item).m_u;
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 

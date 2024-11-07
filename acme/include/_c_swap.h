@@ -1,8 +1,8 @@
 #pragma once
 
 
-//#ifndef HIBYTE
-//#define HIBYTE(x) (((x) >> 8) & 0x00ff)
+//#ifndef higher_byte
+//#define higher_byte(x) (((x) >> 8) & 0x00ff)
 //#endif
 //
 //
@@ -22,7 +22,7 @@
 //
 //
 //
-//#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), lower_byte(x))
+//#define SWAPWORD(x)		MAKEWORD(higher_byte(x), lower_byte(x))
 //#define SWAPLONG(x)		make_int(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 //
 //

@@ -9815,7 +9815,7 @@ namespace apex
    //   {
    //#ifdef WINDOWS_DESKTOP
    //      ::windowing::window * pwindow = (::oswindow) osdata;
-   //      if (!::IsWindow(__hwnd(oswindow)))
+   //      if (!::IsWindow(as_hwnd(oswindow)))
    //         return -1;
    //      COPYDATASTRUCT cds;
    //      memory_set(&cds, 0, sizeof(cds));
@@ -9823,7 +9823,7 @@ namespace apex
    //      cds.cbData = (unsigned int)strlen(psz);
    //      cds.lpData = (PVOID)psz;
    //
-   //      return (int)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+   //      return (int)SendMessage(as_hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
    //#else
    //      throw ::exception(todo);
    //#endif

@@ -52,7 +52,7 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 //
 //         auto pui = __user_interaction(papp->m_puserinteractionMain);
 //
-//         pusersystem->m_createstruct.hwndParent = __hwnd(pui->get_oswindow());
+//         pusersystem->m_createstruct.hwndParent = as_hwnd(pui->get_oswindow());
 //
 //      }
 //

@@ -3,6 +3,7 @@
 
 //#include "aura/windowing/::menu::item.h"
 //#include "aura/windowing/menu.h"
+#include "acme/user/user/frame_interaction.h"
 #include "aura/user/user/box.h"
 
 
@@ -11,7 +12,8 @@ namespace user
 
 
    class CLASS_DECL_AURA frame_interaction :
-      virtual public ::user::box
+      virtual public ::user::box,
+      virtual public ::acme::user::frame_interaction
    {
    public:
 

@@ -1422,6 +1422,7 @@
     <ClInclude Include="prototype\data\property.h" />
     <ClInclude Include="prototype\data\property_listener.h" />
     <ClInclude Include="prototype\data\text_property.h" />
+    <ClInclude Include="prototype\geometry2d\_impl.h" />
     <ClInclude Include="prototype\prototype\make_particle.h" />
     <ClInclude Include="prototype\prototype\post_procedure_continuation.h" />
     <ClInclude Include="prototype\prototype\realizable.h" />
@@ -1431,6 +1432,7 @@
     <ClInclude Include="prototype\prototype\referenceable.h" />
     <ClInclude Include="prototype\prototype\subparticle.h" />
     <ClInclude Include="prototype\prototype\subparticle_flags.h" />
+    <ClInclude Include="prototype\prototype\hash32.h" />
     <ClInclude Include="prototype\prototype\_impl_payload.h" />
     <ClInclude Include="prototype\prototype\_impl_ptr.h" />
     <ClInclude Include="prototype\string\c_string.h" />
@@ -1461,6 +1463,7 @@
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
     <ClInclude Include="user\user\aaa_interaction_base.h" />
+    <ClInclude Include="user\user\frame_interaction.h" />
     <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
@@ -2352,6 +2355,7 @@
     <ClCompile Include="user\user\check_property.cpp" />
     <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\control.cpp" />
+    <ClCompile Include="user\user\frame_interaction.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\property.cpp" />

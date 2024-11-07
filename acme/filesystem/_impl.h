@@ -740,10 +740,10 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
 
 
 template < >
-inline ::u32hash unsigned_int_hash < const ::file::path & >(const ::file::path & key)
+inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key)
 {
 
-   return ::unsigned_int_hash((const string &) key);
+   return ::as_hash32((const string &) key);
 
 }
 

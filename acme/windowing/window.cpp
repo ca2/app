@@ -40,6 +40,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/micro/user.h"
+#include "acme/user/user/frame_interaction.h"
 #include "acme/user/user/interaction.h"
 
 
@@ -62,17 +63,17 @@ namespace acme
          //}
          //{
 
-         m_bTopMost = false;
+         //m_bTopMost = false;
 
-         m_bNcActive = false;
+         //m_bNcActive = false;
 
-         m_bStartCentered = false;
+         //m_bStartCentered = false;
 
-         m_bArbitraryPositioning = false;
+         //m_bArbitraryPositioning = false;
 
-         m_bCapture = false;
+         //m_bCapture = false;
 
-         m_uAcmeWindowingWindowFlags = 0;
+         //m_uAcmeWindowingWindowFlags = 0;
 
       }
 
@@ -262,7 +263,16 @@ namespace acme
       bool window::is_active_window()
       {
 
-         return m_bNcActive;
+         ::cast < ::acme::user::frame_interaction > pframeinteraction = m_pacmeuserinteraction;
+
+         if (!pframeinteraction)
+         {
+
+            return true;
+
+         }
+
+         return pframeinteraction->m_bNcActive;
 
       }
 
@@ -525,7 +535,9 @@ namespace acme
       void window::set_capture()
       {
 
-         if (m_bCapture)
+         ::cast < ::acme::user::frame_interaction > pframeinteraction = m_pacmeuserinteraction;
+
+         if (pframeinteraction && pframeinteraction->m_bCapture)
          {
 
             return;
@@ -534,7 +546,12 @@ namespace acme
 
          m_pacmeuserinteraction->set_capture();
 
-         m_bCapture = true;
+         if (pframeinteraction)
+         {
+
+            pframeinteraction->m_bCapture = true;
+
+         }
 
       }
 
@@ -568,14 +585,21 @@ namespace acme
 
          m_pacmeuserinteractionCapture = nullptr;
 
-         if (!m_bCapture)
+         ::cast < ::acme::user::frame_interaction > pframeinteraction = m_pacmeuserinteraction;
+
+         if (!pframeinteraction || !pframeinteraction->m_bCapture)
          {
 
             return;
 
          }
 
-         m_bCapture = false;
+         if (pframeinteraction)
+         {
+
+            pframeinteraction->m_bCapture = false;
+
+         }
 
          m_pacmeuserinteraction->release_capture();
 

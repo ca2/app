@@ -77,13 +77,13 @@ namespace micro
 
       ::micro::dialog::on_before_create_window(pacmewindowingwindow);
 
-      m_pacmewindowingwindow->m_bStartCentered = true;
+      m_bStartCentered = true;
 
       m_strLabelDetails = "Details...";
 
-      m_pacmewindowingwindow->m_bMinimizeBox = false;
-      m_pacmewindowingwindow->m_bMaximizeBox = false;
-      m_pacmewindowingwindow->m_bResizeable = false;
+      m_bMinimizeBox = false;
+      m_bMaximizeBox = false;
+      m_bResizeable = false;
 
 
       m_pacmewindowingwindow->m_pointWindow = m_rectangle.origin();

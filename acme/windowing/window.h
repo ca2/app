@@ -44,22 +44,7 @@ namespace acme
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
-         union
-         {
-            struct
-            {
-               bool                                      m_bNcActive : 1;
-               bool                                      m_bWindowVisible : 1;
-               bool                                      m_bMinimizeBox : 1;
-               bool                                      m_bMaximizeBox : 1;
-               bool                                      m_bResizeable : 1;
-               bool                                      m_bCapture : 1;
-               bool                                      m_bStartCentered : 1;
-               bool                                      m_bArbitraryPositioning : 1;
-               bool                                      m_bTopMost : 1;
-            };
-            huge_natural m_uAcmeWindowingWindowFlags;
-         };
+
 
          int_rectangle                             m_rectangle;
          ::int_rectangle                           m_rectanglePointingTo;

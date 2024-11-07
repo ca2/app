@@ -711,6 +711,25 @@ void sequence::destroy()
 //::payload get_last_result();
 
 
+#if defined(DEBUG)
+
+::huge_integer sequence::increment_reference_count()
+{
+
+   return ::subparticle_array::increment_reference_count();
+
+}
+
+
+::huge_integer sequence::decrement_reference_count()
+{
+
+   return ::subparticle_array::decrement_reference_count();
+
+}
+
+#endif
+
 void sequence::on_subparticle_sequence(::subparticle * psubparticle)
 {
  

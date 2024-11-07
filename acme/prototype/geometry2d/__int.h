@@ -10,7 +10,7 @@ struct INT_SIZE
    int cx;
    int cy;
 //
-//   operator ::u32hash() const { return cx | cy << 16; }
+//   operator ::hash32() const { return cx | cy << 16; }
 
 };
 

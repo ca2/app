@@ -544,7 +544,7 @@ inline const char * FormatArgument(const ::file::path & value) noexcept;
 
 
 template < >
-inline ::u32hash unsigned_int_hash < const ::file::path & >(const ::file::path & key);
+inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 // ::file::path node_full_file_path(file::path path);

@@ -273,12 +273,11 @@ namespace user
    void frame_interaction::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
    {
 
-::user::box::on_before_create_window(pacmewindowingwindow);
+      ::user::box::on_before_create_window(pacmewindowingwindow);
 
-      pacmewindowingwindow->m_bMaximizeBox = true;
-      pacmewindowingwindow->m_bMinimizeBox = true;
-      pacmewindowingwindow->m_bResizeable = true;
-
+      m_bMaximizeBox = true;
+      m_bMinimizeBox = true;
+      m_bResizeable = true;
 
    }
 

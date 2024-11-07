@@ -21,6 +21,7 @@
 
 
 #include "acme/user/micro/elemental.h"
+#include "acme/user/user/frame_interaction.h"
 
 
 
@@ -36,7 +37,8 @@ namespace micro
 
   
       class CLASS_DECL_ACME main_window :
-         virtual public ::micro::elemental
+         virtual public ::micro::elemental,
+         virtual public ::acme::user::frame_interaction
       {
       public:
 

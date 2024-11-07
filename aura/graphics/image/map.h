@@ -8,28 +8,28 @@
 
 
 //template < >
-//inline u32hash unsigned_int_hash < const ::int_size & >(const ::int_size & size) 
+//inline hash32 as_hash32 < const ::int_size & >(const ::int_size & size) 
 //{ 
 //   
-//   return (u32hash)(size.cx() | size.cy() << 16); 
+//   return (hash32)(size.cx() | size.cy() << 16); 
 //
 //}
 
 
 //template < >
-//inline u32hash unsigned_int_hash < ::int_size >(::int_size size)
+//inline hash32 as_hash32 < ::int_size >(::int_size size)
 //{
 //
-//   return unsigned_int_hash<const ::int_size& >((const ::int_size &) size);
+//   return as_hash32<const ::int_size& >((const ::int_size &) size);
 //
 //}
 
 
 //template < >
-//inline u32hash unsigned_int_hash < const concrete < ::int_size > & >(const concrete < ::int_size > & size)
+//inline hash32 as_hash32 < const concrete < ::int_size > & >(const concrete < ::int_size > & size)
 //{
 //
-//   return unsigned_int_hash((const ::int_size &) size);
+//   return as_hash32((const ::int_size &) size);
 //
 //}
 

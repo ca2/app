@@ -84,12 +84,12 @@ namespace micro
 
       ::micro::elemental::on_before_create_window(pacmewindowingwindow);
 
-      pacmewindowingwindow->m_bMinimizeBox = true;
-      pacmewindowingwindow->m_bMaximizeBox = true;
-      pacmewindowingwindow->m_bResizeable = true;
-      pacmewindowingwindow->m_bTopMost = false;
-      pacmewindowingwindow->m_bStartCentered = false;
-      pacmewindowingwindow->m_bArbitraryPositioning = false;
+      m_bMinimizeBox = true;
+      m_bMaximizeBox = true;
+      m_bResizeable = true;
+      m_bTopMost = false;
+      m_bStartCentered = false;
+      m_bArbitraryPositioning = false;
 
       pacmewindowingwindow->m_pacmeuserinteraction = this;
 

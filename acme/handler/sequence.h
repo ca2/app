@@ -112,7 +112,15 @@ public:
    sequence();
    ~sequence() override;
    
-   
+
+#if defined(DEBUG)
+
+   ::huge_integer increment_reference_count() override;
+   ::huge_integer decrement_reference_count() override;
+
+#endif
+
+
    virtual void on_subparticle_sequence(::subparticle * psubparticle);
    
 //   static sequence * current();

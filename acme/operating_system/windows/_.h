@@ -10,7 +10,7 @@
 //#include <Tlhelp32.h>
 
 
-inline HWND __hwnd(oswindow oswindow)
+inline HWND as_hwnd(oswindow oswindow)
 {
 
    return (HWND)oswindow;

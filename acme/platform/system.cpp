@@ -1414,7 +1414,7 @@ namespace platform
 
       destroy_task_message_queue();
 
-      destroy();
+      //destroy();
 
 
       //m_mapLibrary4.clear();

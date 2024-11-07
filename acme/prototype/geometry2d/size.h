@@ -295,10 +295,10 @@ public:
 //   inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
 
-   constexpr operator u32hash() const
+   constexpr operator hash32() const
    {
 
-      return ::u32hash(this->cx()) + ::u32hash(this->cy());
+      return ::hash32(this->cx()) + ::hash32(this->cy());
 
    }
 

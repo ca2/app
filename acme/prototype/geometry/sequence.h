@@ -36,7 +36,7 @@ struct sequence_type
    static constexpr ::collection::count SIZE = t_iSize;
 
 
-   sequence_type()
+   constexpr sequence_type()
    {
    
       set_all(0);
@@ -49,7 +49,8 @@ struct sequence_type
       
    }
 
-   sequence_type(UNIT_TYPE n)
+
+   constexpr sequence_type(UNIT_TYPE n)
    {
 
      set_all(n);
@@ -67,7 +68,7 @@ struct sequence_type
 //   }
 
    template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
-   sequence_type(const sequence_type < NUMBER1, 2 > & sequence)
+   constexpr sequence_type(const sequence_type < NUMBER1, 2 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
       m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
@@ -75,7 +76,7 @@ struct sequence_type
 
    
    template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 3, int> = 0 >
-   sequence_type(const sequence_type < NUMBER1, 3 > & sequence)
+   constexpr sequence_type(const sequence_type < NUMBER1, 3 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
       m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
@@ -84,7 +85,7 @@ struct sequence_type
 
    
    template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 4, int> = 0 >
-   sequence_type(const sequence_type < NUMBER1, 4 > & sequence)
+   constexpr sequence_type(const sequence_type < NUMBER1, 4 > & sequence)
    {
       m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
       m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
@@ -98,7 +99,7 @@ struct sequence_type
 //   }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
-   sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
+   constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
    {
       m_coordinatea[0] = coordinate0;
       m_coordinatea[1] = coordinate1;
@@ -106,7 +107,7 @@ struct sequence_type
 
    
    template <::collection::count S = SIZE, std::enable_if_t<S == 3, int> = 0>
-   sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
+   constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2)
    {
       m_coordinatea[0] = coordinate0;
@@ -116,7 +117,7 @@ struct sequence_type
 
    
    template <::collection::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
-   sequence_type(
+   constexpr sequence_type(
                  COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2, COORDINATE coordinate3)
    {

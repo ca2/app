@@ -264,7 +264,7 @@ namespace universal_windows
       // get the Windows version.
 
       unsigned int dwWindowsMajorVersion =  (unsigned int)(lower_byte(LOWORD(dwVersion)));
-      //   unsigned int dwWindowsMinorVersion =  (unsigned int)(HIBYTE(LOWORD(dwVersion)));
+      //   unsigned int dwWindowsMinorVersion =  (unsigned int)(higher_byte(LOWORD(dwVersion)));
 
       // get the build number.
 

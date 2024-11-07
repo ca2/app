@@ -758,7 +758,7 @@ public:
    inline ::string operator +(const ::string & str) const;
 
 
-   operator ::u32hash() const
+   operator ::hash32() const
    {
 
       return { 
@@ -766,7 +766,7 @@ public:
          ^
          (
             is_text() ? 
-            ::unsigned_int_hash(m_str.c_str()).m_u : 
+            ::as_hash32(m_str.c_str()).m_u : 
             ((((unsigned int)m_uLargest) >> 8) & 0xffffffffu)
          ) 
       };

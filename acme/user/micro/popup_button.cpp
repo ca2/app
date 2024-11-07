@@ -17,6 +17,7 @@ namespace micro
    popup_button::popup_button()
    {
 
+      m_bTopMost = true;
 
    }
 
@@ -79,9 +80,9 @@ namespace micro
 
       ::micro::main_window::create_window();
 
-      acme_windowing_window()->m_bTopMost = true;
+      m_bTopMost = true;
 
-      acme_windowing_window()->m_bArbitraryPositioning = true;
+      m_bArbitraryPositioning = true;
 
    }
 

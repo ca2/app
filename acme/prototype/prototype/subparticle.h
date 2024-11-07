@@ -49,7 +49,7 @@ public:
    //void * m_pAllocation = nullptr;
 
    ::interlocked_count                 m_countReference;
-   ::sequence *                        m_psequence;
+   ::pointer < ::sequence >            m_psequence;
 
 
 #if REFERENCING_DEBUGGING

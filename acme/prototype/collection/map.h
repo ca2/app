@@ -931,7 +931,7 @@ template < typename PAIR >
 void pair_map < PAIR >::hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_ITEM item) const
 {
 
-   nHashValue = ::unsigned_int_hash(item).m_u;
+   nHashValue = ::as_hash32(item).m_u;
 
    nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
 

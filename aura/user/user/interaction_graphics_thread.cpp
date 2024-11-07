@@ -1002,7 +1002,7 @@ namespace user
       }
 #endif
 
-      huge_integer i1 = ::i64_nanosecond();
+      huge_integer i1 = ::huge_integer_nanosecond();
 
       //m_timeLastFrame = m_timeThisFrame;
 
@@ -1329,7 +1329,7 @@ namespace user
 //         //
 //         //         //bUpdateWindow = false;
 //         //
-//         //         huge_integer i1 = ::i64_nanosecond();
+//         //         huge_integer i1 = ::huge_integer_nanosecond();
 //         //
 //         //      //   bool bTransparentDraw;
 //         //
@@ -1382,7 +1382,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         huge_integer i2 = ::i64_nanosecond();
+//         huge_integer i2 = ::huge_integer_nanosecond();
 //
 //#if TIME_REPORTING
 //
@@ -1443,7 +1443,7 @@ namespace user
 ////
 ////         //bUpdateWindow = false;
 ////
-////         huge_integer i1 = ::i64_nanosecond();
+////         huge_integer i1 = ::huge_integer_nanosecond();
 ////
 ////      //   bool bTransparentDraw;
 ////
@@ -1496,7 +1496,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         huge_integer i2 = ::i64_nanosecond();
+//         huge_integer i2 = ::huge_integer_nanosecond();
 //
 //#if TIME_REPORTING
 //

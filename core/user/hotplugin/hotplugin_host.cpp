@@ -587,7 +587,7 @@ namespace hotplugin
    }
 
 
-   //bool host::window_rectangle(::i64_rectangle * prectangle)
+   //bool host::window_rectangle(::huge_integer_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::this->rectangle(::i64_rectangle * prectangle)
+   //bool host::this->rectangle(::huge_integer_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleX);

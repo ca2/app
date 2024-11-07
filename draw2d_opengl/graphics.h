@@ -524,7 +524,7 @@ namespace draw2d_opengl
       //void DrawDragRect(const ::int_rectangle & rectangle, const ::int_size & size,
       //                  const ::int_rectangle & lpRectLast, const ::int_size & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
-      //void FillSolidRect(const ::i64_rectangle * rectangle, color32_t clr);
+      //void FillSolidRect(const ::huge_integer_rectangle * rectangle, color32_t clr);
       //void FillSolidRect(const ::int_rectangle & rectangle, color32_t clr);
       //void FillSolidRect(int x, int y, int cx, int cy, color32_t clr);
       /*void Draw3dRect(const ::int_rectangle & rectangle, color32_t clrTopLeft, color32_t clrBottomRight);

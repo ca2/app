@@ -382,7 +382,7 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(::i64_rectangle * prectangle)
+//bool element::client_to_screen(::huge_integer_rectangle * prectangle)
 //{
 
 //   ::offset_rect(prectangle, huge_integer_point(client_screen_top_left()));
@@ -442,7 +442,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::i64_rectangle * prectangle)
+//bool element::screen_to_client(::huge_integer_rectangle * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -500,7 +500,7 @@ namespace user
 //}
 
 
-//bool element::this->rectangle(::i64_rectangle * prectangle)
+//bool element::this->rectangle(::huge_integer_rectangle * prectangle)
 
 //{
 
@@ -511,7 +511,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(::i64_rectangle * prectangle)
+//bool element::window_rectangle(::huge_integer_rectangle * prectangle)
 
 //{
 

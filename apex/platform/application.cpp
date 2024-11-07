@@ -264,7 +264,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
 
-      srand((unsigned int)::i64_nanosecond());
+      srand((unsigned int)::huge_integer_nanosecond());
 
       m_bService = false;
 

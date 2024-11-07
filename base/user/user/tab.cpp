@@ -474,7 +474,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(::i64_rectangle & rectangle)
+   void tab::GetTabClientRect(::huge_integer_rectangle & rectangle)
    {
 
       ::int_rectangle rectangleHosting;

@@ -141,7 +141,7 @@ namespace platform
    system::system()
    {
 
-
+      m_bAcmeSystemDarkModeFetched = false;
 
       if (!s_p)
       {
@@ -4111,9 +4111,9 @@ particle* system::matter_mutex()
    void system::set_dark_mode(bool bDark)
    {
 
-      m_bDarkMode = bDark;
+      m_bAcmeSystemDarkMode = bDark;
 
-      if (m_bDarkMode)
+      if (m_bAcmeSystemDarkMode)
       {
 
          informationf("background_color :: Dark\n");
@@ -4134,7 +4134,16 @@ particle* system::matter_mutex()
    bool system::dark_mode() const
    {
 
-      return m_bDarkMode;
+      if (!m_bAcmeSystemDarkModeFetched)
+      {
+
+         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
+
+         ((system *)this)->m_bAcmeSystemDarkModeFetched = true;
+
+      }
+
+      return m_bAcmeSystemDarkMode;
 
    }
 

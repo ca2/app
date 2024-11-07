@@ -38,7 +38,7 @@ CLASS_DECL_ACME huge_integer _get_nanosecond()
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME huge_integer i64_nanosecond()
+CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
 {
    
    struct timespec timespec;

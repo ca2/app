@@ -66,7 +66,7 @@
 
 
  inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle);
- inline void __exchange(::binary_stream & s, ::i64_rectangle & rectangle);
+ inline void __exchange(::binary_stream & s, ::huge_integer_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::float_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::double_rectangle & rectangle);
 

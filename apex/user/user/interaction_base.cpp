@@ -428,7 +428,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::client_to_screen(::i64_rectangle * prectangle)
+   //bool interaction_base::client_to_screen(::huge_integer_rectangle * prectangle)
    //{
 
    //   ::offset_rect(prectangle, huge_integer_point(client_screen_top_left()));
@@ -488,7 +488,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::screen_to_client(::i64_rectangle * prectangle)
+   //bool interaction_base::screen_to_client(::huge_integer_rectangle * prectangle)
    //{
 
    //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -546,7 +546,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::this->rectangle(::i64_rectangle * prectangle)
+   //bool interaction_base::this->rectangle(::huge_integer_rectangle * prectangle)
 
    //{
 
@@ -557,7 +557,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::window_rectangle(::i64_rectangle * prectangle)
+   //bool interaction_base::window_rectangle(::huge_integer_rectangle * prectangle)
 
    //{
 

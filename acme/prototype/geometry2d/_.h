@@ -729,7 +729,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
-////inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+////inline auto _001SetRectDim(::huge_integer_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
@@ -1034,7 +1034,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //struct ::huge_integer_size;
 //struct ::huge_integer_point;
-//struct ::i64_rectangle;
+//struct ::huge_integer_rectangle;
 ////::int_size;
 ////class huge_integer_size;
 ////class double_size;
@@ -1042,14 +1042,14 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////class huge_integer_point;
 ////class double_point;
 ////::double_rectangle;
-////::i64_rectangle;
+////::huge_integer_rectangle;
 ////::double_rectangle;
 //
 //typedef uchar      uch;
 //
 //struct ::huge_integer_point;
 //struct ::huge_integer_size;
-//struct ::i64_rectangle;
+//struct ::huge_integer_rectangle;
 //struct ::double_point;
 //struct ::double_size;
 //struct ::double_rectangle;
@@ -1057,19 +1057,19 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //using int_point = point_type < ::int_point, ::int_size, ::int_rectangle >;
-//using huge_integer_point = point_type < ::huge_integer_point, ::huge_integer_size, ::i64_rectangle >;
+//using huge_integer_point = point_type < ::huge_integer_point, ::huge_integer_size, ::huge_integer_rectangle >;
 //using float_point = point_type < ::float_point, ::float_size, ::float_rectangle >;
 //using double_point = point_type < ::double_point, ::double_size, ::double_rectangle >;
 //
 //
 //using int_size = size_type < ::int_size, ::int_point, ::int_rectangle >;
-//using huge_integer_size = size_type < ::huge_integer_size, ::huge_integer_point, ::i64_rectangle >;
+//using huge_integer_size = size_type < ::huge_integer_size, ::huge_integer_point, ::huge_integer_rectangle >;
 //using float_size = size_type < ::float_size, ::float_point, ::float_rectangle >;
 //using double_size = size_type < ::double_size, ::double_point, ::double_rectangle >;
 //
 //
 //using int_rectangle = rectangle_type < ::int_rectangle, ::int_point, ::int_size >;
-//using huge_integer_rectangle = rectangle_type < ::i64_rectangle, ::huge_integer_point, ::huge_integer_size >;
+//using huge_integer_rectangle = rectangle_type < ::huge_integer_rectangle, ::huge_integer_point, ::huge_integer_size >;
 //using float_rectangle = rectangle_type < ::float_rectangle, ::float_point, ::float_size >;
 //using double_rectangle = rectangle_type < ::double_rectangle, ::double_point, ::double_size >;
 //
@@ -1190,25 +1190,25 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::i64_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
-////inline ::i64_rectangle & null(::i64_rectangle & rectDst) { return ::null_rect(rectDst); }
-////inline bool is_equal(const ::i64_rectangle & rect1, const ::i64_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
-////inline ::i64_rectangle & inflate(::i64_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_inflate_point(rectangle, x, y); }
-////inline ::i64_rectangle & deflate(::i64_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_deflate_point(rectangle, x, y); }
-////inline ::i64_rectangle & offset(::i64_rectangle & rectangle, huge_integer x, huge_integer y) { return ::offset_rect(rectangle, x, y); }
-////inline bool intersect(::i64_rectangle & rectangle, const ::i64_rectangle & rect1, const ::i64_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
-////inline ::i64_rectangle & unite(::i64_rectangle & rectangle, const ::i64_rectangle & rect1, const ::i64_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
-////inline huge_integer width(const ::i64_rectangle & rectangle) { return ::rect_width(rectangle); }
-////inline huge_integer height(const ::i64_rectangle & rectangle) { return ::rect_height(rectangle); }
-////inline huge_integer area(const ::i64_rectangle & rectangle) { return ::rect_area(rectangle); }
-////inline bool is_empty(const ::i64_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::i64_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+////inline bool contains(const ::huge_integer_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline ::huge_integer_rectangle & null(::huge_integer_rectangle & rectDst) { return ::null_rect(rectDst); }
+////inline bool is_equal(const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
+////inline ::huge_integer_rectangle & inflate(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_inflate_point(rectangle, x, y); }
+////inline ::huge_integer_rectangle & deflate(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_deflate_point(rectangle, x, y); }
+////inline ::huge_integer_rectangle & offset(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::offset_rect(rectangle, x, y); }
+////inline bool intersect(::huge_integer_rectangle & rectangle, const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
+////inline ::huge_integer_rectangle & unite(::huge_integer_rectangle & rectangle, const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
+////inline huge_integer width(const ::huge_integer_rectangle & rectangle) { return ::rect_width(rectangle); }
+////inline huge_integer height(const ::huge_integer_rectangle & rectangle) { return ::rect_height(rectangle); }
+////inline huge_integer area(const ::huge_integer_rectangle & rectangle) { return ::rect_area(rectangle); }
+////inline bool is_empty(const ::huge_integer_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
+////inline void swap_left_right(::huge_integer_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
-////inline huge_integer width(const ::i64_rectangle & rectangle) { return ::width(&rectangle); }
-////inline huge_integer height(const ::i64_rectangle & rectangle) { return ::height(&rectangle); }
-////inline huge_integer area(const ::i64_rectangle & rectangle) { return ::area(&rectangle); }
-////inline bool is_empty(const ::i64_rectangle & rectangle) { return ::is_empty(&rectangle); }
-////inline void swap_left_right(::i64_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
+////inline huge_integer width(const ::huge_integer_rectangle & rectangle) { return ::width(&rectangle); }
+////inline huge_integer height(const ::huge_integer_rectangle & rectangle) { return ::height(&rectangle); }
+////inline huge_integer area(const ::huge_integer_rectangle & rectangle) { return ::area(&rectangle); }
+////inline bool is_empty(const ::huge_integer_rectangle & rectangle) { return ::is_empty(&rectangle); }
+////inline void swap_left_right(::huge_integer_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
 //
 //
 //
@@ -1284,8 +1284,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //template < primitive_rectangle RECTANGLE, primitive_point POINT >
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 //
-////inline ::i64_rectangle& operator -= (::i64_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_sub(rectangle, point); return rectangle; }
-////inline ::i64_rectangle& operator += (::i64_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_add(rectangle, point); return rectangle; }
+////inline ::huge_integer_rectangle& operator -= (::huge_integer_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_sub(rectangle, point); return rectangle; }
+////inline ::huge_integer_rectangle& operator += (::huge_integer_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_add(rectangle, point); return rectangle; }
 ////inline ::float_rectangle& operator -= (::float_rectangle& rectangle, const ::float_point& point) { ::rect_sub(rectangle, point); return rectangle; }
 ////inline ::float_rectangle& operator += (::float_rectangle& rectangle, const ::float_point& point) { ::rect_add(rectangle, point); return rectangle; }
 ////inline ::double_rectangle& operator -= (::double_rectangle& rectangle, const ::double_point& point) { ::rect_sub(rectangle, point); return rectangle; }
@@ -1563,10 +1563,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //////inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
 ////
 ////
-////inline huge_integer_point & top_left(const ::i64_rectangle & rectangle) { return *(huge_integer_point *)&rectangle; }
-////inline huge_integer_point & bottom_right(const ::i64_rectangle & rectangle) { return *(huge_integer_point *)&rectangle.right(); }
-//////inline huge_integer_point & top_left(const ::i64_rectangle & rectangle) { return top_left(&rectangle); }
-//////inline huge_integer_point & bottom_right(const ::i64_rectangle & rectangle) { return bottom_right(&rectangle); }
+////inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle; }
+////inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle.right(); }
+//////inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return top_left(&rectangle); }
+//////inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return bottom_right(&rectangle); }
 ////
 ////
 ////inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }

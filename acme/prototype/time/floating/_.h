@@ -5,23 +5,23 @@
 //#include "acme/prototype/time/floating/time.h"
 
 
-inline double f64_nanosecond() { return (double)::i64_nanosecond(); }
+inline double double_nanosecond() { return (double)::huge_integer_nanosecond(); }
 
-inline double f64_microsecond() { return f64_nanosecond() / 1'000.0; }
+inline double double_microsecond() { return double_nanosecond() / 1'000.0; }
 
-inline double f64_millisecond() { return f64_nanosecond() / 1'000'000.0; }
+inline double double_millisecond() { return double_nanosecond() / 1'000'000.0; }
 
-inline double f64_second() { return f64_nanosecond() / 1'000'000'000.0; }
+inline double double_second() { return double_nanosecond() / 1'000'000'000.0; }
 
-inline double f64_minute() { return f64_nanosecond() / 60'000'000'000.0; }
+inline double double_minute() { return double_nanosecond() / 60'000'000'000.0; }
 
-inline double f64_hour() { return f64_nanosecond() / 3'600'000'000'000.0; }
+inline double double_hour() { return double_nanosecond() / 3'600'000'000'000.0; }
 
-inline double f64_day() { return f64_nanosecond() / 86'400'000'000'000.0; }
+inline double double_day() { return double_nanosecond() / 86'400'000'000'000.0; }
 
 
 
-//inline float f32_nanosecond() { return (float)::i64_nanosecond(); }
+//inline float f32_nanosecond() { return (float)::huge_integer_nanosecond(); }
 //
 //inline float f32_microsecond() { return f32_nanosecond() / 1'000.0f; }
 //

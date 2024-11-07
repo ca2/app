@@ -905,7 +905,7 @@
 //
 //}
 //
-//inline void __exchange(::binary_stream & s, ::i64_rectangle & rectangle)
+//inline void __exchange(::binary_stream & s, ::huge_integer_rectangle & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());

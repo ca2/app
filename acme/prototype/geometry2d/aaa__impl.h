@@ -20,10 +20,10 @@
 //inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline huge_integer_point& top_left(const ::i64_rectangle* prectangle) { return *(huge_integer_point*)prectangle; }
-//inline huge_integer_point& bottom_right(const ::i64_rectangle* prectangle) { return *(huge_integer_point*)& prectangle->right(); }
-//inline huge_integer_point& top_left(const ::i64_rectangle& rectangle) { return top_left(&rectangle); }
-//inline huge_integer_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline huge_integer_point& top_left(const ::huge_integer_rectangle* prectangle) { return *(huge_integer_point*)prectangle; }
+//inline huge_integer_point& bottom_right(const ::huge_integer_rectangle* prectangle) { return *(huge_integer_point*)& prectangle->right(); }
+//inline huge_integer_point& top_left(const ::huge_integer_rectangle& rectangle) { return top_left(&rectangle); }
+//inline huge_integer_point& bottom_right(const ::huge_integer_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }

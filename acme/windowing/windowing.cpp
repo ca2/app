@@ -395,6 +395,24 @@ namespace acme
       }
 
 
+      ::color::color windowing::get_operating_system_background_color()
+      {
+
+         return ::color::white;
+
+      }
+
+
+      void windowing::fetch_dark_mode()
+      {
+
+         auto color = get_operating_system_background_color();
+
+         on_system_dark_mode_change(color.get_luminance() <= 0.5, color);
+
+      }
+
+
       void windowing::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
       {
 

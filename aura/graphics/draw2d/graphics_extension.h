@@ -29,7 +29,7 @@ namespace draw2d
       void text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, const ::scoped_string & scopedstr, double_size & s);
 
 
-      //void FillSolidRect(HDC hdc, const ::i64_rectangle * prectangle, ::color::color clr);
+      //void FillSolidRect(HDC hdc, const ::huge_integer_rectangle * prectangle, ::color::color clr);
 
       //void FillSolidRect(HDC hdc, const ::int_rectangle & rectangle, ::color::color clr);
 

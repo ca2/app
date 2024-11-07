@@ -752,7 +752,7 @@ namespace apex
       int CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::i64_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::huge_integer_millisecond() / 100) % 5000) % 1000;
 
       }
 

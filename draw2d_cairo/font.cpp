@@ -255,7 +255,7 @@ namespace draw2d_cairo
 
       FT_Face ftface = pcairographics->ftface(
          m_pfontfamily->family_name(pgraphics),
-         m_fontweight.int(), m_bItalic);
+         m_fontweight.as_int(), m_bItalic);
 
       if (!ftface)
       {
@@ -334,7 +334,7 @@ namespace draw2d_cairo
    cairo_font_weight_t font::get_cairo_font_weight()
    {
 
-      if (m_fontweight.int() >= 700)
+      if (m_fontweight.as_int() >= 700)
       {
 
          return CAIRO_FONT_WEIGHT_BOLD;

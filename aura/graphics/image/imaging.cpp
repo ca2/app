@@ -2035,7 +2035,7 @@ void imaging::trait(::image::image *pimage, huge_integer iTrait)
 }
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::i64_rectangle & rectangle, ::color32_t color32, unsigned char alpha)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::huge_integer_rectangle & rectangle, ::color32_t color32, unsigned char alpha)
 //{
 //
 //   return color_blend(pgraphics,(const ::int_rectangle &)rectangle,color32,alpha);

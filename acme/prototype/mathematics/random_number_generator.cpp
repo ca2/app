@@ -100,15 +100,15 @@ namespace mathematics
 
       }
 
-      huge_integer i0 = ::i64_nanosecond();
+      huge_integer i0 = ::huge_integer_nanosecond();
 
       preempt(microsecond_time(bLevel));
 
-      huge_integer i1 = ::i64_nanosecond();
+      huge_integer i1 = ::huge_integer_nanosecond();
 
       huge_integer i2 = time(nullptr);
 
-      huge_integer i3 = ::i64_nanosecond();
+      huge_integer i3 = ::huge_integer_nanosecond();
 
       huge_integer i4 = abs(i0 + i1 + i2 + i3);
 

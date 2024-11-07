@@ -80,8 +80,8 @@ namespace user
    //   //mutable int_point     m_pointParentWindow;
    //   //mutable int_point     m_pointParentClient;
 
-   //   //inline auto get_client_rect64() { ::i64_rectangle rectangle; this->rectangle(rectangle); return rectangle; }
-   //   //inline auto get_window_rect64() { ::i64_rectangle rectangle; window_rectangle(rectangle); return rectangle; }
+   //   //inline auto get_client_rect64() { ::huge_integer_rectangle rectangle; this->rectangle(rectangle); return rectangle; }
+   //   //inline auto get_window_rect64() { ::huge_integer_rectangle rectangle; window_rectangle(rectangle); return rectangle; }
 
 
    //};

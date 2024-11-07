@@ -132,6 +132,11 @@ namespace acme
 
          virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
+         virtual ::color::color get_operating_system_background_color();
+
+
+         virtual void fetch_dark_mode();
+
 
          virtual void on_system_dark_mode_change(bool bDarkMode,
                                                  const ::color::color & colorBackground = ::color::transparent);

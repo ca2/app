@@ -95,25 +95,25 @@
 //}
 //TEMPLATE void huge_integer_rectangle::swap_left_right() noexcept
 //{
-//   swap_left_right((::i64_rectangle*)(this));
+//   swap_left_right((::huge_integer_rectangle*)(this));
 //}
-//void WINAPI huge_integer_rectangle::swap_left_right(::i64_rectangle * RECT_TEMPLATE) noexcept
+//void WINAPI huge_integer_rectangle::swap_left_right(::huge_integer_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   huge_integer temp = RECT_TEMPLATE.left(); RECT_TEMPLATE.left() = RECT_TEMPLATE.right(); RECT_TEMPLATE.right() = temp;
 //}
 //
-//huge_integer_rectangle::operator ::i64_rectangle* () noexcept
+//huge_integer_rectangle::operator ::huge_integer_rectangle* () noexcept
 //{
 //   return this;
 //}
-//huge_integer_rectangle::operator const ::i64_rectangle* () const noexcept
+//huge_integer_rectangle::operator const ::huge_integer_rectangle* () const noexcept
 //{
 //   return this;
 //}
 //huge_integer_rectangle::operator RECT_TEMPLATE() const
 //{
-//   return ::rect_TEMPLATE((const ::i64_rectangle&)* this);
+//   return ::rect_TEMPLATE((const ::huge_integer_rectangle&)* this);
 //}
 //TEMPLATE bool huge_integer_rectangle::contains(::huge_integer_point int_point) const noexcept
 //{
@@ -131,13 +131,13 @@
 //{
 //   ::null(this);
 //}
-//TEMPLATE void rect64copy(const ::i64_rectangle * pSrcRect) noexcept
+//TEMPLATE void rect64copy(const ::huge_integer_rectangle * pSrcRect) noexcept
 //
 //{
 //   ::copy(this, pSrcRect);
 //}
 //
-//TEMPLATE bool huge_integer_rectangle::is_equal(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
+//TEMPLATE bool huge_integer_rectangle::is_equal(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   return ::is_equal(this, RECT_TEMPLATE);
@@ -203,27 +203,27 @@
 //{
 //   move_to_x(point.x()); move_to_y(point.y());
 //}
-//TEMPLATE bool huge_integer_rectangle::intersect(const ::i64_rectangle * rect1, const ::i64_rectangle * rect2) noexcept
+//TEMPLATE bool huge_integer_rectangle::intersect(const ::huge_integer_rectangle * rect1, const ::huge_integer_rectangle * rect2) noexcept
 //
 //{
 //   return ::intersect(this, rect1, rect2);
 //}
 //
-//TEMPLATE bool huge_integer_rectangle::unite(const ::i64_rectangle * rect1, const ::i64_rectangle * rect2) noexcept
+//TEMPLATE bool huge_integer_rectangle::unite(const ::huge_integer_rectangle * rect1, const ::huge_integer_rectangle * rect2) noexcept
 //
 //{
 //   return ::unite(this, rect1, rect2);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::operator=(const ::i64_rectangle & rectangleSource) noexcept
+//TEMPLATE void huge_integer_rectangle::operator=(const ::huge_integer_rectangle & rectangleSource) noexcept
 //{
 //   ::copy(this, &rectangleSource);
 //}
-//TEMPLATE bool huge_integer_rectangle::operator==(const ::i64_rectangle & huge_integer_rectangle) const noexcept
+//TEMPLATE bool huge_integer_rectangle::operator==(const ::huge_integer_rectangle & huge_integer_rectangle) const noexcept
 //{
 //   return ::is_equal(this, &huge_integer_rectangle);
 //}
-//TEMPLATE bool huge_integer_rectangle::operator!=(const ::i64_rectangle & huge_integer_rectangle) const noexcept
+//TEMPLATE bool huge_integer_rectangle::operator!=(const ::huge_integer_rectangle & huge_integer_rectangle) const noexcept
 //{
 //   return !::is_equal(this, &huge_integer_rectangle);
 //}
@@ -235,7 +235,7 @@
 //{
 //   ::offset(this, huge_integer_size.cx(), huge_integer_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::operator+=(const ::i64_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void huge_integer_rectangle::operator+=(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   inflate(RECT_TEMPLATE);
@@ -249,17 +249,17 @@
 //{
 //   ::offset(this, -huge_integer_size.cx(), -huge_integer_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::operator-=(const ::i64_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void huge_integer_rectangle::operator-=(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   deflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::operator&=(const ::i64_rectangle & huge_integer_rectangle) noexcept
+//TEMPLATE void huge_integer_rectangle::operator&=(const ::huge_integer_rectangle & huge_integer_rectangle) noexcept
 //{
 //   ::intersect(this, this, &huge_integer_rectangle);
 //}
-//TEMPLATE void huge_integer_rectangle::operator|=(const ::i64_rectangle & huge_integer_rectangle) noexcept
+//TEMPLATE void huge_integer_rectangle::operator|=(const ::huge_integer_rectangle & huge_integer_rectangle) noexcept
 //{
 //   ::unite(this, this, &huge_integer_rectangle);
 //}
@@ -279,29 +279,29 @@
 //{
 //   huge_integer_rectangle huge_integer_rectangle(*this); ::offset(&huge_integer_rectangle, -huge_integer_size.cx(), -huge_integer_size.cy()); return huge_integer_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator+(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
+//huge_integer_rectangle huge_integer_rectangle::operator+(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   huge_integer_rectangle huge_integer_rectangle(this); huge_integer_rectangle.inflate(RECT_TEMPLATE); return huge_integer_rectangle;
 //}
 //
-//huge_integer_rectangle huge_integer_rectangle::operator-(const ::i64_rectangle * RECT_TEMPLATE) const noexcept
+//huge_integer_rectangle huge_integer_rectangle::operator-(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   huge_integer_rectangle huge_integer_rectangle(this); huge_integer_rectangle.deflate(RECT_TEMPLATE); return huge_integer_rectangle;
 //}
 //
-//huge_integer_rectangle huge_integer_rectangle::operator&(const ::i64_rectangle & rect2) const noexcept
+//huge_integer_rectangle huge_integer_rectangle::operator&(const ::huge_integer_rectangle & rect2) const noexcept
 //{
 //   huge_integer_rectangle huge_integer_rectangle; ::intersect(&huge_integer_rectangle, this, &rect2);
 //   return huge_integer_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator|(const ::i64_rectangle & rect2) const noexcept
+//huge_integer_rectangle huge_integer_rectangle::operator|(const ::huge_integer_rectangle & rect2) const noexcept
 //{
 //   huge_integer_rectangle huge_integer_rectangle; ::unite(&huge_integer_rectangle, this, &rect2);
 //   return huge_integer_rectangle;
 //}
-////TEMPLATE bool huge_integer_rectangle::subtract(const ::i64_rectangle * pRectSrc1, const ::i64_rectangle * lpRectSrc2) noexcept
+////TEMPLATE bool huge_integer_rectangle::subtract(const ::huge_integer_rectangle * pRectSrc1, const ::huge_integer_rectangle * lpRectSrc2) noexcept
 //
 ////   { return ::subtract(this, pRectSrc1, lpRectSrc2); }
 //
@@ -323,7 +323,7 @@
 //   }
 //}
 //
-//TEMPLATE void huge_integer_rectangle::inflate(const ::i64_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void huge_integer_rectangle::inflate(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left -= RECT_TEMPLATE.left();      top -= RECT_TEMPLATE.top();
@@ -338,7 +338,7 @@
 //   right += r;         bottom += b;
 //}
 //
-//TEMPLATE void huge_integer_rectangle::deflate(const ::i64_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void huge_integer_rectangle::deflate(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left += RECT_TEMPLATE.left();   top += RECT_TEMPLATE.top();

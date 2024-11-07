@@ -20,7 +20,7 @@ typedef uchar *POINTER;
 typedef unsigned short ush;
 
 /* unsigned int defines a four unsigned char unsigned short */
-typedef unsigned int unsigned int;
+typedef unsigned int ui;
 
 /* PROTO_LIST is defined depending on how PROTOTYPES is defined above.
 If using PROTOTYPES, then PROTO_LIST returns the list, otherwise it

@@ -501,7 +501,7 @@ namespace user
             if (data.m_pitem->m_dwState & ::data::e_tree_item_state_expanded)
             {
 
-               if (pstyle->m_bDarkMode)
+               if (pstyle->is_dark_mode())
                {
 
                   iImage = (int)ptree->m_iImageCollapseDark;
@@ -517,7 +517,7 @@ namespace user
             else
             {
 
-               if (pstyle->m_bDarkMode)
+               if (pstyle->is_dark_mode())
                {
 
                   iImage = (int)ptree->m_iImageExpandDark;

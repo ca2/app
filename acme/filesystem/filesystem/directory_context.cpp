@@ -2616,7 +2616,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    bOk = false;
 
-   path = "itdoesntexist." + ::as_string(::i64_millisecond());
+   path = "itdoesntexist." + ::as_string(::huge_integer_millisecond());
 
 ret:
 

@@ -963,7 +963,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::window_rectangle(::i64_rectangle * prectangle)
+   //bool plugin::window_rectangle(::huge_integer_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -985,7 +985,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::this->rectangle(::i64_rectangle * prectangle)
+   //bool plugin::this->rectangle(::huge_integer_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)

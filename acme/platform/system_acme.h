@@ -68,7 +68,8 @@ namespace platform
 
       const char* m_pszMain;
 
-      bool                                                  m_bDarkMode;
+      bool                                                  m_bAcmeSystemDarkModeFetched;
+      bool                                                  m_bAcmeSystemDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;

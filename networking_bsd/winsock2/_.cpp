@@ -36,7 +36,7 @@ namespace networking_bsd
 
       }
 
-      if (lower_byte(g_wsadata.wVersion) < byteHi || (lower_byte(g_wsadata.wVersion) == byteHi && higher_byte(g_wsadata.wVersion) < 2))
+      if (lower_byte(g_wsadata.wVersion) < byteHi || (lower_byte(g_wsadata.wVersion) == byteHi && upper_byte(g_wsadata.wVersion) < 2))
       {
 
          informationf("Could not find a usable version of Winsock.dll!\n");

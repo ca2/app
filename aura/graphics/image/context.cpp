@@ -44,7 +44,7 @@ namespace image
    }
 
 
-   void image_context::finalize()
+   void image_context::destroy()
    {
 
       m_mapIntPath.clear();
@@ -52,7 +52,7 @@ namespace image
       m_mapPathImage.clear();
       m_pparticleImageSynchronization.release();
 
-      ::object::finalize();
+      ::object::destroy();
 
    }
 

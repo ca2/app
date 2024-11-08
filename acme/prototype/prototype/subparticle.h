@@ -2,10 +2,10 @@
 #pragma once
 
 
-
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
 #include "acme/prototype/time/time/time.h"
+
 
 #ifdef WINDOWS
 using hsynchronization = void*;
@@ -16,37 +16,15 @@ using hsynchronization = ::subparticle *;
 
 class sequence;
 
-
-//
-//struct SUBPARTICLE :
-//   public SUBPARTICLE_FLAGS
-//{
-//
-//
-//   mutable ::platform::context *           m_papplication;
-//   mutable ::ptr < ::particle >        m_pparticleSynchronization;
-//
-//
-//   SUBPARTICLE() :
-//      m_papplication(nullptr)
-//   {}
-//
-//
-//};
-
 #include "quantum.h"
-//#include "subparticle_flags.h"
 
 
 
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum
-   //virtual public SUBPARTICLE_FLAGS
 {
 public:
 
-   
-   //void * m_pAllocation = nullptr;
 
    ::interlocked_count                 m_countReference;
    ::pointer < ::sequence >            m_psequence;
@@ -76,7 +54,7 @@ public:
 
 
    virtual void initialize(::particle * pparticle);
-   virtual void finalize();
+   //virtual void finalize();
 
 
    ::platform::system* system() const;
@@ -98,6 +76,9 @@ public:
    virtual class ::time get_run_timeout();
 
    virtual bool subparticle_step();
+
+
+   inline ::collection::count reference_count() const { return m_countReference; }
 
 
 #ifdef _DEBUG

@@ -141,7 +141,7 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::finalize()
+   void script_interface::destroy()
    {
 
       m_pmain.release();
@@ -150,21 +150,21 @@ namespace dynamic_source
 
       m_varRet.unset();
 
-      ::html_file::finalize();
-
-   }
-
-
-   void script_interface::destroy()
-   {
-
-      m_pmain.release();
-      m_pinstanceParent2.release();
-      m_pscript2.release();
-
       ::html_file::destroy();
 
    }
+
+
+   //void script_interface::destroy()
+   //{
+
+   //   m_pmain.release();
+   //   m_pinstanceParent2.release();
+   //   m_pscript2.release();
+
+   //   ::html_file::destroy();
+
+   //}
 
 
    void     script_interface::run()

@@ -79,30 +79,12 @@ namespace aura
    }
 
 
-   void context::finalize()
+   void context::destroy()
    {
 
-      if (m_pimagecontext)
-      {
+      m_pimagecontext.defer_destroy();
 
-         try
-         {
-
-            m_pimagecontext->finalize();
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-      }
-
-      m_pimagecontext.release();
-
-
-      //::apex::context::finalize();
+      ::platform::context::destroy();
 
    }
 

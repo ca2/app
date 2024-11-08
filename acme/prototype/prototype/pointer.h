@@ -1227,42 +1227,42 @@ inline void defer_destroy(::pointer < TYPE >& p)
 }
 
 
-template < typename TYPE >
-inline void defer_finalize_and_release(::pointer < TYPE > & p)
-{
+//template < typename TYPE >
+//inline void defer_finalize_and_release(::pointer < TYPE > & p)
+//{
+//
+//   auto pFinalizeAndRelease = ::transfer(p);
+//
+//   if (pFinalizeAndRelease)
+//   {
+//
+//      ::defer_finalize(pFinalizeAndRelease);
+//
+//      pFinalizeAndRelease.release();
+//
+//   }
+//
+//}
 
-   auto pFinalizeAndRelease = ::transfer(p);
 
-   if (pFinalizeAndRelease)
-   {
-
-      ::defer_finalize(pFinalizeAndRelease);
-
-      pFinalizeAndRelease.release();
-
-   }
-
-}
-
-
-template < typename TYPE >
-inline void defer_finalize__destroy_and_release(::pointer < TYPE >& p)
-{
-
-   auto pFinalize_DestroyAndRelease = ::transfer(p);
-
-   if (pFinalize_DestroyAndRelease)
-   {
-
-      ::defer_finalize(pFinalize_DestroyAndRelease);
-
-      ::defer_destroy(pFinalize_DestroyAndRelease);
-
-      pFinalize_DestroyAndRelease.release();
-
-   }
-
-}
+//template < typename TYPE >
+//inline void defer_finalize__destroy_and_release(::pointer < TYPE >& p)
+//{
+//
+//   auto pFinalize_DestroyAndRelease = ::transfer(p);
+//
+//   if (pFinalize_DestroyAndRelease)
+//   {
+//
+//      ::defer_finalize(pFinalize_DestroyAndRelease);
+//
+//      ::defer_destroy(pFinalize_DestroyAndRelease);
+//
+//      pFinalize_DestroyAndRelease.release();
+//
+//   }
+//
+//}
 
 
 template < typename TYPE >

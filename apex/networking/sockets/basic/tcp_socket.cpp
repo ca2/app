@@ -2972,12 +2972,12 @@ return true;
    }
 
 
-   void tcp_socket::finalize()
+   void tcp_socket::destroy()
    {
 
-      ::defer_finalize_and_release(m_ptcpsocketImpl);
+      m_ptcpsocketImpl.defer_destroy();
 
-      ::sockets::stream_socket::finalize();
+      ::sockets::stream_socket::destroy();
 
    }
 

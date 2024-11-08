@@ -145,12 +145,12 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 
       auto& key = c->m_ticketkeya[0];
 
- /*     if (LOG_ENABLED(INFO)) {
-         CLOG(INFO, handler) << "encrypt session ticket key: "
-            << util::format_hex(key.data.name);
-      }*/
+      /*     if (LOG_ENABLED(INFO)) {
+              CLOG(INFO, handler) << "encrypt session ticket key: "
+                 << util::format_hex(key.data.name);
+           }*/
 
-      strncpy((char*) key_name,(char*) key.key_name, 16);
+      strncpy((char*)key_name, (char*)key.key_name, 16);
 
       //EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr,
       EVP_EncryptInit_ex(ctx, key.cipher, nullptr,
@@ -167,7 +167,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
               const_cast<char*>(EVP_MD_get0_name(key.hmac)), 0),
           OSSL_PARAM_construct_end(),
       };
-      if (!EVP_MAC_CTX_set_params(hctx, params) )
+      if (!EVP_MAC_CTX_set_params(hctx, params))
       {
          //if (LOG_ENABLED(INFO)) {
             //CLOG(INFO, handler) << "EVP_MAC_CTX_set_params failed";
@@ -184,7 +184,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
    ::collection::index i;
    for (i = 0; i < c->m_ticketkeya.get_size(); ++i) {
       auto& key = c->m_ticketkeya[i];
-      if (strncmp((const char*) key.key_name, (const char *) key_name, 16)) 
+      if (strncmp((const char*)key.key_name, (const char*)key_name, 16))
       {
          break;
       }
@@ -540,7 +540,7 @@ m_ibuf(isize)
 
       ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
-      auto paddressBind2 = __allocate ::networking_bsd::address();
+      auto paddressBind2 = __allocate::networking_bsd::address();
 
       paddressBind2->set_family(paddress2->get_family());
 
@@ -764,7 +764,7 @@ m_ibuf(isize)
 
       ::networking::address_pointer paddress;
 
-      while(eaddresstype != ::networking::e_address_type_ipv4)
+      while (eaddresstype != ::networking::e_address_type_ipv4)
       {
 
          SetCloseAndDelete(false);
@@ -814,7 +814,7 @@ m_ibuf(isize)
 
             //}
 
-            if(eaddresstype == ::networking::e_address_type_none)
+            if (eaddresstype == ::networking::e_address_type_none)
             {
 
                eaddresstype = preferred_address_type();
@@ -845,7 +845,7 @@ m_ibuf(isize)
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-         auto paddressLocal = __allocate ::networking_bsd::address();
+         auto paddressLocal = __allocate::networking_bsd::address();
 
          paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
@@ -907,7 +907,7 @@ m_ibuf(isize)
          //m_resolver_id = Resolve(host,port);
 
 
-     }
+      }
 
       return false;
 
@@ -1111,7 +1111,7 @@ m_ibuf(isize)
                //}
                else if (n > 0 && n <= nBufSize)
                {
-                  
+
                   set_connection_last_read_time();
 
                   return n;
@@ -1187,7 +1187,7 @@ m_ibuf(isize)
          }
          else if (n > 0 && n <= nBufSize)
          {
-            
+
             set_connection_last_read_time();
 
             return n;
@@ -1472,7 +1472,7 @@ m_ibuf(isize)
 
 
 
-   
+
    int tcp_socket::_try_write(const void* buf, int len)
    {
 
@@ -1565,7 +1565,7 @@ m_ibuf(isize)
 //         n = ::send(GetSocketId(), (const char*)buf, (int)len, 0);
 //#else
          n = ::send(GetSocketId(), (const char*)buf, (int)len, MSG_NOSIGNAL);
-///#endif
+         ///#endif
          if (n == -1)
          {
             int iError = networking_last_error();
@@ -1778,10 +1778,10 @@ m_ibuf(isize)
       // if any data is unsent, buffer it and set m_wfds
 
       // check output buffer set, set/reset m_wfds accordingly
-      
+
       if (m_obuf.get_size())
       {
-       
+
          m_iSelectWrite = 1;
 
       }
@@ -2645,7 +2645,7 @@ m_ibuf(isize)
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __allocate ssl_client_context (meth_in != nullptr ? meth_in : TLS_server_method());
+         m_psslcontext->m_pclientcontext = __allocate ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method());
 
          m_psslcontext->m_pclientcontext->initialize(m_papplication);
 
@@ -2684,159 +2684,63 @@ m_ibuf(isize)
       if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
       {
 
-         string strCert;
+         ::cast < ::networking_bsd::networking > pnetworkingbsd = networking();
 
-         if (keyfile.case_insensitive_ends(".cat"))
-         {
-
-            strCert = file()->safe_get_string(keyfile);
-
-         }
-         else
-         {
-
-            strCert = keyfile;
-
-            strCert.case_insensitive_begins_eat("cat://");
-
-         }
-
-         BIO* bio1;
-         BIO* bio2;
-         bio1 = BIO_new(BIO_s_mem());
-         BIO_puts(bio1, strCert);
-         bio2 = BIO_new(BIO_s_mem());
-         BIO_puts(bio2, strCert);
-
-
-         //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
-         //{
-
-         //   errorf("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
-
-         //}
-
-
-      //}
-
-        // {
-
-         //            if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
-
-                  //}
+         auto pcert = pnetworkingbsd->get_cert(keyfile);
 
          if (password.has_character())
          {
-            
-            m_password = password;
 
             SSL_CTX_set_default_passwd_cb(m_psslcontext->m_pclientcontext->m_psslcontext, tcp_socket_SSL_password_cb);
-            
+
             SSL_CTX_set_default_passwd_cb_userdata(m_psslcontext->m_pclientcontext->m_psslcontext, (socket*)this);
 
          }
 
-         EVP_PKEY* key = PEM_read_bio_PrivateKey(bio1, nullptr, nullptr, nullptr);
 
-         X509* certificate;
 
-         certificate = PEM_read_bio_X509(bio2, nullptr, nullptr, nullptr);
-         if (key && certificate)
-         {
-            array < X509* > xa;
-            STACK_OF(X509)* pchain = nullptr;
-
-            while (true)
-            {
-
-               X509* chainItem = PEM_read_bio_X509(bio2, nullptr, nullptr, nullptr);
-
-               if (!chainItem)
-               {
-
-                  break;
-
-               }
-
-               xa.add(chainItem);
-
-               if (pchain == nullptr)
-               {
-
-                  pchain = sk_X509_new_null();
-
-               }
-
-               sk_X509_push(pchain, chainItem);
-
-            }
 
 #if OPENSSL_VERSION_NUMBER >= 0x10101000L  && !defined(LIBRESSL_VERSION_NUMBER)
 
-            if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
-            {
+         if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, pcert->m_pcertificate, pcert->m_pkey, pcert->m_pchain, 1))
+         {
 
-               fatal() << "tcp_socket InitializeContext,-1,Couldn't read certificate string " << keyfile;
+            fatal() << "tcp_socket InitializeContext,-1,Couldn't read certificate string " << keyfile;
 
-            }
+         }
 
 #else
 
-            if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
+         if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
+         {
+
+            fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
+
+         }
+
+         if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
+         {
+
+            fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
+
+         }
+
+         for (auto x : xa)
+         {
+
+            if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
             {
 
-               fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
+               fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " + keyfile;
 
             }
 
-            if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
-            {
-
-               fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
-
-            }
-
-            for (auto x : xa)
-            {
-
-               if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
-               {
-
-                  fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " + keyfile;
-
-               }
-
-            }
+         }
 
 #endif
 
-            if (pchain != nullptr)
-            {
 
-               sk_X509_free(pchain);
-
-            }
-
-
-         }
-
-         if (certificate)
-         {
-
-            X509_free(certificate);
-
-         }
-
-         if (key)
-         {
-
-            EVP_PKEY_free(key);
-
-         }
-
-         BIO_free(bio1);
-
-         BIO_free(bio2);
+         //         }
 
       }
       else
@@ -3595,7 +3499,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::finalize()
+   void tcp_socket::destroy()
    {
 
       m_ticketkeya.clear();
@@ -3603,12 +3507,12 @@ m_ibuf(isize)
       m_pmutexSslCtx.release();
       m_obuf_top.release();
 
-      ::sockets_bsd::stream_socket::finalize();
+      ::sockets_bsd::stream_socket::destroy();
 
-      ::sockets::tcp_socket::finalize();
+      ::sockets::tcp_socket::destroy();
 
    }
 
 
-   } // namespace sockets_bsd
+} // namespace sockets_bsd
 

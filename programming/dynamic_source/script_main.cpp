@@ -51,18 +51,6 @@ namespace dynamic_source
    }
 
 
-   void script_main::finalize()
-   {
-
-      m_psocket2.release();
-
-      m_pmanager2.release();
-
-      ::dynamic_source::script_interface::finalize();
-
-   }
-
-
    void script_main::destroy()
    {
 

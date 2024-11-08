@@ -66,6 +66,8 @@ void referencing_debugging::dump_pending_releases()
 
    ::string strDump;
 
+   strDump.m_erange |= e_range_buffer;
+
    auto cFiltered = 0;
 
    for (::collection::index i = 0; i < c; i++)
@@ -150,14 +152,14 @@ void referencing_debugging::dump_pending_releases()
 
    strDump += new_line_quote(strRefrain);
 
-   ::string_array straLines;
+   auto range = strDump();
 
-   straLines.add_lines(strDump);
+   ansi_range line;
 
-   for (auto & strLine : straLines)
+   while(range.consume_line(line))
    {
 
-      ::output_debug_string(strLine + "\n");
+      ::ansi_output_debug_line(line);
 
    }
 

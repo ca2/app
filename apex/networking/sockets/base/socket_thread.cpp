@@ -221,19 +221,19 @@ namespace sockets
 
       }
 
-      finalize();
+      destroy();
 
    }
 
 
-   void socket_thread::finalize()
+   void socket_thread::destroy()
    {
 
-      defer_finalize_and_release(m_psockethandler);
+      m_psockethandler.defer_destroy();
 
       m_pfactorySocketHandler.release();
 
-      ::task::finalize();
+      ::task::destroy();
 
    }
 

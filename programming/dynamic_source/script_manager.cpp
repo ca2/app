@@ -221,6 +221,18 @@ namespace dynamic_source
    }
 
 
+   void script_manager::destroy()
+   {
+
+      m_pcache.defer_destroy();
+
+      m_pcompiler.defer_destroy();
+
+      ::channel::destroy();
+
+   }
+
+
    void script_manager::init1()
    {
 
@@ -580,9 +592,9 @@ namespace dynamic_source
 
       //}
 
-      ::defer_finalize__destroy_and_release(pmain);
+      ::defer_destroy_and_release(pmain);
 
-      ::defer_finalize__destroy_and_release(pinstance);
+      ::defer_destroy_and_release(pinstance);
 
       if (::is_set(pthread))
       {
@@ -739,17 +751,6 @@ namespace dynamic_source
                pinstance->dinit();
 
                payload = pinstance->run_script();
-
-               try
-               {
-
-                  pinstance->finalize();
-
-               }
-               catch (...)
-               {
-
-               }
 
                try
                {

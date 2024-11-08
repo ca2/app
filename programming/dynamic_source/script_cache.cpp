@@ -45,6 +45,25 @@ namespace dynamic_source
    }
 
 
+   void script_cache::destroy()
+   {
+
+      m_pmanager.release();
+
+      for (auto& pscript : m_map.payloads())
+      {
+
+         pscript.defer_destroy();
+
+      }
+
+      m_map.clear();
+
+      ::object::destroy();
+
+   }
+
+
    ::pointer<ds_script>script_cache::create_new_ds_script(const ::string & strName)
    {
 

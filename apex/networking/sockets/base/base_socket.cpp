@@ -362,14 +362,14 @@ namespace sockets
    }
 
 
-   void base_socket::finalize()
+   void base_socket::destroy()
    {
 
       m_psocketthread.release();
 
       m_transferprogressfunction.clear();
 
-      ::object::finalize();
+      ::object::destroy();
 
    }
 

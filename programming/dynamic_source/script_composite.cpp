@@ -37,18 +37,10 @@ namespace dynamic_source
    }
 
 
-   void script_composite::finalize()
-   {
-
-      ::defer_finalize__destroy_and_release(m_pinterface);
-
-      ::dynamic_source::script_interface::finalize();
-
-   }
-
-
    void script_composite::destroy()
    {
+
+      m_pinterface.defer_destroy();
 
       script_interface::destroy();
 

@@ -254,6 +254,8 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 string_reference_buffer::string_reference_buffer(::string & str) : 
    m_str(str) 
 {
+   
+   m_str.m_erange |= e_range_buffer;
 
 }
 

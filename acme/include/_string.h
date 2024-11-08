@@ -20,6 +20,8 @@ CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
 CLASS_DECL_ACME void output_debug_string_flush();
 ///CLASS_DECL_ACME void output_debug_string(const ::wide_character * psz);
 CLASS_DECL_ACME void output_debug_string_formatf(const char* pszFormat, ...);
+CLASS_DECL_ACME void output_debug_line(const ::scoped_string& str);
+CLASS_DECL_ACME void ansi_output_debug_line(const ::scoped_string& str);
 
 CLASS_DECL_ACME void print_line(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME void print_out(const ::scoped_string & scopedstr);

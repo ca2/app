@@ -41,12 +41,12 @@ namespace httpd
    }
 
 
-   void socket_thread::finalize()
+   void socket_thread::destroy()
    {
 
-      ::defer_finalize_and_release(m_psocket);
+      m_psocket.defer_destroy();
 
-      ::sockets::socket_thread::finalize();
+      ::sockets::socket_thread::destroy();
 
    }
 

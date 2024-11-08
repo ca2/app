@@ -329,7 +329,7 @@ namespace sockets_bsd
 
       void InitializeContextTLSClientMethod() override;
 
-      void finalize() override;
+      void destroy() override;
 
 
    };

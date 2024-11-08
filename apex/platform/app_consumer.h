@@ -53,22 +53,6 @@ void on_initialize_particle() override                                          
        \
                                                                                        \
 }                                                                                      \
-void finalize() override                                             \
-{                                                                                      \
-                                                                                       \
-   m_papp.release();             \
-                                                                                       \
-   BASE1::finalize();                                      \
-                                                                       \
-   BASE2::finalize();                                      \
-                                                                       \
-   BASE3::finalize();                                      \
-                                                                       \
-   BASE4::finalize();                                      \
-                                                                                       \
-       \
-                                                                                       \
-}                                                                                      \
                                                                                        \
 void handle(::topic * ptopic, ::context * pcontext) override \
 {                                                                                      \

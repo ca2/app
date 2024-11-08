@@ -80,17 +80,23 @@ namespace platform
    ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pget = __create_new < ::nano::http::get >();
+      auto pget = __create < ::nano::http::get >();
 
       pget->m_url = url;
 
       pget->get_property_set() = set;
 
-      pget->m_timeSyncTimeout =  timeTimeout;
+      pget->m_timeSyncTimeout = timeTimeout;
+
+      pget->want_memory_response();
 
       pget->call();
 
-      ::string str = pget->get_memory_response()->as_utf8();
+      ::string str;
+      
+      auto pmemory = pget->get_memory_response();
+
+      str = pmemory->as_utf8();
 
       set = pget->get_property_set();
 

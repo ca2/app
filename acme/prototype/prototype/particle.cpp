@@ -98,14 +98,6 @@ void particle::initialize(::particle * pparticle)
 }
 
 
-void particle::finalize()
-{
-
-
-
-}
-
-
 ::particle * particle::get_context_particle()
 {
 

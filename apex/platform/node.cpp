@@ -87,6 +87,16 @@ namespace apex
    }
 
 
+   void node::destroy()
+   {
+
+      ::platform::node::destroy();
+
+      ::channel::destroy();
+
+   }
+
+
    void node::main()
    {
    

@@ -33,12 +33,12 @@ namespace dynamic_source
    }
 
 
-   void httpd_socket::finalize()
+   void httpd_socket::destroy()
    {
 
       m_pscript.release();
 
-      ::httpd::socket::finalize();
+      ::httpd::socket::destroy();
 
    }
 

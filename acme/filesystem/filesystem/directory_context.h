@@ -33,7 +33,7 @@
       virtual void term_system();
       virtual void term_context();
 
-      void finalize() override;
+      void destroy() override;
 
       //::file::watcher & watcher();
 

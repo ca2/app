@@ -27,7 +27,19 @@ namespace networking_bsd
 {
 
 
+   class CLASS_DECL_NETWORKING_BSD cert:
+      virtual public ::particle
+   {
+   public:
+      X509* m_pcertificate = nullptr;
 
+      EVP_PKEY* m_pkey = nullptr;
+      STACK_OF(X509)* m_pchain = nullptr;
+
+      cert();
+         ~cert();
+
+   };
 
    class CLASS_DECL_NETWORKING_BSD networking :
       public ::networking::networking
@@ -42,6 +54,9 @@ namespace networking_bsd
       in6_addr       m_local_ip6; ///< local ipv6 address
       bool           m_local_resolved; ///< ResolveLocal has been called if true
       bool           m_bInitialized;
+
+      string_map<::pointer <cert>>m_certmap;
+      ::pointer < ::mutex >                              m_pmutexCert;
 
 
       class CLASS_DECL_NETWORKING_BSD dns_cache_item :
@@ -142,7 +157,7 @@ namespace networking_bsd
       virtual bool defer_finalize_operating_system_networking();
 
 
-
+      virtual cert* get_cert(const ::scoped_string& keyfile);
 
       /*
       * Encode string per RFC1738 URL encoding rules

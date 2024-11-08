@@ -3634,11 +3634,13 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::finalize()
+   void node::destroy()
    {
 
+      ::acme::shell::destroy();
 
    }
+
 
 //   string node::get_command_line()
 //   {

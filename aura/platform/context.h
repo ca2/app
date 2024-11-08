@@ -27,7 +27,7 @@ namespace aura
 
       virtual void defer_initialize_context_image() override;
 
-      void finalize() override;
+      void destroy() override;
 
 
 

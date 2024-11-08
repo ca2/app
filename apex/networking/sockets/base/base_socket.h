@@ -811,7 +811,7 @@ virtual string GetSocks4Host();
       virtual enum_trace_category trace_category() const override;
 
       
-      virtual void finalize() override;
+      void destroy() override;
 
 
    };

@@ -114,7 +114,9 @@ void subparticle::initialize(::particle* pparticle)
 
 
 }
-void subparticle::finalize()
+
+
+void subparticle::destroy()
 {
 
 }
@@ -287,40 +289,6 @@ bool subparticle::_is_ok() const
    //return has_ok_flag();
 
    return true;
-
-}
-
-
-//void matter::finish(::property_object * pcontextobjectFinish)
-void subparticle::destroy()
-{
-
-   //auto estatus = set_finish();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   //system()->add_pending_finish(this);
-
-   //   return estatus;
-
-   //}
-
-   ////estatus = on_finish();
-
-   ////if (estatus == error_pending)
-   ////{
-
-   ////   //system()->add_pending_finish(this);
-
-   ////   return estatus;
-
-   ////}
-
-   //return estatus;
-
-   //return ::success;
-
 
 }
 

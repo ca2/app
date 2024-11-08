@@ -34,7 +34,7 @@ public:
    virtual void term_context();
 
 
-   virtual void finalize() override;
+   virtual void destroy() override;
 
    //virtual void update_module_path();
 

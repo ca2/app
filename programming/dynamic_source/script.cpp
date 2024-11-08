@@ -83,7 +83,7 @@ namespace dynamic_source
 
       m_pmanager.release();
 
-      m_pfileError.release();
+      m_pfileError.defer_destroy();
 
       m_textstreamError.m_pfile.release();
 
@@ -167,13 +167,16 @@ namespace dynamic_source
       bMatches = m_ftDs == ft;
 
       m_bLastVersionCheck = bMatches;
+
       return bMatches;
+
    }
+
 
    bool ds_script::ShouldBuild()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bHasFatalError)
       {
@@ -204,7 +207,7 @@ namespace dynamic_source
    void ds_script::on_start_build()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_bShouldCalcTempError     = true;
 
@@ -220,9 +223,11 @@ namespace dynamic_source
 
    }
 
+
    bool ds_script::HasTimedOutLastBuild()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto psystem = system();
 
@@ -233,9 +238,11 @@ namespace dynamic_source
          pprimitive->random(0_s, m_pmanager->m_timeTimeRandomInterval);
    }
 
+
    bool ds_script::HasCompileOrLinkError()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       string str;
 
@@ -265,7 +272,8 @@ namespace dynamic_source
 
    bool ds_script::HasTempError()
    {
-      synchronous_lock synchronouslock(this->synchronization());
+
+      _synchronous_lock synchronouslock(this->synchronization());
       // if m_strError is empty, sure there is a error... at least the
       // successfull compilation/linking message ("error message" => m_strError) should exist
       // If it is empty, it is considered a temporary error (due locks or race conditions...)
@@ -277,13 +285,18 @@ namespace dynamic_source
       return m_bHasTempError;
    }
 
+
    bool ds_script::CalcHasTempError()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bHasTempOsError)
+      {
+
          return true;
+
+      }
 
       string str;
 
@@ -542,6 +555,13 @@ namespace dynamic_source
       _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plibrary.is_set() && !m_plibrary->is_closed())
+      {
+
+         return;
+
+      }
+
+      if (!ShouldBuild())
       {
 
          return;

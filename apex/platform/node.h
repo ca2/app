@@ -44,8 +44,9 @@ namespace apex
 #endif
 
 
-      virtual void on_initialize_particle() override;
+      void on_initialize_particle() override;
       
+      void destroy() override;
       
       virtual void main();
 

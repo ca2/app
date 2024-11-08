@@ -255,7 +255,7 @@ application_menu * application_menu::separator()
 //
 //}
 
-   void application_menu::finalize()
+   void application_menu::destroy()
    {
 
       for (auto & pmenu : *this)
@@ -264,7 +264,7 @@ application_menu * application_menu::separator()
          try
          {
 
-            pmenu->finalize();
+            pmenu->destroy();
 
          }
          catch (...)
@@ -277,7 +277,7 @@ application_menu * application_menu::separator()
 
       ::pointer_array < application_menu >::clear();
 
-      ::pointer_array < application_menu >::finalize();
+      ::pointer_array < application_menu >::destroy();
 
    }
 //} // namespace apex

@@ -37,7 +37,7 @@ namespace http
       void on_initialize_particle() override;
 
 
-      void finalize() override;
+      void destroy() override;
 
 
       virtual void http_system_destruct() override;

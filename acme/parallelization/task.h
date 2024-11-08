@@ -13,6 +13,9 @@
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+#include "acme/prototype/collection/procedure_array.h"
+
+
 #ifndef WINDOWS
 
 /*
@@ -75,6 +78,7 @@
 
 #endif
 
+
 DECLARE_ENUMERATION(e_happening, enum_happening);
 
 
@@ -91,7 +95,6 @@ typedef map < task *, itask_t > task_id_map;
 
 class CLASS_DECL_ACME task :
    virtual public object,
-   //virtual public synchronization_object,
    virtual public acme::implementable,
    virtual public ::handler::handler,
    virtual public tracer,
@@ -262,9 +265,11 @@ int m_iExitCode;
 
    virtual void on_before_branch();
 
-   virtual ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr);
+   using ::object::branch;
 
-   virtual ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr);
+   virtual ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes& createtaskattributes = {});
+
+   virtual ::pointer<::task>branch_synchronously(const create_task_attributes& createtaskattributes = {});
 
    virtual bool task_sleep(const class time & timeWait);
 

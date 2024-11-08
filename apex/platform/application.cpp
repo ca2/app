@@ -6532,7 +6532,7 @@ namespace apex
          if (m_papplicationmenu)
          {
 
-            m_papplicationmenu->finalize();
+            m_papplicationmenu->destroy();
 
          }
 

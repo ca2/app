@@ -3041,21 +3041,15 @@ void file_context::term_system()
 }
 
 
-
-void file_context::finalize()
+void file_context::destroy()
 {
 
-   if (m_pfolderResource)
-   {
+   m_pfolderResource.defer_destroy();
 
-      m_pfolderResource->finalize();
-
-   }
-
-   m_pfolderResource.release();
-
+   file_context_interface::destroy();
 
 }
+
 
 //bool file_context::prepare_output(::stream & outputstream, path & pathDownloading, const ::stream & os)
 //{

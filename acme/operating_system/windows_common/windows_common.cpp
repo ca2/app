@@ -62,12 +62,73 @@ CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
 //}
 //
 
-void output_debug_string(const ::scoped_string & str)
+
+void output_debug_string(const ::scoped_string& str)
 {
 
    ::wstring wstr(str);
 
    ::OutputDebugStringW(wstr);
+
+}
+
+
+void output_debug_line(const ::scoped_string& str)
+{
+
+   ::wstring wstr(str);
+
+   wstr += "\r\n";
+
+   ::OutputDebugStringW(wstr);
+
+}
+
+
+void ansi_output_debug_line(const ::scoped_string& str)
+{
+
+   if (str.m_end[0] == '\0')
+   {
+
+      ::OutputDebugStringA(str);
+
+      ::OutputDebugStringA("\r\n");
+
+   }
+   else
+   {
+
+      auto len = str.length_in_bytes();
+
+      if (len < 16_KiB - 3)
+      {
+
+         char sz[16_KiB];
+
+         memcpy(sz, str.m_begin, len);
+
+         sz[len] = '\r';
+
+         sz[len + 1] = '\n';
+
+         sz[len + 2] = '\0';
+
+         ::OutputDebugStringA(sz);
+
+      }
+      else
+      {
+
+         ::string strLine(str);
+
+         strLine += "\r\n";
+
+         ::OutputDebugStringA(strLine);
+
+      }
+
+   }
 
 }
 
@@ -173,25 +234,25 @@ namespace windows
 
    string last_error_message(unsigned int dwError)
    {
-   
+
       wstring wstr;
-   
+
       unichar* p = nullptr;
-   
+
       unsigned int dw = FormatMessageW(
-         FORMAT_MESSAGE_FROM_SYSTEM 
+         FORMAT_MESSAGE_FROM_SYSTEM
          | FORMAT_MESSAGE_ALLOCATE_BUFFER,
          nullptr,
          dwError,
          0,
-         (LPWSTR) & p,
+         (LPWSTR)&p,
          64,
          nullptr);
 
       wstr = p;
 
       ::LocalFree(p);
-   
+
       string str(wstr);
 
       return str;

@@ -104,7 +104,7 @@ void forking_count_task::run()
    if (m_pobjectTaskEnd.is_set())
    {
 
-      if (m_pobjectTaskEnd->get_ref_count() == 1)
+      if (m_pobjectTaskEnd->reference_count() == 1)
       {
 
          m_pobjectTaskEnd->run();

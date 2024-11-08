@@ -793,7 +793,7 @@ namespace sockets_bsd
 
       enum_trace_category trace_category() const override;
 
-      void finalize() override;
+      void destroy() override;
 
 
    };

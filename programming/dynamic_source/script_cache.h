@@ -20,10 +20,12 @@ namespace dynamic_source
 
 
       script_cache();
-      virtual ~script_cache();
+      ~script_cache() override;
 
 
       virtual void initialize_script_cache(script_manager * pscriptmanager);
+
+      void destroy() override;
 
       ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> & pscript);
 

@@ -1016,7 +1016,7 @@ namespace sockets
    }
 
 
-   void http_socket::finalize()
+   void http_socket::destroy()
    {
 
       m_request.clear();
@@ -1025,7 +1025,7 @@ namespace sockets
 
       m_plistener.release();
 
-      tcp_socket::finalize();
+      tcp_socket::destroy();
 
    }
 

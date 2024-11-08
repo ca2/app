@@ -82,6 +82,8 @@ namespace dynamic_source
 
       virtual void init1();
 
+      void destroy() override;
+
       bool defer_run_persistent(const ::string &psz);
 
       bool is_id(const ::string & psz, character_count iLen, const ::string & pszId, character_count iLenId, character_count & iIdLen);

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "object_meta.h"
 #include "acme/constant/message.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
@@ -425,6 +426,63 @@ void object::call_routine2(const ::procedure & procedure)
 {
 
    procedure();
+
+}
+
+
+void object::call_procedures(const ::atom& atom)
+{
+
+   auto procedurea = this->procedure_array(atom);
+
+   for (auto& procedure : procedurea)
+   {
+
+      try
+      {
+
+         procedure();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+}
+
+
+void object::post_procedures(const ::atom& atom)
+{
+
+   auto procedurea = this->procedure_array(atom);
+
+   for (auto& procedure : procedurea)
+   {
+
+      post(procedure);
+
+   }
+
+   //return for_routines_with_id(atom, this, &::object::post);
+
+}
+
+
+
+void object::send_procedures(const ::atom& atom)
+{
+
+   auto procedurea = this->procedure_array(atom);
+
+   for (auto& procedure : procedurea)
+   {
+
+      send(procedure);
+
+   }
 
 }
 
@@ -1757,8 +1815,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<::task>object::branch_procedure_synchronously(
-   const ::procedure & procedure, bool bAutoRelease, const create_task_attributes & createtaskattributes)
+::pointer<::task>object::branch_procedure_synchronously(const ::procedure & procedure, bool bAutoRelease, const create_task_attributes & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -3812,7 +3869,15 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 }
 
 
-::pointer<task>object::fork(const ::procedure & procedure, const ::particle_array & elementaHold, const create_task_attributes & createthreadattributes)
+::pointer<task>object::fork(const ::procedure& procedure)
+{
+
+   return fork(procedure, {});
+
+}
+
+
+::pointer<task>object::fork(const ::procedure & procedure, const create_task_attributes & createthreadattributes)
 {
 
    auto ptask = this->branch_procedure(procedure, true, e_parallelization_asynchronous, createthreadattributes);
@@ -3821,13 +3886,6 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
    {
 
       return ptask;
-
-   }
-
-   if (elementaHold.has_element())
-   {
-
-      ptask->m_particleaHold.append(elementaHold);
 
    }
 

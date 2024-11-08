@@ -208,7 +208,7 @@ namespace apex
          try
          {
 
-            m_phttp->finalize();
+            m_phttp->destroy();
 
          }
          catch (...)

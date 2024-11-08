@@ -11922,8 +11922,6 @@ namespace user
    void interaction::destroy()
    {
 
-      finalize();
-
       {
 
          _synchronous_lock synchronouslock(this->synchronization());

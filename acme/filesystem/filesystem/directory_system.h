@@ -303,7 +303,7 @@ public:
 
    virtual void term_system();
 
-   void finalize() override;
+   void destroy() override;
 
    virtual ::file::path compute_default_app_data_path();
 

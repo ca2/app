@@ -150,7 +150,10 @@ namespace dynamic_source
       ~script_manager() override;
 
       
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
+
+
+      void destroy() override;
 
 
       virtual void init1();

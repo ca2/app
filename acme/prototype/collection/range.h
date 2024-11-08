@@ -8,6 +8,7 @@ enum enum_range : int
    e_range_none = 0,
    e_range_null_terminated = 1,
    e_range_string = 2,
+   e_range_buffer = 65536,
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,
    //e_range_scoped_string_allocation = 2,

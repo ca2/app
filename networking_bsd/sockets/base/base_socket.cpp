@@ -197,10 +197,10 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::finalize()
+   void base_socket::destroy()
    {
 
-      ::defer_finalize_and_release(m_psslcontext);
+      m_psslcontext.defer_destroy();
 
       m_psockethandler.release();
 
@@ -218,7 +218,7 @@ namespace sockets_bsd
 
       m_phandlerSlave.release();
 
-      ::sockets::base_socket::finalize();
+      ::sockets::base_socket::destroy();
 
    }
 

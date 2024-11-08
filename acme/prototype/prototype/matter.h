@@ -7,6 +7,7 @@
 #include "factory.h"
 #include "function.h"
 #include "acme/platform/tracer.h"
+#include "acme/prototype/collection/procedure_array.h"
 
 
 class CLASS_DECL_ACME matter :
@@ -99,8 +100,6 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   inline ::collection::count reference_count() const { return m_countReference; }
-   
    procedure_array & destroying() { return m_destroyinga; }
 
 

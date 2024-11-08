@@ -948,7 +948,7 @@ public:
 
       auto allocationSize = newNullTerminatedByteCount;
 
-      if (allocationSize >= 16_KiB)
+      if (this->m_erange & e_range_buffer && allocationSize >= 16_KiB)
       {
 
          allocationSize *= 2;

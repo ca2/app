@@ -130,9 +130,10 @@ void directory_context::term_system()
 }
 
 
-void directory_context::finalize()
+void directory_context::destroy()
 {
 
+   ::object::destroy();
 
 }
 

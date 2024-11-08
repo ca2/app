@@ -375,7 +375,7 @@ namespace sockets
 
       virtual void InitializeContextTLSClientMethod();
 
-      void finalize() override;
+      void destroy() override;
 
    };
 

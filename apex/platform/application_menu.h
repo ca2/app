@@ -81,7 +81,7 @@ public:
 
    }
 
-   void finalize() override;
+   void destroy() override;
 
 };
 

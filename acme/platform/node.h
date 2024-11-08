@@ -729,7 +729,7 @@ namespace platform
       virtual bool defer_process_protocol_path(::file::path & path) override;
 
 
-   void finalize() override;
+   void destroy() override;
 
    //virtual string get_command_line();
 

@@ -4,6 +4,7 @@
 #include "sockets/ssl/initializer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/string_stream.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/time/_binary_stream.h"
@@ -66,7 +67,7 @@ namespace networking_bsd
 
       defer_create_synchronization();
 
-      
+
       defer_initialize_operating_system_networking();
       //::net::g_paddressdepartment = nullptr;
 
@@ -117,7 +118,7 @@ namespace networking_bsd
 
 
 
-   void     networking::initialize(::particle * pparticle)
+   void     networking::initialize(::particle* pparticle)
    {
 
       if (m_bInitialized)
@@ -161,6 +162,8 @@ namespace networking_bsd
       mathematics()->random(m_baTicketKey);
 
       m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
+
+      __construct(m_pmutexCert);
 
       //estatus = __construct_new(m_pnet);
 
@@ -278,75 +281,75 @@ namespace networking_bsd
 
 #ifdef WINDOWS
 
-         try
-         {
+      try
+      {
 
-            if (m_pportforward.is_set())
-            {
-
-               m_pportforward.release();
-
-            }
-
-         }
-         catch (...)
-         {
-
-            //bOk = false;
-
-         }
-
-         try
+         if (m_pportforward.is_set())
          {
 
             m_pportforward.release();
 
          }
-         catch (...)
-         {
 
-         }
+      }
+      catch (...)
+      {
+
+         //bOk = false;
+
+      }
+
+      try
+      {
+
+         m_pportforward.release();
+
+      }
+      catch (...)
+      {
+
+      }
 
 #endif
 
-         //if (m_pnet)
-         //{
+      //if (m_pnet)
+      //{
 
-         //   try
-         //   {
+      //   try
+      //   {
 
-         //      m_pnet->destroy();
+      //      m_pnet->destroy();
 
-         //   }
-         //   catch (...)
-         //   {
+      //   }
+      //   catch (...)
+      //   {
 
-         //      m_iErrorCode = -87;
+      //      m_iErrorCode = -87;
 
-         //   }
+      //   }
 
-         //   try
-         //   {
+      //   try
+      //   {
 
-         //      m_pnet.release();
+      //      m_pnet.release();
 
-         //   }
-         //   catch (...)
-         //   {
+      //   }
+      //   catch (...)
+      //   {
 
-         //      m_iErrorCode = -86;
+      //      m_iErrorCode = -86;
 
-         //   }
+      //   }
 
-         //}
+      //}
 
-         ///::acme::del(m_pajpaxissocketinit);
-
-         //return ::success;
-
-   //   }
+      ///::acme::del(m_pajpaxissocketinit);
 
       //return ::success;
+
+//   }
+
+   //return ::success;
 
    }
 
@@ -449,7 +452,7 @@ namespace networking_bsd
       {
          return false;
       }
-      
+
       ::parse pa(str, ":.");
 
       string tmp = pa.getword();
@@ -1153,7 +1156,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::reverse(string& hostname, ::networking::address * paddress)
+   bool networking::reverse(string& hostname, ::networking::address* paddress)
    {
 
       single_lock synchronouslock(m_pmutexReverseCache, true);
@@ -1336,7 +1339,7 @@ namespace networking_bsd
    //}
 
 
-   string networking::reverse_name(::networking::address * paddress)
+   string networking::reverse_name(::networking::address* paddress)
    {
 
       if (::is_null(paddress))
@@ -1435,16 +1438,16 @@ namespace networking_bsd
 
    }
 
-   string networking::canonical_name(::networking::address * paddress)
+   string networking::canonical_name(::networking::address* paddress)
    {
 
       string str;
 
-      auto paddress2 =  paddress->cast <::networking_bsd::address>();
+      auto paddress2 = paddress->cast <::networking_bsd::address>();
 
       if (paddress2->u.m_sa.sa_family == AF_INET)
       {
-         
+
          convert(str, paddress2->u.m_addr.sin_addr);
 
       }
@@ -1460,7 +1463,7 @@ namespace networking_bsd
    }
 
 
-   string networking::service_name(::networking::address * paddress)
+   string networking::service_name(::networking::address* paddress)
    {
 
       return service_name(paddress->get_service_number());
@@ -1549,85 +1552,85 @@ namespace networking_bsd
 
 
 
-//   void networking::ResolveLocal()
-//   {
-//
-//      char h[256];
-//
-//      // get local hostname and translate into ip-address
-//      *h = 0;
-//      gethostname(h, 255);
-//      {
-//         if (convert(m_ip, h))
-//         {
-//            convert(m_addr, m_ip);
-//         }
-//      }
-//#ifdef ENABLE_IPV6
-//#ifdef IPPROTO_IPV6
-//      memory_set(&m_local_ip6, 0, sizeof(m_local_ip6));
-//      {
-//         if (convert(m_local_ip6, h))
-//         {
-//            convert(m_local_addr6, m_local_ip6);
-//         }
-//      }
-//#endif
-//#endif
-//      m_host = h;
-//      m_local_resolved = true;
-//
-//   }
-//
-//
-//   const string& networking::GetLocalHostname()
-//   {
-//      if (!m_local_resolved)
-//      {
-//         ResolveLocal();
-//      }
-//      return m_host;
-//   }
-//
-//
-//   in_addr networking::GetLocalIP()
-//   {
-//      if (!m_local_resolved)
-//      {
-//         ResolveLocal();
-//      }
-//      return m_ip;
-//   }
-//
-//
-//   const string& networking::GetLocalAddress()
-//   {
-//      if (!m_local_resolved)
-//      {
-//         ResolveLocal();
-//      }
-//      return m_addr;
-//   }
-//
-//
-//   const struct in6_addr& networking::GetLocalIP6()
-//   {
-//      if (!m_local_resolved)
-//      {
-//         ResolveLocal();
-//      }
-//      return m_local_ip6;
-//   }
-//
-//
-//   const string& networking::GetLocalAddress6()
-//   {
-//      if (!m_local_resolved)
-//      {
-//         ResolveLocal();
-//      }
-//      return m_local_addr6;
-//   }
+   //   void networking::ResolveLocal()
+   //   {
+   //
+   //      char h[256];
+   //
+   //      // get local hostname and translate into ip-address
+   //      *h = 0;
+   //      gethostname(h, 255);
+   //      {
+   //         if (convert(m_ip, h))
+   //         {
+   //            convert(m_addr, m_ip);
+   //         }
+   //      }
+   //#ifdef ENABLE_IPV6
+   //#ifdef IPPROTO_IPV6
+   //      memory_set(&m_local_ip6, 0, sizeof(m_local_ip6));
+   //      {
+   //         if (convert(m_local_ip6, h))
+   //         {
+   //            convert(m_local_addr6, m_local_ip6);
+   //         }
+   //      }
+   //#endif
+   //#endif
+   //      m_host = h;
+   //      m_local_resolved = true;
+   //
+   //   }
+   //
+   //
+   //   const string& networking::GetLocalHostname()
+   //   {
+   //      if (!m_local_resolved)
+   //      {
+   //         ResolveLocal();
+   //      }
+   //      return m_host;
+   //   }
+   //
+   //
+   //   in_addr networking::GetLocalIP()
+   //   {
+   //      if (!m_local_resolved)
+   //      {
+   //         ResolveLocal();
+   //      }
+   //      return m_ip;
+   //   }
+   //
+   //
+   //   const string& networking::GetLocalAddress()
+   //   {
+   //      if (!m_local_resolved)
+   //      {
+   //         ResolveLocal();
+   //      }
+   //      return m_addr;
+   //   }
+   //
+   //
+   //   const struct in6_addr& networking::GetLocalIP6()
+   //   {
+   //      if (!m_local_resolved)
+   //      {
+   //         ResolveLocal();
+   //      }
+   //      return m_local_ip6;
+   //   }
+   //
+   //
+   //   const string& networking::GetLocalAddress6()
+   //   {
+   //      if (!m_local_resolved)
+   //      {
+   //         ResolveLocal();
+   //      }
+   //      return m_local_addr6;
+   //   }
 
 
    CLASS_DECL_NETWORKING_BSD class networking* networking()
@@ -3284,7 +3287,7 @@ namespace networking_bsd
 
       auto paddress2 = __allocate address();
 
-   #if defined(BSD_STYLE_SOCKETS)
+#if defined(BSD_STYLE_SOCKETS)
 
       auto a = *paddress2;
 
@@ -3294,29 +3297,29 @@ namespace networking_bsd
       a.u.m_addr.sin_family = AF_INET;
       a.u.m_addr.sin_port = port;
       ::memory_copy(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
-   #ifdef WINDOWS
+#ifdef WINDOWS
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
-   #else
+#else
       //      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b1, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b4);
       //      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b2, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b3);
-   #endif
+#endif
 
       a.sync_os_address();
       a.sync_os_service();
 
-   #endif
+#endif
 
 
       return paddress2;
 
    }
 
-   ::pointer<address>networking::create_ip6_address(void * p128bits, ::networking::port_t port)
+   ::pointer<address>networking::create_ip6_address(void* p128bits, ::networking::port_t port)
    {
 
       auto paddress2 = __allocate address();
-   #if defined(BSD_STYLE_SOCKETS)
+#if defined(BSD_STYLE_SOCKETS)
 
       auto a = *paddress2;
       ::zero(&a, sizeof(a));
@@ -3329,14 +3332,14 @@ namespace networking_bsd
       a.sync_os_address();
       a.sync_os_service();
 
-   #endif
+#endif
 
       return paddress2;
 
    }
 
 
-   bool networking::lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string & strAddress)
+   bool networking::lookup(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string& strAddress)
    {
 
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
@@ -3381,7 +3384,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv4(::networking_bsd::address * paddress, const ::string & strAddress)
+   bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::string& strAddress)
    {
 
       if (convert(paddress->u.m_addr.sin_addr, strAddress))
@@ -3390,13 +3393,13 @@ namespace networking_bsd
          paddress->u.s.set_family(AF_INET);
 
          ::string strDisplay = paddress->get_display_number();
-         
+
          ::string str;
 
          str = "converted to IPV4 address : " + strDisplay;
-         
+
          information() << str;
-         
+
          print_out(str);
 
          return true;
@@ -3408,7 +3411,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv6(::networking_bsd::address * paddress, const ::string & strAddress)
+   bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::string& strAddress)
    {
 
       if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
@@ -3421,9 +3424,9 @@ namespace networking_bsd
          ::string str;
 
          str = "converted to IPV6 address : " + strDisplay;
-         
+
          information() << str;
-         
+
          print_out(str);
 
          return true;
@@ -3454,7 +3457,7 @@ namespace networking_bsd
          stream << "::networking_bsd::networking::create_address IPV6 numeric address : " << strDisplay;
 
          information(stream);
-         
+
          print_out(stream);
 
          return paddress;
@@ -3470,11 +3473,11 @@ namespace networking_bsd
          ::string strDisplay = paddress->get_display_number();
 
          string_stream stream;
-         
+
          stream << "::networking_bsd::networking::create_address IPV4 numeric address : " << strDisplay;
-         
+
          information(stream);
-         
+
          print_out(stream);
 
          return paddress;
@@ -3494,7 +3497,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::string& strAddress, ::networking::port_t port)
    {
 
       auto paddress = __allocate address();
@@ -3515,7 +3518,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip6_address(const ::string & strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::string& strAddress, ::networking::port_t port)
    {
 
       auto paddress2 = __allocate address();
@@ -3663,6 +3666,141 @@ namespace networking_bsd
 //
 //}
 
-} // namespace networking_bsd
+cert::cert()
+{
+
+
+}
+cert::~cert()
+{
+
+
+
+   if (m_pchain != nullptr)
+   {
+
+      sk_X509_free(m_pchain);
+
+   }
+
+
+   if (m_pkey)
+   {
+
+      EVP_PKEY_free(m_pkey);
+
+   }
+
+
+}
+
+
+   cert* networking::get_cert(const ::scoped_string& keyfile)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexCert);
+
+      auto& pcert = m_certmap[keyfile];
+
+      if (pcert)
+      {
+
+         return pcert;
+
+      }
+
+      __construct_new(pcert);
+
+      string strCert;
+
+      if (keyfile.case_insensitive_ends(".cat"))
+      {
+
+         strCert = file()->safe_get_string(keyfile);
+
+      }
+      else
+      {
+
+         strCert = keyfile;
+
+         strCert.case_insensitive_begins_eat("cat://");
+
+      }
+
+
+      BIO* bio1;
+      BIO* bio2;
+      bio1 = BIO_new(BIO_s_mem());
+      BIO_puts(bio1, strCert);
+      bio2 = BIO_new(BIO_s_mem());
+      BIO_puts(bio2, strCert);
+
+
+      //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
+      //{
+
+      //   errorf("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+
+      //}
+
+
+   //}
+
+     // {
+
+      //            if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
+
+               //}
+      STACK_OF(X509)* pchain = nullptr;
+
+      pcert->m_pkey = PEM_read_bio_PrivateKey(bio1, nullptr, nullptr, nullptr);
+
+      pcert->m_pcertificate = PEM_read_bio_X509(bio2, nullptr, nullptr, nullptr);
+      if (pcert->m_pkey && pcert->m_pcertificate)
+      {
+         array < X509* > xa;
+
+         while (true)
+         {
+
+            X509* chainItem = PEM_read_bio_X509(bio2, nullptr, nullptr, nullptr);
+
+            if (!chainItem)
+            {
+
+               break;
+
+            }
+
+            xa.add(chainItem);
+
+            if (pchain == nullptr)
+            {
+
+               pchain = sk_X509_new_null();
+
+            }
+
+            sk_X509_push(pchain, chainItem);
+
+         }
+
+
+      }
+
+
+      BIO_free(bio1);
+
+      BIO_free(bio2);
+
+      pcert->m_pchain = pchain;
+
+      return pcert;
+
+   }
+
+
+   } // namespace networking_bsd
 
 

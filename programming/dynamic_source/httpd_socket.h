@@ -26,7 +26,7 @@ namespace dynamic_source
       void Reset() override;
 
 
-      void finalize() override;
+      void destroy() override;
 
 
    };

@@ -1583,10 +1583,10 @@ void directory_system::term_system()
 }
 
 
-void directory_system::finalize()
+void directory_system::destroy()
 {
 
-   ::object::finalize();
+   ::object::destroy();
 
 }
 

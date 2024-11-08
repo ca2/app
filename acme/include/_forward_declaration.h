@@ -2798,3 +2798,8 @@ namespace aqua
 
 
 
+enum enum_method : int;
+enum enum_future : int;
+
+
+

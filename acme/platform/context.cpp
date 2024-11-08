@@ -431,23 +431,30 @@ namespace platform
 
       try
       {
+
          if (m_pdirectorycontext)
          {
-            m_pdirectorycontext->finalize();
+            
+            m_pdirectorycontext->destroy();
+
          }
+
       }
       catch (...)
       {
 
       }
 
-
       try
       {
+
          if (m_pfilecontext)
          {
-            m_pfilecontext->finalize();
+
+            m_pfilecontext->destroy();
+
          }
+
       }
       catch (...)
       {

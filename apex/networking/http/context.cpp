@@ -522,19 +522,17 @@ namespace http
    }
 
 
-   void context::finalize()
+   void context::destroy()
    {
-
 
       m_pmutexPac.release();
       m_mapPac.clear();
       m_pmutexProxy.release();
       m_mapProxy.clear();
 
-
       http_system_destruct();
 
-      ::object::finalize();
+      ::object::destroy();
 
    }
 

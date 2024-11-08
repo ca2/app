@@ -85,7 +85,6 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   //virtual public sequencer_step::base,
    virtual public signal_handler::base
 {
 public:
@@ -124,7 +123,7 @@ public:
 
 
    void initialize(::particle * pparticle) override;
-   void finalize() override;
+   //void finalize() override;
 
 
    bool _is_ok() const override;

@@ -51,7 +51,7 @@ namespace sockets
       virtual ::pointer < ::sockets::socket_handler > create_socket_handler();
 
 
-      void finalize() override;
+      void destroy() override;
 
 
 

@@ -1692,6 +1692,74 @@ public:
    }
 
 
+   bool consume_line(string_range & range)
+   {
+
+      if (this->is_empty())
+      {
+
+         return false;
+
+      }
+
+      auto p = this->find_first_character_in("\r\n");
+
+      range.m_begin = this->m_begin;
+
+      range.m_erange = e_range_none;
+
+      if (p)
+      {
+
+         range.m_end = p;
+
+         if (*p == '\r' && *(p + 1) == '\n')
+         {
+
+            p += 2;
+
+         }
+         else
+         {
+
+            p++;
+
+         }
+
+         this->m_begin = p;
+
+      }
+      else
+      {
+
+         range.m_end = this->m_end;
+
+         this->m_begin = this->m_end;
+
+      }
+
+      return range;
+
+   }
+
+
+   string_range consume_line()
+   {
+
+      string_range range(no_initialize_t{});
+
+      if (!consume_line(range))
+      {
+
+         return {};
+
+      }
+
+      return range;
+
+   }
+
+
    ::string_base < ITERATOR_TYPE > consume_quoted_value();
 
    bool defer_consume_quoted_value(string_base < ITERATOR_TYPE > & str);

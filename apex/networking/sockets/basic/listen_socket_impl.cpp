@@ -472,6 +472,16 @@ namespace sockets
    }
 
 
+   void listen_socket_impl::destroy()
+   {
+
+      m_plistensocketImpl.defer_destroy();
+
+      ::sockets::socket::destroy();
+
+   }
+
+
    void listen_socket_impl::Reset()
    {
 

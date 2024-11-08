@@ -42,11 +42,12 @@ namespace sockets
 
       virtual void set_detach_socket_type(const ::type_atom& typeatom);
 
-
       virtual void Reset();
       ::pointer<listen_socket_impl>create_listen_socket_impl();
 
       void initialize(::particle* pparticle) override;
+
+      void destroy() override;
 
       base_socket* base_socket_impl() override;
       base_socket* base_socket_interface() override;

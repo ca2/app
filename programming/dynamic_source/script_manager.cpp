@@ -1132,6 +1132,8 @@ namespace dynamic_source
    script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::particle* pparticle)
    {
 
+      m_pmanager = nullptr;
+
       initialize(pparticle);
 
    }

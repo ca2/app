@@ -36,6 +36,7 @@ namespace sockets_bsd
 
       void initialize(::particle * pparticle) override;
 
+      void destroy() override;
 
       void set_ssl_catalog(const ::string & strCat) override;
 

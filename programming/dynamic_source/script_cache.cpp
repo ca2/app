@@ -13,6 +13,8 @@ namespace dynamic_source
    script_cache::script_cache()
    {
 
+      m_pmanager = nullptr;
+
       defer_create_synchronization();
 
    }
@@ -48,7 +50,7 @@ namespace dynamic_source
    void script_cache::destroy()
    {
 
-      m_pmanager.release();
+      //m_pmanager.release();
 
       for (auto& pscript : m_map.payloads())
       {

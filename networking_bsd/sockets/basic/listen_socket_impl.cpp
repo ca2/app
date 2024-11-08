@@ -39,6 +39,17 @@ namespace sockets_bsd
 
    }
 
+
+   void listen_socket_impl::destroy()
+   {
+
+      ::sockets_bsd::socket::destroy();
+
+      ::sockets::listen_socket_impl::destroy();
+
+   }
+
+
    void listen_socket_impl::set_ssl_catalog(const ::string & strCat)
    {
 

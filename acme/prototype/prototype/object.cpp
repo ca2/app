@@ -1238,13 +1238,6 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
 bool object::set_children_to_finish_and_check_them_finished()
 {
 
-   if (!has_finishing_flag())
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
    if (::is_null(m_pparticleaChildrenTask))
    {
 
@@ -1376,8 +1369,6 @@ bool object::set_children_to_finish_and_check_them_finished()
 
 void object::destroy_tasks()
 {
-
-   set_finish();
 
    while (!set_children_to_finish_and_check_them_finished())
    {

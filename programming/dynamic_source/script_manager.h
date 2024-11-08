@@ -25,7 +25,7 @@ namespace dynamic_source
       public:
 
 
-         ::pointer<script_manager>  m_pmanager;
+         script_manager * m_pmanager;
 
          clear_include_matches_file_watcher(::particle * pparticle);
 

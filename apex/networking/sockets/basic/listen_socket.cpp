@@ -475,6 +475,16 @@ namespace sockets
    }
 
 
+   void listen_socket::destroy()
+   {
+
+      m_pfactory.release();
+
+      listen_socket_impl::destroy();
+
+   }
+
+
    void listen_socket::Reset()
    {
 

@@ -997,6 +997,12 @@ void task::destroy()
 
    m_peventFinished2.release();
 
+   m_pmanualreseteventNewProcedurePosted.release();
+
+   m_pmanualreseteventNewRequestPosted.release();
+
+   m_pmanualreseteventHappening.release();
+
 }
 
 

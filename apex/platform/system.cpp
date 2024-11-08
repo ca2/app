@@ -4902,6 +4902,8 @@ namespace apex
 
       m_sessionmap.clear();
 
+      m_pfilewatcher.defer_destroy();
+
       //m_mapLibrary4.clear();
 
       //return ::success;

@@ -50,6 +50,8 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
+      void destroy() override;
+
       base_socket * base_socket_impl() override;
       base_socket* base_socket_interface() override;
 

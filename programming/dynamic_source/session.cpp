@@ -15,6 +15,8 @@ namespace dynamic_source
    session::session()
    {
 
+      m_pmanager = nullptr;
+
       g_interlockedcountDynamicSourceSession++;
 
       ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator huge_integer());

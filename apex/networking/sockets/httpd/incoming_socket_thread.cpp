@@ -223,6 +223,20 @@ namespace httpd
 
    }
 
+   
+   void incoming_socket_thread::destroy()
+   {
+
+      m_psockethandlerIncoming.defer_destroy();
+
+      m_pincomingsocket.defer_destroy();
+
+      m_pfactoryIncomingSocket.defer_destroy();
+
+      ::thread::destroy();
+
+   }
+
 
 } // namespace httpd
 

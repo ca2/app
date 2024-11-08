@@ -9,6 +9,8 @@ namespace dynamic_source
    script_main::script_main()
    {
 
+      m_pmanager2 = nullptr;
+
       m_pnetnodescriptmain = nullptr;
 
    }
@@ -88,7 +90,7 @@ namespace dynamic_source
          
       m_psocket2.release();
 
-      m_pmanager2.release();
+      //m_pmanager2.release();
 
       script_interface::destroy();
 

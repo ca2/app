@@ -17,7 +17,7 @@ namespace dynamic_source
       ::netnode::script_main *                                 m_pnetnodescriptmain;
 
       ::pointer<httpd_socket>                                  m_psocket2;
-      ::pointer<script_manager>                                m_pmanager2;
+      script_manager *                                         m_pmanager2;
 
 
       ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;

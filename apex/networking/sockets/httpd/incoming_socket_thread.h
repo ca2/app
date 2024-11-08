@@ -37,6 +37,9 @@ namespace httpd
 
 
       void run() override;
+
+
+      void destroy() override;
       
       
       virtual ::pointer < ::sockets::socket_handler > create_socket_handler();

@@ -41,6 +41,8 @@ namespace dynamic_source
    script::script()
    {
 
+      m_pmanager = nullptr;
+
       m_bNew = true;
 
       defer_create_synchronization();
@@ -81,7 +83,7 @@ namespace dynamic_source
    void script::destroy()
    {
 
-      m_pmanager.release();
+      //m_pmanager.release();
 
       m_pfileError.defer_destroy();
 

@@ -1524,6 +1524,8 @@ void task::set_happened(e_happening ehappening)
 
    m_pmanualreseteventHappening->set_event();
 
+   __on_update_handler_happening_unlocked();
+
 }
 
 

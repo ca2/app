@@ -28,6 +28,8 @@ namespace dynamic_source
 
       void on_initialize_particle() override;
 
+      void destroy() override;
+
 
       virtual ::pointer<::dynamic_source::script_instance>create_instance() = 0;
 

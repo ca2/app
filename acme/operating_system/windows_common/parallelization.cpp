@@ -293,6 +293,12 @@ namespace parallelization
 void task_set_name(const char * pszThreadName)
 {
 
+   if (::string(pszThreadName) == "task")
+   {
+      output_debug_string("task");
+
+   }
+
    /*return*/ task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);
 
 }

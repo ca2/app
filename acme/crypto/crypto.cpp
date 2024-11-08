@@ -63,7 +63,7 @@ namespace crypto
 
       //}
 
-      auto palgorithm = __create < ::crypto::hasher_algorithm >();
+      auto palgorithm = __create < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
 
       if (!palgorithm)
       {

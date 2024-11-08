@@ -766,12 +766,6 @@ void task::run()
          return;
 
       }
-      else
-      {
-
-         b = true;
-
-      }
 
       if (b)
       {

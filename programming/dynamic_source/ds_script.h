@@ -49,6 +49,7 @@ namespace dynamic_source
       ds_script();
       virtual ~ds_script();
 
+      void destroy();
 
       virtual void defer_build();
       virtual void on_start_build();

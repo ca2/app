@@ -946,7 +946,16 @@ public:
 
       }
 
-      auto pmetadata = this->_create_meta_data(newNullTerminatedByteCount);
+      auto allocationSize = newNullTerminatedByteCount;
+
+      if (allocationSize >= 16_KiB)
+      {
+
+         allocationSize *= 2;
+
+      }
+
+      auto pmetadata = this->_create_meta_data(allocationSize);
 
       pmetadata->m_countData = characterCount;
 

@@ -1099,44 +1099,50 @@ namespace networking_bsd
       if (!m_pthreadReverse)
       {
 
-         auto psystem = system();
 
-         m_pthreadReverse = psystem->fork([this]()
+         application()->post([this]()
             {
+               auto psystem = system();
 
-               ::task_set_name("reverse___dns");
 
-               single_lock synchronouslock(this->synchronization());
-
-               while (task_get_run())
-               {
-
-                  synchronouslock._lock();
-
-                  if (m_reversecacheaRequest.has_elements())
+               m_pthreadReverse = psystem->fork([this]()
                   {
 
-                     auto pitem = m_reversecacheaRequest[0];
+                     ::task_set_name("reverse___dns");
 
-                     m_reversecacheaRequest.erase_at(0);
+                     single_lock synchronouslock(this->synchronization());
 
-                     synchronouslock.unlock();
+                     while (task_get_run())
+                     {
 
-                     reverse_sync(pitem);
+                        synchronouslock._lock();
 
-                  }
-                  else
-                  {
+                        if (m_reversecacheaRequest.has_elements())
+                        {
 
-                     synchronouslock.unlock();
+                           auto pitem = m_reversecacheaRequest[0];
 
-                     preempt(100_ms);
+                           m_reversecacheaRequest.erase_at(0);
 
-                  }
+                           synchronouslock.unlock();
 
-               }
+                           reverse_sync(pitem);
 
-               m_pthreadReverse.release();
+                        }
+                        else
+                        {
+
+                           synchronouslock.unlock();
+
+                           preempt(100_ms);
+
+                        }
+
+                     }
+
+                     m_pthreadReverse.release();
+
+                  });
 
             });
 

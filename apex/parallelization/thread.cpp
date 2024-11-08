@@ -219,7 +219,7 @@ void thread::thread_common_construct()
    //   m_bZipIsDir2 = get_app()->get_session()->m_bZipIsDir2;
 
    //}
-
+   m_bKeepRunningPostedProcedures = true;
 
 }
 

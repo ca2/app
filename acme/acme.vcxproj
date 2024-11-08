@@ -2038,7 +2038,14 @@
     <ClCompile Include="platform\node_aqua.cpp" />
     <ClCompile Include="platform\node_aura.cpp" />
     <ClCompile Include="platform\reference_item.cpp" />
-    <ClCompile Include="platform\reference_item_array.cpp" />
+    <ClCompile Include="platform\reference_item_array.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MaxSpeed</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</IntrinsicFunctions>
+      <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Speed</FavorSizeOrSpeed>
+      <OmitFramePointers Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</OmitFramePointers>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</BasicRuntimeChecks>
+    </ClCompile>
     <ClCompile Include="platform\object_type_counter.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />

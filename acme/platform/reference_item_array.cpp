@@ -691,8 +691,10 @@ void reference_item_array::dump_pending_releases(::string & strDump)
    strDump += str1;
 
    strDump += "FARefr:"+m_strFirstAllocation + "\n";
+
+   auto c = m_itema.get_count();
  
-   for (::collection::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
+   for (::collection::index iIndex = 0; iIndex < c; iIndex++)
    {
 
       auto & pitem = m_itema[iIndex];
@@ -703,9 +705,9 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
       auto preferer = pitem->m_preferer;
 
-      string str = pitem->m_strDebug;
+      string & str = pitem->m_strDebug;
 
-      string str2;
+#define DO_STACKTRACE 0
 
       try
       {
@@ -713,9 +715,13 @@ void reference_item_array::dump_pending_releases(::string & strDump)
          if (pitem->m_preferer)
          {
 
-            str2 += pitem->m_preferer->m_cstringType;
+            strDump.append_formatf("%4d: %4d (%7lld) %s: %s (%lld)\n", iIndex, iStep, iSerial, str.c_str(), pitem->m_preferer->m_cstringType.m_psz, pitem->m_preferer->m_iSerial);
 
-            str2.append_formatf(" (%lld)", pitem->m_preferer->m_iSerial);
+         }
+         else
+         {
+
+            strDump.append_formatf("%4d: %4d (%7lld) %s \n", iIndex, iStep, iSerial, str.c_str());
 
          }
 
@@ -728,14 +734,13 @@ void reference_item_array::dump_pending_releases(::string & strDump)
       try
       {
 
-         strDump.append_formatf("%4d: %4d (%7lld) %s: %s\n", iIndex, iStep, iSerial, str.c_str(), str2.c_str());
 
       }
       catch (...)
       {
 
       }
-
+#if DO_STACKTRACE
       try
       {
 
@@ -746,6 +751,9 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
             strDump += pitem->m_strCallStackTrace;
 
+            strDump += "-------------------\n\n";
+
+
          }
 
       }
@@ -753,10 +761,9 @@ void reference_item_array::dump_pending_releases(::string & strDump)
       {
 
       }
-
+#endif
    }
 
-   strDump += "-------------------\n\n";
 
 }
 

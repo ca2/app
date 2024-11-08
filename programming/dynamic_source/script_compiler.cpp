@@ -1247,7 +1247,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return ___new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
+      strDest += "   return __raw_new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + pscript->m_strClassNamePrefix + "_dynamic_source_script::script_run()\r\n";

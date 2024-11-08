@@ -78,6 +78,20 @@ namespace dynamic_source
    }
 
 
+   void script::destroy()
+   {
+
+      m_pmanager.release();
+
+      m_pfileError.release();
+
+      m_textstreamError.m_pfile.release();
+
+      ::object::destroy();
+
+   }
+
+
    void script::run(script_instance * pinstance)
    {
 
@@ -507,6 +521,17 @@ namespace dynamic_source
       }
 
       return pinstance;
+
+   }
+
+
+   void ds_script::destroy()
+   {
+
+      Unload();
+
+      script::destroy();
+
 
    }
 

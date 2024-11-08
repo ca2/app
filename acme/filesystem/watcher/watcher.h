@@ -39,7 +39,7 @@ namespace file
    public:
 
       
-      void *               m_pThis;
+      //void *               m_pThis;
 
       typedef ::set < ::pointer<::file::watch >>watch_set;
 
@@ -52,6 +52,9 @@ namespace file
 
       watcher();
       ~watcher() override;
+
+
+      void destroy() override;
 
 
       virtual ::file::watch * add_watch_listener(const ::file::path& pathFolder, const listener& listener, bool bRecursive);

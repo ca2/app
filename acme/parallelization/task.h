@@ -108,20 +108,40 @@ public:
    //Creatable(task);
 
    //bool                                            m_bAutoRelease : 1;
-   bool                                            m_bAvoidProcedureFork : 1;
-   bool                                            m_bIsRunning : 1;
-   bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
-#ifdef WINDOWS
-   bool                                            m_bCoInitialize : 1;
-#endif
-   bool                                            m_bMessageThread : 1;
-   bool                                            m_bTaskToolsForIncreasedFps : 1;
-#ifdef PARALLELIZATION_PTHREAD
-   bool                                            m_bJoinable : 1;
-#endif
-   bool                                            m_bKeepRunningPostedProcedures : 1;
+   union
+   {
 
-   huge_natural                                           m_uThreadAffinityMask;
+
+      struct
+      {
+
+
+         bool                                            m_bAvoidProcedureFork : 1;
+         bool                                            m_bIsRunning : 1;
+         bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
+#ifdef WINDOWS
+         bool                                            m_bCoInitialize : 1;
+#endif
+         bool                                            m_bMessageThread : 1;
+         bool                                            m_bHandleRequest : 1;
+         bool                                            m_bHandleProcedure : 1;
+         bool                                            m_bHandleHappening : 1;
+         bool                                            m_bTaskToolsForIncreasedFps : 1;
+#ifdef PARALLELIZATION_PTHREAD
+         bool                                            m_bJoinable : 1;
+#endif
+         bool                                            m_bKeepRunningPostedProcedures : 1;
+
+
+      };
+
+
+      huge_natural m_hnTaskFlag;
+
+
+   };
+
+   huge_natural                                    m_uThreadAffinityMask;
 
 #if defined(WINDOWS)
 
@@ -175,6 +195,8 @@ int m_iExitCode;
    
    virtual void on_pre_run_task();
 
+   virtual void __on_update_handler_happening_unlocked();
+
    virtual void __priority_and_affinity();
    void set_finish() override;
    virtual void __os_initialize();
@@ -188,6 +210,8 @@ int m_iExitCode;
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
    virtual ::manual_reset_event * new_procedure_posted_event();
+
+   virtual ::manual_reset_event* new_happening();
 
    virtual procedure pick_next_posted_procedure();
 

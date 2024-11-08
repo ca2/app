@@ -3707,7 +3707,12 @@ namespace user
 
          m_bUserInteractionSetFinish = true;
 
-         destroy_window();
+         main_post([this]()
+            {
+
+               destroy_window();
+
+            });
 
          return;
 

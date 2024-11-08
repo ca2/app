@@ -66,6 +66,7 @@ task::task()
 
    m_pfnImplement = nullptr;
    m_iExitCode = 0;
+   m_hnTaskFlag = 0;
 
    //m_bTaskPending = true;
 
@@ -120,11 +121,7 @@ void task::on_initialize_particle()
    /*auto estatus =*/ ::object::on_initialize_particle();
    ::handler::handler::on_initialize_particle();
 
-   __defer_construct_new(m_pmanualreseteventHappening);
-
-   m_synchronizationaMainLoop.add_item(new_request_posted_event());
-   m_synchronizationaMainLoop.add_item(new_procedure_posted_event());
-   m_synchronizationaMainLoop.add_item(m_pmanualreseteventHappening);
+   on_update_handler_happening();
 
    //m_pprintingformat);
 
@@ -140,12 +137,49 @@ void task::on_initialize_particle()
 }
 
 
+void task::__on_update_handler_happening_unlocked()
+{
+
+   if (m_bHandleRequest || m_requestaPosted.has_element())
+   {
+
+      m_synchronizationaMainLoop.add_unique(new_request_posted_event());
+
+   }
+
+   if (m_bHandleProcedure || m_procedurea.has_element())
+   {
+
+      m_synchronizationaMainLoop.add_unique(new_procedure_posted_event());
+
+   }
+
+   if (m_bHandleHappening || m_ehappeninga.has_element())
+   {
+
+      m_synchronizationaMainLoop.add_unique(new_happening());
+
+   }
+
+}
+
+
 ::manual_reset_event * task::new_procedure_posted_event()
 {
 
    __defer_construct_new(m_pmanualreseteventNewProcedurePosted);
 
    return m_pmanualreseteventNewProcedurePosted;
+
+}
+
+
+::manual_reset_event* task::new_happening()
+{
+
+   __defer_construct_new(m_pmanualreseteventHappening);
+
+   return m_pmanualreseteventHappening;
 
 }
 
@@ -1284,6 +1318,8 @@ void task::_post(const ::procedure & procedure)
       m_procedurea.add(procedure);
 
       new_procedure_posted_event()->set_event();
+
+      on_update_handler_happening();
 
    }
 

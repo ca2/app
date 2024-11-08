@@ -19,8 +19,7 @@ namespace dynamic_source
 
 
       class CLASS_DECL_APP_PROGRAMMING clear_include_matches_file_watcher :
-         virtual public ::file::listener::base,
-         virtual public ::particle
+         virtual public ::file::listener::base
       {
       public:
 

@@ -22,6 +22,7 @@
 #include "watch.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 
 
 namespace file
@@ -51,7 +52,7 @@ namespace file
    watcher::watcher()
    {
 
-      m_pThis = nullptr;
+      //m_pThis = nullptr;
       //m_pfilewatchLast = 0;
       m_bCreateWatchThread = true;
 
@@ -80,6 +81,23 @@ namespace file
    }
 
 
+   void watcher::destroy()
+   {
+
+      for (auto& item : m_watchset)
+      {
+
+         item.element().defer_destroy();
+
+      }
+
+      m_watchset.clear();
+
+      ::task::destroy();
+
+   }
+
+
    ::file::watch * watcher::add_watch_listener(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
@@ -102,7 +120,7 @@ namespace file
 
       pwatch->m_pwatcher = this;
 
-      m_watchset[pwatch] = pwatch;
+      m_watchset.set_at(pwatch);
 
       //if (m_bCreateWatchThread)
       //{
@@ -131,7 +149,12 @@ namespace file
          if (m_htask == nullptr)
          {
 
-            branch();
+            application()->post([this]()
+               {
+
+                  branch();
+
+               });
 
          }
 
@@ -167,13 +190,9 @@ namespace file
 
       }
 
-      //watch * pwatch = ppair->element2();
-
       manual_reset_event event;
 
       pwatch->m_functionDestroy = functionErased;
-
-      pwatch->m_pwatchRelease = pwatch;
 
    }
 
@@ -225,7 +244,7 @@ namespace file
    bool watcher::file_watcher_step()
    {
 
-restart:
+//restart:
 
       for (auto & item : m_watchset)
       {
@@ -233,20 +252,20 @@ restart:
          if (::is_set(item.item()))
          {
             
-            if(::is_set(item.item()->m_pwatchRelease))
-            {
+            //if(::is_set(item.item()->m_pwatchRelease))
+            //{
 
-               item.item()->m_bStop = true;
+            //   item.item()->m_bStop = true;
 
-               item.item()->m_pwatchRelease.release();
+            //   item.item()->m_pwatchRelease.release();
 
-               item.item()->m_listenera.clear();
+            //   item.item()->m_listenera.clear();
 
-               m_watchset.erase_item(item.item());
+            //   m_watchset.erase_item(item.item());
 
-               goto restart;
+            //   goto restart;
 
-            }
+            //}
 
             item.item()->file_watch_step();
             

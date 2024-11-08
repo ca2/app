@@ -103,6 +103,13 @@ bool synchronization_array::add_item(::subparticle * psubparticle)
 
    }
 
+   if (!m_subparticlea.add_unique(psubparticle))
+   {
+
+      return false;
+
+   }
+
    auto handle = psubparticle->get_synchronization_handle();
 
    if (handle != nullptr)
@@ -113,8 +120,6 @@ bool synchronization_array::add_item(::subparticle * psubparticle)
       m_hsynchronizationa.add(handle);
 
    }
-
-   m_subparticlea.add(psubparticle);
 
    return true;
 

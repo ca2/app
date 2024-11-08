@@ -45,7 +45,7 @@ namespace file
       ::pointer<thread>                   m_pthread;
       bool                                m_bRecursive;
       watcher *                           m_pwatcher;
-      ::pointer<watch>                    m_pwatchRelease;
+      //::pointer<watch>                    m_pwatchRelease;
       bool                                m_bStop;
       void *                              m_pthis;
       ::function < void () >              m_functionDestroy;

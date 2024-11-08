@@ -23,6 +23,8 @@ namespace handler
    {
 
 
+      m_hnHandlerFlag = 0;
+
    }
 
 
@@ -39,6 +41,13 @@ namespace handler
       ::matter::on_initialize_particle();
 
       defer_create_synchronization();
+
+   }
+
+
+   void handler::__on_update_handler_happening_unlocked()
+   {
+
 
    }
 
@@ -91,6 +100,8 @@ namespace handler
          m_requestaPosted.add(prequest);
 
          new_request_posted_event()->set_event();
+
+         __on_update_handler_happening_unlocked();
 
       }
 

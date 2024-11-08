@@ -195,7 +195,9 @@ int m_iExitCode;
    
    virtual void on_pre_run_task();
 
-   virtual void __on_update_handler_happening_unlocked();
+   
+   void __on_update_handler_happening_unlocked() override;
+
 
    virtual void __priority_and_affinity();
    void set_finish() override;

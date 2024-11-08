@@ -30,6 +30,30 @@ namespace handler
    public:
 
 
+
+      //Creatable(task);
+
+      //bool                                            m_bAutoRelease : 1;
+      union
+      {
+
+
+         struct
+         {
+
+
+           bool                                            m_bHandleRequest : 1;
+ 
+
+         };
+
+
+         huge_natural m_hnHandlerFlag;
+
+
+      };
+
+
       ::pointer < ::request >             m_prequest;
 
       ::payload                           m_payloadFile;
@@ -40,6 +64,8 @@ namespace handler
 
 
       void on_initialize_particle() override;
+
+      virtual void __on_update_handler_happening_unlocked();
 
       void destroy() override;
 

@@ -131,7 +131,7 @@ void service::stop_service()
 //
 //   estatus = osthread_term();
 //
-//   m_stopped.SetEvent();
+//   m_stopped.set_happening();
 //
 //   return estatusMain;
 //

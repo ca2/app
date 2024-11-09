@@ -534,7 +534,7 @@ namespace platform
    //      if (pcreate)
    //      {
    //
-   //         pcreate->m_happeningReady.ResetEvent();
+   //         pcreate->m_happeningReady.reset_happening();
    //
    //      }
    //

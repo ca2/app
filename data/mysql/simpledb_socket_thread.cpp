@@ -16,8 +16,8 @@ namespace simpledb
       m_evInitialized(pparticle)
    {
       m_psocket = nullptr;
-      m_evCanInit.ResetEvent();
-      m_evInitialized.ResetEvent();
+      m_evCanInit.reset_happening();
+      m_evInitialized.reset_happening();
       m_bInitialized = false;
 
    }
@@ -79,7 +79,7 @@ namespace simpledb
       informationf("error %u", dw);
       return false;
       }*/
-      m_evInitialized.SetEvent();
+      m_evInitialized.set_happening();
       return true;
    }
 
@@ -132,7 +132,7 @@ namespace simpledb
       if(pusermessage->m_wparam == 0)
       {
          m_bInitialized = true;
-         m_evInitialized.SetEvent();
+         m_evInitialized.set_happening();
       }
       else if(pusermessage->m_wparam == 1)
       {

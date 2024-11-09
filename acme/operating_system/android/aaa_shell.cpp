@@ -1184,7 +1184,7 @@ pdirectorysystem->is(strPath))
    //         m_callCurrent.m_lpcszExtra,
    //         m_callCurrent.m_colorBk);
    //      m_callCurrent.m_bCall = false;
-   //      m_happeningReady.SetEvent();
+   //      m_happeningReady.set_happening();
 
    //      return true;
 

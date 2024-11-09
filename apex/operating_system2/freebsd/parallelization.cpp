@@ -141,7 +141,7 @@ bool __os_term_thread()
 //
 //      }
 //
-//      ptopic->SetEvent();
+//      ptopic->set_happening();
 //
 //   });
 //

@@ -44,7 +44,7 @@ namespace windows
          //   
          //   passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;
          //   
-         //   passynchronoushttpdata->m_happening.SetEvent();
+         //   passynchronoushttpdata->m_happening.set_happening();
          //   
          //   //passynchronoushttpdata->m_function(passynchronoushttpdata);
          //   

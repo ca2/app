@@ -42,7 +42,7 @@ namespace simple_ui
 
       layout().sketch() = e_activation_on_center_of_screen;
 
-      m_evReady.ResetEvent();
+      m_evReady.reset_happening();
 
       m_strMessage      = pszMessage;
       m_strTitle        = pszTitle;
@@ -525,7 +525,7 @@ pmessagebox->sync();
 //
 //   }
 //
-//   pmessagebox->m_evReady.SetEvent();
+//   pmessagebox->m_evReady.set_happening();
 //
 //}
 

@@ -128,7 +128,7 @@ namespace dynamic_source
       m_bHasTempError            = false;
       m_bHasTempOsError          = false;
       m_bUnloading               = false;
-      m_evCreationEnabled.SetEvent();
+      m_evCreationEnabled.set_happening();
 
 
 
@@ -475,7 +475,7 @@ namespace dynamic_source
 
       KEEP(m_bUnloading);
 
-      m_evCreationEnabled.ResetEvent();
+      m_evCreationEnabled.reset_happening();
 
       synchronous_lock synchronouslock(this->synchronization());
 

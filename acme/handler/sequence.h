@@ -317,7 +317,7 @@ public:
 //      if (m_phappening)
 //      {
 //
-//         m_phappening->SetEvent();
+//         m_phappening->set_happening();
 //
 //      }
 //
@@ -356,7 +356,7 @@ public:
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //
@@ -402,7 +402,7 @@ public:
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //
@@ -742,7 +742,7 @@ public:
 //      if (m_phappening)
 //      {
 //
-//         m_phappening->SetEvent();
+//         m_phappening->set_happening();
 //
 //      }
 //
@@ -781,7 +781,7 @@ public:
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //
@@ -827,7 +827,7 @@ public:
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //

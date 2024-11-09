@@ -662,20 +662,20 @@ namespace micro
 //   
 //   //auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresetevent = __allocate manual_reset_happening();
+////   auto pmanualresethappening = __allocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
-////   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+////   psequence->then([ pmanualresethappening, &atomResult ](auto psequence)
 ////   {
 ////
 ////      atomResult = psequence->m_atomResult;
 ////
-////      pmanualresetevent->SetEvent();
+////      pmanualresethappening->set_happening();
 ////
 ////   });
 ////
-////   pmanualresetevent->wait();
+////   pmanualresethappening->wait();
 ////
 //////   auto pmessagebox = pparticle->__create_new < message_box >();
 //////
@@ -690,7 +690,7 @@ namespace micro
 //////
 //////      idResult = pinterchange->m_atomResult;
 //////
-//////      event.SetEvent();
+//////      event.set_happening();
 //////
 //////   };
 //////
@@ -764,20 +764,20 @@ namespace micro
 //   
 //   auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresetevent = __allocate manual_reset_happening();
+////   auto pmanualresethappening = __allocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
-////   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+////   psequence->then([ pmanualresethappening, &atomResult ](auto psequence)
 ////   {
 ////
 ////      atomResult = psequence->m_atomResult;
 ////
-////      pmanualresetevent->SetEvent();
+////      pmanualresethappening->set_happening();
 ////
 ////   });
 ////
-////   pmanualresetevent->wait();
+////   pmanualresethappening->wait();
 ////
 //////   auto pmessagebox = pparticle->__create_new < message_box >();
 //////
@@ -792,7 +792,7 @@ namespace micro
 //////
 //////      idResult = pinterchange->m_atomResult;
 //////
-//////      event.SetEvent();
+//////      event.set_happening();
 //////
 //////   };
 //////

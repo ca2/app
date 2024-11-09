@@ -94,7 +94,7 @@ send_thread_message::send_thread_message(::particle* pparticle)
 
    memory_set(&m_message, 0, sizeof(m_message));
 
-   m_ev.ResetEvent();
+   m_ev.reset_happening();
 
 }
 
@@ -102,7 +102,7 @@ send_thread_message::send_thread_message(::particle* pparticle)
 send_thread_message::~send_thread_message()
 {
 
-   m_ev.SetEvent();
+   m_ev.set_happening();
 
 }
 
@@ -392,13 +392,13 @@ void thread::term_task()
       if (m_phappeningaWait)
       {
 
-         for (auto& pmanualresetevent: *m_phappeningaWait)
+         for (auto& pmanualresethappening: *m_phappeningaWait)
          {
 
             try
             {
 
-               pmanualresetevent->set_event();
+               pmanualresethappening->set_event();
 
             }
             catch (...)
@@ -433,7 +433,7 @@ void thread::task_osterm()
       if (m_pevSleep.is_set())
       {
 
-         m_pevSleep->SetEvent();
+         m_pevSleep->set_happening();
 
          m_pevSleep.release();
 
@@ -1422,7 +1422,7 @@ void thread::post_quit()
    //    if (pev.is_set())
    //    {
 
-   //       pev->SetEvent();
+   //       pev->set_happening();
 
    //    }
 
@@ -1443,7 +1443,7 @@ void thread::post_quit()
       if (pev.is_set())
       {
 
-         pev->SetEvent();
+         pev->set_happening();
 
       }
 
@@ -2013,7 +2013,7 @@ void thread::main()
             if (m_phappeningReady)
             {
 
-               m_phappeningReady->SetEvent();
+               m_phappeningReady->set_happening();
 
             }
 
@@ -4501,7 +4501,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //      if(m_pevReady != nullptr)
 //      {
 //
-//         m_pevReady->SetEvent();
+//         m_pevReady->set_happening();
 //
 //      }
 //

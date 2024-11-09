@@ -214,7 +214,7 @@ namespace operating_system
          if(m_pevReady != nullptr)
          {
 
-            m_pevReady->SetEvent();
+            m_pevReady->set_happening();
 
          }
 
@@ -286,7 +286,7 @@ namespace operating_system
       if(m_pevReady != nullptr)
       {
 
-         m_pevReady->SetEvent();
+         m_pevReady->set_happening();
 
       }
 
@@ -310,7 +310,7 @@ namespace operating_system
       if(m_pevReady != nullptr)
       {
 
-         m_pevReady->SetEvent();
+         m_pevReady->set_happening();
 
       }
 
@@ -403,7 +403,7 @@ namespace operating_system
    //      else
    //      {
    //
-   //         m_evReady.ResetEvent();
+   //         m_evReady.reset_happening();
    //
    //         m_pthread->begin();
    //

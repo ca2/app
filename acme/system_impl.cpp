@@ -213,7 +213,7 @@ namespace platform
 
       print_line("platform::system::~system() (end)");
 
-      //::system()->m_pmanualresethappeningReadyToExit->SetEvent();
+      //::system()->m_pmanualresethappeningReadyToExit->set_happening();
 
    }
 
@@ -616,7 +616,7 @@ namespace platform
 
             __task_init();
 
-         //         m_phappeningInitialization->SetEvent();
+         //         m_phappeningInitialization->set_happening();
 
          while (task_get_run())
          {
@@ -3505,20 +3505,20 @@ namespace platform
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __allocate manual_reset_happening();
+   //      auto pmanualresethappening = __allocate manual_reset_happening();
    //
-   //      windowing_post([pmanualresetevent, procedure]()
+   //      windowing_post([pmanualresethappening, procedure]()
    //                     {
    //
    //                        procedure();
    //
-   //                        pmanualresetevent->set_event();
+   //                        pmanualresethappening->set_event();
    //
    //      }
    //
    //      );
    //
-   //      pmanualresetevent->wait(procedure.m_timeTimeout);
+   //      pmanualresethappening->wait(procedure.m_timeTimeout);
    //
    //   }
 

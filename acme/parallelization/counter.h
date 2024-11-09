@@ -96,7 +96,7 @@ namespace parallelization
 //      if (i <= 0)
 //      {
 //
-//         SetEvent();
+//         set_happening();
 //
 //      }
 //

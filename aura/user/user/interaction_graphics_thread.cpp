@@ -77,7 +77,7 @@ namespace user
 
       m_bGraphicsThreadEnabled = false;
 
-      //m_happeningReady.ResetEvent();
+      //m_happeningReady.reset_happening();
 
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
@@ -717,7 +717,7 @@ namespace user
    void graphics_thread::destroy()
    {
 
-      m_evUpdateScreen.SetEvent();
+      m_evUpdateScreen.set_happening();
 
       m_puserinteraction.release();
 
@@ -954,7 +954,7 @@ namespace user
 
             //}
 
-            m_evUpdateScreen.ResetEvent();
+            m_evUpdateScreen.reset_happening();
 
          }
 

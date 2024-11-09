@@ -223,7 +223,7 @@ namespace platform
    //
    //       print_line("platform::system::~system() (end)");
    //
-   //       //::acme::get()->m_pmanualresethappeningReadyToExit->SetEvent();
+   //       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
    //
    //    }
    //
@@ -3202,20 +3202,20 @@ namespace platform
    //    //   void acme_system_layer::system::windowing_send(const ::procedure & procedure)
    //    //   {
    //    //
-   //    //      auto pmanualresetevent = __allocate manual_reset_happening();
+   //    //      auto pmanualresethappening = __allocate manual_reset_happening();
    //    //
-   //    //      windowing_post([pmanualresetevent, procedure]()
+   //    //      windowing_post([pmanualresethappening, procedure]()
    //    //                     {
    //    //
    //    //                        procedure();
    //    //
-   //    //                        pmanualresetevent->set_event();
+   //    //                        pmanualresethappening->set_event();
    //    //
    //    //      }
    //    //
    //    //      );
    //    //
-   //    //      pmanualresetevent->wait(procedure.m_timeTimeout);
+   //    //      pmanualresethappening->wait(procedure.m_timeTimeout);
    //    //
    //    //   }
    //

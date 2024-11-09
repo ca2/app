@@ -650,15 +650,15 @@ namespace micro
 
    //   //do_modal();
 
-   //   //auto pmanualresetevent = __allocate manual_reset_happening();
+   //   //auto pmanualresethappening = __allocate manual_reset_happening();
 
    //   //if (m_psequencer)
    //   //{
 
-   //   //   m_psequencer->then([pmanualresetevent](auto psequencer)
+   //   //   m_psequencer->then([pmanualresethappening](auto psequencer)
    //   //   {
 
-   //   //   pmanualresetevent->SetEvent();
+   //   //   pmanualresethappening->set_happening();
 
    //   //   });
 
@@ -670,7 +670,7 @@ namespace micro
 
    //   //   auto functionCloseExisting = pwindow->m_functionClose;
 
-   //   //   pwindow->m_functionClose = [pmanualresetevent, functionCloseExisting](auto pinterchange)
+   //   //   pwindow->m_functionClose = [pmanualresethappening, functionCloseExisting](auto pinterchange)
    //   //      {
 
    //   //         if (functionCloseExisting)
@@ -680,7 +680,7 @@ namespace micro
 
    //   //         }
 
-   //   //         pmanualresetevent->SetEvent();
+   //   //         pmanualresethappening->set_happening();
 
    //   //      };
 
@@ -689,7 +689,7 @@ namespace micro
    //   //if (m_payloadResult.is_new())
    //   //{
 
-   //   //   pmanualresetevent->wait();
+   //   //   pmanualresethappening->wait();
 
    //   //}
 

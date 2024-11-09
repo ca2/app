@@ -97,7 +97,7 @@ namespace api_ca2
 
       m_phyperlinkPreLoginScreen->run();
 
-      m_happeningResponse.ResetEvent();
+      m_happeningResponse.reset_happening();
 
       while (::task_get_run())
       {

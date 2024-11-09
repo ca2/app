@@ -432,7 +432,7 @@ namespace interprocess_channel
    //   if (bWasEmpty)
    //   {
 
-   //      m_evDispatchItemNew.SetEvent();
+   //      m_evDispatchItemNew.set_happening();
 
    //   }
 
@@ -481,7 +481,7 @@ namespace interprocess_channel
 
    //         }
 
-   //         m_evDispatchItemNew.ResetEvent();
+   //         m_evDispatchItemNew.reset_happening();
 
    //         singlelock.unlock();
 

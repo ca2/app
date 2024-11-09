@@ -44,7 +44,7 @@
 //
 //         m_estatus = m_procedure();
 //
-//         m_phappeningCompletion->SetEvent();
+//         m_phappeningCompletion->set_happening();
 //
 //         return m_estatus;
 //

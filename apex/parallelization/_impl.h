@@ -6,11 +6,11 @@
 inline int_bool semaphore::Unlock()
 { return Unlock(1, nullptr); }
 
-inline int_bool CEvent::SetEvent()
+inline int_bool CEvent::set_happening()
 { ASSERT(m_hObject != nullptr); return ::SetEvent(m_hObject); }
 inline int_bool CEvent::PulseEvent()
 { ASSERT(m_hObject != nullptr); return ::PulseEvent(m_hObject); }
-inline int_bool CEvent::ResetEvent()
+inline int_bool CEvent::reset_happening()
 { ASSERT(m_hObject != nullptr); return ::ResetEvent(m_hObject); }
 
 inline CSingleLock::~CSingleLock()

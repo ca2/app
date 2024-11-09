@@ -109,7 +109,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
       m_procedurea.add(procedure);
 
-      m_pevTaskOnQueue->SetEvent();
+      m_pevTaskOnQueue->set_happening();
 
    }
 
@@ -178,7 +178,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
    if (m_procedurea.is_empty())
    {
 
-      m_pevTaskOnQueue->ResetEvent();
+      m_pevTaskOnQueue->reset_happening();
 
    }
 

@@ -341,7 +341,7 @@ void tool_task::run()
 
       //}
 
-      m_pevStart->ResetEvent();
+      m_pevStart->reset_happening();
 
       if (m_pgroup->m_etaskop == ::e_task_op_predicate || m_pgroup->m_etaskop == ::e_task_op_fork_count)
       {
@@ -356,7 +356,7 @@ void tool_task::run()
 
       }
 
-      m_pevReady->SetEvent();
+      m_pevReady->set_happening();
 
    }
 
@@ -366,7 +366,7 @@ void tool_task::run()
 //
 //}
 
-   m_pevReady->SetEvent();
+   m_pevReady->set_happening();
 
    ///return ::success;
 
@@ -376,9 +376,9 @@ void tool_task::run()
 void tool_task::reset()
 {
 
-   m_pevStart->ResetEvent();
+   m_pevStart->reset_happening();
 
-   m_pevReady->ResetEvent();
+   m_pevReady->reset_happening();
 
 }
 
@@ -386,7 +386,7 @@ void tool_task::reset()
 void tool_task::set_ready_to_start()
 {
 
-   m_pevStart->SetEvent();
+   m_pevStart->set_happening();
 
 //   return ::success;
 

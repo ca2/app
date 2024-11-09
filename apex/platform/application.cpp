@@ -1103,7 +1103,7 @@ namespace apex
          {
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
-         prequest->m_happeningReady.SetEvent();
+         prequest->m_happeningReady.set_happening();
 
       }
 
@@ -1785,7 +1785,7 @@ namespace apex
    //      //   if (m_pevAppBeg != nullptr)
    //      //   {
    //
-   //      //      m_pevAppBeg->SetEvent();
+   //      //      m_pevAppBeg->set_happening();
    //
    //      //   }
    //
@@ -1858,7 +1858,7 @@ namespace apex
    //      //   if (m_pevAppEnd != nullptr)
    //      //   {
    //
-   //      //      m_pevAppEnd->SetEvent();
+   //      //      m_pevAppEnd->set_happening();
    //
    //      //   }
    //
@@ -6038,7 +6038,7 @@ namespace apex
          if (pthread != nullptr && pthread->m_phappeningReady != nullptr)
          {
 
-            pthread->m_phappeningReady->SetEvent();
+            pthread->m_phappeningReady->set_happening();
 
          }
 

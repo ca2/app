@@ -751,7 +751,7 @@ namespace aura
    //      {
    //      pbergedge->on_app_request_bergedge_callback(this);
    //      }*/
-   //      pcreate->m_happeningReady.SetEvent();
+   //      pcreate->m_happeningReady.set_happening();
 
    //   }
 
@@ -1621,7 +1621,7 @@ namespace aura
 //      //   if (m_pevAppBeg != nullptr)
 //      //   {
 //
-//      //      m_pevAppBeg->SetEvent();
+//      //      m_pevAppBeg->set_happening();
 //
 //      //   }
 //
@@ -1694,7 +1694,7 @@ namespace aura
 //      //   if (m_pevAppEnd != nullptr)
 //      //   {
 //
-//      //      m_pevAppEnd->SetEvent();
+//      //      m_pevAppEnd->set_happening();
 //
 //      //   }
 //
@@ -4660,7 +4660,7 @@ retry_license:
    //      if (pthread != nullptr && pthread->m_pevReady != nullptr)
    //      {
 
-   //         pthread->m_pevReady->SetEvent();
+   //         pthread->m_pevReady->set_happening();
 
    //      }
 

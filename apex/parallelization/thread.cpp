@@ -155,7 +155,7 @@ thread::thread()
 
    m_bLastingThread = true;
 
-   m_bMessageThread = false;
+   //m_bMessageThread = false;
 
    m_estatus = ::success_none;
 
@@ -418,8 +418,6 @@ void thread::term_task()
 void thread::task_osterm()
 {
 
-   ::task::task_osterm();
-
 #ifndef WINDOWS_DESKTOP
 
    m_pmessagequeue.release();
@@ -461,9 +459,8 @@ void thread::task_osterm()
    {
 
    }
-   __os_finalize();
+   ::task::task_osterm();
 
-   __set_thread_off();
 
    //system()->m_papexnode->thread_finalize(this);
 

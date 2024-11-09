@@ -208,6 +208,7 @@ int m_iExitCode;
    virtual void __set_thread_off();
 
    void task_osinit() override;
+   void task_osterm() override;
 
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();

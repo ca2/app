@@ -629,6 +629,15 @@ void task::task_osinit()
 }
 
 
+void task::task_osterm()
+{
+
+   __os_finalize();
+
+   __set_thread_off();
+
+}
+
 
 void task::__set_thread_on()
 {
@@ -772,6 +781,8 @@ void task::main()
 
    __task_term();
 
+   task_osterm();
+
 }
 
 
@@ -832,10 +843,15 @@ void task::run()
 bool task::task_iteration()
 {
 
-   if (!handle_messages())
+   if (m_bMessageThread)
    {
 
-      return false;
+      if (!handle_messages())
+      {
+
+         return false;
+
+      }
 
    }
 

@@ -658,7 +658,7 @@ namespace sockets_bsd
             if (psocket != nullptr)
             {
 
-               auto ptcpsocket = psocket.cast < sockets::tcp_socket >();
+               ::cast < sockets::tcp_socket > ptcpsocket = psocket;
 
                if (ptcpsocket != nullptr)
                {
@@ -808,7 +808,7 @@ start_processing_adding:
 
          }
 
-         auto pstreamsocket = psocket.cast < ::sockets::stream_socket >();
+         ::cast < ::sockets::stream_socket > pstreamsocket = psocket;
 
          if (pstreamsocket && pstreamsocket->is_connecting()) // 'open' called before adding socket
          {
@@ -819,7 +819,7 @@ start_processing_adding:
          else
          {
 
-            auto ptcpsocket = psocket.cast < ::sockets::tcp_socket>();
+            ::cast < ::sockets::tcp_socket > ptcpsocket = psocket;
 
             bool bWrite = ::is_set(ptcpsocket) ? ptcpsocket->GetOutputLength() != 0 || ptcpsocket->CallOnConnect() : false;
 
@@ -1562,7 +1562,7 @@ end_processing_adding:
             if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
             {
 
-               auto ptcpsocket = ppairSocket->m_psocket.cast < ::sockets::tcp_socket >();
+               ::cast < ::sockets::tcp_socket > ptcpsocket = ppairSocket->m_psocket;
 
                if (::is_set(ptcpsocket))
                {
@@ -1593,7 +1593,7 @@ end_processing_adding:
 
                      }
 
-                     m_socketmap[ptcpsocket->GetSocketId()] = ptcpsocket;
+                     m_socketmap[ptcpsocket->GetSocketId()] = ptcpsocket.m_p;
 
                      m_socketlistErase.add_tail(nn);
 

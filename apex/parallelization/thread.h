@@ -59,7 +59,7 @@ public:
 
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
-   bool                                               m_bMessageThread;
+   //bool                                               m_bMessageThread;
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;

@@ -99,7 +99,7 @@ api_client_base::~api_client_base()
    //   if (m_papi && m_papi->m_bAuthenticating)
    //   {
 
-   //      m_papi->m_eventResponse.wait();
+   //      m_papi->m_happeningResponse.wait();
 
    //   }
    //   else

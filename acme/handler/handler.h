@@ -24,7 +24,7 @@ namespace handler
 
       ::pointer_array < ::request >       m_requestaPosted;
       ::pointer_array < ::request >       m_requestaHistory;
-      ::pointer < ::manual_reset_happening >  m_pmanualreseteventNewRequestPosted;
+      ::pointer < ::manual_reset_happening >  m_pmanualresethappeningNewRequestPosted;
 
 
    public:

@@ -167,9 +167,9 @@ void task::__on_update_handler_happening_unlocked()
 ::manual_reset_happening * task::new_procedure_posted_event()
 {
 
-   __defer_construct_new(m_pmanualreseteventNewProcedurePosted);
+   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
 
-   return m_pmanualreseteventNewProcedurePosted;
+   return m_pmanualresethappeningNewProcedurePosted;
 
 }
 
@@ -177,9 +177,9 @@ void task::__on_update_handler_happening_unlocked()
 ::manual_reset_happening* task::new_happening()
 {
 
-   __defer_construct_new(m_pmanualreseteventHappening);
+   __defer_construct_new(m_pmanualresethappeningHappening);
 
-   return m_pmanualreseteventHappening;
+   return m_pmanualresethappeningHappening;
 
 }
 
@@ -950,9 +950,9 @@ void task::stop_task()
 
    m_procedureTaskEnded = procedure;
 
-   //__defer_construct_new(m_peventFinished2);
+   //__defer_construct_new(m_phappeningFinished2);
 
-   //auto peventFinished = m_peventFinished2;
+   //auto peventFinished = m_phappeningFinished2;
 
    set_finish();
 
@@ -987,10 +987,10 @@ void task::stop_task()
 void task::destroy()
 {
 
-   if (m_peventFinished2)
+   if (m_phappeningFinished2)
    {
 
-      m_peventFinished2->set_event();
+      m_phappeningFinished2->set_event();
 
    }
 
@@ -1011,7 +1011,7 @@ void task::destroy()
 
 #endif
 
-   m_peventInitialization.release();
+   m_phappeningInitialization.release();
 
    m_particleaHold.clear();
 
@@ -1029,13 +1029,13 @@ void task::destroy()
 
    m_plocale.release();
 
-   m_peventFinished2.release();
+   m_phappeningFinished2.release();
 
-   m_pmanualreseteventNewProcedurePosted.release();
+   m_pmanualresethappeningNewProcedurePosted.release();
 
-   m_pmanualreseteventNewRequestPosted.release();
+   m_pmanualresethappeningNewRequestPosted.release();
 
-   m_pmanualreseteventHappening.release();
+   m_pmanualresethappeningHappening.release();
 
 }
 
@@ -1047,10 +1047,10 @@ void task::__task_init()
 
       on_task_init();
 
-   if (m_peventInitialization)
+   if (m_phappeningInitialization)
    {
 
-      m_peventInitialization->set_event();
+      m_phappeningInitialization->set_event();
 
    }
 
@@ -1433,7 +1433,7 @@ e_happening task::pick_happening()
    if (m_ehappeninga.is_empty())
    {
 
-      m_pmanualreseteventHappening->ResetEvent();
+      m_pmanualresethappeningHappening->ResetEvent();
 
    }
 
@@ -2124,7 +2124,7 @@ void task::on_before_branch()
    //if (bSynchInitialization)
    {
 
-      m_peventInitialization = __allocate manual_reset_happening();
+      m_phappeningInitialization = __allocate manual_reset_happening();
 
    }
 
@@ -2159,12 +2159,12 @@ void task::on_before_branch()
 
 #endif
 
-   if (m_peventInitialization)
+   if (m_phappeningInitialization)
    {
 
       {
 
-         auto peventProtectionWhileWaiting = m_peventInitialization;
+         auto peventProtectionWhileWaiting = m_phappeningInitialization;
 
          peventProtectionWhileWaiting->wait();
 

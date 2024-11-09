@@ -17,14 +17,14 @@
 //   sync_future()
 //   {
 //
-//      m_peventCompletion = __allocate manual_reset_happening();
+//      m_phappeningCompletion = __allocate manual_reset_happening();
 //
 //   }
 //public:
 //
 //
 //   ::payload                                    m_var;
-//   ::pointer<manual_reset_happening>         m_peventCompletion;
+//   ::pointer<manual_reset_happening>         m_phappeningCompletion;
 //
 //
 //   virtual ~sync_future() {}
@@ -35,7 +35,7 @@
 //
 //      m_var = payload;
 //
-//      m_peventCompletion->SetEvent();
+//      m_phappeningCompletion->SetEvent();
 //
 //   }
 //
@@ -43,7 +43,7 @@
 //   ::e_status wait(const class ::time& wait = time::infinite()) override
 //   {
 //
-//      return m_peventCompletion->wait(wait);
+//      return m_phappeningCompletion->wait(wait);
 //
 //   }
 //

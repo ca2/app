@@ -37,7 +37,7 @@ namespace sockets
 {
 
 
-   IEventOwner::IEventOwner(IEventHandler& h) : m_event_handler(h), m_handler_invalid(false)
+   IEventOwner::IEventOwner(IEventHandler& h) : m_happening_handler(h), m_handler_invalid(false)
    {
 
    }
@@ -49,7 +49,7 @@ namespace sockets
       if (!m_handler_invalid)
       {
 
-         m_event_handler.ClearEvents(this);
+         m_happening_handler.ClearEvents(this);
 
       }
 
@@ -59,7 +59,7 @@ namespace sockets
    IEventHandler& IEventOwner::EventHandler()
    {
 
-      return m_event_handler;
+      return m_happening_handler;
 
    }
 
@@ -67,7 +67,7 @@ namespace sockets
    long IEventOwner::AddEvent(long sec,long usec)
    {
 
-      return m_event_handler.AddEvent(this, sec, usec);
+      return m_happening_handler.AddEvent(this, sec, usec);
 
    }
 
@@ -75,7 +75,7 @@ namespace sockets
    void IEventOwner::ClearEvents()
    {
 
-      m_event_handler.ClearEvents(this);
+      m_happening_handler.ClearEvents(this);
 
    }
 
@@ -83,7 +83,7 @@ namespace sockets
    void IEventOwner::RemoveEvent(long eid)
    {
 
-      m_event_handler.RemoveEvent(this, eid);
+      m_happening_handler.RemoveEvent(this, eid);
 
    }
 

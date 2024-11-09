@@ -751,7 +751,7 @@ namespace aura
    //      {
    //      pbergedge->on_app_request_bergedge_callback(this);
    //      }*/
-   //      pcreate->m_eventReady.SetEvent();
+   //      pcreate->m_happeningReady.SetEvent();
 
    //   }
 

@@ -223,7 +223,7 @@ namespace platform
    //
    //       print_line("platform::system::~system() (end)");
    //
-   //       //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
+   //       //::acme::get()->m_pmanualresethappeningReadyToExit->SetEvent();
    //
    //    }
    //
@@ -903,8 +903,8 @@ namespace platform
    //       if (pacmewindowing)
    //       {
    //
-   //          ::acme::get()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_happening();
-   //          ::acme::get()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_happening();
+   //          ::acme::get()->m_pmanualresethappeningReadyToExit = __raw_new manual_reset_happening();
+   //          ::acme::get()->m_pmanualresethappeningMainLoopEnd = __raw_new manual_reset_happening();
    //
    //          if (!m_procedureTaskEnded)
    //          {
@@ -912,17 +912,17 @@ namespace platform
    //             m_procedureTaskEnded = [pacmewindowing]()
    //                {
    //
-   //                   ::acme::get()->m_pmanualreseteventReadyToExit->set_event();
+   //                   ::acme::get()->m_pmanualresethappeningReadyToExit->set_event();
    //
    //                };
    //
    //             m_pacmewindowing->windowing_post_quit();
    //
-   //             ::acme::get()->m_pmanualreseteventMainLoopEnd->_wait(2.5_min);
+   //             ::acme::get()->m_pmanualresethappeningMainLoopEnd->_wait(2.5_min);
    //
-   //             delete ::acme::get()->m_pmanualreseteventMainLoopEnd;
+   //             delete ::acme::get()->m_pmanualresethappeningMainLoopEnd;
    //
-   //             ::acme::get()->m_pmanualreseteventMainLoopEnd = nullptr;
+   //             ::acme::get()->m_pmanualresethappeningMainLoopEnd = nullptr;
    //
    //          }
    //

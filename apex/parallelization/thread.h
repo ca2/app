@@ -69,9 +69,9 @@ public:
    static bool                                        s_bAllocReady;
 
 
-   ::pointer<manual_reset_happening>                      m_peventStarted;
-   ::pointer<manual_reset_happening>                      m_peventSync;
-   ::pointer<manual_reset_happening>                      m_peventReady;
+   ::pointer<manual_reset_happening>                      m_phappeningStarted;
+   ::pointer<manual_reset_happening>                      m_phappeningSync;
+   ::pointer<manual_reset_happening>                      m_phappeningReady;
 
    enum_id                                            m_atomContextReference;
 
@@ -96,7 +96,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   ::pointer<manual_reset_happening>                      m_pevent1;
+   ::pointer<manual_reset_happening>                      m_phappening1;
    enum_priority                                      m_epriority;
 
 
@@ -113,7 +113,7 @@ public:
 #ifdef WINDOWS
    ::raw_array < MESSAGE >                            m_messageaInitialQueue;
    //bool                                               m_bCertainlyTheresWindowsMessageQueue;
-   //::pointer < ::manual_reset_happening >                 m_peventMessageQueueReady;
+   //::pointer < ::manual_reset_happening >                 m_phappeningMessageQueueReady;
 #endif
 
 //#ifdef MACOS
@@ -130,7 +130,7 @@ public:
 //
 //#endif
 
-   ::pointer < pointer_array < event > >              m_peventaWait;
+   ::pointer < pointer_array < event > >              m_phappeningaWait;
 
 public:
 

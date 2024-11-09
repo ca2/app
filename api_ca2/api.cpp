@@ -97,12 +97,12 @@ namespace api_ca2
 
       m_phyperlinkPreLoginScreen->run();
 
-      m_eventResponse.ResetEvent();
+      m_happeningResponse.ResetEvent();
 
       while (::task_get_run())
       {
 
-         auto bOk = m_eventResponse.wait(2_s);
+         auto bOk = m_happeningResponse.wait(2_s);
 
          if (bOk)
          {

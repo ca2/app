@@ -21539,17 +21539,17 @@ namespace user
          //   if (prequest)
          //   {
 
-         //      information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+         //      information() << "pgraphicsthread->m_happeningReady.ResetEvent();";
 
-         //      pgraphicsthread->m_eventReady.ResetEvent();
+         //      pgraphicsthread->m_happeningReady.ResetEvent();
 
          //      prequest->m_procedureaOnFinishRequest.add(
          //         [this, pgraphicsthread]()
          //         {
 
-         //            information() << "pgraphicsthread->m_eventReady.SetEvent();";
+         //            information() << "pgraphicsthread->m_happeningReady.SetEvent();";
 
-         //            pgraphicsthread->m_eventReady.SetEvent();
+         //            pgraphicsthread->m_happeningReady.SetEvent();
 
          //         });
 

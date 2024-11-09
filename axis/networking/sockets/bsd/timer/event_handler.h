@@ -52,7 +52,7 @@ namespace sockets
       public:
 
 
-         list < Event * >              m_eventplist;
+         list < Event * >              m_happeningplist;
          bool                          m_bQuit;
          tcp_socket *                  m_ptcpsocket;
          ::networking::port_t          m_port;

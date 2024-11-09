@@ -343,7 +343,7 @@ namespace sockets
       if(m_content_length > 0)
       {
 
-         m_event.ResetEvent();
+         m_happening.ResetEvent();
 
          m_bExpectResponse = true;
 
@@ -469,7 +469,7 @@ namespace sockets
 
 #ifdef WINRT_SOCKETS
 
-      m_event.ResetEvent();
+      m_happening.ResetEvent();
 
       m_bExpectResponse = true;
 

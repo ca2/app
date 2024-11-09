@@ -74,9 +74,9 @@ namespace handler
    ::manual_reset_happening * handler::new_request_posted_event()
    {
 
-      __defer_construct_new(m_pmanualreseteventNewRequestPosted);
+      __defer_construct_new(m_pmanualresethappeningNewRequestPosted);
 
-      return m_pmanualreseteventNewRequestPosted;
+      return m_pmanualresethappeningNewRequestPosted;
 
    }
 

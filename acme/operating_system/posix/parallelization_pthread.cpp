@@ -148,7 +148,7 @@
          if (::is_set(pmq))
          {
 
-            if (pmq->m_eventNewMessage._wait(0_s))
+            if (pmq->m_happeningNewMessage._wait(0_s))
             {
 
                return (enum_status)(((int) signaled_base) + dwSize);
@@ -397,7 +397,7 @@ int g_iDebug_post_thread_msg_time;
 //
 //   pmq->m_messagea.add(msg);
 //
-//   pmq->m_eventNewMessage.set_event();
+//   pmq->m_happeningNewMessage.set_event();
 //
 //   return true;
 //

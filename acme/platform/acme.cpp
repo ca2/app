@@ -258,9 +258,9 @@ namespace acme
 
       }
 
-      //m_pmanualreseteventReadyToExit = nullptr;
+      //m_pmanualresethappeningReadyToExit = nullptr;
 
-      //m_pmanualreseteventMainLoopEnd = nullptr;
+      //m_pmanualresethappeningMainLoopEnd = nullptr;
 
       m_pheapmanagement = nullptr;
 
@@ -286,14 +286,14 @@ namespace acme
    void acme::on_system_before_destroy()
    {
       
-      if (::system()->m_pmanualreseteventReadyToExit)
+      if (::system()->m_pmanualresethappeningReadyToExit)
       {
 
-         ::system()->m_pmanualreseteventReadyToExit->_wait(2.5_min);
+         ::system()->m_pmanualresethappeningReadyToExit->_wait(2.5_min);
 
-         //delete m_pmanualreseteventReadyToExit;
+         //delete m_pmanualresethappeningReadyToExit;
 
-         //m_pmanualreseteventReadyToExit = nullptr;
+         //m_pmanualresethappeningReadyToExit = nullptr;
 
       }
 

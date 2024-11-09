@@ -42,7 +42,7 @@ namespace account
       bool                 m_bDrag;
       ::int_rectangle               m_rectangleDesktop;
 
-      manual_reset_happening   m_eventReady;
+      manual_reset_happening   m_happeningReady;
 
 
       bool                 m_bVisible;
@@ -348,7 +348,7 @@ namespace account
 
    account::account() :
       m_login(0, 0),
-      m_eventReady(nullptr)
+      m_happeningReady(nullptr)
    {
 
       m_eschema = schema_normal;
@@ -408,7 +408,7 @@ namespace account
 
 
 
-      m_eventReady.wait();
+      m_happeningReady.wait();
 
 
       if (m_eresult == ::spa_login::result_ok)
@@ -759,7 +759,7 @@ namespace account
          }
          else
          {
-            m_eventReady.set_event();
+            m_happeningReady.set_event();
          }
 
          return true;
@@ -767,7 +767,7 @@ namespace account
       }
       else if (!strcmp(pszId, "escape"))
       {
-         m_eventReady.set_event();
+         m_happeningReady.set_event();
       }
 
       return false;

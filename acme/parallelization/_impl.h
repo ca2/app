@@ -26,7 +26,7 @@
 //
 //   pfnBranch(pobjectTask, epriority);
 //
-//   pobjectTask->m_event.wait(timeTimeout);
+//   pobjectTask->m_happening.wait(timeTimeout);
 //
 //   return pobjectTask;
 //

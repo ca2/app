@@ -196,7 +196,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 }
 
 
-void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_event eevent)
+void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_happening eevent)
 {
    __UNREFERENCED_PARAMETER(viewline);
    switch(eevent)

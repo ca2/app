@@ -569,7 +569,7 @@ namespace nano
 
          xcb_flush(m_pdisplay->m_pconnection);
 
-         //   m_eventEnd.wait();
+         //   m_happeningEnd.wait();
 
       }
 
@@ -1028,7 +1028,7 @@ namespace nano
 
          //XCloseDisplay(m_pdisplay->m_pdisplay);
 
-         m_eventEnd.SetEvent();
+         m_happeningEnd.SetEvent();
 
       }
 

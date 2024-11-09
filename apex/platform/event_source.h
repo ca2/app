@@ -8,13 +8,13 @@ class CLASS_DECL_APEX event_source :
 public:
 
 
-   pointer< pointer_array < ::event_handler > >    m_peventhandlera;
+   pointer< pointer_array < ::event_handler > >    m_phappeninghandlera;
 
 
    inline bool has_event_handler() const
    {
 
-      return m_peventhandlera && m_peventhandlera->has_element();
+      return m_phappeninghandlera && m_phappeninghandlera->has_element();
 
    }
 

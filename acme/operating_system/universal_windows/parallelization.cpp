@@ -184,7 +184,7 @@ bool __os_term_thread()
 //
 //      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //
-//      ph[nCount] = (HANDLE)::aaa_get_message_queue(current_itask(), true)->m_eventNewMessage.hsynchronization();
+//      ph[nCount] = (HANDLE)::aaa_get_message_queue(current_itask(), true)->m_happeningNewMessage.hsynchronization();
 //
 //      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::times, true);
 //

@@ -1103,7 +1103,7 @@ namespace apex
          {
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
-         prequest->m_eventReady.SetEvent();
+         prequest->m_happeningReady.SetEvent();
 
       }
 
@@ -6035,10 +6035,10 @@ namespace apex
 
          thread * pthread = this;
 
-         if (pthread != nullptr && pthread->m_peventReady != nullptr)
+         if (pthread != nullptr && pthread->m_phappeningReady != nullptr)
          {
 
-            pthread->m_peventReady->SetEvent();
+            pthread->m_phappeningReady->SetEvent();
 
          }
 

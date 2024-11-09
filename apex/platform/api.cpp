@@ -169,7 +169,7 @@ void api::on_login_response()
 
    }
 
-   m_eventResponse.SetEvent();
+   m_happeningResponse.SetEvent();
 
 }
 
@@ -223,7 +223,7 @@ void api::ensure_authenticated()
       if (m_bAuthenticating)
       {
 
-         m_eventResponse.wait();
+         m_happeningResponse.wait();
          
          information() << "api::defer_api got the response";
 

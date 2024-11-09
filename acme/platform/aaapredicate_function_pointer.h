@@ -10,7 +10,7 @@
 //public:
 //
 //
-//   ::pointer<manual_reset_happening>         m_peventCompleted;
+//   ::pointer<manual_reset_happening>         m_phappeningCompleted;
 //
 //   sync_method();
 //   virtual ~sync_method() { }

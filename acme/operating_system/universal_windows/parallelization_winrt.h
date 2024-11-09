@@ -29,7 +29,7 @@
 //private:
 //
 //
-//   manual_reset_happening                                       m_event;
+//   manual_reset_happening                                       m_happening;
 //   ::winrt::Windows::Foundation::IAsyncOperation < T >      m_operation;
 //   ::winrt::Windows::Foundation::AsyncStatus                m_status;
 //   T                                                        m_result;
@@ -50,7 +50,7 @@
 //
 //         m_status = status;
 //
-//         m_event.set_event();
+//         m_happening.set_event();
 //
 //      });
 //
@@ -66,7 +66,7 @@
 //   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //   {
 //
-//      single_lock singlelock(&m_event);
+//      single_lock singlelock(&m_happening);
 //
 //      singlelock.lock(class ::time(dwMillis));
 //
@@ -117,7 +117,7 @@
 //private:
 //
 //
-//   manual_reset_happening                                                      m_event;
+//   manual_reset_happening                                                      m_happening;
 //   ::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 >     m_operation;
 //   ::winrt::Windows::Foundation::AsyncStatus                               m_status;
 //   T                                                                       m_result;
@@ -139,7 +139,7 @@
 //
 //         m_status = status;
 //
-//         m_event.set_event();
+//         m_happening.set_event();
 //
 //      });
 //
@@ -155,7 +155,7 @@
 //   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //   {
 //
-//      m_event.wait(class ::time(dwMillis));
+//      m_happening.wait(class ::time(dwMillis));
 //
 //      if (pstatus != nullptr)
 //         *pstatus = m_status;
@@ -187,7 +187,7 @@
 //private:
 //
 //
-//   manual_reset_happening                                 m_event;
+//   manual_reset_happening                                 m_happening;
 //   ::winrt::Windows::Foundation::IAsyncAction         m_action;
 //   ::winrt::Windows::Foundation::AsyncStatus          m_status;
 //
@@ -207,7 +207,7 @@
 //
 //         m_status = status;
 //
-//         m_event.set_event();
+//         m_happening.set_event();
 //
 //      }));
 //
@@ -216,7 +216,7 @@
 //
 //         m_status = m_action.Status();
 //
-//         m_event.set_event();
+//         m_happening.set_event();
 //
 //      }
 //
@@ -234,7 +234,7 @@
 //
 //      auto pholdThis = this;
 //
-//      m_event.wait(::integral_millisecond(dwMillis));
+//      m_happening.wait(::integral_millisecond(dwMillis));
 //
 //      if(pstatus != nullptr)
 //         *pstatus = m_status;

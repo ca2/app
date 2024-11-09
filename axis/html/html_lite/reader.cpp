@@ -93,7 +93,7 @@ lite_html_reader::lite_html_reader()
    //m_dwBufLen = 0L;   // buffer length is unknown yet
 
    // default is to raise all of the events
-   m_eventMask = (EventMaskEnum)(notifyStartStop |
+   m_happeningMask = (EventMaskEnum)(notifyStartStop |
                                  notifyTagStart |
                                  notifyTagEnd |
                                  notifyCharacters |
@@ -105,17 +105,17 @@ lite_html_reader::lite_html_reader()
 
 lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNewEventMask)
 {
-   EventMaskEnum   oldMask = m_eventMask;
-   m_eventMask = (EventMaskEnum)dwNewEventMask;
+   EventMaskEnum   oldMask = m_happeningMask;
+   m_happeningMask = (EventMaskEnum)dwNewEventMask;
    return (oldMask);
 }
 
 
 lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int addFlags, unsigned int eraseFlags)
 {
-   unsigned int   dwOldMask = (unsigned int)m_eventMask;
+   unsigned int   dwOldMask = (unsigned int)m_happeningMask;
    unsigned int   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
-   m_eventMask = (EventMaskEnum)dwNewMask;
+   m_happeningMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }
 
@@ -347,7 +347,7 @@ bool lite_html_reader::getEventNotify(unsigned int dwEvent) const
           dwEvent == notifyComment);
    if (m_pEventHandler == nullptr)
       return (false);
-   return ((m_eventMask & dwEvent) == dwEvent);
+   return ((m_happeningMask & dwEvent) == dwEvent);
 }
 
 bool lite_html_reader::isWhiteSpace(char ch) const

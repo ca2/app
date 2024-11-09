@@ -44,7 +44,7 @@ void api_client::defer_api()
       if(m_papi && m_papi->m_bAuthenticating)
       {
       
-         m_papi->m_eventResponse.wait();
+         m_papi->m_happeningResponse.wait();
       
       }
       else

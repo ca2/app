@@ -11,11 +11,11 @@ class CLASS_DECL_ACME set_event_on_exit
 public:
    
    
-   ::event * m_pevent;
+   ::event * m_phappening;
    
    
-   set_event_on_exit(::event & ev) { m_pevent = &ev; }
-   ~set_event_on_exit() { if(m_pevent != nullptr) m_pevent->set_event(); }
+   set_event_on_exit(::event & ev) { m_phappening = &ev; }
+   ~set_event_on_exit() { if(m_phappening != nullptr) m_phappening->set_event(); }
    
    
 };

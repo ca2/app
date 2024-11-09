@@ -1477,10 +1477,10 @@ namespace axis
 
          thread * pthread = this;
 
-         if (pthread != nullptr && pthread->m_peventReady != nullptr)
+         if (pthread != nullptr && pthread->m_phappeningReady != nullptr)
          {
 
-            pthread->m_peventReady->SetEvent();
+            pthread->m_phappeningReady->SetEvent();
 
          }
 

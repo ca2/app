@@ -77,7 +77,7 @@ namespace user
 
       m_bGraphicsThreadEnabled = false;
 
-      //m_eventReady.ResetEvent();
+      //m_happeningReady.ResetEvent();
 
 //#ifdef UNIVERSAL_WINDOWS
 //      m_bExclusiveMode = true;
@@ -289,7 +289,7 @@ namespace user
 
       //m_puserinteraction->windowing_window()->m_puserinteraction->task_add(this);
 
-      //m_eventReady.wait();
+      //m_happeningReady.wait();
 
       m_synchronizationa.add(&m_evUpdateScreen);
 
@@ -302,7 +302,7 @@ namespace user
       if (m_bAuraMessageQueue)
       {
 
-         m_synchronizationa.add(&get_message_queue()->m_eventNewMessage);
+         m_synchronizationa.add(&get_message_queue()->m_happeningNewMessage);
 
       }
 

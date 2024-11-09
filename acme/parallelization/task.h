@@ -149,7 +149,7 @@ public:
 
 #endif
 
-   ::pointer<::manual_reset_happening>                 m_pmanualreseteventNewProcedurePosted;
+   ::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
    htask_t                                         m_htask;
@@ -158,12 +158,12 @@ public:
    string                                          m_strTaskTag;
 
    ::particle_array                                m_particleaHold;
-   ::pointer<manual_reset_happening>                   m_peventInitialization;
+   ::pointer<manual_reset_happening>                   m_phappeningInitialization;
 
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_happening>                   m_pevSleep;
-   ::pointer<manual_reset_happening>                   m_peventFinished2;
-   ::pointer<manual_reset_happening>                   m_pmanualreseteventHappening;
+   ::pointer<manual_reset_happening>                   m_phappeningFinished2;
+   ::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
 

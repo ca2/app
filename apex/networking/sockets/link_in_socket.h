@@ -19,7 +19,7 @@ namespace sockets
 
       socket *                   m_in;
       link_out_socket *          m_out;
-      event                      m_eventFinished;
+      event                      m_happeningFinished;
 
 
       link_in_socket();

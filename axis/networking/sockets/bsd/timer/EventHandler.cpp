@@ -62,7 +62,7 @@ namespace sockets
    EventHandler::~EventHandler()
    {
 
-      m_eventplist.each([](auto & pevent)
+      m_happeningplist.each([](auto & pevent)
          {
 
             pevent->GetFrom()->SetHandlerInvalid();
@@ -71,7 +71,7 @@ namespace sockets
 
          });
 
-      m_eventplist.erase_all();
+      m_happeningplist.erase_all();
 
    }
 
@@ -79,14 +79,14 @@ namespace sockets
    bool EventHandler::GetTimeUntilNextEvent(struct timeval * tv)
    {
 
-      if (!m_eventplist.get_size())
+      if (!m_happeningplist.get_size())
       {
 
          return false;
 
       }
 
-      auto p = m_eventplist.begin();
+      auto p = m_happeningplist.begin();
 
       if(p.is_ok())
       {
@@ -122,7 +122,7 @@ namespace sockets
 
       EventTime now;
 
-      auto p = m_eventplist.begin();
+      auto p = m_happeningplist.begin();
 
       for(; p.is_ok(); p++)
       {
@@ -150,7 +150,7 @@ namespace sockets
 
          }
 
-         for (p = m_eventplist.begin(); p.is_ok(); p++)
+         for (p = m_happeningplist.begin(); p.is_ok(); p++)
          {
 
             Event * peventItem = *p;
@@ -169,7 +169,7 @@ namespace sockets
          if (p)
          {
 
-            m_eventplist.erase(p);
+            m_happeningplist.erase(p);
 
          }
 
@@ -183,7 +183,7 @@ namespace sockets
 
       Event * peventNew = ___new Event(from, sec, usec);
 
-      auto p = m_eventplist.begin();
+      auto p = m_happeningplist.begin();
 
       for(;p.is_ok(); p++)
       {
@@ -197,7 +197,7 @@ namespace sockets
 
       }
 
-      m_eventplist.insert_before(p, peventNew);
+      m_happeningplist.insert_before(p, peventNew);
 
       if (m_ptcpsocket)
       {
@@ -221,7 +221,7 @@ namespace sockets
 
          repeat = false;
 
-         auto p = m_eventplist.begin();
+         auto p = m_happeningplist.begin();
 
          for(; p.is_ok(); p++)
          {
@@ -239,7 +239,7 @@ namespace sockets
 
          }
 
-         m_eventplist.erase_all();
+         m_happeningplist.erase_all();
       }
       while (repeat);
    }
@@ -272,7 +272,7 @@ namespace sockets
    void EventHandler::RemoveEvent(IEventOwner * pownerFrom, long lEid)
    {
 
-      auto p = m_eventplist.begin();
+      auto p = m_happeningplist.begin();
 
       for(; p.is_ok(); p++)
       {

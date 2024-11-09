@@ -145,7 +145,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum   m_eventMask;
+   EventMaskEnum   m_happeningMask;
 
    /**
     * Pointer to an ILiteHTMLReaderEvents based event handling object
@@ -183,7 +183,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    EventMaskEnum getEventMask() const
-      { return (m_eventMask); }
+      { return (m_happeningMask); }
 
    /**
     * Sets a ___new event mask.

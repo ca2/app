@@ -31,7 +31,7 @@ namespace user
       class ::time                                m_timeStart;
       class ::time                                m_timeThisFrame;
 
-      ///manual_reset_happening                           m_eventReady;
+      ///manual_reset_happening                           m_happeningReady;
 
       bool                                        m_bGraphicsThreadEnabled;
 

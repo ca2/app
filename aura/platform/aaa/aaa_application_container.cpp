@@ -422,7 +422,7 @@ application_array application_container::get_applicationa()
    if (pcreate->m_pcommandline)
    {
 
-      pcreate->m_eventReady.ResetEvent();
+      pcreate->m_happeningReady.ResetEvent();
 
    }
 
@@ -448,7 +448,7 @@ application_array application_container::get_applicationa()
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_eventReady.wait(::duration(84)).signaled())
+   //            if (pcreate->m_happeningReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }

@@ -56,7 +56,7 @@ namespace nano
          bool                                   m_bUnhook;
          void *                                 m_pX11Display;
          xcb_connection_t   *                   m_pconnection;
-         pointer_array < event_listener >        m_eventlistenera;
+         pointer_array < event_listener >        m_happeninglistenera;
          pointer_array < micro::interchange >           m_windowa;
          xcb_window_t                           m_windowActive;
          //::procedure_array                        m_routineaPost;

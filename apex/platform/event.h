@@ -16,7 +16,7 @@
 //   public:
 //
 //
-//      enum_event                       m_eevent;
+//      enum_happening                       m_eevent;
 //      ::user::interaction_base *              m_puserprimitive;
 //      ::user::interaction *            m_ptab;
 //      ::user::interaction *            m_pform;

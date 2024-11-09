@@ -6,7 +6,7 @@ class sys_message_queue
 public:
 
 
-   event                     m_event;
+   event                     m_happening;
    ::pointer < ::mutex >                     m_pmutex;
    ref_array < MESSAGE >           m_msgptra;
 
@@ -30,7 +30,7 @@ int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
       if(m_msgptra.get_count() <= 0)
       {
          lockMutex.unlock();
-         m_event.wait();
+         m_happening.wait();
       }
       else
       {

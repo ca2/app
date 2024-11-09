@@ -25,7 +25,7 @@ ref class waiter_for_Windows_Foundation_IAsyncOperation sealed
 {
 private:
 
-   manual_reset_happening                                 m_event;
+   manual_reset_happening                                 m_happening;
    ::winrt::Windows::Foundation::IAsyncOperation < T > ^     m_operation;
    ::winrt::Windows::Foundation::AsyncStatus                 m_status;
    T                                                  m_result;
@@ -45,7 +45,7 @@ public:
 
          m_status = status;
 
-         m_event.set_event();
+         m_happening.set_event();
 
       });
 
@@ -61,7 +61,7 @@ public:
    T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      task_sleep(::duration(dwMillis), &m_event);
+      task_sleep(::duration(dwMillis), &m_happening);
 
       if (pstatus != nullptr)
       {
@@ -110,7 +110,7 @@ ref class waiter_for_Windows_Foundation_IAsyncOperationWithProgress sealed
 {
 private:
 
-   manual_reset_happening                                                m_event;
+   manual_reset_happening                                                m_happening;
    ::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^    m_operation;
    ::winrt::Windows::Foundation::AsyncStatus                                m_status;
    T                                                                 m_result;
@@ -131,7 +131,7 @@ public:
 
          m_status = status;
 
-         m_event.set_event();
+         m_happening.set_event();
 
       });
 
@@ -147,7 +147,7 @@ public:
    T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      m_event.wait(::duration(dwMillis));
+      m_happening.wait(::duration(dwMillis));
 
       if (pstatus != nullptr)
          *pstatus = m_status;
@@ -179,7 +179,7 @@ ref class waiter_for_Windows_Foundation_IAsyncAction sealed
 private:
 
 
-   manual_reset_happening                                 m_event;
+   manual_reset_happening                                 m_happening;
    ::winrt::Windows::Foundation::IAsyncAction ^              m_action;
    ::winrt::Windows::Foundation::AsyncStatus                 m_status;
 
@@ -198,7 +198,7 @@ public:
 
          m_status = status;
 
-         m_event.set_event();
+         m_happening.set_event();
 
       });
 
@@ -207,7 +207,7 @@ public:
 
          m_status = m_action->Status;
 
-         m_event.set_event();
+         m_happening.set_event();
 
       }
 
@@ -224,7 +224,7 @@ public:
 
       auto pholdThis = this;
 
-      m_event.wait(::duration(dwMillis));
+      m_happening.wait(::duration(dwMillis));
 
       if(pstatus != nullptr)
          *pstatus = m_status;

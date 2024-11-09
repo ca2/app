@@ -5602,7 +5602,7 @@ namespace draw2d
 
       auto penumeration = system()->draw2d()->write_text()->fonts()->enumeration("system");
 
-      penumeration->m_eventReady.wait(30_s);
+      penumeration->m_happeningReady.wait(30_s);
 
       critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 

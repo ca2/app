@@ -4182,7 +4182,7 @@ bMove = false;
    //
    //          //peventStartedUser = __allocate manual_reset_happening();
    //
-   //          //m_puserthread->m_peventStarted = peventStartedUser;
+   //          //m_puserthread->m_phappeningStarted = peventStartedUser;
    //
    //       }
    //
@@ -4213,17 +4213,17 @@ bMove = false;
    //          //   if (prequest)
    //          //   {
    //
-   //          //      information() << "pgraphicsthread->m_eventReady.ResetEvent();";
+   //          //      information() << "pgraphicsthread->m_happeningReady.ResetEvent();";
    //
-   //          //      pgraphicsthread->m_eventReady.ResetEvent();
+   //          //      pgraphicsthread->m_happeningReady.ResetEvent();
    //
    //          //      prequest->m_procedureaOnFinishRequest.add(
    //          //         [this, pgraphicsthread]()
    //          //         {
    //
-   //          //            information() << "pgraphicsthread->m_eventReady.SetEvent();";
+   //          //            information() << "pgraphicsthread->m_happeningReady.SetEvent();";
    //
-   //          //            pgraphicsthread->m_eventReady.SetEvent();
+   //          //            pgraphicsthread->m_happeningReady.SetEvent();
    //
    //          //         });
    //
@@ -8419,7 +8419,7 @@ bMove = false;
 
          information() << "m_pgraphicsthread->m_bGraphicsThreadEnabled = true";
 
-         //m_pgraphicsthread->m_eventReady.SetEvent();
+         //m_pgraphicsthread->m_happeningReady.SetEvent();
 
          m_pgraphicsthread->m_bGraphicsThreadEnabled = true;
 

@@ -73,7 +73,7 @@ public:
    string                           m_strApp;
    string                           m_strAppType;
    ::collection::index                            m_iEdge;
-   manual_reset_happening               m_eventReady;
+   manual_reset_happening               m_happeningReady;
    ::request *                      m_prequest;
    string                           m_strCommandLine;
    ::pointer < ::data::data >       m_pdata;

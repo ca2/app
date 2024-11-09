@@ -41,7 +41,7 @@ namespace sockets
    public:
       
       
-      IEventHandler& m_event_handler;
+      IEventHandler& m_happening_handler;
       bool m_handler_invalid;
 
 

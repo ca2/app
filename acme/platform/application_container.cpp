@@ -176,9 +176,9 @@ namespace platform
       //for (auto & papplication : applicationa)
       //{
 
-      //   __construct_new(papplication->m_peventFinished);
+      //   __construct_new(papplication->m_phappeningFinished);
 
-      //   multiplelock.m_synchronizationa.add(papplication->m_peventFinished);
+      //   multiplelock.m_synchronizationa.add(papplication->m_phappeningFinished);
 
       //}
 
@@ -534,7 +534,7 @@ namespace platform
    //      if (pcreate)
    //      {
    //
-   //         pcreate->m_eventReady.ResetEvent();
+   //         pcreate->m_happeningReady.ResetEvent();
    //
    //      }
    //
@@ -561,7 +561,7 @@ namespace platform
    //      //         while (task_get_run())
    //      //         {
    //      //
-   //      //            if (pcreate->m_eventReady.wait(::time(84)).signaled())
+   //      //            if (pcreate->m_happeningReady.wait(::time(84)).signaled())
    //      //               break;
    //      //
    //      //         }

@@ -477,7 +477,7 @@
 ////   catch(...)
 ////   {
 ////      // Clean up if thread creation fails.
-////      threadHandle->m_pevent->set_event();
+////      threadHandle->m_phappening->set_event();
 ////      delete threadHandle;
 ////
 ////      if(info.suspensionEvent)
@@ -968,7 +968,7 @@
 ////   TlsShutdown();
 ////
 ////   // Signal that the thread has completed.
-////   currentThread->m_pevent->set_event();
+////   currentThread->m_phappening->set_event();
 ////
 ////   currentThread->release();
 ////
@@ -1170,7 +1170,7 @@
 ////
 ////   //   void * p = pmq->ma[pmq->ma.get_count() -1].hwnd;
 ////
-////   pmq->m_eventNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_event();
 ////
 ////   return true;
 ////
@@ -1207,7 +1207,7 @@
 ////
 ////   pmq->ma.add(msg);
 ////
-////   pmq->m_eventNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_event();
 ////
 ////   return true;
 ////
@@ -1225,7 +1225,7 @@
 ////   try
 ////   {
 ////
-////      m_htask->m_pevent->wait(::duration(dwMillis));
+////      m_htask->m_phappening->wait(::duration(dwMillis));
 ////
 ////   }
 ////   catch(...)

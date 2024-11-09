@@ -296,7 +296,7 @@ public:
 //
 //   //m_ptask = ::get_task();
 //
-//   m_pevent = nullptr;
+//   m_phappening = nullptr;
 //
 //}
 
@@ -314,10 +314,10 @@ public:
 //
 //      m_p.m_result = result;
 //
-//      if (m_pevent)
+//      if (m_phappening)
 //      {
 //
-//         m_pevent->SetEvent();
+//         m_phappening->SetEvent();
 //
 //      }
 //
@@ -353,10 +353,10 @@ public:
 //
 //   critical_section_lock lock(::platform::get()->sequence_critical_section());
 //
-//   if (m_pevent)
+//   if (m_phappening)
 //   {
 //
-//      m_pevent->SetEvent();
+//      m_phappening->SetEvent();
 //
 //   }
 //
@@ -399,10 +399,10 @@ public:
 //
 //   m_p.m_estatus = estatus;
 //
-//   if (m_pevent)
+//   if (m_phappening)
 //   {
 //
-//      m_pevent->SetEvent();
+//      m_phappening->SetEvent();
 //
 //   }
 //
@@ -471,11 +471,11 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
 //      lock.unlock();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();
@@ -522,9 +522,9 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();
@@ -556,11 +556,11 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
 //      lock.unlock();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();
@@ -721,7 +721,7 @@ public:
 //
 //   //m_ptask = ::get_task();
 //
-//   m_pevent = nullptr;
+//   m_phappening = nullptr;
 //
 //}
 
@@ -739,10 +739,10 @@ public:
 //
 //      m_p.m_result = result;
 //
-//      if (m_pevent)
+//      if (m_phappening)
 //      {
 //
-//         m_pevent->SetEvent();
+//         m_phappening->SetEvent();
 //
 //      }
 //
@@ -778,10 +778,10 @@ public:
 //
 //   critical_section_lock lock(::platform::get()->sequence_critical_section());
 //
-//   if (m_pevent)
+//   if (m_phappening)
 //   {
 //
-//      m_pevent->SetEvent();
+//      m_phappening->SetEvent();
 //
 //   }
 //
@@ -824,10 +824,10 @@ public:
 //
 //   m_p.m_estatus = estatus;
 //
-//   if (m_pevent)
+//   if (m_phappening)
 //   {
 //
-//      m_pevent->SetEvent();
+//      m_phappening->SetEvent();
 //
 //   }
 //
@@ -896,11 +896,11 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
 //      lock.unlock();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();
@@ -947,9 +947,9 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();
@@ -981,11 +981,11 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __allocate manual_reset_happening();
+//      m_phappening = __allocate manual_reset_happening();
 //
 //      lock.unlock();
 //
-//      if (!m_pevent->wait(timeWait))
+//      if (!m_phappening->wait(timeWait))
 //      {
 //
 //         lock.lock();

@@ -9,7 +9,7 @@
 //   process < RESULT > ::process()
 //   {
 //
-//      m_pevent = nullptr;
+//      m_phappening = nullptr;
 //
 //   }
 //
@@ -47,9 +47,9 @@
 //      if (m_statusresult.m_estatus == error_not_initialized)
 //      {
 //
-//         m_pevent = ___new manual_reset_happening();
+//         m_phappening = ___new manual_reset_happening();
 //
-//         if (!m_pevent->wait(time).succeeded())
+//         if (!m_phappening->wait(time).succeeded())
 //         {
 //
 //            return error_timeout;

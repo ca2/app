@@ -132,13 +132,13 @@ huge_integer message_box::decrement_reference_count()
 //void conversation_message::aggregate(sequence * psequence)
 //{
 //   
-//   //m_psequencer->m_pevent = __create_new < manual_reset_happening >();
+//   //m_psequencer->m_phappening = __create_new < manual_reset_happening >();
 //
 //   do_asynchronously();
 //   
 //   ::pointer < conversation_message > pconversation = this;
 //
-//   m_psequencer->m_pevent->wait(1_min);
+//   m_psequencer->m_phappening->wait(1_min);
 //
 //   psequence->m_payload= pconversation->m_payloadResult;
 //   

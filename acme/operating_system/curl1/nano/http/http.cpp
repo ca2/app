@@ -40,7 +40,7 @@ namespace curl
          //
          //      passynchronoushttpdata->m_data.m_set["http_status_code"] = http_status;
          //
-         //      passynchronoushttpdata->m_event.SetEvent();
+         //      passynchronoushttpdata->m_happening.SetEvent();
          //
          //      //passynchronoushttpdata->m_function(passynchronoushttpdata);
          //
@@ -66,7 +66,7 @@ namespace curl
 
                pgetHold->set_finished();
 
-              //pasynchronoushttpresponse->m_event.SetEvent();
+              //pasynchronoushttpresponse->m_happening.SetEvent();
               //pasynchronoushttpresponse->m_function(pasynchronoushttpresponse);
             });
 

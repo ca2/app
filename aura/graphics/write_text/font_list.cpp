@@ -869,7 +869,7 @@ namespace write_text
 
          auto pfontenumeration = pfonts->enumeration(m_strFontBranch);
 
-         if (!pfontenumeration->m_eventReady.wait(30_s))
+         if (!pfontenumeration->m_happeningReady.wait(30_s))
          {
 
             return;

@@ -396,7 +396,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,unsigned int
 
    pmq->ma.add(msg);
 
-   pmq->m_eventNewMessage.set_event();
+   pmq->m_happeningNewMessage.set_event();
 
    return true;
 

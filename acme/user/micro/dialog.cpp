@@ -29,7 +29,7 @@ namespace micro
    ::payload dialog::wait_for_dialog_result(const class time & timeTimeout)
    {
 
-      m_manualreseteventFinished.wait(timeTimeout);
+      m_manualresethappeningFinished.wait(timeTimeout);
 
       return get_dialog_result();
 
@@ -54,7 +54,7 @@ namespace micro
    bool dialog::is_waiting_for_dialog_result()
    {
 
-      return !m_manualreseteventFinished.lock(0_s);
+      return !m_manualresethappeningFinished.lock(0_s);
 
    }
 
@@ -62,7 +62,7 @@ namespace micro
    void dialog::on_dialog_result_set()
    {
 
-      m_manualreseteventFinished.SetEvent();
+      m_manualresethappeningFinished.SetEvent();
 
       hide();
 
@@ -85,7 +85,7 @@ namespace micro
 
       });
 
-      //m_manualreseteventFinished.wait(m_timeDialogTimeout);
+      //m_manualresethappeningFinished.wait(m_timeDialogTimeout);
 
       //pdialogThis->wait_for_dialog_result(m_timeDialogTimeout);
 

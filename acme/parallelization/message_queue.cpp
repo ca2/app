@@ -103,7 +103,7 @@ void message_queue::post_message(const MESSAGE & message)
       
       //printf("test123");
    }
-   m_eventNewMessage.set_event();
+   m_happeningNewMessage.set_event();
 
    //return true;
 
@@ -117,7 +117,7 @@ void message_queue::kick_idle()
 
    //m_bKickIdle = true;
 
-   //m_eventNewMessage.set_event();
+   //m_happeningNewMessage.set_event();
 
    post_message(nullptr, e_message_kick_idle, {}, 0);
 
@@ -211,7 +211,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto bAcquired = m_eventNewMessage._wait(time);
+         auto bAcquired = m_happeningNewMessage._wait(time);
          if(m_eflagElement & (1ll << 36))
          {
           
@@ -227,7 +227,7 @@ void message_queue::kick_idle()
 
          synchronouslock._lock();
 
-         m_eventNewMessage.ResetEvent();
+         m_happeningNewMessage.ResetEvent();
 
       }
 

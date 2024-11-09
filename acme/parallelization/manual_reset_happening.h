@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//      Class:          manual_reset_event
+//      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
 //      Description:    Notifies one or more waiting threads that an event has
@@ -27,11 +27,11 @@ class CLASS_DECL_ACME manual_reset_happening :
 public:
 
 
-   //__creatable(manual_reset_event);
+   //__creatable(manual_reset_happening);
 
 
    ::e_status m_estatus;
-   // DECLARE_REUSABLE(manual_reset_event);
+   // DECLARE_REUSABLE(manual_reset_happening);
 
 
    manual_reset_happening(char * sz = nullptr, bool bInitiallyOwn = false);

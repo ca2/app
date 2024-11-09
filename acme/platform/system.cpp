@@ -230,7 +230,7 @@ namespace platform
 
       print_line("platform::system::~system() (end)");
 
-      //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
+      //::acme::get()->m_pmanualresethappeningReadyToExit->SetEvent();
       on_system_before_destroy();
 
 
@@ -671,7 +671,7 @@ namespace platform
 
          run();
 
-         ////         m_peventInitialization->SetEvent();
+         ////         m_phappeningInitialization->SetEvent();
 
          //while (task_get_run())
          //{
@@ -1350,11 +1350,11 @@ namespace platform
       if (pacmewindowing)
       {
 
-         m_pmanualreseteventReadyToExit = __allocate manual_reset_happening();
-         m_pmanualreseteventMainLoopEnd = __allocate manual_reset_happening();
+         m_pmanualresethappeningReadyToExit = __allocate manual_reset_happening();
+         m_pmanualresethappeningMainLoopEnd = __allocate manual_reset_happening();
 
-         auto pReadyToExit = m_pmanualreseteventReadyToExit;
-         auto pMainLoopEnd = m_pmanualreseteventMainLoopEnd;
+         auto pReadyToExit = m_pmanualresethappeningReadyToExit;
+         auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
 
          if (!m_procedureTaskEnded)
          {

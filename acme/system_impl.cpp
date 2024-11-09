@@ -213,7 +213,7 @@ namespace platform
 
       print_line("platform::system::~system() (end)");
 
-      //::system()->m_pmanualreseteventReadyToExit->SetEvent();
+      //::system()->m_pmanualresethappeningReadyToExit->SetEvent();
 
    }
 
@@ -616,7 +616,7 @@ namespace platform
 
             __task_init();
 
-         //         m_peventInitialization->SetEvent();
+         //         m_phappeningInitialization->SetEvent();
 
          while (task_get_run())
          {
@@ -1186,8 +1186,8 @@ namespace platform
       if (pacmewindowing)
       {
 
-         ::system()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_happening();
-         ::system()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningReadyToExit = __raw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningMainLoopEnd = __raw_new manual_reset_happening();
 
          if (!m_procedureTaskEnded)
          {
@@ -1195,17 +1195,17 @@ namespace platform
             m_procedureTaskEnded = [pacmewindowing]()
                {
 
-                  ::system()->m_pmanualreseteventReadyToExit->set_event();
+                  ::system()->m_pmanualresethappeningReadyToExit->set_event();
 
                };
 
             m_pacmewindowing->windowing_post_quit();
 
-            ::system()->m_pmanualreseteventMainLoopEnd->_wait(2.5_min);
+            ::system()->m_pmanualresethappeningMainLoopEnd->_wait(2.5_min);
 
-            delete ::system()->m_pmanualreseteventMainLoopEnd;
+            delete ::system()->m_pmanualresethappeningMainLoopEnd;
 
-            ::system()->m_pmanualreseteventMainLoopEnd = nullptr;
+            ::system()->m_pmanualresethappeningMainLoopEnd = nullptr;
 
          }
 

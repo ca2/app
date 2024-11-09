@@ -23,7 +23,7 @@ namespace graphics
       ::int_point                   m_point;
       ::int_size                    m_size;
       ::particle_pointer      m_pparticleData;
-      manual_reset_happening            m_manualresetevent;
+      manual_reset_happening            m_manualresethappening;
       ::int_size                    m_sizeInternal;
       int                         m_iScan;
 

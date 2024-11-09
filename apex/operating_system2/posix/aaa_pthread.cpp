@@ -154,7 +154,7 @@
 ////         if (pmq.is_set())
 ////         {
 ////
-////            if (pmq->m_eventNewMessage.lock(::duration(0)))
+////            if (pmq->m_happeningNewMessage.lock(::duration(0)))
 ////            {
 ////
 ////               return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
@@ -478,7 +478,7 @@
 ////
 ////   pmq->m_messagea.add(msg);
 ////
-////   pmq->m_eventNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_event();
 ////
 ////   return true;
 ////

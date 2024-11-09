@@ -64,7 +64,7 @@ public:
    };
       
 
-   enum enum_event
+   enum enum_happening
    {
 
       e_event_start = 1,
@@ -97,7 +97,7 @@ public:
    enum_state GetState();
 
    virtual void relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage);
-   virtual void OnSelEvent(xfplayer_impact_line & viewline, enum_event eselevent);
+   virtual void OnSelEvent(xfplayer_impact_line & viewline, enum_happening eselevent);
    bool SetSelBefore(xfplayer_impact_line & viewline);
    bool SetSelAfter(xfplayer_impact_line & viewline);
    void NormalizeSel(xfplayer_impact_line & viewline);

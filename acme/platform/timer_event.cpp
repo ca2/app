@@ -20,7 +20,7 @@ timer_event::~timer_event()
 
    start_timer_task(timeWait,false);
 
-   return m_manualresetevent.wait();
+   return m_manualresethappening.wait();
 
 }
 
@@ -28,7 +28,7 @@ timer_event::~timer_event()
 void timer_event::on_timer()
 {
 
-   m_manualresetevent.SetEvent();
+   m_manualresethappening.SetEvent();
 
    //return true;
 

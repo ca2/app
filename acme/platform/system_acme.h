@@ -60,8 +60,8 @@ namespace platform
       bool                                            m_bGraphicsAndWindowingSystemInitialized;
 
 
-      ::pointer < manual_reset_happening >                m_pmanualreseteventReadyToExit;
-      ::pointer < manual_reset_happening >                m_pmanualreseteventMainLoopEnd;
+      ::pointer < manual_reset_happening >                m_pmanualresethappeningReadyToExit;
+      ::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
 
       ::int_sz *                                      m_pintstringLanguageResourceMap;
       int                                             m_iMatterFromHttpCache;

@@ -24,7 +24,7 @@ namespace write_text
       m_iUpdateId = -1;
       m_bUpdating = true;
 
-      m_eventReady.ResetEvent();
+      m_happeningReady.ResetEvent();
 
    }
 
@@ -287,13 +287,13 @@ namespace write_text
    void font_enumeration::enumerate_fonts()
    {
 
-      m_eventReady.ResetEvent();
+      m_happeningReady.ResetEvent();
 
       on_enumerate_fonts();
 
       sort_fonts();
 
-      m_eventReady.SetEvent();
+      m_happeningReady.SetEvent();
 
       //return ::success;
 

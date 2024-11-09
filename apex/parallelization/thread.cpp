@@ -389,10 +389,10 @@ void thread::term_task()
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_peventaWait)
+      if (m_phappeningaWait)
       {
 
-         for (auto& pmanualresetevent: *m_peventaWait)
+         for (auto& pmanualresetevent: *m_phappeningaWait)
          {
 
             try
@@ -1701,13 +1701,13 @@ void thread::destroy()
 
    m_messagea.clear();
 
-   m_peventaWait.release();
+   m_phappeningaWait.release();
 
    m_emessageaGetLast.clear();
 
    m_pobjectScript.release();
 
-   m_pevent1.release();
+   m_phappening1.release();
 
    m_ptaskpool.release();
 
@@ -1717,11 +1717,11 @@ void thread::destroy()
 
    m_puserprimitiveMain.release();
 
-   m_peventReady.release();
+   m_phappeningReady.release();
 
-   m_peventSync.release();
+   m_phappeningSync.release();
 
-   m_peventStarted.release();
+   m_phappeningStarted.release();
 
    m_pmutexThreadUiPtra.release();
 
@@ -1971,12 +1971,12 @@ void thread::main()
          //if (::succeeded(estatusStart))
          //{
 
-         if (m_peventStarted.is_set())
+         if (m_phappeningStarted.is_set())
          {
 
-            m_peventStarted->set_event();
+            m_phappeningStarted->set_event();
 
-            m_peventStarted.release();
+            m_phappeningStarted.release();
 
          }
 
@@ -2010,10 +2010,10 @@ void thread::main()
          try
          {
 
-            if (m_peventReady)
+            if (m_phappeningReady)
             {
 
-               m_peventReady->SetEvent();
+               m_phappeningReady->SetEvent();
 
             }
 
@@ -2593,10 +2593,10 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
    //
    //#endif
 
-   //   if (m_peventInitialization)
+   //   if (m_phappeningInitialization)
    //   {
    //
-   //      m_peventInitialization->wait();
+   //      m_phappeningInitialization->wait();
    //
    //      ::e_status estatus = get_result_status();
    //
@@ -3254,10 +3254,10 @@ void thread::__task_init()
    //
    //   on_thread_init();
    //
-   //   if (m_peventInitialization)
+   //   if (m_phappeningInitialization)
    //   {
    //
-   //      m_peventInitialization->set_event();
+   //      m_phappeningInitialization->set_event();
    //
    //   }
 
@@ -4818,9 +4818,9 @@ void thread::add_waiting_event(event* pevent)
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   __defer_construct_new(m_peventaWait);
+   __defer_construct_new(m_phappeningaWait);
 
-   m_peventaWait->add(pevent);
+   m_phappeningaWait->add(pevent);
 
 }
 
@@ -4830,10 +4830,10 @@ void thread::erase_waiting_event(event* pevent)
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   if (m_peventaWait)
+   if (m_phappeningaWait)
    {
 
-      m_peventaWait->erase(pevent);
+      m_phappeningaWait->erase(pevent);
 
    }
 

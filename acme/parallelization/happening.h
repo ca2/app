@@ -62,10 +62,10 @@ public:
 
    //virtual hsynchronization hsynchronization() const;
 
-   bool SetHappening();
-   bool set_happening() {return SetHappening(); }
+   //bool SetHappening();
+   bool set_happening();
    //bool pulse_happening();
-   bool ResetHappening();
+   bool reset_happappening();
 
    /**
    * \brief	Session independent waitables (windows version)

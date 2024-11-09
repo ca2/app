@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tools.h"
 #include "acme/operating_system/process.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/platform/node.h"
 
 

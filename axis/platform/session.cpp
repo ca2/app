@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "session.h"
 #include "acme/constant/id.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/application.h"

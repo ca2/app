@@ -7,7 +7,7 @@
 
 
 #include "acme/user/micro/main_window.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 namespace micro

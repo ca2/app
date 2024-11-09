@@ -5,7 +5,7 @@
 
 
 //#include "acme/prototype/prototype/pointer.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 namespace parallelization

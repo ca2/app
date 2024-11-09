@@ -5,7 +5,7 @@
 #include "window.h"
 #include "acme/nano/nano.h"
 #include "acme/windowing/windowing.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 

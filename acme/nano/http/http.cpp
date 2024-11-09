@@ -9,7 +9,7 @@
 #include "http.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_system.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/prototype/factory.h"
 
 

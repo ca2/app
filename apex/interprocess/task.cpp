@@ -4,7 +4,7 @@
 #include "call.h"
 #include "caller.h"
 #include "communication.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 namespace interprocess

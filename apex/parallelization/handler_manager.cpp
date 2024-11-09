@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "handler_manager.h"
 #include "acme/parallelization/asynchronous.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 

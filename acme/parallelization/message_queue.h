@@ -8,7 +8,7 @@ using message_array = array < MESSAGE >;
 
 
 //#include "acme/prototype/prototype/matter.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 class CLASS_DECL_ACME message_queue :

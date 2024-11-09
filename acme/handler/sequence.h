@@ -168,7 +168,7 @@ public:
 //};
 
 //#include "acme/parallelization/synchronization.h"
-//#include "acme/parallelization/manual_reset_event.h"
+//#include "acme/parallelization/manual_reset_happening.h"
 //#include "acme/parallelization/critical_section.h"
 //#include "acme/user/user/conversation.h"
 //#include "acme/platform/application.h"
@@ -593,7 +593,7 @@ public:
 //};
 
 //#include "acme/parallelization/synchronization.h"
-//#include "acme/parallelization/manual_reset_event.h"
+//#include "acme/parallelization/manual_reset_happening.h"
 //#include "acme/parallelization/critical_section.h"
 //#include "acme/user/user/conversation.h"
 //#include "acme/platform/application.h"

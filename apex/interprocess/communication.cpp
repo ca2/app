@@ -11,7 +11,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "apex/constant/method.h"

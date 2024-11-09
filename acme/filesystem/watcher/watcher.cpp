@@ -20,7 +20,7 @@
 #include "listener.h"
 #include "watcher.h"
 #include "watch.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 

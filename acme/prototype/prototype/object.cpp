@@ -12,7 +12,7 @@
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/text/text.h"
 #include "acme/prototype/collection/atom_map.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/queue.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
 #include "acme/parallelization/task.h"

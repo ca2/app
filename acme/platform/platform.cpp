@@ -8,7 +8,7 @@
 #include "acme/memory/counter.h"
 #include "acme/nano/nano.h"
 #include "acme/operating_system/dynamic_library.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/application.h"

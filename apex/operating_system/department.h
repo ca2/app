@@ -3,7 +3,7 @@
 
 #include "acme/platform/department.h"
 #include "acme/operating_system/exit_status.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "apex/parallelization/thread.h"
 
 

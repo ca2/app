@@ -7,7 +7,7 @@
 //
 
 #include "framework.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/prototype/memory.h"
 #undef DEBUG
 #if defined(MACOS)

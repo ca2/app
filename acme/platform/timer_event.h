@@ -2,7 +2,7 @@
 
 
 #include "timer_task.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 class CLASS_DECL_ACME timer_event:

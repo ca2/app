@@ -6,7 +6,7 @@
 //#include "acme/prototype/prototype/payload.h"
 #include "acme/user/user/e_window_flag.h"
 
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 #ifdef UNIVERSAL_WINDOWS

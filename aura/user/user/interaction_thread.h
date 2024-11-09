@@ -2,7 +2,7 @@
 
 
 #include "apex/parallelization/thread.h"
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 #ifdef WINDOWS_DESKTOP

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/geometry2d/point.h"
 #include "acme/prototype/geometry2d/size.h"
 

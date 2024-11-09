@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/nanosecond_timer.h"
 #include "acme/prototype/time/frequency.h"

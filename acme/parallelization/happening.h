@@ -64,7 +64,7 @@ public:
 
    bool SetHappening();
    bool set_happening() {return SetHappening(); }
-   //bool PulseEvent();
+   //bool pulse_happening();
    bool ResetHappening();
 
    /**

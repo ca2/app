@@ -53,7 +53,7 @@ void ::interprocess::task::do_task(const string& strObject, const string& strMem
 
       m_payload = false;
 
-      m_pevReady->set_event();
+      m_pevReady->set_happening();
 
       return;
 
@@ -64,7 +64,7 @@ void ::interprocess::task::do_task(const string& strObject, const string& strMem
 
       m_payload = true;
 
-      m_pevReady->set_event();
+      m_pevReady->set_happening();
 
    }
 

@@ -574,7 +574,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          pinterprocesstask->m_payload = propertyset["protocol:reply"];
 
-         pinterprocesstask->m_pevReady->set_event();
+         pinterprocesstask->m_pevReady->set_happening();
 
          return true;
 

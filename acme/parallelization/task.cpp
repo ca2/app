@@ -944,7 +944,7 @@ void task::stop_task()
    ::procedure procedure = [&ev]()
       {
 
-         ev.set_event();
+         ev.set_happening();
 
       };
 
@@ -990,7 +990,7 @@ void task::destroy()
    if (m_phappeningFinished2)
    {
 
-      m_phappeningFinished2->set_event();
+      m_phappeningFinished2->set_happening();
 
    }
 
@@ -1050,7 +1050,7 @@ void task::__task_init()
    if (m_phappeningInitialization)
    {
 
-      m_phappeningInitialization->set_event();
+      m_phappeningInitialization->set_happening();
 
    }
 
@@ -1317,7 +1317,7 @@ void task::_post(const ::procedure & procedure)
 
       m_procedurea.add(procedure);
 
-      new_procedure_posted_event()->set_event();
+      new_procedure_posted_event()->set_happening();
 
       __on_update_handler_happening_unlocked();
 
@@ -1382,7 +1382,7 @@ void task::_send(const ::procedure & procedure)
 
          procedure();
 
-         pevent->set_event();
+         pevent->set_happening();
 
          });
 
@@ -1522,7 +1522,7 @@ void task::set_happened(e_happening ehappening)
 
    m_ehappeninga.add(ehappening);
 
-   new_happening()->set_event();
+   new_happening()->set_happening();
 
    __on_update_handler_happening_unlocked();
 

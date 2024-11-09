@@ -477,12 +477,12 @@
 ////   catch(...)
 ////   {
 ////      // Clean up if thread creation fails.
-////      threadHandle->m_phappening->set_event();
+////      threadHandle->m_phappening->set_happening();
 ////      delete threadHandle;
 ////
 ////      if(info.suspensionEvent)
 ////      {
-////         info.suspensionEvent->set_event();
+////         info.suspensionEvent->set_happening();
 ////         delete info.suspensionEvent;
 ////      }
 ////
@@ -968,7 +968,7 @@
 ////   TlsShutdown();
 ////
 ////   // Signal that the thread has completed.
-////   currentThread->m_phappening->set_event();
+////   currentThread->m_phappening->set_happening();
 ////
 ////   currentThread->release();
 ////
@@ -1170,7 +1170,7 @@
 ////
 ////   //   void * p = pmq->ma[pmq->ma.get_count() -1].hwnd;
 ////
-////   pmq->m_happeningNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_happening();
 ////
 ////   return true;
 ////
@@ -1207,7 +1207,7 @@
 ////
 ////   pmq->ma.add(msg);
 ////
-////   pmq->m_happeningNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_happening();
 ////
 ////   return true;
 ////

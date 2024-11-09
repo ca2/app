@@ -1195,7 +1195,7 @@ namespace platform
             m_procedureTaskEnded = [pacmewindowing]()
                {
 
-                  ::system()->m_pmanualresethappeningReadyToExit->set_event();
+                  ::system()->m_pmanualresethappeningReadyToExit->set_happening();
 
                };
 
@@ -3512,7 +3512,7 @@ namespace platform
    //
    //                        procedure();
    //
-   //                        pmanualresethappening->set_event();
+   //                        pmanualresethappening->set_happening();
    //
    //      }
    //

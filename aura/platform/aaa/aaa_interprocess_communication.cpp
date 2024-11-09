@@ -48,7 +48,7 @@ namespace aura
 
          m_var = false;
 
-         m_pevReady->set_event();
+         m_pevReady->set_happening();
 
       }
       else if (strMember.case_insensitive_begins("reply."))
@@ -56,7 +56,7 @@ namespace aura
 
          m_var = true;
 
-         m_pevReady->set_event();
+         m_pevReady->set_happening();
 
       }
 
@@ -731,7 +731,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
             pobjectTask->m_var = payloada[1];
 
-            pobjectTask->m_pevReady->set_event();
+            pobjectTask->m_pevReady->set_happening();
 
          }
          else if(strMember == "on_additional_local_instance")

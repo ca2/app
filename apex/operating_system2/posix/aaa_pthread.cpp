@@ -478,7 +478,7 @@
 ////
 ////   pmq->m_messagea.add(msg);
 ////
-////   pmq->m_happeningNewMessage.set_event();
+////   pmq->m_happeningNewMessage.set_happening();
 ////
 ////   return true;
 ////

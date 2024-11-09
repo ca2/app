@@ -912,7 +912,7 @@ namespace platform
    //             m_procedureTaskEnded = [pacmewindowing]()
    //                {
    //
-   //                   ::acme::get()->m_pmanualresethappeningReadyToExit->set_event();
+   //                   ::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
    //
    //                };
    //
@@ -3209,7 +3209,7 @@ namespace platform
    //    //
    //    //                        procedure();
    //    //
-   //    //                        pmanualresethappening->set_event();
+   //    //                        pmanualresethappening->set_happening();
    //    //
    //    //      }
    //    //

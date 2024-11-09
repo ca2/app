@@ -798,7 +798,7 @@ namespace interprocess
 
             pinterprocesstask->m_payload = propertyset["protocol:reply"];
 
-            pinterprocesstask->m_pevReady->set_event();
+            pinterprocesstask->m_pevReady->set_happening();
 
             return true;
 

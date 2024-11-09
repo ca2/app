@@ -45,7 +45,7 @@ public:
 
          m_status = status;
 
-         m_happening.set_event();
+         m_happening.set_happening();
 
       });
 
@@ -131,7 +131,7 @@ public:
 
          m_status = status;
 
-         m_happening.set_event();
+         m_happening.set_happening();
 
       });
 
@@ -198,7 +198,7 @@ public:
 
          m_status = status;
 
-         m_happening.set_event();
+         m_happening.set_happening();
 
       });
 
@@ -207,7 +207,7 @@ public:
 
          m_status = m_action->Status;
 
-         m_happening.set_event();
+         m_happening.set_happening();
 
       }
 

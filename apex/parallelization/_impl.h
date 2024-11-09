@@ -175,7 +175,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_bInitialized = true;
 //
-//      m_evReady.set_event();
+//      m_evReady.set_happening();
 //
 //   }
 //
@@ -184,7 +184,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_strErrorMessage = strErrorMessage;
 //
-//      m_evReady.set_event();
+//      m_evReady.set_happening();
 //
 //   }
 //
@@ -443,7 +443,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_bInitialized = true;
 //
-//      m_evReady.set_event();
+//      m_evReady.set_happening();
 //
 //   }
 //
@@ -452,7 +452,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_strErrorMessage = strErrorMessage;
 //
-//      m_evReady.set_event();
+//      m_evReady.set_happening();
 //
 //   }
 //

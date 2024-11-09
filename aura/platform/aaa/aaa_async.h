@@ -292,7 +292,7 @@ namespace async
       event m_happening;
       bool set(T r )
       {
-         m_happening.set_event();
+         m_happening.set_happening();
          return true;
       }
    };
@@ -304,7 +304,7 @@ namespace async
       event m_happening;
       bool set()
       {
-         m_happening.set_event();
+         m_happening.set_happening();
          return true;
       }
    };

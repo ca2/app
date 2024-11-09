@@ -69,7 +69,7 @@ namespace parallelization
 
             procedure();
 
-            pevent->set_event();
+            pevent->set_happening();
 
          });
 

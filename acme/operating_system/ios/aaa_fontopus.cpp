@@ -759,7 +759,7 @@ namespace account
          }
          else
          {
-            m_happeningReady.set_event();
+            m_happeningReady.set_happening();
          }
 
          return true;
@@ -767,7 +767,7 @@ namespace account
       }
       else if (!strcmp(pszId, "escape"))
       {
-         m_happeningReady.set_event();
+         m_happeningReady.set_happening();
       }
 
       return false;

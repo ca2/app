@@ -397,7 +397,7 @@ int g_iDebug_post_thread_msg_time;
 //
 //   pmq->m_messagea.add(msg);
 //
-//   pmq->m_happeningNewMessage.set_event();
+//   pmq->m_happeningNewMessage.set_happening();
 //
 //   return true;
 //

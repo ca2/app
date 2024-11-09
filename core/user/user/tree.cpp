@@ -825,7 +825,7 @@ namespace user
 
             m_treeitemaExpand.add_unique(pitem);
 
-            m_evExpand.set_event();
+            m_evExpand.set_happening();
 
          }
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
@@ -837,7 +837,7 @@ namespace user
 
             m_treeitemaOpen.add_unique(pitem);
 
-            m_evOpen.set_event();
+            m_evOpen.set_happening();
 
          }
 

@@ -103,7 +103,7 @@ void message_queue::post_message(const MESSAGE & message)
       
       //printf("test123");
    }
-   m_happeningNewMessage.set_event();
+   m_happeningNewMessage.set_happening();
 
    //return true;
 
@@ -117,7 +117,7 @@ void message_queue::kick_idle()
 
    //m_bKickIdle = true;
 
-   //m_happeningNewMessage.set_event();
+   //m_happeningNewMessage.set_happening();
 
    post_message(nullptr, e_message_kick_idle, {}, 0);
 

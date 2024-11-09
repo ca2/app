@@ -11982,7 +11982,7 @@ bMove = false;
    //         //if (::is_set(m_puserthread))
    //         //{
    //
-   //         //   m_puserthread->m_evApplyVisual.set_event();
+   //         //   m_puserthread->m_evApplyVisual.set_happening();
    //
    //         //}
    //

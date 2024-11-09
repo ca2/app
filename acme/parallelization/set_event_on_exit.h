@@ -15,7 +15,7 @@ public:
    
    
    set_event_on_exit(::event & ev) { m_phappening = &ev; }
-   ~set_event_on_exit() { if(m_phappening != nullptr) m_phappening->set_event(); }
+   ~set_event_on_exit() { if(m_phappening != nullptr) m_phappening->set_happening(); }
    
    
 };

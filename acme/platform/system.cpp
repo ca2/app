@@ -1362,7 +1362,7 @@ namespace platform
             m_procedureTaskEnded = [pReadyToExit]()
             {
 
-               pReadyToExit->set_event();
+               pReadyToExit->set_happening();
 
             };
 
@@ -3821,7 +3821,7 @@ particle* system::matter_mutex()
    //
    //                        procedure();
    //
-   //                        pmanualresethappening->set_event();
+   //                        pmanualresethappening->set_happening();
    //
    //      }
    //

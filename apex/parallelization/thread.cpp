@@ -398,7 +398,7 @@ void thread::term_task()
             try
             {
 
-               pmanualresethappening->set_event();
+               pmanualresethappening->set_happening();
 
             }
             catch (...)
@@ -1974,7 +1974,7 @@ void thread::main()
          if (m_phappeningStarted.is_set())
          {
 
-            m_phappeningStarted->set_event();
+            m_phappeningStarted->set_happening();
 
             m_phappeningStarted.release();
 
@@ -3257,7 +3257,7 @@ void thread::__task_init()
    //   if (m_phappeningInitialization)
    //   {
    //
-   //      m_phappeningInitialization->set_event();
+   //      m_phappeningInitialization->set_happening();
    //
    //   }
 
@@ -4319,7 +4319,7 @@ bool thread::process_message()
 
             process_message();
 
-            pmessage->m_ev.set_event();
+            pmessage->m_ev.set_happening();
 
          }
          else

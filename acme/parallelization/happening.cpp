@@ -103,7 +103,7 @@ void clock_getrealtime(struct timespec * pts)
 
 int g_iEventSerialId = 1;
 
-event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
+happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
 
    {
@@ -116,7 +116,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #ifdef EVENT_EXTENDED_LOG
 
-   printf_line("event(%d)::event", m_iEventSerialId);
+   printf_line("happening(%d)::happening", m_iEventSerialId);
 
 #endif
 
@@ -235,7 +235,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("event(%d)::event pthread_mutex_init %d %llX", m_iEventSerialId, rcMutex, (::uptr) m_pmutex);
+      printf_line("happening(%d)::happening pthread_mutex_init %d %llX", m_iEventSerialId, rcMutex, (::uptr) m_pmutex);
 
 #endif
 
@@ -243,7 +243,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("event(%d)::event pthread_cond_init %d %llX", m_iEventSerialId, rcCond, (::uptr) m_pcond);
+      printf_line("happening(%d)::happening pthread_cond_init %d %llX", m_iEventSerialId, rcCond, (::uptr) m_pcond);
 
 #endif
 
@@ -268,7 +268,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
       if(scopedstrName.has_character())
       {
 
-         string strPath = "/var/tmp/ca2/ftok/event/" + string(scopedstrName);
+         string strPath = "/var/tmp/ca2/ftok/happening/" + string(scopedstrName);
 
          m_sem = semget(ftok(strPath.c_str(), 0), 1, 0666 | IPC_CREAT);
 
@@ -306,7 +306,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 }
 
 
-event::~event()
+happening::~happening()
 {
 
 // #if defined(LINUX)
@@ -364,11 +364,11 @@ event::~event()
    if(m_bManualEvent)
    {
 
-      //try { throw "event being destroyed"; } catch(...){}
+      //try { throw "happening being destroyed"; } catch(...){}
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("event(%d)::~event Going to destroy a manual reset event", m_iEventSerialId);
+      printf_line("happening(%d)::~happening Going to destroy a manual reset happening", m_iEventSerialId);
 
 #endif
 
@@ -395,7 +395,7 @@ event::~event()
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::~event pthread_cond_destroy %d", m_iEventSerialId, rc5);
+         printf_line("happening(%d)::~happening pthread_cond_destroy %d", m_iEventSerialId, rc5);
 
 #endif
 
@@ -409,7 +409,7 @@ event::~event()
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::~event pthread_mutex_destroy %d", m_iEventSerialId, rc7);
+         printf_line("happening(%d)::~happening pthread_mutex_destroy %d", m_iEventSerialId, rc7);
 
 #endif
 
@@ -425,7 +425,7 @@ event::~event()
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::~event pthread_cond_destroy (2) %d", m_iEventSerialId, rc5);
+         printf_line("happening(%d)::~happening pthread_cond_destroy (2) %d", m_iEventSerialId, rc5);
 
 #endif
 
@@ -441,7 +441,7 @@ event::~event()
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::~event pthread_mutex_destroy (2) %d", m_iEventSerialId, rc7);
+         printf_line("happening(%d)::~happening pthread_mutex_destroy (2) %d", m_iEventSerialId, rc7);
 
 #endif
 
@@ -457,7 +457,7 @@ event::~event()
 #ifdef WINDOWS
 
 
-hsynchronization event::get_synchronization_handle()
+hsynchronization happening::get_synchronization_handle()
 {
 
    return m_handle;
@@ -469,7 +469,7 @@ hsynchronization event::get_synchronization_handle()
 
 
 
-hsynchronization event::get_synchronization_handle()
+hsynchronization happening::get_synchronization_handle()
 {
 
    return this;
@@ -481,7 +481,7 @@ hsynchronization event::get_synchronization_handle()
 #endif
 
 
-bool event::set_happening()
+bool happening::set_happening()
 {
 
 #ifdef WINDOWS
@@ -568,7 +568,7 @@ bool event::set_happening()
 }
 
 
-//bool event::pulse_happening()
+//bool happening::pulse_happening()
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -594,7 +594,7 @@ bool event::set_happening()
 
 
 
-bool event::reset_happening()
+bool happening::reset_happening()
 {
 
 #ifdef WINDOWS
@@ -605,7 +605,7 @@ bool event::reset_happening()
       if(m_handle == NULL)
       {
 
-         informationf("error reset event (1)");
+         informationf("error reset happening (1)");
 
          return false;
 
@@ -617,7 +617,7 @@ bool event::reset_happening()
    catch(...)
    {
 
-      informationf("error reset event (2)");
+      informationf("error reset happening (2)");
 
    }
 
@@ -649,7 +649,7 @@ bool event::reset_happening()
 }
 
 
-void event::_wait ()
+void happening::_wait ()
 {
 
    //throw ::exception(todo("thread"));
@@ -795,7 +795,7 @@ void event::_wait ()
 }
 
 
-bool event::_wait (const class time & timeWait)
+bool happening::_wait (const class time & timeWait)
 {
 
    ::e_status estatus;
@@ -889,7 +889,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-      printf_line("event(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%llX,m=%llX))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
+      printf_line("happening(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%llX,m=%llX))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
 
 #endif
 
@@ -898,7 +898,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(infinite)", m_iEventSerialId);
+         printf_line("happening(%d)::_wait(infinite)", m_iEventSerialId);
 
 #endif
 
@@ -906,7 +906,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(infinite) mutex locked", m_iEventSerialId);
+         printf_line("happening(%d)::_wait(infinite) mutex locked", m_iEventSerialId);
 
 #endif
 
@@ -914,7 +914,7 @@ bool event::_wait (const class time & timeWait)
 
          //clock_gettime(CLOCK_REALTIME, &abstime);
 
-         //try { throw "event::_wait(FINite) mutex locked 2"; } catch(...){}
+         //try { throw "happening::_wait(FINite) mutex locked 2"; } catch(...){}
 
          while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
          {
@@ -924,7 +924,7 @@ bool event::_wait (const class time & timeWait)
             if(error != 0)
             {
 
-               printf_line("event(%d)::_wait(infinite) pthread_cond_wait returned error", m_iEventSerialId);
+               printf_line("happening(%d)::_wait(infinite) pthread_cond_wait returned error", m_iEventSerialId);
 
                break;
 
@@ -934,7 +934,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(infinite) about to unlock mutex", m_iEventSerialId);
+         printf_line("happening(%d)::_wait(infinite) about to unlock mutex", m_iEventSerialId);
 
 #endif
 
@@ -959,7 +959,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(FINite)", m_iEventSerialId);
+         printf_line("happening(%d)::_wait(FINite)", m_iEventSerialId);
 
 #endif
 
@@ -967,7 +967,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(FINite) pthread_mutex_lock returned %d", m_iEventSerialId, iLock);
+         printf_line("happening(%d)::_wait(FINite) pthread_mutex_lock returned %d", m_iEventSerialId, iLock);
 
 #endif
 
@@ -987,7 +987,7 @@ bool event::_wait (const class time & timeWait)
 
          int error = 0;
 
-         //try { throw "event::_wait(FINite) mutex locked 2"; } catch(...){}
+         //try { throw "happening::_wait(FINite) mutex locked 2"; } catch(...){}
 
          while(true)
          {
@@ -995,7 +995,7 @@ bool event::_wait (const class time & timeWait)
             if(has_finishing_flag())
             {
 
-               printf_line("event(%d)::_wait(FINite) has finishing flag", m_iEventSerialId);
+               printf_line("happening(%d)::_wait(FINite) has finishing flag", m_iEventSerialId);
 
                break;
 
@@ -1006,7 +1006,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-               printf_line("event(%d)::_wait(FINite) m_bSignaled", m_iEventSerialId);
+               printf_line("happening(%d)::_wait(FINite) m_bSignaled", m_iEventSerialId);
 
 #endif
 
@@ -1019,7 +1019,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-               printf_line("event(%d)::_wait(FINite) iSignal != m_iSignalId", m_iEventSerialId);
+               printf_line("happening(%d)::_wait(FINite) iSignal != m_iSignalId", m_iEventSerialId);
 
 #endif
 
@@ -1036,7 +1036,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-               printf_line("event(%d)::_wait(FINite) timespecNow > timespecFinal", m_iEventSerialId);
+               printf_line("happening(%d)::_wait(FINite) timespecNow > timespecFinal", m_iEventSerialId);
 
 #endif
 
@@ -1051,7 +1051,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-               printf_line("event(%d)::_wait(FINite) pthread_cond_timedwait returned(%d, %s)", m_iEventSerialId, error, strerror(error));
+               printf_line("happening(%d)::_wait(FINite) pthread_cond_timedwait returned(%d, %s)", m_iEventSerialId, error, strerror(error));
 
 #endif
 
@@ -1061,7 +1061,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-            printf_line("event(%d)::_wait(FINite) pthread_cond_timedwait returned 0");
+            printf_line("happening(%d)::_wait(FINite) pthread_cond_timedwait returned 0");
 
 #endif
 
@@ -1069,7 +1069,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(FINite) going to unlock mutex", m_iEventSerialId);
+         printf_line("happening(%d)::_wait(FINite) going to unlock mutex", m_iEventSerialId);
 
 #endif
 
@@ -1077,7 +1077,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef EVENT_EXTENDED_LOG
 
-         printf_line("event(%d)::_wait(FINite) pthread_mutex_unlock returned(%d)", m_iEventSerialId, iUnlock);
+         printf_line("happening(%d)::_wait(FINite) pthread_mutex_unlock returned(%d)", m_iEventSerialId, iUnlock);
 
 #endif
 
@@ -1185,17 +1185,17 @@ bool event::_wait (const class time & timeWait)
 //      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an event has
+//      Description:    Notifies one or more waiting threads that an happening has
 //                      occurred.
 //
 //*****************************************************************************
 //*****************************************************************************
 //
 //      Name:           Signaled
-//      Description:    Determines whether the event is currently signaled.
+//      Description:    Determines whether the happening is currently signaled.
 //
 //*****************************************************************************
-bool event::is_signaled() const
+bool happening::is_signaled() const
 {
 
 #ifdef WINDOWS
@@ -1213,7 +1213,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *)this)->wait({ zero_t{} }).ok();
+      return ((happening *)this)->wait({ zero_t{} }).ok();
 
    }
 
@@ -1263,12 +1263,12 @@ bool event::is_signaled() const
 //      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an event has
+//      Description:    Notifies one or more waiting threads that an happening has
 //                      occurred.
 //
 //end**************************************************************************
 
-//bool event::lock(const class time & timeWait)
+//bool happening::lock(const class time & timeWait)
 //{
 //
 //   return wait(timeTimeout).succeeded();
@@ -1381,7 +1381,7 @@ bool event::is_signaled() const
 //}
 
 
-void event::unlock()
+void happening::unlock()
 {
 
    //return true;
@@ -1389,7 +1389,7 @@ void event::unlock()
 }
 
 
-//hsynchronization event::hsynchronization() const
+//hsynchronization happening::hsynchronization() const
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -1398,7 +1398,7 @@ void event::unlock()
 //
 //#else
 //
-//   return (event *) this;
+//   return (happening *) this;
 //
 //#endif
 //

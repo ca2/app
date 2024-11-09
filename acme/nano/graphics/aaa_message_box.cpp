@@ -557,20 +557,20 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    
    //auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresetevent = __allocate manual_reset_happening();
+//   auto pmanualresethappening = __allocate manual_reset_happening();
 //
 //   atom atomResult;
 //
-//   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+//   psequence->then([ pmanualresethappening, &atomResult ](auto psequence)
 //   {
 //
 //      atomResult = psequence->m_atomResult;
 //
-//      pmanualresetevent->SetEvent();
+//      pmanualresethappening->set_happening();
 //
 //   });
 //
-//   pmanualresetevent->wait();
+//   pmanualresethappening->wait();
 //
 ////   auto pmessagebox = pparticle->__create_new < message_box >();
 ////
@@ -585,7 +585,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 ////
 ////      idResult = pinterchange->m_atomResult;
 ////
-////      event.SetEvent();
+////      event.set_happening();
 ////
 ////   };
 ////
@@ -657,20 +657,20 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
    
    auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresetevent = __allocate manual_reset_happening();
+//   auto pmanualresethappening = __allocate manual_reset_happening();
 //
 //   atom atomResult;
 //
-//   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+//   psequence->then([ pmanualresethappening, &atomResult ](auto psequence)
 //   {
 //
 //      atomResult = psequence->m_atomResult;
 //
-//      pmanualresetevent->SetEvent();
+//      pmanualresethappening->set_happening();
 //
 //   });
 //
-//   pmanualresetevent->wait();
+//   pmanualresethappening->wait();
 //
 ////   auto pmessagebox = pparticle->__create_new < message_box >();
 ////
@@ -685,7 +685,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////
 ////      idResult = pinterchange->m_atomResult;
 ////
-////      event.SetEvent();
+////      event.set_happening();
 ////
 ////   };
 ////

@@ -473,7 +473,7 @@ namespace user
             else
             {
 
-               m_pevNewImageKey->ResetEvent();
+               m_pevNewImageKey->reset_happening();
 
             }
 
@@ -735,7 +735,7 @@ namespace user
 
          m_imagekeySchedule.add(imagekey);
 
-         m_pevNewImageKey->SetEvent();
+         m_pevNewImageKey->set_happening();
 
       }
 

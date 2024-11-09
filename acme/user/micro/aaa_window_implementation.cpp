@@ -290,12 +290,12 @@
 //
 //    message_loop();
 //
-//    auto pmanualresetevent = __allocate manual_reset_happening();
+//    auto pmanualresethappening = __allocate manual_reset_happening();
 //
-//    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
+//    m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
 //    {
 //
-//       pmanualresetevent->SetEvent();
+//       pmanualresethappening->set_happening();
 //
 //    });
 //
@@ -304,7 +304,7 @@
 //    if(pinterface->m_payloadResult.is_new())
 //    {
 //
-//       pmanualresetevent->wait();
+//       pmanualresethappening->wait();
 //
 //    }
 //
@@ -321,7 +321,7 @@
 //    //
 //    //      idResult = pwindow->m_atomResult;
 //    //
-//    //      event.SetEvent();
+//    //      event.set_happening();
 //    //
 //    //   };
 //    //

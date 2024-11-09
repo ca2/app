@@ -178,7 +178,7 @@ namespace user
 
                }
 
-               m_evExpand.ResetEvent();
+               m_evExpand.reset_happening();
 
             }
 
@@ -213,7 +213,7 @@ namespace user
                else
                {
 
-                  m_evOpen.ResetEvent();
+                  m_evOpen.reset_happening();
 
                }
 

@@ -62,7 +62,7 @@ namespace micro
    void dialog::on_dialog_result_set()
    {
 
-      m_manualresethappeningFinished.SetEvent();
+      m_manualresethappeningFinished.set_happening();
 
       hide();
 

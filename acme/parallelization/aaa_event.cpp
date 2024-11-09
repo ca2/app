@@ -480,7 +480,7 @@ hsynchronization event::get_synchronization_handle()
 #endif
 
 
-bool event::SetEvent()
+bool event::set_happening()
 {
 
 #ifdef WINDOWS
@@ -593,7 +593,7 @@ bool event::SetEvent()
 
 
 
-bool event::ResetEvent()
+bool event::reset_happening()
 {
 
 #ifdef WINDOWS

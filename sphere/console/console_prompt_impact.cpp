@@ -233,7 +233,7 @@ namespace console
 
                m_iNewChar = str[0];
 
-               m_evNewChar.SetEvent();
+               m_evNewChar.set_happening();
 
             }
             else

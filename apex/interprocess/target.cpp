@@ -393,7 +393,7 @@ namespace interprocess
    //   if (bWasEmpty)
    //   {
 
-   //      m_evDispatchItemNew.SetEvent();
+   //      m_evDispatchItemNew.set_happening();
 
    //   }
 
@@ -442,7 +442,7 @@ namespace interprocess
 
    //         }
 
-   //         m_evDispatchItemNew.ResetEvent();
+   //         m_evDispatchItemNew.reset_happening();
 
    //         singlelock.unlock();
 

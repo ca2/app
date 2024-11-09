@@ -156,7 +156,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned 
 
          synchronouslock.lock();
 
-         m_happeningNewMessage.ResetEvent();
+         m_happeningNewMessage.reset_happening();
 
       }
 

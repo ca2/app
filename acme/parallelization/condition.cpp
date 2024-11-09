@@ -71,7 +71,7 @@ condition::~condition()
 }
 
 
-bool condition::SetEvent()
+bool condition::set_happening()
 {
 #ifdef WINDOWS
 
@@ -444,7 +444,7 @@ bool condition::is_signaled() const
 //#endif
 //}
 
-bool condition::ResetEvent()
+bool condition::reset_happening()
 {
 #ifdef ANDROID
 
@@ -467,9 +467,9 @@ bool condition::ResetEvent()
 void condition::unlock()
 {
 
-   //return ResetEvent();
+   //return reset_happening();
 
-   ResetEvent();
+   reset_happening();
 
 }
 

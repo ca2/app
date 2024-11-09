@@ -29,7 +29,7 @@ bool timer_event::wait(int ::duration)
 bool timer_event::on_timer()
 {
 
-   m_ev.SetEvent();
+   m_ev.set_happening();
 
    return true;
 

@@ -32,7 +32,7 @@ void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedst
       
       function(eresult);
       
-      pevent->SetEvent();
+      pevent->set_happening();
    
    });
    
@@ -59,7 +59,7 @@ int _ui_MessageBoxA_sync(const char * pszMessageParam, const char * pszHeaderPar
       
       edialogresult = eresult;
       
-      pevent->SetEvent();
+      pevent->set_happening();
    
    });
    

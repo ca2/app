@@ -28,7 +28,7 @@ timer_event::~timer_event()
 void timer_event::on_timer()
 {
 
-   m_manualresethappening.SetEvent();
+   m_manualresethappening.set_happening();
 
    //return true;
 

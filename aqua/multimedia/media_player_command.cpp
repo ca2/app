@@ -212,7 +212,7 @@ void media_player_command::OpenMediaItem(::aqua::media_item * pmediaitem)
 //   {
 //      for (int i = 0; i < m_evptra.get_size(); i++)
 //      {
-//         m_evptra[i]->SetEvent();
+//         m_evptra[i]->set_happening();
 //      }
 //   }
 

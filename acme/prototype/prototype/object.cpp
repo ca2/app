@@ -2084,7 +2084,7 @@ void object::sleep(const class time & time)
 
             ptask->m_pevSleep = __allocate manual_reset_happening();
 
-            ptask->m_pevSleep->ResetEvent();
+            ptask->m_pevSleep->reset_happening();
 
          }
 

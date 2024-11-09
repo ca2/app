@@ -396,7 +396,7 @@ namespace account
 
          m_strResponse = "ok";
 
-         m_evSubmit.SetEvent();
+         m_evSubmit.set_happening();
 
       }
       else if (!ansi_cmp(pszId, "escape"))
@@ -570,7 +570,7 @@ namespace account
 
       m_strResponse.empty();
 
-      m_evSubmit.ResetEvent();
+      m_evSubmit.reset_happening();
 
       m_evSubmit.wait();
 

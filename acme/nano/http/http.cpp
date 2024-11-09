@@ -49,7 +49,7 @@ namespace nano
       //   pget->m_functionOnFinished = [pevent](auto)
       //      {
 
-      //         pevent->SetEvent();
+      //         pevent->set_happening();
 
       //      };
 

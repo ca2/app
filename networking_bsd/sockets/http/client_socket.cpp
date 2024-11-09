@@ -319,7 +319,7 @@ namespace sockets
       if(m_content_length > 0)
       {
 
-         m_happening.ResetEvent();
+         m_happening.reset_happening();
 
          m_bExpectResponse = true;
 
@@ -444,7 +444,7 @@ namespace sockets
 
 #if !defined(BSD_STYLE_SOCKETS)
 
-      m_happening.ResetEvent();
+      m_happening.reset_happening();
 
       m_bExpectResponse = true;
 

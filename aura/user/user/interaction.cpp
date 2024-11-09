@@ -7909,7 +7909,7 @@ namespace user
 
                    procedure();
 
-                   pevent->SetEvent();
+                   pevent->set_happening();
 
                 });
 
@@ -21539,17 +21539,17 @@ namespace user
          //   if (prequest)
          //   {
 
-         //      information() << "pgraphicsthread->m_happeningReady.ResetEvent();";
+         //      information() << "pgraphicsthread->m_happeningReady.reset_happening();";
 
-         //      pgraphicsthread->m_happeningReady.ResetEvent();
+         //      pgraphicsthread->m_happeningReady.reset_happening();
 
          //      prequest->m_procedureaOnFinishRequest.add(
          //         [this, pgraphicsthread]()
          //         {
 
-         //            information() << "pgraphicsthread->m_happeningReady.SetEvent();";
+         //            information() << "pgraphicsthread->m_happeningReady.set_happening();";
 
-         //            pgraphicsthread->m_happeningReady.SetEvent();
+         //            pgraphicsthread->m_happeningReady.set_happening();
 
          //         });
 

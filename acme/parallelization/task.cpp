@@ -1407,7 +1407,7 @@ procedure task::pick_next_posted_procedure()
    if (m_procedurea.is_empty())
    {
 
-      new_procedure_posted_event()->ResetEvent();
+      new_procedure_posted_event()->reset_happening();
 
    }
 
@@ -1433,7 +1433,7 @@ e_happening task::pick_happening()
    if (m_ehappeninga.is_empty())
    {
 
-      m_pmanualresethappeningHappening->ResetEvent();
+      m_pmanualresethappeningHappening->reset_happening();
 
    }
 
@@ -2542,14 +2542,14 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto pmanualresetevent = __create_new < manual_reset_happening >();
+   auto pmanualresethappening = __create_new < manual_reset_happening >();
 
-   post([this, procedure, pmanualresetevent]()
+   post([this, procedure, pmanualresethappening]()
       {
 
          procedure();
 
-         pmanualresetevent->SetEvent();
+         pmanualresethappening->set_happening();
 
       });
 
@@ -2562,7 +2562,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto estatus = pmanualresetevent->wait(timeout);
+   auto estatus = pmanualresethappening->wait(timeout);
 
    if (estatus.failed())
    {
@@ -2623,7 +2623,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
             ptask->m_pevSleep = __allocate manual_reset_happening();
 
-            ptask->m_pevSleep->ResetEvent();
+            ptask->m_pevSleep->reset_happening();
 
          }
 

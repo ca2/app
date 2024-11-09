@@ -37,6 +37,6 @@ public:
    manual_reset_happening(char * sz = nullptr, bool bInitiallyOwn = false);
    ~manual_reset_happening() override;
 
-   //void reuse() { ResetEvent(); }
+   //void reuse() { reset_happening(); }
 
 };

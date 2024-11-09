@@ -1480,7 +1480,7 @@ namespace axis
          if (pthread != nullptr && pthread->m_phappeningReady != nullptr)
          {
 
-            pthread->m_phappeningReady->SetEvent();
+            pthread->m_phappeningReady->set_happening();
 
          }
 

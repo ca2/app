@@ -203,7 +203,7 @@ namespace userstack
 
             str = as_string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
 
-            pcreate->m_happeningReady.ResetEvent();
+            pcreate->m_happeningReady.reset_happening();
 
             psession->on_request(pcreate);
 

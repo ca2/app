@@ -58,16 +58,16 @@ namespace file
 
    HRes stream_binder::CreateEvents()
    {
-      _allBytesAreWritenEvent.SetEvent();
-      _thereAreBytesToReadEvent.ResetEvent();
-      _readStreamIsClosedEvent.ResetEvent();
+      _allBytesAreWritenEvent.set_happening();
+      _thereAreBytesToReadEvent.reset_happening();
+      _readStreamIsClosedEvent.reset_happening();
       return S_OK;
    }
 
    void stream_binder::ReInit()
    {
-      _thereAreBytesToReadEvent.ResetEvent();
-      _readStreamIsClosedEvent.ResetEvent();
+      _thereAreBytesToReadEvent.reset_happening();
+      _readStreamIsClosedEvent.reset_happening();
       ProcessedSize = 0;
    }
 
@@ -110,8 +110,8 @@ namespace file
             _size -= sizeToRead;
             if(_size <= 0)
             {
-               _thereAreBytesToReadEvent.ResetEvent();
-               _allBytesAreWritenEvent.SetEvent();
+               _thereAreBytesToReadEvent.reset_happening();
+               _allBytesAreWritenEvent.set_happening();
             }
          }
       }
@@ -123,7 +123,7 @@ namespace file
    void stream_binder::CloseRead()
    {
       
-      _readStreamIsClosedEvent.SetEvent();
+      _readStreamIsClosedEvent.set_happening();
 
    }
 
@@ -134,8 +134,8 @@ namespace file
       {
          _data = (unsigned char *) data;
          _size = size;
-         _allBytesAreWritenEvent.ResetEvent();
-         _thereAreBytesToReadEvent.SetEvent();
+         _allBytesAreWritenEvent.reset_happening();
+         _thereAreBytesToReadEvent.set_happening();
 
          synchronization_array eva(this);
          eva.add(&_allBytesAreWritenEvent);
@@ -153,7 +153,7 @@ namespace file
    void stream_binder::CloseWrite()
    {
       // _bufferSize must be = 0
-      _thereAreBytesToReadEvent.SetEvent();
+      _thereAreBytesToReadEvent.set_happening();
    }
 
 

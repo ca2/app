@@ -82,14 +82,14 @@ void _ns_main_send(dispatch_block_t block)
    
    __block auto pevent = __allocate manual_reset_happening ();
    
-   pevent->ResetEvent();
+   pevent->reset_happening();
    
    dispatch_async(dispatch_get_main_queue(), ^()
                   {
       
       block();
       
-      pevent->SetEvent();
+      pevent->set_happening();
       
    });
  

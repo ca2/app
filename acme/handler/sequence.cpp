@@ -383,7 +383,7 @@ sequence::~sequence()
 //      if (m_phappening)
 //      {
 //
-//         m_phappening->SetEvent();
+//         m_phappening->set_happening();
 //
 //      }
 //
@@ -422,7 +422,7 @@ sequence::~sequence()
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //
@@ -468,7 +468,7 @@ sequence::~sequence()
 //   if (m_phappening)
 //   {
 //
-//      m_phappening->SetEvent();
+//      m_phappening->set_happening();
 //
 //   }
 //

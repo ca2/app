@@ -422,7 +422,7 @@ application_array application_container::get_applicationa()
    if (pcreate->m_pcommandline)
    {
 
-      pcreate->m_happeningReady.ResetEvent();
+      pcreate->m_happeningReady.reset_happening();
 
    }
 

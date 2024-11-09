@@ -227,7 +227,7 @@ void message_queue::kick_idle()
 
          synchronouslock._lock();
 
-         m_happeningNewMessage.ResetEvent();
+         m_happeningNewMessage.reset_happening();
 
       }
 

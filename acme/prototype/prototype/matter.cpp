@@ -795,7 +795,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       synchronous_lock synchronizationlock(psynchronizer->synchronization());
 
-      psynchronizer->m_evGoingToWrite.SetEvent();
+      psynchronizer->m_evGoingToWrite.set_happening();
 
       psynchronizer->m_evResponse.wait();
 
@@ -808,7 +808,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       }
 
-      psynchronizer->m_evReady.SetEvent();
+      psynchronizer->m_evReady.set_happening();
 
       ::release((::particle * &)psynchronizer.m_p);
 
@@ -823,13 +823,13 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       psynchronizer->set_flag(e_flag_timeout);
 
-      psynchronizer->m_evResponse.SetEvent();
+      psynchronizer->m_evResponse.set_happening();
 
       return false;
 
    }
 
-   psynchronizer->m_evResponse.SetEvent();
+   psynchronizer->m_evResponse.set_happening();
 
    psynchronizer->m_evReady.wait();
 
@@ -869,7 +869,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
       }
 
-      psignalization->m_evReady.SetEvent();
+      psignalization->m_evReady.set_happening();
 
       psignalization->m_pparticleHold.release();
 

@@ -169,7 +169,7 @@ void api::on_login_response()
 
    }
 
-   m_happeningResponse.SetEvent();
+   m_happeningResponse.set_happening();
 
 }
 

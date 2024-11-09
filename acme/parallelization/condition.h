@@ -46,9 +46,9 @@ public:
 
    virtual void * get_os_data() const;
 
-   bool pulse();
+   bool pulse_happening();
    bool set_happening();
-   bool set_happening() { return set_happening(); }
+   //bool set_happening() { return set_happening(); }
    //bool pulse_happening();
    bool reset_happening();
 

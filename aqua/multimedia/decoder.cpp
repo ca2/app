@@ -2,7 +2,7 @@
 #include "decoder.h"
 #include "multimedia.h"
 #include "acme/constant/id.h"
-#include "acme/parallelization/event.h"
+#include "acme/parallelization/happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aqua/platform/system.h"
 

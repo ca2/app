@@ -7,7 +7,7 @@
 //
 #include "framework.h"
 #include "text_to_speech_client.h"
-#include "acme/parallelization/event.h"
+#include "acme/parallelization/happening.h"
 #include "aqua/audio/audio.h"
 #include "aqua/audio/speaker.h"
 #include "aqua/platform/system.h"

@@ -92,14 +92,14 @@ lite_html_reader::lite_html_reader()
    m_dwBufPos = 0L;   // start from the very beginning
    //m_dwBufLen = 0L;   // buffer length is unknown yet
 
-   // default is to raise all of the events
+   // default is to raise all of the happenings
    m_happeningMask = (EventMaskEnum)(notifyStartStop |
                                  notifyTagStart |
                                  notifyTagEnd |
                                  notifyCharacters |
                                  notifyComment);
 
-   m_pEventHandler = nullptr;   // no event handler is associated
+   m_pEventHandler = nullptr;   // no happening handler is associated
 }
 
 
@@ -155,7 +155,7 @@ character_count lite_html_reader::parseDocument()
    // reset seek pointer to beginning
    ResetSeekPointer();
 
-   // notify event handler about parsing startup
+   // notify happening handler about parsing startup
    if (getEventNotify(notifyStartStop))
    {
       bAbort = false;
@@ -297,7 +297,7 @@ character_count lite_html_reader::parseDocument()
    }
 
 LEndParse:
-   // notify event handler about parsing completion
+   // notify happening handler about parsing completion
    if (getEventNotify(notifyStartStop))
       m_pEventHandler->EndParse(m_dwAppData, bAbort);
 
@@ -308,7 +308,7 @@ LEndParse:
 /**
 * lite_html_reader::read
 * The read method parses an HTML document from an
-* in-memory string buffer and raises events defined
+* in-memory string buffer and raises happenings defined
 * in ILiteHTMLReaderEvents to notify about variours
 * elements.
 *

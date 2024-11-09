@@ -40,7 +40,7 @@ namespace sockets
 
 
 
-   /** socket container class, event generator.
+   /** socket container class, happening generator.
    \ingroup basic */
    class CLASS_DECL_APEX base_socket_handler:
       virtual public ::object
@@ -109,11 +109,11 @@ namespace sockets
       //virtual void get(socket_id s,bool& r,bool& w,bool& e) = 0;
       ///** Set read/write/exception file descriptor sets (fd_set). */
       //virtual void set(socket_id s,bool bRead,bool bWrite,bool bException = true) = 0;
-      /** Wait for events, generate callbacks. */
+      /** Wait for happenings, generate callbacks. */
       virtual int select(int sec, int usec) = 0;
-      /** This method will not return until an event has been detected. */
+      /** This method will not return until an happening has been detected. */
       virtual int select() = 0;
-      /** Wait for events, generate callbacks. */
+      /** Wait for happenings, generate callbacks. */
       virtual int select(const class time & timeWait) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
@@ -194,7 +194,7 @@ namespace sockets
       //virtual ::networking::port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
       //virtual bool ResolverReady() = 0;
-      /** Returns true if socket waiting for a resolve event. */
+      /** Returns true if socket waiting for a resolve happening. */
       //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger atom. */
       virtual int TriggerID(base_socket *src) = 0;

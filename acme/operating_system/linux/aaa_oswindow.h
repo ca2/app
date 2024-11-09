@@ -44,7 +44,7 @@ namespace user
 class oswindow_dataptra;
 
 
-class event;
+class happening;
 
 
 class ::pointer < ::mutex >;

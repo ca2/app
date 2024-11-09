@@ -42,7 +42,7 @@ namespace interprocess
       ::particle_array                       m_particleaHandler;
       //rx_private *                         m_pp;
       //pointer_array < dispatch_item >      m_dispatchitema;
-      //manual_reset_happening                   m_evDispatchItemNew;
+      //manual_reset_happening                   m_happeningDispatchItemNew;
       //::pointer < ::mutex >                              m_pmutexDispatch;
 
 

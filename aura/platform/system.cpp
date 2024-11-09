@@ -883,7 +883,7 @@ namespace aura
 //      add_factory_item < command_line >();
 //      add_factory_item < http::context >();
 //      //add_factory_item < ::pointer < ::mutex > >();
-//      //add_factory_item < event >();
+//      //add_factory_item < happening >();
 //
 //      //if (!::aura::application::process_init())
 //      //{
@@ -2119,7 +2119,7 @@ namespace aura
 //#ifdef LINUX
 //
 //      // dirty
-//      // (forcing premature gtk event loop (main loop) quitting)
+//      // (forcing premature gtk happening loop (main loop) quitting)
 //      // the "most elegant" is to let just ~system (::aura::system destructor)...
 //      // ... do this call, but this requires all references to ::aura::system ...
 //      // ... to be released. This is a bit of an ideal situation that may not ...

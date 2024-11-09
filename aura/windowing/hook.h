@@ -16,7 +16,7 @@ namespace windowing
       hook();
 
 
-      virtual bool process_event(display * pdisplay, event * pevent);
+      virtual bool process_event(display * pdisplay, happening * pevent);
 
       virtual void do_hook();
 

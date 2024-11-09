@@ -11,7 +11,7 @@ namespace colorertake5
    * which could be useful in application's editing system.
    * This includes automatic top-level caching of hilighting
    * state, outline structure creation, pair constructions search.
-   * This class has event-oriented structure. Each editor event
+   * This class has happening-oriented structure. Each editor happening
    * is passed into this object and gets internal processing.
    * @ingroup colorer_editor
    */
@@ -158,7 +158,7 @@ namespace colorertake5
       * This method validates current cache state
       * and, if needed, calls Colorer parser to validate modified block of text.
       * int_size of reparsed text is choosed according to information
-      * about visible text range and modification events.
+      * about visible text range and modification happenings.
       * @todo If number of lines, to be reparsed is more, than backParse parameter,
       * then method will return nullptr, until validate() method is called.
       */
@@ -189,15 +189,15 @@ namespace colorertake5
       void idleJob(int time);
 
       /**
-      * Informs base_editor object about text modification event.
+      * Informs base_editor object about text modification happening.
       * All the text becomes invalid after the specified line.
       * @param topLine Topmost modified line of text.
       */
       void modifyEvent(index topLine);
 
       /**
-      * Informs about single line modification event.
-      * Generally, this type of event can be processed much faster
+      * Informs about single line modification happening.
+      * Generally, this type of happening can be processed much faster
       * because of pre-checking line's changed structure and
       * cancelling further parsing in case of unmodified text structure.
       * @param line Modified line of text.

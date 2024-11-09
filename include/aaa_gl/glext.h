@@ -2952,9 +2952,9 @@ struct _cl_context;
 struct _cl_event;
 #define GL_SYNC_CL_EVENT_ARB              0x8240
 #define GL_SYNC_CL_EVENT_COMPLETE_ARB     0x8241
-typedef GLsync (APIENTRYP PFNGLCREATESYNCFROMCLEVENTARBPROC) (struct _cl_context *action_context, struct _cl_event *event, GLbitfield flags);
+typedef GLsync (APIENTRYP PFNGLCREATESYNCFROMCLEVENTARBPROC) (struct _cl_context *action_context, struct _cl_event *happening, GLbitfield flags);
 #ifdef GL_GLEXT_PROTOTYPES
-GLAPI GLsync APIENTRY glCreateSyncFromCLeventARB (struct _cl_context *action_context, struct _cl_event *event, GLbitfield flags);
+GLAPI GLsync APIENTRY glCreateSyncFromCLeventARB (struct _cl_context *action_context, struct _cl_event *happening, GLbitfield flags);
 #endif
 #endif /* GL_ARB_cl_event */
 

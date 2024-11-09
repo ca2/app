@@ -738,7 +738,7 @@ namespace nano
 
             auto pkey = (xcb_key_press_event_t *) pevent;
 
-            if (pkey->event != m_window)
+            if (pkey->happening != m_window)
             {
 
                return false;
@@ -757,7 +757,7 @@ namespace nano
 
             auto pkey = (xcb_key_release_event_t *) pevent;
 
-            if (pkey->event != m_window)
+            if (pkey->happening != m_window)
             {
 
                return false;
@@ -771,7 +771,7 @@ namespace nano
 
             auto pbutton = (xcb_button_press_event_t *) pevent;
 
-            if (pbutton->event != m_window)
+            if (pbutton->happening != m_window)
             {
 
                return false;
@@ -809,7 +809,7 @@ namespace nano
 
             auto pbutton = (xcb_button_release_event_t *) pevent;
 
-            if (pbutton->event != m_window)
+            if (pbutton->happening != m_window)
             {
 
                return false;
@@ -848,7 +848,7 @@ namespace nano
 
             auto pmotion = (xcb_motion_notify_event_t *) pevent;
 
-            if (pmotion->event != m_window)
+            if (pmotion->happening != m_window)
             {
 
                return false;
@@ -869,7 +869,7 @@ namespace nano
 
             auto pleave = (xcb_leave_notify_event_t *) pevent;
 
-            if (pleave->event != m_window)
+            if (pleave->happening != m_window)
             {
 
                return false;

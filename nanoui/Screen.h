@@ -184,7 +184,7 @@ namespace nanoui
       //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
       //   const sequence2_int & framebuffer_size() const { return m_fbsize; }
       //
-      //   /// Send an event that will cause the pscreen to be redrawn at the next event loop iteration
+      //   /// Send an happening that will cause the pscreen to be redrawn at the next happening loop iteration
       //   void redraw();
       //
       //   /**
@@ -239,18 +239,18 @@ namespace nanoui
 
 
       //
-      //   /// Handle a file drop event
+      //   /// Handle a file drop happening
       //   virtual bool drop_event(const ::string_array & /* filenames */) {
       //      return false; /* To be overridden */
       //   }
       //
-         /// Default keyboard event handler
+         /// Default keyboard happening handler
       virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
 
-      /// Text input event handler: codepoint is native endian UTF-32 format
+      /// Text input happening handler: codepoint is native endian UTF-32 format
       bool keyboard_character_event(unsigned int codepoint) override;
 
-      /// Window resize event handler
+      /// Window resize happening handler
       virtual bool resize_event(const ::int_size& size);
 
       /// Set the resize callback
@@ -324,7 +324,7 @@ namespace nanoui
       //    * pointer to an existing \pwidgetChild GLFWwindow instance
       //    *
       //    * You will also be responsible in this case to deliver GLFW callbacks
-      //    * to the appropriate callback event handlers below
+      //    * to the appropriate callback happening handlers below
       //    */
          //Screen();
       //

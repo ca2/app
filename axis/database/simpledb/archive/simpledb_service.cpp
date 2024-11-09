@@ -59,7 +59,7 @@ namespace simpledb
          socket_thread * pthread = m_threadptra.last();
          {
 
-            pthread->m_evInitialized.wait();
+            pthread->m_happeningInitialized.wait();
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;

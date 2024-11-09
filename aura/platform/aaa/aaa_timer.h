@@ -131,7 +131,7 @@ public:
    ::user::interaction *               m_puserinteraction;
    bool                                m_bHandling;
 
-   bool                                m_bRet; // for event handlers ( _001OnTimer() )
+   bool                                m_bRet; // for happening handlers ( _001OnTimer() )
 
 //
 //#ifdef UNIVERSAL_WINDOWS

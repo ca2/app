@@ -8,14 +8,14 @@ namespace windowing
 {
 
 
-   event::event()
+   happening::happening()
    {
 
 
    }
 
 
-   event::~event()
+   happening::~happening()
    {
 
 

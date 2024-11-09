@@ -57,7 +57,7 @@ namespace mail
 
       }
 
-      m_evFinish.set_happening();
+      m_happeningFinish.set_happening();
 
       return ::success;
 

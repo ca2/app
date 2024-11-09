@@ -735,7 +735,7 @@ namespace windowing
    }
 
 
-   bool simple_ui_display::process_event(display *pdisplay, event * pevent)
+   bool simple_ui_display::process_event(display *pdisplay, happening * pevent)
    {
 
 //      if (e.xany.window == m_window)

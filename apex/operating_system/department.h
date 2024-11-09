@@ -56,7 +56,7 @@ namespace operating_system
       public:
 
 
-         manual_reset_happening               m_evReady;
+         manual_reset_happening               m_happeningReady;
          bool                             m_bInitFailure;
          bool                             m_bPotentialTimeout;
          bool *                           m_pbPotentialTimeout;

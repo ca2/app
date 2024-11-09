@@ -28,7 +28,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "event.h"
+#include "happening.h"
 //#include "axis/networking/_networking.h"
 
 
@@ -51,10 +51,10 @@ namespace sockets
    }
 
 
-   bool Event::operator < (const Event & event) const
+   bool Event::operator < (const Event & happening) const
    {
 
-      return m_time < event.m_time;
+      return m_time < happening.m_time;
 
    }
 

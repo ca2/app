@@ -55,7 +55,7 @@ namespace file
                                        DISPATCH_VNODE_ATTRIB | DISPATCH_VNODE_DELETE | DISPATCH_VNODE_EXTEND | DISPATCH_VNODE_LINK | DISPATCH_VNODE_RENAME | DISPATCH_VNODE_REVOKE | DISPATCH_VNODE_WRITE,
                                        defaultQueue);
       
-      // Log one or more messages to the screen when there's a file change event
+      // Log one or more messages to the screen when there's a file change happening
       dispatch_source_set_event_handler(m_source, ^ { on_event(dispatch_source_get_data(m_source)); });
       
       dispatch_source_set_cancel_handler(m_source, ^ { on_dispatch_source_cancellation(); });

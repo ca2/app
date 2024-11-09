@@ -367,9 +367,9 @@ inline atom::atom(enum_dialog_result edialogresult) :
 }
 
 
-inline atom::atom(enum_happening eevent) :
+inline atom::atom(enum_happening ehappening) :
         m_etype(e_type_happening),
-        m_iLargest((::iptr)eevent) // used m_iLargest to reset 64-bit field
+        m_iLargest((::iptr)ehappening) // used m_iLargest to reset 64-bit field
 {
 
 }

@@ -681,16 +681,16 @@ namespace micro
 //////
 //////   atom idResult;
 //////
-//////   manual_reset_happening event;
+//////   manual_reset_happening happening;
 //////
 //////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //////
-//////   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pinterchange)
+//////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {
 //////
 //////      idResult = pinterchange->m_atomResult;
 //////
-//////      event.set_happening();
+//////      happening.set_happening();
 //////
 //////   };
 //////
@@ -702,7 +702,7 @@ namespace micro
 //////   }
 //////   else
 //////   {
-//////      event.wait();
+//////      happening.wait();
 //////
 //////   }
 //////
@@ -783,16 +783,16 @@ namespace micro
 //////
 //////   atom idResult;
 //////
-//////   manual_reset_happening event;
+//////   manual_reset_happening happening;
 //////
 //////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //////
-//////   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pinterchange)
+//////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {
 //////
 //////      idResult = pinterchange->m_atomResult;
 //////
-//////      event.set_happening();
+//////      happening.set_happening();
 //////
 //////   };
 //////
@@ -804,7 +804,7 @@ namespace micro
 //////   }
 //////   else
 //////   {
-//////      event.wait();
+//////      happening.wait();
 //////
 //////   }
 //////
@@ -866,7 +866,7 @@ namespace micro
 //   
 //      ::payload idResult;
 //   
-//      manual_reset_happening event;
+//      manual_reset_happening happening;
 //
 //      pmicromessagebox->initialize_conversation(
 //         pmessagebox->m_strMessage,

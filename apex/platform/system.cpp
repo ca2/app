@@ -787,7 +787,7 @@ namespace apex
       //add_factory_item < application_bias >();
 
       //add_factory_item < ::pointer < ::mutex > >();
-      //add_factory_item < event >();
+      //add_factory_item < happening >();
 
       //if (!::application::process_init())
       //{

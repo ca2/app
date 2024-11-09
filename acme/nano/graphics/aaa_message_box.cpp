@@ -576,16 +576,16 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 ////
 ////   atom idResult;
 ////
-////   manual_reset_happening event;
+////   manual_reset_happening happening;
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
-////   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pinterchange)
+////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 ////   {
 ////
 ////      idResult = pinterchange->m_atomResult;
 ////
-////      event.set_happening();
+////      happening.set_happening();
 ////
 ////   };
 ////
@@ -597,7 +597,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 ////   }
 ////   else
 ////   {
-////      event.wait();
+////      happening.wait();
 ////
 ////   }
 ////
@@ -676,16 +676,16 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////
 ////   atom idResult;
 ////
-////   manual_reset_happening event;
+////   manual_reset_happening happening;
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
-////   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pinterchange)
+////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 ////   {
 ////
 ////      idResult = pinterchange->m_atomResult;
 ////
-////      event.set_happening();
+////      happening.set_happening();
 ////
 ////   };
 ////
@@ -697,7 +697,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////   }
 ////   else
 ////   {
-////      event.wait();
+////      happening.wait();
 ////
 ////   }
 ////
@@ -759,7 +759,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
    
       ::payload idResult;
    
-      manual_reset_happening event;
+      manual_reset_happening happening;
 
       pnanomessagebox->initialize_conversation(
          pmessagebox->m_strMessage,

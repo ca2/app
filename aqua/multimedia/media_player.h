@@ -62,8 +62,8 @@ public:
 //   virtual void set_device_state(enum_device_state estate);
 //   virtual void set_decoder_state(enum_decoder_state estate);
 
-   virtual void post_event(enum_player_event event, media_player_command* pcommand = nullptr);
-   virtual void OnEvent(enum_player_event event, media_player_command* pcommand = nullptr);
+   virtual void post_event(enum_player_event happening, media_player_command* pcommand = nullptr);
+   virtual void OnHappening(enum_player_event happening, media_player_command* pcommand = nullptr);
 //   virtual bool DeviceIsOpened();
 //   virtual bool DecoderIsOpened();
 

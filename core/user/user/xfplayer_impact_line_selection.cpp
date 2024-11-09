@@ -196,10 +196,10 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 }
 
 
-void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_happening eevent)
+void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_happening ehappening)
 {
    __UNREFERENCED_PARAMETER(viewline);
-   switch(eevent)
+   switch(ehappening)
    {
    case e_event_start:
       m_iLineStartSource  = m_item.GetLineStart();

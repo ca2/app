@@ -398,29 +398,29 @@ namespace nanoui
       Widget* find_widget(const int_point& p);
       const Widget* find_widget(const int_point& p) const;
 
-      /// Handle a mouse button event (default implementation: propagate to children)
+      /// Handle a mouse button happening (default implementation: propagate to children)
       virtual bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers);
 
-      /// Handle a mouse motion event (default implementation: propagate to children)
+      /// Handle a mouse motion happening (default implementation: propagate to children)
       virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers);
 
-      /// Handle a mouse drag event (default implementation: do nothing)
+      /// Handle a mouse drag happening (default implementation: do nothing)
       // virtual bool mouse_drag_event(const int_point& p, const int_size& rel, const ::user::e_key& ekeyModifiers);
 
-      /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
+      /// Handle a mouse enter/leave happening (default implementation: record this fact, but do nothing)
       virtual bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers);
 
       virtual void set_mouse_capture();
 
       virtual void release_mouse_capture();
 
-      /// Handle a mouse scroll event (default implementation: propagate to children)
+      /// Handle a mouse scroll happening (default implementation: propagate to children)
       virtual bool scroll_event(const int_point& p, const float_size& rel);
 
-      /// Handle a focus change event (default implementation: record the focus status, but do nothing)
+      /// Handle a focus change happening (default implementation: record the focus status, but do nothing)
       virtual bool focus_event(bool focused);
 
-      /// Handle a keyboard event (default implementation: do nothing)
+      /// Handle a keyboard happening (default implementation: do nothing)
       virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)

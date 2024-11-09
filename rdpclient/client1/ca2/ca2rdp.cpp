@@ -27,7 +27,7 @@
 
 #include <freerdp/freerdp.h>
 #include <freerdp/constants.h>
-//#include <freerdp/utils/event.h>
+//#include <freerdp/utils/happening.h>
 #include <freerdp/client/file.h>
 #include <freerdp/client/cmdline.h>
 #include <freerdp/client/channels.h>
@@ -122,8 +122,8 @@ BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
    if (!FD_ISSET(ca2rdpi->read_fds, set))
       return true;
 
-//	if (read(ca2rdpi->read_fds, &(ca2rdpi->event), sizeof(ca2rdpi->event)) > 0)
-   //	ca2rdp_event_process(instance, &(ca2rdpi->event));
+//	if (read(ca2rdpi->read_fds, &(ca2rdpi->happening), sizeof(ca2rdpi->happening)) > 0)
+   //	ca2rdp_event_process(instance, &(ca2rdpi->happening));
 
    return true;
 }
@@ -294,37 +294,37 @@ static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, unsigne
 
 //static void ca2rdp_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* instance)
 //{
-//	wMessage* event;
+//	wMessage* happening;
 //	RDP_CB_FORMAT_LIST_EVENT* format_list_event;
 //
-//	event = freerdp_event_new(CliprdrChannel_Class, CliprdrChannel_FormatList, nullptr, nullptr);
+//	happening = freerdp_event_new(CliprdrChannel_Class, CliprdrChannel_FormatList, nullptr, nullptr);
 //
-//	format_list_event = (RDP_CB_FORMAT_LIST_EVENT*) event;
+//	format_list_event = (RDP_CB_FORMAT_LIST_EVENT*) happening;
 //	format_list_event->num_formats = 0;
 //
-//	freerdp_channels_send_event(channels, event);
+//	freerdp_channels_send_event(channels, happening);
 //}
 //
 //static void ca2rdp_process_channel_event(rdpChannels* channels, freerdp* instance)
 //{
-//	wMessage* event;
+//	wMessage* happening;
 //
-//	event = freerdp_channels_pop_event(channels);
+//	happening = freerdp_channels_pop_event(channels);
 //
-//	if (event)
+//	if (happening)
 //	{
-//		switch (GetMessageType(event->atom))
+//		switch (GetMessageType(happening->atom))
 //		{
 //			case CliprdrChannel_MonitorReady:
 //				ca2rdp_process_cb_monitor_ready_event(channels, instance);
 //				break;
 //
 //			default:
-//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->atom));
+//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown happening type %d\n", GetMessageType(happening->atom));
 //				break;
 //		}
 //
-//		freerdp_event_free(event);
+//		freerdp_event_free(happening);
 //	}
 //}
 

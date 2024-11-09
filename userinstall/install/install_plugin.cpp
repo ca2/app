@@ -94,7 +94,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      //m_evReady               = nullptr;
+      //m_happeningReady               = nullptr;
 
       //m_bHasCred              = false;
       //m_bHasCredEval          = false;

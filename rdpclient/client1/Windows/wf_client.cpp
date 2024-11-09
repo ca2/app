@@ -37,7 +37,7 @@
 #include <sys/types.h>
 
 #include <freerdp/log.h>
-#include <freerdp/event.h>
+#include <freerdp/happening.h>
 #include <freerdp/freerdp.h>
 #include <freerdp/constants.h>
 

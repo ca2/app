@@ -128,7 +128,7 @@ namespace draw2d_opengl
       XVisualInfo* vi = nullptr;
       Colormap cmap;
       XSetWindowAttributes swa;
-      XEvent event;
+      XEvent happening;
       Bool bRedraw = False;
       int dummy;
       int nElements;

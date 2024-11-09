@@ -111,7 +111,7 @@ namespace universal_windows
 
       void EditContext_LayoutRequested(::winrt::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::winrt::Windows::UI::Text::Core::CoreTextLayoutRequestedEventArgs^ args);
 
-      // This indicates that an IME has started composition.  If there is no handler for this event,
+      // This indicates that an IME has started composition.  If there is no handler for this happening,
          // then composition will not start.
       void EditContext_CompositionStarted(::winrt::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::winrt::Windows::UI::Text::Core::CoreTextCompositionStartedEventArgs^ args);
       void EditContext_CompositionCompleted(::winrt::Windows::UI::Text::Core::CoreTextEditContext^ sender, ::winrt::Windows::UI::Text::Core::CoreTextCompositionCompletedEventArgs^ args);

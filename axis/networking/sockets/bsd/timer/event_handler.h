@@ -68,9 +68,9 @@ namespace sockets
          void ClearEvents(IEventOwner *from);
          void RemoveEvent(IEventOwner *from,long eid);
 
-         /** socket_handler while() loop implemented with event functionality. */
+         /** socket_handler while() loop implemented with happening functionality. */
          void EventLoop();
-         /** Stop event loop. */
+         /** Stop happening loop. */
          void SetQuit(bool = true);
 
          void add(base_socket *);

@@ -135,8 +135,8 @@ struct ca2rdp_info
 {
    int read_fds;
    int err;
-   ::user::message * event;
-   //DFBEvent event;
+   ::user::message * happening;
+   //DFBEvent happening;
 //	HCLRCONV clrconv;
    int x;
    int y;

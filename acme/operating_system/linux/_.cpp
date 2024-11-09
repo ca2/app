@@ -150,7 +150,7 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
    if(atom == id_operating_system_user_theme_change)
    {
       // On Gnome you can?
-      // ... hook to the gtk-theme-name property change event of GTK Settings default object
+      // ... hook to the gtk-theme-name property change happening of GTK Settings default object
       //return 300_ms;
 
       //return 300_ms;
@@ -161,7 +161,7 @@ class ::time os_get_system_update_poll_time(const ::atom & atom)
    {
 
       // On Gnome you can?
-      // ... hook to the gtk-theme-name property change event of GTK Settings default object
+      // ... hook to the gtk-theme-name property change happening of GTK Settings default object
       //return 300_ms;
       return zero_t{};
 

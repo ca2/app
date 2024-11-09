@@ -10,7 +10,7 @@ namespace colorertake5
    addRegion calls can inform about regions, overlapped with each other.
    All handler methods are called sequentially. It means, that
    if one of methods is called with some line number, all other calls
-   (before endParsing event comes) can inform about events in the same,
+   (before endParsing happening comes) can inform about happenings in the same,
    or lower line's numbers. This makes sequential tokens processing.
    @ingroup colorer
    */
@@ -29,7 +29,7 @@ namespace colorertake5
          /** Start of text parsing.
          Called only once, when text_parser starts
          parsing of the specified block of text.
-         All other event messages comes between this call and
+         All other happening messages comes between this call and
          endParsing call.
          @param lno Start line number
          */
@@ -42,7 +42,7 @@ namespace colorertake5
          */
          virtual void endParsing(index lno);
 
-         /** clear line event.
+         /** clear line happening.
          Called once for each parsed text line, when text_parser starts to parse
          specified line of text. This method is called before any of the region
          information passed, and used often to clear internal handler

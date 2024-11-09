@@ -396,7 +396,7 @@ namespace account
 
          m_strResponse = "ok";
 
-         m_evSubmit.set_happening();
+         m_happeningSubmit.set_happening();
 
       }
       else if (!ansi_cmp(pszId, "escape"))
@@ -570,9 +570,9 @@ namespace account
 
       m_strResponse.empty();
 
-      m_evSubmit.reset_happening();
+      m_happeningSubmit.reset_happening();
 
-      m_evSubmit.wait();
+      m_happeningSubmit.wait();
 
       if (m_strResponse == "ok")
       {

@@ -17,8 +17,8 @@ namespace parallelization
    public:
 
 
-      manual_reset_happening   m_evGoingToWrite;
-      manual_reset_happening   m_evResponse;
+      manual_reset_happening   m_happeningGoingToWrite;
+      manual_reset_happening   m_happeningResponse;
 
 
       synchronizer();

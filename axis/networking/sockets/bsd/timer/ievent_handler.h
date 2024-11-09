@@ -39,27 +39,27 @@ namespace sockets
    class IEventOwner;
 
 
-   /** timer event handler pure virtual axis class.
+   /** timer happening handler pure virtual axis class.
       \ingroup timer */
    class IEventHandler
    {
    public:
       virtual ~IEventHandler() {}
 
-      /** Return time left until next event.
+      /** Return time left until next happening.
          \lparam tv time struct that will be filled by method
-         \return true if time is set for next event */
+         \return true if time is set for next happening */
       virtual bool GetTimeUntilNextEvent(struct ::timeval *) = 0;
-      /** Will fire events whose time has come. */
+      /** Will fire happenings whose time has come. */
       virtual void CheckEvents() = 0;
-      /** Schedule event for an owner.
+      /** Schedule happening for an owner.
          \lparam from Event owner
-         \lparam sec Seconds until event
-         \lparam usec Microseconds until event */
+         \lparam sec Seconds until happening
+         \lparam usec Microseconds until happening */
       virtual long AddEvent(IEventOwner *,long sec,long usec) = 0;
-      /** clear all events for a specific owner. */
+      /** clear all happenings for a specific owner. */
       virtual void ClearEvents(IEventOwner *) = 0;
-      /** erase one specific event for an event owner. */
+      /** erase one specific happening for an happening owner. */
       virtual void RemoveEvent(IEventOwner *,long) = 0;
 
    };

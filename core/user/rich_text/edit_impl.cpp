@@ -2187,7 +2187,7 @@ namespace user
 
          auto ptopic = create_topic(atom);
 
-         //topic.m_atom = eevent;
+         //topic.m_atom = ehappening;
 
          //topic.m_atom = m_atom;
 

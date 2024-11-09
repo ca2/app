@@ -1,7 +1,7 @@
-if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
+if([happening modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
 {
    
-   NSString * arrow = [event charactersIgnoringModifiers];
+   NSString * arrow = [happening charactersIgnoringModifiers];
    
    unichar key = 0;
    
@@ -47,7 +47,7 @@ if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
 else
 {
    
-   unsigned short ush = [event keyCode];
+   unsigned short ush = [happening keyCode];
    
    return ush;
    

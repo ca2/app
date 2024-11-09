@@ -1675,7 +1675,7 @@ namespace experience_tranquillum
    //   bool style::on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow)
    //   {
    //
-   //      if (eevent == ::id_calc_item_height)
+   //      if (ehappening == ::id_calc_item_height)
    //      {
    //
    //         pframewindow->m_iItemHeight += 8;

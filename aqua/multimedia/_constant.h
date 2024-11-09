@@ -93,22 +93,22 @@ enum enum_player_state
 enum enum_player_event
 {
 
-   e_player_event_open_decoder,
-   e_player_event_open_device,
-   e_player_event_play,
-   e_player_event_stop,
-   e_player_event_execute_pause,
-   e_player_event_execute_restart,
-   e_player_event_eof,
-   e_player_event_playback_end,
-   e_player_event_stopped,
-   e_player_event_close_decoder,
-   e_player_event_fade_out_and_stop,
-   e_player_event_close_device,
-   e_player_event_open_decoder_failed,
-   e_player_event_open_device_failed,
-   e_player_event_start_device_failed,
-   e_player_event_destroy
+   e_player_happening_open_decoder,
+   e_player_happening_open_device,
+   e_player_happening_play,
+   e_player_happening_stop,
+   e_player_happening_execute_pause,
+   e_player_happening_execute_restart,
+   e_player_happening_eof,
+   e_player_happening_playback_end,
+   e_player_happening_stopped,
+   e_player_happening_close_decoder,
+   e_player_happening_fade_out_and_stop,
+   e_player_happening_close_device,
+   e_player_happening_open_decoder_failed,
+   e_player_happening_open_device_failed,
+   e_player_happening_start_device_failed,
+   e_player_happening_destroy
 
 };
 

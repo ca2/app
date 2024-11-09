@@ -383,7 +383,7 @@ namespace operating_system
 
       m_pthread->m_pbPotentialTimeout = &m_bPotentialTimeout;
 
-      m_pthread->m_pevReady = &m_evReady;
+      m_pthread->m_pevReady = &m_happeningReady;
 
       if(m_pthread->m_pexitstatus != nullptr)
       {
@@ -403,11 +403,11 @@ namespace operating_system
    //      else
    //      {
    //
-   //         m_evReady.reset_happening();
+   //         m_happeningReady.reset_happening();
    //
    //         m_pthread->begin();
    //
-   //         m_evReady.wait();
+   //         m_happeningReady.wait();
    //
    //      }
 

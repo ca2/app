@@ -46,7 +46,7 @@ namespace sockets
    class IEventOwner;
 
    
-   /** Store information about a timer event.
+   /** Store information about a timer happening.
       \ingroup timer */
    class Event
    {
@@ -69,7 +69,7 @@ namespace sockets
       IEventOwner * GetFrom();
 
 
-      bool operator < (const Event& event) const;
+      bool operator < (const Event& happening) const;
 
       
    };

@@ -291,7 +291,7 @@ namespace user
 
       //m_happeningReady.wait();
 
-      m_synchronizationa.add(&m_evUpdateScreen);
+      m_synchronizationa.add(&m_happeningUpdateScreen);
 
    #ifdef WINDOWS_DESKTOP
 
@@ -717,7 +717,7 @@ namespace user
    void graphics_thread::destroy()
    {
 
-      m_evUpdateScreen.set_happening();
+      m_happeningUpdateScreen.set_happening();
 
       m_puserinteraction.release();
 
@@ -909,7 +909,7 @@ namespace user
 //                     if(timeToWaitForNextFrame > 300_ms)
 //                     {
 //
-//                        m_evUpdateScreen._wait(timeToWaitForNextFrame);
+//                        m_happeningUpdateScreen._wait(timeToWaitForNextFrame);
 //
 //                     }
 //                     else
@@ -954,7 +954,7 @@ namespace user
 
             //}
 
-            m_evUpdateScreen.reset_happening();
+            m_happeningUpdateScreen.reset_happening();
 
          }
 

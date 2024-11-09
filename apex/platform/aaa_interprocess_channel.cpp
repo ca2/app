@@ -432,7 +432,7 @@ namespace interprocess_channel
    //   if (bWasEmpty)
    //   {
 
-   //      m_evDispatchItemNew.set_happening();
+   //      m_happeningDispatchItemNew.set_happening();
 
    //   }
 
@@ -449,7 +449,7 @@ namespace interprocess_channel
    //   while (ptask->task_get_run())
    //   {
 
-   //      if (m_evDispatchItemNew._wait(1_s))
+   //      if (m_happeningDispatchItemNew._wait(1_s))
    //      {
 
    //         singlelock.lock();
@@ -481,7 +481,7 @@ namespace interprocess_channel
 
    //         }
 
-   //         m_evDispatchItemNew.reset_happening();
+   //         m_happeningDispatchItemNew.reset_happening();
 
    //         singlelock.unlock();
 

@@ -41,7 +41,7 @@ bool machine_event::initialize()
 ::file::path machine_event_file_path()
 {
 
-   return ::dir::appdata() / "machine/event/machine_event.bin";
+   return ::dir::appdata() / "machine/happening/machine_event.bin";
 
 }
 

@@ -199,7 +199,7 @@ typedef struct {
 } xmpp_stream_error_t;
 
 typedef void (*xmpp_conn_handler)(xmpp_conn_t * const conn, 
-				  const xmpp_conn_event_t event,
+				  const xmpp_conn_event_t happening,
 				  const int error,
 				  xmpp_stream_error_t * const stream_error,
 				  void * const userdata);
@@ -360,7 +360,7 @@ void xmpp_iq_new();
 void xmpp_presence_new();
 */
 
-/** event loop **/
+/** happening loop **/
 void xmpp_run_once(xmpp_ctx_t *ctx, const unsigned long  timeout);
 void xmpp_run(xmpp_ctx_t *ctx);
 void xmpp_stop(xmpp_ctx_t *ctx);

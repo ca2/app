@@ -20,7 +20,7 @@ public:
 
    virtual void add_event_handler(::event_handler * phandler, bool bPriority = false);
 
-   virtual void route_event(::event * pevent);
+   virtual void route_event(::happening * pevent);
 
 
 };

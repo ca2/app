@@ -91,8 +91,8 @@ namespace user
       m_iHoverAlpha = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
-      m_evOpen.m_eflagElement += e_flag_alertable_wait;
-      m_evExpand.m_eflagElement += e_flag_alertable_wait;
+      m_happeningOpen.m_eflagElement += e_flag_alertable_wait;
+      m_happeningExpand.m_eflagElement += e_flag_alertable_wait;
 
       m_sizeItemMaximum.cx() = 16;
       m_sizeItemMaximum.cy() = 16;
@@ -165,7 +165,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_evExpand.wait(500_ms);
+               m_happeningExpand.wait(500_ms);
 
                if (m_treeitemaExpand.has_element())
                {
@@ -178,7 +178,7 @@ namespace user
 
                }
 
-               m_evExpand.reset_happening();
+               m_happeningExpand.reset_happening();
 
             }
 
@@ -198,7 +198,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_evOpen._wait(500_ms);
+               m_happeningOpen._wait(500_ms);
 
                if (m_treeitemaOpen.has_element())
                {
@@ -213,7 +213,7 @@ namespace user
                else
                {
 
-                  m_evOpen.reset_happening();
+                  m_happeningOpen.reset_happening();
 
                }
 
@@ -825,7 +825,7 @@ namespace user
 
             m_treeitemaExpand.add_unique(pitem);
 
-            m_evExpand.set_happening();
+            m_happeningExpand.set_happening();
 
          }
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
@@ -837,7 +837,7 @@ namespace user
 
             m_treeitemaOpen.add_unique(pitem);
 
-            m_evOpen.set_happening();
+            m_happeningOpen.set_happening();
 
          }
 

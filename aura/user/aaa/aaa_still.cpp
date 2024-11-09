@@ -992,7 +992,7 @@ namespace user
    void still::pre_translate_message(::message::message * pmessage)
    {
 
-      // Relay events from this still to the tool tip tool handler
+      // Relay happenings from this still to the tool tip tool handler
       BaseToolTipRelayEvent(pmessage);
 
       return ::user::interaction::pre_translate_message(pmessage);

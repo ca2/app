@@ -57,7 +57,7 @@ struct df_info
 	int read_fds;
 	DFBResult err;
 	IDirectFB* dfb;
-	DFBEvent event;
+	DFBEvent happening;
 	HCLRCONV clrconv;
 	DFBRectangle update_rect;
 	DFBSurfaceDescription dsc;

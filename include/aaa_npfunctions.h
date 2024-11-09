@@ -59,7 +59,7 @@ typedef int32_t      (* NP_LOADDS NPP_WriteReadyProcPtr)(NPP instance, NPStream*
 typedef int32_t      (* NP_LOADDS NPP_WriteProcPtr)(NPP instance, NPStream* stream, int32_t offset, int32_t len, void* buffer);
 typedef void         (* NP_LOADDS NPP_StreamAsFileProcPtr)(NPP instance, NPStream* stream, const ::string & fname);
 typedef void         (* NP_LOADDS NPP_PrintProcPtr)(NPP instance, NPPrint* platformPrint);
-typedef int16_t      (* NP_LOADDS NPP_HandleEventProcPtr)(NPP instance, void* event);
+typedef int16_t      (* NP_LOADDS NPP_HandleEventProcPtr)(NPP instance, void* happening);
 typedef void         (* NP_LOADDS NPP_URLNotifyProcPtr)(NPP instance, const ::string & url, NPReason reason, void* notifyData);
 /* Any NPObjects returned to the browser via NPP_GetValue should be retained
    by the plugin on the way out. The browser is responsible for releasing. */
@@ -129,7 +129,7 @@ typedef struct _NPPluginFuncs {
   NPP_WriteReadyProcPtr writeready;
   NPP_WriteProcPtr write;
   NPP_PrintProcPtr print;
-  NPP_HandleEventProcPtr event;
+  NPP_HandleEventProcPtr happening;
   NPP_URLNotifyProcPtr urlnotify;
   void* javaClass;
   NPP_GetValueProcPtr getvalue;

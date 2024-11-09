@@ -73,39 +73,39 @@ namespace universal_windows
       // inform a keyboard layout and text behavior.
       _editContext->InputScope = CoreTextInputScope::Text;
 
-      // The system raises this event to request a specific range of text.
+      // The system raises this happening to request a specific range of text.
       _editContext->TextRequested += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
 
-      // The system raises this event to request the current selection.
+      // The system raises this happening to request the current selection.
       _editContext->SelectionRequested += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
-      // The system raises this event when it wants the edit control to erase focus.
+      // The system raises this happening when it wants the edit control to erase focus.
       _editContext->FocusRemoved += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
-      // The system raises this event to update text in the edit control.
+      // The system raises this happening to update text in the edit control.
       _editContext->TextUpdating += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
 
-      // The system raises this event to change the selection in the edit control.
+      // The system raises this happening to change the selection in the edit control.
       _editContext->SelectionUpdating += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
 
-      // The system raises this event when it wants the edit control
+      // The system raises this happening when it wants the edit control
       // to apply formatting on a range of text.
       _editContext->FormatUpdating += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
 
-      // The system raises this event to request layout information.
+      // The system raises this happening to request layout information.
       // This is used to help choose a position for the IME candidate window.
       _editContext->LayoutRequested += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
 
-      // The system raises this event to notify the edit control
+      // The system raises this happening to notify the edit control
       // that the string composition has started.
       _editContext->CompositionStarted += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
 
-      // The system raises this event to notify the edit control
+      // The system raises this happening to notify the edit control
       // that the string composition is finished.
       _editContext->CompositionCompleted += ref aaa_primitive_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
 
-      // The system raises this event when the NotifyFocusLeave operation has
-      // completed. Our sample does not use this event.
+      // The system raises this happening when the NotifyFocusLeave operation has
+      // completed. Our sample does not use this happening.
       // _editContext->NotifyFocusLeaveCompleted += EditContext_NotifyFocusLeaveCompleted;
 
       // Set our initial UI.
@@ -455,7 +455,7 @@ namespace universal_windows
    }
 
    
-   // This indicates that an IME has started composition.  If there is no handler for this event,
+   // This indicates that an IME has started composition.  If there is no handler for this happening,
    // then composition will not start.
    void impact::EditContext_CompositionStarted(CoreTextEditContext ^ sender, CoreTextCompositionStartedEventArgs ^ args)
    {

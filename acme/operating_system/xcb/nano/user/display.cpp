@@ -923,22 +923,22 @@ namespace xcb
          void display::kick_idle()
          {
 
-            xcb_client_message_event_t event;
+            xcb_client_message_event_t happening;
 
-            memory_set(&event, 0, sizeof(event));
+            memory_set(&happening, 0, sizeof(happening));
 
-            event.response_type = XCB_CLIENT_MESSAGE;
-            event.format = 32;
-            event.sequence = 0;
-            event.window = m_windowHelper;
-            event.type = intern_atom("kick_idle", true);
-            event.data.data32[0] = 0;
+            happening.response_type = XCB_CLIENT_MESSAGE;
+            happening.format = 32;
+            happening.sequence = 0;
+            happening.window = m_windowHelper;
+            happening.type = intern_atom("kick_idle", true);
+            happening.data.data32[0] = 0;
 
             auto cookie = xcb_send_event(m_pconnection,
                            false,
                            m_windowHelper,
                            XCB_EVENT_MASK_NO_EVENT,
-                           reinterpret_cast<const char *>(&event));
+                           reinterpret_cast<const char *>(&happening));
 
             auto estatus = _request_check(cookie);
 
@@ -1056,15 +1056,15 @@ namespace xcb
                                        va_list argList)
          {
 
-            xcb_client_message_event_t event;
+            xcb_client_message_event_t happening;
 
-            zero(event);
+            zero(happening);
 
-            event.response_type = XCB_CLIENT_MESSAGE;
-            event.sequence = 0;
-            event.window = window2;
-            event.type = atom;
-            event.format = 32;
+            happening.response_type = XCB_CLIENT_MESSAGE;
+            happening.sequence = 0;
+            happening.window = window2;
+            happening.type = atom;
+            happening.format = 32;
 
             for (int i = 0; i < 5; i++)
             {
@@ -1072,13 +1072,13 @@ namespace xcb
                if (i < numArgs)
                {
 
-                  event.data.data32[i] = va_arg(argList, int);
+                  happening.data.data32[i] = va_arg(argList, int);
 
                }
                else
                {
 
-                  event.data.data32[i] = 0;
+                  happening.data.data32[i] = 0;
 
                }
 
@@ -1089,7 +1089,7 @@ namespace xcb
                window1,
                false,
                XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_STRUCTURE_NOTIFY,
-               (const char *) &event);
+               (const char *) &happening);
 
             auto estatus = _request_check(cookie);
 

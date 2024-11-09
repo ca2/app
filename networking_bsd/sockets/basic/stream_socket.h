@@ -32,7 +32,7 @@ namespace sockets_bsd
       ~stream_socket() override;
 
 
-      /** socket should Check Connect on next write event from select(). */
+      /** socket should Check Connect on next write happening from select(). */
       void set_connecting(bool bSet = true);
 
       /** Check connecting flag.

@@ -94,7 +94,7 @@ namespace nanoui
       /// Sets the callback to be executed when this CheckBox is checked / unchecked.
       void set_callback(const ::function<void(bool)> & callback) { m_callback = callback; }
 
-      /// Mouse button event processing for this check box
+      /// Mouse button happening processing for this check box
       virtual bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.

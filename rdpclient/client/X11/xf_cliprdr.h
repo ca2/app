@@ -31,6 +31,6 @@ void xf_clipboard_free(xfClipboard* clipboard);
 void xf_cliprdr_init(xfContext* xfc, CliprdrClientContext* cliprdr);
 void xf_cliprdr_uninit(xfContext* xfc, CliprdrClientContext* cliprdr);
 
-void xf_cliprdr_handle_xevent(xfContext* xfc, XEvent* event);
+void xf_cliprdr_handle_xevent(xfContext* xfc, XEvent* happening);
 
 #endif /* __XF_CLIPRDR_H */

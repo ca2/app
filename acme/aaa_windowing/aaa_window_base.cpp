@@ -384,16 +384,16 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //    // //
 //    // //   atom idResult;
 //    // //
-//    // //   manual_reset_happening event;
+//    // //   manual_reset_happening happening;
 //    // //
 //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //    // //
-//    // //   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pwindow)
+//    // //   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pwindow)
 //    // //   {
 //    // //
 //    // //      idResult = pwindow->m_atomResult;
 //    // //
-//    // //      event.set_happening();
+//    // //      happening.set_happening();
 //    // //
 //    // //   };
 //    // //
@@ -405,7 +405,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //    // //   }
 //    // //   else
 //    // //   {
-//    // //      event.wait();
+//    // //      happening.wait();
 //    // //
 //    // //   }
 //    // //

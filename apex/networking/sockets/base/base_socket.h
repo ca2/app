@@ -79,7 +79,7 @@ namespace sockets
 //      string                  m_strCipherList;
 //      callback *              m_pcallback;
 //      posix_time                  m_timeCreate; ///< time in seconds when this base_socket was created
-//      bool                    m_bDisableRead; ///< Disable checking for read events
+//      bool                    m_bDisableRead; ///< Disable checking for read happenings
 //      bool                    m_bConnected; ///< base_socket is connected (tcp/udp)
 //      bool                    m_bLost; ///< connection lost
 //      bool                    m_bErasedByHandler; ///< Set by handler before delete
@@ -148,7 +148,7 @@ namespace sockets
 //      // base_socket
 //      SOCK_DEL =          0x01, ///< Delete by handler flag
 //      SOCK_CLOSE =          0x02, ///< close and delete flag
-//      SOCK_DISABLE_READ =       0x04, ///< Disable checking for read events
+//      SOCK_DISABLE_READ =       0x04, ///< Disable checking for read happenings
 //      SOCK_CONNECTED =       0x08, ///< base_socket is connected (tcp/udp)
 //
 //      SOCK_ERASED_BY_HANDLER =    0x10, ///< Set by handler before delete
@@ -413,7 +413,7 @@ namespace sockets
       \return true if this instance should be deleted by the sockethandler */
       virtual bool DeleteByHandler();
 
-      // LIST_CLOSE - conditional event queue
+      // LIST_CLOSE - conditional happening queue
 
       /** Set close and delete to terminate the connection. */
       virtual void SetCloseAndDelete(bool = true);
@@ -424,10 +424,10 @@ namespace sockets
       /** Return number of seconds since base_socket was ordered to close. \sa SetCloseAndDelete */
       virtual posix_time TimeSinceClose();
 
-      /** Ignore read events for an output only base_socket. */
+      /** Ignore read happenings for an output only base_socket. */
       virtual void DisableRead(bool x = true);
-      /** Check ignore read events flag.
-      \return true if read events should be ignored */
+      /** Check ignore read happenings flag.
+      \return true if read happenings should be ignored */
       virtual bool IsDisableRead();
 
       /** Set connected status. */

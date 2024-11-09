@@ -225,7 +225,7 @@ namespace wave
 
       }
 
-      OnEvent(e_player_event_open_decoder, pcommand);
+      OnHappening(e_player_happening_open_decoder, pcommand);
 
       return pplugin.is_set();
 
@@ -334,7 +334,7 @@ namespace wave
    //         try
    //         {
 
-   //            plistener->OnWavePlayerEvent(this, e_player_event_destroy);
+   //            plistener->OnWavePlayerEvent(this, e_player_happening_destroy);
 
    //         }
    //         catch (...)
@@ -426,7 +426,7 @@ namespace wave
 
             pcommand->m_bResult = false;
 
-            OnEvent(e_player_event_open_decoder_failed);
+            OnHappening(e_player_happening_open_decoder_failed);
 
             break;
 
@@ -437,13 +437,13 @@ namespace wave
 
             pcommand->m_bResult = false;
 
-            OnEvent(e_player_event_open_decoder_failed);
+            OnHappening(e_player_happening_open_decoder_failed);
 
             break;
 
          }
 
-         OnEvent(e_player_event_open_decoder, pcommand);
+         OnHappening(e_player_happening_open_decoder, pcommand);
 
       }
       break;
@@ -509,7 +509,7 @@ namespace wave
 
          //}
 
-         OnEvent(e_player_event_close_device);
+         OnHappening(e_player_happening_close_device);
 
       }
       break;
@@ -579,13 +579,13 @@ namespace wave
    }
 
 
-   void player::post_event(enum_player_event eevent, player_command * pcommand)
+   void player::post_event(enum_player_event ehappening, player_command * pcommand)
    {
 
       //::pointer<player_command>spcommand(pcommand);
 
-      //post_message(e_message_player_event, (WPARAM)eevent, spcommand);
-      OnEvent(eevent, pcommand);
+      //post_message(e_message_player_event, (WPARAM)ehappening, spcommand);
+      OnHappening(ehappening, pcommand);
 
    }
 
@@ -597,80 +597,80 @@ namespace wave
 
    //   ::pointer<player_command>pcommand(pusermessage->m_lparam);
 
-   //   OnEvent((e_event) pusermessage->m_wparam.m_number, pcommand);
+   //   OnHappening((e_happening) pusermessage->m_wparam.m_number, pcommand);
 
    //}
 
 
-   void player::OnEvent(enum_player_event eevent, player_command * pcommand)
+   void player::OnHappening(enum_player_event ehappening, player_command * pcommand)
    {
 
-      switch (eevent)
+      switch (ehappening)
       {
-      case e_player_event_open_device:
-         informationf("player OnEvent e_player_event_open_device");
+      case e_player_happening_open_device:
+         informationf("player OnHappening e_player_happening_open_device");
          set_device_state(e_device_state_opened);
          break;
-      case e_player_event_open_device_failed:
-         informationf("player OnEvent e_player_event_open_device_failed");
+      case e_player_happening_open_device_failed:
+         informationf("player OnHappening e_player_happening_open_device_failed");
          set_device_state(e_device_state_initial);
          break;
-      case e_player_event_open_decoder:
-         informationf("player OnEvent e_player_event_open_decoder");
+      case e_player_happening_open_decoder:
+         informationf("player OnHappening e_player_happening_open_decoder");
          set_decoder_state(e_decoder_state_opened);
          break;
-      case e_player_event_start_device_failed:
+      case e_player_happening_start_device_failed:
       {
 
-         informationf("player OnEvent e_player_event_start_device_failed");
+         informationf("player OnHappening e_player_happening_start_device_failed");
 
          set_device_state(e_device_state_opened);
          set_player_state(e_player_state_initial);
 
       }
       break;
-      case e_player_event_play:
+      case e_player_happening_play:
       {
 
-         informationf("player OnEvent e_player_event_play");
+         informationf("player OnHappening e_player_happening_play");
 
          set_device_state(e_device_state_playing);
          set_player_state(e_player_state_playing);
 
       }
       break;
-      case e_player_event_stop:
+      case e_player_happening_stop:
       {
 
-         informationf("player OnEvent e_player_event_stop");
+         informationf("player OnHappening e_player_happening_stop");
 
          set_device_state(e_device_state_stopping);
          set_player_state(e_player_state_initial);
       }
       break;
-      case e_player_event_fade_out_and_stop:
+      case e_player_happening_fade_out_and_stop:
       {
 
-         informationf("player OnEvent e_player_event_fade_out_and_stop");
+         informationf("player OnHappening e_player_happening_fade_out_and_stop");
 
          set_player_state(e_player_state_fading_out_to_stop);
 
       }
       break;
-      case e_player_event_execute_pause:
+      case e_player_happening_execute_pause:
       {
 
-         informationf("player OnEvent EventDeviceOpen");
+         informationf("player OnHappening EventDeviceOpen");
 
          set_device_state(e_device_state_paused);
          set_player_state(e_player_state_paused);
 
       }
       break;
-      case e_player_event_execute_restart:
+      case e_player_happening_execute_restart:
       {
 
-         informationf("player OnEvent e_player_event_execute_restart");
+         informationf("player OnHappening e_player_happening_execute_restart");
 
          set_device_state(e_device_state_playing);
 
@@ -679,17 +679,17 @@ namespace wave
 
       }
       break;
-      case e_player_event_eof:
+      case e_player_happening_eof:
       {
 
-         informationf("player OnEvent e_player_event_eof");
+         informationf("player OnHappening e_player_happening_eof");
 
       }
       break;
-      case e_player_event_playback_end:
+      case e_player_happening_playback_end:
       {
 
-         informationf("player e_player_event_playback_end");
+         informationf("player e_player_happening_playback_end");
 
          //m_pwaveout->out_close();
 
@@ -712,10 +712,10 @@ namespace wave
 
       }
       break;
-      case e_player_event_stopped:
+      case e_player_happening_stopped:
       {
 
-         informationf("player e_player_event_stopped");
+         informationf("player e_player_happening_stopped");
 
          //m_pwaveout->out_close();
 
@@ -736,27 +736,27 @@ namespace wave
 
       }
       break;
-      case e_player_event_close_device:
+      case e_player_happening_close_device:
       {
-         informationf("player OnEvent e_player_event_close_device");
+         informationf("player OnHappening e_player_happening_close_device");
          set_device_state(e_device_state_initial);
       }
       break;
-      case e_player_event_close_decoder:
+      case e_player_happening_close_decoder:
       {
-         informationf("player OnEvent e_player_event_close_decoder");
+         informationf("player OnHappening e_player_happening_close_decoder");
          set_decoder_state(e_decoder_state_initial);
       }
       break;
-      case e_player_event_open_decoder_failed:
+      case e_player_happening_open_decoder_failed:
       {
-         informationf("player OnEvent e_player_event_open_decoder_failed");
+         informationf("player OnHappening e_player_happening_open_decoder_failed");
          set_decoder_state(e_decoder_state_initial);
       }
       break;
-      case e_player_event_destroy:
+      case e_player_happening_destroy:
       {
-         informationf("player OnEvent e_player_event_destroy");
+         informationf("player OnHappening e_player_happening_destroy");
          set_device_state(e_device_state_initial);
       }
       break;
@@ -765,7 +765,7 @@ namespace wave
       for (auto plistener : m_listenera)
       {
 
-         plistener->OnWavePlayerEvent(this, eevent, pcommand);
+         plistener->OnWavePlayerEvent(this, ehappening, pcommand);
 
       }
 
@@ -873,7 +873,7 @@ namespace wave
 
       }
 
-      OnEvent(e_player_event_fade_out_and_stop);
+      OnHappening(e_player_happening_fade_out_and_stop);
 
       effect_diminuendo * pdiminuendo = ___new effect_diminuendo();
 

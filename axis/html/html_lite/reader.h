@@ -19,7 +19,7 @@ class lite_html_tag;   // forward declaration
  This class presents an interface that must be implemented
  by all those classes that want to handle the notifications
  sent by the lite_html_reader while parsing an HTML document.
- The order of events handled by the ILiteHTMLReaderEvents
+ The order of happenings handled by the ILiteHTMLReaderEvents
  handler is determined by the order of information within
  the document being parsed. It's important to note that the
  interface includes a series of methods that the lite_html_reader
@@ -54,17 +54,17 @@ public:
 /**
  lite_html_reader
   This class allows you to parse HTML text in a simple, and fast
-  way by handling events that it generates as it finds specific
+  way by handling happenings that it generates as it finds specific
   symbols in the text. This class is similar to the SAX (Simple
   API for XML) implementation, which is an XML DOM parser. Like
   SAX, the lite_html_reader class reads a department of HTML text,
-  generates an event, and moves on to the next department. This
+  generates an happening, and moves on to the next department. This
   results in low memory consumption.
 
   @version 1.0 (Mar 26, 2004)
   @author Gurmeet S. Kochar
 
-  @todo add support for multiple event handlers.
+  @todo add support for multiple happening handlers.
   @todo add support for tag validation, a ___new interface, that
         validator classes must implement, so reader can then
         make a call, such as isValidTag(...), to validate tag
@@ -139,7 +139,7 @@ public:
    //character_count   m_dwBufLen;
 
    /**
-    * Bit-mask flags to customize events notification(s)
+    * Bit-mask flags to customize happenings notification(s)
     * Default is the ORed result of all EventMaskEnum flags.
     *
     * @since 1.0
@@ -148,7 +148,7 @@ public:
    EventMaskEnum   m_happeningMask;
 
    /**
-    * Pointer to an ILiteHTMLReaderEvents based event handling object
+    * Pointer to an ILiteHTMLReaderEvents based happening handling object
     * Default is nullptr
     *
     * @since 1.0
@@ -174,11 +174,11 @@ public:
 
 
    /**
-    * Returns an event mask which signifies the notification
+    * Returns an happening mask which signifies the notification
     * messages a lite_html_reader will send while parsing HTML
     * text.
     *
-    * @return event mask
+    * @return happening mask
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
@@ -186,24 +186,24 @@ public:
       { return (m_happeningMask); }
 
    /**
-    * Sets a ___new event mask.
+    * Sets a ___new happening mask.
     *
-    * @lparam dwNewEventMask - ___new event mask
+    * @lparam dwNewEventMask - ___new happening mask
     *
-    * @return previous event mask
+    * @return previous happening mask
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
    EventMaskEnum setEventMask(unsigned int dwNewEventMask);
 
    /**
-    * Changes the current event mask by adding and removing
+    * Changes the current happening mask by adding and removing
     * flags specified by addFlags and eraseFlags, respectively.
     *
-    * @lparam addFlags - flags to add in the current event mask
-    * @lparam eraseFlags - flags to erase from the current event mask
+    * @lparam addFlags - flags to add in the current happening mask
+    * @lparam eraseFlags - flags to erase from the current happening mask
     *
-    * @return previous event mask
+    * @return previous happening mask
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
@@ -222,7 +222,7 @@ public:
 
    /**
     * Allows you to store 32-bit application-specific
-    * data that will be passed to event handlers on each call
+    * data that will be passed to happening handlers on each call
     *
     * @lparam dwNewAppData - System-specific data
     *
@@ -233,7 +233,7 @@ public:
    character_count setAppData(unsigned int dwNewAppData);
 
    /**
-    * Returns a pointer to an event handler registered with
+    * Returns a pointer to an happening handler registered with
     * a lite_html_reader by a previous call to setEventHandler().
     *
     * @return pointer to a ILiteHTMLReaderEvents
@@ -244,16 +244,16 @@ public:
       { return (m_pEventHandler); }
 
    /**
-    * Registers an event handler with a lite_html_reader. If no
-    * event handler is registered with the reader, all events
+    * Registers an happening handler with a lite_html_reader. If no
+    * happening handler is registered with the reader, all happenings
     * raised by the reader will be ignored. An application can
-    * machine the event handler even when the parsing process
+    * machine the happening handler even when the parsing process
     * is in progress.
     *
-    * @lparam pNewHandler - pointer to an event handler.
+    * @lparam pNewHandler - pointer to an happening handler.
     *        This parameter can be nullptr also.
     *
-    * @return pointer to the previous event handler
+    * @return pointer to the previous happening handler
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
@@ -335,10 +335,10 @@ public:
    /** Other Helpers */
 
    /**
-    * Determines if the specified event's notification is to be raised
+    * Determines if the specified happening's notification is to be raised
     *
     * @return true if notification is to be raised, false otherwise.
-    *         false is returned also when there is no event handler
+    *         false is returned also when there is no happening handler
     *         associated with the reader.
     * @since 1.0
     * @author Gurmeet S. Kochar

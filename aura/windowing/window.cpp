@@ -2965,7 +2965,7 @@ bMove = false;
       //    if (::is_set(m_pimpl->m_puserthread))
       //    {
 
-      //       m_pimpl->m_puserthread->m_evApplyVisual.wait(15_s);
+      //       m_pimpl->m_puserthread->m_happeningApplyVisual.wait(15_s);
 
       //    }
 
@@ -5965,7 +5965,7 @@ bMove = false;
       {
 
          // We are at the message handler routine.
-         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
+         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
          // So the routine starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
@@ -6238,7 +6238,7 @@ bMove = false;
       //         string strType = ::type(m_puserinteraction).name();
       //
       //         // We are at the message handler procedure.
-      //         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
+      //         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
       //         // So the procedure starts by setting to the default cursor,
       //         // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
       //         // handler has set it to another one.
@@ -6269,7 +6269,7 @@ bMove = false;
       //      else if (pmouse->m_atom == e_message_non_client_mouse_move)
       //      {
       //         // We are at the message handler procedure.
-      //         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
+      //         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
       //         // So the procedure starts by setting to the default cursor,
       //         // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
       //         // handler has set it to another one.
@@ -11982,7 +11982,7 @@ bMove = false;
    //         //if (::is_set(m_puserthread))
    //         //{
    //
-   //         //   m_puserthread->m_evApplyVisual.set_happening();
+   //         //   m_puserthread->m_happeningApplyVisual.set_happening();
    //
    //         //}
    //

@@ -518,7 +518,7 @@ namespace colorertake5
 
       if (!layoutChanged)
       {
-         /* Text modification only event */
+         /* Text modification only happening */
          if (invalidLine < parseTo)
          {
             parseFrom = invalidLine;

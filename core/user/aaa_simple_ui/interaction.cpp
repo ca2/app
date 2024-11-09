@@ -69,7 +69,7 @@ namespace simple_ui
 //
 //      ::pointer<::user::message>pusermessage(pmessage);
 //
-//      if (eevent == ::id_button_down)
+//      if (ehappening == ::id_button_down)
 //      {
 //
 //         psession->m_puiLastLButtonDown = this;
@@ -80,7 +80,7 @@ namespace simple_ui
 //
 //      topic.m_puserinteraction = this;
 //
-//      topic.m_atom = eevent;
+//      topic.m_atom = ehappening;
 //
 //      topic.m_pmessage = pmessage;
 //

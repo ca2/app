@@ -32,8 +32,8 @@ namespace simpledb
       string                  m_strIp;
       int                     m_iPort;
 
-      ::event                 m_evCanInit;
-      ::event                 m_evInitialized;
+      ::happening                 m_happeningCanInit;
+      ::happening                 m_happeningInitialized;
       bool                    m_bInitialized;
 
 #ifdef BSD_STYLE_SOCKETS

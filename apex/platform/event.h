@@ -10,7 +10,7 @@
 //   //class tab;
 //
 //
-//   class CLASS_DECL_APEX event :
+//   class CLASS_DECL_APEX happening :
 //      virtual public ::object
 //   {
 //   public:

@@ -65,7 +65,7 @@ COMMAND_LINE_ARGUMENT_A old_args[] =
 	{ "authonly", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "authentication only, no UI" },
 	{ "from-stdin", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "unspecified username, password, domain and hostname params are prompted" },
 	{ "no-fastpath", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "disable fast-path" },
-	{ "no-motion", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "don't send mouse motion events" },
+	{ "no-motion", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "don't send mouse motion happenings" },
 	{ "gdi", COMMAND_LINE_VALUE_REQUIRED, nullptr, nullptr, nullptr, -1, nullptr, "graphics rendering (hw, sw)" },
 	{ "no-osb", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "disable offscreen bitmaps" },
 	{ "no-bmp-cache", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "disable bitmap cache" },

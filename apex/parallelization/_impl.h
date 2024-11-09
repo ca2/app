@@ -140,14 +140,14 @@ inline int_bool critical_section::Unlock()
 //
 //   T                    m_t;
 //   bool                 m_bInitialized = false;
-//   manual_reset_happening   m_evReady;
+//   manual_reset_happening   m_happeningReady;
 //   string               m_strErrorMessage;
 //
 //
 //   void wait()
 //   {
 //
-//      m_evReady.wait();
+//      m_happeningReady.wait();
 //
 //   }
 //
@@ -175,7 +175,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_bInitialized = true;
 //
-//      m_evReady.set_happening();
+//      m_happeningReady.set_happening();
 //
 //   }
 //
@@ -184,7 +184,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_strErrorMessage = strErrorMessage;
 //
-//      m_evReady.set_happening();
+//      m_happeningReady.set_happening();
 //
 //   }
 //
@@ -408,14 +408,14 @@ inline int_bool critical_section::Unlock()
 //   ::pointer<::layered>   m_pobject;
 //   T                       m_t;
 //   bool                    m_bInitialized = false;
-//   manual_reset_happening      m_evReady;
+//   manual_reset_happening      m_happeningReady;
 //   string                  m_strErrorMessage;
 //
 //
 //   void wait()
 //   {
 //
-//      m_evReady.wait();
+//      m_happeningReady.wait();
 //
 //   }
 //
@@ -443,7 +443,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_bInitialized = true;
 //
-//      m_evReady.set_happening();
+//      m_happeningReady.set_happening();
 //
 //   }
 //
@@ -452,7 +452,7 @@ inline int_bool critical_section::Unlock()
 //
 //      m_strErrorMessage = strErrorMessage;
 //
-//      m_evReady.set_happening();
+//      m_happeningReady.set_happening();
 //
 //   }
 //

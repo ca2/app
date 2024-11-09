@@ -9,12 +9,12 @@ namespace sockets
       virtual public axis_object
    {
    public:
-      enum e_event
+      enum e_happening
       {
          event_invite, 
       };
 
-      e_event     m_eevent;
+      e_happening     m_eevent;
 
       sip_event(::particle * pparticle);
    };

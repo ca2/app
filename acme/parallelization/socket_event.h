@@ -2,9 +2,9 @@
 
 #if 0
 
-/// This class represents events for socket communication.
+/// This class represents happenings for socket communication.
 class CLASS_DECL_ACME socket_event :
-   public event
+   public happening
 {
 public:
 
@@ -15,7 +15,7 @@ public:
 	/// internal member holding the socket handle
 	unsigned int m_iSocket;
 
-	/// internal member which is true if this event is used by a thread
+	/// internal member which is true if this happening is used by a thread
 	/// which waits for socket connections
 	bool m_bUsedBySocketWaiterThread;
 

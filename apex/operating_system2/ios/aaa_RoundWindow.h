@@ -14,7 +14,7 @@
 #include "apex/user/_const_key.h"
 
 
-::user::enum_key event_key(UIEvent * event);
+::user::enum_key event_key(UIEvent * happening);
 
 
 class round_window;

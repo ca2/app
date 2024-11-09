@@ -53,7 +53,7 @@ void machine_event_central::initialize(::particle * pparticle)
 
    //}
 
-   // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for machine messages pooling in the machine event data file.
+   // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for machine messages pooling in the machine happening data file.
 
    // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
 #if 0
@@ -73,7 +73,7 @@ void machine_event_central::initialize(::particle * pparticle)
 void machine_event_central::run()
 {
 
-   // todo (camilo) instead of sleeping, wait for machine messages pooling in the machine event data file.
+   // todo (camilo) instead of sleeping, wait for machine messages pooling in the machine happening data file.
 
    // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
 

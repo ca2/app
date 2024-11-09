@@ -27,7 +27,7 @@ namespace networking
 
    //HRESULT port_forward::StopListeningForUpnpChanges()
    //{
-	  // // Stops listenting for UPnP machine events on the router and deletes any
+	  // // Stops listenting for UPnP machine happenings on the router and deletes any
 	  // // port_forward_change_callbacks-derived objects that are currently being held
 
 	  // // check if we are already listening

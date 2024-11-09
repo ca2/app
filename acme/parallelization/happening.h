@@ -71,11 +71,11 @@ public:
    * \brief	Session independent waitables (windows version)
    */
 
-   ///  \brief		waits for an event forever
+   ///  \brief		waits for an happening forever
    void _wait () override;
 
-   ///  \brief		waits for an event for a specified time
-   ///  \lparam		time time period to wait for an event
+   ///  \brief		waits for an happening for a specified time
+   ///  \lparam		time time period to wait for an happening
    ///  \return	true if acquired lock, false timeout, exception on error
    bool _wait (const class time & timeWait) override;
 

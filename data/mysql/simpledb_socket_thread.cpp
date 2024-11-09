@@ -13,11 +13,11 @@ namespace simpledb
       thread(pparticle),
       ::sockets::socket_handler(pparticle),
       
-      m_evInitialized(pparticle)
+      m_happeningInitialized(pparticle)
    {
       m_psocket = nullptr;
-      m_evCanInit.reset_happening();
-      m_evInitialized.reset_happening();
+      m_happeningCanInit.reset_happening();
+      m_happeningInitialized.reset_happening();
       m_bInitialized = false;
 
    }
@@ -79,7 +79,7 @@ namespace simpledb
       informationf("error %u", dw);
       return false;
       }*/
-      m_evInitialized.set_happening();
+      m_happeningInitialized.set_happening();
       return true;
    }
 
@@ -132,7 +132,7 @@ namespace simpledb
       if(pusermessage->m_wparam == 0)
       {
          m_bInitialized = true;
-         m_evInitialized.set_happening();
+         m_happeningInitialized.set_happening();
       }
       else if(pusermessage->m_wparam == 1)
       {

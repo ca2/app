@@ -39,14 +39,14 @@ namespace sockets_bsd
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
-      fd_set                     m_rfds; ///< file descriptor set monitored for read events
-      fd_set                     m_wfds; ///< file descriptor set monitored for write events
+      fd_set                     m_rfds; ///< file descriptor set monitored for read happenings
+      fd_set                     m_wfds; ///< file descriptor set monitored for write happenings
       fd_set                     m_efds; ///< file descriptor set monitored for exceptions
-      //fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
-      //fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
+      //fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read happenings
+      //fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write happenings
       //fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
-      //fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read events
-      //fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write events
+      //fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read happenings
+      //fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write happenings
       //fd_set                     m_efdsSelected; ///< file descriptor set monitored for exceptions
       int                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
@@ -117,14 +117,14 @@ namespace sockets_bsd
       /** set read/write/exception file descriptor sets (fd_set). */
       //void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;
 
-      /** Wait for events, generate callbacks. */
+      /** Wait for happenings, generate callbacks. */
       int select(int sec, int usec) override;
 
-      /** This method will not return until an event has been detected. */
+      /** This method will not return until an happening has been detected. */
       int select() override;
 
       int select(const class time & timeWait) override;
-      /** Wait for events, generate callbacks. */
+      /** Wait for happenings, generate callbacks. */
       int _select(struct timeval *tsel) override;
 
       /** Check that a base_socket really is handled by this base_socket handler. */
@@ -197,7 +197,7 @@ namespace sockets_bsd
       //port_t GetResolverPort() override;
       /** Resolver thread ready for queries. */
       //bool ResolverReady() override;
-      /** Returns true if the base_socket is waiting for a resolve event. */
+      /** Returns true if the base_socket is waiting for a resolve happening. */
       //bool Resolving(base_socket *) override;
 
       /** Fetch unique trigger atom. */

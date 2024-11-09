@@ -800,7 +800,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 }
 
 
-/// Post an event from the client to the X server
+/// Post an happening from the client to the X server
 void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 {
 

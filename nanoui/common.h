@@ -222,8 +222,8 @@ class Window;
  * \brief Enter the application main loop
  *
  * \param refresh
- *     NanoGUI issues a redraw call whenever an keyboard/mouse/.. event is
- *     received. In the absence of any external events, it enforces a redraw
+ *     NanoGUI issues a redraw call whenever an keyboard/mouse/.. happening is
+ *     received. In the absence of any external happenings, it enforces a redraw
  *     once every ``refresh`` milliseconds. To disable the refresh timer,
  *     specify a negative value here.
  *
@@ -240,14 +240,14 @@ class Window;
  *     collected).
  *
  * \remark
- *     Unfortunately, Mac OS X strictly requires all event processing to take
+ *     Unfortunately, Mac OS X strictly requires all happening processing to take
  *     place on the application's main thread, which is fundamentally
  *     incompatible with this type of approach. Thus, NanoGUI relies on a
  *     rather crazy workaround on Mac OS (kudos to Dmitriy Morozov):
  *     ``mainloop()`` launches a ___new thread as before but then uses
  *     libcoro to swap the thread execution environment (stack, registers, ..)
  *     with the main thread. This means that the main application thread is
- *     hijacked and processes events in the main loop to satisfy the
+ *     hijacked and processes happenings in the main loop to satisfy the
  *     requirements on Mac OS, while the thread that actually returns from this
  *     function is the newly created one (paradoxical, as that may seem).
  *     Deleting or ``join()``ing the returned handle causes application to

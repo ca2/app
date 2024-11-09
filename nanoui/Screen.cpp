@@ -293,7 +293,7 @@ namespace nanoui
    //#endif
    //
    //#if defined(__APPLE__)
-   //   /* Poll for events once before starting a potentially
+   //   /* Poll for happenings once before starting a potentially
    //      lengthy loading process. This is needed to be
    //      classified as "interactive" by other software such
    //      as iTerm2 */
@@ -301,7 +301,7 @@ namespace nanoui
    //   glfwPollEvents();
    //#endif
    //
-   //   /* Propagate GLFW events to the appropriate Screen instance */
+   //   /* Propagate GLFW happenings to the appropriate Screen instance */
    //   glfwSetCursorPosCallback(m_glfw_window,
    //      [](GLFWwindow * pwidgetChild, double x, double y) {
    //         auto it = __nanoui_screens.find(pwidgetChild);
@@ -374,8 +374,8 @@ namespace nanoui
    //      }
    //   );
    //
-   //   /* React to framebuffer size events -- includes window
-   //      size events and also catches things like dragging
+   //   /* React to framebuffer size happenings -- includes window
+   //      size happenings and also catches things like dragging
    //      a window from a Retina-capable pscreen to a normal
    //      pscreen on Mac OS X */
    //   glfwSetFramebufferSizeCallback(m_glfw_window,
@@ -1027,7 +1027,7 @@ namespace nanoui
       //}
       //catch()
       //catch (const std::exception & e) {
-        // std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+        // std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
       //}
 
       }
@@ -1236,7 +1236,7 @@ namespace nanoui
       //   action == GLFW_PRESS, m_modifiers);
        //}
        //catch (const std::exception & e) {
-       //   std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+       //   std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
        //}
       if (!down)
       {
@@ -1260,7 +1260,7 @@ namespace nanoui
    //      m_redraw |= keyboard_event(key, scancode, action, mods, strTExt);
    //   }
    //   catch (const std::exception & e) {
-   //      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //      std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
    //   }
    //}
    //
@@ -1270,7 +1270,7 @@ namespace nanoui
    //      m_redraw |= keyboard_character_event(codepoint);
    //   }
    //   catch (const std::exception & e) {
-   //      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //      std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
    //   }
    //}
    //
@@ -1295,7 +1295,7 @@ namespace nanoui
    //      m_redraw |= scroll_event(m_mouse_pos, sequence2_float(x, y));
    //   }
    //   catch (const std::exception & e) {
-   //      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //      std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
    //   }
    //}
    //
@@ -1326,7 +1326,7 @@ namespace nanoui
    //      resize_event(m_size);
    //   }
    //   catch (const std::exception & e) {
-   //      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //      std::cerr << "Caught exception in happening handler: " << e.what() << std::endl;
    //   }
    //   redraw();
    //}

@@ -104,7 +104,7 @@ typedef enum sp_error {
   SP_ERROR_CLIENT_TOO_OLD            = 9,  ///< Client is too old, library will need to be updated
   SP_ERROR_OTHER_PERMANENT           = 10, ///< Some other error occurred, and it is permanent (e.g. trying to relogin will not help)
   SP_ERROR_BAD_USER_AGENT            = 11, ///< The user agent string is invalid or too long
-  SP_ERROR_MISSING_CALLBACK          = 12, ///< No valid callback registered to handle events
+  SP_ERROR_MISSING_CALLBACK          = 12, ///< No valid callback registered to handle happenings
   SP_ERROR_INVALID_INDATA            = 13, ///< Input data was either missing or invalid
   SP_ERROR_INDEX_OUT_OF_RANGE        = 14, ///< Index out of range
   SP_ERROR_USER_NEEDS_PREMIUM        = 15, ///< The specified user needs a premium account
@@ -620,7 +620,7 @@ typedef struct sp_session_callbacks {
   void (SP_CALLCONV *connectionstate_updated)(sp_session *session);
 
    /**
-  * Called when there is a scrobble error event
+  * Called when there is a scrobble error happening
   *
   * @param[in]  session    Session
   * @param[in]  error      Scrobble error. Currently SP_ERROR_LASTFM_AUTH_ERROR.
@@ -657,7 +657,7 @@ typedef struct sp_session_config {
                  The User-Agent should be a relevant, customer facing identification of your application
                  */
 
-  const sp_session_callbacks *callbacks; ///< Delivery callbacks for session events, or NULL if you are not interested in any callbacks (not recommended!)
+  const sp_session_callbacks *callbacks; ///< Delivery callbacks for session happenings, or NULL if you are not interested in any callbacks (not recommended!)
   void *userdata;                        ///< User supplied data for your application
 
   /**
@@ -880,7 +880,7 @@ SP_LIBEXPORT(void *) sp_session_userdata(sp_session *session);
 SP_LIBEXPORT(sp_error) sp_session_set_cache_size(sp_session *session, size_t size);
 
 /**
- * Make the specified session process any pending events
+ * Make the specified session process any pending happenings
  *
  * @param[in]   session         Your session object
  * @param[out]  next_timeout    Stores the time (in ::times) until you should call this function again
@@ -1961,7 +1961,7 @@ typedef void SP_CALLCONV albumbrowse_complete_cb(sp_albumbrowse *result, void *u
  *
  * @param[in]   session         Session object
  * @param[in]   album           Album to be browsed. The album metadata does not have to be loaded
- * @param[in]   callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this event.
+ * @param[in]   callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this happening.
  * @param[in]   userdata        Userdata passed to callback.
  *
  * @return                      Album browse object
@@ -2128,7 +2128,7 @@ typedef void SP_CALLCONV artistbrowse_complete_cb(sp_artistbrowse *result, void 
  * @param[in] session         Session object
  * @param[in] artist          Artist to be browsed. The artist metadata does not have to be loaded
  * @param[in] type            Type of data requested, see the sp_artistbrowse_type enum for details
- * @param[in] callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this event.
+ * @param[in] callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this happening.
  * @param[in] userdata        Userdata passed to callback.
  *
  * @return                    Artist browse object
@@ -2499,7 +2499,7 @@ typedef void SP_CALLCONV search_complete_cb(sp_search *result, void *userdata);
  * @param[in]  playlist_offset  The offset among the playlists of the result
  * @param[in]  playlist_count   The number of playlists to ask for
  * @param[in]  search_type      Type of search, can be used for suggest searches
- * @param[in]  callback   Callback that will be called once the search operation is complete. Pass NULL if you are not interested in this event.
+ * @param[in]  callback   Callback that will be called once the search operation is complete. Pass NULL if you are not interested in this happening.
  * @param[in]  userdata   Opaque pointer passed to \p callback
  *
  * @return                Pointer to a search object. To free the object, use sp_search_release()
@@ -3723,7 +3723,7 @@ typedef void SP_CALLCONV toplistbrowse_complete_cb(sp_toplistbrowse *result, voi
  * @param[in]   region          Region. see sp_toplistregion enum. Country specific regions are coded as two chars in an integer.
  *                              Sweden would correspond to 'S' << 8 | 'E'
  * @param[in]   username        If region is SP_TOPLIST_REGION_USER this specifies which user to get toplists for. NULL means the logged in user.
- * @param[in]   callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this event.
+ * @param[in]   callback        Callback to be invoked when browsing has been completed. Pass NULL if you are not interested in this happening.
  * @param[in]   userdata        Userdata passed to callback.
  *
  * @return                      Toplist browse object

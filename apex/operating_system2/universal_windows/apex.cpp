@@ -63,7 +63,7 @@
 //
 //   HANDLE sleepEvent = singletonEvent;
 //
-//   // Demand create the event.
+//   // Demand create the happening.
 //   if (!sleepEvent)
 //   {
 //      sleepEvent = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
@@ -81,7 +81,7 @@
 //      }
 //   }
 //
-//   // Emulate sleep by waiting with timeout on an event that is never signalled.
+//   // Emulate sleep by waiting with timeout on an happening that is never signalled.
 //   WaitForSingleObjectEx(sleepEvent, dw::times, false);
 //}
 //#endif

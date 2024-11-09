@@ -149,7 +149,7 @@ namespace os
       m_size.cy() = height(lpcrect);
 
       m_rectangleWindow = *lpcrect;
-      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual int_rectangle to trigger simple_ui on_move and on_size events
+      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual int_rectangle to trigger simple_ui on_move and on_size happenings
 
       m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 

@@ -4614,7 +4614,7 @@ namespace user
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
-         informationf("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
+         informationf("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring happening");
 
       }
       else if (window()->m_bIgnoreSizeEvent)
@@ -24425,7 +24425,7 @@ namespace user
          //   bool interaction::simple_on_control_event(::message::message* pmessage, ::enum_topic etopic)
          //   {
          //
-         //      if (eevent == e_event_mouse_leave)
+         //      if (ehappening == e_event_mouse_leave)
          //      {
          //
          //         ::pointer<interaction>pinteraction = top_child();
@@ -24454,7 +24454,7 @@ namespace user
          //
          //      //topic.m_atom = m_atom;
          //
-         //      topic.m_atom = eevent;
+         //      topic.m_atom = ehappening;
          //
          //      topic.m_pmessage = pmessage;
          //

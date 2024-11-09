@@ -954,7 +954,7 @@ namespace user
 //   void thread::start_window_visual()
 //   {
 //
-//      //m_evApplyVisual.reset_happening();
+//      //m_happeningApplyVisual.reset_happening();
 //
 //      m_puserinteractionUserThread->post_message(e_message_apply_visual);
 //

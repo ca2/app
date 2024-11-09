@@ -446,7 +446,7 @@ namespace mathematics
 
    /*      int math::RandRange(int i1, int i2)
    {
-   // dRandRange == 0.0 is impossible event due this next statement;
+   // dRandRange == 0.0 is impossible happening due this next statement;
    if(i1 == i2)
    return i1;
    int iMin = minimum(i1, i2);
@@ -470,7 +470,7 @@ namespace mathematics
 
    unsigned int math::RandRange(unsigned int ui1, unsigned int ui2)
    {
-   // dRandRange == 0.0 is impossible event due this next statement;
+   // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
    int iMin = minimum(ui1, ui2);
@@ -495,7 +495,7 @@ namespace mathematics
 
    //double math::frand_range(double d1, double d2)
    //{
-   //   // dRandRange == 0.0 is impossible event due this next statement;
+   //   // dRandRange == 0.0 is impossible happening due this next statement;
    //   if (d1 == d2)
    //      return d1;
    //   double dMin = minimum(d1, d2);
@@ -508,7 +508,7 @@ namespace mathematics
 
    huge_natural math::RandRange(huge_natural ui1, huge_natural ui2)
    {
-   // dRandRange == 0.0 is impossible event due this next statement;
+   // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
    huge_natural uiMin = minimum(ui1, ui2);

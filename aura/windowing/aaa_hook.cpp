@@ -75,7 +75,7 @@ namespace windowing
 #endif
 
 
-   bool hook::process_event(display *pdisplay, event * pevent)
+   bool hook::process_event(display *pdisplay, happening * pevent)
    {
 
       return false;

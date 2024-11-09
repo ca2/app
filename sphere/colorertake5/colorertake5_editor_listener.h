@@ -2,13 +2,13 @@
 #define _COLORER_EDITORLISTENER_H_
 
 /**
- * Listener of base_editor events
+ * Listener of base_editor happenings
  */
 class EditorListener
 {
 public:
   /**
-   * Informs EditorListener object about text modification event.
+   * Informs EditorListener object about text modification happening.
    * All the text becomes invalid after the specified line.
    * @param topLine Topmost modified line of text.
    */

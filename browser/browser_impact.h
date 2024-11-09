@@ -12,7 +12,7 @@
 //{
 //public:
 //   // Implement this interface to receive notification of ClientHandler
-//   // events. The methods of this class will be called on the main thread.
+//   // happenings. The methods of this class will be called on the main thread.
 //   class Delegate
 //   {
 //   public:
@@ -178,7 +178,7 @@ namespace browser
       //The CefRenderHandler::GetImpactRect() method will be called to retrieve the desired impact rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
       //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the __allocate< int_size followed by a call to OnPaint >().
-      //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus events.
+      //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus happenings.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       ::task_pointer m_pthreadBrowser;
       string                  m_strServer;

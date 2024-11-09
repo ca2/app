@@ -352,7 +352,7 @@ public:
    inline atom(enum_task_tool etasktool);
    inline atom(enum_timer etimer);
    inline atom(enum_dialog_result edialogresult);
-   inline atom(enum_happening eevent);
+   inline atom(enum_happening ehappening);
    inline atom(enum_check echeck);
    inline atom(enum_status estatus);
 

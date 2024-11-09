@@ -28,6 +28,6 @@
 #endif
 
 int xf_input_init(xfContext* xfc, Window window);
-int xf_input_handle_event(xfContext* xfc, XEvent* event);
+int xf_input_handle_event(xfContext* xfc, XEvent* happening);
 
 #endif

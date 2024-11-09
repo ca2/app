@@ -57,14 +57,14 @@ extern "C" {
 /**
 * The native activity interface provided by <android/native_activity.h>
 * is based on a set of application-provided callbacks that will be called
-* by the Activity's main thread when certain events occur.
+* by the Activity's main thread when certain happenings occur.
 *
 * This means that each one of this callbacks _should_ _not_ block, or they
 * risk having the system force-close the application. This programming
 * model is direct, lightweight, but constraining.
 *
 * The 'threaded_native_app' static library is used to provide a different
-* execution model where the application can implement its own main event
+* execution model where the application can implement its own main happening
 * loop in a different thread instead. Here's how it works:
 *
 * 1/ The application must provide a function named "android_main()" that
@@ -78,10 +78,10 @@ extern "C" {
 * 3/ the "android_app" matter holds an ALooper instance that already
 *    listens to two important things:
 *
-*      - activity lifecycle events (e.g. "pause", "resume"). See APP_CMD_XXX
+*      - activity lifecycle happenings (e.g. "pause", "resume"). See APP_CMD_XXX
 *        declarations below.
 *
-*      - input events coming from the AInputQueue attached to the activity.
+*      - input happenings coming from the AInputQueue attached to the activity.
 *
 *    Each of these correspond to an ALooper identifier returned by
 *    ALooper_pollOnce with values of LOOPER_ID_MAIN and LOOPER_ID_INPUT,
@@ -91,11 +91,11 @@ extern "C" {
 *    file-descriptors.  They can either be callback based, or with return
 *    identifiers starting with LOOPER_ID_USER.
 *
-* 4/ Whenever you receive a LOOPER_ID_MAIN or LOOPER_ID_INPUT event,
+* 4/ Whenever you receive a LOOPER_ID_MAIN or LOOPER_ID_INPUT happening,
 *    the returned data will point to an android_poll_source structure.  You
 *    can call the process() function on it, and fill in android_app->onAppCmd
 *    and android_app->onInputEvent to be called for your own processing
-*    of the event.
+*    of the happening.
 *
 *    Alternatively, you can call the low-level functions to read and process
 *    the data directly...  look at the process_cmd() and process_input()
@@ -142,11 +142,11 @@ struct android_app
    // Fill this in with the function to process main app commands (APP_CMD_*)
    void(*onAppCmd)(struct android_app* app, int cmd);
 
-   // Fill this in with the function to process input events.  At this point
-   // the event has already been pre-dispatched, and it will be finished upon
-   // return.  Return 1 if you have handled the event, 0 for any default
+   // Fill this in with the function to process input happenings.  At this point
+   // the happening has already been pre-dispatched, and it will be finished upon
+   // return.  Return 1 if you have handled the happening, 0 for any default
    // dispatching.
-   int(*onInputEvent)(struct android_app* app, AInputEvent* event);
+   int(*onInputEvent)(struct android_app* app, AInputEvent* happening);
 
    // The ANativeActivity matter instance that this app is running in.
    ANativeActivity* activity;
@@ -169,7 +169,7 @@ struct android_app
    ALooper* looper;
 
    // When non-nullptr, this is the input queue from which the app will
-   // receive user input events.
+   // receive user input happenings.
    AInputQueue* inputQueue;
 
    // When non-nullptr, this is the window surface that the app can draw in.
@@ -222,7 +222,7 @@ enum
    LOOPER_ID_MAIN = 1,
 
    /**
-   * Looper data ID of events coming from the AInputQueue of the
+   * Looper data ID of happenings coming from the AInputQueue of the
    * application's window, which is returned as an identifier from
    * ALooper_pollOnce().  The data for this identifier is a pointer to an
    * android_poll_source structure.  These can be read via the inputQueue

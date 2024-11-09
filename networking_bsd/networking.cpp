@@ -3054,7 +3054,7 @@ namespace networking_bsd
 //
 //      m_maxsock = (SOCKET + 1 > m_maxsock) ? SOCKET + 1 : m_maxsock;
 //
-//      // only add to m_socketidlist (process fd_set events) if
+//      // only add to m_socketidlist (process fd_set happenings) if
 //      //  slave handler and detached/detaching SOCKET
 //      //  master handler and non-detached SOCKET
 //      //if (!(m_slave ^ psocket->IsDetach()))

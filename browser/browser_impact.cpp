@@ -319,33 +319,33 @@ namespace browser
 
       papp->m_ppaneimpact->m_pimpactLastBilbo = this;
 
-      CefMouseEvent event;
+      CefMouseEvent happening;
 
       ::int_point point = pmouse->m_point;
 
       screen_to_client()(point);
 
-      event.x() = point.x();
-      event.y() = point.y();
+      happening.x() = point.x();
+      happening.y() = point.y();
 
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
          papp->m_ppaneimpact->m_pimpactLastBilbo = this;
 
-         m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
+         m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
       else if (pmouse->m_atom == e_message_left_button_up)
       {
 
-         m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, true, 1);
+         m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
       else if (pmouse->m_atom == e_message_mouse_move)
       {
 
-         m_pbrowser->GetHost()->SendMouseMoveEvent(event, false);
+         m_pbrowser->GetHost()->SendMouseMoveEvent(happening, false);
 
       }
       pmouse->m_bRet = true;

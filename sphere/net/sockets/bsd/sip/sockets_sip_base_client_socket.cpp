@@ -479,9 +479,9 @@ namespace sockets
          if(strMethod == "INVITE")
          {
             //m_estate = state_ringing;
-            //         sip_event event;
-            //event.m_eevent = sip_event::event_invite;
-            //m_pcallback->on_event(&event);
+            //         sip_event happening;
+            //happening.m_eevent = sip_event::event_invite;
+            //m_pcallback->on_event(&happening);
          }
       }
       if(m_estate == state_waiting_call_trying)

@@ -192,7 +192,7 @@ struct _xmpp_conn_t {
     /* timeouts */
     unsigned int connect_timeout;
 
-    /* event handlers */    
+    /* happening handlers */    
 
     /* stream open handler */
     xmpp_open_handler open_handler;
@@ -200,7 +200,7 @@ struct _xmpp_conn_t {
     /* user handlers only get called after authentication */
     int authenticated;
     
-    /* connection events handler */
+    /* connection happenings handler */
     xmpp_conn_handler conn_handler;
     void *userdata;
 

@@ -289,7 +289,7 @@ namespace async
    class task_completion_event
    {
    public:
-      event m_happening;
+      happening m_happening;
       bool set(T r )
       {
          m_happening.set_happening();
@@ -301,7 +301,7 @@ namespace async
    class task_completion_event < void >
    {
    public:
-      event m_happening;
+      happening m_happening;
       bool set()
       {
          m_happening.set_happening();

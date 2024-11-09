@@ -122,14 +122,14 @@ namespace nanoui
       /// Set a callback that is used to notify a listener about tab changes (will be called with the tab ID)
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
-      /// Callback that is used to notify a listener about tab close events (will be called with the tab ID)
+      /// Callback that is used to notify a listener about tab close happenings (will be called with the tab ID)
       ::function<void(::collection::index)> close_callback() const { return m_closecallback; }
-      /// Set a callback that is used to notify a listener about tab close events (will be called with the tab ID)
+      /// Set a callback that is used to notify a listener about tab close happenings (will be called with the tab ID)
       void set_close_callback(const ::function<void(::collection::index)>& close_callback) { m_closecallback = close_callback; }
 
-      /// Callback that is used to notify a listener about popup events (will be called with the tab ID)
+      /// Callback that is used to notify a listener about popup happenings (will be called with the tab ID)
       ::function<Popup* (::collection::index, Screen*)> popup_callback() const { return m_popupcallback; }
-      /// Set a callback that is used to notify a listener about popup events (will be called with the tab ID)
+      /// Set a callback that is used to notify a listener about popup happenings (will be called with the tab ID)
       void set_popup_callback(const ::function<Popup* (::collection::index, Screen*)>& popup_callback) { m_popupcallback = popup_callback; }
 
       // Widget implementation

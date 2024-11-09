@@ -32,7 +32,7 @@ namespace file
    //using listener_function = ::function < void(::file::action *) >;
 
 
-   /// Basic interface for listening for file events.
+   /// Basic interface for listening for file happenings.
    /// @class file_watch_listener
    class listener :
       public ::function <  void(::file::action*) >

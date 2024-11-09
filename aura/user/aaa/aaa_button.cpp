@@ -1106,7 +1106,7 @@ namespace user
    void button::pre_translate_message(::message::message * pmessage)
    {
 
-      // Relay events from this button to the tool tip tool handler
+      // Relay happenings from this button to the tool tip tool handler
       BaseToolTipRelayEvent(pmessage);
 
       return ::user::interaction::pre_translate_message(pmessage);

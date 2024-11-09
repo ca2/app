@@ -6,7 +6,7 @@ class sys_message_queue
 public:
 
 
-   event                     m_happening;
+   happening                     m_happening;
    ::pointer < ::mutex >                     m_pmutex;
    ref_array < MESSAGE >           m_msgptra;
 

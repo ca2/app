@@ -20,7 +20,7 @@ namespace simple_ui
       ::e_message_box                  m_emessagebox;
       ::duration                       m_durationTimeout;
       callback                         m_callback;
-      manual_reset_happening               m_evReady;
+      manual_reset_happening               m_happeningReady;
 
 
       message_box(::particle * pparticle, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);

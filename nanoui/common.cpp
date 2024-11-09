@@ -148,7 +148,7 @@ static float emscripten_refresh = 0;
 //      }
 //
 //#if !defined(EMSCRIPTEN)
-//      /* Wait for mouse/keyboard or empty refresh events */
+//      /* Wait for mouse/keyboard or empty refresh happenings */
 //      glfwWaitEvents();
 //#endif
 //   };
@@ -178,7 +178,7 @@ static float emscripten_refresh = 0;
 //      quantum_count = std::numeric_limits<size_t>::max();
 //   }
 //
-//   /* If there are no mouse/keyboard events, try to refresh the
+//   /* If there are no mouse/keyboard happenings, try to refresh the
 //      view roughly every 50 ms (default); this is to support animations
 //      such as progress bars while keeping the system load
 //      reasonably low */
@@ -204,7 +204,7 @@ static float emscripten_refresh = 0;
 //      while (mainloop_active)
 //         mainloop_iteration();
 //
-//      /* Process events once more */
+//      /* Process happenings once more */
 //      glfwPollEvents();
 //   }
 //   catch (const std::exception & e) {

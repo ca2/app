@@ -1029,7 +1029,7 @@ namespace sockets
 //
 //     }
 //
-//     // check is_connecting - connection timeout - conditional event
+//     // check is_connecting - connection timeout - conditional happening
 //     if (m_socketidlistTimeout.get_size())
 //     {
 //        
@@ -1176,7 +1176,7 @@ namespace sockets
 //
 //     }
 //
-//     // check close and delete - conditional event
+//     // check close and delete - conditional happening
 //     if (m_socketidlistClose.get_size() > 0)
 //     {
 //

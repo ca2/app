@@ -466,14 +466,14 @@ typedef EventRecord NPEvent;
 #elif defined(XP_WIN)
 typedef struct _NPEvent
 {
-   ::u3216_t event;
+   ::u3216_t happening;
    unsigned int wParam;
    unsigned int lParam;
 } NPEvent;
 #elif defined(XP_OS2)
 typedef struct _NPEvent
 {
-   unsigned int event;
+   unsigned int happening;
    unsigned int wParam;
    unsigned int lParam;
 } NPEvent;
@@ -512,7 +512,7 @@ typedef struct NP_CGContext
    WindowRef window;
 } NP_CGContext;
 
-/* Non-standard event types that can be passed to HandleEvent */
+/* Non-standard happening types that can be passed to HandleEvent */
 enum NPEventType
 {
    NPEventType_GetFocusEvent = (osEvt + 16),
@@ -648,7 +648,7 @@ int32_t NP_LOADDS NPP_Write(NPP instance, NPStream* stream, int32_t offset,
 void    NP_LOADDS NPP_StreamAsFile(NPP instance, NPStream* stream,
                                    const char* fname);
 void    NP_LOADDS NPP_Print(NPP instance, NPPrint* platformPrint);
-int16_t NP_LOADDS NPP_HandleEvent(NPP instance, void* event);
+int16_t NP_LOADDS NPP_HandleEvent(NPP instance, void* happening);
 void    NP_LOADDS NPP_URLNotify(NPP instance, const ::string & url,
                                 NPReason reason, void* notifyData);
 NPError NP_LOADDS NPP_GetValue(NPP instance, NPPVariable variable, void *value);

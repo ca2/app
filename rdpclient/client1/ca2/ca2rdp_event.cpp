@@ -229,7 +229,7 @@ void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,unsigned int scancode)
 }
 
 /*
-BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
+BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* happening)
 {
 	int flags;
 	rdpGdi* gdi;
@@ -243,10 +243,10 @@ BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
 
 	ca2rdpi->layer->GetCursorPosition(ca2rdpi->layer, &pointer_x, &pointer_y);
 
-	if (event->clazz == DFEC_INPUT)
+	if (happening->clazz == DFEC_INPUT)
 	{
 		flags = 0;
-		input_event = (DFBInputEvent*) event;
+		input_event = (DFBInputEvent*) happening;
 
 		switch (input_event->type)
 		{

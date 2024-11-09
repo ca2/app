@@ -100,7 +100,7 @@ int opengl_shader_main()
       glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 3);
 
-      // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+      // glfw: swap buffers and poll IO happenings (keys pressed/released, mouse moved etc.)
       // -------------------------------------------------------------------------------
       glfwSwapBuffers(window);
       glfwPollEvents();

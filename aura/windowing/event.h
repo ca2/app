@@ -8,14 +8,14 @@ namespace windowing
 {
 
 
-   class CLASS_DECL_AURA event :
+   class CLASS_DECL_AURA happening :
       virtual public ::matter
    {
    public:
 
 
-      event();
-      virtual ~event();
+      happening();
+      virtual ~happening();
 
 
    };

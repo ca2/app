@@ -457,7 +457,7 @@
 ////         info.lpStartAddress     = lpStartAddress;
 ////         info.lpParameter        = lpParameter;
 ////         info.m_htask    = threadHandle;
-////         info.suspensionEvent    = aaa_primitive_new event(get_thread_app(),false,true);
+////         info.suspensionEvent    = aaa_primitive_new happening(get_thread_app(),false,true);
 ////         info.nPriority = 0;
 ////
 ////         synchronous_lock lock(g_pmutexPendingThreadsLock);

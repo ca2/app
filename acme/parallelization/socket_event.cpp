@@ -15,7 +15,7 @@
 ///  \lparam		read true if socket should be ready to read (default: true)
 socket_event::socket_event(::particle * pparticle, unsigned int socket, bool read) :
    ::matter(pparticle),
-	event(papp, false, true),
+	happening(papp, false, true),
 	m_bRead(read),
 	m_bActive(false),
 	m_iSocket(socket),

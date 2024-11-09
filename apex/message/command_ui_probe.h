@@ -75,7 +75,7 @@
 //   unsigned int nCtrlIDLast;
 //};
 //
-//// DSC Sink state/reason codes passed to apex API ::account::user event handlers
+//// DSC Sink state/reason codes passed to apex API ::account::user happening handlers
 //enum DSCSTATE
 //{
 //   dscNoState = 0,

@@ -699,7 +699,7 @@ void directory_system::set_path_install_folder(const string & strPath)
 ::file::path directory_system::machine_event_file_path()
 {
 
-   return appdata() / "machine/event/machine_event.bin";
+   return appdata() / "machine/happening/machine_event.bin";
 
 }
 

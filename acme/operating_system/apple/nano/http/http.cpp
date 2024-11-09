@@ -37,11 +37,11 @@ void http::s_http_response(long http_status, const void * data, long size, void 
 //
 //   passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;
 //   
-//   passynchronoushttpdata->information() << "apple::nano::http response Finished with status "<< http_status << " going to set manual event";
+//   passynchronoushttpdata->information() << "apple::nano::http response Finished with status "<< http_status << " going to set manual happening";
 //   
 //   passynchronoushttpdata->passynchronoushttpdata->m_happening.set_happening();
 //
-//   information() << "apple::nano::http response manual event set";
+//   information() << "apple::nano::http response manual happening set";
 
    
    //passynchronoushttpdata->m_function(passynchronoushttpdata);

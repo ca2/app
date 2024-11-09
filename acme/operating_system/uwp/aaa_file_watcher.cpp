@@ -88,7 +88,7 @@ namespace file
 // forward decl
    bool RefreshWatch(watch_ref ^ pWatch, bool _clear = false);
 
-/// Unpacks events and passes them to a user defined callback.
+/// Unpacks happenings and passes them to a user defined callback.
    /*void CALLBACK WatchCallback(unsigned int dwErrorCode, unsigned int dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
    {
    	TCHAR szFile[MAX_PATH];

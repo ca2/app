@@ -81,7 +81,7 @@ bool SimpleHandler::DoClose(CefRefPtr<CefBrowser> browser)
    }
 
    // Allow the close. For windowed browsers this will result in the OS close
-   // event being sent.
+   // happening being sent.
    return false;
 }
 

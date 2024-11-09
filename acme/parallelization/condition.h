@@ -57,11 +57,11 @@ public:
    * \brief	Session independent waitables (windows version)
    */
 
-   ///  \brief		waits for an event forever
+   ///  \brief		waits for an happening forever
    ::e_status wait () override;
 
-   ///  \brief		waits for an event for a specified time
-   ///  \lparam		time time period to wait for an event
+   ///  \brief		waits for an happening for a specified time
+   ///  \lparam		time time period to wait for an happening
    ///  \return	waiting action result as WaitResult
    ::e_status wait (const class time & timeWait) override;
 

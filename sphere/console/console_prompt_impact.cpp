@@ -233,7 +233,7 @@ namespace console
 
                m_iNewChar = str[0];
 
-               m_evNewChar.set_happening();
+               m_happeningNewChar.set_happening();
 
             }
             else
@@ -274,7 +274,7 @@ namespace console
 
       m_iNewChar = I32_MINIMUM;
 
-      m_evNewChar.wait();
+      m_happeningNewChar.wait();
 
       return (int) m_iNewChar;
 

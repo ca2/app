@@ -795,9 +795,9 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       synchronous_lock synchronizationlock(psynchronizer->synchronization());
 
-      psynchronizer->m_evGoingToWrite.set_happening();
+      psynchronizer->m_happeningGoingToWrite.set_happening();
 
-      psynchronizer->m_evResponse.wait();
+      psynchronizer->m_happeningResponse.wait();
 
       if(!psynchronizer->has_flag(e_flag_timeout))
       {
@@ -808,7 +808,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
       }
 
-      psynchronizer->m_evReady.set_happening();
+      psynchronizer->m_happeningReady.set_happening();
 
       ::release((::particle * &)psynchronizer.m_p);
 
@@ -816,22 +816,22 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
    functionPost(function);
 
-   auto estatusWait = psynchronizer->m_evGoingToWrite.wait(functionReturn.timeout());
+   auto estatusWait = psynchronizer->m_happeningGoingToWrite.wait(functionReturn.timeout());
 
    if (estatusWait.failed())
    {
 
       psynchronizer->set_flag(e_flag_timeout);
 
-      psynchronizer->m_evResponse.set_happening();
+      psynchronizer->m_happeningResponse.set_happening();
 
       return false;
 
    }
 
-   psynchronizer->m_evResponse.set_happening();
+   psynchronizer->m_happeningResponse.set_happening();
 
-   psynchronizer->m_evReady.wait();
+   psynchronizer->m_happeningReady.wait();
 
    return psynchronizer->is_ok();
 
@@ -869,7 +869,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
       }
 
-      psignalization->m_evReady.set_happening();
+      psignalization->m_happeningReady.set_happening();
 
       psignalization->m_pparticleHold.release();
 
@@ -881,7 +881,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
    functionPost(procedurePost);
 
-   auto estatus = psignalization->m_evReady.wait(procedure.timeout());
+   auto estatus = psignalization->m_happeningReady.wait(procedure.timeout());
 
    if(estatus == error_wait_timeout)
    {

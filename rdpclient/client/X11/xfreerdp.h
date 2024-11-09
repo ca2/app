@@ -86,7 +86,7 @@ typedef struct xf_clipboard xfClipboard;
 /* a per-button array.                                           */
 #define BUTTON_BASE Button1
 
-/* Number of buttons that are mapped from X11 to RDP button events. */
+/* Number of buttons that are mapped from X11 to RDP button happenings. */
 #define NUM_BUTTONS_MAPPED 3
 
 struct xf_context

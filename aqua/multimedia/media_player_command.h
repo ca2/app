@@ -17,7 +17,7 @@ namespace aqua
 
       ::aqua::enum_command                            m_ecommand;
       ::pointer < ::aqua::media_item >                m_pmediaitem;
-      //array < event *, event * >                      m_evptra;
+      //array < happening *, happening * >                      m_evptra;
       bool                                            m_bResult;
       bool *                                          m_pbResult;
       bool                                            m_bSeekable;
@@ -38,7 +38,7 @@ namespace aqua
 
 
       //void SetEvents();
-      //void AttachEvent(event * pevent);
+      //void AttachEvent(happening * pevent);
 
 
       void OpenMediaItem(::aqua::media_item * pmediaitem);

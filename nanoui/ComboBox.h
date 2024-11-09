@@ -88,7 +88,7 @@ namespace nanoui
       /// The short descriptions associated with this ComboBox.
       const ::string_array& items_short() const { return m_straItemsShort; }
 
-      /// Handles mouse scrolling events for this ComboBox.
+      /// Handles mouse scrolling happenings for this ComboBox.
       virtual bool scroll_event(const int_point& p, const float_size& rel) override;
 
    };

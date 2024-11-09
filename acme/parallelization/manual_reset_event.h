@@ -3,7 +3,7 @@
 //      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an event has
+//      Description:    Notifies one or more waiting threads that an happening has
 //                      occurred.
 //
 //*****************************************************************************
@@ -12,7 +12,7 @@
 #pragma once
 
 
-#include "event.h"
+#include "happening.h"
 
 
 #define DECLARE_REUSABLE(TYPE) \
@@ -22,7 +22,7 @@ void delete_this() override { if(m_pfactory) m_pfactory->return_back(this); else
 
 
 class CLASS_DECL_ACME manual_reset_happening :
-   public ::event
+   public ::happening
 {
 public:
 

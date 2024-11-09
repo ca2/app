@@ -1150,7 +1150,7 @@ namespace nanoui
    void TextBox::update_cursor(::nano2d::context*, float lastx, const ::nano2d::glyphPosition* glyphs, ::character_count size)
    {
 
-      // handle mouse cursor events
+      // handle mouse cursor happenings
       if (m_pointMouseDrag.x() != -1)
       {
 

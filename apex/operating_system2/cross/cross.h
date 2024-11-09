@@ -6,7 +6,7 @@
 
 #ifdef cplusplus
 
-class event;
+class happening;
 
 #endif
 

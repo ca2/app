@@ -26,7 +26,7 @@ namespace user
          ::pointer<::message::key>        m_pkeymessageLast;
          bool                             m_bKeyPressed;
          bool                             m_bEditable2;
-         /// If true, mouse events over empty
+         /// If true, mouse happenings over empty
          /// areas of text continue through message routing.
          bool                             m_bClickThrough;
 

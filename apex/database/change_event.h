@@ -56,6 +56,6 @@ namespace database
    };
 
 
-} // namespace event
+} // namespace happening
 
 

@@ -99,7 +99,7 @@ namespace user
       bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;
       bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool on_ui_event(enum_happening eevent, e_object eobject, ::user::interaction * pinteraction) override;
+      //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) override;
 
       //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
 

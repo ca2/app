@@ -23,7 +23,7 @@ namespace console
 
       string               m_strCommand;
 
-      event                m_evNewChar;
+      happening                m_happeningNewChar;
 
       character_count              m_iNewChar;
 

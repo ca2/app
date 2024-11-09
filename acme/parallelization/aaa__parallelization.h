@@ -54,7 +54,7 @@
 
 // class synchronization;
 // class semaphore;
-// class event;
+// class happening;
 // class critical_section;
 // class single_lock;
 // class multi_lock;
@@ -164,7 +164,7 @@ class synchronous_lock;
 //#include "synchronization_array.h"
 //#include "semaphore.h"
 //#include "mutex.h"
-//#include "event.h"
+//#include "happening.h"
 //#include "set_event_on_exit.h"
 //#include "critical_section.h"
 //#include "condition_variable.h"

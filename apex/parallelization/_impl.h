@@ -8,8 +8,8 @@ inline int_bool semaphore::Unlock()
 
 inline int_bool CEvent::set_happening()
 { ASSERT(m_hObject != nullptr); return ::SetEvent(m_hObject); }
-inline int_bool CEvent::PulseEvent()
-{ ASSERT(m_hObject != nullptr); return ::PulseEvent(m_hObject); }
+inline int_bool CEvent::pulse_happening()
+{ ASSERT(m_hObject != nullptr); return ::pulse_happening(m_hObject); }
 inline int_bool CEvent::reset_happening()
 { ASSERT(m_hObject != nullptr); return ::ResetEvent(m_hObject); }
 

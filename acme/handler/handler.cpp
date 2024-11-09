@@ -127,7 +127,7 @@ namespace handler
       if (m_requestaPosted.is_empty())
       {
 
-         new_request_posted_event()->reset_happening();
+         new_request_posted()->reset_happening();
 
       }
 

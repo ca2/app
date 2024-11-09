@@ -30,7 +30,7 @@ namespace hotplugin
       unsigned int                      m_last_redraw;
       int                       m_iEdge;
       bool                          m_bAppStarted;
-      manual_reset_event            m_evReady;
+      manual_reset_happening            m_evReady;
       bool                          m_bApp;
       host *                        m_phost;
       bool                          m_bOk;

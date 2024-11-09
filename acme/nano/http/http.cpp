@@ -44,7 +44,7 @@ namespace nano
       //void http::sync(::nano::http::get* pget)
       //{
 
-      //   auto pevent = __create_new < ::manual_reset_event >();
+      //   auto pevent = __create_new < ::manual_reset_happening >();
 
       //   pget->m_functionOnFinished = [pevent](auto)
       //      {

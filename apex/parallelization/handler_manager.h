@@ -15,7 +15,7 @@ public:
    bool                             m_bUseDedicatedThread;
    ::task_pointer                   m_pthread;
    ::procedure_array                m_procedurea;
-   ::pointer<manual_reset_event>    m_pevTaskOnQueue;
+   ::pointer<manual_reset_happening>    m_pevTaskOnQueue;
    int                              m_iAliveCount;
    int                              m_iAlive;
    string                           m_strThreadName;

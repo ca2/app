@@ -2073,7 +2073,7 @@ void object::sleep(const class time & time)
    {
 
 
-      ::pointer<manual_reset_event>pevent;
+      ::pointer<manual_reset_happening>pevent;
 
       {
 
@@ -2082,7 +2082,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_event();
+            ptask->m_pevSleep = __allocate manual_reset_happening();
 
             ptask->m_pevSleep->ResetEvent();
 

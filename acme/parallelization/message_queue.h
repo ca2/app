@@ -18,7 +18,7 @@ public:
 
 
    message_array           m_messagea;
-   manual_reset_event      m_eventNewMessage;
+   manual_reset_happening      m_eventNewMessage;
    itask_t                 m_itask;
    bool                    m_bQuit;
 

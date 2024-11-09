@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "task.h"
-#include "manual_reset_event.h"
+#include "manual_reset_happening.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
@@ -164,7 +164,7 @@ void task::__on_update_handler_happening_unlocked()
 }
 
 
-::manual_reset_event * task::new_procedure_posted_event()
+::manual_reset_happening * task::new_procedure_posted_event()
 {
 
    __defer_construct_new(m_pmanualreseteventNewProcedurePosted);
@@ -174,7 +174,7 @@ void task::__on_update_handler_happening_unlocked()
 }
 
 
-::manual_reset_event* task::new_happening()
+::manual_reset_happening* task::new_happening()
 {
 
    __defer_construct_new(m_pmanualreseteventHappening);
@@ -939,7 +939,7 @@ void task::stop_task()
 
    }
 
-   manual_reset_event ev;
+   manual_reset_happening ev;
 
    ::procedure procedure = [&ev]()
       {
@@ -1128,7 +1128,7 @@ void * task::s_os_task(void * p)
 void task::_os_task(::procedure & procedureTaskEnded)
 {
 
-   ::pointer < manual_reset_event > pmanualresethappeningFinished;
+   ::pointer < manual_reset_happening > pmanualresethappeningFinished;
 
    try
    {
@@ -1375,7 +1375,7 @@ void task::_send(const ::procedure & procedure)
 
    }
 
-   auto pevent = __create_new < manual_reset_event>();
+   auto pevent = __create_new < manual_reset_happening>();
 
    post([procedure, pevent]()
       {
@@ -2124,7 +2124,7 @@ void task::on_before_branch()
    //if (bSynchInitialization)
    {
 
-      m_peventInitialization = __allocate manual_reset_event();
+      m_peventInitialization = __allocate manual_reset_happening();
 
    }
 
@@ -2542,7 +2542,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto pmanualresetevent = __create_new < manual_reset_event >();
+   auto pmanualresetevent = __create_new < manual_reset_happening >();
 
    post([this, procedure, pmanualresetevent]()
       {
@@ -2612,7 +2612,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
    try
    {
 
-      ::pointer<manual_reset_event>spev;
+      ::pointer<manual_reset_happening>spev;
 
       {
 
@@ -2621,7 +2621,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_event();
+            ptask->m_pevSleep = __allocate manual_reset_happening();
 
             ptask->m_pevSleep->ResetEvent();
 

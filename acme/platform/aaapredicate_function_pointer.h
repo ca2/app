@@ -10,7 +10,7 @@
 //public:
 //
 //
-//   ::pointer<manual_reset_event>         m_peventCompleted;
+//   ::pointer<manual_reset_happening>         m_peventCompleted;
 //
 //   sync_method();
 //   virtual ~sync_method() { }
@@ -29,7 +29,7 @@
 //public:
 //
 //
-//   ::pointer<manual_reset_event>   m_pevFunctionCompleted;
+//   ::pointer<manual_reset_happening>   m_pevFunctionCompleted;
 //
 //
 //   sync_function();

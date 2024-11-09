@@ -140,7 +140,7 @@ inline int_bool critical_section::Unlock()
 //
 //   T                    m_t;
 //   bool                 m_bInitialized = false;
-//   manual_reset_event   m_evReady;
+//   manual_reset_happening   m_evReady;
 //   string               m_strErrorMessage;
 //
 //
@@ -408,7 +408,7 @@ inline int_bool critical_section::Unlock()
 //   ::pointer<::layered>   m_pobject;
 //   T                       m_t;
 //   bool                    m_bInitialized = false;
-//   manual_reset_event      m_evReady;
+//   manual_reset_happening      m_evReady;
 //   string                  m_strErrorMessage;
 //
 //

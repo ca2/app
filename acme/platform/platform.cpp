@@ -787,7 +787,7 @@ g_bWindowingOutputDebugString = true;
 
       __check_refdbg
 
-      factory()->add_factory_item<manual_reset_event>();
+      factory()->add_factory_item<manual_reset_happening>();
 
       __check_refdbg
 

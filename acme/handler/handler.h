@@ -24,7 +24,7 @@ namespace handler
 
       ::pointer_array < ::request >       m_requestaPosted;
       ::pointer_array < ::request >       m_requestaHistory;
-      ::pointer < ::manual_reset_event >  m_pmanualreseteventNewRequestPosted;
+      ::pointer < ::manual_reset_happening >  m_pmanualreseteventNewRequestPosted;
 
 
    public:
@@ -69,7 +69,7 @@ namespace handler
 
       void destroy() override;
 
-      virtual ::manual_reset_event * new_request_posted_event();
+      virtual ::manual_reset_happening * new_request_posted_event();
 
       virtual void post_request(::request * prequest);
 

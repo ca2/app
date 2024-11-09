@@ -15,9 +15,9 @@ namespace file
    public:
       
       
-      manual_reset_event   _allBytesAreWritenEvent;
-      manual_reset_event   _thereAreBytesToReadEvent;
-      manual_reset_event   _readStreamIsClosedEvent;
+      manual_reset_happening   _allBytesAreWritenEvent;
+      manual_reset_happening   _thereAreBytesToReadEvent;
+      manual_reset_happening   _readStreamIsClosedEvent;
       unsigned char *               _data;
       uptr            _size;
       uptr            ProcessedSize;

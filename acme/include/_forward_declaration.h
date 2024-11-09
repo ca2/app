@@ -2169,7 +2169,7 @@ namespace http
 class object_meta;
 
 
-class manual_reset_event;
+class manual_reset_happening;
 
 
 namespace factory

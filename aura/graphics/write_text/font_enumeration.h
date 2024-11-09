@@ -22,7 +22,7 @@ namespace write_text
       int                                             m_iUpdateId;
       ::pointer<font_enumeration_item_array>          m_pfontenumerationitema;
       bool                                            m_bUpdating;
-      manual_reset_event                              m_eventReady;
+      manual_reset_happening                              m_eventReady;
       ::file::path_array                              m_pathaLoading;
 
 

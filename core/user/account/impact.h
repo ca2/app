@@ -17,7 +17,7 @@ namespace account
       
       ::pointer<::account::credentials>     m_pcredentials;
       ::pointer < ::mutex >                                m_pmutexResponse;
-      manual_reset_event                     m_evSubmit;
+      manual_reset_happening                     m_evSubmit;
       string                                 m_strResponse;
       ::user::still *                        m_pstillUser;
       ::user::plain_edit *                   m_peditUser;

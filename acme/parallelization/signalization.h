@@ -19,7 +19,7 @@ namespace parallelization
 
 
 
-      manual_reset_event               m_evReady;
+      manual_reset_happening               m_evReady;
       ::particle_pointer         m_pparticleHold;
 
 

@@ -662,7 +662,7 @@ namespace micro
 //   
 //   //auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresetevent = __allocate manual_reset_event();
+////   auto pmanualresetevent = __allocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -681,7 +681,7 @@ namespace micro
 //////
 //////   atom idResult;
 //////
-//////   manual_reset_event event;
+//////   manual_reset_happening event;
 //////
 //////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //////
@@ -764,7 +764,7 @@ namespace micro
 //   
 //   auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresetevent = __allocate manual_reset_event();
+////   auto pmanualresetevent = __allocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -783,7 +783,7 @@ namespace micro
 //////
 //////   atom idResult;
 //////
-//////   manual_reset_event event;
+//////   manual_reset_happening event;
 //////
 //////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //////
@@ -866,7 +866,7 @@ namespace micro
 //   
 //      ::payload idResult;
 //   
-//      manual_reset_event event;
+//      manual_reset_happening event;
 //
 //      pmicromessagebox->initialize_conversation(
 //         pmessagebox->m_strMessage,

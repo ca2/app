@@ -17,7 +17,7 @@
 
 #include "acme/operating_system/ansi/binreloc.h"
 #include "memory/plex_heap_alloc_array.h"
-#include "parallelization/manual_reset_event.h"
+#include "parallelization/manual_reset_happening.h"
 
 
 CLASS_DECL_ACME bool should_output_debug_string();

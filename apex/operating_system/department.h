@@ -25,7 +25,7 @@ namespace operating_system
          string                                    m_strCmdLine;
          ::pointer<::operating_system::process>   m_pprocess;
          string *                                  m_pstrRead;
-         manual_reset_event *                      m_pevReady;
+         manual_reset_happening *                      m_pevReady;
          class ::time                                m_timeTimeout;
          class ::time                                m_timeStart;
          bool *                                    m_pbInitFailure;
@@ -56,7 +56,7 @@ namespace operating_system
       public:
 
 
-         manual_reset_event               m_evReady;
+         manual_reset_happening               m_evReady;
          bool                             m_bInitFailure;
          bool                             m_bPotentialTimeout;
          bool *                           m_pbPotentialTimeout;

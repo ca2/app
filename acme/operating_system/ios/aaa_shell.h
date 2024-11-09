@@ -32,7 +32,7 @@ namespace ios
       bool                                                           m_bStarted;
       delay_thread *                                                 m_pdelayRelease;
       address_array < image_key * >                                  m_keyptra;
-      manual_reset_event                                             m_evKey;
+      manual_reset_happening                                             m_evKey;
       ::pointer < ::mutex >                                                        m_pmutexQueue;
       pointer_array < ::thread >                                      m_threadaGetImage;
 

@@ -11,7 +11,7 @@ public:
    huge_integer                                  m_iTask;
    ::pointer<::interprocess::call>          m_pcall;
    ::payload                              m_payload;
-   ::pointer<manual_reset_event>         m_pevReady;
+   ::pointer<manual_reset_happening>         m_pevReady;
    boolean                               m_tristateContinue;
    boolean                               m_tristateHandled;
 

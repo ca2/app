@@ -35,7 +35,7 @@ namespace dynamic_source
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
-      manual_reset_event               m_evCreationEnabled;
+      manual_reset_happening               m_evCreationEnabled;
       class ::time                           m_timeLastBuildTime;
       bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;

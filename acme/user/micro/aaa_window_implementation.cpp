@@ -290,7 +290,7 @@
 //
 //    message_loop();
 //
-//    auto pmanualresetevent = __allocate manual_reset_event();
+//    auto pmanualresetevent = __allocate manual_reset_happening();
 //
 //    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
 //    {
@@ -312,7 +312,7 @@
 //    //
 //    //   atom idResult;
 //    //
-//    //   manual_reset_event event;
+//    //   manual_reset_happening event;
 //    //
 //    //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //    //

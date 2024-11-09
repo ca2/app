@@ -32,8 +32,8 @@ public:
    task_group *                     m_pgroup;
    task_tool *                      m_ptool;
    task_tool_item *                 m_pitem;
-   ::pointer<manual_reset_event>    m_pevStart;
-   ::pointer<manual_reset_event>    m_pevReady;
+   ::pointer<manual_reset_happening>    m_pevStart;
+   ::pointer<manual_reset_happening>    m_pevReady;
    void *                           m_pdata;
    ::collection::index                            m_cCount;
    ::collection::index                            m_iIndex;

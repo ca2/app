@@ -132,7 +132,7 @@ huge_integer message_box::decrement_reference_count()
 //void conversation_message::aggregate(sequence * psequence)
 //{
 //   
-//   //m_psequencer->m_pevent = __create_new < manual_reset_event >();
+//   //m_psequencer->m_pevent = __create_new < manual_reset_happening >();
 //
 //   do_asynchronously();
 //   

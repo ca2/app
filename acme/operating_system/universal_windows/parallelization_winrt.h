@@ -29,7 +29,7 @@
 //private:
 //
 //
-//   manual_reset_event                                       m_event;
+//   manual_reset_happening                                       m_event;
 //   ::winrt::Windows::Foundation::IAsyncOperation < T >      m_operation;
 //   ::winrt::Windows::Foundation::AsyncStatus                m_status;
 //   T                                                        m_result;
@@ -117,7 +117,7 @@
 //private:
 //
 //
-//   manual_reset_event                                                      m_event;
+//   manual_reset_happening                                                      m_event;
 //   ::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 >     m_operation;
 //   ::winrt::Windows::Foundation::AsyncStatus                               m_status;
 //   T                                                                       m_result;
@@ -187,7 +187,7 @@
 //private:
 //
 //
-//   manual_reset_event                                 m_event;
+//   manual_reset_happening                                 m_event;
 //   ::winrt::Windows::Foundation::IAsyncAction         m_action;
 //   ::winrt::Windows::Foundation::AsyncStatus          m_status;
 //

@@ -1382,7 +1382,7 @@ namespace platform
 
       }
 
-      auto pevent = __allocate manual_reset_event();
+      auto pevent = __allocate manual_reset_happening();
 
       user_post([ procedure, pevent ]
       {

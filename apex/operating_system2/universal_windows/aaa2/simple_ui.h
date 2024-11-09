@@ -26,7 +26,7 @@ namespace os
 
       oswindow                   m_window;
       bool                       m_bDrag;
-      manual_reset_event         m_eventReady;
+      manual_reset_happening         m_eventReady;
 
 
       ::int_rectangle                     m_rectangleDesktop;

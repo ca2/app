@@ -903,8 +903,8 @@ namespace platform
    //       if (pacmewindowing)
    //       {
    //
-   //          ::acme::get()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_event();
-   //          ::acme::get()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_event();
+   //          ::acme::get()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_happening();
+   //          ::acme::get()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_happening();
    //
    //          if (!m_procedureTaskEnded)
    //          {
@@ -3202,7 +3202,7 @@ namespace platform
    //    //   void acme_system_layer::system::windowing_send(const ::procedure & procedure)
    //    //   {
    //    //
-   //    //      auto pmanualresetevent = __allocate manual_reset_event();
+   //    //      auto pmanualresetevent = __allocate manual_reset_happening();
    //    //
    //    //      windowing_post([pmanualresetevent, procedure]()
    //    //                     {

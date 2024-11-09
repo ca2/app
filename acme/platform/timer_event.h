@@ -11,7 +11,7 @@ class CLASS_DECL_ACME timer_event:
 public:
 
 
-   manual_reset_event         m_manualresetevent;
+   manual_reset_happening         m_manualresetevent;
 
 
    timer_event();

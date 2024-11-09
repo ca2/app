@@ -42,7 +42,7 @@ namespace account
       bool                 m_bDrag;
       ::int_rectangle               m_rectangleDesktop;
 
-      manual_reset_event   m_eventReady;
+      manual_reset_happening   m_eventReady;
 
 
       bool                 m_bVisible;

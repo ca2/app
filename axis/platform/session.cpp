@@ -1143,7 +1143,7 @@ namespace axis
       //}
       pcredentials->m_estatus = error_failed;
 
-      manual_reset_event ev;
+      manual_reset_happening ev;
 
       if (!pcredentials->m_bInteractive)
       {

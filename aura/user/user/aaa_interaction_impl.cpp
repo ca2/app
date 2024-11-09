@@ -984,9 +984,9 @@ namespace user
 
       //auto psynca = __allocate synchronization_array();
 
-      //::pointer<manual_reset_event>peventStartedUser;
+      //::pointer<manual_reset_happening>peventStartedUser;
 
-      //::pointer<manual_reset_event>peventStartedProdevian;
+      //::pointer<manual_reset_happening>peventStartedProdevian;
 
       ::pointer<::user::thread> puserthread;
 
@@ -1010,7 +1010,7 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = __allocate manual_reset_event();
+         //peventStartedUser = __allocate manual_reset_happening();
 
          //m_puserthread->m_peventStarted = peventStartedUser;
 

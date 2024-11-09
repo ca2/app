@@ -1186,8 +1186,8 @@ namespace platform
       if (pacmewindowing)
       {
 
-         ::system()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_event();
-         ::system()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_event();
+         ::system()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_happening();
+         ::system()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_happening();
 
          if (!m_procedureTaskEnded)
          {
@@ -3505,7 +3505,7 @@ namespace platform
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __allocate manual_reset_event();
+   //      auto pmanualresetevent = __allocate manual_reset_happening();
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {

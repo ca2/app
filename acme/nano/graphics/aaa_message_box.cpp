@@ -557,7 +557,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    
    //auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresetevent = __allocate manual_reset_event();
+//   auto pmanualresetevent = __allocate manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -576,7 +576,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 ////
 ////   atom idResult;
 ////
-////   manual_reset_event event;
+////   manual_reset_happening event;
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
@@ -657,7 +657,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
    
    auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresetevent = __allocate manual_reset_event();
+//   auto pmanualresetevent = __allocate manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -676,7 +676,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////
 ////   atom idResult;
 ////
-////   manual_reset_event event;
+////   manual_reset_happening event;
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
@@ -759,7 +759,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
    
       ::payload idResult;
    
-      manual_reset_event event;
+      manual_reset_happening event;
 
       pnanomessagebox->initialize_conversation(
          pmessagebox->m_strMessage,

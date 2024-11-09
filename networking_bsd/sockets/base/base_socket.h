@@ -97,7 +97,7 @@ namespace sockets_bsd
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #if !defined(BSD_STYLE_SOCKETS)
-      manual_reset_event      m_event;
+      manual_reset_happening      m_event;
 #endif
 
       bool                    m_bEnableSsl; ///< enable SSL for this tcp_socket

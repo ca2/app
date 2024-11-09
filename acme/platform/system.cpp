@@ -1350,8 +1350,8 @@ namespace platform
       if (pacmewindowing)
       {
 
-         m_pmanualreseteventReadyToExit = __allocate manual_reset_event();
-         m_pmanualreseteventMainLoopEnd = __allocate manual_reset_event();
+         m_pmanualreseteventReadyToExit = __allocate manual_reset_happening();
+         m_pmanualreseteventMainLoopEnd = __allocate manual_reset_happening();
 
          auto pReadyToExit = m_pmanualreseteventReadyToExit;
          auto pMainLoopEnd = m_pmanualreseteventMainLoopEnd;
@@ -3814,7 +3814,7 @@ particle* system::matter_mutex()
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __allocate manual_reset_event();
+   //      auto pmanualresetevent = __allocate manual_reset_happening();
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {

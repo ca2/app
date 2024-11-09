@@ -20,7 +20,7 @@ namespace user
 
       synchronization_array                     m_synchronizationa;
 
-      manual_reset_event                        m_evUpdateScreen;
+      manual_reset_happening                        m_evUpdateScreen;
 
       ::pointer<::user::interaction>                  m_puserinteraction;
       //::pointer<::windowing::window>      m_pimpl;
@@ -31,7 +31,7 @@ namespace user
       class ::time                                m_timeStart;
       class ::time                                m_timeThisFrame;
 
-      ///manual_reset_event                           m_eventReady;
+      ///manual_reset_happening                           m_eventReady;
 
       bool                                        m_bGraphicsThreadEnabled;
 

@@ -362,7 +362,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //
 //    message_loop();
 //
-//    // auto pmanualresetevent = __allocate manual_reset_event();
+//    // auto pmanualresetevent = __allocate manual_reset_happening();
 //    //
 //    // m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
 //    // {
@@ -384,7 +384,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //    // //
 //    // //   atom idResult;
 //    // //
-//    // //   manual_reset_event event;
+//    // //   manual_reset_happening event;
 //    // //
 //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //    // //

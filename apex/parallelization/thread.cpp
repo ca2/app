@@ -78,7 +78,7 @@ struct send_thread_message :
 
    MESSAGE m_message;
 
-   manual_reset_event m_ev;
+   manual_reset_happening m_ev;
 
 
    send_thread_message(::particle* pparticle);
@@ -1417,7 +1417,7 @@ void thread::post_quit()
    //    /// this is quite dangerous
    //    _synchronous_lock synchronouslock(this->synchronization());
 
-   //    ::pointer<manual_reset_event>pev = m_pevSync;
+   //    ::pointer<manual_reset_happening>pev = m_pevSync;
 
    //    if (pev.is_set())
    //    {
@@ -1438,7 +1438,7 @@ void thread::post_quit()
       /// this is quite dangerous
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::pointer<manual_reset_event> pev = m_pevSleep;
+      ::pointer<manual_reset_happening> pev = m_pevSleep;
 
       if (pev.is_set())
       {

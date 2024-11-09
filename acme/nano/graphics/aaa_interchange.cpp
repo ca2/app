@@ -838,7 +838,7 @@ void interchange::_run_modal_loop()
 
        message_loop();
 
-       auto pmanualresetevent = __allocate manual_reset_event();
+       auto pmanualresetevent = __allocate manual_reset_happening();
 
        m_psequencer->then([ pmanualresetevent](auto psequencer)
        {
@@ -858,7 +858,7 @@ void interchange::_run_modal_loop()
        // //
        // //   atom idResult;
        // //
-       // //   manual_reset_event event;
+       // //   manual_reset_happening event;
        // //
        // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
        // //

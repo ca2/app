@@ -7,7 +7,7 @@ class CLASS_DECL_AURA timer_event:
 public:
 
 
-   manual_reset_event   m_ev;
+   manual_reset_happening   m_ev;
 
 
    timer_event(::aura::timer_array * ptimera, int iTimer);

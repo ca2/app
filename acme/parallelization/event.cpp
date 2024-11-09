@@ -1181,7 +1181,7 @@ bool event::_wait (const class time & timeWait)
 
 //*****************************************************************************
 //
-//      Class:          manual_reset_event
+//      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
 //      Description:    Notifies one or more waiting threads that an event has
@@ -1259,7 +1259,7 @@ bool event::is_signaled() const
 }
 //end**************************************************************************
 //
-//      Class:          manual_reset_event
+//      Class:          manual_reset_happening
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
 //      Description:    Notifies one or more waiting threads that an event has

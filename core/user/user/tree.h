@@ -61,8 +61,8 @@ namespace user
       class ::time                              m_timeLeaveStart;
       int                                     m_iLeaveAlphaInit;
 
-      manual_reset_event                        m_evExpand;
-      manual_reset_event                        m_evOpen;
+      manual_reset_happening                        m_evExpand;
+      manual_reset_happening                        m_evOpen;
       raw_pointer_array < ::data::tree_item >   m_treeitemaExpand;
       raw_pointer_array < ::data::tree_item >   m_treeitemaOpen;
 

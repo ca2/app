@@ -77,7 +77,7 @@ namespace parallelization
 
 
 //class counter32 :
-//   public manual_reset_event
+//   public manual_reset_happening
 //{
 //public:
 //

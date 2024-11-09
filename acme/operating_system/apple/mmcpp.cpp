@@ -80,7 +80,7 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
 void _ns_main_send(dispatch_block_t block)
 {
    
-   __block auto pevent = __allocate manual_reset_event ();
+   __block auto pevent = __allocate manual_reset_happening ();
    
    pevent->ResetEvent();
    

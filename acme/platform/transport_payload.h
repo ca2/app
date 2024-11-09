@@ -54,7 +54,7 @@ public:
 //   
 //   class ::time            m_timeTimeout;
    
-   //::manual_reset_event    m_event;
+   //::manual_reset_happening    m_event;
    
    //::pointer < RESPONSE >  m_presponse;
    

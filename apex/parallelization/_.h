@@ -220,7 +220,7 @@ class thread_startup;
 //#endif
 
 
-//#include "manual_reset_event.h"
+//#include "manual_reset_happening.h"
 
 
 //#include "sync_task.h"

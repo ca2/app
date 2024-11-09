@@ -23,7 +23,7 @@ namespace micro
 
       ::collection::index                       m_iDefaultButton = -1;
       //::function < void(::acme::user::interaction *) >        m_functionClose;
-      manual_reset_event                        m_manualreseteventFinished;
+      manual_reset_happening                        m_manualreseteventFinished;
       bool                                      m_bRunningModalLoop;
       class ::time                              m_timeDialogTimeout;
 

@@ -190,7 +190,7 @@ namespace file
 
       }
 
-      manual_reset_event event;
+      manual_reset_happening event;
 
       pwatch->m_functionDestroy = functionErased;
 

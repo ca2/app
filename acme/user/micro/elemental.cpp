@@ -603,7 +603,7 @@ namespace micro
 
    //   do_asynchronously();
 
-   //   auto pmanualresetevent = __allocate manual_reset_event();
+   //   auto pmanualresetevent = __allocate manual_reset_happening();
 
    //   if (m_psequencer)
    //   {

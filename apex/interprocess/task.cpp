@@ -15,7 +15,7 @@ namespace interprocess
       //::object(pcall),
       m_pcall(pcall),
       m_atomPid(idPid),
-      m_pevReady{ place_t{}, ___new manual_reset_event() },
+      m_pevReady{ place_t{}, ___new manual_reset_happening() },
       m_iTask(iTask)
    {
 

@@ -149,7 +149,7 @@ public:
 
 #endif
 
-   ::pointer<::manual_reset_event>                 m_pmanualreseteventNewProcedurePosted;
+   ::pointer<::manual_reset_happening>                 m_pmanualreseteventNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
    htask_t                                         m_htask;
@@ -158,12 +158,12 @@ public:
    string                                          m_strTaskTag;
 
    ::particle_array                                m_particleaHold;
-   ::pointer<manual_reset_event>                   m_peventInitialization;
+   ::pointer<manual_reset_happening>                   m_peventInitialization;
 
    ::procedure                                     m_procedure;
-   ::pointer<manual_reset_event>                   m_pevSleep;
-   ::pointer<manual_reset_event>                   m_peventFinished2;
-   ::pointer<manual_reset_event>                   m_pmanualreseteventHappening;
+   ::pointer<manual_reset_happening>                   m_pevSleep;
+   ::pointer<manual_reset_happening>                   m_peventFinished2;
+   ::pointer<manual_reset_happening>                   m_pmanualreseteventHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
 
@@ -211,9 +211,9 @@ int m_iExitCode;
 
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
-   virtual ::manual_reset_event * new_procedure_posted_event();
+   virtual ::manual_reset_happening * new_procedure_posted_event();
 
-   virtual ::manual_reset_event* new_happening();
+   virtual ::manual_reset_happening* new_happening();
 
    virtual procedure pick_next_posted_procedure();
 

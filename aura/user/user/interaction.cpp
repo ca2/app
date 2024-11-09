@@ -7902,7 +7902,7 @@ namespace user
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto pevent = __allocate manual_reset_event();
+      auto pevent = __allocate manual_reset_happening();
 
       host_post([procedure, pevent]
                 {

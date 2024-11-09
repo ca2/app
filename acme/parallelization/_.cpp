@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "manual_reset_event.h"
+#include "manual_reset_happening.h"
 #include "task.h"
 #include "task_flag.h"
 #include "acme/constant/id.h"
@@ -863,7 +863,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __allocate manual_reset_event();
+//   auto pevent = __allocate manual_reset_happening();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

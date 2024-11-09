@@ -1,6 +1,6 @@
 // Created on 2024-04-28 by camilo <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "manual_reset_event.h"
+#include "manual_reset_happening.h"
 #include "queue.h"
 #include "synchronous_lock.h"
 #include "acme/platform/application.h"
@@ -62,7 +62,7 @@ namespace parallelization
       }
 
 
-      auto pevent = __create_new < manual_reset_event >();
+      auto pevent = __create_new < manual_reset_happening >();
 
       async([procedure, pevent]()
          {

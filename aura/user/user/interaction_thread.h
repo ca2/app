@@ -49,7 +49,7 @@ namespace user
       //::pointer<prodevian>                       m_pgraphicsthread;
       //oswindow                                     m_oswindow;
 
-      //manual_reset_event                           m_evApplyVisual;
+      //manual_reset_happening                           m_evApplyVisual;
       //::pointer<::windowing::windowing>            m_pwindowing;
 
 

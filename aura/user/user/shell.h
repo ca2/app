@@ -158,7 +158,7 @@ namespace user
 
       string                                             m_strShellThemePrefix;
       string_array                                       m_straThemeableIconName;
-      ::pointer<manual_reset_event>                     m_pevNewImageKey;
+      ::pointer<manual_reset_happening>                     m_pevNewImageKey;
 
       ::collection::index                                              m_iMaxThreadCount;
       ::collection::index                                              m_iActiveThreadCount;

@@ -23,7 +23,7 @@ public:
 
    //unsigned int                      m_dwStopTimeout;
    string                     m_strServiceName;
-   //manual_reset_event         m_stopped;
+   //manual_reset_happening         m_stopped;
    ////bool                       m_bStopping;
    //int                        m_iPid;
    //enum_service_status        m_estatus;

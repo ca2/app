@@ -191,7 +191,7 @@ class synchronous_lock;
 //#endif
 //
 //
-//#include "manual_reset_event.h"
+//#include "manual_reset_happening.h"
 //
 //
 //#include "counter.h"

@@ -59,7 +59,7 @@ class single_lock;
 // class mutex;
 // class event;
 // class critical_section;
-// class manual_reset_event;
+// class manual_reset_happening;
 // class single_lock;
 // class multi_lock;
 

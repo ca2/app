@@ -65,7 +65,7 @@ public:
    //bool SetHappening();
    bool set_happening();
    //bool pulse_happening();
-   bool reset_happappening();
+   bool reset_happening();
 
    /**
    * \brief	Session independent waitables (windows version)

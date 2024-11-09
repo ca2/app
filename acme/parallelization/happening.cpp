@@ -101,7 +101,7 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-int g_iEventSerialId = 1;
+int g_iHappeningSerialId = 1;
 
 happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
@@ -110,7 +110,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
       critical_section_lock lock(::platform::get()->globals_critical_section());
 
-      m_iEventSerialId = g_iEventSerialId++;
+      m_iEventSerialId = g_iHappeningSerialId++;
 
    }
 

@@ -20,7 +20,7 @@ class single_lock;
 //class sync_object;
 class semaphore;
 class mutex;
-class event;
+class happening;
 class critical_section;
 class manual_reset_happening;
 class single_lock;

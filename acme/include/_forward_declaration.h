@@ -2336,7 +2336,7 @@ typedef bool FN_TIMER(timer* ptimer);
 typedef FN_TIMER* PFN_TIMER;
 
 
-class event;
+class happening;
 
 
 namespace html

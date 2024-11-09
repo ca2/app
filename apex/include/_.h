@@ -583,7 +583,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-class event;
+class happening;
 
 
 class thread;

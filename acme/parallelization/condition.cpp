@@ -111,7 +111,8 @@ bool condition::set_happening()
 #endif
 }
 
-bool condition::pulse()
+
+bool condition::pulse_happening()
 {
 #ifdef WINDOWS
 

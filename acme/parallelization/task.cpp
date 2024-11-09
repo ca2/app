@@ -143,14 +143,14 @@ void task::__on_update_handler_happening_unlocked()
    if (m_bHandleRequest || m_requestaPosted.has_element())
    {
 
-      m_synchronizationaMainLoop.add_item(new_request_posted_event());
+      m_synchronizationaMainLoop.add_item(new_request_posted());
 
    }
 
    if (m_bHandleProcedure || m_procedurea.has_element())
    {
 
-      m_synchronizationaMainLoop.add_item(new_procedure_posted_event());
+      m_synchronizationaMainLoop.add_item(new_procedure_posted());
 
    }
 
@@ -164,7 +164,7 @@ void task::__on_update_handler_happening_unlocked()
 }
 
 
-::manual_reset_happening * task::new_procedure_posted_event()
+::manual_reset_happening * task::new_procedure_posted()
 {
 
    __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
@@ -1317,7 +1317,7 @@ void task::_post(const ::procedure & procedure)
 
       m_procedurea.add(procedure);
 
-      new_procedure_posted_event()->set_happening();
+      new_procedure_posted()->set_happening();
 
       __on_update_handler_happening_unlocked();
 
@@ -1407,7 +1407,7 @@ procedure task::pick_next_posted_procedure()
    if (m_procedurea.is_empty())
    {
 
-      new_procedure_posted_event()->reset_happening();
+      new_procedure_posted()->reset_happening();
 
    }
 

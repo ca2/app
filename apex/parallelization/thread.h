@@ -130,7 +130,7 @@ public:
 //
 //#endif
 
-   ::pointer < pointer_array < event > >              m_phappeningaWait;
+   ::pointer < pointer_array < happening > >            m_phappeningaWait;
 
 public:
 
@@ -174,8 +174,8 @@ public:
    //void update_task_ready_to_quit() override;
 
 
-   void add_waiting_event(event * pevent);
-   void erase_waiting_event(event * pevent);
+   void add_waiting_happening(happening * phappening);
+   void erase_waiting_happening(happening * phappening);
 
    // file related stuff
    file_info * get_file_info();

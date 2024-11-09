@@ -4806,10 +4806,10 @@ thread_ptra::~thread_ptra()
 //}
 
 
-void thread::add_waiting_event(event* pevent)
+void thread::add_waiting_happening(happening * phappening)
 {
 
-   if (::is_null(pevent))
+   if (::is_null(phappening))
    {
 
       return;
@@ -4820,12 +4820,12 @@ void thread::add_waiting_event(event* pevent)
 
    __defer_construct_new(m_phappeningaWait);
 
-   m_phappeningaWait->add(pevent);
+   m_phappeningaWait->add(phappening);
 
 }
 
 
-void thread::erase_waiting_event(event* pevent)
+void thread::erase_waiting_happening(happening * phappening)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -4833,7 +4833,7 @@ void thread::erase_waiting_event(event* pevent)
    if (m_phappeningaWait)
    {
 
-      m_phappeningaWait->erase(pevent);
+      m_phappeningaWait->erase(phappening);
 
    }
 

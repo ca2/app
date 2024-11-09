@@ -201,7 +201,7 @@ void synchronization_array::erase(::collection::index index)
 ::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, unsigned int uWakeMask)
 {
 
-   if (is_empty())
+   if (is_empty() && !uWakeMask)
    {
 
       throw ::exception(error_failed);

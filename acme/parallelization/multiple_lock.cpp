@@ -19,7 +19,7 @@ multiple_lock::multiple_lock(synchronization_array & synchronizationa,bool bInit
    m_synchronizationa(synchronizationa)
 {
 
-   ASSERT(m_synchronizationa.size() > 0 && m_synchronizationa.size() <= MAXIMUM_WAIT_OBJECTS);
+   //ASSERT(m_synchronizationa.size() > 0 && m_synchronizationa.size() <= MAXIMUM_WAIT_OBJECTS);
 
    if(bInitialLock)
    {

@@ -1522,7 +1522,7 @@ void task::set_happened(e_happening ehappening)
 
    m_ehappeninga.add(ehappening);
 
-   m_pmanualreseteventHappening->set_event();
+   new_happening()->set_event();
 
    __on_update_handler_happening_unlocked();
 

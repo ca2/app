@@ -1385,6 +1385,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="parallelization\happening.h" />
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
@@ -1967,8 +1968,9 @@
     <ClCompile Include="parallelization\critical_section.cpp" />
     <ClCompile Include="parallelization\event.cpp" />
     <ClCompile Include="parallelization\fork.cpp" />
+    <ClCompile Include="parallelization\happening.cpp" />
     <ClCompile Include="parallelization\install_mutex.cpp" />
-    <ClCompile Include="parallelization\manual_reset_event.cpp" />
+    <ClCompile Include="parallelization\manual_reset_happening.cpp" />
     <ClCompile Include="parallelization\message_queue.cpp" />
     <ClCompile Include="parallelization\message_queue_global.cpp" />
     <ClCompile Include="parallelization\multiple_lock.cpp" />
@@ -2789,9 +2791,8 @@
     <ClInclude Include="parallelization\condition.h" />
     <ClInclude Include="parallelization\condition_variable.h" />
     <ClInclude Include="parallelization\critical_section.h" />
-    <ClInclude Include="parallelization\event.h" />
     <ClInclude Include="parallelization\initial_single_lock.h" />
-    <ClInclude Include="parallelization\manual_reset_event.h" />
+    <ClInclude Include="parallelization\manual_reset_happening.h" />
     <ClInclude Include="parallelization\message_queue.h" />
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\task_flag.h" />

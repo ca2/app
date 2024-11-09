@@ -211,7 +211,7 @@ int m_iExitCode;
 
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
-   virtual ::manual_reset_happening * new_procedure_posted_event();
+   virtual ::manual_reset_happening * new_procedure_posted();
 
    virtual ::manual_reset_happening* new_happening();
 

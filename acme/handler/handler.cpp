@@ -71,7 +71,7 @@ namespace handler
    }
 
 
-   ::manual_reset_happening * handler::new_request_posted_event()
+   ::manual_reset_happening * handler::new_request_posted()
    {
 
       __defer_construct_new(m_pmanualresethappeningNewRequestPosted);
@@ -99,7 +99,7 @@ namespace handler
 
          m_requestaPosted.add(prequest);
 
-         new_request_posted_event()->set_event();
+         new_request_posted()->set_happening();
 
          __on_update_handler_happening_unlocked();
 
@@ -127,7 +127,7 @@ namespace handler
       if (m_requestaPosted.is_empty())
       {
 
-         new_request_posted_event()->ResetEvent();
+         new_request_posted()->ResetHappening();
 
       }
 

@@ -69,7 +69,7 @@ namespace handler
 
       void destroy() override;
 
-      virtual ::manual_reset_happening * new_request_posted_event();
+      virtual ::manual_reset_happening * new_request_posted();
 
       virtual void post_request(::request * prequest);
 

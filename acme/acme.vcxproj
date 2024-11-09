@@ -1966,7 +1966,6 @@
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\create_task_attributes.cpp" />
     <ClCompile Include="parallelization\critical_section.cpp" />
-    <ClCompile Include="parallelization\event.cpp" />
     <ClCompile Include="parallelization\fork.cpp" />
     <ClCompile Include="parallelization\happening.cpp" />
     <ClCompile Include="parallelization\install_mutex.cpp" />

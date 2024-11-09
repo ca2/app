@@ -12,7 +12,7 @@
 
 
 manual_reset_happening::manual_reset_happening(char * sz, bool bInitiallyOwn) :
-   ::event(sz, bInitiallyOwn, true)
+   ::happening(sz, bInitiallyOwn, true)
 {
 
    m_estatus = ::success;

@@ -4382,9 +4382,6 @@
     <ClCompile Include="parallelization\critical_section.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\event.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\manual_reset_happening.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>

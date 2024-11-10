@@ -201,7 +201,7 @@ constexpr auto operator *(NUMBER n, pixel_t) { return unit(n, e_unit_pixel); }
 
 using unit = unit_base < enum_unit >;
 
-constexpr auto operator ""_px(huge_natural i)
+constexpr auto operator ""_px(unsigned long long i)
 {
 
    return unit(i, e_unit_pixel);
@@ -223,7 +223,7 @@ template < primitive_number NUMBER >
 constexpr auto operator *(NUMBER n, point_t) { return unit(n, e_unit_point); }
 
 
-constexpr auto operator ""_pt(huge_natural i)
+constexpr auto operator ""_pt(unsigned long long i)
 {
 
    return unit(i, e_unit_point);

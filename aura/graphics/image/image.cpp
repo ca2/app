@@ -5429,10 +5429,10 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
             Δy = abs(y - yCenter);
             b = pb[Δx + Δy * iRadius];
 
-            dst[0] = unsigned char(blue * b / 255);
-            dst[1] = unsigned char(green * b / 255);
-            dst[2] = unsigned char(red * b / 255);
-            dst[3] = unsigned char(alpha * b / 255);
+            dst[0] = (unsigned char)(blue * b / 255);
+            dst[1] = (unsigned char)(green * b / 255);
+            dst[2] = (unsigned char)(red * b / 255);
+            dst[3] = (unsigned char)(alpha * b / 255);
             dst += 4;
          }
          dst += dwAdd;
@@ -5621,10 +5621,10 @@ void image::RadialFill(
             }
 
             bComp = 255 - b;
-            dst[0] = unsigned char(((blue1 * bComp) + (blue2 * b)) / 255);
-            dst[1] = unsigned char(((green1 * bComp) + (green2 * b)) / 255);
-            dst[2] = unsigned char(((red1 * bComp) + (red2 * b)) / 255);
-            dst[3] = unsigned char(((alpha1 * bComp) + (alpha2 * b)) / 255);
+            dst[0] = (unsigned char)(((blue1 * bComp) + (blue2 * b)) / 255);
+            dst[1] = (unsigned char)(((green1 * bComp) + (green2 * b)) / 255);
+            dst[2] = (unsigned char)(((red1 * bComp) + (red2 * b)) / 255);
+            dst[3] = (unsigned char)(((alpha1 * bComp) + (alpha2 * b)) / 255);
             dst += 4;
          }
          dst += dwAdd;

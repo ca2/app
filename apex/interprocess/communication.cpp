@@ -494,7 +494,7 @@ namespace interprocess
 
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
-      strKey = directory_system()->system() / "communication" / strApp / idPid;
+      strKey = directory_system()->userconfig() / "communication" / strApp / idPid;
 
 #elif defined(__APPLE__)
 

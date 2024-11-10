@@ -65,13 +65,6 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #endif
 
 
-#ifdef LINUX
-
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask);
-
-#endif
-
-
 struct send_thread_message :
    virtual public object
 {

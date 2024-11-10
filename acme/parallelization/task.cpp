@@ -21,6 +21,13 @@
 #include "acme/windowing/windowing.h"
 
 
+#ifdef LINUX
+
+int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask);
+
+#endif
+
+
 #ifdef WINDOWS
 
 

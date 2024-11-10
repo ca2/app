@@ -13,12 +13,12 @@ public:
    iptr             m_lparam;
 
 
-   lparam(nullptr_t = nullptr) { m_lparam = 0; }
+   constexpr lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
    template < primitive_integral INTEGRAL >
-   lparam(INTEGRAL i) { m_lparam = (iptr)i; }
+   constexpr lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
-   lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
+   constexpr lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
    template < primitive_point POINT >
    constexpr lparam(const POINT & point);
    lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }
@@ -50,7 +50,7 @@ public:
    //inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
 
 
-   lparam(const lparam & lparam)
+   constexpr lparam(const lparam & lparam)
    {
 
       m_lparam = lparam.m_lparam;
@@ -65,7 +65,7 @@ public:
 
    }
 
-   operator iptr () const
+   constexpr operator iptr () const
    {
 
       return m_lparam;
@@ -87,10 +87,8 @@ public:
    }
 
 
-
-
    template < typename T >
-   T raw_cast() const
+   constexpr T raw_cast() const
    {
 
       return (T) m_lparam;
@@ -98,7 +96,7 @@ public:
    }
 
 
-   lparam& operator = (const lparam & lparam)
+   constexpr lparam& operator = (const lparam & lparam)
    {
 
       m_lparam = lparam.m_lparam;
@@ -108,7 +106,7 @@ public:
    }
 
 
-   lparam& operator = (iptr lparam)
+   constexpr lparam& operator = (iptr lparam)
    {
 
       m_lparam = lparam;
@@ -118,7 +116,7 @@ public:
    }
 
 
-   inline short x() const
+   constexpr short x() const
    {
 
       return ::lparam_int_x(m_lparam);
@@ -126,7 +124,7 @@ public:
    }
 
 
-   inline short y() const
+   constexpr short y() const
    {
 
       return ::lparam_int_y(m_lparam);

@@ -123,7 +123,7 @@ public:
 
 
    unsigned int   as_unsigned_int() const noexcept { return as_unsigned_int(this->cx(), this->cy()); }
-   huge_natural          huge_natural() const noexcept { return as_huge_natural(this->cx(), this->cy()); }
+   ::huge_natural          huge_natural() const noexcept { return as_huge_natural(this->cx(), this->cy()); }
    class lparam   lparam() const noexcept { return make_unsigned_int(this->cx(), this->cy()); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx(); }

@@ -187,6 +187,13 @@ namespace dynamic_source
 
       }
 
+      if (m_strSourcePath.is_empty())
+      {
+
+         return true;
+
+      }
+
       bool bManagerShouldBuild = m_pmanager->should_build(m_strSourcePath);
 
       if (bManagerShouldBuild)

@@ -108,7 +108,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
 
-   pacme->platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   system.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 

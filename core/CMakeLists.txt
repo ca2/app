@@ -281,6 +281,7 @@ list(APPEND library_source
    #user/netuser/netuser_network_configuration.cpp
    user/netuser/network_configuration.h
    #user/rich_text/_const.h
+   user/rich_text/_factory.cpp
    user/rich_text/_impl.h
    #user/rich_text/_rich_text.h
    user/rich_text/box.cpp

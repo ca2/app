@@ -99,7 +99,7 @@ inline angle_double operator "" _degrees(long double degrees)
 }
 
 
-inline angle_double operator "" _degree(huge_natural degrees)
+inline angle_double operator "" _degree(unsigned long long degrees)
 {
 
    return radians(degrees * MATH_PI / 180.0);
@@ -107,7 +107,7 @@ inline angle_double operator "" _degree(huge_natural degrees)
 }
 
 
-inline angle_double operator "" _degrees(huge_natural hn)
+inline angle_double operator "" _degrees(unsigned long long hn)
 {
 
    return operator "" _degree(hn);

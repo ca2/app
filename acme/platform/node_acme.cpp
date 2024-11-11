@@ -1595,12 +1595,21 @@ namespace platform
 
 #ifdef LINUX
 
-      virtual enum_linux_distribution get_linux_distribution() const{}
+      enum_linux_distribution acme_node_layer::get_linux_distribution() const
+   {
+
+      return e_linux_distribution_unknown;
+   }
 //#ifdef LINUX
 
   //    inline enum_linux_distribution get_linux_distribution() const{}
 
-      void acme_node_layer::calculate_linux_distribution(){}
+      void acme_node_layer::calculate_linux_distribution()
+   {
+
+
+
+   }
 
 #endif
 

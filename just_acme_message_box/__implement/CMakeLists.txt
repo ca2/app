@@ -66,12 +66,11 @@ endif ()
 
 message(STATUS "default_nano_user is ${default_nano_user}")
 
-add_dependencies(${PROJECT_NAME} ${default_acme})
+
+add_dependencies(${PROJECT_NAME} ${copy_libraries_dependency} ${default_acme})
 add_dependencies(${PROJECT_NAME} folder_zip)
 add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
 add_dependencies(${PROJECT_NAME} ${default_acme_windowing})
-add_dependencies(${PROJECT_NAME} copy_libraries_step)
-
 
 
 

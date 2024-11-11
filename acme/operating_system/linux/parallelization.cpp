@@ -82,7 +82,7 @@
 //}
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -98,7 +98,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

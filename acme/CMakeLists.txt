@@ -447,9 +447,10 @@ list(APPEND library_source
    parallelization/create_task_attributes.cpp
    parallelization/create_task_attributes.h
    parallelization/critical_section.cpp
-   parallelization/event.cpp
    parallelization/fork.cpp
    parallelization/fork.h
+   parallelization/happening.cpp
+   parallelization/happening.h
    parallelization/install_mutex.cpp
    parallelization/manual_reset_event.cpp
    parallelization/multiple_lock.cpp
@@ -1280,6 +1281,8 @@ list(APPEND library_source
    user/user/element.cpp
    user/user/element.h
    user/user/e_window_flag.h
+   user/user/frame_interaction.cpp
+   user/user/frame_interaction.h
    user/user/interaction.cpp
    user/user/interaction.h
    user/user/item.h
@@ -1774,7 +1777,6 @@ list(APPEND library_source
    parallelization/common.h
    parallelization/condition.h
    parallelization/critical_section.h
-   parallelization/event.h
    parallelization/initial_single_lock.h
    parallelization/manual_reset_event.h
    parallelization/message_queue.cpp

@@ -52,4 +52,13 @@ void output_debug_string_flush()
 }
 
 
+CLASS_DECL_ACME void ansi_output_debug_line(const ::scoped_string& str)
+{
 
+   ::string strLine(str);
+
+   strLine += "\n";
+
+   output_debug_string(strLine);
+
+}

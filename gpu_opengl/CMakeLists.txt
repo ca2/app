@@ -72,9 +72,9 @@ if(${LINUX} OR ${__BSD__})
 
 else()
 
-   list(APPEND library_references
-      glad
-   )
+   #list(APPEND library_references
+    #  glad
+   #)
 
 
 endif ()
@@ -96,17 +96,17 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
-set_target_properties(gpu_opengl PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
 
 
-    target_compile_options(gpu_opengl PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(gpu_opengl PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(gpu_opengl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/gpu_opengl.lib")
-    target_link_options(gpu_opengl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/gpu_opengl.def")
-    target_link_libraries(gpu_opengl PRIVATE glu32 glew32 opengl32)
-    target_link_libraries(gpu_opengl PRIVATE ${library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE assimp glu32 opengl32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
 elseif(${LINUX} OR ${__BSD__})

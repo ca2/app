@@ -1058,16 +1058,16 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < same_as < double > F64 > payload & operator=(F64 f) { return assign_double(f); }
 
 
-   payload & operator=(char * pi) { return assign_pi8(pi); }
-   payload & operator=(unsigned char * pu) { return assign_pu8(pu); }
-   payload & operator=(short * pi) { return assign_pi16(pi); }
-   payload & operator=(unsigned short * pu) { return assign_pu16(pu); }
-   payload & operator=(int * pi) { return assign_pi32(pi); }
-   payload & operator=(unsigned int * pu) { return assign_pu32(pu); }
-   payload & operator=(huge_integer * pi) { return assign_pi64(pi); }
-   payload & operator=(huge_natural * pu) { return assign_pu64(pu); }
-   payload & operator=(float * pf) { return assign_pf32(pf); }
-   payload & operator=(double * pf) { return assign_pf64(pf); }
+   payload & assign_pointer(char * pi) { return assign_pi8(pi); }
+   payload & assign_pointer(unsigned char * pu) { return assign_pu8(pu); }
+   payload & assign_pointer(short * pi) { return assign_pi16(pi); }
+   payload & assign_pointer(unsigned short * pu) { return assign_pu16(pu); }
+   payload & assign_pointer(int * pi) { return assign_pi32(pi); }
+   payload & assign_pointer(unsigned int * pu) { return assign_pu32(pu); }
+   payload & assign_pointer(huge_integer * pi) { return assign_pi64(pi); }
+   payload & assign_pointer(huge_natural * pu) { return assign_pu64(pu); }
+   payload & assign_pointer(float * pf) { return assign_pf32(pf); }
+   payload & assign_pointer(double * pf) { return assign_pf64(pf); }
 
 #ifdef WINDOWS
    payload & operator = (long l);

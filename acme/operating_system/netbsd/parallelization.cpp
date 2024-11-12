@@ -316,23 +316,21 @@ void task_run(const class ::time & time)
 }
 
 
+namespace platform
+{
 
 
-//namespace platform
-//{
+   void node::_user_post(const ::procedure &procedure)
+   {
+
+      information() << "::platform::node::_user_post going to acme_windowing::_user_post";
+
+      system()->acme_windowing()->_user_post(procedure);
+
+   }
 
 
-   //void node::user_post(const ::procedure &procedure)
-   //{
-
-      //information() << "::platform::node::user_post going to display_post";
-
-      //::acme::windowing::display::g_p->display_post(procedure);
-
-   //}
-
-
-//} // namespace platform
+} // namespace platform
 
 
 int get_processor_count()

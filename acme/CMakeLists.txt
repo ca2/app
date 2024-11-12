@@ -488,6 +488,38 @@ list(APPEND library_source
    #platform/apex_main_data.h
    #platform/apex_main_struct.cpp
    #platform/apex_main_struct.h
+   integrate/qt/_.h
+   integrate/qt.h
+   integrate/qt/geometry2d.h
+   integrate/qt/image.h
+   operating_system/x11/_x11.h
+   operating_system/x11/_x11.h
+   platform/system_acme.h
+   platform/system_apex.h
+   platform/system_aqua.h
+   platform/system_aura.h
+   platform/application_acme.h
+   platform/application_acme.cpp
+   platform/application_apex.h
+   platform/application_apex.cpp
+   platform/application_aqua.h
+   platform/application_aqua.cpp
+   platform/application_aura.h
+   platform/application_aura.cpp
+   platform/application_axis.h
+   platform/application_axis.cpp
+   platform/application_axis.h
+   platform/application_axis.cpp
+   platform/http.cpp
+   platform/http.h
+   platform/http_acme.cpp
+   platform/http_acme.h
+   platform/http_apex.cpp
+   platform/http_apex.h
+   prototype/prototype/cast.h
+   prototype/data/client.h
+   prototype/data/client.cpp
+   user/menu/_.h
    platform/application.cpp
    platform/application.h
    platform/application_acme.cpp
@@ -2854,19 +2886,24 @@ if (${__BSD__})
 
 endif ()
 
-if (${LINUX})
+# if (${LINUX})
 
-   list(APPEND library_source
-      operating_system/posix/dynamic_library_dl.cpp
-      operating_system/posix/dynamic_library_dl.h
-   )
+#    list(APPEND library_source
+#       operating_system/posix/dynamic_library_dl.cpp
+#       operating_system/posix/dynamic_library_dl.h
+#    )
 
-endif ()
+# endif ()
 
 
 if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
-   list(APPEND library_source
+list(APPEND library_source
+      operating_system/posix/dynamic_library_dl.cpp
+      operating_system/posix/dynamic_library_dl.h
+   )
+
+list(APPEND library_source
       operating_system/posix/calculate_edesktop.cpp
       operating_system/posix/calculate_etoolkit.cpp
    )
@@ -2928,40 +2965,9 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   integrate/qt/_.h
-   integrate/qt.h
-   integrate/qt/geometry2d.h
-   integrate/qt/image.h
-   operating_system/x11/_x11.h
-   operating_system/x11/_x11.h
-   platform/system_acme.h
-   platform/system_apex.h
-   platform/system_aqua.h
-   platform/system_aura.h
-   platform/application_acme.h
-   platform/application_acme.cpp
-   platform/application_apex.h
-   platform/application_apex.cpp
-   platform/application_aqua.h
-   platform/application_aqua.cpp
-   platform/application_aura.h
-   platform/application_aura.cpp
-   platform/application_axis.h
-   platform/application_axis.cpp
-   platform/application_axis.h
-   platform/application_axis.cpp
-   platform/http.cpp
-   platform/http.h
-   platform/http_acme.cpp
-   platform/http_acme.h
-   platform/http_apex.cpp
-   platform/http_apex.h
-   prototype/prototype/cast.h
-   prototype/data/client.h
-   prototype/data/client.cpp
-   user/menu/_.h
-)
+
+
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

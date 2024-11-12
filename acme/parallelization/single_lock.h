@@ -6,7 +6,7 @@ class CLASS_DECL_ACME single_lock
 public:
 
 
-   ::subparticle_pointer      m_psubparticleSynchronization;
+   ::subparticle *            m_psubparticleSynchronization;
    bool                       m_bLocked;
 
 
@@ -34,7 +34,7 @@ class CLASS_DECL_ACME _single_lock
 public:
 
 
-   ::subparticle_pointer            m_psubparticleSynchronization;
+   ::subparticle *                  m_psubparticleSynchronization;
    bool                             m_bLocked;
 
 

@@ -1434,7 +1434,12 @@ namespace platform
 
 #if defined(LINUX) || defined(__BSD__)
 
-      ::string apex_application_layer::apex_application_layer::get_wm_class() const{}
+    ::string apex_application_layer::apex_application_layer::get_wm_class() const
+    {
+
+        return {};
+
+    }
 
 #endif
 

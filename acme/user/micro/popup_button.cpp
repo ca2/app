@@ -94,6 +94,7 @@ namespace micro
 
       calculate_size_and_position(x, y);
 
+
       add_button(strText, e_dialog_result_yes, 'y');
 
       add_button("Cancel", e_dialog_result_cancel, 'c');

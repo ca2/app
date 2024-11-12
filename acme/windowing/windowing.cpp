@@ -304,7 +304,7 @@ namespace acme
       void windowing::_main_send(const ::procedure & procedure)
       {
 
-         //main_send(procedure);
+         _user_send(procedure);
 
       }
 
@@ -312,7 +312,7 @@ namespace acme
       void windowing::_main_post(const ::procedure & procedure)
       {
 
-         //main_post(procedure);
+         _user_post(procedure);
 
       }
 

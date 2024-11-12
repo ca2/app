@@ -452,7 +452,8 @@ list(APPEND library_source
    parallelization/happening.cpp
    parallelization/happening.h
    parallelization/install_mutex.cpp
-   parallelization/manual_reset_event.cpp
+   parallelization/manual_reset_happening.cpp
+   parallelization/manual_reset_happening.h
    parallelization/multiple_lock.cpp
    parallelization/multiple_lock.h
    parallelization/mutex.cpp
@@ -1810,7 +1811,7 @@ list(APPEND library_source
    parallelization/condition.h
    parallelization/critical_section.h
    parallelization/initial_single_lock.h
-   parallelization/manual_reset_event.h
+   #parallelization/manual_reset_event.h
    parallelization/message_queue.cpp
    parallelization/message_queue.h
    parallelization/message_queue_global.cpp

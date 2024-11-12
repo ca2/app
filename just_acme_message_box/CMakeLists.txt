@@ -47,7 +47,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 
-elseif (${LINUX})
+elseif (${LINUX} OR ${__BSD__})
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

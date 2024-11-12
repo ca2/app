@@ -270,50 +270,50 @@ namespace x11{namespace nano { namespace user{void process_messages();}}}
 namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
 
-void task_run(const class ::time & time)
-{
+// void task_run(const class ::time & time)
+// {
 
-//   auto psystem = system();
+// //   auto psystem = system();
 
-  // auto pwindowingsystem = psystem->windowing();
+//   // auto pwindowingsystem = psystem->windowing();
   
- auto ptask = ::get_task();
+//  auto ptask = ::get_task();
 
-   if(::is_set(ptask))	
-   {
+//    if(::is_set(ptask))	
+//    {
 
-      ptask->task_run(time);
+//       ptask->task_run(time);
 
-   }
+//    }
 
 
-//   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
-//   {
-//
-//      wayland_process_messages();
-//
-//   }
-//   else
-//  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
-  // {
+// //   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
+// //   {
+// //
+// //      wayland_process_messages();
+// //
+// //   }
+// //   else
+// //  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
+//   // {
 
-    //  xcb_process_messages();
+//     //  xcb_process_messages();
 
-  // }
-  // else
-  // {
+//   // }
+//   // else
+//   // {
 
-//#if !defined(NETBSD)
+// //#if !defined(NETBSD)
 
-  //    x11_process_messages();
+//   //    x11_process_messages();
 
-//#endif
+// //#endif
 
-  // }
+//   // }
 
-   //psystem->node()->defer_do_main_tasks();
+//    //psystem->node()->defer_do_main_tasks();
 
-}
+// }
 
 
 namespace platform

@@ -283,7 +283,7 @@ bool system::has_audio() const
 
       }
 
-//      critical_section_lock synchronouslock(&m_pplatform->m_criticalsection);
+//      critical_section_lock synchronouslock(&m_criticalsection);
 
       //try
       //{

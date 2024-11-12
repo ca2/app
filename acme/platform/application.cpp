@@ -106,10 +106,10 @@ namespace platform
 
       }
 
-      // if (m_pplatform && m_pplatform->m_papplication == this)
+      // if (m_pplatform && m_papplication == this)
       // {
       //
-      //    m_pplatform->m_papplication = nullptr;
+      //    m_papplication = nullptr;
       //
       // }
 
@@ -246,19 +246,19 @@ namespace platform
       set_platform();
 
 
-      // if (m_pplatform->m_papplication == nullptr)
+      // if (m_papplication == nullptr)
       // {
       //
-      //    m_pplatform->m_papplication = this;
+      //    m_papplication = this;
       //
-      //    m_pplatform->defer_initialize_platform();
+      //    defer_initialize_platform();
       //
       // }
       //
       // if (!m_psystem)
       // {
       //
-      //    m_psystem = m_pplatform->m_psystem;
+      //    m_psystem = m_psystem;
       //
       // }
 

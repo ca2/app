@@ -290,7 +290,7 @@ namespace acme
 
       virtual class ::manager_room * manager_room();
 
-      //::acme::acme * acme() const { return m_pplatform->m_pacme; }
+      //::acme::acme * acme() const { return m_pacme; }
 
       ::prototype::prototype * prototype() const { return m_pprototype; }
 

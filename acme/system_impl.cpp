@@ -290,7 +290,7 @@ namespace platform
       //if (etracelevel > e_trace_level_debug)
       //{
 
-      auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
+      auto strTraceLevel = get_argument_begins_eat("--trace-level=");
 
       if (strTraceLevel == "debug")
       {
@@ -311,10 +311,10 @@ namespace platform
 
       }
 
-      //         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
+      //         for (int i = 0; i < get_argument_count1(); i++)
       //         {
       //
-      //            string strArg = m_pplatform->get_argument1(i);
+      //            string strArg = get_argument1(i);
       //
       //            if (strArg == "verbose")
       //            {
@@ -2440,18 +2440,18 @@ namespace platform
          else
          {
 
-            strApp = m_pplatform->m_args[0];
+            strApp = m_args[0];
 
             ::string_array straFiles;
 
-            for (int iArgument = 1; iArgument < m_pplatform->m_argc; )
+            for (int iArgument = 1; iArgument < m_argc; )
             {
 
                auto iArgumentBefore = iArgument;
 
                if (node()->defer_consume_main_arguments(
-                  m_pplatform->m_argc,
-                  m_pplatform->m_args,
+                  m_argc,
+                  m_args,
                   iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2461,8 +2461,8 @@ namespace platform
                }
 
                if (application()->defer_consume_main_arguments(
-                  m_pplatform->m_argc,
-                  m_pplatform->m_args,
+                  m_argc,
+                  m_args,
                   iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2471,7 +2471,7 @@ namespace platform
 
                }
 
-               ::string strArgument = m_pplatform->m_args[iArgument];
+               ::string strArgument = m_args[iArgument];
 
                if (strArgument.begins("-"))
                {
@@ -3311,7 +3311,7 @@ namespace platform
 
             //auto psystem = system();
 
-            auto & plibrary = m_pplatform->library(strLibrary);
+            auto & plibrary = library(strLibrary);
 
             if (!plibrary)
             {

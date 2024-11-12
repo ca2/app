@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
-#include "acme/windowing/windowing_base.h"
 #include "acme/platform/system.h"
-#include "acme/user/micro/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
 #include "acme/_operating_system.h"
 #include <sys/param.h>
 #include <sys/sysctl.h>
@@ -270,17 +270,19 @@ namespace x11{namespace nano { namespace user{void process_messages();}}}
 namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
 
-void _do_tasks()
+void task_run(const class ::time & time)
 {
 
-   auto psystem = system();
+//   auto psystem = system();
 
-   auto pwindowingsystem = psystem->windowing_system();
+  // auto pwindowingsystem = psystem->windowing();
+  
+ auto ptask = ::get_task();
 
-   if(::is_set(pwindowingsystem))	
+   if(::is_set(ptask))	
    {
 
-      pwindowingsystem->process_messages();
+      ptask->task_run(time);
 
    }
 
@@ -309,28 +311,28 @@ void _do_tasks()
 
   // }
 
-   psystem->node()->defer_do_main_tasks();
+   //psystem->node()->defer_do_main_tasks();
 
 }
 
 
 
 
-namespace acme
-{
+//namespace platform
+//{
 
 
-   void node::user_post(const ::procedure &procedure)
-   {
+   //void node::user_post(const ::procedure &procedure)
+   //{
 
-      information() << "::platform::node::user_post going to display_post";
+      //information() << "::platform::node::user_post going to display_post";
 
-      ::acme::windowing::display::g_p->display_post(procedure);
+      //::acme::windowing::display::g_p->display_post(procedure);
 
-   }
+   //}
 
 
-} // namespace acme
+//} // namespace platform
 
 
 int get_processor_count()

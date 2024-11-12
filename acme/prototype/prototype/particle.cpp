@@ -207,7 +207,7 @@ const char * particle::topic_text() const
 {
 
    return ::platform::get();
-   //return ::is_set(m_papplication) ? m_papplication->m_pplatform : _platform();
+   //return ::is_set(m_papplication) ? m_papplication : _platform();
 
 }
 

@@ -612,7 +612,7 @@ namespace platform
    //::platform::platform * context::platform() const
    //{
 
-   //   return ((context*)this)->m_pplatform;
+   //   return ((context*)this);
 
    //}
 

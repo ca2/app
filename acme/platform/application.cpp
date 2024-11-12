@@ -116,7 +116,7 @@ namespace platform
       /*   if (g_p == this)
        {
 
-       m_pmain->m_pplatform.release();
+       m_pmain.release();
 
        ::acme::del(m_pmain);
 

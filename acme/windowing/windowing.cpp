@@ -547,8 +547,10 @@ namespace acme
          return m_ewindowing;
 
       }
-
-
+bool windowing::shell_open(const ::file::path & path)
+{
+   return false;
+}
       //void windowing::update_nano_user_theme()
       //{
 

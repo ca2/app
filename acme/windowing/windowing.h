@@ -159,6 +159,9 @@ namespace acme
          virtual ::windowing::enum_windowing get_ewindowing();
 
 
+         virtual bool shell_open(const ::file::path & path);
+
+
       };
 
 

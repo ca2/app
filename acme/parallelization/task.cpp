@@ -2050,18 +2050,18 @@ void task::on_before_branch()
 
 #endif
 
-   if (!m_htask)
-   {
-
-      release();
-
-      m_bIsRunning = false;
-
-      throw ::exception(error_wrong_state);
-
-      //return ::error_failed;
-
-   }
+//   if (!m_htask)
+//   {
+//
+//      release();
+//
+//      m_bIsRunning = false;
+//
+//      throw ::exception(error_wrong_state);
+//
+//      //return ::error_failed;
+//
+//   }
 
    //return ::success;
    return this;

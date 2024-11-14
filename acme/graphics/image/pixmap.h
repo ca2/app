@@ -71,7 +71,7 @@ struct pixmap
    }
 
 
-   void init(const ::int_size & size, ::image32_t * pimage32, int iScan)
+   void initialize(const ::int_size & size, ::image32_t * pimage32, int iScan)
    {
 
       m_size = size;
@@ -188,6 +188,9 @@ struct pixmap
    void copy(const ::int_size & size, const ::pixmap * ppixmapSrc);
 
    void copy(const ::pixmap * ppixmapSrc);
+
+
+   ::color::color average_color();
 
 #endif
 

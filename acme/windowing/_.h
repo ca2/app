@@ -25,24 +25,6 @@
 #include "acme/constant/windowing.h"
 
 
-enum enum_display_type
-{
-
-   e_display_type_none,
-   e_display_type_system = 100,
-#ifdef WITH_X11
-   e_display_type_x11 = 1000,
-#endif
-#ifdef WITH_XCB
-   e_display_type_xcb = 2000,
-#endif
-#ifdef HAS_WAYLAND
-   e_display_type_wayland = 3000,
-#endif
-
-};
-
-
 namespace acme
 {
 
@@ -99,7 +81,7 @@ namespace windowing
    class windowing;
 
 
-   CLASS_DECL_ACME::enum_display_type get_display_type();
+   //CLASS_DECL_ACME::enum_display_type get_display_type();
 
 
    //CLASS_DECL_ACME::windowing::enum_windowing calculate_ewindowing();
@@ -112,6 +94,10 @@ namespace windowing
 
    CLASS_DECL_ACME::windowing::enum_toolkit calculate_etoolkit();
    CLASS_DECL_ACME::windowing::enum_toolkit get_etoolkit();
+
+
+   CLASS_DECL_ACME::windowing::enum_display_type initialize_edisplaytype();
+   CLASS_DECL_ACME::windowing::enum_display_type get_edisplaytype();
 
 
 } // namespace windowing

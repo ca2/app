@@ -168,5 +168,63 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
    return *this;
 
 }
-   
-   
+
+
+::color::color pixmap::average_color()
+{
+
+   auto h = this->height();
+
+   auto w = this->width();
+
+   auto s = this->scan_size();
+
+   auto data = (unsigned char *) this->m_pimage32;
+
+   huge_integer r = 0;
+   huge_integer g = 0;
+   huge_integer b = 0;
+   huge_integer a = 0;
+
+   for (int n = 0; n < h; n++) {
+
+      auto pline = data + s * n;
+
+      for (int l = 0; l < w; l++) {
+
+         a += pline[3];
+         r += pline[2];
+         g += pline[1];
+         b += pline[0];
+
+         pline += 4;
+
+      }
+
+   }
+
+   if (a == 0) {
+
+      return ::color::transparent;
+
+   } else {
+
+      auto area = w * h;
+
+      double dA = ((double) a) / (double) (area);
+
+      double dR = ((double) r) / (double) a;
+
+      double dG = ((double) g) / (double) a;
+
+      double dB = ((double) b) / (double) a;
+
+      return argb(dA / 255.0, dR, dG, dB);
+
+   }
+
+
+}
+
+
+

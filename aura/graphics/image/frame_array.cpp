@@ -150,7 +150,7 @@ namespace image
 
       //m_size = size;
 
-      m_pimage->pixmap::init(imagedrawing.m_rectangleTarget.size(), nullptr, 0);
+      m_pimage->pixmap::initialize(imagedrawing.m_rectangleTarget.size(), nullptr, 0);
 
       this->set_size(pframes->get_count());
 

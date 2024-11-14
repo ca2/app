@@ -21,7 +21,7 @@ namespace acme
 
          ::int_point             m_pointCursor2;
 
-         enum_display_type       m_edisplaytype;
+         //enum_display_type       m_edisplaytype;
 
 
          display();
@@ -34,10 +34,10 @@ namespace acme
          void destroy() override;
 
 
-         virtual enum_display_type get_display_type();
+         //virtual enum_display_type get_display_type();
 
 
-         virtual void initialize_display_type(enum_display_type edisplaytype);
+         //virtual void initialize_display_type(enum_display_type edisplaytype);
 
 
          void kick_idle() override;

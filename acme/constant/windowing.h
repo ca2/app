@@ -56,6 +56,20 @@ namespace windowing
    };
 
 
+
+
+   enum enum_display_type
+   {
+
+      e_display_type_none,
+      e_display_type_system = 100,
+      e_display_type_x11 = 1000,
+      e_display_type_xcb = 2000,
+      e_display_type_wayland = 3000,
+
+   };
+
+
 } // namespace windowing
 
 

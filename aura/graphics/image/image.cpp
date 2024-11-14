@@ -371,7 +371,7 @@ bool image::host(::pixmap* ppixmap)
 
    //}
 
-   init(ppixmap->size(), ppixmap->image32(), ppixmap->m_iScan);
+   initialize(ppixmap->size(), ppixmap->image32(), ppixmap->m_iScan);
 
    m_pgraphics->set(m_pbitmap);
 

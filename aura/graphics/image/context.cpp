@@ -935,7 +935,7 @@ namespace image
 
       pextension->m_pframea = pframea;
 
-      pimage->pixmap::init(pframea->m_size, nullptr, 0);
+      pimage->pixmap::initialize(pframea->m_size, nullptr, 0);
 
       pimage->m_estatus = ::success;
 

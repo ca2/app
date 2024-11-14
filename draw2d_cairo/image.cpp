@@ -195,7 +195,7 @@ namespace draw2d_cairo
       m_pimage32 = nullptr;
 
       //init(size, pimage32Raw, iScan);
-      init(size, nullptr, iScan);
+      initialize(size, nullptr, iScan);
 
       m_bMapped = false;
 

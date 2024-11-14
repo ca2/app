@@ -66,7 +66,7 @@ namespace windowing
 
       //system()->windowing() = pwindowing;
 
-      open_display();
+      //open_display();
 
       //return ::success;
 

@@ -2905,8 +2905,9 @@ list(APPEND library_source
    )
 
 list(APPEND library_source
-      operating_system/posix/calculate_edesktop.cpp
-      operating_system/posix/calculate_etoolkit.cpp
+      operating_system/posix/__edesktop_calculate.cpp
+      operating_system/posix/__edisplaytype_initialize.cpp
+      operating_system/posix/__etoolkit_calculate.cpp
    )
 
 endif ()

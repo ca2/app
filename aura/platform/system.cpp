@@ -6990,13 +6990,32 @@ if(!m_pimaging)
    }
 
 
-   void system::do_graphics__windowing_and_desktop_factory()
+   void system::do_desktop_factory()
    {
 
-      if(!m_bGraphics__WindowingAndDesktopInitialized)
+      if(!m_bDesktopFactory)
       {
 
-         ::aqua::system::do_graphics__windowing_and_desktop_factory();
+         ::string strDesktop = ::windowing::get_edesktop_name();
+
+         auto pfactory = factory("desktop_environment", strDesktop);
+
+         pfactory->merge_to_global_factory();
+
+         m_bDesktopFactory = true;
+
+      }
+
+   }
+
+
+   void system::do_graphics_and_windowing_factory()
+   {
+
+      if(!m_bGraphicsAndWindowingFactory)
+      {
+
+         ::aqua::system::do_graphics_and_windowing_factory();
 
          ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
@@ -7016,11 +7035,6 @@ if(!m_pimaging)
 
          }
          
-         ::string strDesktop = ::windowing::get_edesktop_name();
-         
-         auto pfactory = factory("desktop_environment", strDesktop);
-         
-         pfactory->merge_to_global_factory();
 
          //user()->create_windowing();
 

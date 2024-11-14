@@ -57,7 +57,9 @@ namespace platform
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
-      bool                                            m_bGraphics__WindowingAndDesktopInitialized;
+
+      bool                                            m_bDesktopFactory;
+      bool                                            m_bGraphicsAndWindowingFactory;
 
 
       ::pointer < manual_reset_happening >                m_pmanualresethappeningReadyToExit;
@@ -210,7 +212,11 @@ namespace platform
       virtual void process_machine_event_data(machine_event_data * pdata);
 
 
-      virtual void do_graphics__windowing_and_desktop_factory();
+
+      virtual void do_desktop_factory();
+
+
+      virtual void do_graphics_and_windowing_factory();
 
 
       void initialize_layer();

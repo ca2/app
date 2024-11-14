@@ -200,7 +200,8 @@ namespace platform
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
-      m_bGraphics__WindowingAndDesktopInitialized = false;
+      m_bDesktopFactory = false;
+      m_bGraphicsAndWindowingFactory = false;
 
 
       m_bKeepRunningPostedProcedures = true;
@@ -797,6 +798,14 @@ namespace platform
          fatal() << "node_factory has failed";
 
          throw ::exception(error_resource);
+
+      }
+
+      if(!m_bConsole)
+      {
+
+         do_desktop_factory();
+         //do_graphics_and_windowing_factory();
 
       }
 
@@ -4343,7 +4352,7 @@ particle* system::matter_mutex()
       if (!m_pacmewindowing)
       {
 
-         do_graphics__windowing_and_desktop_factory();
+         do_graphics_and_windowing_factory();
 
          __construct(m_pacmewindowing);
 
@@ -4362,13 +4371,20 @@ particle* system::matter_mutex()
    }
 
 
-   void system::do_graphics__windowing_and_desktop_factory()
+   void system::do_desktop_factory()
    {
 
-      if (!m_bGraphics__WindowingAndDesktopInitialized)
+
+   }
+
+
+   void system::do_graphics_and_windowing_factory()
+   {
+
+      if (!m_bGraphicsAndWindowingFactory)
       {
 
-         m_bGraphics__WindowingAndDesktopInitialized = true;
+         m_bGraphicsAndWindowingFactory = true;
 
          nano()->graphics();
 

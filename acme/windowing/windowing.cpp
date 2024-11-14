@@ -242,7 +242,7 @@ namespace acme
          if (!m_pacmedisplay)
          {
 
-            system()->do_graphics__windowing_and_desktop_factory();
+            system()->do_graphics_and_windowing_factory();
 
             __construct(m_pacmedisplay);
 

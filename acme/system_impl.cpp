@@ -724,6 +724,13 @@ namespace platform
 
       }
 
+      if(!m_bConsole)
+      {
+
+         do_graphics__windowing_and_desktop_factory();
+
+      }
+
 #if !defined(WINDOWS)
 
       __construct(m_pexceptiontranslator);

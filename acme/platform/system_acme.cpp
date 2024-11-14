@@ -3903,8 +3903,17 @@ namespace platform
    }
 
 
-   void acme_system_layer::do_graphics__windowing_and_desktop_factory()
+   void acme_system_layer::do_desktop_factory()
    {
+
+
+   }
+
+
+   void acme_system_layer::do_graphics_and_windowing_factory()
+   {
+
+
    }
 
 

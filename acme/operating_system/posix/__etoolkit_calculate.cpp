@@ -20,7 +20,7 @@ namespace windowing
 
    ::windowing::enum_toolkit calculate_etoolkit()
    {
-
+      
 #if defined(MACOS)
       return ::windowing::e_toolkit_appkit;
 #elif defined(WINDOWS_DESKTOP)
@@ -36,6 +36,7 @@ namespace windowing
 #else
       return ::windowing::e_toolkit_unknown;
 #endif
+
    }
 
 
@@ -46,10 +47,27 @@ namespace windowing
       {
 
          g_etoolkit = calculate_etoolkit();
+         
       }
 
       return g_etoolkit;
+      
    }
+   
+   
+   /*::windowing::enum_toolkit get_edesktopenvironment()
+   {
+      
+      if(g_edesktopenvironment == ::windowing::e_desktop_environment_none)
+      {
+         
+         g_edesktopenvironment = calculate_edesktopenvironment();
+         
+      }
+      
+      return g_edesktopenvironment;
+      
+   }*/
 
 
 } // namespace windowing

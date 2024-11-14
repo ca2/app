@@ -86,7 +86,7 @@ namespace windowing
          return ::windowing::e_desktop_lxde;
          
       }
-      else if (file_exists("/usr/bin/xfconf-query"))
+      else if (file_exists("/usr/bin/xfconf-query") || file_exists("/usr/pkg/bin/xfconf-query"))
       {
 
          printf_line("calculate_edesktop e_desktop_xfce");
@@ -156,6 +156,24 @@ namespace windowing
       }
 
       return g_edesktop;
+   }
+   
+   
+   ::string get_edesktop_name()
+   {
+      
+      auto edesktop = get_edesktop();
+      
+      switch(edesktop)
+      {
+      case e_desktop_xfce:
+         return "xfce";
+      default:
+         throw todo;
+      };
+      
+      return {};
+
    }
 
 

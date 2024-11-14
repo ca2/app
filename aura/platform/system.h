@@ -799,7 +799,7 @@ namespace aura
       //::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 
 
-      void do_graphics_and_windowing_system_factory() override;
+      void do_graphics__windowing_and_desktop_factory() override;
 
 
    };

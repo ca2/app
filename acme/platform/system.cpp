@@ -200,7 +200,7 @@ namespace platform
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
-      m_bGraphicsAndWindowingSystemInitialized = false;
+      m_bGraphics__WindowingAndDesktopInitialized = false;
 
 
       m_bKeepRunningPostedProcedures = true;
@@ -4343,7 +4343,7 @@ particle* system::matter_mutex()
       if (!m_pacmewindowing)
       {
 
-         do_graphics_and_windowing_system_factory();
+         do_graphics__windowing_and_desktop_factory();
 
          __construct(m_pacmewindowing);
 
@@ -4362,13 +4362,13 @@ particle* system::matter_mutex()
    }
 
 
-   void system::do_graphics_and_windowing_system_factory()
+   void system::do_graphics__windowing_and_desktop_factory()
    {
 
-      if (!m_bGraphicsAndWindowingSystemInitialized)
+      if (!m_bGraphics__WindowingAndDesktopInitialized)
       {
 
-         m_bGraphicsAndWindowingSystemInitialized = true;
+         m_bGraphics__WindowingAndDesktopInitialized = true;
 
          nano()->graphics();
 

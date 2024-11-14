@@ -98,6 +98,9 @@ namespace windowing
 
    CLASS_DECL_ACME::windowing::enum_display_type initialize_edisplaytype();
    CLASS_DECL_ACME::windowing::enum_display_type get_edisplaytype();
+   
+   
+   CLASS_DECL_ACME::string get_edesktop_name();
 
 
 } // namespace windowing

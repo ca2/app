@@ -231,7 +231,7 @@ namespace platform
       print_line("platform::system::~system() (end)");
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
-      on_system_before_destroy();
+      //on_system_before_destroy();
 
 
 

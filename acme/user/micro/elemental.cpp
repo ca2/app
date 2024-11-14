@@ -736,6 +736,8 @@ namespace micro
 
       __defer_construct_new(m_pacmeuserinteractionaChildren);
 
+      __refdbg_add_referer
+
       m_pacmeuserinteractionaChildren->add(pelementalChild);
 
    }

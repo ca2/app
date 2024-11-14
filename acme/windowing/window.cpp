@@ -150,17 +150,27 @@ namespace acme
       void window::destroy()
       {
 
+         __check_refdbg
+
+
          m_pacmeuserinteraction.release();
 
+         __check_refdbg
          m_psystemmenu.release();
+         __check_refdbg
 
          //m_pacmeuserinteraction.release();
          m_pacmeuserinteractionFocus.release();
+         __check_refdbg
          m_pacmeuserinteractionHover.release();
+         __check_refdbg
          m_pacmeuserinteractionCapture.release();
+         __check_refdbg
          m_pacmeuserinteractionOwner.release();
+         __check_refdbg
 
          m_pdisplay.release();
+         __check_refdbg
 
 
 
@@ -183,8 +193,10 @@ namespace acme
          
             if (pacmewindowing)
             {
+               __check_refdbg
 
                pacmewindowing->m_windowa.erase(this);
+               __check_refdbg
 
             }
 
@@ -196,8 +208,10 @@ namespace acme
 
 
 
+         __check_refdbg
 
          ::user::element::destroy();
+         __check_refdbg
 
       }
 

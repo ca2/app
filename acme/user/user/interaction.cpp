@@ -523,17 +523,31 @@ namespace acme
             
             if(m_pacmewindowingwindow)
             {
-               
+
+               __check_refdbg
+
                m_pacmewindowingwindow->destroy_window();
-               
+
+               __check_refdbg
+
             }
 
-            auto pchildren = m_pacmeuserinteractionaChildren;
+            __check_refdbg
+
+            auto pchildren = ::transfer(m_pacmeuserinteractionaChildren);
+
+            __check_refdbg
 
             if (pchildren)
             {
 
-               for (auto & pchild : *pchildren)
+               __check_refdbg
+
+               auto childrena = ::transfer(*pchildren);
+
+               __check_refdbg
+
+               for (auto & pchild : childrena)
                {
 
                   if (pchild)
@@ -542,7 +556,11 @@ namespace acme
                      try
                      {
 
+                        __check_refdbg
+
                         pchild->destroy_window();
+
+                        __check_refdbg
 
                      }
                      catch (...)
@@ -551,23 +569,22 @@ namespace acme
 
                      }
 
-                     //try
-                     //{
+                     try
+                     {
 
-                     //   pchild->destroy();
+                        pchild.release();
 
-                     //}
-                     //catch (...)
-                     //{
+                     }
+                     catch (...)
+                     {
 
 
-                     //}
+                     }
 
                   }
 
                }
 
-               pchildren->clear();
 
             }
 

@@ -73,6 +73,7 @@ namespace acme
       virtual ::platform::platform * platform();
       ::heap::management * heap() { return m_pheapmanagement; }
 
+      virtual void on_system_before_destroy();
 
    protected:
       
@@ -91,7 +92,6 @@ namespace acme
       //void initialize_message_queue();
       //void finalize_message_queue();
 
-      virtual void on_system_before_destroy();
 
       virtual void on_acme_before_destroy();
 

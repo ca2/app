@@ -122,6 +122,8 @@ int main(int argc, char * argv[], char * envp[])
 
    application_main();
 
+   system.on_system_before_destroy();
+
    return system.m_iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 

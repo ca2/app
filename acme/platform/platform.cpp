@@ -155,6 +155,8 @@ namespace platform
 
       //finalize_memory_counter();
 
+      on_acme_before_destroy();
+
    }
 
 

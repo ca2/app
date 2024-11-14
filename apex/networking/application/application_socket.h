@@ -23,6 +23,9 @@ namespace networking
       ~application_socket() override;
 
 
+      void on_set_parent_socket() override;
+
+
       virtual void on_send_response() override;
 
 

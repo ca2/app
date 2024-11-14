@@ -13,7 +13,7 @@ namespace platform
 
 
       ::pointer<::aqua::game>                      m_paquagame;
-      //::pointer<::networking::application>         m_pnetworkingapplication;
+      //::pointer<::networking::application>         m_p_networkingapplication;
 
 
    };

@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "application_socket.h"
 #include "acme/parallelization/happening.h"
+#include "acme/parallelization/event.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/platform/application.h"
 #include "apex/networking/application/application.h"
@@ -23,10 +24,25 @@ namespace networking
    }
 
 
+   void application_socket::on_set_parent_socket()
+   {
+
+      ::cast < ::networking::application_incoming_socket > papplicationincomingsocket = get_parent_socket();
+
+      if(papplicationincomingsocket)
+      {
+
+         m_pnetworkingapplication = papplicationincomingsocket->m_pnetworkingapplication;
+
+      }
+
+   }
+
+
    void application_socket::on_send_response()
    {
 
-      auto papp = m_pnetworkingapplication;
+      auto pnetworkingapplication = m_pnetworkingapplication;
 
       string strUrl;
 
@@ -38,7 +54,7 @@ namespace networking
 
       string strHtml;
 
-      auto estatus = papp->on_html_response(this, strHtml, strUrl, setPost);
+      auto estatus = pnetworkingapplication->on_html_response(this, strHtml, strUrl, setPost);
 
       response().file()->write(strHtml);
 

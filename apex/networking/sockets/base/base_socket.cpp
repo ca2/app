@@ -875,20 +875,26 @@ namespace sockets
    }
 
 
-   base_socket *base_socket::get_parent()
+   base_socket *base_socket::get_parent_socket()
    {
-      //return m_psocketParent;
 
-      return base_socket_impl()->get_parent();
+      return base_socket_impl()->get_parent_socket();
 
    }
 
 
-   void base_socket::set_parent(base_socket * psocketParent)
+   void base_socket::set_parent_socket(base_socket * psocketParent)
    {
-      //m_psocketParent = psocketParent;
 
-      base_socket_impl()->set_parent(psocketParent);
+      base_socket_impl()->set_parent_socket(psocketParent);
+
+   }
+
+
+   void base_socket::on_set_parent_socket()
+   {
+
+      base_socket_impl()->on_set_parent_socket();
 
    }
 
@@ -1388,14 +1394,19 @@ namespace sockets
 
    ::networking::port_t base_socket::GetSocks4Port()
    {
+      
       return base_socket_impl()->GetSocks4Port();
+
    }
 
 
    const string & base_socket::GetSocks4Userid()
    {
+
       return base_socket_impl()->GetSocks4Userid();
+
    }
+
 
    bool base_socket::prepare_for_detach()
    {

@@ -685,7 +685,7 @@ namespace sockets_bsd
    }
 
 
-   ::sockets::base_socket *base_socket::get_parent()
+   ::sockets::base_socket * base_socket::get_parent_socket()
    {
       
       return m_psocketParent;
@@ -693,9 +693,13 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::set_parent(::sockets::base_socket * psocketParent)
+   void base_socket::set_parent_socket(::sockets::base_socket * psocketParent)
    {
+      
       m_psocketParent = psocketParent;
+
+      on_set_parent_socket();
+
    }
 
 
@@ -1126,8 +1130,11 @@ namespace sockets_bsd
 
    const string & base_socket::GetSocks4Userid()
    {
+      
       return m_socks4_userid;
+
    }
+
 
    bool base_socket::prepare_for_detach()
    {

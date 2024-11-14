@@ -158,8 +158,6 @@ namespace apex
       //
       //       ::pointer<::service_handler>                 m_pservicehandler;
       //
-      //       ::pointer<::networking::application>         m_pnetworkingapplication;
-      //
       //       ::string_map < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
 
       application();

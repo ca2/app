@@ -284,7 +284,7 @@ namespace platform
    //
    //       ::pointer<::service_handler> m_pservicehandler;
    //
-   //       ::pointer<::networking::application> m_pnetworkingapplication;
+   //       ::pointer<::networking::application> m_p_networkingapplication;
    //
    //       ::string_map<::pointer<::fs::folder_sync>> m_fsfoldersyncmap;
    //

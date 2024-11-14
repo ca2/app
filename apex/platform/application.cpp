@@ -10246,10 +10246,7 @@ namespace apex
    void application::create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      //auto estatus =
-
       __defer_construct(m_pnetworkingapplication);
-
 
       if (::is_set(papplicationhandlerCreateNetworkApplication))
       {

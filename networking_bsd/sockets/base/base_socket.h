@@ -276,11 +276,11 @@ namespace sockets_bsd
 
       /** Returns pointer to listen_socket that created this instance
       * on an incoming connection. */
-      ::sockets::base_socket *get_parent() override;
+      ::sockets::base_socket * get_parent_socket() override;
 
       /** Used by listen_socket to set parent pointer of newly created
       * base_socket instance. */
-      void set_parent(::sockets::base_socket *) override;
+      void set_parent_socket(::sockets::base_socket * psocketParent) override;
 
       /** get listening port from listen_socket<>. */
       ::networking::port_t GetPort() override;

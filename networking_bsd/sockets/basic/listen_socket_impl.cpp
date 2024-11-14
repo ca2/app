@@ -451,7 +451,7 @@ namespace sockets_bsd
       psocketImpl->m_strCipherList = m_strCipherList;
       psocketImpl-> EnableSSL(IsSSL()); // SSL Enabled socket
       psocketImpl-> SetIpv6( IsIpv6() );
-      psocketImpl-> set_parent(this);
+      psocketImpl-> set_parent_socket(this);
       psocketImpl-> attach(socketAccept);
       psocketImpl->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
       //psocketImpl-> SetNonblocking(true);

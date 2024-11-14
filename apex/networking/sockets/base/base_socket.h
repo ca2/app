@@ -297,11 +297,15 @@ namespace sockets
 
       /** Returns pointer to listen_socket that created this instance
       * on an incoming connection. */
-      virtual base_socket *get_parent();
+      virtual base_socket *get_parent_socket();
 
       /** Used by listen_socket to set parent pointer of newly created
       * base_socket instance. */
-      virtual void set_parent(base_socket *);
+      virtual void set_parent_socket(base_socket *);
+
+
+      virtual void on_set_parent_socket();
+
 
       /** get listening port from listen_socket<>. */
       virtual ::networking::port_t GetPort();

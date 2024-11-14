@@ -27285,6 +27285,13 @@ namespace user
 
       puseritem->m_pointHost = pmouse->m_pointHost;
 
+      if(puseritem->m_pmouse)
+      {
+
+         output_debug_string("123");
+
+      }
+
       puseritem->m_pmouse = pmouse;
 
       return pitem;

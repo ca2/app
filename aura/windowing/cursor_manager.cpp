@@ -52,6 +52,23 @@ namespace windowing
    }
 
 
+   huge_integer cursor_manager::increment_reference_count()
+   {
+
+      return ::object::increment_reference_count();
+
+   }
+
+
+   huge_integer cursor_manager::decrement_reference_count()
+   {
+
+      return ::object::decrement_reference_count();
+
+   }
+
+
+
    void cursor_manager::destroy()
    {
 

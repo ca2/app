@@ -35,6 +35,10 @@ namespace user
       void *                                 m_pOsMouseDataOkIfOnStack = nullptr;
 
 
+      huge_integer increment_reference_count() override;
+      huge_integer decrement_reference_count() override;
+
+
       virtual unsigned int get_message()
       {
          return 0;

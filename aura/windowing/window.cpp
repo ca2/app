@@ -3163,6 +3163,14 @@ bMove = false;
    }
 
 
+   ::user::interaction * window::user_interaction()
+   {
+
+      return m_puserinteraction;
+
+   }
+
+
    ::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
    {
 

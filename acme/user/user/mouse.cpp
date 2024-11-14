@@ -7,6 +7,23 @@ namespace user
 {
 
 
+   huge_integer mouse::increment_reference_count()
+   {
+
+      return ::acme::message::increment_reference_count();
+
+   }
+
+
+   huge_integer mouse::decrement_reference_count()
+   {
+
+      return ::acme::message::decrement_reference_count();
+
+   }
+
+
+
    ::user::mouse & mouse::operator = (const ::user::mouse & mouse)
    {
 

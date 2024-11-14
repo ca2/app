@@ -324,6 +324,11 @@ namespace windowing
       
 
       virtual ::windowing::windowing * windowing();
+
+
+      ::user::interaction * user_interaction() override;
+
+
       //inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
 
 

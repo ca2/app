@@ -2217,7 +2217,10 @@ namespace windowing
    }
 
 
-
+void * display::raw_x11_display()
+{
+   return nullptr;
+}
 } // namespace windowing
 
 

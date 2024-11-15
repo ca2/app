@@ -73,6 +73,10 @@ public:
       short                                  m_sh;
       unsigned short                         m_ush;
       int                                    m_i;
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+      //long                                   m_l;
+      //unsigned long                          m_ul;
+#endif
       unsigned int                           m_ui;
       huge_integer                           m_hi;
       huge_natural                           m_hn;
@@ -82,8 +86,8 @@ public:
       unsigned short * m_push;
       int * m_pi;
       unsigned int * m_pui;
-      huge_integer * m_pi64;
-      huge_natural * m_pu64;
+      huge_integer * m_phi;
+      huge_natural * m_phn;
       ::string * m_pstr;
       float                                  m_f;
       float * m_pf;
@@ -930,8 +934,8 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_push   , e_type_punsigned_short  , pu); }
    payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi   , e_type_pint  , pi); }
    payload & assign_pu32   (unsigned int * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
-   payload & assign_pi64   (huge_integer * pi)   { return __assign_primitive_pointer(m_pi64   , e_type_pi64  , pi); }
-   payload & assign_pu64   (huge_natural * pu)   { return __assign_primitive_pointer(m_pu64   , e_type_pu64  , pu); }
+   payload & assign_pi64   (huge_integer * pi)   { return __assign_primitive_pointer(m_phi   , e_type_phuge_integer  , pi); }
+   payload & assign_pu64   (huge_natural * pu)   { return __assign_primitive_pointer(m_phn   , e_type_phuge_natural  , pu); }
    payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
    payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
 
@@ -984,16 +988,16 @@ protected:
          *m_pi = (int) primitive;
 
       }
-      else if(get_type() == e_type_pu64)
+      else if(get_type() == e_type_phuge_natural)
       {
 
-         *m_pu64 = (huge_natural) primitive;
+         *m_phn = (huge_natural) primitive;
 
       }
-      else if(get_type() == e_type_pi64)
+      else if(get_type() == e_type_phuge_integer)
       {
 
-         *m_pi64 = (huge_integer) primitive;
+         *m_phi = (huge_integer) primitive;
 
       }
       else if(get_type() == e_type_pfloat)

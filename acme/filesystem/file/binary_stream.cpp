@@ -278,14 +278,14 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_pint:
       stream << *payload.m_pi;
       break;
-   case e_type_pi64:
-      stream << *payload.m_pi64;
+   case e_type_phuge_integer:
+      stream << *payload.m_phi;
       break;
    case e_type_punsigned_int:
       stream << *payload.m_pui;
       break;
-   case e_type_pu64:
-      stream << *payload.m_pu64;
+   case e_type_phuge_natural:
+      stream << *payload.m_phn;
       break;
    case e_type_double:
       stream << payload.m_d;
@@ -557,7 +557,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_pi64:
+   case e_type_phuge_integer:
    case e_type_huge_integer:
    {
 
@@ -577,7 +577,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_pu64:
+   case e_type_phuge_natural:
    case e_type_huge_natural:
    {
 

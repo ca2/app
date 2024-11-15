@@ -188,9 +188,9 @@ namespace image
 
       //virtual void rotated(const angle & angle);
       //virtual ::image::image_pointer rotated(const angle& angle);
-      virtual void rotate(const ::angle_double & angle, double dScale = 1.0);
-      virtual void rotate(::image::image *pimage, const ::angle_double & angle, double dScale = 1.0);
-      virtual ::image::image_pointer rotated(const ::angle_double & angle, double dScale = 1.0);
+      virtual void rotate(const ::double_angle & angle, double dScale = 1.0);
+      virtual void rotate(::image::image *pimage, const ::double_angle & angle, double dScale = 1.0);
+      virtual ::image::image_pointer rotated(const ::double_angle & angle, double dScale = 1.0);
 
       //virtual void rotate(::image::image *pimage, double dAngle, double dScale);
       //virtual void rotate(::image::image *pimage, double dAngle);

@@ -35,7 +35,7 @@
 //
 //
 //template < >
-//inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::lines_double & lines, holdee < ::draw2d::path >)
+//inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_lines & lines, holdee < ::draw2d::path >)
 //{
 //
 //   return __allocate lines_double_shape<::draw2d::path> (lines);

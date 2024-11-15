@@ -8,6 +8,7 @@
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 //#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/interaction_thread.h"
 #include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/platform/application.h"
 #include "aura/platform/message_queue.h"
@@ -33,67 +34,69 @@ namespace sandbox_windowing
 
 
    void window::create_window()
-   {
-
+{
+      
       bool bOk = true;
       
-      auto pwindow = m_pwindow;
+      auto pwindow = this;
       
       auto puserinteraction = pwindow->m_puserinteraction;
-
+      
       auto pusersystem = puserinteraction->m_pusersystem;
-
+      
       puserinteraction->m_bMessageWindow = false;
-
+      
       auto pwindowing = windowing();
-
+      
       auto pwindowingdisplay = pwindowing->display();
-
+      
       int x = puserinteraction->const_layout().sketch().origin().x();
-
+      
       int y = puserinteraction->const_layout().sketch().origin().y();
-
+      
       int cx = puserinteraction->const_layout().sketch().width();
-
+      
       int cy = puserinteraction->const_layout().sketch().height();
-
+      
       bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
-
+      
       if (cx <= 0)
       {
-
+         
          cx = 1;
-
+         
       }
-
+      
       if (cy <= 0)
       {
-
+         
          cy = 1;
-
+         
       }
-
+      
       //m_pwindow = pimpl;
-
+      
       //pimpl->m_pwindow = this;
-
+      
       set_oswindow(this);
-
+      
       //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
-
-      puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(this, "native_create_window"));
-
+      
+      __refdbg_add_referer
+      
+      puserinteraction->increment_reference_count();
+      
       auto papp = get_app();
-
+      
       if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
       {
-
+         
          auto psystem = system();
-
+         
          string strApplicationServerName = psystem->get_application_server_name();
-
+         
          //set_wm_class(strApplicationServerName);
-
+         
          //         XClassHint * pupdate = XAllocClassHint();
          //
          //         auto psystem = system();
@@ -107,10 +110,11 @@ namespace sandbox_windowing
          //         XSetClassHint(display, window, pupdate);
          //
          //         XFree(pupdate);
-
+         
       }
+      
 
-
+      
 
       //#ifndef RASPBERRYPIOS
       //
@@ -274,7 +278,7 @@ namespace sandbox_windowing
          {
 
 
-            if (get_session() != nullptr)
+            if (session() != nullptr)
             {
 
                // Initial position of window below the cursor position
@@ -334,16 +338,38 @@ namespace sandbox_windowing
    }
 
 
+
+   ::sandbox_windowing::windowing * window::sandbox_windowing()
+   {
+      
+      ::cast < ::sandbox_windowing::windowing > psandboxwindowing = system()->windowing();
+      
+      if(!psandboxwindowing)
+      {
+         
+         return nullptr;
+         
+      }
+      
+      return psandboxwindowing;
+      
+   }
+
+
    void windowing::initialize_windowing()
    {
 
+      ::windowing::windowing::initialize_windowing();
+      
    }
 
-   void windowing::terminate_windowing()
+
+   void windowing::finalize_windowing()
    {
+      
+      ::windowing::windowing::finalize_windowing();
 
    }
-
 
 
    //void window::set_wm_class(const ::scoped_string & scopedstr)
@@ -1048,7 +1074,7 @@ namespace sandbox_windowing
       if (!::is_null(this))
       {
 
-         m_pwindowing->erase_window(this);
+         sandbox_windowing()->erase_window(this);
 
       }
 
@@ -1067,11 +1093,11 @@ namespace sandbox_windowing
       //
       //      }
 
-      m_pwindow = pimpl;
+      //m_pwindow = pimpl;
 
-      m_htask = pimpl->get_app()->get_os_handle();
+      m_htask = sandbox_windowing()->m_htask;
 
-      m_pmessagequeue = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
+      m_pmessagequeue = m_puserthread->get_message_queue();
 
       //oswindow_assign(this, pimpl);
 
@@ -1081,40 +1107,40 @@ namespace sandbox_windowing
    bool window::is_child(::oswindow oswindow)
    {
 
-      if (oswindow == nullptr || oswindow->m_pwindow == nullptr || oswindow->m_pwindow->m_puserinteraction == nullptr)
+      if (oswindow == nullptr || oswindow->m_puserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      if (m_pwindow == nullptr || m_pwindow->m_puserinteraction == nullptr)
+      if (m_puserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      return m_pwindow->m_puserinteraction->is_child(oswindow->m_pwindow->m_puserinteraction);
+      return m_puserinteraction->is_child(oswindow->m_puserinteraction);
 
    }
 
 
-   ::windowing::window* window::get_parent() const
-   {
-
-      return nullptr;
-
-   }
-
-
-   //virtual ::Window get_parent_handle();
-   oswindow window::get_parent_oswindow() const
-   {
-
-      return nullptr;
-
-   }
+//   ::windowing::window* window::get_parent()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   //virtual ::Window get_parent_handle();
+//   oswindow window::get_parent_oswindow()
+//   {
+//
+//      return nullptr;
+//
+//   }
 
 
    //::int_point window::get_mouse_cursor_position()
@@ -1769,14 +1795,7 @@ namespace sandbox_windowing
 
       }
 
-      if (m_pwindow == nullptr)
-      {
-
-         return true;
-
-      }
-
-      if (!m_pwindow->m_puserinteraction->m_bUserElementOk)
+      if (!m_puserinteraction->m_bUserElementOk)
       {
 
          return true;
@@ -2898,10 +2917,10 @@ namespace sandbox_windowing
 
       bool bOk = false;
 
-      if (::is_set(m_pwindow))
+      //if (::is_set(m_pwindow))
       {
 
-         ::pointer<::user::interaction>pinteraction = m_pwindow->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = m_puserinteraction;
 
          if (pinteraction.is_set())
          {
@@ -2931,7 +2950,7 @@ namespace sandbox_windowing
 
          //oswindow_remove_impl(window->m_pwindow);
 
-         m_pwindowing->erase_window(this);
+         sandbox_windowing()->erase_window(this);
 
       }
 
@@ -2949,7 +2968,7 @@ namespace sandbox_windowing
 
       bool bIs = is_window();
 
-      m_pwindowing->erase_window(this);
+      sandbox_windowing()->erase_window(this);
 
       windowing_output_debug_string("::DestroyWindow 1");
 
@@ -3210,10 +3229,10 @@ namespace sandbox_windowing
    }
 
 
-   bool window::has_mouse_capture() const
+   bool window::has_mouse_capture()
    {
 
-      auto pwindowing = ((window*)this)->windowing();
+      auto pwindowing = sandbox_windowing();
 
       if (!pwindowing)
       {
@@ -3231,7 +3250,6 @@ namespace sandbox_windowing
 
       }
 
-
       bool bHasKeyboardFocus = pwindowKeyboardFocus == this;
 
       if (!bHasKeyboardFocus)
@@ -3246,10 +3264,10 @@ namespace sandbox_windowing
    }
 
 
-   bool window::has_keyboard_focus() const
+   bool window::has_keyboard_focus()
    {
 
-      auto pwindowing = ((window*)this)->windowing();
+      auto pwindowing = sandbox_windowing();
 
       if (!pwindowing)
       {
@@ -3524,10 +3542,10 @@ namespace sandbox_windowing
          if (pwindowing->m_pwindowMouseCapture != this)
          {
 
-            if (pwindowing->m_pwindowMouseCapture->m_pwindow)
+            if (pwindowing->m_pwindowMouseCapture)
             {
 
-               pwindowing->m_pwindowMouseCapture->m_pwindow->m_puserinteractionMouseCapture.release();
+               pwindowing->m_pwindowMouseCapture->m_puserinteractionMouseCapture.release();
 
             }
 
@@ -3594,7 +3612,7 @@ namespace sandbox_windowing
    void window::set_keyboard_focus()
 {
    
-   auto pwindowing = windowing();
+   auto pwindowing = sandbox_windowing();
 
    if (!pwindowing)
    {
@@ -3603,7 +3621,7 @@ namespace sandbox_windowing
 
    }
 
-      auto pwindow = m_pwindow;
+      auto pwindow = this;
 
    if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
    {
@@ -3764,7 +3782,7 @@ namespace sandbox_windowing
    }
 
 
-   bool window::is_active_window() const
+   bool window::is_active_window()
    {
 
       return ::windowing::window::is_active_window();

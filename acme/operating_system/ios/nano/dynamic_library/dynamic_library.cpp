@@ -17,11 +17,11 @@ namespace ios
 {
 
 
-namespace nano
-{
+//namespace nano
+//{
 
 
-namespace dynamic_library
+namespace operating_system
 {
 
 
@@ -364,11 +364,26 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
 
 
 
-} // namespace dynamic_library
+} // namespace operating_system
 
 
-} // namespace nano
+//} // namespace nano
 
 
 
 } // namespace ios
+
+
+
+namespace operating_system
+{
+
+CLASS_DECL_ACME::operating_system::dynamic_library* new_dynamic_library()
+{
+   
+   return __raw_new ::ios::operating_system::dynamic_library();
+   
+}
+
+
+}

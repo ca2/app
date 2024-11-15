@@ -118,7 +118,7 @@ namespace windowing
          return ::windowing::e_desktop_unity;
          
       }
-      else if (strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
+      else if (strDesktop.case_insensitive_order("ubuntu:gnome") == 0)
       {
 
          printf_line("calculate_edesktop e_desktop_ubuntu_gnome");
@@ -126,7 +126,7 @@ namespace windowing
          return ::windowing::e_desktop_unity;
          
       }
-      else if (strcasecmp(pszDesktop, "gnome") == 0)
+      else if (strDesktop.case_insensitive_order("gnome") == 0)
       {
 
          printf_line("calculate_edesktop e_desktop_gnome");

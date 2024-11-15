@@ -20,7 +20,7 @@ void application_on_menu_action(::platform::application * papplication, const ch
 
 ::platform::system * application_system(::platform::application * papplication);
 
-void system_id_update(::platform::system * psystem, ::i64 iUpdate, ::i64 iPayload);
+void system_id_update(::platform::system * psystem, ::huge_integer iUpdate, ::huge_integer iPayload);
 
 void node_will_finish_launching(::platform::system * psystem);
 void system_on_open_untitled_file(::platform::system * psystem);
@@ -163,11 +163,11 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
       
    }
    
-   m_pnanonotificationcallback = [ [ nano_notification_callback alloc ]  init ];
+   m_pacmenotificationcallback = [ [ acme_notification_callback alloc ]  init ];
    
-   m_pnanonotificationcallback->m_papplication = m_papplication;
+   m_pacmenotificationcallback->m_papplication = m_papplication;
   
-   [m_pnanonotificationcallback fetch_dark_mode];
+   [m_pacmenotificationcallback fetch_dark_mode];
    
 
    

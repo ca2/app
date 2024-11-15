@@ -1863,10 +1863,10 @@ using float_line = line_type < float >;
 using double_line = line_type < double >;
 
 
-using arc_int = arc_type < int >;
-using arc_huge_integer = arc_type < huge_integer >;
-using arc_float = arc_type < float >;
-using arc_double = arc_type < double >;
+using int_arc = arc_type < int >;
+using huge_integer_arc = arc_type < huge_integer >;
+using float_arc = arc_type < float >;
+using double_arc = arc_type < double >;
 
 
 using int_point_array = point_array_base < int >;
@@ -1905,10 +1905,10 @@ using float_rectangle_array = rectangle_array_base < float >;
 using double_rectangle_array = rectangle_array_base < double >;
 
 
-using lines_int = lines_base < int >;
-using lines_huge_integer = lines_base < huge_integer >;
-using lines_float = lines_base < float >;
-using lines_double = lines_base < double >;
+using int_lines = lines_base < int >;
+using huge_integer_lines = lines_base < huge_integer >;
+using float_lines = lines_base < float >;
+using double_lines = lines_base < double >;
 
 
 template < struct_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >

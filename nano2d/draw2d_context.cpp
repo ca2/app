@@ -1036,7 +1036,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   void draw2d_context::arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir)
+   void draw2d_context::arc(float cx, float cy, float r, ::float_angle a0, ::float_angle a1, int dir)
    {
       
       ::double_rectangle rectangle(cx - r, cy - r, cx + r, cy + r);

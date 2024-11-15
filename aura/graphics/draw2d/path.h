@@ -76,17 +76,17 @@ namespace draw2d
       virtual bool contains(::draw2d::graphics_pointer & pgraphics, const double_point & point);
 
 
-      virtual bool add_rectangle(const ::double_rectangle & rectangle, const ::double_point & point, const ::angle_double & angleRotation);
+      virtual bool add_rectangle(const ::double_rectangle & rectangle, const ::double_point & point, const ::double_angle & angleRotation);
 
-      virtual bool add_rectangle(const ::double_rectangle & rectangle, const ::angle_double & angleCenterRotation);
+      virtual bool add_rectangle(const ::double_rectangle & rectangle, const ::double_angle & angleCenterRotation);
 
       virtual bool add_rectangle(const ::double_rectangle & rectangle);
 
       virtual bool add_ellipse(const ::double_ellipse & ellipse);
 
-      virtual bool add_arc(const ::double_rectangle & rectangle, const ::angle_double & angleBeg, const ::angle_double & angleSweep);
-//      virtual bool varc(const ::double_point & point, double h, const ::angle_double & angle);
-//      virtual bool harc(const ::double_point & point, double w, const ::angle_double & angle);
+      virtual bool add_arc(const ::double_rectangle & rectangle, const ::double_angle & angleBeg, const ::double_angle & angleSweep);
+//      virtual bool varc(const ::double_point & point, double h, const ::double_angle & angle);
+//      virtual bool harc(const ::double_point & point, double w, const ::double_angle & angle);
 
 
       //virtual bool add_lines(const ::int_point * ppoint, ::collection::count nCount);
@@ -156,7 +156,7 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const enum_item & eitem);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::arc_double & arc);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::double_arc & arc);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::line & pline);
 
@@ -164,7 +164,7 @@ namespace draw2d
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::lines_double & lines);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::double_lines & lines);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::double_rectangle & prectangle);
 

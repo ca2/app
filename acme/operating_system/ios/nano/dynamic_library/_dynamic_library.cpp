@@ -7,16 +7,16 @@
 //  Copyright © 2024 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-#include "dynamic_library.h"
-
-
-IMPLEMENT_FACTORY(nano_dynamic_library)
-{
-
-   pfactory->add_factory_item<::ios::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library>();
-   //pfactory->add_factory_item<::ios::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library>();
-
-}
-
-
-
+//#include "dynamic_library.h"
+//
+//
+//IMPLEMENT_FACTORY(nano_dynamic_library)
+//{
+//
+//   pfactory->add_factory_item<::ios::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library>();
+//   //pfactory->add_factory_item<::ios::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library>();
+//
+//}
+//
+//
+//

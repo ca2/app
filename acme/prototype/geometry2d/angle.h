@@ -68,8 +68,8 @@ public:
 };
 
 
-using angle_float = angle_type < float >;
-using angle_double = angle_type < double >;
+using float_angle = angle_type < float >;
+using double_angle = angle_type < double >;
 
 template < primitive_floating FLOATING >
 constexpr angle_type < FLOATING > radians(FLOATING fAngle)
@@ -83,7 +83,7 @@ constexpr angle_type < FLOATING > radians(FLOATING fAngle)
 
 
 
-inline angle_double operator "" _degree(long double degrees)
+inline double_angle operator "" _degree(long double degrees)
 {
 
    return radians(degrees * MATH_PI / 180.0);
@@ -91,7 +91,7 @@ inline angle_double operator "" _degree(long double degrees)
 }
 
 
-inline angle_double operator "" _degrees(long double degrees)
+inline double_angle operator "" _degrees(long double degrees)
 {
 
    return operator "" _degree(degrees);
@@ -99,7 +99,7 @@ inline angle_double operator "" _degrees(long double degrees)
 }
 
 
-inline angle_double operator "" _degree(unsigned long long degrees)
+inline double_angle operator "" _degree(unsigned long long degrees)
 {
 
    return radians(degrees * MATH_PI / 180.0);
@@ -107,7 +107,7 @@ inline angle_double operator "" _degree(unsigned long long degrees)
 }
 
 
-inline angle_double operator "" _degrees(unsigned long long hn)
+inline double_angle operator "" _degrees(unsigned long long hn)
 {
 
    return operator "" _degree(hn);

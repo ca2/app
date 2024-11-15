@@ -35,7 +35,7 @@
    
    NSMutableArray *     m_windowcontrollera;
    
-   acme_notification_callback *      m_pnanonotificationcallback;
+   acme_notification_callback *      m_pacmenotificationcallback;
 
 }
 

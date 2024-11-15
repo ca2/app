@@ -44,27 +44,10 @@ namespace sandbox_windowing
    }
 
 
-::pointer < ::windowing::window > windowing::get_new_window(::windowing::window * pwindow)
+::pointer < ::windowing::window > windowing::get_new_window()
 {
    
-   ::pointer<::windowing::window>pwindow;
-   
-   if (::is_set(system())
-       && ::is_set(system())
-       && ::is_set(system()->m_pwindowMain)
-       && ::is_null(system()->m_pwindowMain->m_pwindow))
-   {
-      
-      pwindow = system()->m_pwindowMain;
-      
-   }
-   else
-   {
-      
-      pwindow = ::windowing::windowing::get_new_window(pwindow);
-      //pimpl->__create < ::windowing::window >();
-      
-   }
+auto      pwindow = ::windowing::windowing::get_new_window();
    
    return pwindow;
    
@@ -223,7 +206,7 @@ namespace sandbox_windowing
       
       __construct(m_phostinteraction);
       
-      m_phostinteraction->create_host();
+      m_phostinteraction->create_window();
       
       m_phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
       
@@ -567,14 +550,7 @@ namespace sandbox_windowing
 
       }
 
-      auto pwindow = m_pwindowMouseCapture->m_pwindow;
-
-      if (pwindow)
-      {
-
-         pwindow->m_puserinteractionMouseCapture.release();
-
-      }
+      pwindow->m_puserinteractionMouseCapture.release();
 
       m_pwindowMouseCapture.release();
 
@@ -593,7 +569,7 @@ namespace sandbox_windowing
 
       }
 
-      auto pwindow = m_pwindowKeyboardFocus->m_pwindow;
+      auto pwindow = m_pwindowKeyboardFocus;
 
       if (pwindow)
       {
@@ -635,7 +611,7 @@ namespace sandbox_windowing
 
       //}
 
-      if(!pelementGainingFocusIfAny || pelementGainingFocusIfAny->m_puserinteraction->window() !=
+      if(!pelementGainingFocusIfAny || pelementGainingFocusIfAny->window() !=
          m_pwindowKeyboardFocus)
       {
       

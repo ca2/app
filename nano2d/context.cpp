@@ -2095,7 +2095,7 @@ void TransformSkewX(float* t, float a)
 
 	}
 
-	void context::arc(float cx, float cy, float r, ::angle_float a0, ::angle_float a1, int dir)
+	void context::arc(float cx, float cy, float r, ::float_angle a0, ::float_angle a1, int dir)
 	{
 		//arc(cx, cy, r, a0, a1, dir);
 		//float a = 0, da = 0, hda = 0, kappa = 0;

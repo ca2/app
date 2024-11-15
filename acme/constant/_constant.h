@@ -177,22 +177,25 @@ enum enum_type
 
    // integral
    //type_block = 1000,
-   e_type_bool,
+   e_type_bool = 1024,
    e_type_char,
    e_type_unsigned_char,
    e_type_short,
    e_type_unsigned_short,
    e_type_int,
    e_type_unsigned_int,
+   //e_type_long,
+   //e_type_unsigned_long,
    e_type_huge_integer,
    e_type_huge_natural,
 
+
    // floating int_point
-   e_type_float = 2000,
+   e_type_float = 2048,
    e_type_double,
 
    // simple classes
-   e_type_string = 4000,
+   e_type_string = 4096,
    e_type_pstring,
    e_type_ansi_range,
    e_type_type,
@@ -237,7 +240,7 @@ enum enum_type
    //e_type_process,
 
    // matter classes
-   e_type_element = 8000,
+   e_type_element = 8192,
    e_type_string_array,
    e_type_int_array,
    e_type_payload_array,
@@ -262,8 +265,8 @@ enum enum_type
    e_type_pshort = e_type_short | e_type_pointer_of,
    e_type_punsigned_int = e_type_unsigned_int | e_type_pointer_of,
    e_type_pint = e_type_int | e_type_pointer_of,
-   e_type_pu64 = e_type_huge_natural | e_type_pointer_of,
-   e_type_pi64 = e_type_huge_integer | e_type_pointer_of,
+   e_type_phuge_natural = e_type_huge_natural | e_type_pointer_of,
+   e_type_phuge_integer = e_type_huge_integer | e_type_pointer_of,
    e_type_pfloat = e_type_float | e_type_pointer_of,
    e_type_pdouble= e_type_double | e_type_pointer_of,
 

@@ -195,7 +195,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::angle_double & angleRotationCenter)
+   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::double_angle & angleRotationCenter)
    {
 
       if (angleRotationCenter == 0)
@@ -258,7 +258,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::double_point& point, const ::angle_double & angleRotationCenter)
+   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::double_point& point, const ::double_angle & angleRotationCenter)
    {
 
       ::double_polygon polygon;
@@ -299,7 +299,7 @@ namespace draw2d
    }
 
 
-//   bool path::varc(const ::double_point & point, double h, const ::angle_double & angle)
+//   bool path::varc(const ::double_point & point, double h, const ::double_angle & angle)
 //   {
 //
 //      if (fabs(angle) <= 0.00001 || fabs(h) <= 0.001)
@@ -360,7 +360,7 @@ namespace draw2d
 //   }
 //
 //
-//   bool path::harc(const ::double_point & point, double w, const ::angle_double & angle)
+//   bool path::harc(const ::double_point & point, double w, const ::double_angle & angle)
 //   {
 //
 //
@@ -418,7 +418,7 @@ namespace draw2d
 //   }
 
 
-   bool path::add_arc(const ::double_rectangle & rectangle, const ::angle_double & angleBeg, const ::angle_double & angleExt)
+   bool path::add_arc(const ::double_rectangle & rectangle, const ::double_angle & angleBeg, const ::double_angle & angleExt)
    {
 
       if (rectangle.width() <= 0 || rectangle.height() <= 0)
@@ -1242,13 +1242,13 @@ namespace draw2d
    //   case e_shape_end_figure:
    //      return _set(pgraphics, e_shape_end_figure);
    //   case e_shape_arc:
-   //      return _set(pgraphics, pshape->shape < ::arc_double>());
+   //      return _set(pgraphics, pshape->shape < ::double_arc>());
    //   //case e_shape_line:
    //   //   return  _set(pgraphics, pshape->shape < ::line>());
    //   case e_shape_line:
    //      return  _set(pgraphics, pshape->shape < ::double_line>());
    //   case e_shape_lines:
-   //      return _set(pgraphics, pshape->shape < ::lines_double>());
+   //      return _set(pgraphics, pshape->shape < ::double_lines>());
    //   case e_shape_rectangle:
    //      return _set(pgraphics, pshape->shape < ::double_rectangle>());
    //   case e_shape_ellipse:
@@ -1322,7 +1322,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_double & arc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_arc & arc)
    {
 
       throw ::interface_only();
@@ -1362,7 +1362,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::lines_double & lines)
+   bool path::_set(::draw2d::graphics* pgraphics, const::double_lines & lines)
    {
 
       throw ::interface_only();

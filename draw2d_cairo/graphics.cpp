@@ -866,7 +866,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::arc(double x, double y, double w, double h, ::angle_double start, ::angle_double extends)
+   void graphics::arc(double x, double y, double w, double h, ::double_angle start, ::double_angle extends)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -2564,7 +2564,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle)
    {
 
       throw ::interface_only();
@@ -5928,7 +5928,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::arc_double & arc, const ::pointer<::draw2d::region>& pregion)
+   bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(arc);
@@ -5978,7 +5978,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::arc_double & arc, const ::pointer<::draw2d::path>& ppath)
+   bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(arc);
@@ -5994,7 +5994,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::lines_double & lines, const ::pointer<::draw2d::path>& ppath)
+   bool graphics::_set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(lines);
@@ -6042,7 +6042,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::arc_double & arc)
+   bool graphics::_set(const ::double_arc & arc)
    {
 
       if (arc.radius().cx() <= 0.0000001)
@@ -6292,7 +6292,7 @@ namespace draw2d_cairo
 //}
 
 
-   bool graphics::_set(const lines_double & lines)
+   bool graphics::_set(const double_lines & lines)
    {
 
       if (lines.get_count() <= 1)

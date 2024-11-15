@@ -577,8 +577,8 @@ namespace draw2d
 
       virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual void arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd);
-      virtual void arc(double x1, double y1, double x2, double y2, ::angle_double start, ::angle_double extends);
-      virtual void arc(const ::double_rectangle & rectangle, ::angle_double start, ::angle_double extends);
+      virtual void arc(double x1, double y1, double x2, double y2, ::double_angle start, ::double_angle extends);
+      virtual void arc(const ::double_rectangle & rectangle, ::double_angle start, ::double_angle extends);
       
       
       virtual void polyline(const ::double_point_array & pointa);
@@ -592,7 +592,7 @@ namespace draw2d
 //      virtual void arc(const double_rectangle & double_rectangle, angle start, angle extends);
 
 
-      virtual void angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle);
+      virtual void angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle);
       virtual void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual void arc_to(const ::double_rectangle & rectangle,const ::double_point & pointStart,const ::double_point & pointEnd);
       //virtual int GetArcDirectdion();

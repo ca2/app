@@ -5763,7 +5763,7 @@ void image::SetIconMask(::image::icon* picon, int cx, int cy)
 }
 
 
-void image::rotate(const ::angle_double & angle, double dScale)
+void image::rotate(const ::double_angle & angle, double dScale)
 {
 
    ::image::image_pointer pimage = this->clone();
@@ -5773,7 +5773,7 @@ void image::rotate(const ::angle_double & angle, double dScale)
 }
 
 
-void image::rotate(::image::image *pimage, const ::angle_double & angle, double dScale)
+void image::rotate(::image::image *pimage, const ::double_angle & angle, double dScale)
 {
 
    if (dScale == 1.0)
@@ -5979,7 +5979,7 @@ void image::rotate(::image::image *pimage, const ::angle_double & angle, double 
 }
 
 
-::image::image_pointer image::rotated(const ::angle_double & angle, double dScale)
+::image::image_pointer image::rotated(const ::double_angle & angle, double dScale)
 {
 
    if (dScale == 1.0)

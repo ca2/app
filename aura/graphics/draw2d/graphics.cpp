@@ -915,7 +915,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(double x, double y, double w, double h, ::angle_double start, ::angle_double extends)
+   void graphics::arc(double x, double y, double w, double h, ::double_angle start, ::double_angle extends)
    {
 
       arc(double_rectangle_dimension(x, y, w, h), start, extends);
@@ -923,7 +923,7 @@ namespace draw2d
    }
 
 
-   void graphics::arc(const ::double_rectangle & rectangle, ::angle_double start, ::angle_double extends)
+   void graphics::arc(const ::double_rectangle & rectangle, ::double_angle start, ::double_angle extends)
    {
 
       arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), start, extends);
@@ -2091,7 +2091,7 @@ namespace draw2d
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle)
    {
 
       __UNREFERENCED_PARAMETER(x);

@@ -203,7 +203,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::arc_double& parc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_arc& parc)
    {
 
       throw ::exception(todo, "::opengl::path");
@@ -233,7 +233,7 @@ namespace draw2d_opengl
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::lines_double& pline)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::double_lines& pline)
    {
 
       throw ::exception(todo, "::opengl::path");

@@ -21,7 +21,7 @@ SHA256::SHA256()
 /// restart
 void SHA256::reset()
 {
-   ::memset(m_buffer, 0, sizeof(m_buffer));
+   ::zero(m_buffer, sizeof(m_buffer));
    m_numBytes = 0;
    m_bufferSize = 0;
 

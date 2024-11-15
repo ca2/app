@@ -355,23 +355,23 @@ payload::payload(unsigned int * pu) :
 }
 
 
-payload::payload(huge_integer * pi):
-   m_etype(e_type_pi64)
+payload::payload(huge_integer * phi):
+   m_etype(e_type_phuge_integer)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_pi64(pi)
+   ,m_phi(phi)
 {
 
 }
 
 
-payload::payload(huge_natural * pu) :
-   m_etype(e_type_pu64)
+payload::payload(huge_natural * phn) :
+   m_etype(e_type_phuge_natural)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_pu64(pu)
+   ,m_phn(phn)
 {
 
 }
@@ -1160,9 +1160,9 @@ class ::payload & payload::operator = (para_return & eret)
 //class ::payload & payload::operator = (huge_integer * pi)
 //{
 //
-//    set_type(e_type_pi64, false);
+//    set_type(e_type_phuge_integer, false);
 //
-//   m_pi64 = pi;
+//   m_phi = pi;
 //
 //   return *this;
 //
@@ -1172,9 +1172,9 @@ class ::payload & payload::operator = (para_return & eret)
 //class ::payload & payload::operator = (huge_natural * pinteraction)
 //{
 //
-//    set_type(e_type_pu64, false);
+//    set_type(e_type_phuge_natural, false);
 //
-//   m_pu64 = pinteraction;
+//   m_phn = pinteraction;
 //
 //   return *this;
 //
@@ -1237,9 +1237,9 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 
 //class ::payload & payload::operator = (huge_integer i)
 //{
-//   if(get_type() == e_type_pi64)
+//   if(get_type() == e_type_phuge_integer)
 //   {
-//      *m_pi64 = i;
+//      *m_phi = i;
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -1260,9 +1260,9 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //
 //class ::payload & payload::operator = (huge_natural u)
 //{
-//   if(get_type() == e_type_pu64)
+//   if(get_type() == e_type_phuge_natural)
 //   {
-//      *m_pu64 = u;
+//      *m_phn = u;
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -1369,10 +1369,10 @@ class ::payload & payload::operator = (long l)
 //      *m_pi = (int)float;
 //
 //   }
-//   else if (m_etype == e_type_pi64)
+//   else if (m_etype == e_type_phuge_integer)
 //   {
 //
-//      *m_pi64 = (huge_integer)float;
+//      *m_phi = (huge_integer)float;
 //
 //   }
 //   else
@@ -1439,10 +1439,10 @@ class ::payload & payload::operator = (long l)
 //      *m_pi = (int)d;
 //
 //   }
-//   else if (m_etype == e_type_pi64)
+//   else if (m_etype == e_type_phuge_integer)
 //   {
 //
-//      *m_pi64 = (huge_integer)d;
+//      *m_phi = (huge_integer)d;
 //
 //   }
 //   else
@@ -1740,11 +1740,11 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_punsigned_int:
             m_pui = payload.m_pui;
             break;
-         case e_type_pi64:
-            m_pi64 = payload.m_pi64;
+         case e_type_phuge_integer:
+            m_phi = payload.m_phi;
             break;
-         case e_type_pu64:
-            m_pu64 = payload.m_pu64;
+         case e_type_phuge_natural:
+            m_phn = payload.m_phn;
             break;
          case e_type_float:
             m_f = payload.m_f;
@@ -3447,16 +3447,16 @@ int payload::as_int(int iDefault) const
       return (int)*m_psh;
    case e_type_pint:
       return (int)*m_pi;
-   case e_type_pi64:
-      return (int)*m_pi64;
+   case e_type_phuge_integer:
+      return (int)*m_phi;
    case e_type_punsigned_char:
       return (int)*m_puch;
    case e_type_punsigned_short:
       return (int)*m_push;
    case e_type_punsigned_int:
       return (int)*m_pui;
-   case e_type_pu64:
-      return (int)*m_pu64;
+   case e_type_phuge_natural:
+      return (int)*m_phn;
    case e_type_char:
       return (int) m_ch;
    case e_type_short:
@@ -3647,12 +3647,12 @@ huge_integer payload::as_huge_integer(huge_integer iDefault) const
       case e_type_punsigned_int:
          if (::is_null(m_p)) return iDefault;
          return *m_pui;
-      case e_type_pi64:
+      case e_type_phuge_integer:
          if (::is_null(m_p)) return iDefault;
-         return *m_pi64;
-      case e_type_pu64:
+         return *m_phi;
+      case e_type_phuge_natural:
          if (::is_null(m_p)) return iDefault;
-         return *m_pu64;
+         return *m_phn;
       case e_type_element:
       case e_type_path:
          return iDefault;
@@ -6974,7 +6974,7 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_huge_integer || m_etype == e_type_huge_natural)
 //   {
 //
-//      return m_pi64 != nullptr && *m_pi64 != 0;
+//      return m_phi != nullptr && *m_phi != 0;
 //
 //   }
 //   else if(m_etype == e_type_string)
@@ -8053,9 +8053,9 @@ bool payload::is_numeric() const
    case e_type_unsigned_int:
    case e_type_punsigned_int:
    case e_type_huge_integer:
-   case e_type_pi64:
+   case e_type_phuge_integer:
    case e_type_huge_natural:
-   case e_type_pu64:
+   case e_type_phuge_natural:
       return true;
 
    //case e_type_payload_pointer:
@@ -8842,12 +8842,12 @@ bool payload::is_false() const
       return !m_pui || !*m_pui;
    case e_type_huge_integer:
       return !m_hi;
-   case e_type_pi64:
-      return !m_pi64 || !*m_pi64;
+   case e_type_phuge_integer:
+      return !m_phi || !*m_phi;
    case e_type_huge_natural:
       return !m_hn;
-   case e_type_pu64:
-      return !m_pu64 || !*m_pu64;
+   case e_type_phuge_natural:
+      return !m_phn || !*m_phn;
 
    // floating int_point
    case e_type_pfloat:
@@ -9031,12 +9031,12 @@ bool payload::is_set_false() const
       return !m_pui || !*m_pui;
    case e_type_huge_integer:
       return !m_hi;
-   case e_type_pi64:
-      return !m_pi64 || !*m_pi64;
+   case e_type_phuge_integer:
+      return !m_phi || !*m_phi;
    case e_type_huge_natural:
       return !m_hn;
-   case e_type_pu64:
-      return !m_pu64 || !*m_pu64;
+   case e_type_phuge_natural:
+      return !m_phn || !*m_phn;
    // floating int_point
    case e_type_pfloat:
       return !*m_pf;
@@ -9692,10 +9692,10 @@ long & payload::long_reference()
       return (long &) m_hi;
       
    }
-   else if(m_etype == e_type_pi64)
+   else if(m_etype == e_type_phuge_integer)
    {
       
-      return (long &)*m_pi64;
+      return (long &)*m_phi;
       
    }
    else
@@ -9719,10 +9719,10 @@ unsigned long & payload::unsigned_long_reference()
       return (unsigned long &) m_hn;
       
    }
-   else if(m_etype == e_type_pu64)
+   else if(m_etype == e_type_phuge_natural)
    {
       
-      return (unsigned long &)*m_pu64;
+      return (unsigned long &)*m_phn;
       
    }
    else
@@ -10699,9 +10699,9 @@ enum_type payload::integer_type() const
          return e_type_unsigned_int;
       case e_type_pint:
          return e_type_int;
-      case e_type_pu64:
+      case e_type_phuge_natural:
          return e_type_huge_natural;
-      case e_type_pi64:
+      case e_type_phuge_integer:
          return e_type_huge_integer;
       default:
          break;
@@ -10764,10 +10764,10 @@ enum_type payload::left_hand_integer_type() const
          return e_type_punsigned_int;
       case e_type_pint:
          return e_type_pint;
-      case e_type_pu64:
-         return e_type_pu64;
-      case e_type_pi64:
-         return e_type_pi64;
+      case e_type_phuge_natural:
+         return e_type_phuge_natural;
+      case e_type_phuge_integer:
+         return e_type_phuge_integer;
       default:
     break;
    }
@@ -10829,9 +10829,9 @@ enum_type payload::floating_type() const
          return e_type_not_found;
       case e_type_pint:
          return e_type_not_found;
-      case e_type_pu64:
+      case e_type_phuge_natural:
          return e_type_not_found;
-      case e_type_pi64:
+      case e_type_phuge_integer:
          return e_type_not_found;
       default:
 break;
@@ -10895,9 +10895,9 @@ enum_type payload::left_hand_floating_type() const
          return e_type_not_found;
       case e_type_pint:
          return e_type_not_found;
-      case e_type_pu64:
+      case e_type_phuge_natural:
          return e_type_not_found;
-      case e_type_pi64:
+      case e_type_phuge_integer:
          return e_type_not_found;
       default:
          break;
@@ -11138,11 +11138,11 @@ payload & payload::add(const ::payload & payload)
             case e_type_pint:
                *m_pi += payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 += payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn += payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 += payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi += payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11187,11 +11187,11 @@ payload & payload::add(const ::payload & payload)
             case e_type_pint:
                *m_pi += payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 += payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn += payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 += payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi += payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11421,11 +11421,11 @@ payload & payload::subtract(const ::payload & payload)
             case e_type_pint:
                *m_pi -= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 -= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn -= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 -= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi -= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11470,11 +11470,11 @@ payload & payload::subtract(const ::payload & payload)
             case e_type_pint:
                *m_pi -= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 -= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn -= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 -= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi -= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11697,11 +11697,11 @@ payload &  payload::multiply(const ::payload & payload)
             case e_type_pint:
                *m_pi *= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 *= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn *= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 *= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi *= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11746,11 +11746,11 @@ payload &  payload::multiply(const ::payload & payload)
             case e_type_pint:
                *m_pi *= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 *= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn *= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 *= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi *= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -11977,11 +11977,11 @@ payload &  payload::divide(const ::payload & payload)
             case e_type_pint:
                *m_pi /= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 /= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn /= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 /= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi /= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12026,11 +12026,11 @@ payload &  payload::divide(const ::payload & payload)
             case e_type_pint:
                *m_pi /= payload.as_int();
                break;
-            case e_type_pu64:
-               *m_pu64 /= payload.as_huge_natural();
+            case e_type_phuge_natural:
+               *m_phn /= payload.as_huge_natural();
                break;
-            case e_type_pi64:
-               *m_pi64 /= payload.as_huge_integer();
+            case e_type_phuge_integer:
+               *m_phi /= payload.as_huge_integer();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");

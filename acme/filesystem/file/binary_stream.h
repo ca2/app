@@ -306,14 +306,14 @@ public:
    //binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
    //binary_stream & operator >>(huge_integer & hi) { raw_read(hi); return *this; }
    //binary_stream & operator >>(huge_natural & hn) { raw_read(huge_natural); return *this; }
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
-   binary_stream & operator >>(unsigned long & u) {
-      raw_read(u); return *this;
-   }
-   binary_stream & operator >>(long & l) {
-      raw_read(l); return *this;
-   }
-#endif
+//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+//   binary_stream & operator >>(unsigned long & u) {
+//      raw_read(u); return *this;
+//   }
+//   binary_stream & operator >>(long & l) {
+//      raw_read(l); return *this;
+//   }
+//#endif
    //binary_stream & operator >>(float & f) { raw_read(f); return *this; }
    //binary_stream & operator >>(double & d) { raw_read(d); return *this; }
    // void read(::int_point & point) { raw_read(point); }

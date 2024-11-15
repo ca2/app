@@ -3,22 +3,23 @@
 #pragma once
 
 
-#include "acme/nano/dynamic_library/dynamic_library.h"
+#include "acme/operating_system/dynamic_library.h"
 
 
 namespace ios
 {
 
-namespace nano
+
+namespace operating_system
 {
 
 
-namespace dynamic_library
-{
+//namespace dynamic_library
+//{
 
 
 class CLASS_DECL_ACME dynamic_library :
-virtual public ::nano::dynamic_library::dynamic_library
+virtual public ::operating_system::dynamic_library
 {
 public:
    
@@ -66,10 +67,10 @@ public:
 };
 
 
-} // dynamic_library
+} // namespace operating_system
 
 
-} // nano
+//} // nano
 
 
 } // namespace ios

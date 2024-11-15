@@ -2400,7 +2400,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::AngleArc(m_hdc, x, y, nRadius, fStartAngle, fSweepAngle) != false;

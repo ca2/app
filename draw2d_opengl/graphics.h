@@ -275,7 +275,7 @@ namespace draw2d_opengl
       //bool Arc(int x1,int y1,int x2,int y2,double start, double extends);
       void arc(double x1,double y1,double x2,double y2,double start, double extends);
 
-      void angle_arc(double x, double y, double nRadius,::angle_double fStartAngle, ::angle_double fSweepAngle);
+      void angle_arc(double x, double y, double nRadius,::double_angle fStartAngle, ::double_angle fSweepAngle);
       void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       void arc_to(const ::int_rectangle & rectangle, const ::int_point & pointStart, const ::int_point & pointEnd);
       //int GetArcDirection() const;

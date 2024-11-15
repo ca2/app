@@ -42,13 +42,13 @@ namespace draw2d_opengl
 
       virtual void destroy() override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::arc_double& parc) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::double_arc& parc) override;
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::double_line& pline) override;
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::lined& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::lines_double& pline) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::double_lines& pline) override;
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
 

@@ -52,10 +52,10 @@ CGRect mm_get_screen_cgrect()
 }
 
 
-::rectangle_i32 get_main_screen_rectangle()
+::int_rectangle get_main_screen_rectangle()
 {
    
-   ::rectangle_i32 rectangle{};
+   ::int_rectangle rectangle{};
    
    screen_coordinates_aware_copy(rectangle, g_rectScreen);
    

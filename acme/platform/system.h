@@ -122,7 +122,7 @@ namespace platform
 
       virtual ::xml::xml * xml() override;
 
-      virtual ::file::watcher * file_watcher() const;
+      virtual ::file::watcher * file_watcher() const override;
 
       virtual ::file_system * file_system() const;
 

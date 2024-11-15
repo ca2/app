@@ -917,9 +917,9 @@ class ::payload & payload::operator = (unsigned int * pinteraction)
 class ::payload & payload::operator = (huge_integer * pi)
 {
 
-    set_type(e_type_pi64, false);
+    set_type(e_type_phuge_integer, false);
 
-   m_pi64 = pi;
+   m_phi = pi;
 
    return *this;
 
@@ -929,9 +929,9 @@ class ::payload & payload::operator = (huge_integer * pi)
 class ::payload & payload::operator = (huge_natural * pinteraction)
 {
 
-    set_type(e_type_pu64, false);
+    set_type(e_type_phuge_natural, false);
 
-   m_pu64 = pinteraction;
+   m_phn = pinteraction;
 
    return *this;
 
@@ -994,9 +994,9 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 
 class ::payload & payload::operator = (huge_integer i)
 {
-   if(get_type() == e_type_pi64)
+   if(get_type() == e_type_phuge_integer)
    {
-      *m_pi64 = i;
+      *m_phi = i;
    }
    else if(get_type() == e_type_payload_pointer)
    {
@@ -1016,9 +1016,9 @@ class ::payload & payload::operator = (huge_integer i)
 
 class ::payload & payload::operator = (huge_natural u)
 {
-   if(get_type() == e_type_pu64)
+   if(get_type() == e_type_phuge_natural)
    {
-      *m_pu64 = u;
+      *m_phn = u;
    }
    else if(get_type() == e_type_payload_pointer)
    {
@@ -1304,11 +1304,11 @@ class ::payload & payload::operator = (const class ::payload & payload)
          case e_type_punsigned_int:
             m_pui = payload.m_pui;
             break;
-         case e_type_pi64:
-            m_pi64 = payload.m_pi64;
+         case e_type_phuge_integer:
+            m_phi = payload.m_phi;
             break;
-         case e_type_pu64:
-            m_pu64 = payload.m_pu64;
+         case e_type_phuge_natural:
+            m_phn = payload.m_phn;
             break;
          case e_type_float:
             m_f = payload.m_f;
@@ -2519,16 +2519,16 @@ int payloadint(int iDefault) const
       return (int)*m_psh;
    case e_type_pint:
       return (int)*m_pi;
-   case e_type_pi64:
-      return (int)*m_pi64;
+   case e_type_phuge_integer:
+      return (int)*m_phi;
    case e_type_punsigned_char:
       return (int)*m_puch;
    case e_type_punsigned_short:
       return (int)*m_push;
    case e_type_punsigned_int:
       return (int)*m_pui;
-   case e_type_pu64:
-      return (int)*m_pu64;
+   case e_type_phuge_natural:
+      return (int)*m_phn;
    case e_type_char:
       return (int) m_ch;
    case e_type_short:
@@ -2715,12 +2715,12 @@ huge_integer payloadlong long(huge_integer iDefault) const
       case e_type_punsigned_int:
          if (::is_null(m_p)) return iDefault;
          return *m_pui;
-      case e_type_pi64:
+      case e_type_phuge_integer:
          if (::is_null(m_p)) return iDefault;
-         return *m_pi64;
-      case e_type_pu64:
+         return *m_phi;
+      case e_type_phuge_natural:
          if (::is_null(m_p)) return iDefault;
-         return *m_pu64;
+         return *m_phn;
       case e_type_element:
       case e_type_path:
          return iDefault;
@@ -5548,7 +5548,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_huge_integer || m_etype == e_type_huge_natural)
 //   {
 //
-//      return m_pi64 != nullptr && *m_pi64 != 0;
+//      return m_phi != nullptr && *m_phi != 0;
 //
 //   }
 //   else if(m_etype == e_type_string)
@@ -6501,9 +6501,9 @@ bool payload::is_numeric() const
    case e_type_unsigned_int:
    case e_type_punsigned_int:
    case e_type_huge_integer:
-   case e_type_pi64:
+   case e_type_phuge_integer:
    case e_type_huge_natural:
-   case e_type_pu64:
+   case e_type_phuge_natural:
       return true;
 
    case e_type_payload_pointer:
@@ -6882,12 +6882,12 @@ bool payload::is_false() const
       return !m_pui || !*m_pui;
    case e_type_huge_integer:
       return !m_hi;
-   case e_type_pi64:
-      return !m_pi64 || !*m_pi64;
+   case e_type_phuge_integer:
+      return !m_phi || !*m_phi;
    case e_type_huge_natural:
       return !m_hn;
-   case e_type_pu64:
-      return !m_pu64 || !*m_pu64;
+   case e_type_phuge_natural:
+      return !m_phn || !*m_phn;
 
    // floating int_point
    case e_type_pfloat:
@@ -7070,12 +7070,12 @@ bool payload::is_set_false() const
       return !m_pui || !*m_pui;
    case e_type_huge_integer:
       return !m_hi;
-   case e_type_pi64:
-      return !m_pi64 || !*m_pi64;
+   case e_type_phuge_integer:
+      return !m_phi || !*m_phi;
    case e_type_huge_natural:
       return !m_hn;
-   case e_type_pu64:
-      return !m_pu64 || !*m_pu64;
+   case e_type_phuge_natural:
+      return !m_phn || !*m_phn;
    // floating int_point
    case e_type_pfloat:
       return !*m_pf;
@@ -7645,10 +7645,10 @@ long & payload::long_reference()
       return (long &) m_hi;
       
    }
-   else if(m_etype == e_type_pi64)
+   else if(m_etype == e_type_phuge_integer)
    {
       
-      return (long &)*m_pi64;
+      return (long &)*m_phi;
       
    }
    else
@@ -7672,10 +7672,10 @@ unsigned long & payload::unsigned_long_reference()
       return (unsigned long &) m_hn;
       
    }
-   else if(m_etype == e_type_pu64)
+   else if(m_etype == e_type_phuge_natural)
    {
       
-      return (unsigned long &)*m_pu64;
+      return (unsigned long &)*m_phn;
       
    }
    else

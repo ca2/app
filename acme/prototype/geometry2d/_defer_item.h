@@ -50,9 +50,9 @@ namespace geometry2d
 
    using ellipse_item = item_type < ::double_ellipse, ::draw2d::e_item_ellipse >;
 
-   using arc_item = item_type < ::arc_double, ::draw2d::e_item_arc >;
+   using arc_item = item_type < ::double_arc, ::draw2d::e_item_arc >;
 
-   using lines_item = item_type < ::lines_double, ::draw2d::e_item_lines >;
+   using lines_item = item_type < ::double_lines, ::draw2d::e_item_lines >;
 
 
 } // namespace geometry2d

@@ -52,9 +52,9 @@ namespace sandbox_windowing
       bool is_branch_current() const override;
 
 
-      virtual void initialize_windowing();
+      void initialize_windowing() override;
 
-      void terminate_windowing() override;
+      void finalize_windowing() override;
 
       void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
@@ -67,7 +67,7 @@ namespace sandbox_windowing
 
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor) override;
-      ::pointer < ::windowing::window > get_new_window(::windowing::window* pimpl) override;
+      ::pointer < ::windowing::window > get_new_window() override;
 
 //      ::windowing::window* new_window(::windowing::window* pimpl) override;
 //

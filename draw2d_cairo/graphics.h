@@ -259,11 +259,11 @@ namespace draw2d_cairo
       //  bool LineTo(const ::double_point & double_point) override;
       void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
       void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      void arc(double x, double y, double w, double h, ::angle_double start, ::angle_double extends) override;
+      void arc(double x, double y, double w, double h, ::double_angle start, ::double_angle extends) override;
       void arc(const ::double_rectangle & double_rectangle, const ::double_point & pointStart, const ::double_point & pointEnd) override;
       void polyline(const ::double_point * lpPoints, ::collection::count nCount) override;
 
-      void angle_arc(double x, double y, double nRadius, ::angle_double fStartAngle, ::angle_double fSweepAngle) override;
+      void angle_arc(double x, double y, double nRadius, ::double_angle fStartAngle, ::double_angle fSweepAngle) override;
       //bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void arc_to(const ::double_rectangle & double_rectangle, const ::double_point & pointStart, const ::double_point & pointEnd) override;
       //int GetArcDirection() override;
@@ -566,7 +566,7 @@ namespace draw2d_cairo
       bool _set(const ::draw2d::enum_item & eitem);
 
 
-      bool _set(const ::arc_double & arc, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion);
       //bool _set(const ::line & line);
       //bool _set(const ::lines & lines);
       bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
@@ -576,9 +576,9 @@ namespace draw2d_cairo
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
 
 
-      bool _set(const ::arc_double & arc, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::lines_double & lines, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
       bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath);
@@ -586,9 +586,9 @@ namespace draw2d_cairo
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
 
 
-      bool _set(const ::arc_double & arc);
+      bool _set(const ::double_arc & arc);
       bool _set(const ::double_line & line);
-      bool _set(const ::lines_double & lines);
+      bool _set(const ::double_lines & lines);
       bool _set(const ::double_rectangle & rectangle);
       bool _set(const ::double_ellipse & ellipse);
       bool _set(const ::double_polygon & polygon);

@@ -53,7 +53,7 @@ namespace acme
          ~frame_interaction() override;
 
          
-         ::pointer<::operating_system::a_system_menu> create_system_menu(bool bContextual);
+         ::pointer<::operating_system::a_system_menu> create_system_menu(bool bContextual) override;
         
 
       };

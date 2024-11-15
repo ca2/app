@@ -17,7 +17,7 @@
 
 //
 //
-//using lines = lines_double;
+//using lines = double_lines;
 //
 //
 
@@ -34,7 +34,7 @@
 
 
 //
-//using lines = ::lines_double;
+//using lines = ::double_lines;
 //using polygon = ::double_polygon;
 //
 

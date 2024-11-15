@@ -40,9 +40,7 @@ namespace sandbox_windowing
 
       //::sandbox_windowing::windowing* windowing();
 
-      inline ::sandbox_windowing::windowing * windowing()
-      { return m_pwindowing->m_psandboxwindowing; }
-
+      virtual ::sandbox_windowing::windowing * sandbox_windowing();
 
       void exit_iconify() override;
 
@@ -60,9 +58,9 @@ namespace sandbox_windowing
 
       virtual bool is_child(::windowing::window* candidateChildOrDescendant); // or descendant
 
-      ::windowing::window* get_parent() const override;
+      //::windowing::window* get_parent() override;
       //virtual ::Window get_parent_handle();
-      ::oswindow get_parent_oswindow() const override;
+      //::oswindow get_parent_oswindow() override;
 
       //::int_point get_mouse_cursor_position() override;
 
@@ -113,9 +111,9 @@ namespace sandbox_windowing
       void set_foreground_window() override;
 
 
-      bool has_mouse_capture() const override;
+      bool has_mouse_capture() override;
 
-      bool has_keyboard_focus() const override;
+      bool has_keyboard_focus() override;
 
 
 
@@ -216,7 +214,7 @@ namespace sandbox_windowing
 
 //      void _window_request_presentation_locked();
 
-      bool is_active_window() const override;
+      bool is_active_window() override;
 
 
       void bring_to_front() override;

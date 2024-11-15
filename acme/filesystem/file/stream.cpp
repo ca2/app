@@ -446,13 +446,13 @@ bool  stream_base::is_version(int i)
 //   case e_type_pint:
 //      *this << *payload.m_pi;
 //      break;
-//   case e_type_pi64:
-//      *this << *payload.m_pi64;
+//   case e_type_phuge_integer:
+//      *this << *payload.m_phi;
 //      break;
 //   case e_type_punsigned_int:
 //      *this << *payload.m_pui;
 //      break;
-//   case e_type_pu64:
+//   case e_type_phuge_natural:
 //      *this << *payload.m_pu64;
 //      break;
 //   case e_type_double:

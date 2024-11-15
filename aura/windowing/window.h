@@ -1833,29 +1833,32 @@ namespace windowing
 
 
 
-   //class device_draw_life_time
-   //{
-   //public:
+   class device_draw_life_time
+   {
+   public:
+      
+      
+      ::windowing::window * m_pimpl;
+      
+      
+      device_draw_life_time(::windowing::window * pimpl) :
+      m_pimpl(pimpl)
+      {
+         
+         m_pimpl->m_timeDeviceDrawBeg.Now();
+         
+      }
+      
+      
+      ~device_draw_life_time()
+      {
+         
+         m_pimpl->m_timeDeviceDrawEnd.Now();
+         
+      }
+      
+   };
 
-
-   //   ::windowing::window * m_pimpl;
-
-
-   //   device_draw_life_time(::windowing::window * pimpl) :
-   //      m_pimpl(pimpl)
-   //   {
-
-   //      m_pimpl->m_timeDeviceDrawBeg.Now();
-
-   //   }
-
-
-   //   ~device_draw_life_time()
-   //   {
-
-   //      m_pimpl->m_timeDeviceDrawEnd.Now();
-
-   //   }
 
 } // namespace windowing
 

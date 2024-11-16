@@ -4379,6 +4379,15 @@ particle* system::matter_mutex()
    {
 
 
+#ifdef WINDOWS_DESKTOP
+
+      auto & pfactory = factory("acme", "windows");
+
+      pfactory->merge_to_global_factory();
+
+#endif
+
+
    }
 
 

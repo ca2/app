@@ -169,24 +169,4 @@ namespace windowing
    }
    
    
-   ::string get_edesktop_name()
-   {
-      
-      auto edesktop = get_eoperating_ambient();
-      
-      switch(edesktop)
-      {
-      case e_desktop_xfce:
-         return "xfce";
-      case e_desktop_ios:
-         return "ios";
-      default:
-         throw todo;
-      };
-      
-      return {};
-
-   }
-
-
 } // namespace windowing

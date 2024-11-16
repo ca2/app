@@ -6996,9 +6996,9 @@ if(!m_pimaging)
       if(!m_bOperatingAmbientFactory)
       {
 
-         ::string strDesktop = ::windowing::get_edesktop_name();
+         ::string strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
 
-         auto pfactory = factory("operating_ambient", strDesktop);
+         auto pfactory = factory("operating_ambient", strOperatingAmbient);
 
          pfactory->merge_to_global_factory();
 

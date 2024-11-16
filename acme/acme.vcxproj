@@ -1962,6 +1962,7 @@
     </ClCompile>
     <ClCompile Include="operating_system\_.cpp" />
     <ClCompile Include="operating_system\_api.cpp" />
+    <ClCompile Include="operating_system\__eoperating_ambient.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\create_task_attributes.cpp" />

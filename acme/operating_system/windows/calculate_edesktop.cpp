@@ -8,13 +8,13 @@ namespace windowing
 {
 
 
-   ::windowing::enum_operating_ambient g_eoperatingambient = ::windowing::e_desktop_none;
+   ::windowing::enum_operating_ambient g_eoperatingambient = ::windowing::e_operating_ambient_none;
 
 
    ::windowing::enum_operating_ambient calculate_edesktop()
    {
 
-      return ::windowing::e_desktop_windows;
+      return ::windowing::e_operating_ambient_windows;
 
    }
 
@@ -22,7 +22,7 @@ namespace windowing
    ::windowing::enum_operating_ambient get_eoperating_ambient()
    {
 
-      if (g_eoperatingambient == ::windowing::e_desktop_none)
+      if (g_eoperatingambient == ::windowing::e_operating_ambient_none)
       {
 
          g_eoperatingambient = calculate_edesktop();

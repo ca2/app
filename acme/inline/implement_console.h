@@ -186,6 +186,8 @@ int main(int argc, char ** argv, char ** envp)
 
    }
 
+   system.on_system_before_destroy();
+   
    //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
    return iExitCode;

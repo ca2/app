@@ -511,9 +511,9 @@ namespace platform
       if (m_bResource.undefined())
       {
 
-         //m_bResource = !is_console();
+         m_bResource = !system()->m_bConsole;
 
-         m_bResource = true;
+         //m_bResource = true;
 
       }
 

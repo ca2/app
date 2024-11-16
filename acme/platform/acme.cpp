@@ -337,7 +337,7 @@ namespace acme
    acme::~acme()
    {
 
-      on_acme_before_destroy();
+      //on_acme_before_destroy();
 
       acme_destruct();
 

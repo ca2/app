@@ -206,7 +206,7 @@ namespace platform
 
 
       platform();
-      ~platform();
+      ~platform() override;
 
       virtual bool is_console() const;
 

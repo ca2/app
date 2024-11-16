@@ -1934,7 +1934,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       //auto pnode = psystem->node();
 
-      auto edesktop = ::windowing::get_edesktop();
+      auto edesktop = ::windowing::get_eoperating_ambient();
 
       if (edesktop == ::windowing::e_desktop_unity)
       {
@@ -1971,8 +1971,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
    if (m_bModal)
    {
-      throw todo;
-      //set_dialog_result(m_nModalResult);
+      //throw todo;
+      set_dialog_result(m_nModalResult);
 
       pmessage->m_bRet = true;
 
@@ -1982,7 +1982,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
    else if (top_level_frame() != nullptr && top_level_frame()->m_bModal)
    {
 
-      throw todo;
+      //throw todo;
       //top_level_frame()->EndModalLoop(m_nModalResult);
 
       pmessage->m_bRet = true;

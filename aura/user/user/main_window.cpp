@@ -8,6 +8,7 @@
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/system.h"
+#include "aura/windowing/windowing.h"
 
 
 inline bool is_custom_size(enum_display edisplay)
@@ -294,6 +295,20 @@ namespace user
 
    }
 
+
+bool main_window::is_child_interaction()
+{
+   
+   if(windowing()->is_sandboxed())
+   {
+      
+      return true;
+      
+   }
+   
+   return ::user::interaction::is_child_interaction();
+   
+}
 
 
    bool main_window::should_redraw_on_mouse_activate()

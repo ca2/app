@@ -45,21 +45,21 @@ namespace axis
 
       //virtual ::user::style* user_style() override;
 
-      virtual ::account::department * account();
+      ::account::department * account() override;
 
-      virtual void on_user_logon(::account::user* puser);
+      void on_user_logon(::account::user* puser) override;
 
       //::axis::user* axisuser() override;
 
-      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true) override;
 
-      virtual void on_erase_user(::account::user * puser);
+      void on_erase_user(::account::user * puser) override;
 
       virtual bool is_licensed(const ::string & pszId, bool bInteractive = true) override;
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
 
-      virtual void interactive_credentials(::account::credentials * pcredentials);
+      void interactive_credentials(::account::credentials * pcredentials) override;
 
       //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 

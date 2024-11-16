@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "event_handler.h"
 #include "event_time.h"
-#include "happening.h"
+#include "event.h"
 #include "ievent_owner.h"
 #include "acme/platform/system.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"

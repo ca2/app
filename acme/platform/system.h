@@ -65,9 +65,9 @@ namespace platform
 
       virtual void process_machine_event_data(machine_event_data * pdata) override;
 
-      virtual void do_desktop_factory() override;
+      void do_operating_ambient_factory() override;
 
-      virtual void do_graphics_and_windowing_factory() override;
+      void do_graphics_and_windowing_factory() override;
 
       virtual void application_main(::platform::application * papplication);
 

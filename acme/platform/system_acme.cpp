@@ -3903,7 +3903,7 @@ namespace platform
    }
 
 
-   void acme_system_layer::do_desktop_factory()
+   void acme_system_layer::do_operating_ambient_factory()
    {
 
 

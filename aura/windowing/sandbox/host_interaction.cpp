@@ -108,6 +108,8 @@ namespace sandbox_windowing
       auto pwindow = window();
 
       pwindowing->m_pwindowApplicationHost = pwindow;
+      
+      window()->show_window();
 
    }
 

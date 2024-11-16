@@ -35,7 +35,7 @@
 
 
 //namespace nano{namespace  user{
-//::user::enum_desktop calculate_edesktop();
+//::user::enum_operating_ambient calculate_edesktop();
 //}//namespace user
 //   }//namespace nano
 //
@@ -1680,7 +1680,7 @@ namespace platform
    }
 
 
-   //::user::enum_desktop node::get_edesktop()
+   //::user::enum_operating_ambient node::get_eoperating_ambient()
    //{
 
    //   if (m_edesktop == ::user::e_desktop_none)
@@ -1695,7 +1695,7 @@ namespace platform
    //}
 
 
-   //::user::enum_desktop node::calculate_edesktop()
+   //::user::enum_operating_ambient node::calculate_edesktop()
    //{
 
    //   return ::micro::calculate_edesktop();

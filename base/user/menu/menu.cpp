@@ -1958,7 +1958,8 @@ namespace user
    ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
    {
 
-      auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+      //auto pstyle =
+      m_puserinteractionOwner->get_style(pgraphics);
 
       ::pointer<::base::session>psession = session();
 

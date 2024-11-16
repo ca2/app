@@ -1417,7 +1417,8 @@ m_puserinteraction = m_pacmeuserinteraction;
    //
    //   }
 
-   ::oswindow window::oswindow() const
+
+::oswindow window::oswindow() const
    {
 
       throw interface_only();
@@ -1427,9 +1428,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    }
 
 
-
-
-   void window::set_oswindow(::oswindow oswindow)
+void window::set_oswindow(::oswindow oswindow)
    {
 
       _set_oswindow(oswindow);

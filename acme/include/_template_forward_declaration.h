@@ -896,6 +896,15 @@ consteval auto as_const(auto asconst)
 }
 
 
+template < typename T >
+auto as_non_const(const T * p)
+{
+
+   return (non_const < T > *) p;
+
+}
+
+
 template < typename TYPE >
 using index_map = map < ::collection::index, TYPE >;
 

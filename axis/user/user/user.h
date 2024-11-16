@@ -27,7 +27,7 @@ namespace axis
 
       //::user::style* user_style() override;
 
-      virtual ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem);
+      ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem) override;
       
    };
 

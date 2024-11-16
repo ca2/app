@@ -1425,53 +1425,53 @@ void simple_scroll_bar::UpdateBitmaps()
 //
 //}
 
-
-class trw :
-   virtual public ::user::interaction
-{
-public:
-
-   ::int_point point1;
-   ::int_point point2;
-
-
-   trw()
-   {
-
-      //auto pusersystem = __allocate ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
-
-      //if(create_window_ex(pusersystem))
-      //if(create_host())
-      //create_host(e_parallelization_synchronous);
-      // 
-      // 
-
-      throw todo;
-
-      //create_host();
-      //{
-
-      //   informationf("created trw");
-
-      //}
-
-      best_monitor(nullptr, {}, true);
-
-   }
-
-   virtual ~trw()
-   {
-
-   }
-
-
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-      pgraphics->set_current_point(point1);
-      pgraphics->line_to(point2);
-   }
-};
-
+//
+//class trw :
+//   virtual public ::user::interaction
+//{
+//public:
+//
+//   ::int_point point1;
+//   ::int_point point2;
+//
+//
+//   trw()
+//   {
+//
+//      //auto pusersystem = __allocate ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
+//
+//      //if(create_window_ex(pusersystem))
+//      //if(create_host())
+//      //create_host(e_parallelization_synchronous);
+//      // 
+//      // 
+//
+//      throw todo;
+//
+//      //create_host();
+//      //{
+//
+//      //   informationf("created trw");
+//
+//      //}
+//
+//      best_monitor(nullptr, {}, true);
+//
+//   }
+//
+//   virtual ~trw()
+//   {
+//
+//   }
+//
+//
+//   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//      pgraphics->set_current_point(point1);
+//      pgraphics->line_to(point2);
+//   }
+//};
+//
 
 // Important:
 //

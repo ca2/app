@@ -26,6 +26,8 @@ namespace acme
 
       }
 
+   
+   
 
       ::pointer<::operating_system::a_system_menu> frame_interaction::create_system_menu(bool bContextual)
       {

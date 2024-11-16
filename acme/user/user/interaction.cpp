@@ -1632,7 +1632,19 @@ namespace acme
       }
 
 
-
+   bool interaction::is_child_interaction()
+   {
+      
+      if(m_bChild)
+      {
+         
+         return true;
+         
+      }
+      
+      return false;
+      
+   }
 
          ::acme::windowing::window * interaction::acme_windowing_window()
          {
@@ -1647,7 +1659,7 @@ namespace acme
 
                }
 
-               if (!m_bChild)
+               if (!is_child_interaction())
                {
 
                   create_window_object();

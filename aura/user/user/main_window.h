@@ -49,6 +49,7 @@ namespace user
 
       bool should_redraw_on_mouse_hover() override;
 
+      bool is_child_interaction() override;
 
 
    };

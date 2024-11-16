@@ -88,8 +88,8 @@ namespace windowing
    //CLASS_DECL_ACME::windowing::enum_windowing get_ewindowing();
 
 
-   CLASS_DECL_ACME::windowing::enum_desktop calculate_edesktop();
-   CLASS_DECL_ACME::windowing::enum_desktop get_edesktop();
+   CLASS_DECL_ACME::windowing::enum_operating_ambient calculate_edesktop();
+   CLASS_DECL_ACME::windowing::enum_operating_ambient get_eoperating_ambient();
 
 
    CLASS_DECL_ACME::windowing::enum_toolkit calculate_etoolkit();

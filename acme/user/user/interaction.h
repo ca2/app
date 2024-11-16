@@ -229,6 +229,7 @@ namespace acme
                //::payload do_synchronously(const class time & timeWait) override;
 
 
+         virtual bool is_child_interaction();
 
                ::acme::user::interaction * acme_user_interaction() override;
                ::acme::windowing::window * acme_windowing_window() override;

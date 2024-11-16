@@ -32,6 +32,9 @@ namespace acme
 
          virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) = 0;
 
+         
+         virtual void set_dialog_result(const ::payload & payloadResult);
+
             
       };
 

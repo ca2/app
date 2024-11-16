@@ -8,7 +8,7 @@ namespace windowing
 
 
    // wall-changer sourceforge.net contribution
-   enum enum_desktop
+   enum enum_operating_ambient
    {
 
       // please note that the row of these must match the row of the corresponding combobox in Preferences Dialog.
@@ -22,8 +22,8 @@ namespace windowing
       e_desktop_mate,
       e_desktop_ubuntu,
       e_desktop_windows,
-      e_desktop_cinnamon
-
+      e_desktop_cinnamon,
+e_desktop_ios
    };
 
    enum enum_toolkit

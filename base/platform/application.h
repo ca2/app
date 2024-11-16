@@ -44,7 +44,7 @@ namespace base
 
       void process_term() override;
       
-      virtual ::pointer < ::data::data > create_default_new_document_data();
+      ::pointer < ::data::data > create_default_new_document_data() override;
 
 
 //      // void assert_ok() const override;
@@ -55,11 +55,11 @@ namespace base
       // ::base::session* get_session();
 
 
-      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom());
+      ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom()) override;
 
-      virtual ::user::document * place_hold(::user::interaction * pinteraction);
-      virtual void on_create_split_impact(::user::split_impact* pimpact);
-      virtual void on_change_cur_sel(::user::tab* ptab);
+      ::user::document * place_hold(::user::interaction * pinteraction) override;
+      void on_create_split_impact(::user::split_impact* pimpact) override;
+      void on_change_cur_sel(::user::tab* ptab) override;
       virtual void create_impact_system() override;
       virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 
@@ -70,17 +70,17 @@ namespace base
 
 
       void create_options_impact(::user::interaction * pparent) override;
-      virtual void create_options_header(::user::interaction * pparent);
-      virtual void create_options_body(::user::interaction * pparent);
-      virtual void create_options_footer(::user::interaction * pparent);
+      void create_options_header(::user::interaction * pparent) override;
+      void create_options_body(::user::interaction * pparent) override;
+      void create_options_footer(::user::interaction * pparent) override;
 
-      virtual void create_auto_start_option(::user::interaction* pparent);
+      void create_auto_start_option(::user::interaction* pparent) override;
 
-      virtual void create_about_option(::user::interaction * pparent);
+      void create_about_option(::user::interaction * pparent) override;
 
-      virtual void create_about_impact(::user::interaction * pparent);
+      void create_about_impact(::user::interaction * pparent) override;
 
-      virtual void on_after_prepare_impact_menu(::user::menu * pmenu);
+      void on_after_prepare_impact_menu(::user::menu * pmenu) override;
 
 
       void show_about_box() override;

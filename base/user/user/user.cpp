@@ -145,6 +145,22 @@ namespace base
 
    //}
 
+   ::user::menu_central* user::menu()
+{
+   
+   return m_pmenucentral;
+   
+}
+
+
+::experience::department* user::experience()
+{
+   
+   return m_pexperience;
+   
+}
+
+
 
    void user::init1()
    {
@@ -308,6 +324,22 @@ namespace base
 
       //return true;
 
+   }
+
+
+   ::type_atom user::get_html_document_type()
+   {
+      
+      return m_typeatomHtmlDocument;
+      
+   }
+
+
+   ::type_atom user::get_html_impact_type()
+   {
+      
+      return m_typeatomHtmlImpact;
+      
    }
 
 

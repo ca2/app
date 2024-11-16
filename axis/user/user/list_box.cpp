@@ -587,7 +587,7 @@ namespace user
 
       }
 
-      return;
+      //return;
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 

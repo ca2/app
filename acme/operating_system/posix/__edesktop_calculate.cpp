@@ -15,10 +15,10 @@ namespace windowing
 {
 
 
-   ::windowing::enum_desktop g_edesktop = ::windowing::e_desktop_none;
+   ::windowing::enum_operating_ambient g_eoperatingambient = ::windowing::e_desktop_none;
 
 
-   ::windowing::enum_desktop calculate_edesktop()
+   ::windowing::enum_operating_ambient calculate_edesktop()
    {
 
       const char *pszDesktop = getenv("XDG_CURRENT_DESKTOP");
@@ -136,38 +136,50 @@ namespace windowing
       }
       else
       {
+         
+#if defined(APPLE_IOS)
+         
+         printf_line("calculate_edesktop e_desktop_ios");
 
-         printf_line("calculate_edesktop e_desktop_gnome");
+         return ::windowing::e_desktop_ios;
+
+#else
+         
+         printf_line("calculate_edesktop e_desktop_gnome (1)");
 
          return ::windowing::e_desktop_gnome;
+         
+#endif
          
       }
       
    }
 
 
-   ::windowing::enum_desktop get_edesktop()
+   ::windowing::enum_operating_ambient get_eoperating_ambient()
    {
 
-      if (g_edesktop == ::windowing::e_desktop_none)
+      if (g_eoperatingambient == ::windowing::e_desktop_none)
       {
 
-         g_edesktop = calculate_edesktop();
+         g_eoperatingambient = calculate_edesktop();
       }
 
-      return g_edesktop;
+      return g_eoperatingambient;
    }
    
    
    ::string get_edesktop_name()
    {
       
-      auto edesktop = get_edesktop();
+      auto edesktop = get_eoperating_ambient();
       
       switch(edesktop)
       {
       case e_desktop_xfce:
          return "xfce";
+      case e_desktop_ios:
+         return "ios";
       default:
          throw todo;
       };

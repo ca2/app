@@ -28,553 +28,562 @@
 namespace acme
 {
    namespace windowing
+{
+   windowing::windowing()
    {
-      windowing::windowing()
+      
+      m_ewindowing =::windowing::e_windowing_none;
+      
+   }
+   
+   
+   windowing::~windowing()
+   {
+   }
+   
+   
+   //::pointer < ::subparticle > windowing::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   //{
+   
+   //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   
+   //   return psequencer;
+   
+   //}
+   
+   
+   //::pointer < ::subparticle > windowing::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+   //{
+   
+   //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+   
+   //   return psequencer;
+   
+   //}
+   
+   //::pointer < ::subparticle > windowing::message_box(const ::string & strMessage, const ::string & strTitle,
+   //                                                       const ::e_message_box & emessagebox,
+   //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   auto pnode = node();
+   
+   //   auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+   
+   //   return psequencer;
+   //}
+   
+   
+   //::pointer < ::subparticle > windowing::exception_message_box(
+   //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
+   //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+   //{
+   //   string strExceptionDetails = exception.get_consolidated_details(this);
+   
+   //   string strMessage(strMessageParam);
+   
+   //   if (strMessage.is_empty())
+   //   {
+   //      strMessage = exception.get_message();
+   //   }
+   
+   //   string strTitle(strTitleParam);
+   
+   //   if (strTitle.is_empty())
+   //   {
+   //      strTitle = exception.get_title();
+   //   }
+   
+   //   string strDetails(strDetailsParam);
+   
+   //   if (strExceptionDetails.has_character())
+   //   {
+   //      if (strDetails.has_character())
+   //      {
+   //         strDetails += "\n";
+   //      }
+   
+   //      strDetails += strExceptionDetails;
+   //   }
+   
+   //   auto psequencer = node()->create_message_box_sequencer(
+   //       strMessage,
+   //       strTitle,
+   //       emessagebox,
+   //       strDetails,
+   //       picon);
+   
+   //   return psequencer;
+   //}
+   
+   
+   //::pointer < ::subparticle > windowing::message_console(const ::string & strMessage, const ::string & strTitle,
+   //                                                           const ::e_message_box & emessagebox,
+   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+   
+   //   return psequencer;
+   //}
+   
+   
+   //::pointer < ::subparticle > windowing::exception_message_console(
+   //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
+   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   string strExceptionDetails = exception.get_consolidated_details(this);
+   
+   //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
+   //                                                      strDetails + "\n" + strExceptionDetails, picon);
+   
+   //   return psequencer;
+   //}
+   
+   
+   void windowing::handle(::topic * ptopic, ::context * pcontext)
+   {
+      if (ptopic->m_atom == id_set_application_dark_mode)
       {
-
-         m_ewindowing =::windowing::e_windowing_none;
-
-      }
-
-
-      windowing::~windowing()
-      {
-      }
-
-
-      //::pointer < ::subparticle > windowing::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
-      //{
-
-      //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
-
-      //   return psequencer;
-
-      //}
-
-
-      //::pointer < ::subparticle > windowing::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
-      //{
-
-      //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
-
-      //   return psequencer;
-
-      //}
-
-      //::pointer < ::subparticle > windowing::message_box(const ::string & strMessage, const ::string & strTitle,
-      //                                                       const ::e_message_box & emessagebox,
-      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
-      //{
-      //   auto pnode = node();
-
-      //   auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
-
-      //   return psequencer;
-      //}
-
-
-      //::pointer < ::subparticle > windowing::exception_message_box(
-      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
-      //{
-      //   string strExceptionDetails = exception.get_consolidated_details(this);
-
-      //   string strMessage(strMessageParam);
-
-      //   if (strMessage.is_empty())
-      //   {
-      //      strMessage = exception.get_message();
-      //   }
-
-      //   string strTitle(strTitleParam);
-
-      //   if (strTitle.is_empty())
-      //   {
-      //      strTitle = exception.get_title();
-      //   }
-
-      //   string strDetails(strDetailsParam);
-
-      //   if (strExceptionDetails.has_character())
-      //   {
-      //      if (strDetails.has_character())
-      //      {
-      //         strDetails += "\n";
-      //      }
-
-      //      strDetails += strExceptionDetails;
-      //   }
-
-      //   auto psequencer = node()->create_message_box_sequencer(
-      //       strMessage,
-      //       strTitle,
-      //       emessagebox,
-      //       strDetails,
-      //       picon);
-
-      //   return psequencer;
-      //}
-
-
-      //::pointer < ::subparticle > windowing::message_console(const ::string & strMessage, const ::string & strTitle,
-      //                                                           const ::e_message_box & emessagebox,
-      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
-      //{
-      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
-
-      //   return psequencer;
-      //}
-
-
-      //::pointer < ::subparticle > windowing::exception_message_console(
-      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-      //{
-      //   string strExceptionDetails = exception.get_consolidated_details(this);
-
-      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
-      //                                                      strDetails + "\n" + strExceptionDetails, picon);
-
-      //   return psequencer;
-      //}
-
-
-      void windowing::handle(::topic * ptopic, ::context * pcontext)
-      {
-         if (ptopic->m_atom == id_set_application_dark_mode)
-         {
-            for (auto & pwindow : m_windowa)
-            {
-               pwindow->handle(ptopic, pcontext);
-            }
-         }
-      }
-
-
-
-      void windowing::process_messages()
-      {
-
-
-      }
-
-      bool windowing::init_threads()
-      {
-
-         return true;
-
-      }
-
-
-      void windowing::show(::particle_pointer pparticle)
-      {
-
-
-      }
-
-
-
-      // // Merged from user to
-      //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
-      //                   //
-      // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
-      // // Merged from user to
-      //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
-      //
-      //
-      ////
-      //#include "framework.h"
-      ////#include "user.h"
-      //#include "acme/constant/id.h"
-      //#include "acme/exception/interface_only.h"
-      //#include "acme/parallelization/synchronous_lock.h"
-      //#include "acme/handler/topic.h"
-      //#include "acme/nano/nano.h"
-      //#include "acme/user/micro/display.h"
-      //#include "acme/user/micro/user.h"
-      ////#include "acme/windowing/window_base.h"
-      //#include "platform/system.h"
-
-
-               //namespace windowing
-               //{
-
-
-                /*  windowing::user()
-                  {
-
-
-                  }
-
-
-                  windowing::~user()
-                  {
-
-
-                  }*/
-
-
-      void windowing::on_initialize_particle()
-      {
-
-         ::acme::department::on_initialize_particle();
-
-         ::task::on_initialize_particle();
-
-      }
-
-
-      void windowing::destroy()
-      {
-
-         m_pacmedisplay.defer_destroy();
-
-         m_windowa.clear();
-
-         ::acme::department::destroy();
-
-      }
-
-
-      ::acme::windowing::display * windowing::acme_display()
-      {
-
-         if (!m_pacmedisplay)
-         {
-
-            system()->do_graphics_and_windowing_factory();
-
-            __construct(m_pacmedisplay);
-
-            m_pacmedisplay->open_display();
-
-         }
-
-         return m_pacmedisplay;
-
-      }
-
-
-      void windowing::on_start_system()
-      {
-
-
-      }
-
-
-      ::windowing::windowing * windowing::windowing_windowing()
-      {
-
-         return nullptr;
-
-      }
-
-
-      // ::e_status windowing::defer_initialize_windowing()
-      // {
-      //
-      //    return ::success;
-      //
-      // }
-
-
-      void windowing::initialize_windowing()
-      {
-
-         //return ::success;
-
-      }
-
-
-      void windowing::finalize_windowing()
-      {
-
-
-      }
-
-
-//      void * windowing::get_display()
-//      {
-//
-//         return nullptr;
-//
-//      }
-
-
-      void windowing::_main_send(const ::procedure & procedure)
-      {
-
-         _user_send(procedure);
-
-      }
-
-
-      void windowing::_main_post(const ::procedure & procedure)
-      {
-
-         _user_post(procedure);
-
-      }
-
-
-      void windowing::display_error_trap_push(int i)
-      {
-
-
-      }
-
-
-      void windowing::display_error_trap_pop_ignored(int i)
-      {
-
-
-      }
-
-
-//      void * windowing::fetch_windowing_sydisplay()
-//      {
-//
-//         return nullptr;
-//
-//      }
-
-
-      //void windowing::process_messages()
-      //{
-
-      //   system()->acme_windowing()->process_messages();
-
-      //   // #ifdef HAS_WAYLAND
-      //   //         if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
-      //   //         {
-      //   //
-      //   //             ::wayland::acme::windowing::process_messages();
-      //   //
-      //   //         }
-      //   //         else
-      //   // #endif
-      //   //             if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
-      //   //             {
-      //   //
-      //   //                 ::xcb::micro::process_messages();
-      //   //
-      //   //             }
-      //   //             else
-      //   //             {
-      //   //
-      //   //                 ::x11::micro::process_messages();
-      //   //
-      //   //             }
-
-
-      //}
-
-
-      void windowing::windowing_application_main_loop()
-      {
-
-
-
-      }
-
-
-      void windowing::windowing_post_quit()
-      {
-
-
-      }
-
-
-      ::color::color windowing::get_system_color(enum_system_color esystemcolor)
-      {
-
-         throw ::interface_only();
-
-         return argb(0, 0, 0, 0);
-
-      }
-
-
-      ::color::color windowing::get_operating_system_background_color()
-      {
-
-         return ::color::white;
-
-      }
-
-
-      void windowing::fetch_dark_mode()
-      {
-
-         auto color = get_operating_system_background_color();
-
-         on_system_dark_mode_change(color.get_luminance() <= 0.5, color);
-
-      }
-
-
-      void windowing::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
-      {
-
-         if (colorBackground != ::color::transparent)
-         {
-
-            system()->background_color(colorBackground);
-
-         }
-         else
-         {
-
-            system()->set_dark_mode(bDarkMode);
-
-         }
-
-         auto ptopic = __allocate ::topic(id_application_dark_mode_change);
-
          for (auto & pwindow : m_windowa)
          {
-
-            pwindow->handle(ptopic, nullptr);
-
-            pwindow->set_need_redraw();
-
-            pwindow->post_redraw();
-
+            pwindow->handle(ptopic, pcontext);
          }
-
       }
-
-
-      bool windowing::dark_mode()
+   }
+   
+   
+   
+   void windowing::process_messages()
+   {
+      
+      
+   }
+   
+   bool windowing::init_threads()
+   {
+      
+      return true;
+      
+   }
+   
+   
+   void windowing::show(::particle_pointer pparticle)
+   {
+      
+      
+   }
+   
+   
+   
+   // // Merged from user to
+   //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
+   //                   //
+   // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
+   // // Merged from user to
+   //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
+   //
+   //
+   ////
+   //#include "framework.h"
+   ////#include "user.h"
+   //#include "acme/constant/id.h"
+   //#include "acme/exception/interface_only.h"
+   //#include "acme/parallelization/synchronous_lock.h"
+   //#include "acme/handler/topic.h"
+   //#include "acme/nano/nano.h"
+   //#include "acme/user/micro/display.h"
+   //#include "acme/user/micro/user.h"
+   ////#include "acme/windowing/window_base.h"
+   //#include "platform/system.h"
+   
+   
+   //namespace windowing
+   //{
+   
+   
+   /*  windowing::user()
+    {
+    
+    
+    }
+    
+    
+    windowing::~user()
+    {
+    
+    
+    }*/
+   
+   
+   void windowing::on_initialize_particle()
+   {
+      
+      ::acme::department::on_initialize_particle();
+      
+      ::task::on_initialize_particle();
+      
+   }
+   
+   
+   void windowing::destroy()
+   {
+      
+      m_pacmedisplay.defer_destroy();
+      
+      m_windowa.clear();
+      
+      ::acme::department::destroy();
+      
+   }
+   
+   
+   ::acme::windowing::display * windowing::acme_display()
+   {
+      
+      if (!m_pacmedisplay)
       {
-
+         
+         system()->do_graphics_and_windowing_factory();
+         
+         __construct(m_pacmedisplay);
+         
+         m_pacmedisplay->open_display();
+         
+      }
+      
+      return m_pacmedisplay;
+      
+   }
+   
+   
+   void windowing::on_start_system()
+   {
+      
+      
+   }
+   
+   
+   ::windowing::windowing * windowing::windowing_windowing()
+   {
+      
+      return nullptr;
+      
+   }
+   
+   
+   // ::e_status windowing::defer_initialize_windowing()
+   // {
+   //
+   //    return ::success;
+   //
+   // }
+   
+   
+   void windowing::initialize_windowing()
+   {
+      
+      //return ::success;
+      
+   }
+   
+   
+   void windowing::finalize_windowing()
+   {
+      
+      
+   }
+   
+   
+   //      void * windowing::get_display()
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   
+   
+   void windowing::_main_send(const ::procedure & procedure)
+   {
+      
+      _user_send(procedure);
+      
+   }
+   
+   
+   void windowing::_main_post(const ::procedure & procedure)
+   {
+      
+      _user_post(procedure);
+      
+   }
+   
+   
+   void windowing::display_error_trap_push(int i)
+   {
+      
+      
+   }
+   
+   
+   void windowing::display_error_trap_pop_ignored(int i)
+   {
+      
+      
+   }
+   
+   
+   //      void * windowing::fetch_windowing_sydisplay()
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   
+   
+   //void windowing::process_messages()
+   //{
+   
+   //   system()->acme_windowing()->process_messages();
+   
+   //   // #ifdef HAS_WAYLAND
+   //   //         if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
+   //   //         {
+   //   //
+   //   //             ::wayland::acme::windowing::process_messages();
+   //   //
+   //   //         }
+   //   //         else
+   //   // #endif
+   //   //             if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
+   //   //             {
+   //   //
+   //   //                 ::xcb::micro::process_messages();
+   //   //
+   //   //             }
+   //   //             else
+   //   //             {
+   //   //
+   //   //                 ::x11::micro::process_messages();
+   //   //
+   //   //             }
+   
+   
+   //}
+   
+   
+   void windowing::windowing_application_main_loop()
+   {
+      
+      
+      
+   }
+   
+   
+   void windowing::windowing_post_quit()
+   {
+      
+      
+   }
+   
+   
+   ::color::color windowing::get_system_color(enum_system_color esystemcolor)
+   {
+      
+      throw ::interface_only();
+      
+      return argb(0, 0, 0, 0);
+      
+   }
+   
+   
+   ::color::color windowing::get_operating_system_background_color()
+   {
+      
+      return ::color::white;
+      
+   }
+   
+   
+   void windowing::fetch_dark_mode()
+   {
+      
+      auto color = get_operating_system_background_color();
+      
+      on_system_dark_mode_change(color.get_luminance() <= 0.5, color);
+      
+   }
+   
+   
+   void windowing::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
+   {
+      
+      if (colorBackground != ::color::transparent)
+      {
+         
+         system()->background_color(colorBackground);
+         
+      }
+      else
+      {
+         
+         system()->set_dark_mode(bDarkMode);
+         
+      }
+      
+      auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+      
+      for (auto & pwindow : m_windowa)
+      {
+         
+         pwindow->handle(ptopic, nullptr);
+         
+         pwindow->set_need_redraw();
+         
+         pwindow->post_redraw();
+         
+      }
+      
+   }
+   
+   
+   bool windowing::dark_mode()
+   {
+      
+      return false;
+      
+   }
+   
+   
+   void windowing::set_dark_mode(bool bDarkMode)
+   {
+      
+      
+      
+   }
+   
+   
+   void windowing::fetch_system_background_color()
+   {
+      
+      
+      
+   }
+   
+   
+   
+   ::color::color windowing::reinterpreted_background_color()
+   {
+      
+      if (dark_mode())
+      {
+         
+         return ::color::black;
+         
+      }
+      
+      return ::color::white;
+      
+   }
+   
+   
+   
+   
+   void windowing::_do_tasks()
+   {
+      
+      _synchronous_lock synchronouslock(this->synchronization());
+      
+      auto interchangea = m_windowa;
+      
+      synchronouslock.unlock();
+      
+      //if (::micro::window_implementation::nanowindowimplementationa().has_element())
+      //{
+      
+      for (auto & pwindow : interchangea)
+      {
+         
+         if (pwindow)
+         {
+            
+            pwindow->window_message_loop_step();
+            
+         }
+         
+      }
+      
+      
+      
+      
+   }
+   
+   
+   ::pixmap windowing::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
+   {
+      
+      return {};
+      
+   }
+   
+   
+   
+   ::windowing::enum_windowing windowing::calculate_ewindowing()
+   {
+      
+      return ::windowing::e_windowing_none;
+      
+   }
+   
+   
+   ::windowing::enum_windowing windowing::get_ewindowing()
+   {
+      
+      if(m_ewindowing == ::windowing::e_windowing_none)
+      {
+         
+         m_ewindowing = calculate_ewindowing();
+         
+      }
+      
+      return m_ewindowing;
+      
+   }
+   bool windowing::shell_open(const ::file::path & path)
+   {
+      return false;
+   }
+   //void windowing::update_nano_user_theme()
+   //{
+   
+   
+   
+   //}
+   
+   
+   //::micro::theme * windowing::nano_user_theme()
+   //{
+   
+   
+   //   if (!m_pnanousertheme)
+   //   {
+   
+   //      update_nano_user_theme();
+   
+   //   }
+   
+   //   return m_pnanousertheme;
+   
+   //}
+   
+   
+      bool windowing::defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p)
+      {
+         
          return false;
-
+         
       }
-
-
-      void windowing::set_dark_mode(bool bDarkMode)
-      {
-
-
-
-      }
-
-
-      void windowing::fetch_system_background_color()
-      {
-
-
-
-      }
-
-
-
-      ::color::color windowing::reinterpreted_background_color()
-      {
-
-         if (dark_mode())
-         {
-
-            return ::color::black;
-
-         }
-
-         return ::color::white;
-
-      }
-
-
-
-
-      void windowing::_do_tasks()
-      {
-
-         _synchronous_lock synchronouslock(this->synchronization());
-
-         auto interchangea = m_windowa;
-
-         synchronouslock.unlock();
-
-         //if (::micro::window_implementation::nanowindowimplementationa().has_element())
-         //{
-
-         for (auto & pwindow : interchangea)
-         {
-
-            if (pwindow)
-            {
-
-               pwindow->window_message_loop_step();
-
-            }
-
-         }
-
-
-
-
-      }
-
-
-      ::pixmap windowing::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
-      {
-
-         return {};
-
-      }
-
-
-
-      ::windowing::enum_windowing windowing::calculate_ewindowing()
-      {
-
-         return ::windowing::e_windowing_none;
-
-      }
-
-
-      ::windowing::enum_windowing windowing::get_ewindowing()
-      {
-
-         if(m_ewindowing == ::windowing::e_windowing_none)
-         {
-
-            m_ewindowing = calculate_ewindowing();
-
-         }
-
-         return m_ewindowing;
-
-      }
-bool windowing::shell_open(const ::file::path & path)
-{
-   return false;
-}
-      //void windowing::update_nano_user_theme()
-      //{
-
-
-
-      //}
-
-
-      //::micro::theme * windowing::nano_user_theme()
-      //{
-
-
-      //   if (!m_pnanousertheme)
-      //   {
-
-      //      update_nano_user_theme();
-
-      //   }
-
-      //   return m_pnanousertheme;
-
-      //}
-
-   } // namespace user
+      
+   
+   } // namespace windowing
 
 
 } // namespace acme

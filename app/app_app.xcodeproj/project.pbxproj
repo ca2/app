@@ -84,9 +84,7 @@
 		9AC01BE02748C2DD006BEBCC /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9AC01BE12748C2DE006BEBCC /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC01BE22748C2DE006BEBCC /* main_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
-		9AC01BE32748C2DE006BEBCC /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AC01BE42748C2DE006BEBCC /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
-		9AC01BE52748C2DF006BEBCC /* main_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9AF1159B2844E478006B2424 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,22 +156,20 @@
 		9AC01A742748C2D4006BEBCC /* app */ = {
 			isa = PBXGroup;
 			children = (
+				9AC01BE12748C2DE006BEBCC /* _.h */,
+				9AC01B2F2748C2D8006BEBCC /* _.cpp */,
 				9A5498712A2D4A600052BAB6 /* _____debug.xcconfig */,
 				9A5498732A2D4A600052BAB6 /* _____release.xcconfig */,
-				9AF1159B2844E478006B2424 /* _factory.cpp */,
-				9AC01B2F2748C2D8006BEBCC /* _.cpp */,
-				9AC01BE12748C2DE006BEBCC /* _.h */,
 				9AC01A7B2748C2D5006BEBCC /* _app.h */,
+				9AF1159B2844E478006B2424 /* _factory.cpp */,
+				9AC01AA22748C2D5006BEBCC /* application.h */,
 				9AC01BE42748C2DE006BEBCC /* application.cpp */,
-				9AC01BE32748C2DE006BEBCC /* application.h */,
-				9AC01A9F2748C2D5006BEBCC /* framework.cpp */,
 				9AC01BE02748C2DD006BEBCC /* framework.h */,
+				9AC01A9F2748C2D5006BEBCC /* framework.cpp */,
+				9AC01AA02748C2D5006BEBCC /* main_window.h */,
 				9AC01BE22748C2DE006BEBCC /* main_window.cpp */,
-				9AC01BE52748C2DF006BEBCC /* main_window.h */,
 				9AC01B482748C2D9006BEBCC /* resource.h */,
 				9AC01B2D2748C2D8006BEBCC /* targetver.h */,
-				9AC01AA02748C2D5006BEBCC /* main_window.h */,
-				9AC01AA22748C2D5006BEBCC /* application.h */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -241,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					9AC01A572748C26A006BEBCC = {
 						CreatedOnToolsVersion = 13.1;

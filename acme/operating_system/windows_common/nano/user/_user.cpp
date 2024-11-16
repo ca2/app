@@ -13,7 +13,7 @@ namespace nano
    {
 
 
-      ::windowing::enum_desktop calculate_edesktop()
+      ::windowing::enum_operating_ambient calculate_edesktop()
       {
 
          return ::windowing::e_desktop_windows;

@@ -70,8 +70,8 @@ namespace micro
 
       //CLASS_DECL_ACME ::enum_display_type get_display_type();
 
-      //CLASS_DECL_ACME ::user::enum_desktop calculate_edesktop();
-      //CLASS_DECL_ACME ::user::enum_desktop get_edesktop();
+      //CLASS_DECL_ACME ::user::enum_operating_ambient calculate_edesktop();
+      //CLASS_DECL_ACME ::user::enum_operating_ambient get_eoperating_ambient();
 
 
       //CLASS_DECL_ACME ::user::enum_toolkit calculate_etoolkit();

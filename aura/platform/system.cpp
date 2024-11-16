@@ -615,7 +615,7 @@ namespace aura
 
 //#ifdef LINUX
 //
-//      auto edesktop = get_edesktop();
+//      auto edesktop = get_eoperating_ambient();
 //
 //      if (edesktop & ::user::e_desktop_kde)
 //      {
@@ -6990,19 +6990,19 @@ if(!m_pimaging)
    }
 
 
-   void system::do_desktop_factory()
+   void system::do_operating_ambient_factory()
    {
 
-      if(!m_bDesktopFactory)
+      if(!m_bOperatingAmbientFactory)
       {
 
          ::string strDesktop = ::windowing::get_edesktop_name();
 
-         auto pfactory = factory("desktop_environment", strDesktop);
+         auto pfactory = factory("operating_ambient", strDesktop);
 
          pfactory->merge_to_global_factory();
 
-         m_bDesktopFactory = true;
+         m_bOperatingAmbientFactory = true;
 
       }
 
@@ -7026,6 +7026,12 @@ if(!m_pimaging)
             {
              
                strUserToolkit = "macos";
+               
+            }
+            else if(strUserToolkit == "uikit")
+            {
+             
+               strUserToolkit = "ios";
                
             }
 

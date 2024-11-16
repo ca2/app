@@ -200,7 +200,7 @@ namespace platform
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
-      m_bDesktopFactory = false;
+      m_bOperatingAmbientFactory = false;
       m_bGraphicsAndWindowingFactory = false;
 
 
@@ -790,21 +790,25 @@ namespace platform
 
       //information() <<"::platform::system create_os_node";
 
-      auto pfactory = node_factory();
-
-      if (!pfactory)
+      if(m_bConsole)
       {
+         
+         auto pfactory = node_factory();
 
-         fatal() << "node_factory has failed";
+         if (!pfactory)
+         {
 
-         throw ::exception(error_resource);
+            fatal() << "node_factory has failed";
+
+            throw ::exception(error_resource);
+
+         }
 
       }
-
-      if(!m_bConsole)
+      else
       {
 
-         do_desktop_factory();
+         do_operating_ambient_factory();
          //do_graphics_and_windowing_factory();
 
       }
@@ -4371,7 +4375,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::do_desktop_factory()
+   void system::do_operating_ambient_factory()
    {
 
 
@@ -4385,14 +4389,19 @@ particle* system::matter_mutex()
       {
 
          m_bGraphicsAndWindowingFactory = true;
-
-         nano()->graphics();
-
-         ::string strToolkit = ::windowing::get_user_toolkit_id();
-
-         m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
-
-         m_pfactoryAcmeWindowing->merge_to_global_factory();
+         
+         if(!is_sandboxed())
+         {
+            
+            nano()->graphics();
+            
+            ::string strToolkit = ::windowing::get_user_toolkit_id();
+            
+            m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
+            
+            m_pfactoryAcmeWindowing->merge_to_global_factory();
+            
+         }
 
       }
 

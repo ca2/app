@@ -760,7 +760,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = tool_item_style(iItem);
 
-   auto psession = session();
+   //auto psession = session();
 
    auto puser = user();
 

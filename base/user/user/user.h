@@ -53,7 +53,7 @@ namespace base
       //::base::system* get_system();
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
 
@@ -64,60 +64,59 @@ namespace base
 
       //virtual void create_user_shell();
 
-      inline ::user::menu_central* menu() { return m_pmenucentral; }
+      ::user::menu_central* menu() override;
 
-      inline ::experience::department* experience() { return m_pexperience; }
+      ::experience::department* experience() override;
 
-
-      virtual void init1() override;
-      virtual void init2() override;
-      virtual void init() override;
+      void init1() override;
+      void init2() override;
+      void init() override;
 
   
-      inline ::type_atom get_html_document_type() { return m_typeatomHtmlDocument; }
-      inline ::type_atom get_html_impact_type() { return m_typeatomHtmlImpact; }
+      ::type_atom get_html_document_type() override;
+      ::type_atom get_html_impact_type() override;
 
-      virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-
-
-      virtual ::user::interaction_base * get_mouse_focus_LButtonDown() override;
-      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus) override;
-      virtual ::user::interaction_base * get_mouse_focus_RButtonDown() override;
-      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus) override;
+      ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
-      virtual void initialize1_experience();
+      ::user::interaction_base * get_mouse_focus_LButtonDown() override;
+      void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus) override;
+      ::user::interaction_base * get_mouse_focus_RButtonDown() override;
+      void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus) override;
 
-      virtual void destroy() override;
 
-      virtual void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override;
+      void initialize1_experience() override;
 
-      virtual void term() override;
+      void destroy() override;
 
-      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override;
+
+      void term() override;
+
+      ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
 
       
-      virtual ::pointer<::menu::item > menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu);
+      ::pointer<::menu::item > menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu) override;
 
       
-      virtual ::pointer<::menu::item > popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu);
+      ::pointer<::menu::item > popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu) override;
 
 
-      virtual void from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);
+      void from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu) override;
       
 //      
 //      virtual ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item * pmenuitem, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum = ::int_size(), ::channel * pchannelNotify = nullptr);
 //
 
-      virtual void popup_from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu);
+      void popup_from_application_menu(::menu::item * pmenuitem, ::application_menu * papplicationmenu, ::user::menu * pmenu) override;
 
-      virtual void track_popup_menu(::menu::track_popup * popup);
+      void track_popup_menu(::menu::track_popup * popup) override;
 
       
-      ::pointer < ::user::menu > user_menu_from_menu(::menu::menu * pmenu);
+      ::pointer < ::user::menu > user_menu_from_menu(::menu::menu * pmenu) override;
 
       
       ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
@@ -129,22 +128,22 @@ namespace base
 
 
       //virtual ::type_atom get_pane_tab_impact_type_info();
-      virtual ::type_atom get_simple_frame_window_type_info();
-      virtual ::type_atom get_simple_child_frame_type_info();
+      ::type_atom get_simple_frame_window_type_info() override;
+      ::type_atom get_simple_child_frame_type_info() override;
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
+      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
 
 
-      virtual void initialize_html();
+      void initialize_html() override;
 
 
-      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument) override;
       //::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument) override;
       //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument) override;
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument) override;
 
       //template < typename FORM >
       //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
@@ -154,7 +153,7 @@ namespace base
 
       //}
 
-      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument));
+      virtual ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument));
 
 
       
@@ -164,7 +163,7 @@ namespace base
       void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override;
 
 
-      virtual bool create_impact_system(const ::atom & atom);
+      bool create_impact_system(const ::atom & atom) override;
 
 
       ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;

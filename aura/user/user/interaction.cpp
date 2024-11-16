@@ -9771,7 +9771,7 @@ namespace user
 
       ::pointer < ::user::interaction > pthis = this;
 
-      user_thread()->send([pthis, a, wparam, lparam, pLresult]()
+      window()->main_send([pthis, a, wparam, lparam, pLresult]()
          {
 
             try
@@ -10396,6 +10396,9 @@ namespace user
 
       //try
       //{
+      
+      
+      m_bChild = true;
 
       m_bUserElementOk = true;
       //      
@@ -21561,7 +21564,7 @@ namespace user
 
       }
 
-      puserthread->send([this]()
+      main_send([this]()
          {
 
             _create_window();

@@ -47,7 +47,7 @@ namespace axis
 
       void initialize(::particle * pparticle) override;
 
-      virtual ::pointer < ::geo::geo > create_geo();
+      ::pointer < ::geo::geo > create_geo() override;
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
@@ -62,7 +62,7 @@ namespace axis
 
 
 
-      virtual ::simpledb::server * simpledb();
+      ::simpledb::server * simpledb() override;
       ::database::server * dataserver() override;
 
 
@@ -162,11 +162,11 @@ namespace axis
       void interactive_credentials(::account::credentials * pcredentials) override;
 
   
-      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true) override;
 
-      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr);
+      ::account::user * interactive_get_user(::file::path pathUrl = nullptr) override;
 
-      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
+      ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr) override;
 
      
       ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;

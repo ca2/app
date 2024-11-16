@@ -197,6 +197,8 @@
 		9A52430A2CD48FE6006ED868 /* pac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5242FE2CD48FE6006ED868 /* pac.cpp */; };
 		9A52430B2CD48FE6006ED868 /* pac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5242FD2CD48FE6006ED868 /* pac.h */; };
 		9A52430C2CD48FE6006ED868 /* proxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5242FF2CD48FE6006ED868 /* proxy.h */; };
+		9A5405232CE76D3A0009869E /* internet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA331AA2C8A5B44006DE525 /* internet.cpp */; };
+		9A5405242CE76D3A0009869E /* internet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA331AA2C8A5B44006DE525 /* internet.cpp */; };
 		9A5407762C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
 		9A5407772C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
 		9A5407782C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
@@ -3353,6 +3355,7 @@
 				9AC980142A71B39E00B1BCF3 /* tcp_socket_impl.cpp in Sources */,
 				9A2FCDEE2C9D3366000CF701 /* button.cpp in Sources */,
 				9A2FCDEF2C9D3366000CF701 /* icon.cpp in Sources */,
+				9A5405242CE76D3A0009869E /* internet.cpp in Sources */,
 				9A2FCDF02C9D3366000CF701 /* window.cpp in Sources */,
 				9A2FCDF12C9D3366000CF701 /* innate_ui.cpp in Sources */,
 				9A2FCDF22C9D3366000CF701 /* dialog.cpp in Sources */,
@@ -3610,6 +3613,7 @@
 				9A0F53BA28E8D8A900025231 /* base_socket.cpp in Sources */,
 				9ABBB6A32AEA11BE007611C5 /* shared.cpp in Sources */,
 				9ABBDF412AF02C100032EAD3 /* application_menu.cpp in Sources */,
+				9A5405232CE76D3A0009869E /* internet.cpp in Sources */,
 				9A0F53AE28E8D80400025231 /* socket.cpp in Sources */,
 				9A51A55C2C3142E300B52EDF /* folder_sync.cpp in Sources */,
 				9AC88B052B6B4DBF008F1C20 /* application_handler.cpp in Sources */,

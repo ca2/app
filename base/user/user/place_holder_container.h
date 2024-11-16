@@ -25,7 +25,7 @@ namespace user
       void destroy() override;
 
 
-      void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       //virtual bool create_interaction(::user::interaction * puiParent,atom atom);

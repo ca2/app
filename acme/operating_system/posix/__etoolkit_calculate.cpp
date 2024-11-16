@@ -23,6 +23,8 @@ namespace windowing
       
 #if defined(MACOS)
       return ::windowing::e_toolkit_appkit;
+#elif defined(APPLE_IOS)
+      return ::windowing::e_toolkit_uikit;
 #elif defined(WINDOWS_DESKTOP)
       return ::windowing::e_toolkit_win32;
 #elif defined(HAS_KDE5)

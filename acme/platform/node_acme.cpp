@@ -539,10 +539,10 @@ namespace platform
    }
 
 
-   //virtual ::user::enum_desktop get_edesktop(){}
+   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
    //virtual ::user::enum_toolkit get_etoolkit(){}
 
-   //virtual ::user::enum_desktop calculate_edesktop(){}
+   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
    //virtual ::user::enum_toolkit calculate_etoolkit(){}
 
    //::string acme_node_layer::get_user_toolkit_id(){}
@@ -770,10 +770,10 @@ namespace platform
    //::file::path command_find_path(const ::string & pszCommand){}
 
 
-   //virtual ::user::enum_desktop calculate_edesktop(){}
+   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
    //
    //
-   //virtual ::user::enum_desktop get_edesktop(){}
+   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
 
    void acme_node_layer::on_start_system()
    {

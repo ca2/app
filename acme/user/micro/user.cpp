@@ -515,8 +515,15 @@ namespace micro
          ::pointer < ::message_box > pmessageboxRealizable;
 
          pmessageboxRealizable = p;
-
+         
          ::pointer < ::reified < ::message_box > > pmessageboxReified;
+
+         if(system()->acme_windowing()->defer_realize(pmessageboxReified, pmessageboxRealizable))
+         {
+            
+            return pmessageboxReified;
+            
+         }
 
          if (pmessageboxRealizable->m_bDetails)
          {

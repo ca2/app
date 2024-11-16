@@ -105,7 +105,7 @@ namespace application_build_helper
 
 //         pathUrlBase = "https://fedora.camilothomas.com";
 
-         if (acmesystem()->m_pnode->get_edesktop() & ::user::e_desktop_kde)
+         if (acmesystem()->m_pnode->get_eoperating_ambient() & ::user::e_desktop_kde)
          {
 
             //pathUrlBase /= "kde";
@@ -142,7 +142,7 @@ namespace application_build_helper
 
 //         pathUrlBase = "https://debian.camilothomas.com";
 //
-//         if (acmesystem()->m_pnode->get_edesktop() & ::user::e_desktop_kde)
+//         if (acmesystem()->m_pnode->get_eoperating_ambient() & ::user::e_desktop_kde)
 //         {
 //
 //            pathUrlBase /= "kde";
@@ -161,7 +161,7 @@ namespace application_build_helper
       else
       {
 
-//         if (acmesystem()->m_pnode->get_edesktop() & ::user::e_desktop_kde)
+//         if (acmesystem()->m_pnode->get_eoperating_ambient() & ::user::e_desktop_kde)
 //         {
 //
 //            pathUrlBase = "https://kubuntu.camilothomas.com";

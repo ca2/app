@@ -8,7 +8,7 @@
 #include "acme/platform/system.h"
 #include "acme/windowing/windowing.h"
 
-//::user::enum_desktop get_edesktop();
+//::user::enum_operating_ambient get_eoperating_ambient();
 
 
 //void x11_asynchronous(::procedure function);

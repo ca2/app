@@ -58,7 +58,7 @@ namespace platform
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
 
-      bool                                            m_bDesktopFactory;
+      bool                                            m_bOperatingAmbientFactory;
       bool                                            m_bGraphicsAndWindowingFactory;
 
 
@@ -213,7 +213,7 @@ namespace platform
 
 
 
-      virtual void do_desktop_factory();
+      virtual void do_operating_ambient_factory();
 
 
       virtual void do_graphics_and_windowing_factory();

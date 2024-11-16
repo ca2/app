@@ -184,7 +184,7 @@ namespace platform
       ::index_array                                   m_iaTaskIndex;
       bool                                            m_bVerboseLog;
       ::windowing::enum_windowing                     m_ewindowing;
-      ::windowing::enum_desktop                       m_edesktop;
+      ::windowing::enum_operating_ambient                       m_edesktop;
       ::windowing::enum_toolkit                       m_etoolkit;
 
 

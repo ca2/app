@@ -13,7 +13,7 @@ namespace nano
 {
    namespace user
    {
-      ::user::enum_desktop get_edesktop();
+      ::user::enum_operating_ambient get_eoperating_ambient();
    }//namespace user
 }// namespace nano
 
@@ -42,7 +42,7 @@ void operating_system_initialize_wayland_nano_user(::factory::factory * pfactory
 void operating_system_initialize_nano_user(::factory::factory * pfactory)
 {
 
-   auto edesktop = ::micro::get_edesktop();
+   auto edesktop = ::micro::get_eoperating_ambient();
 
    auto psystem = pfactory->system();
 

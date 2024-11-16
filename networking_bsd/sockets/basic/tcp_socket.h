@@ -332,6 +332,9 @@ namespace sockets_bsd
       void destroy() override;
 
 
+      void on_set_parent_socket() override;
+
+
    };
 
    extern "C"

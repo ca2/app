@@ -3514,5 +3514,12 @@ m_ibuf(isize)
    }
 
 
+   void tcp_socket::on_set_parent_socket()
+   {
+
+
+   }
+
+
 } // namespace sockets_bsd
 

@@ -1422,7 +1422,7 @@ public:
       
 #if REFERENCING_DEBUGGING
 
-      ::allocator::add_referer(m_preferer);
+      ::allocator::push_referer(m_preferer);
 
       return p;
 

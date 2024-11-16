@@ -1422,17 +1422,13 @@ public:
       
 #if REFERENCING_DEBUGGING
 
-      ::pointer < SUBPARTICLE > pointer(p);
+      ::allocator::add_referer(m_preferer);
 
-      pointer.m_preferer = m_preferer;
-
-      p->add_referer(m_preferer);
-
-      return ::transfer(pointer);
+      return p;
 
 #else
 
-      return { transfer_t{}, p };
+      return p;
 
 #endif   
    }

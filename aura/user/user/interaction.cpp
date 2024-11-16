@@ -2165,12 +2165,12 @@ namespace user
          //
          //         payload("bQueuedPostRedraw") = true;
 
-         auto ptoplevel = top_level();
+         //auto ptoplevel = top_level();
 
-         if (ptoplevel)
+         //if (ptoplevel)
          {
 
-            auto pwindow = ptoplevel->m_pacmewindowingwindow;
+            auto pwindow = pinteraction->m_pacmewindowingwindow;
 
             if (::is_set(pwindow))
             {
@@ -9844,9 +9844,9 @@ namespace user
 
       auto p = __as_pointer pmessage;
 
-      auto puserthread = user_thread();
+      //auto puserthread = user_thread();
 
-      puserthread->post([this, p]()
+      window()->main_post([this, p]()
       {
 
          message_handler(p);
@@ -13905,6 +13905,8 @@ namespace user
 
       //}
 
+      printf_line("interaction::message_handler pmessage->m_atom %lld", pmessage->m_atom.as_huge_integer());
+      
       if (pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 

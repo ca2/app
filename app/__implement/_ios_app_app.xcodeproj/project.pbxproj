@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A3108E22CE78C5E0067398D /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9A3108E12CE78C5E0067398D /* _static_factory_.inl */; };
-		9A3109062CE7E2D30067398D /* libdesktop_environment_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3108FF2CE7988B0067398D /* libdesktop_environment_ios.a */; };
+		9A3109062CE7E2D30067398D /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3108FF2CE7988B0067398D /* liboperating_ambient_ios.a */; };
 		9A3109082CE7E9C40067398D /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3109072CE7E9C40067398D /* libnode_ios.a */; };
 		9A3810CC2B705569004C0373 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3810CB2B7053CC004C0373 /* Launch Screen.storyboard */; };
 		9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BDAE2B6B65510077053E /* libios_acme_darwin.a */; };
@@ -243,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A3109082CE7E9C40067398D /* libnode_ios.a in Frameworks */,
-				9A3109062CE7E2D30067398D /* libdesktop_environment_ios.a in Frameworks */,
+				9A3109062CE7E2D30067398D /* liboperating_ambient_ios.a in Frameworks */,
 				9A94B9E72BE8AD5000744150 /* SystemConfiguration.framework in Frameworks */,
 				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */,
@@ -301,7 +301,7 @@
 		9A3108FB2CE798860067398D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A3108FF2CE7988B0067398D /* libdesktop_environment_ios.a */,
+				9A3108FF2CE7988B0067398D /* liboperating_ambient_ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -562,10 +562,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A3108FF2CE7988B0067398D /* libdesktop_environment_ios.a */ = {
+		9A3108FF2CE7988B0067398D /* liboperating_ambient_ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libdesktop_environment_ios.a;
+			path = liboperating_ambient_ios.a;
 			remoteRef = 9A3108FE2CE7988B0067398D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

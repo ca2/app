@@ -110,7 +110,7 @@ namespace draw2d_opengl
       }
 
 
-      this->init(size, pimage32, iStride);
+      this->initialize(size, pimage32, iStride);
 
       m_eflagElement = eobjectCreate;
 

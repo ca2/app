@@ -1947,10 +1947,10 @@ memsize memory_base::length() const
 }
 
 
-::particle_pointer memory_base::clone()
+::subparticle_pointer memory_base::clone()
 {
 
-   auto pmemory = __create_new < ::memory >();
+   auto pmemory = __allocate ::memory ();
 
    pmemory->copy_from(this);
 

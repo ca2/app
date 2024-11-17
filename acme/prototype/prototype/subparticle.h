@@ -239,6 +239,11 @@ public:
    virtual void acquire_ownership();
    virtual void release_ownership();
 
+
+   [[nodiscard]] virtual character_count sz_len() const;
+   virtual void to_sz(char * sz, character_count len) const;
+
+
 };
 
 

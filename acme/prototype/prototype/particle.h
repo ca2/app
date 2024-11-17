@@ -257,8 +257,6 @@ public:
 
 
 
-   [[nodiscard]] virtual character_count sz_len() const;
-   virtual void to_sz(char * sz, character_count len) const;
 
    virtual const char * topic_text() const;
    //virtual const char * raw_class_title() const;

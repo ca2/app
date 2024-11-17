@@ -891,3 +891,21 @@ void subparticle::acquire_ownership()
 //
 //
 
+
+
+[[nodiscard]] character_count subparticle::sz_len() const
+{
+
+   return 0;
+
+}
+
+
+void subparticle::to_sz(char * sz, character_count len) const
+{
+
+
+}
+
+
+

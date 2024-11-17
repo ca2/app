@@ -712,23 +712,6 @@ void particle::delete_this()
 }
 
 
-
-character_count particle::sz_len() const
-{
-
-   return ansi_len(::type(this).name()) + 1;
-
-}
-
-
-void particle::to_sz(char * sz, character_count len) const
-{
-
-   ansi_ncpy(sz, ::type(this).name(), len);
-
-}
-
-
 void particle::print_line(const ::scoped_string & scopedstr) const
 {
    

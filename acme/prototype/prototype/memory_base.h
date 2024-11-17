@@ -111,7 +111,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 class CLASS_DECL_ACME memory_base :
    public MEMORY,
-   virtual public ::particle
+   virtual public ::subparticle
 {
 public:
 
@@ -137,7 +137,7 @@ public:
    ~memory_base() override;
 
 
-   using ::particle::clear_flag;
+   using ::subparticle::clear_flag;
 
 
    virtual string as_utf8() const;

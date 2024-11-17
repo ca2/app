@@ -919,7 +919,7 @@ void interchange::_run_modal_loop()
 
 
 
-void interchange::handle(::topic* ptopic, ::context* pcontext)
+void interchange::handle(::topic * ptopic, ::context * pcontext)
 {
    
    if (ptopic->m_atom == id_set_application_dark_mode)

@@ -945,7 +945,7 @@ namespace core
 
       pframe->set_owner(puiOwner);
 
-      pframe->_001RunModalLoop();
+      pframe->wait_for_dialog_result();
 
       hls = pimpact->m_hls;
 

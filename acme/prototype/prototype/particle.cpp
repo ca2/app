@@ -635,7 +635,7 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 //}
 
 
-void particle::call_handle(::topic* ptopic, ::context* pcontext)
+void particle::call_handle(::topic * ptopic, ::context * pcontext)
 {
 
    handle(ptopic, pcontext);

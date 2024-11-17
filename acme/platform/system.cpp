@@ -3134,7 +3134,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic* ptopic, ::context* pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)

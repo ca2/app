@@ -138,7 +138,7 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
-   void operator()(::topic* ptopic, ::context* pcontext) override;
+   void operator()(::topic * ptopic, ::context * pcontext) override;
    //void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
@@ -445,7 +445,7 @@ public:
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
-   virtual void call_handle(::topic* ptopic, ::context* pcontext);
+   virtual void call_handle(::topic * ptopic, ::context * pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
@@ -780,7 +780,7 @@ public:
    }
 
 
-   virtual ::particle_pointer clone();
+   //virtual ::subparticle_pointer clone();
 
 
    virtual ::user::user * user();
@@ -822,7 +822,7 @@ public:
 //#define OPTIONAL_BASE_BODY                                                          \
 //public:                                                                             \
 //   void on_initialize_particle() override {}         \
-//   void handle(::topic*,::context*) override {}
+//   void handle(::topic *, ::context *) override {}
 //
 ////   void assert_ok() const override {}                                    \
 ////   void dump(dump_context&) const override {}                               \

@@ -844,8 +844,11 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 // From subject_listener from apex_database by camilo on day after ThomasBirthday2021 07:26 BRT
 #pragma once
 
+class topic;
 
-using signal_handler = ::function < void(::topic*, ::context*) >;
+class context;
+
+using signal_handler = ::function < void(::topic *, ::context *) >;
 //{
 //public:
 //

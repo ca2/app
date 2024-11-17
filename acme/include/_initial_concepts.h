@@ -743,3 +743,7 @@ concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
 
 
 
+
+
+template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
+concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;

@@ -81,7 +81,7 @@ public:
    virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
-   //void operator()(::topic* ptopic, ::context* pcontext) override;
+   //void operator()(::topic * ptopic, ::context * pcontext) override;
 
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);

@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->m_atom == "font_foreground")
                {
 
-                  ::int_point pointShowPopup({ ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() });
+                  ::int_point pointShowPopup( ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() );
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 

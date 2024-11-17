@@ -6,6 +6,8 @@
 #if OSBIT == 32
 
 
+using huge_integer = long long int;
+using huge_natural = unsigned long long int;
 using iptr = int;
 using uptr = unsigned int;
 
@@ -59,17 +61,6 @@ using uptr = huge_natural;
 //
 //#else
 
-#define DO_FOR_NUMBER_TYPES(DO) \
-DO(char, char, ch, CHAR); \
-DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
-DO(short, short, sh, SHORT); \
-DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
-DO(int, int, i, INT); \
-DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
-DO(huge_integer, huge_integer, hi, HUGE_INTEGER); \
-DO(huge_natural, huge_natural, hn, HUGE_NATURAL); \
-DO(float, float, f, FLOAT); \
-DO(double, double, d, DOUBLE);
 
 //#endif
 
@@ -86,6 +77,17 @@ DO(double, double, d, DOUBLE);
 
 #endif
 
+#define DO_FOR_NUMBER_TYPES(DO) \
+DO(char, char, ch, CHAR); \
+DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
+DO(short, short, sh, SHORT); \
+DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
+DO(int, int, i, INT); \
+DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
+DO(huge_integer, huge_integer, hi, HUGE_INTEGER); \
+DO(huge_natural, huge_natural, hn, HUGE_NATURAL); \
+DO(float, float, f, FLOAT); \
+DO(double, double, d, DOUBLE);
 
 //
 //

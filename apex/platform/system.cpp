@@ -5165,6 +5165,23 @@ namespace apex
    }
 
 
+   void system::do_operating_ambient_factory()
+   {
+
+
+#ifdef WINDOWS_DESKTOP
+
+      auto & pfactory = factory("apex", "windows");
+
+      pfactory->merge_to_global_factory();
+
+#endif
+
+
+   }
+
+
+
 } // namespace apex
 
 

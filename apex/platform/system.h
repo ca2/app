@@ -111,6 +111,9 @@ namespace apex
 
 #endif
 
+      void do_operating_ambient_factory() override;
+
+
       virtual void __task_init() override;
 
 

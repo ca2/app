@@ -64,6 +64,16 @@ namespace httpd
    }
 
 
+   ::pointer < ::httpd::incoming_socket > incoming_socket_thread::create_incoming_socket()
+   {
+
+      auto pincomingsocket = __id_create(m_typeIncomingSocket);
+
+      return pincomingsocket;
+
+   }
+
+
    //::pointer < ::sockets::listen_socket > socket_thread::create_listen_socket()
    //{
 

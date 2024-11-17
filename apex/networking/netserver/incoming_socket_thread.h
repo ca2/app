@@ -45,7 +45,6 @@ namespace netserver
 
       ::pointer < ::sockets::socket_handler > create_socket_handler() override;
       //virtual ::pointer < ::sockets::listen_socket > create_listen_socket();
-
       bool initialize_listen_socket() override;
 
       ::netserver::socket_handler * socket_handler();

@@ -43,7 +43,7 @@ namespace httpd
       
       
       virtual ::pointer < ::sockets::socket_handler > create_socket_handler();
-
+      virtual ::pointer < ::httpd::incoming_socket > create_incoming_socket();
 
       virtual bool initialize_listen_socket();
 

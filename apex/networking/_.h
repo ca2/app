@@ -15,6 +15,7 @@ namespace networking
    class application;
    class application_handler;
    class application_socket;
+   class application_incoming_socket_thread;
 
 
    class email;

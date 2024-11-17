@@ -105,7 +105,7 @@ namespace netserver
 
             m_psockethandlerIncoming->EnablePool();
 
-            m_pincomingsocket = __id_create(m_typeIncomingSocket);
+            m_pincomingsocket = create_incoming_socket();
 
             //m_pincomingsocket->initialize_listen_socket(m_typeDetachIncomingSocket);
 

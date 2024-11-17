@@ -3526,13 +3526,13 @@ namespace jwt {
 		using array_type = picojson::array;
 		using string_type = std::string;
 		using number_type = double;
-		using integer_type = int64_t;
+		using integer_type = huge_integer;
 		using boolean_type = bool;
 
 		static json::type get_type(const picojson::value& val) {
 			using json::type;
 			if (val.is<bool>()) return type::boolean;
-			if (val.is<int64_t>()) return type::integer;
+			if (val.is<huge_integer>()) return type::integer;
 			if (val.is<double>()) return type::number;
 			if (val.is<std::string>()) return type::string;
 			if (val.is<picojson::array>()) return type::array;
@@ -3556,9 +3556,9 @@ namespace jwt {
 			return val.get<picojson::array>();
 		}
 
-		static int64_t as_int(const picojson::value& val) {
-			if (!val.is<int64_t>()) throw std::bad_cast();
-			return val.get<int64_t>();
+		static huge_integer as_int(const picojson::value& val) {
+			if (!val.is<huge_integer>()) throw std::bad_cast();
+			return val.get<huge_integer>();
 		}
 
 		static bool as_bool(const picojson::value& val) {

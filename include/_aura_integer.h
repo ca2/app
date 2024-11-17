@@ -7,7 +7,7 @@
 //using char = int8_t;
 //using short = int16_t;
 //using int = int32_t;
-//using huge_integer = int64_t;
+//using huge_integer = huge_integer;
 
 
 //using unsigned char = uint8_t;

@@ -132,7 +132,7 @@ namespace draw2d_opengl
 
 #ifdef __DEBUG
 
-   int64_t graphics::increment_reference_count()
+   huge_integer graphics::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -140,7 +140,7 @@ namespace draw2d_opengl
    }
 
 
-   int64_t graphics::decrement_reference_count()
+   huge_integer graphics::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

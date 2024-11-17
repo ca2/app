@@ -571,7 +571,7 @@ namespace platform
       //      //
       //      //#endif
       //
-      //      //m_edesktop = ::user::e_desktop_none;
+      //      //m_edesktop = ::user::e_operating_ambient_none;
       //
       //      information() << "initialize_system os_construct";
       //

@@ -79,7 +79,7 @@ namespace platform
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
-      //m_edesktop = ::user::e_desktop_none;
+      //m_edesktop = ::user::e_operating_ambient_none;
       //m_etoolkit = ::user::e_toolkit_none;
 
       m_pAcmePosix = nullptr;
@@ -1683,7 +1683,7 @@ namespace platform
    //::user::enum_operating_ambient node::get_eoperating_ambient()
    //{
 
-   //   if (m_edesktop == ::user::e_desktop_none)
+   //   if (m_edesktop == ::user::e_operating_ambient_none)
    //   {
 
    //      m_edesktop = calculate_edesktop();

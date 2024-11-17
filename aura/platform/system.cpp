@@ -617,13 +617,13 @@ namespace aura
 //
 //      auto edesktop = get_eoperating_ambient();
 //
-//      if (edesktop & ::user::e_desktop_kde)
+//      if (edesktop & ::user::e_operating_ambient_kde)
 //      {
 //
 //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
 //
 //      }
-//      else if (edesktop & ::user::e_desktop_gnome)
+//      else if (edesktop & ::user::e_operating_ambient_gnome)
 //      {
 //
 //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");

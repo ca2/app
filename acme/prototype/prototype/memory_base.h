@@ -206,7 +206,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   ::particle_pointer clone() override;
+   ::subparticle_pointer clone() override;
 
 
 //   inline unsigned char * storage_begin() { return m_memory.storage_begin(); }

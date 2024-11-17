@@ -106,8 +106,6 @@ int main(int argc, char ** argv, char ** envp)
 ////
    //::acme::acme::g_pacme->m_papplication->implement_application();
 
-   int iExitCode = -1;
-
    try
    {
 
@@ -163,7 +161,7 @@ int main(int argc, char ** argv, char ** envp)
 
       }
 
-      iExitCode = exception.m_estatus.exit_code();
+      system.m_iExitCode = exception.m_estatus.exit_code();
 
    }
    catch (...)
@@ -190,7 +188,7 @@ int main(int argc, char ** argv, char ** envp)
    
    //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
-   return iExitCode;
+   return system.m_iExitCode;
 
 
 //   //sub_system subsystem(&acme);

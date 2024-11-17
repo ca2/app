@@ -111,6 +111,17 @@ public:
       str.m_end = nullptr; 
    }
 
+   void _construct(const ::ansi_string & ansistr) { construct10(ansistr); }
+   void _construct(const ::wd16_string & wd16str) { construct10(wd16str); }
+   void _construct(const ::wd32_string & wd32str) { construct10(wd32str); }
+   void _construct(string_base && str)
+   {
+      this->m_begin = str.m_begin;
+      this->m_end = str.m_end;
+      this->m_erange = str.m_erange;
+      str.m_begin = nullptr;
+      str.m_end = nullptr;
+   }
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }

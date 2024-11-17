@@ -397,6 +397,7 @@ list(APPEND library_source
    #networking/url_domain.h
    operating_system/_.cpp
    operating_system/_const_console.h
+   operating_system/__eoperating_ambient.cpp
    operating_system/ansi/_pthread.h
    operating_system/__eoperating_ambient.cpp
    #operating_system/ansi/base.cpp

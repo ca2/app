@@ -1816,14 +1816,14 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 //}
 
 
-::particle_pointer particle::clone()
-{
-
-   throw interface_only();
-
-   return nullptr;
-
-}
+// ::particle_pointer particle::clone()
+// {
+//
+//    throw interface_only();
+//
+//    return nullptr;
+//
+// }
 
 
 ::user::user * particle::user()

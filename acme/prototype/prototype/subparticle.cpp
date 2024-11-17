@@ -892,7 +892,7 @@ void subparticle::acquire_ownership()
 //
 
 
-::subparticle_pointer particle::clone()
+::subparticle_pointer subparticle::clone()
 {
 
    throw interface_only();

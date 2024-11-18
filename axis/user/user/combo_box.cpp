@@ -72,7 +72,7 @@ namespace user
 
 
 
-   ::particle_pointer combo_box::clone()
+   ::subparticle_pointer combo_box::clone()
    {
 
       auto pcomboboxClone = m_papplication->__create_new < combo_box >();

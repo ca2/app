@@ -100,7 +100,7 @@ namespace platform
       ::node_kde5::node* m_pNodeKDE5;
       ::node_kde6::node* m_pNodeKDE6;
       ::node_xfce::node* m_pNodeXfce;
-      ::desktop_environment_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
+      ::operating_ambient_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
       ::desktop_environment_kde::node* m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node* m_pNodeDesktopEnvironmentXfce;
 

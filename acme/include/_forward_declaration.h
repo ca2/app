@@ -1015,14 +1015,14 @@ namespace node_xfce
 } // namespace node_xfce
 
 
-namespace desktop_environment_gtk_based
+namespace operating_ambient_gtk_based
 {
 
 
    class node;
 
 
-} // namespace desktop_environment_gtk_based
+} // namespace operating_ambient_gtk_based
 
 
 namespace windowing

@@ -34,7 +34,7 @@ namespace opengl
 
    ::pointer <::gpu::context > allocate_egl_context(::particle * pparticle);
 
-   ::pointer <::gpu::context > allocate_glx_context(::particle * pparticle);
+   //::pointer <::gpu::context > allocate_glx_context(::particle * pparticle);
 
 #endif
 
@@ -152,12 +152,12 @@ namespace opengl
          pgpucontext = allocate_egl_context(pparticle);
 
       }
-      else
-      {
-
-         pgpucontext = allocate_glx_context(pparticle);
-
-      }
+      // else
+      // {
+      //
+      //    pgpucontext = allocate_glx_context(pparticle);
+      //
+      // }
 
 #endif
 

@@ -1504,6 +1504,8 @@ namespace micro
    void main_window::redraw()
    {
 
+      ::acme::user::interaction::redraw();
+
 
    }
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #include "manual_reset_happening.h"
+#include "wait_for_end_of_sequence.h"
 #include "acme/handler/sequence.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/acme.h"
@@ -1422,6 +1423,8 @@ void task::_send(const ::procedure & procedure)
 
    }
 
+   wait_for_end_of_sequence waitforendofsequence(pmanualresethappeningOnEndOfSequence, psequence);
+
    if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
    {
 
@@ -1451,7 +1454,12 @@ void task::_send(const ::procedure & procedure)
             });
    }
 
-   pmanualresethappeningOnEndOfSequence->wait(procedure.timeout());
+   if (!waitforendofsequence.lock(procedure.timeout()))
+   {
+
+      procedure.m_pbase->on_timed_out();
+
+   }
 
 }
 

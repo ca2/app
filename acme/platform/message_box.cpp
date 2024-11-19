@@ -185,6 +185,18 @@ huge_integer message_box::decrement_reference_count()
 
 }
 
+
+void message_box::on_timed_out()
+{
+
+   m_payloadResult = e_dialog_result_timeout;
+
+   on_sequence();
+
+}
+
+
+
 void message_box::run()
 {
 

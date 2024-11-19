@@ -7,25 +7,6 @@
 //
 
 
-template < typename N >
-inline int msb(N n)
-{
-
-   int i = sizeof(N) * 8;
-
-   do
-   {
-      i--;
-      if(n & (numeric_info < N >::unitary () << i))
-         return i;
-
-   }
-   while(i > 0);
-
-   return -1;
-
-}
-
 
 class bstring_manager;
 class read_only_memory;

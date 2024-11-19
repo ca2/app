@@ -24572,6 +24572,8 @@ namespace user
       if (drag_on_button_down(pitemLButtonDown))
       {
 
+         pmouse->m_bRet = true;
+
          return;
 
       }
@@ -26276,7 +26278,9 @@ namespace user
       }
 
       //if (m_bDefaultMouseHoverHandling)
+      if (!m_pitemHover || !m_pitemHover->is_item_set())
       {
+
          auto type = ::type(this);
 
          if (type.name().contains("button"))

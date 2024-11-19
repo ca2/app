@@ -244,6 +244,8 @@ public:
    virtual void to_sz(char * sz, character_count len) const;
 
 
+   virtual void on_timed_out();
+
 };
 
 

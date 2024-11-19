@@ -34,6 +34,9 @@ public:
    bool should_create_sequence_on_synchronicity() override;
 
 
+   void on_timed_out() override;
+
+
    void destroy() override;
 
 
@@ -169,6 +172,20 @@ bool realizable < REALIZABLE >::should_create_sequence_on_synchronicity()
    }
 
    return false;
+
+}
+
+
+template < typename REALIZABLE >
+void realizable < REALIZABLE >::on_timed_out()
+{
+
+   if (m_preified)
+   {
+
+      m_preified->on_timed_out();
+
+   }
 
 }
 

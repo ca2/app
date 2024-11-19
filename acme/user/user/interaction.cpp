@@ -1501,6 +1501,12 @@ namespace acme
          void interaction::redraw()
          {
 
+            if (m_pacmewindowingwindow)
+            {
+
+               m_pacmewindowingwindow->redraw();
+
+            }
 
          }
 

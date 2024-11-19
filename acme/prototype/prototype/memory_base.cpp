@@ -54,7 +54,7 @@ memory_base::~memory_base()
 
 memory_base & memory_base::prefix_der_length()
 {
-   int msb = ::msb(size());
+   int msb = ::most_significant_bit_index(size());
    if(msb < 7)
    {
       move_and_grow(1);

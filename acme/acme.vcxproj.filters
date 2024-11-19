@@ -4062,6 +4062,9 @@
     <ClInclude Include="release\_.h">
       <Filter>Header Files\release</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\wait_for_end_of_sequence.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5785,6 +5788,9 @@
     </ClCompile>
     <ClCompile Include="release\release.cpp">
       <Filter>Source Files\release</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1389,6 +1389,7 @@
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="parallelization\wait_for_end_of_sequence.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\application_acme.h" />
     <ClInclude Include="platform\application_apex.h" />
@@ -1987,6 +1988,7 @@
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
+    <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\allocator.cpp" />

@@ -65,6 +65,9 @@ public:
    ::payload get_result_payload() override;
 
    
+   void on_timed_out() override;
+
+
    //::payload do_synchronously(const class time & timeWait) override;
    //void do_asynchronously() override;
 

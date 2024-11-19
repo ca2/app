@@ -445,7 +445,7 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
    };
 
-#if !defined(GNU_COMPILER) && !defined(FREEBSD)
+#if !defined(GNU_COMPILER) && !defined(FREEBSD) && !defined(WINDOWS_DESKTOP)
 
    template < >
    class CLASS_DECL_ACME numeric_info < huge_integer > :

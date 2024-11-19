@@ -96,7 +96,7 @@ namespace user
       virtual void ensure_item_visible_by_index(::collection::index iItem) override;
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
       status < int_rectangle > item_rectangle(::item * pitem, ::user::enum_layout elayout) override;
 

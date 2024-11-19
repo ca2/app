@@ -156,8 +156,6 @@ struct base_const_c_string
 
 
 
-template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
-class string_array_base;
 
 
 
@@ -986,5 +984,3 @@ using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::ty
 
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
-
-

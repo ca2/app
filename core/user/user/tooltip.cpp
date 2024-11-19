@@ -73,10 +73,10 @@ namespace user
 
 
 
-   void tooltip::_001OnTimer(::timer * ptimer)
+   void tooltip::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
 
    }

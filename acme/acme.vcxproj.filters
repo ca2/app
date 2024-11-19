@@ -448,6 +448,9 @@
     <Filter Include="Header Files\console\dialog">
       <UniqueIdentifier>{77eb1446-1900-4a2c-a8bb-ddf0752d6d6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\release">
+      <UniqueIdentifier>{250c956a-3d0e-48b1-a15b-51036c58b966}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4056,6 +4059,9 @@
     <ClInclude Include="parallelization\happening.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="release\_.h">
+      <Filter>Header Files\release</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5639,7 +5645,7 @@
     <ClCompile Include="console\dialog.cpp">
       <Filter>Source Files\console</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\post_procedure_continuation.cpp">
+    <ClCompile Include="prototype\prototype\sequence_continuation.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="prototype\collection\procedure_array.cpp">
@@ -5776,6 +5782,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\__eoperating_ambient.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="release\release.cpp">
+      <Filter>Source Files\release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

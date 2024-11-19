@@ -137,12 +137,12 @@ enum enum_dispatch
 {
 
    e_dispatch_none,
-   e_dispatch_send,
-   e_dispatch_post,
-   e_dispatch_main_send,
-   e_dispatch_main_post,
-   e_dispatch_user_send,
-   e_dispatch_user_post,
+   e_dispatch_send = 1,
+   e_dispatch_post = 2,
+   e_dispatch_main_send = 0x10 | e_dispatch_send,
+   e_dispatch_main_post = 0x10 | e_dispatch_post,
+   e_dispatch_user_send = 0x100 | e_dispatch_send,
+   e_dispatch_user_post = 0x100 | e_dispatch_post,
 
 };
 
@@ -158,8 +158,10 @@ public:
    
 
    sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch);
-   sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch, const ::procedure & procedure);
+   sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch, const ::procedure & procedure, bool bCreateSequence = false);
    sequence_continuation & operator << (const ::procedure & procedure);
+
+
    ~sequence_continuation();
 
 };

@@ -307,7 +307,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnUpdateListImpactAutoArrange);
 

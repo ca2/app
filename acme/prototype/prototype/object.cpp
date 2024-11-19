@@ -703,6 +703,21 @@ bool object::is_running() const
 }
 
 
+void object::branch_send(const ::procedure & procedure, manual_reset_happening * phappening)
+{
+
+   fork([procedure]()
+      {
+
+         procedure();
+
+      });
+
+   phappening->wait(procedure.timeout());
+
+}
+
+
 //void object::runchild_post_quit(const ::scoped_string & scopedstrTag)
 //{
 //

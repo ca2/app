@@ -4370,32 +4370,17 @@ namespace user
 
       {
 
-         auto pacmewindowingwindow = m_pacmewindowingwindow;
+         auto ptimerarray = m_ptimerarray;
 
-         if (pacmewindowingwindow)
+         if (ptimerarray)
          {
 
-            ::pointer < ::windowing::window > pwindow;
-
-            pwindow = pacmewindowingwindow;
-
-            if (pwindow)
-            {
-
-               auto ptimerarray = pwindow->m_ptimerarray;
-
-               if (ptimerarray)
-               {
-
-                  ptimerarray->delete_all_timers();
-
-               }
-
-            }
+            ptimerarray->delete_all_timers();
 
          }
 
       }
+
 
       fps_interest_stop();
 
@@ -9383,20 +9368,20 @@ namespace user
    }
 
 
-   void interaction::_001OnTimer(::timer * ptimer)
-   {
-
-   }
-
-
    void interaction::on_timer(::timer * ptimer)
    {
 
-      _001OnTimer(ptimer);
-
-      //return true;
-
    }
+
+
+   //void interaction::on_timer(::timer * ptimer)
+   //{
+
+   //   on_timer(ptimer);
+
+   //   //return true;
+
+   //}
 
 
    ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
@@ -15856,7 +15841,7 @@ namespace user
 
       ::timer timer(uEvent);
 
-      _001OnTimer(&timer);
+      on_timer(&timer);
 
       return SetTimer(uEvent, timeElapse, pfnTimer);
 
@@ -15879,42 +15864,42 @@ namespace user
    }
 
 
-   void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
-                              void * pdata)
-   {
+   //void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   //                           void * pdata)
+   //{
 
-      //if (window() == nullptr)
-      //{
+   //   //if (window() == nullptr)
+   //   //{
 
-      //   return;
+   //   //   return;
 
-      //}
+   //   //}
 
-      if (has_destroying_flag())
-      {
+   //   //if (has_destroying_flag())
+   //   //{
 
-         return;
+   //   //   return;
 
-      }
+   //   //}
 
-      //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+   //   //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
-   }
+   //}
 
 
-   void interaction::KillTimer(uptr uEvent)
-   {
+   //void interaction::KillTimer(uptr uEvent)
+   //{
 
-      //if (window() == nullptr)
-      //{
+   //   //if (window() == nullptr)
+   //   //{
 
-      //   return;
+   //   //   return;
 
-      //}
+   //   //}
 
-      //window()->KillTimer(uEvent);
+   //   window()->KillTimer(uEvent);
 
-   }
+   //}
 
 
    bool interaction::has_keyboard_focus()

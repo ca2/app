@@ -2498,24 +2498,24 @@ namespace user
    //}
 
 
-   void interaction_base::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
-   {
+   //void interaction_base::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
-   void interaction_base::KillTimer(uptr uEvent)
-   {
+   //void interaction_base::KillTimer(uptr uEvent)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //bool interaction_base::has_keyboard_focus() const
@@ -3450,7 +3450,7 @@ namespace user
    //   return &::user::interaction_base::_user_message_handler;
    //}
 
-   //void interaction_base::_001OnTimer(::timer * ptimer)
+   //void interaction_base::on_timer(::timer * ptimer)
    //{
 
 
@@ -3986,7 +3986,7 @@ namespace user
 
 
 
-   //void interaction_base::_001OnTimer(::timer * ptimer)
+   //void interaction_base::on_timer(::timer * ptimer)
    //{
 
    //   __UNREFERENCED_PARAMETER(ptimer);
@@ -4450,7 +4450,7 @@ namespace user
    }
 
 
-   void interaction_base::_001OnTimer(::timer * ptimer)
+   void interaction_base::on_timer(::timer * ptimer)
    {
 
       __UNREFERENCED_PARAMETER(ptimer);

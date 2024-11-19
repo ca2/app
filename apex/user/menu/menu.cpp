@@ -1280,10 +1280,10 @@ menu::~menu()
 //
 //
 //
-//   void menu::_001OnTimer(::timer * ptimer)
+//   void menu::on_timer(::timer * ptimer)
 //      {
 //
-//         ::user::interaction::_001OnTimer(ptimer);
+//         ::user::interaction::on_timer(ptimer);
 //
 //         ::pointer<::menu::item>pitemThis = get_menu_item();
 //

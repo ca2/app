@@ -814,10 +814,10 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void simple_scroll_bar::_001OnTimer(::timer * ptimer)
+void simple_scroll_bar::on_timer(::timer * ptimer)
 {
 
-   ::user::scroll_bar::_001OnTimer(ptimer);
+   ::user::scroll_bar::on_timer(ptimer);
 
    //auto pointCursor = mouse_cursor_position();
 

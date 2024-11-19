@@ -37,6 +37,8 @@ namespace micro
    message_box::message_box()
    {
 
+      set_flag(e_flag_should_create_sequence_on_synchronicity);
+
    }
 
 

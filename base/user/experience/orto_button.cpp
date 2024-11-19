@@ -185,10 +185,10 @@ namespace experience
    }
 
 
-   void orto_button::_001OnTimer(::timer * ptimer)
+   void orto_button::on_timer(::timer * ptimer)
    {
 
-      ::experience::button::_001OnTimer(ptimer);
+      ::experience::button::on_timer(ptimer);
       // TODO: add your message handler code here and/or call default
       if (ptimer->m_uEvent == e_timer_check_focus)
       {
@@ -259,7 +259,7 @@ namespace experience
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
       //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::on_message_size);
-      //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::_001OnTimer);
+      //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::on_timer);
    }
 
 

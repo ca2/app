@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #include "manual_reset_happening.h"
+#include "acme/handler/sequence.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
@@ -1389,6 +1390,8 @@ void task::_post(const ::procedure & procedure)
 void task::_send(const ::procedure & procedure)
 {
 
+   ::cast < ::sequence > psequence = procedure.m_pbase;
+
    if (is_current_task())
    {
 
@@ -1398,20 +1401,62 @@ void task::_send(const ::procedure & procedure)
 
    }
 
-   auto pevent = __create_new < manual_reset_happening>();
+   ::pointer < ::manual_reset_happening > pmanualresethappeningOnEndOfSequence;
 
-   post([procedure, pevent]()
-      {
+   ::pointer < ::manual_reset_happening > pmanualresethappeningOnEndOfSequenceToSetInProcedure;
+   
+   if (psequence)
+   {
 
-         procedure();
+      __defer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
 
-         pevent->set_happening();
+      pmanualresethappeningOnEndOfSequence = psequence->m_pmanualresethappeningOnEndOfSequence;
+
+   }
+   else
+   {
+
+      pmanualresethappeningOnEndOfSequence = __create_new < manual_reset_happening>();
+
+      pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
+
+   }
+
+   if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
+   {
+
+      post([procedure, pmanualresethappeningOnEndOfSequenceToSetInProcedure]()
+         {
+
+               procedure();
+
+               if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
+               {
+
+                  pmanualresethappeningOnEndOfSequenceToSetInProcedure->set_happening();
+
+               }
 
          });
 
-   pevent->wait(procedure.timeout());
+   }
+   else
+   {
+
+      fork([procedure]()
+         {
+
+            procedure();
+
+            });
+   }
+
+   pmanualresethappeningOnEndOfSequence->wait(procedure.timeout());
 
 }
+
+
+
 
 procedure task::pick_next_posted_procedure()
 {

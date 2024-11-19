@@ -80,7 +80,7 @@ namespace filemanager
 
       virtual void on_insert_columns() override;
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
       virtual void add_path(bool bExpandAscendants, const ::file::path & path, const ::scoped_string & scopedstrName);
 
       void install_message_routing(::channel * pchannel) override;

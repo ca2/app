@@ -167,8 +167,8 @@ namespace platform
       string                                          m_strCommandLine;
 
 
-      ::particle_pointer                                    m_pmutexTask;
-      ::particle_pointer                                 m_pmutexTaskOn;
+      ::pointer < ::mutex >                                 m_pmutexTask;
+      ::pointer < ::mutex >                                 m_pmutexTaskOn;
 
 
       ::block                                               m_blockMatter;

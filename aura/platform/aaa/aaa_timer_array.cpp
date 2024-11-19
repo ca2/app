@@ -191,7 +191,7 @@ namespace aura
 
       }
 
-      _001OnTimer(ptimer);
+      on_timer(ptimer);
 
       if(!ptimer->m_bPeriodic)
       {
@@ -207,7 +207,7 @@ namespace aura
    }
 
 
-   void timer_array::_001OnTimer(::timer * ptimer)
+   void timer_array::on_timer(::timer * ptimer)
    {
 
       if (m_pcallback != nullptr)

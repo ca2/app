@@ -326,6 +326,14 @@ void subparticle::on_sequence()
 }
 
 
+bool subparticle::should_create_sequence_on_synchronicity()
+{
+
+   return has_flag(e_flag_should_create_sequence_on_synchronicity);
+
+}
+
+
 void subparticle::delete_this()
 {
 

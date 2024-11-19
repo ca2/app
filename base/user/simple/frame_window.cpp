@@ -4285,12 +4285,12 @@ void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMake
 }
 
 
-void simple_frame_window::_001OnTimer(::timer * ptimer)
+void simple_frame_window::on_timer(::timer * ptimer)
 {
 
-   ::user::frame_window::_001OnTimer(ptimer);
+   ::user::frame_window::on_timer(ptimer);
 
-   ::experience::frame_window::_001OnTimer(ptimer);
+   ::experience::frame_window::on_timer(ptimer);
 
 }
 

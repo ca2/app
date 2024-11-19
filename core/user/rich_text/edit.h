@@ -150,7 +150,7 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-         void _001OnTimer(::timer * ptimer) override;
+         void on_timer(::timer * ptimer) override;
 
 
          virtual void key_to_char(::message::key * pkey);

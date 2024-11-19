@@ -1667,6 +1667,8 @@ class ::payload & payload::operator = (const class ::payload & payload)
 
          m_ppayloada = payload.m_ppayloada;
 
+         __refdbg_add_referer
+
          m_ppayloada->increment_reference_count();
 
       }

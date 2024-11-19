@@ -37,7 +37,7 @@ namespace userpresence
 
       virtual bool is_initialized();
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
 
       bool on_ui_mouse_message(::user::mouse * pmouse);

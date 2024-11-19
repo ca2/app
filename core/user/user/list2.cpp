@@ -526,9 +526,9 @@ namespace user
    //   //            return 0;
    //}
 
-   //void list2::_001OnTimer(::timer* ptimer)
+   //void list2::on_timer(::timer* ptimer)
    //{
-   //   simple_user_list::_001OnTimer(ptimer);
+   //   simple_user_list::on_timer(ptimer);
    //   if (ptimer->m_uEvent == 123654)
    //   {
    //      KillTimer(123654);

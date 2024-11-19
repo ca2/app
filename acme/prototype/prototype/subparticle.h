@@ -61,7 +61,7 @@ public:
 
    virtual void on_sequence();
    
-
+   virtual bool should_create_sequence_on_synchronicity();
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
 

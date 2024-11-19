@@ -1334,10 +1334,10 @@ namespace user
    //}
 
 
-   void plain_edit::_001OnTimer(::timer * ptimer)
+   void plain_edit::on_timer(::timer * ptimer)
    {
 
-      interaction::_001OnTimer(ptimer);
+      interaction::on_timer(ptimer);
 
       enum_timer etimer = (enum_timer)ptimer->m_uEvent;
 
@@ -1418,7 +1418,7 @@ namespace user
       else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
 
-         //information() << "_001OnTimer e_timer_caret_flashing";
+         //information() << "on_timer e_timer_caret_flashing";
 
          if (has_keyboard_focus())
          {

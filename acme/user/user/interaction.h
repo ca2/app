@@ -64,6 +64,8 @@ namespace acme
          ////::atom                                    m_atom;
          ////int_rectangle                             m_rectangle;
          ////enum_font                                 m_efont;
+         ::pointer<::acme::timer_array>               m_ptimerarray;
+
 
 
          //bool                                      m_bMinimizeBox;
@@ -98,6 +100,11 @@ namespace acme
          virtual void on_create_window_object();
 
          void destroy_window() override;
+
+
+         virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
+         virtual void KillTimer(uptr uEvent);
+
 
          //void show_window() override;
 

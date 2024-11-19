@@ -73,7 +73,7 @@ namespace filehandler
       virtual void refresh();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer);
+      void on_timer(::timer * ptimer);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);

@@ -891,7 +891,7 @@ namespace experience
    }
 
 
-   bool frame::_001OnTimer(unsigned int uEvent)
+   bool frame::on_timer(unsigned int uEvent)
    {
 
       __UNREFERENCED_PARAMETER(uEvent);

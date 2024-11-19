@@ -2068,7 +2068,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 }
 
 
-void xfplayer_impact_line::_001OnTimer(::timer * ptimer)
+void xfplayer_impact_line::on_timer(::timer * ptimer)
 {
 
    __UNREFERENCED_PARAMETER(ptimer);

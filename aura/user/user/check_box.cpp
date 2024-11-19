@@ -625,7 +625,7 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(::timer * ptimer)
+   void check_box::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == e_timer_check_toggle_animation)
@@ -664,7 +664,7 @@ namespace user
 //
 //      }
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
    }
 

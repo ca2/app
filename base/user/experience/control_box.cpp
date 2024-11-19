@@ -214,10 +214,10 @@ namespace experience
    }
 
 
-   void control_box::_001OnTimer(::timer * ptimer)
+   void control_box::on_timer(::timer * ptimer)
    {
 
-      ::user::auto_hide::_001OnTimer(ptimer);
+      ::user::auto_hide::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_check_hover)
       {

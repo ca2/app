@@ -271,7 +271,7 @@ namespace userex
    }
 
 
-   void progress_impact::_001OnTimer(::timer * ptimer)
+   void progress_impact::on_timer(::timer * ptimer)
    {
 
             if (ptimer->m_uEvent == e_timer_update_current_area)

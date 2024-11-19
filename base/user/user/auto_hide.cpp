@@ -392,7 +392,7 @@ namespace user
    }
 
 
-   void auto_hide::_001OnTimer(::timer * ptimer)
+   void auto_hide::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)

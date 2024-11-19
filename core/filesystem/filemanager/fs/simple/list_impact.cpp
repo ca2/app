@@ -43,7 +43,7 @@ namespace filemanager
          {
             simple_list_impact::install_message_routing(pchannel);
             MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
-//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_impact::_001OnTimer);
+//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_impact::on_timer);
             MESSAGE_LINK(e_message_size, pchannel, this, &list_impact::on_message_size);
 #ifdef WINDOWS_DESKTOP
             MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
@@ -469,9 +469,9 @@ namespace filemanager
 //            return 0;
          }
 
-         void list_impact::_001OnTimer(::timer * ptimer)
+         void list_impact::on_timer(::timer * ptimer)
          {
-            simple_list_impact::_001OnTimer(ptimer);
+            simple_list_impact::on_timer(ptimer);
             if(ptimer->m_uEvent == 123654)
             {
                KillTimer(123654);

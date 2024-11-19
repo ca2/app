@@ -1656,10 +1656,10 @@ namespace user
       }
 
 
-      void edit::_001OnTimer(::timer * ptimer)
+      void edit::on_timer(::timer * ptimer)
       {
 
-         ::user::interaction::_001OnTimer(ptimer);
+         ::user::interaction::on_timer(ptimer);
 
          if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
          {

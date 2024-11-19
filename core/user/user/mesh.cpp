@@ -3942,10 +3942,10 @@ namespace user
    }
 
 
-   void mesh::_001OnTimer(::timer * ptimer)
+   void mesh::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_hover_select)
       {

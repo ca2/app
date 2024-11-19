@@ -107,7 +107,7 @@ public:
 
    //::particle_pointer m_pparticleLast;
    //::particle_pointer m_pparticle;
-   
+   ::pointer < manual_reset_happening > m_pmanualresethappeningOnEndOfSequence;
    
    sequence();
    ~sequence() override;

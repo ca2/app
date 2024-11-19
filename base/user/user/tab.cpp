@@ -1664,7 +1664,7 @@ namespace user
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
       MESSAGE_LINK(message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
 
-      ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::_001OnTimer);
+      ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::on_timer);
 
    }
 
@@ -2781,12 +2781,12 @@ namespace user
    }
 
 
-   void tab::_001OnTimer(::timer * ptimer)
+   void tab::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
-      ::user::auto_hide::_001OnTimer(ptimer);
+      ::user::auto_hide::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_drag_start)
       {

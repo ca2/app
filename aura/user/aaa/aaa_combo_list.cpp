@@ -410,7 +410,7 @@ namespace user
    }
 
 
-   void list_box::_001OnTimer(::timer* ptimer)
+   void list_box::on_timer(::timer* ptimer)
    {
    
       if (ptimer->m_etimer == e_timer_kill_focus)
@@ -434,7 +434,7 @@ namespace user
 
       }
 
-      ::user::scroll_base::_001OnTimer(ptimer);
+      ::user::scroll_base::on_timer(ptimer);
    
    }
 

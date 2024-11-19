@@ -834,8 +834,9 @@ namespace platform
       //
       // }
 
-      m_pmutexHttpDownload = node()->create_mutex();
-
+      __construct(m_pmutexTask);
+         
+      __construct(m_pmutexHttpDownload);
 
       //if(!estatus)
       //{
@@ -1253,6 +1254,7 @@ namespace platform
    //      return estatus;
    //
    //   }
+
 
    ::task* system::get_task(itask_t itask)
    {

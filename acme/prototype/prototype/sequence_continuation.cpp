@@ -11,11 +11,23 @@ sequence_continuation::sequence_continuation(::particle * pparticle, enum_dispat
 }
 
 
-sequence_continuation::sequence_continuation(::particle * pparticle, enum_dispatch edispatch, const ::procedure & procedure) :
+sequence_continuation::sequence_continuation(::particle * pparticle, enum_dispatch edispatch, const ::procedure & procedure, bool bCreateSequence) :
    m_pparticleTarget(pparticle),
-   m_edispatch(edispatch),
-   m_procedure(procedure)
+   m_edispatch(edispatch)
 {
+
+   if (bCreateSequence)
+   {
+
+      operator <<(procedure);
+
+   }
+   else
+   {
+
+      m_procedure = procedure;
+
+   }
 
 }
 

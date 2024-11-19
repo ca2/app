@@ -24,7 +24,7 @@ namespace user
    {
       ::user::interaction::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&slider::on_message_create);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&slider::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer,pchannel,this,&slider::on_timer);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&slider::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::on_message_mouse_move);
@@ -39,10 +39,10 @@ namespace user
 
    }
 
-   void slider::_001OnTimer(::timer * ptimer)
+   void slider::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
 
    }

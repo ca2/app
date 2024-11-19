@@ -59,7 +59,8 @@ public:
    //virtual ::e_message_box get_conversation_flags();
    //virtual ::string get_conversation_details();
    //virtual ::payload get_conversation_result();
-
+   
+   
    
    ::payload get_result_payload() override;
 

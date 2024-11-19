@@ -1125,9 +1125,9 @@ namespace user
    //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
-   void form_list::_001OnTimer(::timer * ptimer)
+   void form_list::on_timer(::timer * ptimer)
    {
-      list::_001OnTimer(ptimer);
+      list::on_timer(ptimer);
    }
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)

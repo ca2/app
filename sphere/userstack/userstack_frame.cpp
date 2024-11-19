@@ -60,7 +60,7 @@ namespace userstack
    {
       simple_frame_window::install_message_routing(pchannel);
       //MESSAGE_LINK(e_message_close,          pchannel, this, &frame::on_message_close);
-//      //MESSAGE_LINK(e_message_timer,          pchannel, this, &frame::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer,          pchannel, this, &frame::on_timer);
       MESSAGE_LINK(e_message_create,         pchannel, this, &frame::on_message_create);
       MESSAGE_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);
       MESSAGE_LINK(e_message_mouse_leave,     pchannel, this, &frame::on_message_mouse_leave);
@@ -93,10 +93,10 @@ namespace userstack
 
 
 
-   void frame::_001OnTimer(::timer * ptimer)
+   void frame::on_timer(::timer * ptimer)
    {
 
-      simple_frame_window::_001OnTimer(ptimer);;
+      simple_frame_window::on_timer(ptimer);;
 
       auto uEvent = ptimer->m_uEvent;
 

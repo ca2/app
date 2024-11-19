@@ -1701,10 +1701,10 @@ namespace user
    //}
 
 
-   void form_control::_001OnTimer(::timer * ptimer)
+   void form_control::on_timer(::timer * ptimer)
    {
 
-      ::user::form::_001OnTimer(ptimer);
+      ::user::form::on_timer(ptimer);
 
       if(m_pcallback != nullptr)
       {

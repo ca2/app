@@ -158,10 +158,10 @@ namespace user
    }
 
 
-   void font_list::_001OnTimer(::timer * ptimer)
+   void font_list::on_timer(::timer * ptimer)
    {
 
-      ::user::list_box::_001OnTimer(ptimer);
+      ::user::list_box::on_timer(ptimer);
 
    }
 

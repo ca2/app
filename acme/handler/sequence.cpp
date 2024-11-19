@@ -772,6 +772,13 @@ void sequence::on_subparticle_sequence(::subparticle * psubparticle)
 void sequence::on_end_of_sequence()
 {
 
+   if (m_pmanualresethappeningOnEndOfSequence)
+   {
+
+      m_pmanualresethappeningOnEndOfSequence->set_happening();
+
+   }
+
    ::subparticle_array::clear();
  
    release();

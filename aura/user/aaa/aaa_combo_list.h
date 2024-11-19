@@ -59,7 +59,7 @@ namespace user
 
       //virtual void nextstyle(style_context* pcontext) override;
 
-      virtual void _001OnTimer(::timer* ptimer) override;
+      virtual void on_timer(::timer* ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_set_focus);

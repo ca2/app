@@ -22,10 +22,16 @@ public:
    ~realizable() override;
 
 
+   void on_initialize_particle() override;
+
+
    ::pointer < ::reified < REALIZABLE > > defer_realize(::reificator < REALIZABLE > * p);
 
 
    ::pointer < ::reified < REALIZABLE > > defer_realize();
+
+
+   bool should_create_sequence_on_synchronicity() override;
 
 
    void destroy() override;
@@ -53,7 +59,7 @@ public:
 
    virtual void on_realize(REALIZABLE * prealizable);
 
-
+   
    void destroy() override;
    
    
@@ -100,6 +106,18 @@ realizable < REALIZABLE >::~realizable()
 }
 
 
+
+template < typename REALIZABLE >
+void realizable < REALIZABLE >::on_initialize_particle()
+{
+
+   ::particle::on_initialize_particle();
+
+   defer_realize();
+
+}
+
+
 template < typename REALIZABLE >
 ::pointer < ::reified < REALIZABLE > > realizable < REALIZABLE >::defer_realize(::reificator < REALIZABLE > * p)
 {
@@ -123,6 +141,34 @@ template < typename REALIZABLE >
 {
 
    return this->defer_realize(dynamic_cast <::reificator < REALIZABLE > *>(this->get_context_particle()));
+
+}
+
+
+template < typename REALIZABLE >
+bool realizable < REALIZABLE >::should_create_sequence_on_synchronicity()
+{
+
+   if (::particle::should_create_sequence_on_synchronicity())
+   {
+
+      return true;
+
+   }
+
+   if (m_preified)
+   {
+
+      if (m_preified->should_create_sequence_on_synchronicity())
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
 
 }
 

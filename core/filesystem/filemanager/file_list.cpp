@@ -359,10 +359,10 @@ namespace filemanager
    //}
 
 
-   void file_list::_001OnTimer(::timer * ptimer)
+   void file_list::on_timer(::timer * ptimer)
    {
 
-      ::userfs::list::_001OnTimer(ptimer);
+      ::userfs::list::on_timer(ptimer);
 
       if (ptimer->m_uEvent == 888888)
       {

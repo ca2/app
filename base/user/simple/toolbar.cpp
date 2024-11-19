@@ -1621,10 +1621,10 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-void simple_toolbar::_001OnTimer(::timer * ptimer)
+void simple_toolbar::on_timer(::timer * ptimer)
 {
 
-   ::user::toolbar::_001OnTimer(ptimer);
+   ::user::toolbar::on_timer(ptimer);
 
 //   if (ptimer->m_uEvent == TIMER_HOVER)
 //   {

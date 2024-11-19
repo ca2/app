@@ -40,6 +40,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/platform/sequencer.h"
+#include "acme/platform/timer_array.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -591,6 +592,53 @@ namespace acme
 //            destroy();
 
          }
+
+
+         void interaction::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+         {
+
+            if (timeEllapse < 500_ms)
+            {
+
+               //         string str;
+               //
+               //         str.formatf("creating fast timer: %d\n", nEllapse);
+               //
+               //         ::information(str);
+
+            }
+
+            if (m_ptimerarray.is_null())
+            {
+
+               __construct_new(m_ptimerarray);
+
+               m_ptimerarray->m_pcallback = this;
+
+               //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+
+            }
+
+            m_ptimerarray->create_timer(this, uEvent, timeEllapse, pfnTimer, bPeriodic, pdata);
+
+         }
+
+
+         void interaction::KillTimer(uptr uEvent)
+         {
+
+            if (m_ptimerarray.is_null())
+            {
+
+               return;
+
+            }
+
+            m_ptimerarray->delete_timer(uEvent);
+
+         }
+
+
 
 
          void interaction::show()

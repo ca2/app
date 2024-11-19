@@ -156,7 +156,7 @@ namespace acme
    }
 
 
-   void timer_array::on_timer(timer * ptimer)
+   void timer_array::call_on_timer(timer * ptimer)
    {
 
       if (!m_bOk)
@@ -168,7 +168,7 @@ namespace acme
 
       }
 
-      _001OnTimer(ptimer);
+      on_timer(ptimer);
 
       if(!ptimer->m_bPeriodic)
       {
@@ -184,13 +184,13 @@ namespace acme
    }
 
 
-   void timer_array::_001OnTimer(::timer * ptimer)
+   void timer_array::on_timer(::timer * ptimer)
    {
 
       if (m_pcallback != nullptr)
       {
 
-         m_pcallback->on_timer(ptimer);
+         m_pcallback->call_on_timer(ptimer);
 
       }
 

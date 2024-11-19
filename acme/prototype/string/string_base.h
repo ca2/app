@@ -2207,6 +2207,19 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool
 
 
 template<typename ITERATOR_TYPE>
+typename const_string_range<ITERATOR_TYPE>::STRING_ARRAY const_string_range<ITERATOR_TYPE>::explode(const SCOPED_STRING & scopedstrSeparator, bool bAddEmpty) const
+{
+
+   STRING_ARRAY stra;
+
+   stra.explode(scopedstrSeparator, *this, bAddEmpty);
+
+   return stra;
+
+}
+
+
+template<typename ITERATOR_TYPE>
 string_base<ITERATOR_TYPE> & string_base<ITERATOR_TYPE>::surround(const SCOPED_STRING& scopedstr)
 {
 

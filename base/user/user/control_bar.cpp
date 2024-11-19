@@ -250,7 +250,7 @@ namespace user
       SetTimer(nEvent,time,nullptr);
    }
 
-   void control_bar::_001OnTimer(::timer * ptimer)
+   void control_bar::on_timer(::timer * ptimer)
    {
       __UNREFERENCED_PARAMETER(ptimer);
 //      unsigned int uEvent = ptimer->m_uEvent;

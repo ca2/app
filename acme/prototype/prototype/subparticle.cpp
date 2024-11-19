@@ -899,3 +899,30 @@ void subparticle::acquire_ownership()
 //
 //
 
+
+::subparticle_pointer subparticle::clone()
+{
+
+   throw interface_only();
+
+   return nullptr;
+
+}
+
+
+[[nodiscard]] character_count subparticle::sz_len() const
+{
+
+   return 0;
+
+}
+
+
+void subparticle::to_sz(char * sz, character_count len) const
+{
+
+
+}
+
+
+

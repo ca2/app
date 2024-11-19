@@ -3449,13 +3449,13 @@ namespace network_token {
 		using array_type = quite_compact_network_payload::array;
 		using string_type = std::string;
 		using number_type = double;
-		using integer_type = int64_t;
+		using integer_type = huge_integer;
 		using boolean_type = bool;
 
 		static json::type get_type(const quite_compact_network_payload::value& val) {
 			using json::type;
 			if (val.is<bool>()) return type::boolean;
-			if (val.is<int64_t>()) return type::integer;
+			if (val.is<huge_integer>()) return type::integer;
 			if (val.is<double>()) return type::number;
 			if (val.is<std::string>()) return type::string;
 			if (val.is<quite_compact_network_payload::array>()) return type::array;
@@ -3479,9 +3479,9 @@ namespace network_token {
 			return val.get<quite_compact_network_payload::array>();
 		}
 
-		static int64_t as_int(const quite_compact_network_payload::value& val) {
-			if (!val.is<int64_t>()) throw std::bad_cast();
-			return val.get<int64_t>();
+		static huge_integer as_int(const quite_compact_network_payload::value& val) {
+			if (!val.is<huge_integer>()) throw std::bad_cast();
+			return val.get<huge_integer>();
 		}
 
 		static bool as_bool(const quite_compact_network_payload::value& val) {

@@ -1611,7 +1611,7 @@ namespace micro
    }
 
 
-   void main_window::handle(::topic* ptopic, ::context* pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_operating_system_user_color_change)

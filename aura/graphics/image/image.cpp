@@ -10384,7 +10384,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //}
 
 
-::particle_pointer image::clone()
+::subparticle_pointer image::clone()
 {
 
    auto pimage = this->__create<::image::image>();

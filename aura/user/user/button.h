@@ -81,7 +81,7 @@ namespace user
       void user_button_construct();
 
 
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 

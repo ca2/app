@@ -33,7 +33,7 @@ namespace gpu
 
 #ifdef __DEBUG
 
-   int64_t render::increment_reference_count()
+   huge_integer render::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -41,7 +41,7 @@ namespace gpu
    }
 
 
-   int64_t render::decrement_reference_count()
+   huge_integer render::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

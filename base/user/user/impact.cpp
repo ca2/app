@@ -1065,7 +1065,7 @@ namespace user
    }
 
 
-   void impact::call_handle(::topic* ptopic, ::context* pcontext)
+   void impact::call_handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_initial_update)

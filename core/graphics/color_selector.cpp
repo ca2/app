@@ -146,9 +146,9 @@ namespace graphics
       double _dG = (dCMin + dG * dCAdd);
       double _dB = (dCMin + dB * dCAdd);
 
-      r = unsigned char(_dR * 255.0);
-      g = unsigned char(_dG * 255.0);
-      b = unsigned char(_dB * 255.0);
+      r = (unsigned char)(_dR * 255.0);
+      g = (unsigned char)(_dG * 255.0);
+      b = (unsigned char)(_dB * 255.0);
 
    }
 

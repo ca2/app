@@ -45,7 +45,7 @@ namespace user
       ~check_box() override;
 
       
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
 
       enum_element get_default_element() override;

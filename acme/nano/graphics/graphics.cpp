@@ -119,7 +119,7 @@ namespace nano
 //        }
 //
 
-        void graphics::handle(::topic* ptopic, ::context* pcontext)
+        void graphics::handle(::topic * ptopic, ::context * pcontext)
         {
 ////            if (ptopic->m_atom == id_set_application_dark_mode)
 ////            {

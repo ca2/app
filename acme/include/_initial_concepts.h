@@ -752,3 +752,7 @@ class string_array_base;
 using string_array = string_array_base < string, string, e_type_string_array >;
 using wstring_array = string_array_base < wstring, wstring >;
 
+
+
+template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
+concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;

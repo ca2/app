@@ -571,7 +571,7 @@ namespace platform
       //      //
       //      //#endif
       //
-      //      //m_edesktop = ::user::e_desktop_none;
+      //      //m_edesktop = ::user::e_operating_ambient_none;
       //
       //      information() << "initialize_system os_construct";
       //
@@ -3136,7 +3136,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic* ptopic, ::context* pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)

@@ -44,12 +44,12 @@
 #define DECLARE_SE_EXCEPTION_ERROR(name) IDENTIFIER_CONCATENATE(error_,name)
 
 
-enum enum_status : ::int64_t
+enum enum_status : ::huge_integer
 {
 
    e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = (::int64_t)I32_MINIMUM - 1,
+   e_status_process_result_negative_base = (::huge_integer)I32_MINIMUM - 1,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,

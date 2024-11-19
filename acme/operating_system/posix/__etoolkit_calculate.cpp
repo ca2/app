@@ -60,7 +60,7 @@ namespace windowing
    /*::windowing::enum_toolkit get_edesktopenvironment()
    {
       
-      if(g_edesktopenvironment == ::windowing::e_desktop_environment_none)
+      if(g_edesktopenvironment == ::windowing::e_operating_ambient_environment_none)
       {
          
          g_edesktopenvironment = calculate_edesktopenvironment();

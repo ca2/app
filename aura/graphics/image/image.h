@@ -436,7 +436,7 @@ namespace image
       //::stream & read(::stream & stream) override;
 
 
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
 
       //inline int line(int line);

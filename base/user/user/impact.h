@@ -44,7 +44,7 @@ namespace user
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
-      void call_handle(::topic* ptopic, ::context* pcontext) override;
+      void call_handle(::topic * ptopic, ::context * pcontext) override;
 
      
       bool is_impact() override;

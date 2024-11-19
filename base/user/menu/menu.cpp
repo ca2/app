@@ -1107,7 +1107,7 @@ namespace user
    }
 
 
-   void menu::handle(::topic* ptopic, ::context* pcontext)
+   void menu::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (ptopic->m_atom == ::id_click)

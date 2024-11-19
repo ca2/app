@@ -2,7 +2,7 @@
 #pragma once
 
 
-using handle_function = ::function < void(::topic*, ::context*) >;
+using handle_function = ::function < void(::topic *, ::context *) >;
 //{
 //public:
 //

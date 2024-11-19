@@ -300,6 +300,77 @@ namespace numeric_info_internal
 
    };
 
+   template < >
+   class CLASS_DECL_ACME numeric_info < long long > :
+      public numeric_integer_base
+   {
+   public:
+
+      typedef long TYPE;
+      typedef long OFFSET_TYPE;
+
+      static consteval TYPE maximum()
+      {
+         return (TYPE)LLONG_MAX;
+      }
+      static consteval TYPE minimum()
+      {
+         return (TYPE)LLONG_MIN;
+      }
+      static consteval TYPE null()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE unitary()
+      {
+         return (TYPE)1;
+      }
+      //      static consteval TYPE allset()
+      //      {
+      //         TYPE t;
+      //         memory_set(&t, 0xff, sizeof(TYPE));
+      //         return t;
+      //      }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+class CLASS_DECL_ACME numeric_info < unsigned long long > :
+   public numeric_integer_base
+   {
+   public:
+
+      typedef long TYPE;
+      typedef long OFFSET_TYPE;
+
+      static consteval TYPE maximum()
+      {
+         return (TYPE)ULLONG_MAX;
+      }
+      static consteval TYPE minimum()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE null()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE unitary()
+      {
+         return (TYPE)1;
+      }
+      //      static consteval TYPE allset()
+      //      {
+      //         TYPE t;
+      //         memory_set(&t, 0xff, sizeof(TYPE));
+      //         return t;
+      //      }
+
+      static const bool is_signed = false;
+
+   };
 
    template < >
    class CLASS_DECL_ACME numeric_info < unsigned int > :

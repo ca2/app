@@ -29,7 +29,7 @@ namespace geometry2d
       void expand_bounding_box(::double_rectangle & rectangle) override { m_item.expand_bounding_box(rectangle.top_left(), rectangle.bottom_right()); }
 
 
-      ::particle_pointer clone() override
+      ::subparticle_pointer clone() override
       {
 
          auto pitem = __allocate item_type();

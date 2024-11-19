@@ -131,7 +131,7 @@ namespace user
 
 
       //using ::user::impact::update;
-      void handle(::topic* ptopic, ::context* pcontext) override
+      void handle(::topic * ptopic, ::context * pcontext) override
       {
 
          ::user::impact::handle(ptopic, pcontext);

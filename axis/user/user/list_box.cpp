@@ -346,7 +346,7 @@ namespace user
    }
 
 
-   void list_box::handle(::topic* ptopic, ::context* pcontext)
+   void list_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == ::id_click)

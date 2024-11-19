@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   ::particle_pointer button::clone()
+   ::subparticle_pointer button::clone()
    {
 
       auto pcheckbox = m_papplication->__create_new < ::user::button >();

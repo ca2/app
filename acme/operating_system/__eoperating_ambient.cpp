@@ -19,6 +19,8 @@ namespace windowing
          return "ios";
       case e_operating_ambient_windows:
          return "windows";
+      case e_operating_ambient_unity:
+         return "gtk_based";
       default:
          throw todo;
       };

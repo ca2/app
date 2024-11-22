@@ -1732,7 +1732,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    auto psystem = system();
 
-   auto pacmefile = psystem->file_system();
+   auto pfilesystem = psystem->file_system();
 
    ::file::path pathTarget;
 
@@ -1753,7 +1753,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       if (exists(pathSource))
       {
 
-         pacmefile->copy(pathTarget, pathSource, !bFailIfExists);
+         pfilesystem->copy(pathTarget, pathSource, !bFailIfExists);
 
          return;
 

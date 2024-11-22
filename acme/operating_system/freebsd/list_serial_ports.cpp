@@ -160,15 +160,15 @@ namespace serial
 
       auto psystem = pmatter->system();
 
-      auto pacmefile = psystem->m_pfilesystem;
+      auto pfilesystem = psystem->m_pfilesystem;
 
-      device_number = atoi(pacmefile->first_line(sys_usb_path + "/devnum"));
+      device_number = atoi(pfilesystem->first_line(sys_usb_path + "/devnum"));
 
-      string manufacturer = pacmefile->first_line(sys_usb_path + "/manufacturer");
+      string manufacturer = pfilesystem->first_line(sys_usb_path + "/manufacturer");
 
-      string product = pacmefile->first_line(sys_usb_path + "/product");
+      string product = pfilesystem->first_line(sys_usb_path + "/product");
 
-      string serial = pacmefile->first_line(sys_usb_path + "/serial");
+      string serial = pfilesystem->first_line(sys_usb_path + "/serial");
 
       if (manufacturer.empty() && product.empty() && serial.empty())
       {

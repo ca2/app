@@ -75,7 +75,7 @@ namespace simpledb
 
       //}
 
-      pfactoryDatabase->__construct(this, m_pdatabaseLocal);
+      pfactoryDatabase->__øconstruct(this, m_pdatabaseLocal);
 
       //if (!estatus)
       //{

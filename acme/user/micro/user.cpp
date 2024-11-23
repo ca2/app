@@ -232,7 +232,7 @@ namespace micro
 
       //      system()->do_graphics_and_windowing_system_factory();
 
-      //      __construct(m_pdisplaybase);
+      //      __øconstruct(m_pdisplaybase);
 
       //      m_pdisplaybase->open_display();
 

@@ -1803,7 +1803,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      __construct(m_pshellopen);
+      __øconstruct(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2240,7 +2240,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __construct(m_pimagecontext);
+      //   __øconstruct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{

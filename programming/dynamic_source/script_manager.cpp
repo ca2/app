@@ -381,7 +381,7 @@ namespace dynamic_source
 
       }
 
-      auto pmain = __create < script_main >();
+      auto pmain = __øcreate < script_main >();
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
@@ -665,7 +665,7 @@ namespace dynamic_source
 
                   pimpl = pmain;
 
-                  //pimpl = ::__create < script_interface >();
+                  //pimpl = ::__øcreate < script_interface >();
 
                   //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
 

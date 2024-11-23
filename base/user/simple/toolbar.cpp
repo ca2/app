@@ -841,11 +841,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __create < ::draw2d::pen > ();
+               auto ppen = __øcreate < ::draw2d::pen > ();
 
                ppen->create_solid(1, argb(190, 92, 184, 92));
 
-               auto pbrush = __create < ::draw2d::brush >();
+               auto pbrush = __øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(argb(123, 180, 184, 255));
 
@@ -893,11 +893,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(1, argb(255, 92, 92, 92));
 
-            auto pbrush = __create < ::draw2d::brush >();
+            auto pbrush = __øcreate < ::draw2d::brush >();
 
             pbrush->create_solid(argb(255, 255, 255, 255));
 
@@ -1009,7 +1009,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       m_fontsize = pgraphics->m_pfont->m_fontsize;
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __øcreate < ::draw2d::brush > ();
 
       if (!(estate & ::user::e_state_disabled))
       {

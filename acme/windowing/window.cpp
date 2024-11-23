@@ -99,7 +99,7 @@ namespace acme
 
          ::user::element::on_initialize_particle();
 
-         //__construct(m_pacmeuserinteraction);
+         //__øconstruct(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 

@@ -260,7 +260,7 @@ namespace app_integration
 
       string strTitle;
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       auto psystem = system();
 

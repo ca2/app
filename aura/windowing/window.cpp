@@ -804,7 +804,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    void window::create_graphics_thread()
    {
 
-      //__construct(m_pgraphicsthread);
+      //__øconstruct(m_pgraphicsthread);
 
       m_pgraphicsthread->branch_synchronously();
 
@@ -1806,7 +1806,7 @@ void window::set_oswindow(::oswindow oswindow)
    ::pointer<::windowing::icon> window::load_icon(const ::payload & payloadFile)
    {
 
-      auto picon = __create<icon>();
+      auto picon = __øcreate<icon>();
 
       if (!picon)
       {
@@ -3368,7 +3368,7 @@ bMove = false;
 
 #endif
 
-         __construct(m_pmutexDraw);
+         __øconstruct(m_pmutexDraw);
 
       }
 
@@ -3737,7 +3737,7 @@ bMove = false;
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -3928,7 +3928,7 @@ bMove = false;
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -11231,7 +11231,7 @@ bMove = false;
       if (m_pmutexRedraw == nullptr)
       {
 
-         __construct(m_pmutexRedraw);
+         __øconstruct(m_pmutexRedraw);
 
       }
 

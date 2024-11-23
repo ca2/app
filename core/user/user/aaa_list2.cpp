@@ -251,7 +251,7 @@ namespace user
       if (m_bTopText)
       {
 
-         auto pbrushText = __create < ::draw2d::brush >();
+         auto pbrushText = __øcreate < ::draw2d::brush >();
 
          auto pstyle = get_style(pgraphics);
 

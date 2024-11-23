@@ -102,7 +102,7 @@ namespace networking_bsd
 //      {
 //
 //#ifdef WINDOWS
-//         __construct(m_pportforward);
+//         __øconstruct(m_pportforward);
 //#endif
 //
 //      }

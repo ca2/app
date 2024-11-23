@@ -359,7 +359,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      __construct(pgraphics);
+      __øconstruct(pgraphics);
 
       pgraphics->create_memory_graphics();
 

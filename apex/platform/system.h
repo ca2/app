@@ -37,7 +37,7 @@ namespace apex
 //
 //       //::pointer<::crypto::crypto>                     m_pcrypto;
 //
-//       ::pointer<class machine_event_central>           m_pmachineeventcentral;
+//       ::pointer<class machine_event_central>           m_pmachinehappeningcentral;
 //
 //       ::pointer < ::mutex >                                m_pmutexUserAppData;
 //       ::pointer < ::mutex >                                m_pmutexSystemAppData;

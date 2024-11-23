@@ -1739,7 +1739,7 @@ namespace user
 
       //pgraphics->CreateCompatibleDC(nullptr);
 
-      //auto pfont = __create < ::write_text::font > ();
+      //auto pfont = __øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);

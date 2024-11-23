@@ -203,7 +203,7 @@ auto pwindowing = windowing();
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         auto pbrush = __create < ::draw2d::brush > ();
+         auto pbrush = __øcreate < ::draw2d::brush > ();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -360,7 +360,7 @@ auto pwindowing = windowing();
 
             //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            auto pbrush = __create < ::draw2d::brush > ();
+            auto pbrush = __øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(crBorderIn);
 
@@ -368,7 +368,7 @@ auto pwindowing = windowing();
 
             pgraphics->fill_rectangle(rectangleX,br);
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(m_dStockIconPenWidth,crBorderOut);
 
@@ -382,7 +382,7 @@ auto pwindowing = windowing();
 
          int iBorderH = rectangleX.height() / 2;
 
-         auto pbrush = __create < ::draw2d::brush > ();
+         auto pbrush = __øcreate < ::draw2d::brush > ();
 
          pbrush->CreateLinearGradientBrush(int_point(rectangleX.left(), rectangleX.top() - 1), int_point(rectangleX.left(), rectangleX.top() + iBorderH + 2), crOut, crIn);
 
@@ -396,7 +396,7 @@ auto pwindowing = windowing();
 
          graphics2.DrawRectangle(&ppen1, rectangleX.left(), rectangleX.top(), rectangleX.width(), iBorderH * 2);*/
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, crBorderIn);
 

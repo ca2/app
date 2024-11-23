@@ -3132,7 +3132,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            __construct(m_piconNotify);
+            __øconstruct(m_piconNotify);
 
             if(m_piconNotify)
             {

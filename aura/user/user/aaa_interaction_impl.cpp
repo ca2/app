@@ -201,7 +201,7 @@ namespace user
 
 #endif
 
-         __construct(m_pmutexDraw);
+         __øconstruct(m_pmutexDraw);
 
       }
 
@@ -564,7 +564,7 @@ namespace user
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -753,7 +753,7 @@ namespace user
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -7903,7 +7903,7 @@ namespace user
       if (m_pmutexRedraw == nullptr)
       {
 
-         __construct(m_pmutexRedraw);
+         __øconstruct(m_pmutexRedraw);
 
       }
 

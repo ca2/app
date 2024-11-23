@@ -44,7 +44,7 @@ void machine_event_central::initialize(::particle * pparticle)
 
    //estatus = 
    
-   __construct_new(m_pmachineevent);
+   __construct_new(m_pmachinehappening);
 
    //if (!estatus)
    //{
@@ -81,11 +81,11 @@ void machine_event_central::run()
    {
 
       {
-         _synchronous_lock lockMachineEvent(m_pmachineevent->synchronization());
+         _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization());
 
          //machine_event_data data;
 
-         //m_machineevent.read(&data);
+         //m_machinehappening.read(&data);
 
          //psystem->process_machine_event_data(&data);
       }
@@ -102,11 +102,11 @@ void machine_event_central::run()
 bool machine_event_central::is_close_application()
 {
 
-   _synchronous_lock lockMachineEvent(m_pmachineevent->synchronization());
+   _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization());
 
    machine_event_data data;
 
-   m_pmachineevent->read(&data);
+   m_pmachinehappening->read(&data);
 
    auto psystem = system();
 
@@ -120,11 +120,11 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(::pointer<::xml::node>pnode)
 //{
 //
-//   _synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
+//   _synchronous_lock lockMachineEvent(&m_machinehappening.m_pmutex);
 //
 //   machine_event_data data;
 //
-//   m_machineevent.read(&data);
+//   m_machinehappening.read(&data);
 //
 //   throw ::exception(todo("xml->network_payload"));
 //
@@ -144,7 +144,7 @@ bool machine_event_central::is_close_application()
 //
 //   //data.m_blobCommand = doc.get_xml();
 //
-//   //m_machineevent.write(&data);
+//   //m_machinehappening.write(&data);
 //
 //   sleep(500_ms);
 //

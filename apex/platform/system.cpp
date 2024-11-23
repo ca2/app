@@ -616,7 +616,7 @@ namespace apex
 
       // }
 
-      //estatus = __construct(m_papexnode);
+      //estatus = __øconstruct(m_papexnode);
 
       //if (!estatus)
       //{
@@ -870,13 +870,13 @@ pdirectorysystem->create("/ca2core");
 
       }
 
-      if (!m_pmachineeventcentral)
+      if (!m_pmachinehappeningcentral)
       {
 
 #ifndef APPLE_IOS
 
          //auto estatus =
-         __construct_new(m_pmachineeventcentral);
+         __construct_new(m_pmachinehappeningcentral);
 
          //if (!estatus)
          //{
@@ -885,14 +885,14 @@ pdirectorysystem->create("/ca2core");
 
          //}
 
-         //if(!m_pmachineeventcentral->initialize())
+         //if(!m_pmachinehappeningcentral->initialize())
          //{
 
          //   return false;
 
          //}
 
-         if (m_pmachineeventcentral->is_close_application())
+         if (m_pmachinehappeningcentral->is_close_application())
          {
 
             // return false;
@@ -979,7 +979,7 @@ pdirectorysystem->create("/ca2core");
 //         pfactoryCrypto->merge_to_global_factory();
 //
 //         //estatus =
-//         pfactoryCrypto->__construct(this, m_pcrypto);
+//         pfactoryCrypto->__øconstruct(this, m_pcrypto);
 //
 //      }
 
@@ -1809,10 +1809,10 @@ pdirectorysystem->create("/ca2core");
       try
       {
 
-         if (m_pmachineeventcentral)
+         if (m_pmachinehappeningcentral)
          {
 
-            m_pmachineeventcentral->destroy();
+            m_pmachinehappeningcentral->destroy();
 
          }
 
@@ -1977,7 +1977,7 @@ pdirectorysystem->create("/ca2core");
       if (!m_pfilewatcher)
       {
 
-         ((system*)this)->__construct(((system *)this)->m_pfilewatcher);
+         ((system*)this)->__øconstruct(((system *)this)->m_pfilewatcher);
 
       }
 
@@ -2255,7 +2255,7 @@ pdirectorysystem->create("/ca2core");
    machine_event_central * system::machine_event_central()
    {
       
-      return m_pmachineeventcentral;
+      return m_pmachinehappeningcentral;
       
    }
 
@@ -2395,7 +2395,7 @@ pdirectorysystem->create("/ca2core");
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            auto plauncher = __create < ::apex::shell_launcher >();
+            auto plauncher = __øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2430,7 +2430,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __create < ::apex::shell_launcher >();
+            auto plauncher = __øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, nullptr, nullptr, e_display_normal);
 
@@ -2470,7 +2470,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __create < ::apex::shell_launcher >();
+            auto plauncher = __øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2504,7 +2504,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __create < ::apex::shell_launcher >();
+            auto plauncher = __øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -4175,7 +4175,7 @@ pmessagebox->sync();
 
       m_pfactoryCrypto = factory("crypto", "openssl");
 
-      __construct(m_pcrypto, m_pfactoryCrypto);
+      __øconstruct(m_pcrypto, m_pfactoryCrypto);
       
    }
 
@@ -4341,7 +4341,7 @@ namespace apex
    {
 
       //auto estatus =
-      //__construct(m_phistory, phistory);
+      //__øconstruct(m_phistory, phistory);
 
       m_phistory = phistory;
 
@@ -4992,7 +4992,7 @@ namespace apex
 //
 //#endif
 
-         __construct(m_pinnateui);
+         __øconstruct(m_pinnateui);
 
       }
 
@@ -5117,7 +5117,7 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus =
-         pfactoryNetworking->__construct(this, m_pnetworking);
+         pfactoryNetworking->__øconstruct(this, m_pnetworking);
 
 
          if (!m_pnetworking)
@@ -5125,7 +5125,7 @@ namespace apex
 
             //estatus = __construct_new(m_psockets);
 
-            //__construct(m_pnetworking);
+            //__øconstruct(m_pnetworking);
 
             //if (!estatus)
             //{

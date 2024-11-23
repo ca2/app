@@ -353,7 +353,7 @@ namespace xml
                }
                if(entity_value.has_character())
                {
-                  //::__construct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  //::__øconstruct(m_pdocument, m_pdocument->m_pentitiesHash);
                   //::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
                   m_pdocument->__defer_construct(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);

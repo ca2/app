@@ -10,8 +10,8 @@
 #include <wincrypt.h>
 #endif
 #include "mathematics.h"
-#undef __construct
-#undef __create
+//#undef __øconstruct
+//#undef __øcreate
 #include "random_number_generator.h"
 
 namespace mathematics

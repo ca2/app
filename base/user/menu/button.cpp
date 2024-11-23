@@ -135,7 +135,7 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleX, _001GetButtonBackgroundColor());
 
-         //auto ppen = __create < ::draw2d::pen > ();
+         //auto ppen = __øcreate < ::draw2d::pen > ();
 
          //ppen->create_solid(1.0, _001GetColor(color_button_text));
 
@@ -154,11 +154,11 @@ namespace user
       if (m_pmenuitem != nullptr && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = __create < ::draw2d::brush > ();
+         auto pbrush = __øcreate < ::draw2d::brush > ();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);

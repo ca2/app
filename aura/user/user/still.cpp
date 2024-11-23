@@ -131,7 +131,7 @@ namespace user
          if (m_estockicon != e_stock_icon_none)
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->m_color = pgraphics->get_current_brush()->m_color;
 
@@ -150,7 +150,7 @@ namespace user
          {
 
 
-            //auto pbrushText = __create < ::draw2d::brush >();
+            //auto pbrushText = __øcreate < ::draw2d::brush >();
 
 
             //if (!is_window_enabled())
@@ -948,7 +948,7 @@ namespace user
       }
 
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __øcreate < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())

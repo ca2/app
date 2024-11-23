@@ -58,8 +58,8 @@ namespace wave
       virtual void set_device_state(enum_device_state estate);
       virtual void set_decoder_state(enum_decoder_state estate);
 
-      virtual void post_event(enum_player_event happening, player_command* pcommand = nullptr);
-      virtual void OnHappening(enum_player_event happening, player_command* pcommand = nullptr);
+      virtual void post_event(enum_player_happening happening, player_command* pcommand = nullptr);
+      virtual void OnHappening(enum_player_happening happening, player_command* pcommand = nullptr);
       virtual bool DeviceIsOpened();
       virtual bool DecoderIsOpened();
 

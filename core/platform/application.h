@@ -37,15 +37,15 @@ namespace core
       ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::collection::count iProgressCount) override;
 
 
-      virtual void initialize_rich_text_kit();
+      void initialize_rich_text_kit() override;
 
       //virtual void prepare_impact_menu(::user::menu * pmenu);
 
 
-      virtual string prepare_impact_options();
-      virtual string prepare_impact_options_header();
-      virtual string prepare_impact_options_main_body();
-      virtual string prepare_impact_options_footer();
+      string prepare_impact_options() override;
+      string prepare_impact_options_header() override;
+      string prepare_impact_options_main_body() override;
+      string prepare_impact_options_footer() override;
 
 
       ::filemanager::filemanager * filemanager() override;

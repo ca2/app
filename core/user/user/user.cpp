@@ -375,7 +375,7 @@ namespace core
 
       //estatus = 
 
-      __construct(m_phtml);
+      __øconstruct(m_phtml);
 
       //if(!estatus)
       //{

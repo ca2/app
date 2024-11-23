@@ -924,7 +924,7 @@ namespace html
 
       //auto estatus = 
       
-      __construct(pimage);
+      __øconstruct(pimage);
       
       //if (!estatus)
       //{
@@ -975,7 +975,7 @@ namespace html
 
       //auto estatus = 
       
-      __construct(pimage);
+      __øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -1017,7 +1017,7 @@ namespace html
 
       //auto estatus = 
       
-      __construct(pimage);
+      __øconstruct(pimage);
       
       //if (!estatus)
       //{

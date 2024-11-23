@@ -290,7 +290,7 @@ media_player::~media_player()
 
 //   }
 
-//   auto estatus = __construct(m_pwaveout);
+//   auto estatus = __øconstruct(m_pwaveout);
 
 //   if (!estatus)
 //   {
@@ -578,7 +578,7 @@ bool media_player::GetStopEnable()
 }
 
 
-void media_player::post_event(enum_player_event ehappening, media_player_command * pcommand)
+void media_player::post_event(enum_player_happening ehappening, media_player_command * pcommand)
 {
 
    //::pointer<player_command>spcommand(pcommand);
@@ -601,7 +601,7 @@ void media_player::post_event(enum_player_event ehappening, media_player_command
 //}
 
 
-void media_player::OnHappening(enum_player_event ehappening, media_player_command * pcommand)
+void media_player::OnHappening(enum_player_happening ehappening, media_player_command * pcommand)
 {
 
    switch (ehappening)

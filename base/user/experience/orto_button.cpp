@@ -101,13 +101,13 @@ namespace experience
       else
       {
 
-         auto pbrush = __create < ::draw2d::brush >();
+         auto pbrush = __øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(crText);
 
          pgraphics->set(pbrush);
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->m_dWidth = 1.0;
 

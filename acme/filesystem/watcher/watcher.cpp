@@ -116,7 +116,7 @@ namespace file
 
       ::pointer<watch>pwatch;
 
-      __construct(pwatch);
+      __øconstruct(pwatch);
 
       pwatch->m_pwatcher = this;
 

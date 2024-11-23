@@ -478,7 +478,7 @@ namespace user
 
       colorBackground = get_color(pstyle, ::e_element_background);
 
-      auto pbrushBk = __create < ::draw2d::brush >();
+      auto pbrushBk = __øcreate < ::draw2d::brush >();
 
       pbrushBk->create_solid(colorBackground);
 
@@ -509,7 +509,7 @@ namespace user
 
       auto pitemCurrent = current_item();
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -591,7 +591,7 @@ namespace user
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = __create < ::draw2d::pen >();
+      auto ppen = __øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, crBorder);
 

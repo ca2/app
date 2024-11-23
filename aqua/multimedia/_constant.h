@@ -90,7 +90,7 @@ enum enum_player_state
 };
 
 
-enum enum_player_event
+enum enum_player_happening
 {
 
    e_player_happening_open_decoder,

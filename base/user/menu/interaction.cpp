@@ -82,7 +82,7 @@ namespace user
       if (m_atom == "separator")
       {
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(2.0, argb(127, 80, 80, 80));
 
@@ -101,11 +101,11 @@ namespace user
       if (m_pmenuitem.is_set() && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = __create < ::draw2d::brush > ();
+         auto pbrush = __øcreate < ::draw2d::brush > ();
 
          pbrush->create_solid(rgb(0, 0, 0));
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);

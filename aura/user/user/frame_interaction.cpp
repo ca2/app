@@ -50,7 +50,7 @@ namespace user
    void frame_interaction::create_window()
    {
 
-      //__construct(windowing_window());
+      //__øconstruct(windowing_window());
 
       //windowing_window()->create_window();
 
@@ -157,7 +157,7 @@ namespace user
 
           //auto estatus =
 
-         //__construct(windowing_window());
+         //__øconstruct(windowing_window());
 
          information() << "interaction::create_host(5)";
 
@@ -752,7 +752,7 @@ namespace user
 
       ///auto estatus = 
       
-      __construct(m_pdrawicon);
+      __øconstruct(m_pdrawicon);
 
       //if (!estatus)
       //{
@@ -1141,7 +1141,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __create<::windowing::window>();
+         auto pwindowNew = __øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 

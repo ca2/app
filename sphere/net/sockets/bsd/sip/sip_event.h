@@ -14,7 +14,7 @@ namespace sockets
          event_invite, 
       };
 
-      e_happening     m_eevent;
+      e_happening     m_ehappening;
 
       sip_event(::particle * pparticle);
    };

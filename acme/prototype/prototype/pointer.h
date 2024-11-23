@@ -109,7 +109,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->__construct(*this, pfactory);
+      pparticle->__øconstruct(*this, pfactory);
 
    }
 

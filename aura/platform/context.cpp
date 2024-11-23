@@ -65,7 +65,7 @@ namespace aura
          try
          {
 
-            __construct(m_pimagecontext);
+            __øconstruct(m_pimagecontext);
 
          }
          catch (...)
@@ -92,7 +92,7 @@ namespace aura
    //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __øcreate < ::user::message_box >();
 
    //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
@@ -1028,7 +1028,7 @@ namespace aura
    //::image::image_pointer context::create_image()
    //{
 
-   //   auto pimage = __create < ::image::image >();
+   //   auto pimage = __øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {
@@ -1045,7 +1045,7 @@ namespace aura
    //::image::image_pointer context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
-   //   auto pimage = m_papplication->__create < ::image::image >();
+   //   auto pimage = m_papplication->__øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {

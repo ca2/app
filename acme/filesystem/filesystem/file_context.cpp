@@ -663,7 +663,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    ::pointer<::file::file>pfile;
 
-   __construct(pfile);
+   __øconstruct(pfile);
 
    if (!m_estatus)
    {
@@ -1461,7 +1461,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __allocate ::memory_file(pmemory);
 
-      system()->folder_factory()->__construct(m_papplication, m_pfolderResource);
+      system()->folder_factory()->__øconstruct(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -2685,7 +2685,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   ::pointer<::file::file>pfile2;
 //
-//   __construct(pfile2);
+//   __øconstruct(pfile2);
 //
 //   memsize iBufSize = 1024 * 1024;
 //
@@ -2755,7 +2755,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   huge_integer iLen;
 //   MD5_CTX ctx;
 //
-//   auto pfile2 = __create < ::file::file >();
+//   auto pfile2 = __øcreate < ::file::file >();
 //
 //   memsize uRead;
 //
@@ -3169,7 +3169,7 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 
    file_pointer pfile;
 
-   __construct(pfile);
+   __øconstruct(pfile);
 
    pfile->open(path, eopen);
 
@@ -3281,7 +3281,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   auto pfolder = __create < ::folder >(pfactory);
+   auto pfolder = __øcreate < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3444,7 +3444,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pget = __create < ::nano::http::get >();
+   auto pget = __øcreate < ::nano::http::get >();
    
    pget->m_url = url;
    
@@ -3839,7 +3839,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    ::file_pointer pfile;
 
-   __construct(pfile);
+   __øconstruct(pfile);
 
    pfile->open(path, eopen, pfileexception);
 

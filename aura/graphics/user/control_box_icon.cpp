@@ -46,7 +46,7 @@ namespace user
 
          ::draw2d::path_pointer ppath;
 
-         puserinteraction->__construct(ppath);
+         puserinteraction->__øconstruct(ppath);
 
          ppath->add_rectangle(rectangle, 45_degrees);
 
@@ -93,7 +93,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+      auto ppen = puserinteraction->__øcreate < ::draw2d::pen >();
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
@@ -137,7 +137,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+      auto ppen = puserinteraction->__øcreate < ::draw2d::pen >();
 
       //::draw2d::brush_pointer pbrush(e_create, puserinteraction);
 

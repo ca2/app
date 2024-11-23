@@ -1013,7 +1013,7 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(1, clr);
 

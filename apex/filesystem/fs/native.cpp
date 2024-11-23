@@ -182,7 +182,7 @@ namespace fs
       //else
       //{
 
-         __construct(pfile);
+         __øconstruct(pfile);
 
 //      }
 

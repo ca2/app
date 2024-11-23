@@ -931,7 +931,7 @@ namespace user
       drawitem.m_pgraphics = pgraphics;
       list * plist = m_plist;
       ::int_rectangle rectangleDivider;
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       auto color = get_color(pstyle, ::e_element_separator);
 

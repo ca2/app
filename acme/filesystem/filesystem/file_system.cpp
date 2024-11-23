@@ -159,7 +159,7 @@ file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open 
 
    }
 
-   auto pfile = application()->__create < ::file::file >();
+   auto pfile = application()->__øcreate < ::file::file >();
 
    if(!pfile)
    {
@@ -789,9 +789,9 @@ bool file_system::copy_if_text_is_different(const ::file::path & pathTarget, con
 bool file_system::_memory_map_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
 
-   auto pmemorymapSource = __create < ::file::memory_map >();
+   auto pmemorymapSource = __øcreate < ::file::memory_map >();
    
-   auto pmemorymapTarget = __create < ::file::memory_map >();
+   auto pmemorymapTarget = __øcreate < ::file::memory_map >();
    
    if(!pmemorymapSource->open_path(pathSource, true, false, false))
    {

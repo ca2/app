@@ -79,7 +79,7 @@
 //
 //            auto pfactory = system()->factory("text_format", "rtf");
 //
-//            auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+//            auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
 //
 //            ptextformat->text_format_load(pdata, preader);
 //
@@ -104,7 +104,7 @@
 //
 //         auto pfactory = system()->factory("text_format", "rtf");
 //
-//         auto ptextformat = __create< ::user::rich_text::text_format >(pfactory);
+//         auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
 //
 //         ptextformat->text_format_save(pfile, pdata);
 //

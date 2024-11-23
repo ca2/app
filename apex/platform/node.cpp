@@ -663,7 +663,7 @@ namespace apex
    ::pointer < ::input::input > node::create_input()
    {
 
-      return __create < ::input::input > ();
+      return __øcreate < ::input::input > ();
 
    }
 

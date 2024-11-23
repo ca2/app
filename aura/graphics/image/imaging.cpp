@@ -1549,7 +1549,7 @@ void imaging::BitmapDivBlend(
    ::image::image_pointer pimage;
 
    //auto estatus = 
-   __construct(pimage);
+   __øconstruct(pimage);
 
    /*if (!estatus)
    {
@@ -6960,7 +6960,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 
    }
 
-   auto pbrushText = __create < ::draw2d::brush > ();
+   auto pbrushText = __øcreate < ::draw2d::brush > ();
 
    if(dBlend >= 1.0)
    {

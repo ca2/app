@@ -1767,7 +1767,7 @@ return m_psavings;
       //if (!m_pifs)
       //{
 
-      //   estatus = __construct(m_pifs, __allocate ifs(""));
+      //   estatus = __øconstruct(m_pifs, __allocate ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1783,7 +1783,7 @@ return m_psavings;
       //if (!m_premotefs)
       //{
 
-      //   estatus = __construct(m_premotefs, __allocate ::fs::remote_native(""));
+      //   estatus = __øconstruct(m_premotefs, __allocate ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1809,7 +1809,7 @@ return m_psavings;
 
       //   pset->m_spafsdata.add(__create_new < ::fs::native>());
 
-      //   estatus = __construct(m_pfsdata, pset);
+      //   estatus = __øconstruct(m_pfsdata, pset);
 
       //   if (!estatus)
       //   {
@@ -1836,12 +1836,12 @@ return m_psavings;
          //if (psetup)
          //{
 
-         //   estatus = __construct(m_puser, psetup->create_new_object());
+         //   estatus = __øconstruct(m_puser, psetup->create_new_object());
 
          //   if(!estatus)
          //   {
 
-         //      informationf("\nFailed to __construct(m_puser)");
+         //      informationf("\nFailed to __øconstruct(m_puser)");
 
          //   }
 
@@ -1852,7 +1852,7 @@ return m_psavings;
 
          //estatus =
          
-         __construct(m_puser);
+         __øconstruct(m_puser);
 
          information() << "aura::session user type : " << ::type(m_puser).name();
 
@@ -2051,7 +2051,7 @@ return m_psavings;
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      __construct(m_pfsdata, __allocate ::fs::set());
+      //      __øconstruct(m_pfsdata, __allocate ::fs::set());
 
       //   }
 

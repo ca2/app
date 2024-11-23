@@ -118,9 +118,9 @@ namespace user
 
       ::collection::index iIndex = 0;
 
-      auto pbrushText = __create < ::draw2d::brush >();
+      auto pbrushText = __øcreate < ::draw2d::brush >();
 
-      auto ppenBorder = __create < ::draw2d::pen >();
+      auto ppenBorder = __øcreate < ::draw2d::pen >();
 
       for (; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
@@ -192,7 +192,7 @@ namespace user
 
             }
 
-            auto ppath = __create < ::draw2d::path >();
+            auto ppath = __øcreate < ::draw2d::path >();
 
             if (true)
             {
@@ -303,7 +303,7 @@ namespace user
             if (true)
             {
 
-               auto ppath = __create < ::draw2d::path >();
+               auto ppath = __øcreate < ::draw2d::path >();
 
                if (get_data()->m_idaSel.contains(ppane->m_atom))
                {
@@ -467,7 +467,7 @@ namespace user
 
       ::collection::index iVisiblePane = 0;
 
-      auto pbrushText = __create < ::draw2d::brush >();
+      auto pbrushText = __øcreate < ::draw2d::brush >();
 
       for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
@@ -519,7 +519,7 @@ namespace user
             if (get_data()->m_idaSel.contains(iIndex))
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
@@ -541,7 +541,7 @@ namespace user
             else
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
@@ -602,7 +602,7 @@ namespace user
             if (get_data()->m_idaSel.contains(ppane->m_atom))
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
@@ -624,7 +624,7 @@ namespace user
             else
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 

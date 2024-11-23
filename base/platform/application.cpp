@@ -248,7 +248,7 @@ namespace base
       if(factory()->has(::type < ::user::options_impact_handler >()))
       {
 
-         __construct(m_poptionsimpacthandler);
+         __øconstruct(m_poptionsimpacthandler);
 
       }
 
@@ -289,7 +289,7 @@ namespace base
 
          auto & pfactory = system()->factory(strLibrary);
 
-         auto pformhandler = __create<::user::form_handler>(pfactory);
+         auto pformhandler = __øcreate<::user::form_handler>(pfactory);
 
          pformhandler->design_form(pparent);
 

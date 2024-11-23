@@ -72,7 +72,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __create <  ::menu::item  >();
+//         m_pmenuitem = __øcreate <  ::menu::item  >();
 //
 //      }
 //
@@ -154,7 +154,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __create <  ::menu::item  >();
+//         m_pmenuitem = __øcreate <  ::menu::item  >();
 //
 //      }
 //
@@ -435,7 +435,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __create <  ::menu::item  >();
+//         m_pmenuitem = __øcreate <  ::menu::item  >();
 //
 //      }
 //

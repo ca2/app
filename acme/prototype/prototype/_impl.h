@@ -166,7 +166,7 @@ inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
 //inline pointer < T > & pointer < T >::create(TEMPLATER)
 //{
 //
-//   __construct(*this);
+//   __øconstruct(*this);
 //
 //   return *this;
 //
@@ -277,7 +277,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__construct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
+//inline void matter::__øconstruct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
 //{
 //
 //   p = psource;
@@ -324,10 +324,10 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__construct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
+//inline void matter::__øconstruct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __construct(p, psource.get());
+//   return __øconstruct(p, psource.get());
 //
 //}
 //
@@ -488,10 +488,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 
 //
 //template < typename TYPE >
-//inline void matter::__construct(::pointer<TYPE>& p)
+//inline void matter::__øconstruct(::pointer<TYPE>& p)
 //{
 //
-//   auto estatus = ::__construct(p);
+//   auto estatus = ::__øconstruct(p);
 //
 //   if (estatus && p)
 //   {
@@ -749,7 +749,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   if (is_null())
 //   {
 //
-//      operator=(__create < TYPE >());
+//      operator=(__øcreate < TYPE >());
 //
 //   }
 //
@@ -1262,7 +1262,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 //template < typename BASE_TYPE >
-//inline void object::__construct(::pointer<BASE_TYPE> pcomposite)
+//inline void object::__øconstruct(::pointer<BASE_TYPE> pcomposite)
 //{
 //
 //   if (!pcomposite)
@@ -1322,7 +1322,7 @@ void reference_count_debug_release(TYPE * & p)
 
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
+//inline void object::__øconstruct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
 //{
 //
 //   pcomposite = psource;
@@ -1371,19 +1371,19 @@ void reference_count_debug_release(TYPE * & p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
+//inline void object::__øconstruct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /* return */ __construct(p, psource.get());
+//   /* return */ __øconstruct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__construct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
+//inline void object::__øconstruct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
 //{
 //
-//   /* return */ __construct(p, psource.get());
+//   /* return */ __øconstruct(p, psource.get());
 //
 //}
 //
@@ -1565,7 +1565,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 //template < typename TYPE >
-//inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
+//inline void object::__øconstruct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
 //{
 //
 //   p = fork(pfn, epriority);
@@ -1584,7 +1584,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
 //{
 //
-//   return __construct(p, pfn, e_priority_below_normal);
+//   return __øconstruct(p, pfn, e_priority_below_normal);
 //
 //}
 //
@@ -1701,7 +1701,7 @@ void reference_count_debug_release(TYPE * & p)
 //   m_pparticle(nullptr)
 //{
 //
-//   operator=(p->__create < T >());
+//   operator=(p->__øcreate < T >());
 //
 //}
 
@@ -1749,7 +1749,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 //   }
 //
-//   __construct(p, pfactory);
+//   __øconstruct(p, pfactory);
 //
 //   return true;
 //

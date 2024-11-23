@@ -603,7 +603,7 @@ namespace apex
 
       }
 
-      pfsfoldersync = pfactory->__create < ::fs::folder_sync >(this);
+      pfsfoldersync = pfactory->__øcreate < ::fs::folder_sync >(this);
 
       return pfsfoldersync;
 
@@ -1131,7 +1131,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __allocate ::fs::set());
+      //              __øconstruct(m_pfsdata, __allocate ::fs::set());
 
       //           }*/
 
@@ -10401,7 +10401,7 @@ namespace apex
 
       system()->defer_innate_ui();
 
-      auto pdialog = __create < ::innate_ui::dialog>();
+      auto pdialog = __øcreate < ::innate_ui::dialog>();
 
       pdialog->create();
 
@@ -10415,7 +10415,7 @@ namespace apex
 
       int y = 30;
       
-      auto pstillIcon = __create < ::innate_ui::still>();
+      auto pstillIcon = __øcreate < ::innate_ui::still>();
 
       pstillIcon->create_icon_still(pdialog);
 
@@ -10430,7 +10430,7 @@ namespace apex
       for (auto str : stra)
       {
 
-         auto pstill = __create < ::innate_ui::still>();
+         auto pstill = __øcreate < ::innate_ui::still>();
 
          pstill->create_child(pdialog);
 
@@ -10446,7 +10446,7 @@ namespace apex
 
       y += 30;
 
-      auto pbutton = __create < ::innate_ui::button>();
+      auto pbutton = __øcreate < ::innate_ui::button>();
 
       pbutton->create_child(pdialog);
 

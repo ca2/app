@@ -234,7 +234,7 @@ namespace micro
    //void main_window::resize_to_fit()
    //{
 
-   //   auto pdevice = __create < ::nano::graphics::device >();
+   //   auto pdevice = __øcreate < ::nano::graphics::device >();
 
    //   auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -1697,7 +1697,7 @@ namespace micro
 
          }
 
-         __construct(m_pacmewindowingwindow);
+         __øconstruct(m_pacmewindowingwindow);
 
       }
 

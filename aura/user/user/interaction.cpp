@@ -2570,7 +2570,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __create<::windowing::window>();
+         auto pwindowNew = __øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -10243,7 +10243,7 @@ namespace user
    //
    //      ::pointer<primitive_impl>pwindowOld = window();
    //
-   //      auto pwindowNew = __create < interaction_impl >();
+   //      auto pwindowNew = __øcreate < interaction_impl >();
    //
    //      pwindowNew->m_puserinteraction = this;
    //
@@ -10452,7 +10452,7 @@ namespace user
             //   //else
             //   //{
 
-            //   //   window() = __create < interaction_impl >();
+            //   //   window() = __øcreate < interaction_impl >();
 
             //   //}
 
@@ -21608,7 +21608,7 @@ namespace user
    void interaction::on_create_window_object()
    {
 
-      __construct(m_pacmewindowingwindow);
+      __øconstruct(m_pacmewindowingwindow);
 
    }
 
@@ -21616,7 +21616,7 @@ namespace user
    ::pointer < ::user::thread > interaction::create_user_thread()
    {
 
-      auto puserthread = __create < ::user::thread >();
+      auto puserthread = __øcreate < ::user::thread >();
 
       puserthread->initialize_user_thread(this);
 
@@ -21632,7 +21632,7 @@ namespace user
    ::pointer < ::user::graphics_thread > interaction::create_user_graphics_thread()
    {
 
-      auto pusergraphicsthread = __create < ::user::graphics_thread >();
+      auto pusergraphicsthread = __øcreate < ::user::graphics_thread >();
 
       pusergraphicsthread->initialize_graphics_thread(this);
 
@@ -21660,7 +21660,7 @@ namespace user
 
       ////m_bUserElementOk = true;
 
-      ////window() = __create<interaction_impl>();
+      ////window() = __øcreate<interaction_impl>();
 
       //if (!window())
       //{
@@ -28070,7 +28070,7 @@ namespace user
    //pointer< ::sequence < ::conversation > > interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
-   //   auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __øcreate < ::user::message_box >();
 
    //   auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
 

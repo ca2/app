@@ -934,7 +934,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto pfont = __create < ::write_text::font >();
+      auto pfont = __øcreate < ::write_text::font >();
 
       pfont->create_font(e_font_sans_ui, 12_pt);
 

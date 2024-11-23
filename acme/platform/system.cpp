@@ -442,7 +442,7 @@ namespace platform
 
       //m_plogger = __create_new < ::simple_log >();
 
-      __construct(m_plogger);
+      __øconstruct(m_plogger);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -589,7 +589,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__construct(m_pnano);
+      //__øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -815,7 +815,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __construct(m_pexceptiontranslator);
+      __øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -823,7 +823,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      papplication->__construct(m_pnode);
+      papplication->__øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -834,9 +834,9 @@ namespace platform
       //
       // }
 
-      __construct(m_pmutexTask);
+      __øconstruct(m_pmutexTask);
          
-      __construct(m_pmutexHttpDownload);
+      __øconstruct(m_pmutexHttpDownload);
 
       //if(!estatus)
       //{
@@ -934,7 +934,7 @@ namespace platform
 
       // }
 
-      //estatus = __construct(m_pnode);
+      //estatus = __øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -1045,7 +1045,7 @@ namespace platform
       ////}
       ////estatus =
 
-      //__construct(m_pfilesystem);
+      //__øconstruct(m_pfilesystem);
 
       ////if(!estatus)
       ////{
@@ -1060,7 +1060,7 @@ namespace platform
 
       ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      //__construct(m_pdirectorysystem);
+      //__øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1957,7 +1957,7 @@ particle* system::matter_mutex()
    //
    //      initialize_nano_http(factory());
    //
-   //      __construct(m_pnanohttp);
+   //      __øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -1974,7 +1974,7 @@ particle* system::matter_mutex()
    //
    //         initialize_nano_http(factory());
    //
-   //         __construct(m_pnanohttp);
+   //         __øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -2377,7 +2377,7 @@ particle* system::matter_mutex()
 
          }
 
-         pfactory->__construct(this, pcontext);
+         pfactory->__øconstruct(this, pcontext);
 
       }
 
@@ -3598,7 +3598,7 @@ particle* system::matter_mutex()
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = __create<::platform::application>();
+            papp = __øcreate<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -3676,7 +3676,7 @@ particle* system::matter_mutex()
             if (pfactory)
             {
 
-               papp = __create<::platform::application>(pfactory);
+               papp = __øcreate<::platform::application>(pfactory);
 
                if (!papp)
                {
@@ -4360,7 +4360,7 @@ particle* system::matter_mutex()
 
          do_graphics_and_windowing_factory();
 
-         __construct(m_pacmewindowing);
+         __øconstruct(m_pacmewindowing);
 
       }
 
@@ -4498,7 +4498,7 @@ particle* system::matter_mutex()
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __construct(m_pwindowingbase);
+   //      __øconstruct(m_pwindowingbase);
 
    //   }
 

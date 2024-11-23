@@ -166,7 +166,7 @@ namespace windowing
 
       }
 
-      __construct(pcursor);
+      __øconstruct(pcursor);
 
       pcursor->m_pcursormanager = this;
 

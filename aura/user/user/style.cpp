@@ -141,7 +141,7 @@ namespace user
    //   if (!m_pplaineditinternal)
    //   {
 
-   //      __construct(m_pplaineditinternal);
+   //      __øconstruct(m_pplaineditinternal);
 
    //      m_pplaineditinternal->update(pgraphics, )
 
@@ -231,7 +231,7 @@ namespace user
 
          int h = rectangle.height();
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
@@ -365,7 +365,7 @@ namespace user
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->should_show_keyboard_focus()))
       {
 
-         auto pbrush = __create < ::draw2d::brush >();
+         auto pbrush = __øcreate < ::draw2d::brush >();
 
          //if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          //{
@@ -440,7 +440,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -462,7 +462,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -501,7 +501,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -520,7 +520,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -529,7 +529,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __øcreate < ::draw2d::pen > ();
 
                   ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
@@ -547,7 +547,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -556,7 +556,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __øcreate < ::draw2d::pen > ();
 
                   ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
@@ -575,7 +575,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -584,7 +584,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  auto ppen = __øcreate < ::draw2d::pen > ();
 
                   ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
@@ -603,7 +603,7 @@ namespace user
          else
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
@@ -613,7 +613,7 @@ namespace user
 
       }
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       auto color = pinteraction->get_color(this, e_element_border);
 
@@ -671,7 +671,7 @@ namespace user
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
-         auto pbrush = __create < ::draw2d::brush >();
+         auto pbrush = __øcreate < ::draw2d::brush >();
 
          //if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          //{
@@ -744,7 +744,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -766,7 +766,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -805,7 +805,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -824,7 +824,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -833,7 +833,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
@@ -851,7 +851,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -860,7 +860,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
@@ -879,7 +879,7 @@ namespace user
 
                {
 
-                  //auto ppathRound = __create < ::draw2d::path >();
+                  //auto ppathRound = __øcreate < ::draw2d::path >();
 
                   //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -888,7 +888,7 @@ namespace user
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
                   ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
@@ -907,7 +907,7 @@ namespace user
          else
          {
 
-            auto ppen = __create < ::draw2d::pen >();
+            auto ppen = __øcreate < ::draw2d::pen >();
 
             ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
@@ -917,7 +917,7 @@ namespace user
 
       }
 
-      auto ppen = __create < ::draw2d::pen >();
+      auto ppen = __øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
 

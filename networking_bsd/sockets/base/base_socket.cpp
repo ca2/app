@@ -2019,7 +2019,7 @@ bool base_socket::SetSoNosigpipe(bool x)
    bool base_socket::SetSoBindtodevice(const string & intf)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, (unsigned int) intf.length()) == -1)
       {
 
          fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());

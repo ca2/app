@@ -257,7 +257,7 @@ namespace user
 
       }
 
-      //__construct(m_puserinteractionUserThread, m_puserinteractionUserThread->m_pthreadUserInteraction);
+      //__øconstruct(m_puserinteractionUserThread, m_puserinteractionUserThread->m_pthreadUserInteraction);
       
       m_eflagElement += e_flag_running;
 

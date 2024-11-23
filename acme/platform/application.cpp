@@ -2080,7 +2080,7 @@ namespace platform
 
       strMessage = lines.implode("\n");
 
-      auto picon = __create < ::nano::graphics::icon>();
+      auto picon = __øcreate < ::nano::graphics::icon>();
 
       auto pfile = file()->get("matter://main/icon.png");
 

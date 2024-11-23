@@ -197,9 +197,9 @@ namespace experience_anthill
    {
 
 
-      __construct(m_spregion);
-      __construct(m_ppen);
-      __construct(m_pbrush);
+      __øconstruct(m_spregion);
+      __øconstruct(m_ppen);
+      __øconstruct(m_pbrush);
 
 
       auto rectangleX = this->rectangle();

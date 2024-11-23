@@ -299,7 +299,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return __create < ::mutex >();
+      return __øcreate < ::mutex >();
 
    }
   
@@ -3425,7 +3425,7 @@ bool node::_is_smart_git_installed()
    ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
    {
       
-      auto papplication = __create < ::operating_system::application >();
+      auto papplication = __øcreate < ::operating_system::application >();
       
       papplication->open_by_process_identifier(processidentifier);
       
@@ -3442,7 +3442,7 @@ bool node::_is_smart_git_installed()
       for (auto & processidentifier : processidentifiera)
       {
 
-         auto papplication = __create < ::operating_system::application >();
+         auto papplication = __øcreate < ::operating_system::application >();
 
          papplication->open_by_process_identifier(processidentifier);
 

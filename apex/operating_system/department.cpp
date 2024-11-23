@@ -152,7 +152,7 @@ namespace operating_system
 
       m_strCmdLine = strCmdLine;
       
-      __construct(m_pprocess);
+      __øconstruct(m_pprocess);
 
       m_pstrRead = pstrRead;
 

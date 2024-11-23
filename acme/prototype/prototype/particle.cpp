@@ -128,7 +128,7 @@ void particle::defer_create_synchronization()
 //
 //#endif
 
-      set_synchronization(__create< ::mutex >(nullptr));
+      set_synchronization(__øcreate< ::mutex >(nullptr));
 
    }
 

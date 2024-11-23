@@ -1209,7 +1209,7 @@ ret:
 
       //   }
 
-      //   __construct(m_pftpfs, pftpfs);
+      //   __øconstruct(m_pftpfs, pftpfs);
 
       //}
 

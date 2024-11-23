@@ -24,8 +24,8 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
-//#define __create __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
-//#define __construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+//#define __øcreate __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
+//#define __øconstruct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 //#define __id_create __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
 //#define __create_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 //#define __id_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
@@ -35,8 +35,8 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 //#define __create_new_clone __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
 //#define __defer_construct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
-#define __create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
-#define __construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+#define __øcreate __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
+#define __øconstruct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 #define __id_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
 #define __create_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 #define __id_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
@@ -117,7 +117,7 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 #define __refdbg_add_referer_for(p) ::allocator::defer_push_referer(p, {refdbg_this(), __FUNCTION_FILE_LINE__});
 #define __refdbg_assign_referer_for(p) m_preferer = ::allocator::defer_push_referer(p, {refdbg_this(), __FUNCTION_FILE_LINE__});
 #define __refdbg_add_releaser(preferer) ::allocator::add_releaser(preferer);
-
+#define __refdbg_this(pparticle) auto refdbg_this= [pparticle]() { return pparticle; }
 CLASS_DECL_ACME void check_refdbg();
 
 
@@ -176,8 +176,8 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 #define REFDBG_THIS(p)
 
-#define __create __call__create
-#define __construct __call__construct
+#define __øcreate __call__create
+#define __øconstruct __call__construct
 #define __id_create __call__id_create
 #define __create_new __call__create_new
 #define __id_construct __call__id_construct

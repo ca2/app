@@ -160,43 +160,43 @@ namespace core
       //virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
-      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
+      void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema) override;
 
 //      int track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, int iFlags, const ::int_point & pointCursor) override;
 
 
-      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-      virtual bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending);
+      bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending) override;
+      bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending) override;
 
-      virtual void data_on_after_change(::message::message * pmessage);
+      void data_on_after_change(::message::message * pmessage) override;
 
       //virtual class ::user::keyboard * keyboard();
 
-      virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
+      bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls) override;
 
-      virtual void AddToRecentFileList(const ::string & pszPathName);
-
-
-      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
+      void AddToRecentFileList(const ::string & pszPathName) override;
 
 
-      virtual void _001OnFileNew();
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
 
-      ::pointer<::user::list_header>default_create_list_header(::particle * pparticle);
-      ::pointer<::user::mesh_data>default_create_mesh_data(::particle * pparticle);
-      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle);
+      void _001OnFileNew() override;
 
 
-      ::type_atom default_type_mesh_data();
-      ::type_atom default_type_list_header();
-      ::type_atom default_type_list_data();
+      ::pointer<::user::list_header>default_create_list_header(::particle * pparticle) override;
+      ::pointer<::user::mesh_data>default_create_mesh_data(::particle * pparticle) override;
+      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle) override;
 
 
-      virtual void will_use_impact_hint(::atom idImpact);
+      ::type_atom default_type_mesh_data() override;
+      ::type_atom default_type_list_header() override;
+      ::type_atom default_type_list_data() override;
 
 
-      virtual void term_instance() override;
+      void will_use_impact_hint(::atom idImpact) override;
+
+
+      void term_instance() override;
 
 
       //void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
@@ -217,10 +217,10 @@ namespace core
       //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
-      virtual void initialize_userex();
+      void initialize_userex() override;
 
-      virtual void userfs_init1();
-      virtual void userfs_process_init();
+      void userfs_init1() override;
+      void userfs_process_init() override;
 
 
       //virtual void create_html();
@@ -229,12 +229,12 @@ namespace core
       //virtual ::pointer<::userfs::userfs>create_userfs();
 
 
-      virtual ::type_atom get_pane_tab_impact_type_info();
+      ::type_atom get_pane_tab_impact_type_info() override;
       //virtual ::type_atom get_simple_frame_window_type_info() override;
       //virtual ::type_atom get_simple_child_frame_type_info();
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
+      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
 
 
 

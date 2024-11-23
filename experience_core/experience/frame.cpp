@@ -43,11 +43,11 @@ namespace experience_core
    void frame::on_initialize_experience_frame()
    {
 
-      __construct(m_ppenText1);
-      __construct(m_ppenFace1);
-      __construct(m_ppenHilight1);
-      __construct(m_ppenShadow1);
-      __construct(m_ppenDkShadow1);
+      __øconstruct(m_ppenText1);
+      __øconstruct(m_ppenFace1);
+      __øconstruct(m_ppenHilight1);
+      __øconstruct(m_ppenShadow1);
+      __øconstruct(m_ppenDkShadow1);
 
 
       /*               auto estyle = translate_style(m_strStyle);
@@ -625,7 +625,7 @@ namespace experience_core
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         __construct(ppen);
+         __øconstruct(ppen);
 
          ppen->create_solid(1.0, colorTopLeft);
 
@@ -654,7 +654,7 @@ namespace experience_core
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
-         __construct(ppen);
+         __øconstruct(ppen);
 
          ppen->create_solid(1.0, colorBottomRight);
 

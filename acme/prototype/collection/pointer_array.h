@@ -99,7 +99,7 @@ public:
 
       pointer < T > & p = comparable_array < ::pointer<T >, const T * >::add_new();
 
-      pparticle->__construct(p);
+      pparticle->__øconstruct(p);
 
       return p;
 
@@ -1847,7 +1847,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pparticle->__construct(this->element_at(i));
+      pparticle->__øconstruct(this->element_at(i));
 
    }
 

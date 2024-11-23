@@ -628,7 +628,7 @@ namespace windowing
    ::pointer < ::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = __create < ::windowing::window >();
+      auto pwindow = __øcreate < ::windowing::window >();
 
       return pwindow;
 
@@ -774,7 +774,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         __construct(m_pkeyboard);
+         __øconstruct(m_pkeyboard);
 
          initialize_keyboard(m_pkeyboard);
 

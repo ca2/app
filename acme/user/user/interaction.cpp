@@ -214,7 +214,7 @@ namespace acme
       //void interaction::resize_to_fit()
       //{
 
-      //   auto pdevice = __create < ::nano::graphics::device >();
+      //   auto pdevice = __øcreate < ::nano::graphics::device >();
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
@@ -1730,7 +1730,7 @@ namespace acme
          void interaction::on_create_window_object()
          {
 
-            __construct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
+            __øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
 
          }
          

@@ -445,7 +445,7 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
    };
 
-#if !defined(GNU_COMPILER) && !defined(FREEBSD) && !defined(WINDOWS_DESKTOP)
+#if !defined(GNU_COMPILER) && !defined(FREEBSD) && !defined(WINDOWS_DESKTOP) && !defined(__APPLE__)
 
    template < >
    class CLASS_DECL_ACME numeric_info < huge_integer > :
@@ -743,9 +743,9 @@ constexpr bool is_bit_set(N n, int bit)
 }
 
 
-/// @brief 
-/// @tparam N 
-/// @param n 
+/// @brief find the index of the most significant bit in a integral type payload
+/// @tparam N an integral type
+/// @param n an integral type payload
 /// @return the index of the most significant bit set at @n or -1 if none is found
 template < primitive_integral N >
 constexpr int most_significant_bit_index(N n)

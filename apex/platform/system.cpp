@@ -1966,7 +1966,7 @@ pdirectorysystem->create("/ca2core");
    // ::apex::node * system::node()
    // {
    //
-   //    return m_pnode ? m_pnode->m_papexnode : nullptr;
+   //    return m_pnode ? m_pnode : nullptr;
    //
    // }
 
@@ -1992,7 +1992,7 @@ pdirectorysystem->create("/ca2core");
       if (!m_pinput)
       {
 
-         auto pinput = node()->m_papexnode->create_input();
+         auto pinput = node()->create_input();
 
          m_pinput = pinput;
 
@@ -3975,7 +3975,7 @@ pmessagebox->sync();
 
       }
 
-      m_pnode->m_papexnode->get_firefox_installation_info(strBrowserPath, strBrowserDir);
+      m_pnode->get_firefox_installation_info(strBrowserPath, strBrowserDir);
 
       //if (::failed(estatus))
       //{
@@ -4844,7 +4844,7 @@ namespace apex
       //if (m_papexnode)
       //{
 
-      //   m_papexnode->route_command(pcommand, false);
+      //   route_command(pcommand, false);
 
       //}
 
@@ -4984,11 +4984,11 @@ namespace apex
 //
 //#elif defined(LINUX)
 
-         node()->m_papexnode->defer_innate_ui();
+         node()->defer_innate_ui();
 
 //#elif defined(MACOS)
 //
-//         node()->m_papexnode->defer_innate_ui();
+//         node()->defer_innate_ui();
 //
 //#endif
 
@@ -5169,13 +5169,19 @@ namespace apex
    {
 
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      auto & pfactory = factory("apex", "windows");
+//
+//      pfactory->merge_to_global_factory();
+//
+//#endif
 
-      auto & pfactory = factory("apex", "windows");
+      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+
+      auto & pfactory = factory("apex", strOperatingAmbient);
 
       pfactory->merge_to_global_factory();
-
-#endif
 
 
    }

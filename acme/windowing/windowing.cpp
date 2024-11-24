@@ -511,12 +511,17 @@ namespace acme
          
       }
       
-      
-      
-      
    }
    
    
+   void windowing::application_handle(huge_integer l, void * p)
+   {
+      
+      
+   }
+
+
+
    ::pixmap windowing::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
    {
       

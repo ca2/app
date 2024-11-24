@@ -4384,15 +4384,11 @@ particle* system::matter_mutex()
    void system::do_operating_ambient_factory()
    {
 
+      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
 
-#ifdef WINDOWS_DESKTOP
-
-      auto & pfactory = factory("acme", "windows");
+      auto & pfactory = factory("acme", strOperatingAmbient);
 
       pfactory->merge_to_global_factory();
-
-#endif
-
 
    }
 

@@ -20,6 +20,20 @@ namespace windowing
 
    ::windowing::enum_operating_ambient calculate_edesktop()
    {
+      
+#if defined(APPLE_IOS)
+         
+         printf_line("calculate_edesktop e_operating_ambient_ios");
+
+         return ::windowing::e_operating_ambient_ios;
+
+#elif defined(MACOS)
+         
+         printf_line("calculate_edesktop e_operating_ambient_macos");
+
+         return ::windowing::e_operating_ambient_macos;
+      
+#else
 
       const char *pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
@@ -137,21 +151,13 @@ namespace windowing
       else
       {
          
-#if defined(APPLE_IOS)
-         
-         printf_line("calculate_edesktop e_operating_ambient_ios");
-
-         return ::windowing::e_operating_ambient_ios;
-
-#else
-         
          printf_line("calculate_edesktop e_operating_ambient_gnome (1)");
 
          return ::windowing::e_operating_ambient_gnome;
          
-#endif
-         
       }
+      
+#endif
       
    }
 

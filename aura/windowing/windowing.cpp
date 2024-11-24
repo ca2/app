@@ -758,7 +758,7 @@ namespace windowing
 //   void windowing::windowing_post(const ::procedure & procedure)
 //   {
 //
-//      if(node()->m_pauranode->defer_windowing_post(procedure))
+//      if(node()->defer_windowing_post(procedure))
 //      {
 //
 //         return;

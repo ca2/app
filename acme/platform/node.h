@@ -712,9 +712,6 @@ namespace platform
       virtual ::string operating_system_application_version() override;
       
 
-      virtual void application_handle(huge_integer l, void * p) override;
-
-
       virtual bool is_application_running_good_effort(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
 
 

@@ -5120,7 +5120,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -5138,7 +5138,7 @@ retry_license:
 
             auto psystem = system();
 
-            auto pnode = psystem->node()->m_papexnode;
+            auto pnode = psystem->node();
 
             pnode->show_wait_cursor(true);
 
@@ -5148,7 +5148,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -5165,7 +5165,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(true);
 

@@ -2517,7 +2517,7 @@ namespace aura
 
       //papplication = this;
       //papplication = m_paurasystem;
-      //papplication->m_pauranode = m_pauranode;
+      //papplication = m_pauranode;
 
    }
 

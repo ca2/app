@@ -124,7 +124,7 @@ CLASS_DECL_APEX int ca2_main();
 
 // // //          directory_system()->create(pathLnk.folder());
 
-// // //          system()->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+// // //          system()->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
 // // //       }
 

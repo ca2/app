@@ -17,7 +17,7 @@ namespace app_just_aura_message_box
 
 
       application();
-      //~application() override;
+      ~application() override;
       
       __DECLARE_APPLICATION_RELEASE_TIME();
 

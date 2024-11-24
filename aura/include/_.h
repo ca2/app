@@ -25,7 +25,7 @@
 //
 //
 //#define ::auraacmesystem() (psystem)
-//#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
+//#define Node (psystem->m_pnode ? psystem->m_pnode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession)
 //#define App(playered) (*::get_app(playered))
 

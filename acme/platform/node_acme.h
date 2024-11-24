@@ -55,8 +55,8 @@ namespace platform
 
 
       htask_t m_htaskSystem;
-      ::apex::node* m_papexnode;
-      ::aura::node* m_pauranode;
+      //::apex::node* m_papexnode;
+      //::aura::node* m_pauranode;
 
       ::acme_posix::node* m_pAcmePosix;
       ::apex_posix::node* m_pApexPosix;
@@ -884,7 +884,6 @@ namespace platform
       virtual ::string operating_system_application_version();
 
 
-      virtual void application_handle(huge_integer l, void* p);
 
 
       virtual bool is_application_running_good_effort(const ::scoped_string& scopedstrRepos,

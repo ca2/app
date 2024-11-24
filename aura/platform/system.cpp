@@ -6947,7 +6947,7 @@ if(!m_pimaging)
    // ::aura::node* system::node()
    // {
    //
-   //    return m_pnode ? m_pnode->m_pauranode : nullptr;
+   //    return m_pnode ? m_pnode : nullptr;
    //
    // }
 

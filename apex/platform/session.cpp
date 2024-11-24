@@ -749,7 +749,7 @@ class ::fs::data * session::fs()
       //papp = this;
       //papp = m_papexsystem;
       //papp->m_pnode = m_pnode;
-      //papp->m_papexnode = m_papexnode;
+      //papp = m_papexnode;
 
    }
 
@@ -981,7 +981,7 @@ class ::fs::data * session::fs()
 
          bool bPressed = false;
 
-         if (node()->m_papexnode->is_key_pressed(&bPressed, ekey))
+         if (node()->is_key_pressed(&bPressed, ekey))
          {
 
             return bPressed;

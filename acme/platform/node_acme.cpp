@@ -1231,9 +1231,9 @@ namespace platform
    }
 
 
-   void acme_node_layer::application_handle(huge_integer l, void* p)
-   {
-   }
+//   void acme_node_layer::application_handle(huge_integer l, void* p)
+//   {
+//   }
 
 
    bool acme_node_layer::is_application_running_good_effort(const ::scoped_string& scopedstrRepos,

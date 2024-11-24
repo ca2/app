@@ -344,6 +344,9 @@ namespace platform
 
 
       virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu) override;
+         
+         
+      void application_menu_update() override;
 
 
    };

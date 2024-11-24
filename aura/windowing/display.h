@@ -114,6 +114,8 @@ namespace windowing
       virtual ::collection::index get_main_monitor_index();
       virtual ::collection::index get_main_monitor(::int_rectangle & rectangle);
       virtual ::int_size get_main_monitor_size();
+      
+      ::int_size get_main_screen_size() override;
 
       virtual ::int_rectangle get_monitor_union_rectangle();
 

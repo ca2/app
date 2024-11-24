@@ -25,7 +25,7 @@ namespace app_message_box
 #define APPLICATION_CLASS ::app_just_message_box::application
 
 
-#include "application.h"
+//#include "application.h"
 
 
 

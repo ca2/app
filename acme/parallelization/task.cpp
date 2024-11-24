@@ -484,7 +484,7 @@ void task::__os_initialize()
    //
    //#endif
 
-   //system()->m_papexnode->node_thread_initialize(this);
+   //system()->node_thread_initialize(this);
 
 }
 
@@ -595,7 +595,7 @@ void task::task_osinit()
       processor_cache_oriented_set_thread_memory_pool(0);
       // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      //system()->m_papexnode->parallelization_initialize();
+      //system()->parallelization_initialize();
 
    }
 

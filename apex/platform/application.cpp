@@ -397,16 +397,7 @@ namespace apex
    ::application_menu * application::application_menu()
    {
 
-      if (__defer_construct_new(m_papplicationmenu))
-      {
-
-         m_papplicationmenu->m_strName = application_title();
-
-         m_papplicationmenu->m_bPopup = true;
-
-      }
-
-      return m_papplicationmenu;
+      return ::platform::application::application_menu();
 
    }
 
@@ -431,31 +422,33 @@ namespace apex
 
    void application::application_menu_update()
    {
+      
+      ::platform::application::application_menu_update();
 
-//#ifdef LINUX
+////#ifdef LINUX
+////
+////      auto psystem = system();
+////
+////      if (application()->m_bGtkApp)
+////      {
+////
+////         auto pnode = psystem->node();
+////
+////         if (pnode)
+////         {
+////
+////            pnode->set_application_menu(m_pappmenu, this);
+////
+////         }
+////
+////      }
+////
+////#else
+////
+//      node()->application_handle(id_application_menu_update, nullptr);
+////
+////#endif
 //
-//      auto psystem = system();
-//
-//      if (application()->m_bGtkApp)
-//      {
-//
-//         auto pnode = psystem->node();
-//
-//         if (pnode)
-//         {
-//
-//            pnode->set_application_menu(m_pappmenu, this);
-//
-//         }
-//
-//      }
-//
-//#else
-//
-      node()->application_handle(id_application_menu_update, nullptr);
-//
-//#endif
-
    }
 
 
@@ -518,7 +511,7 @@ namespace apex
    //
    //      auto psystem = system();
    //
-   //      auto papexnode = psystem->m_papexnode;
+   //      auto papexnode = psystem;
    //
    //      papexnode->show_wait_cursor(bShow);
    //
@@ -2390,7 +2383,7 @@ namespace apex
       }
       //return true;
 
-      //node()->m_papexnode->on_start_application(this);
+      //node()->on_start_application(this);
 
       on_start_application();
 
@@ -2421,7 +2414,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-      node()->m_papexnode->on_create_app_shortcut(this);
+      node()->on_create_app_shortcut(this);
 
    }
 
@@ -2909,7 +2902,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         system()->m_pnode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         system()->m_pnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -5588,9 +5581,9 @@ namespace apex
 
       }
 
-      system()->m_pnode->m_papexnode->set_last_run_application_path(strAppId);
+      system()->m_pnode->set_last_run_application_path(strAppId);
 
-      node()->m_papexnode->on_start_application(this);
+      node()->on_start_application(this);
 
 //      if (!os_on_start_application())
 //      {
@@ -6405,6 +6398,8 @@ namespace apex
 
    void application::init()
    {
+      
+      ::platform::application::init();
 
       m_timeHeartBeat.Now();
 
@@ -6477,44 +6472,6 @@ namespace apex
       }
 
       error() << "1.1";
-
-      auto papplicationmenu = application_menu();
-
-      papplicationmenu->erase_all();
-
-      using namespace ::apex;
-
-      {
-
-         auto ppopupApp = papplicationmenu->popup(application_title());
-
-         //pmenuMain->add(pmenuApp);
-
-         ppopupApp->item("About " + application_title(), "display_about", "", "");
-
-         ppopupApp->separator();
-
-         ppopupApp->item("Quit " + application_title(), "app_exit", "", "");
-
-      }
-
-      //      {
-      //
-      //         auto ppopupView = papplicationmenu->popup("View");
-      //
-      //         //ppopupView->add(pmenuView);
-      //
-      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-      //
-      //      }
-      //
-      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-      //
-      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-      ////
-      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-      application_menu_update();
 
       information() << "success";
 
@@ -6924,7 +6881,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -6942,7 +6899,7 @@ namespace apex
 
             auto psystem = system();
 
-            auto pnode = psystem->node()->m_papexnode;
+            auto pnode = psystem->node();
 
             pnode->show_wait_cursor(true);
 
@@ -6952,7 +6909,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -6969,7 +6926,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(true);
 
@@ -10199,7 +10156,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto papex = psystem->m_pnode->m_papexnode;
+      auto papex = psystem->m_pnode;
 
       return papex->_001InitializeShellOpen();
 
@@ -10357,7 +10314,7 @@ namespace apex
    bool application::exclusive_fails(const ::string & strName, security_attributes * psecurityattributes)
    {
 
-      return node()->m_papexnode->exclusive_fails(this, strName, psecurityattributes);
+      return node()->exclusive_fails(this, strName, psecurityattributes);
 
    }
 
@@ -10365,7 +10322,7 @@ namespace apex
    bool application::exclusive_erase(const ::string & strName)
    {
 
-      return node()->m_papexnode->erase_exclusive(strName);
+      return node()->erase_exclusive(strName);
 
    }
 
@@ -10373,7 +10330,7 @@ namespace apex
    void application::release_exclusive()
    {
 
-      auto papexnode = node()->m_papexnode;
+      auto papexnode = node();
 
       papexnode->release_exclusive();
 

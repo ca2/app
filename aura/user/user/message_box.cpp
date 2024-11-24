@@ -514,7 +514,7 @@ namespace aura
    //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto pnode = m_pnode->m_pauranode;
+   //   auto pnode = m_pnode;
 
    //   auto pfuture = pnode->_message_box(oswindow, strMessage, strTitle, emessagebox);
 

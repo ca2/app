@@ -17,6 +17,8 @@ namespace windowing
          return "xfce";
       case e_operating_ambient_ios:
          return "ios";
+      case e_operating_ambient_macos:
+         return "macos";
       case e_operating_ambient_windows:
          return "windows";
       case e_operating_ambient_unity:

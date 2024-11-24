@@ -1125,19 +1125,19 @@ namespace user
 
       }
 
-      auto pwindow = puserinteractionTopLevel->windowing_window();
+      auto pacmewindowingwindow = puserinteractionTopLevel->m_pacmewindowingwindow;
 
-      if (::is_null(pwindow))
+      if (::is_null(pacmewindowingwindow))
       {
 
          if (::is_set(puserinteractionTopLevel->m_puserinteractionParent))
          {
 
-            pwindow = puserinteractionTopLevel->m_puserinteractionParent->windowing_window();
+            pacmewindowingwindow = puserinteractionTopLevel->m_puserinteractionParent->m_pacmewindowingwindow;
 
          }
 
-         if (::is_null(pwindow))
+         if (::is_null(pacmewindowingwindow))
          {
 
             return nullptr;
@@ -1154,6 +1154,15 @@ namespace user
       //   return nullptr;
 
       //}
+      
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+      
+      if(!pwindow)
+      {
+       
+         return nullptr;
+         
+      }
 
       return pwindow;
 
@@ -27198,9 +27207,9 @@ namespace user
 
       bool bMouseHover = ::is_item_set(m_pitemHover);
 
-      auto pwindowimpl = ((interaction *)this)->window();
+      auto pwindowimpl = ((interaction *)this)->_window();
 
-      if (pwindowimpl->m_puiLastLButtonDown == this)
+      if (pwindowimpl && pwindowimpl->m_puiLastLButtonDown == this)
       {
 
          bMouseHover = true;

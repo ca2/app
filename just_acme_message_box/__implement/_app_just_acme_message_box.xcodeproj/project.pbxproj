@@ -133,7 +133,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 6;
 			files = (
 				9A83B51E2807E6E100A1A2B6 /* libacme_posix.dylib in Embed Libraries */,
 				9A90BA1E2B5495C2002BFC9E /* libarchive.dylib in Embed Libraries */,

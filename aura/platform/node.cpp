@@ -22,7 +22,7 @@ namespace aura
    node::node()
    {
 
-      m_pauranode = this;
+      //m_pauranode = this;
 
       m_bUnhookX = true;
 
@@ -52,7 +52,7 @@ namespace aura
 
       //message_box_factory();
 
-      //system()->m_pauranode = this;
+      //system() = this;
 
       //return estatus;
 

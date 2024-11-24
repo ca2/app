@@ -77,8 +77,8 @@ namespace platform
 
       m_uNodeFlags = 0;
 
-      m_papexnode = nullptr;
-      m_pauranode = nullptr;
+      //m_papexnode = nullptr;
+      //m_pauranode = nullptr;
       //m_edesktop = ::user::e_operating_ambient_none;
       //m_etoolkit = ::user::e_toolkit_none;
 
@@ -3508,11 +3508,11 @@ bool node::_is_smart_git_installed()
    }
 
 
-   void node::application_handle(huge_integer l, void * p)
-   {
-
-      
-   }
+//   void node::application_handle(huge_integer l, void * p)
+//   {
+//
+//      
+//   }
 
 
 #if defined(__BSD__) || defined(__APPLE__)

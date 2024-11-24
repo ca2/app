@@ -163,7 +163,6 @@
 		9A39BAE524EB25CA003C070E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
 		9A39BAE924EB25CA003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
 		9A39BB1724EB2D04003C070E /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = ../../time/macos/libapp_app.dylib; sourceTree = "<group>"; };
-		9A5244392CDACFD1006ED868 /* _app_just_apex_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = _app_just_apex_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A52443C2CDAD335006ED868 /* libapp_just_apex_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_just_apex_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A52443E2CDAD3F8006ED868 /* app_just_apex_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_apex_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_apex_message_box/app_just_apex_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9A52444F2CDADAAD006ED868 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
@@ -226,10 +225,9 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A5244392CDACFD1006ED868 /* _app_just_apex_message_box.xcodeproj */,
-				9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */,
 				9AA828DC2CAF86F900DA11E9 /* apex_macos.xcodeproj */,
 				9A52443E2CDAD3F8006ED868 /* app_just_apex_message_box.xcodeproj */,
+				9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */,
 				9A5244512CDADB7B006ED868 /* innate_ui_appkit.xcodeproj */,
 				9A8FCA842651A7FE00C0D8A1 /* __implement */,
 				070B8EEB1B6E53F900D26137 /* Products */,
@@ -308,11 +306,6 @@
 				9A22742027CF35F40042BAC2 /* application_main.cpp */,
 			);
 			name = __implement;
-			sourceTree = "<group>";
-		};
-		9AA326652CDB16FD00A2B1C0 /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9AA828DD2CAF86F900DA11E9 /* Products */ = {
@@ -440,10 +433,6 @@
 			productRefGroup = 070B8EEB1B6E53F900D26137 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 9AA326652CDB16FD00A2B1C0 /* Products */;
-					ProjectRef = 9A5244392CDACFD1006ED868 /* _app_just_apex_message_box.xcodeproj */;
-				},
 				{
 					ProductGroup = 9AA828DD2CAF86F900DA11E9 /* Products */;
 					ProjectRef = 9AA828DC2CAF86F900DA11E9 /* apex_macos.xcodeproj */;

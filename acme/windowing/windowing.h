@@ -105,6 +105,8 @@ namespace acme
          virtual void on_start_system();
 
          virtual void _do_tasks();
+         
+         virtual void application_handle(huge_integer l, void * p);
 
          //virtual void defer_initialize_windowing();
 

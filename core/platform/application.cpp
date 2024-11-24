@@ -230,7 +230,7 @@ namespace core
 
       }
 
-      strOptionsHtml += system()->m_pnode->m_pauranode->system_options_html();
+      strOptionsHtml += system()->m_pnode->system_options_html();
 
       strOptionsHtml += "</body>";
       strOptionsHtml += "</html>";

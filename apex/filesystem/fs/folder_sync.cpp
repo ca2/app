@@ -173,7 +173,7 @@ namespace fs
 
       listing.m_pathUser = pathLocal;
 
-      node()->m_papexnode->root_ones(listing);
+      node()->root_ones(listing);
 
       return listing;
 

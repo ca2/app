@@ -69,7 +69,7 @@ namespace httpd
 
       //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
 
-
+      void on_set_parent_socket() override;
 
    //protected:
       //httpd_socket(const httpd_socket& s);

@@ -451,6 +451,12 @@
     <Filter Include="Source Files\release">
       <UniqueIdentifier>{250c956a-3d0e-48b1-a15b-51036c58b966}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{fc3f68ce-b9d9-4355-a966-e44b1066b341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{c7713383-a8c1-44bc-af6e-484dcd48514c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4065,6 +4071,21 @@
     <ClInclude Include="parallelization\wait_for_end_of_sequence.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu\menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\_.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_menu_callback.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_menu.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_menu_command.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5791,6 +5812,15 @@
     </ClCompile>
     <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp">
       <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu_command.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

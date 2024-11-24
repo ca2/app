@@ -108,6 +108,12 @@ namespace httpd
    }
 
 
+   void socket::on_set_parent_socket()
+   {
+
+
+   }
+
 
    void socket::Send64(const ::string& str64, const string& type)
    {

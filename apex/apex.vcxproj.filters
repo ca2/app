@@ -311,9 +311,6 @@
     <ClInclude Include="platform\application_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\application_menu.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\application_signal_details.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -965,12 +962,6 @@
     <ClInclude Include="input\input.h">
       <Filter>Header Files\input</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\main_menu.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\main_menu_command.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
     <ClInclude Include="platform\application_menu_command.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1063,6 +1054,12 @@
     </ClInclude>
     <ClInclude Include="networking\application\application_incoming_socket_thread.h">
       <Filter>Header Files\networking\application</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\shared.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\_.h">
+      <Filter>Header Files\user\menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1462,12 +1459,6 @@
     <ClCompile Include="user\menu\shared.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="platform\application_menu_command.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\application_menu.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="handler\manager_room.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
@@ -1497,9 +1488,6 @@
     </ClCompile>
     <ClCompile Include="platform\get_file_extension_mime_type.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\menu.cpp">
-      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\folder_sync.cpp">
       <Filter>Source Files\filesystem\fs</Filter>

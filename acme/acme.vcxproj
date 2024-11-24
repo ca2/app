@@ -1398,6 +1398,9 @@
     <ClInclude Include="platform\application_axis.h" />
     <ClInclude Include="platform\application_bred.h" />
     <ClInclude Include="platform\application_core.h" />
+    <ClInclude Include="platform\application_menu.h" />
+    <ClInclude Include="platform\application_menu_callback.h" />
+    <ClInclude Include="platform\application_menu_command.h" />
     <ClInclude Include="platform\c.h" />
     <ClInclude Include="platform\context_acme.h" />
     <ClInclude Include="platform\context_apex.h" />
@@ -1451,6 +1454,8 @@
     <ClInclude Include="prototype\string\c_string.h" />
     <ClInclude Include="prototype\time\__time.h" />
     <ClInclude Include="release\_.h" />
+    <ClInclude Include="user\menu\menu.h" />
+    <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\micro\aaa_brush.h" />
     <ClInclude Include="user\micro\aaa_child.h" />
     <ClInclude Include="user\micro\aaa_device.h" />
@@ -2004,6 +2009,8 @@
     <ClCompile Include="platform\application_container.cpp" />
     <ClCompile Include="platform\application_core.cpp" />
     <ClCompile Include="platform\application_exit.cpp" />
+    <ClCompile Include="platform\application_menu.cpp" />
+    <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\c.cpp" />
@@ -2238,6 +2245,7 @@
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
     <ClCompile Include="release\release.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>

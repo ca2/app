@@ -568,6 +568,20 @@
 		9A17475D2AD3913000760D8F /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A17475A2AD3912F00760D8F /* window.cpp */; };
 		9A17475E2AD3913000760D8F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A17475B2AD3912F00760D8F /* window.h */; };
 		9A17475F2AD3913000760D8F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A17475B2AD3912F00760D8F /* window.h */; };
+		9A1CC3E32CF2D596004A00CB /* application_menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3DF2CF2D596004A00CB /* application_menu.h */; };
+		9A1CC3E42CF2D596004A00CB /* application_menu_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3E12CF2D596004A00CB /* application_menu_command.h */; };
+		9A1CC3E52CF2D596004A00CB /* application_menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E22CF2D596004A00CB /* application_menu_command.cpp */; };
+		9A1CC3E62CF2D596004A00CB /* application_menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E02CF2D596004A00CB /* application_menu.cpp */; };
+		9A1CC3E72CF2D596004A00CB /* application_menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3DF2CF2D596004A00CB /* application_menu.h */; };
+		9A1CC3E82CF2D596004A00CB /* application_menu_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3E12CF2D596004A00CB /* application_menu_command.h */; };
+		9A1CC3E92CF2D596004A00CB /* application_menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E22CF2D596004A00CB /* application_menu_command.cpp */; };
+		9A1CC3EA2CF2D596004A00CB /* application_menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E02CF2D596004A00CB /* application_menu.cpp */; };
+		9A1CC3EB2CF2D596004A00CB /* application_menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E22CF2D596004A00CB /* application_menu_command.cpp */; };
+		9A1CC3EC2CF2D596004A00CB /* application_menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3E02CF2D596004A00CB /* application_menu.cpp */; };
+		9A1CC3ED2CF2D596004A00CB /* application_menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3DF2CF2D596004A00CB /* application_menu.h */; };
+		9A1CC3EE2CF2D596004A00CB /* application_menu_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3E12CF2D596004A00CB /* application_menu_command.h */; };
+		9A1CC3F42CF2D6FB004A00CB /* menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1CC3F22CF2D6FB004A00CB /* menu.h */; };
+		9A1CC3F52CF2D6FB004A00CB /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC3F32CF2D6FB004A00CB /* menu.cpp */; };
 		9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CEBFE29C7BBA500A32D62 /* file.cpp */; };
 		9A1FB4CF2870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
 		9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
@@ -5262,6 +5276,12 @@
 		9A1747522AD38E5C00760D8F /* pixmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixmap.h; sourceTree = "<group>"; };
 		9A17475A2AD3912F00760D8F /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		9A17475B2AD3912F00760D8F /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		9A1CC3DF2CF2D596004A00CB /* application_menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application_menu.h; sourceTree = "<group>"; };
+		9A1CC3E02CF2D596004A00CB /* application_menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application_menu.cpp; sourceTree = "<group>"; };
+		9A1CC3E12CF2D596004A00CB /* application_menu_command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application_menu_command.h; sourceTree = "<group>"; };
+		9A1CC3E22CF2D596004A00CB /* application_menu_command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application_menu_command.cpp; sourceTree = "<group>"; };
+		9A1CC3F22CF2D6FB004A00CB /* menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
+		9A1CC3F32CF2D6FB004A00CB /* menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = menu.cpp; sourceTree = "<group>"; };
 		9A1CEBFE29C7BBA500A32D62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		9A1FB4CD2870DE460042849A /* _main_hold_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _main_hold_base.h; sourceTree = "<group>"; };
 		9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main_hold_base.cpp; sourceTree = "<group>"; };
@@ -7070,6 +7090,8 @@
 		9A523ED02CD41062006ED868 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				9A1CC3F22CF2D6FB004A00CB /* menu.h */,
+				9A1CC3F32CF2D6FB004A00CB /* menu.cpp */,
 				9A523ECF2CD41062006ED868 /* _.h */,
 			);
 			path = menu;
@@ -7372,7 +7394,11 @@
 				9AE6DE4D29621576008A1335 /* application_exit.cpp */,
 				9AE6DE4A29621575008A1335 /* application_flags.h */,
 				9AE6DE67296218A6008A1335 /* application_flags.cpp */,
+				9A1CC3DF2CF2D596004A00CB /* application_menu.h */,
+				9A1CC3E02CF2D596004A00CB /* application_menu.cpp */,
 				9ABBDF992AF0AEC20032EAD3 /* application_menu_callback.h */,
+				9A1CC3E12CF2D596004A00CB /* application_menu_command.h */,
+				9A1CC3E22CF2D596004A00CB /* application_menu_command.cpp */,
 				9A68A5612511442F008DABD2 /* assert.cpp */,
 				9A68A58F2511442F008DABD2 /* auto.h */,
 				9A68A58D2511442F008DABD2 /* auto_pointer.h */,
@@ -9264,6 +9290,8 @@
 				9A0841922935C1FD009F7FF4 /* _inline_functions.h in Headers */,
 				9A0841942935C1FD009F7FF4 /* _configuration.h in Headers */,
 				9A892DE826CD9061008D6412 /* code_page.h in Headers */,
+				9A1CC3E32CF2D596004A00CB /* application_menu.h in Headers */,
+				9A1CC3E42CF2D596004A00CB /* application_menu_command.h in Headers */,
 				9A68AFE525114436008DABD2 /* application_common.h in Headers */,
 				9A0840F129348AAB009F7FF4 /* aaaa_minute.h in Headers */,
 				9A7861D3264B9096003DF8A0 /* compare_predicate.h in Headers */,
@@ -9501,6 +9529,7 @@
 				9AA8FDF927BA729B008FF9AA /* binreloc.h in Headers */,
 				9A0842072935DD5D009F7FF4 /* encoding_impl.h in Headers */,
 				9A13DCF828442369009ED8FC /* item.h in Headers */,
+				9A1CC3F42CF2D6FB004A00CB /* menu.h in Headers */,
 				9A0841E92935DD5C009F7FF4 /* wd32.h in Headers */,
 				9A08418A2935C1FD009F7FF4 /* _forward_declaration.h in Headers */,
 				9A68B39825114438008DABD2 /* exception2.h in Headers */,
@@ -10724,6 +10753,8 @@
 				9AC102672B6AC9BD0053DB45 /* tuple.h in Headers */,
 				9AC102682B6AC9BD0053DB45 /* aaa_procedure_array.h in Headers */,
 				9AC102692B6AC9BD0053DB45 /* check.h in Headers */,
+				9A1CC3E72CF2D596004A00CB /* application_menu.h in Headers */,
+				9A1CC3E82CF2D596004A00CB /* application_menu_command.h in Headers */,
 				9AC1026A2B6AC9BD0053DB45 /* plex_heap.h in Headers */,
 				9AC1026B2B6AC9BD0053DB45 /* _template_forward_declaration.h in Headers */,
 				9AC1026E2B6AC9BD0053DB45 /* _stream_process_impl.h in Headers */,
@@ -11723,6 +11754,8 @@
 				9A5240682CD45461006ED868 /* aaa_step.h in Headers */,
 				9A08419D2935C1FD009F7FF4 /* _template_forward_declaration.h in Headers */,
 				9AD68F83251A753A00C0EBD7 /* _setup.h in Headers */,
+				9A1CC3ED2CF2D596004A00CB /* application_menu.h in Headers */,
+				9A1CC3EE2CF2D596004A00CB /* application_menu_command.h in Headers */,
 				9A8660E42966A849000C82F0 /* _impl_payload.h in Headers */,
 				9A95EDA72AFAFE17000F322B /* _c.h in Headers */,
 				9A52402B2CD44444006ED868 /* node_apex.h in Headers */,
@@ -12698,6 +12731,8 @@
 				9A52416D2CD47440006ED868 /* _.cpp in Sources */,
 				9A52416E2CD47440006ED868 /* condition_variable.cpp in Sources */,
 				9A52416F2CD47440006ED868 /* condition.cpp in Sources */,
+				9A1CC3E52CF2D596004A00CB /* application_menu_command.cpp in Sources */,
+				9A1CC3E62CF2D596004A00CB /* application_menu.cpp in Sources */,
 				9A5241702CD47440006ED868 /* create_task_attributes.cpp in Sources */,
 				9A5241712CD47440006ED868 /* critical_section.cpp in Sources */,
 				9A5405082CE768130009869E /* frame_interaction.cpp in Sources */,
@@ -12876,6 +12911,7 @@
 				9A52421B2CD47440006ED868 /* cvt.cpp in Sources */,
 				9A919E482CF298AD00272FF2 /* wait_for_end_of_sequence.cpp in Sources */,
 				9A52421C2CD47440006ED868 /* int_biunique.cpp in Sources */,
+				9A1CC3F52CF2D6FB004A00CB /* menu.cpp in Sources */,
 				9A52421D2CD47440006ED868 /* mathematics.cpp in Sources */,
 				9A52421E2CD47440006ED868 /* mkint_c.cpp in Sources */,
 				9A5242F72CD48D56006ED868 /* screen.mm in Sources */,
@@ -13510,6 +13546,8 @@
 				9AC1061A2B6AC9BD0053DB45 /* bad_file_format.cpp in Sources */,
 				9AC1061B2B6AC9BD0053DB45 /* file_dialog.cpp in Sources */,
 				9AC1061D2B6AC9BD0053DB45 /* _.cpp in Sources */,
+				9A1CC3E92CF2D596004A00CB /* application_menu_command.cpp in Sources */,
+				9A1CC3EA2CF2D596004A00CB /* application_menu.cpp in Sources */,
 				9AC1061E2B6AC9BD0053DB45 /* plex.cpp in Sources */,
 				9AC1061F2B6AC9BD0053DB45 /* stringtow.cpp in Sources */,
 				9AC106202B6AC9BD0053DB45 /* paged_memory.cpp in Sources */,
@@ -14097,6 +14135,8 @@
 				9A523FAE2CD433B0006ED868 /* release_time_for_project.cpp in Sources */,
 				9A523FAF2CD433B0006ED868 /* session_aqua.cpp in Sources */,
 				9A523FB02CD433B0006ED868 /* c.cpp in Sources */,
+				9A1CC3EB2CF2D596004A00CB /* application_menu_command.cpp in Sources */,
+				9A1CC3EC2CF2D596004A00CB /* application_menu.cpp in Sources */,
 				9A919E3A2CF2979B00272FF2 /* debug.cpp in Sources */,
 				9A523FB12CD433B0006ED868 /* session_apex.cpp in Sources */,
 				9A523FB22CD433B0006ED868 /* session_aura.cpp in Sources */,

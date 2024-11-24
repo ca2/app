@@ -519,7 +519,7 @@ namespace helloworld
                && m_pimpactLast != nullptr)
          {
 
-            if(pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_sel)
+            if(pupdate->m_pusercontrolevent->m_ehappening == ::id_after_change_cur_sel)
             {
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
@@ -536,7 +536,7 @@ namespace helloworld
                }
 
             }
-            else if (pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_hover)
+            else if (pupdate->m_pusercontrolevent->m_ehappening == ::id_after_change_cur_hover)
             {
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();

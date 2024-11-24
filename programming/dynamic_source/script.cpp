@@ -408,7 +408,7 @@ namespace dynamic_source
       if (m_plibrary.is_null() || m_plibrary->is_closed())
       {
 
-         __construct(m_plibrary);
+         __øconstruct(m_plibrary);
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 

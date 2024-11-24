@@ -292,7 +292,7 @@ namespace wave
 
    //   }
 
-   //   auto estatus = __construct(m_pwaveout);
+   //   auto estatus = __øconstruct(m_pwaveout);
 
    //   if (!estatus)
    //   {
@@ -579,7 +579,7 @@ namespace wave
    }
 
 
-   void player::post_event(enum_player_event ehappening, player_command * pcommand)
+   void player::post_event(enum_player_happening ehappening, player_command * pcommand)
    {
 
       //::pointer<player_command>spcommand(pcommand);
@@ -602,7 +602,7 @@ namespace wave
    //}
 
 
-   void player::OnHappening(enum_player_event ehappening, player_command * pcommand)
+   void player::OnHappening(enum_player_happening ehappening, player_command * pcommand)
    {
 
       switch (ehappening)

@@ -100,7 +100,7 @@ void directory_system::init_system()
 
    }
 
-   //__construct(m_pfilewatcher);
+   //__øconstruct(m_pfilewatcher);
 
    pdirectorysystem->create(directory_system()->bookmark());
 

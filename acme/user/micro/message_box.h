@@ -25,6 +25,7 @@ namespace micro
 
          string                                    m_strLabelDetails;
          ::pointer<::micro::still>                 m_pstillDetails;
+         ::pointer<::micro::still>                 m_pstillTimeout;
          //::pointer<::micro::still>               m_pstillIcon;
          ::pointer<::nano::graphics::icon>         m_picon;
          //::pointer < ::message_box >               m_pmessagebox;
@@ -59,6 +60,8 @@ namespace micro
 
          ::payload get_dialog_result() override;
 
+
+         void on_timer(::timer * ptimer) override;
 
          //void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 

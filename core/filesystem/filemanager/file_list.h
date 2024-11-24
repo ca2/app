@@ -97,7 +97,7 @@ namespace filemanager
       //DECLARE_MESSAGE_HANDLER(_001OnUpdateSpafy2);
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
 
       bool on_click(::item * pitem) override;

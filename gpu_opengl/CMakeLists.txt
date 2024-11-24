@@ -37,8 +37,8 @@ if(${LINUX} OR ${__BSD__})
     list(APPEND library_source
             context_egl.cpp
             context_egl.h
-            context_glx.cpp
-            context_glx.h
+            #context_glx.cpp
+            #context_glx.h
             )
 
 endif ()
@@ -67,7 +67,7 @@ if(${LINUX} OR ${__BSD__})
 
     list(APPEND library_references
             aura_posix
-       windowing_system_x11
+       #windowing_system_x11
             )
 
 else()

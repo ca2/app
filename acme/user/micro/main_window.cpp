@@ -234,7 +234,7 @@ namespace micro
    //void main_window::resize_to_fit()
    //{
 
-   //   auto pdevice = __create < ::nano::graphics::device >();
+   //   auto pdevice = __øcreate < ::nano::graphics::device >();
 
    //   auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -1504,6 +1504,8 @@ namespace micro
    void main_window::redraw()
    {
 
+      ::acme::user::interaction::redraw();
+
 
    }
 
@@ -1611,7 +1613,7 @@ namespace micro
    }
 
 
-   void main_window::handle(::topic* ptopic, ::context* pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_operating_system_user_color_change)
@@ -1695,7 +1697,7 @@ namespace micro
 
          }
 
-         __construct(m_pacmewindowingwindow);
+         __øconstruct(m_pacmewindowingwindow);
 
       }
 

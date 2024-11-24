@@ -35,7 +35,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
       bool on_click(::item* pitem) override;
 

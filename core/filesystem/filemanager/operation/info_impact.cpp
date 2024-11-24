@@ -119,9 +119,9 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_info_impact::_001OnTimer(::timer * ptimer)
+   void operation_info_impact::on_timer(::timer * ptimer)
    {
-      ::user::impact::_001OnTimer(ptimer);
+      ::user::impact::on_timer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
       }
@@ -137,7 +137,7 @@ namespace filemanager
    {
       ::user::impact::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_impact::on_message_create);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_impact::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_impact::on_timer);
    }
 
 //   void operation_info_impact::assert_ok() const

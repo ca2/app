@@ -59,7 +59,7 @@ namespace user
 
 
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
 
       //using ::user::control_bar::create_interaction;

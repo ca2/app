@@ -107,8 +107,12 @@ public:
 
    //::particle_pointer m_pparticleLast;
    //::particle_pointer m_pparticle;
-   
-   
+   ::pointer < manual_reset_happening >   m_pmanualresethappeningOnEndOfSequence;
+   class ::time                           m_timeLocked;
+   class ::time                           m_timeSet;
+   class ::time                           m_timeTimeout;
+   ::e_status                             m_estatusWait;
+
    sequence();
    ~sequence() override;
    
@@ -137,7 +141,9 @@ public:
    
    
    virtual void on_end_of_sequence();
-   
+   class ::time remaining_from_timeout() const;
+
+
    
 };
 //

@@ -552,7 +552,7 @@ namespace geometry2d
    }
 
 
-   ::particle_pointer combine_item::clone()
+   ::subparticle_pointer combine_item::clone()
    {
 
       auto pitem = __allocate combine_item();

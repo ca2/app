@@ -270,12 +270,12 @@ namespace apex
          if(!bFilePathIsLink ||  strDestination!= path)
          {
             
-            auto pacmefile = pdirectorysystem->m_pfilesystem;
+            auto pfilesystem = pdirectorysystem->m_pfilesystem;
             
-            if(pacmefile->exists(path2))
+            if(pfilesystem->exists(path2))
             {
             
-               pacmefile->erase(path2);
+               pfilesystem->erase(path2);
                
             }
             

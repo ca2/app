@@ -244,7 +244,7 @@ namespace acme
          
          system()->do_graphics_and_windowing_factory();
          
-         __construct(m_pacmedisplay);
+         __øconstruct(m_pacmedisplay);
          
          m_pacmedisplay->open_display();
          

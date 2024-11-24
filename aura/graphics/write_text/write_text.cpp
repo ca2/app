@@ -63,7 +63,7 @@ namespace write_text
 
          //auto estatus = 
          
-         __construct(m_pfonts);
+         __øconstruct(m_pfonts);
 
          //if (!estatus)
          //{
@@ -143,7 +143,7 @@ namespace write_text
    font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
    {
 
-      auto pfont = __create < class font >();
+      auto pfont = __øcreate < class font >();
 
       pfont->create_font(pfontfamily, fontsize, iFontWeight);
 
@@ -155,7 +155,7 @@ namespace write_text
    font_pointer write_text::create_font()
    {
 
-      return __create < class font > ();
+      return __øcreate < class font > ();
       
    }
 

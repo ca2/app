@@ -282,7 +282,7 @@ namespace handler
    // }
 
 
-   void handler::handle(::topic* ptopic, ::context* pcontext)
+   void handler::handle(::topic * ptopic, ::context * pcontext)
    {
 
 

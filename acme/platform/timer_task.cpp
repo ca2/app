@@ -174,7 +174,7 @@ void timer_task::on_timer()
    if (m_ptimercallback != nullptr)
    {
 
-      m_ptimercallback->on_timer(this);
+      m_ptimercallback->call_on_timer(this);
 
       return;
 

@@ -167,7 +167,7 @@ static float emscripten_refresh = 0;
 //   std::chrono::microseconds quantum;
 //   size_t quantum_count = 1;
 //   if (refresh >= 0) {
-//      quantum = std::chrono::microseconds((int64_t)(refresh * 1'000));
+//      quantum = std::chrono::microseconds((huge_integer)(refresh * 1'000));
 //      while (quantum.count() > 50'000) {
 //         quantum /= 2;
 //         quantum_count *= 2;

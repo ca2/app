@@ -199,8 +199,6 @@ namespace windowing
       bool                                      m_bIgnoreMoveEvent;
       ::auto_pointer < critical_section >       m_pcsDisplay;
 
-      ::pointer<::acme::timer_array>            m_ptimerarray;
-
       const char * m_pszInteractionImplBaseDebug;
 
       //bool                                      m_bPendingRedraw;
@@ -1728,12 +1726,12 @@ namespace windowing
       //virtual bool get_rect_normal(::int_rectangle * prectangle);
 
 
-      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
-      virtual void KillTimer(uptr uEvent) override;
+      //virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
+      //virtual void KillTimer(uptr uEvent) override;
 
 
 
-      void _001OnTimer(::timer * ptimer) override;
+      //void on_timer(::timer * ptimer) override;
 
       virtual bool IsTopParentActive();
 

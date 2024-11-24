@@ -54,7 +54,7 @@ memory_base::~memory_base()
 
 memory_base & memory_base::prefix_der_length()
 {
-   int msb = ::msb(size());
+   int msb = ::most_significant_bit_index(size());
    if(msb < 7)
    {
       move_and_grow(1);
@@ -1947,10 +1947,10 @@ memsize memory_base::length() const
 }
 
 
-::particle_pointer memory_base::clone()
+::subparticle_pointer memory_base::clone()
 {
 
-   auto pmemory = __create_new < ::memory >();
+   auto pmemory = __allocate ::memory ();
 
    pmemory->copy_from(this);
 

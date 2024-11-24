@@ -80,10 +80,10 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnTimer(::timer * ptimer)
+   void menu_list_window::on_timer(::timer * ptimer)
    {
 
-      ::user::menu::_001OnTimer(ptimer);
+      ::user::menu::on_timer(ptimer);
 
    }
 

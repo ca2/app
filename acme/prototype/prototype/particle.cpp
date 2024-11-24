@@ -128,7 +128,7 @@ void particle::defer_create_synchronization()
 //
 //#endif
 
-      set_synchronization(__create< ::mutex >(nullptr));
+      set_synchronization(__øcreate< ::mutex >(nullptr));
 
    }
 
@@ -635,7 +635,7 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 //}
 
 
-void particle::call_handle(::topic* ptopic, ::context* pcontext)
+void particle::call_handle(::topic * ptopic, ::context * pcontext)
 {
 
    handle(ptopic, pcontext);
@@ -708,23 +708,6 @@ void particle::delete_this()
 {
 
    return {};
-
-}
-
-
-
-character_count particle::sz_len() const
-{
-
-   return ansi_len(::type(this).name()) + 1;
-
-}
-
-
-void particle::to_sz(char * sz, character_count len) const
-{
-
-   ansi_ncpy(sz, ::type(this).name(), len);
 
 }
 
@@ -1833,14 +1816,14 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 //}
 
 
-::particle_pointer particle::clone()
-{
-
-   throw interface_only();
-
-   return nullptr;
-
-}
+// ::particle_pointer particle::clone()
+// {
+//
+//    throw interface_only();
+//
+//    return nullptr;
+//
+// }
 
 
 ::user::user * particle::user()

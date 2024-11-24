@@ -67,7 +67,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //      else
 //      {
 //
-//         pwindow = pimpl->__create < ::windowing::window >();
+//         pwindow = pimpl->__øcreate < ::windowing::window >();
 //
 //      }
 //
@@ -115,12 +115,12 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       initialize_windowing();
 
-      //auto pdisplay = __create < ::windowing::display >();
+      //auto pdisplay = __øcreate < ::windowing::display >();
 
       ////      if(!pdisplay)
       ////      {
       ////
-      ////         informationf("\nFailed to __create < ::windowing::display > at windowing_x11::windowing::initialize");
+      ////         informationf("\nFailed to __øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
       ////
       ////         return ::error_no_factory;
       ////
@@ -180,7 +180,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //
 //      //__construct_new(m_phostinteraction);
 //      
-//      __construct(m_phostinteraction);
+//      __øconstruct(m_phostinteraction);
 //
 //      //m_phostinteraction->place(*lpcrect);
 //
@@ -204,7 +204,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          
       }
       
-      __construct(m_phostinteraction);
+      __øconstruct(m_phostinteraction);
       
       m_phostinteraction->create_window();
       
@@ -466,7 +466,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       //auto cursor = XCreateFontCursor(m_pdisplay->Display(), iCursor);
 
-      //auto pcursorX11 = __create < ::windowing_x11::cursor >();
+      //auto pcursorX11 = __øcreate < ::windowing_x11::cursor >();
 
       //pcursor = pcursorX11;
 

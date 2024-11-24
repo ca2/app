@@ -157,9 +157,9 @@ namespace apex
 
       ::platform::context::initialize_context();
 
-      ///__construct(m_phttp);
+      ///__øconstruct(m_phttp);
 
-      //__construct(m_poscontext);
+      //__øconstruct(m_poscontext);
 
 
 
@@ -177,7 +177,7 @@ namespace apex
    void context::initialize_http()
    {
 
-      __construct(m_phttp);
+      __øconstruct(m_phttp);
 
    }
 

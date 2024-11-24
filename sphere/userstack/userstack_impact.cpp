@@ -215,10 +215,10 @@ namespace userstack
    }
 
 
-   void impact::_001OnTimer(::timer * ptimer)
+   void impact::on_timer(::timer * ptimer)
    {
 
-      BASE::_001OnTimer(ptimer);
+      BASE::on_timer(ptimer);
 
       switch(ptimer->m_uEvent)
       {

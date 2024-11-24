@@ -84,7 +84,7 @@ void handle(::topic * ptopic, ::context * pcontext) override \
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
    void on_initialize_particle() override {}         \
-   void handle(::topic*,::context*) override {}
+   void handle(::topic *, ::context *) override {}
 
 //   void assert_ok() const override {}                                    \
 //   void dump(dump_context&) const override {}                               \

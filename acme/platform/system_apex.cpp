@@ -545,7 +545,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::handle(::topic* ptopic, ::context* pcontext)
+   void apex_system_layer::handle(::topic * ptopic, ::context * pcontext)
    {
    }
 

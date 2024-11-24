@@ -109,7 +109,7 @@ namespace file
    void file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-//      auto pfile = __create <::file::file>();
+//      auto pfile = __øcreate <::file::file>();
 //
 //      if (::is_null(pfile))
 //      {

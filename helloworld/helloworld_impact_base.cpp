@@ -365,7 +365,7 @@ pdirectorysystem->system() / "obs.png");
 
             }
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(0.5, argb(84, 0, 0, 0));
 

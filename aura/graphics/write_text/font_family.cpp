@@ -74,7 +74,7 @@ namespace write_text
    }
 
 
-   ::particle_pointer font_family::clone()
+   ::subparticle_pointer font_family::clone()
    {
 
       return __allocate font_family(*this);
@@ -99,7 +99,7 @@ namespace write_text
 
    }
 
-   font_family_pointer::font_family_pointer(const ::particle_pointer & pparticle) :
+   font_family_pointer::font_family_pointer(const ::subparticle_pointer & pparticle) :
       ::pointer<font_family>(pparticle)
    {
 

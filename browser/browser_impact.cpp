@@ -152,7 +152,7 @@ namespace browser
    }
 
 
-   void impact::_001OnTimer(::timer * ptimer)
+   void impact::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == ::e_timer_update_current_area)

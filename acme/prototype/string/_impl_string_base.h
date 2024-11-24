@@ -2189,8 +2189,8 @@ inline const CHARACTER * FormatArgument(const typename GET_BLOCK_TYPE<CHARACTER>
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::contains_any(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::contains_any(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2211,8 +2211,8 @@ bool const_string_range < ITERATOR_TYPE >::contains_any(const STRING_ARRAY & str
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::contains_all(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::contains_all(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2235,8 +2235,8 @@ bool const_string_range < ITERATOR_TYPE >::contains_all(const STRING_ARRAY & str
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_one_of(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2257,8 +2257,8 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_on
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2279,8 +2279,8 @@ bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const S
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_least_one_of(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2301,8 +2301,8 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_array STRING_ARRAY >
-bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_all(const STRING_ARRAY & stra) const
+template < primitive_array A_STRING_ARRAY >
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_all(const A_STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)

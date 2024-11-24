@@ -239,6 +239,7 @@ namespace comparison
 } // namespace comparison
 
 
+
 template < typename ITERATOR >
 class string_base;
 
@@ -247,8 +248,9 @@ using ansi_string = string_base < const ::ansi_character * >;
 using wd16_string = string_base < const ::wd16_character * >;
 using wd32_string = string_base < const ::wd32_character * >;
 using wide_string = string_base < const ::wide_character * >;
-using string      = ::ansi_string;
-using wstring     = ::wide_string;
+using string = ::ansi_string;
+using wstring = ::wide_string;
+
 
 
 template < typename HAS_AS_STRING >
@@ -742,4 +744,15 @@ template < typename NON_SUBPARTICLE >
 concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
 
 
+template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
+class string_array_base;
 
+
+
+using string_array = string_array_base < string, string, e_type_string_array >;
+using wstring_array = string_array_base < wstring, wstring >;
+
+
+
+template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
+concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;

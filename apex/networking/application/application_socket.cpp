@@ -27,7 +27,7 @@ namespace networking
    void application_socket::on_set_parent_socket()
    {
 
-      ::cast < ::networking::application_incoming_socket > papplicationincomingsocket = get_parent_socket();
+      ::cast < ::networking::application_incoming_socket > papplicationincomingsocket = get_parent_socket()->base_socket_interface();
 
       if(papplicationincomingsocket)
       {

@@ -80,7 +80,7 @@ namespace account
 
          //auto estatus = 
          
-         __construct(puser);
+         __øconstruct(puser);
 
          //if (!estatus)
          //{
@@ -145,7 +145,7 @@ namespace account
    ::pointer<user>user_array::allocate_user()
    {
 
-      return __create < ::account::user > ();
+      return __øcreate < ::account::user > ();
 
    }
 

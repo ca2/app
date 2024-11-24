@@ -970,7 +970,7 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb((unsigned char)iErrorA, 255, 0, 0));
 
@@ -1239,10 +1239,10 @@ namespace user
    //}
 
 
-   void plain_edit::_001OnTimer(::timer * ptimer)
+   void plain_edit::on_timer(::timer * ptimer)
    {
 
-      interaction::_001OnTimer(ptimer);
+      interaction::on_timer(ptimer);
 
       enum_timer etimer = (enum_timer)ptimer->m_uEvent;
 
@@ -1323,7 +1323,7 @@ namespace user
       else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
 
-         //information() << "_001OnTimer e_timer_caret_flashing";
+         //information() << "on_timer e_timer_caret_flashing";
 
          if (has_keyboard_focus())
          {
@@ -8930,7 +8930,7 @@ namespace user
 
       }
 
-      __construct(m_ptree, pdata);
+      __øconstruct(m_ptree, pdata);
 
       m_ptreeitem = m_ptree->get_base_item();
 
@@ -9489,15 +9489,15 @@ namespace user
 
       m_pbrushTextEmpty.release();
 
-      puserinteraction->__construct(m_ppenCaret);
+      puserinteraction->__øconstruct(m_ppenCaret);
 
-      puserinteraction->__construct(m_pbrushText);
+      puserinteraction->__øconstruct(m_pbrushText);
 
-      puserinteraction->__construct(m_pbrushTextCr);
+      puserinteraction->__øconstruct(m_pbrushTextCr);
 
-      puserinteraction->__construct(m_pbrushTextSel);
+      puserinteraction->__øconstruct(m_pbrushTextSel);
 
-      puserinteraction->__construct(m_pbrushTextEmpty);
+      puserinteraction->__øconstruct(m_pbrushTextEmpty);
 
       auto color = puserinteraction->get_color(pstyle, e_element_text);
 

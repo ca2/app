@@ -1762,11 +1762,11 @@ namespace user
 
       ::file::path path = m_papplication->defer_process_matter_path(pathIcon);
 
-      auto pwindowingicon = __create < windowing::icon >();
+      auto pwindowingicon = __øcreate < windowing::icon >();
 
       pwindowingicon->load_file(path);
 
-      auto pdraw2dicon = __create < ::image::icon >();
+      auto pdraw2dicon = __øcreate < ::image::icon >();
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 

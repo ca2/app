@@ -4643,7 +4643,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         __construct(m_pmutexThreadUiPtra);
+         __øconstruct(m_pmutexThreadUiPtra);
 
       }
 

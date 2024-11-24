@@ -7,7 +7,7 @@ class CLASS_DECL_AURA machine_event_central :
 public:
 
 
-   machine_event     m_machineevent;
+   machine_event     m_machinehappening;
    bool              m_bInitialized;
 
 

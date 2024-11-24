@@ -300,6 +300,77 @@ namespace numeric_info_internal
 
    };
 
+   template < >
+   class CLASS_DECL_ACME numeric_info < long long > :
+      public numeric_integer_base
+   {
+   public:
+
+      typedef long long TYPE;
+      typedef long long OFFSET_TYPE;
+
+      static consteval TYPE maximum()
+      {
+         return (TYPE)LLONG_MAX;
+      }
+      static consteval TYPE minimum()
+      {
+         return (TYPE)LLONG_MIN;
+      }
+      static consteval TYPE null()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE unitary()
+      {
+         return (TYPE)1;
+      }
+      //      static consteval TYPE allset()
+      //      {
+      //         TYPE t;
+      //         memory_set(&t, 0xff, sizeof(TYPE));
+      //         return t;
+      //      }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+class CLASS_DECL_ACME numeric_info < unsigned long long > :
+   public numeric_integer_base
+   {
+   public:
+
+      typedef unsigned long long TYPE;
+      typedef long long OFFSET_TYPE;
+
+      static consteval TYPE maximum()
+      {
+         return (TYPE)ULLONG_MAX;
+      }
+      static consteval TYPE minimum()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE null()
+      {
+         return (TYPE)0;
+      }
+      static consteval TYPE unitary()
+      {
+         return (TYPE)1;
+      }
+      //      static consteval TYPE allset()
+      //      {
+      //         TYPE t;
+      //         memory_set(&t, 0xff, sizeof(TYPE));
+      //         return t;
+      //      }
+
+      static const bool is_signed = false;
+
+   };
 
    template < >
    class CLASS_DECL_ACME numeric_info < unsigned int > :
@@ -374,7 +445,7 @@ namespace numeric_info_internal
 
    };
 
-#if !defined(GNU_COMPILER) && !defined(FREEBSD)
+#if !defined(GNU_COMPILER) && !defined(FREEBSD) && !defined(WINDOWS_DESKTOP) && !defined(__APPLE__)
 
    template < >
    class CLASS_DECL_ACME numeric_info < huge_integer > :
@@ -656,6 +727,50 @@ T & maximum(T & t)
    return t = numeric_info<T>::maximum();
 
 }
+
+
+/// @brief tell if a bit is set or not in a integral type payload
+/// @tparam N an integral type
+/// @param n and integral type payload to be checked
+/// @param bit must be in the range 0 to sizeof_in_bits(N) - 1
+/// @return true if bit at index @bit is set at @n, false otherwise
+template < primitive_integral N >
+constexpr bool is_bit_set(N n, int bit)
+{
+
+   return !(n & numeric_info < N >::unitary() << bit);
+
+}
+
+
+/// @brief find the index of the most significant bit in a integral type payload
+/// @tparam N an integral type
+/// @param n an integral type payload
+/// @return the index of the most significant bit set at @n or -1 if none is found
+template < primitive_integral N >
+constexpr int most_significant_bit_index(N n)
+{
+
+   int bit = sizeof_in_bits(N);
+
+   do
+   {
+
+      bit--;
+
+      if (is_bit_set(n, bit))
+      {
+
+         return bit;
+
+      }
+
+   } while (bit > 0);
+
+   return -1;
+
+}
+
 
 
 

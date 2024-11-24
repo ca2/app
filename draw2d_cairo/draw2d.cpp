@@ -314,7 +314,7 @@ return g_pdraw2dcairo;
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      auto pbrushText = __create < ::draw2d::brush > ();
+//      auto pbrushText = __øcreate < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);
@@ -1228,7 +1228,7 @@ return g_pdraw2dcairo;
 //
 //      synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
 //
-//      estatus = __construct(m_pwritetext);
+//      estatus = __øconstruct(m_pwritetext);
 //
 //      if (!estatus)
 //      {

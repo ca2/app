@@ -40,11 +40,11 @@ namespace experience_nanoui
    void frame::on_initialize_experience_frame()
    {
 
-      __construct(m_ppenText1);
-         __construct(m_ppenFace1);
-         __construct(m_ppenHilight1);
-         __construct(m_ppenShadow1);
-         __construct(m_ppenDkShadow1);
+      __øconstruct(m_ppenText1);
+         __øconstruct(m_ppenFace1);
+         __øconstruct(m_ppenHilight1);
+         __øconstruct(m_ppenShadow1);
+         __øconstruct(m_ppenDkShadow1);
 
 
 /*               auto estyle = translate_style(m_strStyle);

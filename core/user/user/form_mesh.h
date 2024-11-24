@@ -82,7 +82,7 @@ namespace user
       virtual void _001PlaceControl(::user::interaction * pinteraction, ::collection::index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
       virtual ::user::interaction * _001GetControl(::collection::index iItem, ::collection::index iSubItem);
       bool on_click(::item * pitem) override;
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
       
       virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array &stra) override;

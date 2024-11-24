@@ -109,7 +109,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->__construct(*this, pfactory);
+      pparticle->__øconstruct(*this, pfactory);
 
    }
 
@@ -1560,3 +1560,41 @@ public:
 
 static inline __site __;
 
+
+// template < typename TYPE >
+// class scoped_pointer
+// {
+// public:
+//
+//
+//    TYPE * m_p;
+//
+//
+//    scoped_pointer(nullptr_t)
+//    {
+//
+//       m_p = nullptr;
+//    }
+//
+//    template < pointer_but_not_integral< TYPE > TOPIC_POINTER >
+//    scoped_pointer(TOPIC_POINTER p)
+//    {
+//
+//       m_p = p;
+//
+//    }
+//
+//
+//    // template < ::std::convertible_to< ::pointer < TYPE > > POINTER >
+//    // scoped_pointer(const POINTER & p)
+//    // {
+//    //
+//    //    m_p = p.m_p;
+//    //
+//    // }
+//
+//    operator TYPE *() {return m_p;}
+//
+//    TYPE * operator->() {return m_p;}
+//
+// };

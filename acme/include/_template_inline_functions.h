@@ -1063,4 +1063,3 @@ template < typename CHAR_STRING >
 inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
 
 
-

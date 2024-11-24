@@ -215,7 +215,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_graphics_thread, false);
     
-      //__construct(g_pmutexImage);
+      //__øconstruct(g_pmutexImage);
 
       m_bProdevianMouse = false;
 
@@ -345,7 +345,7 @@ namespace aura
 
       }
 
-      __construct(m_phardwaredevices);
+      __øconstruct(m_phardwaredevices);
 
    }
 
@@ -402,7 +402,7 @@ namespace aura
 //      if (plibrary.is_null())
 //      {
 //
-//         __construct(plibrary, on_get_library(strLibrary));
+//         __øconstruct(plibrary, on_get_library(strLibrary));
 //
 //         if (plibrary.is_null())
 //         {
@@ -617,13 +617,13 @@ namespace aura
 //
 //      auto edesktop = get_eoperating_ambient();
 //
-//      if (edesktop & ::user::e_desktop_kde)
+//      if (edesktop & ::user::e_operating_ambient_kde)
 //      {
 //
 //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
 //
 //      }
-//      else if (edesktop & ::user::e_desktop_gnome)
+//      else if (edesktop & ::user::e_operating_ambient_gnome)
 //      {
 //
 //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
@@ -966,12 +966,12 @@ namespace aura
 //
 //      }
 
-//      if(!m_pmachineeventcentral)
+//      if(!m_pmachinehappeningcentral)
 //      {
 //
 //#ifndef APPLE_IOS
 //
-//         auto estatus = __construct_new(m_pmachineeventcentral);
+//         auto estatus = __construct_new(m_pmachinehappeningcentral);
 //
 //         if (!estatus)
 //         {
@@ -980,14 +980,14 @@ namespace aura
 //
 //         }
 //
-//         //if(!m_pmachineeventcentral->initialize())
+//         //if(!m_pmachinehappeningcentral->initialize())
 //         //{
 //
 //         //   return false;
 //
 //         //}
 //
-//         if(m_pmachineeventcentral->is_close_application())
+//         if(m_pmachinehappeningcentral->is_close_application())
 //         {
 //
 //            return false;
@@ -998,7 +998,7 @@ namespace aura
 //
 //      }
 
-      //if(!__construct(m_pfilesystem))
+      //if(!__øconstruct(m_pfilesystem))
       //{
 
       //   error() <<"failed to initialize file-system";
@@ -1007,7 +1007,7 @@ namespace aura
 
       //}
 
-      //if(!__construct(m_pdirectorysystem))
+      //if(!__øconstruct(m_pdirectorysystem))
       //{
 
       //   error() <<"failed to initialize dir-system";
@@ -1178,7 +1178,7 @@ namespace aura
 
       ///estatus = 
       
-      __construct(m_pdraw2d);
+      __øconstruct(m_pdraw2d);
 
       //if (!estatus)
       //{
@@ -2388,7 +2388,7 @@ namespace aura
 
    //machine_event_central & system::machine_event_central()
    //{
-   //   return *m_pmachineeventcentral;
+   //   return *m_pmachinehappeningcentral;
    //}
 
 
@@ -4624,7 +4624,7 @@ namespace aura
 
       //auto estatus =
       
-      pfactoryGpu->__construct(this, m_pgpu);
+      pfactoryGpu->__øconstruct(this, m_pgpu);
 
       //if (!estatus)
       //{
@@ -5257,7 +5257,7 @@ namespace aura
   //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __construct(m_puserset, __allocate ::account::user_set(this));
+  //      estatus = __øconstruct(m_puserset, __allocate ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5938,7 +5938,7 @@ if(!m_pimaging)
    //void system::set_history(::apex::history* phistory)
    //{
 
-   //   auto estatus = __construct(m_phistory, phistory);
+   //   auto estatus = __øconstruct(m_phistory, phistory);
 
    //   if (!estatus)
    //   {
@@ -6448,11 +6448,11 @@ if(!m_pimaging)
        //}
 
        //auto estatus =
-       pfactory->__construct(this, m_pestamira);
+       pfactory->__øconstruct(this, m_pestamira);
 
       //auto estatus = 
       
-//      __construct(m_pestamira, pfactory->create < ::aqua::estamira > ());
+//      __øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{

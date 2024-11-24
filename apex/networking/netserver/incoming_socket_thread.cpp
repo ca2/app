@@ -68,7 +68,7 @@ namespace netserver
    ::pointer <::sockets::socket_handler > incoming_socket_thread::create_socket_handler()
    {
 
-      return __create< ::sockets::socket_handler >();
+      return __øcreate< ::sockets::socket_handler >();
 
    }
 
@@ -105,7 +105,7 @@ namespace netserver
 
             m_psockethandlerIncoming->EnablePool();
 
-            m_pincomingsocket = __id_create(m_typeIncomingSocket);
+            m_pincomingsocket = create_incoming_socket();
 
             //m_pincomingsocket->initialize_listen_socket(m_typeDetachIncomingSocket);
 

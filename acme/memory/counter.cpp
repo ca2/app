@@ -34,7 +34,7 @@
 //      //{
 //
 //      //   //g_pmutexMemoryCounters = __allocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_particle_trackers");
-//      //   //__construct(pparticle, g_pmutexMemoryCounters);
+//      //   //__øconstruct(pparticle, g_pmutexMemoryCounters);
 //
 //      //   __construct_new(pparticle, g_pmapMemoryCounter);
 //

@@ -397,7 +397,9 @@ list(APPEND library_source
    #networking/url_domain.h
    operating_system/_.cpp
    operating_system/_const_console.h
+   operating_system/__eoperating_ambient.cpp
    operating_system/ansi/_pthread.h
+   operating_system/__eoperating_ambient.cpp
    #operating_system/ansi/base.cpp
    operating_system/ansi/call_stack.cpp
    operating_system/ansi/call_stack.h
@@ -962,8 +964,6 @@ list(APPEND library_source
    prototype/prototype/payload2.h
    prototype/prototype/pointer.h
    prototype/prototype/pointer2.h
-   prototype/prototype/post_procedure_continuation.cpp
-   prototype/prototype/post_procedure_continuation.h
    prototype/prototype/prototype.cpp
    prototype/prototype/prototype.h
    prototype/prototype/property.cpp
@@ -984,6 +984,7 @@ list(APPEND library_source
    #prototype/prototype/runnable.cpp
    #prototype/prototype/runnable.h
    prototype/prototype/scope_stack.h
+   prototype/prototype/sequence_continuation.cpp
    #prototype/prototype/shared_memory.cpp
    #prototype/prototype/shared_memory.h
    #prototype/prototype/simple_object.h
@@ -1831,6 +1832,8 @@ list(APPEND library_source
    parallelization/task.h
    parallelization/tools.cpp
    parallelization/tools.h
+   parallelization/wait_for_end_of_sequence.cpp
+   parallelization/wait_for_end_of_sequence.h
    platform/_features.h
    platform/_global.h
    platform/_impl.h
@@ -1982,6 +1985,7 @@ list(APPEND library_source
    user/user/os_colors.h
    release/release.config.h
    release/release.h
+   release/release.cpp
    include/_impl.h
 )
 

@@ -53,7 +53,7 @@ namespace account
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;

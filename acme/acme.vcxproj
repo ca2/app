@@ -1389,6 +1389,7 @@
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="parallelization\wait_for_end_of_sequence.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\application_acme.h" />
     <ClInclude Include="platform\application_apex.h" />
@@ -1449,6 +1450,7 @@
     <ClInclude Include="prototype\prototype\_impl_ptr.h" />
     <ClInclude Include="prototype\string\c_string.h" />
     <ClInclude Include="prototype\time\__time.h" />
+    <ClInclude Include="release\_.h" />
     <ClInclude Include="user\micro\aaa_brush.h" />
     <ClInclude Include="user\micro\aaa_child.h" />
     <ClInclude Include="user\micro\aaa_device.h" />
@@ -1986,6 +1988,7 @@
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
+    <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\allocator.cpp" />
@@ -2182,7 +2185,7 @@
     <ClCompile Include="prototype\prototype\object.cpp" />
     <ClCompile Include="prototype\prototype\object_meta.cpp" />
     <ClCompile Include="prototype\prototype\particle.cpp" />
-    <ClCompile Include="prototype\prototype\post_procedure_continuation.cpp" />
+    <ClCompile Include="prototype\prototype\sequence_continuation.cpp" />
     <ClCompile Include="prototype\prototype\prototype.cpp" />
     <ClCompile Include="prototype\prototype\property_object.cpp" />
     <ClCompile Include="prototype\prototype\e_status.cpp" />
@@ -2234,6 +2237,7 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="release\release.cpp" />
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>

@@ -227,7 +227,7 @@ namespace userex
 
       auto & pfactory = system()->factory(strLibrary);
 
-      auto phandler = __create <handler>(pfactory);
+      auto phandler = __øcreate <handler>(pfactory);
 
       phandler->initialize(this);
 

@@ -9223,7 +9223,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         __construct(pimage);
+         __øconstruct(pimage);
 
          //if (!estatus)
          //{
@@ -9255,7 +9255,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         __construct(pimage);
+         __øconstruct(pimage);
 
          //if (!estatus)
          //{
@@ -9623,7 +9623,7 @@ void image_copy(::image::image* pimagethis, ::image::image* pimage)
 //void image_create(::object* pparticle, ::image::image_pointer& pimage)
 //{
 //
-//   __construct(pimage, pparticle);
+//   __øconstruct(pimage, pparticle);
 //
 //}
 
@@ -10384,10 +10384,10 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //}
 
 
-::particle_pointer image::clone()
+::subparticle_pointer image::clone()
 {
 
-   auto pimage = this->__create<::image::image>();
+   auto pimage = this->__øcreate<::image::image>();
 
    pimage->copy_from((::image::image *) this);
 
@@ -10643,7 +10643,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
    ::image::image_pointer pimage;
 
-   m_papplication->__construct(pimage);
+   m_papplication->__øconstruct(pimage);
 
    pimage->create(size);
 

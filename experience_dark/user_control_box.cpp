@@ -87,10 +87,10 @@ void MetaControlBox::on_message_left_button_up(::message::message * pmessage)
 
 
 
-void MetaControlBox::_001OnTimer(::timer * ptimer)
+void MetaControlBox::on_timer(::timer * ptimer)
 {
 
-   ::experience::control_box::_001OnTimer(ptimer);
+   ::experience::control_box::on_timer(ptimer);
 
 }
 
@@ -104,7 +104,7 @@ void MetaControlBox::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &MetaControlBox::on_message_left_button_down);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &MetaControlBox::on_message_left_button_up);
 //   MESSAGE_LINK(e_message_size, pchannel, this, &MetaControlBox::on_message_size);
-//   //MESSAGE_LINK(e_message_timer, pchannel, this, &MetaControlBox::_001OnTimer);
+//   //MESSAGE_LINK(e_message_timer, pchannel, this, &MetaControlBox::on_timer);
 
 }
 

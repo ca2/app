@@ -316,7 +316,7 @@ public:
 
 
    template < primitive_integral START, primitive_integral COUNT >
-   constexpr THIS_RAW_RANGE operator()(START start, COUNT count)
+   THIS_RAW_RANGE operator()(START start, COUNT count)
    {
 
       return { m_begin + start, (count < 0) ? m_end + count + 1 : m_begin + start + count };

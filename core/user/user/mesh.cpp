@@ -244,7 +244,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         auto pbrushText = __create < ::draw2d::brush > ();
+         auto pbrushText = __øcreate < ::draw2d::brush > ();
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
@@ -3660,8 +3660,8 @@ namespace user
    {
 
 
-      __construct(m_ppenFocused);
-      __construct(m_ppenHighlight);
+      __øconstruct(m_ppenFocused);
+      __øconstruct(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -3942,10 +3942,10 @@ namespace user
    }
 
 
-   void mesh::_001OnTimer(::timer * ptimer)
+   void mesh::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_hover_select)
       {
@@ -6202,7 +6202,7 @@ namespace user
    void draw_mesh_subitem::set_text_color()
    {
       
-      //auto pbrushText = m_pmesh->__create < ::draw2d::brush > ();
+      //auto pbrushText = m_pmesh->__øcreate < ::draw2d::brush > ();
 
       //pbrushText->create_solid(m_colorText);
 
@@ -6228,7 +6228,7 @@ namespace user
             ::image::image_pointer pimage1;
             pimage1 = m_pitem->m_pmesh->image()->create_image(size);
             pimage1->clear(::color::transparent);
-            auto pbrushText = m_pitem->m_pmesh->__create < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image::image_pointer pimage2;
@@ -6276,7 +6276,7 @@ namespace user
          else
          {
 
-            auto pbrushText = m_pitem->m_pmesh->__create < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
 
             pbrushText->create_solid(m_colorText);
 

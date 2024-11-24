@@ -57,7 +57,7 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
    else
 
 #endif
-   if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
+   if(edesktop & ::user::e_operating_ambient_kde && psystem->node()->has_xcb())
    {
 
       psystem->m_ewindowing = e_windowing_xcb;

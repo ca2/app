@@ -490,7 +490,7 @@ namespace simple_ui
 //
 //      int iBorderH = minimum(rectangle.height() / 2, 49);
 //
-//      auto pbrush = __create < ::draw2d::brush > ();
+//      auto pbrush = __øcreate < ::draw2d::brush > ();
 //
 //      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 //

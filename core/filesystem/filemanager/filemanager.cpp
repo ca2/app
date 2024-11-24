@@ -278,7 +278,7 @@ namespace filemanager
          ::type < form_child_frame >(),
          ::type < form >()));
 
-      //__construct(m_pimpactsystemForm, pmulti);
+      //__øconstruct(m_pimpactsystemForm, pmulti);
 
     /*  
 
@@ -291,7 +291,7 @@ namespace filemanager
          ::type < operation_child_frame >(),
          ::type < operation_impact >()));
 
-      //__construct(m_pimpactsystemOperation, psingle);
+      //__øconstruct(m_pimpactsystemOperation, psingle);
 
       //psession->add_document_template(psingle);
 

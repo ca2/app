@@ -1936,7 +1936,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = ::windowing::get_eoperating_ambient();
 
-      if (edesktop == ::windowing::e_desktop_unity)
+      if (edesktop == ::windowing::e_operating_ambient_unity)
       {
 
          display(e_display_none);
@@ -3132,7 +3132,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            __construct(m_piconNotify);
+            __øconstruct(m_piconNotify);
 
             if(m_piconNotify)
             {
@@ -4286,12 +4286,12 @@ void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMake
 }
 
 
-void simple_frame_window::_001OnTimer(::timer * ptimer)
+void simple_frame_window::on_timer(::timer * ptimer)
 {
 
-   ::user::frame_window::_001OnTimer(ptimer);
+   ::user::frame_window::on_timer(ptimer);
 
-   ::experience::frame_window::_001OnTimer(ptimer);
+   ::experience::frame_window::on_timer(ptimer);
 
 }
 

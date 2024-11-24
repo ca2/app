@@ -159,7 +159,7 @@ namespace user
 
             //auto estatus = 
             
-            __construct(m_splitbara[i]);
+            __øconstruct(m_splitbara[i]);
 
             //if (!estatus)
             {
@@ -997,7 +997,7 @@ namespace user
 
          auto & psplitbar = m_splitbara.add_new();
          
-         __construct(psplitbar);
+         __øconstruct(psplitbar);
 
          psplitbar->m_iIndex = i;
 

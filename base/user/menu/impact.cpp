@@ -181,10 +181,10 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      __construct(m_pbrushBkSel);
-      __construct(m_pbrushBkHoverSel);
-      __construct(m_ppenBkSel);
-      __construct(m_ppen);
+      __øconstruct(m_pbrushBkSel);
+      __øconstruct(m_pbrushBkHoverSel);
+      __øconstruct(m_ppenBkSel);
+      __øconstruct(m_ppen);
 
 
       m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
@@ -227,11 +227,11 @@ namespace user
 
       m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
-      __construct(m_pfontTitle);
+      __øconstruct(m_pfontTitle);
 
       m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
-      __construct(m_pfont);
+      __øconstruct(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 

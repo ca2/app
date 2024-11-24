@@ -125,31 +125,31 @@ namespace user
 
          }
          int iControl = 0;
-         __construct(m_pbuttonBold);
+         __øconstruct(m_pbuttonBold);
          iControl++;
-         __construct(m_pbuttonItalic);
+         __øconstruct(m_pbuttonItalic);
          iControl++;
-         __construct(m_pbuttonUnderline);
+         __øconstruct(m_pbuttonUnderline);
          iControl++;
-         __construct(m_pcomboFamily);
+         __øconstruct(m_pcomboFamily);
          iControl++;
-         __construct(m_pcomboSize);
+         __øconstruct(m_pcomboSize);
          iControl++;
-         __construct(m_pbuttonForeground);
+         __øconstruct(m_pbuttonForeground);
          iControl++;
-         __construct(m_pbuttonBackground);
+         __øconstruct(m_pbuttonBackground);
          iControl++;
-         __construct(m_pbuttonSubscript);
+         __øconstruct(m_pbuttonSubscript);
          iControl++;
-         __construct(m_pbuttonSuperscript);
+         __øconstruct(m_pbuttonSuperscript);
          iControl++;
-         __construct(m_pbuttonLineHeight);
+         __øconstruct(m_pbuttonLineHeight);
          iControl++;
-         __construct(m_pbuttonAlignLeft);
+         __øconstruct(m_pbuttonAlignLeft);
          iControl++;
-         __construct(m_pbuttonAlignCenter);
+         __øconstruct(m_pbuttonAlignCenter);
          iControl++;
-         __construct(m_pbuttonAlignRight);
+         __øconstruct(m_pbuttonAlignRight);
          iControl++;
 
          m_pbuttonBold->create_control(this, "font_bold");
@@ -266,7 +266,7 @@ namespace user
       void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto pbrushBk = __create < ::draw2d::brush >();
+         auto pbrushBk = __øcreate < ::draw2d::brush >();
 
          auto rectangleX = this->rectangle();
 
@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->m_atom == "font_foreground")
                {
 
-                  ::int_point pointShowPopup({ ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() });
+                  ::int_point pointShowPopup( ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() );
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 

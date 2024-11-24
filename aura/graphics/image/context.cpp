@@ -68,7 +68,7 @@ namespace image
    ::image::image_pointer image_context::create_image()
    {
 
-      auto pimage = __create < ::image::image >();
+      auto pimage = __øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -85,7 +85,7 @@ namespace image
    ::image::image_pointer image_context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
-      auto pimage = m_papplication->__create < ::image::image >();
+      auto pimage = m_papplication->__øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -234,7 +234,7 @@ namespace image
 
       ::image::icon_pointer picon;
 
-      __construct(picon);
+      __øconstruct(picon);
 
       _get_icon(picon, payloadFile);
 
@@ -248,7 +248,7 @@ namespace image
 
       ::image::image_pointer pimage;
 
-      __construct(pimage);
+      __øconstruct(pimage);
 
       _get_image(pimage, payloadFile, loadoptions);
 
@@ -373,7 +373,7 @@ namespace image
 
       //auto estatus = 
 
-      __construct(pimage);
+      __øconstruct(pimage);
 
       /*if (!estatus)
       {
@@ -405,7 +405,7 @@ namespace image
 
       //auto estatus = 
 
-      __construct(pimage);
+      __øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -437,7 +437,7 @@ namespace image
 
       //auto estatus = 
 
-      __construct(pimage);
+      __øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -468,7 +468,7 @@ namespace image
       ::image::image_pointer pimage;
 
       //auto estatus = 
-      __construct(pimage);
+      __øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -503,7 +503,7 @@ namespace image
    void image_context::_load_icon(::image::icon * picon, const ::payload & payloadFile)
    {
 
-      auto pwindowingicon = __create < ::windowing::icon >();
+      auto pwindowingicon = __øcreate < ::windowing::icon >();
 
       pwindowingicon->load_file(payloadFile);
 
@@ -896,7 +896,7 @@ namespace image
 
       ::image::image_pointer pimageCompose;
 
-      pimage->__construct(pimageCompose);
+      pimage->__øconstruct(pimageCompose);
 
       pimageCompose->set_ok_flag();
 
@@ -1138,7 +1138,7 @@ namespace image
       if (!pimage)
       {
 
-         pimage = __create<::image::image>();
+         pimage = __øcreate<::image::image>();
 
          pimage->set_nok();
 

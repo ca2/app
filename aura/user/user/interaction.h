@@ -1569,8 +1569,8 @@ namespace user
 
       virtual void call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr);
       virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
-      virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
-      virtual void KillTimer(uptr uEvent) override;
+      //virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
+      //virtual void KillTimer(uptr uEvent) override;
 
 //      virtual void enable_window(bool bEnable = true) override;
 
@@ -1822,7 +1822,7 @@ namespace user
 
       //virtual void on_size_change_request(const ::int_rectangle & rectanglePrevious);
 
-      void _001OnTimer(::timer* ptimer) override;
+      //void on_timer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

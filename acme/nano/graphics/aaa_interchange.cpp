@@ -81,7 +81,7 @@ void interchange::on_initialize_particle()
    
    ::object::on_initialize_particle();
    
-   __construct(m_pwindowbase);
+   __øconstruct(m_pwindowbase);
    
    m_pwindowbase->m_puserinteractionbase = this;
    
@@ -301,7 +301,7 @@ void interchange::create_drawing_objects()
       
 #endif
       
-      __construct(m_pfont, nullptr);
+      __øconstruct(m_pfont, nullptr);
       
       m_pfont->m_iFontSize = m_iFontSize;
       
@@ -919,7 +919,7 @@ void interchange::_run_modal_loop()
 
 
 
-void interchange::handle(::topic* ptopic, ::context* pcontext)
+void interchange::handle(::topic * ptopic, ::context * pcontext)
 {
    
    if (ptopic->m_atom == id_set_application_dark_mode)

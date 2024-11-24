@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "single_lock.h"
+#include "manual_reset_happening.h"
+#include "acme/handler/sequence.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -203,6 +205,8 @@ bool single_lock::_wait(const class time & timeWait)
 }
 
 
+
+
 ::e_status single_lock::wait(const class time & timeWait)
 {
 
@@ -306,6 +310,8 @@ bool single_lock::is_locked() const
    return m_bLocked;
 
 }
+
+
 
 
 _single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock) :

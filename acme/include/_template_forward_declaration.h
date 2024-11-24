@@ -156,8 +156,6 @@ struct base_const_c_string
 
 
 
-template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
-class string_array_base;
 
 
 
@@ -844,8 +842,11 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 // From subject_listener from apex_database by camilo on day after ThomasBirthday2021 07:26 BRT
 #pragma once
 
+class topic;
 
-using signal_handler = ::function < void(::topic*, ::context*) >;
+class context;
+
+using signal_handler = ::function < void(::topic *, ::context *) >;
 //{
 //public:
 //
@@ -986,5 +987,3 @@ using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::ty
 
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
-
-

@@ -25,8 +25,8 @@ namespace app_integration
       virtual bool on_open_document(const ::payload & payloadFile) override;
 
 #ifdef _DEBUG
-      virtual int64_t increment_reference_count() override;
-      virtual int64_t decrement_reference_count() override;
+      virtual huge_integer increment_reference_count() override;
+      virtual huge_integer decrement_reference_count() override;
 #endif
 
       //virtual ::stream& write(::stream& stream) const override;

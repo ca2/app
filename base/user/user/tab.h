@@ -266,7 +266,7 @@ namespace user
       virtual void _001OnDrawStandard(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
       ::int_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 

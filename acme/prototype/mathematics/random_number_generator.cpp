@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <time.h>
-#undef __construct
-#undef __create
+//#undef __øconstruct
+//#undef __øcreate
 #include "random_number_generator.h"
 #include <chrono>
 // defines for the random number generator

@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   void toolbar::_001OnTimer(::timer * ptimer)
+   void toolbar::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_command_probe)

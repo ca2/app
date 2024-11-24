@@ -217,6 +217,8 @@ list(APPEND apex_source
    networking/application/application_socket.h
    networking/application/application_incoming_socket.cpp
    networking/application/application_incoming_socket.h
+   networking/application/application_incoming_socket_thread.cpp
+   networking/application/application_incoming_socket_thread.h
    #networking/http/_.cpp
    networking/http/_.h
    networking/http/context.cpp

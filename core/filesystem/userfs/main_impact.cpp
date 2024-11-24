@@ -63,10 +63,10 @@ namespace userfs
    }
 
    
-   void main_impact::_001OnTimer(::timer * ptimer)
+   void main_impact::on_timer(::timer * ptimer)
    {
 
-      ::user::split_impact::_001OnTimer(ptimer);
+      ::user::split_impact::on_timer(ptimer);
 
    }
 

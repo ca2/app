@@ -86,7 +86,7 @@ namespace experience_tranquillum
    void control_box::on_message_create(::message::message * pmessage)
    {
          
-      __construct(m_pfontMarlett);
+      __øconstruct(m_pfontMarlett);
 
       //m_pfontMarlett->create_point_font("Marlett", 20);
 
@@ -115,10 +115,10 @@ namespace experience_tranquillum
    }
 
 
-   void control_box::_001OnTimer(::timer * ptimer)
+   void control_box::on_timer(::timer * ptimer)
    {
 
-      ::experience::control_box::_001OnTimer(ptimer);
+      ::experience::control_box::on_timer(ptimer);
 
    }
 
@@ -133,7 +133,7 @@ namespace experience_tranquillum
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_box::on_message_create);
    //   MESSAGE_LINK(e_message_size, pchannel, this, &control_box::on_message_size);
-   //   //MESSAGE_LINK(e_message_timer, pchannel, this, &control_box::_001OnTimer);
+   //   //MESSAGE_LINK(e_message_timer, pchannel, this, &control_box::on_timer);
 
    }
 

@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   ::particle_pointer button::clone()
+   ::subparticle_pointer button::clone()
    {
 
       auto pcheckbox = m_papplication->__create_new < ::user::button >();
@@ -518,7 +518,7 @@ namespace user
 
       }
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __øcreate < ::draw2d::brush > ();
 
       pgraphics->set(pbrushText);
 
@@ -854,7 +854,7 @@ namespace user
 
          pgraphics->set_text_color(colorText);
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, colorText);
 
@@ -1166,7 +1166,7 @@ namespace user
       rectangle.right() = x2;
       rectangle.bottom() = rectangle.top() + 5;
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1, colorExt1TL);
 

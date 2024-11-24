@@ -51,7 +51,7 @@ namespace graphics
 
          //estatus =
          
-         __construct(m_pmemorymap);
+         __øconstruct(m_pmemorymap);
 
          //if (!estatus)
          //{
@@ -117,7 +117,7 @@ namespace graphics
 
       //auto estatus = 
       
-      __construct(m_pmemorymap);
+      __øconstruct(m_pmemorymap);
 
       //if (!estatus)
       //{

@@ -129,7 +129,7 @@ namespace experience
       virtual void frame_Detach();
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
 
 

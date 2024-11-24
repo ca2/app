@@ -159,7 +159,7 @@ namespace user
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
+      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::on_timer);
       add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
       add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });
 
@@ -266,7 +266,7 @@ namespace user
       if (m_bTopText)
       {
 
-         auto pbrushText = __create < ::draw2d::brush > ();
+         auto pbrushText = __øcreate < ::draw2d::brush > ();
 
          auto pstyle = get_style(pgraphics);
 
@@ -5685,10 +5685,10 @@ namespace user
    }
 
 
-   void list::_001OnTimer(::timer * ptimer)
+   void list::on_timer(::timer * ptimer)
    {
 
-      ::user::mesh::_001OnTimer(ptimer);
+      ::user::mesh::on_timer(ptimer);
 
       ptimer->m_bRet = false;
 

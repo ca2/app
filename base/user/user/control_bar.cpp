@@ -250,7 +250,7 @@ namespace user
       SetTimer(nEvent,time,nullptr);
    }
 
-   void control_bar::_001OnTimer(::timer * ptimer)
+   void control_bar::on_timer(::timer * ptimer)
    {
       __UNREFERENCED_PARAMETER(ptimer);
 //      unsigned int uEvent = ptimer->m_uEvent;
@@ -1013,7 +1013,7 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            auto ppen = __øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(1, clr);
 

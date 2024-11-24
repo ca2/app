@@ -21,7 +21,7 @@
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
-#include "acme/prototype/prototype/post_procedure_continuation.h"
+#include "acme/prototype/prototype/sequence_continuation.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -804,7 +804,7 @@ m_puserinteraction = m_pacmeuserinteraction;
    void window::create_graphics_thread()
    {
 
-      //__construct(m_pgraphicsthread);
+      //__øconstruct(m_pgraphicsthread);
 
       m_pgraphicsthread->branch_synchronously();
 
@@ -1806,7 +1806,7 @@ void window::set_oswindow(::oswindow oswindow)
    ::pointer<::windowing::icon> window::load_icon(const ::payload & payloadFile)
    {
 
-      auto picon = __create<icon>();
+      auto picon = __øcreate<icon>();
 
       if (!picon)
       {
@@ -3368,7 +3368,7 @@ bMove = false;
 
 #endif
 
-         __construct(m_pmutexDraw);
+         __øconstruct(m_pmutexDraw);
 
       }
 
@@ -3737,7 +3737,7 @@ bMove = false;
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -3928,7 +3928,7 @@ bMove = false;
       //
       //         //auto estatus =
       //
-      //         __construct(m_pwindow);
+      //         __øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -11232,7 +11232,7 @@ bMove = false;
       if (m_pmutexRedraw == nullptr)
       {
 
-         __construct(m_pmutexRedraw);
+         __øconstruct(m_pmutexRedraw);
 
       }
 
@@ -15267,64 +15267,64 @@ bMove = false;
    //}
 
 
-   void window::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
-   {
+   //void window::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+   //{
 
-      if (timeEllapse < 500_ms)
-      {
+   //   if (timeEllapse < 500_ms)
+   //   {
 
-         //         string str;
-         //
-         //         str.formatf("creating fast timer: %d\n", nEllapse);
-         //
-         //         ::information(str);
+   //      //         string str;
+   //      //
+   //      //         str.formatf("creating fast timer: %d\n", nEllapse);
+   //      //
+   //      //         ::information(str);
 
-      }
+   //   }
 
-      if (m_ptimerarray.is_null())
-      {
+   //   if (m_ptimerarray.is_null())
+   //   {
 
-         __construct_new(m_ptimerarray);
+   //      __construct_new(m_ptimerarray);
 
-         m_ptimerarray->m_pcallback = m_puserinteraction;
+   //      m_ptimerarray->m_pcallback = m_puserinteraction;
 
-         //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
+   //      //m_ptimerarray->set_context_thread(m_puserinteraction->m_pthreadUserInteraction);
 
-      }
+   //   }
 
-      m_ptimerarray->create_timer(this, uEvent, timeEllapse, pfnTimer, bPeriodic, pdata);
+   //   m_ptimerarray->create_timer(this, uEvent, timeEllapse, pfnTimer, bPeriodic, pdata);
 
-   }
-
-
-   void window::KillTimer(uptr uEvent)
-   {
-
-      if (m_ptimerarray.is_null())
-      {
-
-         return;
-
-      }
-
-      m_ptimerarray->delete_timer(uEvent);
-
-   }
+   //}
 
 
-   void window::_001OnTimer(::timer * ptimer)
-   {
+   //void window::KillTimer(uptr uEvent)
+   //{
 
-      if (m_puserinteraction == nullptr)
-      {
+   //   if (m_ptimerarray.is_null())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_puserinteraction->_001OnTimer(ptimer);
+   //   m_ptimerarray->delete_timer(uEvent);
 
-   }
+   //}
+
+
+   //void window::on_timer(::timer * ptimer)
+   //{
+
+   //   if (m_puserinteraction == nullptr)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_puserinteraction->on_timer(ptimer);
+
+   //}
 
 
    //void window::defer_start_fps_interest()

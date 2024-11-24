@@ -170,10 +170,10 @@ namespace account
    }
 
 
-   void main_window::_001OnTimer(::timer * ptimer)
+   void main_window::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_check_cached_credentials && !m_plogin->m_bCred)
       {

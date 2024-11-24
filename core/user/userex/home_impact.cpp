@@ -97,7 +97,7 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = __create < ::draw2d::pen > ();
+      //auto ppen = __øcreate < ::draw2d::pen > ();
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 

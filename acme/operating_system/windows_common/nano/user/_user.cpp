@@ -16,7 +16,7 @@ namespace nano
       ::windowing::enum_operating_ambient calculate_edesktop()
       {
 
-         return ::windowing::e_desktop_windows;
+         return ::windowing::e_operating_ambient_windows;
 
       }
 

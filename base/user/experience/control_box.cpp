@@ -214,10 +214,10 @@ namespace experience
    }
 
 
-   void control_box::_001OnTimer(::timer * ptimer)
+   void control_box::on_timer(::timer * ptimer)
    {
 
-      ::user::auto_hide::_001OnTimer(ptimer);
+      ::user::auto_hide::on_timer(ptimer);
 
       if (ptimer->m_uEvent == e_timer_check_hover)
       {
@@ -348,14 +348,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      __construct(m_pbrushButtonBack);
-      __construct(m_pbrushButtonBackSel);
-      __construct(m_pbrushButtonBackFocus);
-      __construct(m_pbrushButtonBackDisabled);
-      __construct(m_ppenButtonBack);
-      __construct(m_ppenButtonBackSel);
-      __construct(m_ppenButtonBackFocus);
-      __construct(m_ppenButtonBackDisabled);
+      __øconstruct(m_pbrushButtonBack);
+      __øconstruct(m_pbrushButtonBackSel);
+      __øconstruct(m_pbrushButtonBackFocus);
+      __øconstruct(m_pbrushButtonBackDisabled);
+      __øconstruct(m_ppenButtonBack);
+      __øconstruct(m_ppenButtonBackSel);
+      __øconstruct(m_ppenButtonBackFocus);
+      __øconstruct(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -370,7 +370,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         __construct(m_pfontMarlett);
+         __øconstruct(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 

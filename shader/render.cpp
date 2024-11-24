@@ -46,7 +46,7 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-   int64_t render::increment_reference_count()
+   huge_integer render::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -54,7 +54,7 @@ namespace app_shader
    }
 
 
-   int64_t render::decrement_reference_count()
+   huge_integer render::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -185,7 +185,7 @@ namespace app_shader
 
          //estatus = 
          
-         __construct(m_pgpuprogram);
+         __øconstruct(m_pgpuprogram);
 
       }
 
@@ -377,13 +377,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            __construct(pbrush);
+            __øconstruct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            __construct(pfont);
+            __øconstruct(pfont);
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
@@ -513,13 +513,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            __construct(pbrush);
+            __øconstruct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            __construct(pfont);
+            __øconstruct(pfont);
 
             auto pnode = system()->node();
 
@@ -596,11 +596,11 @@ namespace app_shader
 
       //string strFontFamily = get_font();
 
-      //auto ppen = __create < ::draw2d::pen > ();
+      //auto ppen = __øcreate < ::draw2d::pen > ();
 
-      //auto pbrush = __create < ::draw2d::brush >();
+      //auto pbrush = __øcreate < ::draw2d::brush >();
 
-      //auto pfont = __create < ::write_text::font > ();
+      //auto pfont = __øcreate < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{
@@ -618,7 +618,7 @@ namespace app_shader
       //            if (m_pimage1.ok())
       //            {
 
-      //               __construct(m_pimage2);
+      //               __øconstruct(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 

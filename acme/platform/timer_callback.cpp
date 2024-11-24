@@ -28,6 +28,14 @@ timer_callback::~timer_callback()
 }
 
 
+void timer_callback::call_on_timer(timer * ptimer)
+{
+
+   on_timer(ptimer);
+
+}
+
+
 void timer_callback::on_timer(timer * ptimer)
 {
 

@@ -226,7 +226,7 @@ namespace userfs
    }
 
 
-   void tree_data::_001OnTimer(::timer * ptimer)
+   void tree_data::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == 1234567)

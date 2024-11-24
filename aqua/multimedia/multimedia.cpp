@@ -125,7 +125,7 @@ namespace aqua
 //      if (!m_pmediafoundation)
 //      {
 //
-//         auto estatus = __construct(m_pmediafoundation);
+//         auto estatus = __øconstruct(m_pmediafoundation);
 //
 //         if (!estatus)
 //         {

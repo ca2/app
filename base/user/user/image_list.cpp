@@ -517,7 +517,7 @@ namespace user
                if (m_pimageaThumb->image_at(iImage)->is_null())
                {
 
-                  __construct(m_pimageaThumb->image_at(iImage));
+                  __øconstruct(m_pimageaThumb->image_at(iImage));
 
                }
 

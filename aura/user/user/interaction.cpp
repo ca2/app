@@ -2567,7 +2567,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __create<::windowing::window>();
+         auto pwindowNew = __øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -4345,32 +4345,17 @@ namespace user
 
       {
 
-         auto pacmewindowingwindow = m_pacmewindowingwindow;
+         auto ptimerarray = m_ptimerarray;
 
-         if (pacmewindowingwindow)
+         if (ptimerarray)
          {
 
-            ::pointer < ::windowing::window > pwindow;
-
-            pwindow = pacmewindowingwindow;
-
-            if (pwindow)
-            {
-
-               auto ptimerarray = pwindow->m_ptimerarray;
-
-               if (ptimerarray)
-               {
-
-                  ptimerarray->delete_all_timers();
-
-               }
-
-            }
+            ptimerarray->delete_all_timers();
 
          }
 
       }
+
 
       fps_interest_stop();
 
@@ -9363,20 +9348,20 @@ namespace user
    }
 
 
-   void interaction::_001OnTimer(::timer * ptimer)
-   {
-
-   }
-
-
    void interaction::on_timer(::timer * ptimer)
    {
 
-      _001OnTimer(ptimer);
-
-      //return true;
-
    }
+
+
+   //void interaction::on_timer(::timer * ptimer)
+   //{
+
+   //   on_timer(ptimer);
+
+   //   //return true;
+
+   //}
 
 
    ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
@@ -10240,7 +10225,7 @@ namespace user
    //
    //      ::pointer<primitive_impl>pwindowOld = window();
    //
-   //      auto pwindowNew = __create < interaction_impl >();
+   //      auto pwindowNew = __øcreate < interaction_impl >();
    //
    //      pwindowNew->m_puserinteraction = this;
    //
@@ -10449,7 +10434,7 @@ namespace user
             //   //else
             //   //{
 
-            //   //   window() = __create < interaction_impl >();
+            //   //   window() = __øcreate < interaction_impl >();
 
             //   //}
 
@@ -15840,7 +15825,7 @@ namespace user
 
       ::timer timer(uEvent);
 
-      _001OnTimer(&timer);
+      on_timer(&timer);
 
       return SetTimer(uEvent, timeElapse, pfnTimer);
 
@@ -15863,42 +15848,42 @@ namespace user
    }
 
 
-   void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
-                              void * pdata)
-   {
+   //void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   //                           void * pdata)
+   //{
 
-      //if (window() == nullptr)
-      //{
+   //   //if (window() == nullptr)
+   //   //{
 
-      //   return;
+   //   //   return;
 
-      //}
+   //   //}
 
-      if (has_destroying_flag())
-      {
+   //   //if (has_destroying_flag())
+   //   //{
 
-         return;
+   //   //   return;
 
-      }
+   //   //}
 
-      //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+   //   //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
-   }
+   //}
 
 
-   void interaction::KillTimer(uptr uEvent)
-   {
+   //void interaction::KillTimer(uptr uEvent)
+   //{
 
-      //if (window() == nullptr)
-      //{
+   //   //if (window() == nullptr)
+   //   //{
 
-      //   return;
+   //   //   return;
 
-      //}
+   //   //}
 
-      //window()->KillTimer(uEvent);
+   //   window()->KillTimer(uEvent);
 
-   }
+   //}
 
 
    bool interaction::has_keyboard_focus()
@@ -21648,7 +21633,7 @@ namespace user
    void interaction::on_create_window_object()
    {
 
-      __construct(m_pacmewindowingwindow);
+      __øconstruct(m_pacmewindowingwindow);
 
    }
 
@@ -21656,7 +21641,7 @@ namespace user
    ::pointer < ::user::thread > interaction::create_user_thread()
    {
 
-      auto puserthread = __create < ::user::thread >();
+      auto puserthread = __øcreate < ::user::thread >();
 
       puserthread->initialize_user_thread(this);
 
@@ -21672,7 +21657,7 @@ namespace user
    ::pointer < ::user::graphics_thread > interaction::create_user_graphics_thread()
    {
 
-      auto pusergraphicsthread = __create < ::user::graphics_thread >();
+      auto pusergraphicsthread = __øcreate < ::user::graphics_thread >();
 
       pusergraphicsthread->initialize_graphics_thread(this);
 
@@ -21700,7 +21685,7 @@ namespace user
 
       ////m_bUserElementOk = true;
 
-      ////window() = __create<interaction_impl>();
+      ////window() = __øcreate<interaction_impl>();
 
       //if (!window())
       //{
@@ -24612,6 +24597,8 @@ namespace user
       if (drag_on_button_down(pitemLButtonDown))
       {
 
+         pmouse->m_bRet = true;
+
          return;
 
       }
@@ -26316,7 +26303,9 @@ namespace user
       }
 
       //if (m_bDefaultMouseHoverHandling)
+      if (!m_pitemHover || !m_pitemHover->is_item_set())
       {
+
          auto type = ::type(this);
 
          if (type.name().contains("button"))
@@ -28106,7 +28095,7 @@ namespace user
    //pointer< ::sequence < ::conversation > > interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
-   //   auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __øcreate < ::user::message_box >();
 
    //   auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
 

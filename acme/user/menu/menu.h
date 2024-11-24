@@ -9,7 +9,7 @@ namespace menu
 {
 
 
-   class CLASS_DECL_APEX menu :
+   class CLASS_DECL_ACME menu :
       virtual public ::particle
    {
    public:
@@ -70,7 +70,7 @@ namespace menu
 //      virtual bool create_inline_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 //      virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 //
-//      void _001OnTimer(::timer * ptimer) override;
+//      void on_timer(::timer * ptimer) override;
 //
 //      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 //

@@ -33,7 +33,7 @@ namespace user
       ::int_size CalcSize();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 

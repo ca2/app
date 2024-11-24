@@ -30,7 +30,7 @@
 //
 //   //auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
 //
-//   auto pmessagebox = pparticle->__create < ::operating_system::message_box >();
+//   auto pmessagebox = pparticle->__øcreate < ::operating_system::message_box >();
 //   
 //   //psequencer->m_psequence = pmessagebox;
 //

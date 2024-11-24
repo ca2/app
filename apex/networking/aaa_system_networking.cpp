@@ -28,7 +28,7 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus = 
-         pfactoryNetworking->__construct(this, m_pnetworking);
+         pfactoryNetworking->__øconstruct(this, m_pnetworking);
 
 
          if (!m_pnetworking)
@@ -36,7 +36,7 @@ namespace apex
 
             //estatus = __construct_new(m_psockets);
 
-            //__construct(m_pnetworking);
+            //__øconstruct(m_pnetworking);
 
             //if (!estatus)
             //{

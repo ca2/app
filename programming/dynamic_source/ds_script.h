@@ -52,7 +52,6 @@ namespace dynamic_source
 
       void destroy() override;
 
-
       virtual void defer_build();
       virtual void on_start_build();
 

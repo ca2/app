@@ -2416,24 +2416,24 @@ namespace user
    }
 
 
-   void element::SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
-   {
+   //void element::SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
-   void element::KillTimer(uptr uEvent)
-   {
+   //void element::KillTimer(uptr uEvent)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //bool element::has_keyboard_focus() const
@@ -3804,7 +3804,7 @@ namespace user
       //   return &::user::element::_user_message_handler;
       //}
 
-      //void element::_001OnTimer(::timer * ptimer)
+      //void element::on_timer(::timer * ptimer)
       //{
 
 
@@ -4224,7 +4224,7 @@ namespace user
 
 
 
-   //void element::_001OnTimer(::timer * ptimer)
+   //void element::on_timer(::timer * ptimer)
    //{
 
    //   __UNREFERENCED_PARAMETER(ptimer);
@@ -4656,7 +4656,7 @@ namespace user
 
 
 
-   void element::_001OnTimer(::timer * ptimer)
+   void element::on_timer(::timer * ptimer)
    {
 
       __UNREFERENCED_PARAMETER(ptimer);

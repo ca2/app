@@ -33,8 +33,6 @@
 //#error "already included?!?! WHAT?!?! (After including acme/prototype/string/string.h(5))"
 //#endif
 
-using string_array = string_array_base < string, string, e_type_string_array >;
-using wstring_array = string_array_base < wstring, wstring >;
 
 
 #include "__end.h"

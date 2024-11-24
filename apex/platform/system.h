@@ -37,7 +37,7 @@ namespace apex
 //
 //       //::pointer<::crypto::crypto>                     m_pcrypto;
 //
-//       ::pointer<class machine_event_central>           m_pmachineeventcentral;
+//       ::pointer<class machine_event_central>           m_pmachinehappeningcentral;
 //
 //       ::pointer < ::mutex >                                m_pmutexUserAppData;
 //       ::pointer < ::mutex >                                m_pmutexSystemAppData;
@@ -110,6 +110,9 @@ namespace apex
       void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
+
+      void do_operating_ambient_factory() override;
+
 
       virtual void __task_init() override;
 

@@ -19,6 +19,7 @@ public:
    ~timer_callback() override;
 
 
+   virtual void call_on_timer(timer * ptimer);
    virtual void on_timer(timer * ptimer);
    virtual bool e_timer_is_ok();
 

@@ -1155,7 +1155,7 @@ namespace user
 
             ::image::image_pointer pimage;
 
-            __construct(pimage);
+            __øconstruct(pimage);
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
@@ -1656,10 +1656,10 @@ namespace user
       }
 
 
-      void edit::_001OnTimer(::timer * ptimer)
+      void edit::on_timer(::timer * ptimer)
       {
 
-         ::user::interaction::_001OnTimer(ptimer);
+         ::user::interaction::on_timer(ptimer);
 
          if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
          {
@@ -2408,14 +2408,14 @@ namespace user
                if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = __create < ::draw2d::path >();
+                  auto ppath = __øcreate < ::draw2d::path >();
 
                   //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
-                  auto pbrush = __create < ::draw2d::brush >();
+                  auto pbrush = __øcreate < ::draw2d::brush >();
 
                   ppen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
 

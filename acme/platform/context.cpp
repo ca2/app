@@ -272,7 +272,7 @@ namespace platform
       //}
 
       /*estatus = */
-      __construct(m_pfilecontext);
+      __øconstruct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace platform
       //}
 
       //estatus =
-      __construct(m_pdirectorycontext);
+      __øconstruct(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -654,7 +654,7 @@ namespace platform
    //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    //   {
    //
-   //      auto pfile = __create < ::file::file >();
+   //      auto pfile = __øcreate < ::file::file >();
    //
    //      auto path = payloadFile.file_path();
    //

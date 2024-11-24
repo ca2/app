@@ -92,7 +92,7 @@ namespace axis
 
          int h = rectangle.height();
 
-         auto ppen = __create < ::draw2d::pen >();
+         auto ppen = __øcreate < ::draw2d::pen >();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
@@ -241,7 +241,7 @@ namespace axis
       //      if (!pbrush)
       //      {
 
-      //         pbrush = __create < ::draw2d::brush >();
+      //         pbrush = __øcreate < ::draw2d::brush >();
 
       //         pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
@@ -394,7 +394,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __create < ::draw2d::path >();
+      //            //auto ppathRound = __øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -428,7 +428,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __create < ::draw2d::path >();
+      //            //auto ppathRound = __øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -463,7 +463,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __create < ::draw2d::path >();
+      //            //auto ppathRound = __øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -522,7 +522,7 @@ namespace axis
       //   if (!ppen)
       //   {
 
-      //      ppen = __create < ::draw2d::pen >();
+      //      ppen = __øcreate < ::draw2d::pen >();
 
       //      ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 

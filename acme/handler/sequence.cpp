@@ -233,10 +233,13 @@
 //
 //}
 
+
 sequence::sequence() 
 {
-
+   
 }
+
+
 sequence::~sequence()
 {
 
@@ -772,10 +775,35 @@ void sequence::on_subparticle_sequence(::subparticle * psubparticle)
 void sequence::on_end_of_sequence()
 {
 
+   if (m_pmanualresethappeningOnEndOfSequence)
+   {
+
+      m_pmanualresethappeningOnEndOfSequence->set_happening();
+
+   }
+
    ::subparticle_array::clear();
  
    release();
    
 }
+
+
+class ::time sequence::remaining_from_timeout() const
+{
+
+   auto timeElapsed = m_timeLocked.elapsed();
+
+   if (timeElapsed > m_timeTimeout || !m_timeSet.is_null())
+   {
+
+      return 0_s;
+
+   }
+
+   return m_timeTimeout - timeElapsed;
+
+}
+
 
 

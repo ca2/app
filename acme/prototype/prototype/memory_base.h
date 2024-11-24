@@ -7,25 +7,6 @@
 //
 
 
-template < typename N >
-inline int msb(N n)
-{
-
-   int i = sizeof(N) * 8;
-
-   do
-   {
-      i--;
-      if(n & (numeric_info < N >::unitary () << i))
-         return i;
-
-   }
-   while(i > 0);
-
-   return -1;
-
-}
-
 
 class bstring_manager;
 class read_only_memory;
@@ -111,7 +92,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 class CLASS_DECL_ACME memory_base :
    public MEMORY,
-   virtual public ::particle
+   virtual public ::subparticle
 {
 public:
 
@@ -137,7 +118,7 @@ public:
    ~memory_base() override;
 
 
-   using ::particle::clear_flag;
+   using ::subparticle::clear_flag;
 
 
    virtual string as_utf8() const;
@@ -206,7 +187,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   ::particle_pointer clone() override;
+   ::subparticle_pointer clone() override;
 
 
 //   inline unsigned char * storage_begin() { return m_memory.storage_begin(); }

@@ -28,7 +28,7 @@ namespace html
 
       initialize(pparticle);
 
-      __construct(m_pfont);
+      __øconstruct(m_pfont);
 
       int iWeight;
 

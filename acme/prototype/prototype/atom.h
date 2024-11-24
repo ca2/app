@@ -9,6 +9,7 @@
 #include "acme/prototype/comparison/hash.h"
 #include "acme/prototype/prototype/transfer.h"
 #include "acme/prototype/string/string.h"
+#include "acme/prototype/string/string_base.h"
 
 enum enum_id : ::uptr;
 
@@ -383,20 +384,7 @@ public:
    template < primitive_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
    
-   atom(::atom && atom)
-   { 
-      m_etype = atom.m_etype; 
-      if (atom.m_etype & e_type_text)
-      {
-         ::new(&m_str) ::string(::transfer(atom.m_str));
-      }
-      else
-      {
-         m_uLargest = atom.m_uLargest;
-      }
-      atom.m_etype = e_type_integer; 
-      atom.m_uLargest = 0; 
-   }
+   atom(::atom && atom);
    ~atom()
    {
 

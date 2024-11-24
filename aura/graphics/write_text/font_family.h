@@ -39,7 +39,7 @@ namespace write_text
       ::string family_name(::particle * pparticle) const;
 
 
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
 
    };
@@ -62,7 +62,7 @@ namespace write_text
 
       font_family_pointer(const font_family & fontfamily);
 
-      font_family_pointer(const ::particle_pointer & pparticle);
+      font_family_pointer(const ::subparticle_pointer & pparticle);
 
 
    };

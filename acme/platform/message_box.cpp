@@ -78,6 +78,7 @@ message_box::message_box(const ::string & strMessage, const ::string & strTitle,
 
 }
 
+
 message_box::message_box(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
 {
 
@@ -127,6 +128,7 @@ huge_integer message_box::decrement_reference_count()
 
 
 #endif
+
 
 
 //void conversation_message::aggregate(sequence * psequence)
@@ -183,6 +185,18 @@ huge_integer message_box::decrement_reference_count()
 
 }
 
+
+void message_box::on_timed_out()
+{
+
+   m_payloadResult = e_dialog_result_timeout;
+
+   on_sequence();
+
+}
+
+
+
 void message_box::run()
 {
 
@@ -195,8 +209,6 @@ void message_box::run()
 //
 //   }
 
-   auto preified = defer_realize();
-
-   preified->call();
+   m_preified->call();
 
 }

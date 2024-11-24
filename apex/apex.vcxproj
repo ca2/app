@@ -644,6 +644,7 @@
     <ClCompile Include="networking\application\application_handler.cpp" />
     <ClCompile Include="networking\application\application_incoming_socket.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
+    <ClCompile Include="networking\application\application_incoming_socket_thread.cpp" />
     <ClCompile Include="networking\http\listener.cpp" />
     <ClCompile Include="networking\http\pac.cpp" />
     <ClCompile Include="networking\http\proxy.cpp" />
@@ -850,6 +851,7 @@
     <ClInclude Include="networking\application\application_handler.h" />
     <ClInclude Include="networking\application\application_incoming_socket.h" />
     <ClInclude Include="networking\application\application_socket.h" />
+    <ClInclude Include="networking\application\application_incoming_socket_thread.h" />
     <ClInclude Include="networking\http\context.h" />
     <ClInclude Include="networking\http\cookie.h" />
     <ClInclude Include="networking\http\form.h" />

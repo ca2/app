@@ -269,53 +269,52 @@ bool __os_term_thread()
 
 //namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
-void _do_tasks()
+// void _do_tasks()
+// {
+//
+// //   auto psystem = system();
+// //
+// ////   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
+// ////   {
+// ////
+// ////      wayland_process_messages();
+// ////
+// ////   }
+// ////   else
+// //  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
+// //   {
+// //
+// //      ::xcb::micro::process_messages();
+// //
+// //   }
+// //   else
+// //   {
+// //
+// //      ::x11::micro::process_messages();
+// //
+// //   }
+//
+//    auto psystem = system();
+//
+//    auto pwindowingsystem = psystem->windowing_system();
+//
+//    if(::is_set(pwindowingsystem))
+//    {
+//
+//       pwindowingsystem->process_messages();
+//
+//    }
+//
+//    psystem->node()->defer_do_main_tasks();
+//
+// }
+
+
+namespace platform
 {
 
-//   auto psystem = system();
-//
-////   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
-////   {
-////
-////      wayland_process_messages();
-////
-////   }
-////   else
-//  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
-//   {
-//
-//      ::xcb::micro::process_messages();
-//
-//   }
-//   else
-//   {
-//
-//      ::x11::micro::process_messages();
-//
-//   }
 
-   auto psystem = system();
-
-   auto pwindowingsystem = psystem->windowing_system();
-
-   if(::is_set(pwindowingsystem)) {
-
-      pwindowingsystem->process_messages();
-
-   }
-
-   psystem->node()->defer_do_main_tasks();
-
-}
-
-
-
-
-namespace acme
-{
-
-
-   void node::user_post(const ::procedure &procedure)
+   void node::_user_post(const ::procedure &procedure)
    {
 
       information() << "::platform::node::user_post going to display_post";
@@ -325,10 +324,7 @@ namespace acme
    }
 
 
-} // namespace acme
-
-
-
+} // namespace platform
 
 
 // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine

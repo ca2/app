@@ -1061,6 +1061,9 @@
     <ClInclude Include="networking\http\proxy.h">
       <Filter>Header Files\networking\http</Filter>
     </ClInclude>
+    <ClInclude Include="networking\application\application_incoming_socket_thread.h">
+      <Filter>Header Files\networking\application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1536,6 +1539,9 @@
     </ClCompile>
     <ClCompile Include="networking\http\proxy.cpp">
       <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_incoming_socket_thread.cpp">
+      <Filter>Source Files\networking\application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

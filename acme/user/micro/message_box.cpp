@@ -6,6 +6,7 @@
 #include "message_box.h"
 #include "still.h"
 #include "theme.h"
+#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/user/micro/details_window.h"
@@ -17,6 +18,7 @@
 #include "acme/platform/node.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 #include "acme/user/micro/user.h"
@@ -36,6 +38,8 @@ namespace micro
 
    message_box::message_box()
    {
+
+      set_flag(e_flag_should_create_sequence_on_synchronicity);
 
    }
 
@@ -264,6 +268,8 @@ namespace micro
 
       defer_create_details_still();
 
+
+
       if (m_prealizable->m_emessagebox & e_message_box_default_button_mask)
       {
 
@@ -310,6 +316,8 @@ namespace micro
       }
 
 
+
+
    }
 
 
@@ -342,6 +350,21 @@ namespace micro
 
 
 #endif
+
+   }
+
+
+   void message_box::on_timer(::timer * ptimer)
+   {
+
+      if (ptimer->m_uEvent == 1021)
+      {
+
+         m_pstillTimeout->m_strText.formatf("%0.2fs", m_prealizable->m_psequence->remaining_from_timeout().floating_second());
+
+         redraw();
+
+      }
 
    }
 
@@ -440,6 +463,40 @@ namespace micro
 
       }
 
+
+      if (m_prealizable->m_psequence)
+      {
+
+         if (!m_prealizable->m_psequence->m_timeLocked.is_null())
+         {
+
+            m_pstillTimeout = __allocate::micro::still();
+
+            m_pstillTimeout->m_atom = "timeout";
+
+            add_child(m_pstillTimeout);
+
+         }
+
+      }
+      if (m_pstillTimeout)
+      {
+
+
+         auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
+         auto hButton = (int)(m_rectangle.height() * 0.2);
+         auto wButton = (int)(m_rectangle.width() * 0.2);
+
+
+
+         m_pstillTimeout->m_rectangle.bottom() = iBottom;
+         m_pstillTimeout->m_rectangle.top() = m_pstillTimeout->m_rectangle.bottom() - hButton / 2;
+         m_pstillTimeout->m_rectangle.left() = (int)(m_rectangle.width() * 0.025);
+         m_pstillTimeout->m_rectangle.right() = m_pstillTimeout->m_rectangle.left() + wButton / 3;
+
+         SetTimer(1021, 200_ms);
+
+      }
    }
 
 
@@ -532,6 +589,12 @@ namespace micro
          return;
 
       }
+      else if (payload == "timeout")
+      {
+
+         return;
+
+      }
 
       set_dialog_result(payload);
 
@@ -612,7 +675,7 @@ namespace micro
 //                                                        scopedstrDetails, picon);
 //      
 //      return psequencer;
-////      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
+////      auto pmessagebox = ::platform::get()->__øcreate < ::operating_system::message_box >();
 ////
 ////      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 //

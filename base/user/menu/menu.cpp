@@ -225,7 +225,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __create <  ::menu::item  >();
+         m_pmenuitem = __øcreate <  ::menu::item  >();
 
       }
 
@@ -361,7 +361,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __create <  ::menu::item  >();
+         m_pmenuitem = __øcreate <  ::menu::item  >();
 
       }
 
@@ -593,7 +593,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __create <  ::menu::item  >();
+         m_pmenuitem = __øcreate <  ::menu::item  >();
 
       }
 
@@ -1107,7 +1107,7 @@ namespace user
    }
 
 
-   void menu::handle(::topic* ptopic, ::context* pcontext)
+   void menu::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (ptopic->m_atom == ::id_click)
@@ -1447,10 +1447,10 @@ namespace user
 
 
 
-   void menu::_001OnTimer(::timer* ptimer)
+   void menu::on_timer(::timer* ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
       ::pointer<::menu::item>pitemThis = get_menu_item();
 

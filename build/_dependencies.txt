@@ -1,4 +1,4 @@
-default_node
+default_operating_ambient
 default_draw2d
 default_write_text
 default_imaging

@@ -1009,9 +1009,9 @@ namespace experience_anthill
 
       ::collection::index iTab = -1;
 
-      auto pbrushText = __create < ::draw2d::brush >();
+      auto pbrushText = __øcreate < ::draw2d::brush >();
 
-      auto ppenBorder = __create < ::draw2d::pen >();
+      auto ppenBorder = __øcreate < ::draw2d::pen >();
 
       for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
@@ -1070,7 +1070,7 @@ namespace experience_anthill
 
             }
 
-            auto ppath = __create < ::draw2d::path >();
+            auto ppath = __øcreate < ::draw2d::path >();
 
             if (true)
             {
@@ -1223,7 +1223,7 @@ namespace experience_anthill
             if (true)
             {
 
-               //auto ppath = __create < ::draw2d::path > ();
+               //auto ppath = __øcreate < ::draw2d::path > ();
 
                ::color::color colorBackground = ptab->get_color(pstyle, ::e_element_item_background, estate);
 
@@ -1987,10 +1987,10 @@ namespace experience_anthill
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
                   ppen->create_solid(1, argb(190, 92, 184, 92));
-                  auto pbrush = __create < ::draw2d::brush >();
+                  auto pbrush = __øcreate < ::draw2d::brush >();
 
                   pbrush->create_solid(argb(123, 180, 184, 255));
                   pgraphics->set(ppen);
@@ -2034,10 +2034,10 @@ namespace experience_anthill
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1, argb(255, 92, 92, 92));
-               auto pbrush = __create < ::draw2d::brush >();
+               auto pbrush = __øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(argb(255, 255, 255, 255));
                pgraphics->set(ppen);
@@ -2132,7 +2132,7 @@ namespace experience_anthill
 
          ::status < ::int_rectangle > rectangleText;
 
-         auto pbrushText = __create < ::draw2d::brush >();
+         auto pbrushText = __øcreate < ::draw2d::brush >();
 
          if (!(estyle & e_tool_item_style_disabled))
          {
@@ -2253,10 +2253,10 @@ namespace experience_anthill
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  auto ppen = __create < ::draw2d::pen >();
+                  auto ppen = __øcreate < ::draw2d::pen >();
 
                   ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_hover));
-                  auto pbrush = __create < ::draw2d::brush >();
+                  auto pbrush = __øcreate < ::draw2d::brush >();
 
                   pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_hover));
                   pgraphics->set(ppen);
@@ -2301,10 +2301,10 @@ namespace experience_anthill
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_pressed));
-               auto pbrush = __create < ::draw2d::brush >();
+               auto pbrush = __øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_pressed));
                pgraphics->set(ppen);
@@ -2357,10 +2357,10 @@ namespace experience_anthill
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __create < ::draw2d::pen >();
+               auto ppen = __øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, estate));
-               auto pbrush = __create < ::draw2d::brush >();
+               auto pbrush = __øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, estate));
                pgraphics->set(ppen);
@@ -2414,7 +2414,7 @@ namespace experience_anthill
 
          ::status < ::int_rectangle > rectangleText;
 
-         auto pbrushText = __create < ::draw2d::brush >();
+         auto pbrushText = __øcreate < ::draw2d::brush >();
 
          if (!(estate & ::user::e_state_disabled))
          {

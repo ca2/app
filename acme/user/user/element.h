@@ -10,6 +10,7 @@
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/platform/message_box.h"
+#include "acme/platform/timer_callback.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
@@ -40,7 +41,8 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
-      virtual public ::user::command_update_target
+      virtual public ::user::command_update_target,
+      virtual public ::timer_callback
    {
    public:
 
@@ -117,7 +119,7 @@ namespace user
       virtual ::user::text & text();
 
 
-      virtual void _001OnTimer(::timer * ptimer);
+      void on_timer(::timer * ptimer) override;
 
 
       virtual void create_message_queue(const ::string & lpszName);
@@ -426,8 +428,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void * pdata = nullptr);
-      virtual void KillTimer(uptr uEvent);
+      //virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void * pdata = nullptr);
+      //virtual void KillTimer(uptr uEvent);
 
 
       virtual bool is_host_top_level();
@@ -817,7 +819,7 @@ namespace user
       virtual bool _001CanEnterScreenSaver();
 
 
-      //virtual void _001OnTimer(::timer * ptimer);
+      //virtual void on_timer(::timer * ptimer);
 
       virtual void on_reset_focus_start_tick();
 
@@ -872,7 +874,7 @@ namespace user
       virtual bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionFinishComposingText(bool bSuper);
 
-      //virtual void _001OnTimer(::timer * ptimer);
+      //virtual void on_timer(::timer * ptimer);
 
       //virtual bool enable_window(bool bEnable );
 

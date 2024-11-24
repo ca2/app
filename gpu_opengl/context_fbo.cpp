@@ -56,12 +56,12 @@ void context_fbo::on_initialize_particle()
 }
 void context_fbo::run()
 {
- 
-   while(task_get_run())
-   {
-      run_posted_procedures();
-      preempt(100_ms);
-   }
+   ::task::run();
+//   while(task_get_run())
+  // {
+    //  task_();
+      //preempt(100_ms);
+   //}
    
 }
 
@@ -71,7 +71,7 @@ void context_fbo::run()
       
       auto size = sizeParam;
       
-      this->post_procedure([this, size]()
+      this->post([this, size]()
                  {
          
          auto pgpu = system()->get_gpu();
@@ -419,7 +419,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
       
       auto size = sizeParam;
       
-      this->post_procedure([this, size]()
+      this->post([this, size]()
                            {
          //auto estatus =
          
@@ -447,7 +447,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    void context_fbo::prepare_for_gpu_read()
    {
       
-      this->post_procedure([this]()
+      this->post([this]()
                            {
          CGLFlushDrawable(m_context);
          

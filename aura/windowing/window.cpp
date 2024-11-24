@@ -21,7 +21,7 @@
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
-#include "acme/prototype/prototype/post_procedure_continuation.h"
+#include "acme/prototype/prototype/sequence_continuation.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/graphics/graphics.h"

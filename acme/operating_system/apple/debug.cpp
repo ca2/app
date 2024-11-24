@@ -59,49 +59,49 @@ int __node_is_debugger_attached()
 
 
 
-void output_debug_string(const ::scoped_string & scopedstrOutputString)
-{
-   
-//   if(scopedstrOutputString.size() > 1024)
-//   {
+//void output_debug_string(const ::scoped_string & scopedstrOutputString)
+//{
 //   
-//      fwrite(scopedstrOutputString.begin(), 1, 128, stdout);
-//      
-//      if(scopedstrOutputString[scopedstrOutputString.size() -1] =='\n')
-//      {
-//         
-//         printf("...line with %llid bytes truncated to 128 bytes...", scopedstrOutputString.size() );
-//         
-//      }
-//      
-//      fwrite("\n", 1, 1, stdout);
-//      
+////   if(scopedstrOutputString.size() > 1024)
+////   {
+////   
+////      fwrite(scopedstrOutputString.begin(), 1, 128, stdout);
+////      
+////      if(scopedstrOutputString[scopedstrOutputString.size() -1] =='\n')
+////      {
+////         
+////         printf("...line with %llid bytes truncated to 128 bytes...", scopedstrOutputString.size() );
+////         
+////      }
+////      
+////      fwrite("\n", 1, 1, stdout);
+////      
+////   }
+////   else
+//   {
+//      fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
 //   }
-//   else
-   {
-      fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
-   }
-
-//   string strOutputString(pszOutputString);
 //
-//   strOutputString.find_replace("\r\n", "\n");
+////   string strOutputString(pszOutputString);
+////
+////   strOutputString.find_replace("\r\n", "\n");
+////
+////   strOutputString.find_replace("\n", "\r");
+////
+////   ::wd32_character * pusz = ansi_to_wd32_dup(strOutputString);
+////
+////   wprintf(L"%S", pusz);
+////
+////   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pusz);
 //
-//   strOutputString.find_replace("\n", "\r");
+//}
 //
-//   ::wd32_character * pusz = ansi_to_wd32_dup(strOutputString);
 //
-//   wprintf(L"%S", pusz);
+//void output_debug_string_flush()
+//{
+//   
+//   fflush(stdout);
+//   
+//}
 //
-//   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pusz);
-
-}
-
-
-void output_debug_string_flush()
-{
-   
-   fflush(stdout);
-   
-}
-
-
+//

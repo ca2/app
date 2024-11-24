@@ -444,9 +444,9 @@ namespace platform
 
       __øconstruct(m_plogger);
 
-      __construct(m_pmutexTask);
+      __øconstruct(m_pmutexTask);
 
-      __construct(m_pmutexTaskOn);
+      __øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 

@@ -9,7 +9,7 @@
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
-#include "apex/user/menu/menu.h"
+#include "acme/user/menu/menu.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "aura/graphics/draw2d/draw2d.h"

@@ -59,6 +59,13 @@
 			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
 			remoteInfo = app_just_message_box;
 		};
+		9A4631F92CF3963A00426444 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1CC4582CF30DF9004A00CB /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
+			remoteInfo = app_just_message_box;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +120,14 @@
 			isa = PBXGroup;
 			children = (
 				9A1CC4622CF30E06004A00CB /* libapp_just_message_box.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4631F62CF3963700426444 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A4631FA2CF3963A00426444 /* libapp_just_message_box.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +246,10 @@
 					ProjectRef = 9A1CC45B2CF30E06004A00CB /* app_just_message_box.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A4631F62CF3963700426444 /* Products */;
+					ProjectRef = 9A1CC4582CF30DF9004A00CB /* app_just_message_box.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A1CC4442CF30BA3004A00CB /* Products */;
 					ProjectRef = 9A1CC4432CF30BA3004A00CB /* aqua.xcodeproj */;
 				},
@@ -269,6 +288,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_just_message_box.dylib;
 			remoteRef = 9A1CC4612CF30E06004A00CB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4631FA2CF3963A00426444 /* libapp_just_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_message_box.dylib;
+			remoteRef = 9A4631F92CF3963A00426444 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

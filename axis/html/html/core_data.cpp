@@ -332,19 +332,20 @@ namespace html
 
       m_pelement->implement(this);
 
-      auto children = m_pform->synchronized_get_children();
+      //auto children = m_pform->synchronized_get_children();
 
+      for_user_interaction_children(puserinteraction, m_pform)
       //if (m_pform->m_puserinteractionpointeraChild)
       {
 
-         for (auto & pinteraction :children)
+         //for (auto & pinteraction :children)
          {
 
             //synchronouslock.unlock();
             
             auto ptopic = create_topic(::id_initialize_control);
 
-            ptopic->m_puserelement = pinteraction;
+            ptopic->m_puserelement = puserinteraction;
 
             m_pform->route(ptopic);
 

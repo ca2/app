@@ -3762,9 +3762,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //}
 
-   auto children = synchronized_get_children();
+   //auto children = synchronized_get_children();
 
-   if (children.has_element())
+   //if (children.has_element())
    {
 
       ::draw2d::save_context savecontext(pgraphics);
@@ -3776,12 +3776,12 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          try
          {
 
-            for (auto & pinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
                //synchronouslock.unlock();
 
-               ::pointer < ::experience::control_box > pcontrolbox = pinteraction;
+               ::pointer < ::experience::control_box > pcontrolbox = puserinteraction;
 
                if (!pcontrolbox)
                {
@@ -3790,14 +3790,14 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      auto timeStart = ::time::now();
 
-                     pinteraction->_000CallOnDraw(pgraphics);
+                     puserinteraction->_000CallOnDraw(pgraphics);
 
                      auto timeEllapsed = timeStart.elapsed();
 
                      if (timeEllapsed > 50_ms)
                      {
 
-                        string strType = ::type(pinteraction).name();
+                        string strType = ::type(puserinteraction).name();
 
                         //if(strType.contains("pane_impact"))
                         //{
@@ -3876,15 +3876,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          //if (puserinteractionpointeraChild)
          {
 
-            auto children = synchronized_get_children();
+            //auto children = synchronized_get_children();
 
-            for (auto & pinteraction : children)
+            //for (auto & pinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
-               if (base_class < ::experience::control_box > ::bases(pinteraction))
+               if (base_class < ::experience::control_box > ::bases(puserinteraction))
                {
 
-                  auto strWindowText = pinteraction->get_window_text();
+                  auto strWindowText = puserinteraction->get_window_text();
 
                   //pinteraction->get_window_text(str);
 
@@ -3907,7 +3908,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #endif
 
-                        pinteraction->_000CallOnDraw(pgraphics);
+                        puserinteraction->_000CallOnDraw(pgraphics);
 
 #ifdef VERBOSE_LOG
 

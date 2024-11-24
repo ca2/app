@@ -155,8 +155,9 @@ namespace user
 
          //synchronous_lock synchronouslock(this->synchronization());
 
-         auto children = synchronized_get_children();
+         //auto children = synchronized_get_children();
 
+         
          //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
          {
 
@@ -177,7 +178,7 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
-            for (auto& puserinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
                if(!puserinteraction->is_this_visible(e_layout_sketch))
@@ -197,7 +198,7 @@ namespace user
 
             }
 
-            for (auto & puserinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
                if(!puserinteraction->is_this_visible(e_layout_sketch))

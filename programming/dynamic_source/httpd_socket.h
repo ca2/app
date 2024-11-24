@@ -18,6 +18,11 @@ namespace dynamic_source
       string                                       m_strLocale;
       ::pointer < script_interface >               m_pscript;
 
+      class ::time                                 m_timeMainRunStart;
+      class ::time                                 m_timeMainRunEnd;
+      class ::time                                 m_timeWaitingToBuild;
+
+
 
       httpd_socket();
       ~httpd_socket() override;

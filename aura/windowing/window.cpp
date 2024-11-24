@@ -8721,11 +8721,12 @@ bMove = false;
 
          {
 
-            auto children = m_puserinteraction->synchronized_get_children();
+            //auto children = m_puserinteraction->synchronized_get_children();
 
             // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
             // if (puserinteractionpointeraChild)
+            for_user_interaction_children(puserinteraction, this)
             {
 
                //{
@@ -8743,7 +8744,7 @@ bMove = false;
 
                //}
 
-               for (auto & pinteraction : children)
+               //for (auto & pinteraction : children)
                {
 
                   //synchronouslock.unlock();
@@ -8751,7 +8752,7 @@ bMove = false;
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
+                     puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
 
                   }
                   catch (...)

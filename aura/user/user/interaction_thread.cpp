@@ -559,7 +559,11 @@ namespace user
             if (!pwindow)
             {
 
+#ifdef EXTRA_DEBUG
+
                informationf("What is going on? not going to redraw");
+
+#endif
 
             }
             else

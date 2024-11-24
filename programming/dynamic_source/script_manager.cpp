@@ -352,7 +352,19 @@ namespace dynamic_source
 
       string strHead;
 
+      class ::time timeGetHereStart;
+
+      class ::time timeGetHereEnd;
+
+      timeGetHereStart.Now();
+
       ::pointer<script_instance>pinstance = get(m_strSeed);
+
+      timeGetHereEnd.Now();
+
+      auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+
+      pdssocket->m_timeWaitingToBuild += timeGetHere;
 
       if (!pinstance)
       {
@@ -464,6 +476,8 @@ namespace dynamic_source
          if (!pinstance->m_pscript2->HasCompileOrLinkError())
          {
 
+            pdssocket->m_timeMainRunStart.Now();
+
             try
             {
 
@@ -492,6 +506,8 @@ namespace dynamic_source
                informationf("Error: Exception at script_manager::handle run");
 
             }
+
+            pdssocket->m_timeMainRunEnd.Now();
 
          }
 
@@ -651,7 +667,24 @@ namespace dynamic_source
 
                auto pmain = pinstanceParent->main();
 
+               class ::time timeGetHereStart;
+
+               class ::time timeGetHereEnd;
+
+               timeGetHereStart.Now();
+
                pinstance = get(strName, pscript);
+
+               timeGetHereEnd.Now();
+
+               auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+               
+               if (pinstanceParent)
+               {
+
+                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
+
+               }
 
                if (pinstance == nullptr || pscript == nullptr)
                {

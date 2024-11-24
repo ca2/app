@@ -40,6 +40,22 @@ namespace user
    };
 
 
+#define for_user_interaction_children(puserinteraction, puserinteractionParent) \
+   for ( \
+   auto puserinteraction = (puserinteractionParent)->first_child(); \
+   ::is_set(puserinteraction); \
+   puserinteraction = (puserinteractionParent)->next_sibling(puserinteraction) \
+      )
+
+
+#define rear_for_user_interaction_children(puserinteraction, puserinteractionParent) \
+   for ( \
+   auto puserinteraction = (puserinteractionParent)->last_child(); \
+   ::is_set(puserinteraction); \
+   puserinteraction = (puserinteractionParent)->previous_sibling(puserinteraction) \
+      )
+
+
    class CLASS_DECL_AURA interaction :
       virtual public ::user::interaction_base,
       virtual public ::user::drawable,
@@ -1108,6 +1124,9 @@ namespace user
       ::user::element * above_user_element() override;
       ::user::element * next_user_element() override;
       ::user::element * previous_user_element() override;
+
+
+      virtual ::particle * children_synchronization();
 
 
       virtual ::user::interaction* first_child() override;
@@ -2237,7 +2256,7 @@ namespace user
 
       virtual void hide() override;
 
-      virtual ::pointer_array < ::user::interaction > synchronized_get_children();
+      //virtual ::pointer_array < ::user::interaction > synchronized_get_children();
 
 
 
@@ -2274,6 +2293,8 @@ namespace user
       virtual bool get_child(::pointer<::user::interaction> & pinteraction);
       virtual bool rget_child(::pointer<::user::interaction> & pinteraction);
 
+
+      
 
 
       //template < typename CHILD >

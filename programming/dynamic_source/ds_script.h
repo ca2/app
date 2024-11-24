@@ -22,21 +22,21 @@ namespace dynamic_source
    public:
 
 
-      ::pointer<::acme::library>      m_plibrary;
+      ::pointer<::acme::library>       m_plibrary;
 
 
-      file_time_set                     m_ft;
-      file_time_set                     m_ftDs;
+      file_time_set                    m_ft;
+      file_time_set                    m_ftDs;
       ::string                         m_strClassNamePrefix;
       ::string                         m_strClassName;
       bool                             m_bLastVersionCheck;
-      class ::time                           m_timeLastVersionCheck;
+      class ::time                     m_timeLastVersionCheck;
       ::file::path                     m_strSourcePath;
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
-      manual_reset_happening               m_happeningCreationEnabled;
-      class ::time                           m_timeLastBuildTime;
+      manual_reset_happening           m_happeningCreationEnabled;
+      class ::time                     m_timeLastBuildTime;
       bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;
@@ -47,9 +47,11 @@ namespace dynamic_source
 
 
       ds_script();
-      virtual ~ds_script();
+      ~ds_script() override;
 
-      void destroy();
+
+      void destroy() override;
+
 
       virtual void defer_build();
       virtual void on_start_build();

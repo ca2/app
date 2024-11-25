@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A28CBD62CF415AB00C6D8B1 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A28CBD52CF415AB00C6D8B1 /* libacme_windowing_uikit.a */; };
-		9A28CBD72CF415AB00C6D8B1 /* libacme_windowing_uikit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A28CBD52CF415AB00C6D8B1 /* libacme_windowing_uikit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A3108E22CE78C5E0067398D /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9A3108E12CE78C5E0067398D /* _static_factory_.inl */; };
 		9A3109062CE7E2D30067398D /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3108FF2CE7988B0067398D /* liboperating_ambient_ios.a */; };
 		9A3109082CE7E9C40067398D /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3109072CE7E9C40067398D /* libnode_ios.a */; };
@@ -181,20 +180,6 @@
 			remoteInfo = _ios_app_app;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9A28CBD82CF415AB00C6D8B1 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9A28CBD72CF415AB00C6D8B1 /* libacme_windowing_uikit.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A28CBD52CF415AB00C6D8B1 /* libacme_windowing_uikit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_windowing_uikit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,7 +450,6 @@
 				9AA14F5A282A2A6200B1621E /* Sources */,
 				9AA14F5C282A2A6200B1621E /* Resources */,
 				9AA14F5B282A2A6200B1621E /* Frameworks */,
-				9A28CBD82CF415AB00C6D8B1 /* Embed Libraries */,
 			);
 			buildRules = (
 			);

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9A0E4EF52BF4FF44007C7253 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0E4EED2BF4FF44007C7253 /* SystemConfiguration.framework */; };
 		9A28CBA92CF4133200C6D8B1 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A28CBA82CF4133200C6D8B1 /* libacme_windowing_uikit.a */; };
-		9A28CBAA2CF4133300C6D8B1 /* libacme_windowing_uikit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A28CBA82CF4133200C6D8B1 /* libacme_windowing_uikit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A2F609B2474F2C400D392E8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181C21F21C33500FDAF74 /* libz.tbd */; };
 		9A2F609C2474F2CC00D392E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181C61F21C35100FDAF74 /* libsqlite3.tbd */; };
 		9A2F609E2474F53900D392E8 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2F609D2474F53900D392E8 /* CoreServices.framework */; };
@@ -199,20 +198,6 @@
 			remoteInfo = ios_write_text_quartz2d;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9A28CBAB2CF4133300C6D8B1 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9A28CBAA2CF4133300C6D8B1 /* libacme_windowing_uikit.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		077A02081B4D5758001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -507,7 +492,6 @@
 				078C352B1921758500354453 /* Sources */,
 				078C352C1921758500354453 /* Frameworks */,
 				078C352D1921758500354453 /* Resources */,
-				9A28CBAB2CF4133300C6D8B1 /* Embed Libraries */,
 			);
 			buildRules = (
 			);

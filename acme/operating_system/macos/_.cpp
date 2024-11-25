@@ -3,7 +3,7 @@
 #include <locale.h>
 
 
-void ns_app_run();
+//void ns_app_run();
 
 
 CLASS_DECL_ACME void __node_acme_pre_init()

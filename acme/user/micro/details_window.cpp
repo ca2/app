@@ -60,7 +60,7 @@ namespace micro
    }
 
 
-   bool details_window::on_click(const ::payload & payload, ::user::mouse * pmouse)
+   void details_window::on_click(const ::payload & payload, ::user::mouse * pmouse)
    {
 
       if (payload == "details")
@@ -78,14 +78,9 @@ namespace micro
 
       }
 
-      if(::micro::message_box::on_click(payload, pmouse))
-      {
-         
-         return true;
-         
-      }
+      ::micro::message_box::on_click(payload, pmouse);
 
-      return false;
+//      return false;
       
    }
 

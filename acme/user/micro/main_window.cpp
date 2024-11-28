@@ -79,6 +79,16 @@ namespace micro
    }
 
 
+::shift_int main_window::client_to_host()
+{
+
+   return {};
+   
+
+}
+
+
+
    void main_window::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
    {
 

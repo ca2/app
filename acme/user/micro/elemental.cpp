@@ -903,7 +903,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    }
 
 
-bool elemental::back_on_mouse_move(::user::mouse* pmouse)
+void elemental::back_on_mouse_move(::user::mouse* pmouse)
 {
 
    if (acme_windowing_window()->m_pacmeuserinteractionHover)

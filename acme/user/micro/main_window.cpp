@@ -81,8 +81,8 @@ namespace micro
 
 ::shift_int main_window::client_to_host()
 {
-
-   return {};
+   
+   return ::micro::elemental::client_to_host();
    
 
 }

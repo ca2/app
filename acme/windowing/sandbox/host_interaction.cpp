@@ -118,11 +118,13 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 
          };
       
-      return true;
+      pmouse->m_bRet = true;
+      
+      return;
 
    }
    
-   return false;
+   //return false;
    
 }
 

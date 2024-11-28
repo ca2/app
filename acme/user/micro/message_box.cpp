@@ -314,6 +314,8 @@ namespace micro
          pmicrobutton->m_rectangle.left() = pmicrobutton->m_rectangle.right() - wButton;
 
          iRight = pmicrobutton->m_rectangle.left() - wSpacing;
+         
+         printf_line("234");
 
       }
 
@@ -625,7 +627,7 @@ namespace micro
 
       set_dialog_result(payload);
 
-      return true;
+      pmouse->m_bRet = true;
       
    }
 

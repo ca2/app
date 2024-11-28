@@ -50,11 +50,12 @@
 		9A94DED3282C4AC400F5C1CA /* libapex_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED2282C4AC400F5C1CA /* libapex_ios.a */; };
 		9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */; };
 		9AC3F24B2CF7F8FF0061DCC0 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2482CF7F8C40061DCC0 /* libios_folder_zip.a */; };
-		9AC3F24C2CF7F9000061DCC0 /* libios_folder_zip.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2482CF7F8C40061DCC0 /* libios_folder_zip.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F2522CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */; };
-		9AC3F2532CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F2552CF7FAE00061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */; };
-		9AC3F2562CF7FAE00061DCC0 /* libinnate_ui_uikit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AC3F2FA2CF8B8980061DCC0 /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2F72CF8B8970061DCC0 /* libios_acme_windowing_kit.a */; };
+		9AC3F2FB2CF8B8980061DCC0 /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2F72CF8B8970061DCC0 /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AC3F2FE2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2FD2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a */; };
+		9AC3F2FF2CF8B8CF0061DCC0 /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2FD2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,15 +188,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9AC3F24D2CF7F9010061DCC0 /* Embed Libraries */ = {
+		9AC3F2FC2CF8B8990061DCC0 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9AC3F2562CF7FAE00061DCC0 /* libinnate_ui_uikit.a in Embed Libraries */,
-				9AC3F24C2CF7F9000061DCC0 /* libios_folder_zip.a in Embed Libraries */,
-				9AC3F2532CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */,
+				9AC3F2FB2CF8B8980061DCC0 /* libios_acme_windowing_kit.a in Embed Libraries */,
+				9AC3F2FF2CF8B8CF0061DCC0 /* libios_acme_windowing_kit.a in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +260,9 @@
 		9AC3F24E2CF7F9350061DCC0 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_graphics_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_nano_graphics_quartz2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libinnate_ui_uikit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3F2F62CF8B8970061DCC0 /* libacme_windowing_kit.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_windowing_kit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3F2F72CF8B8970061DCC0 /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3F2FD2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC88AE62B6B3C75008F1C20 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9AC88AE72B6B3C76008F1C20 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,6 +278,8 @@
 				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */,
 				9AC3F2522CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */,
+				9AC3F2FE2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a in Frameworks */,
+				9AC3F2FA2CF8B8980061DCC0 /* libios_acme_windowing_kit.a in Frameworks */,
 				9A40BDBE2B6B67770077053E /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */,
 				9A40BDB12B6B65510077053E /* libios_apex_darwin.a in Frameworks */,
@@ -392,6 +397,9 @@
 		9A8E9D9B282A2DAA005FF778 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AC3F2FD2CF8B8CE0061DCC0 /* libios_acme_windowing_kit.a */,
+				9AC3F2F62CF8B8970061DCC0 /* libacme_windowing_kit.dylib */,
+				9AC3F2F72CF8B8970061DCC0 /* libios_acme_windowing_kit.a */,
 				9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */,
 				9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */,
 				9AC3F24E2CF7F9350061DCC0 /* libnano_graphics_quartz2d.dylib */,
@@ -481,7 +489,7 @@
 				9AA14F5A282A2A6200B1621E /* Sources */,
 				9AA14F5C282A2A6200B1621E /* Resources */,
 				9AA14F5B282A2A6200B1621E /* Frameworks */,
-				9AC3F24D2CF7F9010061DCC0 /* Embed Libraries */,
+				9AC3F2FC2CF8B8990061DCC0 /* Embed Libraries */,
 			);
 			buildRules = (
 			);

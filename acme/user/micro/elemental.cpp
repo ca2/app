@@ -716,7 +716,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
 
       host_to_client()(point);
 
-      auto pchild =  on_hit_test(point, ezorder);
+      auto pchild = on_hit_test(point, ezorder);
       
       if(pchild)
       {
@@ -748,8 +748,10 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          {
 
             ::pointer<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
+            
+            auto rectangle = pelemental->m_rectangle;
 
-            if (pelemental->m_rectangle.contains(point))
+            if (rectangle.contains(point))
             {
 
                return pelemental;
@@ -1129,6 +1131,13 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
             {
 
                pmainwindow->on_click(pmainwindow->m_atomLeftButtonUp, pmouse);
+               
+               if(pmouse->m_bRet)
+               {
+                  
+                  return;
+                  
+               }
 
             }
             else

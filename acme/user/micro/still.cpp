@@ -100,7 +100,7 @@ namespace micro
    }
 
 
-   bool still::fore_on_mouse_move(::user::mouse * pmouse)
+   void still::fore_on_mouse_move(::user::mouse * pmouse)
    {
 
       if (m_bHyperlink)
@@ -134,8 +134,6 @@ namespace micro
 
       }
       
-      return false;
-
    }
 
 

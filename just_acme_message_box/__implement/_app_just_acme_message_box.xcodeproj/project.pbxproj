@@ -509,7 +509,7 @@
 		9A47536E2CF516A800ED30AE /* libios_app_just_acme_message_box.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_app_just_acme_message_box.dylib;
+			path = libios_app_just_acme_message_box.a;
 			remoteRef = 9A47536D2CF516A800ED30AE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

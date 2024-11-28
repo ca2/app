@@ -79,6 +79,13 @@
 			remoteGlobalIDString = 9A882E6328449DBC004113D1;
 			remoteInfo = ios_app_message_box;
 		};
+		9A3E31FC2CF81C66007DC9EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC3F2572CF7FC700061DCC0 /* operating_ambient_ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A3105982CE781E60067398D;
+			remoteInfo = operating_ambient_ios;
+		};
 		9A40BE422B6C57A40077053E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A882E4128449D59004113D1 /* crypto_openssl.xcodeproj */;
@@ -355,6 +362,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A3E31F32CF81C66007DC9EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A3E31FD2CF81C66007DC9EE /* liboperating_ambient_ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A5752A716AAE1D2000CC4EF = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +642,10 @@
 					ProjectRef = 9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A3E31F32CF81C66007DC9EE /* Products */;
+					ProjectRef = 9AC3F2572CF7FC700061DCC0 /* operating_ambient_ios.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A882EC32844AA50004113D1 /* Products */;
 					ProjectRef = 9A882EC22844AA50004113D1 /* write_text_quartz2d.xcodeproj */;
 				},
@@ -640,6 +659,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A3E31FD2CF81C66007DC9EE /* liboperating_ambient_ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = liboperating_ambient_ios.a;
+			remoteRef = 9A3E31FC2CF81C66007DC9EE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A40BE432B6C57A40077053E /* libstatic_crypto_openssl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";

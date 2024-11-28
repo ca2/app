@@ -40,7 +40,7 @@ namespace micro
    {
 
       m_atom = e_dialog_result_none;
-      
+
       set_flag(e_flag_should_create_sequence_on_synchronicity);
 
    }
@@ -107,12 +107,12 @@ namespace micro
    }
 
 
-//   void message_box::on_sequence()
-//   {
-//      
-//      ::reified<::message_box>::on_sequence();
-//      
-//   }
+   //   void message_box::on_sequence()
+   //   {
+   //      
+   //      ::reified<::message_box>::on_sequence();
+   //      
+   //   }
 
 
    void message_box::on_draw(::nano::graphics::device* pmicrodevice)
@@ -153,7 +153,7 @@ namespace micro
       if (m_prealizable->m_strDetails.has_character())
       {
 
-         m_pstillDetails = __allocate ::micro::still();
+         m_pstillDetails = __allocate::micro::still();
 
          m_pstillDetails->m_atom = "details";
 
@@ -314,7 +314,7 @@ namespace micro
          pmicrobutton->m_rectangle.left() = pmicrobutton->m_rectangle.right() - wButton;
 
          iRight = pmicrobutton->m_rectangle.left() - wSpacing;
-         
+
          printf_line("234");
 
       }
@@ -344,26 +344,26 @@ namespace micro
       //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
       int w = wScreen / 2;
-      
-      if(w < 200)
+
+      if (w < 200)
       {
-         
+
          w = wScreen * 9 / 10;
-         
+
       }
-      
+
       int h = (w / 16) * 5;
-      
-      if(wScreen < hScreen)
+
+      if (wScreen < hScreen)
       {
-         
+
          h = (w / 10) * 5;
-      
+
       }
       int x = (wScreen - w) / 2;
       int y = (hScreen - h) / 2;
-      
-      
+
+
 
       m_rectangle.set_dimension(x, y, w, h);
 
@@ -375,7 +375,7 @@ namespace micro
    }
 
 
-   void message_box::on_timer(::timer * ptimer)
+   void message_box::on_timer(::timer* ptimer)
    {
 
       if (ptimer->m_uEvent == 1021)
@@ -552,13 +552,13 @@ namespace micro
 
    //CLASS_DECL_ACME ::platform::system * system();
 #ifdef WINDOWS_DESKTOP
-      CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
-      CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+   CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
+   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
 #endif
 
 #ifdef MACOS
 
-      enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const char* pszMessage, const char* pszTitle, enum_message_box emessagebox);
 
 #endif
 
@@ -582,15 +582,15 @@ namespace micro
 
    void message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
-//#ifdef APPLE_IOS
-//      if(payload == e_dialog_result_none)
-//      {
-//         
-//         on_context_menu(pmouse);
-//         
-//         return;
-//      }
-//#endif
+      //#ifdef APPLE_IOS
+      //      if(payload == e_dialog_result_none)
+      //      {
+      //         
+      //         on_context_menu(pmouse);
+      //         
+      //         return;
+      //      }
+      //#endif
       if (payload == "details")
       {
 
@@ -615,20 +615,24 @@ namespace micro
 
          //m_payloadResult.unset();
 
-         return true;
+         pmouse->m_bRet = true;
+
+         return;
 
       }
       else if (payload == "timeout")
       {
 
-         return true;
+         pmouse->m_bRet = true;
+
+         return;
 
       }
 
       set_dialog_result(payload);
 
       pmouse->m_bRet = true;
-      
+
    }
 
 
@@ -640,20 +644,22 @@ namespace micro
 
          m_pacmewindowingwindow->defer_show_system_menu(pmouse);
 
-         return true;
+         pmouse->m_bRet = true;
+
+         return;
 
       }
-      
+
       on_context_menu(pmouse);
 
-      return true;
+      pmouse->m_bRet = true;
 
    }
 
 
-   void message_box::on_context_menu(::user::mouse * pmouse)
-{
-      
+   void message_box::on_context_menu(::user::mouse* pmouse)
+   {
+
       auto ppopupbutton = __create_new<popup_button>();
 
       //auto pwindowParent = this->acme_windowing_window();
@@ -691,7 +697,7 @@ namespace micro
                system()->acme_windowing()->set_clipboard_text(
                   m_prealizable->m_strMessage + "\n\n"
                   + m_prealizable->m_strDetails);
-               
+
 #else
 
                display_temporary_file_with_text(
@@ -706,7 +712,7 @@ namespace micro
 
       //post(psequence);
 
-      
+
    }
 
    bool message_box::is_popup_window() const

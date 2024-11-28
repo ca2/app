@@ -1490,6 +1490,12 @@
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="windowing\display.h" />
+    <ClInclude Include="windowing\sandbox\aaa_node.h" />
+    <ClInclude Include="windowing\sandbox\host_interaction.h" />
+    <ClInclude Include="windowing\sandbox\window.h" />
+    <ClInclude Include="windowing\sandbox\windowing.h" />
+    <ClInclude Include="windowing\sandbox\_.h" />
+    <ClInclude Include="windowing\sandbox\_sandbox.h" />
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
@@ -2419,6 +2425,9 @@
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp" />
+    <ClCompile Include="windowing\sandbox\window.cpp" />
+    <ClCompile Include="windowing\sandbox\windowing.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\_windowing.cpp" />

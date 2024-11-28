@@ -94,6 +94,15 @@ namespace acme
       //}
 
 
+      ::oswindow window::oswindow()
+      {
+
+
+         return nullptr;
+
+      }
+
+
       void window::on_initialize_particle()
       {
 

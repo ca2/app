@@ -870,8 +870,8 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
             
             if(pmouse->m_bRet)
             {
-               
-               return true;
+
+               return;
                
             }
 
@@ -923,7 +923,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
          if(pmouse->m_bRet)
          {
             
-            return true;
+            return;
             
          }
 

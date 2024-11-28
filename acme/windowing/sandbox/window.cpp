@@ -1111,22 +1111,30 @@ void window::set_user_interaction(::windowing::window* pimpl)
 
 bool window::is_child(::oswindow oswindow)
 {
-   
+
+#if !defined(WINDOWS_DESKTOP)
+
    if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
    {
-      
+
       return false;
-      
+
    }
-   
+
    if (m_pacmeuserinteraction == nullptr)
    {
-      
+
       return false;
-      
+
    }
-   
+
    return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
+
+#endif
+
+   return false;
+
+
    
 }
 

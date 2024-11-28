@@ -75,7 +75,7 @@ void host_interaction::create_context_button()
 }
 
 
-bool host_interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
+void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
 {
  
    if(payload.as_atom() == id_context_button)

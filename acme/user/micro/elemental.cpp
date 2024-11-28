@@ -825,7 +825,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    //}
 
 
-   bool elemental::fore_on_mouse_move(::user::mouse* pmouse)
+   void elemental::fore_on_mouse_move(::user::mouse* pmouse)
    {
 
       if (acme_windowing_window()->m_pacmeuserinteractionHover)
@@ -838,10 +838,12 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          if (pelemental)
          {
 
-            if(pelemental->fore_on_mouse_move(pmouse))
+            pelemental->fore_on_mouse_move(pmouse);
+            
+            if(pmouse->m_bRet)
             {
-               
-               return true;
+             
+               return;
                
             }
 
@@ -862,7 +864,9 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          if (pelemental)
          {
 
-            if(pelemental->fore_on_mouse_move(pmouse))
+            pelemental->fore_on_mouse_move(pmouse);
+            
+            if(pmouse->m_bRet)
             {
                
                return true;
@@ -876,7 +880,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
       if (drag_on_mouse_move(pmouse))
       {
 
-         return true;
+         return;
 
       }
 
@@ -885,16 +889,16 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
       if (pchild)
       {
 
-         if(pchild->fore_on_mouse_move(pmouse))
+         pchild->fore_on_mouse_move(pmouse);
+         
+         if(pmouse->m_bRet)
          {
             
-            return true;
+            return;
             
          }
 
       }
-      
-      return false;
 
    }
 
@@ -912,7 +916,9 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
       if (pelemental)
       {
 
-         if(pelemental->back_on_mouse_move(pmouse))
+         pelemental->back_on_mouse_move(pmouse);
+         
+         if(pmouse->m_bRet)
          {
             
             return true;
@@ -936,10 +942,12 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
       if (pelemental)
       {
 
-         if(pelemental->back_on_mouse_move(pmouse))
+         pelemental->back_on_mouse_move(pmouse);
+         
+         if(pmouse->m_bRet)
          {
             
-            return true;
+            return;
             
          }
 
@@ -950,7 +958,7 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
    if (drag_on_mouse_move(pmouse))
    {
 
-      return true;
+      return;
 
    }
 
@@ -959,21 +967,23 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
    if (pchild)
    {
 
-      if(pchild->back_on_mouse_move(pmouse))
+      pchild->back_on_mouse_move(pmouse);
+      
+      if(pmouse->m_bRet)
       {
          
-         return true;
+         return;
          
       }
 
    }
    
-   return false;
+   //return false;
 
 }
 
 
-   bool elemental::fore_on_left_button_down(::user::mouse* pmouse)
+   void elemental::fore_on_left_button_down(::user::mouse* pmouse)
    {
 
       auto pchild = hit_test(pmouse, ::user::e_zorder_front);
@@ -1015,7 +1025,7 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
          if (drag_on_button_down(pitemClient, pmouse))
          {
 
-            return true;
+            return;
 
          }
 
@@ -1028,11 +1038,11 @@ bool elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
       
-      return false;
+      //return false;
 
    }
 
-bool elemental::back_on_left_button_down(::user::mouse* pmouse)
+void elemental::back_on_left_button_down(::user::mouse* pmouse)
 {
 
    auto pchild = hit_test(pmouse, ::user::e_zorder_back);
@@ -1090,7 +1100,7 @@ bool elemental::back_on_left_button_down(::user::mouse* pmouse)
 }
 
 
-   bool elemental::fore_on_left_button_up(::user::mouse* pmouse)
+   void elemental::fore_on_left_button_up(::user::mouse* pmouse)
    {
 
       release_capture();
@@ -1162,7 +1172,7 @@ bool elemental::back_on_left_button_down(::user::mouse* pmouse)
    }
 
 
-bool elemental::back_on_left_button_up(::user::mouse* pmouse)
+void elemental::back_on_left_button_up(::user::mouse* pmouse)
 {
 
    release_capture();
@@ -1231,11 +1241,11 @@ bool elemental::back_on_left_button_up(::user::mouse* pmouse)
 //
 //   }
 
-   return false;
+   //return false;
 }
 
 
-   bool elemental::fore_on_right_button_down(::user::mouse* pmouse)
+   void elemental::fore_on_right_button_down(::user::mouse* pmouse)
    {
 
       auto pchild = hit_test(pmouse, ::user::e_zorder_front);
@@ -1275,12 +1285,12 @@ bool elemental::back_on_left_button_up(::user::mouse* pmouse)
 
       }
       
-      return false;
+      //return false;
 
    }
 
 
-bool elemental::back_on_right_button_down(::user::mouse* pmouse)
+void elemental::back_on_right_button_down(::user::mouse* pmouse)
 {
 
    auto pchild = hit_test(pmouse, ::user::e_zorder_back);
@@ -1320,12 +1330,12 @@ bool elemental::back_on_right_button_down(::user::mouse* pmouse)
 
    }
    
-   return false;
+   //return false;
 
 }
 
 
-   bool elemental::fore_on_right_button_up(::user::mouse* pmouse)
+   void elemental::fore_on_right_button_up(::user::mouse* pmouse)
    {
 
       release_capture();
@@ -1373,12 +1383,12 @@ bool elemental::back_on_right_button_down(::user::mouse* pmouse)
 
       }
       
-      return false;
+      //return false;
 
    }
 
 
-bool elemental::back_on_right_button_up(::user::mouse* pmouse)
+void elemental::back_on_right_button_up(::user::mouse* pmouse)
 {
 
    release_capture();
@@ -1426,7 +1436,7 @@ bool elemental::back_on_right_button_up(::user::mouse* pmouse)
 
    }
    
-   return false;
+   //return false;
 
 }
 
@@ -1437,18 +1447,18 @@ bool elemental::back_on_right_button_up(::user::mouse* pmouse)
    }
 
 
-   bool elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
+   void elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool elemental::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
+   void elemental::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
-      return false;
+      //return false;
 
    }
 

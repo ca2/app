@@ -482,7 +482,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.just_aqua_message_box;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-aqua-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -499,7 +499,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.just_aqua_message_box;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-aqua-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -478,7 +478,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.just_apex_message_box;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-apex-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -495,7 +495,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.just_apex_message_box;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-apex-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

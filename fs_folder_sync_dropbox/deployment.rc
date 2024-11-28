@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2024,1128,2156,53
- PRODUCTVERSION 2024,1128,2156,53
+ FILEVERSION 2024,1128,2312,58
+ PRODUCTVERSION 2024,1128,2312,58
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_fs_folder_sync_dropbox"
-            VALUE "FileVersion", "2024.1128.2156.53"
-            VALUE "LegalCopyright", "Copyright (C) 2024-11-28-21-56-53"
-            VALUE "ProductVersion", "2024.1128.2156.53"
+            VALUE "FileVersion", "2024.1128.2312.58"
+            VALUE "LegalCopyright", "Copyright (C) 2024-11-28-23-12-58"
+            VALUE "ProductVersion", "2024.1128.2312.58"
         END
     END
     BLOCK "VarFileInfo"

@@ -42,7 +42,7 @@ namespace message
       enumeration < enum_flag >     m_eflagMessage;
       ::collection::index                         m_iRouteIndex;
       ::collection::index                         m_iParam;
-      bool                          m_bRet;
+      //bool                          m_bRet;
       unsigned int                  m_uiMessageFlags;
       ::e_status                     m_estatus;
       ::action_context              m_actioncontext;

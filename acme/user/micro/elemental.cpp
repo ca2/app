@@ -825,7 +825,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    //}
 
 
-   void elemental::on_mouse_move(::user::mouse* pmouse)
+   bool elemental::fore_on_mouse_move(::user::mouse* pmouse)
    {
 
       if (acme_windowing_window()->m_pacmeuserinteractionHover)
@@ -838,11 +838,16 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          if (pelemental)
          {
 
-            pelemental->on_mouse_move(pmouse);
+            if(pelemental->fore_on_mouse_move(pmouse))
+            {
+               
+               return true;
+               
+            }
 
          }
 
-         return;
+         //return true;
 
       }
 
@@ -857,36 +862,121 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          if (pelemental)
          {
 
-            pelemental->on_mouse_move(pmouse);
+            if(pelemental->fore_on_mouse_move(pmouse))
+            {
+               
+               return true;
+               
+            }
 
          }
-         return;
 
       }
 
       if (drag_on_mouse_move(pmouse))
       {
 
-         return;
+         return true;
 
       }
 
-      auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
       if (pchild)
       {
 
-         pchild->on_mouse_move(pmouse);
+         if(pchild->fore_on_mouse_move(pmouse))
+         {
+            
+            return true;
+            
+         }
+
+      }
+      
+      return false;
+
+   }
+
+
+bool elemental::back_on_mouse_move(::user::mouse* pmouse)
+{
+
+   if (acme_windowing_window()->m_pacmeuserinteractionHover)
+   {
+
+      ::pointer<::micro::elemental> pelemental;
+
+      pelemental = acme_windowing_window()->m_pacmeuserinteractionHover;
+
+      if (pelemental)
+      {
+
+         if(pelemental->back_on_mouse_move(pmouse))
+         {
+            
+            return true;
+            
+         }
+
+      }
+
+      //return true;
+
+   }
+
+   if (acme_windowing_window()->m_pacmeuserinteractionCapture
+      && acme_windowing_window()->m_pacmeuserinteractionCapture != this)
+   {
+
+      ::pointer<::micro::elemental> pelemental;
+
+      pelemental = acme_windowing_window()->m_pacmeuserinteractionCapture;
+
+      if (pelemental)
+      {
+
+         if(pelemental->back_on_mouse_move(pmouse))
+         {
+            
+            return true;
+            
+         }
 
       }
 
    }
 
-
-   void elemental::on_left_button_down(::user::mouse* pmouse)
+   if (drag_on_mouse_move(pmouse))
    {
 
-      auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      return true;
+
+   }
+
+   auto pchild = hit_test(pmouse, ::user::e_zorder_back);
+
+   if (pchild)
+   {
+
+      if(pchild->back_on_mouse_move(pmouse))
+      {
+         
+         return true;
+         
+      }
+
+   }
+   
+   return false;
+
+}
+
+
+   bool elemental::fore_on_left_button_down(::user::mouse* pmouse)
+   {
+
+      auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
       if (pchild)
       {
@@ -925,7 +1015,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          if (drag_on_button_down(pitemClient, pmouse))
          {
 
-            return;
+            return true;
 
          }
 
@@ -937,11 +1027,70 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          pchild->set_focus();
 
       }
+      
+      return false;
 
    }
 
+bool elemental::back_on_left_button_down(::user::mouse* pmouse)
+{
 
-   void elemental::on_left_button_up(::user::mouse* pmouse)
+   auto pchild = hit_test(pmouse, ::user::e_zorder_back);
+
+   if (pchild)
+   {
+
+      auto pmainwindow = pchild->micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomLeftButtonDown = pchild->m_atom;
+
+      }
+
+   }
+   else
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomLeftButtonDown = e_dialog_result_none;
+
+      }
+
+   }
+
+//   auto pitemClient = tool().defer_item(e_element_client);
+//
+//   auto pdragClient = drag(pitemClient);
+//
+//   if (pdragClient && !pchild)
+//   {
+//
+//      if (drag_on_button_down(pitemClient, pmouse))
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+
+   if (::is_set(pchild) && pchild->is_focusable())
+   {
+
+      pchild->set_focus();
+
+   }
+
+}
+
+
+   bool elemental::fore_on_left_button_up(::user::mouse* pmouse)
    {
 
       release_capture();
@@ -953,7 +1102,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
 
       }
 
-      auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
       if (pchild)
       {
@@ -1013,10 +1162,83 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    }
 
 
-   void elemental::on_right_button_down(::user::mouse* pmouse)
+bool elemental::back_on_left_button_up(::user::mouse* pmouse)
+{
+
+   release_capture();
+
+//   if (drag_on_button_up(pmouse))
+//   {
+//
+//      return;
+//
+//   }
+
+   auto pchild = hit_test(pmouse, ::user::e_zorder_back);
+
+   if (pchild)
    {
 
-      auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      auto pmainwindow = pchild->micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomLeftButtonUp = pchild->m_atom;
+
+         if (pmainwindow->m_atomLeftButtonUp == pmainwindow->m_atomLeftButtonDown
+            && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
+         {
+
+            pmainwindow->on_click(pmainwindow->m_atomLeftButtonUp, pmouse);
+
+         }
+         else
+         {
+            
+#ifdef APPLE_IOS
+            
+            pmainwindow->on_context_menu(pmouse);
+            
+#endif
+            
+         }
+
+
+      }
+
+
+   }
+   else
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomLeftButtonUp = e_dialog_result_none;
+
+      }
+      
+   }
+
+
+//   if (drag_on_button_up(pmouse))
+//   {
+//
+//      return true;
+//
+//   }
+
+   return false;
+}
+
+
+   bool elemental::fore_on_right_button_down(::user::mouse* pmouse)
+   {
+
+      auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
       if (pchild)
       {
@@ -1052,16 +1274,63 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          pchild->set_focus();
 
       }
+      
+      return false;
 
    }
 
 
-   void elemental::on_right_button_up(::user::mouse* pmouse)
+bool elemental::back_on_right_button_down(::user::mouse* pmouse)
+{
+
+   auto pchild = hit_test(pmouse, ::user::e_zorder_back);
+
+   if (pchild)
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomRightButtonDown = pchild->m_atom;
+
+      }
+
+   }
+   else
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomRightButtonDown = e_dialog_result_none;
+
+      }
+
+   }
+
+
+   if (::is_set(pchild) && pchild->is_focusable())
+   {
+
+      pchild->set_focus();
+
+   }
+   
+   return false;
+
+}
+
+
+   bool elemental::fore_on_right_button_up(::user::mouse* pmouse)
    {
 
       release_capture();
 
-      auto pchild = hit_test(pmouse, ::user::e_zorder_any);
+      auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
       if (pchild)
       {
@@ -1103,9 +1372,63 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
          }
 
       }
+      
+      return false;
 
    }
 
+
+bool elemental::back_on_right_button_up(::user::mouse* pmouse)
+{
+
+   release_capture();
+
+   auto pchild = hit_test(pmouse, ::user::e_zorder_back);
+
+   if (pchild)
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomRightButtonUp = pchild->m_atom;
+
+      }
+
+   }
+   else
+   {
+
+      auto pmainwindow = micro_main_window();
+
+      if (pmainwindow)
+      {
+
+         pmainwindow->m_atomRightButtonUp = e_dialog_result_none;
+
+      }
+
+   }
+
+   auto pmainwindow = micro_main_window();
+
+   if (pmainwindow)
+   {
+
+      if (pmainwindow->m_atomRightButtonUp == pmainwindow->m_atomRightButtonDown)
+      {
+
+         pmainwindow->on_right_click(pmainwindow->m_atomLeftButtonUp, pmouse);
+
+      }
+
+   }
+   
+   return false;
+
+}
 
    void elemental::on_context_menu(::user::mouse * pmouse)
    {
@@ -1114,16 +1437,18 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    }
 
 
-   void elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
+   bool elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
+      return false;
 
    }
 
 
-   void elemental::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
+   bool elemental::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
+      return false;
 
    }
 

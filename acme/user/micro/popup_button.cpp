@@ -180,7 +180,7 @@ namespace micro
    }
 
 
-   void popup_button::on_click(const ::payload & payload, ::user::mouse * pmouse)
+   bool popup_button::on_click(const ::payload & payload, ::user::mouse * pmouse)
    {
 
       //::micro::dialog::on_click(payload, pmouse);
@@ -189,7 +189,7 @@ namespace micro
       //destroy();
 
       set_dialog_result(payload);
-
+      return true;
    }
 
 

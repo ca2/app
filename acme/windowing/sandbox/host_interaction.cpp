@@ -75,7 +75,7 @@ void host_interaction::create_context_button()
 }
 
 
-void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
+bool host_interaction::on_click(const ::payload & payload, ::user::mouse * pmouse)
 {
  
    if(payload.as_atom() == id_context_button)
@@ -117,9 +117,12 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 //            }
 
          };
+      
+      return true;
 
    }
    
+   return false;
    
 }
 

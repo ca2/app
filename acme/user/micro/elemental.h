@@ -329,12 +329,17 @@ namespace micro
 
       void display_temporary_file_with_text(const ::string & str) override;
 
-      virtual void on_mouse_move(::user::mouse * pmouse);
-      virtual void on_left_button_down(::user::mouse * pmouse);
-      virtual void on_left_button_up(::user::mouse * pmouse);
+      virtual bool back_on_mouse_move(::user::mouse * pmouse);
+      virtual bool back_on_left_button_down(::user::mouse * pmouse);
+      virtual bool back_on_left_button_up(::user::mouse * pmouse);
+      virtual void fore_on_mouse_move(::user::mouse * pmouse);
+      virtual void fore_on_left_button_down(::user::mouse * pmouse);
+      virtual void fore_on_left_button_up(::user::mouse * pmouse);
       virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);
-      virtual void on_right_button_down(::user::mouse * pmouse);
-      virtual void on_right_button_up(::user::mouse * pmouse);
+      virtual void back_on_right_button_down(::user::mouse * pmouse);
+      virtual void back_on_right_button_up(::user::mouse * pmouse);
+      virtual void fore_on_right_button_down(::user::mouse * pmouse);
+      virtual void fore_on_right_button_up(::user::mouse * pmouse);
       virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
       virtual void on_context_menu(::user::mouse * pmouse);
 

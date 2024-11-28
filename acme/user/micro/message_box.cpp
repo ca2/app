@@ -578,7 +578,7 @@ namespace micro
    //};
 
 
-   void message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
+   bool message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 //#ifdef APPLE_IOS
 //      if(payload == e_dialog_result_none)
@@ -613,22 +613,24 @@ namespace micro
 
          //m_payloadResult.unset();
 
-         return;
+         return true;
 
       }
       else if (payload == "timeout")
       {
 
-         return;
+         return true;
 
       }
 
       set_dialog_result(payload);
 
+      return true;
+      
    }
 
 
-   void message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
+   bool message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
       if (pmouse->m_pointHost.y() < 48)
@@ -636,14 +638,16 @@ namespace micro
 
          m_pacmewindowingwindow->defer_show_system_menu(pmouse);
 
-         return;
+         return true;
 
       }
       
       on_context_menu(pmouse);
 
+      return true;
 
    }
+
 
    void message_box::on_context_menu(::user::mouse * pmouse)
 {

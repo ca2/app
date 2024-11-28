@@ -24,6 +24,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A191CD72CF3D87E001239A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A2818FE25242488009FA9CB;
+			remoteInfo = aqua;
+		};
+		9A191CD92CF3D87E001239A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A8E9EB9282A3210005FF778;
+			remoteInfo = ios_aqua;
+		};
+		9A191CDB2CF3D87E001239A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A81898B2A71CC42008F470C;
+			remoteInfo = static_aqua;
+		};
 		9A1CC4462CF30BA3004A00CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1CC4432CF30BA3004A00CB /* aqua.xcodeproj */;
@@ -153,6 +174,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A191CC72CF3D87E001239A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A191CD82CF3D87E001239A6 /* libaqua.dylib */,
+				9A191CDA2CF3D87E001239A6 /* libios_aqua.a */,
+				9A191CDC2CF3D87E001239A6 /* libstatic_aqua.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A1CC4442CF30BA3004A00CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +360,10 @@
 					ProductGroup = 9A1CC4442CF30BA3004A00CB /* Products */;
 					ProjectRef = 9A1CC4432CF30BA3004A00CB /* aqua.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A191CC72CF3D87E001239A6 /* Products */;
+					ProjectRef = 9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -339,6 +374,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A191CD82CF3D87E001239A6 /* libaqua.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaqua.dylib;
+			remoteRef = 9A191CD72CF3D87E001239A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A191CDA2CF3D87E001239A6 /* libios_aqua.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_aqua.a;
+			remoteRef = 9A191CD92CF3D87E001239A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A191CDC2CF3D87E001239A6 /* libstatic_aqua.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_aqua.a;
+			remoteRef = 9A191CDB2CF3D87E001239A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A1CC44C2CF30BA3004A00CB /* libaqua.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";

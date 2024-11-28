@@ -411,7 +411,7 @@ namespace user
 
 #ifdef LINUX
 
-      virtual lresult send_x11_event(void * pevent); // pevent <= XEvent *
+      virtual lresult send_x11_event(void * phappening); // phappening <= XEvent *
 
 #endif
 
@@ -637,7 +637,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void on_notify_control_event(control_event* pevent);
+      //virtual void on_notify_control_event(control_event* phappening);
 
 
 

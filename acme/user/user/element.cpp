@@ -1058,7 +1058,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult element::send_x11_event(void * pevent)
+   lresult element::send_x11_event(void * phappening)
    {
 
       throw ::interface_only();
@@ -4296,10 +4296,10 @@ namespace user
    //}
 
 
-   //void element::handle_event(control_event * pevent)
+   //void element::handle_event(control_event * phappening)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pevent);
+   //   __UNREFERENCED_PARAMETER(phappening);
 
    //}
 

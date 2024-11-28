@@ -483,7 +483,7 @@ namespace user
 #ifdef LINUX
 
 
-      virtual lresult send_x11_event(void * pevent);
+      virtual lresult send_x11_event(void * phappening);
 
 
 #endif

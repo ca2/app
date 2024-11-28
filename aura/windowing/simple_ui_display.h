@@ -109,7 +109,7 @@ namespace windowing
 
       void on_free_colors(display *pdisplay);
 
-      virtual bool process_event(display *pdisplay, happening * pevent) override;
+      virtual bool process_event(display *pdisplay, happening * phappening) override;
 
       int show();
 

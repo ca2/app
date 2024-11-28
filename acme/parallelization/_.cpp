@@ -863,20 +863,20 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __allocate manual_reset_happening();
+//   auto phappening = __allocate manual_reset_happening();
 //
-//   main_asynchronous([ function, &pevent ]
+//   main_asynchronous([ function, &phappening ]
 //   {
 //
-//      if(pevent)
+//      if(phappening)
 //      {
 //
 //         function();
 //
-//         if(pevent)
+//         if(phappening)
 //         {
 //
-//            pevent->set_happening();
+//            phappening->set_happening();
 //
 //         }
 //
@@ -884,10 +884,10 @@ thread_local payload t_payloada[e_task_payload_count];
 //
 //   });
 //
-//   if(!pevent->wait(time))
+//   if(!phappening->wait(time))
 //   {
 //
-//      pevent.release();
+//      phappening.release();
 //
 //      return false;
 //

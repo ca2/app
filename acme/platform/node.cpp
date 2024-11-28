@@ -1382,18 +1382,18 @@ namespace platform
 
       }
 
-      auto pevent = __allocate manual_reset_happening();
+      auto phappening = __allocate manual_reset_happening();
 
-      user_post([ procedure, pevent ]
+      user_post([ procedure, phappening ]
       {
 
          procedure();
 
-         pevent->set_happening();
+         phappening->set_happening();
 
       });
 
-      if(!pevent->wait(procedure.timeout()))
+      if(!phappening->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);

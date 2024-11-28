@@ -910,7 +910,7 @@ namespace windowing
 
       //#ifdef LINUX
       //
-      //      virtual lresult send_x11_event(void * pevent) override; // XEvent *
+      //      virtual lresult send_x11_event(void * phappening) override; // XEvent *
       //
       //#endif
 
@@ -1786,7 +1786,7 @@ namespace windowing
 #ifdef LINUX
 
 
-      virtual lresult send_x11_event(void * pevent);
+      virtual lresult send_x11_event(void * phappening);
 
 
 #endif

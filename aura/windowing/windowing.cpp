@@ -353,7 +353,7 @@ namespace windowing
    }
 
 
-   bool windowing::__hook_process_event(class display * pdisplay, void * pevent, void * cookie)
+   bool windowing::__hook_process_event(class display * pdisplay, void * phappening, void * cookie)
    {
 
 

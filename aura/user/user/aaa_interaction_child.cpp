@@ -586,7 +586,7 @@ namespace user
       //if (message == e_message_event)
       //{
 
-      //   ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
+      //   ::user::control_event * phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
       //   m_puserinteraction->handle(ptopic, pcontext);
 

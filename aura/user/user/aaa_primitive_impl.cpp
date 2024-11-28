@@ -2991,7 +2991,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult primitive_impl::send_x11_event(void * pevent)
+   lresult primitive_impl::send_x11_event(void * phappening)
    {
 
       throw interface_only();

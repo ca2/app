@@ -2088,7 +2088,7 @@ void object::sleep(const class time & time)
    {
 
 
-      ::pointer<manual_reset_happening>pevent;
+      ::pointer<manual_reset_happening>phappening;
 
       {
 
@@ -2103,7 +2103,7 @@ void object::sleep(const class time & time)
 
          }
 
-         pevent = ptask->m_pevSleep;
+         phappening = ptask->m_pevSleep;
 
       }
 
@@ -2128,12 +2128,12 @@ void object::sleep(const class time & time)
 
       //}
 
-      if (::is_set(pevent))
+      if (::is_set(phappening))
       {
 
-         pevent->wait(time);
+         phappening->wait(time);
 
-         pevent.release();
+         phappening.release();
 
          return;
          //return ::task_get_run();

@@ -1549,7 +1549,7 @@ namespace user
 
 #ifdef LINUX
 
-      lresult send_x11_event(void* pevent) override; // XEvent *
+      lresult send_x11_event(void* phappening) override; // XEvent *
 
 #endif
 
@@ -2544,7 +2544,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
-      //virtual void on_notify_control_event(control_event* pevent) override;
+      //virtual void on_notify_control_event(control_event* phappening) override;
       //void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);

@@ -23,7 +23,7 @@ namespace acme
    public:
 
 
-      static ::acme::acme *                     s_p;
+      //static ::acme::acme *                     s_p;
 
 
       //::pointer < ::platform::platform >      m_pplatform;
@@ -117,7 +117,7 @@ namespace acme
    //};
 
 
-   inline ::acme::acme * get() { return ::acme::acme::s_p; }
+   CLASS_DECL_ACME ::acme::acme * get();
 
 
 } // namespace acme

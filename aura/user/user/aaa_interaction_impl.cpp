@@ -984,9 +984,9 @@ namespace user
 
       //auto psynca = __allocate synchronization_array();
 
-      //::pointer<manual_reset_happening>peventStartedUser;
+      //::pointer<manual_reset_happening>phappeningStartedUser;
 
-      //::pointer<manual_reset_happening>peventStartedProdevian;
+      //::pointer<manual_reset_happening>phappeningStartedProdevian;
 
       ::pointer<::user::thread> puserthread;
 
@@ -1010,9 +1010,9 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = __allocate manual_reset_happening();
+         //phappeningStartedUser = __allocate manual_reset_happening();
 
-         //m_puserthread->m_phappeningStarted = peventStartedUser;
+         //m_puserthread->m_phappeningStarted = phappeningStartedUser;
 
       }
 
@@ -1090,7 +1090,7 @@ namespace user
 
          //}
 
-//         psynca->add(peventStartedUser);
+//         psynca->add(phappeningStartedUser);
 //
 //         auto proutine = __routine([this, psynca]()
 //            {
@@ -1124,7 +1124,7 @@ namespace user
 //
 //               }
 //
-//               //peventStartedUser.release();
+//               //phappeningStartedUser.release();
 //
 //               if (::is_set(m_pgraphicsthread))
 //               {
@@ -1147,7 +1147,7 @@ namespace user
 //
 //                  }
 //
-//                 // peventStartedProdevian.release();
+//                 // phappeningStartedProdevian.release();
 //
 //               }
 //
@@ -1185,7 +1185,7 @@ namespace user
          //if (::is_set(m_pgraphicsthread))
          //{
 
-         // peventStartedProdevian.release();
+         // phappeningStartedProdevian.release();
 
          //}
 
@@ -3943,10 +3943,10 @@ namespace user
    //#ifdef LINUX
    //
    //
-   //   lresult interaction_impl::send_x11_event(void * pevent)
+   //   lresult interaction_impl::send_x11_event(void * phappening)
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(pevent);
+   //      __UNREFERENCED_PARAMETER(phappening);
    //
    //      throw ::interface_only();
    //

@@ -1130,7 +1130,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult interaction_base::send_x11_event(void * pevent)
+   lresult interaction_base::send_x11_event(void * phappening)
    {
 
       throw ::interface_only();

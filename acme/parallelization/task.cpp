@@ -977,7 +977,7 @@ void task::stop_task()
 
    //__defer_construct_new(m_phappeningFinished2);
 
-   //auto peventFinished = m_phappeningFinished2;
+   //auto phappeningFinished = m_phappeningFinished2;
 
    set_finish();
 
@@ -2240,9 +2240,9 @@ void task::on_before_branch()
 
       {
 
-         auto peventProtectionWhileWaiting = m_phappeningInitialization;
+         auto phappeningProtectionWhileWaiting = m_phappeningInitialization;
 
-         peventProtectionWhileWaiting->wait();
+         phappeningProtectionWhileWaiting->wait();
 
       }
 

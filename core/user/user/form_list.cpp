@@ -654,9 +654,7 @@ namespace user
 
       ::user::list::on_update_item_count();
 
-      auto children = synchronized_get_children();
-
-      for (auto pinteraction : children)
+      for_user_interaction_children(pinteraction, this)
       {
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))

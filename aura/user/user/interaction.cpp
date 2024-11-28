@@ -3966,7 +3966,7 @@ namespace user
             //pmessage->m_oswindow = window()->oswindow();
             //pmessage->m_wparam = 0;
             //pmessage->m_lparam = 0;
-            //          pmessage->m_time = pevent->time;
+            //          pmessage->m_time = phappening->time;
             //window()->message_handler(pmessage);
             //window()->message_handler(pmessage);
 
@@ -7876,22 +7876,22 @@ namespace user
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto pevent = __allocate manual_reset_happening();
+      auto phappening = __allocate manual_reset_happening();
 
-      host_post([procedure, pevent]
+      host_post([procedure, phappening]
                 {
 
                    procedure();
 
-                   pevent->set_happening();
+                   phappening->set_happening();
 
                 });
 
-      if (!pevent->wait(procedure.timeout()))
+      if (!phappening->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);
-         //pevent.release();
+         //phappening.release();
 
          //return false;
 
@@ -9899,7 +9899,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult interaction::send_x11_event(void * pevent)
+   lresult interaction::send_x11_event(void * phappening)
    {
 
       if (window() == nullptr)
@@ -9911,7 +9911,7 @@ namespace user
       else
       {
 
-         return window()->send_x11_event(pevent);
+         return window()->send_x11_event(phappening);
 
       }
 
@@ -23171,7 +23171,7 @@ namespace user
    void interaction::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      //auto pevent = pmessage->m_lparam.cast < ::user::control_event >();
+      //auto phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
       //handle(ptopic, pcontext);
 

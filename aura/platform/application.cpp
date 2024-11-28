@@ -5438,7 +5438,7 @@ retry_license:
    //}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
+   //void application::on_notify_control_event(::user::control_event* phappening)
    //{
 
 
@@ -5457,7 +5457,7 @@ retry_license:
 
    //   }
 
-   //   on_notify_control_event(pevent);
+   //   on_notify_control_event(phappening);
 
    //   if (ptopic->m_bRet)
    //   {

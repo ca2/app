@@ -151,7 +151,7 @@ namespace windowing
 
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
-      virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
+      virtual bool __hook_process_event(class display * pdisplay, void * phappening, void * cookie);
 
 
 

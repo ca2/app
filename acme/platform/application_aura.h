@@ -338,7 +338,7 @@ namespace platform
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
-      //virtual void on_notify_control_event(::user::control_event* pevent);
+      //virtual void on_notify_control_event(::user::control_event* phappening);
       //virtual void route(::topic * ptopic, ::context * pcontext);
 
 

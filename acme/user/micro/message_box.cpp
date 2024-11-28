@@ -578,7 +578,7 @@ namespace micro
    //};
 
 
-   bool message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
+   void message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 //#ifdef APPLE_IOS
 //      if(payload == e_dialog_result_none)
@@ -630,7 +630,7 @@ namespace micro
    }
 
 
-   bool message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
+   void message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
       if (pmouse->m_pointHost.y() < 48)

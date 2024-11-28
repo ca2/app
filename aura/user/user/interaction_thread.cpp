@@ -571,7 +571,7 @@ namespace user
 
                //informationf("is it going to redraw?");
 
-               auto puserframe = pwindow->m_puserinteraction;
+               auto puserframe = pwindow->m_pacmeuserinteraction;
 
 
                   if (puserframe)
@@ -614,8 +614,10 @@ namespace user
                            informationf("e_message_left_button_up");
 
                         }
+                        
+                        ::cast < ::user::interaction > puserinteractionFrame = puserframe;
 
-                        auto pmessage = puserframe->get_message(msg.m_atom, msg.wParam, msg.lParam);
+                        auto pmessage = puserinteractionFrame->get_message(msg.m_atom, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {

@@ -44,7 +44,7 @@ namespace sandbox_windowing
    }
 
 
-::pointer < ::windowing::window > windowing::get_new_window()
+::pointer < ::acme::windowing::window > windowing::get_new_window()
 {
    
 auto      pwindow = ::windowing::windowing::get_new_window();
@@ -206,26 +206,28 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       
       __øconstruct(m_phostinteraction);
       
-      m_phostinteraction->create_window();
+      ::cast < ::sandbox_windowing::host_interaction > phostinteraction = m_phostinteraction;
       
-      m_phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+      phostinteraction->create_window();
       
-      m_phostinteraction->display();
+      phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
       
-      m_phostinteraction->m_bNeedPerformLayout = true;
+      phostinteraction->display();
       
-      m_phostinteraction->set_need_layout();
+      phostinteraction->m_bNeedPerformLayout = true;
       
-      m_phostinteraction->set_need_redraw();
+      phostinteraction->set_need_layout();
       
-      m_phostinteraction->post_redraw();
+      phostinteraction->set_need_redraw();
       
-      m_pwindowApplicationHost = m_phostinteraction->window();
+      phostinteraction->post_redraw();
+      
+      m_pwindowApplicationHost = phostinteraction->window();
       
    }
 
 
-   ::windowing::window* windowing::get_application_host_window()
+   ::acme::windowing::window* windowing::get_application_host_window()
    {
 
       return m_pwindowApplicationHost;
@@ -479,7 +481,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-   ::windowing::window* windowing::window(oswindow oswindow)
+   ::acme::windowing::window* windowing::window(oswindow oswindow)
    {
 
       return oswindow;
@@ -514,7 +516,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-   ::windowing::window* windowing::get_mouse_capture(::thread*)
+   ::acme::windowing::window* windowing::get_mouse_capture(::thread*)
    {
 
       //if (!m_pdisplay)
@@ -533,7 +535,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
       if (!m_pwindowMouseCapture)
@@ -549,8 +551,10 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          return false;
 
       }
+      
+      ::cast < ::windowing::window > pwindowingwindow = pwindow;
 
-      pwindow->m_puserinteractionMouseCapture.release();
+      pwindowingwindow->m_puserinteractionMouseCapture.release();
 
       m_pwindowMouseCapture.release();
 

@@ -38,9 +38,9 @@ namespace innate_ui
       virtual void set_text(const ::scoped_string & scopedstr);
 
       virtual void fit();
-      virtual void set_position(const ::int_point & point);
-      virtual void set_size(const ::int_size & size);
-      virtual void adjust_for_client_size(const ::int_size & size);
+      virtual void set_position(int x, int y);
+      virtual void set_size(int cx, int cy);
+      virtual void adjust_for_client_size(int cx, int cy);
 
       ::innate_ui::innate_ui * innate_ui();
 

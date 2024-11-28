@@ -34,6 +34,7 @@
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/nano.h"
+#include "acme/user/micro/elemental.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 #include "acme/operating_system/a_system_menu.h"
@@ -504,10 +505,36 @@ namespace acme
 
          void interaction::create_window()
          {
-
-            auto pwindow = acme_windowing_window();
-
-            pwindow->create_window();
+            
+            auto pwindowHost = system()->acme_windowing()->get_application_host_window();
+            
+            if(pwindowHost)
+            {
+               
+               ::cast <::micro::elemental > pelemental = pwindowHost->m_pacmeuserinteraction;
+               
+               ::cast <::micro::elemental > pelementalThis = this;
+               
+               if(pelemental && pelementalThis)
+               {
+                  
+                  pelementalThis->m_bChild = true;
+                  
+                  pelemental->add_child(pelementalThis);
+                  
+                  redraw();
+                  
+               }
+               
+            }
+            else
+            {
+               
+               auto pwindow = acme_windowing_window();
+               
+               pwindow->create_window();
+               
+            }
 
          }
 
@@ -587,6 +614,18 @@ namespace acme
                }
 
 
+            }
+            
+            if(m_pacmeuserinteractionParent)
+            {
+               
+               if(m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren)
+               {
+                
+                  m_pacmeuserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
+                  
+               }
+               
             }
 
 //            destroy();
@@ -1500,11 +1539,13 @@ namespace acme
 
          void interaction::redraw()
          {
+            
+            auto pwindow = acme_windowing_window();
 
-            if (m_pacmewindowingwindow)
+            if (pwindow)
             {
 
-               m_pacmewindowingwindow->redraw();
+               pwindow->redraw();
 
             }
 
@@ -1696,6 +1737,20 @@ namespace acme
          
       }
       
+      if(system()->acme_windowing()->get_application_host_window())
+      {
+         
+         if(system()->acme_windowing()->get_application_host_window()==m_pacmewindowingwindow)
+         {
+          
+            return false;
+            
+         }
+       
+         return true;
+         
+      }
+      
       return false;
       
    }
@@ -1711,6 +1766,13 @@ namespace acme
 
                   return m_pacmeuserinteractionParent->acme_windowing_window();
 
+               }
+               
+               if(system()->acme_windowing()->get_application_host_window())
+               {
+                  
+                  return system()->acme_windowing()->get_application_host_window();
+                  
                }
 
                if (!is_child_interaction())

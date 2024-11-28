@@ -14,8 +14,12 @@ namespace innate_ui
    {
    public:
 
+      
       dialog();
       ~dialog() override;
+
+      
+      void create() override;
 
       //virtual void fit();
 

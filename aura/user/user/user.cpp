@@ -237,8 +237,10 @@ namespace user
       //   return nullptr;
 
       //}
+      
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
 
-      return pwindow->m_puserinteraction;
+      return puserinteraction;
 
    }
 
@@ -272,8 +274,10 @@ namespace user
       //   return nullptr;
 
       //}
+      
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionCapture;
 
-      return pwindow->m_puserinteractionMouseCapture;
+      return puserinteraction;
 
    }
 

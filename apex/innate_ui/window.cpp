@@ -65,24 +65,24 @@ namespace innate_ui
    }
 
 
-   void window::set_position(const ::int_point & point)
+   void window::set_position(int x, int y)
    {
 
 
    }
 
 
-   void window::set_size(const ::int_size & size)
+   void window::set_size(int cx, int cy)
    {
 
 
    }
 
 
-   void window::adjust_for_client_size(const ::int_size & size)
+   void window::adjust_for_client_size(int cx, int cy)
    {
 
-      set_size(size);
+      set_size(cx, cy);
 
    }
 

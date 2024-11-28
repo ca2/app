@@ -110,8 +110,10 @@ namespace user
          {
 
             information() << "interaction::create_host(3A)";
+            
+            ::cast < ::windowing::window > pwindowingwindowHost = pwindowHost;
 
-            create_child(pwindowHost->m_puserinteraction);
+            create_child(pwindowingwindowHost->m_puserinteraction);
 
             //         pwindowHost->windowing_window()->this->set_need_layout();
             //

@@ -60,6 +60,9 @@ namespace nano
 
          virtual ::pixmap pixmap();
          //void set_antialias(bool bAntialiasOn);
+         
+         virtual void translate(int x, int y);
+         
 
       };
 

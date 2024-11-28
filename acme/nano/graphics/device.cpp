@@ -151,6 +151,13 @@ namespace nano
          return {};
 
       }
+   
+   
+      void device::translate(int x, int y)
+      {
+         
+         
+      }
 
 
    } // namespace graphics

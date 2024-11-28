@@ -7,6 +7,7 @@
 #pragma once
 
 
+#include "acme/windowing/sandbox/host_interaction.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -15,7 +16,8 @@ namespace sandbox_windowing
 
 
    class host_interaction :
-      virtual public ::user::interaction
+      virtual public ::user::interaction,
+      virtual public ::acme::sandbox_windowing::host_interaction
    {
    public:
 
@@ -23,9 +25,13 @@ namespace sandbox_windowing
       host_interaction();
       ~host_interaction() override;
 
+      void on_initialize_particle() override;
+      
+      void destroy() override;
 
       ::sandbox_windowing::windowing* windowing();
 
+      void create_window() override;
 
       void install_message_routing(::channel* pchannel) override;
 
@@ -47,7 +53,19 @@ namespace sandbox_windowing
 
 
       void on_layout(::draw2d::graphics_pointer& pgraphics) override;
+      
+      void set_mouse_capture() override;
+      bool has_mouse_capture() override;
+      
+      
+      void hide() override;
+      
+      
+      ::string get_title() override;
+      ::int_rectangle get_rectangle() override;
+      
 
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
    };
 

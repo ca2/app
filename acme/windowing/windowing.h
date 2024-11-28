@@ -39,6 +39,7 @@ namespace acme
          ::pointer_array < ::acme::windowing::window >      m_windowa;
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
+         ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
 
 
          windowing();
@@ -65,7 +66,37 @@ namespace acme
 
          //::pointer < ::subparticle > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
+         virtual void defer_initialize_host_window(const ::int_rectangle* lpcrect);
+         
+         virtual void _will_finish_launching();
+         
+         virtual void set_clipboard_text(const char * psz);
+         
+         virtual ::acme::windowing::window* get_application_host_window();
 
+         virtual ::pointer < ::acme::windowing::window > get_new_window();
+         
+         //      ::windowing::window* new_window(::windowing::window* pimpl) override;
+         //
+         virtual void erase_window(::acme::windowing::window* pwindow);
+         
+         virtual ::acme::windowing::window* window(oswindow oswindow);
+
+         
+         virtual void _message_handler(void* p);
+         
+         virtual ::acme::windowing::window * get_keyboard_focus(::thread* pthread);
+         
+         virtual ::acme::windowing::window * get_mouse_capture(::thread* pthread);
+         
+         
+         virtual bool defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
+         
+         
+         virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
+         
+
+         
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 

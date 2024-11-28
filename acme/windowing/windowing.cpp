@@ -139,6 +139,97 @@ namespace acme
    //}
    
    
+   void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+   {
+      
+      
+   }
+   
+   
+   void windowing::_will_finish_launching()
+   {
+      
+      system()->defer_post_initial_request();
+      
+   }
+   
+   
+   void windowing::set_clipboard_text(const char * psz)
+   {
+      
+      
+   }
+   
+   
+   ::acme::windowing::window* windowing::get_application_host_window()
+   {
+    
+      return nullptr;
+      
+   }
+   
+   ::pointer < ::acme::windowing::window > windowing::get_new_window()
+   {
+      
+      
+      return {};
+      
+   }
+   
+   //      ::windowing::window* new_window(::windowing::window* pimpl) override;
+   //
+   void windowing::erase_window(::acme::windowing::window* pwindow)
+   {
+      
+      
+   }
+   
+   ::acme::windowing::window* windowing::window(oswindow oswindow)
+   {
+      
+      
+      return nullptr;
+      
+   }
+
+   
+   void windowing::_message_handler(void* p)
+   {
+      
+      
+   }
+   
+   ::acme::windowing::window * windowing:: get_keyboard_focus(::thread* pthread)
+   {
+      
+      return nullptr;
+      
+   }
+   
+   ::acme::windowing::window * windowing::get_mouse_capture(::thread* pthread)
+   {
+      
+      return nullptr;
+      
+   }
+   
+   
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
+   {
+      
+      return false;
+      
+   }
+   
+   
+   void windowing::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+   {
+      
+      
+      
+   }
+   
+
    void windowing::handle(::topic * ptopic, ::context * pcontext)
    {
       if (ptopic->m_atom == id_set_application_dark_mode)

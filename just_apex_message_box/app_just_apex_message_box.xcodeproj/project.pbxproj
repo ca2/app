@@ -13,6 +13,12 @@
 		9A6A481C26611437004ED97A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
 		9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970325195DFA0036B92A /* libacme.dylib */; };
 		9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970525195DFA0036B92A /* libapex.dylib */; };
+		9AC3F0F72CF692320061DCC0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
+		9AC3F0F82CF692320061DCC0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
+		9AC3F0F92CF692320061DCC0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
+		9AC3F0FB2CF692320061DCC0 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52444D2CDAD435006ED868 /* libapp_just_message_box.dylib */; };
+		9AC3F0FC2CF692320061DCC0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970325195DFA0036B92A /* libacme.dylib */; };
+		9AC3F0FD2CF692320061DCC0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970525195DFA0036B92A /* libapex.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +92,34 @@
 			remoteGlobalIDString = 9AC980872A71B39E00B1BCF3;
 			remoteInfo = static_apex;
 		};
+		9AC3F1082CF692320061DCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A4753C62CF541EE00ED30AE;
+			remoteInfo = ios_app_just_message_box;
+		};
+		9AC3F10C2CF692320061DCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244312CDACF3A006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A4753C62CF541EE00ED30AE;
+			remoteInfo = ios_app_just_message_box;
+		};
+		9AC3F10E2CF6927C0061DCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD692B7251A754800C0EBD7;
+			remoteInfo = ios_apex;
+		};
+		9AC3F1102CF692940061DCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244462CDAD435006ED868 /* app_just_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A4753B92CF541EE00ED30AE;
+			remoteInfo = ios_app_just_message_box;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +143,7 @@
 		9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = /Users/camilo/workspace/main/source/app/apex/apex.xcodeproj; sourceTree = "<absolute>"; };
 		9AC3970325195DFA0036B92A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3970525195DFA0036B92A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC3F1012CF692320061DCC0 /* libios_app_just_apex_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_app_just_apex_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +154,16 @@
 				9A52444E2CDAD457006ED868 /* libapp_just_message_box.dylib in Frameworks */,
 				9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */,
 				9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AC3F0FA2CF692320061DCC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC3F0FB2CF692320061DCC0 /* libapp_just_message_box.dylib in Frameworks */,
+				9AC3F0FC2CF692320061DCC0 /* libacme.dylib in Frameworks */,
+				9AC3F0FD2CF692320061DCC0 /* libapex.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				9A48898624EB48DE00119EC4 /* libapp_just_apex_message_box.dylib */,
+				9AC3F1012CF692320061DCC0 /* libios_app_just_apex_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				9A52444D2CDAD435006ED868 /* libapp_just_message_box.dylib */,
+				9AC3F1092CF692320061DCC0 /* libios_app_just_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA326642CDB16FD00A2B1C0 /* libapp_just_message_box.dylib */,
+				9AC3F10D2CF692320061DCC0 /* libios_app_just_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +269,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AC3F0F52CF692320061DCC0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -241,6 +296,25 @@
 			name = app_just_apex_message_box;
 			productName = app_app_app;
 			productReference = 9A48898624EB48DE00119EC4 /* libapp_just_apex_message_box.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9AC3F0F02CF692320061DCC0 /* ios_app_just_apex_message_box */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AC3F0FE2CF692320061DCC0 /* Build configuration list for PBXNativeTarget "ios_app_just_apex_message_box" */;
+			buildPhases = (
+				9AC3F0F52CF692320061DCC0 /* Headers */,
+				9AC3F0F62CF692320061DCC0 /* Sources */,
+				9AC3F0FA2CF692320061DCC0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AC3F1112CF692940061DCC0 /* PBXTargetDependency */,
+				9AC3F10F2CF6927C0061DCC0 /* PBXTargetDependency */,
+			);
+			name = ios_app_just_apex_message_box;
+			productName = app_app_app;
+			productReference = 9AC3F1012CF692320061DCC0 /* libios_app_just_apex_message_box.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -290,6 +364,7 @@
 			projectRoot = "";
 			targets = (
 				9A48898524EB48DE00119EC4 /* app_just_apex_message_box */,
+				9AC3F0F02CF692320061DCC0 /* ios_app_just_apex_message_box */,
 			);
 		};
 /* End PBXProject section */
@@ -351,6 +426,20 @@
 			remoteRef = 9AA8295D2CAF930700DA11E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AC3F1092CF692320061DCC0 /* libios_app_just_message_box.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_app_just_message_box.a;
+			remoteRef = 9AC3F1082CF692320061DCC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC3F10D2CF692320061DCC0 /* libios_app_just_message_box.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_app_just_message_box.a;
+			remoteRef = 9AC3F10C2CF692320061DCC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -361,6 +450,16 @@
 				9A6A481A26611437004ED97A /* _.cpp in Sources */,
 				9A6A481B26611437004ED97A /* application.cpp in Sources */,
 				9A6A481C26611437004ED97A /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AC3F0F62CF692320061DCC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC3F0F72CF692320061DCC0 /* _.cpp in Sources */,
+				9AC3F0F82CF692320061DCC0 /* application.cpp in Sources */,
+				9AC3F0F92CF692320061DCC0 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +475,16 @@
 			isa = PBXTargetDependency;
 			name = apex;
 			targetProxy = 9AA828CF2CAF86CF00DA11E9 /* PBXContainerItemProxy */;
+		};
+		9AC3F10F2CF6927C0061DCC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_apex;
+			targetProxy = 9AC3F10E2CF6927C0061DCC0 /* PBXContainerItemProxy */;
+		};
+		9AC3F1112CF692940061DCC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_app_just_message_box;
+			targetProxy = 9AC3F1102CF692940061DCC0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -656,6 +765,28 @@
 			};
 			name = Release;
 		};
+		9AC3F0FF2CF692320061DCC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9AC3F1002CF692320061DCC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -673,6 +804,15 @@
 			buildConfigurations = (
 				9A48899024EB48DE00119EC4 /* Debug */,
 				9A48899124EB48DE00119EC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AC3F0FE2CF692320061DCC0 /* Build configuration list for PBXNativeTarget "ios_app_just_apex_message_box" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AC3F0FF2CF692320061DCC0 /* Debug */,
+				9AC3F1002CF692320061DCC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

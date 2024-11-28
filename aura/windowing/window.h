@@ -304,7 +304,7 @@ namespace windowing
 
 
       //virtual bool has_mouse_capture() const;
-      virtual bool has_keyboard_focus();
+      bool has_keyboard_focus() override;
 
       virtual ::color::color screen_pixel(int x, int y);
 
@@ -330,13 +330,13 @@ namespace windowing
       //inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
 
 
-      virtual void exit_iconify();
+      void exit_iconify() override;
 
-      virtual void full_screen(const::int_rectangle & rectangle = {});
+      void full_screen(const::int_rectangle & rectangle = {}) override;
 
-      virtual void exit_full_screen();
+      void exit_full_screen() override;
 
-      virtual void exit_zoomed();
+      void exit_zoomed() override;
 
       void destroy_window() override;
 
@@ -365,18 +365,18 @@ namespace windowing
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
-      virtual bool is_iconic();
+      bool is_iconic() override;
       virtual bool is_zoomed();
-      virtual bool is_window();
+      bool is_window() override;
       bool is_window_visible() override;
 
       virtual bool _is_iconic_unlocked();
       virtual bool _is_window_visible_unlocked();
       
 
-      virtual bool client_to_screen(::int_point * ppoint);
+      bool client_to_screen(::int_point * ppoint) override;
 
-      virtual bool screen_to_client(::int_point * ppoint);
+      bool screen_to_client(::int_point * ppoint) override;
 
 
       virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
@@ -392,7 +392,7 @@ namespace windowing
       virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::e_activation& eactivation, bool bNoZorder, ::e_display edisplay);
       virtual bool _strict_set_window_position_unlocked(int x, int y, int cx, int cy, bool bNoMove, bool bNoSize);
 
-      virtual bool is_destroying();
+      bool is_destroying() override;
 
 
       virtual void activate_top_parent();
@@ -424,7 +424,7 @@ namespace windowing
       void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr) override;
 
 
-      virtual void set_window_text(const ::scoped_string & scopedstr);
+      void set_window_text(const ::scoped_string & scopedstr) override;
 
       //::string get_window_text() override;
 
@@ -472,7 +472,7 @@ namespace windowing
       virtual void _set_active_window_unlocked();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
-      virtual void set_foreground_window();
+      void set_foreground_window() override;
       virtual void _set_foreground_window_unlocked();
       virtual ::user::interaction * get_foreground_window();
 
@@ -503,7 +503,7 @@ namespace windowing
       virtual ::pointer<::windowing::icon>get_icon() const;
 
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
+      void set_mouse_cursor(::windowing::cursor * pcursor) override;
       virtual ::windowing::cursor * get_mouse_cursor();
 
 

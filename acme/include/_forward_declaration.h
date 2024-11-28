@@ -2107,6 +2107,13 @@ namespace acme
 
    class timer_array;
 
+namespace windowing
+{
+
+class window;
+
+}
+
 
 } // namespace acme
 
@@ -2135,7 +2142,7 @@ using oswindow_t = hwnd;
 
 #else
 
-using oswindow_t = ::windowing::window;
+using oswindow_t = ::acme::windowing::window;
 
 #endif
 

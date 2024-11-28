@@ -1137,7 +1137,7 @@ void ui_application_main(int argc, char * argv[], const char * pszCommandLine, N
 //   NSString * strDelegateClass = [ [ NSString alloc ] initWithUTF8String: pszDelegateClass ];
    
    UIApplicationMain(argc, argv, nil, strDelegateClass);
-   //NSStringFromClass([iosWindowApp class])
+   //NSStringFromClass([iosApp class])
 }
 
 

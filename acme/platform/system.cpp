@@ -43,7 +43,9 @@
 #include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
+#include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
+#include "acme/windowing/sandbox/host_interaction.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -3135,7 +3137,7 @@ particle* system::matter_mutex()
    void system::system_id_update(huge_integer iId, huge_integer iPayload)
    {
 
-      call((::enum_id)iId, iPayload);
+      call((::enum_id)iId, iPayload, {}, nullptr);
 
    }
 
@@ -3206,6 +3208,13 @@ particle* system::matter_mutex()
          }
 
       }
+      else if (ptopic->m_atom == id_initialize_host_window)
+      {
+
+         acme_windowing()->defer_initialize_host_window(nullptr);
+
+
+      }
       else if (ptopic->m_atom == id_app_activated)
       {
 
@@ -3234,6 +3243,36 @@ particle* system::matter_mutex()
       }
 
    }
+
+
+   void system::call(const ::atom& atom, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   {
+      
+      if(atom == id_initialize_host_window)
+      {
+       
+         acme_windowing()->defer_initialize_host_window(nullptr);
+         
+      }
+      else if(atom == id_defer_create_context_button)
+      {
+         
+         auto pwindow = acme_windowing()->get_application_host_window();
+         
+         ::cast < ::acme::sandbox_windowing::host_interaction> phostinteraction = pwindow->m_pacmeuserinteraction;
+         
+         phostinteraction->create_context_button();
+         
+      }
+      else if(atom == id_defer_post_initial_request)
+      {
+         
+         defer_post_initial_request();
+         
+      }
+
+   }
+
 
 
    //   void system::add_handler(::matter * pmatter, bool bPriority)
@@ -4401,7 +4440,7 @@ particle* system::matter_mutex()
 
          m_bGraphicsAndWindowingFactory = true;
          
-         if(!is_sandboxed())
+         //if(!is_sandboxed())
          {
             
             nano()->graphics();

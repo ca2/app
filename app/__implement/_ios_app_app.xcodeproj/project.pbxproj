@@ -32,7 +32,6 @@
 		9A750E4D282B5C2000C4861B /* libios_idn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E4C282B5C2000C4861B /* libios_idn.a */; };
 		9A750E4E282B5C2000C4861B /* libios_crypto_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99A6282A2AD9005FF778 /* libios_crypto_openssl.a */; };
 		9A750E4F282B5C2000C4861B /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99AF282A2AE6005FF778 /* libios_draw2d_quartz2d.a */; };
-		9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99B8282A2AF3005FF778 /* libios_folder_zip.a */; };
 		9A750F46282B89E100C4861B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F41282B89E100C4861B /* CoreGraphics.framework */; };
 		9A750F48282B8A9C00C4861B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F47282B8A9C00C4861B /* libcrypto.a */; };
 		9A750F4A282B8AA900C4861B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F49282B8AA900C4861B /* libssl.a */; };
@@ -73,13 +72,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AC97ECF2A71B2A700B1BCF3;
 			remoteInfo = static_crypto_openssl;
-		};
-		9A490C302B69D3CE00990DB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
-			remoteInfo = static_folder_zip;
 		};
 		9A8E999A282A2ACC005FF778 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -123,20 +115,6 @@
 			remoteGlobalIDString = 07E25F501B4FFC2100752DE1;
 			remoteInfo = ios_draw2d_quartz2d;
 		};
-		9A8E99B5282A2AF3005FF778 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AC09A2D274DFC67008B042E;
-			remoteInfo = folder_zip;
-		};
-		9A8E99B7282A2AF3005FF778 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA14DDC282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
-		};
 		9A8E9D86282A2CC2005FF778 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A8E9995282A2ACC005FF778 /* app_app.xcodeproj */;
@@ -157,13 +135,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07E25F291B4FFC2100752DE1;
 			remoteInfo = ios_draw2d_quartz2d;
-		};
-		9A8E9D8C282A2CC2005FF778 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA14DBD282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
 		};
 		9AA14F7A282A2A6600B1621E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -253,7 +224,6 @@
 				9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */,
 				9A40BDB12B6B65510077053E /* libios_apex_darwin.a in Frameworks */,
 				9A40BDB32B6B65510077053E /* libios_aura_darwin.a in Frameworks */,
-				9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */,
 				9A750F46282B89E100C4861B /* CoreGraphics.framework in Frameworks */,
 				9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */,
 				9A750E4E282B5C2000C4861B /* libios_crypto_openssl.a in Frameworks */,
@@ -337,16 +307,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A8E99B1282A2AF3005FF778 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A8E99B6282A2AF3005FF778 /* libfolder_zip.dylib */,
-				9A8E99B8282A2AF3005FF778 /* libios_folder_zip.a */,
-				9A490C312B69D3CE00990DB8 /* libstatic_folder_zip.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A8E99CF282A2B85005FF778 /* app */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,8 +382,8 @@
 				9A8E9995282A2ACC005FF778 /* app_app.xcodeproj */,
 				9A8E999E282A2AD9005FF778 /* crypto_openssl.xcodeproj */,
 				9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */,
-				9A3108F72CE793410067398D /* operating_ambient_ios.xcodeproj */,
 				9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */,
+				9A3108F72CE793410067398D /* operating_ambient_ios.xcodeproj */,
 				9A8E99CF282A2B85005FF778 /* app */,
 				9AA14F5F282A2A6200B1621E /* Products */,
 				9A8E9D9B282A2DAA005FF778 /* Frameworks */,
@@ -458,7 +418,6 @@
 				9A8E9D87282A2CC2005FF778 /* PBXTargetDependency */,
 				9A8E9D89282A2CC2005FF778 /* PBXTargetDependency */,
 				9A8E9D8B282A2CC2005FF778 /* PBXTargetDependency */,
-				9A8E9D8D282A2CC2005FF778 /* PBXTargetDependency */,
 			);
 			name = _ios_app_app;
 			productName = _ios_app_app;
@@ -548,10 +507,6 @@
 					ProjectRef = 9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A8E99B1282A2AF3005FF778 /* Products */;
-					ProjectRef = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A3108FB2CE798860067398D /* Products */;
 					ProjectRef = 9A3108F72CE793410067398D /* operating_ambient_ios.xcodeproj */;
 				},
@@ -578,13 +533,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_crypto_openssl.dylib;
 			remoteRef = 9A490C2B2B69D3CE00990DB8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A490C312B69D3CE00990DB8 /* libstatic_folder_zip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libstatic_folder_zip.a;
-			remoteRef = 9A490C302B69D3CE00990DB8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A8E999B282A2ACC005FF778 /* libapp_app.dylib */ = {
@@ -627,20 +575,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_draw2d_quartz2d.a;
 			remoteRef = 9A8E99AE282A2AE6005FF778 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A8E99B6282A2AF3005FF778 /* libfolder_zip.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libfolder_zip.dylib;
-			remoteRef = 9A8E99B5282A2AF3005FF778 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A8E99B8282A2AF3005FF778 /* libios_folder_zip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_folder_zip.a;
-			remoteRef = 9A8E99B7282A2AF3005FF778 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -719,11 +653,6 @@
 			isa = PBXTargetDependency;
 			name = ios_draw2d_quartz2d;
 			targetProxy = 9A8E9D8A282A2CC2005FF778 /* PBXContainerItemProxy */;
-		};
-		9A8E9D8D282A2CC2005FF778 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_folder_zip;
-			targetProxy = 9A8E9D8C282A2CC2005FF778 /* PBXContainerItemProxy */;
 		};
 		9AA14F7B282A2A6600B1621E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

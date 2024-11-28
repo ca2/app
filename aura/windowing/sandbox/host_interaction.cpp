@@ -8,6 +8,7 @@
 //
 #include "framework.h"
 #include "_sandbox.h"
+#include "acme/handler/topic.h"
 
 
 namespace sandbox_windowing
@@ -29,6 +30,26 @@ namespace sandbox_windowing
    }
 
 
+   void host_interaction::on_initialize_particle()
+   {
+      
+      ::user::interaction::on_initialize_particle();
+      
+      ::acme::sandbox_windowing::host_interaction::on_initialize_particle();
+      
+   }
+
+
+   void host_interaction::destroy()
+   {
+      
+      ::user::interaction::destroy();
+      
+      ::acme::sandbox_windowing::host_interaction::destroy();
+
+   }
+
+
    ::sandbox_windowing::windowing* host_interaction::windowing()
    {
 
@@ -37,6 +58,16 @@ namespace sandbox_windowing
       auto pwindowingHere = dynamic_cast <::sandbox_windowing::windowing*>(pwindowing);
 
       return pwindowingHere;
+
+   }
+
+
+   void host_interaction::create_window()
+   {
+      
+      ::user::interaction::create_window();
+      
+      
 
    }
 
@@ -143,6 +174,62 @@ namespace sandbox_windowing
 
    }
 
+
+   void host_interaction::set_mouse_capture()
+   {
+   
+      ::user::interaction::set_mouse_capture();
+   
+   }
+
+
+bool host_interaction::has_mouse_capture()
+{
+
+   return ::user::interaction::has_mouse_capture();
+
+}
+
+
+void host_interaction::hide()
+{
+
+   ::user::interaction::hide();
+   
+}
+
+
+::string host_interaction::get_title()
+{
+   
+   return ::user::interaction::get_title();
+
+}
+
+
+::int_rectangle host_interaction::get_rectangle()
+{
+   
+   return ::user::interaction::get_rectangle();
+   
+}
+
+
+void host_interaction::handle(::topic * ptopic, ::context * pcontext)
+   {
+      
+      ::user::interaction::handle(ptopic, pcontext);
+      
+      if(ptopic->m_bRet)
+      {
+         
+         return;
+         
+      }
+      
+      ::acme::sandbox_windowing::host_interaction::handle(ptopic, pcontext);
+      
+   }
 
 } // namespace sandbox_windowing
 

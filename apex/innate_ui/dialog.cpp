@@ -19,6 +19,14 @@ namespace innate_ui
 
    }
 
+   
+   void dialog::create()
+   {
+   
+      ::innate_ui::window::create();
+      
+   }
+
 
 } // namespace innate_ui
 

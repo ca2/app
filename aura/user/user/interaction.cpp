@@ -16167,7 +16167,7 @@ namespace user
 
       }
 
-      if (*pwindowThis != *pwindow)
+      if (pwindowThis != pwindow)
       {
 
          return false;
@@ -16183,7 +16183,7 @@ namespace user
 
       }*/
 
-      if (pwindow->m_puserinteractionMouseCapture != this)
+      if (pwindow->m_pacmeuserinteractionCapture != this)
       {
 
          return false;
@@ -18043,8 +18043,10 @@ namespace user
 
             if (pwindow)
             {
-
-               pmessage->m_pWndOther = pwindow->m_puserinteraction;
+               
+               ::cast < ::user::interaction > pinteraction = pwindow->m_pacmeuserinteraction;
+               
+               pmessage->m_pWndOther = pinteraction;
 
             }
 

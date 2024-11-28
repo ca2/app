@@ -39,6 +39,8 @@ namespace micro
    message_box::message_box()
    {
 
+      m_atom = e_dialog_result_none;
+      
       set_flag(e_flag_should_create_sequence_on_synchronicity);
 
    }
@@ -340,9 +342,26 @@ namespace micro
       //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
       int w = wScreen / 2;
+      
+      if(w < 200)
+      {
+         
+         w = wScreen * 9 / 10;
+         
+      }
+      
       int h = (w / 16) * 5;
+      
+      if(wScreen < hScreen)
+      {
+         
+         h = (w / 10) * 5;
+      
+      }
       int x = (wScreen - w) / 2;
       int y = (hScreen - h) / 2;
+      
+      
 
       m_rectangle.set_dimension(x, y, w, h);
 
@@ -561,7 +580,15 @@ namespace micro
 
    void message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
-
+//#ifdef APPLE_IOS
+//      if(payload == e_dialog_result_none)
+//      {
+//         
+//         on_context_menu(pmouse);
+//         
+//         return;
+//      }
+//#endif
       if (payload == "details")
       {
 
@@ -612,7 +639,15 @@ namespace micro
          return;
 
       }
+      
+      on_context_menu(pmouse);
 
+
+   }
+
+   void message_box::on_context_menu(::user::mouse * pmouse)
+{
+      
       auto ppopupbutton = __create_new<popup_button>();
 
       //auto pwindowParent = this->acme_windowing_window();
@@ -625,12 +660,17 @@ namespace micro
       rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
-
+#ifdef APPLE_IOS
+      ppopupbutton->initialize_popup_button(
+         "Dump to Clipboard...",
+         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         this);
+#else
       ppopupbutton->initialize_popup_button(
          "Dump to File...",
          pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
          this);
-
+#endif
       ppopupbutton->main_async()
          << [this, ppopupbutton]()
          {
@@ -640,9 +680,19 @@ namespace micro
             if (result == e_dialog_result_yes)
             {
 
+#ifdef APPLE_IOS
+
+               system()->acme_windowing()->set_clipboard_text(
+                  m_prealizable->m_strMessage + "\n\n"
+                  + m_prealizable->m_strDetails);
+               
+#else
+
                display_temporary_file_with_text(
                   m_prealizable->m_strMessage + "\n\n"
                   + m_prealizable->m_strDetails);
+
+#endif
 
             }
 
@@ -650,8 +700,8 @@ namespace micro
 
       //post(psequence);
 
+      
    }
-
 
    bool message_box::is_popup_window() const
    {

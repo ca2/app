@@ -596,16 +596,26 @@ namespace micro
 
    void main_window::show()
    {
-
-      acme_windowing_window()->show_window();
+      
+      if(!m_pacmeuserinteractionParent)
+      {
+         
+         acme_windowing_window()->show_window();
+         
+      }
 
    }
 
 
    void main_window::hide()
    {
-
-      acme_windowing_window()->hide_window();
+      
+      if(!m_pacmeuserinteractionParent)
+      {
+         
+         acme_windowing_window()->hide_window();
+         
+      }
 
    }
 

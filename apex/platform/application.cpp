@@ -51,6 +51,8 @@
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
 #include "apex/user/user/language_map.h"
@@ -10361,6 +10363,8 @@ namespace apex
       auto pdialog = __øcreate < ::innate_ui::dialog>();
 
       pdialog->create();
+      
+      int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx();
 
       ::string strTitle;
 
@@ -10376,9 +10380,9 @@ namespace apex
 
       pstillIcon->create_icon_still(pdialog);
 
-      pstillIcon->set_size({48, 48});
+      pstillIcon->set_size(48, 48);
 
-      pstillIcon->set_position({ 30, 30 });
+      pstillIcon->set_position(30, 30);
 
       auto piconApplication = innate_ui_icon({48, 48});
 
@@ -10393,9 +10397,9 @@ namespace apex
 
          pstill->set_text(str);
 
-         pstill->set_position({ 30 + 48+10, y });
+         pstill->set_position(30 + 48+10, y );
 
-         pstill->set_size({ 400, 30 });
+         pstill->set_size(minimum(400, max_width), 30);
 
          y += 30;
 
@@ -10409,13 +10413,13 @@ namespace apex
 
       pbutton->set_text("OK");
 
-      pbutton->set_size({ 100, 35 });
+      pbutton->set_size(100, 35);
 
-      pbutton->set_position({ 520 - 100 -30, y });
+      pbutton->set_position(minimum(520,max_width) - 100 -30, y);
 
       y += 35;
 
-      pdialog->adjust_for_client_size({ 520, y+30 });
+      pdialog->adjust_for_client_size(minimum(520,max_width), y+30);
 
       pdialog->center();
 

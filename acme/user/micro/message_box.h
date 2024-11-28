@@ -44,6 +44,10 @@ namespace micro
          //virtual void set(::message_box * pmessagebox);
 
          void on_realize(::message_box * pmessagebox) override;
+         
+         
+         void on_context_menu(::user::mouse * pmouse) override;
+
 
          //virtual void create_message_box(conversation * pconversation);
          void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) override;

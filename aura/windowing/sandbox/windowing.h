@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "acme/windowing/sandbox/windowing.h"
 #include "acme/prototype/collection/string_list.h"
 #include "aura/windowing/windowing.h"
 
@@ -23,23 +24,24 @@ namespace sandbox_windowing
 
 
    class CLASS_DECL_AURA windowing :
-      virtual public ::windowing::windowing
+      virtual public ::windowing::windowing,
+      virtual public ::acme::sandbox_windowing::windowing
    {
    public:
 
-
-      ::pointer<::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-      ::pointer<::sandbox_windowing::window>         m_pwindowMouseCapture;
-      ::pointer<::sandbox_windowing::window>         m_pwindowActive;
-
-
-      ::pointer<host_interaction>                    m_phostinteraction;
-
-      ::pointer<::windowing::window>                 m_pwindowApplicationHost;
-
-      itask_t                                         m_itask;
-
-      ::procedure_list                                m_procedurelist;
+//
+//      ::pointer<::sandbox_windowing::window>         m_pwindowKeyboardFocus;
+//      ::pointer<::sandbox_windowing::window>         m_pwindowMouseCapture;
+//      ::pointer<::sandbox_windowing::window>         m_pwindowActive;
+//
+//
+//      ::pointer<host_interaction>                    m_phostinteraction;
+//
+//      ::pointer<::windowing::window>                 m_pwindowApplicationHost;
+//
+//      itask_t                                         m_itask;
+//
+//      ::procedure_list                                m_procedurelist;
 
 
       windowing();
@@ -58,7 +60,7 @@ namespace sandbox_windowing
 
       void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
-      ::windowing::window* get_application_host_window() override;
+      ::acme::windowing::window* get_application_host_window() override;
 
 
 
@@ -67,22 +69,22 @@ namespace sandbox_windowing
 
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor) override;
-      ::pointer < ::windowing::window > get_new_window() override;
+      ::pointer < ::acme::windowing::window > get_new_window() override;
 
 //      ::windowing::window* new_window(::windowing::window* pimpl) override;
 //
       void erase_window(::windowing::window* pwindow) override;
 
-      ::windowing::window* window(oswindow oswindow) override;
+      ::acme::windowing::window* window(oswindow oswindow) override;
 
       virtual void _message_handler(void* p) override;
 
       ::acme::windowing::window * get_keyboard_focus(::thread* pthread) override;
 
-      ::windowing::window * get_mouse_capture(::thread* pthread) override;
+      ::acme::windowing::window * get_mouse_capture(::thread* pthread) override;
 
 
-      bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow) override;
+      bool defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow) override;
 
 
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;

@@ -45,6 +45,7 @@
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
 #include "acme/windowing/window.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace micro
@@ -82,7 +83,15 @@ namespace micro
 ::shift_int main_window::client_to_host()
 {
    
-   return ::micro::elemental::client_to_host();
+   if (system()->acme_windowing()->get_application_host_window())
+   {
+      return ::micro::elemental::client_to_host();
+   }
+   else
+   {
+      return {};
+
+   }
    
 
 }

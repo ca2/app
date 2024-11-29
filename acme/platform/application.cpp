@@ -900,43 +900,46 @@ namespace platform
    void application::init()
    {
 
-      auto papplicationmenu = application_menu();
-
-      papplicationmenu->erase_all();
-
-      using namespace ::apex;
-
+      if (!system()->m_bConsole)
       {
+         auto papplicationmenu = application_menu();
 
-         auto ppopupApp = papplicationmenu->popup(application_title());
+         papplicationmenu->erase_all();
 
-         //pmenuMain->add(pmenuApp);
+         using namespace ::apex;
 
-         ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+         {
 
-         ppopupApp->separator();
+            auto ppopupApp = papplicationmenu->popup(application_title());
 
-         ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+            //pmenuMain->add(pmenuApp);
 
+            ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+
+            ppopupApp->separator();
+
+            ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+
+         }
+
+         //      {
+         //
+         //         auto ppopupView = papplicationmenu->popup("View");
+         //
+         //         //ppopupView->add(pmenuView);
+         //
+         //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+         //
+         //      }
+         //
+         //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+         //
+         ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+         ////
+         ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+
+         application_menu_update();
       }
-
-      //      {
-      //
-      //         auto ppopupView = papplicationmenu->popup("View");
-      //
-      //         //ppopupView->add(pmenuView);
-      //
-      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-      //
-      //      }
-      //
-      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-      //
-      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-      ////
-      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-      application_menu_update();
 
    }
 

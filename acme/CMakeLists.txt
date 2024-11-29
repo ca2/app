@@ -2916,10 +2916,6 @@ endif ()
 
 if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
-list(APPEND library_source
-      operating_system/posix/dynamic_library_dl.cpp
-      operating_system/posix/dynamic_library_dl.h
-   )
 
 list(APPEND library_source
       operating_system/posix/__edesktop_calculate.cpp
@@ -2986,7 +2982,10 @@ endif ()
 
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/posix/dynamic_library_dl.cpp
+   operating_system/posix/dynamic_library_dl.h
+)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -165,7 +165,11 @@ namespace platform
 
 #endif
 
-      m_etracelevelMinimum = e_trace_level_undefined;
+#ifdef DEBUG
+      m_etracelevelMinimum = e_trace_level_information;
+#else
+      m_etracelevelMinimum = e_trace_level_warning;
+#endif
 
 #ifdef DEBUG
       ::atom atom;
@@ -218,7 +222,7 @@ namespace platform
    system::~system()
    {
 
-      print_line("platform::system::~system() (start)");
+      debug() << "platform::system::~system() (start)";
 
       trace_category_static_term();
 
@@ -231,7 +235,7 @@ namespace platform
       // m_pbredsystem = nullptr;
       // m_pcoresystem = nullptr;
 
-      print_line("platform::system::~system() (end)");
+      debug() << "platform::system::~system() (end)";
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();

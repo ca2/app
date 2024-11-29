@@ -14041,14 +14041,14 @@ namespace user
 
       pmessage->m_lresult = 0;
 
-      if (pmessage->m_atom == e_message_mouse_leave)
-      {
+      //if (pmessage->m_atom == e_message_mouse_leave)
+      //{
 
-         _000OnMouseLeave(pmessage);
+      //   _000OnMouseLeave(pmessage);
 
-         return;
+      //   return;
 
-      }
+      //}
 
       if (pmessage->m_atom == e_message_left_button_down ||
           pmessage->m_atom == e_message_left_button_up ||
@@ -25511,8 +25511,6 @@ namespace user
 
       }
 
-      
-
       on_message_left_button_down_handle_keyboard_focus(pmessage);
 
       if ((m_bEnableHorizontalBarDragScroll && _001HasBarXDragScrolling())
@@ -26313,66 +26311,68 @@ namespace user
 
       }
 
-      //if (m_bDefaultMouseHoverHandling)
-      if (!m_pitemHover || !m_pitemHover->is_item_set())
+      if (m_bDefaultMouseHoverHandling)
       {
-
-         auto type = ::type(this);
-
-         if (type.name().contains("button"))
-         {
-
-            //informationf("button");
-
-         }
-
-         //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
-
-         //auto pitemFront = update_hover(pmouse, e_zorder_front);
-
-         //decltype(pitemFront) pitemBack;
-
-         //if (!pitemFront)
+         //if (!m_pitemHover || !m_pitemHover->is_item_set())
          //{
 
-         //information() << "update_hover pmouse e_zorder_back";
+            auto type = ::type(this);
 
-         auto pitemBack = update_hover(pmouse, e_zorder_back);
+            if (type.name().contains("button"))
+            {
+
+               //informationf("button");
+
+            }
+
+            //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+
+            //auto pitemFront = update_hover(pmouse, e_zorder_front);
+
+            //decltype(pitemFront) pitemBack;
+
+            //if (!pitemFront)
+            //{
+
+            //information() << "update_hover pmouse e_zorder_back";
+
+            auto pitemBack = update_hover(pmouse, e_zorder_back);
+
+            //}
+
+            //update_hover(pointCursorClient, false);
+
+            //if (::is_item_set(pitemBack))
+            //{
+   
+            //   if (!::is_item_set(m_pitemHover))
+            //   {
+
+   
+            //      track_mouse_leave();
+   
+            //      //auto pappearance = get_appearance();
+   
+            //      //if (::is_set(pappearance))
+            //      //{
+   
+            //      //   ::int_point pointClient;
+   
+            //      //   _screen_to_client(pointClient, pmouse->m_point);
+   
+            //      //   auto psession = session();
+   
+            //      //   auto ekeyModifiers = psession->key_modifiers();
+   
+            //      //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+   
+            //      //}
+   
+            //   }
+   
+            //}
 
          //}
-
-         //update_hover(pointCursorClient, false);
-
-//         if (::is_item_set(m_pitemHover))
-//         {
-//
-//            if (!m_bMouseHover)
-//            {
-//
-//               m_bMouseHover = true;
-//
-//               track_mouse_leave();
-//
-//               //auto pappearance = get_appearance();
-//
-//               //if (::is_set(pappearance))
-//               //{
-//
-//               //   ::int_point pointClient;
-//
-//               //   _screen_to_client(pointClient, pmouse->m_point);
-//
-//               //   auto psession = session();
-//
-//               //   auto ekeyModifiers = psession->key_modifiers();
-//
-//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
-//
-//               //}
-//
-//            }
-//
-//         }
 
       }
 
@@ -26993,7 +26993,7 @@ namespace user
 
             }
 
-            if (!pitemOldHover)
+            if (!::is_item_set(pitemOldHover))
             {
 
                try

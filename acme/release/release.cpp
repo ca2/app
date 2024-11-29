@@ -50,10 +50,6 @@ CLASS_DECL_ACME::std::strong_ordering compare_release(const ::string_array & str
 }
 
 
-
-
-
-
 CLASS_DECL_ACME::std::strong_ordering compare_release(const ::scoped_string & scopedstrA, const ::scoped_string & scopedstrB)
 {
 
@@ -86,6 +82,13 @@ CLASS_DECL_ACME::std::strong_ordering compare_release(const ::scoped_string & sc
       auto a = scopedstrA.explode(".");
 
       auto b = scopedstrB.explode(".");
+
+      if (a.size() <= 1 && b.size() <= 1)
+      {
+
+         return atoi(scopedstrA) <=> atoi(scopedstrB);
+
+      }
 
       return compare_release(a, b);
 

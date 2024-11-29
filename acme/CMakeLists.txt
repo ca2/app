@@ -523,6 +523,12 @@ list(APPEND library_source
    prototype/data/client.h
    prototype/data/client.cpp
    user/menu/_.h
+   user/menu/menu.cpp
+   user/menu/menu.h
+   platform/application_menu.cpp
+   platform/application_menu.h
+   platform/application_menu_command.cpp
+   platform/application_menu_command.h
    platform/application.cpp
    platform/application.h
    platform/application_acme.cpp
@@ -1342,6 +1348,13 @@ list(APPEND library_source
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
+   windowing/sandbox/_sandbox.h
+   windowing/sandbox/host_interaction.cpp
+   windowing/sandbox/host_interaction.h
+   windowing/sandbox/window.cpp
+   windowing/sandbox/window.h
+   windowing/sandbox/windowing.cpp
+   windowing/sandbox/windowing.h
    windowing/_.h
    windowing/_windowing.cpp
    windowing/display.cpp

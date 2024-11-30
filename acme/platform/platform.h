@@ -250,7 +250,7 @@ namespace platform
 
 #else
 
-      void initialize_system(int argc, platform_char ** args, platform_char ** envp);
+      void initialize_system(int argc, platform_char ** args, platform_char ** envp) override;
 
 #endif
 

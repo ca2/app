@@ -7,6 +7,8 @@ namespace user
 {
 
 
+#ifdef _DEBUG
+
    huge_integer mouse::increment_reference_count()
    {
 
@@ -22,7 +24,7 @@ namespace user
 
    }
 
-
+#endif
 
    ::user::mouse & mouse::operator = (const ::user::mouse & mouse)
    {

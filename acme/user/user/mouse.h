@@ -34,9 +34,12 @@ namespace user
       ::pointer<::user::interaction>        m_puserinteractionHit;
       void *                                 m_pOsMouseDataOkIfOnStack = nullptr;
 
+#ifdef _DEBUG
 
       huge_integer increment_reference_count() override;
       huge_integer decrement_reference_count() override;
+      
+#endif
 
 
       virtual unsigned int get_message()

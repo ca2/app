@@ -9,10 +9,10 @@ namespace user
 
 #ifdef _DEBUG
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> origin/main
+//>>>>>>> origin/main
    huge_integer mouse::increment_reference_count()
    {
 

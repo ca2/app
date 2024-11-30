@@ -33,7 +33,7 @@
 		9AC3F1202CF6B0A70061DCC0 /* libios_app_just_apex_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1162CF692F60061DCC0 /* libios_app_just_apex_message_box.a */; };
 		9AC3F1242CF6B2810061DCC0 /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1232CF6B2810061DCC0 /* libacme_ios.a */; };
 		9AC3F1272CF6B2E60061DCC0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1262CF6B2E60061DCC0 /* SystemConfiguration.framework */; };
-		9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_appkit.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_appkit.dylib */; };
+		9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F12D2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F12C2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a */; };
 		9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1302CF6B9B60061DCC0 /* libacme_windowing_uikit.a */; };
 /* End PBXBuildFile section */
@@ -153,7 +153,7 @@
 				9AC3F11E2CF6B0560061DCC0 /* libios_apex_posix.a in Frameworks */,
 				9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */,
 				9AC3F1242CF6B2810061DCC0 /* libacme_ios.a in Frameworks */,
-				9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_appkit.dylib in Frameworks */,
+				9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_uikit.a in Frameworks */,
 				9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */,
 				9A4753DB2CF5433E00ED30AE /* libios_app_just_message_box.a in Frameworks */,
 				9A4753B32CF540A200ED30AE /* CoreGraphics.framework in Frameworks */,
@@ -289,7 +289,14 @@
 		9AC3F0DC2CF691FC0061DCC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_appkit.dylib */,
+				9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AED897B2CFB8F450078A45B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,6 +355,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9AED897B2CFB8F450078A45B /* Products */;
+					ProjectRef = 9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AC3F0D02CF691670061DCC0 /* Products */;
 					ProjectRef = 9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */;
 				},
@@ -390,10 +401,10 @@
 			remoteRef = 9AC3F0D52CF691680061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_appkit.dylib */ = {
+		9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libinnate_ui_appkit.dylib;
+			path = libinnate_ui_uikit.a;
 			remoteRef = 9AC3F0DF2CF691FC0061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

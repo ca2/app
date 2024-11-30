@@ -35,7 +35,7 @@
 		9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F12D2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F12C2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a */; };
 		9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1302CF6B9B60061DCC0 /* libacme_windowing_uikit.a */; };
-		9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box copy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box copy.a */; };
+		9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */; };
 		9AC3F18E2CF78A4F0061DCC0 /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F18D2CF78A4F0061DCC0 /* libios_aqua.a */; };
 /* End PBXBuildFile section */
 
@@ -152,7 +152,7 @@
 				9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */,
 				9AC3F11F2CF6B0560061DCC0 /* libapex_ios.a in Frameworks */,
 				9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */,
-				9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box copy.a in Frameworks */,
+				9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box.a in Frameworks */,
 				9AC3F11E2CF6B0560061DCC0 /* libios_apex_posix.a in Frameworks */,
 				9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */,
 				9AC3F1242CF6B2810061DCC0 /* libacme_ios.a in Frameworks */,
@@ -293,7 +293,14 @@
 		9AC3F1582CF7853C0061DCC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box copy.a */,
+				9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AED897D2CFB8F450078A45B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,6 +359,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9AED897D2CFB8F450078A45B /* Products */;
+					ProjectRef = 9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AC3F0D02CF691670061DCC0 /* Products */;
 					ProjectRef = 9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */;
 				},
@@ -401,10 +412,10 @@
 			remoteRef = 9AC3F0DF2CF691FC0061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box copy.a */ = {
+		9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = "libios_app_just_aqua_message_box copy.a";
+			path = libios_app_just_aqua_message_box.a;
 			remoteRef = 9AC3F1862CF786D50061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
